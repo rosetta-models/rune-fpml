@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.bank.drr</groupId>
+    <groupId>com.regnosys.fpml</groupId>
     <artifactId>parent</artifactId>
     <packaging>pom</packaging>
     <version>0.0.0.master-SNAPSHOT</version>
@@ -15,8 +15,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <drr.version>5.0.0-dev.72</drr.version>
-        <rosetta.bundle.version>11.7.7</rosetta.bundle.version>
+        <rosetta.bundle.version>11.7.0</rosetta.bundle.version>
         <rosetta.dsl.version>9.8.5</rosetta.dsl.version>
 
         <xtext.version>2.27.0</xtext.version>
@@ -44,10 +43,6 @@
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
         <maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
         <maven-core.version>3.2.5</maven-core.version>
-        <!-- Rosetta -->
-        <rosetta.parent.digital-regulatory-reporting.groupId>com.regnosys</rosetta.parent.digital-regulatory-reporting.groupId>
-        <rosetta.parent.digital-regulatory-reporting.artifactId>drr</rosetta.parent.digital-regulatory-reporting.artifactId>
-        <rosetta.parent.digital-regulatory-reporting.version>${drr.version}</rosetta.parent.digital-regulatory-reporting.version>
     </properties>
 
     <dependencyManagement>
@@ -62,11 +57,6 @@
             </dependency>
             <!-- xtext END -->
             <!-- rosetta START -->
-            <dependency>
-                <groupId>com.regnosys.drr</groupId>
-                <artifactId>rosetta-source</artifactId>
-                <version>${drr.version}</version>
-            </dependency>
             <dependency>
                 <groupId>com.regnosys.rosetta</groupId>
                 <artifactId>com.regnosys.rosetta</artifactId>
@@ -155,17 +145,34 @@
 
     <repositories>
         <repository>
-            <id>regnosys-artifactory-snapshots</id>
-            <name>REGnosys Public Snapshots</name>
-            <url>https://regnosys.jfrog.io/regnosys/libs-snapshot</url>
-            <snapshots>
+            <id>artifact-registry</id>
+            <url>artifactregistry://europe-west1-maven.pkg.dev/production-208613/public-maven</url>
+            <releases>
                 <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
             </snapshots>
         </repository>
         <repository>
-            <id>regnosys-artifactory-releases</id>
-            <name>REGnosys Public Releases</name>
-            <url>https://regnosys.jfrog.io/regnosys/libs-release</url>
+            <id>artifact-registry-fpml</id>
+            <url>artifactregistry://europe-west1-maven.pkg.dev/production-208613/fpml-maven</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>artifact-registry-fpml-snapshot</id>
+            <url>artifactregistry://europe-west1-maven.pkg.dev/production-208613/fpml-maven-snapshot</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
         </repository>
     </repositories>
 
@@ -216,12 +223,12 @@
 
     <distributionManagement>
         <repository>
-            <id>artifact-registry-bank</id>
-            <url>artifactregistry://europe-west1-maven.pkg.dev/production-208613/bank-maven</url>
+            <id>artifact-registry-fpml</id>
+            <url>artifactregistry://europe-west1-maven.pkg.dev/production-208613/fpml-maven</url>
         </repository>
         <snapshotRepository>
-            <id>artifact-registry-bank-snapshot</id>
-            <url>artifactregistry://europe-west1-maven.pkg.dev/production-208613/bank-maven-snapshot</url>
+            <id>artifact-registry-fpml-snapshot</id>
+            <url>artifactregistry://europe-west1-maven.pkg.dev/production-208613/fpml-maven-snapshot</url>
         </snapshotRepository>
     </distributionManagement>
 </project>
