@@ -17,7 +17,7 @@ steps:
     commands:
       - echo "${{ARTIFACT_REGISTRY_SA_KEY}}"|base64 -d>"${{CF_VOLUME_PATH}}"/sa
       - cf_export GOOGLE_APPLICATION_CREDENTIALS="${{CF_VOLUME_PATH}}"/sa
-      - rm -rf /codefresh/volume/.m2/com/regnosys
+      - cf_export GPG_IMPORT_COMMAND="cat <(echo -e '${{GPG_PRIVATE_KEY}}') | gpg --batch --import" --mask
 
   TagReleaseName:
     stage: 'build'
@@ -29,7 +29,6 @@ steps:
           releaseNameNotDefined: "${{TAG_REPO}} == true"
     commands:
       - cf_export RELEASE_NAME=${{TAG_NAME}}
-      - cf_export GPG_IMPORT_COMMAND="cat <(echo -e '${{GPG_PRIVATE_KEY}}') | gpg --batch --import" --mask
 
   BranchReleaseName:
     stage: 'build'
