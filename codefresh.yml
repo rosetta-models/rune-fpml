@@ -71,8 +71,12 @@ steps:
     working_directory: ./
     commands:
       - mvn ${{MVN_SET_VERSION}}
-      - mvn clean install
-      - mvn deploy
+      - bash -c "${{GPG_IMPORT_COMMAND}}"
+      - export CI_DEPLOY_USERNAME="${{CI_DEPLOY_USERNAME}}"
+      - export CI_DEPLOY_PASSWORD="${{CI_DEPLOY_PASSWORD}}"
+      - export GPG_KEYNAME="${{GPG_KEYNAME}}"
+      - export GPG_PASSPHRASE="${{GPG_PASSPHRASE}}"
+      - mvn -s settings.xml -U -B clean deploy -P gpg
 
   NotifySlackOnFail:
     stage: 'finalise'
