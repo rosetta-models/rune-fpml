@@ -17,7 +17,7 @@ steps:
     commands:
       - echo "${{ARTIFACT_REGISTRY_SA_KEY}}"|base64 -d>"${{CF_VOLUME_PATH}}"/sa
       - cf_export GOOGLE_APPLICATION_CREDENTIALS="${{CF_VOLUME_PATH}}"/sa
-      - rm -rf /codefresh/volume/.m2/com/regnosys
+      - cf_export GPG_IMPORT_COMMAND="cat <(echo -e '${{GPG_PRIVATE_KEY}}') | gpg --batch --import" --mask
 
   TagReleaseName:
     stage: 'build'
@@ -71,8 +71,12 @@ steps:
     working_directory: ./
     commands:
       - mvn ${{MVN_SET_VERSION}}
-      - mvn clean install
-      - mvn deploy
+      - bash -c "${{GPG_IMPORT_COMMAND}}"
+      - export CI_DEPLOY_USERNAME="${{CI_DEPLOY_USERNAME}}"
+      - export CI_DEPLOY_PASSWORD="${{CI_DEPLOY_PASSWORD}}"
+      - export GPG_KEYNAME="${{GPG_KEYNAME}}"
+      - export GPG_PASSPHRASE="${{GPG_PASSPHRASE}}"
+      - mvn -s settings.xml -U -B clean deploy -P gpg
 
   NotifySlackOnFail:
     stage: 'finalise'
