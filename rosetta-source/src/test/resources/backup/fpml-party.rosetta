@@ -1,0 +1,29 @@
+namespace fpml.confirmation.v5
+
+typeAlias NormalizedString: <"A normalized string">
+  string
+
+typeAlias NonEmptyScheme: <"The base class for all types which define coding schemes that must be populated.">
+  NormalizedString
+
+typeAlias NonEmptyURI: <"A URI that cannot be empty.">
+  string(pattern: "\\w+:(\\/?\\/?)[^\\s]+", minLength: 1)
+
+typeAlias Scheme: <"The base class for all types which define coding schemes that are allowed to be empty.">
+  NormalizedString
+
+type Party: <"A type defining a legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+  partyModel PartyModel (0..1)
+  id string (1..1) <"The id uniquely identifying the Party within the document.">
+
+type PartyModel: <"A model group with the content model of a party.">
+  partyId PartyId (1..*) <"A party identifier, e.g. a S.W.I.F.T. bank identifier code (BIC).">
+  partyName PartyName (0..1) <"The legal name of the organization. A free format string. FpML does not define usage rules for this element.">
+
+type PartyId: <"The data type used for party identifiers.">
+  value NonEmptyScheme (1..1)
+  partyIdScheme NonEmptyURI (1..1)
+
+type PartyName: <"The data type used for the legal name of an organization.">
+  value Scheme (1..1)
+  partyNameScheme NonEmptyURI (0..1)
