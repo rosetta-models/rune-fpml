@@ -51,6 +51,22 @@ public class FpmlPartySerialisationTest {
         assertThat(serialised, equalTo(xml));
     }
 
+    @Test
+    public void testSerialisationWithGroupStaticJava() throws IOException {
+        ObjectMapper objectMapper = createObjectMapper("fpml.confirmation.v5.staticgroup");
+
+        String xml = """
+                <party id="party1">
+                  <partyId partyIdScheme="http://www.fpml.org/coding-scheme/external/iso17442">54930084UKLVMY22DS16</partyId>
+                  <partyName>Party A</partyName>
+                </party>
+                """;
+
+        RosettaModelObject deserialised = objectMapper.readValue(xml, fpml.confirmation.v5.staticgroup.Party.class);
+        String serialised = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(deserialised);
+        assertThat(serialised, equalTo(xml));
+    }
+
     private static ObjectMapper createObjectMapper(String packageName) throws IOException {
         RosettaObjectMapperCreator rosettaObjectMapperCreator = RosettaObjectMapperCreator.forXML(new ByteArrayInputStream("""
       {
