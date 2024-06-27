@@ -23,7 +23,6 @@ public class PartyOnlyExistsValidator implements ValidatorWithArg<Party, Set<Str
 	public <T2 extends Party> ValidationResult<Party> validate(RosettaPath path, T2 o, Set<String> fields) {
 		Map<String, Boolean> fieldExistenceMap = ImmutableMap.<String, Boolean>builder()
 				.put("partyModel", ExistenceChecker.isSet((PartyModel) o.getPartyModel()))
-				.put("id", ExistenceChecker.isSet((String) o.getId()))
 				.build();
 		
 		// Find the fields that are set

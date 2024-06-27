@@ -22,8 +22,7 @@ public class PartyValidator implements Validator<Party> {
 
 	private List<ComparisonResult> getComparisonResults(Party o) {
 		return Lists.<ComparisonResult>newArrayList(
-				checkCardinality("partyModel", (PartyModel) o.getPartyModel() != null ? 1 : 0, 0, 1),
-				checkCardinality("id", (String) o.getId() != null ? 1 : 0, 1, 1)
+				checkCardinality("partyModel", (PartyModel) o.getPartyModel() != null ? 1 : 0, 0, 1)
 			);
 	}
 
