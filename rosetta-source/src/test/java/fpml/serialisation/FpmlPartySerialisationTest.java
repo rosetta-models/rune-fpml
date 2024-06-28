@@ -32,12 +32,13 @@ public class FpmlPartySerialisationTest {
     }
 
     //TODO: get deserialise working
-    @Disabled
+//    @Disabled
     @Test
     public void testSerialisationWithGroup() throws IOException {
         ObjectMapper objectMapper = createObjectMapper("fpml.confirmation.v5.group")
                 .addMixIn(fpml.confirmation.v5.group.Party.PartyImpl.class, PartyMixin.class)
-                .addMixIn(fpml.confirmation.v5.group.Party.PartyBuilderImpl.class, PartyBuilderMixin.class);
+                .addMixIn(fpml.confirmation.v5.group.Party.PartyBuilderImpl.class, PartyBuilderMixin.class)
+                .addMixIn(fpml.confirmation.v5.group.PartyModel.PartyModelBuilderImpl.class, PartyModelBuilderMixin.class);
 
         String xml = """
                 <party id="party1">

@@ -1,5 +1,6 @@
 package fpml.confirmation.v5.group;
 
+import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 
 public abstract class PartyBuilderMixin {
