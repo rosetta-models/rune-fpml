@@ -31,8 +31,8 @@ public class FpmlPartySerialisationTest {
         assertThat(serialised, equalTo(xml));
     }
 
-    //TODO: get deserialise working
-//    @Disabled
+    // No need to get this working in mixins
+    @Disabled
     @Test
     public void testSerialisationWithGroup() throws IOException {
         ObjectMapper objectMapper = createObjectMapper("fpml.confirmation.v5.group")

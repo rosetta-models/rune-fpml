@@ -89,6 +89,7 @@ public interface Party extends RosettaModelObject {
 		
 		@Override
 		@RosettaAttribute("partyModel")
+		@JsonUnwrapped
 		public PartyModel getPartyModel() {
 			return partyModel;
 		}
@@ -181,6 +182,7 @@ public interface Party extends RosettaModelObject {
 		
 		@Override
 		@RosettaAttribute("partyModel")
+		@JsonUnwrapped
 		public PartyBuilder setPartyModel(PartyModel partyModel) {
 			this.partyModel = partyModel==null?null:partyModel.toBuilder();
 			return this;
