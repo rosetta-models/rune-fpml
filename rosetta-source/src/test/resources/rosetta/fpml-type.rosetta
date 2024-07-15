@@ -173,7 +173,8 @@ type Account: <"A generic account that represents any party\'s account at anothe
 	accountId AccountId (1..*) <"An account identifier. For example an Account number.">
 	accountName AccountName (0..1) <"The name by which the account is known.">
 	accountType AccountType (0..1) <"The type of account. e.g., Client, House">
-	accountSequence AccountSequence (0..1)
+	accountBeneficiary PartyReference (1..1) <"A reference to the party beneficiary of the account.">
+	servicingParty PartyReference (0..1) <"A reference to the party that services/supports the account.">
 	servicingParty PartyReference (0..1) <"A reference to the party that services/supports the account.">
 	id string (1..1) <"The unique identifier for the account within the document.">
 
@@ -191,11 +192,6 @@ type AccountType: <"The data type used for account type.">
 
 	value Scheme (1..1)
 	accountTypeScheme NonEmptyURI (0..1) <"The identifier scheme used with this accountType. A unique URI to determine the the type of account.">
-
-type AccountSequence:
-
-	accountBeneficiary PartyReference (1..1) <"A reference to the party beneficiary of the account.">
-	servicingParty PartyReference (0..1) <"A reference to the party that services/supports the account.">
 
 type AccountReference extends Reference: <"Reference to an account.">
 
