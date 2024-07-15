@@ -25,7 +25,7 @@ type Reference: <"The abstract base class for all types which define intra-docum
 
 type Party: <"A type defining a legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
 
-    partyId PartyId (1..*) <"A party identifier, e.g. a S.W.I.F.T. bank identifier code (BIC).">
+    partyId PartyId (0..*) <"A party identifier, e.g. a S.W.I.F.T. bank identifier code (BIC).">
     partyName PartyName (0..1) <"The legal name of the organization. A free format string. FpML does not define usage rules for this element.">
     classification IndustryClassification (0..*) <"The party\'s industry sector classification.">
     creditRating CreditRating (0..*) <"The party\'s credit rating.">
@@ -36,7 +36,8 @@ type Party: <"A type defining a legal entity or a subdivision of a legal entity.
     contactInfo ContactInformation (0..1) <"Information on how to contact the party using various means.">
     businessUnit BusinessUnit (0..*) <"Optional organization unit information used to describe the organization units (e.g. trading desks) involved in a transaction or business process .">
     person Person (0..*) <"Optional information about people involved in a transaction or busines process. (These are eomployees of the party).">
-    partySequence PartySequence (0..1)
+    groupType PartyGroupType (0..1) <"Party Group Type, e.g. JointAndSeveralLiability">
+    partyReference PartyReference (0..*) <"Reference to a party that is a member of the group of entities that are acting together as a single party in a transaction.">
     id string (1..1) <"The id uniquely identifying the Party within the document.">
 
 type PartyId: <"The data type used for party identifiers.">
