@@ -7,7 +7,14 @@ import fpml.minparty.Party;
 import fpml.minparty.PartyId;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Test;
+import org.xml.sax.SAXException;
 
+import javax.xml.XMLConstants;
+import javax.xml.transform.Source;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+import javax.xml.validation.Validator;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
@@ -19,10 +26,14 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class FlattenedFpmlPartySerialisationTest {
 
     @Test
-    void testMinimalFpmlPartySerialisation() throws IOException {
+    void testMinimalFpmlPartySerialisation() throws IOException, SAXException {
         ObjectMapper objectMapper = createObjectMapper("fpml.minparty");
 
-        File file = new File(Objects.requireNonNull(getClass().getClassLoader().getResource("fpml-xml/minimal-party.xml")).getFile());
+        String xsdPath = "schemas/fpml-5-13/confirmation/fpml-main-5-13.xsd";
+        String xmlPath = "fpml-xml/minimal-party.xml";
+        assertThat(isValidXml(xsdPath, xmlPath), equalTo(true));
+
+        File file = new File(Objects.requireNonNull(getClass().getClassLoader().getResource(xmlPath)).getFile());
         String xml = stripDataDocument(FileUtils.readFileToString(file, "UTF-8"));
 
         Party party = objectMapper.readValue(xml, Party.class);
@@ -32,6 +43,27 @@ public class FlattenedFpmlPartySerialisationTest {
         assertThat(partyId.getValue(), equalTo("549300VBWWV6BYQOWM67"));
         assertThat(partyId.getPartyIdScheme(), equalTo("http://www.fpml.org/coding-scheme/external/iso17442"));
         assertThat(party.getPartyName().getValue(), equalTo("PARTYA"));
+    }
+
+    public boolean isValidXml(String xsdPath, String xmlPath) throws IOException, SAXException {
+        Validator validator = initValidator(xsdPath);
+        try {
+            validator.validate(new StreamSource(getFile(xmlPath)));
+            return true;
+        } catch (SAXException e) {
+            return false;
+        }
+    }
+
+    private Validator initValidator(String xsdPath) throws SAXException {
+        SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+        Source schemaFile = new StreamSource(getFile(xsdPath));
+        Schema schema = factory.newSchema(schemaFile);
+        return schema.newValidator();
+    }
+
+    private File getFile(String location) {
+        return new File(getClass().getClassLoader().getResource(location).getFile());
     }
 
     private String stripDataDocument(String xml) {
