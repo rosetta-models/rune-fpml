@@ -3,8 +3,8 @@ package fpml.serialisation;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.regnosys.rosetta.common.serialisation.RosettaObjectMapperCreator;
-import fpml.minparty.Party;
-import fpml.minparty.PartyId;
+import fpml.flattened.Party;
+import fpml.flattened.PartyId;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Test;
 import org.xml.sax.SAXException;
@@ -27,7 +27,7 @@ public class FlattenedFpmlPartySerialisationTest {
 
     @Test
     void testMinimalFpmlPartySerialisation() throws IOException, SAXException {
-        ObjectMapper objectMapper = createObjectMapper("fpml.minparty");
+        ObjectMapper objectMapper = createObjectMapper("fpml.flattened");
 
         String xsdPath = "schemas/fpml-5-13/confirmation/fpml-main-5-13.xsd";
         String xmlPath = "fpml-xml/minimal-party.xml";
