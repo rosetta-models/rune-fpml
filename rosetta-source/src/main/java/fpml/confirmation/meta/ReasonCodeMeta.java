@@ -1,0 +1,52 @@
+package fpml.confirmation.meta;
+
+import com.rosetta.model.lib.annotations.RosettaMeta;
+import com.rosetta.model.lib.meta.RosettaMetaData;
+import com.rosetta.model.lib.qualify.QualifyFunctionFactory;
+import com.rosetta.model.lib.qualify.QualifyResult;
+import com.rosetta.model.lib.validation.Validator;
+import com.rosetta.model.lib.validation.ValidatorFactory;
+import com.rosetta.model.lib.validation.ValidatorWithArg;
+import fpml.confirmation.ReasonCode;
+import fpml.confirmation.validation.ReasonCodeTypeFormatValidator;
+import fpml.confirmation.validation.ReasonCodeValidator;
+import fpml.confirmation.validation.exists.ReasonCodeOnlyExistsValidator;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+import java.util.function.Function;
+
+
+/**
+ * @version ${project.version}
+ */
+@RosettaMeta(model=ReasonCode.class)
+public class ReasonCodeMeta implements RosettaMetaData<ReasonCode> {
+
+	@Override
+	public List<Validator<? super ReasonCode>> dataRules(ValidatorFactory factory) {
+		return Arrays.asList(
+		);
+	}
+	
+	@Override
+	public List<Function<? super ReasonCode, QualifyResult>> getQualifyFunctions(QualifyFunctionFactory factory) {
+		return Collections.emptyList();
+	}
+
+	@Override
+	public Validator<? super ReasonCode> validator() {
+		return new ReasonCodeValidator();
+	}
+
+	@Override
+	public Validator<? super ReasonCode> typeFormatValidator() {
+		return new ReasonCodeTypeFormatValidator();
+	}
+	
+	@Override
+	public ValidatorWithArg<? super ReasonCode, Set<String>> onlyExistsValidator() {
+		return new ReasonCodeOnlyExistsValidator();
+	}
+}

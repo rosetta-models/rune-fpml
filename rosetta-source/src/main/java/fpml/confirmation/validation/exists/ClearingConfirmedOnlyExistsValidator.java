@@ -1,0 +1,60 @@
+package fpml.confirmation.validation.exists;
+
+import com.google.common.collect.ImmutableMap;
+import com.rosetta.model.lib.path.RosettaPath;
+import com.rosetta.model.lib.validation.ExistenceChecker;
+import com.rosetta.model.lib.validation.ValidationResult;
+import com.rosetta.model.lib.validation.ValidationResult.ValidationType;
+import com.rosetta.model.lib.validation.ValidatorWithArg;
+import fpml.confirmation.ClearingConfirmed;
+import fpml.confirmation.ClearingResultsModel;
+import fpml.confirmation.CompressionModel;
+import fpml.confirmation.CorrelationAndOptionalSequenceModel;
+import fpml.confirmation.CreditLimitInformation;
+import fpml.confirmation.EventValuationModel;
+import fpml.confirmation.NotificationMessageHeader;
+import fpml.confirmation.OnBehalfOfModel;
+import fpml.confirmation.PartiesAndAccountsModel;
+import fpml.confirmation.PortfolioReferenceModel;
+import fpml.confirmation.ValidationModel;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import static com.rosetta.model.lib.validation.ValidationResult.failure;
+import static com.rosetta.model.lib.validation.ValidationResult.success;
+
+public class ClearingConfirmedOnlyExistsValidator implements ValidatorWithArg<ClearingConfirmed, Set<String>> {
+
+	/* Casting is required to ensure types are output to ensure recompilation in Rosetta */
+	@Override
+	public <T2 extends ClearingConfirmed> ValidationResult<ClearingConfirmed> validate(RosettaPath path, T2 o, Set<String> fields) {
+		Map<String, Boolean> fieldExistenceMap = ImmutableMap.<String, Boolean>builder()
+				.put("expectedBuild", ExistenceChecker.isSet((Integer) o.getExpectedBuild()))
+				.put("actualBuild", ExistenceChecker.isSet((Integer) o.getActualBuild()))
+				.put("header", ExistenceChecker.isSet((NotificationMessageHeader) o.getHeader()))
+				.put("validationModel", ExistenceChecker.isSet((ValidationModel) o.getValidationModel()))
+				.put("correlationAndOptionalSequenceModel", ExistenceChecker.isSet((CorrelationAndOptionalSequenceModel) o.getCorrelationAndOptionalSequenceModel()))
+				.put("onBehalfOfModel", ExistenceChecker.isSet((OnBehalfOfModel) o.getOnBehalfOfModel()))
+				.put("compressionModel", ExistenceChecker.isSet((CompressionModel) o.getCompressionModel()))
+				.put("portfolioReferenceModel", ExistenceChecker.isSet((PortfolioReferenceModel) o.getPortfolioReferenceModel()))
+				.put("clearingResultsModel", ExistenceChecker.isSet((ClearingResultsModel) o.getClearingResultsModel()))
+				.put("eventValuationModel", ExistenceChecker.isSet((EventValuationModel) o.getEventValuationModel()))
+				.put("creditLimitInformation", ExistenceChecker.isSet((List<? extends CreditLimitInformation>) o.getCreditLimitInformation()))
+				.put("partiesAndAccountsModel", ExistenceChecker.isSet((PartiesAndAccountsModel) o.getPartiesAndAccountsModel()))
+				.build();
+		
+		// Find the fields that are set
+		Set<String> setFields = fieldExistenceMap.entrySet().stream()
+				.filter(Map.Entry::getValue)
+				.map(Map.Entry::getKey)
+				.collect(Collectors.toSet());
+		
+		if (setFields.equals(fields)) {
+			return success("ClearingConfirmed", ValidationType.ONLY_EXISTS, "ClearingConfirmed", path, "");
+		}
+		return failure("ClearingConfirmed", ValidationType.ONLY_EXISTS, "ClearingConfirmed", path, "",
+				String.format("[%s] should only be set.  Set fields: %s", fields, setFields));
+	}
+}

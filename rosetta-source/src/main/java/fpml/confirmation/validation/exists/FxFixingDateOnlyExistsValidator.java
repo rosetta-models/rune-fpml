@@ -1,0 +1,51 @@
+package fpml.confirmation.validation.exists;
+
+import com.google.common.collect.ImmutableMap;
+import com.rosetta.model.lib.path.RosettaPath;
+import com.rosetta.model.lib.validation.ExistenceChecker;
+import com.rosetta.model.lib.validation.ValidationResult;
+import com.rosetta.model.lib.validation.ValidationResult.ValidationType;
+import com.rosetta.model.lib.validation.ValidatorWithArg;
+import fpml.confirmation.BusinessCentersOrReferenceModel;
+import fpml.confirmation.BusinessDayConventionEnum;
+import fpml.confirmation.DateRelativeToCalculationPeriodDates;
+import fpml.confirmation.DateRelativeToPaymentDates;
+import fpml.confirmation.DayTypeEnum;
+import fpml.confirmation.FxFixingDate;
+import fpml.confirmation.PeriodEnum;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import static com.rosetta.model.lib.validation.ValidationResult.failure;
+import static com.rosetta.model.lib.validation.ValidationResult.success;
+
+public class FxFixingDateOnlyExistsValidator implements ValidatorWithArg<FxFixingDate, Set<String>> {
+
+	/* Casting is required to ensure types are output to ensure recompilation in Rosetta */
+	@Override
+	public <T2 extends FxFixingDate> ValidationResult<FxFixingDate> validate(RosettaPath path, T2 o, Set<String> fields) {
+		Map<String, Boolean> fieldExistenceMap = ImmutableMap.<String, Boolean>builder()
+				.put("periodMultiplier", ExistenceChecker.isSet((Integer) o.getPeriodMultiplier()))
+				.put("period", ExistenceChecker.isSet((PeriodEnum) o.getPeriod()))
+				.put("id", ExistenceChecker.isSet((String) o.getId()))
+				.put("dayType", ExistenceChecker.isSet((DayTypeEnum) o.getDayType()))
+				.put("businessDayConvention", ExistenceChecker.isSet((BusinessDayConventionEnum) o.getBusinessDayConvention()))
+				.put("businessCentersOrReferenceModel", ExistenceChecker.isSet((BusinessCentersOrReferenceModel) o.getBusinessCentersOrReferenceModel()))
+				.put("dateRelativeToPaymentDates", ExistenceChecker.isSet((DateRelativeToPaymentDates) o.getDateRelativeToPaymentDates()))
+				.put("dateRelativeToCalculationPeriodDates", ExistenceChecker.isSet((DateRelativeToCalculationPeriodDates) o.getDateRelativeToCalculationPeriodDates()))
+				.build();
+		
+		// Find the fields that are set
+		Set<String> setFields = fieldExistenceMap.entrySet().stream()
+				.filter(Map.Entry::getValue)
+				.map(Map.Entry::getKey)
+				.collect(Collectors.toSet());
+		
+		if (setFields.equals(fields)) {
+			return success("FxFixingDate", ValidationType.ONLY_EXISTS, "FxFixingDate", path, "");
+		}
+		return failure("FxFixingDate", ValidationType.ONLY_EXISTS, "FxFixingDate", path, "",
+				String.format("[%s] should only be set.  Set fields: %s", fields, setFields));
+	}
+}

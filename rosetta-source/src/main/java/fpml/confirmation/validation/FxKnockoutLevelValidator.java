@@ -1,0 +1,61 @@
+package fpml.confirmation.validation;
+
+import com.google.common.collect.Lists;
+import com.rosetta.model.lib.expression.ComparisonResult;
+import com.rosetta.model.lib.path.RosettaPath;
+import com.rosetta.model.lib.validation.ValidationResult;
+import com.rosetta.model.lib.validation.ValidationResult.ValidationType;
+import com.rosetta.model.lib.validation.Validator;
+import fpml.confirmation.FxKnockoutLevel;
+import fpml.confirmation.FxSettlementAdjustmentMethodEnum;
+import fpml.confirmation.FxTargetStyleEnum;
+import fpml.confirmation.NonNegativeMoney;
+import java.math.BigDecimal;
+import java.util.List;
+
+import static com.google.common.base.Strings.isNullOrEmpty;
+import static com.rosetta.model.lib.expression.ExpressionOperators.checkCardinality;
+import static com.rosetta.model.lib.validation.ValidationResult.failure;
+import static com.rosetta.model.lib.validation.ValidationResult.success;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
+
+public class FxKnockoutLevelValidator implements Validator<FxKnockoutLevel> {
+
+	private List<ComparisonResult> getComparisonResults(FxKnockoutLevel o) {
+		return Lists.<ComparisonResult>newArrayList(
+				checkCardinality("amount", (NonNegativeMoney) o.getAmount() != null ? 1 : 0, 0, 1), 
+				checkCardinality("intrinsicValue", (BigDecimal) o.getIntrinsicValue() != null ? 1 : 0, 0, 1), 
+				checkCardinality("targetStyle", (FxTargetStyleEnum) o.getTargetStyle() != null ? 1 : 0, 1, 1), 
+				checkCardinality("settlementAdjustmentStyle", (FxSettlementAdjustmentMethodEnum) o.getSettlementAdjustmentStyle() != null ? 1 : 0, 0, 1)
+			);
+	}
+
+	@Override
+	public ValidationResult<FxKnockoutLevel> validate(RosettaPath path, FxKnockoutLevel o) {
+		String error = getComparisonResults(o)
+			.stream()
+			.filter(res -> !res.get())
+			.map(res -> res.getError())
+			.collect(joining("; "));
+
+		if (!isNullOrEmpty(error)) {
+			return failure("FxKnockoutLevel", ValidationType.CARDINALITY, "FxKnockoutLevel", path, "", error);
+		}
+		return success("FxKnockoutLevel", ValidationType.CARDINALITY, "FxKnockoutLevel", path, "");
+	}
+
+	@Override
+	public List<ValidationResult<?>> getValidationResults(RosettaPath path, FxKnockoutLevel o) {
+		return getComparisonResults(o)
+			.stream()
+			.map(res -> {
+				if (!isNullOrEmpty(res.getError())) {
+					return failure("FxKnockoutLevel", ValidationType.CARDINALITY, "FxKnockoutLevel", path, "", res.getError());
+				}
+				return success("FxKnockoutLevel", ValidationType.CARDINALITY, "FxKnockoutLevel", path, "");
+			})
+			.collect(toList());
+	}
+
+}

@@ -1,0 +1,59 @@
+package fpml.confirmation.validation;
+
+import com.google.common.collect.Lists;
+import com.rosetta.model.lib.expression.ComparisonResult;
+import com.rosetta.model.lib.path.RosettaPath;
+import com.rosetta.model.lib.validation.ValidationResult;
+import com.rosetta.model.lib.validation.ValidationResult.ValidationType;
+import com.rosetta.model.lib.validation.Validator;
+import fpml.confirmation.AdjustableDate2;
+import fpml.confirmation.GenericExerciseStyle;
+import fpml.confirmation.GenericOptionAttributesModel;
+import fpml.confirmation.OptionType;
+import java.util.List;
+
+import static com.google.common.base.Strings.isNullOrEmpty;
+import static com.rosetta.model.lib.expression.ExpressionOperators.checkCardinality;
+import static com.rosetta.model.lib.validation.ValidationResult.failure;
+import static com.rosetta.model.lib.validation.ValidationResult.success;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
+
+public class GenericOptionAttributesModelValidator implements Validator<GenericOptionAttributesModel> {
+
+	private List<ComparisonResult> getComparisonResults(GenericOptionAttributesModel o) {
+		return Lists.<ComparisonResult>newArrayList(
+				checkCardinality("optionType", (OptionType) o.getOptionType() != null ? 1 : 0, 0, 1), 
+				checkCardinality("commencementDate", (AdjustableDate2) o.getCommencementDate() != null ? 1 : 0, 0, 1), 
+				checkCardinality("exerciseStyle", (GenericExerciseStyle) o.getExerciseStyle() != null ? 1 : 0, 0, 1)
+			);
+	}
+
+	@Override
+	public ValidationResult<GenericOptionAttributesModel> validate(RosettaPath path, GenericOptionAttributesModel o) {
+		String error = getComparisonResults(o)
+			.stream()
+			.filter(res -> !res.get())
+			.map(res -> res.getError())
+			.collect(joining("; "));
+
+		if (!isNullOrEmpty(error)) {
+			return failure("GenericOptionAttributesModel", ValidationType.CARDINALITY, "GenericOptionAttributesModel", path, "", error);
+		}
+		return success("GenericOptionAttributesModel", ValidationType.CARDINALITY, "GenericOptionAttributesModel", path, "");
+	}
+
+	@Override
+	public List<ValidationResult<?>> getValidationResults(RosettaPath path, GenericOptionAttributesModel o) {
+		return getComparisonResults(o)
+			.stream()
+			.map(res -> {
+				if (!isNullOrEmpty(res.getError())) {
+					return failure("GenericOptionAttributesModel", ValidationType.CARDINALITY, "GenericOptionAttributesModel", path, "", res.getError());
+				}
+				return success("GenericOptionAttributesModel", ValidationType.CARDINALITY, "GenericOptionAttributesModel", path, "");
+			})
+			.collect(toList());
+	}
+
+}

@@ -1,0 +1,71 @@
+package fpml.confirmation;
+
+import com.rosetta.model.lib.annotations.RosettaEnum;
+import com.rosetta.model.lib.annotations.RosettaEnumValue;
+import fpml.confirmation.TimeTypeEnum;
+import java.util.Collections;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+
+/**
+ * @version ${project.version}
+ */
+@RosettaEnum("TimeTypeEnum")
+public enum TimeTypeEnum {
+
+	@RosettaEnumValue(value = "CLOSE") 
+	CLOSE("CLOSE", null),
+	
+	@RosettaEnumValue(value = "OPEN") 
+	OPEN("OPEN", null),
+	
+	@RosettaEnumValue(value = "OSP") 
+	OSP("OSP", null),
+	
+	@RosettaEnumValue(value = "SPECIFIC_TIME") 
+	SPECIFIC_TIME("SPECIFIC_TIME", null),
+	
+	@RosettaEnumValue(value = "XETRA") 
+	XETRA("XETRA", null),
+	
+	@RosettaEnumValue(value = "DERIVATIVES_CLOSE") 
+	DERIVATIVES_CLOSE("DERIVATIVES_CLOSE", null),
+	
+	@RosettaEnumValue(value = "AS_SPECIFIED_IN_MASTER_CONFIRMATION") 
+	AS_SPECIFIED_IN_MASTER_CONFIRMATION("AS_SPECIFIED_IN_MASTER_CONFIRMATION", null)
+;
+	private static Map<String, TimeTypeEnum> values;
+	static {
+        Map<String, TimeTypeEnum> map = new ConcurrentHashMap<>();
+		for (TimeTypeEnum instance : TimeTypeEnum.values()) {
+			map.put(instance.toDisplayString(), instance);
+		}
+		values = Collections.unmodifiableMap(map);
+    }
+
+	private final String rosettaName;
+	private final String displayName;
+
+	TimeTypeEnum(String rosettaName, String displayName) {
+		this.rosettaName = rosettaName;
+		this.displayName = displayName;
+	}
+
+	public static TimeTypeEnum fromDisplayName(String name) {
+		TimeTypeEnum value = values.get(name);
+		if (value == null) {
+			throw new IllegalArgumentException("No enum constant with display name \"" + name + "\".");
+		}
+		return value;
+	}
+
+	@Override
+	public String toString() {
+		return toDisplayString();
+	}
+
+	public String toDisplayString() {
+		return displayName != null ?  displayName : rosettaName;
+	}
+}
