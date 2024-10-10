@@ -1,0 +1,53 @@
+package fpml.confirmation.meta;
+
+import com.rosetta.model.lib.annotations.RosettaMeta;
+import com.rosetta.model.lib.meta.RosettaMetaData;
+import com.rosetta.model.lib.qualify.QualifyFunctionFactory;
+import com.rosetta.model.lib.qualify.QualifyResult;
+import com.rosetta.model.lib.validation.Validator;
+import com.rosetta.model.lib.validation.ValidatorFactory;
+import com.rosetta.model.lib.validation.ValidatorWithArg;
+import fpml.confirmation.FxAveragingProcess;
+import fpml.confirmation.validation.FxAveragingProcessTypeFormatValidator;
+import fpml.confirmation.validation.FxAveragingProcessValidator;
+import fpml.confirmation.validation.exists.FxAveragingProcessOnlyExistsValidator;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+import java.util.function.Function;
+
+
+/**
+ * @version ${project.version}
+ */
+@RosettaMeta(model=FxAveragingProcess.class)
+public class FxAveragingProcessMeta implements RosettaMetaData<FxAveragingProcess> {
+
+	@Override
+	public List<Validator<? super FxAveragingProcess>> dataRules(ValidatorFactory factory) {
+		return Arrays.asList(
+			factory.<fpml.confirmation.FxRateObservable>create(fpml.confirmation.validation.datarule.FxRateObservableChoice.class)
+		);
+	}
+	
+	@Override
+	public List<Function<? super FxAveragingProcess, QualifyResult>> getQualifyFunctions(QualifyFunctionFactory factory) {
+		return Collections.emptyList();
+	}
+
+	@Override
+	public Validator<? super FxAveragingProcess> validator() {
+		return new FxAveragingProcessValidator();
+	}
+
+	@Override
+	public Validator<? super FxAveragingProcess> typeFormatValidator() {
+		return new FxAveragingProcessTypeFormatValidator();
+	}
+	
+	@Override
+	public ValidatorWithArg<? super FxAveragingProcess, Set<String>> onlyExistsValidator() {
+		return new FxAveragingProcessOnlyExistsValidator();
+	}
+}

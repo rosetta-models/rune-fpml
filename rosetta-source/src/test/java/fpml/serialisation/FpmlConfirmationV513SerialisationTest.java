@@ -11,10 +11,10 @@ import java.net.URL;
 import java.util.stream.Stream;
 
 //TODO: bring this back when we fix the java generation
-/*public class FpmlConfirmationV513SerialisationTest {
+public class FpmlConfirmationV513SerialisationTest {
     private static final String XSD_SCHEMA_NAME = "schemas/fpml-5-13/confirmation/fpml-main-5-13.xsd";
     private static final String XML_CONFIG_NAME = "xml-config/confirmation-v5-13-rosetta-xml-config.json";
-    private static final String SAMPLE_FILE_DIRECTORY = "fpml-5-13/confirmation";
+    private static final String SAMPLE_FILE_DIRECTORY = "cdm-sample-files/fpml-5-10/products/";
     private static final String EXPECTED_SCHEMA_LOCATION = "urn:iso:std:iso:20022:tech:xsd:auth.030.001.03 ../../../main/resources/" + XSD_SCHEMA_NAME;
 
     private final SerialisationTestUtil<Document> serialisationTestUtil;
@@ -37,4 +37,4 @@ import java.util.stream.Stream;
     public static Stream<Arguments> getSampleFiles() throws IOException {
         return SerialisationTestUtil.getSampleFiles(SAMPLE_FILE_DIRECTORY);
     }
-}*/
+}

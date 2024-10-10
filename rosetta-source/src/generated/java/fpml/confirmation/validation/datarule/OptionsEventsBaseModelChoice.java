@@ -1,0 +1,63 @@
+package fpml.confirmation.validation.datarule;
+
+import com.google.inject.ImplementedBy;
+import com.rosetta.model.lib.annotations.RosettaDataRule;
+import com.rosetta.model.lib.expression.ComparisonResult;
+import com.rosetta.model.lib.mapper.MapperS;
+import com.rosetta.model.lib.path.RosettaPath;
+import com.rosetta.model.lib.validation.ChoiceRuleValidationMethod;
+import com.rosetta.model.lib.validation.ValidationResult;
+import com.rosetta.model.lib.validation.ValidationResult.ValidationType;
+import com.rosetta.model.lib.validation.Validator;
+import fpml.confirmation.OptionsEventsBaseModel;
+import java.util.Arrays;
+
+import static com.rosetta.model.lib.expression.ExpressionOperators.*;
+
+/**
+ * @version ${project.version}
+ */
+@RosettaDataRule("OptionsEventsBaseModelChoice")
+@ImplementedBy(OptionsEventsBaseModelChoice.Default.class)
+public interface OptionsEventsBaseModelChoice extends Validator<OptionsEventsBaseModel> {
+	
+	String NAME = "OptionsEventsBaseModelChoice";
+	String DEFINITION = "one-of";
+	
+	ValidationResult<OptionsEventsBaseModel> validate(RosettaPath path, OptionsEventsBaseModel optionsEventsBaseModel);
+	
+	class Default implements OptionsEventsBaseModelChoice {
+	
+		@Override
+		public ValidationResult<OptionsEventsBaseModel> validate(RosettaPath path, OptionsEventsBaseModel optionsEventsBaseModel) {
+			ComparisonResult result = executeDataRule(optionsEventsBaseModel);
+			if (result.get()) {
+				return ValidationResult.success(NAME, ValidationResult.ValidationType.DATA_RULE, "OptionsEventsBaseModel", path, DEFINITION);
+			}
+			
+			String failureMessage = result.getError();
+			if (failureMessage == null || failureMessage.contains("Null") || failureMessage == "") {
+				failureMessage = "Condition has failed.";
+			}
+			return ValidationResult.failure(NAME, ValidationType.DATA_RULE, "OptionsEventsBaseModel", path, DEFINITION, failureMessage);
+		}
+		
+		private ComparisonResult executeDataRule(OptionsEventsBaseModel optionsEventsBaseModel) {
+			try {
+				return choice(MapperS.of(optionsEventsBaseModel), Arrays.asList("optionExercise", "optionExpiry", "optionEvent"), ChoiceRuleValidationMethod.REQUIRED);
+			}
+			catch (Exception ex) {
+				return ComparisonResult.failure(ex.getMessage());
+			}
+		}
+	}
+	
+	@SuppressWarnings("unused")
+	class NoOp implements OptionsEventsBaseModelChoice {
+	
+		@Override
+		public ValidationResult<OptionsEventsBaseModel> validate(RosettaPath path, OptionsEventsBaseModel optionsEventsBaseModel) {
+			return ValidationResult.success(NAME, ValidationResult.ValidationType.DATA_RULE, "OptionsEventsBaseModel", path, DEFINITION);
+		}
+	}
+}

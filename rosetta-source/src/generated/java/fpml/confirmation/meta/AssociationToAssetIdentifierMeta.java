@@ -1,0 +1,52 @@
+package fpml.confirmation.meta;
+
+import com.rosetta.model.lib.annotations.RosettaMeta;
+import com.rosetta.model.lib.meta.RosettaMetaData;
+import com.rosetta.model.lib.qualify.QualifyFunctionFactory;
+import com.rosetta.model.lib.qualify.QualifyResult;
+import com.rosetta.model.lib.validation.Validator;
+import com.rosetta.model.lib.validation.ValidatorFactory;
+import com.rosetta.model.lib.validation.ValidatorWithArg;
+import fpml.confirmation.AssociationToAssetIdentifier;
+import fpml.confirmation.validation.AssociationToAssetIdentifierTypeFormatValidator;
+import fpml.confirmation.validation.AssociationToAssetIdentifierValidator;
+import fpml.confirmation.validation.exists.AssociationToAssetIdentifierOnlyExistsValidator;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+import java.util.function.Function;
+
+
+/**
+ * @version ${project.version}
+ */
+@RosettaMeta(model=AssociationToAssetIdentifier.class)
+public class AssociationToAssetIdentifierMeta implements RosettaMetaData<AssociationToAssetIdentifier> {
+
+	@Override
+	public List<Validator<? super AssociationToAssetIdentifier>> dataRules(ValidatorFactory factory) {
+		return Arrays.asList(
+		);
+	}
+	
+	@Override
+	public List<Function<? super AssociationToAssetIdentifier, QualifyResult>> getQualifyFunctions(QualifyFunctionFactory factory) {
+		return Collections.emptyList();
+	}
+
+	@Override
+	public Validator<? super AssociationToAssetIdentifier> validator() {
+		return new AssociationToAssetIdentifierValidator();
+	}
+
+	@Override
+	public Validator<? super AssociationToAssetIdentifier> typeFormatValidator() {
+		return new AssociationToAssetIdentifierTypeFormatValidator();
+	}
+	
+	@Override
+	public ValidatorWithArg<? super AssociationToAssetIdentifier, Set<String>> onlyExistsValidator() {
+		return new AssociationToAssetIdentifierOnlyExistsValidator();
+	}
+}
