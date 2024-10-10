@@ -37,7 +37,7 @@ public interface CollateralValueAllocation extends RosettaModelObject {
 	/**
 	 * The type of allocation e.g. Full or ExcessOverMargin
 	 */
-	CollateralValueAllocationEnum getType();
+	CollateralValueAllocationEnum getType_();
 	List<? extends Money> getValue();
 
 	/*********************** Build Methods  ***********************/
@@ -63,7 +63,7 @@ public interface CollateralValueAllocation extends RosettaModelObject {
 	
 	@Override
 	default void process(RosettaPath path, Processor processor) {
-		processor.processBasic(path.newSubPath("type"), CollateralValueAllocationEnum.class, getType(), this);
+		processor.processBasic(path.newSubPath("type"), CollateralValueAllocationEnum.class, getType_(), this);
 		processRosetta(path.newSubPath("value"), processor, Money.class, getValue());
 	}
 	
@@ -80,7 +80,7 @@ public interface CollateralValueAllocation extends RosettaModelObject {
 
 		@Override
 		default void process(RosettaPath path, BuilderProcessor processor) {
-			processor.processBasic(path.newSubPath("type"), CollateralValueAllocationEnum.class, getType(), this);
+			processor.processBasic(path.newSubPath("type"), CollateralValueAllocationEnum.class, getType_(), this);
 			processRosetta(path.newSubPath("value"), processor, Money.MoneyBuilder.class, getValue());
 		}
 		
@@ -94,13 +94,13 @@ public interface CollateralValueAllocation extends RosettaModelObject {
 		private final List<? extends Money> value;
 		
 		protected CollateralValueAllocationImpl(CollateralValueAllocation.CollateralValueAllocationBuilder builder) {
-			this.type = builder.getType();
+			this.type = builder.getType_();
 			this.value = ofNullable(builder.getValue()).filter(_l->!_l.isEmpty()).map(list -> list.stream().filter(Objects::nonNull).map(f->f.build()).filter(Objects::nonNull).collect(ImmutableList.toImmutableList())).orElse(null);
 		}
 		
 		@Override
 		@RosettaAttribute("type")
-		public CollateralValueAllocationEnum getType() {
+		public CollateralValueAllocationEnum getType_() {
 			return type;
 		}
 		
@@ -123,12 +123,12 @@ public interface CollateralValueAllocation extends RosettaModelObject {
 		}
 		
 		protected void setBuilderFields(CollateralValueAllocation.CollateralValueAllocationBuilder builder) {
-			ofNullable(getType()).ifPresent(builder::setType);
+			ofNullable(getType_()).ifPresent(builder::setType);
 			ofNullable(getValue()).ifPresent(builder::setValue);
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		
@@ -167,7 +167,7 @@ public interface CollateralValueAllocation extends RosettaModelObject {
 	
 		@Override
 		@RosettaAttribute("type")
-		public CollateralValueAllocationEnum getType() {
+		public CollateralValueAllocationEnum getType_() {
 			return type;
 		}
 		
@@ -250,7 +250,7 @@ public interface CollateralValueAllocation extends RosettaModelObject {
 		
 		@Override
 		public boolean hasData() {
-			if (getType()!=null) return true;
+			if (getType_()!=null) return true;
 			if (getValue()!=null && getValue().stream().filter(Objects::nonNull).anyMatch(a->a.hasData())) return true;
 			return false;
 		}
@@ -262,12 +262,12 @@ public interface CollateralValueAllocation extends RosettaModelObject {
 			
 			merger.mergeRosetta(getValue(), o.getValue(), this::getOrCreateValue);
 			
-			merger.mergeBasic(getType(), o.getType(), this::setType);
+			merger.mergeBasic(getType_(), o.getType_(), this::setType);
 			return this;
 		}
 	
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		

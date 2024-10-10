@@ -38,7 +38,7 @@ public interface RelatedParty extends RosettaModelObject {
 	/**
 	 * Additional definition refining the type of relationship. For example, if the &quot;role&quot; is Guarantor, this element may be used to specify whether all positions are guaranteed, or only a subset of them.
 	 */
-	PartyRoleType getType();
+	PartyRoleType getType_();
 
 	/*********************** Build Methods  ***********************/
 	RelatedParty build();
@@ -65,7 +65,7 @@ public interface RelatedParty extends RosettaModelObject {
 	default void process(RosettaPath path, Processor processor) {
 		processRosetta(path.newSubPath("partyAndAccountReferencesModel"), processor, PartyAndAccountReferencesModel.class, getPartyAndAccountReferencesModel());
 		processRosetta(path.newSubPath("role"), processor, PartyRole.class, getRole());
-		processRosetta(path.newSubPath("type"), processor, PartyRoleType.class, getType());
+		processRosetta(path.newSubPath("type"), processor, PartyRoleType.class, getType_());
 	}
 	
 
@@ -76,7 +76,7 @@ public interface RelatedParty extends RosettaModelObject {
 		PartyRole.PartyRoleBuilder getOrCreateRole();
 		PartyRole.PartyRoleBuilder getRole();
 		PartyRoleType.PartyRoleTypeBuilder getOrCreateType();
-		PartyRoleType.PartyRoleTypeBuilder getType();
+		PartyRoleType.PartyRoleTypeBuilder getType_();
 		RelatedParty.RelatedPartyBuilder setPartyAndAccountReferencesModel(PartyAndAccountReferencesModel partyAndAccountReferencesModel);
 		RelatedParty.RelatedPartyBuilder setRole(PartyRole role);
 		RelatedParty.RelatedPartyBuilder setType(PartyRoleType type);
@@ -85,7 +85,7 @@ public interface RelatedParty extends RosettaModelObject {
 		default void process(RosettaPath path, BuilderProcessor processor) {
 			processRosetta(path.newSubPath("partyAndAccountReferencesModel"), processor, PartyAndAccountReferencesModel.PartyAndAccountReferencesModelBuilder.class, getPartyAndAccountReferencesModel());
 			processRosetta(path.newSubPath("role"), processor, PartyRole.PartyRoleBuilder.class, getRole());
-			processRosetta(path.newSubPath("type"), processor, PartyRoleType.PartyRoleTypeBuilder.class, getType());
+			processRosetta(path.newSubPath("type"), processor, PartyRoleType.PartyRoleTypeBuilder.class, getType_());
 		}
 		
 
@@ -101,7 +101,7 @@ public interface RelatedParty extends RosettaModelObject {
 		protected RelatedPartyImpl(RelatedParty.RelatedPartyBuilder builder) {
 			this.partyAndAccountReferencesModel = ofNullable(builder.getPartyAndAccountReferencesModel()).map(f->f.build()).orElse(null);
 			this.role = ofNullable(builder.getRole()).map(f->f.build()).orElse(null);
-			this.type = ofNullable(builder.getType()).map(f->f.build()).orElse(null);
+			this.type = ofNullable(builder.getType_()).map(f->f.build()).orElse(null);
 		}
 		
 		@Override
@@ -118,7 +118,7 @@ public interface RelatedParty extends RosettaModelObject {
 		
 		@Override
 		@RosettaAttribute("type")
-		public PartyRoleType getType() {
+		public PartyRoleType getType_() {
 			return type;
 		}
 		
@@ -137,11 +137,11 @@ public interface RelatedParty extends RosettaModelObject {
 		protected void setBuilderFields(RelatedParty.RelatedPartyBuilder builder) {
 			ofNullable(getPartyAndAccountReferencesModel()).ifPresent(builder::setPartyAndAccountReferencesModel);
 			ofNullable(getRole()).ifPresent(builder::setRole);
-			ofNullable(getType()).ifPresent(builder::setType);
+			ofNullable(getType_()).ifPresent(builder::setType);
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		
@@ -222,7 +222,7 @@ public interface RelatedParty extends RosettaModelObject {
 		
 		@Override
 		@RosettaAttribute("type")
-		public PartyRoleType.PartyRoleTypeBuilder getType() {
+		public PartyRoleType.PartyRoleTypeBuilder getType_() {
 			return type;
 		}
 		
@@ -281,7 +281,7 @@ public interface RelatedParty extends RosettaModelObject {
 		public boolean hasData() {
 			if (getPartyAndAccountReferencesModel()!=null && getPartyAndAccountReferencesModel().hasData()) return true;
 			if (getRole()!=null && getRole().hasData()) return true;
-			if (getType()!=null && getType().hasData()) return true;
+			if (getType_()!=null && getType_().hasData()) return true;
 			return false;
 		}
 	
@@ -292,13 +292,13 @@ public interface RelatedParty extends RosettaModelObject {
 			
 			merger.mergeRosetta(getPartyAndAccountReferencesModel(), o.getPartyAndAccountReferencesModel(), this::setPartyAndAccountReferencesModel);
 			merger.mergeRosetta(getRole(), o.getRole(), this::setRole);
-			merger.mergeRosetta(getType(), o.getType(), this::setType);
+			merger.mergeRosetta(getType_(), o.getType_(), this::setType);
 			
 			return this;
 		}
 	
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		

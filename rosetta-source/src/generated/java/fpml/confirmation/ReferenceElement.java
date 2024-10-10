@@ -60,7 +60,7 @@ public interface ReferenceElement extends ReferenceType {
 		processor.processBasic(path.newSubPath("digestValue"), String.class, getDigestValue(), this);
 		processor.processBasic(path.newSubPath("id"), String.class, getId(), this);
 		processor.processBasic(path.newSubPath("uri"), String.class, getUri(), this);
-		processor.processBasic(path.newSubPath("type"), String.class, getType(), this);
+		processor.processBasic(path.newSubPath("type"), String.class, getType_(), this);
 	}
 	
 
@@ -80,7 +80,7 @@ public interface ReferenceElement extends ReferenceType {
 			processor.processBasic(path.newSubPath("digestValue"), String.class, getDigestValue(), this);
 			processor.processBasic(path.newSubPath("id"), String.class, getId(), this);
 			processor.processBasic(path.newSubPath("uri"), String.class, getUri(), this);
-			processor.processBasic(path.newSubPath("type"), String.class, getType(), this);
+			processor.processBasic(path.newSubPath("type"), String.class, getType_(), this);
 		}
 		
 
@@ -111,7 +111,7 @@ public interface ReferenceElement extends ReferenceType {
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;
@@ -212,7 +212,7 @@ public interface ReferenceElement extends ReferenceType {
 		}
 	
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;

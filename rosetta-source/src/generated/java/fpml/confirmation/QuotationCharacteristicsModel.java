@@ -331,7 +331,7 @@ public interface QuotationCharacteristicsModel extends RosettaModelObject {
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		
@@ -780,7 +780,7 @@ public interface QuotationCharacteristicsModel extends RosettaModelObject {
 		}
 	
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		

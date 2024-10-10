@@ -47,7 +47,7 @@ public interface AbstractLoanTrade extends AbstractLoanTradeSummary {
 	/**
 	 * Primary or Secondary.
 	 */
-	LoanTradingTypeEnum getType();
+	LoanTradingTypeEnum getType_();
 	/**
 	 * A flag to indicate the dependency of a secondary market loan trade upon the closing of a primary market loan structuring and syndication process.
 	 */
@@ -83,7 +83,7 @@ public interface AbstractLoanTrade extends AbstractLoanTradeSummary {
 		processor.processBasic(path.newSubPath("comment"), String.class, getComment(), this);
 		processor.processBasic(path.newSubPath("tradeDate"), Date.class, getTradeDate(), this);
 		processRosetta(path.newSubPath("buyerSellerModel"), processor, BuyerSellerModel.class, getBuyerSellerModel());
-		processor.processBasic(path.newSubPath("type"), LoanTradingTypeEnum.class, getType(), this);
+		processor.processBasic(path.newSubPath("type"), LoanTradingTypeEnum.class, getType_(), this);
 		processor.processBasic(path.newSubPath("whenIssuedFlag"), Boolean.class, getWhenIssuedFlag(), this);
 		processRosetta(path.newSubPath("loanTradingSettlementTermsModel"), processor, LoanTradingSettlementTermsModel.class, getLoanTradingSettlementTermsModel());
 	}
@@ -113,7 +113,7 @@ public interface AbstractLoanTrade extends AbstractLoanTradeSummary {
 			processor.processBasic(path.newSubPath("comment"), String.class, getComment(), this);
 			processor.processBasic(path.newSubPath("tradeDate"), Date.class, getTradeDate(), this);
 			processRosetta(path.newSubPath("buyerSellerModel"), processor, BuyerSellerModel.BuyerSellerModelBuilder.class, getBuyerSellerModel());
-			processor.processBasic(path.newSubPath("type"), LoanTradingTypeEnum.class, getType(), this);
+			processor.processBasic(path.newSubPath("type"), LoanTradingTypeEnum.class, getType_(), this);
 			processor.processBasic(path.newSubPath("whenIssuedFlag"), Boolean.class, getWhenIssuedFlag(), this);
 			processRosetta(path.newSubPath("loanTradingSettlementTermsModel"), processor, LoanTradingSettlementTermsModel.LoanTradingSettlementTermsModelBuilder.class, getLoanTradingSettlementTermsModel());
 		}
@@ -134,7 +134,7 @@ public interface AbstractLoanTrade extends AbstractLoanTradeSummary {
 			super(builder);
 			this.tradeDate = builder.getTradeDate();
 			this.buyerSellerModel = ofNullable(builder.getBuyerSellerModel()).map(f->f.build()).orElse(null);
-			this.type = builder.getType();
+			this.type = builder.getType_();
 			this.whenIssuedFlag = builder.getWhenIssuedFlag();
 			this.loanTradingSettlementTermsModel = ofNullable(builder.getLoanTradingSettlementTermsModel()).map(f->f.build()).orElse(null);
 		}
@@ -153,7 +153,7 @@ public interface AbstractLoanTrade extends AbstractLoanTradeSummary {
 		
 		@Override
 		@RosettaAttribute("type")
-		public LoanTradingTypeEnum getType() {
+		public LoanTradingTypeEnum getType_() {
 			return type;
 		}
 		
@@ -185,13 +185,13 @@ public interface AbstractLoanTrade extends AbstractLoanTradeSummary {
 			super.setBuilderFields(builder);
 			ofNullable(getTradeDate()).ifPresent(builder::setTradeDate);
 			ofNullable(getBuyerSellerModel()).ifPresent(builder::setBuyerSellerModel);
-			ofNullable(getType()).ifPresent(builder::setType);
+			ofNullable(getType_()).ifPresent(builder::setType);
 			ofNullable(getWhenIssuedFlag()).ifPresent(builder::setWhenIssuedFlag);
 			ofNullable(getLoanTradingSettlementTermsModel()).ifPresent(builder::setLoanTradingSettlementTermsModel);
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;
@@ -268,7 +268,7 @@ public interface AbstractLoanTrade extends AbstractLoanTradeSummary {
 		
 		@Override
 		@RosettaAttribute("type")
-		public LoanTradingTypeEnum getType() {
+		public LoanTradingTypeEnum getType_() {
 			return type;
 		}
 		
@@ -376,7 +376,7 @@ public interface AbstractLoanTrade extends AbstractLoanTradeSummary {
 			if (super.hasData()) return true;
 			if (getTradeDate()!=null) return true;
 			if (getBuyerSellerModel()!=null && getBuyerSellerModel().hasData()) return true;
-			if (getType()!=null) return true;
+			if (getType_()!=null) return true;
 			if (getWhenIssuedFlag()!=null) return true;
 			if (getLoanTradingSettlementTermsModel()!=null && getLoanTradingSettlementTermsModel().hasData()) return true;
 			return false;
@@ -393,13 +393,13 @@ public interface AbstractLoanTrade extends AbstractLoanTradeSummary {
 			merger.mergeRosetta(getLoanTradingSettlementTermsModel(), o.getLoanTradingSettlementTermsModel(), this::setLoanTradingSettlementTermsModel);
 			
 			merger.mergeBasic(getTradeDate(), o.getTradeDate(), this::setTradeDate);
-			merger.mergeBasic(getType(), o.getType(), this::setType);
+			merger.mergeBasic(getType_(), o.getType_(), this::setType);
 			merger.mergeBasic(getWhenIssuedFlag(), o.getWhenIssuedFlag(), this::setWhenIssuedFlag);
 			return this;
 		}
 	
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;

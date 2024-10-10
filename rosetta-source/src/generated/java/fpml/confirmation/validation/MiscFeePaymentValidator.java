@@ -36,7 +36,7 @@ public class MiscFeePaymentValidator implements Validator<MiscFeePayment> {
 				checkCardinality("effectiveDate", (Date) o.getEffectiveDate() != null ? 1 : 0, 1, 1), 
 				checkCardinality("facilityReference", (FacilityReference) o.getFacilityReference() != null ? 1 : 0, 1, 1), 
 				checkCardinality("amount", (MoneyWithParticipantShare) o.getAmount() != null ? 1 : 0, 1, 1), 
-				checkCardinality("type", (NonRecurringMiscFeeType) o.getType() != null ? 1 : 0, 1, 1)
+				checkCardinality("type", (NonRecurringMiscFeeType) o.getType_() != null ? 1 : 0, 1, 1)
 			);
 	}
 

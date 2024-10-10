@@ -22,7 +22,7 @@ public class ElectricityProductValidator implements Validator<ElectricityProduct
 
 	private List<ComparisonResult> getComparisonResults(ElectricityProduct o) {
 		return Lists.<ComparisonResult>newArrayList(
-				checkCardinality("type", (ElectricityProductTypeEnum) o.getType() != null ? 1 : 0, 1, 1), 
+				checkCardinality("type", (ElectricityProductTypeEnum) o.getType_() != null ? 1 : 0, 1, 1), 
 				checkCardinality("voltage", (BigDecimal) o.getVoltage() != null ? 1 : 0, 0, 1)
 			);
 	}

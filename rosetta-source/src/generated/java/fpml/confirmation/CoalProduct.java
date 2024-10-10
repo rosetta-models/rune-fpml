@@ -40,7 +40,7 @@ public interface CoalProduct extends RosettaModelObject {
 	/**
 	 * The type of coal product to be delivered by reference to a pre-defined specification. For contracts under SCoTA terms this is the quality specification code (e.g. &quot;DES ARA&quot;)
 	 */
-	CoalProductType getType();
+	CoalProductType getType_();
 	/**
 	 * The type of coal product to be delivered specified in full.
 	 */
@@ -78,7 +78,7 @@ public interface CoalProduct extends RosettaModelObject {
 	
 	@Override
 	default void process(RosettaPath path, Processor processor) {
-		processRosetta(path.newSubPath("type"), processor, CoalProductType.class, getType());
+		processRosetta(path.newSubPath("type"), processor, CoalProductType.class, getType_());
 		processRosetta(path.newSubPath("coalProductSpecifications"), processor, CoalProductSpecifications.class, getCoalProductSpecifications());
 		processRosetta(path.newSubPath("source"), processor, CoalProductSource.class, getSource());
 		processor.processBasic(path.newSubPath("sCoTASpecifications"), Boolean.class, getSCoTASpecifications(), this);
@@ -89,7 +89,7 @@ public interface CoalProduct extends RosettaModelObject {
 	/*********************** Builder Interface  ***********************/
 	interface CoalProductBuilder extends CoalProduct, RosettaModelObjectBuilder {
 		CoalProductType.CoalProductTypeBuilder getOrCreateType();
-		CoalProductType.CoalProductTypeBuilder getType();
+		CoalProductType.CoalProductTypeBuilder getType_();
 		CoalProductSpecifications.CoalProductSpecificationsBuilder getOrCreateCoalProductSpecifications();
 		CoalProductSpecifications.CoalProductSpecificationsBuilder getCoalProductSpecifications();
 		CoalProductSource.CoalProductSourceBuilder getOrCreateSource(int _index);
@@ -107,7 +107,7 @@ public interface CoalProduct extends RosettaModelObject {
 
 		@Override
 		default void process(RosettaPath path, BuilderProcessor processor) {
-			processRosetta(path.newSubPath("type"), processor, CoalProductType.CoalProductTypeBuilder.class, getType());
+			processRosetta(path.newSubPath("type"), processor, CoalProductType.CoalProductTypeBuilder.class, getType_());
 			processRosetta(path.newSubPath("coalProductSpecifications"), processor, CoalProductSpecifications.CoalProductSpecificationsBuilder.class, getCoalProductSpecifications());
 			processRosetta(path.newSubPath("source"), processor, CoalProductSource.CoalProductSourceBuilder.class, getSource());
 			processor.processBasic(path.newSubPath("sCoTASpecifications"), Boolean.class, getSCoTASpecifications(), this);
@@ -127,7 +127,7 @@ public interface CoalProduct extends RosettaModelObject {
 		private final CommodityUSCoalProductModel commodityUSCoalProductModel;
 		
 		protected CoalProductImpl(CoalProduct.CoalProductBuilder builder) {
-			this.type = ofNullable(builder.getType()).map(f->f.build()).orElse(null);
+			this.type = ofNullable(builder.getType_()).map(f->f.build()).orElse(null);
 			this.coalProductSpecifications = ofNullable(builder.getCoalProductSpecifications()).map(f->f.build()).orElse(null);
 			this.source = ofNullable(builder.getSource()).filter(_l->!_l.isEmpty()).map(list -> list.stream().filter(Objects::nonNull).map(f->f.build()).filter(Objects::nonNull).collect(ImmutableList.toImmutableList())).orElse(null);
 			this.sCoTASpecifications = builder.getSCoTASpecifications();
@@ -136,7 +136,7 @@ public interface CoalProduct extends RosettaModelObject {
 		
 		@Override
 		@RosettaAttribute("type")
-		public CoalProductType getType() {
+		public CoalProductType getType_() {
 			return type;
 		}
 		
@@ -177,7 +177,7 @@ public interface CoalProduct extends RosettaModelObject {
 		}
 		
 		protected void setBuilderFields(CoalProduct.CoalProductBuilder builder) {
-			ofNullable(getType()).ifPresent(builder::setType);
+			ofNullable(getType_()).ifPresent(builder::setType);
 			ofNullable(getCoalProductSpecifications()).ifPresent(builder::setCoalProductSpecifications);
 			ofNullable(getSource()).ifPresent(builder::setSource);
 			ofNullable(getSCoTASpecifications()).ifPresent(builder::setSCoTASpecifications);
@@ -185,7 +185,7 @@ public interface CoalProduct extends RosettaModelObject {
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		
@@ -236,7 +236,7 @@ public interface CoalProduct extends RosettaModelObject {
 	
 		@Override
 		@RosettaAttribute("type")
-		public CoalProductType.CoalProductTypeBuilder getType() {
+		public CoalProductType.CoalProductTypeBuilder getType_() {
 			return type;
 		}
 		
@@ -397,7 +397,7 @@ public interface CoalProduct extends RosettaModelObject {
 		
 		@Override
 		public boolean hasData() {
-			if (getType()!=null && getType().hasData()) return true;
+			if (getType_()!=null && getType_().hasData()) return true;
 			if (getCoalProductSpecifications()!=null && getCoalProductSpecifications().hasData()) return true;
 			if (getSource()!=null && getSource().stream().filter(Objects::nonNull).anyMatch(a->a.hasData())) return true;
 			if (getSCoTASpecifications()!=null) return true;
@@ -410,7 +410,7 @@ public interface CoalProduct extends RosettaModelObject {
 		public CoalProduct.CoalProductBuilder merge(RosettaModelObjectBuilder other, BuilderMerger merger) {
 			CoalProduct.CoalProductBuilder o = (CoalProduct.CoalProductBuilder) other;
 			
-			merger.mergeRosetta(getType(), o.getType(), this::setType);
+			merger.mergeRosetta(getType_(), o.getType_(), this::setType);
 			merger.mergeRosetta(getCoalProductSpecifications(), o.getCoalProductSpecifications(), this::setCoalProductSpecifications);
 			merger.mergeRosetta(getSource(), o.getSource(), this::getOrCreateSource);
 			merger.mergeRosetta(getCommodityUSCoalProductModel(), o.getCommodityUSCoalProductModel(), this::setCommodityUSCoalProductModel);
@@ -420,7 +420,7 @@ public interface CoalProduct extends RosettaModelObject {
 		}
 	
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		

@@ -52,7 +52,7 @@ public interface ConsentRefused extends ResponseMessage {
 	/**
 	 * The type of approval (e.g. &quot;pre-clearing credit&quot;).
 	 */
-	ApprovalType getType();
+	ApprovalType getType_();
 	/**
 	 * The full name or identifiying ID of the relevant approver.
 	 */
@@ -96,7 +96,7 @@ public interface ConsentRefused extends ResponseMessage {
 		processRosetta(path.newSubPath("validationModel"), processor, ValidationModel.class, getValidationModel());
 		processRosetta(path.newSubPath("correlationAndOptionalSequenceModel"), processor, CorrelationAndOptionalSequenceModel.class, getCorrelationAndOptionalSequenceModel());
 		processRosetta(path.newSubPath("onBehalfOfModel"), processor, OnBehalfOfModel.class, getOnBehalfOfModel());
-		processRosetta(path.newSubPath("type"), processor, ApprovalType.class, getType());
+		processRosetta(path.newSubPath("type"), processor, ApprovalType.class, getType_());
 		processRosetta(path.newSubPath("approver"), processor, PersonId.class, getApprover());
 		processRosetta(path.newSubPath("approvingPartyReference"), processor, PartyReference.class, getApprovingPartyReference());
 		processRosetta(path.newSubPath("portfolioReferenceBaseModel"), processor, PortfolioReferenceBaseModel.class, getPortfolioReferenceBaseModel());
@@ -110,7 +110,7 @@ public interface ConsentRefused extends ResponseMessage {
 	/*********************** Builder Interface  ***********************/
 	interface ConsentRefusedBuilder extends ConsentRefused, ResponseMessage.ResponseMessageBuilder {
 		ApprovalType.ApprovalTypeBuilder getOrCreateType();
-		ApprovalType.ApprovalTypeBuilder getType();
+		ApprovalType.ApprovalTypeBuilder getType_();
 		PersonId.PersonIdBuilder getOrCreateApprover();
 		PersonId.PersonIdBuilder getApprover();
 		PartyReference.PartyReferenceBuilder getOrCreateApprovingPartyReference();
@@ -154,7 +154,7 @@ public interface ConsentRefused extends ResponseMessage {
 			processRosetta(path.newSubPath("validationModel"), processor, ValidationModel.ValidationModelBuilder.class, getValidationModel());
 			processRosetta(path.newSubPath("correlationAndOptionalSequenceModel"), processor, CorrelationAndOptionalSequenceModel.CorrelationAndOptionalSequenceModelBuilder.class, getCorrelationAndOptionalSequenceModel());
 			processRosetta(path.newSubPath("onBehalfOfModel"), processor, OnBehalfOfModel.OnBehalfOfModelBuilder.class, getOnBehalfOfModel());
-			processRosetta(path.newSubPath("type"), processor, ApprovalType.ApprovalTypeBuilder.class, getType());
+			processRosetta(path.newSubPath("type"), processor, ApprovalType.ApprovalTypeBuilder.class, getType_());
 			processRosetta(path.newSubPath("approver"), processor, PersonId.PersonIdBuilder.class, getApprover());
 			processRosetta(path.newSubPath("approvingPartyReference"), processor, PartyReference.PartyReferenceBuilder.class, getApprovingPartyReference());
 			processRosetta(path.newSubPath("portfolioReferenceBaseModel"), processor, PortfolioReferenceBaseModel.PortfolioReferenceBaseModelBuilder.class, getPortfolioReferenceBaseModel());
@@ -181,7 +181,7 @@ public interface ConsentRefused extends ResponseMessage {
 		
 		protected ConsentRefusedImpl(ConsentRefused.ConsentRefusedBuilder builder) {
 			super(builder);
-			this.type = ofNullable(builder.getType()).map(f->f.build()).orElse(null);
+			this.type = ofNullable(builder.getType_()).map(f->f.build()).orElse(null);
 			this.approver = ofNullable(builder.getApprover()).map(f->f.build()).orElse(null);
 			this.approvingPartyReference = ofNullable(builder.getApprovingPartyReference()).map(f->f.build()).orElse(null);
 			this.portfolioReferenceBaseModel = ofNullable(builder.getPortfolioReferenceBaseModel()).map(f->f.build()).orElse(null);
@@ -193,7 +193,7 @@ public interface ConsentRefused extends ResponseMessage {
 		
 		@Override
 		@RosettaAttribute("type")
-		public ApprovalType getType() {
+		public ApprovalType getType_() {
 			return type;
 		}
 		
@@ -253,7 +253,7 @@ public interface ConsentRefused extends ResponseMessage {
 		
 		protected void setBuilderFields(ConsentRefused.ConsentRefusedBuilder builder) {
 			super.setBuilderFields(builder);
-			ofNullable(getType()).ifPresent(builder::setType);
+			ofNullable(getType_()).ifPresent(builder::setType);
 			ofNullable(getApprover()).ifPresent(builder::setApprover);
 			ofNullable(getApprovingPartyReference()).ifPresent(builder::setApprovingPartyReference);
 			ofNullable(getPortfolioReferenceBaseModel()).ifPresent(builder::setPortfolioReferenceBaseModel);
@@ -264,7 +264,7 @@ public interface ConsentRefused extends ResponseMessage {
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;
@@ -328,7 +328,7 @@ public interface ConsentRefused extends ResponseMessage {
 	
 		@Override
 		@RosettaAttribute("type")
-		public ApprovalType.ApprovalTypeBuilder getType() {
+		public ApprovalType.ApprovalTypeBuilder getType_() {
 			return type;
 		}
 		
@@ -647,7 +647,7 @@ public interface ConsentRefused extends ResponseMessage {
 		@Override
 		public boolean hasData() {
 			if (super.hasData()) return true;
-			if (getType()!=null && getType().hasData()) return true;
+			if (getType_()!=null && getType_().hasData()) return true;
 			if (getApprover()!=null && getApprover().hasData()) return true;
 			if (getApprovingPartyReference()!=null && getApprovingPartyReference().hasData()) return true;
 			if (getPortfolioReferenceBaseModel()!=null && getPortfolioReferenceBaseModel().hasData()) return true;
@@ -665,7 +665,7 @@ public interface ConsentRefused extends ResponseMessage {
 			
 			ConsentRefused.ConsentRefusedBuilder o = (ConsentRefused.ConsentRefusedBuilder) other;
 			
-			merger.mergeRosetta(getType(), o.getType(), this::setType);
+			merger.mergeRosetta(getType_(), o.getType_(), this::setType);
 			merger.mergeRosetta(getApprover(), o.getApprover(), this::setApprover);
 			merger.mergeRosetta(getApprovingPartyReference(), o.getApprovingPartyReference(), this::setApprovingPartyReference);
 			merger.mergeRosetta(getPortfolioReferenceBaseModel(), o.getPortfolioReferenceBaseModel(), this::setPortfolioReferenceBaseModel);
@@ -678,7 +678,7 @@ public interface ConsentRefused extends ResponseMessage {
 		}
 	
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;

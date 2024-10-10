@@ -45,7 +45,7 @@ public interface LoanTradeSettlementTask extends AbstractLoanTask {
 	/**
 	 * The type of the settlement task.
 	 */
-	LoanTradeSettlementTaskType getType();
+	LoanTradeSettlementTaskType getType_();
 
 	/*********************** Build Methods  ***********************/
 	LoanTradeSettlementTask build();
@@ -78,7 +78,7 @@ public interface LoanTradeSettlementTask extends AbstractLoanTask {
 		processor.processBasic(path.newSubPath("status"), LoanTradingSettlementTaskStatusEnum.class, getStatus(), this);
 		processor.processBasic(path.newSubPath("comment"), String.class, getComment(), this);
 		processRosetta(path.newSubPath("loanTradeReference"), processor, LoanTradeReference.class, getLoanTradeReference());
-		processRosetta(path.newSubPath("type"), processor, LoanTradeSettlementTaskType.class, getType());
+		processRosetta(path.newSubPath("type"), processor, LoanTradeSettlementTaskType.class, getType_());
 	}
 	
 
@@ -87,7 +87,7 @@ public interface LoanTradeSettlementTask extends AbstractLoanTask {
 		LoanTradeReference.LoanTradeReferenceBuilder getOrCreateLoanTradeReference();
 		LoanTradeReference.LoanTradeReferenceBuilder getLoanTradeReference();
 		LoanTradeSettlementTaskType.LoanTradeSettlementTaskTypeBuilder getOrCreateType();
-		LoanTradeSettlementTaskType.LoanTradeSettlementTaskTypeBuilder getType();
+		LoanTradeSettlementTaskType.LoanTradeSettlementTaskTypeBuilder getType_();
 		LoanTradeSettlementTask.LoanTradeSettlementTaskBuilder setTaskIdentifier(TaskIdentifier taskIdentifier);
 		LoanTradeSettlementTask.LoanTradeSettlementTaskBuilder setParentTaskIdentifier(TaskIdentifier parentTaskIdentifier);
 		LoanTradeSettlementTask.LoanTradeSettlementTaskBuilder setCorrectedTaskIdentifier(TaskIdentifier correctedTaskIdentifier);
@@ -108,7 +108,7 @@ public interface LoanTradeSettlementTask extends AbstractLoanTask {
 			processor.processBasic(path.newSubPath("status"), LoanTradingSettlementTaskStatusEnum.class, getStatus(), this);
 			processor.processBasic(path.newSubPath("comment"), String.class, getComment(), this);
 			processRosetta(path.newSubPath("loanTradeReference"), processor, LoanTradeReference.LoanTradeReferenceBuilder.class, getLoanTradeReference());
-			processRosetta(path.newSubPath("type"), processor, LoanTradeSettlementTaskType.LoanTradeSettlementTaskTypeBuilder.class, getType());
+			processRosetta(path.newSubPath("type"), processor, LoanTradeSettlementTaskType.LoanTradeSettlementTaskTypeBuilder.class, getType_());
 		}
 		
 
@@ -123,7 +123,7 @@ public interface LoanTradeSettlementTask extends AbstractLoanTask {
 		protected LoanTradeSettlementTaskImpl(LoanTradeSettlementTask.LoanTradeSettlementTaskBuilder builder) {
 			super(builder);
 			this.loanTradeReference = ofNullable(builder.getLoanTradeReference()).map(f->f.build()).orElse(null);
-			this.type = ofNullable(builder.getType()).map(f->f.build()).orElse(null);
+			this.type = ofNullable(builder.getType_()).map(f->f.build()).orElse(null);
 		}
 		
 		@Override
@@ -134,7 +134,7 @@ public interface LoanTradeSettlementTask extends AbstractLoanTask {
 		
 		@Override
 		@RosettaAttribute("type")
-		public LoanTradeSettlementTaskType getType() {
+		public LoanTradeSettlementTaskType getType_() {
 			return type;
 		}
 		
@@ -153,11 +153,11 @@ public interface LoanTradeSettlementTask extends AbstractLoanTask {
 		protected void setBuilderFields(LoanTradeSettlementTask.LoanTradeSettlementTaskBuilder builder) {
 			super.setBuilderFields(builder);
 			ofNullable(getLoanTradeReference()).ifPresent(builder::setLoanTradeReference);
-			ofNullable(getType()).ifPresent(builder::setType);
+			ofNullable(getType_()).ifPresent(builder::setType);
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;
@@ -216,7 +216,7 @@ public interface LoanTradeSettlementTask extends AbstractLoanTask {
 		
 		@Override
 		@RosettaAttribute("type")
-		public LoanTradeSettlementTaskType.LoanTradeSettlementTaskTypeBuilder getType() {
+		public LoanTradeSettlementTaskType.LoanTradeSettlementTaskTypeBuilder getType_() {
 			return type;
 		}
 		
@@ -311,7 +311,7 @@ public interface LoanTradeSettlementTask extends AbstractLoanTask {
 		public boolean hasData() {
 			if (super.hasData()) return true;
 			if (getLoanTradeReference()!=null && getLoanTradeReference().hasData()) return true;
-			if (getType()!=null && getType().hasData()) return true;
+			if (getType_()!=null && getType_().hasData()) return true;
 			return false;
 		}
 	
@@ -323,13 +323,13 @@ public interface LoanTradeSettlementTask extends AbstractLoanTask {
 			LoanTradeSettlementTask.LoanTradeSettlementTaskBuilder o = (LoanTradeSettlementTask.LoanTradeSettlementTaskBuilder) other;
 			
 			merger.mergeRosetta(getLoanTradeReference(), o.getLoanTradeReference(), this::setLoanTradeReference);
-			merger.mergeRosetta(getType(), o.getType(), this::setType);
+			merger.mergeRosetta(getType_(), o.getType_(), this::setType);
 			
 			return this;
 		}
 	
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;

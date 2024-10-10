@@ -56,7 +56,7 @@ public interface RetrievalMethod extends RetrievalMethodType {
 	default void process(RosettaPath path, Processor processor) {
 		processRosetta(path.newSubPath("transforms"), processor, TransformsType.class, getTransforms());
 		processor.processBasic(path.newSubPath("uri"), String.class, getUri(), this);
-		processor.processBasic(path.newSubPath("type"), String.class, getType(), this);
+		processor.processBasic(path.newSubPath("type"), String.class, getType_(), this);
 	}
 	
 
@@ -70,7 +70,7 @@ public interface RetrievalMethod extends RetrievalMethodType {
 		default void process(RosettaPath path, BuilderProcessor processor) {
 			processRosetta(path.newSubPath("transforms"), processor, TransformsType.TransformsTypeBuilder.class, getTransforms());
 			processor.processBasic(path.newSubPath("uri"), String.class, getUri(), this);
-			processor.processBasic(path.newSubPath("type"), String.class, getType(), this);
+			processor.processBasic(path.newSubPath("type"), String.class, getType_(), this);
 		}
 		
 
@@ -101,7 +101,7 @@ public interface RetrievalMethod extends RetrievalMethodType {
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;
@@ -184,7 +184,7 @@ public interface RetrievalMethod extends RetrievalMethodType {
 		}
 	
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;

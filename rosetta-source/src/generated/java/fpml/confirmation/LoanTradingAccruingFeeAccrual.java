@@ -46,7 +46,7 @@ public interface LoanTradingAccruingFeeAccrual extends AbstractTradingAccrual {
 	/**
 	 * Describes the type of the accruing fee.
 	 */
-	LoanTradingAccruingFeeTypeEnum getType();
+	LoanTradingAccruingFeeTypeEnum getType_();
 
 	/*********************** Build Methods  ***********************/
 	LoanTradingAccruingFeeAccrual build();
@@ -74,7 +74,7 @@ public interface LoanTradingAccruingFeeAccrual extends AbstractTradingAccrual {
 		processRosetta(path.newSubPath("amount"), processor, NonNegativeMoney.class, getAmount());
 		processRosetta(path.newSubPath("accrualPeriod"), processor, AccrualPeriod.class, getAccrualPeriod());
 		processRosetta(path.newSubPath("accrualTypeId"), processor, AccrualTypeId.class, getAccrualTypeId());
-		processor.processBasic(path.newSubPath("type"), LoanTradingAccruingFeeTypeEnum.class, getType(), this);
+		processor.processBasic(path.newSubPath("type"), LoanTradingAccruingFeeTypeEnum.class, getType_(), this);
 	}
 	
 
@@ -95,7 +95,7 @@ public interface LoanTradingAccruingFeeAccrual extends AbstractTradingAccrual {
 			processRosetta(path.newSubPath("amount"), processor, NonNegativeMoney.NonNegativeMoneyBuilder.class, getAmount());
 			processRosetta(path.newSubPath("accrualPeriod"), processor, AccrualPeriod.AccrualPeriodBuilder.class, getAccrualPeriod());
 			processRosetta(path.newSubPath("accrualTypeId"), processor, AccrualTypeId.AccrualTypeIdBuilder.class, getAccrualTypeId());
-			processor.processBasic(path.newSubPath("type"), LoanTradingAccruingFeeTypeEnum.class, getType(), this);
+			processor.processBasic(path.newSubPath("type"), LoanTradingAccruingFeeTypeEnum.class, getType_(), this);
 		}
 		
 
@@ -110,7 +110,7 @@ public interface LoanTradingAccruingFeeAccrual extends AbstractTradingAccrual {
 		protected LoanTradingAccruingFeeAccrualImpl(LoanTradingAccruingFeeAccrual.LoanTradingAccruingFeeAccrualBuilder builder) {
 			super(builder);
 			this.accrualTypeId = ofNullable(builder.getAccrualTypeId()).map(f->f.build()).orElse(null);
-			this.type = builder.getType();
+			this.type = builder.getType_();
 		}
 		
 		@Override
@@ -121,7 +121,7 @@ public interface LoanTradingAccruingFeeAccrual extends AbstractTradingAccrual {
 		
 		@Override
 		@RosettaAttribute("type")
-		public LoanTradingAccruingFeeTypeEnum getType() {
+		public LoanTradingAccruingFeeTypeEnum getType_() {
 			return type;
 		}
 		
@@ -140,11 +140,11 @@ public interface LoanTradingAccruingFeeAccrual extends AbstractTradingAccrual {
 		protected void setBuilderFields(LoanTradingAccruingFeeAccrual.LoanTradingAccruingFeeAccrualBuilder builder) {
 			super.setBuilderFields(builder);
 			ofNullable(getAccrualTypeId()).ifPresent(builder::setAccrualTypeId);
-			ofNullable(getType()).ifPresent(builder::setType);
+			ofNullable(getType_()).ifPresent(builder::setType);
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;
@@ -203,7 +203,7 @@ public interface LoanTradingAccruingFeeAccrual extends AbstractTradingAccrual {
 		
 		@Override
 		@RosettaAttribute("type")
-		public LoanTradingAccruingFeeTypeEnum getType() {
+		public LoanTradingAccruingFeeTypeEnum getType_() {
 			return type;
 		}
 		
@@ -283,7 +283,7 @@ public interface LoanTradingAccruingFeeAccrual extends AbstractTradingAccrual {
 		public boolean hasData() {
 			if (super.hasData()) return true;
 			if (getAccrualTypeId()!=null && getAccrualTypeId().hasData()) return true;
-			if (getType()!=null) return true;
+			if (getType_()!=null) return true;
 			return false;
 		}
 	
@@ -296,12 +296,12 @@ public interface LoanTradingAccruingFeeAccrual extends AbstractTradingAccrual {
 			
 			merger.mergeRosetta(getAccrualTypeId(), o.getAccrualTypeId(), this::setAccrualTypeId);
 			
-			merger.mergeBasic(getType(), o.getType(), this::setType);
+			merger.mergeBasic(getType_(), o.getType_(), this::setType);
 			return this;
 		}
 	
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;

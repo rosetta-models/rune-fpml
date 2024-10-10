@@ -49,7 +49,7 @@ public interface AccruingFeeExpiry extends AbstractFacilityEvent {
 	/**
 	 * The accruing fee type which ix expiring.
 	 */
-	AccruingFeeType getType();
+	AccruingFeeType getType_();
 
 	/*********************** Build Methods  ***********************/
 	AccruingFeeExpiry build();
@@ -83,7 +83,7 @@ public interface AccruingFeeExpiry extends AbstractFacilityEvent {
 		processor.processBasic(path.newSubPath("effectiveDate"), Date.class, getEffectiveDate(), this);
 		processRosetta(path.newSubPath("facilityReference"), processor, FacilityReference.class, getFacilityReference());
 		processRosetta(path.newSubPath("id"), processor, AccrualTypeId.class, getId());
-		processRosetta(path.newSubPath("type"), processor, AccruingFeeType.class, getType());
+		processRosetta(path.newSubPath("type"), processor, AccruingFeeType.class, getType_());
 	}
 	
 
@@ -92,7 +92,7 @@ public interface AccruingFeeExpiry extends AbstractFacilityEvent {
 		AccrualTypeId.AccrualTypeIdBuilder getOrCreateId();
 		AccrualTypeId.AccrualTypeIdBuilder getId();
 		AccruingFeeType.AccruingFeeTypeBuilder getOrCreateType();
-		AccruingFeeType.AccruingFeeTypeBuilder getType();
+		AccruingFeeType.AccruingFeeTypeBuilder getType_();
 		AccruingFeeExpiry.AccruingFeeExpiryBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier0);
 		AccruingFeeExpiry.AccruingFeeExpiryBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier1, int _idx);
 		AccruingFeeExpiry.AccruingFeeExpiryBuilder addEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifier2);
@@ -118,7 +118,7 @@ public interface AccruingFeeExpiry extends AbstractFacilityEvent {
 			processor.processBasic(path.newSubPath("effectiveDate"), Date.class, getEffectiveDate(), this);
 			processRosetta(path.newSubPath("facilityReference"), processor, FacilityReference.FacilityReferenceBuilder.class, getFacilityReference());
 			processRosetta(path.newSubPath("id"), processor, AccrualTypeId.AccrualTypeIdBuilder.class, getId());
-			processRosetta(path.newSubPath("type"), processor, AccruingFeeType.AccruingFeeTypeBuilder.class, getType());
+			processRosetta(path.newSubPath("type"), processor, AccruingFeeType.AccruingFeeTypeBuilder.class, getType_());
 		}
 		
 
@@ -133,7 +133,7 @@ public interface AccruingFeeExpiry extends AbstractFacilityEvent {
 		protected AccruingFeeExpiryImpl(AccruingFeeExpiry.AccruingFeeExpiryBuilder builder) {
 			super(builder);
 			this.id = ofNullable(builder.getId()).map(f->f.build()).orElse(null);
-			this.type = ofNullable(builder.getType()).map(f->f.build()).orElse(null);
+			this.type = ofNullable(builder.getType_()).map(f->f.build()).orElse(null);
 		}
 		
 		@Override
@@ -144,7 +144,7 @@ public interface AccruingFeeExpiry extends AbstractFacilityEvent {
 		
 		@Override
 		@RosettaAttribute("type")
-		public AccruingFeeType getType() {
+		public AccruingFeeType getType_() {
 			return type;
 		}
 		
@@ -163,11 +163,11 @@ public interface AccruingFeeExpiry extends AbstractFacilityEvent {
 		protected void setBuilderFields(AccruingFeeExpiry.AccruingFeeExpiryBuilder builder) {
 			super.setBuilderFields(builder);
 			ofNullable(getId()).ifPresent(builder::setId);
-			ofNullable(getType()).ifPresent(builder::setType);
+			ofNullable(getType_()).ifPresent(builder::setType);
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;
@@ -226,7 +226,7 @@ public interface AccruingFeeExpiry extends AbstractFacilityEvent {
 		
 		@Override
 		@RosettaAttribute("type")
-		public AccruingFeeType.AccruingFeeTypeBuilder getType() {
+		public AccruingFeeType.AccruingFeeTypeBuilder getType_() {
 			return type;
 		}
 		
@@ -356,7 +356,7 @@ public interface AccruingFeeExpiry extends AbstractFacilityEvent {
 		public boolean hasData() {
 			if (super.hasData()) return true;
 			if (getId()!=null && getId().hasData()) return true;
-			if (getType()!=null && getType().hasData()) return true;
+			if (getType_()!=null && getType_().hasData()) return true;
 			return false;
 		}
 	
@@ -368,13 +368,13 @@ public interface AccruingFeeExpiry extends AbstractFacilityEvent {
 			AccruingFeeExpiry.AccruingFeeExpiryBuilder o = (AccruingFeeExpiry.AccruingFeeExpiryBuilder) other;
 			
 			merger.mergeRosetta(getId(), o.getId(), this::setId);
-			merger.mergeRosetta(getType(), o.getType(), this::setType);
+			merger.mergeRosetta(getType_(), o.getType_(), this::setType);
 			
 			return this;
 		}
 	
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;

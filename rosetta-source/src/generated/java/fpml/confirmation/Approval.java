@@ -35,7 +35,7 @@ public interface Approval extends RosettaModelObject {
 	/**
 	 * The type of approval (e.g. &quot;pre-clearing credit&quot;).
 	 */
-	ApprovalType getType();
+	ApprovalType getType_();
 	/**
 	 * The current state of approval (.e.g preapproved, pending approval, etc.)
 	 */
@@ -80,7 +80,7 @@ public interface Approval extends RosettaModelObject {
 	
 	@Override
 	default void process(RosettaPath path, Processor processor) {
-		processRosetta(path.newSubPath("type"), processor, ApprovalType.class, getType());
+		processRosetta(path.newSubPath("type"), processor, ApprovalType.class, getType_());
 		processor.processBasic(path.newSubPath("status"), String.class, getStatus(), this);
 		processRosetta(path.newSubPath("approver"), processor, PersonId.class, getApprover());
 		processRosetta(path.newSubPath("approvingPartyReference"), processor, PartyReference.class, getApprovingPartyReference());
@@ -92,7 +92,7 @@ public interface Approval extends RosettaModelObject {
 	/*********************** Builder Interface  ***********************/
 	interface ApprovalBuilder extends Approval, RosettaModelObjectBuilder {
 		ApprovalType.ApprovalTypeBuilder getOrCreateType();
-		ApprovalType.ApprovalTypeBuilder getType();
+		ApprovalType.ApprovalTypeBuilder getType_();
 		PersonId.PersonIdBuilder getOrCreateApprover();
 		PersonId.PersonIdBuilder getApprover();
 		PartyReference.PartyReferenceBuilder getOrCreateApprovingPartyReference();
@@ -110,7 +110,7 @@ public interface Approval extends RosettaModelObject {
 
 		@Override
 		default void process(RosettaPath path, BuilderProcessor processor) {
-			processRosetta(path.newSubPath("type"), processor, ApprovalType.ApprovalTypeBuilder.class, getType());
+			processRosetta(path.newSubPath("type"), processor, ApprovalType.ApprovalTypeBuilder.class, getType_());
 			processor.processBasic(path.newSubPath("status"), String.class, getStatus(), this);
 			processRosetta(path.newSubPath("approver"), processor, PersonId.PersonIdBuilder.class, getApprover());
 			processRosetta(path.newSubPath("approvingPartyReference"), processor, PartyReference.PartyReferenceBuilder.class, getApprovingPartyReference());
@@ -132,7 +132,7 @@ public interface Approval extends RosettaModelObject {
 		private final ApprovalId approvalId;
 		
 		protected ApprovalImpl(Approval.ApprovalBuilder builder) {
-			this.type = ofNullable(builder.getType()).map(f->f.build()).orElse(null);
+			this.type = ofNullable(builder.getType_()).map(f->f.build()).orElse(null);
 			this.status = builder.getStatus();
 			this.approver = ofNullable(builder.getApprover()).map(f->f.build()).orElse(null);
 			this.approvingPartyReference = ofNullable(builder.getApprovingPartyReference()).map(f->f.build()).orElse(null);
@@ -142,7 +142,7 @@ public interface Approval extends RosettaModelObject {
 		
 		@Override
 		@RosettaAttribute("type")
-		public ApprovalType getType() {
+		public ApprovalType getType_() {
 			return type;
 		}
 		
@@ -189,7 +189,7 @@ public interface Approval extends RosettaModelObject {
 		}
 		
 		protected void setBuilderFields(Approval.ApprovalBuilder builder) {
-			ofNullable(getType()).ifPresent(builder::setType);
+			ofNullable(getType_()).ifPresent(builder::setType);
 			ofNullable(getStatus()).ifPresent(builder::setStatus);
 			ofNullable(getApprover()).ifPresent(builder::setApprover);
 			ofNullable(getApprovingPartyReference()).ifPresent(builder::setApprovingPartyReference);
@@ -198,7 +198,7 @@ public interface Approval extends RosettaModelObject {
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		
@@ -253,7 +253,7 @@ public interface Approval extends RosettaModelObject {
 	
 		@Override
 		@RosettaAttribute("type")
-		public ApprovalType.ApprovalTypeBuilder getType() {
+		public ApprovalType.ApprovalTypeBuilder getType_() {
 			return type;
 		}
 		
@@ -412,7 +412,7 @@ public interface Approval extends RosettaModelObject {
 		
 		@Override
 		public boolean hasData() {
-			if (getType()!=null && getType().hasData()) return true;
+			if (getType_()!=null && getType_().hasData()) return true;
 			if (getStatus()!=null) return true;
 			if (getApprover()!=null && getApprover().hasData()) return true;
 			if (getApprovingPartyReference()!=null && getApprovingPartyReference().hasData()) return true;
@@ -426,7 +426,7 @@ public interface Approval extends RosettaModelObject {
 		public Approval.ApprovalBuilder merge(RosettaModelObjectBuilder other, BuilderMerger merger) {
 			Approval.ApprovalBuilder o = (Approval.ApprovalBuilder) other;
 			
-			merger.mergeRosetta(getType(), o.getType(), this::setType);
+			merger.mergeRosetta(getType_(), o.getType_(), this::setType);
 			merger.mergeRosetta(getApprover(), o.getApprover(), this::setApprover);
 			merger.mergeRosetta(getApprovingPartyReference(), o.getApprovingPartyReference(), this::setApprovingPartyReference);
 			merger.mergeRosetta(getApprovedPartyReference(), o.getApprovedPartyReference(), this::setApprovedPartyReference);
@@ -437,7 +437,7 @@ public interface Approval extends RosettaModelObject {
 		}
 	
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		

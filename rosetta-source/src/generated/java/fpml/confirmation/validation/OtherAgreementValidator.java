@@ -23,7 +23,7 @@ public class OtherAgreementValidator implements Validator<OtherAgreement> {
 
 	private List<ComparisonResult> getComparisonResults(OtherAgreement o) {
 		return Lists.<ComparisonResult>newArrayList(
-				checkCardinality("type", (OtherAgreementType) o.getType() != null ? 1 : 0, 1, 1), 
+				checkCardinality("type", (OtherAgreementType) o.getType_() != null ? 1 : 0, 1, 1), 
 				checkCardinality("version", (OtherAgreementVersion) o.getVersion() != null ? 1 : 0, 0, 1), 
 				checkCardinality("date", (Date) o.getDate() != null ? 1 : 0, 0, 1)
 			);

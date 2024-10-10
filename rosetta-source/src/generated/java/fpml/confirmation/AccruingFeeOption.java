@@ -41,7 +41,7 @@ public interface AccruingFeeOption extends FeeRateOptionBase {
 	/**
 	 * The accruing fee type for which a rate is being provided.
 	 */
-	AccruingFeeType getType();
+	AccruingFeeType getType_();
 	PeriodOptionalEndModel getPeriodOptionalEndModel();
 	/**
 	 * A freetext field which allows the sender to add further details around the business event.
@@ -75,7 +75,7 @@ public interface AccruingFeeOption extends FeeRateOptionBase {
 		processRosetta(path.newSubPath("dayCountFraction"), processor, DayCountFraction.class, getDayCountFraction());
 		processRosetta(path.newSubPath("paymentFrequency"), processor, Period.class, getPaymentFrequency());
 		processor.processBasic(path.newSubPath("rate"), BigDecimal.class, getRate(), this);
-		processRosetta(path.newSubPath("type"), processor, AccruingFeeType.class, getType());
+		processRosetta(path.newSubPath("type"), processor, AccruingFeeType.class, getType_());
 		processRosetta(path.newSubPath("periodOptionalEndModel"), processor, PeriodOptionalEndModel.class, getPeriodOptionalEndModel());
 		processor.processBasic(path.newSubPath("calculationDefinition"), String.class, getCalculationDefinition(), this);
 	}
@@ -84,7 +84,7 @@ public interface AccruingFeeOption extends FeeRateOptionBase {
 	/*********************** Builder Interface  ***********************/
 	interface AccruingFeeOptionBuilder extends AccruingFeeOption, FeeRateOptionBase.FeeRateOptionBaseBuilder {
 		AccruingFeeType.AccruingFeeTypeBuilder getOrCreateType();
-		AccruingFeeType.AccruingFeeTypeBuilder getType();
+		AccruingFeeType.AccruingFeeTypeBuilder getType_();
 		PeriodOptionalEndModel.PeriodOptionalEndModelBuilder getOrCreatePeriodOptionalEndModel();
 		PeriodOptionalEndModel.PeriodOptionalEndModelBuilder getPeriodOptionalEndModel();
 		AccruingFeeOption.AccruingFeeOptionBuilder setAccrualOptionId(AccrualTypeId accrualOptionId);
@@ -101,7 +101,7 @@ public interface AccruingFeeOption extends FeeRateOptionBase {
 			processRosetta(path.newSubPath("dayCountFraction"), processor, DayCountFraction.DayCountFractionBuilder.class, getDayCountFraction());
 			processRosetta(path.newSubPath("paymentFrequency"), processor, Period.PeriodBuilder.class, getPaymentFrequency());
 			processor.processBasic(path.newSubPath("rate"), BigDecimal.class, getRate(), this);
-			processRosetta(path.newSubPath("type"), processor, AccruingFeeType.AccruingFeeTypeBuilder.class, getType());
+			processRosetta(path.newSubPath("type"), processor, AccruingFeeType.AccruingFeeTypeBuilder.class, getType_());
 			processRosetta(path.newSubPath("periodOptionalEndModel"), processor, PeriodOptionalEndModel.PeriodOptionalEndModelBuilder.class, getPeriodOptionalEndModel());
 			processor.processBasic(path.newSubPath("calculationDefinition"), String.class, getCalculationDefinition(), this);
 		}
@@ -118,14 +118,14 @@ public interface AccruingFeeOption extends FeeRateOptionBase {
 		
 		protected AccruingFeeOptionImpl(AccruingFeeOption.AccruingFeeOptionBuilder builder) {
 			super(builder);
-			this.type = ofNullable(builder.getType()).map(f->f.build()).orElse(null);
+			this.type = ofNullable(builder.getType_()).map(f->f.build()).orElse(null);
 			this.periodOptionalEndModel = ofNullable(builder.getPeriodOptionalEndModel()).map(f->f.build()).orElse(null);
 			this.calculationDefinition = builder.getCalculationDefinition();
 		}
 		
 		@Override
 		@RosettaAttribute("type")
-		public AccruingFeeType getType() {
+		public AccruingFeeType getType_() {
 			return type;
 		}
 		
@@ -155,13 +155,13 @@ public interface AccruingFeeOption extends FeeRateOptionBase {
 		
 		protected void setBuilderFields(AccruingFeeOption.AccruingFeeOptionBuilder builder) {
 			super.setBuilderFields(builder);
-			ofNullable(getType()).ifPresent(builder::setType);
+			ofNullable(getType_()).ifPresent(builder::setType);
 			ofNullable(getPeriodOptionalEndModel()).ifPresent(builder::setPeriodOptionalEndModel);
 			ofNullable(getCalculationDefinition()).ifPresent(builder::setCalculationDefinition);
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;
@@ -205,7 +205,7 @@ public interface AccruingFeeOption extends FeeRateOptionBase {
 	
 		@Override
 		@RosettaAttribute("type")
-		public AccruingFeeType.AccruingFeeTypeBuilder getType() {
+		public AccruingFeeType.AccruingFeeTypeBuilder getType_() {
 			return type;
 		}
 		
@@ -312,7 +312,7 @@ public interface AccruingFeeOption extends FeeRateOptionBase {
 		@Override
 		public boolean hasData() {
 			if (super.hasData()) return true;
-			if (getType()!=null && getType().hasData()) return true;
+			if (getType_()!=null && getType_().hasData()) return true;
 			if (getPeriodOptionalEndModel()!=null && getPeriodOptionalEndModel().hasData()) return true;
 			if (getCalculationDefinition()!=null) return true;
 			return false;
@@ -325,7 +325,7 @@ public interface AccruingFeeOption extends FeeRateOptionBase {
 			
 			AccruingFeeOption.AccruingFeeOptionBuilder o = (AccruingFeeOption.AccruingFeeOptionBuilder) other;
 			
-			merger.mergeRosetta(getType(), o.getType(), this::setType);
+			merger.mergeRosetta(getType_(), o.getType_(), this::setType);
 			merger.mergeRosetta(getPeriodOptionalEndModel(), o.getPeriodOptionalEndModel(), this::setPeriodOptionalEndModel);
 			
 			merger.mergeBasic(getCalculationDefinition(), o.getCalculationDefinition(), this::setCalculationDefinition);
@@ -333,7 +333,7 @@ public interface AccruingFeeOption extends FeeRateOptionBase {
 		}
 	
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;

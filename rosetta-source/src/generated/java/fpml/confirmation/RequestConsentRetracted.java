@@ -45,7 +45,7 @@ public interface RequestConsentRetracted extends NonCorrectableRequestMessage {
 	/**
 	 * The type of approval (e.g. &quot;pre-clearing credit&quot;).
 	 */
-	ApprovalType getType();
+	ApprovalType getType_();
 	/**
 	 * The full name or identifiying ID of the relevant approver.
 	 */
@@ -90,7 +90,7 @@ public interface RequestConsentRetracted extends NonCorrectableRequestMessage {
 		processRosetta(path.newSubPath("validationModel"), processor, ValidationModel.class, getValidationModel());
 		processRosetta(path.newSubPath("correlationAndSequenceModel"), processor, CorrelationAndSequenceModel.class, getCorrelationAndSequenceModel());
 		processRosetta(path.newSubPath("onBehalfOfModel"), processor, OnBehalfOfModel.class, getOnBehalfOfModel());
-		processRosetta(path.newSubPath("type"), processor, ApprovalType.class, getType());
+		processRosetta(path.newSubPath("type"), processor, ApprovalType.class, getType_());
 		processRosetta(path.newSubPath("approver"), processor, PersonId.class, getApprover());
 		processRosetta(path.newSubPath("approvingPartyReference"), processor, PartyReference.class, getApprovingPartyReference());
 		processRosetta(path.newSubPath("tradingAndPostTradeEventsModel"), processor, TradingAndPostTradeEventsModel.class, getTradingAndPostTradeEventsModel());
@@ -102,7 +102,7 @@ public interface RequestConsentRetracted extends NonCorrectableRequestMessage {
 	/*********************** Builder Interface  ***********************/
 	interface RequestConsentRetractedBuilder extends RequestConsentRetracted, NonCorrectableRequestMessage.NonCorrectableRequestMessageBuilder {
 		ApprovalType.ApprovalTypeBuilder getOrCreateType();
-		ApprovalType.ApprovalTypeBuilder getType();
+		ApprovalType.ApprovalTypeBuilder getType_();
 		PersonId.PersonIdBuilder getOrCreateApprover();
 		PersonId.PersonIdBuilder getApprover();
 		PartyReference.PartyReferenceBuilder getOrCreateApprovingPartyReference();
@@ -134,7 +134,7 @@ public interface RequestConsentRetracted extends NonCorrectableRequestMessage {
 			processRosetta(path.newSubPath("validationModel"), processor, ValidationModel.ValidationModelBuilder.class, getValidationModel());
 			processRosetta(path.newSubPath("correlationAndSequenceModel"), processor, CorrelationAndSequenceModel.CorrelationAndSequenceModelBuilder.class, getCorrelationAndSequenceModel());
 			processRosetta(path.newSubPath("onBehalfOfModel"), processor, OnBehalfOfModel.OnBehalfOfModelBuilder.class, getOnBehalfOfModel());
-			processRosetta(path.newSubPath("type"), processor, ApprovalType.ApprovalTypeBuilder.class, getType());
+			processRosetta(path.newSubPath("type"), processor, ApprovalType.ApprovalTypeBuilder.class, getType_());
 			processRosetta(path.newSubPath("approver"), processor, PersonId.PersonIdBuilder.class, getApprover());
 			processRosetta(path.newSubPath("approvingPartyReference"), processor, PartyReference.PartyReferenceBuilder.class, getApprovingPartyReference());
 			processRosetta(path.newSubPath("tradingAndPostTradeEventsModel"), processor, TradingAndPostTradeEventsModel.TradingAndPostTradeEventsModelBuilder.class, getTradingAndPostTradeEventsModel());
@@ -157,7 +157,7 @@ public interface RequestConsentRetracted extends NonCorrectableRequestMessage {
 		
 		protected RequestConsentRetractedImpl(RequestConsentRetracted.RequestConsentRetractedBuilder builder) {
 			super(builder);
-			this.type = ofNullable(builder.getType()).map(f->f.build()).orElse(null);
+			this.type = ofNullable(builder.getType_()).map(f->f.build()).orElse(null);
 			this.approver = ofNullable(builder.getApprover()).map(f->f.build()).orElse(null);
 			this.approvingPartyReference = ofNullable(builder.getApprovingPartyReference()).map(f->f.build()).orElse(null);
 			this.tradingAndPostTradeEventsModel = ofNullable(builder.getTradingAndPostTradeEventsModel()).map(f->f.build()).orElse(null);
@@ -167,7 +167,7 @@ public interface RequestConsentRetracted extends NonCorrectableRequestMessage {
 		
 		@Override
 		@RosettaAttribute("type")
-		public ApprovalType getType() {
+		public ApprovalType getType_() {
 			return type;
 		}
 		
@@ -215,7 +215,7 @@ public interface RequestConsentRetracted extends NonCorrectableRequestMessage {
 		
 		protected void setBuilderFields(RequestConsentRetracted.RequestConsentRetractedBuilder builder) {
 			super.setBuilderFields(builder);
-			ofNullable(getType()).ifPresent(builder::setType);
+			ofNullable(getType_()).ifPresent(builder::setType);
 			ofNullable(getApprover()).ifPresent(builder::setApprover);
 			ofNullable(getApprovingPartyReference()).ifPresent(builder::setApprovingPartyReference);
 			ofNullable(getTradingAndPostTradeEventsModel()).ifPresent(builder::setTradingAndPostTradeEventsModel);
@@ -224,7 +224,7 @@ public interface RequestConsentRetracted extends NonCorrectableRequestMessage {
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;
@@ -280,7 +280,7 @@ public interface RequestConsentRetracted extends NonCorrectableRequestMessage {
 	
 		@Override
 		@RosettaAttribute("type")
-		public ApprovalType.ApprovalTypeBuilder getType() {
+		public ApprovalType.ApprovalTypeBuilder getType_() {
 			return type;
 		}
 		
@@ -491,7 +491,7 @@ public interface RequestConsentRetracted extends NonCorrectableRequestMessage {
 		@Override
 		public boolean hasData() {
 			if (super.hasData()) return true;
-			if (getType()!=null && getType().hasData()) return true;
+			if (getType_()!=null && getType_().hasData()) return true;
 			if (getApprover()!=null && getApprover().hasData()) return true;
 			if (getApprovingPartyReference()!=null && getApprovingPartyReference().hasData()) return true;
 			if (getTradingAndPostTradeEventsModel()!=null && getTradingAndPostTradeEventsModel().hasData()) return true;
@@ -507,7 +507,7 @@ public interface RequestConsentRetracted extends NonCorrectableRequestMessage {
 			
 			RequestConsentRetracted.RequestConsentRetractedBuilder o = (RequestConsentRetracted.RequestConsentRetractedBuilder) other;
 			
-			merger.mergeRosetta(getType(), o.getType(), this::setType);
+			merger.mergeRosetta(getType_(), o.getType_(), this::setType);
 			merger.mergeRosetta(getApprover(), o.getApprover(), this::setApprover);
 			merger.mergeRosetta(getApprovingPartyReference(), o.getApprovingPartyReference(), this::setApprovingPartyReference);
 			merger.mergeRosetta(getTradingAndPostTradeEventsModel(), o.getTradingAndPostTradeEventsModel(), this::setTradingAndPostTradeEventsModel);
@@ -518,7 +518,7 @@ public interface RequestConsentRetracted extends NonCorrectableRequestMessage {
 		}
 	
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;

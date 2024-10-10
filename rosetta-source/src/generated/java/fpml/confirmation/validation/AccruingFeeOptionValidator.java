@@ -30,7 +30,7 @@ public class AccruingFeeOptionValidator implements Validator<AccruingFeeOption> 
 				checkCardinality("dayCountFraction", (DayCountFraction) o.getDayCountFraction() != null ? 1 : 0, 1, 1), 
 				checkCardinality("paymentFrequency", (Period) o.getPaymentFrequency() != null ? 1 : 0, 0, 1), 
 				checkCardinality("rate", (BigDecimal) o.getRate() != null ? 1 : 0, 1, 1), 
-				checkCardinality("type", (AccruingFeeType) o.getType() != null ? 1 : 0, 1, 1), 
+				checkCardinality("type", (AccruingFeeType) o.getType_() != null ? 1 : 0, 1, 1), 
 				checkCardinality("periodOptionalEndModel", (PeriodOptionalEndModel) o.getPeriodOptionalEndModel() != null ? 1 : 0, 1, 1), 
 				checkCardinality("calculationDefinition", (String) o.getCalculationDefinition() != null ? 1 : 0, 0, 1)
 			);

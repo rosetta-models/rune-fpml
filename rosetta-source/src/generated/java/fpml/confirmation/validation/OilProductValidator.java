@@ -22,7 +22,7 @@ public class OilProductValidator implements Validator<OilProduct> {
 
 	private List<ComparisonResult> getComparisonResults(OilProduct o) {
 		return Lists.<ComparisonResult>newArrayList(
-				checkCardinality("type", (OilProductType) o.getType() != null ? 1 : 0, 1, 1), 
+				checkCardinality("type", (OilProductType) o.getType_() != null ? 1 : 0, 1, 1), 
 				checkCardinality("grade", (CommodityProductGrade) o.getGrade() != null ? 1 : 0, 1, 1)
 			);
 	}

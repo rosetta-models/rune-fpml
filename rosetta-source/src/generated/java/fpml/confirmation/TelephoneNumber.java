@@ -32,7 +32,7 @@ public interface TelephoneNumber extends RosettaModelObject {
 	/**
 	 * The type of telephone number (work, personal, mobile).
 	 */
-	TelephoneTypeEnum getType();
+	TelephoneTypeEnum getType_();
 	/**
 	 * A telephonic contact.
 	 */
@@ -61,7 +61,7 @@ public interface TelephoneNumber extends RosettaModelObject {
 	
 	@Override
 	default void process(RosettaPath path, Processor processor) {
-		processor.processBasic(path.newSubPath("type"), TelephoneTypeEnum.class, getType(), this);
+		processor.processBasic(path.newSubPath("type"), TelephoneTypeEnum.class, getType_(), this);
 		processor.processBasic(path.newSubPath("number"), String.class, getNumber(), this);
 	}
 	
@@ -73,7 +73,7 @@ public interface TelephoneNumber extends RosettaModelObject {
 
 		@Override
 		default void process(RosettaPath path, BuilderProcessor processor) {
-			processor.processBasic(path.newSubPath("type"), TelephoneTypeEnum.class, getType(), this);
+			processor.processBasic(path.newSubPath("type"), TelephoneTypeEnum.class, getType_(), this);
 			processor.processBasic(path.newSubPath("number"), String.class, getNumber(), this);
 		}
 		
@@ -87,13 +87,13 @@ public interface TelephoneNumber extends RosettaModelObject {
 		private final String number;
 		
 		protected TelephoneNumberImpl(TelephoneNumber.TelephoneNumberBuilder builder) {
-			this.type = builder.getType();
+			this.type = builder.getType_();
 			this.number = builder.getNumber();
 		}
 		
 		@Override
 		@RosettaAttribute("type")
-		public TelephoneTypeEnum getType() {
+		public TelephoneTypeEnum getType_() {
 			return type;
 		}
 		
@@ -116,12 +116,12 @@ public interface TelephoneNumber extends RosettaModelObject {
 		}
 		
 		protected void setBuilderFields(TelephoneNumber.TelephoneNumberBuilder builder) {
-			ofNullable(getType()).ifPresent(builder::setType);
+			ofNullable(getType_()).ifPresent(builder::setType);
 			ofNullable(getNumber()).ifPresent(builder::setNumber);
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		
@@ -160,7 +160,7 @@ public interface TelephoneNumber extends RosettaModelObject {
 	
 		@Override
 		@RosettaAttribute("type")
-		public TelephoneTypeEnum getType() {
+		public TelephoneTypeEnum getType_() {
 			return type;
 		}
 		
@@ -201,7 +201,7 @@ public interface TelephoneNumber extends RosettaModelObject {
 		
 		@Override
 		public boolean hasData() {
-			if (getType()!=null) return true;
+			if (getType_()!=null) return true;
 			if (getNumber()!=null) return true;
 			return false;
 		}
@@ -212,13 +212,13 @@ public interface TelephoneNumber extends RosettaModelObject {
 			TelephoneNumber.TelephoneNumberBuilder o = (TelephoneNumber.TelephoneNumberBuilder) other;
 			
 			
-			merger.mergeBasic(getType(), o.getType(), this::setType);
+			merger.mergeBasic(getType_(), o.getType_(), this::setType);
 			merger.mergeBasic(getNumber(), o.getNumber(), this::setNumber);
 			return this;
 		}
 	
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		

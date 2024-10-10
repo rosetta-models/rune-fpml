@@ -33,7 +33,7 @@ public interface ContractualTermsSupplement extends RosettaModelObject {
 	/**
 	 * Identifies the form of applicable contractual supplement.
 	 */
-	ContractualSupplement getType();
+	ContractualSupplement getType_();
 	/**
 	 * Specifies the publication date of the applicable version of the contractual supplement.
 	 */
@@ -62,7 +62,7 @@ public interface ContractualTermsSupplement extends RosettaModelObject {
 	
 	@Override
 	default void process(RosettaPath path, Processor processor) {
-		processRosetta(path.newSubPath("type"), processor, ContractualSupplement.class, getType());
+		processRosetta(path.newSubPath("type"), processor, ContractualSupplement.class, getType_());
 		processor.processBasic(path.newSubPath("publicationDate"), Date.class, getPublicationDate(), this);
 	}
 	
@@ -70,13 +70,13 @@ public interface ContractualTermsSupplement extends RosettaModelObject {
 	/*********************** Builder Interface  ***********************/
 	interface ContractualTermsSupplementBuilder extends ContractualTermsSupplement, RosettaModelObjectBuilder {
 		ContractualSupplement.ContractualSupplementBuilder getOrCreateType();
-		ContractualSupplement.ContractualSupplementBuilder getType();
+		ContractualSupplement.ContractualSupplementBuilder getType_();
 		ContractualTermsSupplement.ContractualTermsSupplementBuilder setType(ContractualSupplement type);
 		ContractualTermsSupplement.ContractualTermsSupplementBuilder setPublicationDate(Date publicationDate);
 
 		@Override
 		default void process(RosettaPath path, BuilderProcessor processor) {
-			processRosetta(path.newSubPath("type"), processor, ContractualSupplement.ContractualSupplementBuilder.class, getType());
+			processRosetta(path.newSubPath("type"), processor, ContractualSupplement.ContractualSupplementBuilder.class, getType_());
 			processor.processBasic(path.newSubPath("publicationDate"), Date.class, getPublicationDate(), this);
 		}
 		
@@ -90,13 +90,13 @@ public interface ContractualTermsSupplement extends RosettaModelObject {
 		private final Date publicationDate;
 		
 		protected ContractualTermsSupplementImpl(ContractualTermsSupplement.ContractualTermsSupplementBuilder builder) {
-			this.type = ofNullable(builder.getType()).map(f->f.build()).orElse(null);
+			this.type = ofNullable(builder.getType_()).map(f->f.build()).orElse(null);
 			this.publicationDate = builder.getPublicationDate();
 		}
 		
 		@Override
 		@RosettaAttribute("type")
-		public ContractualSupplement getType() {
+		public ContractualSupplement getType_() {
 			return type;
 		}
 		
@@ -119,12 +119,12 @@ public interface ContractualTermsSupplement extends RosettaModelObject {
 		}
 		
 		protected void setBuilderFields(ContractualTermsSupplement.ContractualTermsSupplementBuilder builder) {
-			ofNullable(getType()).ifPresent(builder::setType);
+			ofNullable(getType_()).ifPresent(builder::setType);
 			ofNullable(getPublicationDate()).ifPresent(builder::setPublicationDate);
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		
@@ -163,7 +163,7 @@ public interface ContractualTermsSupplement extends RosettaModelObject {
 	
 		@Override
 		@RosettaAttribute("type")
-		public ContractualSupplement.ContractualSupplementBuilder getType() {
+		public ContractualSupplement.ContractualSupplementBuilder getType_() {
 			return type;
 		}
 		
@@ -218,7 +218,7 @@ public interface ContractualTermsSupplement extends RosettaModelObject {
 		
 		@Override
 		public boolean hasData() {
-			if (getType()!=null && getType().hasData()) return true;
+			if (getType_()!=null && getType_().hasData()) return true;
 			if (getPublicationDate()!=null) return true;
 			return false;
 		}
@@ -228,14 +228,14 @@ public interface ContractualTermsSupplement extends RosettaModelObject {
 		public ContractualTermsSupplement.ContractualTermsSupplementBuilder merge(RosettaModelObjectBuilder other, BuilderMerger merger) {
 			ContractualTermsSupplement.ContractualTermsSupplementBuilder o = (ContractualTermsSupplement.ContractualTermsSupplementBuilder) other;
 			
-			merger.mergeRosetta(getType(), o.getType(), this::setType);
+			merger.mergeRosetta(getType_(), o.getType_(), this::setType);
 			
 			merger.mergeBasic(getPublicationDate(), o.getPublicationDate(), this::setPublicationDate);
 			return this;
 		}
 	
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		

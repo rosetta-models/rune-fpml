@@ -42,7 +42,7 @@ public class RequestConsentValidator implements Validator<RequestConsent> {
 				checkCardinality("correlationAndSequenceModel", (CorrelationAndSequenceModel) o.getCorrelationAndSequenceModel() != null ? 1 : 0, 0, 1), 
 				checkCardinality("onBehalfOfModel", (OnBehalfOfModel) o.getOnBehalfOfModel() != null ? 1 : 0, 0, 1), 
 				checkCardinality("requestedAction", (RequestedAction) o.getRequestedAction() != null ? 1 : 0, 0, 1), 
-				checkCardinality("type", (ApprovalType) o.getType() != null ? 1 : 0, 0, 1), 
+				checkCardinality("type", (ApprovalType) o.getType_() != null ? 1 : 0, 0, 1), 
 				checkCardinality("approver", (PersonId) o.getApprover() != null ? 1 : 0, 0, 1), 
 				checkCardinality("approvingPartyReference", (PartyReference) o.getApprovingPartyReference() != null ? 1 : 0, 0, 1), 
 				checkCardinality("portfolioReferenceModel", (PortfolioReferenceModel) o.getPortfolioReferenceModel() != null ? 1 : 0, 0, 1), 

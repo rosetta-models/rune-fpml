@@ -23,7 +23,7 @@ public class RetrievalMethodTypeValidator implements Validator<RetrievalMethodTy
 		return Lists.<ComparisonResult>newArrayList(
 				checkCardinality("transforms", (TransformsType) o.getTransforms() != null ? 1 : 0, 0, 1), 
 				checkCardinality("uri", (String) o.getUri() != null ? 1 : 0, 0, 1), 
-				checkCardinality("type", (String) o.getType() != null ? 1 : 0, 0, 1)
+				checkCardinality("type", (String) o.getType_() != null ? 1 : 0, 0, 1)
 			);
 	}
 

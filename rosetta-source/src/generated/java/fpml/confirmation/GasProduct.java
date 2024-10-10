@@ -34,7 +34,7 @@ public interface GasProduct extends RosettaModelObject {
 	/**
 	 * The type of gas to be delivered.
 	 */
-	GasProductTypeEnum getType();
+	GasProductTypeEnum getType_();
 	/**
 	 * The calorific value of the gas to be delivered, specified in megajoules per cubic meter (MJ/m3).
 	 */
@@ -67,7 +67,7 @@ public interface GasProduct extends RosettaModelObject {
 	
 	@Override
 	default void process(RosettaPath path, Processor processor) {
-		processor.processBasic(path.newSubPath("type"), GasProductTypeEnum.class, getType(), this);
+		processor.processBasic(path.newSubPath("type"), GasProductTypeEnum.class, getType_(), this);
 		processor.processBasic(path.newSubPath("calorificValue"), BigDecimal.class, getCalorificValue(), this);
 		processRosetta(path.newSubPath("quality"), processor, GasQuality.class, getQuality());
 	}
@@ -83,7 +83,7 @@ public interface GasProduct extends RosettaModelObject {
 
 		@Override
 		default void process(RosettaPath path, BuilderProcessor processor) {
-			processor.processBasic(path.newSubPath("type"), GasProductTypeEnum.class, getType(), this);
+			processor.processBasic(path.newSubPath("type"), GasProductTypeEnum.class, getType_(), this);
 			processor.processBasic(path.newSubPath("calorificValue"), BigDecimal.class, getCalorificValue(), this);
 			processRosetta(path.newSubPath("quality"), processor, GasQuality.GasQualityBuilder.class, getQuality());
 		}
@@ -99,14 +99,14 @@ public interface GasProduct extends RosettaModelObject {
 		private final GasQuality quality;
 		
 		protected GasProductImpl(GasProduct.GasProductBuilder builder) {
-			this.type = builder.getType();
+			this.type = builder.getType_();
 			this.calorificValue = builder.getCalorificValue();
 			this.quality = ofNullable(builder.getQuality()).map(f->f.build()).orElse(null);
 		}
 		
 		@Override
 		@RosettaAttribute("type")
-		public GasProductTypeEnum getType() {
+		public GasProductTypeEnum getType_() {
 			return type;
 		}
 		
@@ -135,13 +135,13 @@ public interface GasProduct extends RosettaModelObject {
 		}
 		
 		protected void setBuilderFields(GasProduct.GasProductBuilder builder) {
-			ofNullable(getType()).ifPresent(builder::setType);
+			ofNullable(getType_()).ifPresent(builder::setType);
 			ofNullable(getCalorificValue()).ifPresent(builder::setCalorificValue);
 			ofNullable(getQuality()).ifPresent(builder::setQuality);
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		
@@ -184,7 +184,7 @@ public interface GasProduct extends RosettaModelObject {
 	
 		@Override
 		@RosettaAttribute("type")
-		public GasProductTypeEnum getType() {
+		public GasProductTypeEnum getType_() {
 			return type;
 		}
 		
@@ -251,7 +251,7 @@ public interface GasProduct extends RosettaModelObject {
 		
 		@Override
 		public boolean hasData() {
-			if (getType()!=null) return true;
+			if (getType_()!=null) return true;
 			if (getCalorificValue()!=null) return true;
 			if (getQuality()!=null && getQuality().hasData()) return true;
 			return false;
@@ -264,13 +264,13 @@ public interface GasProduct extends RosettaModelObject {
 			
 			merger.mergeRosetta(getQuality(), o.getQuality(), this::setQuality);
 			
-			merger.mergeBasic(getType(), o.getType(), this::setType);
+			merger.mergeBasic(getType_(), o.getType_(), this::setType);
 			merger.mergeBasic(getCalorificValue(), o.getCalorificValue(), this::setCalorificValue);
 			return this;
 		}
 	
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		

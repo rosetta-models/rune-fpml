@@ -30,7 +30,7 @@ public interface RetrievalMethodType extends RosettaModelObject {
 	/*********************** Getter Methods  ***********************/
 	TransformsType getTransforms();
 	String getUri();
-	String getType();
+	String getType_();
 
 	/*********************** Build Methods  ***********************/
 	RetrievalMethodType build();
@@ -57,7 +57,7 @@ public interface RetrievalMethodType extends RosettaModelObject {
 	default void process(RosettaPath path, Processor processor) {
 		processRosetta(path.newSubPath("transforms"), processor, TransformsType.class, getTransforms());
 		processor.processBasic(path.newSubPath("uri"), String.class, getUri(), this);
-		processor.processBasic(path.newSubPath("type"), String.class, getType(), this);
+		processor.processBasic(path.newSubPath("type"), String.class, getType_(), this);
 	}
 	
 
@@ -73,7 +73,7 @@ public interface RetrievalMethodType extends RosettaModelObject {
 		default void process(RosettaPath path, BuilderProcessor processor) {
 			processRosetta(path.newSubPath("transforms"), processor, TransformsType.TransformsTypeBuilder.class, getTransforms());
 			processor.processBasic(path.newSubPath("uri"), String.class, getUri(), this);
-			processor.processBasic(path.newSubPath("type"), String.class, getType(), this);
+			processor.processBasic(path.newSubPath("type"), String.class, getType_(), this);
 		}
 		
 
@@ -89,7 +89,7 @@ public interface RetrievalMethodType extends RosettaModelObject {
 		protected RetrievalMethodTypeImpl(RetrievalMethodType.RetrievalMethodTypeBuilder builder) {
 			this.transforms = ofNullable(builder.getTransforms()).map(f->f.build()).orElse(null);
 			this.uri = builder.getUri();
-			this.type = builder.getType();
+			this.type = builder.getType_();
 		}
 		
 		@Override
@@ -106,7 +106,7 @@ public interface RetrievalMethodType extends RosettaModelObject {
 		
 		@Override
 		@RosettaAttribute("type")
-		public String getType() {
+		public String getType_() {
 			return type;
 		}
 		
@@ -125,11 +125,11 @@ public interface RetrievalMethodType extends RosettaModelObject {
 		protected void setBuilderFields(RetrievalMethodType.RetrievalMethodTypeBuilder builder) {
 			ofNullable(getTransforms()).ifPresent(builder::setTransforms);
 			ofNullable(getUri()).ifPresent(builder::setUri);
-			ofNullable(getType()).ifPresent(builder::setType);
+			ofNullable(getType_()).ifPresent(builder::setType);
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		
@@ -197,7 +197,7 @@ public interface RetrievalMethodType extends RosettaModelObject {
 		
 		@Override
 		@RosettaAttribute("type")
-		public String getType() {
+		public String getType_() {
 			return type;
 		}
 		
@@ -241,7 +241,7 @@ public interface RetrievalMethodType extends RosettaModelObject {
 		public boolean hasData() {
 			if (getTransforms()!=null && getTransforms().hasData()) return true;
 			if (getUri()!=null) return true;
-			if (getType()!=null) return true;
+			if (getType_()!=null) return true;
 			return false;
 		}
 	
@@ -253,12 +253,12 @@ public interface RetrievalMethodType extends RosettaModelObject {
 			merger.mergeRosetta(getTransforms(), o.getTransforms(), this::setTransforms);
 			
 			merger.mergeBasic(getUri(), o.getUri(), this::setUri);
-			merger.mergeBasic(getType(), o.getType(), this::setType);
+			merger.mergeBasic(getType_(), o.getType_(), this::setType);
 			return this;
 		}
 	
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		

@@ -44,7 +44,7 @@ public interface OtherAgreement extends RosettaModelObject {
 	/**
 	 * The agreement executed between the parties and intended to govern product-specific derivatives transactions between those parties.
 	 */
-	OtherAgreementType getType();
+	OtherAgreementType getType_();
 	/**
 	 * The version of the agreement.
 	 */
@@ -78,7 +78,7 @@ public interface OtherAgreement extends RosettaModelObject {
 	@Override
 	default void process(RosettaPath path, Processor processor) {
 		processRosetta(path.newSubPath("identifier"), processor, OtherAgreementId.class, getIdentifier());
-		processRosetta(path.newSubPath("type"), processor, OtherAgreementType.class, getType());
+		processRosetta(path.newSubPath("type"), processor, OtherAgreementType.class, getType_());
 		processRosetta(path.newSubPath("version"), processor, OtherAgreementVersion.class, getVersion());
 		processor.processBasic(path.newSubPath("date"), Date.class, getDate(), this);
 	}
@@ -89,7 +89,7 @@ public interface OtherAgreement extends RosettaModelObject {
 		OtherAgreementId.OtherAgreementIdBuilder getOrCreateIdentifier(int _index);
 		List<? extends OtherAgreementId.OtherAgreementIdBuilder> getIdentifier();
 		OtherAgreementType.OtherAgreementTypeBuilder getOrCreateType();
-		OtherAgreementType.OtherAgreementTypeBuilder getType();
+		OtherAgreementType.OtherAgreementTypeBuilder getType_();
 		OtherAgreementVersion.OtherAgreementVersionBuilder getOrCreateVersion();
 		OtherAgreementVersion.OtherAgreementVersionBuilder getVersion();
 		OtherAgreement.OtherAgreementBuilder addIdentifier(OtherAgreementId identifier0);
@@ -103,7 +103,7 @@ public interface OtherAgreement extends RosettaModelObject {
 		@Override
 		default void process(RosettaPath path, BuilderProcessor processor) {
 			processRosetta(path.newSubPath("identifier"), processor, OtherAgreementId.OtherAgreementIdBuilder.class, getIdentifier());
-			processRosetta(path.newSubPath("type"), processor, OtherAgreementType.OtherAgreementTypeBuilder.class, getType());
+			processRosetta(path.newSubPath("type"), processor, OtherAgreementType.OtherAgreementTypeBuilder.class, getType_());
 			processRosetta(path.newSubPath("version"), processor, OtherAgreementVersion.OtherAgreementVersionBuilder.class, getVersion());
 			processor.processBasic(path.newSubPath("date"), Date.class, getDate(), this);
 		}
@@ -121,7 +121,7 @@ public interface OtherAgreement extends RosettaModelObject {
 		
 		protected OtherAgreementImpl(OtherAgreement.OtherAgreementBuilder builder) {
 			this.identifier = ofNullable(builder.getIdentifier()).filter(_l->!_l.isEmpty()).map(list -> list.stream().filter(Objects::nonNull).map(f->f.build()).filter(Objects::nonNull).collect(ImmutableList.toImmutableList())).orElse(null);
-			this.type = ofNullable(builder.getType()).map(f->f.build()).orElse(null);
+			this.type = ofNullable(builder.getType_()).map(f->f.build()).orElse(null);
 			this.version = ofNullable(builder.getVersion()).map(f->f.build()).orElse(null);
 			this.date = builder.getDate();
 		}
@@ -134,7 +134,7 @@ public interface OtherAgreement extends RosettaModelObject {
 		
 		@Override
 		@RosettaAttribute("type")
-		public OtherAgreementType getType() {
+		public OtherAgreementType getType_() {
 			return type;
 		}
 		
@@ -164,13 +164,13 @@ public interface OtherAgreement extends RosettaModelObject {
 		
 		protected void setBuilderFields(OtherAgreement.OtherAgreementBuilder builder) {
 			ofNullable(getIdentifier()).ifPresent(builder::setIdentifier);
-			ofNullable(getType()).ifPresent(builder::setType);
+			ofNullable(getType_()).ifPresent(builder::setType);
 			ofNullable(getVersion()).ifPresent(builder::setVersion);
 			ofNullable(getDate()).ifPresent(builder::setDate);
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		
@@ -235,7 +235,7 @@ public interface OtherAgreement extends RosettaModelObject {
 		
 		@Override
 		@RosettaAttribute("type")
-		public OtherAgreementType.OtherAgreementTypeBuilder getType() {
+		public OtherAgreementType.OtherAgreementTypeBuilder getType_() {
 			return type;
 		}
 		
@@ -353,7 +353,7 @@ public interface OtherAgreement extends RosettaModelObject {
 		@Override
 		public boolean hasData() {
 			if (getIdentifier()!=null && getIdentifier().stream().filter(Objects::nonNull).anyMatch(a->a.hasData())) return true;
-			if (getType()!=null && getType().hasData()) return true;
+			if (getType_()!=null && getType_().hasData()) return true;
 			if (getVersion()!=null && getVersion().hasData()) return true;
 			if (getDate()!=null) return true;
 			return false;
@@ -365,7 +365,7 @@ public interface OtherAgreement extends RosettaModelObject {
 			OtherAgreement.OtherAgreementBuilder o = (OtherAgreement.OtherAgreementBuilder) other;
 			
 			merger.mergeRosetta(getIdentifier(), o.getIdentifier(), this::getOrCreateIdentifier);
-			merger.mergeRosetta(getType(), o.getType(), this::setType);
+			merger.mergeRosetta(getType_(), o.getType_(), this::setType);
 			merger.mergeRosetta(getVersion(), o.getVersion(), this::setVersion);
 			
 			merger.mergeBasic(getDate(), o.getDate(), this::setDate);
@@ -373,7 +373,7 @@ public interface OtherAgreement extends RosettaModelObject {
 		}
 	
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		

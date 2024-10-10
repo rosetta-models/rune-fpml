@@ -22,7 +22,7 @@ public class ContractualTermsSupplementValidator implements Validator<Contractua
 
 	private List<ComparisonResult> getComparisonResults(ContractualTermsSupplement o) {
 		return Lists.<ComparisonResult>newArrayList(
-				checkCardinality("type", (ContractualSupplement) o.getType() != null ? 1 : 0, 1, 1), 
+				checkCardinality("type", (ContractualSupplement) o.getType_() != null ? 1 : 0, 1, 1), 
 				checkCardinality("publicationDate", (Date) o.getPublicationDate() != null ? 1 : 0, 0, 1)
 			);
 	}

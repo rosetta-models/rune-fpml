@@ -129,7 +129,7 @@ public interface GenericCommodityDeliveryPeriod extends RosettaModelObject {
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		
@@ -143,7 +143,7 @@ public interface GenericCommodityDeliveryPeriod extends RosettaModelObject {
 		@Override
 		public int hashCode() {
 			int _result = 0;
-			_result = 31 * _result + (applicableDay != null ? applicableDay.stream().map(Object::getClass).map(Class::getName).mapToInt(String::hashCode).sum() : 0);
+			_result = 31 * _result + (applicableDay != null ? applicableDay.stream().map(java.lang.Object::getClass).map(Class::getName).mapToInt(String::hashCode).sum() : 0);
 			_result = 31 * _result + (genericCommodityDeliveryPeriodSequence != null ? genericCommodityDeliveryPeriodSequence.hashCode() : 0);
 			return _result;
 		}
@@ -268,7 +268,7 @@ public interface GenericCommodityDeliveryPeriod extends RosettaModelObject {
 		}
 	
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		
@@ -282,7 +282,7 @@ public interface GenericCommodityDeliveryPeriod extends RosettaModelObject {
 		@Override
 		public int hashCode() {
 			int _result = 0;
-			_result = 31 * _result + (applicableDay != null ? applicableDay.stream().map(Object::getClass).map(Class::getName).mapToInt(String::hashCode).sum() : 0);
+			_result = 31 * _result + (applicableDay != null ? applicableDay.stream().map(java.lang.Object::getClass).map(Class::getName).mapToInt(String::hashCode).sum() : 0);
 			_result = 31 * _result + (genericCommodityDeliveryPeriodSequence != null ? genericCommodityDeliveryPeriodSequence.hashCode() : 0);
 			return _result;
 		}

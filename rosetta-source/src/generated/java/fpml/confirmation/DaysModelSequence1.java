@@ -129,7 +129,7 @@ public interface DaysModelSequence1 extends RosettaModelObject {
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		
@@ -143,7 +143,7 @@ public interface DaysModelSequence1 extends RosettaModelObject {
 		@Override
 		public int hashCode() {
 			int _result = 0;
-			_result = 31 * _result + (dayOfWeek != null ? dayOfWeek.stream().map(Object::getClass).map(Class::getName).mapToInt(String::hashCode).sum() : 0);
+			_result = 31 * _result + (dayOfWeek != null ? dayOfWeek.stream().map(java.lang.Object::getClass).map(Class::getName).mapToInt(String::hashCode).sum() : 0);
 			_result = 31 * _result + (dayNumber != null ? dayNumber.hashCode() : 0);
 			return _result;
 		}
@@ -254,7 +254,7 @@ public interface DaysModelSequence1 extends RosettaModelObject {
 		}
 	
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		
@@ -268,7 +268,7 @@ public interface DaysModelSequence1 extends RosettaModelObject {
 		@Override
 		public int hashCode() {
 			int _result = 0;
-			_result = 31 * _result + (dayOfWeek != null ? dayOfWeek.stream().map(Object::getClass).map(Class::getName).mapToInt(String::hashCode).sum() : 0);
+			_result = 31 * _result + (dayOfWeek != null ? dayOfWeek.stream().map(java.lang.Object::getClass).map(Class::getName).mapToInt(String::hashCode).sum() : 0);
 			_result = 31 * _result + (dayNumber != null ? dayNumber.hashCode() : 0);
 			return _result;
 		}

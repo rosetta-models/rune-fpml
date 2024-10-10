@@ -22,7 +22,7 @@ public class TradeTimestampValidator implements Validator<TradeTimestamp> {
 
 	private List<ComparisonResult> getComparisonResults(TradeTimestamp o) {
 		return Lists.<ComparisonResult>newArrayList(
-				checkCardinality("type", (TimestampTypeScheme) o.getType() != null ? 1 : 0, 1, 1), 
+				checkCardinality("type", (TimestampTypeScheme) o.getType_() != null ? 1 : 0, 1, 1), 
 				checkCardinality("value", (ZonedDateTime) o.getValue() != null ? 1 : 0, 1, 1)
 			);
 	}

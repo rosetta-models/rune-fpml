@@ -43,7 +43,7 @@ public interface LcOption extends FeeRateOptionBase {
 	/**
 	 * The letter of credit type for which a fee rate is being provided.
 	 */
-	LcType getType();
+	LcType getType_();
 	/**
 	 * The letter of credit notional amount. The amount is represented at the global and (optionally) atthe lender-specific level.
 	 */
@@ -77,7 +77,7 @@ public interface LcOption extends FeeRateOptionBase {
 		processRosetta(path.newSubPath("paymentFrequency"), processor, Period.class, getPaymentFrequency());
 		processor.processBasic(path.newSubPath("rate"), BigDecimal.class, getRate(), this);
 		processRosetta(path.newSubPath("periodModel"), processor, PeriodModel.class, getPeriodModel());
-		processRosetta(path.newSubPath("type"), processor, LcType.class, getType());
+		processRosetta(path.newSubPath("type"), processor, LcType.class, getType_());
 		processRosetta(path.newSubPath("minLcIssuanceFeeAmount"), processor, MoneyWithParticipantShare.class, getMinLcIssuanceFeeAmount());
 	}
 	
@@ -87,7 +87,7 @@ public interface LcOption extends FeeRateOptionBase {
 		PeriodModel.PeriodModelBuilder getOrCreatePeriodModel();
 		PeriodModel.PeriodModelBuilder getPeriodModel();
 		LcType.LcTypeBuilder getOrCreateType();
-		LcType.LcTypeBuilder getType();
+		LcType.LcTypeBuilder getType_();
 		MoneyWithParticipantShare.MoneyWithParticipantShareBuilder getOrCreateMinLcIssuanceFeeAmount();
 		MoneyWithParticipantShare.MoneyWithParticipantShareBuilder getMinLcIssuanceFeeAmount();
 		LcOption.LcOptionBuilder setAccrualOptionId(AccrualTypeId accrualOptionId);
@@ -105,7 +105,7 @@ public interface LcOption extends FeeRateOptionBase {
 			processRosetta(path.newSubPath("paymentFrequency"), processor, Period.PeriodBuilder.class, getPaymentFrequency());
 			processor.processBasic(path.newSubPath("rate"), BigDecimal.class, getRate(), this);
 			processRosetta(path.newSubPath("periodModel"), processor, PeriodModel.PeriodModelBuilder.class, getPeriodModel());
-			processRosetta(path.newSubPath("type"), processor, LcType.LcTypeBuilder.class, getType());
+			processRosetta(path.newSubPath("type"), processor, LcType.LcTypeBuilder.class, getType_());
 			processRosetta(path.newSubPath("minLcIssuanceFeeAmount"), processor, MoneyWithParticipantShare.MoneyWithParticipantShareBuilder.class, getMinLcIssuanceFeeAmount());
 		}
 		
@@ -122,7 +122,7 @@ public interface LcOption extends FeeRateOptionBase {
 		protected LcOptionImpl(LcOption.LcOptionBuilder builder) {
 			super(builder);
 			this.periodModel = ofNullable(builder.getPeriodModel()).map(f->f.build()).orElse(null);
-			this.type = ofNullable(builder.getType()).map(f->f.build()).orElse(null);
+			this.type = ofNullable(builder.getType_()).map(f->f.build()).orElse(null);
 			this.minLcIssuanceFeeAmount = ofNullable(builder.getMinLcIssuanceFeeAmount()).map(f->f.build()).orElse(null);
 		}
 		
@@ -134,7 +134,7 @@ public interface LcOption extends FeeRateOptionBase {
 		
 		@Override
 		@RosettaAttribute("type")
-		public LcType getType() {
+		public LcType getType_() {
 			return type;
 		}
 		
@@ -159,12 +159,12 @@ public interface LcOption extends FeeRateOptionBase {
 		protected void setBuilderFields(LcOption.LcOptionBuilder builder) {
 			super.setBuilderFields(builder);
 			ofNullable(getPeriodModel()).ifPresent(builder::setPeriodModel);
-			ofNullable(getType()).ifPresent(builder::setType);
+			ofNullable(getType_()).ifPresent(builder::setType);
 			ofNullable(getMinLcIssuanceFeeAmount()).ifPresent(builder::setMinLcIssuanceFeeAmount);
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;
@@ -227,7 +227,7 @@ public interface LcOption extends FeeRateOptionBase {
 		
 		@Override
 		@RosettaAttribute("type")
-		public LcType.LcTypeBuilder getType() {
+		public LcType.LcTypeBuilder getType_() {
 			return type;
 		}
 		
@@ -330,7 +330,7 @@ public interface LcOption extends FeeRateOptionBase {
 		public boolean hasData() {
 			if (super.hasData()) return true;
 			if (getPeriodModel()!=null && getPeriodModel().hasData()) return true;
-			if (getType()!=null && getType().hasData()) return true;
+			if (getType_()!=null && getType_().hasData()) return true;
 			if (getMinLcIssuanceFeeAmount()!=null && getMinLcIssuanceFeeAmount().hasData()) return true;
 			return false;
 		}
@@ -343,14 +343,14 @@ public interface LcOption extends FeeRateOptionBase {
 			LcOption.LcOptionBuilder o = (LcOption.LcOptionBuilder) other;
 			
 			merger.mergeRosetta(getPeriodModel(), o.getPeriodModel(), this::setPeriodModel);
-			merger.mergeRosetta(getType(), o.getType(), this::setType);
+			merger.mergeRosetta(getType_(), o.getType_(), this::setType);
 			merger.mergeRosetta(getMinLcIssuanceFeeAmount(), o.getMinLcIssuanceFeeAmount(), this::setMinLcIssuanceFeeAmount);
 			
 			return this;
 		}
 	
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;

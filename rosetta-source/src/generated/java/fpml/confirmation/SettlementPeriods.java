@@ -235,7 +235,7 @@ public interface SettlementPeriods extends RosettaModelObject {
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		
@@ -256,7 +256,7 @@ public interface SettlementPeriods extends RosettaModelObject {
 		public int hashCode() {
 			int _result = 0;
 			_result = 31 * _result + (duration != null ? duration.getClass().getName().hashCode() : 0);
-			_result = 31 * _result + (applicableDay != null ? applicableDay.stream().map(Object::getClass).map(Class::getName).mapToInt(String::hashCode).sum() : 0);
+			_result = 31 * _result + (applicableDay != null ? applicableDay.stream().map(java.lang.Object::getClass).map(Class::getName).mapToInt(String::hashCode).sum() : 0);
 			_result = 31 * _result + (startTime != null ? startTime.hashCode() : 0);
 			_result = 31 * _result + (endTime != null ? endTime.hashCode() : 0);
 			_result = 31 * _result + (timeDuration != null ? timeDuration.hashCode() : 0);
@@ -524,7 +524,7 @@ public interface SettlementPeriods extends RosettaModelObject {
 		}
 	
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		
@@ -545,7 +545,7 @@ public interface SettlementPeriods extends RosettaModelObject {
 		public int hashCode() {
 			int _result = 0;
 			_result = 31 * _result + (duration != null ? duration.getClass().getName().hashCode() : 0);
-			_result = 31 * _result + (applicableDay != null ? applicableDay.stream().map(Object::getClass).map(Class::getName).mapToInt(String::hashCode).sum() : 0);
+			_result = 31 * _result + (applicableDay != null ? applicableDay.stream().map(java.lang.Object::getClass).map(Class::getName).mapToInt(String::hashCode).sum() : 0);
 			_result = 31 * _result + (startTime != null ? startTime.hashCode() : 0);
 			_result = 31 * _result + (endTime != null ? endTime.hashCode() : 0);
 			_result = 31 * _result + (timeDuration != null ? timeDuration.hashCode() : 0);

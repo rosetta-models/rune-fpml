@@ -21,7 +21,7 @@ public class CorporateActionValidator implements Validator<CorporateAction> {
 
 	private List<ComparisonResult> getComparisonResults(CorporateAction o) {
 		return Lists.<ComparisonResult>newArrayList(
-				checkCardinality("type", (CorporateActionType) o.getType() != null ? 1 : 0, 0, 1)
+				checkCardinality("type", (CorporateActionType) o.getType_() != null ? 1 : 0, 0, 1)
 			);
 	}
 

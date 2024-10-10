@@ -25,7 +25,7 @@ public class RelatedPartyValidator implements Validator<RelatedParty> {
 		return Lists.<ComparisonResult>newArrayList(
 				checkCardinality("partyAndAccountReferencesModel", (PartyAndAccountReferencesModel) o.getPartyAndAccountReferencesModel() != null ? 1 : 0, 1, 1), 
 				checkCardinality("role", (PartyRole) o.getRole() != null ? 1 : 0, 1, 1), 
-				checkCardinality("type", (PartyRoleType) o.getType() != null ? 1 : 0, 0, 1)
+				checkCardinality("type", (PartyRoleType) o.getType_() != null ? 1 : 0, 0, 1)
 			);
 	}
 

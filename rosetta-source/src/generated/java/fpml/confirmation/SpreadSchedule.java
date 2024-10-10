@@ -38,7 +38,7 @@ public interface SpreadSchedule extends Schedule {
 	SpreadScheduleMeta metaData = new SpreadScheduleMeta();
 
 	/*********************** Getter Methods  ***********************/
-	SpreadScheduleType getType();
+	SpreadScheduleType getType_();
 
 	/*********************** Build Methods  ***********************/
 	SpreadSchedule build();
@@ -66,14 +66,14 @@ public interface SpreadSchedule extends Schedule {
 		processor.processBasic(path.newSubPath("initialValue"), BigDecimal.class, getInitialValue(), this);
 		processRosetta(path.newSubPath("step"), processor, Step.class, getStep());
 		processor.processBasic(path.newSubPath("id"), String.class, getId(), this);
-		processRosetta(path.newSubPath("type"), processor, SpreadScheduleType.class, getType());
+		processRosetta(path.newSubPath("type"), processor, SpreadScheduleType.class, getType_());
 	}
 	
 
 	/*********************** Builder Interface  ***********************/
 	interface SpreadScheduleBuilder extends SpreadSchedule, Schedule.ScheduleBuilder {
 		SpreadScheduleType.SpreadScheduleTypeBuilder getOrCreateType();
-		SpreadScheduleType.SpreadScheduleTypeBuilder getType();
+		SpreadScheduleType.SpreadScheduleTypeBuilder getType_();
 		SpreadSchedule.SpreadScheduleBuilder setInitialValue(BigDecimal initialValue);
 		SpreadSchedule.SpreadScheduleBuilder addStep(Step step0);
 		SpreadSchedule.SpreadScheduleBuilder addStep(Step step1, int _idx);
@@ -87,7 +87,7 @@ public interface SpreadSchedule extends Schedule {
 			processor.processBasic(path.newSubPath("initialValue"), BigDecimal.class, getInitialValue(), this);
 			processRosetta(path.newSubPath("step"), processor, Step.StepBuilder.class, getStep());
 			processor.processBasic(path.newSubPath("id"), String.class, getId(), this);
-			processRosetta(path.newSubPath("type"), processor, SpreadScheduleType.SpreadScheduleTypeBuilder.class, getType());
+			processRosetta(path.newSubPath("type"), processor, SpreadScheduleType.SpreadScheduleTypeBuilder.class, getType_());
 		}
 		
 
@@ -100,12 +100,12 @@ public interface SpreadSchedule extends Schedule {
 		
 		protected SpreadScheduleImpl(SpreadSchedule.SpreadScheduleBuilder builder) {
 			super(builder);
-			this.type = ofNullable(builder.getType()).map(f->f.build()).orElse(null);
+			this.type = ofNullable(builder.getType_()).map(f->f.build()).orElse(null);
 		}
 		
 		@Override
 		@RosettaAttribute("type")
-		public SpreadScheduleType getType() {
+		public SpreadScheduleType getType_() {
 			return type;
 		}
 		
@@ -123,11 +123,11 @@ public interface SpreadSchedule extends Schedule {
 		
 		protected void setBuilderFields(SpreadSchedule.SpreadScheduleBuilder builder) {
 			super.setBuilderFields(builder);
-			ofNullable(getType()).ifPresent(builder::setType);
+			ofNullable(getType_()).ifPresent(builder::setType);
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;
@@ -163,7 +163,7 @@ public interface SpreadSchedule extends Schedule {
 	
 		@Override
 		@RosettaAttribute("type")
-		public SpreadScheduleType.SpreadScheduleTypeBuilder getType() {
+		public SpreadScheduleType.SpreadScheduleTypeBuilder getType_() {
 			return type;
 		}
 		
@@ -255,7 +255,7 @@ public interface SpreadSchedule extends Schedule {
 		@Override
 		public boolean hasData() {
 			if (super.hasData()) return true;
-			if (getType()!=null && getType().hasData()) return true;
+			if (getType_()!=null && getType_().hasData()) return true;
 			return false;
 		}
 	
@@ -266,13 +266,13 @@ public interface SpreadSchedule extends Schedule {
 			
 			SpreadSchedule.SpreadScheduleBuilder o = (SpreadSchedule.SpreadScheduleBuilder) other;
 			
-			merger.mergeRosetta(getType(), o.getType(), this::setType);
+			merger.mergeRosetta(getType_(), o.getType_(), this::setType);
 			
 			return this;
 		}
 	
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;

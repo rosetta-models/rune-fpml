@@ -53,7 +53,7 @@ public interface RequestConsent extends CorrectableRequestMessage {
 	/**
 	 * The type of approval (e.g. &quot;pre-clearing credit&quot;).
 	 */
-	ApprovalType getType();
+	ApprovalType getType_();
 	/**
 	 * The full name or identifiying ID of the relevant approver.
 	 */
@@ -103,7 +103,7 @@ public interface RequestConsent extends CorrectableRequestMessage {
 		processRosetta(path.newSubPath("correlationAndSequenceModel"), processor, CorrelationAndSequenceModel.class, getCorrelationAndSequenceModel());
 		processRosetta(path.newSubPath("onBehalfOfModel"), processor, OnBehalfOfModel.class, getOnBehalfOfModel());
 		processRosetta(path.newSubPath("requestedAction"), processor, RequestedAction.class, getRequestedAction());
-		processRosetta(path.newSubPath("type"), processor, ApprovalType.class, getType());
+		processRosetta(path.newSubPath("type"), processor, ApprovalType.class, getType_());
 		processRosetta(path.newSubPath("approver"), processor, PersonId.class, getApprover());
 		processRosetta(path.newSubPath("approvingPartyReference"), processor, PartyReference.class, getApprovingPartyReference());
 		processRosetta(path.newSubPath("portfolioReferenceModel"), processor, PortfolioReferenceModel.class, getPortfolioReferenceModel());
@@ -120,7 +120,7 @@ public interface RequestConsent extends CorrectableRequestMessage {
 		RequestedAction.RequestedActionBuilder getOrCreateRequestedAction();
 		RequestedAction.RequestedActionBuilder getRequestedAction();
 		ApprovalType.ApprovalTypeBuilder getOrCreateType();
-		ApprovalType.ApprovalTypeBuilder getType();
+		ApprovalType.ApprovalTypeBuilder getType_();
 		PersonId.PersonIdBuilder getOrCreateApprover();
 		PersonId.PersonIdBuilder getApprover();
 		PartyReference.PartyReferenceBuilder getOrCreateApprovingPartyReference();
@@ -165,7 +165,7 @@ public interface RequestConsent extends CorrectableRequestMessage {
 			processRosetta(path.newSubPath("correlationAndSequenceModel"), processor, CorrelationAndSequenceModel.CorrelationAndSequenceModelBuilder.class, getCorrelationAndSequenceModel());
 			processRosetta(path.newSubPath("onBehalfOfModel"), processor, OnBehalfOfModel.OnBehalfOfModelBuilder.class, getOnBehalfOfModel());
 			processRosetta(path.newSubPath("requestedAction"), processor, RequestedAction.RequestedActionBuilder.class, getRequestedAction());
-			processRosetta(path.newSubPath("type"), processor, ApprovalType.ApprovalTypeBuilder.class, getType());
+			processRosetta(path.newSubPath("type"), processor, ApprovalType.ApprovalTypeBuilder.class, getType_());
 			processRosetta(path.newSubPath("approver"), processor, PersonId.PersonIdBuilder.class, getApprover());
 			processRosetta(path.newSubPath("approvingPartyReference"), processor, PartyReference.PartyReferenceBuilder.class, getApprovingPartyReference());
 			processRosetta(path.newSubPath("portfolioReferenceModel"), processor, PortfolioReferenceModel.PortfolioReferenceModelBuilder.class, getPortfolioReferenceModel());
@@ -196,7 +196,7 @@ public interface RequestConsent extends CorrectableRequestMessage {
 		protected RequestConsentImpl(RequestConsent.RequestConsentBuilder builder) {
 			super(builder);
 			this.requestedAction = ofNullable(builder.getRequestedAction()).map(f->f.build()).orElse(null);
-			this.type = ofNullable(builder.getType()).map(f->f.build()).orElse(null);
+			this.type = ofNullable(builder.getType_()).map(f->f.build()).orElse(null);
 			this.approver = ofNullable(builder.getApprover()).map(f->f.build()).orElse(null);
 			this.approvingPartyReference = ofNullable(builder.getApprovingPartyReference()).map(f->f.build()).orElse(null);
 			this.portfolioReferenceModel = ofNullable(builder.getPortfolioReferenceModel()).map(f->f.build()).orElse(null);
@@ -215,7 +215,7 @@ public interface RequestConsent extends CorrectableRequestMessage {
 		
 		@Override
 		@RosettaAttribute("type")
-		public ApprovalType getType() {
+		public ApprovalType getType_() {
 			return type;
 		}
 		
@@ -282,7 +282,7 @@ public interface RequestConsent extends CorrectableRequestMessage {
 		protected void setBuilderFields(RequestConsent.RequestConsentBuilder builder) {
 			super.setBuilderFields(builder);
 			ofNullable(getRequestedAction()).ifPresent(builder::setRequestedAction);
-			ofNullable(getType()).ifPresent(builder::setType);
+			ofNullable(getType_()).ifPresent(builder::setType);
 			ofNullable(getApprover()).ifPresent(builder::setApprover);
 			ofNullable(getApprovingPartyReference()).ifPresent(builder::setApprovingPartyReference);
 			ofNullable(getPortfolioReferenceModel()).ifPresent(builder::setPortfolioReferenceModel);
@@ -294,7 +294,7 @@ public interface RequestConsent extends CorrectableRequestMessage {
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;
@@ -385,7 +385,7 @@ public interface RequestConsent extends CorrectableRequestMessage {
 		
 		@Override
 		@RosettaAttribute("type")
-		public ApprovalType.ApprovalTypeBuilder getType() {
+		public ApprovalType.ApprovalTypeBuilder getType_() {
 			return type;
 		}
 		
@@ -688,7 +688,7 @@ public interface RequestConsent extends CorrectableRequestMessage {
 		public boolean hasData() {
 			if (super.hasData()) return true;
 			if (getRequestedAction()!=null && getRequestedAction().hasData()) return true;
-			if (getType()!=null && getType().hasData()) return true;
+			if (getType_()!=null && getType_().hasData()) return true;
 			if (getApprover()!=null && getApprover().hasData()) return true;
 			if (getApprovingPartyReference()!=null && getApprovingPartyReference().hasData()) return true;
 			if (getPortfolioReferenceModel()!=null && getPortfolioReferenceModel().hasData()) return true;
@@ -708,7 +708,7 @@ public interface RequestConsent extends CorrectableRequestMessage {
 			RequestConsent.RequestConsentBuilder o = (RequestConsent.RequestConsentBuilder) other;
 			
 			merger.mergeRosetta(getRequestedAction(), o.getRequestedAction(), this::setRequestedAction);
-			merger.mergeRosetta(getType(), o.getType(), this::setType);
+			merger.mergeRosetta(getType_(), o.getType_(), this::setType);
 			merger.mergeRosetta(getApprover(), o.getApprover(), this::setApprover);
 			merger.mergeRosetta(getApprovingPartyReference(), o.getApprovingPartyReference(), this::setApprovingPartyReference);
 			merger.mergeRosetta(getPortfolioReferenceModel(), o.getPortfolioReferenceModel(), this::setPortfolioReferenceModel);
@@ -722,7 +722,7 @@ public interface RequestConsent extends CorrectableRequestMessage {
 		}
 	
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;

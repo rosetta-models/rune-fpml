@@ -23,7 +23,7 @@ public class CreditSupportAgreementValidator implements Validator<CreditSupportA
 
 	private List<ComparisonResult> getComparisonResults(CreditSupportAgreement o) {
 		return Lists.<ComparisonResult>newArrayList(
-				checkCardinality("type", (CreditSupportAgreementType) o.getType() != null ? 1 : 0, 1, 1), 
+				checkCardinality("type", (CreditSupportAgreementType) o.getType_() != null ? 1 : 0, 1, 1), 
 				checkCardinality("date", (Date) o.getDate() != null ? 1 : 0, 1, 1), 
 				checkCardinality("identifier", (CreditSupportAgreementIdentifier) o.getIdentifier() != null ? 1 : 0, 0, 1)
 			);

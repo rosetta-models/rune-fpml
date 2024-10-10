@@ -24,7 +24,7 @@ public class ApprovalValidator implements Validator<Approval> {
 
 	private List<ComparisonResult> getComparisonResults(Approval o) {
 		return Lists.<ComparisonResult>newArrayList(
-				checkCardinality("type", (ApprovalType) o.getType() != null ? 1 : 0, 1, 1), 
+				checkCardinality("type", (ApprovalType) o.getType_() != null ? 1 : 0, 1, 1), 
 				checkCardinality("status", (String) o.getStatus() != null ? 1 : 0, 1, 1), 
 				checkCardinality("approver", (PersonId) o.getApprover() != null ? 1 : 0, 0, 1), 
 				checkCardinality("approvingPartyReference", (PartyReference) o.getApprovingPartyReference() != null ? 1 : 0, 0, 1), 

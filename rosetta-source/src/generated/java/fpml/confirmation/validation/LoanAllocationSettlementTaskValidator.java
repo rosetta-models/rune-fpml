@@ -34,7 +34,7 @@ public class LoanAllocationSettlementTaskValidator implements Validator<LoanAllo
 				checkCardinality("status", (LoanTradingSettlementTaskStatusEnum) o.getStatus() != null ? 1 : 0, 1, 1), 
 				checkCardinality("comment", (String) o.getComment() != null ? 1 : 0, 0, 1), 
 				checkCardinality("allocationReference", (LoanAllocationReference) o.getAllocationReference() != null ? 1 : 0, 1, 1), 
-				checkCardinality("type", (LoanAllocationSettlementTaskType) o.getType() != null ? 1 : 0, 1, 1)
+				checkCardinality("type", (LoanAllocationSettlementTaskType) o.getType_() != null ? 1 : 0, 1, 1)
 			);
 	}
 

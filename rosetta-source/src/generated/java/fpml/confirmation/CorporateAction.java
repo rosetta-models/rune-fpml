@@ -60,7 +60,7 @@ public interface CorporateAction extends CorporateActionEvent {
 	@Override
 	default void process(RosettaPath path, Processor processor) {
 		processRosetta(path.newSubPath("eventIdentifier"), processor, BusinessEventIdentifier.class, getEventIdentifier());
-		processRosetta(path.newSubPath("type"), processor, CorporateActionType.class, getType());
+		processRosetta(path.newSubPath("type"), processor, CorporateActionType.class, getType_());
 	}
 	
 
@@ -75,7 +75,7 @@ public interface CorporateAction extends CorporateActionEvent {
 		@Override
 		default void process(RosettaPath path, BuilderProcessor processor) {
 			processRosetta(path.newSubPath("eventIdentifier"), processor, BusinessEventIdentifier.BusinessEventIdentifierBuilder.class, getEventIdentifier());
-			processRosetta(path.newSubPath("type"), processor, CorporateActionType.CorporateActionTypeBuilder.class, getType());
+			processRosetta(path.newSubPath("type"), processor, CorporateActionType.CorporateActionTypeBuilder.class, getType_());
 		}
 		
 
@@ -106,7 +106,7 @@ public interface CorporateAction extends CorporateActionEvent {
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;
@@ -212,7 +212,7 @@ public interface CorporateAction extends CorporateActionEvent {
 		}
 	
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;

@@ -26,7 +26,7 @@ public class LetterOfCreditSummaryValidator implements Validator<LetterOfCreditS
 	private List<ComparisonResult> getComparisonResults(LetterOfCreditSummary o) {
 		return Lists.<ComparisonResult>newArrayList(
 				checkCardinality("identifier", (List<? extends FacilityContractIdentifier>) o.getIdentifier() == null ? 0 : ((List<? extends FacilityContractIdentifier>) o.getIdentifier()).size(), 1, 0), 
-				checkCardinality("type", (LcType) o.getType() != null ? 1 : 0, 1, 1), 
+				checkCardinality("type", (LcType) o.getType_() != null ? 1 : 0, 1, 1), 
 				checkCardinality("effectiveDate", (Date) o.getEffectiveDate() != null ? 1 : 0, 1, 1), 
 				checkCardinality("letterOfCreditRolesModel", (LetterOfCreditRolesModel) o.getLetterOfCreditRolesModel() != null ? 1 : 0, 1, 1), 
 				checkCardinality("amount", (MoneyWithParticipantShare) o.getAmount() != null ? 1 : 0, 1, 1)

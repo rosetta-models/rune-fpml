@@ -36,7 +36,7 @@ public class AccruingFeeExpiryValidator implements Validator<AccruingFeeExpiry> 
 				checkCardinality("effectiveDate", (Date) o.getEffectiveDate() != null ? 1 : 0, 1, 1), 
 				checkCardinality("facilityReference", (FacilityReference) o.getFacilityReference() != null ? 1 : 0, 1, 1), 
 				checkCardinality("id", (AccrualTypeId) o.getId() != null ? 1 : 0, 1, 1), 
-				checkCardinality("type", (AccruingFeeType) o.getType() != null ? 1 : 0, 1, 1)
+				checkCardinality("type", (AccruingFeeType) o.getType_() != null ? 1 : 0, 1, 1)
 			);
 	}
 

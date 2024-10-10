@@ -27,7 +27,7 @@ public class ReferenceTypeValidator implements Validator<ReferenceType> {
 				checkCardinality("digestValue", (String) o.getDigestValue() != null ? 1 : 0, 1, 1), 
 				checkCardinality("id", (String) o.getId() != null ? 1 : 0, 0, 1), 
 				checkCardinality("uri", (String) o.getUri() != null ? 1 : 0, 0, 1), 
-				checkCardinality("type", (String) o.getType() != null ? 1 : 0, 0, 1)
+				checkCardinality("type", (String) o.getType_() != null ? 1 : 0, 0, 1)
 			);
 	}
 

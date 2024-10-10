@@ -23,7 +23,7 @@ public class GasProductValidator implements Validator<GasProduct> {
 
 	private List<ComparisonResult> getComparisonResults(GasProduct o) {
 		return Lists.<ComparisonResult>newArrayList(
-				checkCardinality("type", (GasProductTypeEnum) o.getType() != null ? 1 : 0, 1, 1), 
+				checkCardinality("type", (GasProductTypeEnum) o.getType_() != null ? 1 : 0, 1, 1), 
 				checkCardinality("calorificValue", (BigDecimal) o.getCalorificValue() != null ? 1 : 0, 0, 1), 
 				checkCardinality("quality", (GasQuality) o.getQuality() != null ? 1 : 0, 0, 1)
 			);

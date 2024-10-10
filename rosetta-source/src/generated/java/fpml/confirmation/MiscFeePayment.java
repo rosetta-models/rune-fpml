@@ -43,7 +43,7 @@ public interface MiscFeePayment extends NonRecurringFeePayment {
 	MiscFeePaymentMeta metaData = new MiscFeePaymentMeta();
 
 	/*********************** Getter Methods  ***********************/
-	NonRecurringMiscFeeType getType();
+	NonRecurringMiscFeeType getType_();
 
 	/*********************** Build Methods  ***********************/
 	MiscFeePayment build();
@@ -78,14 +78,14 @@ public interface MiscFeePayment extends NonRecurringFeePayment {
 		processRosetta(path.newSubPath("facilityReference"), processor, FacilityReference.class, getFacilityReference());
 		processRosetta(path.newSubPath("loanContractReference"), processor, LoanContractReference.class, getLoanContractReference());
 		processRosetta(path.newSubPath("amount"), processor, MoneyWithParticipantShare.class, getAmount());
-		processRosetta(path.newSubPath("type"), processor, NonRecurringMiscFeeType.class, getType());
+		processRosetta(path.newSubPath("type"), processor, NonRecurringMiscFeeType.class, getType_());
 	}
 	
 
 	/*********************** Builder Interface  ***********************/
 	interface MiscFeePaymentBuilder extends MiscFeePayment, NonRecurringFeePayment.NonRecurringFeePaymentBuilder {
 		NonRecurringMiscFeeType.NonRecurringMiscFeeTypeBuilder getOrCreateType();
-		NonRecurringMiscFeeType.NonRecurringMiscFeeTypeBuilder getType();
+		NonRecurringMiscFeeType.NonRecurringMiscFeeTypeBuilder getType_();
 		MiscFeePayment.MiscFeePaymentBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier0);
 		MiscFeePayment.MiscFeePaymentBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier1, int _idx);
 		MiscFeePayment.MiscFeePaymentBuilder addEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifier2);
@@ -116,7 +116,7 @@ public interface MiscFeePayment extends NonRecurringFeePayment {
 			processRosetta(path.newSubPath("facilityReference"), processor, FacilityReference.FacilityReferenceBuilder.class, getFacilityReference());
 			processRosetta(path.newSubPath("loanContractReference"), processor, LoanContractReference.LoanContractReferenceBuilder.class, getLoanContractReference());
 			processRosetta(path.newSubPath("amount"), processor, MoneyWithParticipantShare.MoneyWithParticipantShareBuilder.class, getAmount());
-			processRosetta(path.newSubPath("type"), processor, NonRecurringMiscFeeType.NonRecurringMiscFeeTypeBuilder.class, getType());
+			processRosetta(path.newSubPath("type"), processor, NonRecurringMiscFeeType.NonRecurringMiscFeeTypeBuilder.class, getType_());
 		}
 		
 
@@ -129,12 +129,12 @@ public interface MiscFeePayment extends NonRecurringFeePayment {
 		
 		protected MiscFeePaymentImpl(MiscFeePayment.MiscFeePaymentBuilder builder) {
 			super(builder);
-			this.type = ofNullable(builder.getType()).map(f->f.build()).orElse(null);
+			this.type = ofNullable(builder.getType_()).map(f->f.build()).orElse(null);
 		}
 		
 		@Override
 		@RosettaAttribute("type")
-		public NonRecurringMiscFeeType getType() {
+		public NonRecurringMiscFeeType getType_() {
 			return type;
 		}
 		
@@ -152,11 +152,11 @@ public interface MiscFeePayment extends NonRecurringFeePayment {
 		
 		protected void setBuilderFields(MiscFeePayment.MiscFeePaymentBuilder builder) {
 			super.setBuilderFields(builder);
-			ofNullable(getType()).ifPresent(builder::setType);
+			ofNullable(getType_()).ifPresent(builder::setType);
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;
@@ -192,7 +192,7 @@ public interface MiscFeePayment extends NonRecurringFeePayment {
 	
 		@Override
 		@RosettaAttribute("type")
-		public NonRecurringMiscFeeType.NonRecurringMiscFeeTypeBuilder getType() {
+		public NonRecurringMiscFeeType.NonRecurringMiscFeeTypeBuilder getType_() {
 			return type;
 		}
 		
@@ -355,7 +355,7 @@ public interface MiscFeePayment extends NonRecurringFeePayment {
 		@Override
 		public boolean hasData() {
 			if (super.hasData()) return true;
-			if (getType()!=null && getType().hasData()) return true;
+			if (getType_()!=null && getType_().hasData()) return true;
 			return false;
 		}
 	
@@ -366,13 +366,13 @@ public interface MiscFeePayment extends NonRecurringFeePayment {
 			
 			MiscFeePayment.MiscFeePaymentBuilder o = (MiscFeePayment.MiscFeePaymentBuilder) other;
 			
-			merger.mergeRosetta(getType(), o.getType(), this::setType);
+			merger.mergeRosetta(getType_(), o.getType_(), this::setType);
 			
 			return this;
 		}
 	
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;

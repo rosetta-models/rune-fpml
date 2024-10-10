@@ -21,7 +21,7 @@ public class TelephoneNumberValidator implements Validator<TelephoneNumber> {
 
 	private List<ComparisonResult> getComparisonResults(TelephoneNumber o) {
 		return Lists.<ComparisonResult>newArrayList(
-				checkCardinality("type", (TelephoneTypeEnum) o.getType() != null ? 1 : 0, 0, 1), 
+				checkCardinality("type", (TelephoneTypeEnum) o.getType_() != null ? 1 : 0, 0, 1), 
 				checkCardinality("number", (String) o.getNumber() != null ? 1 : 0, 1, 1)
 			);
 	}

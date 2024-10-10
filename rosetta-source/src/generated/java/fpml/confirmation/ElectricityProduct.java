@@ -33,7 +33,7 @@ public interface ElectricityProduct extends RosettaModelObject {
 	/**
 	 * The type of electricity product to be delivered.
 	 */
-	ElectricityProductTypeEnum getType();
+	ElectricityProductTypeEnum getType_();
 	/**
 	 * The voltage, expressed as a number of volts, of the electricity to be delivered.
 	 */
@@ -62,7 +62,7 @@ public interface ElectricityProduct extends RosettaModelObject {
 	
 	@Override
 	default void process(RosettaPath path, Processor processor) {
-		processor.processBasic(path.newSubPath("type"), ElectricityProductTypeEnum.class, getType(), this);
+		processor.processBasic(path.newSubPath("type"), ElectricityProductTypeEnum.class, getType_(), this);
 		processor.processBasic(path.newSubPath("voltage"), BigDecimal.class, getVoltage(), this);
 	}
 	
@@ -74,7 +74,7 @@ public interface ElectricityProduct extends RosettaModelObject {
 
 		@Override
 		default void process(RosettaPath path, BuilderProcessor processor) {
-			processor.processBasic(path.newSubPath("type"), ElectricityProductTypeEnum.class, getType(), this);
+			processor.processBasic(path.newSubPath("type"), ElectricityProductTypeEnum.class, getType_(), this);
 			processor.processBasic(path.newSubPath("voltage"), BigDecimal.class, getVoltage(), this);
 		}
 		
@@ -88,13 +88,13 @@ public interface ElectricityProduct extends RosettaModelObject {
 		private final BigDecimal voltage;
 		
 		protected ElectricityProductImpl(ElectricityProduct.ElectricityProductBuilder builder) {
-			this.type = builder.getType();
+			this.type = builder.getType_();
 			this.voltage = builder.getVoltage();
 		}
 		
 		@Override
 		@RosettaAttribute("type")
-		public ElectricityProductTypeEnum getType() {
+		public ElectricityProductTypeEnum getType_() {
 			return type;
 		}
 		
@@ -117,12 +117,12 @@ public interface ElectricityProduct extends RosettaModelObject {
 		}
 		
 		protected void setBuilderFields(ElectricityProduct.ElectricityProductBuilder builder) {
-			ofNullable(getType()).ifPresent(builder::setType);
+			ofNullable(getType_()).ifPresent(builder::setType);
 			ofNullable(getVoltage()).ifPresent(builder::setVoltage);
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		
@@ -161,7 +161,7 @@ public interface ElectricityProduct extends RosettaModelObject {
 	
 		@Override
 		@RosettaAttribute("type")
-		public ElectricityProductTypeEnum getType() {
+		public ElectricityProductTypeEnum getType_() {
 			return type;
 		}
 		
@@ -202,7 +202,7 @@ public interface ElectricityProduct extends RosettaModelObject {
 		
 		@Override
 		public boolean hasData() {
-			if (getType()!=null) return true;
+			if (getType_()!=null) return true;
 			if (getVoltage()!=null) return true;
 			return false;
 		}
@@ -213,13 +213,13 @@ public interface ElectricityProduct extends RosettaModelObject {
 			ElectricityProduct.ElectricityProductBuilder o = (ElectricityProduct.ElectricityProductBuilder) other;
 			
 			
-			merger.mergeBasic(getType(), o.getType(), this::setType);
+			merger.mergeBasic(getType_(), o.getType_(), this::setType);
 			merger.mergeBasic(getVoltage(), o.getVoltage(), this::setVoltage);
 			return this;
 		}
 	
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		

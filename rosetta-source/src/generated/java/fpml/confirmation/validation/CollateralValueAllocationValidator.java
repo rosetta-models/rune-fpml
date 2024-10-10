@@ -22,7 +22,7 @@ public class CollateralValueAllocationValidator implements Validator<CollateralV
 
 	private List<ComparisonResult> getComparisonResults(CollateralValueAllocation o) {
 		return Lists.<ComparisonResult>newArrayList(
-				checkCardinality("type", (CollateralValueAllocationEnum) o.getType() != null ? 1 : 0, 1, 1), 
+				checkCardinality("type", (CollateralValueAllocationEnum) o.getType_() != null ? 1 : 0, 1, 1), 
 				checkCardinality("value", (List<? extends Money>) o.getValue() == null ? 0 : ((List<? extends Money>) o.getValue()).size(), 1, 0)
 			);
 	}

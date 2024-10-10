@@ -90,7 +90,7 @@ public interface LetterOfCredit extends LetterOfCreditSummary {
 	@Override
 	default void process(RosettaPath path, Processor processor) {
 		processRosetta(path.newSubPath("identifier"), processor, FacilityContractIdentifier.class, getIdentifier());
-		processRosetta(path.newSubPath("type"), processor, LcType.class, getType());
+		processRosetta(path.newSubPath("type"), processor, LcType.class, getType_());
 		processor.processBasic(path.newSubPath("effectiveDate"), Date.class, getEffectiveDate(), this);
 		processRosetta(path.newSubPath("letterOfCreditRolesModel"), processor, LetterOfCreditRolesModel.class, getLetterOfCreditRolesModel());
 		processRosetta(path.newSubPath("amount"), processor, MoneyWithParticipantShare.class, getAmount());
@@ -131,7 +131,7 @@ public interface LetterOfCredit extends LetterOfCreditSummary {
 		@Override
 		default void process(RosettaPath path, BuilderProcessor processor) {
 			processRosetta(path.newSubPath("identifier"), processor, FacilityContractIdentifier.FacilityContractIdentifierBuilder.class, getIdentifier());
-			processRosetta(path.newSubPath("type"), processor, LcType.LcTypeBuilder.class, getType());
+			processRosetta(path.newSubPath("type"), processor, LcType.LcTypeBuilder.class, getType_());
 			processor.processBasic(path.newSubPath("effectiveDate"), Date.class, getEffectiveDate(), this);
 			processRosetta(path.newSubPath("letterOfCreditRolesModel"), processor, LetterOfCreditRolesModel.LetterOfCreditRolesModelBuilder.class, getLetterOfCreditRolesModel());
 			processRosetta(path.newSubPath("amount"), processor, MoneyWithParticipantShare.MoneyWithParticipantShareBuilder.class, getAmount());
@@ -225,7 +225,7 @@ public interface LetterOfCredit extends LetterOfCreditSummary {
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;
@@ -514,7 +514,7 @@ public interface LetterOfCredit extends LetterOfCreditSummary {
 		}
 	
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;

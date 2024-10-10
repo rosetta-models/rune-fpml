@@ -33,7 +33,7 @@ public interface OilProduct extends RosettaModelObject {
 	/**
 	 * The type of oil product to be delivered.
 	 */
-	OilProductType getType();
+	OilProductType getType_();
 	/**
 	 * The grade of oil product to be delivered.
 	 */
@@ -62,7 +62,7 @@ public interface OilProduct extends RosettaModelObject {
 	
 	@Override
 	default void process(RosettaPath path, Processor processor) {
-		processRosetta(path.newSubPath("type"), processor, OilProductType.class, getType());
+		processRosetta(path.newSubPath("type"), processor, OilProductType.class, getType_());
 		processRosetta(path.newSubPath("grade"), processor, CommodityProductGrade.class, getGrade());
 	}
 	
@@ -70,7 +70,7 @@ public interface OilProduct extends RosettaModelObject {
 	/*********************** Builder Interface  ***********************/
 	interface OilProductBuilder extends OilProduct, RosettaModelObjectBuilder {
 		OilProductType.OilProductTypeBuilder getOrCreateType();
-		OilProductType.OilProductTypeBuilder getType();
+		OilProductType.OilProductTypeBuilder getType_();
 		CommodityProductGrade.CommodityProductGradeBuilder getOrCreateGrade();
 		CommodityProductGrade.CommodityProductGradeBuilder getGrade();
 		OilProduct.OilProductBuilder setType(OilProductType type);
@@ -78,7 +78,7 @@ public interface OilProduct extends RosettaModelObject {
 
 		@Override
 		default void process(RosettaPath path, BuilderProcessor processor) {
-			processRosetta(path.newSubPath("type"), processor, OilProductType.OilProductTypeBuilder.class, getType());
+			processRosetta(path.newSubPath("type"), processor, OilProductType.OilProductTypeBuilder.class, getType_());
 			processRosetta(path.newSubPath("grade"), processor, CommodityProductGrade.CommodityProductGradeBuilder.class, getGrade());
 		}
 		
@@ -92,13 +92,13 @@ public interface OilProduct extends RosettaModelObject {
 		private final CommodityProductGrade grade;
 		
 		protected OilProductImpl(OilProduct.OilProductBuilder builder) {
-			this.type = ofNullable(builder.getType()).map(f->f.build()).orElse(null);
+			this.type = ofNullable(builder.getType_()).map(f->f.build()).orElse(null);
 			this.grade = ofNullable(builder.getGrade()).map(f->f.build()).orElse(null);
 		}
 		
 		@Override
 		@RosettaAttribute("type")
-		public OilProductType getType() {
+		public OilProductType getType_() {
 			return type;
 		}
 		
@@ -121,12 +121,12 @@ public interface OilProduct extends RosettaModelObject {
 		}
 		
 		protected void setBuilderFields(OilProduct.OilProductBuilder builder) {
-			ofNullable(getType()).ifPresent(builder::setType);
+			ofNullable(getType_()).ifPresent(builder::setType);
 			ofNullable(getGrade()).ifPresent(builder::setGrade);
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		
@@ -165,7 +165,7 @@ public interface OilProduct extends RosettaModelObject {
 	
 		@Override
 		@RosettaAttribute("type")
-		public OilProductType.OilProductTypeBuilder getType() {
+		public OilProductType.OilProductTypeBuilder getType_() {
 			return type;
 		}
 		
@@ -234,7 +234,7 @@ public interface OilProduct extends RosettaModelObject {
 		
 		@Override
 		public boolean hasData() {
-			if (getType()!=null && getType().hasData()) return true;
+			if (getType_()!=null && getType_().hasData()) return true;
 			if (getGrade()!=null && getGrade().hasData()) return true;
 			return false;
 		}
@@ -244,14 +244,14 @@ public interface OilProduct extends RosettaModelObject {
 		public OilProduct.OilProductBuilder merge(RosettaModelObjectBuilder other, BuilderMerger merger) {
 			OilProduct.OilProductBuilder o = (OilProduct.OilProductBuilder) other;
 			
-			merger.mergeRosetta(getType(), o.getType(), this::setType);
+			merger.mergeRosetta(getType_(), o.getType_(), this::setType);
 			merger.mergeRosetta(getGrade(), o.getGrade(), this::setGrade);
 			
 			return this;
 		}
 	
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		

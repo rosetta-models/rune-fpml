@@ -25,7 +25,7 @@ public class LoanTradingAccruingFeeAccrualValidator implements Validator<LoanTra
 		return Lists.<ComparisonResult>newArrayList(
 				checkCardinality("amount", (NonNegativeMoney) o.getAmount() != null ? 1 : 0, 1, 1), 
 				checkCardinality("accrualTypeId", (AccrualTypeId) o.getAccrualTypeId() != null ? 1 : 0, 1, 1), 
-				checkCardinality("type", (LoanTradingAccruingFeeTypeEnum) o.getType() != null ? 1 : 0, 0, 1)
+				checkCardinality("type", (LoanTradingAccruingFeeTypeEnum) o.getType_() != null ? 1 : 0, 0, 1)
 			);
 	}
 

@@ -24,7 +24,7 @@ public class CoalProductValidator implements Validator<CoalProduct> {
 
 	private List<ComparisonResult> getComparisonResults(CoalProduct o) {
 		return Lists.<ComparisonResult>newArrayList(
-				checkCardinality("type", (CoalProductType) o.getType() != null ? 1 : 0, 0, 1), 
+				checkCardinality("type", (CoalProductType) o.getType_() != null ? 1 : 0, 0, 1), 
 				checkCardinality("coalProductSpecifications", (CoalProductSpecifications) o.getCoalProductSpecifications() != null ? 1 : 0, 0, 1), 
 				checkCardinality("source", (List<? extends CoalProductSource>) o.getSource() == null ? 0 : ((List<? extends CoalProductSource>) o.getSource()).size(), 1, 0), 
 				checkCardinality("sCoTASpecifications", (Boolean) o.getSCoTASpecifications() != null ? 1 : 0, 0, 1), 

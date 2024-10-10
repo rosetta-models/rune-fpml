@@ -34,7 +34,7 @@ public interface ReferenceType extends RosettaModelObject {
 	String getDigestValue();
 	String getId();
 	String getUri();
-	String getType();
+	String getType_();
 
 	/*********************** Build Methods  ***********************/
 	ReferenceType build();
@@ -64,7 +64,7 @@ public interface ReferenceType extends RosettaModelObject {
 		processor.processBasic(path.newSubPath("digestValue"), String.class, getDigestValue(), this);
 		processor.processBasic(path.newSubPath("id"), String.class, getId(), this);
 		processor.processBasic(path.newSubPath("uri"), String.class, getUri(), this);
-		processor.processBasic(path.newSubPath("type"), String.class, getType(), this);
+		processor.processBasic(path.newSubPath("type"), String.class, getType_(), this);
 	}
 	
 
@@ -88,7 +88,7 @@ public interface ReferenceType extends RosettaModelObject {
 			processor.processBasic(path.newSubPath("digestValue"), String.class, getDigestValue(), this);
 			processor.processBasic(path.newSubPath("id"), String.class, getId(), this);
 			processor.processBasic(path.newSubPath("uri"), String.class, getUri(), this);
-			processor.processBasic(path.newSubPath("type"), String.class, getType(), this);
+			processor.processBasic(path.newSubPath("type"), String.class, getType_(), this);
 		}
 		
 
@@ -110,7 +110,7 @@ public interface ReferenceType extends RosettaModelObject {
 			this.digestValue = builder.getDigestValue();
 			this.id = builder.getId();
 			this.uri = builder.getUri();
-			this.type = builder.getType();
+			this.type = builder.getType_();
 		}
 		
 		@Override
@@ -145,7 +145,7 @@ public interface ReferenceType extends RosettaModelObject {
 		
 		@Override
 		@RosettaAttribute("type")
-		public String getType() {
+		public String getType_() {
 			return type;
 		}
 		
@@ -167,11 +167,11 @@ public interface ReferenceType extends RosettaModelObject {
 			ofNullable(getDigestValue()).ifPresent(builder::setDigestValue);
 			ofNullable(getId()).ifPresent(builder::setId);
 			ofNullable(getUri()).ifPresent(builder::setUri);
-			ofNullable(getType()).ifPresent(builder::setType);
+			ofNullable(getType_()).ifPresent(builder::setType);
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		
@@ -282,7 +282,7 @@ public interface ReferenceType extends RosettaModelObject {
 		
 		@Override
 		@RosettaAttribute("type")
-		public String getType() {
+		public String getType_() {
 			return type;
 		}
 		
@@ -348,7 +348,7 @@ public interface ReferenceType extends RosettaModelObject {
 			if (getDigestValue()!=null) return true;
 			if (getId()!=null) return true;
 			if (getUri()!=null) return true;
-			if (getType()!=null) return true;
+			if (getType_()!=null) return true;
 			return false;
 		}
 	
@@ -363,12 +363,12 @@ public interface ReferenceType extends RosettaModelObject {
 			merger.mergeBasic(getDigestValue(), o.getDigestValue(), this::setDigestValue);
 			merger.mergeBasic(getId(), o.getId(), this::setId);
 			merger.mergeBasic(getUri(), o.getUri(), this::setUri);
-			merger.mergeBasic(getType(), o.getType(), this::setType);
+			merger.mergeBasic(getType_(), o.getType_(), this::setType);
 			return this;
 		}
 	
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		

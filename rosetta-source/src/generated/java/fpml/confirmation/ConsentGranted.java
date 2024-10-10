@@ -52,7 +52,7 @@ public interface ConsentGranted extends ResponseMessage {
 	/**
 	 * The type of approval (e.g. &quot;pre-clearing credit&quot;).
 	 */
-	ApprovalType getType();
+	ApprovalType getType_();
 	/**
 	 * The full name or identifiying ID of the relevant approver.
 	 */
@@ -99,7 +99,7 @@ public interface ConsentGranted extends ResponseMessage {
 		processRosetta(path.newSubPath("validationModel"), processor, ValidationModel.class, getValidationModel());
 		processRosetta(path.newSubPath("correlationAndOptionalSequenceModel"), processor, CorrelationAndOptionalSequenceModel.class, getCorrelationAndOptionalSequenceModel());
 		processRosetta(path.newSubPath("onBehalfOfModel"), processor, OnBehalfOfModel.class, getOnBehalfOfModel());
-		processRosetta(path.newSubPath("type"), processor, ApprovalType.class, getType());
+		processRosetta(path.newSubPath("type"), processor, ApprovalType.class, getType_());
 		processRosetta(path.newSubPath("approver"), processor, PersonId.class, getApprover());
 		processRosetta(path.newSubPath("approvingPartyReference"), processor, PartyReference.class, getApprovingPartyReference());
 		processRosetta(path.newSubPath("approvalId"), processor, ApprovalId.class, getApprovalId());
@@ -113,7 +113,7 @@ public interface ConsentGranted extends ResponseMessage {
 	/*********************** Builder Interface  ***********************/
 	interface ConsentGrantedBuilder extends ConsentGranted, ResponseMessage.ResponseMessageBuilder {
 		ApprovalType.ApprovalTypeBuilder getOrCreateType();
-		ApprovalType.ApprovalTypeBuilder getType();
+		ApprovalType.ApprovalTypeBuilder getType_();
 		PersonId.PersonIdBuilder getOrCreateApprover();
 		PersonId.PersonIdBuilder getApprover();
 		PartyReference.PartyReferenceBuilder getOrCreateApprovingPartyReference();
@@ -154,7 +154,7 @@ public interface ConsentGranted extends ResponseMessage {
 			processRosetta(path.newSubPath("validationModel"), processor, ValidationModel.ValidationModelBuilder.class, getValidationModel());
 			processRosetta(path.newSubPath("correlationAndOptionalSequenceModel"), processor, CorrelationAndOptionalSequenceModel.CorrelationAndOptionalSequenceModelBuilder.class, getCorrelationAndOptionalSequenceModel());
 			processRosetta(path.newSubPath("onBehalfOfModel"), processor, OnBehalfOfModel.OnBehalfOfModelBuilder.class, getOnBehalfOfModel());
-			processRosetta(path.newSubPath("type"), processor, ApprovalType.ApprovalTypeBuilder.class, getType());
+			processRosetta(path.newSubPath("type"), processor, ApprovalType.ApprovalTypeBuilder.class, getType_());
 			processRosetta(path.newSubPath("approver"), processor, PersonId.PersonIdBuilder.class, getApprover());
 			processRosetta(path.newSubPath("approvingPartyReference"), processor, PartyReference.PartyReferenceBuilder.class, getApprovingPartyReference());
 			processRosetta(path.newSubPath("approvalId"), processor, ApprovalId.ApprovalIdBuilder.class, getApprovalId());
@@ -181,7 +181,7 @@ public interface ConsentGranted extends ResponseMessage {
 		
 		protected ConsentGrantedImpl(ConsentGranted.ConsentGrantedBuilder builder) {
 			super(builder);
-			this.type = ofNullable(builder.getType()).map(f->f.build()).orElse(null);
+			this.type = ofNullable(builder.getType_()).map(f->f.build()).orElse(null);
 			this.approver = ofNullable(builder.getApprover()).map(f->f.build()).orElse(null);
 			this.approvingPartyReference = ofNullable(builder.getApprovingPartyReference()).map(f->f.build()).orElse(null);
 			this.approvalId = ofNullable(builder.getApprovalId()).map(f->f.build()).orElse(null);
@@ -193,7 +193,7 @@ public interface ConsentGranted extends ResponseMessage {
 		
 		@Override
 		@RosettaAttribute("type")
-		public ApprovalType getType() {
+		public ApprovalType getType_() {
 			return type;
 		}
 		
@@ -253,7 +253,7 @@ public interface ConsentGranted extends ResponseMessage {
 		
 		protected void setBuilderFields(ConsentGranted.ConsentGrantedBuilder builder) {
 			super.setBuilderFields(builder);
-			ofNullable(getType()).ifPresent(builder::setType);
+			ofNullable(getType_()).ifPresent(builder::setType);
 			ofNullable(getApprover()).ifPresent(builder::setApprover);
 			ofNullable(getApprovingPartyReference()).ifPresent(builder::setApprovingPartyReference);
 			ofNullable(getApprovalId()).ifPresent(builder::setApprovalId);
@@ -264,7 +264,7 @@ public interface ConsentGranted extends ResponseMessage {
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;
@@ -328,7 +328,7 @@ public interface ConsentGranted extends ResponseMessage {
 	
 		@Override
 		@RosettaAttribute("type")
-		public ApprovalType.ApprovalTypeBuilder getType() {
+		public ApprovalType.ApprovalTypeBuilder getType_() {
 			return type;
 		}
 		
@@ -619,7 +619,7 @@ public interface ConsentGranted extends ResponseMessage {
 		@Override
 		public boolean hasData() {
 			if (super.hasData()) return true;
-			if (getType()!=null && getType().hasData()) return true;
+			if (getType_()!=null && getType_().hasData()) return true;
 			if (getApprover()!=null && getApprover().hasData()) return true;
 			if (getApprovingPartyReference()!=null && getApprovingPartyReference().hasData()) return true;
 			if (getApprovalId()!=null && getApprovalId().hasData()) return true;
@@ -637,7 +637,7 @@ public interface ConsentGranted extends ResponseMessage {
 			
 			ConsentGranted.ConsentGrantedBuilder o = (ConsentGranted.ConsentGrantedBuilder) other;
 			
-			merger.mergeRosetta(getType(), o.getType(), this::setType);
+			merger.mergeRosetta(getType_(), o.getType_(), this::setType);
 			merger.mergeRosetta(getApprover(), o.getApprover(), this::setApprover);
 			merger.mergeRosetta(getApprovingPartyReference(), o.getApprovingPartyReference(), this::setApprovingPartyReference);
 			merger.mergeRosetta(getApprovalId(), o.getApprovalId(), this::setApprovalId);
@@ -650,7 +650,7 @@ public interface ConsentGranted extends ResponseMessage {
 		}
 	
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;

@@ -30,7 +30,7 @@ public interface TradeTimestamp extends RosettaModelObject {
 	TradeTimestampMeta metaData = new TradeTimestampMeta();
 
 	/*********************** Getter Methods  ***********************/
-	TimestampTypeScheme getType();
+	TimestampTypeScheme getType_();
 	ZonedDateTime getValue();
 
 	/*********************** Build Methods  ***********************/
@@ -56,7 +56,7 @@ public interface TradeTimestamp extends RosettaModelObject {
 	
 	@Override
 	default void process(RosettaPath path, Processor processor) {
-		processRosetta(path.newSubPath("type"), processor, TimestampTypeScheme.class, getType());
+		processRosetta(path.newSubPath("type"), processor, TimestampTypeScheme.class, getType_());
 		processor.processBasic(path.newSubPath("value"), ZonedDateTime.class, getValue(), this);
 	}
 	
@@ -64,13 +64,13 @@ public interface TradeTimestamp extends RosettaModelObject {
 	/*********************** Builder Interface  ***********************/
 	interface TradeTimestampBuilder extends TradeTimestamp, RosettaModelObjectBuilder {
 		TimestampTypeScheme.TimestampTypeSchemeBuilder getOrCreateType();
-		TimestampTypeScheme.TimestampTypeSchemeBuilder getType();
+		TimestampTypeScheme.TimestampTypeSchemeBuilder getType_();
 		TradeTimestamp.TradeTimestampBuilder setType(TimestampTypeScheme type);
 		TradeTimestamp.TradeTimestampBuilder setValue(ZonedDateTime value);
 
 		@Override
 		default void process(RosettaPath path, BuilderProcessor processor) {
-			processRosetta(path.newSubPath("type"), processor, TimestampTypeScheme.TimestampTypeSchemeBuilder.class, getType());
+			processRosetta(path.newSubPath("type"), processor, TimestampTypeScheme.TimestampTypeSchemeBuilder.class, getType_());
 			processor.processBasic(path.newSubPath("value"), ZonedDateTime.class, getValue(), this);
 		}
 		
@@ -84,13 +84,13 @@ public interface TradeTimestamp extends RosettaModelObject {
 		private final ZonedDateTime value;
 		
 		protected TradeTimestampImpl(TradeTimestamp.TradeTimestampBuilder builder) {
-			this.type = ofNullable(builder.getType()).map(f->f.build()).orElse(null);
+			this.type = ofNullable(builder.getType_()).map(f->f.build()).orElse(null);
 			this.value = builder.getValue();
 		}
 		
 		@Override
 		@RosettaAttribute("type")
-		public TimestampTypeScheme getType() {
+		public TimestampTypeScheme getType_() {
 			return type;
 		}
 		
@@ -113,12 +113,12 @@ public interface TradeTimestamp extends RosettaModelObject {
 		}
 		
 		protected void setBuilderFields(TradeTimestamp.TradeTimestampBuilder builder) {
-			ofNullable(getType()).ifPresent(builder::setType);
+			ofNullable(getType_()).ifPresent(builder::setType);
 			ofNullable(getValue()).ifPresent(builder::setValue);
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		
@@ -157,7 +157,7 @@ public interface TradeTimestamp extends RosettaModelObject {
 	
 		@Override
 		@RosettaAttribute("type")
-		public TimestampTypeScheme.TimestampTypeSchemeBuilder getType() {
+		public TimestampTypeScheme.TimestampTypeSchemeBuilder getType_() {
 			return type;
 		}
 		
@@ -212,7 +212,7 @@ public interface TradeTimestamp extends RosettaModelObject {
 		
 		@Override
 		public boolean hasData() {
-			if (getType()!=null && getType().hasData()) return true;
+			if (getType_()!=null && getType_().hasData()) return true;
 			if (getValue()!=null) return true;
 			return false;
 		}
@@ -222,14 +222,14 @@ public interface TradeTimestamp extends RosettaModelObject {
 		public TradeTimestamp.TradeTimestampBuilder merge(RosettaModelObjectBuilder other, BuilderMerger merger) {
 			TradeTimestamp.TradeTimestampBuilder o = (TradeTimestamp.TradeTimestampBuilder) other;
 			
-			merger.mergeRosetta(getType(), o.getType(), this::setType);
+			merger.mergeRosetta(getType_(), o.getType_(), this::setType);
 			
 			merger.mergeBasic(getValue(), o.getValue(), this::setValue);
 			return this;
 		}
 	
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		

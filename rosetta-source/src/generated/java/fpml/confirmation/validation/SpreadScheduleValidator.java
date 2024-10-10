@@ -24,7 +24,7 @@ public class SpreadScheduleValidator implements Validator<SpreadSchedule> {
 		return Lists.<ComparisonResult>newArrayList(
 				checkCardinality("initialValue", (BigDecimal) o.getInitialValue() != null ? 1 : 0, 1, 1), 
 				checkCardinality("id", (String) o.getId() != null ? 1 : 0, 0, 1), 
-				checkCardinality("type", (SpreadScheduleType) o.getType() != null ? 1 : 0, 0, 1)
+				checkCardinality("type", (SpreadScheduleType) o.getType_() != null ? 1 : 0, 0, 1)
 			);
 	}
 

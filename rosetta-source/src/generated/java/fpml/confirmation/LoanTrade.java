@@ -83,7 +83,7 @@ public interface LoanTrade extends AbstractLoanTrade {
 		processor.processBasic(path.newSubPath("comment"), String.class, getComment(), this);
 		processor.processBasic(path.newSubPath("tradeDate"), Date.class, getTradeDate(), this);
 		processRosetta(path.newSubPath("buyerSellerModel"), processor, BuyerSellerModel.class, getBuyerSellerModel());
-		processor.processBasic(path.newSubPath("type"), LoanTradingTypeEnum.class, getType(), this);
+		processor.processBasic(path.newSubPath("type"), LoanTradingTypeEnum.class, getType_(), this);
 		processor.processBasic(path.newSubPath("whenIssuedFlag"), Boolean.class, getWhenIssuedFlag(), this);
 		processRosetta(path.newSubPath("loanTradingSettlementTermsModel"), processor, LoanTradingSettlementTermsModel.class, getLoanTradingSettlementTermsModel());
 		processor.processBasic(path.newSubPath("price"), BigDecimal.class, getPrice(), this);
@@ -123,7 +123,7 @@ public interface LoanTrade extends AbstractLoanTrade {
 			processor.processBasic(path.newSubPath("comment"), String.class, getComment(), this);
 			processor.processBasic(path.newSubPath("tradeDate"), Date.class, getTradeDate(), this);
 			processRosetta(path.newSubPath("buyerSellerModel"), processor, BuyerSellerModel.BuyerSellerModelBuilder.class, getBuyerSellerModel());
-			processor.processBasic(path.newSubPath("type"), LoanTradingTypeEnum.class, getType(), this);
+			processor.processBasic(path.newSubPath("type"), LoanTradingTypeEnum.class, getType_(), this);
 			processor.processBasic(path.newSubPath("whenIssuedFlag"), Boolean.class, getWhenIssuedFlag(), this);
 			processRosetta(path.newSubPath("loanTradingSettlementTermsModel"), processor, LoanTradingSettlementTermsModel.LoanTradingSettlementTermsModelBuilder.class, getLoanTradingSettlementTermsModel());
 			processor.processBasic(path.newSubPath("price"), BigDecimal.class, getPrice(), this);
@@ -196,7 +196,7 @@ public interface LoanTrade extends AbstractLoanTrade {
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;
@@ -430,7 +430,7 @@ public interface LoanTrade extends AbstractLoanTrade {
 		}
 	
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;

@@ -36,7 +36,7 @@ public class ConsentRefusedValidator implements Validator<ConsentRefused> {
 				checkCardinality("validationModel", (ValidationModel) o.getValidationModel() != null ? 1 : 0, 1, 1), 
 				checkCardinality("correlationAndOptionalSequenceModel", (CorrelationAndOptionalSequenceModel) o.getCorrelationAndOptionalSequenceModel() != null ? 1 : 0, 1, 1), 
 				checkCardinality("onBehalfOfModel", (OnBehalfOfModel) o.getOnBehalfOfModel() != null ? 1 : 0, 0, 1), 
-				checkCardinality("type", (ApprovalType) o.getType() != null ? 1 : 0, 0, 1), 
+				checkCardinality("type", (ApprovalType) o.getType_() != null ? 1 : 0, 0, 1), 
 				checkCardinality("approver", (PersonId) o.getApprover() != null ? 1 : 0, 0, 1), 
 				checkCardinality("approvingPartyReference", (PartyReference) o.getApprovingPartyReference() != null ? 1 : 0, 0, 1), 
 				checkCardinality("portfolioReferenceBaseModel", (PortfolioReferenceBaseModel) o.getPortfolioReferenceBaseModel() != null ? 1 : 0, 0, 1), 

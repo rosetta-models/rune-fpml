@@ -32,7 +32,7 @@ public class LcOptionValidator implements Validator<LcOption> {
 				checkCardinality("paymentFrequency", (Period) o.getPaymentFrequency() != null ? 1 : 0, 0, 1), 
 				checkCardinality("rate", (BigDecimal) o.getRate() != null ? 1 : 0, 1, 1), 
 				checkCardinality("periodModel", (PeriodModel) o.getPeriodModel() != null ? 1 : 0, 1, 1), 
-				checkCardinality("type", (LcType) o.getType() != null ? 1 : 0, 1, 1), 
+				checkCardinality("type", (LcType) o.getType_() != null ? 1 : 0, 1, 1), 
 				checkCardinality("minLcIssuanceFeeAmount", (MoneyWithParticipantShare) o.getMinLcIssuanceFeeAmount() != null ? 1 : 0, 0, 1)
 			);
 	}

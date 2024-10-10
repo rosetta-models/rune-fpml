@@ -24,7 +24,7 @@ public class ReferenceElementTypeFormatValidator implements Validator<ReferenceE
 	private List<ComparisonResult> getComparisonResults(ReferenceElement o) {
 		return Lists.<ComparisonResult>newArrayList(
 				checkString("uri", o.getUri(), 0, empty(), of(Pattern.compile("\\w+:(\\/?\\/?)[^\\s]+"))), 
-				checkString("type", o.getType(), 0, empty(), of(Pattern.compile("\\w+:(\\/?\\/?)[^\\s]+")))
+				checkString("type", o.getType_(), 0, empty(), of(Pattern.compile("\\w+:(\\/?\\/?)[^\\s]+")))
 			);
 	}
 

@@ -33,7 +33,7 @@ public class AbstractLoanTradeValidator implements Validator<AbstractLoanTrade> 
 				checkCardinality("comment", (String) o.getComment() != null ? 1 : 0, 0, 1), 
 				checkCardinality("tradeDate", (Date) o.getTradeDate() != null ? 1 : 0, 1, 1), 
 				checkCardinality("buyerSellerModel", (BuyerSellerModel) o.getBuyerSellerModel() != null ? 1 : 0, 1, 1), 
-				checkCardinality("type", (LoanTradingTypeEnum) o.getType() != null ? 1 : 0, 1, 1), 
+				checkCardinality("type", (LoanTradingTypeEnum) o.getType_() != null ? 1 : 0, 1, 1), 
 				checkCardinality("whenIssuedFlag", (Boolean) o.getWhenIssuedFlag() != null ? 1 : 0, 1, 1), 
 				checkCardinality("loanTradingSettlementTermsModel", (LoanTradingSettlementTermsModel) o.getLoanTradingSettlementTermsModel() != null ? 1 : 0, 1, 1)
 			);

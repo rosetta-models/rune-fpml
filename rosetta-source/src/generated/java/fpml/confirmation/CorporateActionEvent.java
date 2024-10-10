@@ -37,7 +37,7 @@ public interface CorporateActionEvent extends ChangeEvent {
 	CorporateActionEventMeta metaData = new CorporateActionEventMeta();
 
 	/*********************** Getter Methods  ***********************/
-	CorporateActionType getType();
+	CorporateActionType getType_();
 
 	/*********************** Build Methods  ***********************/
 	CorporateActionEvent build();
@@ -63,14 +63,14 @@ public interface CorporateActionEvent extends ChangeEvent {
 	@Override
 	default void process(RosettaPath path, Processor processor) {
 		processRosetta(path.newSubPath("eventIdentifier"), processor, BusinessEventIdentifier.class, getEventIdentifier());
-		processRosetta(path.newSubPath("type"), processor, CorporateActionType.class, getType());
+		processRosetta(path.newSubPath("type"), processor, CorporateActionType.class, getType_());
 	}
 	
 
 	/*********************** Builder Interface  ***********************/
 	interface CorporateActionEventBuilder extends CorporateActionEvent, ChangeEvent.ChangeEventBuilder {
 		CorporateActionType.CorporateActionTypeBuilder getOrCreateType();
-		CorporateActionType.CorporateActionTypeBuilder getType();
+		CorporateActionType.CorporateActionTypeBuilder getType_();
 		CorporateActionEvent.CorporateActionEventBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier0);
 		CorporateActionEvent.CorporateActionEventBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier1, int _idx);
 		CorporateActionEvent.CorporateActionEventBuilder addEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifier2);
@@ -80,7 +80,7 @@ public interface CorporateActionEvent extends ChangeEvent {
 		@Override
 		default void process(RosettaPath path, BuilderProcessor processor) {
 			processRosetta(path.newSubPath("eventIdentifier"), processor, BusinessEventIdentifier.BusinessEventIdentifierBuilder.class, getEventIdentifier());
-			processRosetta(path.newSubPath("type"), processor, CorporateActionType.CorporateActionTypeBuilder.class, getType());
+			processRosetta(path.newSubPath("type"), processor, CorporateActionType.CorporateActionTypeBuilder.class, getType_());
 		}
 		
 
@@ -93,12 +93,12 @@ public interface CorporateActionEvent extends ChangeEvent {
 		
 		protected CorporateActionEventImpl(CorporateActionEvent.CorporateActionEventBuilder builder) {
 			super(builder);
-			this.type = ofNullable(builder.getType()).map(f->f.build()).orElse(null);
+			this.type = ofNullable(builder.getType_()).map(f->f.build()).orElse(null);
 		}
 		
 		@Override
 		@RosettaAttribute("type")
-		public CorporateActionType getType() {
+		public CorporateActionType getType_() {
 			return type;
 		}
 		
@@ -116,11 +116,11 @@ public interface CorporateActionEvent extends ChangeEvent {
 		
 		protected void setBuilderFields(CorporateActionEvent.CorporateActionEventBuilder builder) {
 			super.setBuilderFields(builder);
-			ofNullable(getType()).ifPresent(builder::setType);
+			ofNullable(getType_()).ifPresent(builder::setType);
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;
@@ -156,7 +156,7 @@ public interface CorporateActionEvent extends ChangeEvent {
 	
 		@Override
 		@RosettaAttribute("type")
-		public CorporateActionType.CorporateActionTypeBuilder getType() {
+		public CorporateActionType.CorporateActionTypeBuilder getType_() {
 			return type;
 		}
 		
@@ -236,7 +236,7 @@ public interface CorporateActionEvent extends ChangeEvent {
 		@Override
 		public boolean hasData() {
 			if (super.hasData()) return true;
-			if (getType()!=null && getType().hasData()) return true;
+			if (getType_()!=null && getType_().hasData()) return true;
 			return false;
 		}
 	
@@ -247,13 +247,13 @@ public interface CorporateActionEvent extends ChangeEvent {
 			
 			CorporateActionEvent.CorporateActionEventBuilder o = (CorporateActionEvent.CorporateActionEventBuilder) other;
 			
-			merger.mergeRosetta(getType(), o.getType(), this::setType);
+			merger.mergeRosetta(getType_(), o.getType_(), this::setType);
 			
 			return this;
 		}
 	
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;

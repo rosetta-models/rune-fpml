@@ -45,7 +45,7 @@ public interface LetterOfCreditSummary extends RosettaModelObject {
 	/**
 	 * The letter of credit type for which a fee rate is being provided.
 	 */
-	LcType getType();
+	LcType getType_();
 	/**
 	 * Effective date of the letter of credit.
 	 */
@@ -80,7 +80,7 @@ public interface LetterOfCreditSummary extends RosettaModelObject {
 	@Override
 	default void process(RosettaPath path, Processor processor) {
 		processRosetta(path.newSubPath("identifier"), processor, FacilityContractIdentifier.class, getIdentifier());
-		processRosetta(path.newSubPath("type"), processor, LcType.class, getType());
+		processRosetta(path.newSubPath("type"), processor, LcType.class, getType_());
 		processor.processBasic(path.newSubPath("effectiveDate"), Date.class, getEffectiveDate(), this);
 		processRosetta(path.newSubPath("letterOfCreditRolesModel"), processor, LetterOfCreditRolesModel.class, getLetterOfCreditRolesModel());
 		processRosetta(path.newSubPath("amount"), processor, MoneyWithParticipantShare.class, getAmount());
@@ -92,7 +92,7 @@ public interface LetterOfCreditSummary extends RosettaModelObject {
 		FacilityContractIdentifier.FacilityContractIdentifierBuilder getOrCreateIdentifier(int _index);
 		List<? extends FacilityContractIdentifier.FacilityContractIdentifierBuilder> getIdentifier();
 		LcType.LcTypeBuilder getOrCreateType();
-		LcType.LcTypeBuilder getType();
+		LcType.LcTypeBuilder getType_();
 		LetterOfCreditRolesModel.LetterOfCreditRolesModelBuilder getOrCreateLetterOfCreditRolesModel();
 		LetterOfCreditRolesModel.LetterOfCreditRolesModelBuilder getLetterOfCreditRolesModel();
 		MoneyWithParticipantShare.MoneyWithParticipantShareBuilder getOrCreateAmount();
@@ -109,7 +109,7 @@ public interface LetterOfCreditSummary extends RosettaModelObject {
 		@Override
 		default void process(RosettaPath path, BuilderProcessor processor) {
 			processRosetta(path.newSubPath("identifier"), processor, FacilityContractIdentifier.FacilityContractIdentifierBuilder.class, getIdentifier());
-			processRosetta(path.newSubPath("type"), processor, LcType.LcTypeBuilder.class, getType());
+			processRosetta(path.newSubPath("type"), processor, LcType.LcTypeBuilder.class, getType_());
 			processor.processBasic(path.newSubPath("effectiveDate"), Date.class, getEffectiveDate(), this);
 			processRosetta(path.newSubPath("letterOfCreditRolesModel"), processor, LetterOfCreditRolesModel.LetterOfCreditRolesModelBuilder.class, getLetterOfCreditRolesModel());
 			processRosetta(path.newSubPath("amount"), processor, MoneyWithParticipantShare.MoneyWithParticipantShareBuilder.class, getAmount());
@@ -129,7 +129,7 @@ public interface LetterOfCreditSummary extends RosettaModelObject {
 		
 		protected LetterOfCreditSummaryImpl(LetterOfCreditSummary.LetterOfCreditSummaryBuilder builder) {
 			this.identifier = ofNullable(builder.getIdentifier()).filter(_l->!_l.isEmpty()).map(list -> list.stream().filter(Objects::nonNull).map(f->f.build()).filter(Objects::nonNull).collect(ImmutableList.toImmutableList())).orElse(null);
-			this.type = ofNullable(builder.getType()).map(f->f.build()).orElse(null);
+			this.type = ofNullable(builder.getType_()).map(f->f.build()).orElse(null);
 			this.effectiveDate = builder.getEffectiveDate();
 			this.letterOfCreditRolesModel = ofNullable(builder.getLetterOfCreditRolesModel()).map(f->f.build()).orElse(null);
 			this.amount = ofNullable(builder.getAmount()).map(f->f.build()).orElse(null);
@@ -143,7 +143,7 @@ public interface LetterOfCreditSummary extends RosettaModelObject {
 		
 		@Override
 		@RosettaAttribute("type")
-		public LcType getType() {
+		public LcType getType_() {
 			return type;
 		}
 		
@@ -179,14 +179,14 @@ public interface LetterOfCreditSummary extends RosettaModelObject {
 		
 		protected void setBuilderFields(LetterOfCreditSummary.LetterOfCreditSummaryBuilder builder) {
 			ofNullable(getIdentifier()).ifPresent(builder::setIdentifier);
-			ofNullable(getType()).ifPresent(builder::setType);
+			ofNullable(getType_()).ifPresent(builder::setType);
 			ofNullable(getEffectiveDate()).ifPresent(builder::setEffectiveDate);
 			ofNullable(getLetterOfCreditRolesModel()).ifPresent(builder::setLetterOfCreditRolesModel);
 			ofNullable(getAmount()).ifPresent(builder::setAmount);
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		
@@ -255,7 +255,7 @@ public interface LetterOfCreditSummary extends RosettaModelObject {
 		
 		@Override
 		@RosettaAttribute("type")
-		public LcType.LcTypeBuilder getType() {
+		public LcType.LcTypeBuilder getType_() {
 			return type;
 		}
 		
@@ -399,7 +399,7 @@ public interface LetterOfCreditSummary extends RosettaModelObject {
 		@Override
 		public boolean hasData() {
 			if (getIdentifier()!=null && getIdentifier().stream().filter(Objects::nonNull).anyMatch(a->a.hasData())) return true;
-			if (getType()!=null && getType().hasData()) return true;
+			if (getType_()!=null && getType_().hasData()) return true;
 			if (getEffectiveDate()!=null) return true;
 			if (getLetterOfCreditRolesModel()!=null && getLetterOfCreditRolesModel().hasData()) return true;
 			if (getAmount()!=null && getAmount().hasData()) return true;
@@ -412,7 +412,7 @@ public interface LetterOfCreditSummary extends RosettaModelObject {
 			LetterOfCreditSummary.LetterOfCreditSummaryBuilder o = (LetterOfCreditSummary.LetterOfCreditSummaryBuilder) other;
 			
 			merger.mergeRosetta(getIdentifier(), o.getIdentifier(), this::getOrCreateIdentifier);
-			merger.mergeRosetta(getType(), o.getType(), this::setType);
+			merger.mergeRosetta(getType_(), o.getType_(), this::setType);
 			merger.mergeRosetta(getLetterOfCreditRolesModel(), o.getLetterOfCreditRolesModel(), this::setLetterOfCreditRolesModel);
 			merger.mergeRosetta(getAmount(), o.getAmount(), this::setAmount);
 			
@@ -421,7 +421,7 @@ public interface LetterOfCreditSummary extends RosettaModelObject {
 		}
 	
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		

@@ -34,7 +34,7 @@ public interface CreditSupportAgreement extends RosettaModelObject {
 	/**
 	 * The type of ISDA Credit Support Agreement
 	 */
-	CreditSupportAgreementType getType();
+	CreditSupportAgreementType getType_();
 	/**
 	 * The date of the agreement executed between the parties and intended to govern collateral arrangements for all OTC derivatives transactions between those parties.
 	 */
@@ -67,7 +67,7 @@ public interface CreditSupportAgreement extends RosettaModelObject {
 	
 	@Override
 	default void process(RosettaPath path, Processor processor) {
-		processRosetta(path.newSubPath("type"), processor, CreditSupportAgreementType.class, getType());
+		processRosetta(path.newSubPath("type"), processor, CreditSupportAgreementType.class, getType_());
 		processor.processBasic(path.newSubPath("date"), Date.class, getDate(), this);
 		processRosetta(path.newSubPath("identifier"), processor, CreditSupportAgreementIdentifier.class, getIdentifier());
 	}
@@ -76,7 +76,7 @@ public interface CreditSupportAgreement extends RosettaModelObject {
 	/*********************** Builder Interface  ***********************/
 	interface CreditSupportAgreementBuilder extends CreditSupportAgreement, RosettaModelObjectBuilder {
 		CreditSupportAgreementType.CreditSupportAgreementTypeBuilder getOrCreateType();
-		CreditSupportAgreementType.CreditSupportAgreementTypeBuilder getType();
+		CreditSupportAgreementType.CreditSupportAgreementTypeBuilder getType_();
 		CreditSupportAgreementIdentifier.CreditSupportAgreementIdentifierBuilder getOrCreateIdentifier();
 		CreditSupportAgreementIdentifier.CreditSupportAgreementIdentifierBuilder getIdentifier();
 		CreditSupportAgreement.CreditSupportAgreementBuilder setType(CreditSupportAgreementType type);
@@ -85,7 +85,7 @@ public interface CreditSupportAgreement extends RosettaModelObject {
 
 		@Override
 		default void process(RosettaPath path, BuilderProcessor processor) {
-			processRosetta(path.newSubPath("type"), processor, CreditSupportAgreementType.CreditSupportAgreementTypeBuilder.class, getType());
+			processRosetta(path.newSubPath("type"), processor, CreditSupportAgreementType.CreditSupportAgreementTypeBuilder.class, getType_());
 			processor.processBasic(path.newSubPath("date"), Date.class, getDate(), this);
 			processRosetta(path.newSubPath("identifier"), processor, CreditSupportAgreementIdentifier.CreditSupportAgreementIdentifierBuilder.class, getIdentifier());
 		}
@@ -101,14 +101,14 @@ public interface CreditSupportAgreement extends RosettaModelObject {
 		private final CreditSupportAgreementIdentifier identifier;
 		
 		protected CreditSupportAgreementImpl(CreditSupportAgreement.CreditSupportAgreementBuilder builder) {
-			this.type = ofNullable(builder.getType()).map(f->f.build()).orElse(null);
+			this.type = ofNullable(builder.getType_()).map(f->f.build()).orElse(null);
 			this.date = builder.getDate();
 			this.identifier = ofNullable(builder.getIdentifier()).map(f->f.build()).orElse(null);
 		}
 		
 		@Override
 		@RosettaAttribute("type")
-		public CreditSupportAgreementType getType() {
+		public CreditSupportAgreementType getType_() {
 			return type;
 		}
 		
@@ -137,13 +137,13 @@ public interface CreditSupportAgreement extends RosettaModelObject {
 		}
 		
 		protected void setBuilderFields(CreditSupportAgreement.CreditSupportAgreementBuilder builder) {
-			ofNullable(getType()).ifPresent(builder::setType);
+			ofNullable(getType_()).ifPresent(builder::setType);
 			ofNullable(getDate()).ifPresent(builder::setDate);
 			ofNullable(getIdentifier()).ifPresent(builder::setIdentifier);
 		}
 
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		
@@ -186,7 +186,7 @@ public interface CreditSupportAgreement extends RosettaModelObject {
 	
 		@Override
 		@RosettaAttribute("type")
-		public CreditSupportAgreementType.CreditSupportAgreementTypeBuilder getType() {
+		public CreditSupportAgreementType.CreditSupportAgreementTypeBuilder getType_() {
 			return type;
 		}
 		
@@ -267,7 +267,7 @@ public interface CreditSupportAgreement extends RosettaModelObject {
 		
 		@Override
 		public boolean hasData() {
-			if (getType()!=null && getType().hasData()) return true;
+			if (getType_()!=null && getType_().hasData()) return true;
 			if (getDate()!=null) return true;
 			if (getIdentifier()!=null && getIdentifier().hasData()) return true;
 			return false;
@@ -278,7 +278,7 @@ public interface CreditSupportAgreement extends RosettaModelObject {
 		public CreditSupportAgreement.CreditSupportAgreementBuilder merge(RosettaModelObjectBuilder other, BuilderMerger merger) {
 			CreditSupportAgreement.CreditSupportAgreementBuilder o = (CreditSupportAgreement.CreditSupportAgreementBuilder) other;
 			
-			merger.mergeRosetta(getType(), o.getType(), this::setType);
+			merger.mergeRosetta(getType_(), o.getType_(), this::setType);
 			merger.mergeRosetta(getIdentifier(), o.getIdentifier(), this::setIdentifier);
 			
 			merger.mergeBasic(getDate(), o.getDate(), this::setDate);
@@ -286,7 +286,7 @@ public interface CreditSupportAgreement extends RosettaModelObject {
 		}
 	
 		@Override
-		public boolean equals(Object o) {
+		public boolean equals(java.lang.Object o) {
 			if (this == o) return true;
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 		
