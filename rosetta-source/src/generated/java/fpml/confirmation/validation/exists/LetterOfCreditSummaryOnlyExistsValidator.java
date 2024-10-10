@@ -27,7 +27,7 @@ public class LetterOfCreditSummaryOnlyExistsValidator implements ValidatorWithAr
 	public <T2 extends LetterOfCreditSummary> ValidationResult<LetterOfCreditSummary> validate(RosettaPath path, T2 o, Set<String> fields) {
 		Map<String, Boolean> fieldExistenceMap = ImmutableMap.<String, Boolean>builder()
 				.put("identifier", ExistenceChecker.isSet((List<? extends FacilityContractIdentifier>) o.getIdentifier()))
-				.put("type", ExistenceChecker.isSet((LcType) o.getType()))
+				.put("type", ExistenceChecker.isSet((LcType) o.getType_()))
 				.put("effectiveDate", ExistenceChecker.isSet((Date) o.getEffectiveDate()))
 				.put("letterOfCreditRolesModel", ExistenceChecker.isSet((LetterOfCreditRolesModel) o.getLetterOfCreditRolesModel()))
 				.put("amount", ExistenceChecker.isSet((MoneyWithParticipantShare) o.getAmount()))

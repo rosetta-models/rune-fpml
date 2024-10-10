@@ -33,7 +33,7 @@ public class AbstractLoanTradeOnlyExistsValidator implements ValidatorWithArg<Ab
 				.put("comment", ExistenceChecker.isSet((String) o.getComment()))
 				.put("tradeDate", ExistenceChecker.isSet((Date) o.getTradeDate()))
 				.put("buyerSellerModel", ExistenceChecker.isSet((BuyerSellerModel) o.getBuyerSellerModel()))
-				.put("type", ExistenceChecker.isSet((LoanTradingTypeEnum) o.getType()))
+				.put("type", ExistenceChecker.isSet((LoanTradingTypeEnum) o.getType_()))
 				.put("whenIssuedFlag", ExistenceChecker.isSet((Boolean) o.getWhenIssuedFlag()))
 				.put("loanTradingSettlementTermsModel", ExistenceChecker.isSet((LoanTradingSettlementTermsModel) o.getLoanTradingSettlementTermsModel()))
 				.build();

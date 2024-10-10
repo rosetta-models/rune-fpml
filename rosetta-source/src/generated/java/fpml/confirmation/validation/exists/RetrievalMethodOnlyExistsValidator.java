@@ -23,7 +23,7 @@ public class RetrievalMethodOnlyExistsValidator implements ValidatorWithArg<Retr
 		Map<String, Boolean> fieldExistenceMap = ImmutableMap.<String, Boolean>builder()
 				.put("transforms", ExistenceChecker.isSet((TransformsType) o.getTransforms()))
 				.put("uri", ExistenceChecker.isSet((String) o.getUri()))
-				.put("type", ExistenceChecker.isSet((String) o.getType()))
+				.put("type", ExistenceChecker.isSet((String) o.getType_()))
 				.build();
 		
 		// Find the fields that are set

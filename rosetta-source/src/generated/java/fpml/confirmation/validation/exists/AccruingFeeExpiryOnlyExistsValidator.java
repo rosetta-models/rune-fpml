@@ -37,7 +37,7 @@ public class AccruingFeeExpiryOnlyExistsValidator implements ValidatorWithArg<Ac
 				.put("effectiveDate", ExistenceChecker.isSet((Date) o.getEffectiveDate()))
 				.put("facilityReference", ExistenceChecker.isSet((FacilityReference) o.getFacilityReference()))
 				.put("id", ExistenceChecker.isSet((AccrualTypeId) o.getId()))
-				.put("type", ExistenceChecker.isSet((AccruingFeeType) o.getType()))
+				.put("type", ExistenceChecker.isSet((AccruingFeeType) o.getType_()))
 				.build();
 		
 		// Find the fields that are set

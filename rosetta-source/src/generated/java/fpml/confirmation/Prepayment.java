@@ -9,17 +9,7 @@ import com.rosetta.model.lib.path.RosettaPath;
 import com.rosetta.model.lib.process.BuilderMerger;
 import com.rosetta.model.lib.process.BuilderProcessor;
 import com.rosetta.model.lib.process.Processor;
-import fpml.confirmation.AdjustableDate;
-import fpml.confirmation.NonNegativeMoney;
-import fpml.confirmation.PayerReceiverModel;
-import fpml.confirmation.PaymentBase;
-import fpml.confirmation.PaymentBase.PaymentBaseBuilder;
-import fpml.confirmation.PaymentBase.PaymentBaseBuilderImpl;
-import fpml.confirmation.PaymentBase.PaymentBaseImpl;
-import fpml.confirmation.PrePayment;
-import fpml.confirmation.PrePayment.PrePaymentBuilder;
-import fpml.confirmation.PrePayment.PrePaymentBuilderImpl;
-import fpml.confirmation.PrePayment.PrePaymentImpl;
+import fpml.confirmation.Prepayment.PrepaymentBuilderImpl;
 import fpml.confirmation.meta.PrePaymentMeta;
 import java.util.Objects;
 
@@ -29,8 +19,8 @@ import static java.util.Optional.ofNullable;
  * A type for defining PrePayment.
  * @version ${project.version}
  */
-@RosettaDataType(value="PrePayment", builder=PrePayment.PrePaymentBuilderImpl.class, version="${project.version}")
-public interface PrePayment extends PaymentBase {
+@RosettaDataType(value="PrePayment", builder= PrepaymentBuilderImpl.class, version="${project.version}")
+public interface Prepayment extends PaymentBase {
 
 	PrePaymentMeta metaData = new PrePaymentMeta();
 
@@ -41,23 +31,23 @@ public interface PrePayment extends PaymentBase {
 	AdjustableDate getPrePaymentDate();
 
 	/*********************** Build Methods  ***********************/
-	PrePayment build();
+	Prepayment build();
 	
-	PrePayment.PrePaymentBuilder toBuilder();
+	PrepaymentBuilder toBuilder();
 	
-	static PrePayment.PrePaymentBuilder builder() {
-		return new PrePayment.PrePaymentBuilderImpl();
+	static PrepaymentBuilder builder() {
+		return new PrepaymentBuilderImpl();
 	}
 
 	/*********************** Utility Methods  ***********************/
 	@Override
-	default RosettaMetaData<? extends PrePayment> metaData() {
+	default RosettaMetaData<? extends Prepayment> metaData() {
 		return metaData;
 	}
 	
 	@Override
-	default Class<? extends PrePayment> getType() {
-		return PrePayment.class;
+	default Class<? extends Prepayment> getType() {
+		return Prepayment.class;
 	}
 	
 	
@@ -72,18 +62,18 @@ public interface PrePayment extends PaymentBase {
 	
 
 	/*********************** Builder Interface  ***********************/
-	interface PrePaymentBuilder extends PrePayment, PaymentBase.PaymentBaseBuilder {
+	interface PrepaymentBuilder extends Prepayment, PaymentBase.PaymentBaseBuilder {
 		PayerReceiverModel.PayerReceiverModelBuilder getOrCreatePayerReceiverModel();
 		PayerReceiverModel.PayerReceiverModelBuilder getPayerReceiverModel();
 		NonNegativeMoney.NonNegativeMoneyBuilder getOrCreatePrePaymentAmount();
 		NonNegativeMoney.NonNegativeMoneyBuilder getPrePaymentAmount();
 		AdjustableDate.AdjustableDateBuilder getOrCreatePrePaymentDate();
 		AdjustableDate.AdjustableDateBuilder getPrePaymentDate();
-		PrePayment.PrePaymentBuilder setId(String id);
-		PrePayment.PrePaymentBuilder setPayerReceiverModel(PayerReceiverModel payerReceiverModel);
-		PrePayment.PrePaymentBuilder setPrePayment(Boolean prePayment);
-		PrePayment.PrePaymentBuilder setPrePaymentAmount(NonNegativeMoney prePaymentAmount);
-		PrePayment.PrePaymentBuilder setPrePaymentDate(AdjustableDate prePaymentDate);
+		PrepaymentBuilder setId(String id);
+		PrepaymentBuilder setPayerReceiverModel(PayerReceiverModel payerReceiverModel);
+		PrepaymentBuilder setPrePayment(Boolean prePayment);
+		PrepaymentBuilder setPrePaymentAmount(NonNegativeMoney prePaymentAmount);
+		PrepaymentBuilder setPrePaymentDate(AdjustableDate prePaymentDate);
 
 		@Override
 		default void process(RosettaPath path, BuilderProcessor processor) {
@@ -95,17 +85,17 @@ public interface PrePayment extends PaymentBase {
 		}
 		
 
-		PrePayment.PrePaymentBuilder prune();
+		PrepaymentBuilder prune();
 	}
 
 	/*********************** Immutable Implementation of PrePayment  ***********************/
-	class PrePaymentImpl extends PaymentBase.PaymentBaseImpl implements PrePayment {
+	class PrepaymentImpl extends PaymentBase.PaymentBaseImpl implements Prepayment {
 		private final PayerReceiverModel payerReceiverModel;
 		private final Boolean prePayment;
 		private final NonNegativeMoney prePaymentAmount;
 		private final AdjustableDate prePaymentDate;
 		
-		protected PrePaymentImpl(PrePayment.PrePaymentBuilder builder) {
+		protected PrepaymentImpl(PrepaymentBuilder builder) {
 			super(builder);
 			this.payerReceiverModel = ofNullable(builder.getPayerReceiverModel()).map(f->f.build()).orElse(null);
 			this.prePayment = builder.getPrePayment();
@@ -138,18 +128,18 @@ public interface PrePayment extends PaymentBase {
 		}
 		
 		@Override
-		public PrePayment build() {
+		public Prepayment build() {
 			return this;
 		}
 		
 		@Override
-		public PrePayment.PrePaymentBuilder toBuilder() {
-			PrePayment.PrePaymentBuilder builder = builder();
+		public PrepaymentBuilder toBuilder() {
+			PrepaymentBuilder builder = builder();
 			setBuilderFields(builder);
 			return builder;
 		}
 		
-		protected void setBuilderFields(PrePayment.PrePaymentBuilder builder) {
+		protected void setBuilderFields(PrepaymentBuilder builder) {
 			super.setBuilderFields(builder);
 			ofNullable(getPayerReceiverModel()).ifPresent(builder::setPayerReceiverModel);
 			ofNullable(getPrePayment()).ifPresent(builder::setPrePayment);
@@ -163,7 +153,7 @@ public interface PrePayment extends PaymentBase {
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;
 		
-			PrePayment _that = getType().cast(o);
+			Prepayment _that = getType().cast(o);
 		
 			if (!Objects.equals(payerReceiverModel, _that.getPayerReceiverModel())) return false;
 			if (!Objects.equals(prePayment, _that.getPrePayment())) return false;
@@ -194,14 +184,14 @@ public interface PrePayment extends PaymentBase {
 	}
 
 	/*********************** Builder Implementation of PrePayment  ***********************/
-	class PrePaymentBuilderImpl extends PaymentBase.PaymentBaseBuilderImpl  implements PrePayment.PrePaymentBuilder {
+	class PrepaymentBuilderImpl extends PaymentBase.PaymentBaseBuilderImpl  implements PrepaymentBuilder {
 	
 		protected PayerReceiverModel.PayerReceiverModelBuilder payerReceiverModel;
 		protected Boolean prePayment;
 		protected NonNegativeMoney.NonNegativeMoneyBuilder prePaymentAmount;
 		protected AdjustableDate.AdjustableDateBuilder prePaymentDate;
 	
-		public PrePaymentBuilderImpl() {
+		public PrepaymentBuilderImpl() {
 		}
 	
 		@Override
@@ -269,48 +259,48 @@ public interface PrePayment extends PaymentBase {
 		
 		@Override
 		@RosettaAttribute("id")
-		public PrePayment.PrePaymentBuilder setId(String id) {
+		public PrepaymentBuilder setId(String id) {
 			this.id = id==null?null:id;
 			return this;
 		}
 		@Override
 		@RosettaAttribute("payerReceiverModel")
-		public PrePayment.PrePaymentBuilder setPayerReceiverModel(PayerReceiverModel payerReceiverModel) {
+		public PrepaymentBuilder setPayerReceiverModel(PayerReceiverModel payerReceiverModel) {
 			this.payerReceiverModel = payerReceiverModel==null?null:payerReceiverModel.toBuilder();
 			return this;
 		}
 		@Override
 		@RosettaAttribute("prePayment")
-		public PrePayment.PrePaymentBuilder setPrePayment(Boolean prePayment) {
+		public PrepaymentBuilder setPrePayment(Boolean prePayment) {
 			this.prePayment = prePayment==null?null:prePayment;
 			return this;
 		}
 		@Override
 		@RosettaAttribute("prePaymentAmount")
-		public PrePayment.PrePaymentBuilder setPrePaymentAmount(NonNegativeMoney prePaymentAmount) {
+		public PrepaymentBuilder setPrePaymentAmount(NonNegativeMoney prePaymentAmount) {
 			this.prePaymentAmount = prePaymentAmount==null?null:prePaymentAmount.toBuilder();
 			return this;
 		}
 		@Override
 		@RosettaAttribute("prePaymentDate")
-		public PrePayment.PrePaymentBuilder setPrePaymentDate(AdjustableDate prePaymentDate) {
+		public PrepaymentBuilder setPrePaymentDate(AdjustableDate prePaymentDate) {
 			this.prePaymentDate = prePaymentDate==null?null:prePaymentDate.toBuilder();
 			return this;
 		}
 		
 		@Override
-		public PrePayment build() {
-			return new PrePayment.PrePaymentImpl(this);
+		public Prepayment build() {
+			return new PrepaymentImpl(this);
 		}
 		
 		@Override
-		public PrePayment.PrePaymentBuilder toBuilder() {
+		public PrepaymentBuilder toBuilder() {
 			return this;
 		}
 	
 		@SuppressWarnings("unchecked")
 		@Override
-		public PrePayment.PrePaymentBuilder prune() {
+		public PrepaymentBuilder prune() {
 			super.prune();
 			if (payerReceiverModel!=null && !payerReceiverModel.prune().hasData()) payerReceiverModel = null;
 			if (prePaymentAmount!=null && !prePaymentAmount.prune().hasData()) prePaymentAmount = null;
@@ -330,10 +320,10 @@ public interface PrePayment extends PaymentBase {
 	
 		@SuppressWarnings("unchecked")
 		@Override
-		public PrePayment.PrePaymentBuilder merge(RosettaModelObjectBuilder other, BuilderMerger merger) {
+		public PrepaymentBuilder merge(RosettaModelObjectBuilder other, BuilderMerger merger) {
 			super.merge(other, merger);
 			
-			PrePayment.PrePaymentBuilder o = (PrePayment.PrePaymentBuilder) other;
+			PrepaymentBuilder o = (PrepaymentBuilder) other;
 			
 			merger.mergeRosetta(getPayerReceiverModel(), o.getPayerReceiverModel(), this::setPayerReceiverModel);
 			merger.mergeRosetta(getPrePaymentAmount(), o.getPrePaymentAmount(), this::setPrePaymentAmount);
@@ -349,7 +339,7 @@ public interface PrePayment extends PaymentBase {
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;
 		
-			PrePayment _that = getType().cast(o);
+			Prepayment _that = getType().cast(o);
 		
 			if (!Objects.equals(payerReceiverModel, _that.getPayerReceiverModel())) return false;
 			if (!Objects.equals(prePayment, _that.getPrePayment())) return false;

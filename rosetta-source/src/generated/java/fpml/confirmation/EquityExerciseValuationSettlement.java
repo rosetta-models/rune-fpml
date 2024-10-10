@@ -9,22 +9,6 @@ import com.rosetta.model.lib.path.RosettaPath;
 import com.rosetta.model.lib.process.BuilderMerger;
 import com.rosetta.model.lib.process.BuilderProcessor;
 import com.rosetta.model.lib.process.Processor;
-import fpml.confirmation.AdjustableOrRelativeDate;
-import fpml.confirmation.Currency;
-import fpml.confirmation.EquityAmericanExercise;
-import fpml.confirmation.EquityBermudaExercise;
-import fpml.confirmation.EquityEuropeanExercise;
-import fpml.confirmation.EquityExerciseValuationSettlement;
-import fpml.confirmation.EquityExerciseValuationSettlement.EquityExerciseValuationSettlementBuilder;
-import fpml.confirmation.EquityExerciseValuationSettlement.EquityExerciseValuationSettlementBuilderImpl;
-import fpml.confirmation.EquityExerciseValuationSettlement.EquityExerciseValuationSettlementImpl;
-import fpml.confirmation.EquityExerciseValuationSettlementSequence;
-import fpml.confirmation.EquityValuation;
-import fpml.confirmation.PartyReference;
-import fpml.confirmation.PrePayment;
-import fpml.confirmation.SettlementPriceDefaultElection;
-import fpml.confirmation.SettlementPriceSource;
-import fpml.confirmation.SettlementTypeEnum;
 import fpml.confirmation.meta.EquityExerciseValuationSettlementMeta;
 import java.util.Objects;
 
@@ -56,7 +40,7 @@ public interface EquityExerciseValuationSettlement extends RosettaModelObject {
 	/**
 	 * Prepayment features for Forward.
 	 */
-	PrePayment getPrePayment();
+	Prepayment getPrePayment();
 	/**
 	 * The parameters for defining when valuation of the underlying takes place.
 	 */
@@ -105,7 +89,7 @@ public interface EquityExerciseValuationSettlement extends RosettaModelObject {
 		processRosetta(path.newSubPath("equityAmericanExercise"), processor, EquityAmericanExercise.class, getEquityAmericanExercise());
 		processRosetta(path.newSubPath("equityBermudaExercise"), processor, EquityBermudaExercise.class, getEquityBermudaExercise());
 		processRosetta(path.newSubPath("equityExerciseValuationSettlementSequence"), processor, EquityExerciseValuationSettlementSequence.class, getEquityExerciseValuationSettlementSequence());
-		processRosetta(path.newSubPath("prePayment"), processor, PrePayment.class, getPrePayment());
+		processRosetta(path.newSubPath("prePayment"), processor, Prepayment.class, getPrePayment());
 		processRosetta(path.newSubPath("equityValuation"), processor, EquityValuation.class, getEquityValuation());
 		processRosetta(path.newSubPath("settlementDate"), processor, AdjustableOrRelativeDate.class, getSettlementDate());
 		processRosetta(path.newSubPath("settlementCurrency"), processor, Currency.class, getSettlementCurrency());
@@ -127,8 +111,8 @@ public interface EquityExerciseValuationSettlement extends RosettaModelObject {
 		EquityBermudaExercise.EquityBermudaExerciseBuilder getEquityBermudaExercise();
 		EquityExerciseValuationSettlementSequence.EquityExerciseValuationSettlementSequenceBuilder getOrCreateEquityExerciseValuationSettlementSequence();
 		EquityExerciseValuationSettlementSequence.EquityExerciseValuationSettlementSequenceBuilder getEquityExerciseValuationSettlementSequence();
-		PrePayment.PrePaymentBuilder getOrCreatePrePayment();
-		PrePayment.PrePaymentBuilder getPrePayment();
+		Prepayment.PrepaymentBuilder getOrCreatePrePayment();
+		Prepayment.PrepaymentBuilder getPrePayment();
 		EquityValuation.EquityValuationBuilder getOrCreateEquityValuation();
 		EquityValuation.EquityValuationBuilder getEquityValuation();
 		AdjustableOrRelativeDate.AdjustableOrRelativeDateBuilder getOrCreateSettlementDate();
@@ -147,7 +131,7 @@ public interface EquityExerciseValuationSettlement extends RosettaModelObject {
 		EquityExerciseValuationSettlement.EquityExerciseValuationSettlementBuilder setEquityAmericanExercise(EquityAmericanExercise equityAmericanExercise);
 		EquityExerciseValuationSettlement.EquityExerciseValuationSettlementBuilder setEquityBermudaExercise(EquityBermudaExercise equityBermudaExercise);
 		EquityExerciseValuationSettlement.EquityExerciseValuationSettlementBuilder setEquityExerciseValuationSettlementSequence(EquityExerciseValuationSettlementSequence equityExerciseValuationSettlementSequence);
-		EquityExerciseValuationSettlement.EquityExerciseValuationSettlementBuilder setPrePayment(PrePayment prePayment);
+		EquityExerciseValuationSettlement.EquityExerciseValuationSettlementBuilder setPrePayment(Prepayment prePayment);
 		EquityExerciseValuationSettlement.EquityExerciseValuationSettlementBuilder setEquityValuation(EquityValuation equityValuation);
 		EquityExerciseValuationSettlement.EquityExerciseValuationSettlementBuilder setSettlementDate(AdjustableOrRelativeDate settlementDate);
 		EquityExerciseValuationSettlement.EquityExerciseValuationSettlementBuilder setSettlementCurrency(Currency settlementCurrency);
@@ -163,7 +147,7 @@ public interface EquityExerciseValuationSettlement extends RosettaModelObject {
 			processRosetta(path.newSubPath("equityAmericanExercise"), processor, EquityAmericanExercise.EquityAmericanExerciseBuilder.class, getEquityAmericanExercise());
 			processRosetta(path.newSubPath("equityBermudaExercise"), processor, EquityBermudaExercise.EquityBermudaExerciseBuilder.class, getEquityBermudaExercise());
 			processRosetta(path.newSubPath("equityExerciseValuationSettlementSequence"), processor, EquityExerciseValuationSettlementSequence.EquityExerciseValuationSettlementSequenceBuilder.class, getEquityExerciseValuationSettlementSequence());
-			processRosetta(path.newSubPath("prePayment"), processor, PrePayment.PrePaymentBuilder.class, getPrePayment());
+			processRosetta(path.newSubPath("prePayment"), processor, Prepayment.PrepaymentBuilder.class, getPrePayment());
 			processRosetta(path.newSubPath("equityValuation"), processor, EquityValuation.EquityValuationBuilder.class, getEquityValuation());
 			processRosetta(path.newSubPath("settlementDate"), processor, AdjustableOrRelativeDate.AdjustableOrRelativeDateBuilder.class, getSettlementDate());
 			processRosetta(path.newSubPath("settlementCurrency"), processor, Currency.CurrencyBuilder.class, getSettlementCurrency());
@@ -184,7 +168,7 @@ public interface EquityExerciseValuationSettlement extends RosettaModelObject {
 		private final EquityAmericanExercise equityAmericanExercise;
 		private final EquityBermudaExercise equityBermudaExercise;
 		private final EquityExerciseValuationSettlementSequence equityExerciseValuationSettlementSequence;
-		private final PrePayment prePayment;
+		private final Prepayment prePayment;
 		private final EquityValuation equityValuation;
 		private final AdjustableOrRelativeDate settlementDate;
 		private final Currency settlementCurrency;
@@ -236,7 +220,7 @@ public interface EquityExerciseValuationSettlement extends RosettaModelObject {
 		
 		@Override
 		@RosettaAttribute("prePayment")
-		public PrePayment getPrePayment() {
+		public Prepayment getPrePayment() {
 			return prePayment;
 		}
 		
@@ -385,7 +369,7 @@ public interface EquityExerciseValuationSettlement extends RosettaModelObject {
 		protected EquityAmericanExercise.EquityAmericanExerciseBuilder equityAmericanExercise;
 		protected EquityBermudaExercise.EquityBermudaExerciseBuilder equityBermudaExercise;
 		protected EquityExerciseValuationSettlementSequence.EquityExerciseValuationSettlementSequenceBuilder equityExerciseValuationSettlementSequence;
-		protected PrePayment.PrePaymentBuilder prePayment;
+		protected Prepayment.PrepaymentBuilder prePayment;
 		protected EquityValuation.EquityValuationBuilder equityValuation;
 		protected AdjustableOrRelativeDate.AdjustableOrRelativeDateBuilder settlementDate;
 		protected Currency.CurrencyBuilder settlementCurrency;
@@ -476,18 +460,18 @@ public interface EquityExerciseValuationSettlement extends RosettaModelObject {
 		
 		@Override
 		@RosettaAttribute("prePayment")
-		public PrePayment.PrePaymentBuilder getPrePayment() {
+		public Prepayment.PrepaymentBuilder getPrePayment() {
 			return prePayment;
 		}
 		
 		@Override
-		public PrePayment.PrePaymentBuilder getOrCreatePrePayment() {
-			PrePayment.PrePaymentBuilder result;
+		public Prepayment.PrepaymentBuilder getOrCreatePrePayment() {
+			Prepayment.PrepaymentBuilder result;
 			if (prePayment!=null) {
 				result = prePayment;
 			}
 			else {
-				result = prePayment = PrePayment.builder();
+				result = prePayment = Prepayment.builder();
 			}
 			
 			return result;
@@ -658,7 +642,7 @@ public interface EquityExerciseValuationSettlement extends RosettaModelObject {
 		}
 		@Override
 		@RosettaAttribute("prePayment")
-		public EquityExerciseValuationSettlement.EquityExerciseValuationSettlementBuilder setPrePayment(PrePayment prePayment) {
+		public EquityExerciseValuationSettlement.EquityExerciseValuationSettlementBuilder setPrePayment(Prepayment prePayment) {
 			this.prePayment = prePayment==null?null:prePayment.toBuilder();
 			return this;
 		}

@@ -32,7 +32,7 @@ public class LcOptionOnlyExistsValidator implements ValidatorWithArg<LcOption, S
 				.put("paymentFrequency", ExistenceChecker.isSet((Period) o.getPaymentFrequency()))
 				.put("rate", ExistenceChecker.isSet((BigDecimal) o.getRate()))
 				.put("periodModel", ExistenceChecker.isSet((PeriodModel) o.getPeriodModel()))
-				.put("type", ExistenceChecker.isSet((LcType) o.getType()))
+				.put("type", ExistenceChecker.isSet((LcType) o.getType_()))
 				.put("minLcIssuanceFeeAmount", ExistenceChecker.isSet((MoneyWithParticipantShare) o.getMinLcIssuanceFeeAmount()))
 				.build();
 		

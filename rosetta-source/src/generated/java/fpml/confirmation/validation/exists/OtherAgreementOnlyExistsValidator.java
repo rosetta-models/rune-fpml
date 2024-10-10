@@ -26,7 +26,7 @@ public class OtherAgreementOnlyExistsValidator implements ValidatorWithArg<Other
 	public <T2 extends OtherAgreement> ValidationResult<OtherAgreement> validate(RosettaPath path, T2 o, Set<String> fields) {
 		Map<String, Boolean> fieldExistenceMap = ImmutableMap.<String, Boolean>builder()
 				.put("identifier", ExistenceChecker.isSet((List<? extends OtherAgreementId>) o.getIdentifier()))
-				.put("type", ExistenceChecker.isSet((OtherAgreementType) o.getType()))
+				.put("type", ExistenceChecker.isSet((OtherAgreementType) o.getType_()))
 				.put("version", ExistenceChecker.isSet((OtherAgreementVersion) o.getVersion()))
 				.put("date", ExistenceChecker.isSet((Date) o.getDate()))
 				.build();

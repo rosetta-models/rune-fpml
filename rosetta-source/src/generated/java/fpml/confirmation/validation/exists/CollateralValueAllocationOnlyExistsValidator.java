@@ -23,7 +23,7 @@ public class CollateralValueAllocationOnlyExistsValidator implements ValidatorWi
 	@Override
 	public <T2 extends CollateralValueAllocation> ValidationResult<CollateralValueAllocation> validate(RosettaPath path, T2 o, Set<String> fields) {
 		Map<String, Boolean> fieldExistenceMap = ImmutableMap.<String, Boolean>builder()
-				.put("type", ExistenceChecker.isSet((CollateralValueAllocationEnum) o.getType()))
+				.put("type", ExistenceChecker.isSet((CollateralValueAllocationEnum) o.getType_()))
 				.put("value", ExistenceChecker.isSet((List<? extends Money>) o.getValue()))
 				.build();
 		

@@ -9,7 +9,7 @@ import com.rosetta.model.lib.validation.ValidatorWithArg;
 import fpml.confirmation.AdjustableDate;
 import fpml.confirmation.NonNegativeMoney;
 import fpml.confirmation.PayerReceiverModel;
-import fpml.confirmation.PrePayment;
+import fpml.confirmation.Prepayment;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -17,11 +17,11 @@ import java.util.stream.Collectors;
 import static com.rosetta.model.lib.validation.ValidationResult.failure;
 import static com.rosetta.model.lib.validation.ValidationResult.success;
 
-public class PrePaymentOnlyExistsValidator implements ValidatorWithArg<PrePayment, Set<String>> {
+public class PrepaymentOnlyExistsValidator implements ValidatorWithArg<Prepayment, Set<String>> {
 
 	/* Casting is required to ensure types are output to ensure recompilation in Rosetta */
 	@Override
-	public <T2 extends PrePayment> ValidationResult<PrePayment> validate(RosettaPath path, T2 o, Set<String> fields) {
+	public <T2 extends Prepayment> ValidationResult<Prepayment> validate(RosettaPath path, T2 o, Set<String> fields) {
 		Map<String, Boolean> fieldExistenceMap = ImmutableMap.<String, Boolean>builder()
 				.put("id", ExistenceChecker.isSet((String) o.getId()))
 				.put("payerReceiverModel", ExistenceChecker.isSet((PayerReceiverModel) o.getPayerReceiverModel()))

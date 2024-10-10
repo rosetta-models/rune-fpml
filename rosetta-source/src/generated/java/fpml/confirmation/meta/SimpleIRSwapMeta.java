@@ -7,10 +7,10 @@ import com.rosetta.model.lib.qualify.QualifyResult;
 import com.rosetta.model.lib.validation.Validator;
 import com.rosetta.model.lib.validation.ValidatorFactory;
 import com.rosetta.model.lib.validation.ValidatorWithArg;
-import fpml.confirmation.SimpleIRSwap;
-import fpml.confirmation.validation.SimpleIRSwapTypeFormatValidator;
-import fpml.confirmation.validation.SimpleIRSwapValidator;
-import fpml.confirmation.validation.exists.SimpleIRSwapOnlyExistsValidator;
+import fpml.confirmation.SimpleIrSwap;
+import fpml.confirmation.validation.SimpleIrSwapTypeFormatValidator;
+import fpml.confirmation.validation.SimpleIrSwapValidator;
+import fpml.confirmation.validation.exists.SimpleIrSwapOnlyExistsValidator;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -21,32 +21,32 @@ import java.util.function.Function;
 /**
  * @version ${project.version}
  */
-@RosettaMeta(model=SimpleIRSwap.class)
-public class SimpleIRSwapMeta implements RosettaMetaData<SimpleIRSwap> {
+@RosettaMeta(model= SimpleIrSwap.class)
+public class SimpleIRSwapMeta implements RosettaMetaData<SimpleIrSwap> {
 
 	@Override
-	public List<Validator<? super SimpleIRSwap>> dataRules(ValidatorFactory factory) {
+	public List<Validator<? super SimpleIrSwap>> dataRules(ValidatorFactory factory) {
 		return Arrays.asList(
 		);
 	}
 	
 	@Override
-	public List<Function<? super SimpleIRSwap, QualifyResult>> getQualifyFunctions(QualifyFunctionFactory factory) {
+	public List<Function<? super SimpleIrSwap, QualifyResult>> getQualifyFunctions(QualifyFunctionFactory factory) {
 		return Collections.emptyList();
 	}
 
 	@Override
-	public Validator<? super SimpleIRSwap> validator() {
-		return new SimpleIRSwapValidator();
+	public Validator<? super SimpleIrSwap> validator() {
+		return new SimpleIrSwapValidator();
 	}
 
 	@Override
-	public Validator<? super SimpleIRSwap> typeFormatValidator() {
-		return new SimpleIRSwapTypeFormatValidator();
+	public Validator<? super SimpleIrSwap> typeFormatValidator() {
+		return new SimpleIrSwapTypeFormatValidator();
 	}
 	
 	@Override
-	public ValidatorWithArg<? super SimpleIRSwap, Set<String>> onlyExistsValidator() {
-		return new SimpleIRSwapOnlyExistsValidator();
+	public ValidatorWithArg<? super SimpleIrSwap, Set<String>> onlyExistsValidator() {
+		return new SimpleIrSwapOnlyExistsValidator();
 	}
 }

@@ -28,7 +28,7 @@ public class LoanTradingAccruingFeeAccrualOnlyExistsValidator implements Validat
 				.put("amount", ExistenceChecker.isSet((NonNegativeMoney) o.getAmount()))
 				.put("accrualPeriod", ExistenceChecker.isSet((List<? extends AccrualPeriod>) o.getAccrualPeriod()))
 				.put("accrualTypeId", ExistenceChecker.isSet((AccrualTypeId) o.getAccrualTypeId()))
-				.put("type", ExistenceChecker.isSet((LoanTradingAccruingFeeTypeEnum) o.getType()))
+				.put("type", ExistenceChecker.isSet((LoanTradingAccruingFeeTypeEnum) o.getType_()))
 				.build();
 		
 		// Find the fields that are set

@@ -39,7 +39,7 @@ public class ConsentRefusedOnlyExistsValidator implements ValidatorWithArg<Conse
 				.put("validationModel", ExistenceChecker.isSet((ValidationModel) o.getValidationModel()))
 				.put("correlationAndOptionalSequenceModel", ExistenceChecker.isSet((CorrelationAndOptionalSequenceModel) o.getCorrelationAndOptionalSequenceModel()))
 				.put("onBehalfOfModel", ExistenceChecker.isSet((OnBehalfOfModel) o.getOnBehalfOfModel()))
-				.put("type", ExistenceChecker.isSet((ApprovalType) o.getType()))
+				.put("type", ExistenceChecker.isSet((ApprovalType) o.getType_()))
 				.put("approver", ExistenceChecker.isSet((PersonId) o.getApprover()))
 				.put("approvingPartyReference", ExistenceChecker.isSet((PartyReference) o.getApprovingPartyReference()))
 				.put("portfolioReferenceBaseModel", ExistenceChecker.isSet((PortfolioReferenceBaseModel) o.getPortfolioReferenceBaseModel()))

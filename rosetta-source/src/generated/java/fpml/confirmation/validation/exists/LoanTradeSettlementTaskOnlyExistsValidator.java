@@ -34,7 +34,7 @@ public class LoanTradeSettlementTaskOnlyExistsValidator implements ValidatorWith
 				.put("status", ExistenceChecker.isSet((LoanTradingSettlementTaskStatusEnum) o.getStatus()))
 				.put("comment", ExistenceChecker.isSet((String) o.getComment()))
 				.put("loanTradeReference", ExistenceChecker.isSet((LoanTradeReference) o.getLoanTradeReference()))
-				.put("type", ExistenceChecker.isSet((LoanTradeSettlementTaskType) o.getType()))
+				.put("type", ExistenceChecker.isSet((LoanTradeSettlementTaskType) o.getType_()))
 				.build();
 		
 		// Find the fields that are set

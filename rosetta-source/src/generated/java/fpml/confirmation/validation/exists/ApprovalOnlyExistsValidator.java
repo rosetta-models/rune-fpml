@@ -24,7 +24,7 @@ public class ApprovalOnlyExistsValidator implements ValidatorWithArg<Approval, S
 	@Override
 	public <T2 extends Approval> ValidationResult<Approval> validate(RosettaPath path, T2 o, Set<String> fields) {
 		Map<String, Boolean> fieldExistenceMap = ImmutableMap.<String, Boolean>builder()
-				.put("type", ExistenceChecker.isSet((ApprovalType) o.getType()))
+				.put("type", ExistenceChecker.isSet((ApprovalType) o.getType_()))
 				.put("status", ExistenceChecker.isSet((String) o.getStatus()))
 				.put("approver", ExistenceChecker.isSet((PersonId) o.getApprover()))
 				.put("approvingPartyReference", ExistenceChecker.isSet((PartyReference) o.getApprovingPartyReference()))

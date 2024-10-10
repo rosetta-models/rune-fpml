@@ -6,7 +6,7 @@ import com.rosetta.model.lib.path.RosettaPath;
 import com.rosetta.model.lib.validation.ValidationResult;
 import com.rosetta.model.lib.validation.ValidationResult.ValidationType;
 import com.rosetta.model.lib.validation.Validator;
-import fpml.confirmation.PrePayment;
+import fpml.confirmation.Prepayment;
 import java.util.List;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
@@ -15,15 +15,15 @@ import static com.rosetta.model.lib.validation.ValidationResult.success;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
-public class PrePaymentTypeFormatValidator implements Validator<PrePayment> {
+public class PrepaymentTypeFormatValidator implements Validator<Prepayment> {
 
-	private List<ComparisonResult> getComparisonResults(PrePayment o) {
+	private List<ComparisonResult> getComparisonResults(Prepayment o) {
 		return Lists.<ComparisonResult>newArrayList(
 			);
 	}
 
 	@Override
-	public ValidationResult<PrePayment> validate(RosettaPath path, PrePayment o) {
+	public ValidationResult<Prepayment> validate(RosettaPath path, Prepayment o) {
 		String error = getComparisonResults(o)
 			.stream()
 			.filter(res -> !res.get())
@@ -37,7 +37,7 @@ public class PrePaymentTypeFormatValidator implements Validator<PrePayment> {
 	}
 
 	@Override
-	public List<ValidationResult<?>> getValidationResults(RosettaPath path, PrePayment o) {
+	public List<ValidationResult<?>> getValidationResults(RosettaPath path, Prepayment o) {
 		return getComparisonResults(o)
 			.stream()
 			.map(res -> {

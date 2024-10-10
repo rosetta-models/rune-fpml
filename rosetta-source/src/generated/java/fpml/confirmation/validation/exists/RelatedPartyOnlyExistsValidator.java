@@ -25,7 +25,7 @@ public class RelatedPartyOnlyExistsValidator implements ValidatorWithArg<Related
 		Map<String, Boolean> fieldExistenceMap = ImmutableMap.<String, Boolean>builder()
 				.put("partyAndAccountReferencesModel", ExistenceChecker.isSet((PartyAndAccountReferencesModel) o.getPartyAndAccountReferencesModel()))
 				.put("role", ExistenceChecker.isSet((PartyRole) o.getRole()))
-				.put("type", ExistenceChecker.isSet((PartyRoleType) o.getType()))
+				.put("type", ExistenceChecker.isSet((PartyRoleType) o.getType_()))
 				.build();
 		
 		// Find the fields that are set

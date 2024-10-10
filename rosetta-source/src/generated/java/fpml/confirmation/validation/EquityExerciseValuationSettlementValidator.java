@@ -15,7 +15,7 @@ import fpml.confirmation.EquityExerciseValuationSettlement;
 import fpml.confirmation.EquityExerciseValuationSettlementSequence;
 import fpml.confirmation.EquityValuation;
 import fpml.confirmation.PartyReference;
-import fpml.confirmation.PrePayment;
+import fpml.confirmation.Prepayment;
 import fpml.confirmation.SettlementPriceDefaultElection;
 import fpml.confirmation.SettlementPriceSource;
 import fpml.confirmation.SettlementTypeEnum;
@@ -36,7 +36,7 @@ public class EquityExerciseValuationSettlementValidator implements Validator<Equ
 				checkCardinality("equityAmericanExercise", (EquityAmericanExercise) o.getEquityAmericanExercise() != null ? 1 : 0, 0, 1), 
 				checkCardinality("equityBermudaExercise", (EquityBermudaExercise) o.getEquityBermudaExercise() != null ? 1 : 0, 0, 1), 
 				checkCardinality("equityExerciseValuationSettlementSequence", (EquityExerciseValuationSettlementSequence) o.getEquityExerciseValuationSettlementSequence() != null ? 1 : 0, 0, 1), 
-				checkCardinality("prePayment", (PrePayment) o.getPrePayment() != null ? 1 : 0, 0, 1), 
+				checkCardinality("prePayment", (Prepayment) o.getPrePayment() != null ? 1 : 0, 0, 1), 
 				checkCardinality("equityValuation", (EquityValuation) o.getEquityValuation() != null ? 1 : 0, 1, 1), 
 				checkCardinality("settlementDate", (AdjustableOrRelativeDate) o.getSettlementDate() != null ? 1 : 0, 0, 1), 
 				checkCardinality("settlementCurrency", (Currency) o.getSettlementCurrency() != null ? 1 : 0, 1, 1), 

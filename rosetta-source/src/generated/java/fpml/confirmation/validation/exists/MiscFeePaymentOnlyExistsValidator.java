@@ -39,7 +39,7 @@ public class MiscFeePaymentOnlyExistsValidator implements ValidatorWithArg<MiscF
 				.put("facilityReference", ExistenceChecker.isSet((FacilityReference) o.getFacilityReference()))
 				.put("loanContractReference", ExistenceChecker.isSet((List<? extends LoanContractReference>) o.getLoanContractReference()))
 				.put("amount", ExistenceChecker.isSet((MoneyWithParticipantShare) o.getAmount()))
-				.put("type", ExistenceChecker.isSet((NonRecurringMiscFeeType) o.getType()))
+				.put("type", ExistenceChecker.isSet((NonRecurringMiscFeeType) o.getType_()))
 				.build();
 		
 		// Find the fields that are set

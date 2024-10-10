@@ -30,7 +30,7 @@ public class AccruingFeeOptionOnlyExistsValidator implements ValidatorWithArg<Ac
 				.put("dayCountFraction", ExistenceChecker.isSet((DayCountFraction) o.getDayCountFraction()))
 				.put("paymentFrequency", ExistenceChecker.isSet((Period) o.getPaymentFrequency()))
 				.put("rate", ExistenceChecker.isSet((BigDecimal) o.getRate()))
-				.put("type", ExistenceChecker.isSet((AccruingFeeType) o.getType()))
+				.put("type", ExistenceChecker.isSet((AccruingFeeType) o.getType_()))
 				.put("periodOptionalEndModel", ExistenceChecker.isSet((PeriodOptionalEndModel) o.getPeriodOptionalEndModel()))
 				.put("calculationDefinition", ExistenceChecker.isSet((String) o.getCalculationDefinition()))
 				.build();

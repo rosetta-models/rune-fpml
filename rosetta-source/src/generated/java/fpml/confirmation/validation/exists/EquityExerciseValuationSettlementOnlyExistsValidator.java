@@ -15,7 +15,7 @@ import fpml.confirmation.EquityExerciseValuationSettlement;
 import fpml.confirmation.EquityExerciseValuationSettlementSequence;
 import fpml.confirmation.EquityValuation;
 import fpml.confirmation.PartyReference;
-import fpml.confirmation.PrePayment;
+import fpml.confirmation.Prepayment;
 import fpml.confirmation.SettlementPriceDefaultElection;
 import fpml.confirmation.SettlementPriceSource;
 import fpml.confirmation.SettlementTypeEnum;
@@ -36,7 +36,7 @@ public class EquityExerciseValuationSettlementOnlyExistsValidator implements Val
 				.put("equityAmericanExercise", ExistenceChecker.isSet((EquityAmericanExercise) o.getEquityAmericanExercise()))
 				.put("equityBermudaExercise", ExistenceChecker.isSet((EquityBermudaExercise) o.getEquityBermudaExercise()))
 				.put("equityExerciseValuationSettlementSequence", ExistenceChecker.isSet((EquityExerciseValuationSettlementSequence) o.getEquityExerciseValuationSettlementSequence()))
-				.put("prePayment", ExistenceChecker.isSet((PrePayment) o.getPrePayment()))
+				.put("prePayment", ExistenceChecker.isSet((Prepayment) o.getPrePayment()))
 				.put("equityValuation", ExistenceChecker.isSet((EquityValuation) o.getEquityValuation()))
 				.put("settlementDate", ExistenceChecker.isSet((AdjustableOrRelativeDate) o.getSettlementDate()))
 				.put("settlementCurrency", ExistenceChecker.isSet((Currency) o.getSettlementCurrency()))

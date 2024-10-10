@@ -27,7 +27,7 @@ public class SpreadScheduleOnlyExistsValidator implements ValidatorWithArg<Sprea
 				.put("initialValue", ExistenceChecker.isSet((BigDecimal) o.getInitialValue()))
 				.put("step", ExistenceChecker.isSet((List<? extends Step>) o.getStep()))
 				.put("id", ExistenceChecker.isSet((String) o.getId()))
-				.put("type", ExistenceChecker.isSet((SpreadScheduleType) o.getType()))
+				.put("type", ExistenceChecker.isSet((SpreadScheduleType) o.getType_()))
 				.build();
 		
 		// Find the fields that are set

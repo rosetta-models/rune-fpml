@@ -34,7 +34,7 @@ public class LoanAllocationSettlementTaskOnlyExistsValidator implements Validato
 				.put("status", ExistenceChecker.isSet((LoanTradingSettlementTaskStatusEnum) o.getStatus()))
 				.put("comment", ExistenceChecker.isSet((String) o.getComment()))
 				.put("allocationReference", ExistenceChecker.isSet((LoanAllocationReference) o.getAllocationReference()))
-				.put("type", ExistenceChecker.isSet((LoanAllocationSettlementTaskType) o.getType()))
+				.put("type", ExistenceChecker.isSet((LoanAllocationSettlementTaskType) o.getType_()))
 				.build();
 		
 		// Find the fields that are set

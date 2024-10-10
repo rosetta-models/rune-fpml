@@ -9,21 +9,7 @@ import com.rosetta.model.lib.path.RosettaPath;
 import com.rosetta.model.lib.process.BuilderMerger;
 import com.rosetta.model.lib.process.BuilderProcessor;
 import com.rosetta.model.lib.process.Processor;
-import fpml.confirmation.ClearanceSystem;
-import fpml.confirmation.DayCountFraction;
-import fpml.confirmation.ExchangeId;
-import fpml.confirmation.IdentifiedCurrency;
-import fpml.confirmation.InstrumentId;
-import fpml.confirmation.Period;
-import fpml.confirmation.ProductReference;
-import fpml.confirmation.SimpleIRSwap;
-import fpml.confirmation.SimpleIRSwap.SimpleIRSwapBuilder;
-import fpml.confirmation.SimpleIRSwap.SimpleIRSwapBuilderImpl;
-import fpml.confirmation.SimpleIRSwap.SimpleIRSwapImpl;
-import fpml.confirmation.UnderlyingAssetType;
-import fpml.confirmation.UnderlyingAssetType.UnderlyingAssetTypeBuilder;
-import fpml.confirmation.UnderlyingAssetType.UnderlyingAssetTypeBuilderImpl;
-import fpml.confirmation.UnderlyingAssetType.UnderlyingAssetTypeImpl;
+import fpml.confirmation.SimpleIrSwap.SimpleIrSwapBuilderImpl;
 import fpml.confirmation.meta.SimpleIRSwapMeta;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,8 +21,8 @@ import static java.util.Optional.ofNullable;
 /**
  * @version ${project.version}
  */
-@RosettaDataType(value="SimpleIRSwap", builder=SimpleIRSwap.SimpleIRSwapBuilderImpl.class, version="${project.version}")
-public interface SimpleIRSwap extends UnderlyingAssetType {
+@RosettaDataType(value="SimpleIRSwap", builder= SimpleIrSwapBuilderImpl.class, version="${project.version}")
+public interface SimpleIrSwap extends UnderlyingAssetType {
 
 	SimpleIRSwapMeta metaData = new SimpleIRSwapMeta();
 
@@ -55,23 +41,23 @@ public interface SimpleIRSwap extends UnderlyingAssetType {
 	DayCountFraction getDayCountFraction();
 
 	/*********************** Build Methods  ***********************/
-	SimpleIRSwap build();
+	SimpleIrSwap build();
 	
-	SimpleIRSwap.SimpleIRSwapBuilder toBuilder();
+	SimpleIrSwapBuilder toBuilder();
 	
-	static SimpleIRSwap.SimpleIRSwapBuilder builder() {
-		return new SimpleIRSwap.SimpleIRSwapBuilderImpl();
+	static SimpleIrSwapBuilder builder() {
+		return new SimpleIrSwapBuilderImpl();
 	}
 
 	/*********************** Utility Methods  ***********************/
 	@Override
-	default RosettaMetaData<? extends SimpleIRSwap> metaData() {
+	default RosettaMetaData<? extends SimpleIrSwap> metaData() {
 		return metaData;
 	}
 	
 	@Override
-	default Class<? extends SimpleIRSwap> getType() {
-		return SimpleIRSwap.class;
+	default Class<? extends SimpleIrSwap> getType() {
+		return SimpleIrSwap.class;
 	}
 	
 	
@@ -91,26 +77,26 @@ public interface SimpleIRSwap extends UnderlyingAssetType {
 	
 
 	/*********************** Builder Interface  ***********************/
-	interface SimpleIRSwapBuilder extends SimpleIRSwap, UnderlyingAssetType.UnderlyingAssetTypeBuilder {
+	interface SimpleIrSwapBuilder extends SimpleIrSwap, UnderlyingAssetType.UnderlyingAssetTypeBuilder {
 		Period.PeriodBuilder getOrCreateTerm();
 		Period.PeriodBuilder getTerm();
 		Period.PeriodBuilder getOrCreatePaymentFrequency();
 		Period.PeriodBuilder getPaymentFrequency();
 		DayCountFraction.DayCountFractionBuilder getOrCreateDayCountFraction();
 		DayCountFraction.DayCountFractionBuilder getDayCountFraction();
-		SimpleIRSwap.SimpleIRSwapBuilder setId(String id);
-		SimpleIRSwap.SimpleIRSwapBuilder addInstrumentId(InstrumentId instrumentId0);
-		SimpleIRSwap.SimpleIRSwapBuilder addInstrumentId(InstrumentId instrumentId1, int _idx);
-		SimpleIRSwap.SimpleIRSwapBuilder addInstrumentId(List<? extends InstrumentId> instrumentId2);
-		SimpleIRSwap.SimpleIRSwapBuilder setInstrumentId(List<? extends InstrumentId> instrumentId3);
-		SimpleIRSwap.SimpleIRSwapBuilder setDescription(String description);
-		SimpleIRSwap.SimpleIRSwapBuilder setCurrency(IdentifiedCurrency currency);
-		SimpleIRSwap.SimpleIRSwapBuilder setExchangeId(ExchangeId exchangeId);
-		SimpleIRSwap.SimpleIRSwapBuilder setClearanceSystem(ClearanceSystem clearanceSystem);
-		SimpleIRSwap.SimpleIRSwapBuilder setDefinition(ProductReference definition);
-		SimpleIRSwap.SimpleIRSwapBuilder setTerm(Period term);
-		SimpleIRSwap.SimpleIRSwapBuilder setPaymentFrequency(Period paymentFrequency);
-		SimpleIRSwap.SimpleIRSwapBuilder setDayCountFraction(DayCountFraction dayCountFraction);
+		SimpleIrSwapBuilder setId(String id);
+		SimpleIrSwapBuilder addInstrumentId(InstrumentId instrumentId0);
+		SimpleIrSwapBuilder addInstrumentId(InstrumentId instrumentId1, int _idx);
+		SimpleIrSwapBuilder addInstrumentId(List<? extends InstrumentId> instrumentId2);
+		SimpleIrSwapBuilder setInstrumentId(List<? extends InstrumentId> instrumentId3);
+		SimpleIrSwapBuilder setDescription(String description);
+		SimpleIrSwapBuilder setCurrency(IdentifiedCurrency currency);
+		SimpleIrSwapBuilder setExchangeId(ExchangeId exchangeId);
+		SimpleIrSwapBuilder setClearanceSystem(ClearanceSystem clearanceSystem);
+		SimpleIrSwapBuilder setDefinition(ProductReference definition);
+		SimpleIrSwapBuilder setTerm(Period term);
+		SimpleIrSwapBuilder setPaymentFrequency(Period paymentFrequency);
+		SimpleIrSwapBuilder setDayCountFraction(DayCountFraction dayCountFraction);
 
 		@Override
 		default void process(RosettaPath path, BuilderProcessor processor) {
@@ -127,16 +113,16 @@ public interface SimpleIRSwap extends UnderlyingAssetType {
 		}
 		
 
-		SimpleIRSwap.SimpleIRSwapBuilder prune();
+		SimpleIrSwapBuilder prune();
 	}
 
 	/*********************** Immutable Implementation of SimpleIRSwap  ***********************/
-	class SimpleIRSwapImpl extends UnderlyingAssetType.UnderlyingAssetTypeImpl implements SimpleIRSwap {
+	class SimpleIrSwapImpl extends UnderlyingAssetType.UnderlyingAssetTypeImpl implements SimpleIrSwap {
 		private final Period term;
 		private final Period paymentFrequency;
 		private final DayCountFraction dayCountFraction;
 		
-		protected SimpleIRSwapImpl(SimpleIRSwap.SimpleIRSwapBuilder builder) {
+		protected SimpleIrSwapImpl(SimpleIrSwapBuilder builder) {
 			super(builder);
 			this.term = ofNullable(builder.getTerm()).map(f->f.build()).orElse(null);
 			this.paymentFrequency = ofNullable(builder.getPaymentFrequency()).map(f->f.build()).orElse(null);
@@ -162,18 +148,18 @@ public interface SimpleIRSwap extends UnderlyingAssetType {
 		}
 		
 		@Override
-		public SimpleIRSwap build() {
+		public SimpleIrSwap build() {
 			return this;
 		}
 		
 		@Override
-		public SimpleIRSwap.SimpleIRSwapBuilder toBuilder() {
-			SimpleIRSwap.SimpleIRSwapBuilder builder = builder();
+		public SimpleIrSwapBuilder toBuilder() {
+			SimpleIrSwapBuilder builder = builder();
 			setBuilderFields(builder);
 			return builder;
 		}
 		
-		protected void setBuilderFields(SimpleIRSwap.SimpleIRSwapBuilder builder) {
+		protected void setBuilderFields(SimpleIrSwapBuilder builder) {
 			super.setBuilderFields(builder);
 			ofNullable(getTerm()).ifPresent(builder::setTerm);
 			ofNullable(getPaymentFrequency()).ifPresent(builder::setPaymentFrequency);
@@ -186,7 +172,7 @@ public interface SimpleIRSwap extends UnderlyingAssetType {
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;
 		
-			SimpleIRSwap _that = getType().cast(o);
+			SimpleIrSwap _that = getType().cast(o);
 		
 			if (!Objects.equals(term, _that.getTerm())) return false;
 			if (!Objects.equals(paymentFrequency, _that.getPaymentFrequency())) return false;
@@ -214,13 +200,13 @@ public interface SimpleIRSwap extends UnderlyingAssetType {
 	}
 
 	/*********************** Builder Implementation of SimpleIRSwap  ***********************/
-	class SimpleIRSwapBuilderImpl extends UnderlyingAssetType.UnderlyingAssetTypeBuilderImpl  implements SimpleIRSwap.SimpleIRSwapBuilder {
+	class SimpleIrSwapBuilderImpl extends UnderlyingAssetType.UnderlyingAssetTypeBuilderImpl  implements SimpleIrSwapBuilder {
 	
 		protected Period.PeriodBuilder term;
 		protected Period.PeriodBuilder paymentFrequency;
 		protected DayCountFraction.DayCountFractionBuilder dayCountFraction;
 	
-		public SimpleIRSwapBuilderImpl() {
+		public SimpleIrSwapBuilderImpl() {
 		}
 	
 		@Override
@@ -282,23 +268,23 @@ public interface SimpleIRSwap extends UnderlyingAssetType {
 		
 		@Override
 		@RosettaAttribute("id")
-		public SimpleIRSwap.SimpleIRSwapBuilder setId(String id) {
+		public SimpleIrSwapBuilder setId(String id) {
 			this.id = id==null?null:id;
 			return this;
 		}
 		@Override
-		public SimpleIRSwap.SimpleIRSwapBuilder addInstrumentId(InstrumentId instrumentId) {
+		public SimpleIrSwapBuilder addInstrumentId(InstrumentId instrumentId) {
 			if (instrumentId!=null) this.instrumentId.add(instrumentId.toBuilder());
 			return this;
 		}
 		
 		@Override
-		public SimpleIRSwap.SimpleIRSwapBuilder addInstrumentId(InstrumentId instrumentId, int _idx) {
+		public SimpleIrSwapBuilder addInstrumentId(InstrumentId instrumentId, int _idx) {
 			getIndex(this.instrumentId, _idx, () -> instrumentId.toBuilder());
 			return this;
 		}
 		@Override 
-		public SimpleIRSwap.SimpleIRSwapBuilder addInstrumentId(List<? extends InstrumentId> instrumentIds) {
+		public SimpleIrSwapBuilder addInstrumentId(List<? extends InstrumentId> instrumentIds) {
 			if (instrumentIds != null) {
 				for (InstrumentId toAdd : instrumentIds) {
 					this.instrumentId.add(toAdd.toBuilder());
@@ -309,7 +295,7 @@ public interface SimpleIRSwap extends UnderlyingAssetType {
 		
 		@Override 
 		@RosettaAttribute("instrumentId")
-		public SimpleIRSwap.SimpleIRSwapBuilder setInstrumentId(List<? extends InstrumentId> instrumentIds) {
+		public SimpleIrSwapBuilder setInstrumentId(List<? extends InstrumentId> instrumentIds) {
 			if (instrumentIds == null)  {
 				this.instrumentId = new ArrayList<>();
 			}
@@ -323,66 +309,66 @@ public interface SimpleIRSwap extends UnderlyingAssetType {
 		
 		@Override
 		@RosettaAttribute("description")
-		public SimpleIRSwap.SimpleIRSwapBuilder setDescription(String description) {
+		public SimpleIrSwapBuilder setDescription(String description) {
 			this.description = description==null?null:description;
 			return this;
 		}
 		@Override
 		@RosettaAttribute("currency")
-		public SimpleIRSwap.SimpleIRSwapBuilder setCurrency(IdentifiedCurrency currency) {
+		public SimpleIrSwapBuilder setCurrency(IdentifiedCurrency currency) {
 			this.currency = currency==null?null:currency.toBuilder();
 			return this;
 		}
 		@Override
 		@RosettaAttribute("exchangeId")
-		public SimpleIRSwap.SimpleIRSwapBuilder setExchangeId(ExchangeId exchangeId) {
+		public SimpleIrSwapBuilder setExchangeId(ExchangeId exchangeId) {
 			this.exchangeId = exchangeId==null?null:exchangeId.toBuilder();
 			return this;
 		}
 		@Override
 		@RosettaAttribute("clearanceSystem")
-		public SimpleIRSwap.SimpleIRSwapBuilder setClearanceSystem(ClearanceSystem clearanceSystem) {
+		public SimpleIrSwapBuilder setClearanceSystem(ClearanceSystem clearanceSystem) {
 			this.clearanceSystem = clearanceSystem==null?null:clearanceSystem.toBuilder();
 			return this;
 		}
 		@Override
 		@RosettaAttribute("definition")
-		public SimpleIRSwap.SimpleIRSwapBuilder setDefinition(ProductReference definition) {
+		public SimpleIrSwapBuilder setDefinition(ProductReference definition) {
 			this.definition = definition==null?null:definition.toBuilder();
 			return this;
 		}
 		@Override
 		@RosettaAttribute("term")
-		public SimpleIRSwap.SimpleIRSwapBuilder setTerm(Period term) {
+		public SimpleIrSwapBuilder setTerm(Period term) {
 			this.term = term==null?null:term.toBuilder();
 			return this;
 		}
 		@Override
 		@RosettaAttribute("paymentFrequency")
-		public SimpleIRSwap.SimpleIRSwapBuilder setPaymentFrequency(Period paymentFrequency) {
+		public SimpleIrSwapBuilder setPaymentFrequency(Period paymentFrequency) {
 			this.paymentFrequency = paymentFrequency==null?null:paymentFrequency.toBuilder();
 			return this;
 		}
 		@Override
 		@RosettaAttribute("dayCountFraction")
-		public SimpleIRSwap.SimpleIRSwapBuilder setDayCountFraction(DayCountFraction dayCountFraction) {
+		public SimpleIrSwapBuilder setDayCountFraction(DayCountFraction dayCountFraction) {
 			this.dayCountFraction = dayCountFraction==null?null:dayCountFraction.toBuilder();
 			return this;
 		}
 		
 		@Override
-		public SimpleIRSwap build() {
-			return new SimpleIRSwap.SimpleIRSwapImpl(this);
+		public SimpleIrSwap build() {
+			return new SimpleIrSwapImpl(this);
 		}
 		
 		@Override
-		public SimpleIRSwap.SimpleIRSwapBuilder toBuilder() {
+		public SimpleIrSwapBuilder toBuilder() {
 			return this;
 		}
 	
 		@SuppressWarnings("unchecked")
 		@Override
-		public SimpleIRSwap.SimpleIRSwapBuilder prune() {
+		public SimpleIrSwapBuilder prune() {
 			super.prune();
 			if (term!=null && !term.prune().hasData()) term = null;
 			if (paymentFrequency!=null && !paymentFrequency.prune().hasData()) paymentFrequency = null;
@@ -401,10 +387,10 @@ public interface SimpleIRSwap extends UnderlyingAssetType {
 	
 		@SuppressWarnings("unchecked")
 		@Override
-		public SimpleIRSwap.SimpleIRSwapBuilder merge(RosettaModelObjectBuilder other, BuilderMerger merger) {
+		public SimpleIrSwapBuilder merge(RosettaModelObjectBuilder other, BuilderMerger merger) {
 			super.merge(other, merger);
 			
-			SimpleIRSwap.SimpleIRSwapBuilder o = (SimpleIRSwap.SimpleIRSwapBuilder) other;
+			SimpleIrSwapBuilder o = (SimpleIrSwapBuilder) other;
 			
 			merger.mergeRosetta(getTerm(), o.getTerm(), this::setTerm);
 			merger.mergeRosetta(getPaymentFrequency(), o.getPaymentFrequency(), this::setPaymentFrequency);
@@ -419,7 +405,7 @@ public interface SimpleIRSwap extends UnderlyingAssetType {
 			if (o == null || !(o instanceof RosettaModelObject) || !getType().equals(((RosettaModelObject)o).getType())) return false;
 			if (!super.equals(o)) return false;
 		
-			SimpleIRSwap _that = getType().cast(o);
+			SimpleIrSwap _that = getType().cast(o);
 		
 			if (!Objects.equals(term, _that.getTerm())) return false;
 			if (!Objects.equals(paymentFrequency, _that.getPaymentFrequency())) return false;

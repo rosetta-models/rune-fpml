@@ -27,7 +27,7 @@ public class ReferenceTypeOnlyExistsValidator implements ValidatorWithArg<Refere
 				.put("digestValue", ExistenceChecker.isSet((String) o.getDigestValue()))
 				.put("id", ExistenceChecker.isSet((String) o.getId()))
 				.put("uri", ExistenceChecker.isSet((String) o.getUri()))
-				.put("type", ExistenceChecker.isSet((String) o.getType()))
+				.put("type", ExistenceChecker.isSet((String) o.getType_()))
 				.build();
 		
 		// Find the fields that are set

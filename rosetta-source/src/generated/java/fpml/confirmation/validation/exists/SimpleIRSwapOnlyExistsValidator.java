@@ -13,7 +13,7 @@ import fpml.confirmation.IdentifiedCurrency;
 import fpml.confirmation.InstrumentId;
 import fpml.confirmation.Period;
 import fpml.confirmation.ProductReference;
-import fpml.confirmation.SimpleIRSwap;
+import fpml.confirmation.SimpleIrSwap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -22,11 +22,11 @@ import java.util.stream.Collectors;
 import static com.rosetta.model.lib.validation.ValidationResult.failure;
 import static com.rosetta.model.lib.validation.ValidationResult.success;
 
-public class SimpleIRSwapOnlyExistsValidator implements ValidatorWithArg<SimpleIRSwap, Set<String>> {
+public class SimpleIrSwapOnlyExistsValidator implements ValidatorWithArg<SimpleIrSwap, Set<String>> {
 
 	/* Casting is required to ensure types are output to ensure recompilation in Rosetta */
 	@Override
-	public <T2 extends SimpleIRSwap> ValidationResult<SimpleIRSwap> validate(RosettaPath path, T2 o, Set<String> fields) {
+	public <T2 extends SimpleIrSwap> ValidationResult<SimpleIrSwap> validate(RosettaPath path, T2 o, Set<String> fields) {
 		Map<String, Boolean> fieldExistenceMap = ImmutableMap.<String, Boolean>builder()
 				.put("id", ExistenceChecker.isSet((String) o.getId()))
 				.put("instrumentId", ExistenceChecker.isSet((List<? extends InstrumentId>) o.getInstrumentId()))

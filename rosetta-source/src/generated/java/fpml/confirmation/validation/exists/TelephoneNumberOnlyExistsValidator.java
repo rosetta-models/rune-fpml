@@ -21,7 +21,7 @@ public class TelephoneNumberOnlyExistsValidator implements ValidatorWithArg<Tele
 	@Override
 	public <T2 extends TelephoneNumber> ValidationResult<TelephoneNumber> validate(RosettaPath path, T2 o, Set<String> fields) {
 		Map<String, Boolean> fieldExistenceMap = ImmutableMap.<String, Boolean>builder()
-				.put("type", ExistenceChecker.isSet((TelephoneTypeEnum) o.getType()))
+				.put("type", ExistenceChecker.isSet((TelephoneTypeEnum) o.getType_()))
 				.put("number", ExistenceChecker.isSet((String) o.getNumber()))
 				.build();
 		

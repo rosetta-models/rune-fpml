@@ -23,7 +23,7 @@ public class CreditSupportAgreementOnlyExistsValidator implements ValidatorWithA
 	@Override
 	public <T2 extends CreditSupportAgreement> ValidationResult<CreditSupportAgreement> validate(RosettaPath path, T2 o, Set<String> fields) {
 		Map<String, Boolean> fieldExistenceMap = ImmutableMap.<String, Boolean>builder()
-				.put("type", ExistenceChecker.isSet((CreditSupportAgreementType) o.getType()))
+				.put("type", ExistenceChecker.isSet((CreditSupportAgreementType) o.getType_()))
 				.put("date", ExistenceChecker.isSet((Date) o.getDate()))
 				.put("identifier", ExistenceChecker.isSet((CreditSupportAgreementIdentifier) o.getIdentifier()))
 				.build();

@@ -36,7 +36,7 @@ public class RequestConsentRetractedOnlyExistsValidator implements ValidatorWith
 				.put("validationModel", ExistenceChecker.isSet((ValidationModel) o.getValidationModel()))
 				.put("correlationAndSequenceModel", ExistenceChecker.isSet((CorrelationAndSequenceModel) o.getCorrelationAndSequenceModel()))
 				.put("onBehalfOfModel", ExistenceChecker.isSet((OnBehalfOfModel) o.getOnBehalfOfModel()))
-				.put("type", ExistenceChecker.isSet((ApprovalType) o.getType()))
+				.put("type", ExistenceChecker.isSet((ApprovalType) o.getType_()))
 				.put("approver", ExistenceChecker.isSet((PersonId) o.getApprover()))
 				.put("approvingPartyReference", ExistenceChecker.isSet((PartyReference) o.getApprovingPartyReference()))
 				.put("tradingAndPostTradeEventsModel", ExistenceChecker.isSet((TradingAndPostTradeEventsModel) o.getTradingAndPostTradeEventsModel()))

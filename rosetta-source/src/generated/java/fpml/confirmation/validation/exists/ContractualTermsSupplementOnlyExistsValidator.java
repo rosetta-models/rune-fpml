@@ -22,7 +22,7 @@ public class ContractualTermsSupplementOnlyExistsValidator implements ValidatorW
 	@Override
 	public <T2 extends ContractualTermsSupplement> ValidationResult<ContractualTermsSupplement> validate(RosettaPath path, T2 o, Set<String> fields) {
 		Map<String, Boolean> fieldExistenceMap = ImmutableMap.<String, Boolean>builder()
-				.put("type", ExistenceChecker.isSet((ContractualSupplement) o.getType()))
+				.put("type", ExistenceChecker.isSet((ContractualSupplement) o.getType_()))
 				.put("publicationDate", ExistenceChecker.isSet((Date) o.getPublicationDate()))
 				.build();
 		

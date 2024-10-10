@@ -42,7 +42,7 @@ public class RequestConsentOnlyExistsValidator implements ValidatorWithArg<Reque
 				.put("correlationAndSequenceModel", ExistenceChecker.isSet((CorrelationAndSequenceModel) o.getCorrelationAndSequenceModel()))
 				.put("onBehalfOfModel", ExistenceChecker.isSet((OnBehalfOfModel) o.getOnBehalfOfModel()))
 				.put("requestedAction", ExistenceChecker.isSet((RequestedAction) o.getRequestedAction()))
-				.put("type", ExistenceChecker.isSet((ApprovalType) o.getType()))
+				.put("type", ExistenceChecker.isSet((ApprovalType) o.getType_()))
 				.put("approver", ExistenceChecker.isSet((PersonId) o.getApprover()))
 				.put("approvingPartyReference", ExistenceChecker.isSet((PartyReference) o.getApprovingPartyReference()))
 				.put("portfolioReferenceModel", ExistenceChecker.isSet((PortfolioReferenceModel) o.getPortfolioReferenceModel()))

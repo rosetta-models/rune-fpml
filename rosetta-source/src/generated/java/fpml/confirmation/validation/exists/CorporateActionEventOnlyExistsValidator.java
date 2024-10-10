@@ -24,7 +24,7 @@ public class CorporateActionEventOnlyExistsValidator implements ValidatorWithArg
 	public <T2 extends CorporateActionEvent> ValidationResult<CorporateActionEvent> validate(RosettaPath path, T2 o, Set<String> fields) {
 		Map<String, Boolean> fieldExistenceMap = ImmutableMap.<String, Boolean>builder()
 				.put("eventIdentifier", ExistenceChecker.isSet((List<? extends BusinessEventIdentifier>) o.getEventIdentifier()))
-				.put("type", ExistenceChecker.isSet((CorporateActionType) o.getType()))
+				.put("type", ExistenceChecker.isSet((CorporateActionType) o.getType_()))
 				.build();
 		
 		// Find the fields that are set

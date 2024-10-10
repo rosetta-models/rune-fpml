@@ -22,7 +22,7 @@ public class OilProductOnlyExistsValidator implements ValidatorWithArg<OilProduc
 	@Override
 	public <T2 extends OilProduct> ValidationResult<OilProduct> validate(RosettaPath path, T2 o, Set<String> fields) {
 		Map<String, Boolean> fieldExistenceMap = ImmutableMap.<String, Boolean>builder()
-				.put("type", ExistenceChecker.isSet((OilProductType) o.getType()))
+				.put("type", ExistenceChecker.isSet((OilProductType) o.getType_()))
 				.put("grade", ExistenceChecker.isSet((CommodityProductGrade) o.getGrade()))
 				.build();
 		

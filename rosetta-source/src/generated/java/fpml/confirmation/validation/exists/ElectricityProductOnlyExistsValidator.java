@@ -22,7 +22,7 @@ public class ElectricityProductOnlyExistsValidator implements ValidatorWithArg<E
 	@Override
 	public <T2 extends ElectricityProduct> ValidationResult<ElectricityProduct> validate(RosettaPath path, T2 o, Set<String> fields) {
 		Map<String, Boolean> fieldExistenceMap = ImmutableMap.<String, Boolean>builder()
-				.put("type", ExistenceChecker.isSet((ElectricityProductTypeEnum) o.getType()))
+				.put("type", ExistenceChecker.isSet((ElectricityProductTypeEnum) o.getType_()))
 				.put("voltage", ExistenceChecker.isSet((BigDecimal) o.getVoltage()))
 				.build();
 		

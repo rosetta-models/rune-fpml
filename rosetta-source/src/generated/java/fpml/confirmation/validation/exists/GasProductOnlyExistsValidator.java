@@ -23,7 +23,7 @@ public class GasProductOnlyExistsValidator implements ValidatorWithArg<GasProduc
 	@Override
 	public <T2 extends GasProduct> ValidationResult<GasProduct> validate(RosettaPath path, T2 o, Set<String> fields) {
 		Map<String, Boolean> fieldExistenceMap = ImmutableMap.<String, Boolean>builder()
-				.put("type", ExistenceChecker.isSet((GasProductTypeEnum) o.getType()))
+				.put("type", ExistenceChecker.isSet((GasProductTypeEnum) o.getType_()))
 				.put("calorificValue", ExistenceChecker.isSet((BigDecimal) o.getCalorificValue()))
 				.put("quality", ExistenceChecker.isSet((GasQuality) o.getQuality()))
 				.build();

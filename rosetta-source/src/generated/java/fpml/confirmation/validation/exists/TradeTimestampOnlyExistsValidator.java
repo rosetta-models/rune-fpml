@@ -22,7 +22,7 @@ public class TradeTimestampOnlyExistsValidator implements ValidatorWithArg<Trade
 	@Override
 	public <T2 extends TradeTimestamp> ValidationResult<TradeTimestamp> validate(RosettaPath path, T2 o, Set<String> fields) {
 		Map<String, Boolean> fieldExistenceMap = ImmutableMap.<String, Boolean>builder()
-				.put("type", ExistenceChecker.isSet((TimestampTypeScheme) o.getType()))
+				.put("type", ExistenceChecker.isSet((TimestampTypeScheme) o.getType_()))
 				.put("value", ExistenceChecker.isSet((ZonedDateTime) o.getValue()))
 				.build();
 		
