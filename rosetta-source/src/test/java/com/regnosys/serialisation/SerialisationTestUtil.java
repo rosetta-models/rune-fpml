@@ -1,14 +1,8 @@
-package fpml.serialisation;
+package com.regnosys.serialisation;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.google.common.io.Resources;
-import com.regnosys.rosetta.common.serialisation.RosettaObjectMapperCreator;
-import com.regnosys.rosetta.common.util.ClassPathUtils;
-import com.regnosys.rosetta.common.util.PathUtils;
-import com.regnosys.rosetta.common.util.UrlUtils;
-import org.jetbrains.annotations.NotNull;
-import org.junit.jupiter.params.provider.Arguments;
 import org.xml.sax.SAXException;
 
 import javax.xml.XMLConstants;
@@ -19,40 +13,41 @@ import javax.xml.validation.Validator;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.UncheckedIOException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Stream;
 
-import static org.hamcrest.MatcherAssert.assertThat;
+import static com.regnosys.TestUtil.getXmlMapper;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.xmlunit.matchers.CompareMatcher.isSimilarTo;
 
 public class SerialisationTestUtil<T> {
-    
+
     private final Class<T> rootType;
     private final Validator xsdValidator;
     private final ObjectMapper xmlMapper;
     private final ObjectWriter xmlWriter;
 
-    public SerialisationTestUtil(Class<T> rootType, String xsdSchemaPath, String xmlConfigPath, String expectedSchemaLocationAttribute) throws IOException, SAXException {
+    public SerialisationTestUtil(Class<T> rootType, String xsdSchemaPath, String xmlConfigPath, String expectedSchemaLocationAttribute) {
         this.rootType = rootType;
-        URL schemaFile = Resources.getResource(xsdSchemaPath);
-        SchemaFactory schemaFactory = SchemaFactory
-                .newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-        schemaFactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, false);
-        Schema schema = schemaFactory.newSchema(schemaFile);
-        this.xsdValidator = schema.newValidator();
-        this.xmlMapper = RosettaObjectMapperCreator.forXML(
-                Resources.getResource(xmlConfigPath).openStream()).create();
+        this.xsdValidator = getXmlValidator(xsdSchemaPath);
+        this.xmlMapper = getXmlMapper(xmlConfigPath);
         this.xmlWriter = xmlMapper
                 .writerWithDefaultPrettyPrinter()
                 .withAttribute("schemaLocation", expectedSchemaLocationAttribute);
+    }
+
+    private static Validator getXmlValidator(String xsdSchemaPath) {
+        URL schemaFile = Resources.getResource(xsdSchemaPath);
+        SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+        try {
+            schemaFactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, false);
+            Schema schema = schemaFactory.newSchema(schemaFile);
+            return schema.newValidator();
+        } catch (SAXException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void assertXmlRoundTrip(Path samplePath) throws IOException {
@@ -65,12 +60,12 @@ public class SerialisationTestUtil<T> {
 
         // Check serialised document is similar to the original XML
         String actualXml = xmlWriter.writeValueAsString(document);
-        
+
         Path expectedSamplePath = getExpectedSamplePath(samplePath);
         String expectedXml = Files.readString(expectedSamplePath);
-        
+
         assertEquals(expectedXml, actualXml);
-        
+
 //        assertThat(
 //                actualXml, isSimilarTo(expectedXml)
 //                        .ignoreWhitespace()
@@ -82,10 +77,6 @@ public class SerialisationTestUtil<T> {
 
         // Check deserialisation results again in the same Document
 //        assertEquals(document, xmlMapper.readValue(actualXml, rootType));
-    }
-
-    private Path getExpectedSamplePath(Path samplePath) {
-        return Path.of(samplePath.toString().replace("class/sample-files", "test-classes/expected-sample-files"));
     }
 
     private Boolean isValidAgainstSchema(String xml) {
@@ -102,14 +93,9 @@ public class SerialisationTestUtil<T> {
             throw new UncheckedIOException(e);
         }
     }
-    
-    public static Stream<Arguments> getSampleFiles(String sampleFileDirectory) throws IOException {
-        return ClassPathUtils
-                .findPathsFromClassPath(List.of(sampleFileDirectory), ".*\\.xml", Optional
-                        .empty(), SerialisationTestUtil.class.getClassLoader())
-                .stream()
-                .map(UrlUtils::toUrl)
-                .map(UrlUtils::toPath)
-                .map(path -> Arguments.of(path.getFileName().toString(), path));
+
+    public static Path getExpectedSamplePath(Path samplePath) {
+        return Path.of(samplePath.toString()
+                .replace("classes/sample-files", "test-classes/expected-sample-files"));
     }
 }
