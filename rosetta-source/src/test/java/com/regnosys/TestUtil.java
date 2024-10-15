@@ -16,7 +16,7 @@ import java.util.stream.Stream;
 
 public class TestUtil {
 
-    public static final String XML_CONFIG_NAME = "xml-config/xml-config.json";
+    public static final String XML_CONFIG_NAME = "xml-config/confirmation-v5_10-rosetta-xml-config.json";
     public static final String SAMPLE_FILE_DIRECTORY = "sample-files/fpml-5-10/products/";
     
     public static Stream<Arguments> getSampleFiles(String sampleFileDirectory) {
