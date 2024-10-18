@@ -19,16 +19,21 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 public class TestUtil {
-    
+
     public static final String XML_CONFIG_NAME = "xml-config/confirmation-v5_10-rosetta-xml-config.json";
-    public static final String SAMPLE_FILES_PATH = "sample-files";
-    public static final String EXPECTED_SAMPLE_FILES_PATH = "expected-sample-files";
+    
+    public static final String INPUT_ROOT_PATH = "sample-files";
+    public static final String EXPECTED_INPUT_ROOT_PATH = "expected-sample-files";
+    public static final String EXPECTED_OUTPUT_ROOT_PATH = "expected-output-files";
+    public static final String TARGET_OUTPUT_ROOT_PATH = "target-output-files";
+
+    public static final String FPML_5_10_PRODUCTS = "/fpml-5-10/products";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TestUtil.class);
     private static final boolean WRITE_EXPECTATIONS =
             Optional.ofNullable(System.getenv("WRITE_EXPECTATIONS"))
                     .map(Boolean::parseBoolean).orElse(false);
-    
+
     public static Stream<Arguments> getXmlSampleFiles(String sampleFileDirectory) {
         Path start = UrlUtils.toPath(TestUtil.class.getResource("/" + sampleFileDirectory));
         PathMatcher xmlFileMatcher = FileSystems.getDefault().getPathMatcher("glob:*.xml");
@@ -48,12 +53,29 @@ public class TestUtil {
     public static Path getExpectedXmlSamplePath(Path samplePath) {
         String samplePathStr = samplePath.toString();
         return Path.of("src/test/resources/" + samplePathStr
-                .substring(samplePathStr.indexOf(SAMPLE_FILES_PATH))
-                .replace(SAMPLE_FILES_PATH, EXPECTED_SAMPLE_FILES_PATH))
+                        .substring(samplePathStr.indexOf(INPUT_ROOT_PATH))
+                        .replace(INPUT_ROOT_PATH, EXPECTED_INPUT_ROOT_PATH))
                 .toAbsolutePath();
     }
 
+    public static Path getExpectedOutputPath(Path samplePath) {
+        String samplePathStr = samplePath.toString();
+        return Path.of("src/test/resources/" + samplePathStr
+                        .substring(samplePathStr.indexOf(INPUT_ROOT_PATH))
+                        .replace(INPUT_ROOT_PATH, EXPECTED_OUTPUT_ROOT_PATH)
+                        .replace(".xml", ".json"))
+                .toAbsolutePath();
+    }
 
+    public static Path getTargetOutputPath(Path samplePath) {
+        String samplePathStr = samplePath.toString();
+        return Path.of("src/test/resources/" + samplePathStr
+                        .substring(samplePathStr.indexOf(INPUT_ROOT_PATH))
+                        .replace(INPUT_ROOT_PATH, TARGET_OUTPUT_ROOT_PATH)
+                        .replace(".xml", ".json"))
+                .toAbsolutePath();
+    }
+    
     public static void assertEquals(String expected, String actual, Path filePath) {
         if (!expected.equals(actual)) {
             if (WRITE_EXPECTATIONS) {
@@ -74,7 +96,7 @@ public class TestUtil {
             }
         }
     }
-    
+
     public static ObjectMapper getXmlMapper(String xmlConfigPath) {
         try {
             return RosettaObjectMapperCreator.forXML(

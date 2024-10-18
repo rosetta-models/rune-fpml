@@ -8,12 +8,13 @@ import com.regnosys.ingest.IngestionService;
 import com.regnosys.rosetta.common.serialisation.RosettaObjectMapper;
 import com.regnosys.rosetta.common.util.Report;
 import fpml.confirmation.DataDocument;
+import org.junit.jupiter.api.Assertions;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static com.regnosys.TestUtil.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class IngestTestUtil<T> {
@@ -35,23 +36,22 @@ public class IngestTestUtil<T> {
     public void assertIngest(Path samplePath) throws IOException {
         String inputXml = Files.readString(samplePath);
 
-        DataDocument dataDocument = null; // (DataDocument) xmlMapper.readValue(inputXml, rootType);
+        // hardcode to DataDocument for now
+        DataDocument dataDocument = (DataDocument) xmlMapper.readValue(inputXml, rootType);
 
         Report<TradeState> ingestReport = ingestionService.ingestAndPostProcess(dataDocument);
-
         assertNotNull(ingestReport);
 
         String actualJson = jsonWriter.writeValueAsString(ingestReport.getRosettaModelInstance());
 
+        // compare against expected output
         Path expectedOutputPath = getExpectedOutputPath(samplePath);
         String expectedJson = Files.readString(expectedOutputPath);
+        assertEquals(expectedJson, actualJson, expectedOutputPath);
 
-        assertEquals(expectedJson, actualJson);
-    }
-
-    public static Path getExpectedOutputPath(Path samplePath) {
-        return Path.of(samplePath.toString()
-                .replace("classes/sample-files", "test-classes/expected-output-files")
-                .replace(".xml", ".json"));
+        // compare against target output
+        Path targetOutputPath = getTargetOutputPath(samplePath);
+        String targetJson = Files.readString(targetOutputPath);
+        Assertions.assertEquals(targetJson, actualJson);
     }
 }

@@ -1,8 +1,10 @@
 package com.regnosys.serialisation;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.google.common.io.Resources;
+import org.junit.jupiter.api.Assertions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
@@ -21,8 +23,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 import static com.regnosys.TestUtil.*;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.xmlunit.matchers.CompareMatcher.isSimilarTo;
 
 public class SerialisationTestUtil<T> {
 
@@ -73,14 +76,23 @@ public class SerialisationTestUtil<T> {
 //        assertTrue(isValidAgainstSchema(actualXml));
 
         // Check serialised document is similar to the original XML
-//        assertThat(
-//                actualXml, isSimilarTo(inputXml)
-//                        .ignoreWhitespace()
-//                        .ignoreComments()
-//        );
+//        assertAgainstInputXml(actualXml, inputXml, document);
 
         // Check deserialisation results again in the same Document
-//        assertEquals(document, xmlMapper.readValue(actualXml, rootType));
+//        assertAgainstInputObject(actualXml, document);
+    }
+
+    private void assertAgainstInputObject(String actualXml, T inputDocument) throws JsonProcessingException {
+        T actualDocument = xmlMapper.readValue(actualXml, rootType);
+        
+        Assertions.assertEquals(inputDocument, actualDocument);
+    }
+
+    private void assertAgainstInputXml(String actualXml, String inputXml) {
+        assertThat(
+                actualXml, isSimilarTo(inputXml)
+                        .ignoreWhitespace()
+                        .ignoreComments());
     }
 
     private Boolean isValidAgainstSchema(String xml) {

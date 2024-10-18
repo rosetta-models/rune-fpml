@@ -15,9 +15,8 @@ import java.util.stream.Stream;
 
 import static com.regnosys.TestUtil.*;
 
-class Fpml510ProductIngestionServiceTest {
+class FpmlConfirmation510ProductIngestionTest {
 
-    private static IngestionService ingestionService;
     private static IngestTestUtil test;
 
     @BeforeAll
@@ -27,14 +26,14 @@ class Fpml510ProductIngestionServiceTest {
         test = new IngestTestUtil(DataDocument.class, XML_CONFIG_NAME, ingestionService);
     }
 
-    @ParameterizedTest(name = "{0}")
-    @MethodSource("fpMLFiles")
-    protected void ingest(String name, Path samplePath) throws IOException {
-        test.assertIngest(samplePath);
+    @SuppressWarnings("unused") //used by the junit parameterized test
+    private static Stream<Arguments> xmlSampleFiles() {
+        return getXmlSampleFiles(INPUT_ROOT_PATH + FPML_5_10_PRODUCTS);
     }
 
-    @SuppressWarnings("unused")//used by the junit parameterized test
-    private static Stream<Arguments> fpMLFiles() {
-        return getXmlSampleFiles(SAMPLE_FILES_PATH + "/fpml-5-10/products");
+    @ParameterizedTest(name = "{0}")
+    @MethodSource("xmlSampleFiles")
+    protected void ingest(String name, Path samplePath) throws IOException {
+        test.assertIngest(samplePath);
     }
 }
