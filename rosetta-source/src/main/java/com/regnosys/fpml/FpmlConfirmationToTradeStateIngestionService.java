@@ -1,6 +1,8 @@
 package com.regnosys.fpml;
 
 import cdm.base.staticdata.party.Party;
+import cdm.base.staticdata.party.PartyIdentifier;
+import cdm.base.staticdata.party.PartyIdentifierTypeEnum;
 import cdm.event.common.Trade;
 import cdm.event.common.TradeState;
 import com.google.inject.Module;
@@ -24,16 +26,16 @@ public class FpmlConfirmationToTradeStateIngestionService implements IngestionSe
     }
 
     @Override
-    public <T extends RosettaModelObject> Report<T> ingestAndPostProcess(DataDocument dataDocument) {
-        return getTradeState(dataDocument)
+    public <T extends RosettaModelObject> Report<T> ingestAndPostProcess(DataDocument fpmlDataDocument) {
+        return getTradeState(fpmlDataDocument)
                 .map(TradeState.TradeStateBuilder::prune)
                 .map(TradeState.TradeStateBuilder::build)
                 .map(tradeState -> new Report(tradeState))
                 .orElse(null);
     }
 
-    public Optional<TradeState.TradeStateBuilder> getTradeState(DataDocument dataDocument) {
-        return Optional.ofNullable(dataDocument)
+    public Optional<TradeState.TradeStateBuilder> getTradeState(DataDocument fpmlDataDocument) {
+        return Optional.ofNullable(fpmlDataDocument)
                 .map(d -> {
                     TradeState.TradeStateBuilder tradeStateBuilder = TradeState.builder();
                     getTrade(d).ifPresent(tradeStateBuilder::setTrade);
@@ -69,10 +71,11 @@ public class FpmlConfirmationToTradeStateIngestionService implements IngestionSe
                 .map(PartiesAndAccountsModel::getParty)
                 .orElse(Collections.emptyList())
                 .stream()
-                .map(p -> {
+                .map(fpml.confirmation.Party::getPartyModel)
+                .map(pm -> {
                     Party.PartyBuilder partyBuilder = Party.builder();
-                    PartyName fpmlPartyName = Optional.ofNullable(p.getPartyModel()).map(PartyModel::getPartyName).orElse(null);
-                    getFieldWithMetaString(fpmlPartyName).ifPresent(partyBuilder::setName);
+                    getFieldWithMetaString(pm.getPartyName()).ifPresent(partyBuilder::setName);
+                    partyBuilder.setPartyId(getPartyIds(pm.getPartyId()));
                     return partyBuilder;
                 })
                 .toList();
@@ -85,6 +88,44 @@ public class FpmlConfirmationToTradeStateIngestionService implements IngestionSe
                     Optional.ofNullable(pn.getValue()).ifPresent(fieldWithMetaStringBuilder::setValue);
                     Optional.ofNullable(pn.getPartyNameScheme()).ifPresent(fieldWithMetaStringBuilder.getOrCreateMeta()::setScheme);
                     return fieldWithMetaStringBuilder;
+                });
+    }
+
+    public List<PartyIdentifier.PartyIdentifierBuilder> getPartyIds(List<? extends PartyId> fpmlPartyIds) {
+        return Optional.ofNullable(fpmlPartyIds)
+                .orElse(Collections.emptyList())
+                .stream()
+                .map(pi -> {
+                    PartyIdentifier.PartyIdentifierBuilder partyIdentifierBuilder = PartyIdentifier.builder();
+                    getFieldWithMetaString(pi).ifPresent(partyIdentifierBuilder::setIdentifier);
+                    getIdentifierType(pi.getPartyIdScheme()).ifPresent(partyIdentifierBuilder::setIdentifierType);
+                    return partyIdentifierBuilder;
+                })
+                .toList();
+    }
+
+    public Optional<FieldWithMetaString.FieldWithMetaStringBuilder> getFieldWithMetaString(PartyId fpmlPartyId) {
+        return Optional.ofNullable(fpmlPartyId)
+                .map(pi -> {
+                    FieldWithMetaString.FieldWithMetaStringBuilder fieldWithMetaStringBuilder = FieldWithMetaString.builder();
+                    Optional.ofNullable(pi.getValue()).ifPresent(fieldWithMetaStringBuilder::setValue);
+                    Optional.ofNullable(pi.getPartyIdScheme()).ifPresent(fieldWithMetaStringBuilder.getOrCreateMeta()::setScheme);
+                    return fieldWithMetaStringBuilder;
+                });
+    }
+
+    public Optional<PartyIdentifierTypeEnum> getIdentifierType(String fpmlPartyIdScheme) {
+        return Optional.ofNullable(fpmlPartyIdScheme)
+                .map(pid -> {
+                    if (pid.contains("http://www.fpml.org/coding-scheme/external/iso9362")) {
+                        return PartyIdentifierTypeEnum.BIC;
+                    } else if (pid.contains("http://www.fpml.org/coding-scheme/external/iso17442")) {
+                        return PartyIdentifierTypeEnum.LEI;
+                    } else if (pid.contains("http://www.fpml.org/coding-scheme/external/iso10383")) {
+                        return PartyIdentifierTypeEnum.MIC;
+                    } else {
+                        return null;
+                    }
                 });
     }
 }
