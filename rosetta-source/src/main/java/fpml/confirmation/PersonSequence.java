@@ -291,6 +291,7 @@ public interface PersonSequence extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("middleName")
 		public PersonSequence.PersonSequenceBuilder addMiddleName(String middleName) {
 			if (middleName!=null) this.middleName.add(middleName);
 			return this;
@@ -312,7 +313,6 @@ public interface PersonSequence extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("middleName")
 		public PersonSequence.PersonSequenceBuilder setMiddleName(List<String> middleNames) {
 			if (middleNames == null)  {
 				this.middleName = new ArrayList<>();
@@ -325,6 +325,7 @@ public interface PersonSequence extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("initial")
 		public PersonSequence.PersonSequenceBuilder addInitial(String initial) {
 			if (initial!=null) this.initial.add(initial);
 			return this;
@@ -346,7 +347,6 @@ public interface PersonSequence extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("initial")
 		public PersonSequence.PersonSequenceBuilder setInitial(List<String> initials) {
 			if (initials == null)  {
 				this.initial = new ArrayList<>();

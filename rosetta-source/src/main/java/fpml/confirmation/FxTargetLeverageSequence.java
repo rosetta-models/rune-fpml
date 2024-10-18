@@ -195,6 +195,7 @@ public interface FxTargetLeverageSequence extends RosettaModelObject {
 			return counterCurrencyAmount;
 		}
 		
+		@Override
 		public FxCounterCurrencyAmount.FxCounterCurrencyAmountBuilder getOrCreateCounterCurrencyAmount(int _index) {
 		
 			if (counterCurrencyAmount==null) {
@@ -214,6 +215,7 @@ public interface FxTargetLeverageSequence extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("counterCurrencyAmount")
 		public FxTargetLeverageSequence.FxTargetLeverageSequenceBuilder addCounterCurrencyAmount(FxCounterCurrencyAmount counterCurrencyAmount) {
 			if (counterCurrencyAmount!=null) this.counterCurrencyAmount.add(counterCurrencyAmount.toBuilder());
 			return this;
@@ -235,7 +237,6 @@ public interface FxTargetLeverageSequence extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("counterCurrencyAmount")
 		public FxTargetLeverageSequence.FxTargetLeverageSequenceBuilder setCounterCurrencyAmount(List<? extends FxCounterCurrencyAmount> counterCurrencyAmounts) {
 			if (counterCurrencyAmounts == null)  {
 				this.counterCurrencyAmount = new ArrayList<>();

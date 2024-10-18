@@ -210,6 +210,7 @@ public interface MiscFeePayment extends NonRecurringFeePayment {
 		}
 		
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public MiscFeePayment.MiscFeePaymentBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -231,7 +232,6 @@ public interface MiscFeePayment extends NonRecurringFeePayment {
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public MiscFeePayment.MiscFeePaymentBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();
@@ -287,6 +287,7 @@ public interface MiscFeePayment extends NonRecurringFeePayment {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("loanContractReference")
 		public MiscFeePayment.MiscFeePaymentBuilder addLoanContractReference(LoanContractReference loanContractReference) {
 			if (loanContractReference!=null) this.loanContractReference.add(loanContractReference.toBuilder());
 			return this;
@@ -308,7 +309,6 @@ public interface MiscFeePayment extends NonRecurringFeePayment {
 		}
 		
 		@Override 
-		@RosettaAttribute("loanContractReference")
 		public MiscFeePayment.MiscFeePaymentBuilder setLoanContractReference(List<? extends LoanContractReference> loanContractReferences) {
 			if (loanContractReferences == null)  {
 				this.loanContractReference = new ArrayList<>();

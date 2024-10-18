@@ -134,6 +134,7 @@ public interface Transform extends TransformType {
 		}
 	
 		@Override
+		@RosettaAttribute("transformTypeChoice")
 		public Transform.TransformBuilder addTransformTypeChoice(TransformTypeChoice transformTypeChoice) {
 			if (transformTypeChoice!=null) this.transformTypeChoice.add(transformTypeChoice.toBuilder());
 			return this;
@@ -155,7 +156,6 @@ public interface Transform extends TransformType {
 		}
 		
 		@Override 
-		@RosettaAttribute("transformTypeChoice")
 		public Transform.TransformBuilder setTransformTypeChoice(List<? extends TransformTypeChoice> transformTypeChoices) {
 			if (transformTypeChoices == null)  {
 				this.transformTypeChoice = new ArrayList<>();

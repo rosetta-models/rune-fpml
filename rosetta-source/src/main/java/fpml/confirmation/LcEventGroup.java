@@ -157,6 +157,7 @@ public interface LcEventGroup extends AbstractLcEvent {
 		}
 	
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public LcEventGroup.LcEventGroupBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -178,7 +179,6 @@ public interface LcEventGroup extends AbstractLcEvent {
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public LcEventGroup.LcEventGroupBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();

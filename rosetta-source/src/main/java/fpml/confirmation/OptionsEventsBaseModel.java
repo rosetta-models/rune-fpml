@@ -219,6 +219,7 @@ public interface OptionsEventsBaseModel extends RosettaModelObject {
 			return optionExpiry;
 		}
 		
+		@Override
 		public OptionExpiry.OptionExpiryBuilder getOrCreateOptionExpiry(int _index) {
 		
 			if (optionExpiry==null) {
@@ -257,6 +258,7 @@ public interface OptionsEventsBaseModel extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("optionExpiry")
 		public OptionsEventsBaseModel.OptionsEventsBaseModelBuilder addOptionExpiry(OptionExpiry optionExpiry) {
 			if (optionExpiry!=null) this.optionExpiry.add(optionExpiry.toBuilder());
 			return this;
@@ -278,7 +280,6 @@ public interface OptionsEventsBaseModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("optionExpiry")
 		public OptionsEventsBaseModel.OptionsEventsBaseModelBuilder setOptionExpiry(List<? extends OptionExpiry> optionExpirys) {
 			if (optionExpirys == null)  {
 				this.optionExpiry = new ArrayList<>();

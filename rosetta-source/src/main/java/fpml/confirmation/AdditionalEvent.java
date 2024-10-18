@@ -132,6 +132,7 @@ public interface AdditionalEvent extends AbstractEvent {
 		}
 	
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public AdditionalEvent.AdditionalEventBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -153,7 +154,6 @@ public interface AdditionalEvent extends AbstractEvent {
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public AdditionalEvent.AdditionalEventBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();

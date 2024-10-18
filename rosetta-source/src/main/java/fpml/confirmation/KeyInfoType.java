@@ -167,6 +167,7 @@ public interface KeyInfoType extends RosettaModelObject {
 			return keyInfoTypeChoice;
 		}
 		
+		@Override
 		public KeyInfoTypeChoice.KeyInfoTypeChoiceBuilder getOrCreateKeyInfoTypeChoice(int _index) {
 		
 			if (keyInfoTypeChoice==null) {
@@ -186,6 +187,7 @@ public interface KeyInfoType extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("keyInfoTypeChoice")
 		public KeyInfoType.KeyInfoTypeBuilder addKeyInfoTypeChoice(KeyInfoTypeChoice keyInfoTypeChoice) {
 			if (keyInfoTypeChoice!=null) this.keyInfoTypeChoice.add(keyInfoTypeChoice.toBuilder());
 			return this;
@@ -207,7 +209,6 @@ public interface KeyInfoType extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("keyInfoTypeChoice")
 		public KeyInfoType.KeyInfoTypeBuilder setKeyInfoTypeChoice(List<? extends KeyInfoTypeChoice> keyInfoTypeChoices) {
 			if (keyInfoTypeChoices == null)  {
 				this.keyInfoTypeChoice = new ArrayList<>();

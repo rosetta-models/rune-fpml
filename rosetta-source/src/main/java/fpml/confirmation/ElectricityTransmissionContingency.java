@@ -196,6 +196,7 @@ public interface ElectricityTransmissionContingency extends RosettaModelObject {
 			return contingentParty;
 		}
 		
+		@Override
 		public PartyReference.PartyReferenceBuilder getOrCreateContingentParty(int _index) {
 		
 			if (contingentParty==null) {
@@ -215,6 +216,7 @@ public interface ElectricityTransmissionContingency extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("contingentParty")
 		public ElectricityTransmissionContingency.ElectricityTransmissionContingencyBuilder addContingentParty(PartyReference contingentParty) {
 			if (contingentParty!=null) this.contingentParty.add(contingentParty.toBuilder());
 			return this;
@@ -236,7 +238,6 @@ public interface ElectricityTransmissionContingency extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("contingentParty")
 		public ElectricityTransmissionContingency.ElectricityTransmissionContingencyBuilder setContingentParty(List<? extends PartyReference> contingentPartys) {
 			if (contingentPartys == null)  {
 				this.contingentParty = new ArrayList<>();

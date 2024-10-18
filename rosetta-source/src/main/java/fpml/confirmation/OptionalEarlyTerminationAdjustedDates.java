@@ -154,6 +154,7 @@ public interface OptionalEarlyTerminationAdjustedDates extends RosettaModelObjec
 			return earlyTerminationEvent;
 		}
 		
+		@Override
 		public EarlyTerminationEvent.EarlyTerminationEventBuilder getOrCreateEarlyTerminationEvent(int _index) {
 		
 			if (earlyTerminationEvent==null) {
@@ -167,6 +168,7 @@ public interface OptionalEarlyTerminationAdjustedDates extends RosettaModelObjec
 		}
 		
 		@Override
+		@RosettaAttribute("earlyTerminationEvent")
 		public OptionalEarlyTerminationAdjustedDates.OptionalEarlyTerminationAdjustedDatesBuilder addEarlyTerminationEvent(EarlyTerminationEvent earlyTerminationEvent) {
 			if (earlyTerminationEvent!=null) this.earlyTerminationEvent.add(earlyTerminationEvent.toBuilder());
 			return this;
@@ -188,7 +190,6 @@ public interface OptionalEarlyTerminationAdjustedDates extends RosettaModelObjec
 		}
 		
 		@Override 
-		@RosettaAttribute("earlyTerminationEvent")
 		public OptionalEarlyTerminationAdjustedDates.OptionalEarlyTerminationAdjustedDatesBuilder setEarlyTerminationEvent(List<? extends EarlyTerminationEvent> earlyTerminationEvents) {
 			if (earlyTerminationEvents == null)  {
 				this.earlyTerminationEvent = new ArrayList<>();

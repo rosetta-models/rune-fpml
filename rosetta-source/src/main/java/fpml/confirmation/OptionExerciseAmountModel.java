@@ -340,6 +340,7 @@ public interface OptionExerciseAmountModel extends RosettaModelObject {
 			return specifiedExercise;
 		}
 		
+		@Override
 		public OptionExerciseAmounts.OptionExerciseAmountsBuilder getOrCreateSpecifiedExercise(int _index) {
 		
 			if (specifiedExercise==null) {
@@ -389,6 +390,7 @@ public interface OptionExerciseAmountModel extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("specifiedExercise")
 		public OptionExerciseAmountModel.OptionExerciseAmountModelBuilder addSpecifiedExercise(OptionExerciseAmounts specifiedExercise) {
 			if (specifiedExercise!=null) this.specifiedExercise.add(specifiedExercise.toBuilder());
 			return this;
@@ -410,7 +412,6 @@ public interface OptionExerciseAmountModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("specifiedExercise")
 		public OptionExerciseAmountModel.OptionExerciseAmountModelBuilder setSpecifiedExercise(List<? extends OptionExerciseAmounts> specifiedExercises) {
 			if (specifiedExercises == null)  {
 				this.specifiedExercise = new ArrayList<>();

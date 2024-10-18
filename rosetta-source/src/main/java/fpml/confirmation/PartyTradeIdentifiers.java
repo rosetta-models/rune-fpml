@@ -151,6 +151,7 @@ public interface PartyTradeIdentifiers extends RosettaModelObject {
 			return partyTradeIdentifier;
 		}
 		
+		@Override
 		public PartyTradeIdentifier.PartyTradeIdentifierBuilder getOrCreatePartyTradeIdentifier(int _index) {
 		
 			if (partyTradeIdentifier==null) {
@@ -164,6 +165,7 @@ public interface PartyTradeIdentifiers extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("partyTradeIdentifier")
 		public PartyTradeIdentifiers.PartyTradeIdentifiersBuilder addPartyTradeIdentifier(PartyTradeIdentifier partyTradeIdentifier) {
 			if (partyTradeIdentifier!=null) this.partyTradeIdentifier.add(partyTradeIdentifier.toBuilder());
 			return this;
@@ -185,7 +187,6 @@ public interface PartyTradeIdentifiers extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("partyTradeIdentifier")
 		public PartyTradeIdentifiers.PartyTradeIdentifiersBuilder setPartyTradeIdentifier(List<? extends PartyTradeIdentifier> partyTradeIdentifiers) {
 			if (partyTradeIdentifiers == null)  {
 				this.partyTradeIdentifier = new ArrayList<>();

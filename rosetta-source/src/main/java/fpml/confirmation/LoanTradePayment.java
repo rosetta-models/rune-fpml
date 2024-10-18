@@ -195,6 +195,7 @@ public interface LoanTradePayment extends Payment {
 			return loanTradeReference;
 		}
 		
+		@Override
 		public LoanTradeReference.LoanTradeReferenceBuilder getOrCreateLoanTradeReference(int _index) {
 		
 			if (loanTradeReference==null) {
@@ -262,6 +263,7 @@ public interface LoanTradePayment extends Payment {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("loanTradeReference")
 		public LoanTradePayment.LoanTradePaymentBuilder addLoanTradeReference(LoanTradeReference loanTradeReference) {
 			if (loanTradeReference!=null) this.loanTradeReference.add(loanTradeReference.toBuilder());
 			return this;
@@ -283,7 +285,6 @@ public interface LoanTradePayment extends Payment {
 		}
 		
 		@Override 
-		@RosettaAttribute("loanTradeReference")
 		public LoanTradePayment.LoanTradePaymentBuilder setLoanTradeReference(List<? extends LoanTradeReference> loanTradeReferences) {
 			if (loanTradeReferences == null)  {
 				this.loanTradeReference = new ArrayList<>();

@@ -164,6 +164,7 @@ public interface Signature extends SignatureType {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("object")
 		public Signature.SignatureBuilder addObject(ObjectType object) {
 			if (object!=null) this.object.add(object.toBuilder());
 			return this;
@@ -185,7 +186,6 @@ public interface Signature extends SignatureType {
 		}
 		
 		@Override 
-		@RosettaAttribute("object")
 		public Signature.SignatureBuilder setObject(List<? extends ObjectType> objects) {
 			if (objects == null)  {
 				this.object = new ArrayList<>();

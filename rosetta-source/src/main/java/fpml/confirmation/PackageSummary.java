@@ -264,6 +264,7 @@ public interface PackageSummary extends RosettaModelObject {
 			return packageType;
 		}
 		
+		@Override
 		public PackageType.PackageTypeBuilder getOrCreatePackageType(int _index) {
 		
 			if (packageType==null) {
@@ -301,6 +302,7 @@ public interface PackageSummary extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("packageType")
 		public PackageSummary.PackageSummaryBuilder addPackageType(PackageType packageType) {
 			if (packageType!=null) this.packageType.add(packageType.toBuilder());
 			return this;
@@ -322,7 +324,6 @@ public interface PackageSummary extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("packageType")
 		public PackageSummary.PackageSummaryBuilder setPackageType(List<? extends PackageType> packageTypes) {
 			if (packageTypes == null)  {
 				this.packageType = new ArrayList<>();

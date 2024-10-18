@@ -382,6 +382,7 @@ public interface Swaption extends Product {
 			return premium;
 		}
 		
+		@Override
 		public Payment.PaymentBuilder getOrCreatePremium(int _index) {
 		
 			if (premium==null) {
@@ -552,6 +553,7 @@ public interface Swaption extends Product {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("premium")
 		public Swaption.SwaptionBuilder addPremium(Payment premium) {
 			if (premium!=null) this.premium.add(premium.toBuilder());
 			return this;
@@ -573,7 +575,6 @@ public interface Swaption extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("premium")
 		public Swaption.SwaptionBuilder setPremium(List<? extends Payment> premiums) {
 			if (premiums == null)  {
 				this.premium = new ArrayList<>();

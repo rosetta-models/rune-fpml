@@ -188,6 +188,7 @@ public interface CompressionActivitySequence0 extends RosettaModelObject {
 			return originatingTradeIdentifier;
 		}
 		
+		@Override
 		public TradeIdentifier.TradeIdentifierBuilder getOrCreateOriginatingTradeIdentifier(int _index) {
 		
 			if (originatingTradeIdentifier==null) {
@@ -207,6 +208,7 @@ public interface CompressionActivitySequence0 extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("originatingTradeIdentifier")
 		public CompressionActivitySequence0.CompressionActivitySequence0Builder addOriginatingTradeIdentifier(TradeIdentifier originatingTradeIdentifier) {
 			if (originatingTradeIdentifier!=null) this.originatingTradeIdentifier.add(originatingTradeIdentifier.toBuilder());
 			return this;
@@ -228,7 +230,6 @@ public interface CompressionActivitySequence0 extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("originatingTradeIdentifier")
 		public CompressionActivitySequence0.CompressionActivitySequence0Builder setOriginatingTradeIdentifier(List<? extends TradeIdentifier> originatingTradeIdentifiers) {
 			if (originatingTradeIdentifiers == null)  {
 				this.originatingTradeIdentifier = new ArrayList<>();

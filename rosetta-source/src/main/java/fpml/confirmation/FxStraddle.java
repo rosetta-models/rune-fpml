@@ -437,6 +437,7 @@ public interface FxStraddle extends RosettaModelObject {
 			return premium;
 		}
 		
+		@Override
 		public FxStraddlePremium.FxStraddlePremiumBuilder getOrCreatePremium(int _index) {
 		
 			if (premium==null) {
@@ -524,6 +525,7 @@ public interface FxStraddle extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("premium")
 		public FxStraddle.FxStraddleBuilder addPremium(FxStraddlePremium premium) {
 			if (premium!=null) this.premium.add(premium.toBuilder());
 			return this;
@@ -545,7 +547,6 @@ public interface FxStraddle extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("premium")
 		public FxStraddle.FxStraddleBuilder setPremium(List<? extends FxStraddlePremium> premiums) {
 			if (premiums == null)  {
 				this.premium = new ArrayList<>();

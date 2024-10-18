@@ -251,6 +251,7 @@ public interface CommodityFixedPriceSchedule extends RosettaModelObject {
 			return fixedPriceStep;
 		}
 		
+		@Override
 		public FixedPrice.FixedPriceBuilder getOrCreateFixedPriceStep(int _index) {
 		
 			if (fixedPriceStep==null) {
@@ -275,6 +276,7 @@ public interface CommodityFixedPriceSchedule extends RosettaModelObject {
 			return contractRateStep;
 		}
 		
+		@Override
 		public NonNegativeMoney.NonNegativeMoneyBuilder getOrCreateContractRateStep(int _index) {
 		
 			if (contractRateStep==null) {
@@ -293,6 +295,7 @@ public interface CommodityFixedPriceSchedule extends RosettaModelObject {
 			return settlementPeriodsPriceSchedule;
 		}
 		
+		@Override
 		public CommoditySettlementPeriodsPriceSchedule.CommoditySettlementPeriodsPriceScheduleBuilder getOrCreateSettlementPeriodsPriceSchedule(int _index) {
 		
 			if (settlementPeriodsPriceSchedule==null) {
@@ -325,6 +328,7 @@ public interface CommodityFixedPriceSchedule extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("fixedPriceStep")
 		public CommodityFixedPriceSchedule.CommodityFixedPriceScheduleBuilder addFixedPriceStep(FixedPrice fixedPriceStep) {
 			if (fixedPriceStep!=null) this.fixedPriceStep.add(fixedPriceStep.toBuilder());
 			return this;
@@ -346,7 +350,6 @@ public interface CommodityFixedPriceSchedule extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("fixedPriceStep")
 		public CommodityFixedPriceSchedule.CommodityFixedPriceScheduleBuilder setFixedPriceStep(List<? extends FixedPrice> fixedPriceSteps) {
 			if (fixedPriceSteps == null)  {
 				this.fixedPriceStep = new ArrayList<>();
@@ -360,6 +363,7 @@ public interface CommodityFixedPriceSchedule extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("worldscaleRateStep")
 		public CommodityFixedPriceSchedule.CommodityFixedPriceScheduleBuilder addWorldscaleRateStep(BigDecimal worldscaleRateStep) {
 			if (worldscaleRateStep!=null) this.worldscaleRateStep.add(worldscaleRateStep);
 			return this;
@@ -381,7 +385,6 @@ public interface CommodityFixedPriceSchedule extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("worldscaleRateStep")
 		public CommodityFixedPriceSchedule.CommodityFixedPriceScheduleBuilder setWorldscaleRateStep(List<BigDecimal> worldscaleRateSteps) {
 			if (worldscaleRateSteps == null)  {
 				this.worldscaleRateStep = new ArrayList<>();
@@ -394,6 +397,7 @@ public interface CommodityFixedPriceSchedule extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("contractRateStep")
 		public CommodityFixedPriceSchedule.CommodityFixedPriceScheduleBuilder addContractRateStep(NonNegativeMoney contractRateStep) {
 			if (contractRateStep!=null) this.contractRateStep.add(contractRateStep.toBuilder());
 			return this;
@@ -415,7 +419,6 @@ public interface CommodityFixedPriceSchedule extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("contractRateStep")
 		public CommodityFixedPriceSchedule.CommodityFixedPriceScheduleBuilder setContractRateStep(List<? extends NonNegativeMoney> contractRateSteps) {
 			if (contractRateSteps == null)  {
 				this.contractRateStep = new ArrayList<>();
@@ -429,6 +432,7 @@ public interface CommodityFixedPriceSchedule extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("settlementPeriodsPriceSchedule")
 		public CommodityFixedPriceSchedule.CommodityFixedPriceScheduleBuilder addSettlementPeriodsPriceSchedule(CommoditySettlementPeriodsPriceSchedule settlementPeriodsPriceSchedule) {
 			if (settlementPeriodsPriceSchedule!=null) this.settlementPeriodsPriceSchedule.add(settlementPeriodsPriceSchedule.toBuilder());
 			return this;
@@ -450,7 +454,6 @@ public interface CommodityFixedPriceSchedule extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("settlementPeriodsPriceSchedule")
 		public CommodityFixedPriceSchedule.CommodityFixedPriceScheduleBuilder setSettlementPeriodsPriceSchedule(List<? extends CommoditySettlementPeriodsPriceSchedule> settlementPeriodsPriceSchedules) {
 			if (settlementPeriodsPriceSchedules == null)  {
 				this.settlementPeriodsPriceSchedule = new ArrayList<>();

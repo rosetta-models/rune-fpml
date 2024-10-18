@@ -172,6 +172,7 @@ public interface InterestPayment extends LoanInterestPayment {
 		}
 	
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public InterestPayment.InterestPaymentBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -193,7 +194,6 @@ public interface InterestPayment extends LoanInterestPayment {
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public InterestPayment.InterestPaymentBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();

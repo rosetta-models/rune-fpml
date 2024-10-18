@@ -288,6 +288,7 @@ public interface SimpleIRSwap extends UnderlyingAssetType {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("instrumentId")
 		public SimpleIRSwap.SimpleIRSwapBuilder addInstrumentId(InstrumentId instrumentId) {
 			if (instrumentId!=null) this.instrumentId.add(instrumentId.toBuilder());
 			return this;
@@ -309,7 +310,6 @@ public interface SimpleIRSwap extends UnderlyingAssetType {
 		}
 		
 		@Override 
-		@RosettaAttribute("instrumentId")
 		public SimpleIRSwap.SimpleIRSwapBuilder setInstrumentId(List<? extends InstrumentId> instrumentIds) {
 			if (instrumentIds == null)  {
 				this.instrumentId = new ArrayList<>();

@@ -286,6 +286,7 @@ public interface Swap extends Product {
 			return swapStream;
 		}
 		
+		@Override
 		public InterestRateStream.InterestRateStreamBuilder getOrCreateSwapStream(int _index) {
 		
 			if (swapStream==null) {
@@ -361,6 +362,7 @@ public interface Swap extends Product {
 			return additionalPayment;
 		}
 		
+		@Override
 		public Payment.PaymentBuilder getOrCreateAdditionalPayment(int _index) {
 		
 			if (additionalPayment==null) {
@@ -405,6 +407,7 @@ public interface Swap extends Product {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("swapStream")
 		public Swap.SwapBuilder addSwapStream(InterestRateStream swapStream) {
 			if (swapStream!=null) this.swapStream.add(swapStream.toBuilder());
 			return this;
@@ -426,7 +429,6 @@ public interface Swap extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("swapStream")
 		public Swap.SwapBuilder setSwapStream(List<? extends InterestRateStream> swapStreams) {
 			if (swapStreams == null)  {
 				this.swapStream = new ArrayList<>();
@@ -458,6 +460,7 @@ public interface Swap extends Product {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("additionalPayment")
 		public Swap.SwapBuilder addAdditionalPayment(Payment additionalPayment) {
 			if (additionalPayment!=null) this.additionalPayment.add(additionalPayment.toBuilder());
 			return this;
@@ -479,7 +482,6 @@ public interface Swap extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("additionalPayment")
 		public Swap.SwapBuilder setAdditionalPayment(List<? extends Payment> additionalPayments) {
 			if (additionalPayments == null)  {
 				this.additionalPayment = new ArrayList<>();

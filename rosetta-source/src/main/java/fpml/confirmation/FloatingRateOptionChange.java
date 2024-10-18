@@ -202,6 +202,7 @@ public interface FloatingRateOptionChange extends AbstractFacilityEvent {
 		}
 		
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public FloatingRateOptionChange.FloatingRateOptionChangeBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -223,7 +224,6 @@ public interface FloatingRateOptionChange extends AbstractFacilityEvent {
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public FloatingRateOptionChange.FloatingRateOptionChangeBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();

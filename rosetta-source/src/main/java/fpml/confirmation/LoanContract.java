@@ -328,6 +328,7 @@ public interface LoanContract extends LoanContractSummary {
 		}
 		
 		@Override
+		@RosettaAttribute("identifier")
 		public LoanContract.LoanContractBuilder addIdentifier(FacilityContractIdentifier identifier) {
 			if (identifier!=null) this.identifier.add(identifier.toBuilder());
 			return this;
@@ -349,7 +350,6 @@ public interface LoanContract extends LoanContractSummary {
 		}
 		
 		@Override 
-		@RosettaAttribute("identifier")
 		public LoanContract.LoanContractBuilder setIdentifier(List<? extends FacilityContractIdentifier> identifiers) {
 			if (identifiers == null)  {
 				this.identifier = new ArrayList<>();

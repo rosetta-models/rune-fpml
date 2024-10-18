@@ -226,6 +226,7 @@ public interface Stub extends StubValue {
 		}
 		
 		@Override
+		@RosettaAttribute("floatingRate")
 		public Stub.StubBuilder addFloatingRate(StubFloatingRate floatingRate) {
 			if (floatingRate!=null) this.floatingRate.add(floatingRate.toBuilder());
 			return this;
@@ -247,7 +248,6 @@ public interface Stub extends StubValue {
 		}
 		
 		@Override 
-		@RosettaAttribute("floatingRate")
 		public Stub.StubBuilder setFloatingRate(List<? extends StubFloatingRate> floatingRates) {
 			if (floatingRates == null)  {
 				this.floatingRate = new ArrayList<>();

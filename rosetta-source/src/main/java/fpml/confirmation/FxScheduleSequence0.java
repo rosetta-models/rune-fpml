@@ -201,6 +201,7 @@ public interface FxScheduleSequence0 extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("adjustedDate")
 		public FxScheduleSequence0.FxScheduleSequence0Builder addAdjustedDate(Date adjustedDate) {
 			if (adjustedDate!=null) this.adjustedDate.add(adjustedDate);
 			return this;
@@ -222,7 +223,6 @@ public interface FxScheduleSequence0 extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("adjustedDate")
 		public FxScheduleSequence0.FxScheduleSequence0Builder setAdjustedDate(List<Date> adjustedDates) {
 			if (adjustedDates == null)  {
 				this.adjustedDate = new ArrayList<>();

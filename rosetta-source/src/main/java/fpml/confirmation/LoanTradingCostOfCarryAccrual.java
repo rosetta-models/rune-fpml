@@ -202,6 +202,7 @@ public interface LoanTradingCostOfCarryAccrual extends RosettaModelObject {
 			return utilizationPeriod;
 		}
 		
+		@Override
 		public UtilizationPeriod.UtilizationPeriodBuilder getOrCreateUtilizationPeriod(int _index) {
 		
 			if (utilizationPeriod==null) {
@@ -239,6 +240,7 @@ public interface LoanTradingCostOfCarryAccrual extends RosettaModelObject {
 			return settlementPeriodAccrual;
 		}
 		
+		@Override
 		public AccrualPeriod.AccrualPeriodBuilder getOrCreateSettlementPeriodAccrual(int _index) {
 		
 			if (settlementPeriodAccrual==null) {
@@ -252,6 +254,7 @@ public interface LoanTradingCostOfCarryAccrual extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("utilizationPeriod")
 		public LoanTradingCostOfCarryAccrual.LoanTradingCostOfCarryAccrualBuilder addUtilizationPeriod(UtilizationPeriod utilizationPeriod) {
 			if (utilizationPeriod!=null) this.utilizationPeriod.add(utilizationPeriod.toBuilder());
 			return this;
@@ -273,7 +276,6 @@ public interface LoanTradingCostOfCarryAccrual extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("utilizationPeriod")
 		public LoanTradingCostOfCarryAccrual.LoanTradingCostOfCarryAccrualBuilder setUtilizationPeriod(List<? extends UtilizationPeriod> utilizationPeriods) {
 			if (utilizationPeriods == null)  {
 				this.utilizationPeriod = new ArrayList<>();
@@ -293,6 +295,7 @@ public interface LoanTradingCostOfCarryAccrual extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("settlementPeriodAccrual")
 		public LoanTradingCostOfCarryAccrual.LoanTradingCostOfCarryAccrualBuilder addSettlementPeriodAccrual(AccrualPeriod settlementPeriodAccrual) {
 			if (settlementPeriodAccrual!=null) this.settlementPeriodAccrual.add(settlementPeriodAccrual.toBuilder());
 			return this;
@@ -314,7 +317,6 @@ public interface LoanTradingCostOfCarryAccrual extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("settlementPeriodAccrual")
 		public LoanTradingCostOfCarryAccrual.LoanTradingCostOfCarryAccrualBuilder setSettlementPeriodAccrual(List<? extends AccrualPeriod> settlementPeriodAccruals) {
 			if (settlementPeriodAccruals == null)  {
 				this.settlementPeriodAccrual = new ArrayList<>();

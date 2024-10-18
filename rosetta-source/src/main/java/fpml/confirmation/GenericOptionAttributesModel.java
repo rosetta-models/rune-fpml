@@ -305,6 +305,7 @@ public interface GenericOptionAttributesModel extends RosettaModelObject {
 			return strike;
 		}
 		
+		@Override
 		public GenericOptionStrike.GenericOptionStrikeBuilder getOrCreateStrike(int _index) {
 		
 			if (strike==null) {
@@ -323,6 +324,7 @@ public interface GenericOptionAttributesModel extends RosettaModelObject {
 			return feature;
 		}
 		
+		@Override
 		public GenericProductFeature.GenericProductFeatureBuilder getOrCreateFeature(int _index) {
 		
 			if (feature==null) {
@@ -354,6 +356,7 @@ public interface GenericOptionAttributesModel extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("strike")
 		public GenericOptionAttributesModel.GenericOptionAttributesModelBuilder addStrike(GenericOptionStrike strike) {
 			if (strike!=null) this.strike.add(strike.toBuilder());
 			return this;
@@ -375,7 +378,6 @@ public interface GenericOptionAttributesModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("strike")
 		public GenericOptionAttributesModel.GenericOptionAttributesModelBuilder setStrike(List<? extends GenericOptionStrike> strikes) {
 			if (strikes == null)  {
 				this.strike = new ArrayList<>();
@@ -389,6 +391,7 @@ public interface GenericOptionAttributesModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("feature")
 		public GenericOptionAttributesModel.GenericOptionAttributesModelBuilder addFeature(GenericProductFeature feature) {
 			if (feature!=null) this.feature.add(feature.toBuilder());
 			return this;
@@ -410,7 +413,6 @@ public interface GenericOptionAttributesModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("feature")
 		public GenericOptionAttributesModel.GenericOptionAttributesModelBuilder setFeature(List<? extends GenericProductFeature> features) {
 			if (features == null)  {
 				this.feature = new ArrayList<>();

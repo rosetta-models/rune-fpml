@@ -281,6 +281,7 @@ public interface ApplicableCommunicationDetails extends AbstractApplicablePartyP
 			return this;
 		}
 		@Override
+		@RosettaAttribute("applicableTransactions")
 		public ApplicableCommunicationDetails.ApplicableCommunicationDetailsBuilder addApplicableTransactions(ApplicableTransactionType applicableTransactions) {
 			if (applicableTransactions!=null) this.applicableTransactions.add(applicableTransactions.toBuilder());
 			return this;
@@ -302,7 +303,6 @@ public interface ApplicableCommunicationDetails extends AbstractApplicablePartyP
 		}
 		
 		@Override 
-		@RosettaAttribute("applicableTransactions")
 		public ApplicableCommunicationDetails.ApplicableCommunicationDetailsBuilder setApplicableTransactions(List<? extends ApplicableTransactionType> applicableTransactionss) {
 			if (applicableTransactionss == null)  {
 				this.applicableTransactions = new ArrayList<>();

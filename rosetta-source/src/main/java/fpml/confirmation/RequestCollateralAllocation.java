@@ -315,6 +315,7 @@ public interface RequestCollateralAllocation extends CorrectableRequestMessage {
 			return collateralAllocation;
 		}
 		
+		@Override
 		public ProposedCollateralAllocation.ProposedCollateralAllocationBuilder getOrCreateCollateralAllocation(int _index) {
 		
 			if (collateralAllocation==null) {
@@ -407,6 +408,7 @@ public interface RequestCollateralAllocation extends CorrectableRequestMessage {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("collateralAllocation")
 		public RequestCollateralAllocation.RequestCollateralAllocationBuilder addCollateralAllocation(ProposedCollateralAllocation collateralAllocation) {
 			if (collateralAllocation!=null) this.collateralAllocation.add(collateralAllocation.toBuilder());
 			return this;
@@ -428,7 +430,6 @@ public interface RequestCollateralAllocation extends CorrectableRequestMessage {
 		}
 		
 		@Override 
-		@RosettaAttribute("collateralAllocation")
 		public RequestCollateralAllocation.RequestCollateralAllocationBuilder setCollateralAllocation(List<? extends ProposedCollateralAllocation> collateralAllocations) {
 			if (collateralAllocations == null)  {
 				this.collateralAllocation = new ArrayList<>();

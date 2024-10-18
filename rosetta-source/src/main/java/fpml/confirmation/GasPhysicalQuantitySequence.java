@@ -201,6 +201,7 @@ public interface GasPhysicalQuantitySequence extends RosettaModelObject {
 			return minPhysicalQuantity;
 		}
 		
+		@Override
 		public CommodityNotionalQuantity.CommodityNotionalQuantityBuilder getOrCreateMinPhysicalQuantity(int _index) {
 		
 			if (minPhysicalQuantity==null) {
@@ -219,6 +220,7 @@ public interface GasPhysicalQuantitySequence extends RosettaModelObject {
 			return maxPhysicalQuantity;
 		}
 		
+		@Override
 		public CommodityNotionalQuantity.CommodityNotionalQuantityBuilder getOrCreateMaxPhysicalQuantity(int _index) {
 		
 			if (maxPhysicalQuantity==null) {
@@ -251,6 +253,7 @@ public interface GasPhysicalQuantitySequence extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("minPhysicalQuantity")
 		public GasPhysicalQuantitySequence.GasPhysicalQuantitySequenceBuilder addMinPhysicalQuantity(CommodityNotionalQuantity minPhysicalQuantity) {
 			if (minPhysicalQuantity!=null) this.minPhysicalQuantity.add(minPhysicalQuantity.toBuilder());
 			return this;
@@ -272,7 +275,6 @@ public interface GasPhysicalQuantitySequence extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("minPhysicalQuantity")
 		public GasPhysicalQuantitySequence.GasPhysicalQuantitySequenceBuilder setMinPhysicalQuantity(List<? extends CommodityNotionalQuantity> minPhysicalQuantitys) {
 			if (minPhysicalQuantitys == null)  {
 				this.minPhysicalQuantity = new ArrayList<>();
@@ -286,6 +288,7 @@ public interface GasPhysicalQuantitySequence extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("maxPhysicalQuantity")
 		public GasPhysicalQuantitySequence.GasPhysicalQuantitySequenceBuilder addMaxPhysicalQuantity(CommodityNotionalQuantity maxPhysicalQuantity) {
 			if (maxPhysicalQuantity!=null) this.maxPhysicalQuantity.add(maxPhysicalQuantity.toBuilder());
 			return this;
@@ -307,7 +310,6 @@ public interface GasPhysicalQuantitySequence extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("maxPhysicalQuantity")
 		public GasPhysicalQuantitySequence.GasPhysicalQuantitySequenceBuilder setMaxPhysicalQuantity(List<? extends CommodityNotionalQuantity> maxPhysicalQuantitys) {
 			if (maxPhysicalQuantitys == null)  {
 				this.maxPhysicalQuantity = new ArrayList<>();

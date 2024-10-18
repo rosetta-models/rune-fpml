@@ -230,6 +230,7 @@ public interface FloatingStrikePrice extends FloatingLegCalculation {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("spreadSchedule")
 		public FloatingStrikePrice.FloatingStrikePriceBuilder addSpreadSchedule(CommoditySpreadSchedule spreadSchedule) {
 			if (spreadSchedule!=null) this.spreadSchedule.add(spreadSchedule.toBuilder());
 			return this;
@@ -251,7 +252,6 @@ public interface FloatingStrikePrice extends FloatingLegCalculation {
 		}
 		
 		@Override 
-		@RosettaAttribute("spreadSchedule")
 		public FloatingStrikePrice.FloatingStrikePriceBuilder setSpreadSchedule(List<? extends CommoditySpreadSchedule> spreadSchedules) {
 			if (spreadSchedules == null)  {
 				this.spreadSchedule = new ArrayList<>();

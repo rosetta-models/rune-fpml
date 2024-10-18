@@ -150,6 +150,7 @@ public interface DateTimeList extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("dateTime")
 		public DateTimeList.DateTimeListBuilder addDateTime(ZonedDateTime dateTime) {
 			if (dateTime!=null) this.dateTime.add(dateTime);
 			return this;
@@ -171,7 +172,6 @@ public interface DateTimeList extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("dateTime")
 		public DateTimeList.DateTimeListBuilder setDateTime(List<ZonedDateTime> dateTimes) {
 			if (dateTimes == null)  {
 				this.dateTime = new ArrayList<>();

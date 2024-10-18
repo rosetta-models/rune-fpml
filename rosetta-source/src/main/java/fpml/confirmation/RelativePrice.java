@@ -178,6 +178,7 @@ public interface RelativePrice extends RosettaModelObject {
 			return bondEquityModel;
 		}
 		
+		@Override
 		public BondEquityModel.BondEquityModelBuilder getOrCreateBondEquityModel(int _index) {
 		
 			if (bondEquityModel==null) {
@@ -197,6 +198,7 @@ public interface RelativePrice extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("bondEquityModel")
 		public RelativePrice.RelativePriceBuilder addBondEquityModel(BondEquityModel bondEquityModel) {
 			if (bondEquityModel!=null) this.bondEquityModel.add(bondEquityModel.toBuilder());
 			return this;
@@ -218,7 +220,6 @@ public interface RelativePrice extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("bondEquityModel")
 		public RelativePrice.RelativePriceBuilder setBondEquityModel(List<? extends BondEquityModel> bondEquityModels) {
 			if (bondEquityModels == null)  {
 				this.bondEquityModel = new ArrayList<>();

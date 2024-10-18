@@ -321,6 +321,7 @@ public interface CommodityMarketDisruption extends RosettaModelObject {
 			return marketDisruptionEvent;
 		}
 		
+		@Override
 		public MarketDisruptionEvent.MarketDisruptionEventBuilder getOrCreateMarketDisruptionEvent(int _index) {
 		
 			if (marketDisruptionEvent==null) {
@@ -345,6 +346,7 @@ public interface CommodityMarketDisruption extends RosettaModelObject {
 			return disruptionFallback;
 		}
 		
+		@Override
 		public SequencedDisruptionFallback.SequencedDisruptionFallbackBuilder getOrCreateDisruptionFallback(int _index) {
 		
 			if (disruptionFallback==null) {
@@ -401,6 +403,7 @@ public interface CommodityMarketDisruption extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("marketDisruptionEvent")
 		public CommodityMarketDisruption.CommodityMarketDisruptionBuilder addMarketDisruptionEvent(MarketDisruptionEvent marketDisruptionEvent) {
 			if (marketDisruptionEvent!=null) this.marketDisruptionEvent.add(marketDisruptionEvent.toBuilder());
 			return this;
@@ -422,7 +425,6 @@ public interface CommodityMarketDisruption extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("marketDisruptionEvent")
 		public CommodityMarketDisruption.CommodityMarketDisruptionBuilder setMarketDisruptionEvent(List<? extends MarketDisruptionEvent> marketDisruptionEvents) {
 			if (marketDisruptionEvents == null)  {
 				this.marketDisruptionEvent = new ArrayList<>();
@@ -442,6 +444,7 @@ public interface CommodityMarketDisruption extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("disruptionFallback")
 		public CommodityMarketDisruption.CommodityMarketDisruptionBuilder addDisruptionFallback(SequencedDisruptionFallback disruptionFallback) {
 			if (disruptionFallback!=null) this.disruptionFallback.add(disruptionFallback.toBuilder());
 			return this;
@@ -463,7 +466,6 @@ public interface CommodityMarketDisruption extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("disruptionFallback")
 		public CommodityMarketDisruption.CommodityMarketDisruptionBuilder setDisruptionFallback(List<? extends SequencedDisruptionFallback> disruptionFallbacks) {
 			if (disruptionFallbacks == null)  {
 				this.disruptionFallback = new ArrayList<>();

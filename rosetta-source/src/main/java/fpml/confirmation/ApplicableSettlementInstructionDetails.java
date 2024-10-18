@@ -176,6 +176,7 @@ public interface ApplicableSettlementInstructionDetails extends AbstractApplicab
 			return settlementDetails;
 		}
 		
+		@Override
 		public SettlementDetails.SettlementDetailsBuilder getOrCreateSettlementDetails(int _index) {
 		
 			if (settlementDetails==null) {
@@ -201,6 +202,7 @@ public interface ApplicableSettlementInstructionDetails extends AbstractApplicab
 			return this;
 		}
 		@Override
+		@RosettaAttribute("applicableTransactions")
 		public ApplicableSettlementInstructionDetails.ApplicableSettlementInstructionDetailsBuilder addApplicableTransactions(ApplicableTransactionType applicableTransactions) {
 			if (applicableTransactions!=null) this.applicableTransactions.add(applicableTransactions.toBuilder());
 			return this;
@@ -222,7 +224,6 @@ public interface ApplicableSettlementInstructionDetails extends AbstractApplicab
 		}
 		
 		@Override 
-		@RosettaAttribute("applicableTransactions")
 		public ApplicableSettlementInstructionDetails.ApplicableSettlementInstructionDetailsBuilder setApplicableTransactions(List<? extends ApplicableTransactionType> applicableTransactionss) {
 			if (applicableTransactionss == null)  {
 				this.applicableTransactions = new ArrayList<>();
@@ -236,6 +237,7 @@ public interface ApplicableSettlementInstructionDetails extends AbstractApplicab
 		}
 		
 		@Override
+		@RosettaAttribute("settlementDetails")
 		public ApplicableSettlementInstructionDetails.ApplicableSettlementInstructionDetailsBuilder addSettlementDetails(SettlementDetails settlementDetails) {
 			if (settlementDetails!=null) this.settlementDetails.add(settlementDetails.toBuilder());
 			return this;
@@ -257,7 +259,6 @@ public interface ApplicableSettlementInstructionDetails extends AbstractApplicab
 		}
 		
 		@Override 
-		@RosettaAttribute("settlementDetails")
 		public ApplicableSettlementInstructionDetails.ApplicableSettlementInstructionDetailsBuilder setSettlementDetails(List<? extends SettlementDetails> settlementDetailss) {
 			if (settlementDetailss == null)  {
 				this.settlementDetails = new ArrayList<>();

@@ -285,6 +285,7 @@ public interface RolloverNotification extends AbstractContractNotification {
 			return party;
 		}
 		
+		@Override
 		public Party.PartyBuilder getOrCreateParty(int _index) {
 		
 			if (party==null) {
@@ -352,6 +353,7 @@ public interface RolloverNotification extends AbstractContractNotification {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("eventPayment")
 		public RolloverNotification.RolloverNotificationBuilder addEventPayment(EventPayment eventPayment) {
 			if (eventPayment!=null) this.eventPayment.add(eventPayment.toBuilder());
 			return this;
@@ -373,7 +375,6 @@ public interface RolloverNotification extends AbstractContractNotification {
 		}
 		
 		@Override 
-		@RosettaAttribute("eventPayment")
 		public RolloverNotification.RolloverNotificationBuilder setEventPayment(List<? extends EventPayment> eventPayments) {
 			if (eventPayments == null)  {
 				this.eventPayment = new ArrayList<>();
@@ -387,6 +388,7 @@ public interface RolloverNotification extends AbstractContractNotification {
 		}
 		
 		@Override
+		@RosettaAttribute("facilityOutstandingsPosition")
 		public RolloverNotification.RolloverNotificationBuilder addFacilityOutstandingsPosition(FacilityOutstandingsPosition facilityOutstandingsPosition) {
 			if (facilityOutstandingsPosition!=null) this.facilityOutstandingsPosition.add(facilityOutstandingsPosition.toBuilder());
 			return this;
@@ -408,7 +410,6 @@ public interface RolloverNotification extends AbstractContractNotification {
 		}
 		
 		@Override 
-		@RosettaAttribute("facilityOutstandingsPosition")
 		public RolloverNotification.RolloverNotificationBuilder setFacilityOutstandingsPosition(List<? extends FacilityOutstandingsPosition> facilityOutstandingsPositions) {
 			if (facilityOutstandingsPositions == null)  {
 				this.facilityOutstandingsPosition = new ArrayList<>();
@@ -434,6 +435,7 @@ public interface RolloverNotification extends AbstractContractNotification {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("party")
 		public RolloverNotification.RolloverNotificationBuilder addParty(Party party) {
 			if (party!=null) this.party.add(party.toBuilder());
 			return this;
@@ -455,7 +457,6 @@ public interface RolloverNotification extends AbstractContractNotification {
 		}
 		
 		@Override 
-		@RosettaAttribute("party")
 		public RolloverNotification.RolloverNotificationBuilder setParty(List<? extends Party> partys) {
 			if (partys == null)  {
 				this.party = new ArrayList<>();

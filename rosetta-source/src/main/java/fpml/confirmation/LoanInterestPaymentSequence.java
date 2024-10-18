@@ -176,6 +176,7 @@ public interface LoanInterestPaymentSequence extends RosettaModelObject {
 			return accrualSchedule;
 		}
 		
+		@Override
 		public AccrualPeriod.AccrualPeriodBuilder getOrCreateAccrualSchedule(int _index) {
 		
 			if (accrualSchedule==null) {
@@ -208,6 +209,7 @@ public interface LoanInterestPaymentSequence extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("accrualSchedule")
 		public LoanInterestPaymentSequence.LoanInterestPaymentSequenceBuilder addAccrualSchedule(AccrualPeriod accrualSchedule) {
 			if (accrualSchedule!=null) this.accrualSchedule.add(accrualSchedule.toBuilder());
 			return this;
@@ -229,7 +231,6 @@ public interface LoanInterestPaymentSequence extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("accrualSchedule")
 		public LoanInterestPaymentSequence.LoanInterestPaymentSequenceBuilder setAccrualSchedule(List<? extends AccrualPeriod> accrualSchedules) {
 			if (accrualSchedules == null)  {
 				this.accrualSchedule = new ArrayList<>();

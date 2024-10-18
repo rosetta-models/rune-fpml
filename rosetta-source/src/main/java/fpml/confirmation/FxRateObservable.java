@@ -254,6 +254,7 @@ public interface FxRateObservable extends RosettaModelObject {
 			return crossRate;
 		}
 		
+		@Override
 		public FxCrossRateObservable.FxCrossRateObservableBuilder getOrCreateCrossRate(int _index) {
 		
 			if (crossRate==null) {
@@ -285,6 +286,7 @@ public interface FxRateObservable extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("crossRate")
 		public FxRateObservable.FxRateObservableBuilder addCrossRate(FxCrossRateObservable crossRate) {
 			if (crossRate!=null) this.crossRate.add(crossRate.toBuilder());
 			return this;
@@ -306,7 +308,6 @@ public interface FxRateObservable extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("crossRate")
 		public FxRateObservable.FxRateObservableBuilder setCrossRate(List<? extends FxCrossRateObservable> crossRates) {
 			if (crossRates == null)  {
 				this.crossRate = new ArrayList<>();

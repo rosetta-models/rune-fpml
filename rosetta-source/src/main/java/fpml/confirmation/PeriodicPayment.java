@@ -434,6 +434,7 @@ public interface PeriodicPayment extends PaymentBase {
 			return adjustedPaymentDates;
 		}
 		
+		@Override
 		public AdjustedPaymentDates.AdjustedPaymentDatesBuilder getOrCreateAdjustedPaymentDates(int _index) {
 		
 			if (adjustedPaymentDates==null) {
@@ -501,6 +502,7 @@ public interface PeriodicPayment extends PaymentBase {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("adjustedPaymentDates")
 		public PeriodicPayment.PeriodicPaymentBuilder addAdjustedPaymentDates(AdjustedPaymentDates adjustedPaymentDates) {
 			if (adjustedPaymentDates!=null) this.adjustedPaymentDates.add(adjustedPaymentDates.toBuilder());
 			return this;
@@ -522,7 +524,6 @@ public interface PeriodicPayment extends PaymentBase {
 		}
 		
 		@Override 
-		@RosettaAttribute("adjustedPaymentDates")
 		public PeriodicPayment.PeriodicPaymentBuilder setAdjustedPaymentDates(List<? extends AdjustedPaymentDates> adjustedPaymentDatess) {
 			if (adjustedPaymentDatess == null)  {
 				this.adjustedPaymentDates = new ArrayList<>();

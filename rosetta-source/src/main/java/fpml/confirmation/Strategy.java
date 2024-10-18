@@ -213,6 +213,7 @@ public interface Strategy extends Product {
 			return strategyComponentIdentifier;
 		}
 		
+		@Override
 		public StrategyComponentIdentification.StrategyComponentIdentificationBuilder getOrCreateStrategyComponentIdentifier(int _index) {
 		
 			if (strategyComponentIdentifier==null) {
@@ -250,6 +251,7 @@ public interface Strategy extends Product {
 			return product;
 		}
 		
+		@Override
 		public Product.ProductBuilder getOrCreateProduct(int _index) {
 		
 			if (product==null) {
@@ -275,6 +277,7 @@ public interface Strategy extends Product {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("strategyComponentIdentifier")
 		public Strategy.StrategyBuilder addStrategyComponentIdentifier(StrategyComponentIdentification strategyComponentIdentifier) {
 			if (strategyComponentIdentifier!=null) this.strategyComponentIdentifier.add(strategyComponentIdentifier.toBuilder());
 			return this;
@@ -296,7 +299,6 @@ public interface Strategy extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("strategyComponentIdentifier")
 		public Strategy.StrategyBuilder setStrategyComponentIdentifier(List<? extends StrategyComponentIdentification> strategyComponentIdentifiers) {
 			if (strategyComponentIdentifiers == null)  {
 				this.strategyComponentIdentifier = new ArrayList<>();
@@ -316,6 +318,7 @@ public interface Strategy extends Product {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("product")
 		public Strategy.StrategyBuilder addProduct(Product product) {
 			if (product!=null) this.product.add(product.toBuilder());
 			return this;
@@ -337,7 +340,6 @@ public interface Strategy extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("product")
 		public Strategy.StrategyBuilder setProduct(List<? extends Product> products) {
 			if (products == null)  {
 				this.product = new ArrayList<>();

@@ -199,6 +199,7 @@ public interface ExchangeTradedFund extends ExchangeTradedCalculatedPrice {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("instrumentId")
 		public ExchangeTradedFund.ExchangeTradedFundBuilder addInstrumentId(InstrumentId instrumentId) {
 			if (instrumentId!=null) this.instrumentId.add(instrumentId.toBuilder());
 			return this;
@@ -220,7 +221,6 @@ public interface ExchangeTradedFund extends ExchangeTradedCalculatedPrice {
 		}
 		
 		@Override 
-		@RosettaAttribute("instrumentId")
 		public ExchangeTradedFund.ExchangeTradedFundBuilder setInstrumentId(List<? extends InstrumentId> instrumentIds) {
 			if (instrumentIds == null)  {
 				this.instrumentId = new ArrayList<>();
@@ -270,6 +270,7 @@ public interface ExchangeTradedFund extends ExchangeTradedCalculatedPrice {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("constituentExchangeId")
 		public ExchangeTradedFund.ExchangeTradedFundBuilder addConstituentExchangeId(ExchangeId constituentExchangeId) {
 			if (constituentExchangeId!=null) this.constituentExchangeId.add(constituentExchangeId.toBuilder());
 			return this;
@@ -291,7 +292,6 @@ public interface ExchangeTradedFund extends ExchangeTradedCalculatedPrice {
 		}
 		
 		@Override 
-		@RosettaAttribute("constituentExchangeId")
 		public ExchangeTradedFund.ExchangeTradedFundBuilder setConstituentExchangeId(List<? extends ExchangeId> constituentExchangeIds) {
 			if (constituentExchangeIds == null)  {
 				this.constituentExchangeId = new ArrayList<>();

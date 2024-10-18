@@ -280,6 +280,7 @@ public interface LoanTradeTransferFeeDueNotification extends AbstractLoanTradePa
 			return feeDue;
 		}
 		
+		@Override
 		public LoanTradeTransferFeeDueEvent.LoanTradeTransferFeeDueEventBuilder getOrCreateFeeDue(int _index) {
 		
 			if (feeDue==null) {
@@ -298,6 +299,7 @@ public interface LoanTradeTransferFeeDueNotification extends AbstractLoanTradePa
 			return tradeSummary;
 		}
 		
+		@Override
 		public LoanTradeSummary.LoanTradeSummaryBuilder getOrCreateTradeSummary(int _index) {
 		
 			if (tradeSummary==null) {
@@ -316,6 +318,7 @@ public interface LoanTradeTransferFeeDueNotification extends AbstractLoanTradePa
 			return facilityDetailsModel;
 		}
 		
+		@Override
 		public FacilityDetailsModel.FacilityDetailsModelBuilder getOrCreateFacilityDetailsModel(int _index) {
 		
 			if (facilityDetailsModel==null) {
@@ -334,6 +337,7 @@ public interface LoanTradeTransferFeeDueNotification extends AbstractLoanTradePa
 			return party;
 		}
 		
+		@Override
 		public Party.PartyBuilder getOrCreateParty(int _index) {
 		
 			if (party==null) {
@@ -407,6 +411,7 @@ public interface LoanTradeTransferFeeDueNotification extends AbstractLoanTradePa
 			return this;
 		}
 		@Override
+		@RosettaAttribute("payment")
 		public LoanTradeTransferFeeDueNotification.LoanTradeTransferFeeDueNotificationBuilder addPayment(LoanTradePayment payment) {
 			if (payment!=null) this.payment.add(payment.toBuilder());
 			return this;
@@ -428,7 +433,6 @@ public interface LoanTradeTransferFeeDueNotification extends AbstractLoanTradePa
 		}
 		
 		@Override 
-		@RosettaAttribute("payment")
 		public LoanTradeTransferFeeDueNotification.LoanTradeTransferFeeDueNotificationBuilder setPayment(List<? extends LoanTradePayment> payments) {
 			if (payments == null)  {
 				this.payment = new ArrayList<>();
@@ -442,6 +446,7 @@ public interface LoanTradeTransferFeeDueNotification extends AbstractLoanTradePa
 		}
 		
 		@Override
+		@RosettaAttribute("feeDue")
 		public LoanTradeTransferFeeDueNotification.LoanTradeTransferFeeDueNotificationBuilder addFeeDue(LoanTradeTransferFeeDueEvent feeDue) {
 			if (feeDue!=null) this.feeDue.add(feeDue.toBuilder());
 			return this;
@@ -463,7 +468,6 @@ public interface LoanTradeTransferFeeDueNotification extends AbstractLoanTradePa
 		}
 		
 		@Override 
-		@RosettaAttribute("feeDue")
 		public LoanTradeTransferFeeDueNotification.LoanTradeTransferFeeDueNotificationBuilder setFeeDue(List<? extends LoanTradeTransferFeeDueEvent> feeDues) {
 			if (feeDues == null)  {
 				this.feeDue = new ArrayList<>();
@@ -477,6 +481,7 @@ public interface LoanTradeTransferFeeDueNotification extends AbstractLoanTradePa
 		}
 		
 		@Override
+		@RosettaAttribute("tradeSummary")
 		public LoanTradeTransferFeeDueNotification.LoanTradeTransferFeeDueNotificationBuilder addTradeSummary(LoanTradeSummary tradeSummary) {
 			if (tradeSummary!=null) this.tradeSummary.add(tradeSummary.toBuilder());
 			return this;
@@ -498,7 +503,6 @@ public interface LoanTradeTransferFeeDueNotification extends AbstractLoanTradePa
 		}
 		
 		@Override 
-		@RosettaAttribute("tradeSummary")
 		public LoanTradeTransferFeeDueNotification.LoanTradeTransferFeeDueNotificationBuilder setTradeSummary(List<? extends LoanTradeSummary> tradeSummarys) {
 			if (tradeSummarys == null)  {
 				this.tradeSummary = new ArrayList<>();
@@ -512,6 +516,7 @@ public interface LoanTradeTransferFeeDueNotification extends AbstractLoanTradePa
 		}
 		
 		@Override
+		@RosettaAttribute("facilityDetailsModel")
 		public LoanTradeTransferFeeDueNotification.LoanTradeTransferFeeDueNotificationBuilder addFacilityDetailsModel(FacilityDetailsModel facilityDetailsModel) {
 			if (facilityDetailsModel!=null) this.facilityDetailsModel.add(facilityDetailsModel.toBuilder());
 			return this;
@@ -533,7 +538,6 @@ public interface LoanTradeTransferFeeDueNotification extends AbstractLoanTradePa
 		}
 		
 		@Override 
-		@RosettaAttribute("facilityDetailsModel")
 		public LoanTradeTransferFeeDueNotification.LoanTradeTransferFeeDueNotificationBuilder setFacilityDetailsModel(List<? extends FacilityDetailsModel> facilityDetailsModels) {
 			if (facilityDetailsModels == null)  {
 				this.facilityDetailsModel = new ArrayList<>();
@@ -547,6 +551,7 @@ public interface LoanTradeTransferFeeDueNotification extends AbstractLoanTradePa
 		}
 		
 		@Override
+		@RosettaAttribute("party")
 		public LoanTradeTransferFeeDueNotification.LoanTradeTransferFeeDueNotificationBuilder addParty(Party party) {
 			if (party!=null) this.party.add(party.toBuilder());
 			return this;
@@ -568,7 +573,6 @@ public interface LoanTradeTransferFeeDueNotification extends AbstractLoanTradePa
 		}
 		
 		@Override 
-		@RosettaAttribute("party")
 		public LoanTradeTransferFeeDueNotification.LoanTradeTransferFeeDueNotificationBuilder setParty(List<? extends Party> partys) {
 			if (partys == null)  {
 				this.party = new ArrayList<>();

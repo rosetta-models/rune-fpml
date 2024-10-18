@@ -142,6 +142,7 @@ public interface FxRateSet extends QuotedAssetSet {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("assetQuote")
 		public FxRateSet.FxRateSetBuilder addAssetQuote(BasicAssetValuation assetQuote) {
 			if (assetQuote!=null) this.assetQuote.add(assetQuote.toBuilder());
 			return this;
@@ -163,7 +164,6 @@ public interface FxRateSet extends QuotedAssetSet {
 		}
 		
 		@Override 
-		@RosettaAttribute("assetQuote")
 		public FxRateSet.FxRateSetBuilder setAssetQuote(List<? extends BasicAssetValuation> assetQuotes) {
 			if (assetQuotes == null)  {
 				this.assetQuote = new ArrayList<>();

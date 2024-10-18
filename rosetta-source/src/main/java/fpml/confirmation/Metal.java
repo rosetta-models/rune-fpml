@@ -248,6 +248,7 @@ public interface Metal extends RosettaModelObject {
 			return shape;
 		}
 		
+		@Override
 		public CommodityMetalShape.CommodityMetalShapeBuilder getOrCreateShape(int _index) {
 		
 			if (shape==null) {
@@ -266,6 +267,7 @@ public interface Metal extends RosettaModelObject {
 			return brand;
 		}
 		
+		@Override
 		public CommodityMetalBrand.CommodityMetalBrandBuilder getOrCreateBrand(int _index) {
 		
 			if (brand==null) {
@@ -284,6 +286,7 @@ public interface Metal extends RosettaModelObject {
 			return grade;
 		}
 		
+		@Override
 		public CommodityMetalGrade.CommodityMetalGradeBuilder getOrCreateGrade(int _index) {
 		
 			if (grade==null) {
@@ -303,6 +306,7 @@ public interface Metal extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("shape")
 		public Metal.MetalBuilder addShape(CommodityMetalShape shape) {
 			if (shape!=null) this.shape.add(shape.toBuilder());
 			return this;
@@ -324,7 +328,6 @@ public interface Metal extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("shape")
 		public Metal.MetalBuilder setShape(List<? extends CommodityMetalShape> shapes) {
 			if (shapes == null)  {
 				this.shape = new ArrayList<>();
@@ -338,6 +341,7 @@ public interface Metal extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("brand")
 		public Metal.MetalBuilder addBrand(CommodityMetalBrand brand) {
 			if (brand!=null) this.brand.add(brand.toBuilder());
 			return this;
@@ -359,7 +363,6 @@ public interface Metal extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("brand")
 		public Metal.MetalBuilder setBrand(List<? extends CommodityMetalBrand> brands) {
 			if (brands == null)  {
 				this.brand = new ArrayList<>();
@@ -373,6 +376,7 @@ public interface Metal extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("grade")
 		public Metal.MetalBuilder addGrade(CommodityMetalGrade grade) {
 			if (grade!=null) this.grade.add(grade.toBuilder());
 			return this;
@@ -394,7 +398,6 @@ public interface Metal extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("grade")
 		public Metal.MetalBuilder setGrade(List<? extends CommodityMetalGrade> grades) {
 			if (grades == null)  {
 				this.grade = new ArrayList<>();

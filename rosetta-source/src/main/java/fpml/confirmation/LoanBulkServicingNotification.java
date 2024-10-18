@@ -253,6 +253,7 @@ public interface LoanBulkServicingNotification extends AbstractContractNotificat
 			return loanBulkServicingNotificationChoice0;
 		}
 		
+		@Override
 		public LoanBulkServicingNotificationChoice0.LoanBulkServicingNotificationChoice0Builder getOrCreateLoanBulkServicingNotificationChoice0(int _index) {
 		
 			if (loanBulkServicingNotificationChoice0==null) {
@@ -271,6 +272,7 @@ public interface LoanBulkServicingNotification extends AbstractContractNotificat
 			return loanBulkServicingNotificationChoice1;
 		}
 		
+		@Override
 		public LoanBulkServicingNotificationChoice1.LoanBulkServicingNotificationChoice1Builder getOrCreateLoanBulkServicingNotificationChoice1(int _index) {
 		
 			if (loanBulkServicingNotificationChoice1==null) {
@@ -289,6 +291,7 @@ public interface LoanBulkServicingNotification extends AbstractContractNotificat
 			return party;
 		}
 		
+		@Override
 		public Party.PartyBuilder getOrCreateParty(int _index) {
 		
 			if (party==null) {
@@ -356,6 +359,7 @@ public interface LoanBulkServicingNotification extends AbstractContractNotificat
 			return this;
 		}
 		@Override
+		@RosettaAttribute("eventPayment")
 		public LoanBulkServicingNotification.LoanBulkServicingNotificationBuilder addEventPayment(EventPayment eventPayment) {
 			if (eventPayment!=null) this.eventPayment.add(eventPayment.toBuilder());
 			return this;
@@ -377,7 +381,6 @@ public interface LoanBulkServicingNotification extends AbstractContractNotificat
 		}
 		
 		@Override 
-		@RosettaAttribute("eventPayment")
 		public LoanBulkServicingNotification.LoanBulkServicingNotificationBuilder setEventPayment(List<? extends EventPayment> eventPayments) {
 			if (eventPayments == null)  {
 				this.eventPayment = new ArrayList<>();
@@ -391,6 +394,7 @@ public interface LoanBulkServicingNotification extends AbstractContractNotificat
 		}
 		
 		@Override
+		@RosettaAttribute("facilityOutstandingsPosition")
 		public LoanBulkServicingNotification.LoanBulkServicingNotificationBuilder addFacilityOutstandingsPosition(FacilityOutstandingsPosition facilityOutstandingsPosition) {
 			if (facilityOutstandingsPosition!=null) this.facilityOutstandingsPosition.add(facilityOutstandingsPosition.toBuilder());
 			return this;
@@ -412,7 +416,6 @@ public interface LoanBulkServicingNotification extends AbstractContractNotificat
 		}
 		
 		@Override 
-		@RosettaAttribute("facilityOutstandingsPosition")
 		public LoanBulkServicingNotification.LoanBulkServicingNotificationBuilder setFacilityOutstandingsPosition(List<? extends FacilityOutstandingsPosition> facilityOutstandingsPositions) {
 			if (facilityOutstandingsPositions == null)  {
 				this.facilityOutstandingsPosition = new ArrayList<>();
@@ -426,6 +429,7 @@ public interface LoanBulkServicingNotification extends AbstractContractNotificat
 		}
 		
 		@Override
+		@RosettaAttribute("loanBulkServicingNotificationChoice0")
 		public LoanBulkServicingNotification.LoanBulkServicingNotificationBuilder addLoanBulkServicingNotificationChoice0(LoanBulkServicingNotificationChoice0 loanBulkServicingNotificationChoice0) {
 			if (loanBulkServicingNotificationChoice0!=null) this.loanBulkServicingNotificationChoice0.add(loanBulkServicingNotificationChoice0.toBuilder());
 			return this;
@@ -447,7 +451,6 @@ public interface LoanBulkServicingNotification extends AbstractContractNotificat
 		}
 		
 		@Override 
-		@RosettaAttribute("loanBulkServicingNotificationChoice0")
 		public LoanBulkServicingNotification.LoanBulkServicingNotificationBuilder setLoanBulkServicingNotificationChoice0(List<? extends LoanBulkServicingNotificationChoice0> loanBulkServicingNotificationChoice0s) {
 			if (loanBulkServicingNotificationChoice0s == null)  {
 				this.loanBulkServicingNotificationChoice0 = new ArrayList<>();
@@ -461,6 +464,7 @@ public interface LoanBulkServicingNotification extends AbstractContractNotificat
 		}
 		
 		@Override
+		@RosettaAttribute("loanBulkServicingNotificationChoice1")
 		public LoanBulkServicingNotification.LoanBulkServicingNotificationBuilder addLoanBulkServicingNotificationChoice1(LoanBulkServicingNotificationChoice1 loanBulkServicingNotificationChoice1) {
 			if (loanBulkServicingNotificationChoice1!=null) this.loanBulkServicingNotificationChoice1.add(loanBulkServicingNotificationChoice1.toBuilder());
 			return this;
@@ -482,7 +486,6 @@ public interface LoanBulkServicingNotification extends AbstractContractNotificat
 		}
 		
 		@Override 
-		@RosettaAttribute("loanBulkServicingNotificationChoice1")
 		public LoanBulkServicingNotification.LoanBulkServicingNotificationBuilder setLoanBulkServicingNotificationChoice1(List<? extends LoanBulkServicingNotificationChoice1> loanBulkServicingNotificationChoice1s) {
 			if (loanBulkServicingNotificationChoice1s == null)  {
 				this.loanBulkServicingNotificationChoice1 = new ArrayList<>();
@@ -496,6 +499,7 @@ public interface LoanBulkServicingNotification extends AbstractContractNotificat
 		}
 		
 		@Override
+		@RosettaAttribute("party")
 		public LoanBulkServicingNotification.LoanBulkServicingNotificationBuilder addParty(Party party) {
 			if (party!=null) this.party.add(party.toBuilder());
 			return this;
@@ -517,7 +521,6 @@ public interface LoanBulkServicingNotification extends AbstractContractNotificat
 		}
 		
 		@Override 
-		@RosettaAttribute("party")
 		public LoanBulkServicingNotification.LoanBulkServicingNotificationBuilder setParty(List<? extends Party> partys) {
 			if (partys == null)  {
 				this.party = new ArrayList<>();

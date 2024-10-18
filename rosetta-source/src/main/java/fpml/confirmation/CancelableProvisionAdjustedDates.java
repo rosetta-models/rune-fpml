@@ -154,6 +154,7 @@ public interface CancelableProvisionAdjustedDates extends RosettaModelObject {
 			return cancellationEvent;
 		}
 		
+		@Override
 		public CancellationEvent.CancellationEventBuilder getOrCreateCancellationEvent(int _index) {
 		
 			if (cancellationEvent==null) {
@@ -167,6 +168,7 @@ public interface CancelableProvisionAdjustedDates extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("cancellationEvent")
 		public CancelableProvisionAdjustedDates.CancelableProvisionAdjustedDatesBuilder addCancellationEvent(CancellationEvent cancellationEvent) {
 			if (cancellationEvent!=null) this.cancellationEvent.add(cancellationEvent.toBuilder());
 			return this;
@@ -188,7 +190,6 @@ public interface CancelableProvisionAdjustedDates extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("cancellationEvent")
 		public CancelableProvisionAdjustedDates.CancelableProvisionAdjustedDatesBuilder setCancellationEvent(List<? extends CancellationEvent> cancellationEvents) {
 			if (cancellationEvents == null)  {
 				this.cancellationEvent = new ArrayList<>();

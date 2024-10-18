@@ -263,6 +263,7 @@ public interface Account extends RosettaModelObject {
 			return accountId;
 		}
 		
+		@Override
 		public AccountId.AccountIdBuilder getOrCreateAccountId(int _index) {
 		
 			if (accountId==null) {
@@ -358,6 +359,7 @@ public interface Account extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("accountId")
 		public Account.AccountBuilder addAccountId(AccountId accountId) {
 			if (accountId!=null) this.accountId.add(accountId.toBuilder());
 			return this;
@@ -379,7 +381,6 @@ public interface Account extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("accountId")
 		public Account.AccountBuilder setAccountId(List<? extends AccountId> accountIds) {
 			if (accountIds == null)  {
 				this.accountId = new ArrayList<>();

@@ -674,6 +674,7 @@ public interface FxPerformanceSwap extends Product {
 			return additionalPayment;
 		}
 		
+		@Override
 		public Payment.PaymentBuilder getOrCreateAdditionalPayment(int _index) {
 		
 			if (additionalPayment==null) {
@@ -796,6 +797,7 @@ public interface FxPerformanceSwap extends Product {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("additionalPayment")
 		public FxPerformanceSwap.FxPerformanceSwapBuilder addAdditionalPayment(Payment additionalPayment) {
 			if (additionalPayment!=null) this.additionalPayment.add(additionalPayment.toBuilder());
 			return this;
@@ -817,7 +819,6 @@ public interface FxPerformanceSwap extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("additionalPayment")
 		public FxPerformanceSwap.FxPerformanceSwapBuilder setAdditionalPayment(List<? extends Payment> additionalPayments) {
 			if (additionalPayments == null)  {
 				this.additionalPayment = new ArrayList<>();

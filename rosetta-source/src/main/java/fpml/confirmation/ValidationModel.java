@@ -153,6 +153,7 @@ public interface ValidationModel extends RosettaModelObject {
 			return validation;
 		}
 		
+		@Override
 		public Validation.ValidationBuilder getOrCreateValidation(int _index) {
 		
 			if (validation==null) {
@@ -166,6 +167,7 @@ public interface ValidationModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("validation")
 		public ValidationModel.ValidationModelBuilder addValidation(Validation validation) {
 			if (validation!=null) this.validation.add(validation.toBuilder());
 			return this;
@@ -187,7 +189,6 @@ public interface ValidationModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("validation")
 		public ValidationModel.ValidationModelBuilder setValidation(List<? extends Validation> validations) {
 			if (validations == null)  {
 				this.validation = new ArrayList<>();

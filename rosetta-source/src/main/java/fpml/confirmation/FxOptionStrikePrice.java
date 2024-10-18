@@ -175,6 +175,7 @@ public interface FxOptionStrikePrice extends FxAccrualStrike {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("step")
 		public FxOptionStrikePrice.FxOptionStrikePriceBuilder addStep(Step step) {
 			if (step!=null) this.step.add(step.toBuilder());
 			return this;
@@ -196,7 +197,6 @@ public interface FxOptionStrikePrice extends FxAccrualStrike {
 		}
 		
 		@Override 
-		@RosettaAttribute("step")
 		public FxOptionStrikePrice.FxOptionStrikePriceBuilder setStep(List<? extends Step> steps) {
 			if (steps == null)  {
 				this.step = new ArrayList<>();

@@ -220,6 +220,7 @@ public interface FxAccrual extends RosettaModelObject {
 			return observable;
 		}
 		
+		@Override
 		public FxRateObservable.FxRateObservableBuilder getOrCreateObservable(int _index) {
 		
 			if (observable==null) {
@@ -238,6 +239,7 @@ public interface FxAccrual extends RosettaModelObject {
 			return accrualRegion;
 		}
 		
+		@Override
 		public FxAccrualRegion.FxAccrualRegionBuilder getOrCreateAccrualRegion(int _index) {
 		
 			if (accrualRegion==null) {
@@ -276,6 +278,7 @@ public interface FxAccrual extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("observable")
 		public FxAccrual.FxAccrualBuilder addObservable(FxRateObservable observable) {
 			if (observable!=null) this.observable.add(observable.toBuilder());
 			return this;
@@ -297,7 +300,6 @@ public interface FxAccrual extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("observable")
 		public FxAccrual.FxAccrualBuilder setObservable(List<? extends FxRateObservable> observables) {
 			if (observables == null)  {
 				this.observable = new ArrayList<>();
@@ -311,6 +313,7 @@ public interface FxAccrual extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("accrualRegion")
 		public FxAccrual.FxAccrualBuilder addAccrualRegion(FxAccrualRegion accrualRegion) {
 			if (accrualRegion!=null) this.accrualRegion.add(accrualRegion.toBuilder());
 			return this;
@@ -332,7 +335,6 @@ public interface FxAccrual extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("accrualRegion")
 		public FxAccrual.FxAccrualBuilder setAccrualRegion(List<? extends FxAccrualRegion> accrualRegions) {
 			if (accrualRegions == null)  {
 				this.accrualRegion = new ArrayList<>();

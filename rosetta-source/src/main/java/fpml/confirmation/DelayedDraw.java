@@ -228,6 +228,7 @@ public interface DelayedDraw extends AbstractFacility {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("instrumentId")
 		public DelayedDraw.DelayedDrawBuilder addInstrumentId(InstrumentId instrumentId) {
 			if (instrumentId!=null) this.instrumentId.add(instrumentId.toBuilder());
 			return this;
@@ -249,7 +250,6 @@ public interface DelayedDraw extends AbstractFacility {
 		}
 		
 		@Override 
-		@RosettaAttribute("instrumentId")
 		public DelayedDraw.DelayedDrawBuilder setInstrumentId(List<? extends InstrumentId> instrumentIds) {
 			if (instrumentIds == null)  {
 				this.instrumentId = new ArrayList<>();

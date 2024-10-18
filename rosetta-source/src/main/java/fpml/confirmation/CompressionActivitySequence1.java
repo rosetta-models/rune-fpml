@@ -188,6 +188,7 @@ public interface CompressionActivitySequence1 extends RosettaModelObject {
 			return originatingTradeId;
 		}
 		
+		@Override
 		public TradeId.TradeIdBuilder getOrCreateOriginatingTradeId(int _index) {
 		
 			if (originatingTradeId==null) {
@@ -207,6 +208,7 @@ public interface CompressionActivitySequence1 extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("originatingTradeId")
 		public CompressionActivitySequence1.CompressionActivitySequence1Builder addOriginatingTradeId(TradeId originatingTradeId) {
 			if (originatingTradeId!=null) this.originatingTradeId.add(originatingTradeId.toBuilder());
 			return this;
@@ -228,7 +230,6 @@ public interface CompressionActivitySequence1 extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("originatingTradeId")
 		public CompressionActivitySequence1.CompressionActivitySequence1Builder setOriginatingTradeId(List<? extends TradeId> originatingTradeIds) {
 			if (originatingTradeIds == null)  {
 				this.originatingTradeId = new ArrayList<>();

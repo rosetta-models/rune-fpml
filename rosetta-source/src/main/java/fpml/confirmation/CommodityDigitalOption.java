@@ -423,6 +423,7 @@ public interface CommodityDigitalOption extends Option {
 			return premium;
 		}
 		
+		@Override
 		public CommodityPremium.CommodityPremiumBuilder getOrCreatePremium(int _index) {
 		
 			if (premium==null) {
@@ -509,6 +510,7 @@ public interface CommodityDigitalOption extends Option {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("premium")
 		public CommodityDigitalOption.CommodityDigitalOptionBuilder addPremium(CommodityPremium premium) {
 			if (premium!=null) this.premium.add(premium.toBuilder());
 			return this;
@@ -530,7 +532,6 @@ public interface CommodityDigitalOption extends Option {
 		}
 		
 		@Override 
-		@RosettaAttribute("premium")
 		public CommodityDigitalOption.CommodityDigitalOptionBuilder setPremium(List<? extends CommodityPremium> premiums) {
 			if (premiums == null)  {
 				this.premium = new ArrayList<>();

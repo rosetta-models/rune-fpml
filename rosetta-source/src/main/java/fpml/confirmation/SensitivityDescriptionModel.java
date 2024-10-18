@@ -192,6 +192,7 @@ public interface SensitivityDescriptionModel extends RosettaModelObject {
 			return pricingCoordinateOrReferenceModel;
 		}
 		
+		@Override
 		public PricingCoordinateOrReferenceModel.PricingCoordinateOrReferenceModelBuilder getOrCreatePricingCoordinateOrReferenceModel(int _index) {
 		
 			if (pricingCoordinateOrReferenceModel==null) {
@@ -211,6 +212,7 @@ public interface SensitivityDescriptionModel extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("pricingCoordinateOrReferenceModel")
 		public SensitivityDescriptionModel.SensitivityDescriptionModelBuilder addPricingCoordinateOrReferenceModel(PricingCoordinateOrReferenceModel pricingCoordinateOrReferenceModel) {
 			if (pricingCoordinateOrReferenceModel!=null) this.pricingCoordinateOrReferenceModel.add(pricingCoordinateOrReferenceModel.toBuilder());
 			return this;
@@ -232,7 +234,6 @@ public interface SensitivityDescriptionModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("pricingCoordinateOrReferenceModel")
 		public SensitivityDescriptionModel.SensitivityDescriptionModelBuilder setPricingCoordinateOrReferenceModel(List<? extends PricingCoordinateOrReferenceModel> pricingCoordinateOrReferenceModels) {
 			if (pricingCoordinateOrReferenceModels == null)  {
 				this.pricingCoordinateOrReferenceModel = new ArrayList<>();

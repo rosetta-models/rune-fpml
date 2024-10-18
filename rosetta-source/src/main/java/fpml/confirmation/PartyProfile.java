@@ -184,6 +184,7 @@ public interface PartyProfile extends AbstractPartyProfile {
 			return partyProfileChoice;
 		}
 		
+		@Override
 		public PartyProfileChoice.PartyProfileChoiceBuilder getOrCreatePartyProfileChoice(int _index) {
 		
 			if (partyProfileChoice==null) {
@@ -197,6 +198,7 @@ public interface PartyProfile extends AbstractPartyProfile {
 		}
 		
 		@Override
+		@RosettaAttribute("partyProfileIdentifier")
 		public PartyProfile.PartyProfileBuilder addPartyProfileIdentifier(PartyProfileIdentifier partyProfileIdentifier) {
 			if (partyProfileIdentifier!=null) this.partyProfileIdentifier.add(partyProfileIdentifier.toBuilder());
 			return this;
@@ -218,7 +220,6 @@ public interface PartyProfile extends AbstractPartyProfile {
 		}
 		
 		@Override 
-		@RosettaAttribute("partyProfileIdentifier")
 		public PartyProfile.PartyProfileBuilder setPartyProfileIdentifier(List<? extends PartyProfileIdentifier> partyProfileIdentifiers) {
 			if (partyProfileIdentifiers == null)  {
 				this.partyProfileIdentifier = new ArrayList<>();
@@ -244,6 +245,7 @@ public interface PartyProfile extends AbstractPartyProfile {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("relatedParty")
 		public PartyProfile.PartyProfileBuilder addRelatedParty(RelatedParty relatedParty) {
 			if (relatedParty!=null) this.relatedParty.add(relatedParty.toBuilder());
 			return this;
@@ -265,7 +267,6 @@ public interface PartyProfile extends AbstractPartyProfile {
 		}
 		
 		@Override 
-		@RosettaAttribute("relatedParty")
 		public PartyProfile.PartyProfileBuilder setRelatedParty(List<? extends RelatedParty> relatedPartys) {
 			if (relatedPartys == null)  {
 				this.relatedParty = new ArrayList<>();
@@ -285,6 +286,7 @@ public interface PartyProfile extends AbstractPartyProfile {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("partyProfileChoice")
 		public PartyProfile.PartyProfileBuilder addPartyProfileChoice(PartyProfileChoice partyProfileChoice) {
 			if (partyProfileChoice!=null) this.partyProfileChoice.add(partyProfileChoice.toBuilder());
 			return this;
@@ -306,7 +308,6 @@ public interface PartyProfile extends AbstractPartyProfile {
 		}
 		
 		@Override 
-		@RosettaAttribute("partyProfileChoice")
 		public PartyProfile.PartyProfileBuilder setPartyProfileChoice(List<? extends PartyProfileChoice> partyProfileChoices) {
 			if (partyProfileChoices == null)  {
 				this.partyProfileChoice = new ArrayList<>();

@@ -264,6 +264,7 @@ public interface CommodityFixedPriceModelChoice extends RosettaModelObject {
 			return settlementPeriodsPrice;
 		}
 		
+		@Override
 		public SettlementPeriodsFixedPrice.SettlementPeriodsFixedPriceBuilder getOrCreateSettlementPeriodsPrice(int _index) {
 		
 			if (settlementPeriodsPrice==null) {
@@ -295,6 +296,7 @@ public interface CommodityFixedPriceModelChoice extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("settlementPeriodsPrice")
 		public CommodityFixedPriceModelChoice.CommodityFixedPriceModelChoiceBuilder addSettlementPeriodsPrice(SettlementPeriodsFixedPrice settlementPeriodsPrice) {
 			if (settlementPeriodsPrice!=null) this.settlementPeriodsPrice.add(settlementPeriodsPrice.toBuilder());
 			return this;
@@ -316,7 +318,6 @@ public interface CommodityFixedPriceModelChoice extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("settlementPeriodsPrice")
 		public CommodityFixedPriceModelChoice.CommodityFixedPriceModelChoiceBuilder setSettlementPeriodsPrice(List<? extends SettlementPeriodsFixedPrice> settlementPeriodsPrices) {
 			if (settlementPeriodsPrices == null)  {
 				this.settlementPeriodsPrice = new ArrayList<>();

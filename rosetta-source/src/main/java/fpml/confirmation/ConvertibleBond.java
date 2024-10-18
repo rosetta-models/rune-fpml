@@ -247,6 +247,7 @@ public interface ConvertibleBond extends Bond {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("instrumentId")
 		public ConvertibleBond.ConvertibleBondBuilder addInstrumentId(InstrumentId instrumentId) {
 			if (instrumentId!=null) this.instrumentId.add(instrumentId.toBuilder());
 			return this;
@@ -268,7 +269,6 @@ public interface ConvertibleBond extends Bond {
 		}
 		
 		@Override 
-		@RosettaAttribute("instrumentId")
 		public ConvertibleBond.ConvertibleBondBuilder setInstrumentId(List<? extends InstrumentId> instrumentIds) {
 			if (instrumentIds == null)  {
 				this.instrumentId = new ArrayList<>();

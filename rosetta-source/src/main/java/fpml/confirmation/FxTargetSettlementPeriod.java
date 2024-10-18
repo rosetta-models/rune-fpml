@@ -223,6 +223,7 @@ public interface FxTargetSettlementPeriod extends SettlementPeriod {
 			return payoff;
 		}
 		
+		@Override
 		public FxTargetSettlementPeriodPayoff.FxTargetSettlementPeriodPayoffBuilder getOrCreatePayoff(int _index) {
 		
 			if (payoff==null) {
@@ -241,6 +242,7 @@ public interface FxTargetSettlementPeriod extends SettlementPeriod {
 			return barrier;
 		}
 		
+		@Override
 		public FxSettlementPeriodBarrier.FxSettlementPeriodBarrierBuilder getOrCreateBarrier(int _index) {
 		
 			if (barrier==null) {
@@ -278,6 +280,7 @@ public interface FxTargetSettlementPeriod extends SettlementPeriod {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("payoff")
 		public FxTargetSettlementPeriod.FxTargetSettlementPeriodBuilder addPayoff(FxTargetSettlementPeriodPayoff payoff) {
 			if (payoff!=null) this.payoff.add(payoff.toBuilder());
 			return this;
@@ -299,7 +302,6 @@ public interface FxTargetSettlementPeriod extends SettlementPeriod {
 		}
 		
 		@Override 
-		@RosettaAttribute("payoff")
 		public FxTargetSettlementPeriod.FxTargetSettlementPeriodBuilder setPayoff(List<? extends FxTargetSettlementPeriodPayoff> payoffs) {
 			if (payoffs == null)  {
 				this.payoff = new ArrayList<>();
@@ -313,6 +315,7 @@ public interface FxTargetSettlementPeriod extends SettlementPeriod {
 		}
 		
 		@Override
+		@RosettaAttribute("barrier")
 		public FxTargetSettlementPeriod.FxTargetSettlementPeriodBuilder addBarrier(FxSettlementPeriodBarrier barrier) {
 			if (barrier!=null) this.barrier.add(barrier.toBuilder());
 			return this;
@@ -334,7 +337,6 @@ public interface FxTargetSettlementPeriod extends SettlementPeriod {
 		}
 		
 		@Override 
-		@RosettaAttribute("barrier")
 		public FxTargetSettlementPeriod.FxTargetSettlementPeriodBuilder setBarrier(List<? extends FxSettlementPeriodBarrier> barriers) {
 			if (barriers == null)  {
 				this.barrier = new ArrayList<>();

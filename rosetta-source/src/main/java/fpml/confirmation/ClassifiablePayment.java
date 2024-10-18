@@ -176,6 +176,7 @@ public interface ClassifiablePayment extends NonNegativePayment {
 			return paymentType;
 		}
 		
+		@Override
 		public PaymentType.PaymentTypeBuilder getOrCreatePaymentType(int _index) {
 		
 			if (paymentType==null) {
@@ -213,6 +214,7 @@ public interface ClassifiablePayment extends NonNegativePayment {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("paymentType")
 		public ClassifiablePayment.ClassifiablePaymentBuilder addPaymentType(PaymentType paymentType) {
 			if (paymentType!=null) this.paymentType.add(paymentType.toBuilder());
 			return this;
@@ -234,7 +236,6 @@ public interface ClassifiablePayment extends NonNegativePayment {
 		}
 		
 		@Override 
-		@RosettaAttribute("paymentType")
 		public ClassifiablePayment.ClassifiablePaymentBuilder setPaymentType(List<? extends PaymentType> paymentTypes) {
 			if (paymentTypes == null)  {
 				this.paymentType = new ArrayList<>();

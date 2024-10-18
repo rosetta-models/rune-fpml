@@ -436,6 +436,7 @@ public interface IndexReferenceInformation extends RosettaModelObject {
 			return excludedReferenceEntity;
 		}
 		
+		@Override
 		public LegalEntity.LegalEntityBuilder getOrCreateExcludedReferenceEntity(int _index) {
 		
 			if (excludedReferenceEntity==null) {
@@ -548,6 +549,7 @@ public interface IndexReferenceInformation extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("excludedReferenceEntity")
 		public IndexReferenceInformation.IndexReferenceInformationBuilder addExcludedReferenceEntity(LegalEntity excludedReferenceEntity) {
 			if (excludedReferenceEntity!=null) this.excludedReferenceEntity.add(excludedReferenceEntity.toBuilder());
 			return this;
@@ -569,7 +571,6 @@ public interface IndexReferenceInformation extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("excludedReferenceEntity")
 		public IndexReferenceInformation.IndexReferenceInformationBuilder setExcludedReferenceEntity(List<? extends LegalEntity> excludedReferenceEntitys) {
 			if (excludedReferenceEntitys == null)  {
 				this.excludedReferenceEntity = new ArrayList<>();

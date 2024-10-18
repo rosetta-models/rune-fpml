@@ -152,6 +152,7 @@ public interface ReturnSwapLeg extends DirectionalLeg {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("legIdentifier")
 		public ReturnSwapLeg.ReturnSwapLegBuilder addLegIdentifier(LegIdentifier legIdentifier) {
 			if (legIdentifier!=null) this.legIdentifier.add(legIdentifier.toBuilder());
 			return this;
@@ -173,7 +174,6 @@ public interface ReturnSwapLeg extends DirectionalLeg {
 		}
 		
 		@Override 
-		@RosettaAttribute("legIdentifier")
 		public ReturnSwapLeg.ReturnSwapLegBuilder setLegIdentifier(List<? extends LegIdentifier> legIdentifiers) {
 			if (legIdentifiers == null)  {
 				this.legIdentifier = new ArrayList<>();

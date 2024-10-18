@@ -184,6 +184,7 @@ public interface LcRateChange extends AbstractLcEvent {
 		}
 		
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public LcRateChange.LcRateChangeBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -205,7 +206,6 @@ public interface LcRateChange extends AbstractLcEvent {
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public LcRateChange.LcRateChangeBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();

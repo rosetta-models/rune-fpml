@@ -207,6 +207,7 @@ public interface FxTarget extends RosettaModelObject {
 			return accumulationRegion;
 		}
 		
+		@Override
 		public FxTargetAccumulationRegion.FxTargetAccumulationRegionBuilder getOrCreateAccumulationRegion(int _index) {
 		
 			if (accumulationRegion==null) {
@@ -264,6 +265,7 @@ public interface FxTarget extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("accumulationRegion")
 		public FxTarget.FxTargetBuilder addAccumulationRegion(FxTargetAccumulationRegion accumulationRegion) {
 			if (accumulationRegion!=null) this.accumulationRegion.add(accumulationRegion.toBuilder());
 			return this;
@@ -285,7 +287,6 @@ public interface FxTarget extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("accumulationRegion")
 		public FxTarget.FxTargetBuilder setAccumulationRegion(List<? extends FxTargetAccumulationRegion> accumulationRegions) {
 			if (accumulationRegions == null)  {
 				this.accumulationRegion = new ArrayList<>();

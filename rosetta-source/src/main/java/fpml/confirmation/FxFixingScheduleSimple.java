@@ -309,6 +309,7 @@ public interface FxFixingScheduleSimple extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("fixingDate")
 		public FxFixingScheduleSimple.FxFixingScheduleSimpleBuilder addFixingDate(Date fixingDate) {
 			if (fixingDate!=null) this.fixingDate.add(fixingDate);
 			return this;
@@ -330,7 +331,6 @@ public interface FxFixingScheduleSimple extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("fixingDate")
 		public FxFixingScheduleSimple.FxFixingScheduleSimpleBuilder setFixingDate(List<Date> fixingDates) {
 			if (fixingDates == null)  {
 				this.fixingDate = new ArrayList<>();

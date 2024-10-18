@@ -270,6 +270,7 @@ public interface LcAdjustment extends AbstractLcEvent {
 		}
 		
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public LcAdjustment.LcAdjustmentBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -291,7 +292,6 @@ public interface LcAdjustment extends AbstractLcEvent {
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public LcAdjustment.LcAdjustmentBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();

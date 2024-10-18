@@ -195,6 +195,7 @@ public interface FxDigitalOptionSequence0 extends RosettaModelObject {
 			return touch;
 		}
 		
+		@Override
 		public FxTouch.FxTouchBuilder getOrCreateTouch(int _index) {
 		
 			if (touch==null) {
@@ -214,6 +215,7 @@ public interface FxDigitalOptionSequence0 extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("touch")
 		public FxDigitalOptionSequence0.FxDigitalOptionSequence0Builder addTouch(FxTouch touch) {
 			if (touch!=null) this.touch.add(touch.toBuilder());
 			return this;
@@ -235,7 +237,6 @@ public interface FxDigitalOptionSequence0 extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("touch")
 		public FxDigitalOptionSequence0.FxDigitalOptionSequence0Builder setTouch(List<? extends FxTouch> touchs) {
 			if (touchs == null)  {
 				this.touch = new ArrayList<>();

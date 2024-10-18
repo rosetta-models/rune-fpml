@@ -131,6 +131,7 @@ public interface SPKIData extends SPKIDataType {
 		}
 	
 		@Override
+		@RosettaAttribute("spkiDataTypeSequence")
 		public SPKIData.SPKIDataBuilder addSpkiDataTypeSequence(SPKIDataTypeSequence spkiDataTypeSequence) {
 			if (spkiDataTypeSequence!=null) this.spkiDataTypeSequence.add(spkiDataTypeSequence.toBuilder());
 			return this;
@@ -152,7 +153,6 @@ public interface SPKIData extends SPKIDataType {
 		}
 		
 		@Override 
-		@RosettaAttribute("spkiDataTypeSequence")
 		public SPKIData.SPKIDataBuilder setSpkiDataTypeSequence(List<? extends SPKIDataTypeSequence> spkiDataTypeSequences) {
 			if (spkiDataTypeSequences == null)  {
 				this.spkiDataTypeSequence = new ArrayList<>();

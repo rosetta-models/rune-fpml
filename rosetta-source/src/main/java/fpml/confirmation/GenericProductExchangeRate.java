@@ -262,6 +262,7 @@ public interface GenericProductExchangeRate extends RosettaModelObject {
 			return crossRate;
 		}
 		
+		@Override
 		public CrossRate.CrossRateBuilder getOrCreateCrossRate(int _index) {
 		
 			if (crossRate==null) {
@@ -293,6 +294,7 @@ public interface GenericProductExchangeRate extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("crossRate")
 		public GenericProductExchangeRate.GenericProductExchangeRateBuilder addCrossRate(CrossRate crossRate) {
 			if (crossRate!=null) this.crossRate.add(crossRate.toBuilder());
 			return this;
@@ -314,7 +316,6 @@ public interface GenericProductExchangeRate extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("crossRate")
 		public GenericProductExchangeRate.GenericProductExchangeRateBuilder setCrossRate(List<? extends CrossRate> crossRates) {
 			if (crossRates == null)  {
 				this.crossRate = new ArrayList<>();

@@ -213,6 +213,7 @@ public interface FacilityLoanContractDetailsModel extends RosettaModelObject {
 			return facilityLoanContractDetailsModelChoice0;
 		}
 		
+		@Override
 		public FacilityLoanContractDetailsModelChoice0.FacilityLoanContractDetailsModelChoice0Builder getOrCreateFacilityLoanContractDetailsModelChoice0(int _index) {
 		
 			if (facilityLoanContractDetailsModelChoice0==null) {
@@ -231,6 +232,7 @@ public interface FacilityLoanContractDetailsModel extends RosettaModelObject {
 			return facilityLoanContractDetailsModelChoice1;
 		}
 		
+		@Override
 		public FacilityLoanContractDetailsModelChoice1.FacilityLoanContractDetailsModelChoice1Builder getOrCreateFacilityLoanContractDetailsModelChoice1(int _index) {
 		
 			if (facilityLoanContractDetailsModelChoice1==null) {
@@ -250,6 +252,7 @@ public interface FacilityLoanContractDetailsModel extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("facilityLoanContractDetailsModelChoice0")
 		public FacilityLoanContractDetailsModel.FacilityLoanContractDetailsModelBuilder addFacilityLoanContractDetailsModelChoice0(FacilityLoanContractDetailsModelChoice0 facilityLoanContractDetailsModelChoice0) {
 			if (facilityLoanContractDetailsModelChoice0!=null) this.facilityLoanContractDetailsModelChoice0.add(facilityLoanContractDetailsModelChoice0.toBuilder());
 			return this;
@@ -271,7 +274,6 @@ public interface FacilityLoanContractDetailsModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("facilityLoanContractDetailsModelChoice0")
 		public FacilityLoanContractDetailsModel.FacilityLoanContractDetailsModelBuilder setFacilityLoanContractDetailsModelChoice0(List<? extends FacilityLoanContractDetailsModelChoice0> facilityLoanContractDetailsModelChoice0s) {
 			if (facilityLoanContractDetailsModelChoice0s == null)  {
 				this.facilityLoanContractDetailsModelChoice0 = new ArrayList<>();
@@ -285,6 +287,7 @@ public interface FacilityLoanContractDetailsModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("facilityLoanContractDetailsModelChoice1")
 		public FacilityLoanContractDetailsModel.FacilityLoanContractDetailsModelBuilder addFacilityLoanContractDetailsModelChoice1(FacilityLoanContractDetailsModelChoice1 facilityLoanContractDetailsModelChoice1) {
 			if (facilityLoanContractDetailsModelChoice1!=null) this.facilityLoanContractDetailsModelChoice1.add(facilityLoanContractDetailsModelChoice1.toBuilder());
 			return this;
@@ -306,7 +309,6 @@ public interface FacilityLoanContractDetailsModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("facilityLoanContractDetailsModelChoice1")
 		public FacilityLoanContractDetailsModel.FacilityLoanContractDetailsModelBuilder setFacilityLoanContractDetailsModelChoice1(List<? extends FacilityLoanContractDetailsModelChoice1> facilityLoanContractDetailsModelChoice1s) {
 			if (facilityLoanContractDetailsModelChoice1s == null)  {
 				this.facilityLoanContractDetailsModelChoice1 = new ArrayList<>();

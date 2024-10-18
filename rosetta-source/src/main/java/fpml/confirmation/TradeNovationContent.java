@@ -450,6 +450,7 @@ public interface TradeNovationContent extends AbstractEvent {
 		}
 		
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public TradeNovationContent.TradeNovationContentBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -471,7 +472,6 @@ public interface TradeNovationContent extends AbstractEvent {
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public TradeNovationContent.TradeNovationContentBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();

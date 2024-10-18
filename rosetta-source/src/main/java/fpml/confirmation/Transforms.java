@@ -131,6 +131,7 @@ public interface Transforms extends TransformsType {
 		}
 	
 		@Override
+		@RosettaAttribute("transform")
 		public Transforms.TransformsBuilder addTransform(TransformType transform) {
 			if (transform!=null) this.transform.add(transform.toBuilder());
 			return this;
@@ -152,7 +153,6 @@ public interface Transforms extends TransformsType {
 		}
 		
 		@Override 
-		@RosettaAttribute("transform")
 		public Transforms.TransformsBuilder setTransform(List<? extends TransformType> transforms) {
 			if (transforms == null)  {
 				this.transform = new ArrayList<>();

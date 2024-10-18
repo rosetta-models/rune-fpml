@@ -180,6 +180,7 @@ public interface CommodityMarketDisruptionSequence extends RosettaModelObject {
 			return additionalMarketDisruptionEvent;
 		}
 		
+		@Override
 		public MarketDisruptionEvent.MarketDisruptionEventBuilder getOrCreateAdditionalMarketDisruptionEvent(int _index) {
 		
 			if (additionalMarketDisruptionEvent==null) {
@@ -199,6 +200,7 @@ public interface CommodityMarketDisruptionSequence extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("additionalMarketDisruptionEvent")
 		public CommodityMarketDisruptionSequence.CommodityMarketDisruptionSequenceBuilder addAdditionalMarketDisruptionEvent(MarketDisruptionEvent additionalMarketDisruptionEvent) {
 			if (additionalMarketDisruptionEvent!=null) this.additionalMarketDisruptionEvent.add(additionalMarketDisruptionEvent.toBuilder());
 			return this;
@@ -220,7 +222,6 @@ public interface CommodityMarketDisruptionSequence extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("additionalMarketDisruptionEvent")
 		public CommodityMarketDisruptionSequence.CommodityMarketDisruptionSequenceBuilder setAdditionalMarketDisruptionEvent(List<? extends MarketDisruptionEvent> additionalMarketDisruptionEvents) {
 			if (additionalMarketDisruptionEvents == null)  {
 				this.additionalMarketDisruptionEvent = new ArrayList<>();

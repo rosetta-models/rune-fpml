@@ -320,6 +320,7 @@ public interface Loan extends UnderlyingAssetType {
 			return loanChoice;
 		}
 		
+		@Override
 		public LoanChoice.LoanChoiceBuilder getOrCreateLoanChoice(int _index) {
 		
 			if (loanChoice==null) {
@@ -427,6 +428,7 @@ public interface Loan extends UnderlyingAssetType {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("instrumentId")
 		public Loan.LoanBuilder addInstrumentId(InstrumentId instrumentId) {
 			if (instrumentId!=null) this.instrumentId.add(instrumentId.toBuilder());
 			return this;
@@ -448,7 +450,6 @@ public interface Loan extends UnderlyingAssetType {
 		}
 		
 		@Override 
-		@RosettaAttribute("instrumentId")
 		public Loan.LoanBuilder setInstrumentId(List<? extends InstrumentId> instrumentIds) {
 			if (instrumentIds == null)  {
 				this.instrumentId = new ArrayList<>();
@@ -492,6 +493,7 @@ public interface Loan extends UnderlyingAssetType {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("loanChoice")
 		public Loan.LoanBuilder addLoanChoice(LoanChoice loanChoice) {
 			if (loanChoice!=null) this.loanChoice.add(loanChoice.toBuilder());
 			return this;
@@ -513,7 +515,6 @@ public interface Loan extends UnderlyingAssetType {
 		}
 		
 		@Override 
-		@RosettaAttribute("loanChoice")
 		public Loan.LoanBuilder setLoanChoice(List<? extends LoanChoice> loanChoices) {
 			if (loanChoices == null)  {
 				this.loanChoice = new ArrayList<>();

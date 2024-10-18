@@ -282,6 +282,7 @@ public interface AccruingFeeChangeNotification extends AbstractFacilityNotificat
 			return party;
 		}
 		
+		@Override
 		public Party.PartyBuilder getOrCreateParty(int _index) {
 		
 			if (party==null) {
@@ -349,6 +350,7 @@ public interface AccruingFeeChangeNotification extends AbstractFacilityNotificat
 			return this;
 		}
 		@Override
+		@RosettaAttribute("eventPayment")
 		public AccruingFeeChangeNotification.AccruingFeeChangeNotificationBuilder addEventPayment(EventPayment eventPayment) {
 			if (eventPayment!=null) this.eventPayment.add(eventPayment.toBuilder());
 			return this;
@@ -370,7 +372,6 @@ public interface AccruingFeeChangeNotification extends AbstractFacilityNotificat
 		}
 		
 		@Override 
-		@RosettaAttribute("eventPayment")
 		public AccruingFeeChangeNotification.AccruingFeeChangeNotificationBuilder setEventPayment(List<? extends EventPayment> eventPayments) {
 			if (eventPayments == null)  {
 				this.eventPayment = new ArrayList<>();
@@ -402,6 +403,7 @@ public interface AccruingFeeChangeNotification extends AbstractFacilityNotificat
 			return this;
 		}
 		@Override
+		@RosettaAttribute("party")
 		public AccruingFeeChangeNotification.AccruingFeeChangeNotificationBuilder addParty(Party party) {
 			if (party!=null) this.party.add(party.toBuilder());
 			return this;
@@ -423,7 +425,6 @@ public interface AccruingFeeChangeNotification extends AbstractFacilityNotificat
 		}
 		
 		@Override 
-		@RosettaAttribute("party")
 		public AccruingFeeChangeNotification.AccruingFeeChangeNotificationBuilder setParty(List<? extends Party> partys) {
 			if (partys == null)  {
 				this.party = new ArrayList<>();

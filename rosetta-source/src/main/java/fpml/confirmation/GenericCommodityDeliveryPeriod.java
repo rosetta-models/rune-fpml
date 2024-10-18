@@ -192,6 +192,7 @@ public interface GenericCommodityDeliveryPeriod extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("applicableDay")
 		public GenericCommodityDeliveryPeriod.GenericCommodityDeliveryPeriodBuilder addApplicableDay(DayOfWeekExtEnum applicableDay) {
 			if (applicableDay!=null) this.applicableDay.add(applicableDay);
 			return this;
@@ -213,7 +214,6 @@ public interface GenericCommodityDeliveryPeriod extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("applicableDay")
 		public GenericCommodityDeliveryPeriod.GenericCommodityDeliveryPeriodBuilder setApplicableDay(List<DayOfWeekExtEnum> applicableDays) {
 			if (applicableDays == null)  {
 				this.applicableDay = new ArrayList<>();

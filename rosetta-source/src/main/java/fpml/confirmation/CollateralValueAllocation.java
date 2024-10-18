@@ -177,6 +177,7 @@ public interface CollateralValueAllocation extends RosettaModelObject {
 			return value;
 		}
 		
+		@Override
 		public Money.MoneyBuilder getOrCreateValue(int _index) {
 		
 			if (value==null) {
@@ -196,6 +197,7 @@ public interface CollateralValueAllocation extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("value")
 		public CollateralValueAllocation.CollateralValueAllocationBuilder addValue(Money value) {
 			if (value!=null) this.value.add(value.toBuilder());
 			return this;
@@ -217,7 +219,6 @@ public interface CollateralValueAllocation extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("value")
 		public CollateralValueAllocation.CollateralValueAllocationBuilder setValue(List<? extends Money> values) {
 			if (values == null)  {
 				this.value = new ArrayList<>();

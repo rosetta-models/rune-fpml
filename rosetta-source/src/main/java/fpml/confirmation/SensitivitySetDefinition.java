@@ -415,6 +415,7 @@ public interface SensitivitySetDefinition extends RosettaModelObject {
 			return sensitivityDefinition;
 		}
 		
+		@Override
 		public SensitivityDefinition.SensitivityDefinitionBuilder getOrCreateSensitivityDefinition(int _index) {
 		
 			if (sensitivityDefinition==null) {
@@ -489,6 +490,7 @@ public interface SensitivitySetDefinition extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("sensitivityDefinition")
 		public SensitivitySetDefinition.SensitivitySetDefinitionBuilder addSensitivityDefinition(SensitivityDefinition sensitivityDefinition) {
 			if (sensitivityDefinition!=null) this.sensitivityDefinition.add(sensitivityDefinition.toBuilder());
 			return this;
@@ -510,7 +512,6 @@ public interface SensitivitySetDefinition extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("sensitivityDefinition")
 		public SensitivitySetDefinition.SensitivitySetDefinitionBuilder setSensitivityDefinition(List<? extends SensitivityDefinition> sensitivityDefinitions) {
 			if (sensitivityDefinitions == null)  {
 				this.sensitivityDefinition = new ArrayList<>();

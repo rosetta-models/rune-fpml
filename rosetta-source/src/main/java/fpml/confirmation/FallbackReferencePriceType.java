@@ -242,6 +242,7 @@ public interface FallbackReferencePriceType extends RosettaModelObject {
 			return fallbackSettlementRateOption;
 		}
 		
+		@Override
 		public SettlementRateOption.SettlementRateOptionBuilder getOrCreateFallbackSettlementRateOption(int _index) {
 		
 			if (fallbackSettlementRateOption==null) {
@@ -299,6 +300,7 @@ public interface FallbackReferencePriceType extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("fallbackSettlementRateOption")
 		public FallbackReferencePriceType.FallbackReferencePriceTypeBuilder addFallbackSettlementRateOption(SettlementRateOption fallbackSettlementRateOption) {
 			if (fallbackSettlementRateOption!=null) this.fallbackSettlementRateOption.add(fallbackSettlementRateOption.toBuilder());
 			return this;
@@ -320,7 +322,6 @@ public interface FallbackReferencePriceType extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("fallbackSettlementRateOption")
 		public FallbackReferencePriceType.FallbackReferencePriceTypeBuilder setFallbackSettlementRateOption(List<? extends SettlementRateOption> fallbackSettlementRateOptions) {
 			if (fallbackSettlementRateOptions == null)  {
 				this.fallbackSettlementRateOption = new ArrayList<>();

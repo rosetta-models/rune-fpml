@@ -310,6 +310,7 @@ public interface CommodityPerformanceSwapBase extends Product {
 			return commodityPerformanceSwapLeg;
 		}
 		
+		@Override
 		public CommodityPerformanceSwapLeg.CommodityPerformanceSwapLegBuilder getOrCreateCommodityPerformanceSwapLeg(int _index) {
 		
 			if (commodityPerformanceSwapLeg==null) {
@@ -372,6 +373,7 @@ public interface CommodityPerformanceSwapBase extends Product {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("commodityPerformanceSwapLeg")
 		public CommodityPerformanceSwapBase.CommodityPerformanceSwapBaseBuilder addCommodityPerformanceSwapLeg(CommodityPerformanceSwapLeg commodityPerformanceSwapLeg) {
 			if (commodityPerformanceSwapLeg!=null) this.commodityPerformanceSwapLeg.add(commodityPerformanceSwapLeg.toBuilder());
 			return this;
@@ -393,7 +395,6 @@ public interface CommodityPerformanceSwapBase extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("commodityPerformanceSwapLeg")
 		public CommodityPerformanceSwapBase.CommodityPerformanceSwapBaseBuilder setCommodityPerformanceSwapLeg(List<? extends CommodityPerformanceSwapLeg> commodityPerformanceSwapLegs) {
 			if (commodityPerformanceSwapLegs == null)  {
 				this.commodityPerformanceSwapLeg = new ArrayList<>();

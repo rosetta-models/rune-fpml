@@ -187,6 +187,7 @@ public interface SpreadSchedule extends Schedule {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("step")
 		public SpreadSchedule.SpreadScheduleBuilder addStep(Step step) {
 			if (step!=null) this.step.add(step.toBuilder());
 			return this;
@@ -208,7 +209,6 @@ public interface SpreadSchedule extends Schedule {
 		}
 		
 		@Override 
-		@RosettaAttribute("step")
 		public SpreadSchedule.SpreadScheduleBuilder setStep(List<? extends Step> steps) {
 			if (steps == null)  {
 				this.step = new ArrayList<>();

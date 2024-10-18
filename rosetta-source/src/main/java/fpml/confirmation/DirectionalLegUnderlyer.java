@@ -278,6 +278,7 @@ public interface DirectionalLegUnderlyer extends DirectionalLeg {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("legIdentifier")
 		public DirectionalLegUnderlyer.DirectionalLegUnderlyerBuilder addLegIdentifier(LegIdentifier legIdentifier) {
 			if (legIdentifier!=null) this.legIdentifier.add(legIdentifier.toBuilder());
 			return this;
@@ -299,7 +300,6 @@ public interface DirectionalLegUnderlyer extends DirectionalLeg {
 		}
 		
 		@Override 
-		@RosettaAttribute("legIdentifier")
 		public DirectionalLegUnderlyer.DirectionalLegUnderlyerBuilder setLegIdentifier(List<? extends LegIdentifier> legIdentifiers) {
 			if (legIdentifiers == null)  {
 				this.legIdentifier = new ArrayList<>();

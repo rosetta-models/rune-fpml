@@ -190,6 +190,7 @@ public interface CommodityPerformanceSwap extends CommodityPerformanceSwapBase {
 			return earlyTermination;
 		}
 		
+		@Override
 		public CommodityPerformanceSwapEarlyTermination.CommodityPerformanceSwapEarlyTerminationBuilder getOrCreateEarlyTermination(int _index) {
 		
 			if (earlyTermination==null) {
@@ -233,6 +234,7 @@ public interface CommodityPerformanceSwap extends CommodityPerformanceSwapBase {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("commodityPerformanceSwapLeg")
 		public CommodityPerformanceSwap.CommodityPerformanceSwapBuilder addCommodityPerformanceSwapLeg(CommodityPerformanceSwapLeg commodityPerformanceSwapLeg) {
 			if (commodityPerformanceSwapLeg!=null) this.commodityPerformanceSwapLeg.add(commodityPerformanceSwapLeg.toBuilder());
 			return this;
@@ -254,7 +256,6 @@ public interface CommodityPerformanceSwap extends CommodityPerformanceSwapBase {
 		}
 		
 		@Override 
-		@RosettaAttribute("commodityPerformanceSwapLeg")
 		public CommodityPerformanceSwap.CommodityPerformanceSwapBuilder setCommodityPerformanceSwapLeg(List<? extends CommodityPerformanceSwapLeg> commodityPerformanceSwapLegs) {
 			if (commodityPerformanceSwapLegs == null)  {
 				this.commodityPerformanceSwapLeg = new ArrayList<>();
@@ -274,6 +275,7 @@ public interface CommodityPerformanceSwap extends CommodityPerformanceSwapBase {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("earlyTermination")
 		public CommodityPerformanceSwap.CommodityPerformanceSwapBuilder addEarlyTermination(CommodityPerformanceSwapEarlyTermination earlyTermination) {
 			if (earlyTermination!=null) this.earlyTermination.add(earlyTermination.toBuilder());
 			return this;
@@ -295,7 +297,6 @@ public interface CommodityPerformanceSwap extends CommodityPerformanceSwapBase {
 		}
 		
 		@Override 
-		@RosettaAttribute("earlyTermination")
 		public CommodityPerformanceSwap.CommodityPerformanceSwapBuilder setEarlyTermination(List<? extends CommodityPerformanceSwapEarlyTermination> earlyTerminations) {
 			if (earlyTerminations == null)  {
 				this.earlyTermination = new ArrayList<>();

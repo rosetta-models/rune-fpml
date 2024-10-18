@@ -278,6 +278,7 @@ public interface NovationTermsModel extends RosettaModelObject {
 			return firstPeriodStartDate;
 		}
 		
+		@Override
 		public FirstPeriodStartDate.FirstPeriodStartDateBuilder getOrCreateFirstPeriodStartDate(int _index) {
 		
 			if (firstPeriodStartDate==null) {
@@ -334,6 +335,7 @@ public interface NovationTermsModel extends RosettaModelObject {
 			return contractualDefinitions;
 		}
 		
+		@Override
 		public ContractualDefinitions.ContractualDefinitionsBuilder getOrCreateContractualDefinitions(int _index) {
 		
 			if (contractualDefinitions==null) {
@@ -352,6 +354,7 @@ public interface NovationTermsModel extends RosettaModelObject {
 			return contractualTermsSupplement;
 		}
 		
+		@Override
 		public ContractualTermsSupplement.ContractualTermsSupplementBuilder getOrCreateContractualTermsSupplement(int _index) {
 		
 			if (contractualTermsSupplement==null) {
@@ -371,6 +374,7 @@ public interface NovationTermsModel extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("firstPeriodStartDate")
 		public NovationTermsModel.NovationTermsModelBuilder addFirstPeriodStartDate(FirstPeriodStartDate firstPeriodStartDate) {
 			if (firstPeriodStartDate!=null) this.firstPeriodStartDate.add(firstPeriodStartDate.toBuilder());
 			return this;
@@ -392,7 +396,6 @@ public interface NovationTermsModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("firstPeriodStartDate")
 		public NovationTermsModel.NovationTermsModelBuilder setFirstPeriodStartDate(List<? extends FirstPeriodStartDate> firstPeriodStartDates) {
 			if (firstPeriodStartDates == null)  {
 				this.firstPeriodStartDate = new ArrayList<>();
@@ -418,6 +421,7 @@ public interface NovationTermsModel extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("contractualDefinitions")
 		public NovationTermsModel.NovationTermsModelBuilder addContractualDefinitions(ContractualDefinitions contractualDefinitions) {
 			if (contractualDefinitions!=null) this.contractualDefinitions.add(contractualDefinitions.toBuilder());
 			return this;
@@ -439,7 +443,6 @@ public interface NovationTermsModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("contractualDefinitions")
 		public NovationTermsModel.NovationTermsModelBuilder setContractualDefinitions(List<? extends ContractualDefinitions> contractualDefinitionss) {
 			if (contractualDefinitionss == null)  {
 				this.contractualDefinitions = new ArrayList<>();
@@ -453,6 +456,7 @@ public interface NovationTermsModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("contractualTermsSupplement")
 		public NovationTermsModel.NovationTermsModelBuilder addContractualTermsSupplement(ContractualTermsSupplement contractualTermsSupplement) {
 			if (contractualTermsSupplement!=null) this.contractualTermsSupplement.add(contractualTermsSupplement.toBuilder());
 			return this;
@@ -474,7 +478,6 @@ public interface NovationTermsModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("contractualTermsSupplement")
 		public NovationTermsModel.NovationTermsModelBuilder setContractualTermsSupplement(List<? extends ContractualTermsSupplement> contractualTermsSupplements) {
 			if (contractualTermsSupplements == null)  {
 				this.contractualTermsSupplement = new ArrayList<>();

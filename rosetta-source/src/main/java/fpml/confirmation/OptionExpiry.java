@@ -283,6 +283,7 @@ public interface OptionExpiry extends AbstractEvent {
 			return tradeIdentifier;
 		}
 		
+		@Override
 		public PartyTradeIdentifier.PartyTradeIdentifierBuilder getOrCreateTradeIdentifier(int _index) {
 		
 			if (tradeIdentifier==null) {
@@ -346,6 +347,7 @@ public interface OptionExpiry extends AbstractEvent {
 		}
 		
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public OptionExpiry.OptionExpiryBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -367,7 +369,6 @@ public interface OptionExpiry extends AbstractEvent {
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public OptionExpiry.OptionExpiryBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();
@@ -387,6 +388,7 @@ public interface OptionExpiry extends AbstractEvent {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("tradeIdentifier")
 		public OptionExpiry.OptionExpiryBuilder addTradeIdentifier(PartyTradeIdentifier tradeIdentifier) {
 			if (tradeIdentifier!=null) this.tradeIdentifier.add(tradeIdentifier.toBuilder());
 			return this;
@@ -408,7 +410,6 @@ public interface OptionExpiry extends AbstractEvent {
 		}
 		
 		@Override 
-		@RosettaAttribute("tradeIdentifier")
 		public OptionExpiry.OptionExpiryBuilder setTradeIdentifier(List<? extends PartyTradeIdentifier> tradeIdentifiers) {
 			if (tradeIdentifiers == null)  {
 				this.tradeIdentifier = new ArrayList<>();

@@ -273,6 +273,7 @@ public interface DividendLeg extends DirectionalLegUnderlyer {
 			return dividendPeriod;
 		}
 		
+		@Override
 		public DividendPeriodPayment.DividendPeriodPaymentBuilder getOrCreateDividendPeriod(int _index) {
 		
 			if (dividendPeriod==null) {
@@ -304,6 +305,7 @@ public interface DividendLeg extends DirectionalLegUnderlyer {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("legIdentifier")
 		public DividendLeg.DividendLegBuilder addLegIdentifier(LegIdentifier legIdentifier) {
 			if (legIdentifier!=null) this.legIdentifier.add(legIdentifier.toBuilder());
 			return this;
@@ -325,7 +327,6 @@ public interface DividendLeg extends DirectionalLegUnderlyer {
 		}
 		
 		@Override 
-		@RosettaAttribute("legIdentifier")
 		public DividendLeg.DividendLegBuilder setLegIdentifier(List<? extends LegIdentifier> legIdentifiers) {
 			if (legIdentifiers == null)  {
 				this.legIdentifier = new ArrayList<>();
@@ -381,6 +382,7 @@ public interface DividendLeg extends DirectionalLegUnderlyer {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("dividendPeriod")
 		public DividendLeg.DividendLegBuilder addDividendPeriod(DividendPeriodPayment dividendPeriod) {
 			if (dividendPeriod!=null) this.dividendPeriod.add(dividendPeriod.toBuilder());
 			return this;
@@ -402,7 +404,6 @@ public interface DividendLeg extends DirectionalLegUnderlyer {
 		}
 		
 		@Override 
-		@RosettaAttribute("dividendPeriod")
 		public DividendLeg.DividendLegBuilder setDividendPeriod(List<? extends DividendPeriodPayment> dividendPeriods) {
 			if (dividendPeriods == null)  {
 				this.dividendPeriod = new ArrayList<>();

@@ -175,6 +175,7 @@ public interface ElectricityPhysicalDeliveryQuantitySchedule extends CommodityPh
 			return settlementPeriodsReference;
 		}
 		
+		@Override
 		public SettlementPeriodsReference.SettlementPeriodsReferenceBuilder getOrCreateSettlementPeriodsReference(int _index) {
 		
 			if (settlementPeriodsReference==null) {
@@ -188,6 +189,7 @@ public interface ElectricityPhysicalDeliveryQuantitySchedule extends CommodityPh
 		}
 		
 		@Override
+		@RosettaAttribute("quantityStep")
 		public ElectricityPhysicalDeliveryQuantitySchedule.ElectricityPhysicalDeliveryQuantityScheduleBuilder addQuantityStep(CommodityNotionalQuantity quantityStep) {
 			if (quantityStep!=null) this.quantityStep.add(quantityStep.toBuilder());
 			return this;
@@ -209,7 +211,6 @@ public interface ElectricityPhysicalDeliveryQuantitySchedule extends CommodityPh
 		}
 		
 		@Override 
-		@RosettaAttribute("quantityStep")
 		public ElectricityPhysicalDeliveryQuantitySchedule.ElectricityPhysicalDeliveryQuantityScheduleBuilder setQuantityStep(List<? extends CommodityNotionalQuantity> quantitySteps) {
 			if (quantitySteps == null)  {
 				this.quantityStep = new ArrayList<>();
@@ -235,6 +236,7 @@ public interface ElectricityPhysicalDeliveryQuantitySchedule extends CommodityPh
 			return this;
 		}
 		@Override
+		@RosettaAttribute("settlementPeriodsReference")
 		public ElectricityPhysicalDeliveryQuantitySchedule.ElectricityPhysicalDeliveryQuantityScheduleBuilder addSettlementPeriodsReference(SettlementPeriodsReference settlementPeriodsReference) {
 			if (settlementPeriodsReference!=null) this.settlementPeriodsReference.add(settlementPeriodsReference.toBuilder());
 			return this;
@@ -256,7 +258,6 @@ public interface ElectricityPhysicalDeliveryQuantitySchedule extends CommodityPh
 		}
 		
 		@Override 
-		@RosettaAttribute("settlementPeriodsReference")
 		public ElectricityPhysicalDeliveryQuantitySchedule.ElectricityPhysicalDeliveryQuantityScheduleBuilder setSettlementPeriodsReference(List<? extends SettlementPeriodsReference> settlementPeriodsReferences) {
 			if (settlementPeriodsReferences == null)  {
 				this.settlementPeriodsReference = new ArrayList<>();

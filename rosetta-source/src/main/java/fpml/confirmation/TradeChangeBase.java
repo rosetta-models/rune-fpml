@@ -244,6 +244,7 @@ public interface TradeChangeBase extends AbstractEvent {
 			return tradeIdentifier;
 		}
 		
+		@Override
 		public PartyTradeIdentifier.PartyTradeIdentifierBuilder getOrCreateTradeIdentifier(int _index) {
 		
 			if (tradeIdentifier==null) {
@@ -333,6 +334,7 @@ public interface TradeChangeBase extends AbstractEvent {
 		}
 		
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public TradeChangeBase.TradeChangeBaseBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -354,7 +356,6 @@ public interface TradeChangeBase extends AbstractEvent {
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public TradeChangeBase.TradeChangeBaseBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();
@@ -368,6 +369,7 @@ public interface TradeChangeBase extends AbstractEvent {
 		}
 		
 		@Override
+		@RosettaAttribute("tradeIdentifier")
 		public TradeChangeBase.TradeChangeBaseBuilder addTradeIdentifier(PartyTradeIdentifier tradeIdentifier) {
 			if (tradeIdentifier!=null) this.tradeIdentifier.add(tradeIdentifier.toBuilder());
 			return this;
@@ -389,7 +391,6 @@ public interface TradeChangeBase extends AbstractEvent {
 		}
 		
 		@Override 
-		@RosettaAttribute("tradeIdentifier")
 		public TradeChangeBase.TradeChangeBaseBuilder setTradeIdentifier(List<? extends PartyTradeIdentifier> tradeIdentifiers) {
 			if (tradeIdentifiers == null)  {
 				this.tradeIdentifier = new ArrayList<>();

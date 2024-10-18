@@ -162,6 +162,7 @@ public interface MaturityChange extends LoanContractMaturityChange {
 		}
 	
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public MaturityChange.MaturityChangeBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -183,7 +184,6 @@ public interface MaturityChange extends LoanContractMaturityChange {
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public MaturityChange.MaturityChangeBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();

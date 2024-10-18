@@ -189,6 +189,7 @@ public interface VolatilityMatrixValuation extends VolatilityMatrix {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("adjustment")
 		public VolatilityMatrixValuation.VolatilityMatrixValuationBuilder addAdjustment(ParametricAdjustment adjustment) {
 			if (adjustment!=null) this.adjustment.add(adjustment.toBuilder());
 			return this;
@@ -210,7 +211,6 @@ public interface VolatilityMatrixValuation extends VolatilityMatrix {
 		}
 		
 		@Override 
-		@RosettaAttribute("adjustment")
 		public VolatilityMatrixValuation.VolatilityMatrixValuationBuilder setAdjustment(List<? extends ParametricAdjustment> adjustments) {
 			if (adjustments == null)  {
 				this.adjustment = new ArrayList<>();

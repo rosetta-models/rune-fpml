@@ -39,14 +39,14 @@ public class IngestTestUtil<T> {
 
         Report<TradeState> ingestReport = ingestionService.ingestAndPostProcess(dataDocument);
 
-        //assertNotNull(ingestReport);
-        
-        //String actualJson = jsonWriter.writeValueAsString(ingestReport.getRosettaModelInstance());
+        assertNotNull(ingestReport);
+
+        String actualJson = jsonWriter.writeValueAsString(ingestReport.getRosettaModelInstance());
 
         Path expectedOutputPath = getExpectedOutputPath(samplePath);
         String expectedJson = Files.readString(expectedOutputPath);
 
-        assertEquals(expectedJson, "");
+        assertEquals(expectedJson, actualJson);
     }
 
     public static Path getExpectedOutputPath(Path samplePath) {

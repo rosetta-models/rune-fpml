@@ -150,6 +150,7 @@ public interface SPKIDataType extends RosettaModelObject {
 			return spkiDataTypeSequence;
 		}
 		
+		@Override
 		public SPKIDataTypeSequence.SPKIDataTypeSequenceBuilder getOrCreateSpkiDataTypeSequence(int _index) {
 		
 			if (spkiDataTypeSequence==null) {
@@ -163,6 +164,7 @@ public interface SPKIDataType extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("spkiDataTypeSequence")
 		public SPKIDataType.SPKIDataTypeBuilder addSpkiDataTypeSequence(SPKIDataTypeSequence spkiDataTypeSequence) {
 			if (spkiDataTypeSequence!=null) this.spkiDataTypeSequence.add(spkiDataTypeSequence.toBuilder());
 			return this;
@@ -184,7 +186,6 @@ public interface SPKIDataType extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("spkiDataTypeSequence")
 		public SPKIDataType.SPKIDataTypeBuilder setSpkiDataTypeSequence(List<? extends SPKIDataTypeSequence> spkiDataTypeSequences) {
 			if (spkiDataTypeSequences == null)  {
 				this.spkiDataTypeSequence = new ArrayList<>();

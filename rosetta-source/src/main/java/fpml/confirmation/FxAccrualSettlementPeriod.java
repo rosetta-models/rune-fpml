@@ -237,6 +237,7 @@ public interface FxAccrualSettlementPeriod extends SettlementPeriod {
 			return payoff;
 		}
 		
+		@Override
 		public FxAccrualSettlementPeriodPayoff.FxAccrualSettlementPeriodPayoffBuilder getOrCreatePayoff(int _index) {
 		
 			if (payoff==null) {
@@ -312,6 +313,7 @@ public interface FxAccrualSettlementPeriod extends SettlementPeriod {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("payoff")
 		public FxAccrualSettlementPeriod.FxAccrualSettlementPeriodBuilder addPayoff(FxAccrualSettlementPeriodPayoff payoff) {
 			if (payoff!=null) this.payoff.add(payoff.toBuilder());
 			return this;
@@ -333,7 +335,6 @@ public interface FxAccrualSettlementPeriod extends SettlementPeriod {
 		}
 		
 		@Override 
-		@RosettaAttribute("payoff")
 		public FxAccrualSettlementPeriod.FxAccrualSettlementPeriodBuilder setPayoff(List<? extends FxAccrualSettlementPeriodPayoff> payoffs) {
 			if (payoffs == null)  {
 				this.payoff = new ArrayList<>();

@@ -176,6 +176,7 @@ public interface CommoditySettlementPeriodsNotionalQuantity extends CommodityNot
 			return settlementPeriodsReference;
 		}
 		
+		@Override
 		public SettlementPeriodsReference.SettlementPeriodsReferenceBuilder getOrCreateSettlementPeriodsReference(int _index) {
 		
 			if (settlementPeriodsReference==null) {
@@ -213,6 +214,7 @@ public interface CommoditySettlementPeriodsNotionalQuantity extends CommodityNot
 			return this;
 		}
 		@Override
+		@RosettaAttribute("settlementPeriodsReference")
 		public CommoditySettlementPeriodsNotionalQuantity.CommoditySettlementPeriodsNotionalQuantityBuilder addSettlementPeriodsReference(SettlementPeriodsReference settlementPeriodsReference) {
 			if (settlementPeriodsReference!=null) this.settlementPeriodsReference.add(settlementPeriodsReference.toBuilder());
 			return this;
@@ -234,7 +236,6 @@ public interface CommoditySettlementPeriodsNotionalQuantity extends CommodityNot
 		}
 		
 		@Override 
-		@RosettaAttribute("settlementPeriodsReference")
 		public CommoditySettlementPeriodsNotionalQuantity.CommoditySettlementPeriodsNotionalQuantityBuilder setSettlementPeriodsReference(List<? extends SettlementPeriodsReference> settlementPeriodsReferences) {
 			if (settlementPeriodsReferences == null)  {
 				this.settlementPeriodsReference = new ArrayList<>();

@@ -186,6 +186,7 @@ public interface Commodity extends IdentifiedAsset {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("instrumentId")
 		public Commodity.CommodityBuilder addInstrumentId(InstrumentId instrumentId) {
 			if (instrumentId!=null) this.instrumentId.add(instrumentId.toBuilder());
 			return this;
@@ -207,7 +208,6 @@ public interface Commodity extends IdentifiedAsset {
 		}
 		
 		@Override 
-		@RosettaAttribute("instrumentId")
 		public Commodity.CommodityBuilder setInstrumentId(List<? extends InstrumentId> instrumentIds) {
 			if (instrumentIds == null)  {
 				this.instrumentId = new ArrayList<>();

@@ -357,6 +357,7 @@ public interface FixedRateOption extends FixedRateOptionBase {
 			return borrowerPartyReference;
 		}
 		
+		@Override
 		public PartyReference.PartyReferenceBuilder getOrCreateBorrowerPartyReference(int _index) {
 		
 			if (borrowerPartyReference==null) {
@@ -436,6 +437,7 @@ public interface FixedRateOption extends FixedRateOptionBase {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("borrowerPartyReference")
 		public FixedRateOption.FixedRateOptionBuilder addBorrowerPartyReference(PartyReference borrowerPartyReference) {
 			if (borrowerPartyReference!=null) this.borrowerPartyReference.add(borrowerPartyReference.toBuilder());
 			return this;
@@ -457,7 +459,6 @@ public interface FixedRateOption extends FixedRateOptionBase {
 		}
 		
 		@Override 
-		@RosettaAttribute("borrowerPartyReference")
 		public FixedRateOption.FixedRateOptionBuilder setBorrowerPartyReference(List<? extends PartyReference> borrowerPartyReferences) {
 			if (borrowerPartyReferences == null)  {
 				this.borrowerPartyReference = new ArrayList<>();

@@ -194,6 +194,7 @@ public interface FacilityContractIdentifier extends ContractIdentifier {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("contractId")
 		public FacilityContractIdentifier.FacilityContractIdentifierBuilder addContractId(ContractId contractId) {
 			if (contractId!=null) this.contractId.add(contractId.toBuilder());
 			return this;
@@ -215,7 +216,6 @@ public interface FacilityContractIdentifier extends ContractIdentifier {
 		}
 		
 		@Override 
-		@RosettaAttribute("contractId")
 		public FacilityContractIdentifier.FacilityContractIdentifierBuilder setContractId(List<? extends ContractId> contractIds) {
 			if (contractIds == null)  {
 				this.contractId = new ArrayList<>();
@@ -229,6 +229,7 @@ public interface FacilityContractIdentifier extends ContractIdentifier {
 		}
 		
 		@Override
+		@RosettaAttribute("versionedContractId")
 		public FacilityContractIdentifier.FacilityContractIdentifierBuilder addVersionedContractId(VersionedContractId versionedContractId) {
 			if (versionedContractId!=null) this.versionedContractId.add(versionedContractId.toBuilder());
 			return this;
@@ -250,7 +251,6 @@ public interface FacilityContractIdentifier extends ContractIdentifier {
 		}
 		
 		@Override 
-		@RosettaAttribute("versionedContractId")
 		public FacilityContractIdentifier.FacilityContractIdentifierBuilder setVersionedContractId(List<? extends VersionedContractId> versionedContractIds) {
 			if (versionedContractIds == null)  {
 				this.versionedContractId = new ArrayList<>();

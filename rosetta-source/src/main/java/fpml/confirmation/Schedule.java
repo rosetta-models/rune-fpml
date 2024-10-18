@@ -198,6 +198,7 @@ public interface Schedule extends RosettaModelObject {
 			return step;
 		}
 		
+		@Override
 		public Step.StepBuilder getOrCreateStep(int _index) {
 		
 			if (step==null) {
@@ -223,6 +224,7 @@ public interface Schedule extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("step")
 		public Schedule.ScheduleBuilder addStep(Step step) {
 			if (step!=null) this.step.add(step.toBuilder());
 			return this;
@@ -244,7 +246,6 @@ public interface Schedule extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("step")
 		public Schedule.ScheduleBuilder setStep(List<? extends Step> steps) {
 			if (steps == null)  {
 				this.step = new ArrayList<>();

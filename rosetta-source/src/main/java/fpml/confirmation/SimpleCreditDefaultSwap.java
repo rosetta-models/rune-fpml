@@ -285,6 +285,7 @@ public interface SimpleCreditDefaultSwap extends UnderlyingAssetType {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("instrumentId")
 		public SimpleCreditDefaultSwap.SimpleCreditDefaultSwapBuilder addInstrumentId(InstrumentId instrumentId) {
 			if (instrumentId!=null) this.instrumentId.add(instrumentId.toBuilder());
 			return this;
@@ -306,7 +307,6 @@ public interface SimpleCreditDefaultSwap extends UnderlyingAssetType {
 		}
 		
 		@Override 
-		@RosettaAttribute("instrumentId")
 		public SimpleCreditDefaultSwap.SimpleCreditDefaultSwapBuilder setInstrumentId(List<? extends InstrumentId> instrumentIds) {
 			if (instrumentIds == null)  {
 				this.instrumentId = new ArrayList<>();

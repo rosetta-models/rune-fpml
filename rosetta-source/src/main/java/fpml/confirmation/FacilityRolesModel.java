@@ -267,6 +267,7 @@ public interface FacilityRolesModel extends RosettaModelObject {
 			return coBorrowerPartyReference;
 		}
 		
+		@Override
 		public PartyReference.PartyReferenceBuilder getOrCreateCoBorrowerPartyReference(int _index) {
 		
 			if (coBorrowerPartyReference==null) {
@@ -304,6 +305,7 @@ public interface FacilityRolesModel extends RosettaModelObject {
 			return lcIssuingBankPartyReference;
 		}
 		
+		@Override
 		public PartyReference.PartyReferenceBuilder getOrCreateLcIssuingBankPartyReference(int _index) {
 		
 			if (lcIssuingBankPartyReference==null) {
@@ -322,6 +324,7 @@ public interface FacilityRolesModel extends RosettaModelObject {
 			return guarantorPartyReference;
 		}
 		
+		@Override
 		public PartyReference.PartyReferenceBuilder getOrCreateGuarantorPartyReference(int _index) {
 		
 			if (guarantorPartyReference==null) {
@@ -341,6 +344,7 @@ public interface FacilityRolesModel extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("coBorrowerPartyReference")
 		public FacilityRolesModel.FacilityRolesModelBuilder addCoBorrowerPartyReference(PartyReference coBorrowerPartyReference) {
 			if (coBorrowerPartyReference!=null) this.coBorrowerPartyReference.add(coBorrowerPartyReference.toBuilder());
 			return this;
@@ -362,7 +366,6 @@ public interface FacilityRolesModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("coBorrowerPartyReference")
 		public FacilityRolesModel.FacilityRolesModelBuilder setCoBorrowerPartyReference(List<? extends PartyReference> coBorrowerPartyReferences) {
 			if (coBorrowerPartyReferences == null)  {
 				this.coBorrowerPartyReference = new ArrayList<>();
@@ -382,6 +385,7 @@ public interface FacilityRolesModel extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("lcIssuingBankPartyReference")
 		public FacilityRolesModel.FacilityRolesModelBuilder addLcIssuingBankPartyReference(PartyReference lcIssuingBankPartyReference) {
 			if (lcIssuingBankPartyReference!=null) this.lcIssuingBankPartyReference.add(lcIssuingBankPartyReference.toBuilder());
 			return this;
@@ -403,7 +407,6 @@ public interface FacilityRolesModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("lcIssuingBankPartyReference")
 		public FacilityRolesModel.FacilityRolesModelBuilder setLcIssuingBankPartyReference(List<? extends PartyReference> lcIssuingBankPartyReferences) {
 			if (lcIssuingBankPartyReferences == null)  {
 				this.lcIssuingBankPartyReference = new ArrayList<>();
@@ -417,6 +420,7 @@ public interface FacilityRolesModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("guarantorPartyReference")
 		public FacilityRolesModel.FacilityRolesModelBuilder addGuarantorPartyReference(PartyReference guarantorPartyReference) {
 			if (guarantorPartyReference!=null) this.guarantorPartyReference.add(guarantorPartyReference.toBuilder());
 			return this;
@@ -438,7 +442,6 @@ public interface FacilityRolesModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("guarantorPartyReference")
 		public FacilityRolesModel.FacilityRolesModelBuilder setGuarantorPartyReference(List<? extends PartyReference> guarantorPartyReferences) {
 			if (guarantorPartyReferences == null)  {
 				this.guarantorPartyReference = new ArrayList<>();

@@ -219,6 +219,7 @@ public interface CreditEventNotificationRetracted extends NonCorrectableRequestM
 			return party;
 		}
 		
+		@Override
 		public Party.PartyBuilder getOrCreateParty(int _index) {
 		
 			if (party==null) {
@@ -274,6 +275,7 @@ public interface CreditEventNotificationRetracted extends NonCorrectableRequestM
 			return this;
 		}
 		@Override
+		@RosettaAttribute("party")
 		public CreditEventNotificationRetracted.CreditEventNotificationRetractedBuilder addParty(Party party) {
 			if (party!=null) this.party.add(party.toBuilder());
 			return this;
@@ -295,7 +297,6 @@ public interface CreditEventNotificationRetracted extends NonCorrectableRequestM
 		}
 		
 		@Override 
-		@RosettaAttribute("party")
 		public CreditEventNotificationRetracted.CreditEventNotificationRetractedBuilder setParty(List<? extends Party> partys) {
 			if (partys == null)  {
 				this.party = new ArrayList<>();

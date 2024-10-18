@@ -222,6 +222,7 @@ public interface Formula extends RosettaModelObject {
 			return formulaComponent;
 		}
 		
+		@Override
 		public FormulaComponent.FormulaComponentBuilder getOrCreateFormulaComponent(int _index) {
 		
 			if (formulaComponent==null) {
@@ -247,6 +248,7 @@ public interface Formula extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("formulaComponent")
 		public Formula.FormulaBuilder addFormulaComponent(FormulaComponent formulaComponent) {
 			if (formulaComponent!=null) this.formulaComponent.add(formulaComponent.toBuilder());
 			return this;
@@ -268,7 +270,6 @@ public interface Formula extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("formulaComponent")
 		public Formula.FormulaBuilder setFormulaComponent(List<? extends FormulaComponent> formulaComponents) {
 			if (formulaComponents == null)  {
 				this.formulaComponent = new ArrayList<>();

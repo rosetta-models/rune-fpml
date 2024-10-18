@@ -218,6 +218,7 @@ public interface FxTargetKnockoutForwardSequence extends RosettaModelObject {
 			return constantPayoffRegion;
 		}
 		
+		@Override
 		public FxTargetConstantPayoffRegion.FxTargetConstantPayoffRegionBuilder getOrCreateConstantPayoffRegion(int _index) {
 		
 			if (constantPayoffRegion==null) {
@@ -256,6 +257,7 @@ public interface FxTargetKnockoutForwardSequence extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("constantPayoffRegion")
 		public FxTargetKnockoutForwardSequence.FxTargetKnockoutForwardSequenceBuilder addConstantPayoffRegion(FxTargetConstantPayoffRegion constantPayoffRegion) {
 			if (constantPayoffRegion!=null) this.constantPayoffRegion.add(constantPayoffRegion.toBuilder());
 			return this;
@@ -277,7 +279,6 @@ public interface FxTargetKnockoutForwardSequence extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("constantPayoffRegion")
 		public FxTargetKnockoutForwardSequence.FxTargetKnockoutForwardSequenceBuilder setConstantPayoffRegion(List<? extends FxTargetConstantPayoffRegion> constantPayoffRegions) {
 			if (constantPayoffRegions == null)  {
 				this.constantPayoffRegion = new ArrayList<>();

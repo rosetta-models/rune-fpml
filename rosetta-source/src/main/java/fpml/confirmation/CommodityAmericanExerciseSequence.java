@@ -176,6 +176,7 @@ public interface CommodityAmericanExerciseSequence extends RosettaModelObject {
 			return exercisePeriod;
 		}
 		
+		@Override
 		public CommodityExercisePeriods.CommodityExercisePeriodsBuilder getOrCreateExercisePeriod(int _index) {
 		
 			if (exercisePeriod==null) {
@@ -208,6 +209,7 @@ public interface CommodityAmericanExerciseSequence extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("exercisePeriod")
 		public CommodityAmericanExerciseSequence.CommodityAmericanExerciseSequenceBuilder addExercisePeriod(CommodityExercisePeriods exercisePeriod) {
 			if (exercisePeriod!=null) this.exercisePeriod.add(exercisePeriod.toBuilder());
 			return this;
@@ -229,7 +231,6 @@ public interface CommodityAmericanExerciseSequence extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("exercisePeriod")
 		public CommodityAmericanExerciseSequence.CommodityAmericanExerciseSequenceBuilder setExercisePeriod(List<? extends CommodityExercisePeriods> exercisePeriods) {
 			if (exercisePeriods == null)  {
 				this.exercisePeriod = new ArrayList<>();

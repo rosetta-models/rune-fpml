@@ -232,6 +232,7 @@ public interface ExchangeTradedContractUnderlyer extends RosettaModelObject {
 			return underlyingAsset;
 		}
 		
+		@Override
 		public Asset.AssetBuilder getOrCreateUnderlyingAsset(int _index) {
 		
 			if (underlyingAsset==null) {
@@ -257,6 +258,7 @@ public interface ExchangeTradedContractUnderlyer extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("underlyingAsset")
 		public ExchangeTradedContractUnderlyer.ExchangeTradedContractUnderlyerBuilder addUnderlyingAsset(Asset underlyingAsset) {
 			if (underlyingAsset!=null) this.underlyingAsset.add(underlyingAsset.toBuilder());
 			return this;
@@ -278,7 +280,6 @@ public interface ExchangeTradedContractUnderlyer extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("underlyingAsset")
 		public ExchangeTradedContractUnderlyer.ExchangeTradedContractUnderlyerBuilder setUnderlyingAsset(List<? extends Asset> underlyingAssets) {
 			if (underlyingAssets == null)  {
 				this.underlyingAsset = new ArrayList<>();

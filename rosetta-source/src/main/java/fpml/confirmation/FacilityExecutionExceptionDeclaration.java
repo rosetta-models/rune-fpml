@@ -236,6 +236,7 @@ public interface FacilityExecutionExceptionDeclaration extends RosettaModelObjec
 			return organizationCharacteristic;
 		}
 		
+		@Override
 		public OrganizationCharacteristic.OrganizationCharacteristicBuilder getOrCreateOrganizationCharacteristic(int _index) {
 		
 			if (organizationCharacteristic==null) {
@@ -254,6 +255,7 @@ public interface FacilityExecutionExceptionDeclaration extends RosettaModelObjec
 			return transactionCharacteristic;
 		}
 		
+		@Override
 		public TransactionCharacteristic.TransactionCharacteristicBuilder getOrCreateTransactionCharacteristic(int _index) {
 		
 			if (transactionCharacteristic==null) {
@@ -272,6 +274,7 @@ public interface FacilityExecutionExceptionDeclaration extends RosettaModelObjec
 			return supervisorRegistration;
 		}
 		
+		@Override
 		public SupervisorRegistration.SupervisorRegistrationBuilder getOrCreateSupervisorRegistration(int _index) {
 		
 			if (supervisorRegistration==null) {
@@ -285,6 +288,7 @@ public interface FacilityExecutionExceptionDeclaration extends RosettaModelObjec
 		}
 		
 		@Override
+		@RosettaAttribute("reason")
 		public FacilityExecutionExceptionDeclaration.FacilityExecutionExceptionDeclarationBuilder addReason(String reason) {
 			if (reason!=null) this.reason.add(reason);
 			return this;
@@ -306,7 +310,6 @@ public interface FacilityExecutionExceptionDeclaration extends RosettaModelObjec
 		}
 		
 		@Override 
-		@RosettaAttribute("reason")
 		public FacilityExecutionExceptionDeclaration.FacilityExecutionExceptionDeclarationBuilder setReason(List<String> reasons) {
 			if (reasons == null)  {
 				this.reason = new ArrayList<>();
@@ -319,6 +322,7 @@ public interface FacilityExecutionExceptionDeclaration extends RosettaModelObjec
 		}
 		
 		@Override
+		@RosettaAttribute("organizationCharacteristic")
 		public FacilityExecutionExceptionDeclaration.FacilityExecutionExceptionDeclarationBuilder addOrganizationCharacteristic(OrganizationCharacteristic organizationCharacteristic) {
 			if (organizationCharacteristic!=null) this.organizationCharacteristic.add(organizationCharacteristic.toBuilder());
 			return this;
@@ -340,7 +344,6 @@ public interface FacilityExecutionExceptionDeclaration extends RosettaModelObjec
 		}
 		
 		@Override 
-		@RosettaAttribute("organizationCharacteristic")
 		public FacilityExecutionExceptionDeclaration.FacilityExecutionExceptionDeclarationBuilder setOrganizationCharacteristic(List<? extends OrganizationCharacteristic> organizationCharacteristics) {
 			if (organizationCharacteristics == null)  {
 				this.organizationCharacteristic = new ArrayList<>();
@@ -354,6 +357,7 @@ public interface FacilityExecutionExceptionDeclaration extends RosettaModelObjec
 		}
 		
 		@Override
+		@RosettaAttribute("transactionCharacteristic")
 		public FacilityExecutionExceptionDeclaration.FacilityExecutionExceptionDeclarationBuilder addTransactionCharacteristic(TransactionCharacteristic transactionCharacteristic) {
 			if (transactionCharacteristic!=null) this.transactionCharacteristic.add(transactionCharacteristic.toBuilder());
 			return this;
@@ -375,7 +379,6 @@ public interface FacilityExecutionExceptionDeclaration extends RosettaModelObjec
 		}
 		
 		@Override 
-		@RosettaAttribute("transactionCharacteristic")
 		public FacilityExecutionExceptionDeclaration.FacilityExecutionExceptionDeclarationBuilder setTransactionCharacteristic(List<? extends TransactionCharacteristic> transactionCharacteristics) {
 			if (transactionCharacteristics == null)  {
 				this.transactionCharacteristic = new ArrayList<>();
@@ -389,6 +392,7 @@ public interface FacilityExecutionExceptionDeclaration extends RosettaModelObjec
 		}
 		
 		@Override
+		@RosettaAttribute("supervisorRegistration")
 		public FacilityExecutionExceptionDeclaration.FacilityExecutionExceptionDeclarationBuilder addSupervisorRegistration(SupervisorRegistration supervisorRegistration) {
 			if (supervisorRegistration!=null) this.supervisorRegistration.add(supervisorRegistration.toBuilder());
 			return this;
@@ -410,7 +414,6 @@ public interface FacilityExecutionExceptionDeclaration extends RosettaModelObjec
 		}
 		
 		@Override 
-		@RosettaAttribute("supervisorRegistration")
 		public FacilityExecutionExceptionDeclaration.FacilityExecutionExceptionDeclarationBuilder setSupervisorRegistration(List<? extends SupervisorRegistration> supervisorRegistrations) {
 			if (supervisorRegistrations == null)  {
 				this.supervisorRegistration = new ArrayList<>();

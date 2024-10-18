@@ -145,6 +145,7 @@ public interface FxPivot extends Schedule {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("step")
 		public FxPivot.FxPivotBuilder addStep(Step step) {
 			if (step!=null) this.step.add(step.toBuilder());
 			return this;
@@ -166,7 +167,6 @@ public interface FxPivot extends Schedule {
 		}
 		
 		@Override 
-		@RosettaAttribute("step")
 		public FxPivot.FxPivotBuilder setStep(List<? extends Step> steps) {
 			if (steps == null)  {
 				this.step = new ArrayList<>();

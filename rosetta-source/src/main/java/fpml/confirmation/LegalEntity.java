@@ -210,6 +210,7 @@ public interface LegalEntity extends RosettaModelObject {
 			return entityId;
 		}
 		
+		@Override
 		public EntityId.EntityIdBuilder getOrCreateEntityId(int _index) {
 		
 			if (entityId==null) {
@@ -235,6 +236,7 @@ public interface LegalEntity extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("entityId")
 		public LegalEntity.LegalEntityBuilder addEntityId(EntityId entityId) {
 			if (entityId!=null) this.entityId.add(entityId.toBuilder());
 			return this;
@@ -256,7 +258,6 @@ public interface LegalEntity extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("entityId")
 		public LegalEntity.LegalEntityBuilder setEntityId(List<? extends EntityId> entityIds) {
 			if (entityIds == null)  {
 				this.entityId = new ArrayList<>();

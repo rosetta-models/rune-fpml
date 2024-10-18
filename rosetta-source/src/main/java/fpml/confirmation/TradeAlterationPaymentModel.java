@@ -154,6 +154,7 @@ public interface TradeAlterationPaymentModel extends RosettaModelObject {
 			return payment;
 		}
 		
+		@Override
 		public Payment.PaymentBuilder getOrCreatePayment(int _index) {
 		
 			if (payment==null) {
@@ -167,6 +168,7 @@ public interface TradeAlterationPaymentModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("payment")
 		public TradeAlterationPaymentModel.TradeAlterationPaymentModelBuilder addPayment(Payment payment) {
 			if (payment!=null) this.payment.add(payment.toBuilder());
 			return this;
@@ -188,7 +190,6 @@ public interface TradeAlterationPaymentModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("payment")
 		public TradeAlterationPaymentModel.TradeAlterationPaymentModelBuilder setPayment(List<? extends Payment> payments) {
 			if (payments == null)  {
 				this.payment = new ArrayList<>();

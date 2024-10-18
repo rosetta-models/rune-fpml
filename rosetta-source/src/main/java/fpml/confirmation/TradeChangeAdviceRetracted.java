@@ -252,6 +252,7 @@ public interface TradeChangeAdviceRetracted extends NonCorrectableRequestMessage
 			return tradeIdentifier;
 		}
 		
+		@Override
 		public PartyTradeIdentifier.PartyTradeIdentifierBuilder getOrCreateTradeIdentifier(int _index) {
 		
 			if (tradeIdentifier==null) {
@@ -289,6 +290,7 @@ public interface TradeChangeAdviceRetracted extends NonCorrectableRequestMessage
 			return paymentDetails;
 		}
 		
+		@Override
 		public PaymentDetails.PaymentDetailsBuilder getOrCreatePaymentDetails(int _index) {
 		
 			if (paymentDetails==null) {
@@ -357,6 +359,7 @@ public interface TradeChangeAdviceRetracted extends NonCorrectableRequestMessage
 			return this;
 		}
 		@Override
+		@RosettaAttribute("tradeIdentifier")
 		public TradeChangeAdviceRetracted.TradeChangeAdviceRetractedBuilder addTradeIdentifier(PartyTradeIdentifier tradeIdentifier) {
 			if (tradeIdentifier!=null) this.tradeIdentifier.add(tradeIdentifier.toBuilder());
 			return this;
@@ -378,7 +381,6 @@ public interface TradeChangeAdviceRetracted extends NonCorrectableRequestMessage
 		}
 		
 		@Override 
-		@RosettaAttribute("tradeIdentifier")
 		public TradeChangeAdviceRetracted.TradeChangeAdviceRetractedBuilder setTradeIdentifier(List<? extends PartyTradeIdentifier> tradeIdentifiers) {
 			if (tradeIdentifiers == null)  {
 				this.tradeIdentifier = new ArrayList<>();
@@ -398,6 +400,7 @@ public interface TradeChangeAdviceRetracted extends NonCorrectableRequestMessage
 			return this;
 		}
 		@Override
+		@RosettaAttribute("paymentDetails")
 		public TradeChangeAdviceRetracted.TradeChangeAdviceRetractedBuilder addPaymentDetails(PaymentDetails paymentDetails) {
 			if (paymentDetails!=null) this.paymentDetails.add(paymentDetails.toBuilder());
 			return this;
@@ -419,7 +422,6 @@ public interface TradeChangeAdviceRetracted extends NonCorrectableRequestMessage
 		}
 		
 		@Override 
-		@RosettaAttribute("paymentDetails")
 		public TradeChangeAdviceRetracted.TradeChangeAdviceRetractedBuilder setPaymentDetails(List<? extends PaymentDetails> paymentDetailss) {
 			if (paymentDetailss == null)  {
 				this.paymentDetails = new ArrayList<>();

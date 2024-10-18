@@ -210,6 +210,7 @@ public interface StandardProduct extends Product {
 			return quote;
 		}
 		
+		@Override
 		public BasicQuotation.BasicQuotationBuilder getOrCreateQuote(int _index) {
 		
 			if (quote==null) {
@@ -241,6 +242,7 @@ public interface StandardProduct extends Product {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("quote")
 		public StandardProduct.StandardProductBuilder addQuote(BasicQuotation quote) {
 			if (quote!=null) this.quote.add(quote.toBuilder());
 			return this;
@@ -262,7 +264,6 @@ public interface StandardProduct extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("quote")
 		public StandardProduct.StandardProductBuilder setQuote(List<? extends BasicQuotation> quotes) {
 			if (quotes == null)  {
 				this.quote = new ArrayList<>();

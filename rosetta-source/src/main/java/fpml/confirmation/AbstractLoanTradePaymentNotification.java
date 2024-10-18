@@ -198,6 +198,7 @@ public interface AbstractLoanTradePaymentNotification extends AbstractLoanTradin
 			return payment;
 		}
 		
+		@Override
 		public LoanTradePayment.LoanTradePaymentBuilder getOrCreatePayment(int _index) {
 		
 			if (payment==null) {
@@ -271,6 +272,7 @@ public interface AbstractLoanTradePaymentNotification extends AbstractLoanTradin
 			return this;
 		}
 		@Override
+		@RosettaAttribute("payment")
 		public AbstractLoanTradePaymentNotification.AbstractLoanTradePaymentNotificationBuilder addPayment(LoanTradePayment payment) {
 			if (payment!=null) this.payment.add(payment.toBuilder());
 			return this;
@@ -292,7 +294,6 @@ public interface AbstractLoanTradePaymentNotification extends AbstractLoanTradin
 		}
 		
 		@Override 
-		@RosettaAttribute("payment")
 		public AbstractLoanTradePaymentNotification.AbstractLoanTradePaymentNotificationBuilder setPayment(List<? extends LoanTradePayment> payments) {
 			if (payments == null)  {
 				this.payment = new ArrayList<>();

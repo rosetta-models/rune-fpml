@@ -220,6 +220,7 @@ public interface MetaAndTemplateFields extends RosettaModelObject, GlobalKeyFiel
 			return key;
 		}
 		
+		@Override
 		public Key.KeyBuilder getOrCreateKey(int _index) {
 		
 			if (key==null) {
@@ -251,6 +252,7 @@ public interface MetaAndTemplateFields extends RosettaModelObject, GlobalKeyFiel
 			return this;
 		}
 		@Override
+		@RosettaAttribute("location")
 		public MetaAndTemplateFields.MetaAndTemplateFieldsBuilder addKey(Key key) {
 			if (key!=null) this.key.add(key.toBuilder());
 			return this;
@@ -272,7 +274,6 @@ public interface MetaAndTemplateFields extends RosettaModelObject, GlobalKeyFiel
 		}
 		
 		@Override 
-		@RosettaAttribute("location")
 		public MetaAndTemplateFields.MetaAndTemplateFieldsBuilder setKey(List<? extends Key> keys) {
 			if (keys == null)  {
 				this.key = new ArrayList<>();

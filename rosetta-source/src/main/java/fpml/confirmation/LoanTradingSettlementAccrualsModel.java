@@ -232,6 +232,7 @@ public interface LoanTradingSettlementAccrualsModel extends RosettaModelObject {
 			return accruingFee;
 		}
 		
+		@Override
 		public LoanTradingAccruingFeeAccrual.LoanTradingAccruingFeeAccrualBuilder getOrCreateAccruingFee(int _index) {
 		
 			if (accruingFee==null) {
@@ -250,6 +251,7 @@ public interface LoanTradingSettlementAccrualsModel extends RosettaModelObject {
 			return nonRecurringFee;
 		}
 		
+		@Override
 		public LoanTradingNonRecurringFee.LoanTradingNonRecurringFeeBuilder getOrCreateNonRecurringFee(int _index) {
 		
 			if (nonRecurringFee==null) {
@@ -268,6 +270,7 @@ public interface LoanTradingSettlementAccrualsModel extends RosettaModelObject {
 			return interest;
 		}
 		
+		@Override
 		public LoanTradingOutstandingsAccrual.LoanTradingOutstandingsAccrualBuilder getOrCreateInterest(int _index) {
 		
 			if (interest==null) {
@@ -286,6 +289,7 @@ public interface LoanTradingSettlementAccrualsModel extends RosettaModelObject {
 			return letterOfCreditFee;
 		}
 		
+		@Override
 		public LoanTradingLetterOfCreditAccrual.LoanTradingLetterOfCreditAccrualBuilder getOrCreateLetterOfCreditFee(int _index) {
 		
 			if (letterOfCreditFee==null) {
@@ -299,6 +303,7 @@ public interface LoanTradingSettlementAccrualsModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("accruingFee")
 		public LoanTradingSettlementAccrualsModel.LoanTradingSettlementAccrualsModelBuilder addAccruingFee(LoanTradingAccruingFeeAccrual accruingFee) {
 			if (accruingFee!=null) this.accruingFee.add(accruingFee.toBuilder());
 			return this;
@@ -320,7 +325,6 @@ public interface LoanTradingSettlementAccrualsModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("accruingFee")
 		public LoanTradingSettlementAccrualsModel.LoanTradingSettlementAccrualsModelBuilder setAccruingFee(List<? extends LoanTradingAccruingFeeAccrual> accruingFees) {
 			if (accruingFees == null)  {
 				this.accruingFee = new ArrayList<>();
@@ -334,6 +338,7 @@ public interface LoanTradingSettlementAccrualsModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("nonRecurringFee")
 		public LoanTradingSettlementAccrualsModel.LoanTradingSettlementAccrualsModelBuilder addNonRecurringFee(LoanTradingNonRecurringFee nonRecurringFee) {
 			if (nonRecurringFee!=null) this.nonRecurringFee.add(nonRecurringFee.toBuilder());
 			return this;
@@ -355,7 +360,6 @@ public interface LoanTradingSettlementAccrualsModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("nonRecurringFee")
 		public LoanTradingSettlementAccrualsModel.LoanTradingSettlementAccrualsModelBuilder setNonRecurringFee(List<? extends LoanTradingNonRecurringFee> nonRecurringFees) {
 			if (nonRecurringFees == null)  {
 				this.nonRecurringFee = new ArrayList<>();
@@ -369,6 +373,7 @@ public interface LoanTradingSettlementAccrualsModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("interest")
 		public LoanTradingSettlementAccrualsModel.LoanTradingSettlementAccrualsModelBuilder addInterest(LoanTradingOutstandingsAccrual interest) {
 			if (interest!=null) this.interest.add(interest.toBuilder());
 			return this;
@@ -390,7 +395,6 @@ public interface LoanTradingSettlementAccrualsModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("interest")
 		public LoanTradingSettlementAccrualsModel.LoanTradingSettlementAccrualsModelBuilder setInterest(List<? extends LoanTradingOutstandingsAccrual> interests) {
 			if (interests == null)  {
 				this.interest = new ArrayList<>();
@@ -404,6 +408,7 @@ public interface LoanTradingSettlementAccrualsModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("letterOfCreditFee")
 		public LoanTradingSettlementAccrualsModel.LoanTradingSettlementAccrualsModelBuilder addLetterOfCreditFee(LoanTradingLetterOfCreditAccrual letterOfCreditFee) {
 			if (letterOfCreditFee!=null) this.letterOfCreditFee.add(letterOfCreditFee.toBuilder());
 			return this;
@@ -425,7 +430,6 @@ public interface LoanTradingSettlementAccrualsModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("letterOfCreditFee")
 		public LoanTradingSettlementAccrualsModel.LoanTradingSettlementAccrualsModelBuilder setLetterOfCreditFee(List<? extends LoanTradingLetterOfCreditAccrual> letterOfCreditFees) {
 			if (letterOfCreditFees == null)  {
 				this.letterOfCreditFee = new ArrayList<>();

@@ -195,6 +195,7 @@ public interface FxAccrualBarrierSequence extends RosettaModelObject {
 			return informationSource;
 		}
 		
+		@Override
 		public InformationSource.InformationSourceBuilder getOrCreateInformationSource(int _index) {
 		
 			if (informationSource==null) {
@@ -214,6 +215,7 @@ public interface FxAccrualBarrierSequence extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("informationSource")
 		public FxAccrualBarrierSequence.FxAccrualBarrierSequenceBuilder addInformationSource(InformationSource informationSource) {
 			if (informationSource!=null) this.informationSource.add(informationSource.toBuilder());
 			return this;
@@ -235,7 +237,6 @@ public interface FxAccrualBarrierSequence extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("informationSource")
 		public FxAccrualBarrierSequence.FxAccrualBarrierSequenceBuilder setInformationSource(List<? extends InformationSource> informationSources) {
 			if (informationSources == null)  {
 				this.informationSource = new ArrayList<>();

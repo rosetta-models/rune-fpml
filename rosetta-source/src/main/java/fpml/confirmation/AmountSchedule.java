@@ -190,6 +190,7 @@ public interface AmountSchedule extends Schedule {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("step")
 		public AmountSchedule.AmountScheduleBuilder addStep(Step step) {
 			if (step!=null) this.step.add(step.toBuilder());
 			return this;
@@ -211,7 +212,6 @@ public interface AmountSchedule extends Schedule {
 		}
 		
 		@Override 
-		@RosettaAttribute("step")
 		public AmountSchedule.AmountScheduleBuilder setStep(List<? extends Step> steps) {
 			if (steps == null)  {
 				this.step = new ArrayList<>();

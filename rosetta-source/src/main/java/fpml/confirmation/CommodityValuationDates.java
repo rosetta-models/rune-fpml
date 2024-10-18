@@ -249,6 +249,7 @@ public interface CommodityValuationDates extends RosettaModelObject {
 			return valuationDates;
 		}
 		
+		@Override
 		public AdjustableDates.AdjustableDatesBuilder getOrCreateValuationDates(int _index) {
 		
 			if (valuationDates==null) {
@@ -280,6 +281,7 @@ public interface CommodityValuationDates extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("valuationDates")
 		public CommodityValuationDates.CommodityValuationDatesBuilder addValuationDates(AdjustableDates valuationDates) {
 			if (valuationDates!=null) this.valuationDates.add(valuationDates.toBuilder());
 			return this;
@@ -301,7 +303,6 @@ public interface CommodityValuationDates extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("valuationDates")
 		public CommodityValuationDates.CommodityValuationDatesBuilder setValuationDates(List<? extends AdjustableDates> valuationDatess) {
 			if (valuationDatess == null)  {
 				this.valuationDates = new ArrayList<>();

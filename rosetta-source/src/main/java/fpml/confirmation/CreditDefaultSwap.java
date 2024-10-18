@@ -275,6 +275,7 @@ public interface CreditDefaultSwap extends Product {
 			return protectionTerms;
 		}
 		
+		@Override
 		public ProtectionTerms.ProtectionTermsBuilder getOrCreateProtectionTerms(int _index) {
 		
 			if (protectionTerms==null) {
@@ -293,6 +294,7 @@ public interface CreditDefaultSwap extends Product {
 			return creditDefaultSwapChoice;
 		}
 		
+		@Override
 		public CreditDefaultSwapChoice.CreditDefaultSwapChoiceBuilder getOrCreateCreditDefaultSwapChoice(int _index) {
 		
 			if (creditDefaultSwapChoice==null) {
@@ -330,6 +332,7 @@ public interface CreditDefaultSwap extends Product {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("protectionTerms")
 		public CreditDefaultSwap.CreditDefaultSwapBuilder addProtectionTerms(ProtectionTerms protectionTerms) {
 			if (protectionTerms!=null) this.protectionTerms.add(protectionTerms.toBuilder());
 			return this;
@@ -351,7 +354,6 @@ public interface CreditDefaultSwap extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("protectionTerms")
 		public CreditDefaultSwap.CreditDefaultSwapBuilder setProtectionTerms(List<? extends ProtectionTerms> protectionTermss) {
 			if (protectionTermss == null)  {
 				this.protectionTerms = new ArrayList<>();
@@ -365,6 +367,7 @@ public interface CreditDefaultSwap extends Product {
 		}
 		
 		@Override
+		@RosettaAttribute("creditDefaultSwapChoice")
 		public CreditDefaultSwap.CreditDefaultSwapBuilder addCreditDefaultSwapChoice(CreditDefaultSwapChoice creditDefaultSwapChoice) {
 			if (creditDefaultSwapChoice!=null) this.creditDefaultSwapChoice.add(creditDefaultSwapChoice.toBuilder());
 			return this;
@@ -386,7 +389,6 @@ public interface CreditDefaultSwap extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("creditDefaultSwapChoice")
 		public CreditDefaultSwap.CreditDefaultSwapBuilder setCreditDefaultSwapChoice(List<? extends CreditDefaultSwapChoice> creditDefaultSwapChoices) {
 			if (creditDefaultSwapChoices == null)  {
 				this.creditDefaultSwapChoice = new ArrayList<>();

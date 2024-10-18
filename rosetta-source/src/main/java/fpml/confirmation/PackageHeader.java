@@ -293,6 +293,7 @@ public interface PackageHeader extends RosettaModelObject {
 			return packageType;
 		}
 		
+		@Override
 		public PackageType.PackageTypeBuilder getOrCreatePackageType(int _index) {
 		
 			if (packageType==null) {
@@ -362,6 +363,7 @@ public interface PackageHeader extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("packageType")
 		public PackageHeader.PackageHeaderBuilder addPackageType(PackageType packageType) {
 			if (packageType!=null) this.packageType.add(packageType.toBuilder());
 			return this;
@@ -383,7 +385,6 @@ public interface PackageHeader extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("packageType")
 		public PackageHeader.PackageHeaderBuilder setPackageType(List<? extends PackageType> packageTypes) {
 			if (packageTypes == null)  {
 				this.packageType = new ArrayList<>();

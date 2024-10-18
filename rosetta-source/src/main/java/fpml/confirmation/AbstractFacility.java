@@ -321,6 +321,7 @@ public interface AbstractFacility extends FacilitySummary {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("instrumentId")
 		public AbstractFacility.AbstractFacilityBuilder addInstrumentId(InstrumentId instrumentId) {
 			if (instrumentId!=null) this.instrumentId.add(instrumentId.toBuilder());
 			return this;
@@ -342,7 +343,6 @@ public interface AbstractFacility extends FacilitySummary {
 		}
 		
 		@Override 
-		@RosettaAttribute("instrumentId")
 		public AbstractFacility.AbstractFacilityBuilder setInstrumentId(List<? extends InstrumentId> instrumentIds) {
 			if (instrumentIds == null)  {
 				this.instrumentId = new ArrayList<>();

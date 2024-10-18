@@ -196,6 +196,7 @@ public interface AbstractTradingAccrual extends RosettaModelObject {
 			return accrualPeriod;
 		}
 		
+		@Override
 		public AccrualPeriod.AccrualPeriodBuilder getOrCreateAccrualPeriod(int _index) {
 		
 			if (accrualPeriod==null) {
@@ -215,6 +216,7 @@ public interface AbstractTradingAccrual extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("accrualPeriod")
 		public AbstractTradingAccrual.AbstractTradingAccrualBuilder addAccrualPeriod(AccrualPeriod accrualPeriod) {
 			if (accrualPeriod!=null) this.accrualPeriod.add(accrualPeriod.toBuilder());
 			return this;
@@ -236,7 +238,6 @@ public interface AbstractTradingAccrual extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("accrualPeriod")
 		public AbstractTradingAccrual.AbstractTradingAccrualBuilder setAccrualPeriod(List<? extends AccrualPeriod> accrualPeriods) {
 			if (accrualPeriods == null)  {
 				this.accrualPeriod = new ArrayList<>();

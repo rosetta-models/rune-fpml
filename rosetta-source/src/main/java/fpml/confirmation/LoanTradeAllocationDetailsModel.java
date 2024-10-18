@@ -174,6 +174,7 @@ public interface LoanTradeAllocationDetailsModel extends RosettaModelObject {
 			return allocationId;
 		}
 		
+		@Override
 		public LoanAllocationIdentifier.LoanAllocationIdentifierBuilder getOrCreateAllocationId(int _index) {
 		
 			if (allocationId==null) {
@@ -206,6 +207,7 @@ public interface LoanTradeAllocationDetailsModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("allocationId")
 		public LoanTradeAllocationDetailsModel.LoanTradeAllocationDetailsModelBuilder addAllocationId(LoanAllocationIdentifier allocationId) {
 			if (allocationId!=null) this.allocationId.add(allocationId.toBuilder());
 			return this;
@@ -227,7 +229,6 @@ public interface LoanTradeAllocationDetailsModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("allocationId")
 		public LoanTradeAllocationDetailsModel.LoanTradeAllocationDetailsModelBuilder setAllocationId(List<? extends LoanAllocationIdentifier> allocationIds) {
 			if (allocationIds == null)  {
 				this.allocationId = new ArrayList<>();

@@ -248,6 +248,7 @@ public interface TransactionClassificationModel extends RosettaModelObject {
 			return otcClassification;
 		}
 		
+		@Override
 		public OtcClassification.OtcClassificationBuilder getOrCreateOtcClassification(int _index) {
 		
 			if (otcClassification==null) {
@@ -266,6 +267,7 @@ public interface TransactionClassificationModel extends RosettaModelObject {
 			return tradingWaiver;
 		}
 		
+		@Override
 		public TradingWaiver.TradingWaiverBuilder getOrCreateTradingWaiver(int _index) {
 		
 			if (tradingWaiver==null) {
@@ -310,6 +312,7 @@ public interface TransactionClassificationModel extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("otcClassification")
 		public TransactionClassificationModel.TransactionClassificationModelBuilder addOtcClassification(OtcClassification otcClassification) {
 			if (otcClassification!=null) this.otcClassification.add(otcClassification.toBuilder());
 			return this;
@@ -331,7 +334,6 @@ public interface TransactionClassificationModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("otcClassification")
 		public TransactionClassificationModel.TransactionClassificationModelBuilder setOtcClassification(List<? extends OtcClassification> otcClassifications) {
 			if (otcClassifications == null)  {
 				this.otcClassification = new ArrayList<>();
@@ -345,6 +347,7 @@ public interface TransactionClassificationModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("tradingWaiver")
 		public TransactionClassificationModel.TransactionClassificationModelBuilder addTradingWaiver(TradingWaiver tradingWaiver) {
 			if (tradingWaiver!=null) this.tradingWaiver.add(tradingWaiver.toBuilder());
 			return this;
@@ -366,7 +369,6 @@ public interface TransactionClassificationModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("tradingWaiver")
 		public TransactionClassificationModel.TransactionClassificationModelBuilder setTradingWaiver(List<? extends TradingWaiver> tradingWaivers) {
 			if (tradingWaivers == null)  {
 				this.tradingWaiver = new ArrayList<>();

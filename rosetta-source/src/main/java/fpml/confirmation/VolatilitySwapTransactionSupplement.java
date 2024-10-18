@@ -184,6 +184,7 @@ public interface VolatilitySwapTransactionSupplement extends Product {
 			return volatilityLeg;
 		}
 		
+		@Override
 		public VolatilityLeg.VolatilityLegBuilder getOrCreateVolatilityLeg(int _index) {
 		
 			if (volatilityLeg==null) {
@@ -228,6 +229,7 @@ public interface VolatilitySwapTransactionSupplement extends Product {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("volatilityLeg")
 		public VolatilitySwapTransactionSupplement.VolatilitySwapTransactionSupplementBuilder addVolatilityLeg(VolatilityLeg volatilityLeg) {
 			if (volatilityLeg!=null) this.volatilityLeg.add(volatilityLeg.toBuilder());
 			return this;
@@ -249,7 +251,6 @@ public interface VolatilitySwapTransactionSupplement extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("volatilityLeg")
 		public VolatilitySwapTransactionSupplement.VolatilitySwapTransactionSupplementBuilder setVolatilityLeg(List<? extends VolatilityLeg> volatilityLegs) {
 			if (volatilityLegs == null)  {
 				this.volatilityLeg = new ArrayList<>();

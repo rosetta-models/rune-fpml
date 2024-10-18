@@ -176,6 +176,7 @@ public interface CommodityEuropeanExerciseSequence extends RosettaModelObject {
 			return expirationDate;
 		}
 		
+		@Override
 		public AdjustableOrRelativeDate.AdjustableOrRelativeDateBuilder getOrCreateExpirationDate(int _index) {
 		
 			if (expirationDate==null) {
@@ -208,6 +209,7 @@ public interface CommodityEuropeanExerciseSequence extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("expirationDate")
 		public CommodityEuropeanExerciseSequence.CommodityEuropeanExerciseSequenceBuilder addExpirationDate(AdjustableOrRelativeDate expirationDate) {
 			if (expirationDate!=null) this.expirationDate.add(expirationDate.toBuilder());
 			return this;
@@ -229,7 +231,6 @@ public interface CommodityEuropeanExerciseSequence extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("expirationDate")
 		public CommodityEuropeanExerciseSequence.CommodityEuropeanExerciseSequenceBuilder setExpirationDate(List<? extends AdjustableOrRelativeDate> expirationDates) {
 			if (expirationDates == null)  {
 				this.expirationDate = new ArrayList<>();

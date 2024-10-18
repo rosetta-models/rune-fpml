@@ -232,6 +232,7 @@ public interface EndUserExceptionDeclaration extends RosettaModelObject {
 			return creditDocument;
 		}
 		
+		@Override
 		public CreditDocument.CreditDocumentBuilder getOrCreateCreditDocument(int _index) {
 		
 			if (creditDocument==null) {
@@ -250,6 +251,7 @@ public interface EndUserExceptionDeclaration extends RosettaModelObject {
 			return organizationCharacteristic;
 		}
 		
+		@Override
 		public OrganizationCharacteristic.OrganizationCharacteristicBuilder getOrCreateOrganizationCharacteristic(int _index) {
 		
 			if (organizationCharacteristic==null) {
@@ -268,6 +270,7 @@ public interface EndUserExceptionDeclaration extends RosettaModelObject {
 			return transactionCharacteristic;
 		}
 		
+		@Override
 		public TransactionCharacteristic.TransactionCharacteristicBuilder getOrCreateTransactionCharacteristic(int _index) {
 		
 			if (transactionCharacteristic==null) {
@@ -286,6 +289,7 @@ public interface EndUserExceptionDeclaration extends RosettaModelObject {
 			return supervisorRegistration;
 		}
 		
+		@Override
 		public SupervisorRegistration.SupervisorRegistrationBuilder getOrCreateSupervisorRegistration(int _index) {
 		
 			if (supervisorRegistration==null) {
@@ -299,6 +303,7 @@ public interface EndUserExceptionDeclaration extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("creditDocument")
 		public EndUserExceptionDeclaration.EndUserExceptionDeclarationBuilder addCreditDocument(CreditDocument creditDocument) {
 			if (creditDocument!=null) this.creditDocument.add(creditDocument.toBuilder());
 			return this;
@@ -320,7 +325,6 @@ public interface EndUserExceptionDeclaration extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("creditDocument")
 		public EndUserExceptionDeclaration.EndUserExceptionDeclarationBuilder setCreditDocument(List<? extends CreditDocument> creditDocuments) {
 			if (creditDocuments == null)  {
 				this.creditDocument = new ArrayList<>();
@@ -334,6 +338,7 @@ public interface EndUserExceptionDeclaration extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("organizationCharacteristic")
 		public EndUserExceptionDeclaration.EndUserExceptionDeclarationBuilder addOrganizationCharacteristic(OrganizationCharacteristic organizationCharacteristic) {
 			if (organizationCharacteristic!=null) this.organizationCharacteristic.add(organizationCharacteristic.toBuilder());
 			return this;
@@ -355,7 +360,6 @@ public interface EndUserExceptionDeclaration extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("organizationCharacteristic")
 		public EndUserExceptionDeclaration.EndUserExceptionDeclarationBuilder setOrganizationCharacteristic(List<? extends OrganizationCharacteristic> organizationCharacteristics) {
 			if (organizationCharacteristics == null)  {
 				this.organizationCharacteristic = new ArrayList<>();
@@ -369,6 +373,7 @@ public interface EndUserExceptionDeclaration extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("transactionCharacteristic")
 		public EndUserExceptionDeclaration.EndUserExceptionDeclarationBuilder addTransactionCharacteristic(TransactionCharacteristic transactionCharacteristic) {
 			if (transactionCharacteristic!=null) this.transactionCharacteristic.add(transactionCharacteristic.toBuilder());
 			return this;
@@ -390,7 +395,6 @@ public interface EndUserExceptionDeclaration extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("transactionCharacteristic")
 		public EndUserExceptionDeclaration.EndUserExceptionDeclarationBuilder setTransactionCharacteristic(List<? extends TransactionCharacteristic> transactionCharacteristics) {
 			if (transactionCharacteristics == null)  {
 				this.transactionCharacteristic = new ArrayList<>();
@@ -404,6 +408,7 @@ public interface EndUserExceptionDeclaration extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("supervisorRegistration")
 		public EndUserExceptionDeclaration.EndUserExceptionDeclarationBuilder addSupervisorRegistration(SupervisorRegistration supervisorRegistration) {
 			if (supervisorRegistration!=null) this.supervisorRegistration.add(supervisorRegistration.toBuilder());
 			return this;
@@ -425,7 +430,6 @@ public interface EndUserExceptionDeclaration extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("supervisorRegistration")
 		public EndUserExceptionDeclaration.EndUserExceptionDeclarationBuilder setSupervisorRegistration(List<? extends SupervisorRegistration> supervisorRegistrations) {
 			if (supervisorRegistrations == null)  {
 				this.supervisorRegistration = new ArrayList<>();

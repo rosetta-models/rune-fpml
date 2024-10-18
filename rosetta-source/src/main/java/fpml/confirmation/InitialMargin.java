@@ -226,6 +226,7 @@ public interface InitialMargin extends RosettaModelObject {
 			return margin;
 		}
 		
+		@Override
 		public InitialMarginCalculation.InitialMarginCalculationBuilder getOrCreateMargin(int _index) {
 		
 			if (margin==null) {
@@ -283,6 +284,7 @@ public interface InitialMargin extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("margin")
 		public InitialMargin.InitialMarginBuilder addMargin(InitialMarginCalculation margin) {
 			if (margin!=null) this.margin.add(margin.toBuilder());
 			return this;
@@ -304,7 +306,6 @@ public interface InitialMargin extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("margin")
 		public InitialMargin.InitialMarginBuilder setMargin(List<? extends InitialMarginCalculation> margins) {
 			if (margins == null)  {
 				this.margin = new ArrayList<>();

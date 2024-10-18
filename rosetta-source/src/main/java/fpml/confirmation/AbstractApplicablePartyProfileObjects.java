@@ -235,6 +235,7 @@ public interface AbstractApplicablePartyProfileObjects extends RosettaModelObjec
 			return applicableTransactions;
 		}
 		
+		@Override
 		public ApplicableTransactionType.ApplicableTransactionTypeBuilder getOrCreateApplicableTransactions(int _index) {
 		
 			if (applicableTransactions==null) {
@@ -260,6 +261,7 @@ public interface AbstractApplicablePartyProfileObjects extends RosettaModelObjec
 			return this;
 		}
 		@Override
+		@RosettaAttribute("applicableTransactions")
 		public AbstractApplicablePartyProfileObjects.AbstractApplicablePartyProfileObjectsBuilder addApplicableTransactions(ApplicableTransactionType applicableTransactions) {
 			if (applicableTransactions!=null) this.applicableTransactions.add(applicableTransactions.toBuilder());
 			return this;
@@ -281,7 +283,6 @@ public interface AbstractApplicablePartyProfileObjects extends RosettaModelObjec
 		}
 		
 		@Override 
-		@RosettaAttribute("applicableTransactions")
 		public AbstractApplicablePartyProfileObjects.AbstractApplicablePartyProfileObjectsBuilder setApplicableTransactions(List<? extends ApplicableTransactionType> applicableTransactionss) {
 			if (applicableTransactionss == null)  {
 				this.applicableTransactions = new ArrayList<>();

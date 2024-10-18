@@ -198,6 +198,7 @@ public interface IndexChange extends ChangeEvent {
 		}
 		
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public IndexChange.IndexChangeBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -219,7 +220,6 @@ public interface IndexChange extends ChangeEvent {
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public IndexChange.IndexChangeBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();

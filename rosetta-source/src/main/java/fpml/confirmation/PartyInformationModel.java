@@ -278,6 +278,7 @@ public interface PartyInformationModel extends RosettaModelObject {
 			return classification;
 		}
 		
+		@Override
 		public IndustryClassification.IndustryClassificationBuilder getOrCreateClassification(int _index) {
 		
 			if (classification==null) {
@@ -296,6 +297,7 @@ public interface PartyInformationModel extends RosettaModelObject {
 			return creditRating;
 		}
 		
+		@Override
 		public CreditRating.CreditRatingBuilder getOrCreateCreditRating(int _index) {
 		
 			if (creditRating==null) {
@@ -333,6 +335,7 @@ public interface PartyInformationModel extends RosettaModelObject {
 			return region;
 		}
 		
+		@Override
 		public Region.RegionBuilder getOrCreateRegion(int _index) {
 		
 			if (region==null) {
@@ -351,6 +354,7 @@ public interface PartyInformationModel extends RosettaModelObject {
 			return jurisdiction;
 		}
 		
+		@Override
 		public GoverningLaw.GoverningLawBuilder getOrCreateJurisdiction(int _index) {
 		
 			if (jurisdiction==null) {
@@ -383,6 +387,7 @@ public interface PartyInformationModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("classification")
 		public PartyInformationModel.PartyInformationModelBuilder addClassification(IndustryClassification classification) {
 			if (classification!=null) this.classification.add(classification.toBuilder());
 			return this;
@@ -404,7 +409,6 @@ public interface PartyInformationModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("classification")
 		public PartyInformationModel.PartyInformationModelBuilder setClassification(List<? extends IndustryClassification> classifications) {
 			if (classifications == null)  {
 				this.classification = new ArrayList<>();
@@ -418,6 +422,7 @@ public interface PartyInformationModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("creditRating")
 		public PartyInformationModel.PartyInformationModelBuilder addCreditRating(CreditRating creditRating) {
 			if (creditRating!=null) this.creditRating.add(creditRating.toBuilder());
 			return this;
@@ -439,7 +444,6 @@ public interface PartyInformationModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("creditRating")
 		public PartyInformationModel.PartyInformationModelBuilder setCreditRating(List<? extends CreditRating> creditRatings) {
 			if (creditRatings == null)  {
 				this.creditRating = new ArrayList<>();
@@ -459,6 +463,7 @@ public interface PartyInformationModel extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("region")
 		public PartyInformationModel.PartyInformationModelBuilder addRegion(Region region) {
 			if (region!=null) this.region.add(region.toBuilder());
 			return this;
@@ -480,7 +485,6 @@ public interface PartyInformationModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("region")
 		public PartyInformationModel.PartyInformationModelBuilder setRegion(List<? extends Region> regions) {
 			if (regions == null)  {
 				this.region = new ArrayList<>();
@@ -494,6 +498,7 @@ public interface PartyInformationModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("jurisdiction")
 		public PartyInformationModel.PartyInformationModelBuilder addJurisdiction(GoverningLaw jurisdiction) {
 			if (jurisdiction!=null) this.jurisdiction.add(jurisdiction.toBuilder());
 			return this;
@@ -515,7 +520,6 @@ public interface PartyInformationModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("jurisdiction")
 		public PartyInformationModel.PartyInformationModelBuilder setJurisdiction(List<? extends GoverningLaw> jurisdictions) {
 			if (jurisdictions == null)  {
 				this.jurisdiction = new ArrayList<>();

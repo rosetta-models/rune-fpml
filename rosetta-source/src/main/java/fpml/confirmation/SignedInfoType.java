@@ -245,6 +245,7 @@ public interface SignedInfoType extends RosettaModelObject {
 			return reference;
 		}
 		
+		@Override
 		public ReferenceType.ReferenceTypeBuilder getOrCreateReference(int _index) {
 		
 			if (reference==null) {
@@ -276,6 +277,7 @@ public interface SignedInfoType extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("reference")
 		public SignedInfoType.SignedInfoTypeBuilder addReference(ReferenceType reference) {
 			if (reference!=null) this.reference.add(reference.toBuilder());
 			return this;
@@ -297,7 +299,6 @@ public interface SignedInfoType extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("reference")
 		public SignedInfoType.SignedInfoTypeBuilder setReference(List<? extends ReferenceType> references) {
 			if (references == null)  {
 				this.reference = new ArrayList<>();

@@ -195,6 +195,7 @@ public interface PartySequence extends RosettaModelObject {
 			return partyReference;
 		}
 		
+		@Override
 		public PartyReference.PartyReferenceBuilder getOrCreatePartyReference(int _index) {
 		
 			if (partyReference==null) {
@@ -214,6 +215,7 @@ public interface PartySequence extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("partyReference")
 		public PartySequence.PartySequenceBuilder addPartyReference(PartyReference partyReference) {
 			if (partyReference!=null) this.partyReference.add(partyReference.toBuilder());
 			return this;
@@ -235,7 +237,6 @@ public interface PartySequence extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("partyReference")
 		public PartySequence.PartySequenceBuilder setPartyReference(List<? extends PartyReference> partyReferences) {
 			if (partyReferences == null)  {
 				this.partyReference = new ArrayList<>();

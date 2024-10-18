@@ -176,6 +176,7 @@ public interface CreditEventNotice extends CreditEventNoticeDocument {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("publiclyAvailableInformation")
 		public CreditEventNotice.CreditEventNoticeBuilder addPubliclyAvailableInformation(Resource publiclyAvailableInformation) {
 			if (publiclyAvailableInformation!=null) this.publiclyAvailableInformation.add(publiclyAvailableInformation.toBuilder());
 			return this;
@@ -197,7 +198,6 @@ public interface CreditEventNotice extends CreditEventNoticeDocument {
 		}
 		
 		@Override 
-		@RosettaAttribute("publiclyAvailableInformation")
 		public CreditEventNotice.CreditEventNoticeBuilder setPubliclyAvailableInformation(List<? extends Resource> publiclyAvailableInformations) {
 			if (publiclyAvailableInformations == null)  {
 				this.publiclyAvailableInformation = new ArrayList<>();

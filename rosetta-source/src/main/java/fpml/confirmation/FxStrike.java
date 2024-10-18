@@ -145,6 +145,7 @@ public interface FxStrike extends Schedule {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("step")
 		public FxStrike.FxStrikeBuilder addStep(Step step) {
 			if (step!=null) this.step.add(step.toBuilder());
 			return this;
@@ -166,7 +167,6 @@ public interface FxStrike extends Schedule {
 		}
 		
 		@Override 
-		@RosettaAttribute("step")
 		public FxStrike.FxStrikeBuilder setStep(List<? extends Step> steps) {
 			if (steps == null)  {
 				this.step = new ArrayList<>();

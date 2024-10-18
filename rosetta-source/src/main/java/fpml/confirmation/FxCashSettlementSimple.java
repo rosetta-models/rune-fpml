@@ -263,6 +263,7 @@ public interface FxCashSettlementSimple extends RosettaModelObject {
 			return fixing;
 		}
 		
+		@Override
 		public FxFixing.FxFixingBuilder getOrCreateFixing(int _index) {
 		
 			if (fixing==null) {
@@ -281,6 +282,7 @@ public interface FxCashSettlementSimple extends RosettaModelObject {
 			return rateSourceFixing;
 		}
 		
+		@Override
 		public FxRateSourceFixing.FxRateSourceFixingBuilder getOrCreateRateSourceFixing(int _index) {
 		
 			if (rateSourceFixing==null) {
@@ -306,6 +308,7 @@ public interface FxCashSettlementSimple extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("fixing")
 		public FxCashSettlementSimple.FxCashSettlementSimpleBuilder addFixing(FxFixing fixing) {
 			if (fixing!=null) this.fixing.add(fixing.toBuilder());
 			return this;
@@ -327,7 +330,6 @@ public interface FxCashSettlementSimple extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("fixing")
 		public FxCashSettlementSimple.FxCashSettlementSimpleBuilder setFixing(List<? extends FxFixing> fixings) {
 			if (fixings == null)  {
 				this.fixing = new ArrayList<>();
@@ -341,6 +343,7 @@ public interface FxCashSettlementSimple extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("rateSourceFixing")
 		public FxCashSettlementSimple.FxCashSettlementSimpleBuilder addRateSourceFixing(FxRateSourceFixing rateSourceFixing) {
 			if (rateSourceFixing!=null) this.rateSourceFixing.add(rateSourceFixing.toBuilder());
 			return this;
@@ -362,7 +365,6 @@ public interface FxCashSettlementSimple extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("rateSourceFixing")
 		public FxCashSettlementSimple.FxCashSettlementSimpleBuilder setRateSourceFixing(List<? extends FxRateSourceFixing> rateSourceFixings) {
 			if (rateSourceFixings == null)  {
 				this.rateSourceFixing = new ArrayList<>();

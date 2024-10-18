@@ -258,6 +258,7 @@ public interface CommodityNotionalQuantityModelSequence extends RosettaModelObje
 			return settlementPeriodsNotionalQuantity;
 		}
 		
+		@Override
 		public CommoditySettlementPeriodsNotionalQuantity.CommoditySettlementPeriodsNotionalQuantityBuilder getOrCreateSettlementPeriodsNotionalQuantity(int _index) {
 		
 			if (settlementPeriodsNotionalQuantity==null) {
@@ -289,6 +290,7 @@ public interface CommodityNotionalQuantityModelSequence extends RosettaModelObje
 			return this;
 		}
 		@Override
+		@RosettaAttribute("settlementPeriodsNotionalQuantity")
 		public CommodityNotionalQuantityModelSequence.CommodityNotionalQuantityModelSequenceBuilder addSettlementPeriodsNotionalQuantity(CommoditySettlementPeriodsNotionalQuantity settlementPeriodsNotionalQuantity) {
 			if (settlementPeriodsNotionalQuantity!=null) this.settlementPeriodsNotionalQuantity.add(settlementPeriodsNotionalQuantity.toBuilder());
 			return this;
@@ -310,7 +312,6 @@ public interface CommodityNotionalQuantityModelSequence extends RosettaModelObje
 		}
 		
 		@Override 
-		@RosettaAttribute("settlementPeriodsNotionalQuantity")
 		public CommodityNotionalQuantityModelSequence.CommodityNotionalQuantityModelSequenceBuilder setSettlementPeriodsNotionalQuantity(List<? extends CommoditySettlementPeriodsNotionalQuantity> settlementPeriodsNotionalQuantitys) {
 			if (settlementPeriodsNotionalQuantitys == null)  {
 				this.settlementPeriodsNotionalQuantity = new ArrayList<>();

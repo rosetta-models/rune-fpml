@@ -300,6 +300,7 @@ public interface Person extends RosettaModelObject {
 			return personId;
 		}
 		
+		@Override
 		public PersonId.PersonIdBuilder getOrCreatePersonId(int _index) {
 		
 			if (personId==null) {
@@ -388,6 +389,7 @@ public interface Person extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("personId")
 		public Person.PersonBuilder addPersonId(PersonId personId) {
 			if (personId!=null) this.personId.add(personId.toBuilder());
 			return this;
@@ -409,7 +411,6 @@ public interface Person extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("personId")
 		public Person.PersonBuilder setPersonId(List<? extends PersonId> personIds) {
 			if (personIds == null)  {
 				this.personId = new ArrayList<>();

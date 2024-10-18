@@ -323,6 +323,7 @@ public interface FxBarrierFeature extends RosettaModelObject {
 			return informationSource;
 		}
 		
+		@Override
 		public InformationSource.InformationSourceBuilder getOrCreateInformationSource(int _index) {
 		
 			if (informationSource==null) {
@@ -360,6 +361,7 @@ public interface FxBarrierFeature extends RosettaModelObject {
 			return observationPoint;
 		}
 		
+		@Override
 		public FxBusinessCenterDateTime.FxBusinessCenterDateTimeBuilder getOrCreateObservationPoint(int _index) {
 		
 			if (observationPoint==null) {
@@ -397,6 +399,7 @@ public interface FxBarrierFeature extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("informationSource")
 		public FxBarrierFeature.FxBarrierFeatureBuilder addInformationSource(InformationSource informationSource) {
 			if (informationSource!=null) this.informationSource.add(informationSource.toBuilder());
 			return this;
@@ -418,7 +421,6 @@ public interface FxBarrierFeature extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("informationSource")
 		public FxBarrierFeature.FxBarrierFeatureBuilder setInformationSource(List<? extends InformationSource> informationSources) {
 			if (informationSources == null)  {
 				this.informationSource = new ArrayList<>();
@@ -438,6 +440,7 @@ public interface FxBarrierFeature extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("observationPoint")
 		public FxBarrierFeature.FxBarrierFeatureBuilder addObservationPoint(FxBusinessCenterDateTime observationPoint) {
 			if (observationPoint!=null) this.observationPoint.add(observationPoint.toBuilder());
 			return this;
@@ -459,7 +462,6 @@ public interface FxBarrierFeature extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("observationPoint")
 		public FxBarrierFeature.FxBarrierFeatureBuilder setObservationPoint(List<? extends FxBusinessCenterDateTime> observationPoints) {
 			if (observationPoints == null)  {
 				this.observationPoint = new ArrayList<>();

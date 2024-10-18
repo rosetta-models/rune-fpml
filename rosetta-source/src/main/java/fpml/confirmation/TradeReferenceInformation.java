@@ -304,6 +304,7 @@ public interface TradeReferenceInformation extends RosettaModelObject {
 			return partyTradeIdentifier;
 		}
 		
+		@Override
 		public PartyTradeIdentifier.PartyTradeIdentifierBuilder getOrCreatePartyTradeIdentifier(int _index) {
 		
 			if (partyTradeIdentifier==null) {
@@ -322,6 +323,7 @@ public interface TradeReferenceInformation extends RosettaModelObject {
 			return partyTradeInformation;
 		}
 		
+		@Override
 		public PartyTradeInformation.PartyTradeInformationBuilder getOrCreatePartyTradeInformation(int _index) {
 		
 			if (partyTradeInformation==null) {
@@ -385,6 +387,7 @@ public interface TradeReferenceInformation extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("partyTradeIdentifier")
 		public TradeReferenceInformation.TradeReferenceInformationBuilder addPartyTradeIdentifier(PartyTradeIdentifier partyTradeIdentifier) {
 			if (partyTradeIdentifier!=null) this.partyTradeIdentifier.add(partyTradeIdentifier.toBuilder());
 			return this;
@@ -406,7 +409,6 @@ public interface TradeReferenceInformation extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("partyTradeIdentifier")
 		public TradeReferenceInformation.TradeReferenceInformationBuilder setPartyTradeIdentifier(List<? extends PartyTradeIdentifier> partyTradeIdentifiers) {
 			if (partyTradeIdentifiers == null)  {
 				this.partyTradeIdentifier = new ArrayList<>();
@@ -420,6 +422,7 @@ public interface TradeReferenceInformation extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("partyTradeInformation")
 		public TradeReferenceInformation.TradeReferenceInformationBuilder addPartyTradeInformation(PartyTradeInformation partyTradeInformation) {
 			if (partyTradeInformation!=null) this.partyTradeInformation.add(partyTradeInformation.toBuilder());
 			return this;
@@ -441,7 +444,6 @@ public interface TradeReferenceInformation extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("partyTradeInformation")
 		public TradeReferenceInformation.TradeReferenceInformationBuilder setPartyTradeInformation(List<? extends PartyTradeInformation> partyTradeInformations) {
 			if (partyTradeInformations == null)  {
 				this.partyTradeInformation = new ArrayList<>();

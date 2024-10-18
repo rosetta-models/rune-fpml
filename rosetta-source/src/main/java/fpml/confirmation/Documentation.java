@@ -407,6 +407,7 @@ public interface Documentation extends RosettaModelObject {
 			return contractualDefinitions;
 		}
 		
+		@Override
 		public ContractualDefinitions.ContractualDefinitionsBuilder getOrCreateContractualDefinitions(int _index) {
 		
 			if (contractualDefinitions==null) {
@@ -425,6 +426,7 @@ public interface Documentation extends RosettaModelObject {
 			return contractualTermsSupplement;
 		}
 		
+		@Override
 		public ContractualTermsSupplement.ContractualTermsSupplementBuilder getOrCreateContractualTermsSupplement(int _index) {
 		
 			if (contractualTermsSupplement==null) {
@@ -443,6 +445,7 @@ public interface Documentation extends RosettaModelObject {
 			return contractualMatrix;
 		}
 		
+		@Override
 		public ContractualMatrix.ContractualMatrixBuilder getOrCreateContractualMatrix(int _index) {
 		
 			if (contractualMatrix==null) {
@@ -480,6 +483,7 @@ public interface Documentation extends RosettaModelObject {
 			return otherAgreement;
 		}
 		
+		@Override
 		public OtherAgreement.OtherAgreementBuilder getOrCreateOtherAgreement(int _index) {
 		
 			if (otherAgreement==null) {
@@ -498,6 +502,7 @@ public interface Documentation extends RosettaModelObject {
 			return attachment;
 		}
 		
+		@Override
 		public Resource.ResourceBuilder getOrCreateAttachment(int _index) {
 		
 			if (attachment==null) {
@@ -529,6 +534,7 @@ public interface Documentation extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("contractualDefinitions")
 		public Documentation.DocumentationBuilder addContractualDefinitions(ContractualDefinitions contractualDefinitions) {
 			if (contractualDefinitions!=null) this.contractualDefinitions.add(contractualDefinitions.toBuilder());
 			return this;
@@ -550,7 +556,6 @@ public interface Documentation extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("contractualDefinitions")
 		public Documentation.DocumentationBuilder setContractualDefinitions(List<? extends ContractualDefinitions> contractualDefinitionss) {
 			if (contractualDefinitionss == null)  {
 				this.contractualDefinitions = new ArrayList<>();
@@ -564,6 +569,7 @@ public interface Documentation extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("contractualTermsSupplement")
 		public Documentation.DocumentationBuilder addContractualTermsSupplement(ContractualTermsSupplement contractualTermsSupplement) {
 			if (contractualTermsSupplement!=null) this.contractualTermsSupplement.add(contractualTermsSupplement.toBuilder());
 			return this;
@@ -585,7 +591,6 @@ public interface Documentation extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("contractualTermsSupplement")
 		public Documentation.DocumentationBuilder setContractualTermsSupplement(List<? extends ContractualTermsSupplement> contractualTermsSupplements) {
 			if (contractualTermsSupplements == null)  {
 				this.contractualTermsSupplement = new ArrayList<>();
@@ -599,6 +604,7 @@ public interface Documentation extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("contractualMatrix")
 		public Documentation.DocumentationBuilder addContractualMatrix(ContractualMatrix contractualMatrix) {
 			if (contractualMatrix!=null) this.contractualMatrix.add(contractualMatrix.toBuilder());
 			return this;
@@ -620,7 +626,6 @@ public interface Documentation extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("contractualMatrix")
 		public Documentation.DocumentationBuilder setContractualMatrix(List<? extends ContractualMatrix> contractualMatrixs) {
 			if (contractualMatrixs == null)  {
 				this.contractualMatrix = new ArrayList<>();
@@ -640,6 +645,7 @@ public interface Documentation extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("otherAgreement")
 		public Documentation.DocumentationBuilder addOtherAgreement(OtherAgreement otherAgreement) {
 			if (otherAgreement!=null) this.otherAgreement.add(otherAgreement.toBuilder());
 			return this;
@@ -661,7 +667,6 @@ public interface Documentation extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("otherAgreement")
 		public Documentation.DocumentationBuilder setOtherAgreement(List<? extends OtherAgreement> otherAgreements) {
 			if (otherAgreements == null)  {
 				this.otherAgreement = new ArrayList<>();
@@ -675,6 +680,7 @@ public interface Documentation extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("attachment")
 		public Documentation.DocumentationBuilder addAttachment(Resource attachment) {
 			if (attachment!=null) this.attachment.add(attachment.toBuilder());
 			return this;
@@ -696,7 +702,6 @@ public interface Documentation extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("attachment")
 		public Documentation.DocumentationBuilder setAttachment(List<? extends Resource> attachments) {
 			if (attachments == null)  {
 				this.attachment = new ArrayList<>();

@@ -377,6 +377,7 @@ public interface FloatingLegCalculation extends RosettaModelObject {
 			return spreadSchedule;
 		}
 		
+		@Override
 		public CommoditySpreadSchedule.CommoditySpreadScheduleBuilder getOrCreateSpreadSchedule(int _index) {
 		
 			if (spreadSchedule==null) {
@@ -445,6 +446,7 @@ public interface FloatingLegCalculation extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("spreadSchedule")
 		public FloatingLegCalculation.FloatingLegCalculationBuilder addSpreadSchedule(CommoditySpreadSchedule spreadSchedule) {
 			if (spreadSchedule!=null) this.spreadSchedule.add(spreadSchedule.toBuilder());
 			return this;
@@ -466,7 +468,6 @@ public interface FloatingLegCalculation extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("spreadSchedule")
 		public FloatingLegCalculation.FloatingLegCalculationBuilder setSpreadSchedule(List<? extends CommoditySpreadSchedule> spreadSchedules) {
 			if (spreadSchedules == null)  {
 				this.spreadSchedule = new ArrayList<>();

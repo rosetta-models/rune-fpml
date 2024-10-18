@@ -237,6 +237,7 @@ public interface RepoFarLegSequence extends RosettaModelObject {
 			return collateral;
 		}
 		
+		@Override
 		public CollateralValuation.CollateralValuationBuilder getOrCreateCollateral(int _index) {
 		
 			if (collateral==null) {
@@ -262,6 +263,7 @@ public interface RepoFarLegSequence extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("collateral")
 		public RepoFarLegSequence.RepoFarLegSequenceBuilder addCollateral(CollateralValuation collateral) {
 			if (collateral!=null) this.collateral.add(collateral.toBuilder());
 			return this;
@@ -283,7 +285,6 @@ public interface RepoFarLegSequence extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("collateral")
 		public RepoFarLegSequence.RepoFarLegSequenceBuilder setCollateral(List<? extends CollateralValuation> collaterals) {
 			if (collaterals == null)  {
 				this.collateral = new ArrayList<>();

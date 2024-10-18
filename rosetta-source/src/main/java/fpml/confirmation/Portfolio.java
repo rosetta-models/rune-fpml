@@ -258,6 +258,7 @@ public interface Portfolio extends RosettaModelObject {
 			return tradeId;
 		}
 		
+		@Override
 		public TradeId.TradeIdBuilder getOrCreateTradeId(int _index) {
 		
 			if (tradeId==null) {
@@ -276,6 +277,7 @@ public interface Portfolio extends RosettaModelObject {
 			return partyTradeIdentifier;
 		}
 		
+		@Override
 		public PartyTradeIdentifier.PartyTradeIdentifierBuilder getOrCreatePartyTradeIdentifier(int _index) {
 		
 			if (partyTradeIdentifier==null) {
@@ -294,6 +296,7 @@ public interface Portfolio extends RosettaModelObject {
 			return portfolio;
 		}
 		
+		@Override
 		public Portfolio.PortfolioBuilder getOrCreatePortfolio(int _index) {
 		
 			if (portfolio==null) {
@@ -319,6 +322,7 @@ public interface Portfolio extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("tradeId")
 		public Portfolio.PortfolioBuilder addTradeId(TradeId tradeId) {
 			if (tradeId!=null) this.tradeId.add(tradeId.toBuilder());
 			return this;
@@ -340,7 +344,6 @@ public interface Portfolio extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("tradeId")
 		public Portfolio.PortfolioBuilder setTradeId(List<? extends TradeId> tradeIds) {
 			if (tradeIds == null)  {
 				this.tradeId = new ArrayList<>();
@@ -354,6 +357,7 @@ public interface Portfolio extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("partyTradeIdentifier")
 		public Portfolio.PortfolioBuilder addPartyTradeIdentifier(PartyTradeIdentifier partyTradeIdentifier) {
 			if (partyTradeIdentifier!=null) this.partyTradeIdentifier.add(partyTradeIdentifier.toBuilder());
 			return this;
@@ -375,7 +379,6 @@ public interface Portfolio extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("partyTradeIdentifier")
 		public Portfolio.PortfolioBuilder setPartyTradeIdentifier(List<? extends PartyTradeIdentifier> partyTradeIdentifiers) {
 			if (partyTradeIdentifiers == null)  {
 				this.partyTradeIdentifier = new ArrayList<>();
@@ -389,6 +392,7 @@ public interface Portfolio extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("portfolio")
 		public Portfolio.PortfolioBuilder addPortfolio(Portfolio portfolio) {
 			if (portfolio!=null) this.portfolio.add(portfolio.toBuilder());
 			return this;
@@ -410,7 +414,6 @@ public interface Portfolio extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("portfolio")
 		public Portfolio.PortfolioBuilder setPortfolio(List<? extends Portfolio> portfolios) {
 			if (portfolios == null)  {
 				this.portfolio = new ArrayList<>();

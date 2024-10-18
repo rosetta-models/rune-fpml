@@ -154,6 +154,7 @@ public interface EventValuationModel extends RosettaModelObject {
 			return quote;
 		}
 		
+		@Override
 		public BasicQuotation.BasicQuotationBuilder getOrCreateQuote(int _index) {
 		
 			if (quote==null) {
@@ -167,6 +168,7 @@ public interface EventValuationModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("quote")
 		public EventValuationModel.EventValuationModelBuilder addQuote(BasicQuotation quote) {
 			if (quote!=null) this.quote.add(quote.toBuilder());
 			return this;
@@ -188,7 +190,6 @@ public interface EventValuationModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("quote")
 		public EventValuationModel.EventValuationModelBuilder setQuote(List<? extends BasicQuotation> quotes) {
 			if (quotes == null)  {
 				this.quote = new ArrayList<>();

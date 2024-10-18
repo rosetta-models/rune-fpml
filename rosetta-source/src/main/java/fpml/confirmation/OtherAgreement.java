@@ -221,6 +221,7 @@ public interface OtherAgreement extends RosettaModelObject {
 			return identifier;
 		}
 		
+		@Override
 		public OtherAgreementId.OtherAgreementIdBuilder getOrCreateIdentifier(int _index) {
 		
 			if (identifier==null) {
@@ -278,6 +279,7 @@ public interface OtherAgreement extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("identifier")
 		public OtherAgreement.OtherAgreementBuilder addIdentifier(OtherAgreementId identifier) {
 			if (identifier!=null) this.identifier.add(identifier.toBuilder());
 			return this;
@@ -299,7 +301,6 @@ public interface OtherAgreement extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("identifier")
 		public OtherAgreement.OtherAgreementBuilder setIdentifier(List<? extends OtherAgreementId> identifiers) {
 			if (identifiers == null)  {
 				this.identifier = new ArrayList<>();

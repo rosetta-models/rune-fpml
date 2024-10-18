@@ -288,6 +288,7 @@ public interface Deposit extends UnderlyingAssetType {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("instrumentId")
 		public Deposit.DepositBuilder addInstrumentId(InstrumentId instrumentId) {
 			if (instrumentId!=null) this.instrumentId.add(instrumentId.toBuilder());
 			return this;
@@ -309,7 +310,6 @@ public interface Deposit extends UnderlyingAssetType {
 		}
 		
 		@Override 
-		@RosettaAttribute("instrumentId")
 		public Deposit.DepositBuilder setInstrumentId(List<? extends InstrumentId> instrumentIds) {
 			if (instrumentIds == null)  {
 				this.instrumentId = new ArrayList<>();

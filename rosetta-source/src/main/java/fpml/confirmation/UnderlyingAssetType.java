@@ -315,6 +315,7 @@ public interface UnderlyingAssetType extends IdentifiedAsset {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("instrumentId")
 		public UnderlyingAssetType.UnderlyingAssetTypeBuilder addInstrumentId(InstrumentId instrumentId) {
 			if (instrumentId!=null) this.instrumentId.add(instrumentId.toBuilder());
 			return this;
@@ -336,7 +337,6 @@ public interface UnderlyingAssetType extends IdentifiedAsset {
 		}
 		
 		@Override 
-		@RosettaAttribute("instrumentId")
 		public UnderlyingAssetType.UnderlyingAssetTypeBuilder setInstrumentId(List<? extends InstrumentId> instrumentIds) {
 			if (instrumentIds == null)  {
 				this.instrumentId = new ArrayList<>();

@@ -332,6 +332,7 @@ public interface SettlementInstruction extends RosettaModelObject {
 			return intermediaryInformation;
 		}
 		
+		@Override
 		public IntermediaryInformation.IntermediaryInformationBuilder getOrCreateIntermediaryInformation(int _index) {
 		
 			if (intermediaryInformation==null) {
@@ -407,6 +408,7 @@ public interface SettlementInstruction extends RosettaModelObject {
 			return splitSettlement;
 		}
 		
+		@Override
 		public SplitSettlement.SplitSettlementBuilder getOrCreateSplitSettlement(int _index) {
 		
 			if (splitSettlement==null) {
@@ -432,6 +434,7 @@ public interface SettlementInstruction extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("intermediaryInformation")
 		public SettlementInstruction.SettlementInstructionBuilder addIntermediaryInformation(IntermediaryInformation intermediaryInformation) {
 			if (intermediaryInformation!=null) this.intermediaryInformation.add(intermediaryInformation.toBuilder());
 			return this;
@@ -453,7 +456,6 @@ public interface SettlementInstruction extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("intermediaryInformation")
 		public SettlementInstruction.SettlementInstructionBuilder setIntermediaryInformation(List<? extends IntermediaryInformation> intermediaryInformations) {
 			if (intermediaryInformations == null)  {
 				this.intermediaryInformation = new ArrayList<>();
@@ -485,6 +487,7 @@ public interface SettlementInstruction extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("splitSettlement")
 		public SettlementInstruction.SettlementInstructionBuilder addSplitSettlement(SplitSettlement splitSettlement) {
 			if (splitSettlement!=null) this.splitSettlement.add(splitSettlement.toBuilder());
 			return this;
@@ -506,7 +509,6 @@ public interface SettlementInstruction extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("splitSettlement")
 		public SettlementInstruction.SettlementInstructionBuilder setSplitSettlement(List<? extends SplitSettlement> splitSettlements) {
 			if (splitSettlements == null)  {
 				this.splitSettlement = new ArrayList<>();

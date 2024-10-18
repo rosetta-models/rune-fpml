@@ -164,6 +164,7 @@ public interface Adjustment extends LoanContractAdjustment {
 		}
 	
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public Adjustment.AdjustmentBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -185,7 +186,6 @@ public interface Adjustment extends LoanContractAdjustment {
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public Adjustment.AdjustmentBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();

@@ -151,6 +151,7 @@ public interface AbstractPartyProfileId extends RosettaModelObject {
 			return partyProfileIdentifier;
 		}
 		
+		@Override
 		public PartyProfileIdentifier.PartyProfileIdentifierBuilder getOrCreatePartyProfileIdentifier(int _index) {
 		
 			if (partyProfileIdentifier==null) {
@@ -164,6 +165,7 @@ public interface AbstractPartyProfileId extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("partyProfileIdentifier")
 		public AbstractPartyProfileId.AbstractPartyProfileIdBuilder addPartyProfileIdentifier(PartyProfileIdentifier partyProfileIdentifier) {
 			if (partyProfileIdentifier!=null) this.partyProfileIdentifier.add(partyProfileIdentifier.toBuilder());
 			return this;
@@ -185,7 +187,6 @@ public interface AbstractPartyProfileId extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("partyProfileIdentifier")
 		public AbstractPartyProfileId.AbstractPartyProfileIdBuilder setPartyProfileIdentifier(List<? extends PartyProfileIdentifier> partyProfileIdentifiers) {
 			if (partyProfileIdentifiers == null)  {
 				this.partyProfileIdentifier = new ArrayList<>();

@@ -154,6 +154,7 @@ public interface DividendAdjustment extends RosettaModelObject {
 			return dividendPeriod;
 		}
 		
+		@Override
 		public DividendPeriodDividend.DividendPeriodDividendBuilder getOrCreateDividendPeriod(int _index) {
 		
 			if (dividendPeriod==null) {
@@ -167,6 +168,7 @@ public interface DividendAdjustment extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("dividendPeriod")
 		public DividendAdjustment.DividendAdjustmentBuilder addDividendPeriod(DividendPeriodDividend dividendPeriod) {
 			if (dividendPeriod!=null) this.dividendPeriod.add(dividendPeriod.toBuilder());
 			return this;
@@ -188,7 +190,6 @@ public interface DividendAdjustment extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("dividendPeriod")
 		public DividendAdjustment.DividendAdjustmentBuilder setDividendPeriod(List<? extends DividendPeriodDividend> dividendPeriods) {
 			if (dividendPeriods == null)  {
 				this.dividendPeriod = new ArrayList<>();

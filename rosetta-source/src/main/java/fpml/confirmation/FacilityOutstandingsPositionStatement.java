@@ -339,6 +339,7 @@ public interface FacilityOutstandingsPositionStatement extends AbstractLoanState
 			return loanContractDetailsModel;
 		}
 		
+		@Override
 		public LoanContractDetailsModel.LoanContractDetailsModelBuilder getOrCreateLoanContractDetailsModel(int _index) {
 		
 			if (loanContractDetailsModel==null) {
@@ -357,6 +358,7 @@ public interface FacilityOutstandingsPositionStatement extends AbstractLoanState
 			return party;
 		}
 		
+		@Override
 		public Party.PartyBuilder getOrCreateParty(int _index) {
 		
 			if (party==null) {
@@ -442,6 +444,7 @@ public interface FacilityOutstandingsPositionStatement extends AbstractLoanState
 			return this;
 		}
 		@Override
+		@RosettaAttribute("loanContractDetailsModel")
 		public FacilityOutstandingsPositionStatement.FacilityOutstandingsPositionStatementBuilder addLoanContractDetailsModel(LoanContractDetailsModel loanContractDetailsModel) {
 			if (loanContractDetailsModel!=null) this.loanContractDetailsModel.add(loanContractDetailsModel.toBuilder());
 			return this;
@@ -463,7 +466,6 @@ public interface FacilityOutstandingsPositionStatement extends AbstractLoanState
 		}
 		
 		@Override 
-		@RosettaAttribute("loanContractDetailsModel")
 		public FacilityOutstandingsPositionStatement.FacilityOutstandingsPositionStatementBuilder setLoanContractDetailsModel(List<? extends LoanContractDetailsModel> loanContractDetailsModels) {
 			if (loanContractDetailsModels == null)  {
 				this.loanContractDetailsModel = new ArrayList<>();
@@ -477,6 +479,7 @@ public interface FacilityOutstandingsPositionStatement extends AbstractLoanState
 		}
 		
 		@Override
+		@RosettaAttribute("party")
 		public FacilityOutstandingsPositionStatement.FacilityOutstandingsPositionStatementBuilder addParty(Party party) {
 			if (party!=null) this.party.add(party.toBuilder());
 			return this;
@@ -498,7 +501,6 @@ public interface FacilityOutstandingsPositionStatement extends AbstractLoanState
 		}
 		
 		@Override 
-		@RosettaAttribute("party")
 		public FacilityOutstandingsPositionStatement.FacilityOutstandingsPositionStatementBuilder setParty(List<? extends Party> partys) {
 			if (partys == null)  {
 				this.party = new ArrayList<>();

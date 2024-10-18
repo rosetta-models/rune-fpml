@@ -306,6 +306,7 @@ public interface AllocationContentModel extends RosettaModelObject {
 			return relatedParty;
 		}
 		
+		@Override
 		public RelatedParty.RelatedPartyBuilder getOrCreateRelatedParty(int _index) {
 		
 			if (relatedParty==null) {
@@ -343,6 +344,7 @@ public interface AllocationContentModel extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("relatedParty")
 		public AllocationContentModel.AllocationContentModelBuilder addRelatedParty(RelatedParty relatedParty) {
 			if (relatedParty!=null) this.relatedParty.add(relatedParty.toBuilder());
 			return this;
@@ -364,7 +366,6 @@ public interface AllocationContentModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("relatedParty")
 		public AllocationContentModel.AllocationContentModelBuilder setRelatedParty(List<? extends RelatedParty> relatedPartys) {
 			if (relatedPartys == null)  {
 				this.relatedParty = new ArrayList<>();

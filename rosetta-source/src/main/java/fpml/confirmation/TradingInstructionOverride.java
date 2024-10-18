@@ -277,6 +277,7 @@ public interface TradingInstructionOverride extends RosettaModelObject {
 			return settlementDetails;
 		}
 		
+		@Override
 		public SettlementDetails.SettlementDetailsBuilder getOrCreateSettlementDetails(int _index) {
 		
 			if (settlementDetails==null) {
@@ -308,6 +309,7 @@ public interface TradingInstructionOverride extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("settlementDetails")
 		public TradingInstructionOverride.TradingInstructionOverrideBuilder addSettlementDetails(SettlementDetails settlementDetails) {
 			if (settlementDetails!=null) this.settlementDetails.add(settlementDetails.toBuilder());
 			return this;
@@ -329,7 +331,6 @@ public interface TradingInstructionOverride extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("settlementDetails")
 		public TradingInstructionOverride.TradingInstructionOverrideBuilder setSettlementDetails(List<? extends SettlementDetails> settlementDetailss) {
 			if (settlementDetailss == null)  {
 				this.settlementDetails = new ArrayList<>();

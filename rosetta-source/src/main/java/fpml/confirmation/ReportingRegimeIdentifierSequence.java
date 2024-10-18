@@ -195,6 +195,7 @@ public interface ReportingRegimeIdentifierSequence extends RosettaModelObject {
 			return supervisorRegistration;
 		}
 		
+		@Override
 		public SupervisorRegistration.SupervisorRegistrationBuilder getOrCreateSupervisorRegistration(int _index) {
 		
 			if (supervisorRegistration==null) {
@@ -214,6 +215,7 @@ public interface ReportingRegimeIdentifierSequence extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("supervisorRegistration")
 		public ReportingRegimeIdentifierSequence.ReportingRegimeIdentifierSequenceBuilder addSupervisorRegistration(SupervisorRegistration supervisorRegistration) {
 			if (supervisorRegistration!=null) this.supervisorRegistration.add(supervisorRegistration.toBuilder());
 			return this;
@@ -235,7 +237,6 @@ public interface ReportingRegimeIdentifierSequence extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("supervisorRegistration")
 		public ReportingRegimeIdentifierSequence.ReportingRegimeIdentifierSequenceBuilder setSupervisorRegistration(List<? extends SupervisorRegistration> supervisorRegistrations) {
 			if (supervisorRegistrations == null)  {
 				this.supervisorRegistration = new ArrayList<>();

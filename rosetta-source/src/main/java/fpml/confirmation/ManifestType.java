@@ -167,6 +167,7 @@ public interface ManifestType extends RosettaModelObject {
 			return reference;
 		}
 		
+		@Override
 		public ReferenceType.ReferenceTypeBuilder getOrCreateReference(int _index) {
 		
 			if (reference==null) {
@@ -186,6 +187,7 @@ public interface ManifestType extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("reference")
 		public ManifestType.ManifestTypeBuilder addReference(ReferenceType reference) {
 			if (reference!=null) this.reference.add(reference.toBuilder());
 			return this;
@@ -207,7 +209,6 @@ public interface ManifestType extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("reference")
 		public ManifestType.ManifestTypeBuilder setReference(List<? extends ReferenceType> references) {
 			if (references == null)  {
 				this.reference = new ArrayList<>();

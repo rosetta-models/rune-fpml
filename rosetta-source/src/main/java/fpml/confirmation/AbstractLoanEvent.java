@@ -279,6 +279,7 @@ public interface AbstractLoanEvent extends AbstractEventRequireId {
 		}
 		
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public AbstractLoanEvent.AbstractLoanEventBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -300,7 +301,6 @@ public interface AbstractLoanEvent extends AbstractEventRequireId {
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public AbstractLoanEvent.AbstractLoanEventBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();

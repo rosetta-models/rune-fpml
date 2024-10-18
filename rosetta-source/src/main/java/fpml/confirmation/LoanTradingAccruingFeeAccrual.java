@@ -214,6 +214,7 @@ public interface LoanTradingAccruingFeeAccrual extends AbstractTradingAccrual {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("accrualPeriod")
 		public LoanTradingAccruingFeeAccrual.LoanTradingAccruingFeeAccrualBuilder addAccrualPeriod(AccrualPeriod accrualPeriod) {
 			if (accrualPeriod!=null) this.accrualPeriod.add(accrualPeriod.toBuilder());
 			return this;
@@ -235,7 +236,6 @@ public interface LoanTradingAccruingFeeAccrual extends AbstractTradingAccrual {
 		}
 		
 		@Override 
-		@RosettaAttribute("accrualPeriod")
 		public LoanTradingAccruingFeeAccrual.LoanTradingAccruingFeeAccrualBuilder setAccrualPeriod(List<? extends AccrualPeriod> accrualPeriods) {
 			if (accrualPeriods == null)  {
 				this.accrualPeriod = new ArrayList<>();

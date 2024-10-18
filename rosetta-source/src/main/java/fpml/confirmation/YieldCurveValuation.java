@@ -283,6 +283,7 @@ public interface YieldCurveValuation extends PricingStructureValuation {
 			return forwardCurve;
 		}
 		
+		@Override
 		public ForwardRateCurve.ForwardRateCurveBuilder getOrCreateForwardCurve(int _index) {
 		
 			if (forwardCurve==null) {
@@ -357,6 +358,7 @@ public interface YieldCurveValuation extends PricingStructureValuation {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("forwardCurve")
 		public YieldCurveValuation.YieldCurveValuationBuilder addForwardCurve(ForwardRateCurve forwardCurve) {
 			if (forwardCurve!=null) this.forwardCurve.add(forwardCurve.toBuilder());
 			return this;
@@ -378,7 +380,6 @@ public interface YieldCurveValuation extends PricingStructureValuation {
 		}
 		
 		@Override 
-		@RosettaAttribute("forwardCurve")
 		public YieldCurveValuation.YieldCurveValuationBuilder setForwardCurve(List<? extends ForwardRateCurve> forwardCurves) {
 			if (forwardCurves == null)  {
 				this.forwardCurve = new ArrayList<>();

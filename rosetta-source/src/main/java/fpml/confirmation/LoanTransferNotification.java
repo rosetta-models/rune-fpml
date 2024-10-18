@@ -321,6 +321,7 @@ public interface LoanTransferNotification extends AbstractLoanTradingNotificatio
 			return party;
 		}
 		
+		@Override
 		public Party.PartyBuilder getOrCreateParty(int _index) {
 		
 			if (party==null) {
@@ -412,6 +413,7 @@ public interface LoanTransferNotification extends AbstractLoanTradingNotificatio
 			return this;
 		}
 		@Override
+		@RosettaAttribute("party")
 		public LoanTransferNotification.LoanTransferNotificationBuilder addParty(Party party) {
 			if (party!=null) this.party.add(party.toBuilder());
 			return this;
@@ -433,7 +435,6 @@ public interface LoanTransferNotification extends AbstractLoanTradingNotificatio
 		}
 		
 		@Override 
-		@RosettaAttribute("party")
 		public LoanTransferNotification.LoanTransferNotificationBuilder setParty(List<? extends Party> partys) {
 			if (partys == null)  {
 				this.party = new ArrayList<>();

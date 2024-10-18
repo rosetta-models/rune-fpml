@@ -218,6 +218,7 @@ public interface FxWeightedFixingScheduleSequence1 extends RosettaModelObject {
 			return fixing;
 		}
 		
+		@Override
 		public FxFixingObservation.FxFixingObservationBuilder getOrCreateFixing(int _index) {
 		
 			if (fixing==null) {
@@ -243,6 +244,7 @@ public interface FxWeightedFixingScheduleSequence1 extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("fixing")
 		public FxWeightedFixingScheduleSequence1.FxWeightedFixingScheduleSequence1Builder addFixing(FxFixingObservation fixing) {
 			if (fixing!=null) this.fixing.add(fixing.toBuilder());
 			return this;
@@ -264,7 +266,6 @@ public interface FxWeightedFixingScheduleSequence1 extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("fixing")
 		public FxWeightedFixingScheduleSequence1.FxWeightedFixingScheduleSequence1Builder setFixing(List<? extends FxFixingObservation> fixings) {
 			if (fixings == null)  {
 				this.fixing = new ArrayList<>();

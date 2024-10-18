@@ -198,6 +198,7 @@ public interface NonNegativeSchedule extends RosettaModelObject {
 			return step;
 		}
 		
+		@Override
 		public NonNegativeStep.NonNegativeStepBuilder getOrCreateStep(int _index) {
 		
 			if (step==null) {
@@ -223,6 +224,7 @@ public interface NonNegativeSchedule extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("step")
 		public NonNegativeSchedule.NonNegativeScheduleBuilder addStep(NonNegativeStep step) {
 			if (step!=null) this.step.add(step.toBuilder());
 			return this;
@@ -244,7 +246,6 @@ public interface NonNegativeSchedule extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("step")
 		public NonNegativeSchedule.NonNegativeScheduleBuilder setStep(List<? extends NonNegativeStep> steps) {
 			if (steps == null)  {
 				this.step = new ArrayList<>();

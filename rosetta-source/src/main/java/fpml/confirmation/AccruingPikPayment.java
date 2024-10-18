@@ -271,6 +271,7 @@ public interface AccruingPikPayment extends AbstractFacilityEvent {
 			return accrualSchedule;
 		}
 		
+		@Override
 		public AccrualPeriod.AccrualPeriodBuilder getOrCreateAccrualSchedule(int _index) {
 		
 			if (accrualSchedule==null) {
@@ -284,6 +285,7 @@ public interface AccruingPikPayment extends AbstractFacilityEvent {
 		}
 		
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public AccruingPikPayment.AccruingPikPaymentBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -305,7 +307,6 @@ public interface AccruingPikPayment extends AbstractFacilityEvent {
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public AccruingPikPayment.AccruingPikPaymentBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();
@@ -373,6 +374,7 @@ public interface AccruingPikPayment extends AbstractFacilityEvent {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("accrualSchedule")
 		public AccruingPikPayment.AccruingPikPaymentBuilder addAccrualSchedule(AccrualPeriod accrualSchedule) {
 			if (accrualSchedule!=null) this.accrualSchedule.add(accrualSchedule.toBuilder());
 			return this;
@@ -394,7 +396,6 @@ public interface AccruingPikPayment extends AbstractFacilityEvent {
 		}
 		
 		@Override 
-		@RosettaAttribute("accrualSchedule")
 		public AccruingPikPayment.AccruingPikPaymentBuilder setAccrualSchedule(List<? extends AccrualPeriod> accrualSchedules) {
 			if (accrualSchedules == null)  {
 				this.accrualSchedule = new ArrayList<>();

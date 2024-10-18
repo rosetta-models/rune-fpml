@@ -176,6 +176,7 @@ public interface FeeLegChoiceSequence1 extends RosettaModelObject {
 			return singlePayment;
 		}
 		
+		@Override
 		public SinglePayment.SinglePaymentBuilder getOrCreateSinglePayment(int _index) {
 		
 			if (singlePayment==null) {
@@ -208,6 +209,7 @@ public interface FeeLegChoiceSequence1 extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("singlePayment")
 		public FeeLegChoiceSequence1.FeeLegChoiceSequence1Builder addSinglePayment(SinglePayment singlePayment) {
 			if (singlePayment!=null) this.singlePayment.add(singlePayment.toBuilder());
 			return this;
@@ -229,7 +231,6 @@ public interface FeeLegChoiceSequence1 extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("singlePayment")
 		public FeeLegChoiceSequence1.FeeLegChoiceSequence1Builder setSinglePayment(List<? extends SinglePayment> singlePayments) {
 			if (singlePayments == null)  {
 				this.singlePayment = new ArrayList<>();

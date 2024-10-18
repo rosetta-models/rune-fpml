@@ -169,6 +169,7 @@ public interface TradeMaturity extends RosettaModelObject {
 			return tradeIdentifier;
 		}
 		
+		@Override
 		public PartyTradeIdentifier.PartyTradeIdentifierBuilder getOrCreateTradeIdentifier(int _index) {
 		
 			if (tradeIdentifier==null) {
@@ -188,6 +189,7 @@ public interface TradeMaturity extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("tradeIdentifier")
 		public TradeMaturity.TradeMaturityBuilder addTradeIdentifier(PartyTradeIdentifier tradeIdentifier) {
 			if (tradeIdentifier!=null) this.tradeIdentifier.add(tradeIdentifier.toBuilder());
 			return this;
@@ -209,7 +211,6 @@ public interface TradeMaturity extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("tradeIdentifier")
 		public TradeMaturity.TradeMaturityBuilder setTradeIdentifier(List<? extends PartyTradeIdentifier> tradeIdentifiers) {
 			if (tradeIdentifiers == null)  {
 				this.tradeIdentifier = new ArrayList<>();

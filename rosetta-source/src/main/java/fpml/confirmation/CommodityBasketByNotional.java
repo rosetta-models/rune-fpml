@@ -163,6 +163,7 @@ public interface CommodityBasketByNotional extends CommodityBasketBase {
 			return underlying;
 		}
 		
+		@Override
 		public CommodityBasketUnderlyingByNotional.CommodityBasketUnderlyingByNotionalBuilder getOrCreateUnderlying(int _index) {
 		
 			if (underlying==null) {
@@ -182,6 +183,7 @@ public interface CommodityBasketByNotional extends CommodityBasketBase {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("underlying")
 		public CommodityBasketByNotional.CommodityBasketByNotionalBuilder addUnderlying(CommodityBasketUnderlyingByNotional underlying) {
 			if (underlying!=null) this.underlying.add(underlying.toBuilder());
 			return this;
@@ -203,7 +205,6 @@ public interface CommodityBasketByNotional extends CommodityBasketBase {
 		}
 		
 		@Override 
-		@RosettaAttribute("underlying")
 		public CommodityBasketByNotional.CommodityBasketByNotionalBuilder setUnderlying(List<? extends CommodityBasketUnderlyingByNotional> underlyings) {
 			if (underlyings == null)  {
 				this.underlying = new ArrayList<>();

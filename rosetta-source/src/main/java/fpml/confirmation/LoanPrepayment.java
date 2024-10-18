@@ -277,6 +277,7 @@ public interface LoanPrepayment extends AbstractFacilityEvent {
 		}
 		
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public LoanPrepayment.LoanPrepaymentBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -298,7 +299,6 @@ public interface LoanPrepayment extends AbstractFacilityEvent {
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public LoanPrepayment.LoanPrepaymentBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();

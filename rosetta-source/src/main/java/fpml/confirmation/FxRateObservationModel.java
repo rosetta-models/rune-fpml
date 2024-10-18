@@ -175,6 +175,7 @@ public interface FxRateObservationModel extends RosettaModelObject {
 			return rateObservation;
 		}
 		
+		@Override
 		public FxAverageRateObservation.FxAverageRateObservationBuilder getOrCreateRateObservation(int _index) {
 		
 			if (rateObservation==null) {
@@ -194,6 +195,7 @@ public interface FxRateObservationModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("rateObservation")
 		public FxRateObservationModel.FxRateObservationModelBuilder addRateObservation(FxAverageRateObservation rateObservation) {
 			if (rateObservation!=null) this.rateObservation.add(rateObservation.toBuilder());
 			return this;
@@ -215,7 +217,6 @@ public interface FxRateObservationModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("rateObservation")
 		public FxRateObservationModel.FxRateObservationModelBuilder setRateObservation(List<? extends FxAverageRateObservation> rateObservations) {
 			if (rateObservations == null)  {
 				this.rateObservation = new ArrayList<>();

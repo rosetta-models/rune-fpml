@@ -223,6 +223,7 @@ public interface TriggerEvent extends RosettaModelObject {
 			return schedule;
 		}
 		
+		@Override
 		public AveragingSchedule.AveragingScheduleBuilder getOrCreateSchedule(int _index) {
 		
 			if (schedule==null) {
@@ -293,6 +294,7 @@ public interface TriggerEvent extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("schedule")
 		public TriggerEvent.TriggerEventBuilder addSchedule(AveragingSchedule schedule) {
 			if (schedule!=null) this.schedule.add(schedule.toBuilder());
 			return this;
@@ -314,7 +316,6 @@ public interface TriggerEvent extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("schedule")
 		public TriggerEvent.TriggerEventBuilder setSchedule(List<? extends AveragingSchedule> schedules) {
 			if (schedules == null)  {
 				this.schedule = new ArrayList<>();

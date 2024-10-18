@@ -154,6 +154,7 @@ public interface SettlementPeriodsStep extends RosettaModelObject {
 			return settlementPeriodsReference;
 		}
 		
+		@Override
 		public SettlementPeriodsReference.SettlementPeriodsReferenceBuilder getOrCreateSettlementPeriodsReference(int _index) {
 		
 			if (settlementPeriodsReference==null) {
@@ -167,6 +168,7 @@ public interface SettlementPeriodsStep extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("settlementPeriodsReference")
 		public SettlementPeriodsStep.SettlementPeriodsStepBuilder addSettlementPeriodsReference(SettlementPeriodsReference settlementPeriodsReference) {
 			if (settlementPeriodsReference!=null) this.settlementPeriodsReference.add(settlementPeriodsReference.toBuilder());
 			return this;
@@ -188,7 +190,6 @@ public interface SettlementPeriodsStep extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("settlementPeriodsReference")
 		public SettlementPeriodsStep.SettlementPeriodsStepBuilder setSettlementPeriodsReference(List<? extends SettlementPeriodsReference> settlementPeriodsReferences) {
 			if (settlementPeriodsReferences == null)  {
 				this.settlementPeriodsReference = new ArrayList<>();

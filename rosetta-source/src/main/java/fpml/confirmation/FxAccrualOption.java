@@ -591,6 +591,7 @@ public interface FxAccrualOption extends Option {
 			return barrier;
 		}
 		
+		@Override
 		public FxAccrualBarrier.FxAccrualBarrierBuilder getOrCreateBarrier(int _index) {
 		
 			if (barrier==null) {
@@ -609,6 +610,7 @@ public interface FxAccrualOption extends Option {
 			return premium;
 		}
 		
+		@Override
 		public FxOptionPremium.FxOptionPremiumBuilder getOrCreatePremium(int _index) {
 		
 			if (premium==null) {
@@ -700,6 +702,7 @@ public interface FxAccrualOption extends Option {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("barrier")
 		public FxAccrualOption.FxAccrualOptionBuilder addBarrier(FxAccrualBarrier barrier) {
 			if (barrier!=null) this.barrier.add(barrier.toBuilder());
 			return this;
@@ -721,7 +724,6 @@ public interface FxAccrualOption extends Option {
 		}
 		
 		@Override 
-		@RosettaAttribute("barrier")
 		public FxAccrualOption.FxAccrualOptionBuilder setBarrier(List<? extends FxAccrualBarrier> barriers) {
 			if (barriers == null)  {
 				this.barrier = new ArrayList<>();
@@ -735,6 +737,7 @@ public interface FxAccrualOption extends Option {
 		}
 		
 		@Override
+		@RosettaAttribute("premium")
 		public FxAccrualOption.FxAccrualOptionBuilder addPremium(FxOptionPremium premium) {
 			if (premium!=null) this.premium.add(premium.toBuilder());
 			return this;
@@ -756,7 +759,6 @@ public interface FxAccrualOption extends Option {
 		}
 		
 		@Override 
-		@RosettaAttribute("premium")
 		public FxAccrualOption.FxAccrualOptionBuilder setPremium(List<? extends FxOptionPremium> premiums) {
 			if (premiums == null)  {
 				this.premium = new ArrayList<>();

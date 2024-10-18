@@ -151,6 +151,7 @@ public interface FxDisruptionFallbacks extends RosettaModelObject {
 			return fxDisruptionFallback;
 		}
 		
+		@Override
 		public FxDisruptionFallback.FxDisruptionFallbackBuilder getOrCreateFxDisruptionFallback(int _index) {
 		
 			if (fxDisruptionFallback==null) {
@@ -164,6 +165,7 @@ public interface FxDisruptionFallbacks extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("fxDisruptionFallback")
 		public FxDisruptionFallbacks.FxDisruptionFallbacksBuilder addFxDisruptionFallback(FxDisruptionFallback fxDisruptionFallback) {
 			if (fxDisruptionFallback!=null) this.fxDisruptionFallback.add(fxDisruptionFallback.toBuilder());
 			return this;
@@ -185,7 +187,6 @@ public interface FxDisruptionFallbacks extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("fxDisruptionFallback")
 		public FxDisruptionFallbacks.FxDisruptionFallbacksBuilder setFxDisruptionFallback(List<? extends FxDisruptionFallback> fxDisruptionFallbacks) {
 			if (fxDisruptionFallbacks == null)  {
 				this.fxDisruptionFallback = new ArrayList<>();

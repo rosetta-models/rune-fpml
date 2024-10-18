@@ -195,6 +195,7 @@ public interface MetaFields extends RosettaModelObject, GlobalKeyFields {
 			return key;
 		}
 		
+		@Override
 		public Key.KeyBuilder getOrCreateKey(int _index) {
 		
 			if (key==null) {
@@ -220,6 +221,7 @@ public interface MetaFields extends RosettaModelObject, GlobalKeyFields {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("location")
 		public MetaFields.MetaFieldsBuilder addKey(Key key) {
 			if (key!=null) this.key.add(key.toBuilder());
 			return this;
@@ -241,7 +243,6 @@ public interface MetaFields extends RosettaModelObject, GlobalKeyFields {
 		}
 		
 		@Override 
-		@RosettaAttribute("location")
 		public MetaFields.MetaFieldsBuilder setKey(List<? extends Key> keys) {
 			if (keys == null)  {
 				this.key = new ArrayList<>();

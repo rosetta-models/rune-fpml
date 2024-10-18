@@ -157,6 +157,7 @@ public interface LoanContractEventGroup extends AbstractLoanContractEvent {
 		}
 	
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public LoanContractEventGroup.LoanContractEventGroupBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -178,7 +179,6 @@ public interface LoanContractEventGroup extends AbstractLoanContractEvent {
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public LoanContractEventGroup.LoanContractEventGroupBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();

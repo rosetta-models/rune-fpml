@@ -260,6 +260,7 @@ public interface AbstractPartyProfile extends AbstractPartyProfileId {
 			return relatedParty;
 		}
 		
+		@Override
 		public RelatedParty.RelatedPartyBuilder getOrCreateRelatedParty(int _index) {
 		
 			if (relatedParty==null) {
@@ -292,6 +293,7 @@ public interface AbstractPartyProfile extends AbstractPartyProfileId {
 		}
 		
 		@Override
+		@RosettaAttribute("partyProfileIdentifier")
 		public AbstractPartyProfile.AbstractPartyProfileBuilder addPartyProfileIdentifier(PartyProfileIdentifier partyProfileIdentifier) {
 			if (partyProfileIdentifier!=null) this.partyProfileIdentifier.add(partyProfileIdentifier.toBuilder());
 			return this;
@@ -313,7 +315,6 @@ public interface AbstractPartyProfile extends AbstractPartyProfileId {
 		}
 		
 		@Override 
-		@RosettaAttribute("partyProfileIdentifier")
 		public AbstractPartyProfile.AbstractPartyProfileBuilder setPartyProfileIdentifier(List<? extends PartyProfileIdentifier> partyProfileIdentifiers) {
 			if (partyProfileIdentifiers == null)  {
 				this.partyProfileIdentifier = new ArrayList<>();
@@ -339,6 +340,7 @@ public interface AbstractPartyProfile extends AbstractPartyProfileId {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("relatedParty")
 		public AbstractPartyProfile.AbstractPartyProfileBuilder addRelatedParty(RelatedParty relatedParty) {
 			if (relatedParty!=null) this.relatedParty.add(relatedParty.toBuilder());
 			return this;
@@ -360,7 +362,6 @@ public interface AbstractPartyProfile extends AbstractPartyProfileId {
 		}
 		
 		@Override 
-		@RosettaAttribute("relatedParty")
 		public AbstractPartyProfile.AbstractPartyProfileBuilder setRelatedParty(List<? extends RelatedParty> relatedPartys) {
 			if (relatedPartys == null)  {
 				this.relatedParty = new ArrayList<>();

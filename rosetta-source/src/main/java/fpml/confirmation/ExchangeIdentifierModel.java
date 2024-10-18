@@ -203,6 +203,7 @@ public interface ExchangeIdentifierModel extends RosettaModelObject {
 			return relatedExchangeId;
 		}
 		
+		@Override
 		public ExchangeId.ExchangeIdBuilder getOrCreateRelatedExchangeId(int _index) {
 		
 			if (relatedExchangeId==null) {
@@ -221,6 +222,7 @@ public interface ExchangeIdentifierModel extends RosettaModelObject {
 			return optionsExchangeId;
 		}
 		
+		@Override
 		public ExchangeId.ExchangeIdBuilder getOrCreateOptionsExchangeId(int _index) {
 		
 			if (optionsExchangeId==null) {
@@ -239,6 +241,7 @@ public interface ExchangeIdentifierModel extends RosettaModelObject {
 			return specifiedExchangeId;
 		}
 		
+		@Override
 		public ExchangeId.ExchangeIdBuilder getOrCreateSpecifiedExchangeId(int _index) {
 		
 			if (specifiedExchangeId==null) {
@@ -252,6 +255,7 @@ public interface ExchangeIdentifierModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("relatedExchangeId")
 		public ExchangeIdentifierModel.ExchangeIdentifierModelBuilder addRelatedExchangeId(ExchangeId relatedExchangeId) {
 			if (relatedExchangeId!=null) this.relatedExchangeId.add(relatedExchangeId.toBuilder());
 			return this;
@@ -273,7 +277,6 @@ public interface ExchangeIdentifierModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("relatedExchangeId")
 		public ExchangeIdentifierModel.ExchangeIdentifierModelBuilder setRelatedExchangeId(List<? extends ExchangeId> relatedExchangeIds) {
 			if (relatedExchangeIds == null)  {
 				this.relatedExchangeId = new ArrayList<>();
@@ -287,6 +290,7 @@ public interface ExchangeIdentifierModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("optionsExchangeId")
 		public ExchangeIdentifierModel.ExchangeIdentifierModelBuilder addOptionsExchangeId(ExchangeId optionsExchangeId) {
 			if (optionsExchangeId!=null) this.optionsExchangeId.add(optionsExchangeId.toBuilder());
 			return this;
@@ -308,7 +312,6 @@ public interface ExchangeIdentifierModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("optionsExchangeId")
 		public ExchangeIdentifierModel.ExchangeIdentifierModelBuilder setOptionsExchangeId(List<? extends ExchangeId> optionsExchangeIds) {
 			if (optionsExchangeIds == null)  {
 				this.optionsExchangeId = new ArrayList<>();
@@ -322,6 +325,7 @@ public interface ExchangeIdentifierModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("specifiedExchangeId")
 		public ExchangeIdentifierModel.ExchangeIdentifierModelBuilder addSpecifiedExchangeId(ExchangeId specifiedExchangeId) {
 			if (specifiedExchangeId!=null) this.specifiedExchangeId.add(specifiedExchangeId.toBuilder());
 			return this;
@@ -343,7 +347,6 @@ public interface ExchangeIdentifierModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("specifiedExchangeId")
 		public ExchangeIdentifierModel.ExchangeIdentifierModelBuilder setSpecifiedExchangeId(List<? extends ExchangeId> specifiedExchangeIds) {
 			if (specifiedExchangeIds == null)  {
 				this.specifiedExchangeId = new ArrayList<>();

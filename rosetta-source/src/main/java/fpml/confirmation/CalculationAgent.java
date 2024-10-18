@@ -175,6 +175,7 @@ public interface CalculationAgent extends RosettaModelObject {
 			return calculationAgentPartyReference;
 		}
 		
+		@Override
 		public PartyReference.PartyReferenceBuilder getOrCreateCalculationAgentPartyReference(int _index) {
 		
 			if (calculationAgentPartyReference==null) {
@@ -194,6 +195,7 @@ public interface CalculationAgent extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("calculationAgentPartyReference")
 		public CalculationAgent.CalculationAgentBuilder addCalculationAgentPartyReference(PartyReference calculationAgentPartyReference) {
 			if (calculationAgentPartyReference!=null) this.calculationAgentPartyReference.add(calculationAgentPartyReference.toBuilder());
 			return this;
@@ -215,7 +217,6 @@ public interface CalculationAgent extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("calculationAgentPartyReference")
 		public CalculationAgent.CalculationAgentBuilder setCalculationAgentPartyReference(List<? extends PartyReference> calculationAgentPartyReferences) {
 			if (calculationAgentPartyReferences == null)  {
 				this.calculationAgentPartyReference = new ArrayList<>();

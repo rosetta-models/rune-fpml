@@ -238,6 +238,7 @@ public interface TransferFeeDefinition extends RosettaModelObject {
 			return lenderTypeWaived;
 		}
 		
+		@Override
 		public LenderClassification.LenderClassificationBuilder getOrCreateLenderTypeWaived(int _index) {
 		
 			if (lenderTypeWaived==null) {
@@ -263,6 +264,7 @@ public interface TransferFeeDefinition extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("lenderTypeWaived")
 		public TransferFeeDefinition.TransferFeeDefinitionBuilder addLenderTypeWaived(LenderClassification lenderTypeWaived) {
 			if (lenderTypeWaived!=null) this.lenderTypeWaived.add(lenderTypeWaived.toBuilder());
 			return this;
@@ -284,7 +286,6 @@ public interface TransferFeeDefinition extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("lenderTypeWaived")
 		public TransferFeeDefinition.TransferFeeDefinitionBuilder setLenderTypeWaived(List<? extends LenderClassification> lenderTypeWaiveds) {
 			if (lenderTypeWaiveds == null)  {
 				this.lenderTypeWaived = new ArrayList<>();

@@ -213,6 +213,7 @@ public interface VarianceLeg extends DirectionalLegUnderlyerValuation {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("legIdentifier")
 		public VarianceLeg.VarianceLegBuilder addLegIdentifier(LegIdentifier legIdentifier) {
 			if (legIdentifier!=null) this.legIdentifier.add(legIdentifier.toBuilder());
 			return this;
@@ -234,7 +235,6 @@ public interface VarianceLeg extends DirectionalLegUnderlyerValuation {
 		}
 		
 		@Override 
-		@RosettaAttribute("legIdentifier")
 		public VarianceLeg.VarianceLegBuilder setLegIdentifier(List<? extends LegIdentifier> legIdentifiers) {
 			if (legIdentifiers == null)  {
 				this.legIdentifier = new ArrayList<>();

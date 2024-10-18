@@ -151,6 +151,7 @@ public interface AbstractEvent extends RosettaModelObject {
 			return eventIdentifier;
 		}
 		
+		@Override
 		public BusinessEventIdentifier.BusinessEventIdentifierBuilder getOrCreateEventIdentifier(int _index) {
 		
 			if (eventIdentifier==null) {
@@ -164,6 +165,7 @@ public interface AbstractEvent extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public AbstractEvent.AbstractEventBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -185,7 +187,6 @@ public interface AbstractEvent extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public AbstractEvent.AbstractEventBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();

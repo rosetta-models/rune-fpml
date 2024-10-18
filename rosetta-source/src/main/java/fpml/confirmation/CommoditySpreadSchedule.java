@@ -174,6 +174,7 @@ public interface CommoditySpreadSchedule extends RosettaModelObject {
 			return spreadStep;
 		}
 		
+		@Override
 		public CommoditySpread.CommoditySpreadBuilder getOrCreateSpreadStep(int _index) {
 		
 			if (spreadStep==null) {
@@ -206,6 +207,7 @@ public interface CommoditySpreadSchedule extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("spreadStep")
 		public CommoditySpreadSchedule.CommoditySpreadScheduleBuilder addSpreadStep(CommoditySpread spreadStep) {
 			if (spreadStep!=null) this.spreadStep.add(spreadStep.toBuilder());
 			return this;
@@ -227,7 +229,6 @@ public interface CommoditySpreadSchedule extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("spreadStep")
 		public CommoditySpreadSchedule.CommoditySpreadScheduleBuilder setSpreadStep(List<? extends CommoditySpread> spreadSteps) {
 			if (spreadSteps == null)  {
 				this.spreadStep = new ArrayList<>();

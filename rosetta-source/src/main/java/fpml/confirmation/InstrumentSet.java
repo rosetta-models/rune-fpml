@@ -151,6 +151,7 @@ public interface InstrumentSet extends RosettaModelObject {
 			return instrumentSetSequence;
 		}
 		
+		@Override
 		public InstrumentSetSequence.InstrumentSetSequenceBuilder getOrCreateInstrumentSetSequence(int _index) {
 		
 			if (instrumentSetSequence==null) {
@@ -164,6 +165,7 @@ public interface InstrumentSet extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("instrumentSetSequence")
 		public InstrumentSet.InstrumentSetBuilder addInstrumentSetSequence(InstrumentSetSequence instrumentSetSequence) {
 			if (instrumentSetSequence!=null) this.instrumentSetSequence.add(instrumentSetSequence.toBuilder());
 			return this;
@@ -185,7 +187,6 @@ public interface InstrumentSet extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("instrumentSetSequence")
 		public InstrumentSet.InstrumentSetBuilder setInstrumentSetSequence(List<? extends InstrumentSetSequence> instrumentSetSequences) {
 			if (instrumentSetSequences == null)  {
 				this.instrumentSetSequence = new ArrayList<>();

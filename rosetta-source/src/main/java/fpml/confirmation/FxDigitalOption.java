@@ -418,6 +418,7 @@ public interface FxDigitalOption extends Option {
 			return premium;
 		}
 		
+		@Override
 		public FxOptionPremium.FxOptionPremiumBuilder getOrCreatePremium(int _index) {
 		
 			if (premium==null) {
@@ -485,6 +486,7 @@ public interface FxDigitalOption extends Option {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("premium")
 		public FxDigitalOption.FxDigitalOptionBuilder addPremium(FxOptionPremium premium) {
 			if (premium!=null) this.premium.add(premium.toBuilder());
 			return this;
@@ -506,7 +508,6 @@ public interface FxDigitalOption extends Option {
 		}
 		
 		@Override 
-		@RosettaAttribute("premium")
 		public FxDigitalOption.FxDigitalOptionBuilder setPremium(List<? extends FxOptionPremium> premiums) {
 			if (premiums == null)  {
 				this.premium = new ArrayList<>();

@@ -178,6 +178,7 @@ public interface TradeNotionalChangeModelSequence0 extends RosettaModelObject {
 			return changeInNotionalAmount;
 		}
 		
+		@Override
 		public NonNegativeMoney.NonNegativeMoneyBuilder getOrCreateChangeInNotionalAmount(int _index) {
 		
 			if (changeInNotionalAmount==null) {
@@ -196,6 +197,7 @@ public interface TradeNotionalChangeModelSequence0 extends RosettaModelObject {
 			return outstandingNotionalAmount;
 		}
 		
+		@Override
 		public NonNegativeMoney.NonNegativeMoneyBuilder getOrCreateOutstandingNotionalAmount(int _index) {
 		
 			if (outstandingNotionalAmount==null) {
@@ -209,6 +211,7 @@ public interface TradeNotionalChangeModelSequence0 extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("changeInNotionalAmount")
 		public TradeNotionalChangeModelSequence0.TradeNotionalChangeModelSequence0Builder addChangeInNotionalAmount(NonNegativeMoney changeInNotionalAmount) {
 			if (changeInNotionalAmount!=null) this.changeInNotionalAmount.add(changeInNotionalAmount.toBuilder());
 			return this;
@@ -230,7 +233,6 @@ public interface TradeNotionalChangeModelSequence0 extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("changeInNotionalAmount")
 		public TradeNotionalChangeModelSequence0.TradeNotionalChangeModelSequence0Builder setChangeInNotionalAmount(List<? extends NonNegativeMoney> changeInNotionalAmounts) {
 			if (changeInNotionalAmounts == null)  {
 				this.changeInNotionalAmount = new ArrayList<>();
@@ -244,6 +246,7 @@ public interface TradeNotionalChangeModelSequence0 extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("outstandingNotionalAmount")
 		public TradeNotionalChangeModelSequence0.TradeNotionalChangeModelSequence0Builder addOutstandingNotionalAmount(NonNegativeMoney outstandingNotionalAmount) {
 			if (outstandingNotionalAmount!=null) this.outstandingNotionalAmount.add(outstandingNotionalAmount.toBuilder());
 			return this;
@@ -265,7 +268,6 @@ public interface TradeNotionalChangeModelSequence0 extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("outstandingNotionalAmount")
 		public TradeNotionalChangeModelSequence0.TradeNotionalChangeModelSequence0Builder setOutstandingNotionalAmount(List<? extends NonNegativeMoney> outstandingNotionalAmounts) {
 			if (outstandingNotionalAmounts == null)  {
 				this.outstandingNotionalAmount = new ArrayList<>();

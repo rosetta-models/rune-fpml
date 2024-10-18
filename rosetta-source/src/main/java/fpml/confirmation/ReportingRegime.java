@@ -509,6 +509,7 @@ public interface ReportingRegime extends RosettaModelObject {
 			return supervisorRegistration;
 		}
 		
+		@Override
 		public SupervisorRegistration.SupervisorRegistrationBuilder getOrCreateSupervisorRegistration(int _index) {
 		
 			if (supervisorRegistration==null) {
@@ -546,6 +547,7 @@ public interface ReportingRegime extends RosettaModelObject {
 			return reportingPurpose;
 		}
 		
+		@Override
 		public ReportingPurpose.ReportingPurposeBuilder getOrCreateReportingPurpose(int _index) {
 		
 			if (reportingPurpose==null) {
@@ -608,6 +610,7 @@ public interface ReportingRegime extends RosettaModelObject {
 			return relatedParty;
 		}
 		
+		@Override
 		public RelatedParty.RelatedPartyBuilder getOrCreateRelatedParty(int _index) {
 		
 			if (relatedParty==null) {
@@ -645,6 +648,7 @@ public interface ReportingRegime extends RosettaModelObject {
 			return partyEntityClassification;
 		}
 		
+		@Override
 		public PartyEntityClassification.PartyEntityClassificationBuilder getOrCreatePartyEntityClassification(int _index) {
 		
 			if (partyEntityClassification==null) {
@@ -752,6 +756,7 @@ public interface ReportingRegime extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("supervisorRegistration")
 		public ReportingRegime.ReportingRegimeBuilder addSupervisorRegistration(SupervisorRegistration supervisorRegistration) {
 			if (supervisorRegistration!=null) this.supervisorRegistration.add(supervisorRegistration.toBuilder());
 			return this;
@@ -773,7 +778,6 @@ public interface ReportingRegime extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("supervisorRegistration")
 		public ReportingRegime.ReportingRegimeBuilder setSupervisorRegistration(List<? extends SupervisorRegistration> supervisorRegistrations) {
 			if (supervisorRegistrations == null)  {
 				this.supervisorRegistration = new ArrayList<>();
@@ -793,6 +797,7 @@ public interface ReportingRegime extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("reportingPurpose")
 		public ReportingRegime.ReportingRegimeBuilder addReportingPurpose(ReportingPurpose reportingPurpose) {
 			if (reportingPurpose!=null) this.reportingPurpose.add(reportingPurpose.toBuilder());
 			return this;
@@ -814,7 +819,6 @@ public interface ReportingRegime extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("reportingPurpose")
 		public ReportingRegime.ReportingRegimeBuilder setReportingPurpose(List<? extends ReportingPurpose> reportingPurposes) {
 			if (reportingPurposes == null)  {
 				this.reportingPurpose = new ArrayList<>();
@@ -846,6 +850,7 @@ public interface ReportingRegime extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("relatedParty")
 		public ReportingRegime.ReportingRegimeBuilder addRelatedParty(RelatedParty relatedParty) {
 			if (relatedParty!=null) this.relatedParty.add(relatedParty.toBuilder());
 			return this;
@@ -867,7 +872,6 @@ public interface ReportingRegime extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("relatedParty")
 		public ReportingRegime.ReportingRegimeBuilder setRelatedParty(List<? extends RelatedParty> relatedPartys) {
 			if (relatedPartys == null)  {
 				this.relatedParty = new ArrayList<>();
@@ -887,6 +891,7 @@ public interface ReportingRegime extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("partyEntityClassification")
 		public ReportingRegime.ReportingRegimeBuilder addPartyEntityClassification(PartyEntityClassification partyEntityClassification) {
 			if (partyEntityClassification!=null) this.partyEntityClassification.add(partyEntityClassification.toBuilder());
 			return this;
@@ -908,7 +913,6 @@ public interface ReportingRegime extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("partyEntityClassification")
 		public ReportingRegime.ReportingRegimeBuilder setPartyEntityClassification(List<? extends PartyEntityClassification> partyEntityClassifications) {
 			if (partyEntityClassifications == null)  {
 				this.partyEntityClassification = new ArrayList<>();

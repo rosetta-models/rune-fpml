@@ -210,6 +210,7 @@ public interface PubliclyAvailableInformation extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("publicSource")
 		public PubliclyAvailableInformation.PubliclyAvailableInformationBuilder addPublicSource(String publicSource) {
 			if (publicSource!=null) this.publicSource.add(publicSource);
 			return this;
@@ -231,7 +232,6 @@ public interface PubliclyAvailableInformation extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("publicSource")
 		public PubliclyAvailableInformation.PubliclyAvailableInformationBuilder setPublicSource(List<String> publicSources) {
 			if (publicSources == null)  {
 				this.publicSource = new ArrayList<>();

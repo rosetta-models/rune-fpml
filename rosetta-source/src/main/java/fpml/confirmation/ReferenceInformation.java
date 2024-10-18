@@ -316,6 +316,7 @@ public interface ReferenceInformation extends RosettaModelObject {
 			return referenceObligation;
 		}
 		
+		@Override
 		public ReferenceObligation.ReferenceObligationBuilder getOrCreateReferenceObligation(int _index) {
 		
 			if (referenceObligation==null) {
@@ -371,6 +372,7 @@ public interface ReferenceInformation extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("referenceObligation")
 		public ReferenceInformation.ReferenceInformationBuilder addReferenceObligation(ReferenceObligation referenceObligation) {
 			if (referenceObligation!=null) this.referenceObligation.add(referenceObligation.toBuilder());
 			return this;
@@ -392,7 +394,6 @@ public interface ReferenceInformation extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("referenceObligation")
 		public ReferenceInformation.ReferenceInformationBuilder setReferenceObligation(List<? extends ReferenceObligation> referenceObligations) {
 			if (referenceObligations == null)  {
 				this.referenceObligation = new ArrayList<>();

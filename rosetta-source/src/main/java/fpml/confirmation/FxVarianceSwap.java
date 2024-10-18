@@ -282,6 +282,7 @@ public interface FxVarianceSwap extends FxPerformanceSwap {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("additionalPayment")
 		public FxVarianceSwap.FxVarianceSwapBuilder addAdditionalPayment(Payment additionalPayment) {
 			if (additionalPayment!=null) this.additionalPayment.add(additionalPayment.toBuilder());
 			return this;
@@ -303,7 +304,6 @@ public interface FxVarianceSwap extends FxPerformanceSwap {
 		}
 		
 		@Override 
-		@RosettaAttribute("additionalPayment")
 		public FxVarianceSwap.FxVarianceSwapBuilder setAdditionalPayment(List<? extends Payment> additionalPayments) {
 			if (additionalPayments == null)  {
 				this.additionalPayment = new ArrayList<>();

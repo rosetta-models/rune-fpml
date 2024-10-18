@@ -237,6 +237,7 @@ public interface FxDisruption extends RosettaModelObject {
 			return provisions;
 		}
 		
+		@Override
 		public FxDisruptionProvisions.FxDisruptionProvisionsBuilder getOrCreateProvisions(int _index) {
 		
 			if (provisions==null) {
@@ -262,6 +263,7 @@ public interface FxDisruption extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("provisions")
 		public FxDisruption.FxDisruptionBuilder addProvisions(FxDisruptionProvisions provisions) {
 			if (provisions!=null) this.provisions.add(provisions.toBuilder());
 			return this;
@@ -283,7 +285,6 @@ public interface FxDisruption extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("provisions")
 		public FxDisruption.FxDisruptionBuilder setProvisions(List<? extends FxDisruptionProvisions> provisionss) {
 			if (provisionss == null)  {
 				this.provisions = new ArrayList<>();

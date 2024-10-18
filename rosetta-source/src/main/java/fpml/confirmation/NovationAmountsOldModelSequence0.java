@@ -178,6 +178,7 @@ public interface NovationAmountsOldModelSequence0 extends RosettaModelObject {
 			return novatedAmount;
 		}
 		
+		@Override
 		public Money.MoneyBuilder getOrCreateNovatedAmount(int _index) {
 		
 			if (novatedAmount==null) {
@@ -196,6 +197,7 @@ public interface NovationAmountsOldModelSequence0 extends RosettaModelObject {
 			return remainingAmount;
 		}
 		
+		@Override
 		public Money.MoneyBuilder getOrCreateRemainingAmount(int _index) {
 		
 			if (remainingAmount==null) {
@@ -209,6 +211,7 @@ public interface NovationAmountsOldModelSequence0 extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("novatedAmount")
 		public NovationAmountsOldModelSequence0.NovationAmountsOldModelSequence0Builder addNovatedAmount(Money novatedAmount) {
 			if (novatedAmount!=null) this.novatedAmount.add(novatedAmount.toBuilder());
 			return this;
@@ -230,7 +233,6 @@ public interface NovationAmountsOldModelSequence0 extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("novatedAmount")
 		public NovationAmountsOldModelSequence0.NovationAmountsOldModelSequence0Builder setNovatedAmount(List<? extends Money> novatedAmounts) {
 			if (novatedAmounts == null)  {
 				this.novatedAmount = new ArrayList<>();
@@ -244,6 +246,7 @@ public interface NovationAmountsOldModelSequence0 extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("remainingAmount")
 		public NovationAmountsOldModelSequence0.NovationAmountsOldModelSequence0Builder addRemainingAmount(Money remainingAmount) {
 			if (remainingAmount!=null) this.remainingAmount.add(remainingAmount.toBuilder());
 			return this;
@@ -265,7 +268,6 @@ public interface NovationAmountsOldModelSequence0 extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("remainingAmount")
 		public NovationAmountsOldModelSequence0.NovationAmountsOldModelSequence0Builder setRemainingAmount(List<? extends Money> remainingAmounts) {
 			if (remainingAmounts == null)  {
 				this.remainingAmount = new ArrayList<>();

@@ -176,6 +176,7 @@ public interface OldTradeModel extends RosettaModelObject {
 			return oldTradeIdentifier;
 		}
 		
+		@Override
 		public PartyTradeIdentifier.PartyTradeIdentifierBuilder getOrCreateOldTradeIdentifier(int _index) {
 		
 			if (oldTradeIdentifier==null) {
@@ -208,6 +209,7 @@ public interface OldTradeModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("oldTradeIdentifier")
 		public OldTradeModel.OldTradeModelBuilder addOldTradeIdentifier(PartyTradeIdentifier oldTradeIdentifier) {
 			if (oldTradeIdentifier!=null) this.oldTradeIdentifier.add(oldTradeIdentifier.toBuilder());
 			return this;
@@ -229,7 +231,6 @@ public interface OldTradeModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("oldTradeIdentifier")
 		public OldTradeModel.OldTradeModelBuilder setOldTradeIdentifier(List<? extends PartyTradeIdentifier> oldTradeIdentifiers) {
 			if (oldTradeIdentifiers == null)  {
 				this.oldTradeIdentifier = new ArrayList<>();

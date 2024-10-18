@@ -154,6 +154,7 @@ public interface AveragingObservationList extends RosettaModelObject {
 			return averagingObservation;
 		}
 		
+		@Override
 		public WeightedAveragingObservation.WeightedAveragingObservationBuilder getOrCreateAveragingObservation(int _index) {
 		
 			if (averagingObservation==null) {
@@ -167,6 +168,7 @@ public interface AveragingObservationList extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("averagingObservation")
 		public AveragingObservationList.AveragingObservationListBuilder addAveragingObservation(WeightedAveragingObservation averagingObservation) {
 			if (averagingObservation!=null) this.averagingObservation.add(averagingObservation.toBuilder());
 			return this;
@@ -188,7 +190,6 @@ public interface AveragingObservationList extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("averagingObservation")
 		public AveragingObservationList.AveragingObservationListBuilder setAveragingObservation(List<? extends WeightedAveragingObservation> averagingObservations) {
 			if (averagingObservations == null)  {
 				this.averagingObservation = new ArrayList<>();

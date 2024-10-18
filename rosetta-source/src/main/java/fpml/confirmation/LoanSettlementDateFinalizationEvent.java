@@ -224,6 +224,7 @@ public interface LoanSettlementDateFinalizationEvent extends AbstractLoanAllocat
 		}
 		
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public LoanSettlementDateFinalizationEvent.LoanSettlementDateFinalizationEventBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -245,7 +246,6 @@ public interface LoanSettlementDateFinalizationEvent extends AbstractLoanAllocat
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public LoanSettlementDateFinalizationEvent.LoanSettlementDateFinalizationEventBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();
@@ -283,6 +283,7 @@ public interface LoanSettlementDateFinalizationEvent extends AbstractLoanAllocat
 			return this;
 		}
 		@Override
+		@RosettaAttribute("allocationReference")
 		public LoanSettlementDateFinalizationEvent.LoanSettlementDateFinalizationEventBuilder addAllocationReference(LoanAllocationReference allocationReference) {
 			if (allocationReference!=null) this.allocationReference.add(allocationReference.toBuilder());
 			return this;
@@ -304,7 +305,6 @@ public interface LoanSettlementDateFinalizationEvent extends AbstractLoanAllocat
 		}
 		
 		@Override 
-		@RosettaAttribute("allocationReference")
 		public LoanSettlementDateFinalizationEvent.LoanSettlementDateFinalizationEventBuilder setAllocationReference(List<? extends LoanAllocationReference> allocationReferences) {
 			if (allocationReferences == null)  {
 				this.allocationReference = new ArrayList<>();

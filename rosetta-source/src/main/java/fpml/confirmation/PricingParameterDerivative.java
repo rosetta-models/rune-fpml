@@ -262,6 +262,7 @@ public interface PricingParameterDerivative extends RosettaModelObject {
 			return inputDateReference;
 		}
 		
+		@Override
 		public ValuationReference.ValuationReferenceBuilder getOrCreateInputDateReference(int _index) {
 		
 			if (inputDateReference==null) {
@@ -312,6 +313,7 @@ public interface PricingParameterDerivative extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("inputDateReference")
 		public PricingParameterDerivative.PricingParameterDerivativeBuilder addInputDateReference(ValuationReference inputDateReference) {
 			if (inputDateReference!=null) this.inputDateReference.add(inputDateReference.toBuilder());
 			return this;
@@ -333,7 +335,6 @@ public interface PricingParameterDerivative extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("inputDateReference")
 		public PricingParameterDerivative.PricingParameterDerivativeBuilder setInputDateReference(List<? extends ValuationReference> inputDateReferences) {
 			if (inputDateReferences == null)  {
 				this.inputDateReference = new ArrayList<>();

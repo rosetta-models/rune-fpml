@@ -177,6 +177,7 @@ public interface ExceptionModel extends RosettaModelObject {
 			return reason;
 		}
 		
+		@Override
 		public Reason.ReasonBuilder getOrCreateReason(int _index) {
 		
 			if (reason==null) {
@@ -209,6 +210,7 @@ public interface ExceptionModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("reason")
 		public ExceptionModel.ExceptionModelBuilder addReason(Reason reason) {
 			if (reason!=null) this.reason.add(reason.toBuilder());
 			return this;
@@ -230,7 +232,6 @@ public interface ExceptionModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("reason")
 		public ExceptionModel.ExceptionModelBuilder setReason(List<? extends Reason> reasons) {
 			if (reasons == null)  {
 				this.reason = new ArrayList<>();

@@ -213,6 +213,7 @@ public interface CreditLimitInformation extends RosettaModelObject {
 			return creditLimit;
 		}
 		
+		@Override
 		public CreditLimit.CreditLimitBuilder getOrCreateCreditLimit(int _index) {
 		
 			if (creditLimit==null) {
@@ -238,6 +239,7 @@ public interface CreditLimitInformation extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("creditLimit")
 		public CreditLimitInformation.CreditLimitInformationBuilder addCreditLimit(CreditLimit creditLimit) {
 			if (creditLimit!=null) this.creditLimit.add(creditLimit.toBuilder());
 			return this;
@@ -259,7 +261,6 @@ public interface CreditLimitInformation extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("creditLimit")
 		public CreditLimitInformation.CreditLimitInformationBuilder setCreditLimit(List<? extends CreditLimit> creditLimits) {
 			if (creditLimits == null)  {
 				this.creditLimit = new ArrayList<>();

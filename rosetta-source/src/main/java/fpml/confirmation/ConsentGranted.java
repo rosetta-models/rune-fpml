@@ -446,6 +446,7 @@ public interface ConsentGranted extends ResponseMessage {
 			return creditLimitInformation;
 		}
 		
+		@Override
 		public CreditLimitInformation.CreditLimitInformationBuilder getOrCreateCreditLimitInformation(int _index) {
 		
 			if (creditLimitInformation==null) {
@@ -550,6 +551,7 @@ public interface ConsentGranted extends ResponseMessage {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("creditLimitInformation")
 		public ConsentGranted.ConsentGrantedBuilder addCreditLimitInformation(CreditLimitInformation creditLimitInformation) {
 			if (creditLimitInformation!=null) this.creditLimitInformation.add(creditLimitInformation.toBuilder());
 			return this;
@@ -571,7 +573,6 @@ public interface ConsentGranted extends ResponseMessage {
 		}
 		
 		@Override 
-		@RosettaAttribute("creditLimitInformation")
 		public ConsentGranted.ConsentGrantedBuilder setCreditLimitInformation(List<? extends CreditLimitInformation> creditLimitInformations) {
 			if (creditLimitInformations == null)  {
 				this.creditLimitInformation = new ArrayList<>();

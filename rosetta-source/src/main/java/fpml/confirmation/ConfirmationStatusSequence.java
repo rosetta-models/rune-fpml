@@ -195,6 +195,7 @@ public interface ConfirmationStatusSequence extends RosettaModelObject {
 			return proposedMatch;
 		}
 		
+		@Override
 		public EventProposedMatch.EventProposedMatchBuilder getOrCreateProposedMatch(int _index) {
 		
 			if (proposedMatch==null) {
@@ -214,6 +215,7 @@ public interface ConfirmationStatusSequence extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("proposedMatch")
 		public ConfirmationStatusSequence.ConfirmationStatusSequenceBuilder addProposedMatch(EventProposedMatch proposedMatch) {
 			if (proposedMatch!=null) this.proposedMatch.add(proposedMatch.toBuilder());
 			return this;
@@ -235,7 +237,6 @@ public interface ConfirmationStatusSequence extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("proposedMatch")
 		public ConfirmationStatusSequence.ConfirmationStatusSequenceBuilder setProposedMatch(List<? extends EventProposedMatch> proposedMatchs) {
 			if (proposedMatchs == null)  {
 				this.proposedMatch = new ArrayList<>();

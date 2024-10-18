@@ -189,6 +189,7 @@ public interface PrioritizedRateSourceModel extends RosettaModelObject {
 			return secondaryRateSource;
 		}
 		
+		@Override
 		public SettlementRateOption.SettlementRateOptionBuilder getOrCreateSecondaryRateSource(int _index) {
 		
 			if (secondaryRateSource==null) {
@@ -208,6 +209,7 @@ public interface PrioritizedRateSourceModel extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("secondaryRateSource")
 		public PrioritizedRateSourceModel.PrioritizedRateSourceModelBuilder addSecondaryRateSource(SettlementRateOption secondaryRateSource) {
 			if (secondaryRateSource!=null) this.secondaryRateSource.add(secondaryRateSource.toBuilder());
 			return this;
@@ -229,7 +231,6 @@ public interface PrioritizedRateSourceModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("secondaryRateSource")
 		public PrioritizedRateSourceModel.PrioritizedRateSourceModelBuilder setSecondaryRateSource(List<? extends SettlementRateOption> secondaryRateSources) {
 			if (secondaryRateSources == null)  {
 				this.secondaryRateSource = new ArrayList<>();

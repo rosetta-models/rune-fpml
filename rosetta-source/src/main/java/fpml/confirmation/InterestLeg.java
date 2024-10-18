@@ -365,6 +365,7 @@ public interface InterestLeg extends DirectionalLeg {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("legIdentifier")
 		public InterestLeg.InterestLegBuilder addLegIdentifier(LegIdentifier legIdentifier) {
 			if (legIdentifier!=null) this.legIdentifier.add(legIdentifier.toBuilder());
 			return this;
@@ -386,7 +387,6 @@ public interface InterestLeg extends DirectionalLeg {
 		}
 		
 		@Override 
-		@RosettaAttribute("legIdentifier")
 		public InterestLeg.InterestLegBuilder setLegIdentifier(List<? extends LegIdentifier> legIdentifiers) {
 			if (legIdentifiers == null)  {
 				this.legIdentifier = new ArrayList<>();

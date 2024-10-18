@@ -308,6 +308,7 @@ public interface NonRecurringFeePaymentNotification extends AbstractContractNoti
 			return loanContractDetailsModel;
 		}
 		
+		@Override
 		public LoanContractDetailsModel.LoanContractDetailsModelBuilder getOrCreateLoanContractDetailsModel(int _index) {
 		
 			if (loanContractDetailsModel==null) {
@@ -326,6 +327,7 @@ public interface NonRecurringFeePaymentNotification extends AbstractContractNoti
 			return party;
 		}
 		
+		@Override
 		public Party.PartyBuilder getOrCreateParty(int _index) {
 		
 			if (party==null) {
@@ -393,6 +395,7 @@ public interface NonRecurringFeePaymentNotification extends AbstractContractNoti
 			return this;
 		}
 		@Override
+		@RosettaAttribute("eventPayment")
 		public NonRecurringFeePaymentNotification.NonRecurringFeePaymentNotificationBuilder addEventPayment(EventPayment eventPayment) {
 			if (eventPayment!=null) this.eventPayment.add(eventPayment.toBuilder());
 			return this;
@@ -414,7 +417,6 @@ public interface NonRecurringFeePaymentNotification extends AbstractContractNoti
 		}
 		
 		@Override 
-		@RosettaAttribute("eventPayment")
 		public NonRecurringFeePaymentNotification.NonRecurringFeePaymentNotificationBuilder setEventPayment(List<? extends EventPayment> eventPayments) {
 			if (eventPayments == null)  {
 				this.eventPayment = new ArrayList<>();
@@ -428,6 +430,7 @@ public interface NonRecurringFeePaymentNotification extends AbstractContractNoti
 		}
 		
 		@Override
+		@RosettaAttribute("facilityOutstandingsPosition")
 		public NonRecurringFeePaymentNotification.NonRecurringFeePaymentNotificationBuilder addFacilityOutstandingsPosition(FacilityOutstandingsPosition facilityOutstandingsPosition) {
 			if (facilityOutstandingsPosition!=null) this.facilityOutstandingsPosition.add(facilityOutstandingsPosition.toBuilder());
 			return this;
@@ -449,7 +452,6 @@ public interface NonRecurringFeePaymentNotification extends AbstractContractNoti
 		}
 		
 		@Override 
-		@RosettaAttribute("facilityOutstandingsPosition")
 		public NonRecurringFeePaymentNotification.NonRecurringFeePaymentNotificationBuilder setFacilityOutstandingsPosition(List<? extends FacilityOutstandingsPosition> facilityOutstandingsPositions) {
 			if (facilityOutstandingsPositions == null)  {
 				this.facilityOutstandingsPosition = new ArrayList<>();
@@ -475,6 +477,7 @@ public interface NonRecurringFeePaymentNotification extends AbstractContractNoti
 			return this;
 		}
 		@Override
+		@RosettaAttribute("loanContractDetailsModel")
 		public NonRecurringFeePaymentNotification.NonRecurringFeePaymentNotificationBuilder addLoanContractDetailsModel(LoanContractDetailsModel loanContractDetailsModel) {
 			if (loanContractDetailsModel!=null) this.loanContractDetailsModel.add(loanContractDetailsModel.toBuilder());
 			return this;
@@ -496,7 +499,6 @@ public interface NonRecurringFeePaymentNotification extends AbstractContractNoti
 		}
 		
 		@Override 
-		@RosettaAttribute("loanContractDetailsModel")
 		public NonRecurringFeePaymentNotification.NonRecurringFeePaymentNotificationBuilder setLoanContractDetailsModel(List<? extends LoanContractDetailsModel> loanContractDetailsModels) {
 			if (loanContractDetailsModels == null)  {
 				this.loanContractDetailsModel = new ArrayList<>();
@@ -510,6 +512,7 @@ public interface NonRecurringFeePaymentNotification extends AbstractContractNoti
 		}
 		
 		@Override
+		@RosettaAttribute("party")
 		public NonRecurringFeePaymentNotification.NonRecurringFeePaymentNotificationBuilder addParty(Party party) {
 			if (party!=null) this.party.add(party.toBuilder());
 			return this;
@@ -531,7 +534,6 @@ public interface NonRecurringFeePaymentNotification extends AbstractContractNoti
 		}
 		
 		@Override 
-		@RosettaAttribute("party")
 		public NonRecurringFeePaymentNotification.NonRecurringFeePaymentNotificationBuilder setParty(List<? extends Party> partys) {
 			if (partys == null)  {
 				this.party = new ArrayList<>();

@@ -333,6 +333,7 @@ public interface MessageHeaderModel extends RosettaModelObject {
 			return sendTo;
 		}
 		
+		@Override
 		public MessageAddress.MessageAddressBuilder getOrCreateSendTo(int _index) {
 		
 			if (sendTo==null) {
@@ -351,6 +352,7 @@ public interface MessageHeaderModel extends RosettaModelObject {
 			return copyTo;
 		}
 		
+		@Override
 		public MessageAddress.MessageAddressBuilder getOrCreateCopyTo(int _index) {
 		
 			if (copyTo==null) {
@@ -400,6 +402,7 @@ public interface MessageHeaderModel extends RosettaModelObject {
 			return partyMessageInformation;
 		}
 		
+		@Override
 		public PartyMessageInformation.PartyMessageInformationBuilder getOrCreatePartyMessageInformation(int _index) {
 		
 			if (partyMessageInformation==null) {
@@ -418,6 +421,7 @@ public interface MessageHeaderModel extends RosettaModelObject {
 			return signature;
 		}
 		
+		@Override
 		public SignatureType.SignatureTypeBuilder getOrCreateSignature(int _index) {
 		
 			if (signature==null) {
@@ -437,6 +441,7 @@ public interface MessageHeaderModel extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("sendTo")
 		public MessageHeaderModel.MessageHeaderModelBuilder addSendTo(MessageAddress sendTo) {
 			if (sendTo!=null) this.sendTo.add(sendTo.toBuilder());
 			return this;
@@ -458,7 +463,6 @@ public interface MessageHeaderModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("sendTo")
 		public MessageHeaderModel.MessageHeaderModelBuilder setSendTo(List<? extends MessageAddress> sendTos) {
 			if (sendTos == null)  {
 				this.sendTo = new ArrayList<>();
@@ -472,6 +476,7 @@ public interface MessageHeaderModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("copyTo")
 		public MessageHeaderModel.MessageHeaderModelBuilder addCopyTo(MessageAddress copyTo) {
 			if (copyTo!=null) this.copyTo.add(copyTo.toBuilder());
 			return this;
@@ -493,7 +498,6 @@ public interface MessageHeaderModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("copyTo")
 		public MessageHeaderModel.MessageHeaderModelBuilder setCopyTo(List<? extends MessageAddress> copyTos) {
 			if (copyTos == null)  {
 				this.copyTo = new ArrayList<>();
@@ -525,6 +529,7 @@ public interface MessageHeaderModel extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("partyMessageInformation")
 		public MessageHeaderModel.MessageHeaderModelBuilder addPartyMessageInformation(PartyMessageInformation partyMessageInformation) {
 			if (partyMessageInformation!=null) this.partyMessageInformation.add(partyMessageInformation.toBuilder());
 			return this;
@@ -546,7 +551,6 @@ public interface MessageHeaderModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("partyMessageInformation")
 		public MessageHeaderModel.MessageHeaderModelBuilder setPartyMessageInformation(List<? extends PartyMessageInformation> partyMessageInformations) {
 			if (partyMessageInformations == null)  {
 				this.partyMessageInformation = new ArrayList<>();
@@ -560,6 +564,7 @@ public interface MessageHeaderModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("signature")
 		public MessageHeaderModel.MessageHeaderModelBuilder addSignature(SignatureType signature) {
 			if (signature!=null) this.signature.add(signature.toBuilder());
 			return this;
@@ -581,7 +586,6 @@ public interface MessageHeaderModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("signature")
 		public MessageHeaderModel.MessageHeaderModelBuilder setSignature(List<? extends SignatureType> signatures) {
 			if (signatures == null)  {
 				this.signature = new ArrayList<>();

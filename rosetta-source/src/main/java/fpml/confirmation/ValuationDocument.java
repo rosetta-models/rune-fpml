@@ -217,6 +217,7 @@ public interface ValuationDocument extends DataDocument {
 			return market;
 		}
 		
+		@Override
 		public Market.MarketBuilder getOrCreateMarket(int _index) {
 		
 			if (market==null) {
@@ -235,6 +236,7 @@ public interface ValuationDocument extends DataDocument {
 			return valuationSet;
 		}
 		
+		@Override
 		public ValuationSet.ValuationSetBuilder getOrCreateValuationSet(int _index) {
 		
 			if (valuationSet==null) {
@@ -278,6 +280,7 @@ public interface ValuationDocument extends DataDocument {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("trade")
 		public ValuationDocument.ValuationDocumentBuilder addTrade(Trade trade) {
 			if (trade!=null) this.trade.add(trade.toBuilder());
 			return this;
@@ -299,7 +302,6 @@ public interface ValuationDocument extends DataDocument {
 		}
 		
 		@Override 
-		@RosettaAttribute("trade")
 		public ValuationDocument.ValuationDocumentBuilder setTrade(List<? extends Trade> trades) {
 			if (trades == null)  {
 				this.trade = new ArrayList<>();
@@ -313,6 +315,7 @@ public interface ValuationDocument extends DataDocument {
 		}
 		
 		@Override
+		@RosettaAttribute("portfolio")
 		public ValuationDocument.ValuationDocumentBuilder addPortfolio(Portfolio portfolio) {
 			if (portfolio!=null) this.portfolio.add(portfolio.toBuilder());
 			return this;
@@ -334,7 +337,6 @@ public interface ValuationDocument extends DataDocument {
 		}
 		
 		@Override 
-		@RosettaAttribute("portfolio")
 		public ValuationDocument.ValuationDocumentBuilder setPortfolio(List<? extends Portfolio> portfolios) {
 			if (portfolios == null)  {
 				this.portfolio = new ArrayList<>();
@@ -354,6 +356,7 @@ public interface ValuationDocument extends DataDocument {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("market")
 		public ValuationDocument.ValuationDocumentBuilder addMarket(Market market) {
 			if (market!=null) this.market.add(market.toBuilder());
 			return this;
@@ -375,7 +378,6 @@ public interface ValuationDocument extends DataDocument {
 		}
 		
 		@Override 
-		@RosettaAttribute("market")
 		public ValuationDocument.ValuationDocumentBuilder setMarket(List<? extends Market> markets) {
 			if (markets == null)  {
 				this.market = new ArrayList<>();
@@ -389,6 +391,7 @@ public interface ValuationDocument extends DataDocument {
 		}
 		
 		@Override
+		@RosettaAttribute("valuationSet")
 		public ValuationDocument.ValuationDocumentBuilder addValuationSet(ValuationSet valuationSet) {
 			if (valuationSet!=null) this.valuationSet.add(valuationSet.toBuilder());
 			return this;
@@ -410,7 +413,6 @@ public interface ValuationDocument extends DataDocument {
 		}
 		
 		@Override 
-		@RosettaAttribute("valuationSet")
 		public ValuationDocument.ValuationDocumentBuilder setValuationSet(List<? extends ValuationSet> valuationSets) {
 			if (valuationSets == null)  {
 				this.valuationSet = new ArrayList<>();

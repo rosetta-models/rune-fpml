@@ -151,6 +151,7 @@ public interface ReferencePool extends RosettaModelObject {
 			return referencePoolItem;
 		}
 		
+		@Override
 		public ReferencePoolItem.ReferencePoolItemBuilder getOrCreateReferencePoolItem(int _index) {
 		
 			if (referencePoolItem==null) {
@@ -164,6 +165,7 @@ public interface ReferencePool extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("referencePoolItem")
 		public ReferencePool.ReferencePoolBuilder addReferencePoolItem(ReferencePoolItem referencePoolItem) {
 			if (referencePoolItem!=null) this.referencePoolItem.add(referencePoolItem.toBuilder());
 			return this;
@@ -185,7 +187,6 @@ public interface ReferencePool extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("referencePoolItem")
 		public ReferencePool.ReferencePoolBuilder setReferencePoolItem(List<? extends ReferencePoolItem> referencePoolItems) {
 			if (referencePoolItems == null)  {
 				this.referencePoolItem = new ArrayList<>();

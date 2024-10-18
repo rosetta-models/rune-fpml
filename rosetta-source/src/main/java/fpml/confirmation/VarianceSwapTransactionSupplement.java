@@ -188,6 +188,7 @@ public interface VarianceSwapTransactionSupplement extends Product {
 			return varianceLeg;
 		}
 		
+		@Override
 		public VarianceLeg.VarianceLegBuilder getOrCreateVarianceLeg(int _index) {
 		
 			if (varianceLeg==null) {
@@ -232,6 +233,7 @@ public interface VarianceSwapTransactionSupplement extends Product {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("varianceLeg")
 		public VarianceSwapTransactionSupplement.VarianceSwapTransactionSupplementBuilder addVarianceLeg(VarianceLeg varianceLeg) {
 			if (varianceLeg!=null) this.varianceLeg.add(varianceLeg.toBuilder());
 			return this;
@@ -253,7 +255,6 @@ public interface VarianceSwapTransactionSupplement extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("varianceLeg")
 		public VarianceSwapTransactionSupplement.VarianceSwapTransactionSupplementBuilder setVarianceLeg(List<? extends VarianceLeg> varianceLegs) {
 			if (varianceLegs == null)  {
 				this.varianceLeg = new ArrayList<>();

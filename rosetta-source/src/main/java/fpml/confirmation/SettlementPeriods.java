@@ -403,6 +403,7 @@ public interface SettlementPeriods extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("applicableDay")
 		public SettlementPeriods.SettlementPeriodsBuilder addApplicableDay(DayOfWeekExtEnum applicableDay) {
 			if (applicableDay!=null) this.applicableDay.add(applicableDay);
 			return this;
@@ -424,7 +425,6 @@ public interface SettlementPeriods extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("applicableDay")
 		public SettlementPeriods.SettlementPeriodsBuilder setApplicableDay(List<DayOfWeekExtEnum> applicableDays) {
 			if (applicableDays == null)  {
 				this.applicableDay = new ArrayList<>();

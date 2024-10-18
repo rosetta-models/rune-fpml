@@ -296,6 +296,7 @@ public interface PartyTradeIdentifier extends TradeIdentifier {
 			return linkId;
 		}
 		
+		@Override
 		public LinkId.LinkIdBuilder getOrCreateLinkId(int _index) {
 		
 			if (linkId==null) {
@@ -314,6 +315,7 @@ public interface PartyTradeIdentifier extends TradeIdentifier {
 			return allocationTradeId;
 		}
 		
+		@Override
 		public TradeIdentifier.TradeIdentifierBuilder getOrCreateAllocationTradeId(int _index) {
 		
 			if (allocationTradeId==null) {
@@ -332,6 +334,7 @@ public interface PartyTradeIdentifier extends TradeIdentifier {
 			return resultingTradeId;
 		}
 		
+		@Override
 		public TradeIdentifierExtended.TradeIdentifierExtendedBuilder getOrCreateResultingTradeId(int _index) {
 		
 			if (resultingTradeId==null) {
@@ -369,6 +372,7 @@ public interface PartyTradeIdentifier extends TradeIdentifier {
 			return originatingTradeId;
 		}
 		
+		@Override
 		public TradeIdentifier.TradeIdentifierBuilder getOrCreateOriginatingTradeId(int _index) {
 		
 			if (originatingTradeId==null) {
@@ -387,6 +391,7 @@ public interface PartyTradeIdentifier extends TradeIdentifier {
 			return productComponentIdentifier;
 		}
 		
+		@Override
 		public ProductComponentIdentifier.ProductComponentIdentifierBuilder getOrCreateProductComponentIdentifier(int _index) {
 		
 			if (productComponentIdentifier==null) {
@@ -418,6 +423,7 @@ public interface PartyTradeIdentifier extends TradeIdentifier {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("linkId")
 		public PartyTradeIdentifier.PartyTradeIdentifierBuilder addLinkId(LinkId linkId) {
 			if (linkId!=null) this.linkId.add(linkId.toBuilder());
 			return this;
@@ -439,7 +445,6 @@ public interface PartyTradeIdentifier extends TradeIdentifier {
 		}
 		
 		@Override 
-		@RosettaAttribute("linkId")
 		public PartyTradeIdentifier.PartyTradeIdentifierBuilder setLinkId(List<? extends LinkId> linkIds) {
 			if (linkIds == null)  {
 				this.linkId = new ArrayList<>();
@@ -453,6 +458,7 @@ public interface PartyTradeIdentifier extends TradeIdentifier {
 		}
 		
 		@Override
+		@RosettaAttribute("allocationTradeId")
 		public PartyTradeIdentifier.PartyTradeIdentifierBuilder addAllocationTradeId(TradeIdentifier allocationTradeId) {
 			if (allocationTradeId!=null) this.allocationTradeId.add(allocationTradeId.toBuilder());
 			return this;
@@ -474,7 +480,6 @@ public interface PartyTradeIdentifier extends TradeIdentifier {
 		}
 		
 		@Override 
-		@RosettaAttribute("allocationTradeId")
 		public PartyTradeIdentifier.PartyTradeIdentifierBuilder setAllocationTradeId(List<? extends TradeIdentifier> allocationTradeIds) {
 			if (allocationTradeIds == null)  {
 				this.allocationTradeId = new ArrayList<>();
@@ -488,6 +493,7 @@ public interface PartyTradeIdentifier extends TradeIdentifier {
 		}
 		
 		@Override
+		@RosettaAttribute("resultingTradeId")
 		public PartyTradeIdentifier.PartyTradeIdentifierBuilder addResultingTradeId(TradeIdentifierExtended resultingTradeId) {
 			if (resultingTradeId!=null) this.resultingTradeId.add(resultingTradeId.toBuilder());
 			return this;
@@ -509,7 +515,6 @@ public interface PartyTradeIdentifier extends TradeIdentifier {
 		}
 		
 		@Override 
-		@RosettaAttribute("resultingTradeId")
 		public PartyTradeIdentifier.PartyTradeIdentifierBuilder setResultingTradeId(List<? extends TradeIdentifierExtended> resultingTradeIds) {
 			if (resultingTradeIds == null)  {
 				this.resultingTradeId = new ArrayList<>();
@@ -529,6 +534,7 @@ public interface PartyTradeIdentifier extends TradeIdentifier {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("originatingTradeId")
 		public PartyTradeIdentifier.PartyTradeIdentifierBuilder addOriginatingTradeId(TradeIdentifier originatingTradeId) {
 			if (originatingTradeId!=null) this.originatingTradeId.add(originatingTradeId.toBuilder());
 			return this;
@@ -550,7 +556,6 @@ public interface PartyTradeIdentifier extends TradeIdentifier {
 		}
 		
 		@Override 
-		@RosettaAttribute("originatingTradeId")
 		public PartyTradeIdentifier.PartyTradeIdentifierBuilder setOriginatingTradeId(List<? extends TradeIdentifier> originatingTradeIds) {
 			if (originatingTradeIds == null)  {
 				this.originatingTradeId = new ArrayList<>();
@@ -564,6 +569,7 @@ public interface PartyTradeIdentifier extends TradeIdentifier {
 		}
 		
 		@Override
+		@RosettaAttribute("productComponentIdentifier")
 		public PartyTradeIdentifier.PartyTradeIdentifierBuilder addProductComponentIdentifier(ProductComponentIdentifier productComponentIdentifier) {
 			if (productComponentIdentifier!=null) this.productComponentIdentifier.add(productComponentIdentifier.toBuilder());
 			return this;
@@ -585,7 +591,6 @@ public interface PartyTradeIdentifier extends TradeIdentifier {
 		}
 		
 		@Override 
-		@RosettaAttribute("productComponentIdentifier")
 		public PartyTradeIdentifier.PartyTradeIdentifierBuilder setProductComponentIdentifier(List<? extends ProductComponentIdentifier> productComponentIdentifiers) {
 			if (productComponentIdentifiers == null)  {
 				this.productComponentIdentifier = new ArrayList<>();

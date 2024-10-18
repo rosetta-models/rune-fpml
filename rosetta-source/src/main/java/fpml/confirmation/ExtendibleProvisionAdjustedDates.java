@@ -154,6 +154,7 @@ public interface ExtendibleProvisionAdjustedDates extends RosettaModelObject {
 			return extensionEvent;
 		}
 		
+		@Override
 		public ExtensionEvent.ExtensionEventBuilder getOrCreateExtensionEvent(int _index) {
 		
 			if (extensionEvent==null) {
@@ -167,6 +168,7 @@ public interface ExtendibleProvisionAdjustedDates extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("extensionEvent")
 		public ExtendibleProvisionAdjustedDates.ExtendibleProvisionAdjustedDatesBuilder addExtensionEvent(ExtensionEvent extensionEvent) {
 			if (extensionEvent!=null) this.extensionEvent.add(extensionEvent.toBuilder());
 			return this;
@@ -188,7 +190,6 @@ public interface ExtendibleProvisionAdjustedDates extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("extensionEvent")
 		public ExtendibleProvisionAdjustedDates.ExtendibleProvisionAdjustedDatesBuilder setExtensionEvent(List<? extends ExtensionEvent> extensionEvents) {
 			if (extensionEvents == null)  {
 				this.extensionEvent = new ArrayList<>();

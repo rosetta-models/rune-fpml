@@ -168,6 +168,7 @@ public interface WeatherCalculationPeriods extends RosettaModelObject {
 			return calculationPeriod;
 		}
 		
+		@Override
 		public WeatherCalculationPeriod.WeatherCalculationPeriodBuilder getOrCreateCalculationPeriod(int _index) {
 		
 			if (calculationPeriod==null) {
@@ -187,6 +188,7 @@ public interface WeatherCalculationPeriods extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("calculationPeriod")
 		public WeatherCalculationPeriods.WeatherCalculationPeriodsBuilder addCalculationPeriod(WeatherCalculationPeriod calculationPeriod) {
 			if (calculationPeriod!=null) this.calculationPeriod.add(calculationPeriod.toBuilder());
 			return this;
@@ -208,7 +210,6 @@ public interface WeatherCalculationPeriods extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("calculationPeriod")
 		public WeatherCalculationPeriods.WeatherCalculationPeriodsBuilder setCalculationPeriod(List<? extends WeatherCalculationPeriod> calculationPeriods) {
 			if (calculationPeriods == null)  {
 				this.calculationPeriod = new ArrayList<>();

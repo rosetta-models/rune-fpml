@@ -323,6 +323,7 @@ public interface ElectricityPhysicalLeg extends PhysicalSwapLeg {
 			return settlementPeriods;
 		}
 		
+		@Override
 		public SettlementPeriods.SettlementPeriodsBuilder getOrCreateSettlementPeriods(int _index) {
 		
 			if (settlementPeriods==null) {
@@ -436,6 +437,7 @@ public interface ElectricityPhysicalLeg extends PhysicalSwapLeg {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("settlementPeriods")
 		public ElectricityPhysicalLeg.ElectricityPhysicalLegBuilder addSettlementPeriods(SettlementPeriods settlementPeriods) {
 			if (settlementPeriods!=null) this.settlementPeriods.add(settlementPeriods.toBuilder());
 			return this;
@@ -457,7 +459,6 @@ public interface ElectricityPhysicalLeg extends PhysicalSwapLeg {
 		}
 		
 		@Override 
-		@RosettaAttribute("settlementPeriods")
 		public ElectricityPhysicalLeg.ElectricityPhysicalLegBuilder setSettlementPeriods(List<? extends SettlementPeriods> settlementPeriodss) {
 			if (settlementPeriodss == null)  {
 				this.settlementPeriods = new ArrayList<>();

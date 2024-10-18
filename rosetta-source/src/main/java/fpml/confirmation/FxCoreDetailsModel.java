@@ -453,6 +453,7 @@ public interface FxCoreDetailsModel extends RosettaModelObject {
 			return disruption;
 		}
 		
+		@Override
 		public FxDisruption.FxDisruptionBuilder getOrCreateDisruption(int _index) {
 		
 			if (disruption==null) {
@@ -514,6 +515,7 @@ public interface FxCoreDetailsModel extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("disruption")
 		public FxCoreDetailsModel.FxCoreDetailsModelBuilder addDisruption(FxDisruption disruption) {
 			if (disruption!=null) this.disruption.add(disruption.toBuilder());
 			return this;
@@ -535,7 +537,6 @@ public interface FxCoreDetailsModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("disruption")
 		public FxCoreDetailsModel.FxCoreDetailsModelBuilder setDisruption(List<? extends FxDisruption> disruptions) {
 			if (disruptions == null)  {
 				this.disruption = new ArrayList<>();

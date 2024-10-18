@@ -134,6 +134,7 @@ public interface Manifest extends ManifestType {
 		}
 	
 		@Override
+		@RosettaAttribute("reference")
 		public Manifest.ManifestBuilder addReference(ReferenceType reference) {
 			if (reference!=null) this.reference.add(reference.toBuilder());
 			return this;
@@ -155,7 +156,6 @@ public interface Manifest extends ManifestType {
 		}
 		
 		@Override 
-		@RosettaAttribute("reference")
 		public Manifest.ManifestBuilder setReference(List<? extends ReferenceType> references) {
 			if (references == null)  {
 				this.reference = new ArrayList<>();

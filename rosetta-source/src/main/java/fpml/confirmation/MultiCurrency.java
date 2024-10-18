@@ -154,6 +154,7 @@ public interface MultiCurrency extends RosettaModelObject {
 			return drawCurrency;
 		}
 		
+		@Override
 		public Currency.CurrencyBuilder getOrCreateDrawCurrency(int _index) {
 		
 			if (drawCurrency==null) {
@@ -167,6 +168,7 @@ public interface MultiCurrency extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("drawCurrency")
 		public MultiCurrency.MultiCurrencyBuilder addDrawCurrency(Currency drawCurrency) {
 			if (drawCurrency!=null) this.drawCurrency.add(drawCurrency.toBuilder());
 			return this;
@@ -188,7 +190,6 @@ public interface MultiCurrency extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("drawCurrency")
 		public MultiCurrency.MultiCurrencyBuilder setDrawCurrency(List<? extends Currency> drawCurrencys) {
 			if (drawCurrencys == null)  {
 				this.drawCurrency = new ArrayList<>();

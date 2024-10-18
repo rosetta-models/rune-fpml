@@ -171,6 +171,7 @@ public interface CoalStandardQualitySchedule extends RosettaModelObject {
 			return standardQualityStep;
 		}
 		
+		@Override
 		public CoalStandardQuality.CoalStandardQualityBuilder getOrCreateStandardQualityStep(int _index) {
 		
 			if (standardQualityStep==null) {
@@ -203,6 +204,7 @@ public interface CoalStandardQualitySchedule extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("standardQualityStep")
 		public CoalStandardQualitySchedule.CoalStandardQualityScheduleBuilder addStandardQualityStep(CoalStandardQuality standardQualityStep) {
 			if (standardQualityStep!=null) this.standardQualityStep.add(standardQualityStep.toBuilder());
 			return this;
@@ -224,7 +226,6 @@ public interface CoalStandardQualitySchedule extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("standardQualityStep")
 		public CoalStandardQualitySchedule.CoalStandardQualityScheduleBuilder setStandardQualityStep(List<? extends CoalStandardQuality> standardQualitySteps) {
 			if (standardQualitySteps == null)  {
 				this.standardQualityStep = new ArrayList<>();

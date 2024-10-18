@@ -151,6 +151,7 @@ public interface ProRataFacilities extends RosettaModelObject {
 			return facilityReference;
 		}
 		
+		@Override
 		public FacilityReference.FacilityReferenceBuilder getOrCreateFacilityReference(int _index) {
 		
 			if (facilityReference==null) {
@@ -164,6 +165,7 @@ public interface ProRataFacilities extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("facilityReference")
 		public ProRataFacilities.ProRataFacilitiesBuilder addFacilityReference(FacilityReference facilityReference) {
 			if (facilityReference!=null) this.facilityReference.add(facilityReference.toBuilder());
 			return this;
@@ -185,7 +187,6 @@ public interface ProRataFacilities extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("facilityReference")
 		public ProRataFacilities.ProRataFacilitiesBuilder setFacilityReference(List<? extends FacilityReference> facilityReferences) {
 			if (facilityReferences == null)  {
 				this.facilityReference = new ArrayList<>();

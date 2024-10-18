@@ -181,6 +181,7 @@ public interface FormulaTerm extends RosettaModelObject {
 			return partialDerivativeReference;
 		}
 		
+		@Override
 		public PricingParameterDerivativeReference.PricingParameterDerivativeReferenceBuilder getOrCreatePartialDerivativeReference(int _index) {
 		
 			if (partialDerivativeReference==null) {
@@ -200,6 +201,7 @@ public interface FormulaTerm extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("partialDerivativeReference")
 		public FormulaTerm.FormulaTermBuilder addPartialDerivativeReference(PricingParameterDerivativeReference partialDerivativeReference) {
 			if (partialDerivativeReference!=null) this.partialDerivativeReference.add(partialDerivativeReference.toBuilder());
 			return this;
@@ -221,7 +223,6 @@ public interface FormulaTerm extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("partialDerivativeReference")
 		public FormulaTerm.FormulaTermBuilder setPartialDerivativeReference(List<? extends PricingParameterDerivativeReference> partialDerivativeReferences) {
 			if (partialDerivativeReferences == null)  {
 				this.partialDerivativeReference = new ArrayList<>();

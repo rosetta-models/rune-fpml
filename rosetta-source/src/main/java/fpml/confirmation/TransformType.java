@@ -167,6 +167,7 @@ public interface TransformType extends RosettaModelObject {
 			return transformTypeChoice;
 		}
 		
+		@Override
 		public TransformTypeChoice.TransformTypeChoiceBuilder getOrCreateTransformTypeChoice(int _index) {
 		
 			if (transformTypeChoice==null) {
@@ -186,6 +187,7 @@ public interface TransformType extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("transformTypeChoice")
 		public TransformType.TransformTypeBuilder addTransformTypeChoice(TransformTypeChoice transformTypeChoice) {
 			if (transformTypeChoice!=null) this.transformTypeChoice.add(transformTypeChoice.toBuilder());
 			return this;
@@ -207,7 +209,6 @@ public interface TransformType extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("transformTypeChoice")
 		public TransformType.TransformTypeBuilder setTransformTypeChoice(List<? extends TransformTypeChoice> transformTypeChoices) {
 			if (transformTypeChoices == null)  {
 				this.transformTypeChoice = new ArrayList<>();

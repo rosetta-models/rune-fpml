@@ -410,6 +410,7 @@ public interface ReferenceObligation extends RosettaModelObject {
 			return referenceObligationChoice;
 		}
 		
+		@Override
 		public ReferenceObligationChoice.ReferenceObligationChoiceBuilder getOrCreateReferenceObligationChoice(int _index) {
 		
 			if (referenceObligationChoice==null) {
@@ -465,6 +466,7 @@ public interface ReferenceObligation extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("referenceObligationChoice")
 		public ReferenceObligation.ReferenceObligationBuilder addReferenceObligationChoice(ReferenceObligationChoice referenceObligationChoice) {
 			if (referenceObligationChoice!=null) this.referenceObligationChoice.add(referenceObligationChoice.toBuilder());
 			return this;
@@ -486,7 +488,6 @@ public interface ReferenceObligation extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("referenceObligationChoice")
 		public ReferenceObligation.ReferenceObligationBuilder setReferenceObligationChoice(List<? extends ReferenceObligationChoice> referenceObligationChoices) {
 			if (referenceObligationChoices == null)  {
 				this.referenceObligationChoice = new ArrayList<>();

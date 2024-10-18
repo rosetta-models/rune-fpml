@@ -598,6 +598,7 @@ public interface Fra extends Product {
 			return indexTenor;
 		}
 		
+		@Override
 		public Period.PeriodBuilder getOrCreateIndexTenor(int _index) {
 		
 			if (indexTenor==null) {
@@ -622,6 +623,7 @@ public interface Fra extends Product {
 			return additionalPayment;
 		}
 		
+		@Override
 		public Payment.PaymentBuilder getOrCreateAdditionalPayment(int _index) {
 		
 			if (additionalPayment==null) {
@@ -707,6 +709,7 @@ public interface Fra extends Product {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("indexTenor")
 		public Fra.FraBuilder addIndexTenor(Period indexTenor) {
 			if (indexTenor!=null) this.indexTenor.add(indexTenor.toBuilder());
 			return this;
@@ -728,7 +731,6 @@ public interface Fra extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("indexTenor")
 		public Fra.FraBuilder setIndexTenor(List<? extends Period> indexTenors) {
 			if (indexTenors == null)  {
 				this.indexTenor = new ArrayList<>();
@@ -748,6 +750,7 @@ public interface Fra extends Product {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("additionalPayment")
 		public Fra.FraBuilder addAdditionalPayment(Payment additionalPayment) {
 			if (additionalPayment!=null) this.additionalPayment.add(additionalPayment.toBuilder());
 			return this;
@@ -769,7 +772,6 @@ public interface Fra extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("additionalPayment")
 		public Fra.FraBuilder setAdditionalPayment(List<? extends Payment> additionalPayments) {
 			if (additionalPayments == null)  {
 				this.additionalPayment = new ArrayList<>();

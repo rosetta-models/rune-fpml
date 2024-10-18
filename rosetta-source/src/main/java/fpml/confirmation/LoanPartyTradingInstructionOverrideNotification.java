@@ -309,6 +309,7 @@ public interface LoanPartyTradingInstructionOverrideNotification extends Abstrac
 			return party;
 		}
 		
+		@Override
 		public Party.PartyBuilder getOrCreateParty(int _index) {
 		
 			if (party==null) {
@@ -388,6 +389,7 @@ public interface LoanPartyTradingInstructionOverrideNotification extends Abstrac
 			return this;
 		}
 		@Override
+		@RosettaAttribute("party")
 		public LoanPartyTradingInstructionOverrideNotification.LoanPartyTradingInstructionOverrideNotificationBuilder addParty(Party party) {
 			if (party!=null) this.party.add(party.toBuilder());
 			return this;
@@ -409,7 +411,6 @@ public interface LoanPartyTradingInstructionOverrideNotification extends Abstrac
 		}
 		
 		@Override 
-		@RosettaAttribute("party")
 		public LoanPartyTradingInstructionOverrideNotification.LoanPartyTradingInstructionOverrideNotificationBuilder setParty(List<? extends Party> partys) {
 			if (partys == null)  {
 				this.party = new ArrayList<>();

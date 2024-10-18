@@ -169,6 +169,7 @@ public interface SettlementPeriodsFixedPrice extends FixedPrice {
 			return settlementPeriodsReference;
 		}
 		
+		@Override
 		public SettlementPeriodsReference.SettlementPeriodsReferenceBuilder getOrCreateSettlementPeriodsReference(int _index) {
 		
 			if (settlementPeriodsReference==null) {
@@ -200,6 +201,7 @@ public interface SettlementPeriodsFixedPrice extends FixedPrice {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("settlementPeriodsReference")
 		public SettlementPeriodsFixedPrice.SettlementPeriodsFixedPriceBuilder addSettlementPeriodsReference(SettlementPeriodsReference settlementPeriodsReference) {
 			if (settlementPeriodsReference!=null) this.settlementPeriodsReference.add(settlementPeriodsReference.toBuilder());
 			return this;
@@ -221,7 +223,6 @@ public interface SettlementPeriodsFixedPrice extends FixedPrice {
 		}
 		
 		@Override 
-		@RosettaAttribute("settlementPeriodsReference")
 		public SettlementPeriodsFixedPrice.SettlementPeriodsFixedPriceBuilder setSettlementPeriodsReference(List<? extends SettlementPeriodsReference> settlementPeriodsReferences) {
 			if (settlementPeriodsReferences == null)  {
 				this.settlementPeriodsReference = new ArrayList<>();

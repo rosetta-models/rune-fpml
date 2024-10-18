@@ -216,6 +216,7 @@ public interface CrossCurrencyMethod extends RosettaModelObject {
 			return cashSettlementCurrency;
 		}
 		
+		@Override
 		public Currency.CurrencyBuilder getOrCreateCashSettlementCurrency(int _index) {
 		
 			if (cashSettlementCurrency==null) {
@@ -241,6 +242,7 @@ public interface CrossCurrencyMethod extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("cashSettlementCurrency")
 		public CrossCurrencyMethod.CrossCurrencyMethodBuilder addCashSettlementCurrency(Currency cashSettlementCurrency) {
 			if (cashSettlementCurrency!=null) this.cashSettlementCurrency.add(cashSettlementCurrency.toBuilder());
 			return this;
@@ -262,7 +264,6 @@ public interface CrossCurrencyMethod extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("cashSettlementCurrency")
 		public CrossCurrencyMethod.CrossCurrencyMethodBuilder setCashSettlementCurrency(List<? extends Currency> cashSettlementCurrencys) {
 			if (cashSettlementCurrencys == null)  {
 				this.cashSettlementCurrency = new ArrayList<>();

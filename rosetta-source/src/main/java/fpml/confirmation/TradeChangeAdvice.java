@@ -287,6 +287,7 @@ public interface TradeChangeAdvice extends CorrectableRequestMessage {
 			return paymentDetails;
 		}
 		
+		@Override
 		public PaymentDetails.PaymentDetailsBuilder getOrCreatePaymentDetails(int _index) {
 		
 			if (paymentDetails==null) {
@@ -373,6 +374,7 @@ public interface TradeChangeAdvice extends CorrectableRequestMessage {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("paymentDetails")
 		public TradeChangeAdvice.TradeChangeAdviceBuilder addPaymentDetails(PaymentDetails paymentDetails) {
 			if (paymentDetails!=null) this.paymentDetails.add(paymentDetails.toBuilder());
 			return this;
@@ -394,7 +396,6 @@ public interface TradeChangeAdvice extends CorrectableRequestMessage {
 		}
 		
 		@Override 
-		@RosettaAttribute("paymentDetails")
 		public TradeChangeAdvice.TradeChangeAdviceBuilder setPaymentDetails(List<? extends PaymentDetails> paymentDetailss) {
 			if (paymentDetailss == null)  {
 				this.paymentDetails = new ArrayList<>();

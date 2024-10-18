@@ -210,6 +210,7 @@ public interface LoanContractBaseRateSet extends AbstractLoanContractEvent {
 		}
 		
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public LoanContractBaseRateSet.LoanContractBaseRateSetBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -231,7 +232,6 @@ public interface LoanContractBaseRateSet extends AbstractLoanContractEvent {
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public LoanContractBaseRateSet.LoanContractBaseRateSetBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();

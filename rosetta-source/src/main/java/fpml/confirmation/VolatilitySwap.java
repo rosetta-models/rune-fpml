@@ -176,6 +176,7 @@ public interface VolatilitySwap extends NettedSwapBase {
 			return volatilityLeg;
 		}
 		
+		@Override
 		public VolatilityLeg.VolatilityLegBuilder getOrCreateVolatilityLeg(int _index) {
 		
 			if (volatilityLeg==null) {
@@ -201,6 +202,7 @@ public interface VolatilitySwap extends NettedSwapBase {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("additionalPayment")
 		public VolatilitySwap.VolatilitySwapBuilder addAdditionalPayment(ClassifiablePayment additionalPayment) {
 			if (additionalPayment!=null) this.additionalPayment.add(additionalPayment.toBuilder());
 			return this;
@@ -222,7 +224,6 @@ public interface VolatilitySwap extends NettedSwapBase {
 		}
 		
 		@Override 
-		@RosettaAttribute("additionalPayment")
 		public VolatilitySwap.VolatilitySwapBuilder setAdditionalPayment(List<? extends ClassifiablePayment> additionalPayments) {
 			if (additionalPayments == null)  {
 				this.additionalPayment = new ArrayList<>();
@@ -242,6 +243,7 @@ public interface VolatilitySwap extends NettedSwapBase {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("volatilityLeg")
 		public VolatilitySwap.VolatilitySwapBuilder addVolatilityLeg(VolatilityLeg volatilityLeg) {
 			if (volatilityLeg!=null) this.volatilityLeg.add(volatilityLeg.toBuilder());
 			return this;
@@ -263,7 +265,6 @@ public interface VolatilitySwap extends NettedSwapBase {
 		}
 		
 		@Override 
-		@RosettaAttribute("volatilityLeg")
 		public VolatilitySwap.VolatilitySwapBuilder setVolatilityLeg(List<? extends VolatilityLeg> volatilityLegs) {
 			if (volatilityLegs == null)  {
 				this.volatilityLeg = new ArrayList<>();

@@ -494,6 +494,7 @@ public interface TermDeposit extends Product {
 			return payment;
 		}
 		
+		@Override
 		public Payment.PaymentBuilder getOrCreatePayment(int _index) {
 		
 			if (payment==null) {
@@ -573,6 +574,7 @@ public interface TermDeposit extends Product {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("payment")
 		public TermDeposit.TermDepositBuilder addPayment(Payment payment) {
 			if (payment!=null) this.payment.add(payment.toBuilder());
 			return this;
@@ -594,7 +596,6 @@ public interface TermDeposit extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("payment")
 		public TermDeposit.TermDepositBuilder setPayment(List<? extends Payment> payments) {
 			if (payments == null)  {
 				this.payment = new ArrayList<>();

@@ -189,6 +189,7 @@ public interface FxOptionFeaturesSequence extends RosettaModelObject {
 			return barrier;
 		}
 		
+		@Override
 		public FxBarrierFeature.FxBarrierFeatureBuilder getOrCreateBarrier(int _index) {
 		
 			if (barrier==null) {
@@ -208,6 +209,7 @@ public interface FxOptionFeaturesSequence extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("barrier")
 		public FxOptionFeaturesSequence.FxOptionFeaturesSequenceBuilder addBarrier(FxBarrierFeature barrier) {
 			if (barrier!=null) this.barrier.add(barrier.toBuilder());
 			return this;
@@ -229,7 +231,6 @@ public interface FxOptionFeaturesSequence extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("barrier")
 		public FxOptionFeaturesSequence.FxOptionFeaturesSequenceBuilder setBarrier(List<? extends FxBarrierFeature> barriers) {
 			if (barriers == null)  {
 				this.barrier = new ArrayList<>();

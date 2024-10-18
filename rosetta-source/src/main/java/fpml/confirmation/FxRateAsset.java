@@ -246,6 +246,7 @@ public interface FxRateAsset extends UnderlyingAssetType {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("instrumentId")
 		public FxRateAsset.FxRateAssetBuilder addInstrumentId(InstrumentId instrumentId) {
 			if (instrumentId!=null) this.instrumentId.add(instrumentId.toBuilder());
 			return this;
@@ -267,7 +268,6 @@ public interface FxRateAsset extends UnderlyingAssetType {
 		}
 		
 		@Override 
-		@RosettaAttribute("instrumentId")
 		public FxRateAsset.FxRateAssetBuilder setInstrumentId(List<? extends InstrumentId> instrumentIds) {
 			if (instrumentIds == null)  {
 				this.instrumentId = new ArrayList<>();

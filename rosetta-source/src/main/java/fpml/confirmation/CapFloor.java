@@ -258,6 +258,7 @@ public interface CapFloor extends Product {
 			return premium;
 		}
 		
+		@Override
 		public Payment.PaymentBuilder getOrCreatePremium(int _index) {
 		
 			if (premium==null) {
@@ -276,6 +277,7 @@ public interface CapFloor extends Product {
 			return additionalPayment;
 		}
 		
+		@Override
 		public Payment.PaymentBuilder getOrCreateAdditionalPayment(int _index) {
 		
 			if (additionalPayment==null) {
@@ -326,6 +328,7 @@ public interface CapFloor extends Product {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("premium")
 		public CapFloor.CapFloorBuilder addPremium(Payment premium) {
 			if (premium!=null) this.premium.add(premium.toBuilder());
 			return this;
@@ -347,7 +350,6 @@ public interface CapFloor extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("premium")
 		public CapFloor.CapFloorBuilder setPremium(List<? extends Payment> premiums) {
 			if (premiums == null)  {
 				this.premium = new ArrayList<>();
@@ -361,6 +363,7 @@ public interface CapFloor extends Product {
 		}
 		
 		@Override
+		@RosettaAttribute("additionalPayment")
 		public CapFloor.CapFloorBuilder addAdditionalPayment(Payment additionalPayment) {
 			if (additionalPayment!=null) this.additionalPayment.add(additionalPayment.toBuilder());
 			return this;
@@ -382,7 +385,6 @@ public interface CapFloor extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("additionalPayment")
 		public CapFloor.CapFloorBuilder setAdditionalPayment(List<? extends Payment> additionalPayments) {
 			if (additionalPayments == null)  {
 				this.additionalPayment = new ArrayList<>();

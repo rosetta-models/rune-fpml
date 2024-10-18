@@ -192,6 +192,7 @@ public interface EventPayment extends Payment {
 			return eventPaymentSequence;
 		}
 		
+		@Override
 		public EventPaymentSequence.EventPaymentSequenceBuilder getOrCreateEventPaymentSequence(int _index) {
 		
 			if (eventPaymentSequence==null) {
@@ -259,6 +260,7 @@ public interface EventPayment extends Payment {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("eventPaymentSequence")
 		public EventPayment.EventPaymentBuilder addEventPaymentSequence(EventPaymentSequence eventPaymentSequence) {
 			if (eventPaymentSequence!=null) this.eventPaymentSequence.add(eventPaymentSequence.toBuilder());
 			return this;
@@ -280,7 +282,6 @@ public interface EventPayment extends Payment {
 		}
 		
 		@Override 
-		@RosettaAttribute("eventPaymentSequence")
 		public EventPayment.EventPaymentBuilder setEventPaymentSequence(List<? extends EventPaymentSequence> eventPaymentSequences) {
 			if (eventPaymentSequences == null)  {
 				this.eventPaymentSequence = new ArrayList<>();

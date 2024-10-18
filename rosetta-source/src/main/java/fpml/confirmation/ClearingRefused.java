@@ -297,6 +297,7 @@ public interface ClearingRefused extends NotificationMessage {
 			return reason;
 		}
 		
+		@Override
 		public Reason.ReasonBuilder getOrCreateReason(int _index) {
 		
 			if (reason==null) {
@@ -364,6 +365,7 @@ public interface ClearingRefused extends NotificationMessage {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("reason")
 		public ClearingRefused.ClearingRefusedBuilder addReason(Reason reason) {
 			if (reason!=null) this.reason.add(reason.toBuilder());
 			return this;
@@ -385,7 +387,6 @@ public interface ClearingRefused extends NotificationMessage {
 		}
 		
 		@Override 
-		@RosettaAttribute("reason")
 		public ClearingRefused.ClearingRefusedBuilder setReason(List<? extends Reason> reasons) {
 			if (reasons == null)  {
 				this.reason = new ArrayList<>();

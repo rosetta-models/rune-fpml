@@ -290,6 +290,7 @@ public interface GenericCommodityAttributesModel extends RosettaModelObject {
 			return grade;
 		}
 		
+		@Override
 		public GenericCommodityGrade.GenericCommodityGradeBuilder getOrCreateGrade(int _index) {
 		
 			if (grade==null) {
@@ -308,6 +309,7 @@ public interface GenericCommodityAttributesModel extends RosettaModelObject {
 			return settlementPeriods;
 		}
 		
+		@Override
 		public GenericCommodityDeliveryPeriod.GenericCommodityDeliveryPeriodBuilder getOrCreateSettlementPeriods(int _index) {
 		
 			if (settlementPeriods==null) {
@@ -390,6 +392,7 @@ public interface GenericCommodityAttributesModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("grade")
 		public GenericCommodityAttributesModel.GenericCommodityAttributesModelBuilder addGrade(GenericCommodityGrade grade) {
 			if (grade!=null) this.grade.add(grade.toBuilder());
 			return this;
@@ -411,7 +414,6 @@ public interface GenericCommodityAttributesModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("grade")
 		public GenericCommodityAttributesModel.GenericCommodityAttributesModelBuilder setGrade(List<? extends GenericCommodityGrade> grades) {
 			if (grades == null)  {
 				this.grade = new ArrayList<>();
@@ -425,6 +427,7 @@ public interface GenericCommodityAttributesModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("settlementPeriods")
 		public GenericCommodityAttributesModel.GenericCommodityAttributesModelBuilder addSettlementPeriods(GenericCommodityDeliveryPeriod settlementPeriods) {
 			if (settlementPeriods!=null) this.settlementPeriods.add(settlementPeriods.toBuilder());
 			return this;
@@ -446,7 +449,6 @@ public interface GenericCommodityAttributesModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("settlementPeriods")
 		public GenericCommodityAttributesModel.GenericCommodityAttributesModelBuilder setSettlementPeriods(List<? extends GenericCommodityDeliveryPeriod> settlementPeriodss) {
 			if (settlementPeriodss == null)  {
 				this.settlementPeriods = new ArrayList<>();

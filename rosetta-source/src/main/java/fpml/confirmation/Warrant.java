@@ -175,6 +175,7 @@ public interface Warrant extends ExchangeTradedContract {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("instrumentId")
 		public Warrant.WarrantBuilder addInstrumentId(InstrumentId instrumentId) {
 			if (instrumentId!=null) this.instrumentId.add(instrumentId.toBuilder());
 			return this;
@@ -196,7 +197,6 @@ public interface Warrant extends ExchangeTradedContract {
 		}
 		
 		@Override 
-		@RosettaAttribute("instrumentId")
 		public Warrant.WarrantBuilder setInstrumentId(List<? extends InstrumentId> instrumentIds) {
 			if (instrumentIds == null)  {
 				this.instrumentId = new ArrayList<>();

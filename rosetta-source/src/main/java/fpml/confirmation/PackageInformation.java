@@ -335,6 +335,7 @@ public interface PackageInformation extends RosettaModelObject {
 			return relatedParty;
 		}
 		
+		@Override
 		public RelatedParty.RelatedPartyBuilder getOrCreateRelatedParty(int _index) {
 		
 			if (relatedParty==null) {
@@ -353,6 +354,7 @@ public interface PackageInformation extends RosettaModelObject {
 			return category;
 		}
 		
+		@Override
 		public TradeCategory.TradeCategoryBuilder getOrCreateCategory(int _index) {
 		
 			if (category==null) {
@@ -473,6 +475,7 @@ public interface PackageInformation extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("relatedParty")
 		public PackageInformation.PackageInformationBuilder addRelatedParty(RelatedParty relatedParty) {
 			if (relatedParty!=null) this.relatedParty.add(relatedParty.toBuilder());
 			return this;
@@ -494,7 +497,6 @@ public interface PackageInformation extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("relatedParty")
 		public PackageInformation.PackageInformationBuilder setRelatedParty(List<? extends RelatedParty> relatedPartys) {
 			if (relatedPartys == null)  {
 				this.relatedParty = new ArrayList<>();
@@ -508,6 +510,7 @@ public interface PackageInformation extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("category")
 		public PackageInformation.PackageInformationBuilder addCategory(TradeCategory category) {
 			if (category!=null) this.category.add(category.toBuilder());
 			return this;
@@ -529,7 +532,6 @@ public interface PackageInformation extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("category")
 		public PackageInformation.PackageInformationBuilder setCategory(List<? extends TradeCategory> categorys) {
 			if (categorys == null)  {
 				this.category = new ArrayList<>();

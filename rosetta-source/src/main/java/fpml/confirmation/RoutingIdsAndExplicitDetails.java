@@ -174,6 +174,7 @@ public interface RoutingIdsAndExplicitDetails extends RosettaModelObject {
 			return routingIds;
 		}
 		
+		@Override
 		public RoutingIds.RoutingIdsBuilder getOrCreateRoutingIds(int _index) {
 		
 			if (routingIds==null) {
@@ -206,6 +207,7 @@ public interface RoutingIdsAndExplicitDetails extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("routingIds")
 		public RoutingIdsAndExplicitDetails.RoutingIdsAndExplicitDetailsBuilder addRoutingIds(RoutingIds routingIds) {
 			if (routingIds!=null) this.routingIds.add(routingIds.toBuilder());
 			return this;
@@ -227,7 +229,6 @@ public interface RoutingIdsAndExplicitDetails extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("routingIds")
 		public RoutingIdsAndExplicitDetails.RoutingIdsAndExplicitDetailsBuilder setRoutingIds(List<? extends RoutingIds> routingIdss) {
 			if (routingIdss == null)  {
 				this.routingIds = new ArrayList<>();

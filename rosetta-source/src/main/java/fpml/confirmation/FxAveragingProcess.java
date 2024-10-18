@@ -250,6 +250,7 @@ public interface FxAveragingProcess extends FxRateObservable {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("crossRate")
 		public FxAveragingProcess.FxAveragingProcessBuilder addCrossRate(FxCrossRateObservable crossRate) {
 			if (crossRate!=null) this.crossRate.add(crossRate.toBuilder());
 			return this;
@@ -271,7 +272,6 @@ public interface FxAveragingProcess extends FxRateObservable {
 		}
 		
 		@Override 
-		@RosettaAttribute("crossRate")
 		public FxAveragingProcess.FxAveragingProcessBuilder setCrossRate(List<? extends FxCrossRateObservable> crossRates) {
 			if (crossRates == null)  {
 				this.crossRate = new ArrayList<>();

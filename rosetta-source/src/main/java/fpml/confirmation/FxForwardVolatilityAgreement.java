@@ -387,6 +387,7 @@ public interface FxForwardVolatilityAgreement extends Product {
 			return additionalPayment;
 		}
 		
+		@Override
 		public Payment.PaymentBuilder getOrCreateAdditionalPayment(int _index) {
 		
 			if (additionalPayment==null) {
@@ -448,6 +449,7 @@ public interface FxForwardVolatilityAgreement extends Product {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("additionalPayment")
 		public FxForwardVolatilityAgreement.FxForwardVolatilityAgreementBuilder addAdditionalPayment(Payment additionalPayment) {
 			if (additionalPayment!=null) this.additionalPayment.add(additionalPayment.toBuilder());
 			return this;
@@ -469,7 +471,6 @@ public interface FxForwardVolatilityAgreement extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("additionalPayment")
 		public FxForwardVolatilityAgreement.FxForwardVolatilityAgreementBuilder setAdditionalPayment(List<? extends Payment> additionalPayments) {
 			if (additionalPayments == null)  {
 				this.additionalPayment = new ArrayList<>();
