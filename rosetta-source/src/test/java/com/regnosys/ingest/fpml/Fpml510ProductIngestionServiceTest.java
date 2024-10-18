@@ -13,12 +13,9 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.stream.Stream;
 
-import static com.regnosys.TestUtil.XML_CONFIG_NAME;
-import static com.regnosys.TestUtil.getSampleFiles;
+import static com.regnosys.TestUtil.*;
 
 class Fpml510ProductIngestionServiceTest {
-
-    private static final String SAMPLE_FILE_DIRECTORY = "sample-files/fpml-5-10/products/";
 
     private static IngestionService ingestionService;
     private static IngestTestUtil test;
@@ -38,6 +35,6 @@ class Fpml510ProductIngestionServiceTest {
 
     @SuppressWarnings("unused")//used by the junit parameterized test
     private static Stream<Arguments> fpMLFiles() {
-        return getSampleFiles(SAMPLE_FILE_DIRECTORY);
+        return getXmlSampleFiles(SAMPLE_FILES_PATH + "/fpml-5-10/products");
     }
 }
