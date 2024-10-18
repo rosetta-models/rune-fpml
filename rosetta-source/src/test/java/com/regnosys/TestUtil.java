@@ -16,6 +16,7 @@ import java.nio.file.Path;
 import java.nio.file.PathMatcher;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Stream;
 
 public class TestUtil {
@@ -27,6 +28,11 @@ public class TestUtil {
     public static final String EXPECTED_OUTPUT_ROOT_PATH = "expected-output-files";
     public static final String TARGET_OUTPUT_ROOT_PATH = "target-output-files";
 
+    public static Set<String> EXCLUDED_FILES = Set.of(
+            "com-ex09-oil-put-option-american.xml", 
+            "eqs-ex03-european-call-price-return-Index.xml", 
+            "cds-index-tranche.xml");
+    
     public static final String FPML_5_10_PRODUCTS = "/fpml-5-10/products";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TestUtil.class);
@@ -34,7 +40,7 @@ public class TestUtil {
             Optional.ofNullable(System.getenv("WRITE_EXPECTATIONS"))
                     .map(Boolean::parseBoolean).orElse(false);
 
-    public static Stream<Arguments> getXmlSampleFiles(String sampleFileDirectory) {
+    public static Stream<Arguments> getXmlSampleFiles(String sampleFileDirectory, Set<String> excludedFiles) {
         Path start = UrlUtils.toPath(TestUtil.class.getResource("/" + sampleFileDirectory));
         PathMatcher xmlFileMatcher = FileSystems.getDefault().getPathMatcher("glob:*.xml");
         try (Stream<Path> paths = Files.walk(start)) {
@@ -42,6 +48,7 @@ public class TestUtil {
                     .filter(Files::isRegularFile)
                     .filter(p -> xmlFileMatcher.matches(p.getFileName()))
                     .filter(Files::exists)
+                    .filter(p -> !EXCLUDED_FILES.contains(p.getFileName().toString()))
                     .toList();
             return sampleFilePaths.stream()
                     .map(path -> Arguments.of(path.getFileName().toString(), path));

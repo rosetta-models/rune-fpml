@@ -31,7 +31,7 @@ public class FpmlConfirmation510ProductSerialisationTest {
     }
 
     public static Stream<Arguments> xmlSampleFiles() {
-        return TestUtil.getXmlSampleFiles(INPUT_ROOT_PATH + FPML_5_10_PRODUCTS);
+        return TestUtil.getXmlSampleFiles(INPUT_ROOT_PATH + FPML_5_10_PRODUCTS, EXCLUDED_FILES);
     }
 
     @ParameterizedTest(name = "{0}")

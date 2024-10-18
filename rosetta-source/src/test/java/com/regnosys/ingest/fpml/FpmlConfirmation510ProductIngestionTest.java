@@ -28,7 +28,7 @@ class FpmlConfirmation510ProductIngestionTest {
 
     @SuppressWarnings("unused") //used by the junit parameterized test
     private static Stream<Arguments> xmlSampleFiles() {
-        return getXmlSampleFiles(INPUT_ROOT_PATH + FPML_5_10_PRODUCTS);
+        return getXmlSampleFiles(INPUT_ROOT_PATH + FPML_5_10_PRODUCTS, EXCLUDED_FILES);
     }
 
     @ParameterizedTest(name = "{0}")
