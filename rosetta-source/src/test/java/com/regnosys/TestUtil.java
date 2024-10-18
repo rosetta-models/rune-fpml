@@ -48,7 +48,7 @@ public class TestUtil {
                     .filter(Files::isRegularFile)
                     .filter(p -> xmlFileMatcher.matches(p.getFileName()))
                     .filter(Files::exists)
-                    .filter(p -> !EXCLUDED_FILES.contains(p.getFileName().toString()))
+                    .filter(p -> !excludedFiles.contains(p.getFileName().toString()))
                     .toList();
             return sampleFilePaths.stream()
                     .map(path -> Arguments.of(path.getFileName().toString(), path));
