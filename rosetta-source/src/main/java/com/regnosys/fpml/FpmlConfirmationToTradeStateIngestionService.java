@@ -1,8 +1,10 @@
 package com.regnosys.fpml;
 
+import cdm.base.staticdata.party.Account;
 import cdm.base.staticdata.party.Party;
 import cdm.base.staticdata.party.PartyIdentifier;
 import cdm.base.staticdata.party.PartyIdentifierTypeEnum;
+import cdm.base.staticdata.party.metafields.ReferenceWithMetaParty;
 import cdm.event.common.Trade;
 import cdm.event.common.TradeState;
 import com.google.inject.Module;
@@ -11,11 +13,13 @@ import com.regnosys.rosetta.common.util.Report;
 import com.rosetta.model.lib.RosettaModelObject;
 import com.rosetta.model.metafields.FieldWithMetaDate;
 import com.rosetta.model.metafields.FieldWithMetaString;
-import fpml.confirmation.*;
+import fpml.confirmation.PartyReference;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+
+import static com.rosetta.util.CollectionUtils.emptyIfNull;
 
 public class FpmlConfirmationToTradeStateIngestionService implements IngestionService {
 
@@ -26,7 +30,7 @@ public class FpmlConfirmationToTradeStateIngestionService implements IngestionSe
     }
 
     @Override
-    public <T extends RosettaModelObject> Report<T> ingestAndPostProcess(DataDocument fpmlDataDocument) {
+    public <T extends RosettaModelObject> Report<T> ingestAndPostProcess(fpml.confirmation.DataDocument fpmlDataDocument) {
         return getTradeState(fpmlDataDocument)
                 .map(TradeState.TradeStateBuilder::prune)
                 .map(TradeState.TradeStateBuilder::build)
@@ -34,7 +38,7 @@ public class FpmlConfirmationToTradeStateIngestionService implements IngestionSe
                 .orElse(null);
     }
 
-    public Optional<TradeState.TradeStateBuilder> getTradeState(DataDocument fpmlDataDocument) {
+    public Optional<TradeState.TradeStateBuilder> getTradeState(fpml.confirmation.DataDocument fpmlDataDocument) {
         return Optional.ofNullable(fpmlDataDocument)
                 .map(d -> {
                     TradeState.TradeStateBuilder tradeStateBuilder = TradeState.builder();
@@ -43,21 +47,32 @@ public class FpmlConfirmationToTradeStateIngestionService implements IngestionSe
                 });
     }
 
-    public Optional<Trade.TradeBuilder> getTrade(DataDocument fpmlDataDocument) {
+    public Optional<Trade.TradeBuilder> getTrade(fpml.confirmation.DataDocument fpmlDataDocument) {
         return Optional.ofNullable(fpmlDataDocument)
                 .map(d -> {
                     Trade.TradeBuilder tradeBuilder = Trade.builder();
-                    tradeBuilder.setParty(getParty(d.getPartiesAndAccountsModel()));
-                    fpml.confirmation.Trade fpmlTrade = Optional.ofNullable(d.getTrade()).orElse(Collections.emptyList()).stream().findFirst().orElse(null); // only support 1 trade per dataDocument
-                    getTradeDate(fpmlTrade).ifPresent(tradeBuilder::setTradeDate);
+                    Optional<fpml.confirmation.PartiesAndAccountsModel> partiesAndAccountsModel = Optional.ofNullable(d.getPartiesAndAccountsModel());
+                    partiesAndAccountsModel.map(fpml.confirmation.PartiesAndAccountsModel::getParty).map(this::getParties).ifPresent(tradeBuilder::setParty);
+                    partiesAndAccountsModel.map(fpml.confirmation.PartiesAndAccountsModel::getAccount).map(this::getAccounts).ifPresent(tradeBuilder::setAccount);
+                    // only support 1 trade per dataDocument
+                    getTradeDate(onlyElement(d.getTrade())).ifPresent(tradeBuilder::setTradeDate);
                     return tradeBuilder;
                 });
     }
 
+    private <E> E onlyElement(List<? extends E> e) {
+        return Optional.ofNullable(e)
+                .orElse(Collections.emptyList())
+                .stream()
+                .findFirst()
+                .orElse(null);
+    }
+
+
     private Optional<FieldWithMetaDate.FieldWithMetaDateBuilder> getTradeDate(fpml.confirmation.Trade fpmlTrade) {
         return Optional.ofNullable(fpmlTrade)
                 .map(fpml.confirmation.Trade::getTradeHeader)
-                .map(TradeHeader::getTradeDate)
+                .map(fpml.confirmation.TradeHeader::getTradeDate)
                 .map(td -> {
                     FieldWithMetaDate.FieldWithMetaDateBuilder fieldWithMetaDate = FieldWithMetaDate.builder();
                     Optional.ofNullable(td.getId()).ifPresent(fieldWithMetaDate.getOrCreateMeta()::setExternalKey);
@@ -66,10 +81,8 @@ public class FpmlConfirmationToTradeStateIngestionService implements IngestionSe
                 });
     }
 
-    public List<Party.PartyBuilder> getParty(PartiesAndAccountsModel fpmlPartiesAndAccountsModel) {
-        return Optional.ofNullable(fpmlPartiesAndAccountsModel)
-                .map(PartiesAndAccountsModel::getParty)
-                .orElse(Collections.emptyList())
+    public List<Party.PartyBuilder> getParties(List<? extends fpml.confirmation.Party> fpmlParties) {
+        return emptyIfNull(fpmlParties)
                 .stream()
                 .map(fpml.confirmation.Party::getPartyModel)
                 .map(pm -> {
@@ -81,7 +94,7 @@ public class FpmlConfirmationToTradeStateIngestionService implements IngestionSe
                 .toList();
     }
 
-    public Optional<FieldWithMetaString.FieldWithMetaStringBuilder> getFieldWithMetaString(PartyName fpmlPartyName) {
+    public Optional<FieldWithMetaString.FieldWithMetaStringBuilder> getFieldWithMetaString(fpml.confirmation.PartyName fpmlPartyName) {
         return Optional.ofNullable(fpmlPartyName)
                 .map(pn -> {
                     FieldWithMetaString.FieldWithMetaStringBuilder fieldWithMetaStringBuilder = FieldWithMetaString.builder();
@@ -91,7 +104,7 @@ public class FpmlConfirmationToTradeStateIngestionService implements IngestionSe
                 });
     }
 
-    public List<PartyIdentifier.PartyIdentifierBuilder> getPartyIds(List<? extends PartyId> fpmlPartyIds) {
+    public List<PartyIdentifier.PartyIdentifierBuilder> getPartyIds(List<? extends fpml.confirmation.PartyId> fpmlPartyIds) {
         return Optional.ofNullable(fpmlPartyIds)
                 .orElse(Collections.emptyList())
                 .stream()
@@ -104,7 +117,7 @@ public class FpmlConfirmationToTradeStateIngestionService implements IngestionSe
                 .toList();
     }
 
-    public Optional<FieldWithMetaString.FieldWithMetaStringBuilder> getFieldWithMetaString(PartyId fpmlPartyId) {
+    public Optional<FieldWithMetaString.FieldWithMetaStringBuilder> getFieldWithMetaString(fpml.confirmation.PartyId fpmlPartyId) {
         return Optional.ofNullable(fpmlPartyId)
                 .map(pi -> {
                     FieldWithMetaString.FieldWithMetaStringBuilder fieldWithMetaStringBuilder = FieldWithMetaString.builder();
@@ -128,4 +141,62 @@ public class FpmlConfirmationToTradeStateIngestionService implements IngestionSe
                     }
                 });
     }
+
+    public List<Account.AccountBuilder> getAccounts(List<? extends fpml.confirmation.Account> fpmlAccounts) {
+        return emptyIfNull(fpmlAccounts)
+                .stream()
+                .map(a -> {
+                    Account.AccountBuilder accountBuilder = Account.builder();
+                    getId(a).ifPresent(accountBuilder.getOrCreateMeta()::setExternalKey);
+                    getFieldWithMetaString(a.getAccountName()).ifPresent(accountBuilder::setAccountName);
+                    getFieldWithMetaString(onlyElement(a.getAccountId())).ifPresent(accountBuilder::setAccountNumber);
+                    getServicingParty(a.getServicingParty()).ifPresent(accountBuilder::setServicingParty);
+                    //getAccountBeneficiary(a.getAccountBeneficiary()).ifPresent(accountBuilder::setAccountBeneficiary);
+                    return accountBuilder;
+                })
+                .toList();
+    }
+
+    private Optional<String> getId(fpml.confirmation.Account fpmlAccount) {
+        return Optional.ofNullable(fpmlAccount).map(a -> a.getId());
+    }
+
+    public Optional<FieldWithMetaString.FieldWithMetaStringBuilder> getFieldWithMetaString(fpml.confirmation.AccountName fpmlAccountName) {
+        return Optional.ofNullable(fpmlAccountName)
+                .map(pn -> {
+                    FieldWithMetaString.FieldWithMetaStringBuilder fieldWithMetaStringBuilder = FieldWithMetaString.builder();
+                    Optional.ofNullable(pn.getValue()).ifPresent(fieldWithMetaStringBuilder::setValue);
+                    Optional.ofNullable(pn.getAccountNameScheme()).ifPresent(fieldWithMetaStringBuilder.getOrCreateMeta()::setScheme);
+                    return fieldWithMetaStringBuilder;
+                });
+    }
+
+    private Optional<FieldWithMetaString> getFieldWithMetaString(fpml.confirmation.AccountId fpmlAccountId) {
+        return Optional.ofNullable(fpmlAccountId)
+                .map(aid -> {
+                    FieldWithMetaString.FieldWithMetaStringBuilder fieldWithMetaStringBuilder = FieldWithMetaString.builder();
+                    Optional.ofNullable(aid.getValue()).ifPresent(fieldWithMetaStringBuilder::setValue);
+                    Optional.ofNullable(aid.getAccountIdScheme()).ifPresent(fieldWithMetaStringBuilder.getOrCreateMeta()::setScheme);
+                    return fieldWithMetaStringBuilder;
+                });
+
+    }
+
+    private Optional<ReferenceWithMetaParty.ReferenceWithMetaPartyBuilder> getServicingParty(fpml.confirmation.PartyReference fpmlServicingParty) {
+        return Optional.ofNullable(fpmlServicingParty)
+                .map(sp -> {
+                    ReferenceWithMetaParty.ReferenceWithMetaPartyBuilder partyBuilder = ReferenceWithMetaParty.builder();
+                    Optional.ofNullable(sp.getHref()).ifPresent(partyBuilder::setExternalReference);
+                    return partyBuilder;
+                });
+    }
+    
+//    private Optional<ReferenceWithMetaParty.ReferenceWithMetaPartyBuilder> getAccountBeneficiary(fpml.confirmation.PartyReference fpmlAccountBeneficiary) {
+//        return Optional.ofNullable(fpmlAccountBeneficiary)
+//                .map(sp -> {
+//                    ReferenceWithMetaParty.ReferenceWithMetaPartyBuilder partyBuilder = ReferenceWithMetaParty.builder();
+//                    Optional.ofNullable(sp.getHref()).ifPresent(partyBuilder::setExternalReference);
+//                    return partyBuilder;
+//                });
+//    }
 }
