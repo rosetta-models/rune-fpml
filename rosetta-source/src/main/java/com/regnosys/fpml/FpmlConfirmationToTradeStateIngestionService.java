@@ -5,16 +5,22 @@ import cdm.base.staticdata.party.Party;
 import cdm.base.staticdata.party.PartyIdentifier;
 import cdm.base.staticdata.party.PartyIdentifierTypeEnum;
 import cdm.base.staticdata.party.metafields.ReferenceWithMetaParty;
+import cdm.event.common.ContractDetails;
 import cdm.event.common.Trade;
 import cdm.event.common.TradeState;
+import cdm.legaldocumentation.common.AgreementName;
+import cdm.legaldocumentation.common.LegalAgreement;
+import cdm.legaldocumentation.master.MasterAgreementTypeEnum;
 import com.google.inject.Module;
 import com.regnosys.ingest.IngestionService;
 import com.regnosys.rosetta.common.util.Report;
 import com.rosetta.model.lib.RosettaModelObject;
 import com.rosetta.model.metafields.FieldWithMetaDate;
 import com.rosetta.model.metafields.FieldWithMetaString;
-import fpml.confirmation.PartyReference;
+import fpml.confirmation.MasterAgreement;
+import fpml.confirmation.MasterAgreementType;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -55,8 +61,60 @@ public class FpmlConfirmationToTradeStateIngestionService implements IngestionSe
                     partiesAndAccountsModel.map(fpml.confirmation.PartiesAndAccountsModel::getParty).map(this::getParties).ifPresent(tradeBuilder::setParty);
                     partiesAndAccountsModel.map(fpml.confirmation.PartiesAndAccountsModel::getAccount).map(this::getAccounts).ifPresent(tradeBuilder::setAccount);
                     // only support 1 trade per dataDocument
-                    getTradeDate(onlyElement(d.getTrade())).ifPresent(tradeBuilder::setTradeDate);
+                    fpml.confirmation.Trade fpmlTrade = onlyElement(d.getTrade());
+                    getTradeDate(fpmlTrade).ifPresent(tradeBuilder::setTradeDate);
+                    getContractDetails(fpmlTrade).ifPresent(tradeBuilder::setContractDetails);
                     return tradeBuilder;
+                });
+    }
+
+    private Optional<ContractDetails.ContractDetailsBuilder> getContractDetails(fpml.confirmation.Trade fpmlTrade) {
+        return Optional.ofNullable(fpmlTrade)
+                .map(t -> {
+                    ContractDetails.ContractDetailsBuilder builder = ContractDetails.builder();
+                    getLegalAgreement(t.getDocumentation()).ifPresent(builder::setDocumentation);
+                    return builder;
+                });
+    }
+
+    private Optional<List<LegalAgreement.LegalAgreementBuilder>> getLegalAgreement(fpml.confirmation.Documentation fpmlDocumentation) {
+        return Optional.ofNullable(fpmlDocumentation)
+                .map(d -> {
+                    List<LegalAgreement.LegalAgreementBuilder> legalAgreementBuilders = new ArrayList<>();
+                    getMasterAgreement(d.getMasterAgreement()).ifPresent(legalAgreementBuilders::add);
+                    return legalAgreementBuilders;
+                });
+    }
+
+    private Optional<LegalAgreement.LegalAgreementBuilder> getMasterAgreement(fpml.confirmation.MasterAgreement fpmlMasterAgreement) {
+        return Optional.ofNullable(fpmlMasterAgreement)
+                .map(m -> {
+                    LegalAgreement.LegalAgreementBuilder builder = LegalAgreement.builder();
+                    Optional<MasterAgreementType> masterAgreementType = Optional.ofNullable(fpmlMasterAgreement.getMasterAgreementType());
+
+                    masterAgreementType
+                            .map(MasterAgreementType::getValue)
+                            .flatMap(this::valueToMasterAgreementTypeEnum)
+                            .ifPresent(masterAgreementTypeEnum -> {
+                                builder.getOrCreateLegalAgreementIdentification()
+                                        .getOrCreateAgreementName()
+                                        .setMasterAgreementTypeValue(masterAgreementTypeEnum);
+                            });
+
+                    masterAgreementType
+                            .map(MasterAgreementType::getMasterAgreementTypeScheme)
+                            .ifPresent(masterAgreementTypeScheme -> {
+                                builder.getOrCreateLegalAgreementIdentification()
+                                        .getOrCreateAgreementName()
+                                        .getMasterAgreementType()
+                                        .getOrCreateMeta()
+                                        .setScheme(masterAgreementTypeScheme);
+                            });
+
+                   //TODO: map masterAgreementVersion when available in FpML
+                   //TODO: map masterAgreementDate when available in FpML
+
+                    return builder;
                 });
     }
 
@@ -189,6 +247,50 @@ public class FpmlConfirmationToTradeStateIngestionService implements IngestionSe
                     Optional.ofNullable(sp.getHref()).ifPresent(partyBuilder::setExternalReference);
                     return partyBuilder;
                 });
+    }
+
+    private Optional<MasterAgreementTypeEnum> valueToMasterAgreementTypeEnum(String value) {
+        if (value == null || value.isEmpty()) {
+            return Optional.empty();
+        }
+        return  Optional.ofNullable(switch (value) {
+            case "AFB" -> MasterAgreementTypeEnum.AFB;
+            case "Bespoke" -> MasterAgreementTypeEnum.BESPOKE;
+            case "CMA" -> MasterAgreementTypeEnum.CMA;
+            case "CMOF" -> MasterAgreementTypeEnum.CMOF;
+            case "EEIPower" -> MasterAgreementTypeEnum.EEI_POWER;
+            case "EFETElectricity" -> MasterAgreementTypeEnum.EFET_ELECTRICITY;
+            case "EFETGas" -> MasterAgreementTypeEnum.EFET_GAS;
+            case "EMA" -> MasterAgreementTypeEnum.EMA;
+            case "FBF" -> MasterAgreementTypeEnum.FBF;
+            case "GMRA" -> MasterAgreementTypeEnum.GMRA;
+            case "GMSLA" -> MasterAgreementTypeEnum.GMSLA;
+            case "GTMA" -> MasterAgreementTypeEnum.GTMA;
+            case "GasEDI" -> MasterAgreementTypeEnum.GAS_EDI;
+            case "German" -> MasterAgreementTypeEnum.GERMAN;
+            case "ICOM" -> MasterAgreementTypeEnum.ICOM;
+            case "IETA-ERPA" -> MasterAgreementTypeEnum.IETA_ERPA;
+            case "IETA-ETMA" -> MasterAgreementTypeEnum.IETA_ETMA;
+            case "IETA-IETMA" -> MasterAgreementTypeEnum.IETA_IETMA;
+            case "IFEMA" -> MasterAgreementTypeEnum.IFEMA;
+            case "IFEOMA" -> MasterAgreementTypeEnum.IFEOMA;
+            case "ISDA" -> MasterAgreementTypeEnum.ISDA_MASTER;
+            case "ISDAFIA-CDEA" -> MasterAgreementTypeEnum.ISDAFIA_CDEA;
+            case "ISDAIIFM-TMA" -> MasterAgreementTypeEnum.ISDAIIFM_TMA;
+            case "JSCC" -> MasterAgreementTypeEnum.JSCC;
+            case "LBMA" -> MasterAgreementTypeEnum.LBMA;
+            case "LEAP" -> MasterAgreementTypeEnum.LEAP;
+            case "MCPSA" -> MasterAgreementTypeEnum.MCPSA;
+            case "NAESBGas" -> MasterAgreementTypeEnum.NAESB_GAS;
+            case "NBP" -> MasterAgreementTypeEnum.NBP;
+            case "RussianDerivatives" -> MasterAgreementTypeEnum.RUSSIAN_DERIVATIVES;
+            case "RussianRepo" -> MasterAgreementTypeEnum.RUSSIAN_REPO;
+            case "SCoTA" -> MasterAgreementTypeEnum.S_CO_TA;
+            case "Swiss" -> MasterAgreementTypeEnum.SWISS;
+            case "TTF" -> MasterAgreementTypeEnum.TTF;
+            case "ZBT" -> MasterAgreementTypeEnum.ZBT;
+            default -> null;
+        });
     }
     
 //    private Optional<ReferenceWithMetaParty.ReferenceWithMetaPartyBuilder> getAccountBeneficiary(fpml.confirmation.PartyReference fpmlAccountBeneficiary) {
