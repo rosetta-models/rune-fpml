@@ -85,7 +85,36 @@ public class FpmlConfirmationToTradeStateIngestionService implements IngestionSe
                     List<LegalAgreement.LegalAgreementBuilder> legalAgreementBuilders = new ArrayList<>();
                     getMasterAgreement(d.getMasterAgreement()).ifPresent(legalAgreementBuilders::add);
                     getMasterConfirmation(d.getMasterConfirmation()).ifPresent(legalAgreementBuilders::add);
+                    //getBrokerConfirmation is in the original mapper but i'm ignoring it as it's dead code
+                    getCreditSupportAgreement(d.getCreditSupportAgreement()).ifPresent(legalAgreementBuilders::add);
                     return legalAgreementBuilders;
+                });
+    }
+
+    private Optional<LegalAgreement.LegalAgreementBuilder> getCreditSupportAgreement(CreditSupportAgreement creditSupportAgreement) {
+        return Optional.ofNullable(creditSupportAgreement)
+                .map(c -> {
+                    LegalAgreement.LegalAgreementBuilder builder = LegalAgreement.builder();
+
+                    Optional<CreditSupportAgreementType> creditSupportAgreementType = Optional.ofNullable(c.get_type());
+
+                    creditSupportAgreementType
+                            .map(CreditSupportAgreementType::getValue)
+                            .flatMap(this::valueToCreditSupportAgreementTypeEnum)
+                            .ifPresent(creditSupportAgreementTypeEnum -> {
+                                builder.getOrCreateLegalAgreementIdentification().getOrCreateAgreementName().setCreditSupportAgreementTypeValue(creditSupportAgreementTypeEnum);
+                            });
+
+                    creditSupportAgreementType
+                            .map(CreditSupportAgreementType::getCreditSupportAgreementTypeScheme)
+                            .ifPresent(scheme -> {
+                                builder.getOrCreateLegalAgreementIdentification().getOrCreateAgreementName()
+                                .getOrCreateCreditSupportAgreementType().getOrCreateMeta().setScheme(scheme);
+                            });
+
+                    Optional.ofNullable(creditSupportAgreement.getDate())
+                            .ifPresent(builder::setAgreementDate);
+                    return builder;
                 });
     }
 
