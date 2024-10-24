@@ -1,5 +1,13 @@
 package com.regnosys.model;
 
+import cdm.legaldocumentation.common.ContractualDefinitionsEnum;
+import cdm.legaldocumentation.common.ContractualSupplementTypeEnum;
+import cdm.legaldocumentation.common.MatrixTermEnum;
+import cdm.legaldocumentation.common.MatrixTypeEnum;
+import cdm.legaldocumentation.master.MasterAgreementTypeEnum;
+import cdm.legaldocumentation.master.MasterConfirmationAnnexTypeEnum;
+import cdm.legaldocumentation.master.MasterConfirmationTypeEnum;
+import cdm.product.collateral.CreditSupportAgreementTypeEnum;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.regnosys.rosetta.common.util.ClassPathUtils;
@@ -9,6 +17,7 @@ import com.regnosys.rosetta.rosetta.*;
 import com.regnosys.rosetta.rosetta.simple.Data;
 import com.regnosys.rosetta.transgest.ModelLoader;
 import com.regnosys.testing.RosettaTestingInjectorProvider;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -49,19 +58,60 @@ public class JavaCodeGenHelper {
 //            type.getAttributes().forEach(attr ->
 //                    System.out.println("  " + attr.getName()));
 //        });
-        
+
+        var enumsToGenerate = Set.of(MasterAgreementTypeEnum.class,
+                        MasterConfirmationTypeEnum.class,
+                        MasterConfirmationAnnexTypeEnum.class,
+                        CreditSupportAgreementTypeEnum.class,
+                        ContractualDefinitionsEnum.class,
+                        MatrixTypeEnum.class,
+                        MatrixTermEnum.class,
+                        ContractualSupplementTypeEnum.class)
+                .stream().map(Class::getSimpleName).collect(Collectors.toSet());
+
         Set<RosettaExternalEnum> allExternalEnums = findAllExternalEnums(models);
+
+        allExternalEnums.stream().filter(e -> enumsToGenerate.contains(e.getEnumeration().getName()))
+                        .map(this::generateJavaSwitch)
+                                .forEach(System.out::println);
+
+//        generateRosettaEnums(allExternalEnums);
+    }
+
+    private void generateRosettaEnums(Set<RosettaExternalEnum> allExternalEnums) {
         allExternalEnums.forEach(externalEnum -> {
             System.out.println("enum synonym " + getQualifiedName(externalEnum.getEnumeration()));
             externalEnum.getRegularValues().forEach(enumValueSynonym ->
             {
                 RosettaEnumValue enumRef = enumValueSynonym.getEnumRef();
-                System.out.println(String.format("  %s -> %s", EnumHelper.formatEnumName(enumRef.getName()), 
+                System.out.println(String.format("  %s -> %s", EnumHelper.formatEnumName(enumRef.getName()),
                         enumValueSynonym.getExternalEnumSynonyms().stream().map(ees -> ees.getSynonymValue()).collect(Collectors.joining(", "))));
             });
         });
+    }
 
+    private String generateJavaSwitch(RosettaExternalEnum rosettaExternalEnum) {
+        StringBuilder sb = new StringBuilder();
+        String javaEnumName = rosettaExternalEnum.getEnumeration().getName();
+        sb.append("private Optional<").append(javaEnumName).append("> valueTo").append(StringUtils.capitalize(javaEnumName)).append("(String value) {\n");
+        sb.append("\tif (value == null || value.isEmpty()) {\n");
+        sb.append("\t\treturn Optional.empty();\n");
+        sb.append("\t}\n");
 
+        sb.append("\treturn Optional.ofNullable(switch (value) {\n");
+        rosettaExternalEnum.getRegularValues().forEach(enumValueSynonym -> {
+            RosettaEnumValue enumRef = enumValueSynonym.getEnumRef();
+            String enumValue = "%s.%s".formatted(javaEnumName,EnumHelper.formatEnumName(enumRef.getName()));
+            List<String> synonyms = enumValueSynonym.getExternalEnumSynonyms().stream().map(RosettaEnumSynonym::getSynonymValue).toList();
+            synonyms.forEach(s -> {
+                sb.append("\t\tcase \"%s\" -> %s;\n".formatted(s, enumValue));
+            });
+        });
+
+        sb.append("\t\tdefault -> null;\n");
+        sb.append("\t});\n");
+        sb.append("}\n");
+        return sb.toString();
     }
 
     private String getQualifiedName(RosettaType type) {
