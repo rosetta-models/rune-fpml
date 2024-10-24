@@ -568,8 +568,10 @@ public class FpmlConfirmationToTradeStateIngestionService implements IngestionSe
         if (value == null || value.isEmpty()) {
             return Optional.empty();
         }
-
         return Optional.ofNullable(switch (value) {
+            case "CreditDerivativesPhysicalSettlementMatrix" -> MatrixTypeEnum.CREDIT_DERIVATIVES_PHYSICAL_SETTLEMENT_MATRIX;
+            case "EquityDerivativesMatrix" -> MatrixTypeEnum.EQUITY_DERIVATIVES_MATRIX;
+            case "SettlementMatrix" -> MatrixTypeEnum.SETTLEMENT_MATRIX;
             default -> null;
         });
     }
@@ -578,8 +580,85 @@ public class FpmlConfirmationToTradeStateIngestionService implements IngestionSe
         if (value == null || value.isEmpty()) {
             return Optional.empty();
         }
-
         return Optional.ofNullable(switch (value) {
+            case "AsiaCorporate" -> MatrixTermEnum.ASIA_CORPORATE;
+            case "AsiaFinancialCorporate" -> MatrixTermEnum.ASIA_FINANCIAL_CORPORATE;
+            case "AsiaSovereign" -> MatrixTermEnum.ASIA_SOVEREIGN;
+            case "AustraliaCorporate" -> MatrixTermEnum.AUSTRALIA_CORPORATE;
+            case "AustraliaFinancialCorporate" -> MatrixTermEnum.AUSTRALIA_FINANCIAL_CORPORATE;
+            case "AustraliaSovereign" -> MatrixTermEnum.AUSTRALIA_SOVEREIGN;
+            case "EmergingEuropeanAndMiddleEasternSovereign" -> MatrixTermEnum.EMERGING_EUROPEAN_AND_MIDDLE_EASTERN_SOVEREIGN;
+            case "EmergingEuropeanCorporate" -> MatrixTermEnum.EMERGING_EUROPEAN_CORPORATE;
+            case "EmergingEuropeanCorporateLPN" -> MatrixTermEnum.EMERGING_EUROPEAN_CORPORATE_LPN;
+            case "EmergingEuropeanFinancialCorporate" -> MatrixTermEnum.EMERGING_EUROPEAN_FINANCIAL_CORPORATE;
+            case "EmergingEuropeanFinancialCorporateLPN" -> MatrixTermEnum.EMERGING_EUROPEAN_FINANCIAL_CORPORATE_LPN;
+            case "EuropeanCoCoFinancialCorporate" -> MatrixTermEnum.EUROPEAN_CO_CO_FINANCIAL_CORPORATE;
+            case "EuropeanCorporate" -> MatrixTermEnum.EUROPEAN_CORPORATE;
+            case "EuropeanFinancialCorporate" -> MatrixTermEnum.EUROPEAN_FINANCIAL_CORPORATE;
+            case "EuropeanSeniorNonPreferredFinancialCorporate" -> MatrixTermEnum.EUROPEAN_SENIOR_NON_PREFERRED_FINANCIAL_CORPORATE;
+            case "IVS1OpenMarkets" -> MatrixTermEnum.IVS_1_OPEN_MARKETS;
+            case "JapanCorporate" -> MatrixTermEnum.JAPAN_CORPORATE;
+            case "JapanFinancialCorporate" -> MatrixTermEnum.JAPAN_FINANCIAL_CORPORATE;
+            case "JapanSovereign" -> MatrixTermEnum.JAPAN_SOVEREIGN;
+            case "LatinAmericaCorporate" -> MatrixTermEnum.LATIN_AMERICA_CORPORATE;
+            case "LatinAmericaCorporateBond" -> MatrixTermEnum.LATIN_AMERICA_CORPORATE_BOND;
+            case "LatinAmericaCorporateBondOrLoan" -> MatrixTermEnum.LATIN_AMERICA_CORPORATE_BOND_OR_LOAN;
+            case "LatinAmericaFinancialCorporateBond" -> MatrixTermEnum.LATIN_AMERICA_FINANCIAL_CORPORATE_BOND;
+            case "LatinAmericaFinancialCorporateBondOrLoan" -> MatrixTermEnum.LATIN_AMERICA_FINANCIAL_CORPORATE_BOND_OR_LOAN;
+            case "LatinAmericaSovereign" -> MatrixTermEnum.LATIN_AMERICA_SOVEREIGN;
+            case "NewZealandCorporate" -> MatrixTermEnum.NEW_ZEALAND_CORPORATE;
+            case "NewZealandFinancialCorporate" -> MatrixTermEnum.NEW_ZEALAND_FINANCIAL_CORPORATE;
+            case "NewZealandSovereign" -> MatrixTermEnum.NEW_ZEALAND_SOVEREIGN;
+            case "NorthAmericanCorporate" -> MatrixTermEnum.NORTH_AMERICAN_CORPORATE;
+            case "NorthAmericanFinancialCorporate" -> MatrixTermEnum.NORTH_AMERICAN_FINANCIAL_CORPORATE;
+            case "SingaporeCorporate" -> MatrixTermEnum.SINGAPORE_CORPORATE;
+            case "SingaporeFinancialCorporate" -> MatrixTermEnum.SINGAPORE_FINANCIAL_CORPORATE;
+            case "SingaporeSovereign" -> MatrixTermEnum.SINGAPORE_SOVEREIGN;
+            case "StandardAsiaCorporate" -> MatrixTermEnum.STANDARD_ASIA_CORPORATE;
+            case "StandardAsiaFinancialCorporate" -> MatrixTermEnum.STANDARD_ASIA_FINANCIAL_CORPORATE;
+            case "StandardAsiaSovereign" -> MatrixTermEnum.STANDARD_ASIA_SOVEREIGN;
+            case "StandardAustraliaCorporate" -> MatrixTermEnum.STANDARD_AUSTRALIA_CORPORATE;
+            case "StandardAustraliaFinancialCorporate" -> MatrixTermEnum.STANDARD_AUSTRALIA_FINANCIAL_CORPORATE;
+            case "StandardAustraliaSovereign" -> MatrixTermEnum.STANDARD_AUSTRALIA_SOVEREIGN;
+            case "StandardEmergingEuropeanAndMiddleEasternSovereign" -> MatrixTermEnum.STANDARD_EMERGING_EUROPEAN_AND_MIDDLE_EASTERN_SOVEREIGN;
+            case "StandardEmergingEuropeanCorporate" -> MatrixTermEnum.STANDARD_EMERGING_EUROPEAN_CORPORATE;
+            case "StandardEmergingEuropeanCorporateLPN" -> MatrixTermEnum.STANDARD_EMERGING_EUROPEAN_CORPORATE_LPN;
+            case "StandardEmergingEuropeanFinancialCorporate" -> MatrixTermEnum.STANDARD_EMERGING_EUROPEAN_FINANCIAL_CORPORATE;
+            case "StandardEmergingEuropeanFinancialCorporateLPN" -> MatrixTermEnum.STANDARD_EMERGING_EUROPEAN_FINANCIAL_CORPORATE_LPN;
+            case "StandardEuropeanCoCoFinancialCorporate" -> MatrixTermEnum.STANDARD_EUROPEAN_CO_CO_FINANCIAL_CORPORATE;
+            case "StandardEuropeanCorporate" -> MatrixTermEnum.STANDARD_EUROPEAN_CORPORATE;
+            case "StandardEuropeanFinancialCorporate" -> MatrixTermEnum.STANDARD_EUROPEAN_FINANCIAL_CORPORATE;
+            case "StandardEuropeanSeniorNonPreferredFinancialCorporate" -> MatrixTermEnum.STANDARD_EUROPEAN_SENIOR_NON_PREFERRED_FINANCIAL_CORPORATE;
+            case "StandardJapanCorporate" -> MatrixTermEnum.STANDARD_JAPAN_CORPORATE;
+            case "StandardJapanFinancialCorporate" -> MatrixTermEnum.STANDARD_JAPAN_FINANCIAL_CORPORATE;
+            case "StandardJapanSovereign" -> MatrixTermEnum.STANDARD_JAPAN_SOVEREIGN;
+            case "StandardLatinAmericaCorporateBond" -> MatrixTermEnum.STANDARD_LATIN_AMERICA_CORPORATE_BOND;
+            case "StandardLatinAmericaCorporateBondOrLoan" -> MatrixTermEnum.STANDARD_LATIN_AMERICA_CORPORATE_BOND_OR_LOAN;
+            case "StandardLatinAmericaFinancialCorporateBond" -> MatrixTermEnum.STANDARD_LATIN_AMERICA_FINANCIAL_CORPORATE_BOND;
+            case "StandardLatinAmericaFinancialCorporateBondOrLoan" -> MatrixTermEnum.STANDARD_LATIN_AMERICA_FINANCIAL_CORPORATE_BOND_OR_LOAN;
+            case "StandardLatinAmericaSovereign" -> MatrixTermEnum.STANDARD_LATIN_AMERICA_SOVEREIGN;
+            case "StandardNewZealandCorporate" -> MatrixTermEnum.STANDARD_NEW_ZEALAND_CORPORATE;
+            case "StandardNewZealandFinancialCorporate" -> MatrixTermEnum.STANDARD_NEW_ZEALAND_FINANCIAL_CORPORATE;
+            case "StandardNewZealandSovereign" -> MatrixTermEnum.STANDARD_NEW_ZEALAND_SOVEREIGN;
+            case "StandardNorthAmericanCorporate" -> MatrixTermEnum.STANDARD_NORTH_AMERICAN_CORPORATE;
+            case "StandardNorthAmericanFinancialCorporate" -> MatrixTermEnum.STANDARD_NORTH_AMERICAN_FINANCIAL_CORPORATE;
+            case "StandardSingaporeCorporate" -> MatrixTermEnum.STANDARD_SINGAPORE_CORPORATE;
+            case "StandardSingaporeFinancialCorporate" -> MatrixTermEnum.STANDARD_SINGAPORE_FINANCIAL_CORPORATE;
+            case "StandardSingaporeSovereign" -> MatrixTermEnum.STANDARD_SINGAPORE_SOVEREIGN;
+            case "StandardSubordinatedEuropeanInsuranceCorporate" -> MatrixTermEnum.STANDARD_SUBORDINATED_EUROPEAN_INSURANCE_CORPORATE;
+            case "StandardSukukFinancialCorporate" -> MatrixTermEnum.STANDARD_SUKUK_FINANCIAL_CORPORATE;
+            case "StandardUSMunicipalFullFaithAndCredit" -> MatrixTermEnum.STANDARD_US_MUNICIPAL_FULL_FAITH_AND_CREDIT;
+            case "StandardUSMunicipalGeneralFund" -> MatrixTermEnum.STANDARD_US_MUNICIPAL_GENERAL_FUND;
+            case "StandardUSMunicipalRevenue" -> MatrixTermEnum.STANDARD_US_MUNICIPAL_REVENUE;
+            case "StandardWesternEuropeanSovereign" -> MatrixTermEnum.STANDARD_WESTERN_EUROPEAN_SOVEREIGN;
+            case "SubordinatedEuropeanInsuranceCorporate" -> MatrixTermEnum.SUBORDINATED_EUROPEAN_INSURANCE_CORPORATE;
+            case "SukukCorporate" -> MatrixTermEnum.SUKUK_CORPORATE;
+            case "SukukFinancialCorporate" -> MatrixTermEnum.SUKUK_FINANCIAL_CORPORATE;
+            case "SukukSovereign" -> MatrixTermEnum.SUKUK_SOVEREIGN;
+            case "USMunicipalFullFaithAndCredit" -> MatrixTermEnum.US_MUNICIPAL_FULL_FAITH_AND_CREDIT;
+            case "USMunicipalGeneralFund" -> MatrixTermEnum.US_MUNICIPAL_GENERAL_FUND;
+            case "USMunicipalRevenue" -> MatrixTermEnum.US_MUNICIPAL_REVENUE;
+            case "WesternEuropeanSovereign" -> MatrixTermEnum.WESTERN_EUROPEAN_SOVEREIGN;
             default -> null;
         });
     }
@@ -589,8 +668,80 @@ public class FpmlConfirmationToTradeStateIngestionService implements IngestionSe
         if (value == null || value.isEmpty()) {
             return Optional.empty();
         }
-
         return Optional.ofNullable(switch (value) {
+            case "ABX" -> ContractualSupplementTypeEnum.ABX;
+            case "ABXTranche" -> ContractualSupplementTypeEnum.ABX_TRANCHE;
+            case "CDSonLeveragedLoans" -> ContractualSupplementTypeEnum.CD_SON_LEVERAGED_LOANS;
+            case "CDSonMBS" -> ContractualSupplementTypeEnum.CD_SON_MBS;
+            case "CDX" -> ContractualSupplementTypeEnum.CDX;
+            case "CDXEmergingMarkets" -> ContractualSupplementTypeEnum.CDX_EMERGING_MARKETS;
+            case "CDXEmergingMarketsDiversified" -> ContractualSupplementTypeEnum.CDX_EMERGING_MARKETS_DIVERSIFIED;
+            case "CDXSwaption" -> ContractualSupplementTypeEnum.CDX_SWAPTION;
+            case "CDXTranche" -> ContractualSupplementTypeEnum.CDX_TRANCHE;
+            case "CMBX" -> ContractualSupplementTypeEnum.CMBX;
+            case "EuropeanCMBS" -> ContractualSupplementTypeEnum.EUROPEAN_CMBS;
+            case "EuropeanRMBS" -> ContractualSupplementTypeEnum.EUROPEAN_RMBS;
+            case "IOS" -> ContractualSupplementTypeEnum.IOS;
+            case "ISDA1999CreditConvertibleExchangeableAccretingObligations" -> ContractualSupplementTypeEnum.ISDA_1999_CREDIT_CONVERTIBLE_EXCHANGEABLE_ACCRETING_OBLIGATIONS;
+            case "ISDA1999CreditRestructuring" -> ContractualSupplementTypeEnum.ISDA_1999_CREDIT_RESTRUCTURING;
+            case "ISDA1999CreditSuccessorAndCreditEvents" -> ContractualSupplementTypeEnum.ISDA_1999_CREDIT_SUCCESSOR_AND_CREDIT_EVENTS;
+            case "ISDA2003AdditionalProvisionsLPN" -> ContractualSupplementTypeEnum.ISDA_2003_ADDITIONAL_PROVISIONS_LPN;
+            case "ISDA2003ContingentCreditSpreadTransaction" -> ContractualSupplementTypeEnum.ISDA_2003_CONTINGENT_CREDIT_SPREAD_TRANSACTION;
+            case "ISDA2003Credit2005MatrixSupplement" -> ContractualSupplementTypeEnum.ISDA_2003_CREDIT_2005_MATRIX_SUPPLEMENT;
+            case "ISDA2003CreditArgentineRepublic" -> ContractualSupplementTypeEnum.ISDA_2003_CREDIT_ARGENTINE_REPUBLIC;
+            case "ISDA2003CreditAuctionSupplement" -> ContractualSupplementTypeEnum.ISDA_2003_CREDIT_AUCTION_SUPPLEMENT;
+            case "ISDA2003CreditMay2003" -> ContractualSupplementTypeEnum.ISDA_2003_CREDIT_MAY_2003;
+            case "ISDA2003CreditMonolineInsurers" -> ContractualSupplementTypeEnum.ISDA_2003_CREDIT_MONOLINE_INSURERS;
+            case "ISDA2003CreditMonolineInsurers2005" -> ContractualSupplementTypeEnum.ISDA_2003_CREDIT_MONOLINE_INSURERS_2005;
+            case "ISDA2003CreditRepublicOfHungary" -> ContractualSupplementTypeEnum.ISDA_2003_CREDIT_REPUBLIC_OF_HUNGARY;
+            case "ISDA2003CreditRepublicOfHungary2005" -> ContractualSupplementTypeEnum.ISDA_2003_CREDIT_REPUBLIC_OF_HUNGARY_2005;
+            case "ISDA2003CreditRussianFederation" -> ContractualSupplementTypeEnum.ISDA_2003_CREDIT_RUSSIAN_FEDERATION;
+            case "ISDA2003CreditUSMunicipals" -> ContractualSupplementTypeEnum.ISDA_2003_CREDIT_US_MUNICIPALS;
+            case "ISDA2003STMicroelectronicsNV" -> ContractualSupplementTypeEnum.ISDA_2003_ST_MICROELECTRONICS_NV;
+            case "ISDA2007FullLookthroughDepositoryReceiptSupplement" -> ContractualSupplementTypeEnum.ISDA_2007_FULL_LOOKTHROUGH_DEPOSITORY_RECEIPT_SUPPLEMENT;
+            case "ISDA2007PartialLookthroughDepositoryReceiptSupplement" -> ContractualSupplementTypeEnum.ISDA_2007_PARTIAL_LOOKTHROUGH_DEPOSITORY_RECEIPT_SUPPLEMENT;
+            case "ISDACreditMonolineInsurers" -> ContractualSupplementTypeEnum.ISDA_CREDIT_MONOLINE_INSURERS;
+            case "ISDADeliveryRestrictions" -> ContractualSupplementTypeEnum.ISDA_DELIVERY_RESTRICTIONS;
+            case "ISDAFixedRecovery" -> ContractualSupplementTypeEnum.ISDA_FIXED_RECOVERY;
+            case "ISDALPNReferenceEntities" -> ContractualSupplementTypeEnum.ISDALPN_REFERENCE_ENTITIES;
+            case "ISDAMarch2004EquityCanadianSupplement" -> ContractualSupplementTypeEnum.ISDA_MARCH_2004_EQUITY_CANADIAN_SUPPLEMENT;
+            case "ISDARecoveryLock" -> ContractualSupplementTypeEnum.ISDA_RECOVERY_LOCK;
+            case "ISDASecuredDeliverableObligationCharacteristic" -> ContractualSupplementTypeEnum.ISDA_SECURED_DELIVERABLE_OBLIGATION_CHARACTERISTIC;
+            case "LCDX" -> ContractualSupplementTypeEnum.LCDX;
+            case "LCDXTranche" -> ContractualSupplementTypeEnum.LCDX_TRANCHE;
+            case "MBX" -> ContractualSupplementTypeEnum.MBX;
+            case "MCDX" -> ContractualSupplementTypeEnum.MCDX;
+            case "PO" -> ContractualSupplementTypeEnum.PO;
+            case "PrimeX" -> ContractualSupplementTypeEnum.PRIME_X;
+            case "StandardCDXTranche" -> ContractualSupplementTypeEnum.STANDARD_CDX_TRANCHE;
+            case "StandardLCDS" -> ContractualSupplementTypeEnum.STANDARD_LCDS;
+            case "StandardLCDSBullet" -> ContractualSupplementTypeEnum.STANDARD_LCDS_BULLET;
+            case "StandardLCDXBullet" -> ContractualSupplementTypeEnum.STANDARD_LCDX_BULLET;
+            case "StandardLCDXBulletTranche" -> ContractualSupplementTypeEnum.STANDARD_LCDX_BULLET_TRANCHE;
+            case "StandardiTraxxEuropeTranche" -> ContractualSupplementTypeEnum.STANDARDI_TRAXX_EUROPE_TRANCHE;
+            case "SyndicatedSecuredLoanCDS" -> ContractualSupplementTypeEnum.SYNDICATED_SECURED_LOAN_CDS;
+            case "TRX" -> ContractualSupplementTypeEnum.TRX;
+            case "TRX.II" -> ContractualSupplementTypeEnum.TRX_II;
+            case "iTraxxAsiaExJapan" -> ContractualSupplementTypeEnum.I_TRAXX_ASIA_EX_JAPAN;
+            case "iTraxxAsiaExJapanSwaption" -> ContractualSupplementTypeEnum.I_TRAXX_ASIA_EX_JAPAN_SWAPTION;
+            case "iTraxxAsiaExJapanTranche" -> ContractualSupplementTypeEnum.I_TRAXX_ASIA_EX_JAPAN_TRANCHE;
+            case "iTraxxAustralia" -> ContractualSupplementTypeEnum.I_TRAXX_AUSTRALIA;
+            case "iTraxxAustraliaSwaption" -> ContractualSupplementTypeEnum.I_TRAXX_AUSTRALIA_SWAPTION;
+            case "iTraxxAustraliaTranche" -> ContractualSupplementTypeEnum.I_TRAXX_AUSTRALIA_TRANCHE;
+            case "iTraxxCJ" -> ContractualSupplementTypeEnum.I_TRAXX_CJ;
+            case "iTraxxCJTranche" -> ContractualSupplementTypeEnum.I_TRAXX_CJ_TRANCHE;
+            case "iTraxxEurope" -> ContractualSupplementTypeEnum.I_TRAXX_EUROPE;
+            case "iTraxxEuropeDealer" -> ContractualSupplementTypeEnum.I_TRAXX_EUROPE_DEALER;
+            case "iTraxxEuropeNonDealer" -> ContractualSupplementTypeEnum.I_TRAXX_EUROPE_NON_DEALER;
+            case "iTraxxEuropeSwaption" -> ContractualSupplementTypeEnum.I_TRAXX_EUROPE_SWAPTION;
+            case "iTraxxEuropeTranche" -> ContractualSupplementTypeEnum.I_TRAXX_EUROPE_TRANCHE;
+            case "iTraxxJapan" -> ContractualSupplementTypeEnum.I_TRAXX_JAPAN;
+            case "iTraxxJapanSwaption" -> ContractualSupplementTypeEnum.I_TRAXX_JAPAN_SWAPTION;
+            case "iTraxxJapanTranche" -> ContractualSupplementTypeEnum.I_TRAXX_JAPAN_TRANCHE;
+            case "iTraxxLevX" -> ContractualSupplementTypeEnum.I_TRAXX_LEV_X;
+            case "iTraxxSDI75Dealer" -> ContractualSupplementTypeEnum.I_TRAXX_SDI_75_DEALER;
+            case "iTraxxSDI75NonDealer" -> ContractualSupplementTypeEnum.I_TRAXX_SDI_75_NON_DEALER;
+            case "iTraxxSovX" -> ContractualSupplementTypeEnum.I_TRAXX_SOV_X;
             default -> null;
         });
     }
