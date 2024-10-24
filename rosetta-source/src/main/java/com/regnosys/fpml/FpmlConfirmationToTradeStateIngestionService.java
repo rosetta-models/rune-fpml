@@ -9,6 +9,9 @@ import cdm.event.common.ContractDetails;
 import cdm.event.common.Trade;
 import cdm.event.common.TradeState;
 import cdm.legaldocumentation.common.*;
+import cdm.legaldocumentation.common.ContractualMatrix;
+import cdm.legaldocumentation.common.ContractualTermsSupplement;
+import cdm.legaldocumentation.common.metafields.FieldWithMetaContractualDefinitionsEnum;
 import cdm.legaldocumentation.master.MasterAgreementTypeEnum;
 import cdm.legaldocumentation.master.MasterConfirmationAnnexTypeEnum;
 import cdm.legaldocumentation.master.MasterConfirmationTypeEnum;
@@ -17,6 +20,7 @@ import com.google.inject.Module;
 import com.regnosys.ingest.IngestionService;
 import com.regnosys.rosetta.common.util.Report;
 import com.rosetta.model.lib.RosettaModelObject;
+import com.rosetta.model.lib.RosettaModelObjectBuilder;
 import com.rosetta.model.lib.records.Date;
 import com.rosetta.model.metafields.FieldWithMetaDate;
 import com.rosetta.model.metafields.FieldWithMetaString;
@@ -87,8 +91,80 @@ public class FpmlConfirmationToTradeStateIngestionService implements IngestionSe
                     getMasterConfirmation(d.getMasterConfirmation()).ifPresent(legalAgreementBuilders::add);
                     //getBrokerConfirmation is in the original mapper but i'm ignoring it as it's dead code
                     getCreditSupportAgreement(d.getCreditSupportAgreement()).ifPresent(legalAgreementBuilders::add);
+                    getConfirmation(d).ifPresent(legalAgreementBuilders::add);
                     return legalAgreementBuilders;
                 });
+    }
+
+    private Optional<LegalAgreement.LegalAgreementBuilder> getConfirmation(Documentation documentation) {
+        LegalAgreement.LegalAgreementBuilder builder = LegalAgreement.builder();
+
+        Optional.ofNullable(documentation.getContractualDefinitions())
+                .ifPresent(contractualDefinitions -> contractualDefinitions.forEach(definition -> {
+
+                    FieldWithMetaContractualDefinitionsEnum.FieldWithMetaContractualDefinitionsEnumBuilder contractualDefinitionsBuilder = FieldWithMetaContractualDefinitionsEnum.builder();
+                    valueToContractualDefinitionsEnum(definition.getValue())
+                            .ifPresent(contractualDefinitionsBuilder::setValue);
+                    Optional.ofNullable(definition.getContractualDefinitionsScheme())
+                            .ifPresent(scheme -> contractualDefinitionsBuilder.getOrCreateMeta().setScheme(scheme));
+
+                    if (contractualDefinitionsBuilder.hasData()) {
+                        builder.getOrCreateLegalAgreementIdentification()
+                                .getOrCreateAgreementName()
+                                .addContractualDefinitionsType(contractualDefinitionsBuilder);
+                    }
+                }));
+
+        Optional.ofNullable(documentation.getContractualMatrix())
+                .ifPresent(contractualMatrices -> contractualMatrices.forEach(contractualMatrix -> {
+                    AgreementName.AgreementNameBuilder agreementName =
+                            builder.getOrCreateLegalAgreementIdentification().getOrCreateAgreementName();
+                    ContractualMatrix.ContractualMatrixBuilder contractualMatrixBuilder = ContractualMatrix.builder();
+
+                    Optional<MatrixType> matrixType = Optional.ofNullable(contractualMatrix.getMatrixType());
+                    matrixType.map(MatrixType::getValue)
+                            .flatMap(this::valueToMatrixTypeEnum)
+                            .ifPresent(contractualMatrixBuilder::setMatrixTypeValue);
+                    matrixType.map(MatrixType::getMatrixTypeScheme)
+                            .ifPresent(scheme -> contractualMatrixBuilder.getOrCreateMatrixType().getOrCreateMeta().setScheme(scheme));
+
+                    Optional<MatrixTerm> matrixTerm = Optional.ofNullable(contractualMatrix.getMatrixTerm());
+                    matrixTerm.map(MatrixTerm::getValue)
+                            .flatMap(this::valueToMatrixTermEnum)
+                            .ifPresent(contractualMatrixBuilder::setMatrixTermValue);
+                    matrixTerm.map(MatrixTerm::getMatrixTermScheme)
+                            .ifPresent(scheme -> contractualMatrixBuilder.getOrCreateMatrixTerm().getOrCreateMeta().setScheme(scheme));
+
+                    if (contractualMatrixBuilder.hasData()) {
+                        agreementName.addContractualMatrix(contractualMatrixBuilder);
+                    }
+                }));
+
+        Optional.ofNullable(documentation.getContractualTermsSupplement())
+                .ifPresent(contractualTermsSupplements -> contractualTermsSupplements.forEach(contractualTermsSupplement -> {
+                    AgreementName.AgreementNameBuilder agreementName =
+                            builder.getOrCreateLegalAgreementIdentification().getOrCreateAgreementName();
+                    ContractualTermsSupplement.ContractualTermsSupplementBuilder contractualTermsSupplementBuilder = ContractualTermsSupplement.builder();
+
+
+                    Optional<ContractualSupplement> contractualTermsSupplementType = Optional.ofNullable(contractualTermsSupplement.get_type());
+                    contractualTermsSupplementType
+                            .map(ContractualSupplement::getValue)
+                            .flatMap(this::valueToContractualSupplementTypeEnum)
+                            .ifPresent(contractualTermsSupplementBuilder::setContractualTermsSupplementTypeValue);
+                    contractualTermsSupplementType
+                            .map(ContractualSupplement::getContractualSupplementScheme)
+                            .ifPresent(scheme -> contractualTermsSupplementBuilder.getOrCreateContractualTermsSupplementType().getOrCreateMeta().setScheme(scheme));
+
+                    Optional.ofNullable(contractualTermsSupplement.getPublicationDate())
+                            .ifPresent(contractualTermsSupplementBuilder::setPublicationDate);
+
+                    if (contractualTermsSupplementBuilder.hasData()) {
+                        agreementName.addContractualTermsSupplement(contractualTermsSupplementBuilder);
+                    }
+                }));
+
+        return builder.hasData() ? Optional.of(setAgreementType(builder, LegalAgreementTypeEnum.CONFIRMATION)) : Optional.empty();
     }
 
     private Optional<LegalAgreement.LegalAgreementBuilder> getCreditSupportAgreement(CreditSupportAgreement creditSupportAgreement) {
@@ -115,7 +191,7 @@ public class FpmlConfirmationToTradeStateIngestionService implements IngestionSe
                     Optional.ofNullable(creditSupportAgreement.getDate())
                             .ifPresent(builder::setAgreementDate);
                     return setAgreementType(builder, LegalAgreementTypeEnum.CREDIT_SUPPORT_AGREEMENT);
-                });
+                }).filter(RosettaModelObjectBuilder::hasData);
     }
 
     private Optional<LegalAgreement.LegalAgreementBuilder> getMasterAgreement(fpml.confirmation.MasterAgreement fpmlMasterAgreement) {
@@ -146,7 +222,7 @@ public class FpmlConfirmationToTradeStateIngestionService implements IngestionSe
                    //TODO: map masterAgreementVersion when available in FpML
                    //TODO: map masterAgreementDate when available in FpML
                     return setAgreementType(builder, LegalAgreementTypeEnum.MASTER_AGREEMENT);
-                });
+                }).filter(RosettaModelObjectBuilder::hasData);
     }
 
     private Optional<LegalAgreement.LegalAgreementBuilder> getMasterConfirmation(fpml.confirmation.MasterConfirmation fpmlMasterConfirmation) {
@@ -196,7 +272,7 @@ public class FpmlConfirmationToTradeStateIngestionService implements IngestionSe
                             .ifPresent(builder::setAgreementDate);
 
                     return setAgreementType(builder, LegalAgreementTypeEnum.MASTER_CONFIRMATION);
-                });
+                }).filter(RosettaModelObjectBuilder::hasData);
     }
 
     private LegalAgreement.LegalAgreementBuilder setAgreementType(LegalAgreement.LegalAgreementBuilder builder, LegalAgreementTypeEnum masterAgreement) {
