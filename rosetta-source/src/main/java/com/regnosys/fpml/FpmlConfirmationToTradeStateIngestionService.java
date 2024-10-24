@@ -70,12 +70,12 @@ public class FpmlConfirmationToTradeStateIngestionService implements IngestionSe
         return Optional.ofNullable(fpmlTrade)
                 .map(t -> {
                     ContractDetails.ContractDetailsBuilder builder = ContractDetails.builder();
-                    getLegalAgreement(t.getDocumentation()).ifPresent(builder::setDocumentation);
+                    builder.setDocumentation(getLegalAgreements(t.getDocumentation()));
                     return builder;
                 });
     }
 
-    private Optional<List<LegalAgreement.LegalAgreementBuilder>> getLegalAgreement(fpml.confirmation.Documentation fpmlDocumentation) {
+    private List<LegalAgreement.LegalAgreementBuilder> getLegalAgreements(fpml.confirmation.Documentation fpmlDocumentation) {
         return Optional.ofNullable(fpmlDocumentation)
                 .map(d -> {
                     List<LegalAgreement.LegalAgreementBuilder> legalAgreementBuilders = new ArrayList<>();
@@ -84,12 +84,10 @@ public class FpmlConfirmationToTradeStateIngestionService implements IngestionSe
                     //getBrokerConfirmation is in the original mapper but i'm ignoring it as it's dead code
                     legalAgreementHelper.getCreditSupportAgreement(d.getCreditSupportAgreement()).ifPresent(legalAgreementBuilders::add);
                     legalAgreementHelper.getConfirmation(d).ifPresent(legalAgreementBuilders::add);
-
-                    Optional.ofNullable(d.getOtherAgreement())
-                                    .ifPresent(agreements -> agreements
-                                            .forEach(agreement -> legalAgreementHelper.getOtherAgreement(agreement).ifPresent(legalAgreementBuilders::add)));
+                    legalAgreementBuilders.addAll(legalAgreementHelper.getOtherAgreements(d.getOtherAgreement()));
+                    //TODO: work out how we handle waiting for counterparty role to be set so we can set correct PARTY1/PARTY2 on each agreement
                     return legalAgreementBuilders;
-                });
+                }).orElse(List.of());
     }
 
     private <E> E onlyElement(List<? extends E> e) {

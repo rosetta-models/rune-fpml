@@ -12,7 +12,10 @@ import com.rosetta.model.lib.RosettaModelObjectBuilder;
 import fpml.confirmation.*;
 import fpml.confirmation.OtherAgreement;
 
+import java.util.List;
 import java.util.Optional;
+
+import static com.rosetta.util.CollectionUtils.emptyIfNull;
 
 public class LegalAgreementHelper {
 
@@ -195,25 +198,23 @@ public class LegalAgreementHelper {
         return builder.hasData() ? Optional.of(setAgreementType(builder, LegalAgreementTypeEnum.CONFIRMATION)) : Optional.empty();
     }
 
-    public Optional<LegalAgreement.LegalAgreementBuilder> getOtherAgreement(OtherAgreement otherAgreement) {
+    public List<LegalAgreement.LegalAgreementBuilder> getOtherAgreements(List<? extends OtherAgreement> otherAgreement) {
+        return emptyIfNull(otherAgreement).stream().map(o -> {
+            LegalAgreement.LegalAgreementBuilder builder = LegalAgreement.builder();
 
-        return Optional.ofNullable(otherAgreement)
-                .map(o -> {
-                    LegalAgreement.LegalAgreementBuilder builder = LegalAgreement.builder();
+            Optional.ofNullable(o.get_type())
+                    .map(OtherAgreementType::getValue)
+                    .ifPresent(value -> builder.getOrCreateLegalAgreementIdentification().getOrCreateAgreementName().setOtherAgreement(value));
 
-                    Optional.ofNullable(o.get_type())
-                            .map(OtherAgreementType::getValue)
-                            .ifPresent(value -> builder.getOrCreateLegalAgreementIdentification().getOrCreateAgreementName().setOtherAgreement(value));
+            Optional.ofNullable(o.getVersion())
+                    .map(OtherAgreementVersion::getValue)
+                    .ifPresent(value -> builder.getOrCreateLegalAgreementIdentification().setVintage(Integer.valueOf(value)));
 
-                    Optional.ofNullable(o.getVersion())
-                            .map(OtherAgreementVersion::getValue)
-                            .ifPresent(value -> builder.getOrCreateLegalAgreementIdentification().setVintage(Integer.valueOf(value)));
+            Optional.ofNullable(o.getDate())
+                    .ifPresent(builder::setAgreementDate);
 
-                    Optional.ofNullable(o.getDate())
-                            .ifPresent(builder::setAgreementDate);
-
-                    return setAgreementType(builder, LegalAgreementTypeEnum.OTHER);
-                }).filter(RosettaModelObjectBuilder::hasData);
+            return setAgreementType(builder, LegalAgreementTypeEnum.OTHER);
+        }).filter(RosettaModelObjectBuilder::hasData).toList();
     }
 
     private LegalAgreement.LegalAgreementBuilder setAgreementType(LegalAgreement.LegalAgreementBuilder builder, LegalAgreementTypeEnum masterAgreement) {
@@ -224,6 +225,7 @@ public class LegalAgreementHelper {
         }
         return builder;
     }
+
 
     private Optional<MasterAgreementTypeEnum> valueToMasterAgreementTypeEnum(String value) {
         if (value == null || value.isEmpty()) {
