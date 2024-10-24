@@ -114,7 +114,7 @@ public class FpmlConfirmationToTradeStateIngestionService implements IngestionSe
 
                     Optional.ofNullable(creditSupportAgreement.getDate())
                             .ifPresent(builder::setAgreementDate);
-                    return builder;
+                    return setAgreementType(builder, LegalAgreementTypeEnum.CREDIT_SUPPORT_AGREEMENT);
                 });
     }
 
@@ -145,8 +145,7 @@ public class FpmlConfirmationToTradeStateIngestionService implements IngestionSe
 
                    //TODO: map masterAgreementVersion when available in FpML
                    //TODO: map masterAgreementDate when available in FpML
-
-                    return builder;
+                    return setAgreementType(builder, LegalAgreementTypeEnum.MASTER_AGREEMENT);
                 });
     }
 
@@ -196,8 +195,17 @@ public class FpmlConfirmationToTradeStateIngestionService implements IngestionSe
                     Optional.ofNullable(masterConfirmation.getMasterConfirmationDate())
                             .ifPresent(builder::setAgreementDate);
 
-                    return builder;
+                    return setAgreementType(builder, LegalAgreementTypeEnum.MASTER_CONFIRMATION);
                 });
+    }
+
+    private LegalAgreement.LegalAgreementBuilder setAgreementType(LegalAgreement.LegalAgreementBuilder builder, LegalAgreementTypeEnum masterAgreement) {
+        if (builder.hasData()) {
+            builder.getOrCreateLegalAgreementIdentification()
+                    .getOrCreateAgreementName()
+                    .setAgreementType(masterAgreement);
+        }
+        return builder;
     }
 
     private <E> E onlyElement(List<? extends E> e) {
