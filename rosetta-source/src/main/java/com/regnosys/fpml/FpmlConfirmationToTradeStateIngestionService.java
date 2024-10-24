@@ -25,6 +25,7 @@ import com.rosetta.model.lib.records.Date;
 import com.rosetta.model.metafields.FieldWithMetaDate;
 import com.rosetta.model.metafields.FieldWithMetaString;
 import fpml.confirmation.*;
+import fpml.confirmation.OtherAgreement;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -92,8 +93,33 @@ public class FpmlConfirmationToTradeStateIngestionService implements IngestionSe
                     //getBrokerConfirmation is in the original mapper but i'm ignoring it as it's dead code
                     getCreditSupportAgreement(d.getCreditSupportAgreement()).ifPresent(legalAgreementBuilders::add);
                     getConfirmation(d).ifPresent(legalAgreementBuilders::add);
+
+                    Optional.ofNullable(d.getOtherAgreement())
+                                    .ifPresent(agreements -> agreements
+                                            .forEach(agreement -> getOtherAgreement(agreement).ifPresent(legalAgreementBuilders::add)));
                     return legalAgreementBuilders;
                 });
+    }
+
+    private Optional<LegalAgreement.LegalAgreementBuilder> getOtherAgreement(OtherAgreement otherAgreement) {
+
+        return Optional.ofNullable(otherAgreement)
+                .map(o -> {
+                    LegalAgreement.LegalAgreementBuilder builder = LegalAgreement.builder();
+
+                    Optional.ofNullable(o.get_type())
+                            .map(OtherAgreementType::getValue)
+                            .ifPresent(value -> builder.getOrCreateLegalAgreementIdentification().getOrCreateAgreementName().setOtherAgreement(value));
+
+                    Optional.ofNullable(o.getVersion())
+                            .map(OtherAgreementVersion::getValue)
+                            .ifPresent(value -> builder.getOrCreateLegalAgreementIdentification().setVintage(Integer.valueOf(value)));
+
+                    Optional.ofNullable(o.getDate())
+                            .ifPresent(builder::setAgreementDate);
+
+                    return setAgreementType(builder, LegalAgreementTypeEnum.OTHER);
+                }).filter(RosettaModelObjectBuilder::hasData);
     }
 
     private Optional<LegalAgreement.LegalAgreementBuilder> getConfirmation(Documentation documentation) {
