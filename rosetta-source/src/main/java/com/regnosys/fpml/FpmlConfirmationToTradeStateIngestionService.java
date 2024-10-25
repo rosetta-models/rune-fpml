@@ -91,10 +91,7 @@ public class FpmlConfirmationToTradeStateIngestionService implements IngestionSe
                                 Optional<String> relatedPartyRole = Optional.ofNullable(relatedParty.getRole()).map(fpml.confirmation.PartyRole::getValue);
                                 relatedPartyRole.flatMap(this::valueToPartyRoleEnum).ifPresent(partyRoleBuilder::setRole);
                                 //set ownershipPartyReference
-                                relatedPartyRole.ifPresent(value -> {
-                                    partyTradeInformationPartyReference.map(PartyAndAccountReferencesModel::getPartyReference).map(PartyReference::getHref)
-                                            .ifPresent(href -> partyRoleBuilder.getOrCreateOwnershipPartyReference().setExternalReference(href));
-                                });
+                                relatedPartyRole.flatMap(value -> partyTradeInformationPartyReference.map(PartyAndAccountReferencesModel::getPartyReference).map(PartyReference::getHref)).ifPresent(href -> partyRoleBuilder.getOrCreateOwnershipPartyReference().setExternalReference(href));
                                 return partyRoleBuilder;
                             });
                 }).filter(RosettaModelObjectBuilder::hasData).toList();
