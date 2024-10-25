@@ -44,20 +44,6 @@ public class JavaCodeGenHelper {
     public void run() {
         List<RosettaModel> models = loader.loadRosettaModels(ClassPathUtils.findRosettaFilePaths().stream().map(UrlUtils::toUrl));
 
-//        Set<RosettaEnumeration> allEnums = findAllEnums(models);
-//        allEnums.forEach(enumeration -> {
-//            System.out.println("enum " + getQualifiedName(enumeration));
-//            enumeration.getEnumValues().forEach(enumValue ->
-//                    System.out.println("  " + EnumHelper.formatEnumName(enumValue.getName())));
-//        });
-
-//        Set<Data> allTypes = findAllTypes(models);
-//        allTypes.forEach(type -> {
-//            System.out.println("type " + getQualifiedName(type));
-//            type.getAttributes().forEach(attr ->
-//                    System.out.println("  " + attr.getName()));
-//        });
-
         var enumsToGenerate = Set.of(MasterAgreementTypeEnum.class,
                         MasterConfirmationTypeEnum.class,
                         MasterConfirmationAnnexTypeEnum.class,
@@ -70,23 +56,11 @@ public class JavaCodeGenHelper {
 
         Set<RosettaExternalEnum> allExternalEnums = findAllExternalEnums(models);
 
-//        allExternalEnums.stream().filter(e -> enumsToGenerate.contains(e.getEnumeration().getName()))
-//                        .map(this::generateJavaSwitch)
-//                                .forEach(System.out::println);
+        allExternalEnums.stream().filter(e -> enumsToGenerate.contains(e.getEnumeration().getName()))
+                        .map(this::generateJavaSwitch)
+                                .forEach(System.out::println);
 
         allExternalEnums.stream().map(this::generateRosettaEnum).forEach(System.out::println);
-    }
-
-    private void generateRosettaEnums(Set<RosettaExternalEnum> allExternalEnums) {
-        allExternalEnums.forEach(externalEnum -> {
-            System.out.println("enum synonym " + getQualifiedName(externalEnum.getEnumeration()));
-            externalEnum.getRegularValues().forEach(enumValueSynonym ->
-            {
-                RosettaEnumValue enumRef = enumValueSynonym.getEnumRef();
-                System.out.println(String.format("  %s -> %s", EnumHelper.formatEnumName(enumRef.getName()),
-                        enumValueSynonym.getExternalEnumSynonyms().stream().map(ees -> ees.getSynonymValue()).collect(Collectors.joining(", "))));
-            });
-        });
     }
 
     private String generateRosettaEnum(RosettaExternalEnum rosettaExternalEnum) {
