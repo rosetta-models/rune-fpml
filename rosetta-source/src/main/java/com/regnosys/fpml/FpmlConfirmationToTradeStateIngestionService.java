@@ -1,9 +1,6 @@
 package com.regnosys.fpml;
 
-import cdm.base.staticdata.party.Account;
-import cdm.base.staticdata.party.Party;
-import cdm.base.staticdata.party.PartyIdentifier;
-import cdm.base.staticdata.party.PartyIdentifierTypeEnum;
+import cdm.base.staticdata.party.*;
 import cdm.base.staticdata.party.metafields.ReferenceWithMetaParty;
 import cdm.event.common.ContractDetails;
 import cdm.event.common.Trade;
@@ -13,8 +10,14 @@ import com.google.inject.Module;
 import com.regnosys.ingest.IngestionService;
 import com.regnosys.rosetta.common.util.Report;
 import com.rosetta.model.lib.RosettaModelObject;
+import com.rosetta.model.lib.RosettaModelObjectBuilder;
+import com.rosetta.model.lib.meta.Reference;
 import com.rosetta.model.metafields.FieldWithMetaDate;
 import com.rosetta.model.metafields.FieldWithMetaString;
+import fpml.confirmation.PartyAndAccountReferencesModel;
+import fpml.confirmation.PartyReference;
+import fpml.confirmation.PartyTradeInformation;
+import fpml.confirmation.TradeHeader;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -62,8 +65,39 @@ public class FpmlConfirmationToTradeStateIngestionService implements IngestionSe
                     fpml.confirmation.Trade fpmlTrade = onlyElement(d.getTrade());
                     getTradeDate(fpmlTrade).ifPresent(tradeBuilder::setTradeDate);
                     getContractDetails(fpmlTrade).ifPresent(tradeBuilder::setContractDetails);
+
+                    Optional.ofNullable(fpmlTrade)
+                            .map(fpml.confirmation.Trade::getTradeHeader)
+                            .map(TradeHeader::getPartyTradeInformation)
+                            .ifPresent(partyTradeInformation -> tradeBuilder.addPartyRole(getPartyRoles(partyTradeInformation)));
+
+
                     return tradeBuilder;
                 });
+    }
+
+    private List<PartyRole.PartyRoleBuilder> getPartyRoles(List<? extends  fpml.confirmation.PartyTradeInformation> partyTradeInformation) {
+        return emptyIfNull(partyTradeInformation).stream()
+                .flatMap(pti -> {
+                    Optional<PartyAndAccountReferencesModel> partyTradeInformationPartyReference = Optional.ofNullable(pti.getPartyAndAccountReferencesModel());
+                    return emptyIfNull(pti.getRelatedParty())
+                            .stream().map(relatedParty -> {
+                                PartyRole.PartyRoleBuilder partyRoleBuilder = PartyRole.builder();
+                                Optional<PartyAndAccountReferencesModel> relatedPartyPartyReference = Optional.ofNullable(relatedParty.getPartyAndAccountReferencesModel());
+                                //set partyReference
+                                relatedPartyPartyReference.map(PartyAndAccountReferencesModel::getPartyReference).map(PartyReference::getHref)
+                                        .ifPresent(href -> partyRoleBuilder.getOrCreatePartyReference().setExternalReference(href));
+                                //set role
+                                Optional<String> relatedPartyRole = Optional.ofNullable(relatedParty.getRole()).map(fpml.confirmation.PartyRole::getValue);
+                                relatedPartyRole.flatMap(this::valueToPartyRoleEnum).ifPresent(partyRoleBuilder::setRole);
+                                //set ownershipPartyReference
+                                relatedPartyRole.ifPresent(value -> {
+                                    partyTradeInformationPartyReference.map(PartyAndAccountReferencesModel::getPartyReference).map(PartyReference::getHref)
+                                            .ifPresent(href -> partyRoleBuilder.getOrCreateOwnershipPartyReference().setExternalReference(href));
+                                });
+                                return partyRoleBuilder;
+                            });
+                }).filter(RosettaModelObjectBuilder::hasData).toList();
     }
 
     private Optional<ContractDetails.ContractDetailsBuilder> getContractDetails(fpml.confirmation.Trade fpmlTrade) {
@@ -220,6 +254,61 @@ public class FpmlConfirmationToTradeStateIngestionService implements IngestionSe
                     return partyBuilder;
                 });
     }
+
+    private Optional<PartyRoleEnum> valueToPartyRoleEnum(String value) {
+        if (value == null || value.isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.ofNullable(switch (value) {
+            case "Accountant" -> PartyRoleEnum.ACCOUNTANT;
+            case "AllocationAgent" -> PartyRoleEnum.ALLOCATION_AGENT;
+            case "ArrangingBroker" -> PartyRoleEnum.ARRANGING_BROKER;
+            case "Beneficiary" -> PartyRoleEnum.BENEFICIARY;
+            case "BookingParty" -> PartyRoleEnum.BOOKING_PARTY;
+            case "Buyer" -> PartyRoleEnum.BUYER;
+            case "BuyerDecisionMaker" -> PartyRoleEnum.BUYER_DECISION_MAKER;
+            case "ClearingClient" -> PartyRoleEnum.CLEARING_CLIENT;
+            case "ClearingExceptionParty" -> PartyRoleEnum.CLEARING_EXCEPTION_PARTY;
+            case "ClearingFirm" -> PartyRoleEnum.CLEARING_FIRM;
+            case "ClearingOrganization" -> PartyRoleEnum.CLEARING_ORGANIZATION;
+            case "Client" -> PartyRoleEnum.CLIENT;
+            case "ClientDecisionMaker" -> PartyRoleEnum.CLIENT_DECISION_MAKER;
+            case "ConfirmationPlatform" -> PartyRoleEnum.CONFIRMATION_PLATFORM;
+            case "ConfirmationService" -> PartyRoleEnum.CONFIRMATION_PLATFORM;
+            case "ContractualParty" -> PartyRoleEnum.CONTRACTUAL_PARTY;
+            case "CounterPartyAffiliate" -> PartyRoleEnum.COUNTER_PARTY_AFFILIATE;
+            case "CounterPartyUltimateParent" -> PartyRoleEnum.COUNTER_PARTY_ULTIMATE_PARENT;
+            case "Counterparty" -> PartyRoleEnum.COUNTERPARTY;
+            case "CreditSupportProvider" -> PartyRoleEnum.CREDIT_SUPPORT_PROVIDER;
+            case "Custodian" -> PartyRoleEnum.CUSTODIAN;
+            case "DataSubmitter" -> PartyRoleEnum.DATA_SUBMITTER;
+            case "DisputingParty" -> PartyRoleEnum.DISPUTING_PARTY;
+            case "DocumentRepository" -> PartyRoleEnum.DOCUMENT_REPOSITORY;
+            case "ExecutingBroker" -> PartyRoleEnum.EXECUTING_BROKER;
+            case "ExecutingEntity" -> PartyRoleEnum.EXECUTING_ENTITY;
+            case "ExecutionAgent" -> PartyRoleEnum.EXECUTION_AGENT;
+            case "ExecutionFacility" -> PartyRoleEnum.EXECUTION_FACILITY;
+            case "Guarantor" -> PartyRoleEnum.GUARANTOR;
+            case "OrderTransmitter" -> PartyRoleEnum.ORDER_TRANSMITTER;
+            case "PrimeBroker" -> PartyRoleEnum.PRIME_BROKER;
+            case "PriorTradeRepository" -> PartyRoleEnum.PRIOR_TRADE_REPOSITORY;
+            case "PTRRCompressionProvider" -> PartyRoleEnum.PTRR_SERVICE_PROVIDER;
+            case "PTRRRebalancingProvider" -> PartyRoleEnum.PTRR_SERVICE_PROVIDER;
+            case "PublicationVenue" -> PartyRoleEnum.PUBLICATION_VENUE;
+            case "ReportingParty" -> PartyRoleEnum.REPORTING_PARTY;
+            case "ReportingPartyAffiliate" -> PartyRoleEnum.REPORTING_PARTY_AFFILIATE;
+            case "ReportingPartyUltimateParent" -> PartyRoleEnum.REPORTING_PARTY_ULTIMATE_PARENT;
+            case "Seller" -> PartyRoleEnum.SELLER;
+            case "SellerDecisionMaker" -> PartyRoleEnum.SELLER_DECISION_MAKER;
+            case "SettlementAgent" -> PartyRoleEnum.SETTLEMENT_AGENT;
+            case "TradeRepository" -> PartyRoleEnum.TRADE_REPOSITORY;
+            case "TradeSource" -> PartyRoleEnum.TRADE_SOURCE;
+            case "TradingManager" -> PartyRoleEnum.TRADING_MANAGER;
+            case "TradingPartner" -> PartyRoleEnum.TRADING_PARTNER;
+            default -> null;
+        });
+    }
+
 
 
     //    private Optional<ReferenceWithMetaParty.ReferenceWithMetaPartyBuilder> getAccountBeneficiary(fpml.confirmation.PartyReference fpmlAccountBeneficiary) {
