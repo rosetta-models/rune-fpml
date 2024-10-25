@@ -17,7 +17,6 @@ import com.regnosys.rosetta.rosetta.*;
 import com.regnosys.rosetta.rosetta.simple.Data;
 import com.regnosys.rosetta.transgest.ModelLoader;
 import com.regnosys.testing.RosettaTestingInjectorProvider;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -71,11 +70,11 @@ public class JavaCodeGenHelper {
 
         Set<RosettaExternalEnum> allExternalEnums = findAllExternalEnums(models);
 
-        allExternalEnums.stream().filter(e -> enumsToGenerate.contains(e.getEnumeration().getName()))
-                        .map(this::generateJavaSwitch)
-                                .forEach(System.out::println);
+//        allExternalEnums.stream().filter(e -> enumsToGenerate.contains(e.getEnumeration().getName()))
+//                        .map(this::generateJavaSwitch)
+//                                .forEach(System.out::println);
 
-//        generateRosettaEnums(allExternalEnums);
+        allExternalEnums.stream().map(this::generateRosettaEnum).forEach(System.out::println);
     }
 
     private void generateRosettaEnums(Set<RosettaExternalEnum> allExternalEnums) {
@@ -90,10 +89,32 @@ public class JavaCodeGenHelper {
         });
     }
 
+    private String generateRosettaEnum(RosettaExternalEnum rosettaExternalEnum) {
+        StringBuilder sb = new StringBuilder();
+        String enumName = rosettaExternalEnum.getEnumeration().getName();
+        sb.append("func ValueTo%s:\n".formatted(enumName));
+        sb.append("\tinputs:\n");
+        sb.append("\t\tvalue string (1..1)\n");
+        sb.append("\toutput:\n");
+        sb.append("\t\tresult %s (0..1)\n".formatted(enumName));
+        sb.append("\tset result: value switch\n");
+        rosettaExternalEnum.getRegularValues().forEach(enumValueSynonym -> {
+            RosettaEnumValue enumRef = enumValueSynonym.getEnumRef();
+            String enumValue = enumRef.getName();
+            List<String> synonyms = enumValueSynonym.getExternalEnumSynonyms().stream().map(RosettaEnumSynonym::getSynonymValue).toList();
+            synonyms.forEach(s -> {
+                sb.append("\t\t\"%s\" then %s,\n".formatted(s, enumValue));
+            });
+        });
+        sb.delete(sb.length() - 2, sb.length());
+        sb.append("\n");
+        return sb.toString();
+    }
+
     private String generateJavaSwitch(RosettaExternalEnum rosettaExternalEnum) {
         StringBuilder sb = new StringBuilder();
         String javaEnumName = rosettaExternalEnum.getEnumeration().getName();
-        sb.append("private Optional<").append(javaEnumName).append("> valueTo").append(StringUtils.capitalize(javaEnumName)).append("(String value) {\n");
+        sb.append("private Optional<").append(javaEnumName).append("> valueTo").append(javaEnumName).append("(String value) {\n");
         sb.append("\tif (value == null || value.isEmpty()) {\n");
         sb.append("\t\treturn Optional.empty();\n");
         sb.append("\t}\n");
