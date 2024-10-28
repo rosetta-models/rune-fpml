@@ -14,18 +14,18 @@ import java.util.Set;
 
 public class RosettaMappingFunctionGenerator {
     private Queue<TypeToGenerate> typesQueue;
+    private Set<String> imports;
 
     public String generateMappingFunctions(Data cdmType) {
         typesQueue = new LinkedList<>();
         typesQueue.add(new TypeToGenerate(cdmType, false));
-        Set<String> imports = new HashSet<>();
+        imports = new HashSet<>();
         StringBuilder sb = new StringBuilder();
         sb.append("import cdm.fpml.confirmation.* as fpml\n\n");
 
         while (!typesQueue.isEmpty()) {
-            TypeToGenerate function = typesQueue.remove();
-            imports.add("import %s.*".formatted(function.cdmType.getModel().getName()));
-            String mappingFunction = generateMappingFunction(function);
+            TypeToGenerate typeToGenerate = typesQueue.remove();
+            String mappingFunction = generateMappingFunction(typeToGenerate);
             sb.append(mappingFunction);
             sb.append("\n\n");
         }
@@ -35,6 +35,7 @@ public class RosettaMappingFunctionGenerator {
     }
 
     private String generateMappingFunction(TypeToGenerate typeToGenerate) {
+        addImport(typeToGenerate);
         StringBuilder sb = new StringBuilder();
         Data cdmType = typeToGenerate.cdmType;
         boolean isOutputMulti = typeToGenerate.isMulti;
@@ -63,7 +64,7 @@ public class RosettaMappingFunctionGenerator {
                 TypeToGenerate newTypeToGenerate = new TypeToGenerate(data, isMany);
                 typesQueue.add(newTypeToGenerate);
             } else if (type instanceof RosettaEnumeration) {
-              RosettaEnumeration enumeration = (RosettaEnumeration) type;
+                RosettaEnumeration enumeration = (RosettaEnumeration) type;
             } else {
                 throw new UnsupportedOperationException("Unsupported type: " + type);
             }
@@ -77,14 +78,16 @@ public class RosettaMappingFunctionGenerator {
         return sb.toString();
     }
 
+    private void addImport(TypeToGenerate function) {
+        imports.add("import %s.*".formatted(function.cdmType.getModel().getName()));
+    }
 
     private String toLowerFirstChar(String s) {
         return StringUtils.uncapitalize(s);
     }
 
     private String generateMappingFunctionName(TypeToGenerate typeToGenerate) {
-        //TODO: making plural is hard, find a way if it matters
-        return "Map%s".formatted(typeToGenerate.cdmType.getName());
+        return "Map%s%s".formatted(typeToGenerate.cdmType.getName(), typeToGenerate.isMulti ? "List" : "");
     }
 
     private record TypeToGenerate(Data cdmType, boolean isMulti) {}
