@@ -34,6 +34,10 @@ public class JavaCodeGenHelper {
 
     @Inject
     ModelLoader loader;
+    @Inject
+    RosettaEnumGenerator rosettaEnumGenerator;
+    @Inject
+    JavaEnumGenerator   javaEnumGenerator;
 
     public static void main(String[] args) {
         Injector injector = new RosettaTestingInjectorProvider().getInjector();
@@ -57,75 +61,14 @@ public class JavaCodeGenHelper {
         Set<RosettaExternalEnum> allExternalEnums = findAllExternalEnums(models);
 
         allExternalEnums.stream().filter(e -> enumsToGenerate.contains(e.getEnumeration().getName()))
-                        .map(this::generateJavaSwitch)
+                        .map(javaEnumGenerator::generateJavaEnum)
                                 .forEach(System.out::println);
 
-        allExternalEnums.stream().map(this::generateRosettaEnum).forEach(System.out::println);
-    }
-
-    private String generateRosettaEnum(RosettaExternalEnum rosettaExternalEnum) {
-        StringBuilder sb = new StringBuilder();
-        String enumName = rosettaExternalEnum.getEnumeration().getName();
-        sb.append("func ValueTo%s:\n".formatted(enumName));
-        sb.append("\tinputs:\n");
-        sb.append("\t\tvalue string (1..1)\n");
-        sb.append("\toutput:\n");
-        sb.append("\t\tresult %s (0..1)\n".formatted(enumName));
-        sb.append("\tset result: value switch\n");
-        rosettaExternalEnum.getRegularValues().forEach(enumValueSynonym -> {
-            RosettaEnumValue enumRef = enumValueSynonym.getEnumRef();
-            String enumValue = enumRef.getName();
-            List<String> synonyms = enumValueSynonym.getExternalEnumSynonyms().stream().map(RosettaEnumSynonym::getSynonymValue).toList();
-            synonyms.forEach(s -> {
-                sb.append("\t\t\"%s\" then %s,\n".formatted(s, enumValue));
-            });
-        });
-        sb.delete(sb.length() - 2, sb.length());
-        sb.append("\n");
-        return sb.toString();
-    }
-
-    private String generateJavaSwitch(RosettaExternalEnum rosettaExternalEnum) {
-        StringBuilder sb = new StringBuilder();
-        String javaEnumName = rosettaExternalEnum.getEnumeration().getName();
-        sb.append("private Optional<").append(javaEnumName).append("> valueTo").append(javaEnumName).append("(String value) {\n");
-        sb.append("\tif (value == null || value.isEmpty()) {\n");
-        sb.append("\t\treturn Optional.empty();\n");
-        sb.append("\t}\n");
-
-        sb.append("\treturn Optional.ofNullable(switch (value) {\n");
-        rosettaExternalEnum.getRegularValues().forEach(enumValueSynonym -> {
-            RosettaEnumValue enumRef = enumValueSynonym.getEnumRef();
-            String enumValue = "%s.%s".formatted(javaEnumName,EnumHelper.formatEnumName(enumRef.getName()));
-            List<String> synonyms = enumValueSynonym.getExternalEnumSynonyms().stream().map(RosettaEnumSynonym::getSynonymValue).toList();
-            synonyms.forEach(s -> {
-                sb.append("\t\tcase \"%s\" -> %s;\n".formatted(s, enumValue));
-            });
-        });
-
-        sb.append("\t\tdefault -> null;\n");
-        sb.append("\t});\n");
-        sb.append("}\n");
-        return sb.toString();
+        allExternalEnums.stream().map(rosettaEnumGenerator::generateRosettaEnum).forEach(System.out::println);
     }
 
     private String getQualifiedName(RosettaType type) {
         return type.getModel().getName() + "." + type.getName();
-    }
-
-    private Set<RosettaEnumeration> findAllEnums(List<RosettaModel> models) {
-        Set<RosettaEnumeration> listOfEnums = new HashSet<>();
-
-        for (RosettaModel model : models) {
-            model.getElements().stream()
-                    .filter(RosettaEnumeration.class::isInstance)
-                    .map(RosettaEnumeration.class::cast)
-                    .forEach(enumeration -> {
-                        LOGGER.trace("Processing enumeration type {}", getQualifiedName(enumeration));
-                        listOfEnums.add(enumeration);
-                    });
-        }
-        return listOfEnums;
     }
 
     private Set<RosettaExternalEnum> findAllExternalEnums(List<RosettaModel> models) {
@@ -137,9 +80,7 @@ public class JavaCodeGenHelper {
                 .filter(RosettaExternalSynonymSource.class::isInstance)
                 .map(RosettaExternalSynonymSource.class::cast)
                 .forEach(externalSynonymSource -> {
-                    externalSynonymSource.getExternalEnums().forEach(externalEnum -> {
-                        listOfExternalEnums.add(externalEnum);
-                    });
+                    listOfExternalEnums.addAll(externalSynonymSource.getExternalEnums());
                 });
         return listOfExternalEnums;
     }
