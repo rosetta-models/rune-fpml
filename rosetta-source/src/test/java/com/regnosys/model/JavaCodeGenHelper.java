@@ -1,5 +1,6 @@
 package com.regnosys.model;
 
+import cdm.base.staticdata.party.ContactInformation;
 import cdm.legaldocumentation.common.ContractualDefinitionsEnum;
 import cdm.legaldocumentation.common.ContractualSupplementTypeEnum;
 import cdm.legaldocumentation.common.MatrixTermEnum;
@@ -12,7 +13,6 @@ import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.regnosys.rosetta.common.util.ClassPathUtils;
 import com.regnosys.rosetta.common.util.UrlUtils;
-import com.regnosys.rosetta.generator.java.enums.EnumHelper;
 import com.regnosys.rosetta.rosetta.*;
 import com.regnosys.rosetta.rosetta.simple.Data;
 import com.regnosys.rosetta.transgest.ModelLoader;
@@ -38,15 +38,24 @@ public class JavaCodeGenHelper {
     RosettaEnumGenerator rosettaEnumGenerator;
     @Inject
     JavaEnumGenerator   javaEnumGenerator;
+    @Inject
+    RosettaMappingFunctionGenerator rosettaMappingFunctionGenerator;
 
     public static void main(String[] args) {
         Injector injector = new RosettaTestingInjectorProvider().getInjector();
         JavaCodeGenHelper helper = injector.getInstance(JavaCodeGenHelper.class);
-        helper.run();
+        helper.runMappingGenerator();
     }
 
-    public void run() {
-        List<RosettaModel> models = loader.loadRosettaModels(ClassPathUtils.findRosettaFilePaths().stream().map(UrlUtils::toUrl));
+    public void runRosettaEnumGenerator() {
+        List<RosettaModel> models = getModels();
+        Set<RosettaExternalEnum> allExternalEnums = findAllExternalEnums(models);
+
+        allExternalEnums.stream().map(rosettaEnumGenerator::generateRosettaEnum).forEach(System.out::println);
+    }
+
+    public void runJavaEnumGenerator() {
+        List<RosettaModel> models = getModels();
 
         var enumsToGenerate = Set.of(MasterAgreementTypeEnum.class,
                         MasterConfirmationTypeEnum.class,
@@ -61,10 +70,23 @@ public class JavaCodeGenHelper {
         Set<RosettaExternalEnum> allExternalEnums = findAllExternalEnums(models);
 
         allExternalEnums.stream().filter(e -> enumsToGenerate.contains(e.getEnumeration().getName()))
-                        .map(javaEnumGenerator::generateJavaEnum)
-                                .forEach(System.out::println);
+                .map(javaEnumGenerator::generateJavaEnum)
+                .forEach(System.out::println);
+    }
 
-        allExternalEnums.stream().map(rosettaEnumGenerator::generateRosettaEnum).forEach(System.out::println);
+    public void runMappingGenerator() {
+        List<RosettaModel> models = getModels();
+
+        Set<Data> allTypes = findAllTypes(models);
+        Data topLevelDataType = allTypes.stream()
+                .filter(d -> d.getName().equals(ContactInformation.class.getSimpleName()) && d.getModel().getName().equals(ContactInformation.class.getPackageName()))
+                .findFirst().orElseThrow();
+
+        System.out.println(rosettaMappingFunctionGenerator.generateMappingFunctions(topLevelDataType));
+    }
+
+    private List<RosettaModel> getModels() {
+        return loader.loadRosettaModels(ClassPathUtils.findRosettaFilePaths().stream().map(UrlUtils::toUrl));
     }
 
     private String getQualifiedName(RosettaType type) {
