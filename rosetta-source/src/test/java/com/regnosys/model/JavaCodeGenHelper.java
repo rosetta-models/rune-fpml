@@ -1,6 +1,6 @@
 package com.regnosys.model;
 
-import cdm.base.staticdata.party.ContactInformation;
+import cdm.event.common.TradeState;
 import cdm.legaldocumentation.common.ContractualDefinitionsEnum;
 import cdm.legaldocumentation.common.ContractualSupplementTypeEnum;
 import cdm.legaldocumentation.common.MatrixTermEnum;
@@ -13,7 +13,10 @@ import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.regnosys.rosetta.common.util.ClassPathUtils;
 import com.regnosys.rosetta.common.util.UrlUtils;
-import com.regnosys.rosetta.rosetta.*;
+import com.regnosys.rosetta.rosetta.RosettaExternalEnum;
+import com.regnosys.rosetta.rosetta.RosettaExternalSynonymSource;
+import com.regnosys.rosetta.rosetta.RosettaModel;
+import com.regnosys.rosetta.rosetta.RosettaType;
 import com.regnosys.rosetta.rosetta.simple.Data;
 import com.regnosys.rosetta.transgest.ModelLoader;
 import com.regnosys.testing.RosettaTestingInjectorProvider;
@@ -80,7 +83,7 @@ public class JavaCodeGenHelper {
 
         Set<Data> allTypes = findAllTypes(models);
         Data topLevelDataType = allTypes.stream()
-                .filter(d -> d.getName().equals(ContactInformation.class.getSimpleName()) && d.getModel().getName().equals(ContactInformation.class.getPackageName()))
+                .filter(d -> d.getName().equals(TradeState.class.getSimpleName()) && d.getModel().getName().equals(TradeState.class.getPackageName()))
                 .findFirst().orElseThrow();
 
         rosettaMappingFunctionGenerator.generateMappingFunctions(topLevelDataType);

@@ -38,11 +38,9 @@ public class RosettaMappingFunctionGenerator {
 
         Path tempImports = Files.createTempFile("mappingFnImports", null);
         BufferedWriter importsWriter = new BufferedWriter(new FileWriter(tempImports.toFile()));
-
         for (String i : imports) {
             importsWriter.append(i).append("\n");
         }
-
         importsWriter.close();
 
         Path outputPath = Path.of("./rosetta-source/src/main/rosetta/mapping-functions.rosetta");
