@@ -1,8 +1,6 @@
 package com.regnosys.model;
 
-import com.regnosys.rosetta.rosetta.RosettaBasicType;
-import com.regnosys.rosetta.rosetta.RosettaEnumeration;
-import com.regnosys.rosetta.rosetta.RosettaType;
+import com.regnosys.rosetta.rosetta.*;
 import com.regnosys.rosetta.rosetta.simple.Attribute;
 import com.regnosys.rosetta.rosetta.simple.Data;
 import org.apache.commons.lang3.StringUtils;
@@ -21,7 +19,8 @@ public class RosettaMappingFunctionGenerator {
 
     public void generateMappingFunctions(Data cdmType) throws IOException {
         functionToGenerateQueue = new LinkedList<>();
-        functionToGenerateQueue.add(new FunctionToGenerate(cdmType, null, false, List.of()));
+        String attributeName = toLowerFirstChar(cdmType.getName());
+        functionToGenerateQueue.add(new FunctionToGenerate(cdmType, attributeName, false, List.of()));
         imports = new HashSet<>();
         Path tempContents = Files.createTempFile("mappingFnContent", null);
         BufferedWriter contentWriter = new BufferedWriter(new FileWriter(tempContents.toFile()));
@@ -62,7 +61,7 @@ public class RosettaMappingFunctionGenerator {
         for (Attribute attribute : cdmType.getAttributes()) {
             List<String> metas = getMetas(attribute);
             RosettaType type = attribute.getTypeCall().getType();
-            if (type instanceof RosettaBasicType || type instanceof RosettaEnumeration) {
+            if (type instanceof RosettaBasicType || type instanceof RosettaEnumeration || type instanceof RosettaRecordType || type instanceof RosettaTypeAlias) {
                 if (metas.isEmpty()) {
                     generateAttributeSetter(sb, attribute.getName(), attribute.getCard().isIsMany(), isOutputMulti);
                 } else {
