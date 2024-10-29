@@ -1,10 +1,12 @@
 package com.regnosys.model;
 
+import com.regnosys.rosetta.RosettaEcoreUtil;
 import com.regnosys.rosetta.rosetta.*;
 import com.regnosys.rosetta.rosetta.simple.Attribute;
 import com.regnosys.rosetta.rosetta.simple.Data;
 import org.apache.commons.lang3.StringUtils;
 
+import javax.inject.Inject;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,6 +16,8 @@ import java.nio.file.Path;
 import java.util.*;
 
 public class RosettaMappingFunctionGenerator {
+    @Inject
+    private RosettaEcoreUtil rosettaEcoreUtil;
     private Queue<FunctionToGenerate> functionsToGenerateQueue;
     private Set<String> imports;
     private Set<FunctionToGenerate> queuedForGeneration;
@@ -61,7 +65,7 @@ public class RosettaMappingFunctionGenerator {
 
         generateFunctionHeader(sb, functionToGenerate, generateDataMappingFunctionName(functionToGenerate), true);
 
-        for (Attribute attribute : cdmType.getAttributes()) {
+        for (Attribute attribute : rosettaEcoreUtil.getAllAttributes(cdmType)) {
             List<String> metas = getMetas(attribute);
             RosettaType type = attribute.getTypeCall().getType();
             if (type instanceof RosettaBasicType || type instanceof RosettaEnumeration || type instanceof RosettaRecordType || type instanceof RosettaTypeAlias) {
