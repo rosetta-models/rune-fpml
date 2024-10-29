@@ -140,7 +140,7 @@ public class RosettaMappingFunctionGenerator {
     }
 
     private String generateNonDataMappingFunctionName(FunctionToGenerate functionToGenerate) {
-        return "Map%s".formatted(StringUtils.capitalize(functionToGenerate.attributeName));
+        return "Map%s%s".formatted(StringUtils.capitalize(functionToGenerate.attributeName), functionToGenerate.isMulti ? "List" : "");
     }
 
     private String generateDataMappingFunctionName(FunctionToGenerate functionToGenerate) {
