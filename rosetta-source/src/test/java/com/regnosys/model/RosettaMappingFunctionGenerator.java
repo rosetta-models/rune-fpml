@@ -22,7 +22,7 @@ public class RosettaMappingFunctionGenerator {
 
         while (!functionToGenerateQueue.isEmpty()) {
             FunctionToGenerate functionToGenerate = functionToGenerateQueue.remove();
-            String mappingFunction = functionToGenerate.outputType instanceof Data ? generateDataTypeMappingFunction(functionToGenerate) : generateBasicTypeMappingFunction(functionToGenerate);
+            String mappingFunction = functionToGenerate.outputType instanceof Data ? generateDataTypeMappingFunction(functionToGenerate) : generateNonDataTypeMappingFunction(functionToGenerate);
             sb.append(mappingFunction);
             sb.append("\n\n");
         }
@@ -46,17 +46,17 @@ public class RosettaMappingFunctionGenerator {
             RosettaType type = attribute.getTypeCall().getType();
             if (type instanceof RosettaBasicType basicType) {
                 if (metas.isEmpty()) {
-
+                    generateAttributeSetter(sb, attribute.getName(), attribute.getCard().isIsMany(), isOutputMulti);
                 } else {
                     FunctionToGenerate newFunctionToGenerate = new FunctionToGenerate(basicType, attribute.getName(), attribute.getCard().isIsMany(), metas);
                     functionToGenerateQueue.add(newFunctionToGenerate);
                 }
             } else if (type instanceof Data data) {
-                FunctionToGenerate newFunctionToGenerate = new FunctionToGenerate(data, attribute.getName(), attribute.getCard().isIsMany(), List.of());
+                FunctionToGenerate newFunctionToGenerate = new FunctionToGenerate(data, attribute.getName(), attribute.getCard().isIsMany(), metas);
                 functionToGenerateQueue.add(newFunctionToGenerate);
             } else if (type instanceof RosettaEnumeration enumeration) {
                 if (metas.isEmpty()) {
-
+                    generateAttributeSetter(sb, attribute.getName(), attribute.getCard().isIsMany(), isOutputMulti);
                 } else {
                     FunctionToGenerate newFunctionToGenerate = new FunctionToGenerate(enumeration, attribute.getName(), attribute.getCard().isIsMany(), metas);
                     functionToGenerateQueue.add(newFunctionToGenerate);
@@ -71,19 +71,23 @@ public class RosettaMappingFunctionGenerator {
         return sb.toString();
     }
 
-    private String generateBasicTypeMappingFunction(FunctionToGenerate functionToGenerate) {
+    private void generateAttributeSetter(StringBuilder sb, String attributeName, boolean isAttributeMulti, boolean isOutputMulti) {
+        String indent = isOutputMulti ? "\t" : "";
+        sb.append("%s\t\t\t%s: %sempty%s,\n".formatted(indent, attributeName, isAttributeMulti ? "[" : "", isAttributeMulti ? "]" : ""));
+    }
+
+    private String generateNonDataTypeMappingFunction(FunctionToGenerate functionToGenerate) {
         addImport(functionToGenerate);
-        RosettaBasicType cdmType = (RosettaBasicType) functionToGenerate.outputType;
         boolean isOutputMulti = functionToGenerate.isMulti;
-        String outputTypeName = cdmType.getName();
+        String outputTypeName = functionToGenerate.outputType.getName();
         String outputAttributeName = toLowerFirstChar(functionToGenerate.attributeName);
 
         StringBuilder sb = new StringBuilder();
         generateFunctionHeader(sb, generateNonDataMappingFunctionName(functionToGenerate.attributeName), outputAttributeName, outputTypeName, functionToGenerate.metas, isOutputMulti, false);
-
+        sb.deleteCharAt(sb.length() - 1);
+        sb.append(" empty");
 
         generateFooter(sb, isOutputMulti, false);
-
         return sb.toString();
     }
 
