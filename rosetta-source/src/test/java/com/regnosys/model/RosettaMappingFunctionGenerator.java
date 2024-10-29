@@ -39,7 +39,7 @@ public class RosettaMappingFunctionGenerator {
         String outputTypeName = cdmType.getName();
         String outputAttributeName = toLowerFirstChar(outputTypeName);
 
-        generateFunctionHeader(sb, generateDataMappingFunctionName(functionToGenerate), outputAttributeName, outputTypeName, isOutputMulti, true);
+        generateFunctionHeader(sb, generateDataMappingFunctionName(functionToGenerate), outputAttributeName, outputTypeName, functionToGenerate.metas, isOutputMulti, true);
 
         for (Attribute attribute : cdmType.getAttributes()) {
             List<String> metas = getMetas(attribute);
@@ -79,7 +79,7 @@ public class RosettaMappingFunctionGenerator {
         String outputAttributeName = toLowerFirstChar(functionToGenerate.attributeName);
 
         StringBuilder sb = new StringBuilder();
-        generateFunctionHeader(sb, generateNonDataMappingFunctionName(functionToGenerate.attributeName), outputAttributeName, outputTypeName, isOutputMulti, false);
+        generateFunctionHeader(sb, generateNonDataMappingFunctionName(functionToGenerate.attributeName), outputAttributeName, outputTypeName, functionToGenerate.metas, isOutputMulti, false);
 
 
         generateFooter(sb, isOutputMulti, false);
@@ -91,6 +91,7 @@ public class RosettaMappingFunctionGenerator {
                                         String mappingFunctionName,
                                         String outputAttributeName,
                                         String outputTypeName,
+                                        List<String> metas,
                                         boolean isOutputMulti,
                                         boolean isDataTypeFunction) {
         String indent = isOutputMulti ? "\t" : "";
@@ -100,6 +101,9 @@ public class RosettaMappingFunctionGenerator {
         sb.append("\t\tfpmlDataDocument fpml.DataDocument (0..1)\n");
         sb.append("\toutput:\n");
         sb.append("\t\t%s %s (0..%s)\n".formatted(outputAttributeName, outputTypeName, isOutputMulti ? "*" : "1"));
+        metas.forEach(m -> {
+            sb.append("\t\t// [metadata %s]\n".formatted(m));
+        });
         sb.append("\t%s %s:\n".formatted(isOutputMulti ? "add" : "set", outputAttributeName));
         if (isOutputMulti) {
             sb.append("\t\t[\n");
