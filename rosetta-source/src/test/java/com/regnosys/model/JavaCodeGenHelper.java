@@ -20,6 +20,7 @@ import com.regnosys.testing.RosettaTestingInjectorProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -41,7 +42,7 @@ public class JavaCodeGenHelper {
     @Inject
     RosettaMappingFunctionGenerator rosettaMappingFunctionGenerator;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Injector injector = new RosettaTestingInjectorProvider().getInjector();
         JavaCodeGenHelper helper = injector.getInstance(JavaCodeGenHelper.class);
         helper.runMappingGenerator();
@@ -74,7 +75,7 @@ public class JavaCodeGenHelper {
                 .forEach(System.out::println);
     }
 
-    public void runMappingGenerator() {
+    public void runMappingGenerator() throws IOException {
         List<RosettaModel> models = getModels();
 
         Set<Data> allTypes = findAllTypes(models);
@@ -82,7 +83,7 @@ public class JavaCodeGenHelper {
                 .filter(d -> d.getName().equals(ContactInformation.class.getSimpleName()) && d.getModel().getName().equals(ContactInformation.class.getPackageName()))
                 .findFirst().orElseThrow();
 
-        System.out.println(rosettaMappingFunctionGenerator.generateMappingFunctions(topLevelDataType));
+        rosettaMappingFunctionGenerator.generateMappingFunctions(topLevelDataType);
     }
 
     private List<RosettaModel> getModels() {

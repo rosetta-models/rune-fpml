@@ -7,28 +7,50 @@ import com.regnosys.rosetta.rosetta.simple.Attribute;
 import com.regnosys.rosetta.rosetta.simple.Data;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
 
 public class RosettaMappingFunctionGenerator {
     private Queue<FunctionToGenerate> functionToGenerateQueue;
     private Set<String> imports;
 
-    public String generateMappingFunctions(Data cdmType) {
+    public void generateMappingFunctions(Data cdmType) throws IOException {
         functionToGenerateQueue = new LinkedList<>();
         functionToGenerateQueue.add(new FunctionToGenerate(cdmType, null, false, List.of()));
         imports = new HashSet<>();
-        StringBuilder sb = new StringBuilder();
-        sb.append("import cdm.fpml.confirmation.* as fpml\n\n");
+        Path tempContents = Files.createTempFile("mappingFnContent", null);
+        BufferedWriter contentWriter = new BufferedWriter(new FileWriter(tempContents.toFile()));
+
+        contentWriter.append("import cdm.fpml.confirmation.* as fpml\n\n");
 
         while (!functionToGenerateQueue.isEmpty()) {
             FunctionToGenerate functionToGenerate = functionToGenerateQueue.remove();
             String mappingFunction = functionToGenerate.outputType instanceof Data ? generateDataTypeMappingFunction(functionToGenerate) : generateNonDataTypeMappingFunction(functionToGenerate);
-            sb.append(mappingFunction);
-            sb.append("\n\n");
+            contentWriter.append(mappingFunction);
+            contentWriter.append("\n\n");
+        }
+        contentWriter.close();
+
+        Path tempImports = Files.createTempFile("mappingFnImports", null);
+        BufferedWriter importsWriter = new BufferedWriter(new FileWriter(tempImports.toFile()));
+
+        for (String i : imports) {
+            importsWriter.append(i).append("\n");
         }
 
-        imports.forEach(i -> sb.insert(0, i + "\n"));
-        return sb.toString();
+        importsWriter.close();
+
+        Path outputPath = Path.of("./rosetta-source/src/main/rosetta/mapping-functions.rosetta");
+
+        try(OutputStream output = Files.newOutputStream(outputPath)) {
+            Files.copy(tempImports, output);
+            Files.copy(tempContents, output);
+        }
     }
 
     private String generateDataTypeMappingFunction(FunctionToGenerate functionToGenerate) {
