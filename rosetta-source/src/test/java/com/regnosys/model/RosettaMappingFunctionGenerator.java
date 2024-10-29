@@ -14,21 +14,25 @@ import java.nio.file.Path;
 import java.util.*;
 
 public class RosettaMappingFunctionGenerator {
-    private Queue<FunctionToGenerate> functionToGenerateQueue;
+    private Queue<FunctionToGenerate> functionsToGenerateQueue;
     private Set<String> imports;
+    private Set<FunctionToGenerate> queuedForGeneration;
 
     public void generateMappingFunctions(Data cdmType) throws IOException {
-        functionToGenerateQueue = new LinkedList<>();
-        String attributeName = toLowerFirstChar(cdmType.getName());
-        functionToGenerateQueue.add(new FunctionToGenerate(cdmType, attributeName, false, List.of()));
+        functionsToGenerateQueue = new LinkedList<>();
+        queuedForGeneration = new HashSet<>();
         imports = new HashSet<>();
+
+        String attributeName = toLowerFirstChar(cdmType.getName());
+        FunctionToGenerate topLevelFunction = new FunctionToGenerate(cdmType, attributeName, false, List.of());
+        addToQueue(topLevelFunction);
         Path tempContents = Files.createTempFile("mappingFnContent", null);
         BufferedWriter contentWriter = new BufferedWriter(new FileWriter(tempContents.toFile()));
 
         contentWriter.append("import cdm.fpml.confirmation.* as fpml\n\n");
 
-        while (!functionToGenerateQueue.isEmpty()) {
-            FunctionToGenerate functionToGenerate = functionToGenerateQueue.remove();
+        while (!functionsToGenerateQueue.isEmpty()) {
+            FunctionToGenerate functionToGenerate = functionsToGenerateQueue.remove();
             String mappingFunction = functionToGenerate.outputType instanceof Data ? generateDataTypeMappingFunction(functionToGenerate) : generateNonDataTypeMappingFunction(functionToGenerate);
             contentWriter.append(mappingFunction);
             contentWriter.append("\n\n");
@@ -66,12 +70,12 @@ public class RosettaMappingFunctionGenerator {
                     generateAttributeSetter(sb, attribute.getName(), attribute.getCard().isIsMany(), isOutputMulti);
                 } else {
                     FunctionToGenerate newFunctionToGenerate = new FunctionToGenerate(type, attribute.getName(), attribute.getCard().isIsMany(), metas);
-                    functionToGenerateQueue.add(newFunctionToGenerate);
+                    addToQueue(newFunctionToGenerate);
                     generateFunctionCallAttributeSetter(sb, newFunctionToGenerate, isOutputMulti);
                 }
             } else if (type instanceof Data data) {
                 FunctionToGenerate newFunctionToGenerate = new FunctionToGenerate(data, attribute.getName(), attribute.getCard().isIsMany(), metas);
-                functionToGenerateQueue.add(newFunctionToGenerate);
+                addToQueue(newFunctionToGenerate);
                 generateFunctionCallAttributeSetter(sb, newFunctionToGenerate, isOutputMulti);
             } else {
                 throw new UnsupportedOperationException("Unsupported type: " + type);
@@ -148,6 +152,13 @@ public class RosettaMappingFunctionGenerator {
                 .filter(a -> a.getAnnotation().getName().equals("metadata"))
                 .map(annotationRef -> annotationRef.getAttribute().getName())
                 .toList();
+    }
+
+    private void addToQueue(FunctionToGenerate newFunctionToGenerate) {
+        if (!queuedForGeneration.contains(newFunctionToGenerate)) {
+            functionsToGenerateQueue.add(newFunctionToGenerate);
+            queuedForGeneration.add(newFunctionToGenerate);
+        }
     }
 
     private void addImport(FunctionToGenerate function) {
