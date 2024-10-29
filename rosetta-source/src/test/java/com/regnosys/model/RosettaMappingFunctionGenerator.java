@@ -50,16 +50,19 @@ public class RosettaMappingFunctionGenerator {
                 } else {
                     FunctionToGenerate newFunctionToGenerate = new FunctionToGenerate(basicType, attribute.getName(), attribute.getCard().isIsMany(), metas);
                     functionToGenerateQueue.add(newFunctionToGenerate);
+                    generateFunctionCallAttributeSetter(sb, newFunctionToGenerate.attributeName, isOutputMulti);
                 }
             } else if (type instanceof Data data) {
                 FunctionToGenerate newFunctionToGenerate = new FunctionToGenerate(data, attribute.getName(), attribute.getCard().isIsMany(), metas);
                 functionToGenerateQueue.add(newFunctionToGenerate);
+                generateFunctionCallAttributeSetter(sb, newFunctionToGenerate.attributeName, isOutputMulti);
             } else if (type instanceof RosettaEnumeration enumeration) {
                 if (metas.isEmpty()) {
                     generateAttributeSetter(sb, attribute.getName(), attribute.getCard().isIsMany(), isOutputMulti);
                 } else {
                     FunctionToGenerate newFunctionToGenerate = new FunctionToGenerate(enumeration, attribute.getName(), attribute.getCard().isIsMany(), metas);
                     functionToGenerateQueue.add(newFunctionToGenerate);
+                    generateFunctionCallAttributeSetter(sb, newFunctionToGenerate.attributeName, isOutputMulti);
                 }
             } else {
                 throw new UnsupportedOperationException("Unsupported type: " + type);
@@ -69,6 +72,11 @@ public class RosettaMappingFunctionGenerator {
         generateFooter(sb, isOutputMulti, true);
 
         return sb.toString();
+    }
+
+    private void generateFunctionCallAttributeSetter(StringBuilder sb, String attributeName, boolean isOutputMulti) {
+        String indent = isOutputMulti ? "\t" : "";
+        sb.append("%s\t\t\t%s: %s(fpmlDataDocument),\n".formatted(indent, attributeName, generateNonDataMappingFunctionName(attributeName)));
     }
 
     private void generateAttributeSetter(StringBuilder sb, String attributeName, boolean isAttributeMulti, boolean isOutputMulti) {
