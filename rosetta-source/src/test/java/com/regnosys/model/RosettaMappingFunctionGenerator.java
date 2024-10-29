@@ -36,10 +36,8 @@ public class RosettaMappingFunctionGenerator {
         StringBuilder sb = new StringBuilder();
         Data cdmType = (Data) functionToGenerate.outputType;
         boolean isOutputMulti = functionToGenerate.isMulti;
-        String outputTypeName = cdmType.getName();
-        String outputAttributeName = toLowerFirstChar(outputTypeName);
 
-        generateFunctionHeader(sb, generateDataMappingFunctionName(functionToGenerate), outputAttributeName, outputTypeName, functionToGenerate.metas, isOutputMulti, true);
+        generateFunctionHeader(sb, functionToGenerate, generateDataMappingFunctionName(functionToGenerate), true);
 
         for (Attribute attribute : cdmType.getAttributes()) {
             List<String> metas = getMetas(attribute);
@@ -65,27 +63,12 @@ public class RosettaMappingFunctionGenerator {
         return sb.toString();
     }
 
-    private void generateFunctionCallAttributeSetter(StringBuilder sb, FunctionToGenerate functionToGenerate, boolean isOutputMulti) {
-        String indent = isOutputMulti ? "\t" : "";
-        String attributeName = functionToGenerate.attributeName;
-        boolean isDataType = functionToGenerate.outputType instanceof Data;
-        String mappingFunctionName = isDataType ? generateDataMappingFunctionName(functionToGenerate) : generateNonDataMappingFunctionName(functionToGenerate);
-        sb.append("%s\t\t\t%s: %s(fpmlDataDocument),\n".formatted(indent, attributeName, mappingFunctionName));
-    }
-
-    private void generateAttributeSetter(StringBuilder sb, String attributeName, boolean isAttributeMulti, boolean isOutputMulti) {
-        String indent = isOutputMulti ? "\t" : "";
-        sb.append("%s\t\t\t%s: %sempty%s,\n".formatted(indent, attributeName, isAttributeMulti ? "[" : "", isAttributeMulti ? "]" : ""));
-    }
-
     private String generateNonDataTypeMappingFunction(FunctionToGenerate functionToGenerate) {
         addImport(functionToGenerate);
         boolean isOutputMulti = functionToGenerate.isMulti;
-        String outputTypeName = functionToGenerate.outputType.getName();
-        String outputAttributeName = toLowerFirstChar(functionToGenerate.attributeName);
 
         StringBuilder sb = new StringBuilder();
-        generateFunctionHeader(sb, generateNonDataMappingFunctionName(functionToGenerate), outputAttributeName, outputTypeName, functionToGenerate.metas, isOutputMulti, false);
+        generateFunctionHeader(sb, functionToGenerate, generateNonDataMappingFunctionName(functionToGenerate), false);
         sb.deleteCharAt(sb.length() - 1);
         sb.append(" empty");
 
@@ -94,13 +77,14 @@ public class RosettaMappingFunctionGenerator {
     }
 
     private void generateFunctionHeader(StringBuilder sb,
+                                        FunctionToGenerate functionToGenerate,
                                         String mappingFunctionName,
-                                        String outputAttributeName,
-                                        String outputTypeName,
-                                        List<String> metas,
-                                        boolean isOutputMulti,
                                         boolean isDataTypeFunction) {
+        boolean isOutputMulti = functionToGenerate.isMulti;
         String indent = isOutputMulti ? "\t" : "";
+        String outputTypeName = functionToGenerate.outputType.getName();
+        String outputAttributeName = toLowerFirstChar(functionToGenerate.attributeName) + (isOutputMulti ? "List" : "");
+        List<String> metas = functionToGenerate.metas;
 
         sb.append("func %s:\n".formatted(mappingFunctionName));
         sb.append("\tinputs:\n");
@@ -125,6 +109,19 @@ public class RosettaMappingFunctionGenerator {
         if (isOutputMulti) {
             sb.append("\t\t]\n");
         }
+    }
+
+    private void generateFunctionCallAttributeSetter(StringBuilder sb, FunctionToGenerate functionToGenerate, boolean isOutputMulti) {
+        String indent = isOutputMulti ? "\t" : "";
+        String attributeName = functionToGenerate.attributeName;
+        boolean isDataType = functionToGenerate.outputType instanceof Data;
+        String mappingFunctionName = isDataType ? generateDataMappingFunctionName(functionToGenerate) : generateNonDataMappingFunctionName(functionToGenerate);
+        sb.append("%s\t\t\t%s: %s(fpmlDataDocument),\n".formatted(indent, attributeName, mappingFunctionName));
+    }
+
+    private void generateAttributeSetter(StringBuilder sb, String attributeName, boolean isAttributeMulti, boolean isOutputMulti) {
+        String indent = isOutputMulti ? "\t" : "";
+        sb.append("%s\t\t\t%s: %sempty%s,\n".formatted(indent, attributeName, isAttributeMulti ? "[" : "", isAttributeMulti ? "]" : ""));
     }
 
     private List<String> getMetas(Attribute attribute) {
