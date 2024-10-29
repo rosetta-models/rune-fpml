@@ -23,8 +23,7 @@ public class RosettaMappingFunctionGenerator {
         queuedForGeneration = new HashSet<>();
         imports = new HashSet<>();
 
-        String attributeName = toLowerFirstChar(cdmType.getName());
-        FunctionToGenerate topLevelFunction = new FunctionToGenerate(cdmType, attributeName, false, List.of());
+        FunctionToGenerate topLevelFunction = new FunctionToGenerate(cdmType, null, false, List.of());
         addToQueue(topLevelFunction);
         Path tempContents = Files.createTempFile("mappingFnContent", null);
         BufferedWriter contentWriter = new BufferedWriter(new FileWriter(tempContents.toFile()));
@@ -71,12 +70,12 @@ public class RosettaMappingFunctionGenerator {
                 } else {
                     FunctionToGenerate newFunctionToGenerate = new FunctionToGenerate(type, attribute.getName(), attribute.getCard().isIsMany(), metas);
                     addToQueue(newFunctionToGenerate);
-                    generateFunctionCallAttributeSetter(sb, newFunctionToGenerate, isOutputMulti);
+                    generateFunctionCallAttributeSetter(sb, attribute.getName(), newFunctionToGenerate, isOutputMulti);
                 }
             } else if (type instanceof Data data) {
-                FunctionToGenerate newFunctionToGenerate = new FunctionToGenerate(data, attribute.getName(), attribute.getCard().isIsMany(), metas);
+                FunctionToGenerate newFunctionToGenerate = new FunctionToGenerate(data, null, attribute.getCard().isIsMany(), metas);
                 addToQueue(newFunctionToGenerate);
-                generateFunctionCallAttributeSetter(sb, newFunctionToGenerate, isOutputMulti);
+                generateFunctionCallAttributeSetter(sb, attribute.getName(), newFunctionToGenerate, isOutputMulti);
             } else {
                 throw new UnsupportedOperationException("Unsupported type: " + type);
             }
@@ -106,7 +105,7 @@ public class RosettaMappingFunctionGenerator {
         boolean isOutputMulti = functionToGenerate.isMulti;
         String indent = isOutputMulti ? "\t" : "";
         String outputTypeName = functionToGenerate.outputType.getName();
-        String outputAttributeName = toLowerFirstChar(functionToGenerate.attributeName) + (isOutputMulti ? "List" : "");
+        String outputAttributeName = toLowerFirstChar(outputTypeName) + (isOutputMulti ? "List" : "");
         List<String> metas = functionToGenerate.metas;
 
         sb.append("func %s:\n".formatted(mappingFunctionName));
@@ -134,9 +133,8 @@ public class RosettaMappingFunctionGenerator {
         }
     }
 
-    private void generateFunctionCallAttributeSetter(StringBuilder sb, FunctionToGenerate functionToGenerate, boolean isOutputMulti) {
+    private void generateFunctionCallAttributeSetter(StringBuilder sb, String attributeName, FunctionToGenerate functionToGenerate, boolean isOutputMulti) {
         String indent = isOutputMulti ? "\t" : "";
-        String attributeName = functionToGenerate.attributeName;
         boolean isDataType = functionToGenerate.outputType instanceof Data;
         String mappingFunctionName = isDataType ? generateDataMappingFunctionName(functionToGenerate) : generateNonDataMappingFunctionName(functionToGenerate);
         sb.append("%s\t\t\t%s: %s(fpmlDataDocument),\n".formatted(indent, attributeName, mappingFunctionName));
