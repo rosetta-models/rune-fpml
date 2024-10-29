@@ -44,11 +44,11 @@ public class RosettaMappingFunctionGenerator {
         for (Attribute attribute : cdmType.getAttributes()) {
             List<String> metas = getMetas(attribute);
             RosettaType type = attribute.getTypeCall().getType();
-            if (type instanceof RosettaBasicType basicType) {
+            if (type instanceof RosettaBasicType || type instanceof RosettaEnumeration) {
                 if (metas.isEmpty()) {
                     generateAttributeSetter(sb, attribute.getName(), attribute.getCard().isIsMany(), isOutputMulti);
                 } else {
-                    FunctionToGenerate newFunctionToGenerate = new FunctionToGenerate(basicType, attribute.getName(), attribute.getCard().isIsMany(), metas);
+                    FunctionToGenerate newFunctionToGenerate = new FunctionToGenerate(type, attribute.getName(), attribute.getCard().isIsMany(), metas);
                     functionToGenerateQueue.add(newFunctionToGenerate);
                     generateFunctionCallAttributeSetter(sb, newFunctionToGenerate.attributeName, isOutputMulti);
                 }
@@ -56,21 +56,12 @@ public class RosettaMappingFunctionGenerator {
                 FunctionToGenerate newFunctionToGenerate = new FunctionToGenerate(data, attribute.getName(), attribute.getCard().isIsMany(), metas);
                 functionToGenerateQueue.add(newFunctionToGenerate);
                 generateFunctionCallAttributeSetter(sb, newFunctionToGenerate.attributeName, isOutputMulti);
-            } else if (type instanceof RosettaEnumeration enumeration) {
-                if (metas.isEmpty()) {
-                    generateAttributeSetter(sb, attribute.getName(), attribute.getCard().isIsMany(), isOutputMulti);
-                } else {
-                    FunctionToGenerate newFunctionToGenerate = new FunctionToGenerate(enumeration, attribute.getName(), attribute.getCard().isIsMany(), metas);
-                    functionToGenerateQueue.add(newFunctionToGenerate);
-                    generateFunctionCallAttributeSetter(sb, newFunctionToGenerate.attributeName, isOutputMulti);
-                }
             } else {
                 throw new UnsupportedOperationException("Unsupported type: " + type);
             }
         }
 
         generateFooter(sb, isOutputMulti, true);
-
         return sb.toString();
     }
 
@@ -113,9 +104,7 @@ public class RosettaMappingFunctionGenerator {
         sb.append("\t\tfpmlDataDocument fpml.DataDocument (0..1)\n");
         sb.append("\toutput:\n");
         sb.append("\t\t%s %s (0..%s)\n".formatted(outputAttributeName, outputTypeName, isOutputMulti ? "*" : "1"));
-        metas.forEach(m -> {
-            sb.append("\t\t// [metadata %s]\n".formatted(m));
-        });
+        metas.forEach(m -> sb.append("\t\t// [metadata %s]\n".formatted(m)));
         sb.append("\t%s %s:\n".formatted(isOutputMulti ? "add" : "set", outputAttributeName));
         if (isOutputMulti) {
             sb.append("\t\t[\n");
