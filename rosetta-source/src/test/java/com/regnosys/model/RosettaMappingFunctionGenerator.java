@@ -151,6 +151,7 @@ public class RosettaMappingFunctionGenerator {
         return attribute.getAnnotations().stream()
                 .filter(a -> a.getAnnotation().getName().equals("metadata"))
                 .map(annotationRef -> annotationRef.getAttribute().getName())
+                .filter(m -> m.equals("scheme"))
                 .toList();
     }
 
@@ -170,11 +171,13 @@ public class RosettaMappingFunctionGenerator {
     }
 
     private String generateNonDataMappingFunctionName(FunctionToGenerate functionToGenerate) {
-        return "Map%s%s".formatted(StringUtils.capitalize(functionToGenerate.attributeName), functionToGenerate.isMulti ? "List" : "");
+        String withScheme = functionToGenerate.metas.isEmpty() ? "" : "WithScheme";
+        return "Map%s%s%s".formatted(StringUtils.capitalize(functionToGenerate.attributeName), withScheme, functionToGenerate.isMulti ? "List" : "");
     }
 
     private String generateDataMappingFunctionName(FunctionToGenerate functionToGenerate) {
-        return "Map%s%s".formatted(functionToGenerate.outputType.getName(), functionToGenerate.isMulti ? "List" : "");
+        String withScheme = functionToGenerate.metas.isEmpty() ? "" : "WithScheme";
+        return "Map%s%s%s".formatted(functionToGenerate.outputType.getName(), withScheme, functionToGenerate.isMulti ? "List" : "");
     }
 
     private record FunctionToGenerate(RosettaType outputType, String attributeName, boolean isMulti, List<String> metas) {}

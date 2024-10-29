@@ -5,8 +5,8 @@ import cdm.base.staticdata.asset.credit.*
 import cdm.base.math.*
 import cdm.legaldocumentation.master.*
 import cdm.base.staticdata.asset.common.*
-import com.rosetta.model.*
 import cdm.base.datetime.*
+import com.rosetta.model.*
 import cdm.legaldocumentation.common.*
 import cdm.observable.asset.*
 import cdm.product.asset.*
@@ -45,7 +45,7 @@ func MapTrade:
 	set trade:
 		Trade {
 			tradeIdentifier: MapTradeIdentifierList(fpmlDataDocument),
-			tradeDate: MapTradeDate(fpmlDataDocument),
+			tradeDate: empty,
 			tradeTime: MapTimeZone(fpmlDataDocument),
 			tradableProduct: MapTradableProduct(fpmlDataDocument),
 			party: MapPartyList(fpmlDataDocument),
@@ -147,24 +147,15 @@ func MapTradeIdentifierList:
 		]
 
 
-func MapTradeDate:
-	inputs:
-		fpmlDataDocument fpml.DataDocument (0..1)
-	output:
-		tradeDate date (0..1)
-		// [metadata id]
-	set tradeDate: empty
-
 func MapTimeZone:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		tradeTime TimeZone (0..1)
-		// [metadata id]
 	set tradeTime:
 		TimeZone {
 			time: empty,
-			location: MapLocation(fpmlDataDocument),
+			location: MapLocationWithScheme(fpmlDataDocument),
 		}
 
 
@@ -192,7 +183,7 @@ func MapPartyList:
 		[
 			Party {
 				partyId: MapPartyIdentifierList(fpmlDataDocument),
-				name: MapName(fpmlDataDocument),
+				name: MapNameWithScheme(fpmlDataDocument),
 				businessUnit: MapBusinessUnitList(fpmlDataDocument),
 				person: MapNaturalPersonList(fpmlDataDocument),
 				personRole: MapNaturalPersonRoleList(fpmlDataDocument),
@@ -238,7 +229,7 @@ func MapContractDetails:
 	set contractDetails:
 		ContractDetails {
 			documentation: MapLegalAgreementList(fpmlDataDocument),
-			governingLaw: MapGoverningLaw(fpmlDataDocument),
+			governingLaw: MapGoverningLawWithScheme(fpmlDataDocument),
 		}
 
 
@@ -265,9 +256,9 @@ func MapAccountList:
 		[
 			Account {
 				partyReference: MapParty(fpmlDataDocument),
-				accountNumber: MapAccountNumber(fpmlDataDocument),
-				accountName: MapAccountName(fpmlDataDocument),
-				accountType: MapAccountType(fpmlDataDocument),
+				accountNumber: MapAccountNumberWithScheme(fpmlDataDocument),
+				accountName: MapAccountNameWithScheme(fpmlDataDocument),
+				accountType: MapAccountTypeWithScheme(fpmlDataDocument),
 				accountBeneficiary: MapParty(fpmlDataDocument),
 				servicingParty: MapParty(fpmlDataDocument),
 			}
@@ -303,7 +294,6 @@ func MapObservationList:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		observationsList Observation (0..*)
-		// [metadata reference]
 	add observationsList:
 		[
 			Observation {
@@ -389,7 +379,7 @@ func MapPrice:
 		}
 
 
-func MapLocation:
+func MapLocationWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -466,13 +456,13 @@ func MapPartyIdentifierList:
 	add partyIdList:
 		[
 			PartyIdentifier {
-				identifier: MapIdentifier(fpmlDataDocument),
+				identifier: MapIdentifierWithScheme(fpmlDataDocument),
 				identifierType: empty,
 			}
 		]
 
 
-func MapName:
+func MapNameWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -503,7 +493,7 @@ func MapNaturalPersonList:
 	add personList:
 		[
 			NaturalPerson {
-				personId: MapPersonIdentifierList(fpmlDataDocument),
+				personId: MapPersonIdentifierWithSchemeList(fpmlDataDocument),
 				honorific: empty,
 				firstName: empty,
 				middleName: [empty],
@@ -526,7 +516,7 @@ func MapNaturalPersonRoleList:
 		[
 			NaturalPersonRole {
 				personReference: MapNaturalPerson(fpmlDataDocument),
-				role: MapRoleList(fpmlDataDocument),
+				role: MapRoleWithSchemeList(fpmlDataDocument),
 			}
 		]
 
@@ -539,9 +529,9 @@ func MapAccount:
 	set account:
 		Account {
 			partyReference: MapParty(fpmlDataDocument),
-			accountNumber: MapAccountNumber(fpmlDataDocument),
-			accountName: MapAccountName(fpmlDataDocument),
-			accountType: MapAccountType(fpmlDataDocument),
+			accountNumber: MapAccountNumberWithScheme(fpmlDataDocument),
+			accountName: MapAccountNameWithScheme(fpmlDataDocument),
+			accountType: MapAccountTypeWithScheme(fpmlDataDocument),
 			accountBeneficiary: MapParty(fpmlDataDocument),
 			servicingParty: MapParty(fpmlDataDocument),
 		}
@@ -566,11 +556,10 @@ func MapParty:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		partyReference Party (0..1)
-		// [metadata reference]
 	set partyReference:
 		Party {
 			partyId: MapPartyIdentifierList(fpmlDataDocument),
-			name: MapName(fpmlDataDocument),
+			name: MapNameWithScheme(fpmlDataDocument),
 			businessUnit: MapBusinessUnitList(fpmlDataDocument),
 			person: MapNaturalPersonList(fpmlDataDocument),
 			personRole: MapNaturalPersonRoleList(fpmlDataDocument),
@@ -584,11 +573,10 @@ func MapParty:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		ownershipPartyReference Party (0..1)
-		// [metadata reference]
 	set ownershipPartyReference:
 		Party {
 			partyId: MapPartyIdentifierList(fpmlDataDocument),
-			name: MapName(fpmlDataDocument),
+			name: MapNameWithScheme(fpmlDataDocument),
 			businessUnit: MapBusinessUnitList(fpmlDataDocument),
 			person: MapNaturalPersonList(fpmlDataDocument),
 			personRole: MapNaturalPersonRoleList(fpmlDataDocument),
@@ -604,8 +592,8 @@ func MapLegalEntity:
 		executionVenue LegalEntity (0..1)
 	set executionVenue:
 		LegalEntity {
-			entityId: MapEntityIdList(fpmlDataDocument),
-			name: MapName(fpmlDataDocument),
+			entityId: MapEntityIdWithSchemeList(fpmlDataDocument),
+			name: MapNameWithScheme(fpmlDataDocument),
 		}
 
 
@@ -637,7 +625,7 @@ func MapLegalAgreementList:
 		]
 
 
-func MapGoverningLaw:
+func MapGoverningLawWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -665,7 +653,7 @@ func MapIdentifierList:
 		[
 			Identifier {
 				issuerReference: MapParty(fpmlDataDocument),
-				issuer: MapIssuer(fpmlDataDocument),
+				issuer: MapIssuerWithScheme(fpmlDataDocument),
 				assignedIdentifier: MapAssignedIdentifierList(fpmlDataDocument),
 			}
 		]
@@ -676,7 +664,6 @@ func MapCollateralPortfolioList:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		collateralPortfolioList CollateralPortfolio (0..*)
-		// [metadata reference]
 	add collateralPortfolioList:
 		[
 			CollateralPortfolio {
@@ -701,7 +688,7 @@ func MapCollateralProvisions:
 		}
 
 
-func MapAccountNumber:
+func MapAccountNumberWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -709,7 +696,7 @@ func MapAccountNumber:
 		// [metadata scheme]
 	set accountNumber: empty
 
-func MapAccountName:
+func MapAccountNameWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -717,7 +704,7 @@ func MapAccountName:
 		// [metadata scheme]
 	set accountName: empty
 
-func MapAccountType:
+func MapAccountTypeWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -730,11 +717,10 @@ func MapParty:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		accountBeneficiary Party (0..1)
-		// [metadata reference]
 	set accountBeneficiary:
 		Party {
 			partyId: MapPartyIdentifierList(fpmlDataDocument),
-			name: MapName(fpmlDataDocument),
+			name: MapNameWithScheme(fpmlDataDocument),
 			businessUnit: MapBusinessUnitList(fpmlDataDocument),
 			person: MapNaturalPersonList(fpmlDataDocument),
 			personRole: MapNaturalPersonRoleList(fpmlDataDocument),
@@ -748,11 +734,10 @@ func MapParty:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		servicingParty Party (0..1)
-		// [metadata reference]
 	set servicingParty:
 		Party {
 			partyId: MapPartyIdentifierList(fpmlDataDocument),
-			name: MapName(fpmlDataDocument),
+			name: MapNameWithScheme(fpmlDataDocument),
 			businessUnit: MapBusinessUnitList(fpmlDataDocument),
 			person: MapNaturalPersonList(fpmlDataDocument),
 			personRole: MapNaturalPersonRoleList(fpmlDataDocument),
@@ -874,12 +859,12 @@ func MapResourceList:
 	add publiclyAvailableInformationList:
 		[
 			Resource {
-				resourceId: MapResourceId(fpmlDataDocument),
-				resourceType: MapResourceType(fpmlDataDocument),
-				language: MapLanguage(fpmlDataDocument),
+				resourceId: MapResourceIdWithScheme(fpmlDataDocument),
+				resourceType: MapResourceTypeWithScheme(fpmlDataDocument),
+				language: MapLanguageWithScheme(fpmlDataDocument),
 				sizeInBytes: empty,
 				length: MapResourceLength(fpmlDataDocument),
-				mimeType: MapMimeType(fpmlDataDocument),
+				mimeType: MapMimeTypeWithScheme(fpmlDataDocument),
 				name: empty,
 				comments: empty,
 				string: empty,
@@ -953,10 +938,10 @@ func MapLoan:
 	set loan:
 		Loan {
 			borrower: MapLegalEntityList(fpmlDataDocument),
-			lien: MapLien(fpmlDataDocument),
-			facilityType: MapFacilityType(fpmlDataDocument),
+			lien: MapLienWithScheme(fpmlDataDocument),
+			facilityType: MapFacilityTypeWithScheme(fpmlDataDocument),
 			creditAgreementDate: empty,
-			tranche: MapTranche(fpmlDataDocument),
+			tranche: MapTrancheWithScheme(fpmlDataDocument),
 		}
 
 
@@ -993,7 +978,6 @@ func MapCommodity:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		commodity Commodity (0..1)
-		// [metadata address]
 	set commodity:
 		Commodity {
 			commodityProductDefinition: MapCommodityProductDefinition(fpmlDataDocument),
@@ -1039,7 +1023,7 @@ func MapIdentifierList:
 		[
 			Identifier {
 				issuerReference: MapParty(fpmlDataDocument),
-				issuer: MapIssuer(fpmlDataDocument),
+				issuer: MapIssuerWithScheme(fpmlDataDocument),
 				assignedIdentifier: MapAssignedIdentifierList(fpmlDataDocument),
 			}
 		]
@@ -1068,12 +1052,11 @@ func MapPartyList:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		partyReferenceList Party (0..*)
-		// [metadata reference]
 	add partyReferenceList:
 		[
 			Party {
 				partyId: MapPartyIdentifierList(fpmlDataDocument),
-				name: MapName(fpmlDataDocument),
+				name: MapNameWithScheme(fpmlDataDocument),
 				businessUnit: MapBusinessUnitList(fpmlDataDocument),
 				person: MapNaturalPersonList(fpmlDataDocument),
 				personRole: MapNaturalPersonRoleList(fpmlDataDocument),
@@ -1083,7 +1066,7 @@ func MapPartyList:
 		]
 
 
-func MapIdentifier:
+func MapIdentifierWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -1099,12 +1082,12 @@ func MapIdentifier:
 	set identifier:
 		Identifier {
 			issuerReference: MapParty(fpmlDataDocument),
-			issuer: MapIssuer(fpmlDataDocument),
+			issuer: MapIssuerWithScheme(fpmlDataDocument),
 			assignedIdentifier: MapAssignedIdentifierList(fpmlDataDocument),
 		}
 
 
-func MapPersonIdentifierList:
+func MapPersonIdentifierWithSchemeList:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -1113,9 +1096,9 @@ func MapPersonIdentifierList:
 	add personIdList:
 		[
 			PersonIdentifier {
-				identifier: MapIdentifier(fpmlDataDocument),
+				identifier: MapIdentifierWithScheme(fpmlDataDocument),
 				identifierType: empty,
-				country: MapCountry(fpmlDataDocument),
+				country: MapCountryWithScheme(fpmlDataDocument),
 			}
 		]
 
@@ -1125,10 +1108,9 @@ func MapNaturalPerson:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		personReference NaturalPerson (0..1)
-		// [metadata reference]
 	set personReference:
 		NaturalPerson {
-			personId: MapPersonIdentifierList(fpmlDataDocument),
+			personId: MapPersonIdentifierWithSchemeList(fpmlDataDocument),
 			honorific: empty,
 			firstName: empty,
 			middleName: [empty],
@@ -1141,7 +1123,7 @@ func MapNaturalPerson:
 		}
 
 
-func MapRoleList:
+func MapRoleWithSchemeList:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -1176,13 +1158,13 @@ func MapAddressList:
 				street: [empty],
 				city: empty,
 				state: empty,
-				country: MapCountry(fpmlDataDocument),
+				country: MapCountryWithScheme(fpmlDataDocument),
 				postalCode: empty,
 			}
 		]
 
 
-func MapEntityIdList:
+func MapEntityIdWithSchemeList:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -1200,7 +1182,7 @@ func MapIdentifier:
 	set listId:
 		Identifier {
 			issuerReference: MapParty(fpmlDataDocument),
-			issuer: MapIssuer(fpmlDataDocument),
+			issuer: MapIssuerWithScheme(fpmlDataDocument),
 			assignedIdentifier: MapAssignedIdentifierList(fpmlDataDocument),
 		}
 
@@ -1214,7 +1196,7 @@ func MapIdentifierList:
 		[
 			Identifier {
 				issuerReference: MapParty(fpmlDataDocument),
-				issuer: MapIssuer(fpmlDataDocument),
+				issuer: MapIssuerWithScheme(fpmlDataDocument),
 				assignedIdentifier: MapAssignedIdentifierList(fpmlDataDocument),
 			}
 		]
@@ -1291,11 +1273,10 @@ func MapParty:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		issuerReference Party (0..1)
-		// [metadata reference]
 	set issuerReference:
 		Party {
 			partyId: MapPartyIdentifierList(fpmlDataDocument),
-			name: MapName(fpmlDataDocument),
+			name: MapNameWithScheme(fpmlDataDocument),
 			businessUnit: MapBusinessUnitList(fpmlDataDocument),
 			person: MapNaturalPersonList(fpmlDataDocument),
 			personRole: MapNaturalPersonRoleList(fpmlDataDocument),
@@ -1304,7 +1285,7 @@ func MapParty:
 		}
 
 
-func MapIssuer:
+func MapIssuerWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -1320,7 +1301,7 @@ func MapAssignedIdentifierList:
 	add assignedIdentifierList:
 		[
 			AssignedIdentifier {
-				identifier: MapIdentifier(fpmlDataDocument),
+				identifier: MapIdentifierWithScheme(fpmlDataDocument),
 				version: empty,
 			}
 		]
@@ -1334,7 +1315,7 @@ func MapIdentifier:
 	set portfolioIdentifier:
 		Identifier {
 			issuerReference: MapParty(fpmlDataDocument),
-			issuer: MapIssuer(fpmlDataDocument),
+			issuer: MapIssuerWithScheme(fpmlDataDocument),
 			assignedIdentifier: MapAssignedIdentifierList(fpmlDataDocument),
 		}
 
@@ -1374,7 +1355,6 @@ func MapLegalAgreement:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		legalAgreement LegalAgreement (0..1)
-		// [metadata reference]
 	set legalAgreement:
 		LegalAgreement {
 			agreementTerms: MapAgreementTerms(fpmlDataDocument),
@@ -1432,7 +1412,7 @@ func MapTimeZone:
 	set observationTime:
 		TimeZone {
 			time: empty,
-			location: MapLocation(fpmlDataDocument),
+			location: MapLocationWithScheme(fpmlDataDocument),
 		}
 
 
@@ -1443,8 +1423,8 @@ func MapInformationSource:
 		informationSource InformationSource (0..1)
 	set informationSource:
 		InformationSource {
-			sourceProvider: MapSourceProvider(fpmlDataDocument),
-			sourcePage: MapSourcePage(fpmlDataDocument),
+			sourceProvider: MapSourceProviderWithScheme(fpmlDataDocument),
+			sourcePage: MapSourcePageWithScheme(fpmlDataDocument),
 			sourcePageHeading: empty,
 		}
 
@@ -1466,7 +1446,6 @@ func MapCommodityPayout:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		commodityPayout CommodityPayout (0..1)
-		// [metadata reference]
 	set commodityPayout:
 		CommodityPayout {
 			averagingFeature: MapAveragingCalculation(fpmlDataDocument),
@@ -1486,7 +1465,6 @@ func MapCreditDefaultPayout:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		creditDefaultPayout CreditDefaultPayout (0..1)
-		// [metadata reference]
 	set creditDefaultPayout:
 		CreditDefaultPayout {
 			generalTerms: MapGeneralTerms(fpmlDataDocument),
@@ -1500,7 +1478,6 @@ func MapForwardPayout:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		forwardPayout ForwardPayout (0..1)
-		// [metadata reference]
 	set forwardPayout:
 		ForwardPayout {
 			underlier: MapProduct(fpmlDataDocument),
@@ -1515,11 +1492,10 @@ func MapInterestRatePayout:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		interestRatePayout InterestRatePayout (0..1)
-		// [metadata reference]
 	set interestRatePayout:
 		InterestRatePayout {
 			rateSpecification: MapRateSpecification(fpmlDataDocument),
-			dayCountFraction: MapDayCountFraction(fpmlDataDocument),
+			dayCountFraction: MapDayCountFractionWithScheme(fpmlDataDocument),
 			calculationPeriodDates: MapCalculationPeriodDates(fpmlDataDocument),
 			paymentDates: MapPaymentDates(fpmlDataDocument),
 			paymentDate: MapAdjustableDate(fpmlDataDocument),
@@ -1541,7 +1517,6 @@ func MapOptionPayout:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		optionPayout OptionPayout (0..1)
-		// [metadata reference]
 	set optionPayout:
 		OptionPayout {
 			buyerSeller: MapBuyerSeller(fpmlDataDocument),
@@ -1560,7 +1535,6 @@ func MapAssetPayout:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		assetPayout AssetPayout (0..1)
-		// [metadata reference]
 	set assetPayout:
 		AssetPayout {
 			assetLeg: MapAssetLegList(fpmlDataDocument),
@@ -1576,7 +1550,6 @@ func MapSettlementTerms:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		settlementTerms SettlementTerms (0..1)
-		// [metadata reference]
 	set settlementTerms:
 		SettlementTerms {
 			cashSettlementTerms: MapCashSettlementTermsList(fpmlDataDocument),
@@ -1589,7 +1562,6 @@ func MapPerformancePayout:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		performancePayout PerformancePayout (0..1)
-		// [metadata reference]
 	set performancePayout:
 		PerformancePayout {
 			observationTerms: MapObservationTerms(fpmlDataDocument),
@@ -1610,7 +1582,6 @@ func MapFixedPricePayout:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		fixedPricePayout FixedPricePayout (0..1)
-		// [metadata reference]
 	set fixedPricePayout:
 		FixedPricePayout {
 			paymentDates: MapPaymentDates(fpmlDataDocument),
@@ -1631,7 +1602,7 @@ func MapScheduledTransfer:
 		}
 
 
-func MapResourceId:
+func MapResourceIdWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -1639,7 +1610,7 @@ func MapResourceId:
 		// [metadata scheme]
 	set resourceId: empty
 
-func MapResourceType:
+func MapResourceTypeWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -1647,7 +1618,7 @@ func MapResourceType:
 		// [metadata scheme]
 	set resourceType: empty
 
-func MapLanguage:
+func MapLanguageWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -1667,7 +1638,7 @@ func MapResourceLength:
 		}
 
 
-func MapMimeType:
+func MapMimeTypeWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -1682,8 +1653,8 @@ func MapLegalEntity:
 		referenceEntity LegalEntity (0..1)
 	set referenceEntity:
 		LegalEntity {
-			entityId: MapEntityIdList(fpmlDataDocument),
-			name: MapName(fpmlDataDocument),
+			entityId: MapEntityIdWithSchemeList(fpmlDataDocument),
+			name: MapNameWithScheme(fpmlDataDocument),
 		}
 
 
@@ -1742,13 +1713,13 @@ func MapLegalEntityList:
 	add borrowerList:
 		[
 			LegalEntity {
-				entityId: MapEntityIdList(fpmlDataDocument),
-				name: MapName(fpmlDataDocument),
+				entityId: MapEntityIdWithSchemeList(fpmlDataDocument),
+				name: MapNameWithScheme(fpmlDataDocument),
 			}
 		]
 
 
-func MapLien:
+func MapLienWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -1756,7 +1727,7 @@ func MapLien:
 		// [metadata scheme]
 	set lien: empty
 
-func MapFacilityType:
+func MapFacilityTypeWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -1764,7 +1735,7 @@ func MapFacilityType:
 		// [metadata scheme]
 	set facilityType: empty
 
-func MapTranche:
+func MapTrancheWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -1829,7 +1800,7 @@ func MapCommodityProductDefinition:
 			referenceFramework: MapCommodityReferenceFramework(fpmlDataDocument),
 			priceSource: MapPriceSource(fpmlDataDocument),
 			commodityInfoPublisher: empty,
-			exchangeId: MapExchangeId(fpmlDataDocument),
+			exchangeId: MapExchangeIdWithScheme(fpmlDataDocument),
 		}
 
 
@@ -1900,7 +1871,6 @@ func MapPriceScheduleList:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		priceList PriceSchedule (0..*)
-		// [metadata location]
 	add priceList:
 		[
 			PriceSchedule {
@@ -1919,7 +1889,6 @@ func MapNonNegativeQuantityScheduleList:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		quantityList NonNegativeQuantitySchedule (0..*)
-		// [metadata location]
 	add quantityList:
 		[
 			NonNegativeQuantitySchedule {
@@ -1939,18 +1908,6 @@ func MapBuyerSeller:
 		}
 
 
-func MapSettlementTerms:
-	inputs:
-		fpmlDataDocument fpml.DataDocument (0..1)
-	output:
-		settlementTerms SettlementTerms (0..1)
-	set settlementTerms:
-		SettlementTerms {
-			cashSettlementTerms: MapCashSettlementTermsList(fpmlDataDocument),
-			physicalSettlementTerms: MapPhysicalSettlementTerms(fpmlDataDocument),
-		}
-
-
 func MapAdjustableOrRelativeDate:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
@@ -1963,7 +1920,7 @@ func MapAdjustableOrRelativeDate:
 		}
 
 
-func MapCountry:
+func MapCountryWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -2086,28 +2043,12 @@ func MapFloatingRateOption:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		rateOption FloatingRateOption (0..1)
-		// [metadata location]
 	set rateOption:
 		FloatingRateOption {
-			floatingRateIndex: MapFloatingRateIndex(fpmlDataDocument),
-			inflationRateIndex: MapInflationRateIndex(fpmlDataDocument),
+			floatingRateIndex: MapFloatingRateIndexWithScheme(fpmlDataDocument),
+			inflationRateIndex: MapInflationRateIndexWithScheme(fpmlDataDocument),
 			indexTenor: MapPeriod(fpmlDataDocument),
 			indexReferenceInformation: MapIndexReferenceInformation(fpmlDataDocument),
-		}
-
-
-func MapCommodity:
-	inputs:
-		fpmlDataDocument fpml.DataDocument (0..1)
-	output:
-		commodity Commodity (0..1)
-		// [metadata location]
-	set commodity:
-		Commodity {
-			commodityProductDefinition: MapCommodityProductDefinition(fpmlDataDocument),
-			priceQuoteType: empty,
-			deliveryDateReference: MapDeliveryDateParameters(fpmlDataDocument),
-			description: empty,
 		}
 
 
@@ -2116,11 +2057,10 @@ func MapProductIdentifierList:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		productIdentifierList ProductIdentifier (0..*)
-		// [metadata location]
 	add productIdentifierList:
 		[
 			ProductIdentifier {
-				identifier: MapIdentifier(fpmlDataDocument),
+				identifier: MapIdentifierWithScheme(fpmlDataDocument),
 				source: empty,
 			}
 		]
@@ -2131,16 +2071,15 @@ func MapQuotedCurrencyPair:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		currencyPair QuotedCurrencyPair (0..1)
-		// [metadata location]
 	set currencyPair:
 		QuotedCurrencyPair {
-			currency1: MapCurrency1(fpmlDataDocument),
-			currency2: MapCurrency2(fpmlDataDocument),
+			currency1: MapCurrency1WithScheme(fpmlDataDocument),
+			currency2: MapCurrency2WithScheme(fpmlDataDocument),
 			quoteBasis: empty,
 		}
 
 
-func MapSourceProvider:
+func MapSourceProviderWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -2148,7 +2087,7 @@ func MapSourceProvider:
 		// [metadata scheme]
 	set sourceProvider: empty
 
-func MapSourcePage:
+func MapSourcePageWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -2248,7 +2187,7 @@ func MapFxFeature:
 		fxFeature FxFeature (0..1)
 	set fxFeature:
 		FxFeature {
-			referenceCurrency: MapReferenceCurrency(fpmlDataDocument),
+			referenceCurrency: MapReferenceCurrencyWithScheme(fpmlDataDocument),
 			composite: MapComposite(fpmlDataDocument),
 			quanto: MapQuanto(fpmlDataDocument),
 			crossCurrency: MapComposite(fpmlDataDocument),
@@ -2278,7 +2217,7 @@ func MapGeneralTerms:
 			referenceInformation: MapReferenceInformation(fpmlDataDocument),
 			indexReferenceInformation: MapCreditIndexReferenceInformation(fpmlDataDocument),
 			basketReferenceInformation: MapBasketReferenceInformation(fpmlDataDocument),
-			additionalTerm: MapAdditionalTermList(fpmlDataDocument),
+			additionalTerm: MapAdditionalTermWithSchemeList(fpmlDataDocument),
 			substitution: empty,
 			modifiedEquityDelivery: empty,
 		}
@@ -2326,7 +2265,7 @@ func MapRateSpecification:
 		}
 
 
-func MapDayCountFraction:
+func MapDayCountFractionWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -2344,7 +2283,7 @@ func MapAdjustableDate:
 			unadjustedDate: empty,
 			dateAdjustments: MapBusinessDayAdjustments(fpmlDataDocument),
 			dateAdjustmentsReference: MapBusinessDayAdjustments(fpmlDataDocument),
-			adjustedDate: MapAdjustedDate(fpmlDataDocument),
+			adjustedDate: empty,
 		}
 
 
@@ -2375,7 +2314,7 @@ func MapDiscountingMethod:
 		DiscountingMethod {
 			discountingType: empty,
 			discountRate: empty,
-			discountRateDayCountFraction: MapDiscountRateDayCountFraction(fpmlDataDocument),
+			discountRateDayCountFraction: MapDiscountRateDayCountFractionWithScheme(fpmlDataDocument),
 		}
 
 
@@ -2589,7 +2528,7 @@ func MapFxFeatureList:
 	add fxFeatureList:
 		[
 			FxFeature {
-				referenceCurrency: MapReferenceCurrency(fpmlDataDocument),
+				referenceCurrency: MapReferenceCurrencyWithScheme(fpmlDataDocument),
 				composite: MapComposite(fpmlDataDocument),
 				quanto: MapQuanto(fpmlDataDocument),
 				crossCurrency: MapComposite(fpmlDataDocument),
@@ -2635,7 +2574,6 @@ func MapPriceScheduleList:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		initialValuationPriceList PriceSchedule (0..*)
-		// [metadata address]
 	add initialValuationPriceList:
 		[
 			PriceSchedule {
@@ -2654,7 +2592,6 @@ func MapPriceScheduleList:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		interimValuationPriceList PriceSchedule (0..*)
-		// [metadata address]
 	add interimValuationPriceList:
 		[
 			PriceSchedule {
@@ -2673,7 +2610,6 @@ func MapPriceScheduleList:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		finalValuationPriceList PriceSchedule (0..*)
-		// [metadata address]
 	add finalValuationPriceList:
 		[
 			PriceSchedule {
@@ -2705,8 +2641,8 @@ func MapLegalEntity:
 		primaryObligor LegalEntity (0..1)
 	set primaryObligor:
 		LegalEntity {
-			entityId: MapEntityIdList(fpmlDataDocument),
-			name: MapName(fpmlDataDocument),
+			entityId: MapEntityIdWithSchemeList(fpmlDataDocument),
+			name: MapNameWithScheme(fpmlDataDocument),
 		}
 
 
@@ -2715,11 +2651,10 @@ func MapLegalEntity:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		primaryObligorReference LegalEntity (0..1)
-		// [metadata reference]
 	set primaryObligorReference:
 		LegalEntity {
-			entityId: MapEntityIdList(fpmlDataDocument),
-			name: MapName(fpmlDataDocument),
+			entityId: MapEntityIdWithSchemeList(fpmlDataDocument),
+			name: MapNameWithScheme(fpmlDataDocument),
 		}
 
 
@@ -2730,8 +2665,8 @@ func MapLegalEntity:
 		guarantor LegalEntity (0..1)
 	set guarantor:
 		LegalEntity {
-			entityId: MapEntityIdList(fpmlDataDocument),
-			name: MapName(fpmlDataDocument),
+			entityId: MapEntityIdWithSchemeList(fpmlDataDocument),
+			name: MapNameWithScheme(fpmlDataDocument),
 		}
 
 
@@ -2802,7 +2737,7 @@ func MapCalculationAgent:
 		CalculationAgent {
 			calculationAgentParty: empty,
 			calculationAgentPartyEnum: empty,
-			calculationAgentBusinessCenter: MapCalculationAgentBusinessCenter(fpmlDataDocument),
+			calculationAgentBusinessCenter: MapCalculationAgentBusinessCenterWithScheme(fpmlDataDocument),
 		}
 
 
@@ -2856,7 +2791,7 @@ func MapCommodityReferenceFramework:
 			commodityName: empty,
 			capacityUnit: empty,
 			weatherUnit: empty,
-			currency: MapCurrency(fpmlDataDocument),
+			currency: MapCurrencyWithScheme(fpmlDataDocument),
 		}
 
 
@@ -2867,14 +2802,14 @@ func MapPriceSource:
 		priceSource PriceSource (0..1)
 	set priceSource:
 		PriceSource {
-			pricePublisher: MapPricePublisher(fpmlDataDocument),
+			pricePublisher: MapPricePublisherWithScheme(fpmlDataDocument),
 			priceSourceLocation: empty,
 			priceSourceHeading: empty,
 			priceSourceTime: empty,
 		}
 
 
-func MapExchangeId:
+func MapExchangeIdWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -2903,7 +2838,7 @@ func MapAdjustableDate:
 			unadjustedDate: empty,
 			dateAdjustments: MapBusinessDayAdjustments(fpmlDataDocument),
 			dateAdjustmentsReference: MapBusinessDayAdjustments(fpmlDataDocument),
-			adjustedDate: MapAdjustedDate(fpmlDataDocument),
+			adjustedDate: empty,
 		}
 
 
@@ -2944,19 +2879,6 @@ func MapDebtEconomicsList:
 		]
 
 
-func MapNonNegativeQuantityScheduleList:
-	inputs:
-		fpmlDataDocument fpml.DataDocument (0..1)
-	output:
-		quantityList NonNegativeQuantitySchedule (0..*)
-		// [metadata address]
-	add quantityList:
-		[
-			NonNegativeQuantitySchedule {
-			}
-		]
-
-
 func MapUnitType:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
@@ -2967,7 +2889,7 @@ func MapUnitType:
 			capacityUnit: empty,
 			weatherUnit: empty,
 			financialUnit: empty,
-			currency: MapCurrency(fpmlDataDocument),
+			currency: MapCurrencyWithScheme(fpmlDataDocument),
 		}
 
 
@@ -3008,7 +2930,7 @@ func MapAdjustableDate:
 			unadjustedDate: empty,
 			dateAdjustments: MapBusinessDayAdjustments(fpmlDataDocument),
 			dateAdjustmentsReference: MapBusinessDayAdjustments(fpmlDataDocument),
-			adjustedDate: MapAdjustedDate(fpmlDataDocument),
+			adjustedDate: empty,
 		}
 
 
@@ -3126,11 +3048,10 @@ func MapParty:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		payerPartyReference Party (0..1)
-		// [metadata reference]
 	set payerPartyReference:
 		Party {
 			partyId: MapPartyIdentifierList(fpmlDataDocument),
-			name: MapName(fpmlDataDocument),
+			name: MapNameWithScheme(fpmlDataDocument),
 			businessUnit: MapBusinessUnitList(fpmlDataDocument),
 			person: MapNaturalPersonList(fpmlDataDocument),
 			personRole: MapNaturalPersonRoleList(fpmlDataDocument),
@@ -3144,13 +3065,12 @@ func MapAccount:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		payerAccountReference Account (0..1)
-		// [metadata reference]
 	set payerAccountReference:
 		Account {
 			partyReference: MapParty(fpmlDataDocument),
-			accountNumber: MapAccountNumber(fpmlDataDocument),
-			accountName: MapAccountName(fpmlDataDocument),
-			accountType: MapAccountType(fpmlDataDocument),
+			accountNumber: MapAccountNumberWithScheme(fpmlDataDocument),
+			accountName: MapAccountNameWithScheme(fpmlDataDocument),
+			accountType: MapAccountTypeWithScheme(fpmlDataDocument),
 			accountBeneficiary: MapParty(fpmlDataDocument),
 			servicingParty: MapParty(fpmlDataDocument),
 		}
@@ -3161,11 +3081,10 @@ func MapParty:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		receiverPartyReference Party (0..1)
-		// [metadata reference]
 	set receiverPartyReference:
 		Party {
 			partyId: MapPartyIdentifierList(fpmlDataDocument),
-			name: MapName(fpmlDataDocument),
+			name: MapNameWithScheme(fpmlDataDocument),
 			businessUnit: MapBusinessUnitList(fpmlDataDocument),
 			person: MapNaturalPersonList(fpmlDataDocument),
 			personRole: MapNaturalPersonRoleList(fpmlDataDocument),
@@ -3179,19 +3098,18 @@ func MapAccount:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		receiverAccountReference Account (0..1)
-		// [metadata reference]
 	set receiverAccountReference:
 		Account {
 			partyReference: MapParty(fpmlDataDocument),
-			accountNumber: MapAccountNumber(fpmlDataDocument),
-			accountName: MapAccountName(fpmlDataDocument),
-			accountType: MapAccountType(fpmlDataDocument),
+			accountNumber: MapAccountNumberWithScheme(fpmlDataDocument),
+			accountName: MapAccountNameWithScheme(fpmlDataDocument),
+			accountType: MapAccountTypeWithScheme(fpmlDataDocument),
 			accountBeneficiary: MapParty(fpmlDataDocument),
 			servicingParty: MapParty(fpmlDataDocument),
 		}
 
 
-func MapFloatingRateIndex:
+func MapFloatingRateIndexWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -3199,7 +3117,7 @@ func MapFloatingRateIndex:
 		// [metadata scheme]
 	set floatingRateIndex: empty
 
-func MapInflationRateIndex:
+func MapInflationRateIndexWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -3226,12 +3144,12 @@ func MapIndexReferenceInformation:
 		indexReferenceInformation IndexReferenceInformation (0..1)
 	set indexReferenceInformation:
 		IndexReferenceInformation {
-			indexName: MapIndexName(fpmlDataDocument),
-			indexId: MapIndexIdList(fpmlDataDocument),
+			indexName: MapIndexNameWithScheme(fpmlDataDocument),
+			indexId: MapIndexIdWithSchemeList(fpmlDataDocument),
 		}
 
 
-func MapCurrency1:
+func MapCurrency1WithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -3239,7 +3157,7 @@ func MapCurrency1:
 		// [metadata scheme]
 	set currency1: empty
 
-func MapCurrency2:
+func MapCurrency2WithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -3266,7 +3184,7 @@ func MapSpreadSchedule:
 		spread SpreadSchedule (0..1)
 	set spread:
 		SpreadSchedule {
-			spreadScheduleType: MapSpreadScheduleType(fpmlDataDocument),
+			spreadScheduleType: MapSpreadScheduleTypeWithScheme(fpmlDataDocument),
 		}
 
 
@@ -3292,7 +3210,7 @@ func MapAdjustableDatesList:
 			AdjustableDates {
 				unadjustedDate: [empty],
 				dateAdjustments: MapBusinessDayAdjustments(fpmlDataDocument),
-				adjustedDate: MapAdjustedDateList(fpmlDataDocument),
+				adjustedDate: [empty],
 			}
 		]
 
@@ -3412,12 +3330,11 @@ func MapBusinessDayAdjustments:
 		}
 
 
-func MapReferenceCurrency:
+func MapReferenceCurrencyWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		referenceCurrency string (0..1)
-		// [metadata id]
 		// [metadata scheme]
 	set referenceCurrency: empty
 
@@ -3508,7 +3425,7 @@ func MapCreditIndexReferenceInformation:
 			indexSeries: empty,
 			indexAnnexVersion: empty,
 			indexAnnexDate: empty,
-			indexAnnexSource: MapIndexAnnexSource(fpmlDataDocument),
+			indexAnnexSource: MapIndexAnnexSourceWithScheme(fpmlDataDocument),
 			excludedReferenceEntity: MapReferenceInformationList(fpmlDataDocument),
 			tranche: MapTranche(fpmlDataDocument),
 			settledEntityMatrix: MapSettledEntityMatrix(fpmlDataDocument),
@@ -3524,8 +3441,8 @@ func MapBasketReferenceInformation:
 		basketReferenceInformation BasketReferenceInformation (0..1)
 	set basketReferenceInformation:
 		BasketReferenceInformation {
-			basketName: MapBasketName(fpmlDataDocument),
-			basketId: MapBasketIdList(fpmlDataDocument),
+			basketName: MapBasketNameWithScheme(fpmlDataDocument),
+			basketId: MapBasketIdWithSchemeList(fpmlDataDocument),
 			referencePool: MapReferencePool(fpmlDataDocument),
 			nthToDefault: empty,
 			mthToDefault: empty,
@@ -3533,7 +3450,7 @@ func MapBasketReferenceInformation:
 		}
 
 
-func MapAdditionalTermList:
+func MapAdditionalTermWithSchemeList:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -3589,7 +3506,7 @@ func MapObligations:
 			notContingent: empty,
 			excluded: empty,
 			othReferenceEntityObligations: empty,
-			designatedPriority: MapDesignatedPriority(fpmlDataDocument),
+			designatedPriority: MapDesignatedPriorityWithScheme(fpmlDataDocument),
 			cashSettlementOnly: empty,
 			deliveryOfCommitments: empty,
 			continuity: empty,
@@ -3645,9 +3562,9 @@ func MapInflationRateSpecification:
 	set inflationRate:
 		InflationRateSpecification {
 			inflationLag: MapOffset(fpmlDataDocument),
-			indexSource: MapIndexSource(fpmlDataDocument),
-			mainPublication: MapMainPublication(fpmlDataDocument),
-			interpolationMethod: MapInterpolationMethod(fpmlDataDocument),
+			indexSource: MapIndexSourceWithScheme(fpmlDataDocument),
+			mainPublication: MapMainPublicationWithScheme(fpmlDataDocument),
+			interpolationMethod: MapInterpolationMethodWithScheme(fpmlDataDocument),
 			initialIndexLevel: empty,
 			fallbackBondApplicable: empty,
 			calculationMethod: empty,
@@ -3661,7 +3578,6 @@ func MapBusinessDayAdjustments:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		dateAdjustmentsReference BusinessDayAdjustments (0..1)
-		// [metadata reference]
 	set dateAdjustmentsReference:
 		BusinessDayAdjustments {
 			businessDayConvention: empty,
@@ -3669,20 +3585,11 @@ func MapBusinessDayAdjustments:
 		}
 
 
-func MapAdjustedDate:
-	inputs:
-		fpmlDataDocument fpml.DataDocument (0..1)
-	output:
-		adjustedDate date (0..1)
-		// [metadata id]
-	set adjustedDate: empty
-
 func MapCalculationPeriodDates:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		calculationPeriodDatesReference CalculationPeriodDates (0..1)
-		// [metadata reference]
 	set calculationPeriodDatesReference:
 		CalculationPeriodDates {
 			effectiveDate: MapAdjustableOrRelativeDate(fpmlDataDocument),
@@ -3719,7 +3626,7 @@ func MapRelativeDateOffset:
 			businessDayConvention: empty,
 			businessCenters: MapBusinessCenters(fpmlDataDocument),
 			businessCentersReference: MapBusinessCenters(fpmlDataDocument),
-			dateRelativeTo: MapDateRelativeTo(fpmlDataDocument),
+			dateRelativeTo: empty,
 			adjustedDate: empty,
 		}
 
@@ -3734,7 +3641,7 @@ func MapAdjustableDate:
 			unadjustedDate: empty,
 			dateAdjustments: MapBusinessDayAdjustments(fpmlDataDocument),
 			dateAdjustmentsReference: MapBusinessDayAdjustments(fpmlDataDocument),
-			adjustedDate: MapAdjustedDate(fpmlDataDocument),
+			adjustedDate: empty,
 		}
 
 
@@ -3772,7 +3679,7 @@ func MapBusinessDayAdjustments:
 		}
 
 
-func MapDiscountRateDayCountFraction:
+func MapDiscountRateDayCountFractionWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -3832,7 +3739,7 @@ func MapProductIdentifier:
 		bond ProductIdentifier (0..1)
 	set bond:
 		ProductIdentifier {
-			identifier: MapIdentifier(fpmlDataDocument),
+			identifier: MapIdentifierWithScheme(fpmlDataDocument),
 			source: empty,
 		}
 
@@ -3945,7 +3852,7 @@ func MapBusinessCenterTime:
 	set pricingTime:
 		BusinessCenterTime {
 			hourMinuteTime: empty,
-			businessCenter: MapBusinessCenter(fpmlDataDocument),
+			businessCenter: MapBusinessCenterWithScheme(fpmlDataDocument),
 		}
 
 
@@ -4065,7 +3972,7 @@ func MapBusinessCenterTime:
 	set valuationTime:
 		BusinessCenterTime {
 			hourMinuteTime: empty,
-			businessCenter: MapBusinessCenter(fpmlDataDocument),
+			businessCenter: MapBusinessCenterWithScheme(fpmlDataDocument),
 		}
 
 
@@ -4268,7 +4175,6 @@ func MapPriceSchedule:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		price PriceSchedule (0..1)
-		// [metadata address]
 	set price:
 		PriceSchedule {
 			perUnitOf: MapUnitType(fpmlDataDocument),
@@ -4287,8 +4193,8 @@ func MapBusinessCenters:
 		businessCenters BusinessCenters (0..1)
 	set businessCenters:
 		BusinessCenters {
-			businessCenter: MapBusinessCenterList(fpmlDataDocument),
-			commodityBusinessCalendar: MapCommodityBusinessCalendarList(fpmlDataDocument),
+			businessCenter: MapBusinessCenterWithSchemeList(fpmlDataDocument),
+			commodityBusinessCalendar: MapCommodityBusinessCalendarWithSchemeList(fpmlDataDocument),
 			businessCentersReference: MapBusinessCenters(fpmlDataDocument),
 		}
 
@@ -4302,7 +4208,7 @@ func MapInterestRatePayoutList:
 		[
 			InterestRatePayout {
 				rateSpecification: MapRateSpecification(fpmlDataDocument),
-				dayCountFraction: MapDayCountFraction(fpmlDataDocument),
+				dayCountFraction: MapDayCountFractionWithScheme(fpmlDataDocument),
 				calculationPeriodDates: MapCalculationPeriodDates(fpmlDataDocument),
 				paymentDates: MapPaymentDates(fpmlDataDocument),
 				paymentDate: MapAdjustableDate(fpmlDataDocument),
@@ -4318,19 +4224,6 @@ func MapInterestRatePayoutList:
 				spreadCalculationMethod: empty,
 			}
 		]
-
-
-func MapCreditDefaultPayout:
-	inputs:
-		fpmlDataDocument fpml.DataDocument (0..1)
-	output:
-		creditDefaultPayout CreditDefaultPayout (0..1)
-	set creditDefaultPayout:
-		CreditDefaultPayout {
-			generalTerms: MapGeneralTerms(fpmlDataDocument),
-			protectionTerms: MapProtectionTermsList(fpmlDataDocument),
-			transactedPrice: MapTransactedPrice(fpmlDataDocument),
-		}
 
 
 func MapOptionPayoutList:
@@ -4535,7 +4428,7 @@ func MapExtendibleProvision:
 		}
 
 
-func MapCalculationAgentBusinessCenter:
+func MapCalculationAgentBusinessCenterWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -4553,7 +4446,7 @@ func MapMoney:
 		}
 
 
-func MapCurrency:
+func MapCurrencyWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -4561,7 +4454,7 @@ func MapCurrency:
 		// [metadata scheme]
 	set currency: empty
 
-func MapPricePublisher:
+func MapPricePublisherWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -4639,7 +4532,6 @@ func MapMoney:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		notionalAmountReference Money (0..1)
-		// [metadata reference]
 	set notionalAmountReference:
 		Money {
 		}
@@ -4683,7 +4575,7 @@ func MapNumberRange:
 		}
 
 
-func MapIndexName:
+func MapIndexNameWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -4691,7 +4583,7 @@ func MapIndexName:
 		// [metadata scheme]
 	set indexName: empty
 
-func MapIndexIdList:
+func MapIndexIdWithSchemeList:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -4701,23 +4593,13 @@ func MapIndexIdList:
 		[ empty		]
 
 
-func MapSpreadScheduleType:
+func MapSpreadScheduleTypeWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		spreadScheduleType SpreadScheduleTypeEnum (0..1)
 		// [metadata scheme]
 	set spreadScheduleType: empty
-
-func MapAdjustedDateList:
-	inputs:
-		fpmlDataDocument fpml.DataDocument (0..1)
-	output:
-		adjustedDateList date (0..*)
-		// [metadata id]
-	add adjustedDateList:
-		[ empty		]
-
 
 func MapLag:
 	inputs:
@@ -4804,7 +4686,7 @@ func MapRelativeDateOffset:
 			businessDayConvention: empty,
 			businessCenters: MapBusinessCenters(fpmlDataDocument),
 			businessCentersReference: MapBusinessCenters(fpmlDataDocument),
-			dateRelativeTo: MapDateRelativeTo(fpmlDataDocument),
+			dateRelativeTo: empty,
 			adjustedDate: empty,
 		}
 
@@ -4829,7 +4711,7 @@ func MapBusinessCenterTime:
 	set fixingTime:
 		BusinessCenterTime {
 			hourMinuteTime: empty,
-			businessCenter: MapBusinessCenter(fpmlDataDocument),
+			businessCenter: MapBusinessCenterWithScheme(fpmlDataDocument),
 		}
 
 
@@ -4862,7 +4744,7 @@ func MapAssetDeliveryProfileList:
 		]
 
 
-func MapIndexAnnexSource:
+func MapIndexAnnexSourceWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -4910,12 +4792,12 @@ func MapSettledEntityMatrix:
 		settledEntityMatrix SettledEntityMatrix (0..1)
 	set settledEntityMatrix:
 		SettledEntityMatrix {
-			matrixSource: MapMatrixSource(fpmlDataDocument),
+			matrixSource: MapMatrixSourceWithScheme(fpmlDataDocument),
 			publicationDate: empty,
 		}
 
 
-func MapBasketName:
+func MapBasketNameWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -4923,7 +4805,7 @@ func MapBasketName:
 		// [metadata scheme]
 	set basketName: empty
 
-func MapBasketIdList:
+func MapBasketIdWithSchemeList:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -4965,7 +4847,7 @@ func MapRestructuring:
 	set restructuring:
 		Restructuring {
 			applicable: empty,
-			restructuringType: MapRestructuringType(fpmlDataDocument),
+			restructuringType: MapRestructuringTypeWithScheme(fpmlDataDocument),
 			multipleHolderObligation: empty,
 			multipleCreditEventNotices: empty,
 		}
@@ -5002,7 +4884,7 @@ func MapSpecifiedCurrency:
 	set specifiedCurrency:
 		SpecifiedCurrency {
 			applicable: empty,
-			currency: MapCurrency(fpmlDataDocument),
+			currency: MapCurrencyWithScheme(fpmlDataDocument),
 		}
 
 
@@ -5014,11 +4896,11 @@ func MapNotDomesticCurrency:
 	set notDomesticCurrency:
 		NotDomesticCurrency {
 			applicable: empty,
-			currency: MapCurrency(fpmlDataDocument),
+			currency: MapCurrencyWithScheme(fpmlDataDocument),
 		}
 
 
-func MapDesignatedPriority:
+func MapDesignatedPriorityWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -5035,7 +4917,7 @@ func MapInterestShortFall:
 		InterestShortFall {
 			interestShortfallCap: empty,
 			compounding: empty,
-			rateSource: MapRateSource(fpmlDataDocument),
+			rateSource: MapRateSourceWithScheme(fpmlDataDocument),
 		}
 
 
@@ -5108,7 +4990,7 @@ func MapOffset:
 		}
 
 
-func MapIndexSource:
+func MapIndexSourceWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -5116,7 +4998,7 @@ func MapIndexSource:
 		// [metadata scheme]
 	set indexSource: empty
 
-func MapMainPublication:
+func MapMainPublicationWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -5124,7 +5006,7 @@ func MapMainPublication:
 		// [metadata scheme]
 	set mainPublication: empty
 
-func MapInterpolationMethod:
+func MapInterpolationMethodWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -5142,7 +5024,7 @@ func MapRelativeDateOffset:
 			businessDayConvention: empty,
 			businessCenters: MapBusinessCenters(fpmlDataDocument),
 			businessCentersReference: MapBusinessCenters(fpmlDataDocument),
-			dateRelativeTo: MapDateRelativeTo(fpmlDataDocument),
+			dateRelativeTo: empty,
 			adjustedDate: empty,
 		}
 
@@ -5152,22 +5034,13 @@ func MapBusinessCenters:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		businessCentersReference BusinessCenters (0..1)
-		// [metadata reference]
 	set businessCentersReference:
 		BusinessCenters {
-			businessCenter: MapBusinessCenterList(fpmlDataDocument),
-			commodityBusinessCalendar: MapCommodityBusinessCalendarList(fpmlDataDocument),
+			businessCenter: MapBusinessCenterWithSchemeList(fpmlDataDocument),
+			commodityBusinessCalendar: MapCommodityBusinessCalendarWithSchemeList(fpmlDataDocument),
 			businessCentersReference: MapBusinessCenters(fpmlDataDocument),
 		}
 
-
-func MapDateRelativeTo:
-	inputs:
-		fpmlDataDocument fpml.DataDocument (0..1)
-	output:
-		dateRelativeTo date (0..1)
-		// [metadata reference]
-	set dateRelativeTo: empty
 
 func MapCalculationPeriodList:
 	inputs:
@@ -5402,7 +5275,6 @@ func MapFixedRateSpecification:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		strikeReference FixedRateSpecification (0..1)
-		// [metadata reference]
 	set strikeReference:
 		FixedRateSpecification {
 			rateSchedule: MapRateSchedule(fpmlDataDocument),
@@ -5457,7 +5329,7 @@ func MapAutomaticExercise:
 		}
 
 
-func MapBusinessCenter:
+func MapBusinessCenterWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -5472,8 +5344,8 @@ func MapInformationSource:
 		primarySource InformationSource (0..1)
 	set primarySource:
 		InformationSource {
-			sourceProvider: MapSourceProvider(fpmlDataDocument),
-			sourcePage: MapSourcePage(fpmlDataDocument),
+			sourceProvider: MapSourceProviderWithScheme(fpmlDataDocument),
+			sourcePage: MapSourcePageWithScheme(fpmlDataDocument),
 			sourcePageHeading: empty,
 		}
 
@@ -5485,8 +5357,8 @@ func MapInformationSource:
 		secondarySource InformationSource (0..1)
 	set secondarySource:
 		InformationSource {
-			sourceProvider: MapSourceProvider(fpmlDataDocument),
-			sourcePage: MapSourcePage(fpmlDataDocument),
+			sourceProvider: MapSourceProviderWithScheme(fpmlDataDocument),
+			sourcePage: MapSourcePageWithScheme(fpmlDataDocument),
 			sourcePageHeading: empty,
 		}
 
@@ -5541,7 +5413,7 @@ func MapRelativeDateOffset:
 			businessDayConvention: empty,
 			businessCenters: MapBusinessCenters(fpmlDataDocument),
 			businessCentersReference: MapBusinessCenters(fpmlDataDocument),
-			dateRelativeTo: MapDateRelativeTo(fpmlDataDocument),
+			dateRelativeTo: empty,
 			adjustedDate: empty,
 		}
 
@@ -5556,7 +5428,7 @@ func MapRelativeDateOffset:
 			businessDayConvention: empty,
 			businessCenters: MapBusinessCenters(fpmlDataDocument),
 			businessCentersReference: MapBusinessCenters(fpmlDataDocument),
-			dateRelativeTo: MapDateRelativeTo(fpmlDataDocument),
+			dateRelativeTo: empty,
 			adjustedDate: empty,
 		}
 
@@ -5646,8 +5518,8 @@ func MapCashCollateralValuationMethod:
 		CashCollateralValuationMethod {
 			applicableCsa: empty,
 			cashCollateralCurrency: empty,
-			cashCollateralInterestRate: MapCashCollateralInterestRate(fpmlDataDocument),
-			agreedDiscountRate: MapAgreedDiscountRate(fpmlDataDocument),
+			cashCollateralInterestRate: MapCashCollateralInterestRateWithScheme(fpmlDataDocument),
+			agreedDiscountRate: MapAgreedDiscountRateWithScheme(fpmlDataDocument),
 			protectedParty: [empty],
 			prescribedDocumentationAdjustment: empty,
 		}
@@ -5686,7 +5558,7 @@ func MapRelativeDateOffset:
 			businessDayConvention: empty,
 			businessCenters: MapBusinessCenters(fpmlDataDocument),
 			businessCentersReference: MapBusinessCenters(fpmlDataDocument),
-			dateRelativeTo: MapDateRelativeTo(fpmlDataDocument),
+			dateRelativeTo: empty,
 			adjustedDate: empty,
 		}
 
@@ -5717,7 +5589,7 @@ func MapAdjustableDates:
 		AdjustableDates {
 			unadjustedDate: [empty],
 			dateAdjustments: MapBusinessDayAdjustments(fpmlDataDocument),
-			adjustedDate: MapAdjustedDateList(fpmlDataDocument),
+			adjustedDate: [empty],
 		}
 
 
@@ -5859,9 +5731,9 @@ func MapDividendCurrency:
 		dividendCurrency DividendCurrency (0..1)
 	set dividendCurrency:
 		DividendCurrency {
-			currency: MapCurrency(fpmlDataDocument),
+			currency: MapCurrencyWithScheme(fpmlDataDocument),
 			determinationMethod: empty,
-			currencyReference: MapCurrencyReference(fpmlDataDocument),
+			currencyReference: empty,
 		}
 
 
@@ -5976,7 +5848,7 @@ func MapNumberRange:
 		}
 
 
-func MapBusinessCenterList:
+func MapBusinessCenterWithSchemeList:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -5986,7 +5858,7 @@ func MapBusinessCenterList:
 		[ empty		]
 
 
-func MapCommodityBusinessCalendarList:
+func MapCommodityBusinessCalendarWithSchemeList:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -6052,7 +5924,7 @@ func MapExerciseNotice:
 		ExerciseNotice {
 			exerciseNoticeGiver: empty,
 			exerciseNoticeReceiver: empty,
-			businessCenter: MapBusinessCenter(fpmlDataDocument),
+			businessCenter: MapBusinessCenterWithScheme(fpmlDataDocument),
 		}
 
 
@@ -6151,7 +6023,7 @@ func MapBusinessCenterTime:
 	set earliestCancellationTime:
 		BusinessCenterTime {
 			hourMinuteTime: empty,
-			businessCenter: MapBusinessCenter(fpmlDataDocument),
+			businessCenter: MapBusinessCenterWithScheme(fpmlDataDocument),
 		}
 
 
@@ -6163,7 +6035,7 @@ func MapBusinessCenterTime:
 	set latestCancelationTime:
 		BusinessCenterTime {
 			hourMinuteTime: empty,
-			businessCenter: MapBusinessCenter(fpmlDataDocument),
+			businessCenter: MapBusinessCenterWithScheme(fpmlDataDocument),
 		}
 
 
@@ -6246,7 +6118,7 @@ func MapRelativeDateOffset:
 			businessDayConvention: empty,
 			businessCenters: MapBusinessCenters(fpmlDataDocument),
 			businessCentersReference: MapBusinessCenters(fpmlDataDocument),
-			dateRelativeTo: MapDateRelativeTo(fpmlDataDocument),
+			dateRelativeTo: empty,
 			adjustedDate: empty,
 		}
 
@@ -6438,7 +6310,7 @@ func MapAdjustableDates:
 		AdjustableDates {
 			unadjustedDate: [empty],
 			dateAdjustments: MapBusinessDayAdjustments(fpmlDataDocument),
-			adjustedDate: MapAdjustedDateList(fpmlDataDocument),
+			adjustedDate: [empty],
 		}
 
 
@@ -6476,8 +6348,8 @@ func MapQuotedCurrencyPair:
 		quotedCurrencyPair QuotedCurrencyPair (0..1)
 	set quotedCurrencyPair:
 		QuotedCurrencyPair {
-			currency1: MapCurrency1(fpmlDataDocument),
-			currency2: MapCurrency2(fpmlDataDocument),
+			currency1: MapCurrency1WithScheme(fpmlDataDocument),
+			currency2: MapCurrency2WithScheme(fpmlDataDocument),
 			quoteBasis: empty,
 		}
 
@@ -6499,7 +6371,7 @@ func MapAssetDeliveryProfileBlockList:
 		]
 
 
-func MapMatrixSource:
+func MapMatrixSourceWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -6546,7 +6418,7 @@ func MapMoney:
 		}
 
 
-func MapRestructuringType:
+func MapRestructuringTypeWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -6567,7 +6439,7 @@ func MapPubliclyAvailableInformation:
 		}
 
 
-func MapRateSource:
+func MapRateSourceWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -6635,7 +6507,7 @@ func MapSpreadScheduleList:
 	add spreadScheduleList:
 		[
 			SpreadSchedule {
-				spreadScheduleType: MapSpreadScheduleType(fpmlDataDocument),
+				spreadScheduleType: MapSpreadScheduleTypeWithScheme(fpmlDataDocument),
 			}
 		]
 
@@ -6747,7 +6619,7 @@ func MapFeaturePayment:
 			levelPercentage: empty,
 			amount: empty,
 			time: empty,
-			currency: MapCurrency(fpmlDataDocument),
+			currency: MapCurrencyWithScheme(fpmlDataDocument),
 			paymentDate: MapAdjustableOrRelativeDate(fpmlDataDocument),
 		}
 
@@ -6784,7 +6656,7 @@ func MapBusinessCenterTime:
 	set earliestExerciseTime:
 		BusinessCenterTime {
 			hourMinuteTime: empty,
-			businessCenter: MapBusinessCenter(fpmlDataDocument),
+			businessCenter: MapBusinessCenterWithScheme(fpmlDataDocument),
 		}
 
 
@@ -6796,7 +6668,7 @@ func MapBusinessCenterTime:
 	set latestExerciseTime:
 		BusinessCenterTime {
 			hourMinuteTime: empty,
-			businessCenter: MapBusinessCenter(fpmlDataDocument),
+			businessCenter: MapBusinessCenterWithScheme(fpmlDataDocument),
 		}
 
 
@@ -6808,7 +6680,7 @@ func MapBusinessCenterTime:
 	set expirationTime:
 		BusinessCenterTime {
 			hourMinuteTime: empty,
-			businessCenter: MapBusinessCenter(fpmlDataDocument),
+			businessCenter: MapBusinessCenterWithScheme(fpmlDataDocument),
 		}
 
 
@@ -6914,7 +6786,7 @@ func MapMakeWholeAmount:
 	set makeWholeAmount:
 		MakeWholeAmount {
 			interpolationMethod: empty,
-			earlyCallDate: MapEarlyCallDate(fpmlDataDocument),
+			earlyCallDate: empty,
 		}
 
 
@@ -6994,20 +6866,6 @@ func MapBusinessDayAdjustments:
 		}
 
 
-func MapQuotedCurrencyPair:
-	inputs:
-		fpmlDataDocument fpml.DataDocument (0..1)
-	output:
-		quotedCurrencyPair QuotedCurrencyPair (0..1)
-		// [metadata address]
-	set quotedCurrencyPair:
-		QuotedCurrencyPair {
-			currency1: MapCurrency1(fpmlDataDocument),
-			currency2: MapCurrency2(fpmlDataDocument),
-			quoteBasis: empty,
-		}
-
-
 func MapSettlementRateOption:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
@@ -7015,7 +6873,7 @@ func MapSettlementRateOption:
 		settlementRateOption SettlementRateOption (0..1)
 	set settlementRateOption:
 		SettlementRateOption {
-			settlementRateOption: MapSettlementRateOption(fpmlDataDocument),
+			settlementRateOption: MapSettlementRateOptionWithScheme(fpmlDataDocument),
 			priceSourceDisruption: MapPriceSourceDisruption(fpmlDataDocument),
 		}
 
@@ -7043,7 +6901,7 @@ func MapAncillaryEntity:
 		}
 
 
-func MapCashCollateralInterestRate:
+func MapCashCollateralInterestRateWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -7051,7 +6909,7 @@ func MapCashCollateralInterestRate:
 		// [metadata scheme]
 	set cashCollateralInterestRate: empty
 
-func MapAgreedDiscountRate:
+func MapAgreedDiscountRateWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -7103,14 +6961,6 @@ func MapAdjustableOrRelativeDate:
 			relativeDate: MapAdjustedRelativeDateOffset(fpmlDataDocument),
 		}
 
-
-func MapCurrencyReference:
-	inputs:
-		fpmlDataDocument fpml.DataDocument (0..1)
-	output:
-		currencyReference string (0..1)
-		// [metadata reference]
-	set currencyReference: empty
 
 func MapDividendPaymentDate:
 	inputs:
@@ -7289,7 +7139,6 @@ func MapAdjustableOrRelativeDates:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		relevantUnderlyingDateReference AdjustableOrRelativeDates (0..1)
-		// [metadata reference]
 	set relevantUnderlyingDateReference:
 		AdjustableOrRelativeDates {
 			adjustableDates: MapAdjustableDates(fpmlDataDocument),
@@ -7302,11 +7151,10 @@ func MapInterestRatePayout:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		swapStreamReference InterestRatePayout (0..1)
-		// [metadata reference]
 	set swapStreamReference:
 		InterestRatePayout {
 			rateSpecification: MapRateSpecification(fpmlDataDocument),
-			dayCountFraction: MapDayCountFraction(fpmlDataDocument),
+			dayCountFraction: MapDayCountFractionWithScheme(fpmlDataDocument),
 			calculationPeriodDates: MapCalculationPeriodDates(fpmlDataDocument),
 			paymentDates: MapPaymentDates(fpmlDataDocument),
 			paymentDate: MapAdjustableDate(fpmlDataDocument),
@@ -7333,7 +7181,7 @@ func MapAdjustableDate:
 			unadjustedDate: empty,
 			dateAdjustments: MapBusinessDayAdjustments(fpmlDataDocument),
 			dateAdjustmentsReference: MapBusinessDayAdjustments(fpmlDataDocument),
-			adjustedDate: MapAdjustedDate(fpmlDataDocument),
+			adjustedDate: empty,
 		}
 
 
@@ -7384,7 +7232,7 @@ func MapExerciseNoticeList:
 			ExerciseNotice {
 				exerciseNoticeGiver: empty,
 				exerciseNoticeReceiver: empty,
-				businessCenter: MapBusinessCenter(fpmlDataDocument),
+				businessCenter: MapBusinessCenterWithScheme(fpmlDataDocument),
 			}
 		]
 
@@ -7623,7 +7471,7 @@ func MapReferencePair:
 			referenceEntity: MapLegalEntity(fpmlDataDocument),
 			referenceObligation: MapReferenceObligation(fpmlDataDocument),
 			noReferenceObligation: empty,
-			entityType: MapEntityType(fpmlDataDocument),
+			entityType: MapEntityTypeWithScheme(fpmlDataDocument),
 		}
 
 
@@ -7632,7 +7480,6 @@ func MapProtectionTerms:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		protectionTermsReference ProtectionTerms (0..1)
-		// [metadata reference]
 	set protectionTermsReference:
 		ProtectionTerms {
 			creditEvents: MapCreditEvents(fpmlDataDocument),
@@ -7646,7 +7493,6 @@ func MapCashSettlementTerms:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		cashSettlementTermsReference CashSettlementTerms (0..1)
-		// [metadata reference]
 	set cashSettlementTermsReference:
 		CashSettlementTerms {
 			cashSettlementMethod: empty,
@@ -7665,7 +7511,6 @@ func MapPhysicalSettlementTerms:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		physicalSettlementTermsReference PhysicalSettlementTerms (0..1)
-		// [metadata reference]
 	set physicalSettlementTermsReference:
 		PhysicalSettlementTerms {
 			clearedPhysicalSettlement: empty,
@@ -7769,7 +7614,6 @@ func MapCreditEvents:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		creditEventsReference CreditEvents (0..1)
-		// [metadata reference]
 	set creditEventsReference:
 		CreditEvents {
 			bankruptcy: empty,
@@ -7795,7 +7639,6 @@ func MapMoney:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		notionalReference Money (0..1)
-		// [metadata reference]
 	set notionalReference:
 		Money {
 		}
@@ -7808,7 +7651,7 @@ func MapAmountSchedule:
 		feeAmountSchedule AmountSchedule (0..1)
 	set feeAmountSchedule:
 		AmountSchedule {
-			currency: MapCurrencyList(fpmlDataDocument),
+			currency: MapCurrencyWithSchemeList(fpmlDataDocument),
 		}
 
 
@@ -7834,7 +7677,7 @@ func MapRelativeDateOffset:
 			businessDayConvention: empty,
 			businessCenters: MapBusinessCenters(fpmlDataDocument),
 			businessCentersReference: MapBusinessCenters(fpmlDataDocument),
-			dateRelativeTo: MapDateRelativeTo(fpmlDataDocument),
+			dateRelativeTo: empty,
 			adjustedDate: empty,
 		}
 
@@ -7844,21 +7687,12 @@ func MapMoney:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		notionaReference Money (0..1)
-		// [metadata reference]
 	set notionaReference:
 		Money {
 		}
 
 
-func MapEarlyCallDate:
-	inputs:
-		fpmlDataDocument fpml.DataDocument (0..1)
-	output:
-		earlyCallDate date (0..1)
-		// [metadata id]
-	set earlyCallDate: empty
-
-func MapSettlementRateOption:
+func MapSettlementRateOptionWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -7885,7 +7719,7 @@ func MapReferenceBankList:
 	add referenceBankList:
 		[
 			ReferenceBank {
-				referenceBankId: MapReferenceBankId(fpmlDataDocument),
+				referenceBankId: MapReferenceBankIdWithScheme(fpmlDataDocument),
 				referenceBankName: empty,
 			}
 		]
@@ -7898,8 +7732,8 @@ func MapLegalEntity:
 		legalEntity LegalEntity (0..1)
 	set legalEntity:
 		LegalEntity {
-			entityId: MapEntityIdList(fpmlDataDocument),
-			name: MapName(fpmlDataDocument),
+			entityId: MapEntityIdWithSchemeList(fpmlDataDocument),
+			name: MapNameWithScheme(fpmlDataDocument),
 		}
 
 
@@ -7908,7 +7742,6 @@ func MapPaymentDatesList:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		paymentDatesReferenceList PaymentDates (0..*)
-		// [metadata reference]
 	add paymentDatesReferenceList:
 		[
 			PaymentDates {
@@ -7928,7 +7761,6 @@ func MapCalculationPeriodDatesList:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		calculationPeriodDatesReferenceList CalculationPeriodDates (0..*)
-		// [metadata reference]
 	add calculationPeriodDatesReferenceList:
 		[
 			CalculationPeriodDates {
@@ -7950,7 +7782,6 @@ func MapPerformanceValuationDatesList:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		valuationDatesReferenceList PerformanceValuationDates (0..*)
-		// [metadata reference]
 	add valuationDatesReferenceList:
 		[
 			PerformanceValuationDates {
@@ -7980,7 +7811,6 @@ func MapAdjustableOrRelativeDate:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		dividendDate AdjustableOrRelativeDate (0..1)
-		// [metadata reference]
 	set dividendDate:
 		AdjustableOrRelativeDate {
 			adjustableDate: MapAdjustableDate(fpmlDataDocument),
@@ -8062,7 +7892,7 @@ func MapReferenceObligation:
 		}
 
 
-func MapEntityType:
+func MapEntityTypeWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -8075,7 +7905,6 @@ func MapRateObservation:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		rateReference RateObservation (0..1)
-		// [metadata reference]
 	set rateReference:
 		RateObservation {
 			resetDate: empty,
@@ -8089,7 +7918,7 @@ func MapRateObservation:
 		}
 
 
-func MapCurrencyList:
+func MapCurrencyWithSchemeList:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -8107,13 +7936,13 @@ func MapFallbackReferencePrice:
 	set fallbackReferencePrice:
 		FallbackReferencePrice {
 			valuationPostponement: MapValuationPostponement(fpmlDataDocument),
-			fallBackSettlementRateOption: MapFallBackSettlementRateOptionList(fpmlDataDocument),
+			fallBackSettlementRateOption: MapFallBackSettlementRateOptionWithSchemeList(fpmlDataDocument),
 			fallbackSurveyValuationPostponement: empty,
 			calculationAgentDetermination: MapCalculationAgent(fpmlDataDocument),
 		}
 
 
-func MapReferenceBankId:
+func MapReferenceBankIdWithScheme:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -8198,7 +8027,7 @@ func MapValuationPostponement:
 		}
 
 
-func MapFallBackSettlementRateOptionList:
+func MapFallBackSettlementRateOptionWithSchemeList:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
@@ -8217,7 +8046,7 @@ func MapCalculationAgent:
 		CalculationAgent {
 			calculationAgentParty: empty,
 			calculationAgentPartyEnum: empty,
-			calculationAgentBusinessCenter: MapCalculationAgentBusinessCenter(fpmlDataDocument),
+			calculationAgentBusinessCenter: MapCalculationAgentBusinessCenterWithScheme(fpmlDataDocument),
 		}
 
 
