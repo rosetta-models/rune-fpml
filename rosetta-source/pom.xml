@@ -238,7 +238,7 @@
                                     <outputConfigurations>
                                         <!-- Default output folder -->
                                         <outputConfiguration>
-                                            <outputDirectory>src/main/java</outputDirectory>
+                                            <outputDirectory>src/generated/java/</outputDirectory>
                                         </outputConfiguration>
                                     </outputConfigurations>
                                 </language>
@@ -285,26 +285,14 @@
                 <version>${build-helper-maven-plugin.version}</version>
                 <executions>
                     <execution>
-                        <id>add-generated-sources</id>
-                        <phase>process-sources</phase>
+                        <phase>generate-sources</phase>
                         <goals>
                             <goal>add-source</goal>
                         </goals>
                         <configuration>
                             <sources>
-                                <source>${project.build.outputDirectory}/generated/java</source>
-                            </sources>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>add-generated-test-sources</id>
-                        <phase>process-test-sources</phase>
-                        <goals>
-                            <goal>add-test-source</goal>
-                        </goals>
-                        <configuration>
-                            <sources>
-                                <source>${project.basedir}/src/test/generated/java</source>
+                                <source>src/generated/java/</source>
+                                <source>src/main/rosetta</source>
                             </sources>
                         </configuration>
                     </execution>
