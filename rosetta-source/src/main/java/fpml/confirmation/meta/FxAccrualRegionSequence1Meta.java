@@ -19,7 +19,7 @@ import java.util.function.Function;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaMeta(model=FxAccrualRegionSequence1.class)
 public class FxAccrualRegionSequence1Meta implements RosettaMetaData<FxAccrualRegionSequence1> {

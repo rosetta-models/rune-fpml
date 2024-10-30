@@ -34,9 +34,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An event representing a change in the notional amount associated with an outstanding letter of credit.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LcAdjustment", builder=LcAdjustment.LcAdjustmentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LcAdjustment", builder=LcAdjustment.LcAdjustmentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LcAdjustment extends AbstractLcEvent {
 
 	LcAdjustmentMeta metaData = new LcAdjustmentMeta();

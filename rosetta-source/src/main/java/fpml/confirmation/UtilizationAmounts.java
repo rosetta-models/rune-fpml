@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure which defines the total utilization and available credit levels for a given facility.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="UtilizationAmounts", builder=UtilizationAmounts.UtilizationAmountsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="UtilizationAmounts", builder=UtilizationAmounts.UtilizationAmountsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface UtilizationAmounts extends RosettaModelObject {
 
 	UtilizationAmountsMeta metaData = new UtilizationAmountsMeta();

@@ -21,9 +21,9 @@ import fpml.confirmation.meta.DualExchangeRateMeta;
 
 /**
  * If present indicates that the event is considered to have occured if two or more numeric values of currency exchange rate specified in the Settllement Option are applicable to the transaction.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DualExchangeRate", builder=DualExchangeRate.DualExchangeRateBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DualExchangeRate", builder=DualExchangeRate.DualExchangeRateBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DualExchangeRate extends FxDisruptionEvent {
 
 	DualExchangeRateMeta metaData = new DualExchangeRateMeta();

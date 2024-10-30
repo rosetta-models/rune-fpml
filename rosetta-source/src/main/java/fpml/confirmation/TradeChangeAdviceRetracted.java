@@ -37,9 +37,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines the structure for a message retracting a prior change advice.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradeChangeAdviceRetracted", builder=TradeChangeAdviceRetracted.TradeChangeAdviceRetractedBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradeChangeAdviceRetracted", builder=TradeChangeAdviceRetracted.TradeChangeAdviceRetractedBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradeChangeAdviceRetracted extends NonCorrectableRequestMessage {
 
 	TradeChangeAdviceRetractedMeta metaData = new TradeChangeAdviceRetractedMeta();

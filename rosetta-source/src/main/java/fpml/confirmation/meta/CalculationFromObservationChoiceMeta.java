@@ -19,7 +19,7 @@ import java.util.function.Function;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaMeta(model=CalculationFromObservationChoice.class)
 public class CalculationFromObservationChoiceMeta implements RosettaMetaData<CalculationFromObservationChoice> {

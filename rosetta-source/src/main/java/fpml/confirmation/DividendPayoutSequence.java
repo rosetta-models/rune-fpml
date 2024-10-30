@@ -20,9 +20,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DividendPayoutSequence", builder=DividendPayoutSequence.DividendPayoutSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DividendPayoutSequence", builder=DividendPayoutSequence.DividendPayoutSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DividendPayoutSequence extends RosettaModelObject {
 
 	DividendPayoutSequenceMeta metaData = new DividendPayoutSequenceMeta();

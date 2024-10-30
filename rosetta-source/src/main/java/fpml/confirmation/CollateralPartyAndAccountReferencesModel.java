@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CollateralPartyAndAccountReferencesModel", builder=CollateralPartyAndAccountReferencesModel.CollateralPartyAndAccountReferencesModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CollateralPartyAndAccountReferencesModel", builder=CollateralPartyAndAccountReferencesModel.CollateralPartyAndAccountReferencesModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CollateralPartyAndAccountReferencesModel extends RosettaModelObject {
 
 	CollateralPartyAndAccountReferencesModelMeta metaData = new CollateralPartyAndAccountReferencesModelMeta();

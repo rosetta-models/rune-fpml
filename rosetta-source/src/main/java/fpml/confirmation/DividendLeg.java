@@ -37,9 +37,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Floating Payment Leg of a Dividend Swap.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DividendLeg", builder=DividendLeg.DividendLegBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DividendLeg", builder=DividendLeg.DividendLegBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DividendLeg extends DirectionalLegUnderlyer {
 
 	DividendLegMeta metaData = new DividendLegMeta();

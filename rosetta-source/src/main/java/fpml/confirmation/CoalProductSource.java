@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A scheme identifying the sources of coal for a physically settled coal trade.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CoalProductSource", builder=CoalProductSource.CoalProductSourceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CoalProductSource", builder=CoalProductSource.CoalProductSourceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CoalProductSource extends RosettaModelObject {
 
 	CoalProductSourceMeta metaData = new CoalProductSourceMeta();

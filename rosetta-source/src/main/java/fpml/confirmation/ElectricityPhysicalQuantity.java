@@ -32,9 +32,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The quantity of gas to be delivered.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ElectricityPhysicalQuantity", builder=ElectricityPhysicalQuantity.ElectricityPhysicalQuantityBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ElectricityPhysicalQuantity", builder=ElectricityPhysicalQuantity.ElectricityPhysicalQuantityBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ElectricityPhysicalQuantity extends CommodityPhysicalQuantityBase {
 
 	ElectricityPhysicalQuantityMeta metaData = new ElectricityPhysicalQuantityMeta();

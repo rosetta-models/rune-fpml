@@ -31,9 +31,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CalculationAmount", builder=CalculationAmount.CalculationAmountBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CalculationAmount", builder=CalculationAmount.CalculationAmountBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CalculationAmount extends Money {
 
 	CalculationAmountMeta metaData = new CalculationAmountMeta();

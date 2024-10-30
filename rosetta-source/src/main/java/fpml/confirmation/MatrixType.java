@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MatrixType", builder=MatrixType.MatrixTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MatrixType", builder=MatrixType.MatrixTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MatrixType extends RosettaModelObject {
 
 	MatrixTypeMeta metaData = new MatrixTypeMeta();

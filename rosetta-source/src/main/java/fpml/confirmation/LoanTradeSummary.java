@@ -25,9 +25,9 @@ import fpml.confirmation.meta.LoanTradeSummaryMeta;
 
 /**
  * A structure that defines all loan trade information i.e. this structure contains the main (e.g. fund manager/main counterparty) trade details.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanTradeSummary", builder=LoanTradeSummary.LoanTradeSummaryBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanTradeSummary", builder=LoanTradeSummary.LoanTradeSummaryBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanTradeSummary extends AbstractLoanTradeSummary {
 
 	LoanTradeSummaryMeta metaData = new LoanTradeSummaryMeta();

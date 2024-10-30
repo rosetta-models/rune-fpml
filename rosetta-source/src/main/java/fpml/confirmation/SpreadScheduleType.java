@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines a Spread Type Scheme to identify a long or short spread value.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SpreadScheduleType", builder=SpreadScheduleType.SpreadScheduleTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SpreadScheduleType", builder=SpreadScheduleType.SpreadScheduleTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SpreadScheduleType extends RosettaModelObject {
 
 	SpreadScheduleTypeMeta metaData = new SpreadScheduleTypeMeta();

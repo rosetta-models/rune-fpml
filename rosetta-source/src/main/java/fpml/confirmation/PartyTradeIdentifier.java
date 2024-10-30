@@ -34,9 +34,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining one or more trade identifiers allocated to the trade by a party. A link identifier allows the trade to be associated with other related trades, e.g. trades forming part of a larger structured transaction. It is expected that for external communication of trade there will be only one tradeId sent in the document per party.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PartyTradeIdentifier", builder=PartyTradeIdentifier.PartyTradeIdentifierBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PartyTradeIdentifier", builder=PartyTradeIdentifier.PartyTradeIdentifierBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PartyTradeIdentifier extends TradeIdentifier {
 
 	PartyTradeIdentifierMeta metaData = new PartyTradeIdentifierMeta();

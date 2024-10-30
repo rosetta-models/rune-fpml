@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An abstract base type for all supplementary communication to paying entities and/or servicing platforms.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AbstractLoanPartyProfileNotification", builder=AbstractLoanPartyProfileNotification.AbstractLoanPartyProfileNotificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AbstractLoanPartyProfileNotification", builder=AbstractLoanPartyProfileNotification.AbstractLoanPartyProfileNotificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AbstractLoanPartyProfileNotification extends CorrectableRequestMessage {
 
 	AbstractLoanPartyProfileNotificationMeta metaData = new AbstractLoanPartyProfileNotificationMeta();

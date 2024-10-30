@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining a correlation identifier and qualifying scheme
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CorrelationId", builder=CorrelationId.CorrelationIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CorrelationId", builder=CorrelationId.CorrelationIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CorrelationId extends RosettaModelObject {
 
 	CorrelationIdMeta metaData = new CorrelationIdMeta();

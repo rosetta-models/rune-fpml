@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that represents information about a unit within an organization.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BusinessUnit", builder=BusinessUnit.BusinessUnitBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BusinessUnit", builder=BusinessUnit.BusinessUnitBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BusinessUnit extends RosettaModelObject {
 
 	BusinessUnitMeta metaData = new BusinessUnitMeta();

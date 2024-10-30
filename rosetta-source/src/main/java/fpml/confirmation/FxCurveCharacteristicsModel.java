@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The set of characterstics that describe the outputs of a fx curve.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxCurveCharacteristicsModel", builder=FxCurveCharacteristicsModel.FxCurveCharacteristicsModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxCurveCharacteristicsModel", builder=FxCurveCharacteristicsModel.FxCurveCharacteristicsModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxCurveCharacteristicsModel extends RosettaModelObject {
 
 	FxCurveCharacteristicsModelMeta metaData = new FxCurveCharacteristicsModelMeta();

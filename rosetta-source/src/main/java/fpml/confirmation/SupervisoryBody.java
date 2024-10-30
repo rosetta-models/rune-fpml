@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An identifier of an organization that supervises or regulates trading activity, e.g. CFTC, SEC, FSA, ODRF, etc.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SupervisoryBody", builder=SupervisoryBody.SupervisoryBodyBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SupervisoryBody", builder=SupervisoryBody.SupervisoryBodyBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SupervisoryBody extends RosettaModelObject {
 
 	SupervisoryBodyMeta metaData = new SupervisoryBodyMeta();

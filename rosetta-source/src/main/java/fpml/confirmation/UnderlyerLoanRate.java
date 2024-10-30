@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines stock loan information where this is required per underlyer. You must not duplicate infromation within dividend conditions at transaction level
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="UnderlyerLoanRate", builder=UnderlyerLoanRate.UnderlyerLoanRateBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="UnderlyerLoanRate", builder=UnderlyerLoanRate.UnderlyerLoanRateBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface UnderlyerLoanRate extends RosettaModelObject {
 
 	UnderlyerLoanRateMeta metaData = new UnderlyerLoanRateMeta();

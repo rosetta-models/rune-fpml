@@ -43,9 +43,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A financial contract between two parties (the buyer and the seller) that provides the buyer the right to buy a currency (or receive a payment) at expiry. The distinctive characteristic of this contract is that the Notional to be transacted at expiry is uncertain and depends on the amount of time that the underlying currency trades within a pre-set level, or levels (the &#39;accrual barrier&#39;, or &#39;barriers&#39;). The total Notional is only known at the end of the accrual period, and this extra uncertainty can make an accrual option substantially cheaper than the comparable vanilla one. An FX Accrual Option product The product defines a list of fixing (or observation) dates. There are m total fixings. At the expiry date of the product, the buyer of the option has the right to an FX settlement with n/m * Notional. Payout can be cash or physical.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxAccrualOption", builder=FxAccrualOption.FxAccrualOptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxAccrualOption", builder=FxAccrualOption.FxAccrualOptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxAccrualOption extends Option {
 
 	FxAccrualOptionMeta metaData = new FxAccrualOptionMeta();

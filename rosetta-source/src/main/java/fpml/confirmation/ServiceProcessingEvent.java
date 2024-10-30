@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that can be used to describe a stage or step in processing provided by a service, for example processing completed.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ServiceProcessingEvent", builder=ServiceProcessingEvent.ServiceProcessingEventBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ServiceProcessingEvent", builder=ServiceProcessingEvent.ServiceProcessingEventBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ServiceProcessingEvent extends RosettaModelObject {
 
 	ServiceProcessingEventMeta metaData = new ServiceProcessingEventMeta();

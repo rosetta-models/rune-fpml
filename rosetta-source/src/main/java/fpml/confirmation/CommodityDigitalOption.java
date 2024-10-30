@@ -39,9 +39,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines a commodity digital option product. Defines the digital commodity option product type. Digital options exercise when a barrier is breached and are financially settled. The &#39;commodityDigitalOption&#39; type is an extension of the &#39;commodityOption&#39; product.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityDigitalOption", builder=CommodityDigitalOption.CommodityDigitalOptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityDigitalOption", builder=CommodityDigitalOption.CommodityDigitalOptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityDigitalOption extends Option {
 
 	CommodityDigitalOptionMeta metaData = new CommodityDigitalOptionMeta();

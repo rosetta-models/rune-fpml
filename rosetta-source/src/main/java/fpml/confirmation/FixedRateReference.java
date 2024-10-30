@@ -23,9 +23,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FixedRateReference", builder=FixedRateReference.FixedRateReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FixedRateReference", builder=FixedRateReference.FixedRateReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FixedRateReference extends Reference {
 
 	FixedRateReferenceMeta metaData = new FixedRateReferenceMeta();

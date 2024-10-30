@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A date with a required identifier which can be referenced elsewhere.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RequiredIdentifierDate", builder=RequiredIdentifierDate.RequiredIdentifierDateBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RequiredIdentifierDate", builder=RequiredIdentifierDate.RequiredIdentifierDateBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RequiredIdentifierDate extends RosettaModelObject {
 
 	RequiredIdentifierDateMeta metaData = new RequiredIdentifierDateMeta();

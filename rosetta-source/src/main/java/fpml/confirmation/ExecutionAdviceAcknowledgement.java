@@ -28,9 +28,9 @@ import fpml.confirmation.meta.ExecutionAdviceAcknowledgementMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ExecutionAdviceAcknowledgement", builder=ExecutionAdviceAcknowledgement.ExecutionAdviceAcknowledgementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ExecutionAdviceAcknowledgement", builder=ExecutionAdviceAcknowledgement.ExecutionAdviceAcknowledgementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ExecutionAdviceAcknowledgement extends EventRequestAcknowledgement {
 
 	ExecutionAdviceAcknowledgementMeta metaData = new ExecutionAdviceAcknowledgementMeta();

@@ -34,9 +34,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An event representing adjustment in the notional amount of a loan contract that has no cash flow effect. E.g. an amount adjustment due to a defaulted loan.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanContractAdjustment", builder=LoanContractAdjustment.LoanContractAdjustmentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanContractAdjustment", builder=LoanContractAdjustment.LoanContractAdjustmentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanContractAdjustment extends AbstractLoanContractEvent {
 
 	LoanContractAdjustmentMeta metaData = new LoanContractAdjustmentMeta();

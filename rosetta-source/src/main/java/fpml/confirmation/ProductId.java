@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ProductId", builder=ProductId.ProductIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ProductId", builder=ProductId.ProductIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ProductId extends RosettaModelObject {
 
 	ProductIdMeta metaData = new ProductIdMeta();

@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Physically settled oil or refined products leg. Physically settled leg of a physically settled oil product transaction.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="OilPhysicalLeg", builder=OilPhysicalLeg.OilPhysicalLegBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="OilPhysicalLeg", builder=OilPhysicalLeg.OilPhysicalLegBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface OilPhysicalLeg extends PhysicalSwapLeg {
 
 	OilPhysicalLegMeta metaData = new OilPhysicalLegMeta();

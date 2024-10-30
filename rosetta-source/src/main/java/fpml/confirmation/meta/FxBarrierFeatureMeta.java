@@ -19,7 +19,7 @@ import java.util.function.Function;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaMeta(model=FxBarrierFeature.class)
 public class FxBarrierFeatureMeta implements RosettaMetaData<FxBarrierFeature> {

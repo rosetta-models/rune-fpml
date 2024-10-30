@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A reference to an asset, e.g. a portfolio, trade, or reference instrument..
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AnyAssetReference", builder=AnyAssetReference.AnyAssetReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AnyAssetReference", builder=AnyAssetReference.AnyAssetReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AnyAssetReference extends Reference {
 
 	AnyAssetReferenceMeta metaData = new AnyAssetReferenceMeta();

@@ -31,9 +31,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReferenceObligation", builder=ReferenceObligation.ReferenceObligationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReferenceObligation", builder=ReferenceObligation.ReferenceObligationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReferenceObligation extends RosettaModelObject {
 
 	ReferenceObligationMeta metaData = new ReferenceObligationMeta();

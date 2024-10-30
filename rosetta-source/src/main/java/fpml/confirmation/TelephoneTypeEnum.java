@@ -9,7 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaEnum("TelephoneTypeEnum")
 public enum TelephoneTypeEnum {

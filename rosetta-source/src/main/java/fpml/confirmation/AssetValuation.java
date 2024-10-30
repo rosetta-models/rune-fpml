@@ -33,9 +33,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that holds a set of measures about an asset, including possibly their sensitivities.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AssetValuation", builder=AssetValuation.AssetValuationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AssetValuation", builder=AssetValuation.AssetValuationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AssetValuation extends Valuation {
 
 	AssetValuationMeta metaData = new AssetValuationMeta();

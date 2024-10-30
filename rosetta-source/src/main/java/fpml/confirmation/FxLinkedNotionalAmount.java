@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type to describe the cashflow representation for fx linked notionals.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxLinkedNotionalAmount", builder=FxLinkedNotionalAmount.FxLinkedNotionalAmountBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxLinkedNotionalAmount", builder=FxLinkedNotionalAmount.FxLinkedNotionalAmountBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxLinkedNotionalAmount extends RosettaModelObject {
 
 	FxLinkedNotionalAmountMeta metaData = new FxLinkedNotionalAmountMeta();

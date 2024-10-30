@@ -25,9 +25,9 @@ import fpml.confirmation.meta.ExecutionExceptionMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ExecutionException", builder=ExecutionException.ExecutionExceptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ExecutionException", builder=ExecutionException.ExecutionExceptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ExecutionException extends Exception {
 
 	ExecutionExceptionMeta metaData = new ExecutionExceptionMeta();

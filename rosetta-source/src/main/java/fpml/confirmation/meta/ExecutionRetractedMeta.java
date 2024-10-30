@@ -19,7 +19,7 @@ import java.util.function.Function;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaMeta(model=ExecutionRetracted.class)
 public class ExecutionRetractedMeta implements RosettaMetaData<ExecutionRetracted> {

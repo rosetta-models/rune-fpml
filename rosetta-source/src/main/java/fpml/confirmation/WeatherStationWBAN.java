@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A code identifying a Weather Station WBAN.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="WeatherStationWBAN", builder=WeatherStationWBAN.WeatherStationWBANBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="WeatherStationWBAN", builder=WeatherStationWBAN.WeatherStationWBANBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface WeatherStationWBAN extends RosettaModelObject {
 
 	WeatherStationWBANMeta metaData = new WeatherStationWBANMeta();

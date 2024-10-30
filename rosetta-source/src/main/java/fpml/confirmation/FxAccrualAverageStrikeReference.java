@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to an average rate structure in FxAccrualForward or FxAccrualOption products.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxAccrualAverageStrikeReference", builder=FxAccrualAverageStrikeReference.FxAccrualAverageStrikeReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxAccrualAverageStrikeReference", builder=FxAccrualAverageStrikeReference.FxAccrualAverageStrikeReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxAccrualAverageStrikeReference extends Reference {
 
 	FxAccrualAverageStrikeReferenceMeta metaData = new FxAccrualAverageStrikeReferenceMeta();

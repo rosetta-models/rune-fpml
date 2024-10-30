@@ -35,9 +35,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure describing a credit limit with applicability constraints.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CreditLimit", builder=CreditLimit.CreditLimitBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CreditLimit", builder=CreditLimit.CreditLimitBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CreditLimit extends CreditLimitBase {
 
 	CreditLimitMeta metaData = new CreditLimitMeta();

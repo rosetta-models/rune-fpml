@@ -32,9 +32,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Describes the properties of an FX barrier.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxBarrierFeature", builder=FxBarrierFeature.FxBarrierFeatureBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxBarrierFeature", builder=FxBarrierFeature.FxBarrierFeatureBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxBarrierFeature extends RosettaModelObject {
 
 	FxBarrierFeatureMeta metaData = new FxBarrierFeatureMeta();

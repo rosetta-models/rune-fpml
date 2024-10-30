@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A group containing Swap and Derivative features.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FeatureModel", builder=FeatureModel.FeatureModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FeatureModel", builder=FeatureModel.FeatureModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FeatureModel extends RosettaModelObject {
 
 	FeatureModelMeta metaData = new FeatureModelMeta();

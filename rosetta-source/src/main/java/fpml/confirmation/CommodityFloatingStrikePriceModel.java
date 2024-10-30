@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The different options for specifying the average strike price per unit. These options are to specify a single average strike price per unit or to specify a schedule of average strike prices.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityFloatingStrikePriceModel", builder=CommodityFloatingStrikePriceModel.CommodityFloatingStrikePriceModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityFloatingStrikePriceModel", builder=CommodityFloatingStrikePriceModel.CommodityFloatingStrikePriceModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityFloatingStrikePriceModel extends RosettaModelObject {
 
 	CommodityFloatingStrikePriceModelMeta metaData = new CommodityFloatingStrikePriceModelMeta();

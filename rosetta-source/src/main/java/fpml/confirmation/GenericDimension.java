@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A generic (user defined) dimension, e.g. for use in a correlation surface. e.g. a currency, stock, etc. This would take values like USD, GBP, JPY, or IBM, MSFT, etc.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="GenericDimension", builder=GenericDimension.GenericDimensionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="GenericDimension", builder=GenericDimension.GenericDimensionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface GenericDimension extends RosettaModelObject {
 
 	GenericDimensionMeta metaData = new GenericDimensionMeta();

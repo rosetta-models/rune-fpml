@@ -20,9 +20,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="GracePeriodExtension", builder=GracePeriodExtension.GracePeriodExtensionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="GracePeriodExtension", builder=GracePeriodExtension.GracePeriodExtensionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface GracePeriodExtension extends RosettaModelObject {
 
 	GracePeriodExtensionMeta metaData = new GracePeriodExtensionMeta();

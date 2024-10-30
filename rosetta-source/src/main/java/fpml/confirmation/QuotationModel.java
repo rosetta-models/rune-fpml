@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Some kind of numerical measure about an asset, eg. its price or NPV, together with characteristics of that measure.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="QuotationModel", builder=QuotationModel.QuotationModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="QuotationModel", builder=QuotationModel.QuotationModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface QuotationModel extends RosettaModelObject {
 
 	QuotationModelMeta metaData = new QuotationModelMeta();

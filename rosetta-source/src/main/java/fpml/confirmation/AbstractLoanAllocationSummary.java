@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An underlying structure defining fundamental allocation event information.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AbstractLoanAllocationSummary", builder=AbstractLoanAllocationSummary.AbstractLoanAllocationSummaryBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AbstractLoanAllocationSummary", builder=AbstractLoanAllocationSummary.AbstractLoanAllocationSummaryBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AbstractLoanAllocationSummary extends RosettaModelObject {
 
 	AbstractLoanAllocationSummaryMeta metaData = new AbstractLoanAllocationSummaryMeta();

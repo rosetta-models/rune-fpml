@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * References a credit entity defined elsewhere in the document.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LegalEntityReference", builder=LegalEntityReference.LegalEntityReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LegalEntityReference", builder=LegalEntityReference.LegalEntityReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LegalEntityReference extends Reference {
 
 	LegalEntityReferenceMeta metaData = new LegalEntityReferenceMeta();

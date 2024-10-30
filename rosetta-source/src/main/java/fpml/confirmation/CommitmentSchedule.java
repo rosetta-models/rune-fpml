@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that represents a complete amortization schedule through the life of a facility.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommitmentSchedule", builder=CommitmentSchedule.CommitmentScheduleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommitmentSchedule", builder=CommitmentSchedule.CommitmentScheduleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommitmentSchedule extends RosettaModelObject {
 
 	CommitmentScheduleMeta metaData = new CommitmentScheduleMeta();

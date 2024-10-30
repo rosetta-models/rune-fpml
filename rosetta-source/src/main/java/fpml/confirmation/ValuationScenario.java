@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A set of rules for generating a valuation.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ValuationScenario", builder=ValuationScenario.ValuationScenarioBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ValuationScenario", builder=ValuationScenario.ValuationScenarioBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ValuationScenario extends RosettaModelObject {
 
 	ValuationScenarioMeta metaData = new ValuationScenarioMeta();

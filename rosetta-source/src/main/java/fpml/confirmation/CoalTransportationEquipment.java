@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A scheme identifying the methods by which coal may be transported.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CoalTransportationEquipment", builder=CoalTransportationEquipment.CoalTransportationEquipmentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CoalTransportationEquipment", builder=CoalTransportationEquipment.CoalTransportationEquipmentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CoalTransportationEquipment extends RosettaModelObject {
 
 	CoalTransportationEquipmentMeta metaData = new CoalTransportationEquipmentMeta();

@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An underlying structure that details the elements that affect the calculation of a trade-related accrual.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AbstractTradingAccrual", builder=AbstractTradingAccrual.AbstractTradingAccrualBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AbstractTradingAccrual", builder=AbstractTradingAccrual.AbstractTradingAccrualBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AbstractTradingAccrual extends RosettaModelObject {
 
 	AbstractTradingAccrualMeta metaData = new AbstractTradingAccrualMeta();

@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Coding scheme that specifies the settlement price default election.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SettlementPriceDefaultElection", builder=SettlementPriceDefaultElection.SettlementPriceDefaultElectionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SettlementPriceDefaultElection", builder=SettlementPriceDefaultElection.SettlementPriceDefaultElectionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SettlementPriceDefaultElection extends RosettaModelObject {
 
 	SettlementPriceDefaultElectionMeta metaData = new SettlementPriceDefaultElectionMeta();

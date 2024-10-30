@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that describes average rate options rate observations. This is used to describe a parametric frequency of rate observations against a particular rate. Typical frequencies might include daily, every Friday, etc.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxAverageRateObservationSchedule", builder=FxAverageRateObservationSchedule.FxAverageRateObservationScheduleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxAverageRateObservationSchedule", builder=FxAverageRateObservationSchedule.FxAverageRateObservationScheduleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxAverageRateObservationSchedule extends RosettaModelObject {
 
 	FxAverageRateObservationScheduleMeta metaData = new FxAverageRateObservationScheduleMeta();

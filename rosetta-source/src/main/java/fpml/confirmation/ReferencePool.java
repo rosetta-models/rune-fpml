@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * This type contains all the reference pool items to define the reference entity and reference obligation(s) in the basket.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReferencePool", builder=ReferencePool.ReferencePoolBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReferencePool", builder=ReferencePool.ReferencePoolBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReferencePool extends RosettaModelObject {
 
 	ReferencePoolMeta metaData = new ReferencePoolMeta();

@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A scheme that describes tax form types.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TaxFormType", builder=TaxFormType.TaxFormTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TaxFormType", builder=TaxFormType.TaxFormTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TaxFormType extends RosettaModelObject {
 
 	TaxFormTypeMeta metaData = new TaxFormTypeMeta();

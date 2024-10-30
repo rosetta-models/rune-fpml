@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Specifies the principal exchange amount, either by explicitly defining it, or by point to an amount defined somewhere else in the swap document.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PrincipalExchangeAmount", builder=PrincipalExchangeAmount.PrincipalExchangeAmountBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PrincipalExchangeAmount", builder=PrincipalExchangeAmount.PrincipalExchangeAmountBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PrincipalExchangeAmount extends RosettaModelObject {
 
 	PrincipalExchangeAmountMeta metaData = new PrincipalExchangeAmountMeta();

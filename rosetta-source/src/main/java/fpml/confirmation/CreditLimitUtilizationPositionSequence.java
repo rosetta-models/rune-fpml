@@ -20,9 +20,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CreditLimitUtilizationPositionSequence", builder=CreditLimitUtilizationPositionSequence.CreditLimitUtilizationPositionSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CreditLimitUtilizationPositionSequence", builder=CreditLimitUtilizationPositionSequence.CreditLimitUtilizationPositionSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CreditLimitUtilizationPositionSequence extends RosettaModelObject {
 
 	CreditLimitUtilizationPositionSequenceMeta metaData = new CreditLimitUtilizationPositionSequenceMeta();

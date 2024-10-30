@@ -33,9 +33,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An event representing a change in the rate on an outstanding letter of credit.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LcRateChange", builder=LcRateChange.LcRateChangeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LcRateChange", builder=LcRateChange.LcRateChangeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LcRateChange extends AbstractLcEvent {
 
 	LcRateChangeMeta metaData = new LcRateChangeMeta();

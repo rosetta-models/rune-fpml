@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure describing a trade maturing.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradeMaturity", builder=TradeMaturity.TradeMaturityBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradeMaturity", builder=TradeMaturity.TradeMaturityBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradeMaturity extends RosettaModelObject {
 
 	TradeMaturityMeta metaData = new TradeMaturityMeta();

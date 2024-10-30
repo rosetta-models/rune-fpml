@@ -32,9 +32,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure describing a negotiated amendment.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradeAmendmentContent", builder=TradeAmendmentContent.TradeAmendmentContentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradeAmendmentContent", builder=TradeAmendmentContent.TradeAmendmentContentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradeAmendmentContent extends AbstractEvent {
 
 	TradeAmendmentContentMeta metaData = new TradeAmendmentContentMeta();

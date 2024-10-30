@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that identifies a party profile record.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PartyProfileIdentifier", builder=PartyProfileIdentifier.PartyProfileIdentifierBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PartyProfileIdentifier", builder=PartyProfileIdentifier.PartyProfileIdentifierBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PartyProfileIdentifier extends RosettaModelObject {
 
 	PartyProfileIdentifierMeta metaData = new PartyProfileIdentifierMeta();

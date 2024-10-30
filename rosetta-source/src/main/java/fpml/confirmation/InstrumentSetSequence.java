@@ -20,9 +20,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="InstrumentSetSequence", builder=InstrumentSetSequence.InstrumentSetSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="InstrumentSetSequence", builder=InstrumentSetSequence.InstrumentSetSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface InstrumentSetSequence extends RosettaModelObject {
 
 	InstrumentSetSequenceMeta metaData = new InstrumentSetSequenceMeta();

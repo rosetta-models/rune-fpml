@@ -39,9 +39,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Return amounts of the return type swap. A type describing the return leg of a return type swap.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReturnLeg", builder=ReturnLeg.ReturnLegBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReturnLeg", builder=ReturnLeg.ReturnLegBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReturnLeg extends ReturnSwapLegUnderlyer {
 
 	ReturnLegMeta metaData = new ReturnLegMeta();

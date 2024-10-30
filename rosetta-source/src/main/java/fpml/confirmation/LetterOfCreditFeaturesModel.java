@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model that describes the additional features associated with a letter of credit.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LetterOfCreditFeaturesModel", builder=LetterOfCreditFeaturesModel.LetterOfCreditFeaturesModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LetterOfCreditFeaturesModel", builder=LetterOfCreditFeaturesModel.LetterOfCreditFeaturesModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LetterOfCreditFeaturesModel extends RosettaModelObject {
 
 	LetterOfCreditFeaturesModelMeta metaData = new LetterOfCreditFeaturesModelMeta();

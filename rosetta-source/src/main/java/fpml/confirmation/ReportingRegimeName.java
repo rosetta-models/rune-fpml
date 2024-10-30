@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An identifier of an reporting regime or format used for regulatory reporting, for example DoddFrankAct, MiFID, HongKongOTCDRepository, etc.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReportingRegimeName", builder=ReportingRegimeName.ReportingRegimeNameBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReportingRegimeName", builder=ReportingRegimeName.ReportingRegimeNameBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReportingRegimeName extends RosettaModelObject {
 
 	ReportingRegimeNameMeta metaData = new ReportingRegimeNameMeta();

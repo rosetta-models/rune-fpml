@@ -40,9 +40,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Global element representing a Repo. A Repo, modeled as an FpML:Product. Note: this Repo model is a candidate model for further industry input.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Repo", builder=Repo.RepoBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Repo", builder=Repo.RepoBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Repo extends Product {
 
 	RepoMeta metaData = new RepoMeta();

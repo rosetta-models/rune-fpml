@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines a commodity swap product. The commodity swap product model is designed to support fixed-float swaps, float-float swaps, fixed vs. physical swaps, float vs. physical swaps as well as, weather specific swaps. Its design is fully compatible with other FpML products and the product reuses standard common types.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommoditySwap", builder=CommoditySwap.CommoditySwapBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommoditySwap", builder=CommoditySwap.CommoditySwapBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommoditySwap extends Product {
 
 	CommoditySwapMeta metaData = new CommoditySwapMeta();

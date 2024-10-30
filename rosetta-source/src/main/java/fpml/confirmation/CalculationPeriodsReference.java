@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A pointer style reference to a calculation periods schedule defined elsewhere - note that this schedule consists of a series of actual dates in a calculationPeriods container.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CalculationPeriodsReference", builder=CalculationPeriodsReference.CalculationPeriodsReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CalculationPeriodsReference", builder=CalculationPeriodsReference.CalculationPeriodsReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CalculationPeriodsReference extends Reference {
 
 	CalculationPeriodsReferenceMeta metaData = new CalculationPeriodsReferenceMeta();

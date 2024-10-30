@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReceiverModel", builder=ReceiverModel.ReceiverModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReceiverModel", builder=ReceiverModel.ReceiverModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReceiverModel extends RosettaModelObject {
 
 	ReceiverModelMeta metaData = new ReceiverModelMeta();

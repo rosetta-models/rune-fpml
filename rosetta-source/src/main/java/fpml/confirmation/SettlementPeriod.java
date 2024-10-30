@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SettlementPeriod", builder=SettlementPeriod.SettlementPeriodBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SettlementPeriod", builder=SettlementPeriod.SettlementPeriodBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SettlementPeriod extends RosettaModelObject {
 
 	SettlementPeriodMeta metaData = new SettlementPeriodMeta();

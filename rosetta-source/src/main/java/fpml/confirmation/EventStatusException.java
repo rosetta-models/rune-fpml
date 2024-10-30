@@ -25,9 +25,9 @@ import fpml.confirmation.meta.EventStatusExceptionMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EventStatusException", builder=EventStatusException.EventStatusExceptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EventStatusException", builder=EventStatusException.EventStatusExceptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EventStatusException extends Exception {
 
 	EventStatusExceptionMeta metaData = new EventStatusExceptionMeta();

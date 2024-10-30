@@ -42,9 +42,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Describes an FX volatility and variance swap.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxPerformanceSwap", builder=FxPerformanceSwap.FxPerformanceSwapBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxPerformanceSwap", builder=FxPerformanceSwap.FxPerformanceSwapBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxPerformanceSwap extends Product {
 
 	FxPerformanceSwapMeta metaData = new FxPerformanceSwapMeta();

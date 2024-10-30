@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The specification of the gas to be delivered.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="GasDelivery", builder=GasDelivery.GasDeliveryBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="GasDelivery", builder=GasDelivery.GasDeliveryBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface GasDelivery extends RosettaModelObject {
 
 	GasDeliveryMeta metaData = new GasDeliveryMeta();

@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A group which has Collateral elements.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BondCollateralModel", builder=BondCollateralModel.BondCollateralModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BondCollateralModel", builder=BondCollateralModel.BondCollateralModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BondCollateralModel extends RosettaModelObject {
 
 	BondCollateralModelMeta metaData = new BondCollateralModelMeta();

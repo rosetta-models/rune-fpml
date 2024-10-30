@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The representation of the schedule as an offset relative to another schedule. For example, the settlement schedule may be relative to the expiry schedule by an FxForward offset.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxDateOffset", builder=FxDateOffset.FxDateOffsetBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxDateOffset", builder=FxDateOffset.FxDateOffsetBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxDateOffset extends RosettaModelObject {
 
 	FxDateOffsetMeta metaData = new FxDateOffsetMeta();

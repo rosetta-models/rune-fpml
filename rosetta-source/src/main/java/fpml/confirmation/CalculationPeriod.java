@@ -25,9 +25,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the parameters used in the calculation of a fixed or floating rate calculation period amount. This type forms part of cashflows representation of a swap stream.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CalculationPeriod", builder=CalculationPeriod.CalculationPeriodBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CalculationPeriod", builder=CalculationPeriod.CalculationPeriodBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CalculationPeriod extends RosettaModelObject {
 
 	CalculationPeriodMeta metaData = new CalculationPeriodMeta();

@@ -28,9 +28,9 @@ import fpml.confirmation.meta.AllocationAcknowledgementMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AllocationAcknowledgement", builder=AllocationAcknowledgement.AllocationAcknowledgementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AllocationAcknowledgement", builder=AllocationAcknowledgement.AllocationAcknowledgementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AllocationAcknowledgement extends EventRequestAcknowledgement {
 
 	AllocationAcknowledgementMeta metaData = new AllocationAcknowledgementMeta();

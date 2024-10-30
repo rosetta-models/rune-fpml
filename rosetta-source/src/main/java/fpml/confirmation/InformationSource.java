@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the source for a piece of information (e.g. a rate refix or an fx fixing).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="InformationSource", builder=InformationSource.InformationSourceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="InformationSource", builder=InformationSource.InformationSourceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface InformationSource extends RosettaModelObject {
 
 	InformationSourceMeta metaData = new InformationSourceMeta();

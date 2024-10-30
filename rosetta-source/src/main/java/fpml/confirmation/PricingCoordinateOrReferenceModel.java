@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A pricing structure coordinate, or a reference to one. This can be used to either directly define a coordinate or reference an existing coordinate.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PricingCoordinateOrReferenceModel", builder=PricingCoordinateOrReferenceModel.PricingCoordinateOrReferenceModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PricingCoordinateOrReferenceModel", builder=PricingCoordinateOrReferenceModel.PricingCoordinateOrReferenceModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PricingCoordinateOrReferenceModel extends RosettaModelObject {
 
 	PricingCoordinateOrReferenceModelMeta metaData = new PricingCoordinateOrReferenceModelMeta();

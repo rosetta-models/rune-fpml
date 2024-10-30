@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Describes a postponement
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Postponement", builder=Postponement.PostponementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Postponement", builder=Postponement.PostponementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Postponement extends FxDisruptionFallback {
 
 	PostponementMeta metaData = new PostponementMeta();

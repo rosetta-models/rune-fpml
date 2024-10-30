@@ -20,9 +20,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ParametricScheduleModelSequence0", builder=ParametricScheduleModelSequence0.ParametricScheduleModelSequence0BuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ParametricScheduleModelSequence0", builder=ParametricScheduleModelSequence0.ParametricScheduleModelSequence0BuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ParametricScheduleModelSequence0 extends RosettaModelObject {
 
 	ParametricScheduleModelSequence0Meta metaData = new ParametricScheduleModelSequence0Meta();

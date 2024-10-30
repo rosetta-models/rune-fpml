@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Valuation date offset is used in FX Variance Swap and Volatility Swap to always relate the Final Observation Date and can be: [Final Observation Date][The first Business Day following the Final Observation Date]
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxValuationDateOffset", builder=FxValuationDateOffset.FxValuationDateOffsetBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxValuationDateOffset", builder=FxValuationDateOffset.FxValuationDateOffsetBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxValuationDateOffset extends Offset {
 
 	FxValuationDateOffsetMeta metaData = new FxValuationDateOffsetMeta();

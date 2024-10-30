@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that provides for identifying a party involved in the routing of a payment by means of one or more standard identification codes. For example, both a SWIFT BIC code and a national bank identifier may be required.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RoutingIds", builder=RoutingIds.RoutingIdsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RoutingIds", builder=RoutingIds.RoutingIdsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RoutingIds extends RosettaModelObject {
 
 	RoutingIdsMeta metaData = new RoutingIdsMeta();

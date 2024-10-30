@@ -34,9 +34,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Identifies a simple underlying asset that is a term deposit.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Deposit", builder=Deposit.DepositBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Deposit", builder=Deposit.DepositBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Deposit extends UnderlyingAssetType {
 
 	DepositMeta metaData = new DepositMeta();

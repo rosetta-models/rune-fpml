@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure describing a basic credit limit.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CreditLimitBase", builder=CreditLimitBase.CreditLimitBaseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CreditLimitBase", builder=CreditLimitBase.CreditLimitBaseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CreditLimitBase extends RosettaModelObject {
 
 	CreditLimitBaseMeta metaData = new CreditLimitBaseMeta();

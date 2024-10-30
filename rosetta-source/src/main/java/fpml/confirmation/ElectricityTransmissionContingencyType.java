@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The type of transmission contingency, i.e. what portion of the transmission the delivery obligations are applicable.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ElectricityTransmissionContingencyType", builder=ElectricityTransmissionContingencyType.ElectricityTransmissionContingencyTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ElectricityTransmissionContingencyType", builder=ElectricityTransmissionContingencyType.ElectricityTransmissionContingencyTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ElectricityTransmissionContingencyType extends RosettaModelObject {
 
 	ElectricityTransmissionContingencyTypeMeta metaData = new ElectricityTransmissionContingencyTypeMeta();

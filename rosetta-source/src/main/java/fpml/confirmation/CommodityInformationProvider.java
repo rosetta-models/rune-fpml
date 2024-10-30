@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The publication in which the rate, price, index or factor is to be found. (e.g Gas Daily, Platts Bloomberg.)
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityInformationProvider", builder=CommodityInformationProvider.CommodityInformationProviderBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityInformationProvider", builder=CommodityInformationProvider.CommodityInformationProviderBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityInformationProvider extends RosettaModelObject {
 
 	CommodityInformationProviderMeta metaData = new CommodityInformationProviderMeta();

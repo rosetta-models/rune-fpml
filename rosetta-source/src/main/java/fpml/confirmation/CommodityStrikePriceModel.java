@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The different options for specifying the Strike price per unit.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityStrikePriceModel", builder=CommodityStrikePriceModel.CommodityStrikePriceModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityStrikePriceModel", builder=CommodityStrikePriceModel.CommodityStrikePriceModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityStrikePriceModel extends RosettaModelObject {
 
 	CommodityStrikePriceModelMeta metaData = new CommodityStrikePriceModelMeta();

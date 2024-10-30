@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing a set of dates defined as relative to another set of dates.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RelativeDates", builder=RelativeDates.RelativeDatesBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RelativeDates", builder=RelativeDates.RelativeDatesBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RelativeDates extends RelativeDateOffset {
 
 	RelativeDatesMeta metaData = new RelativeDatesMeta();

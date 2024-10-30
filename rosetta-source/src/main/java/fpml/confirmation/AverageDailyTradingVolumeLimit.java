@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * To indicate the limitation percentage and limitation period.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AverageDailyTradingVolumeLimit", builder=AverageDailyTradingVolumeLimit.AverageDailyTradingVolumeLimitBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AverageDailyTradingVolumeLimit", builder=AverageDailyTradingVolumeLimit.AverageDailyTradingVolumeLimitBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AverageDailyTradingVolumeLimit extends RosettaModelObject {
 
 	AverageDailyTradingVolumeLimitMeta metaData = new AverageDailyTradingVolumeLimitMeta();

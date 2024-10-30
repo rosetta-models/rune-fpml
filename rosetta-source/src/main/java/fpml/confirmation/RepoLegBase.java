@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A transaction leg for a repo is equivalent to a single cash transaction. It is augmented here to carry some values that are of interest for the repo. Also note that the BuyerSeller model in this transaction must be the exact opposite of the one found in the near leg.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RepoLegBase", builder=RepoLegBase.RepoLegBaseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RepoLegBase", builder=RepoLegBase.RepoLegBaseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RepoLegBase extends Leg {
 
 	RepoLegBaseMeta metaData = new RepoLegBaseMeta();

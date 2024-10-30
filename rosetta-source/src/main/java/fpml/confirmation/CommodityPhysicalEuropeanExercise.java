@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The parameters for defining the expiration date(s) and time(s) for a European style option.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityPhysicalEuropeanExercise", builder=CommodityPhysicalEuropeanExercise.CommodityPhysicalEuropeanExerciseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityPhysicalEuropeanExercise", builder=CommodityPhysicalEuropeanExercise.CommodityPhysicalEuropeanExerciseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityPhysicalEuropeanExercise extends Exercise {
 
 	CommodityPhysicalEuropeanExerciseMeta metaData = new CommodityPhysicalEuropeanExerciseMeta();

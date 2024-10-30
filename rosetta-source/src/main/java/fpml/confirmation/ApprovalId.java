@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An approval identifier allocated by a party. FpML does not define the domain values associated with this element.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ApprovalId", builder=ApprovalId.ApprovalIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ApprovalId", builder=ApprovalId.ApprovalIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ApprovalId extends RosettaModelObject {
 
 	ApprovalIdMeta metaData = new ApprovalIdMeta();

@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Provides information about a regulator or other supervisory body that an organization is registered with.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SupervisorRegistration", builder=SupervisorRegistration.SupervisorRegistrationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SupervisorRegistration", builder=SupervisorRegistration.SupervisorRegistrationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SupervisorRegistration extends RosettaModelObject {
 
 	SupervisorRegistrationMeta metaData = new SupervisorRegistrationMeta();

@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that represents current/prior facility commitment amounts on both the global and lender position levels.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FacilityPosition", builder=FacilityPosition.FacilityPositionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FacilityPosition", builder=FacilityPosition.FacilityPositionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FacilityPosition extends RosettaModelObject {
 
 	FacilityPositionMeta metaData = new FacilityPositionMeta();

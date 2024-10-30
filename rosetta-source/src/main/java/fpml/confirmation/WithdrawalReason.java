@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that describes why a trade was withdrawn.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="WithdrawalReason", builder=WithdrawalReason.WithdrawalReasonBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="WithdrawalReason", builder=WithdrawalReason.WithdrawalReasonBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface WithdrawalReason extends RosettaModelObject {
 
 	WithdrawalReasonMeta metaData = new WithdrawalReasonMeta();

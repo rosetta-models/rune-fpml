@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that describes why a trade terminated.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TerminatingEvent", builder=TerminatingEvent.TerminatingEventBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TerminatingEvent", builder=TerminatingEvent.TerminatingEventBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TerminatingEvent extends RosettaModelObject {
 
 	TerminatingEventMeta metaData = new TerminatingEventMeta();

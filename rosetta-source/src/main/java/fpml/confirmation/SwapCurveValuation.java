@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A complex type to specify a valuation swap curve, which is used as part of the strike construct for the bond and convertible bond options.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SwapCurveValuation", builder=SwapCurveValuation.SwapCurveValuationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SwapCurveValuation", builder=SwapCurveValuation.SwapCurveValuationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SwapCurveValuation extends RosettaModelObject {
 
 	SwapCurveValuationMeta metaData = new SwapCurveValuationMeta();

@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing the date from which each of the party may be allowed to terminate the trade.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReturnSwapEarlyTermination", builder=ReturnSwapEarlyTermination.ReturnSwapEarlyTerminationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReturnSwapEarlyTermination", builder=ReturnSwapEarlyTermination.ReturnSwapEarlyTerminationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReturnSwapEarlyTermination extends RosettaModelObject {
 
 	ReturnSwapEarlyTerminationMeta metaData = new ReturnSwapEarlyTerminationMeta();

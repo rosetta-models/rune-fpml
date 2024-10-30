@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing the commission that will be charged for each of the hedge transactions.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Commission", builder=Commission.CommissionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Commission", builder=Commission.CommissionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Commission extends RosettaModelObject {
 
 	CommissionMeta metaData = new CommissionMeta();

@@ -25,9 +25,9 @@ import fpml.confirmation.meta.ClearingExceptionMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ClearingException", builder=ClearingException.ClearingExceptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ClearingException", builder=ClearingException.ClearingExceptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ClearingException extends Exception {
 
 	ClearingExceptionMeta metaData = new ClearingExceptionMeta();

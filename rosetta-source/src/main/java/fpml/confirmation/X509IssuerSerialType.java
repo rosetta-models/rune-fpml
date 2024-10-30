@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="X509IssuerSerialType", builder=X509IssuerSerialType.X509IssuerSerialTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="X509IssuerSerialType", builder=X509IssuerSerialType.X509IssuerSerialTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface X509IssuerSerialType extends RosettaModelObject {
 
 	X509IssuerSerialTypeMeta metaData = new X509IssuerSerialTypeMeta();

@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A short form unique identifier for a security.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="InstrumentId", builder=InstrumentId.InstrumentIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="InstrumentId", builder=InstrumentId.InstrumentIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface InstrumentId extends RosettaModelObject {
 
 	InstrumentIdMeta metaData = new InstrumentIdMeta();

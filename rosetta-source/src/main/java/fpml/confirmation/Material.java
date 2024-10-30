@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A scheme identifying the types of metal product for a physically settled metal trade.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Material", builder=Material.MaterialBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Material", builder=Material.MaterialBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Material extends RosettaModelObject {
 
 	MaterialMeta metaData = new MaterialMeta();

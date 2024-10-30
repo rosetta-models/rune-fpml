@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An entity for defining the an agreement executed between parties.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="OtherAgreement", builder=OtherAgreement.OtherAgreementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="OtherAgreement", builder=OtherAgreement.OtherAgreementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface OtherAgreement extends RosettaModelObject {
 
 	OtherAgreementMeta metaData = new OtherAgreementMeta();

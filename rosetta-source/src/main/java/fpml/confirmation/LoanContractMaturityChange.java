@@ -32,9 +32,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An event representing a change of maturity date on a one or more outstanding loan contracts.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanContractMaturityChange", builder=LoanContractMaturityChange.LoanContractMaturityChangeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanContractMaturityChange", builder=LoanContractMaturityChange.LoanContractMaturityChangeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanContractMaturityChange extends AbstractLoanContractEvent {
 
 	LoanContractMaturityChangeMeta metaData = new LoanContractMaturityChangeMeta();

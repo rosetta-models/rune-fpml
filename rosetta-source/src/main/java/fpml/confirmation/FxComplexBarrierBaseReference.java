@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to a barrier structure defined within the parametric representation.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxComplexBarrierBaseReference", builder=FxComplexBarrierBaseReference.FxComplexBarrierBaseReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxComplexBarrierBaseReference", builder=FxComplexBarrierBaseReference.FxComplexBarrierBaseReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxComplexBarrierBaseReference extends Reference {
 
 	FxComplexBarrierBaseReferenceMeta metaData = new FxComplexBarrierBaseReferenceMeta();

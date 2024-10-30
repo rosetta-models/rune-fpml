@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PaymentType", builder=PaymentType.PaymentTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PaymentType", builder=PaymentType.PaymentTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PaymentType extends RosettaModelObject {
 
 	PaymentTypeMeta metaData = new PaymentTypeMeta();

@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines the initial margin calculation applicable to a single piece of collateral.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="InitialMarginCalculation", builder=InitialMarginCalculation.InitialMarginCalculationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="InitialMarginCalculation", builder=InitialMarginCalculation.InitialMarginCalculationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface InitialMarginCalculation extends RosettaModelObject {
 
 	InitialMarginCalculationMeta metaData = new InitialMarginCalculationMeta();

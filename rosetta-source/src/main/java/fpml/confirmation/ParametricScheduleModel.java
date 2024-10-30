@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The schedule defined by the set of parameters to be able to calculate the schedule of adjusted date. The combination of the [start/endDate + dayType + businessCenters] will be used only to represent a daily schedule and the combination of [start/endDate + observationFrequency + dateAdjustments] for parametric representation of the schedules other than daily schedule.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ParametricScheduleModel", builder=ParametricScheduleModel.ParametricScheduleModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ParametricScheduleModel", builder=ParametricScheduleModel.ParametricScheduleModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ParametricScheduleModel extends RosettaModelObject {
 
 	ParametricScheduleModelMeta metaData = new ParametricScheduleModelMeta();

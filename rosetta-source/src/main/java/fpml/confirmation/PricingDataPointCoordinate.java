@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A set of index values that identify a pricing data point. For example: (strike = 17%, expiration = 6M, term = 1Y.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PricingDataPointCoordinate", builder=PricingDataPointCoordinate.PricingDataPointCoordinateBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PricingDataPointCoordinate", builder=PricingDataPointCoordinate.PricingDataPointCoordinateBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PricingDataPointCoordinate extends RosettaModelObject {
 
 	PricingDataPointCoordinateMeta metaData = new PricingDataPointCoordinateMeta();

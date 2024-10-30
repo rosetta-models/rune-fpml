@@ -20,9 +20,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AccountSequence", builder=AccountSequence.AccountSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AccountSequence", builder=AccountSequence.AccountSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AccountSequence extends RosettaModelObject {
 
 	AccountSequenceMeta metaData = new AccountSequenceMeta();

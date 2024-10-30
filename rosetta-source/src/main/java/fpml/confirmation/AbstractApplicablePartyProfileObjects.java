@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An abstract base type that combines objects applicable to the description of a party profile (e.g. applicable assets and cash evets to specific contacts or settlement instructions).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AbstractApplicablePartyProfileObjects", builder=AbstractApplicablePartyProfileObjects.AbstractApplicablePartyProfileObjectsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AbstractApplicablePartyProfileObjects", builder=AbstractApplicablePartyProfileObjects.AbstractApplicablePartyProfileObjectsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AbstractApplicablePartyProfileObjects extends RosettaModelObject {
 
 	AbstractApplicablePartyProfileObjectsMeta metaData = new AbstractApplicablePartyProfileObjectsMeta();

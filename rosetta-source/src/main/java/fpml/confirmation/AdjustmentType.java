@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure used to describe an adjustment.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AdjustmentType", builder=AdjustmentType.AdjustmentTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AdjustmentType", builder=AdjustmentType.AdjustmentTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AdjustmentType extends RosettaModelObject {
 
 	AdjustmentTypeMeta metaData = new AdjustmentTypeMeta();

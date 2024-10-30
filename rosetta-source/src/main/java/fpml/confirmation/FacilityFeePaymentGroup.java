@@ -32,9 +32,9 @@ import java.util.stream.Collectors;
 
 /**
  * Head of the substitution group for all facility fee payment events.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FacilityFeePaymentGroup", builder=FacilityFeePaymentGroup.FacilityFeePaymentGroupBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FacilityFeePaymentGroup", builder=FacilityFeePaymentGroup.FacilityFeePaymentGroupBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FacilityFeePaymentGroup extends NonRecurringFeePayment {
 
 	FacilityFeePaymentGroupMeta metaData = new FacilityFeePaymentGroupMeta();

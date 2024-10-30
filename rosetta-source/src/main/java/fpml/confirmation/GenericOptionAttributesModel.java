@@ -29,9 +29,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="GenericOptionAttributesModel", builder=GenericOptionAttributesModel.GenericOptionAttributesModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="GenericOptionAttributesModel", builder=GenericOptionAttributesModel.GenericOptionAttributesModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface GenericOptionAttributesModel extends RosettaModelObject {
 
 	GenericOptionAttributesModelMeta metaData = new GenericOptionAttributesModelMeta();

@@ -25,9 +25,9 @@ import fpml.confirmation.meta.CollateralAllocationRejectedMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CollateralAllocationRejected", builder=CollateralAllocationRejected.CollateralAllocationRejectedBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CollateralAllocationRejected", builder=CollateralAllocationRejected.CollateralAllocationRejectedBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CollateralAllocationRejected extends Exception {
 
 	CollateralAllocationRejectedMeta metaData = new CollateralAllocationRejectedMeta();

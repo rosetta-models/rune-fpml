@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that defines a tax form registration.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TaxForm", builder=TaxForm.TaxFormBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TaxForm", builder=TaxForm.TaxFormBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TaxForm extends RosettaModelObject {
 
 	TaxFormMeta metaData = new TaxFormMeta();

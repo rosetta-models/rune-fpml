@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing the additional payment(s) between the principal parties to the trade. This component extends some of the features of the additionalPayment component previously developed in FpML. Appropriate discussions will determine whether it would be appropriate to extend the shared component in order to meet the further requirements of equity swaps.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReturnSwapAdditionalPayment", builder=ReturnSwapAdditionalPayment.ReturnSwapAdditionalPaymentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReturnSwapAdditionalPayment", builder=ReturnSwapAdditionalPayment.ReturnSwapAdditionalPaymentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReturnSwapAdditionalPayment extends PaymentBase {
 
 	ReturnSwapAdditionalPaymentMeta metaData = new ReturnSwapAdditionalPaymentMeta();

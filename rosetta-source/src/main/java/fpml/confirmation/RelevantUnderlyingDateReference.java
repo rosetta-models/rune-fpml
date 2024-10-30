@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to relevant underlying date.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RelevantUnderlyingDateReference", builder=RelevantUnderlyingDateReference.RelevantUnderlyingDateReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RelevantUnderlyingDateReference", builder=RelevantUnderlyingDateReference.RelevantUnderlyingDateReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RelevantUnderlyingDateReference extends Reference {
 
 	RelevantUnderlyingDateReferenceMeta metaData = new RelevantUnderlyingDateReferenceMeta();

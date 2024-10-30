@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type for defining PrePayment.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PrePayment", builder=PrePayment.PrePaymentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PrePayment", builder=PrePayment.PrePaymentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PrePayment extends PaymentBase {
 
 	PrePaymentMeta metaData = new PrePaymentMeta();

@@ -26,9 +26,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SensitivityDescriptionModel", builder=SensitivityDescriptionModel.SensitivityDescriptionModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SensitivityDescriptionModel", builder=SensitivityDescriptionModel.SensitivityDescriptionModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SensitivityDescriptionModel extends RosettaModelObject {
 
 	SensitivityDescriptionModelMeta metaData = new SensitivityDescriptionModelMeta();

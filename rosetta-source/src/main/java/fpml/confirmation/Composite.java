@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Specifies the conditions to be applied for converting into a reference currency when the actual currency rate is not determined upfront.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Composite", builder=Composite.CompositeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Composite", builder=Composite.CompositeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Composite extends RosettaModelObject {
 
 	CompositeMeta metaData = new CompositeMeta();

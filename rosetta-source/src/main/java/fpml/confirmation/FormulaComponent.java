@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Elements describing the components of the formula. The name attribute points to a value used in the math element. The href attribute points to a numeric value defined elsewhere in the document that is used by the formula component.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FormulaComponent", builder=FormulaComponent.FormulaComponentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FormulaComponent", builder=FormulaComponent.FormulaComponentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FormulaComponent extends RosettaModelObject {
 
 	FormulaComponentMeta metaData = new FormulaComponentMeta();

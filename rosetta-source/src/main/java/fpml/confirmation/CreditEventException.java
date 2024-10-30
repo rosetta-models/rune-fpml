@@ -25,9 +25,9 @@ import fpml.confirmation.meta.CreditEventExceptionMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CreditEventException", builder=CreditEventException.CreditEventExceptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CreditEventException", builder=CreditEventException.CreditEventExceptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CreditEventException extends Exception {
 
 	CreditEventExceptionMeta metaData = new CreditEventExceptionMeta();

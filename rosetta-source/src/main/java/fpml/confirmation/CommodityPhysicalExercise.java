@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The parameters for defining how the physically-settled commodity option can be exercised and how it is settled.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityPhysicalExercise", builder=CommodityPhysicalExercise.CommodityPhysicalExerciseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityPhysicalExercise", builder=CommodityPhysicalExercise.CommodityPhysicalExerciseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityPhysicalExercise extends RosettaModelObject {
 
 	CommodityPhysicalExerciseMeta metaData = new CommodityPhysicalExerciseMeta();

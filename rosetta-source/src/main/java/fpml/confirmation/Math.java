@@ -17,9 +17,9 @@ import fpml.confirmation.meta.MathMeta;
 
 /**
  * A type defining a mathematical expression.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Math", builder=Math.MathBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Math", builder=Math.MathBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Math extends RosettaModelObject {
 
 	MathMeta metaData = new MathMeta();

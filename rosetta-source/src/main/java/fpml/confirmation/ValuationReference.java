@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to a Valuation or any derived structure such as PricingStructureValuation.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ValuationReference", builder=ValuationReference.ValuationReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ValuationReference", builder=ValuationReference.ValuationReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ValuationReference extends Reference {
 
 	ValuationReferenceMeta metaData = new ValuationReferenceMeta();

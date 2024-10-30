@@ -16,9 +16,9 @@ import fpml.confirmation.meta.CreditEventMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CreditEvent", builder=CreditEvent.CreditEventBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CreditEvent", builder=CreditEvent.CreditEventBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CreditEvent extends RosettaModelObject {
 
 	CreditEventMeta metaData = new CreditEventMeta();

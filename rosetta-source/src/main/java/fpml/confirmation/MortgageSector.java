@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing the typology of mortgage obligations.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MortgageSector", builder=MortgageSector.MortgageSectorBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MortgageSector", builder=MortgageSector.MortgageSectorBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MortgageSector extends RosettaModelObject {
 
 	MortgageSectorMeta metaData = new MortgageSectorMeta();

@@ -42,9 +42,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure describing an option exercise. The OptionExercise type supports partial exercise (specify the number of options or amount to exercise), full exercise (use fullExercise flag), as well as the option to request options not to be exercised.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="OptionExercise", builder=OptionExercise.OptionExerciseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="OptionExercise", builder=OptionExercise.OptionExerciseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface OptionExercise extends AbstractEvent {
 
 	OptionExerciseMeta metaData = new OptionExerciseMeta();

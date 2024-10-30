@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A code identifying a Weather Station Airport (based on the the IATA standard).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="WeatherStationAirport", builder=WeatherStationAirport.WeatherStationAirportBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="WeatherStationAirport", builder=WeatherStationAirport.WeatherStationAirportBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface WeatherStationAirport extends RosettaModelObject {
 
 	WeatherStationAirportMeta metaData = new WeatherStationAirportMeta();

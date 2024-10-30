@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A subset of the ISDA Floating Rate Option scheme, i.e. the floating rate index. These indexes are the ones used by the syndicated loan market.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FloatingRateIndexLoan", builder=FloatingRateIndexLoan.FloatingRateIndexLoanBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FloatingRateIndexLoan", builder=FloatingRateIndexLoan.FloatingRateIndexLoanBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FloatingRateIndexLoan extends RosettaModelObject {
 
 	FloatingRateIndexLoanMeta metaData = new FloatingRateIndexLoanMeta();

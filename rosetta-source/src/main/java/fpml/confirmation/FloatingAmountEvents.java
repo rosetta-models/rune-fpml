@@ -22,9 +22,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FloatingAmountEvents", builder=FloatingAmountEvents.FloatingAmountEventsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FloatingAmountEvents", builder=FloatingAmountEvents.FloatingAmountEventsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FloatingAmountEvents extends RosettaModelObject {
 
 	FloatingAmountEventsMeta metaData = new FloatingAmountEventsMeta();

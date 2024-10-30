@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A value of the adjustment point, consisting of the x value and the corresponding y value.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ParametricAdjustmentPoint", builder=ParametricAdjustmentPoint.ParametricAdjustmentPointBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ParametricAdjustmentPoint", builder=ParametricAdjustmentPoint.ParametricAdjustmentPointBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ParametricAdjustmentPoint extends RosettaModelObject {
 
 	ParametricAdjustmentPointMeta metaData = new ParametricAdjustmentPointMeta();

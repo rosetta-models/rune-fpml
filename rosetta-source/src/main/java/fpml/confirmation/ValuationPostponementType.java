@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Specifies how long to wait to get a quote from a settlement rate option upon a price source disruption.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ValuationPostponementType", builder=ValuationPostponementType.ValuationPostponementTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ValuationPostponementType", builder=ValuationPostponementType.ValuationPostponementTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ValuationPostponementType extends RosettaModelObject {
 
 	ValuationPostponementTypeMeta metaData = new ValuationPostponementTypeMeta();

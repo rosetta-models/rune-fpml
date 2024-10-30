@@ -9,7 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaEnum("AveragingInOutEnum")
 public enum AveragingInOutEnum {

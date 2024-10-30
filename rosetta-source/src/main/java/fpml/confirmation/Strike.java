@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing a single cap or floor rate.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Strike", builder=Strike.StrikeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Strike", builder=Strike.StrikeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Strike extends RosettaModelObject {
 
 	StrikeMeta metaData = new StrikeMeta();

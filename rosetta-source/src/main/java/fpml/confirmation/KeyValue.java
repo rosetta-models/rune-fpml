@@ -23,9 +23,9 @@ import fpml.confirmation.meta.KeyValueMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="KeyValue", builder=KeyValue.KeyValueBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="KeyValue", builder=KeyValue.KeyValueBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface KeyValue extends KeyValueType {
 
 	KeyValueMeta metaData = new KeyValueMeta();

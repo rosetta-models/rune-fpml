@@ -27,9 +27,9 @@ import fpml.confirmation.meta.CollateralAllocationAcknowledgementMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CollateralAllocationAcknowledgement", builder=CollateralAllocationAcknowledgement.CollateralAllocationAcknowledgementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CollateralAllocationAcknowledgement", builder=CollateralAllocationAcknowledgement.CollateralAllocationAcknowledgementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CollateralAllocationAcknowledgement extends Acknowledgement {
 
 	CollateralAllocationAcknowledgementMeta metaData = new CollateralAllocationAcknowledgementMeta();

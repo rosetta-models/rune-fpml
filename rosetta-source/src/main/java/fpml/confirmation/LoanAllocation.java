@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An event structure defining information related to a loan trade allocation.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanAllocation", builder=LoanAllocation.LoanAllocationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanAllocation", builder=LoanAllocation.LoanAllocationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanAllocation extends AbstractLoanAllocationSummary {
 
 	LoanAllocationMeta metaData = new LoanAllocationMeta();

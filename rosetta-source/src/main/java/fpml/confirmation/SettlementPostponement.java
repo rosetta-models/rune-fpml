@@ -22,9 +22,9 @@ import fpml.confirmation.meta.SettlementPostponementMeta;
 
 /**
  * Indicates that the Settlement Date for the tranaction shall be deemed to be the first Business Day following the day on which the applicable Disruption Event ceases to exist, unless the events continues to exists for more than a maximum number of days.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SettlementPostponement", builder=SettlementPostponement.SettlementPostponementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SettlementPostponement", builder=SettlementPostponement.SettlementPostponementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SettlementPostponement extends Postponement {
 
 	SettlementPostponementMeta metaData = new SettlementPostponementMeta();

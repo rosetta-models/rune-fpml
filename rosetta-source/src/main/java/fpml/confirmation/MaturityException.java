@@ -25,9 +25,9 @@ import fpml.confirmation.meta.MaturityExceptionMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MaturityException", builder=MaturityException.MaturityExceptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MaturityException", builder=MaturityException.MaturityExceptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MaturityException extends Exception {
 
 	MaturityExceptionMeta metaData = new MaturityExceptionMeta();

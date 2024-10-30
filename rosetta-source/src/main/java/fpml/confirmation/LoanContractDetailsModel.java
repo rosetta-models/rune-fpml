@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model used to reference a loan contract by either identifier, summary or full contract details, within various notifications.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanContractDetailsModel", builder=LoanContractDetailsModel.LoanContractDetailsModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanContractDetailsModel", builder=LoanContractDetailsModel.LoanContractDetailsModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanContractDetailsModel extends RosettaModelObject {
 
 	LoanContractDetailsModelMeta metaData = new LoanContractDetailsModelMeta();

@@ -32,9 +32,9 @@ import java.util.stream.Collectors;
 
 /**
  * An event representing a change in the penalty rate applicable to outstanding loans.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PenaltyRateChange", builder=PenaltyRateChange.PenaltyRateChangeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PenaltyRateChange", builder=PenaltyRateChange.PenaltyRateChangeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PenaltyRateChange extends FacilityRateChangeEvent {
 
 	PenaltyRateChangeMeta metaData = new PenaltyRateChangeMeta();

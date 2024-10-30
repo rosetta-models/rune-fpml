@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Physically settled coal leg. Physically settled leg of a physically settled coal transaction.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CoalPhysicalLeg", builder=CoalPhysicalLeg.CoalPhysicalLegBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CoalPhysicalLeg", builder=CoalPhysicalLeg.CoalPhysicalLegBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CoalPhysicalLeg extends PhysicalSwapLeg {
 
 	CoalPhysicalLegMeta metaData = new CoalPhysicalLegMeta();

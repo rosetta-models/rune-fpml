@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that describes a period during which settlement cannot occur.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanAllocationNoSettlePeriod", builder=LoanAllocationNoSettlePeriod.LoanAllocationNoSettlePeriodBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanAllocationNoSettlePeriod", builder=LoanAllocationNoSettlePeriod.LoanAllocationNoSettlePeriodBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanAllocationNoSettlePeriod extends RosettaModelObject {
 
 	LoanAllocationNoSettlePeriodMeta metaData = new LoanAllocationNoSettlePeriodMeta();

@@ -33,9 +33,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Fixed Payment Leg of a Dividend Swap.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FixedPaymentLeg", builder=FixedPaymentLeg.FixedPaymentLegBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FixedPaymentLeg", builder=FixedPaymentLeg.FixedPaymentLegBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FixedPaymentLeg extends DirectionalLeg {
 
 	FixedPaymentLegMeta metaData = new FixedPaymentLegMeta();

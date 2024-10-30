@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A reference to a sensitivity set definition.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SensitivitySetDefinitionReference", builder=SensitivitySetDefinitionReference.SensitivitySetDefinitionReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SensitivitySetDefinitionReference", builder=SensitivitySetDefinitionReference.SensitivitySetDefinitionReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SensitivitySetDefinitionReference extends Reference {
 
 	SensitivitySetDefinitionReferenceMeta metaData = new SensitivitySetDefinitionReferenceMeta();

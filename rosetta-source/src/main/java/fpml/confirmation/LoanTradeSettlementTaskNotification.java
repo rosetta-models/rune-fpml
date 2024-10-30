@@ -40,9 +40,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A loan servicing notification used to communicate master trade-level tasks and their statuses, the completion of which are deemed by the sender of the notification to be prerequisites to the settlement of a trade or allocation.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanTradeSettlementTaskNotification", builder=LoanTradeSettlementTaskNotification.LoanTradeSettlementTaskNotificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanTradeSettlementTaskNotification", builder=LoanTradeSettlementTaskNotification.LoanTradeSettlementTaskNotificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanTradeSettlementTaskNotification extends AbstractLoanTradingNotification {
 
 	LoanTradeSettlementTaskNotificationMeta metaData = new LoanTradeSettlementTaskNotificationMeta();

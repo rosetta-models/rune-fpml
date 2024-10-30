@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing the whole set of possible underlyers: single underlyers or multiple underlyers, each of these having either security or index components.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Underlyer", builder=Underlyer.UnderlyerBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Underlyer", builder=Underlyer.UnderlyerBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Underlyer extends RosettaModelObject {
 
 	UnderlyerMeta metaData = new UnderlyerMeta();

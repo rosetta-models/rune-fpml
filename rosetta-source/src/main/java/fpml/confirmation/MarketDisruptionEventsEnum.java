@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * The specification of how market disruption events will be represented.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaEnum("MarketDisruptionEventsEnum")
 public enum MarketDisruptionEventsEnum {

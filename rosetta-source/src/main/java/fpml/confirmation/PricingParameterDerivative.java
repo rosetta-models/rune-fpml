@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A definition of the mathematical derivative with respect to a specific pricing parameter.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PricingParameterDerivative", builder=PricingParameterDerivative.PricingParameterDerivativeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PricingParameterDerivative", builder=PricingParameterDerivative.PricingParameterDerivativeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PricingParameterDerivative extends RosettaModelObject {
 
 	PricingParameterDerivativeMeta metaData = new PricingParameterDerivativeMeta();

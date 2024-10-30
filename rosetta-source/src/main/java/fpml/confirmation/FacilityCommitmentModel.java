@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model that describes facility commitment information together with any schedule associated with the commitment.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FacilityCommitmentModel", builder=FacilityCommitmentModel.FacilityCommitmentModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FacilityCommitmentModel", builder=FacilityCommitmentModel.FacilityCommitmentModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FacilityCommitmentModel extends RosettaModelObject {
 
 	FacilityCommitmentModelMeta metaData = new FacilityCommitmentModelMeta();

@@ -37,9 +37,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that represents the accruing fixed rate option associated within a facility.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FixedRateOption", builder=FixedRateOption.FixedRateOptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FixedRateOption", builder=FixedRateOption.FixedRateOptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FixedRateOption extends FixedRateOptionBase {
 
 	FixedRateOptionMeta metaData = new FixedRateOptionMeta();

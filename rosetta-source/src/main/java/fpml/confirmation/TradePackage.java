@@ -30,9 +30,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A bundle of trades collected together into a single unit for reporting.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradePackage", builder=TradePackage.TradePackageBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradePackage", builder=TradePackage.TradePackageBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradePackage extends RosettaModelObject {
 
 	TradePackageMeta metaData = new TradePackageMeta();

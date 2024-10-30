@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining party-specific additional information that may be recorded against a trade, for withdrawal purposes.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="WithdrawalPartyTradeInformation", builder=WithdrawalPartyTradeInformation.WithdrawalPartyTradeInformationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="WithdrawalPartyTradeInformation", builder=WithdrawalPartyTradeInformation.WithdrawalPartyTradeInformationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface WithdrawalPartyTradeInformation extends RosettaModelObject {
 
 	WithdrawalPartyTradeInformationMeta metaData = new WithdrawalPartyTradeInformationMeta();

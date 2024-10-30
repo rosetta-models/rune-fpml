@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The roles of the parties involved in the novation.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="NovationRolesModel", builder=NovationRolesModel.NovationRolesModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="NovationRolesModel", builder=NovationRolesModel.NovationRolesModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface NovationRolesModel extends RosettaModelObject {
 
 	NovationRolesModelMeta metaData = new NovationRolesModelMeta();

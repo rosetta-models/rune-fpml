@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An abstract base type for all syndicated loan statement notifications; the wrapper for deal/facility/contract definitions and facility/contract positions at a particular point in time (snapshot).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AbstractLoanStatement", builder=AbstractLoanStatement.AbstractLoanStatementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AbstractLoanStatement", builder=AbstractLoanStatement.AbstractLoanStatementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AbstractLoanStatement extends CorrectableRequestMessage {
 
 	AbstractLoanStatementMeta metaData = new AbstractLoanStatementMeta();

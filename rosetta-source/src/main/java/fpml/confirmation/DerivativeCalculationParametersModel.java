@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Parameters used in the computation of a derivative.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DerivativeCalculationParametersModel", builder=DerivativeCalculationParametersModel.DerivativeCalculationParametersModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DerivativeCalculationParametersModel", builder=DerivativeCalculationParametersModel.DerivativeCalculationParametersModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DerivativeCalculationParametersModel extends RosettaModelObject {
 
 	DerivativeCalculationParametersModelMeta metaData = new DerivativeCalculationParametersModelMeta();

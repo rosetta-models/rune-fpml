@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model which contains the identifiers used by loan structures.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanIdentifiersModel", builder=LoanIdentifiersModel.LoanIdentifiersModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanIdentifiersModel", builder=LoanIdentifiersModel.LoanIdentifiersModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanIdentifiersModel extends RosettaModelObject {
 
 	LoanIdentifiersModelMeta metaData = new LoanIdentifiersModelMeta();

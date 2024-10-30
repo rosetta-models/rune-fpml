@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A code that describes what type of role an organization plays, for example a SwapsDealer, a Major Swaps Participant, or Other
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="OrganizationType", builder=OrganizationType.OrganizationTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="OrganizationType", builder=OrganizationType.OrganizationTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface OrganizationType extends RosettaModelObject {
 
 	OrganizationTypeMeta metaData = new OrganizationTypeMeta();

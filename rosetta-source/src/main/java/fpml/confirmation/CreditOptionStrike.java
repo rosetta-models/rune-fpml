@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A complex type to specify the strike of a credit swaption or a credit default swap option.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CreditOptionStrike", builder=CreditOptionStrike.CreditOptionStrikeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CreditOptionStrike", builder=CreditOptionStrike.CreditOptionStrikeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CreditOptionStrike extends RosettaModelObject {
 
 	CreditOptionStrikeMeta metaData = new CreditOptionStrikeMeta();

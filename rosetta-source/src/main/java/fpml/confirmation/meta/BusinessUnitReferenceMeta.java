@@ -19,7 +19,7 @@ import java.util.function.Function;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaMeta(model=BusinessUnitReference.class)
 public class BusinessUnitReferenceMeta implements RosettaMetaData<BusinessUnitReference> {

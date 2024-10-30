@@ -30,9 +30,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Physically settled metal products leg. Physically settled leg of a physically settled Metal transaction.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MetalPhysicalLeg", builder=MetalPhysicalLeg.MetalPhysicalLegBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MetalPhysicalLeg", builder=MetalPhysicalLeg.MetalPhysicalLegBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MetalPhysicalLeg extends PhysicalForwardLeg {
 
 	MetalPhysicalLegMeta metaData = new MetalPhysicalLegMeta();

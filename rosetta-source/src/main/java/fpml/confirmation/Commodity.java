@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Identifies the underlying asset when it is a listed commodity. A type describing a commodity underlying asset.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Commodity", builder=Commodity.CommodityBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Commodity", builder=Commodity.CommodityBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Commodity extends IdentifiedAsset {
 
 	CommodityMeta metaData = new CommodityMeta();

@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Choice between change-related events.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ChangeEventsBaseModel", builder=ChangeEventsBaseModel.ChangeEventsBaseModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ChangeEventsBaseModel", builder=ChangeEventsBaseModel.ChangeEventsBaseModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ChangeEventsBaseModel extends RosettaModelObject {
 
 	ChangeEventsBaseModelMeta metaData = new ChangeEventsBaseModelMeta();

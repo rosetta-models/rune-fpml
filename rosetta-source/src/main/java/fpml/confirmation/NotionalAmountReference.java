@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A reference to the notional amount.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="NotionalAmountReference", builder=NotionalAmountReference.NotionalAmountReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="NotionalAmountReference", builder=NotionalAmountReference.NotionalAmountReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface NotionalAmountReference extends Reference {
 
 	NotionalAmountReferenceMeta metaData = new NotionalAmountReferenceMeta();

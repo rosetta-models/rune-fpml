@@ -31,9 +31,9 @@ import fpml.confirmation.meta.OptionExpirationNotificationMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="OptionExpirationNotification", builder=OptionExpirationNotification.OptionExpirationNotificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="OptionExpirationNotification", builder=OptionExpirationNotification.OptionExpirationNotificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface OptionExpirationNotification extends ExecutionNotification {
 
 	OptionExpirationNotificationMeta metaData = new OptionExpirationNotificationMeta();

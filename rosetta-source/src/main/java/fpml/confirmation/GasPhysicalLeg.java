@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Physically settled natural gas leg. Physically settled leg of a physically settled gas transaction.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="GasPhysicalLeg", builder=GasPhysicalLeg.GasPhysicalLegBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="GasPhysicalLeg", builder=GasPhysicalLeg.GasPhysicalLegBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface GasPhysicalLeg extends PhysicalSwapLeg {
 
 	GasPhysicalLegMeta metaData = new GasPhysicalLegMeta();

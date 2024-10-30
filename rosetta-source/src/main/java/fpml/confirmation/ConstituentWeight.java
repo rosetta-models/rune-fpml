@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing the weight of each of the underlyer constituent within the basket, either in absolute or relative terms.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ConstituentWeight", builder=ConstituentWeight.ConstituentWeightBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ConstituentWeight", builder=ConstituentWeight.ConstituentWeightBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ConstituentWeight extends RosettaModelObject {
 
 	ConstituentWeightMeta metaData = new ConstituentWeightMeta();

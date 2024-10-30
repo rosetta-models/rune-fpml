@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * How a Boolean value is to be reported for this regulator. Typically &quot;true&quot; or &quot;false&quot;, but for ESMA &quot;X&quot; is also allowed, to indicate not supplied.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReportingBoolean", builder=ReportingBoolean.ReportingBooleanBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReportingBoolean", builder=ReportingBoolean.ReportingBooleanBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReportingBoolean extends RosettaModelObject {
 
 	ReportingBooleanMeta metaData = new ReportingBooleanMeta();

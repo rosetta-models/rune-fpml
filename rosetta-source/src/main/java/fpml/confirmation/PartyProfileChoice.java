@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PartyProfileChoice", builder=PartyProfileChoice.PartyProfileChoiceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PartyProfileChoice", builder=PartyProfileChoice.PartyProfileChoiceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PartyProfileChoice extends RosettaModelObject {
 
 	PartyProfileChoiceMeta metaData = new PartyProfileChoiceMeta();

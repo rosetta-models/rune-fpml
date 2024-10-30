@@ -20,9 +20,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxFixingScheduleSimpleSequence", builder=FxFixingScheduleSimpleSequence.FxFixingScheduleSimpleSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxFixingScheduleSimpleSequence", builder=FxFixingScheduleSimpleSequence.FxFixingScheduleSimpleSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxFixingScheduleSimpleSequence extends RosettaModelObject {
 
 	FxFixingScheduleSimpleSequenceMeta metaData = new FxFixingScheduleSimpleSequenceMeta();

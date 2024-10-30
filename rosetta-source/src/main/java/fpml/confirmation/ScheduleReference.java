@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to a schedule of rates or amounts.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ScheduleReference", builder=ScheduleReference.ScheduleReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ScheduleReference", builder=ScheduleReference.ScheduleReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ScheduleReference extends Reference {
 
 	ScheduleReferenceMeta metaData = new ScheduleReferenceMeta();

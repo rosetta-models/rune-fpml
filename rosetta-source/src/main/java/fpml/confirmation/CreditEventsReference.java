@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to credit events.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CreditEventsReference", builder=CreditEventsReference.CreditEventsReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CreditEventsReference", builder=CreditEventsReference.CreditEventsReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CreditEventsReference extends Reference {
 
 	CreditEventsReferenceMeta metaData = new CreditEventsReferenceMeta();

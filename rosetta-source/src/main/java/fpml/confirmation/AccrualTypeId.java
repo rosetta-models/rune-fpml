@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure used to uniquely identify a single accrual type within a syndicated loan structure.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AccrualTypeId", builder=AccrualTypeId.AccrualTypeIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AccrualTypeId", builder=AccrualTypeId.AccrualTypeIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AccrualTypeId extends RosettaModelObject {
 
 	AccrualTypeIdMeta metaData = new AccrualTypeIdMeta();

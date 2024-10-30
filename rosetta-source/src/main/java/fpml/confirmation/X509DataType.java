@@ -25,9 +25,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="X509DataType", builder=X509DataType.X509DataTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="X509DataType", builder=X509DataType.X509DataTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface X509DataType extends RosettaModelObject {
 
 	X509DataTypeMeta metaData = new X509DataTypeMeta();

@@ -33,9 +33,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The notional quantity of electricity that applies to one or more groups of Settlement Periods.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommoditySettlementPeriodsNotionalQuantity", builder=CommoditySettlementPeriodsNotionalQuantity.CommoditySettlementPeriodsNotionalQuantityBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommoditySettlementPeriodsNotionalQuantity", builder=CommoditySettlementPeriodsNotionalQuantity.CommoditySettlementPeriodsNotionalQuantityBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommoditySettlementPeriodsNotionalQuantity extends CommodityNotionalQuantity {
 
 	CommoditySettlementPeriodsNotionalQuantityMeta metaData = new CommoditySettlementPeriodsNotionalQuantityMeta();

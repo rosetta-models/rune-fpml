@@ -34,9 +34,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A matrix of volatilities with dimension 0-3.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="VolatilityMatrix", builder=VolatilityMatrix.VolatilityMatrixBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="VolatilityMatrix", builder=VolatilityMatrix.VolatilityMatrixBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface VolatilityMatrix extends PricingStructureValuation {
 
 	VolatilityMatrixMeta metaData = new VolatilityMatrixMeta();

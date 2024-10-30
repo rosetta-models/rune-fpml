@@ -21,9 +21,9 @@ import fpml.confirmation.meta.UnderlyerReferenceMeta;
 
 /**
  * Reference to an underlyer
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="UnderlyerReference", builder=UnderlyerReference.UnderlyerReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="UnderlyerReference", builder=UnderlyerReference.UnderlyerReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface UnderlyerReference extends Reference {
 
 	UnderlyerReferenceMeta metaData = new UnderlyerReferenceMeta();

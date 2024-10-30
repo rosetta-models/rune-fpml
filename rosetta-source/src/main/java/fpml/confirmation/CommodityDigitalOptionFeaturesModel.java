@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Describes features of the digital option.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityDigitalOptionFeaturesModel", builder=CommodityDigitalOptionFeaturesModel.CommodityDigitalOptionFeaturesModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityDigitalOptionFeaturesModel", builder=CommodityDigitalOptionFeaturesModel.CommodityDigitalOptionFeaturesModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityDigitalOptionFeaturesModel extends RosettaModelObject {
 
 	CommodityDigitalOptionFeaturesModelMeta metaData = new CommodityDigitalOptionFeaturesModelMeta();

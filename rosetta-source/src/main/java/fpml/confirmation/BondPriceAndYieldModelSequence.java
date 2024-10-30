@@ -20,9 +20,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BondPriceAndYieldModelSequence", builder=BondPriceAndYieldModelSequence.BondPriceAndYieldModelSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BondPriceAndYieldModelSequence", builder=BondPriceAndYieldModelSequence.BondPriceAndYieldModelSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BondPriceAndYieldModelSequence extends RosettaModelObject {
 
 	BondPriceAndYieldModelSequenceMeta metaData = new BondPriceAndYieldModelSequenceMeta();

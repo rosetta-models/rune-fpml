@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that identifies settlement instructions to override default settlement instructions, for a particular trade/allocation.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradingInstructionOverride", builder=TradingInstructionOverride.TradingInstructionOverrideBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradingInstructionOverride", builder=TradingInstructionOverride.TradingInstructionOverrideBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradingInstructionOverride extends RosettaModelObject {
 
 	TradingInstructionOverrideMeta metaData = new TradingInstructionOverrideMeta();

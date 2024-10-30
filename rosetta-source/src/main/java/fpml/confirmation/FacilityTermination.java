@@ -30,9 +30,9 @@ import java.util.stream.Collectors;
 
 /**
  * An event describing the early termination of a facility.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FacilityTermination", builder=FacilityTermination.FacilityTerminationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FacilityTermination", builder=FacilityTermination.FacilityTerminationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FacilityTermination extends AbstractFacilityEvent {
 
 	FacilityTerminationMeta metaData = new FacilityTerminationMeta();

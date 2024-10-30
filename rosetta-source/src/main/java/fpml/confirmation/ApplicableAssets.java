@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that defines the assets (or type of assets) that a particular payment profile may be associated with.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ApplicableAssets", builder=ApplicableAssets.ApplicableAssetsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ApplicableAssets", builder=ApplicableAssets.ApplicableAssetsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ApplicableAssets extends RosettaModelObject {
 
 	ApplicableAssetsMeta metaData = new ApplicableAssetsMeta();

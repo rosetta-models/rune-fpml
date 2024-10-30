@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining a step date and step value pair. This step definitions are used to define varying rate or amount schedules, e.g. a notional amortization or a step-up coupon schedule.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="StepBase", builder=StepBase.StepBaseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="StepBase", builder=StepBase.StepBaseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface StepBase extends RosettaModelObject {
 
 	StepBaseMeta metaData = new StepBaseMeta();

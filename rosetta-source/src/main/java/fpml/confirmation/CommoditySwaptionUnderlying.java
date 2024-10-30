@@ -20,9 +20,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommoditySwaptionUnderlying", builder=CommoditySwaptionUnderlying.CommoditySwaptionUnderlyingBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommoditySwaptionUnderlying", builder=CommoditySwaptionUnderlying.CommoditySwaptionUnderlyingBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommoditySwaptionUnderlying extends RosettaModelObject {
 
 	CommoditySwaptionUnderlyingMeta metaData = new CommoditySwaptionUnderlyingMeta();

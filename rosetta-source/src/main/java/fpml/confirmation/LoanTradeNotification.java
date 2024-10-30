@@ -40,9 +40,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A loan servicing notification used to communicate details to establish a master trade, from counterparty to counterparty.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanTradeNotification", builder=LoanTradeNotification.LoanTradeNotificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanTradeNotification", builder=LoanTradeNotification.LoanTradeNotificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanTradeNotification extends AbstractLoanTradingNotification {
 
 	LoanTradeNotificationMeta metaData = new LoanTradeNotificationMeta();

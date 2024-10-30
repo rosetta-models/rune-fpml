@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that defines a party profile identifier based on a qualifying scheme.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PartyProfileId", builder=PartyProfileId.PartyProfileIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PartyProfileId", builder=PartyProfileId.PartyProfileIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PartyProfileId extends RosettaModelObject {
 
 	PartyProfileIdMeta metaData = new PartyProfileIdMeta();

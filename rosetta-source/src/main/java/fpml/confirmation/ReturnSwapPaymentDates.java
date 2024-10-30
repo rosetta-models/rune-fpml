@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing the return payment dates of the swap.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReturnSwapPaymentDates", builder=ReturnSwapPaymentDates.ReturnSwapPaymentDatesBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReturnSwapPaymentDates", builder=ReturnSwapPaymentDates.ReturnSwapPaymentDatesBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReturnSwapPaymentDates extends RosettaModelObject {
 
 	ReturnSwapPaymentDatesMeta metaData = new ReturnSwapPaymentDatesMeta();

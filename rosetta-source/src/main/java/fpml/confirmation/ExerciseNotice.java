@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining to whom and where notice of execution should be given. The partyReference refers to one of the principal parties of the trade. If present the exerciseNoticePartyReference refers to a party, other than the principal party, to whome notice should be given.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ExerciseNotice", builder=ExerciseNotice.ExerciseNoticeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ExerciseNotice", builder=ExerciseNotice.ExerciseNoticeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ExerciseNotice extends RosettaModelObject {
 
 	ExerciseNoticeMeta metaData = new ExerciseNoticeMeta();

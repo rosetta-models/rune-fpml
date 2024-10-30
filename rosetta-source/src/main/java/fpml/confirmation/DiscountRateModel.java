@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Model group enforces association of day count fraction with the discount rate.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DiscountRateModel", builder=DiscountRateModel.DiscountRateModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DiscountRateModel", builder=DiscountRateModel.DiscountRateModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DiscountRateModel extends RosettaModelObject {
 
 	DiscountRateModelMeta metaData = new DiscountRateModelMeta();

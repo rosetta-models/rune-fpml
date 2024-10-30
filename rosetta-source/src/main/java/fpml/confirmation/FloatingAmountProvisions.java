@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FloatingAmountProvisions", builder=FloatingAmountProvisions.FloatingAmountProvisionsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FloatingAmountProvisions", builder=FloatingAmountProvisions.FloatingAmountProvisionsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FloatingAmountProvisions extends RosettaModelObject {
 
 	FloatingAmountProvisionsMeta metaData = new FloatingAmountProvisionsMeta();

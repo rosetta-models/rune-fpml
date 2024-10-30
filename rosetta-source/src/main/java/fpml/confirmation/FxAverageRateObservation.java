@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that, for average rate options, is used to describe each specific observation date, as opposed to a parametric frequency of rate observations.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxAverageRateObservation", builder=FxAverageRateObservation.FxAverageRateObservationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxAverageRateObservation", builder=FxAverageRateObservation.FxAverageRateObservationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxAverageRateObservation extends RosettaModelObject {
 
 	FxAverageRateObservationMeta metaData = new FxAverageRateObservationMeta();

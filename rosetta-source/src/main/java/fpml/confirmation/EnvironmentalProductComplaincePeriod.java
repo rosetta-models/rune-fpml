@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EnvironmentalProductComplaincePeriod", builder=EnvironmentalProductComplaincePeriod.EnvironmentalProductComplaincePeriodBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EnvironmentalProductComplaincePeriod", builder=EnvironmentalProductComplaincePeriod.EnvironmentalProductComplaincePeriodBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EnvironmentalProductComplaincePeriod extends RosettaModelObject {
 
 	EnvironmentalProductComplaincePeriodMeta metaData = new EnvironmentalProductComplaincePeriodMeta();

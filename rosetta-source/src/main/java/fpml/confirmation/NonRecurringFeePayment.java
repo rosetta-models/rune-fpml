@@ -34,9 +34,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An event describing a non-recurring fee being paid at either the loan contract or facility level.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="NonRecurringFeePayment", builder=NonRecurringFeePayment.NonRecurringFeePaymentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="NonRecurringFeePayment", builder=NonRecurringFeePayment.NonRecurringFeePaymentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface NonRecurringFeePayment extends AbstractFacilityContractEvent {
 
 	NonRecurringFeePaymentMeta metaData = new NonRecurringFeePaymentMeta();

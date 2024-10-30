@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model group defining a payment structure.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradeAlterationPaymentModel", builder=TradeAlterationPaymentModel.TradeAlterationPaymentModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradeAlterationPaymentModel", builder=TradeAlterationPaymentModel.TradeAlterationPaymentModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradeAlterationPaymentModel extends RosettaModelObject {
 
 	TradeAlterationPaymentModelMeta metaData = new TradeAlterationPaymentModelMeta();

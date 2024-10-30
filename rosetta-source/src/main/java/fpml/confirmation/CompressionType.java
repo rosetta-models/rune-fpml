@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that identifies the type of trade amalgamation, for example netting or portfolio compression.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CompressionType", builder=CompressionType.CompressionTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CompressionType", builder=CompressionType.CompressionTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CompressionType extends RosettaModelObject {
 
 	CompressionTypeMeta metaData = new CompressionTypeMeta();

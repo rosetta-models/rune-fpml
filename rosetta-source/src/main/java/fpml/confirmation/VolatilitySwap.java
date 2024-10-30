@@ -33,9 +33,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Specifies the structure of a volatility swap. A Volatility Swap.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="VolatilitySwap", builder=VolatilitySwap.VolatilitySwapBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="VolatilitySwap", builder=VolatilitySwap.VolatilitySwapBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface VolatilitySwap extends NettedSwapBase {
 
 	VolatilitySwapMeta metaData = new VolatilitySwapMeta();

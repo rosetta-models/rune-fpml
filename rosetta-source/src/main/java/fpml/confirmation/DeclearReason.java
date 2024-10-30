@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that describes why a trade was removed from clearing.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DeclearReason", builder=DeclearReason.DeclearReasonBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DeclearReason", builder=DeclearReason.DeclearReasonBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DeclearReason extends RosettaModelObject {
 
 	DeclearReasonMeta metaData = new DeclearReasonMeta();

@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining a legal entity.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LegalEntity", builder=LegalEntity.LegalEntityBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LegalEntity", builder=LegalEntity.LegalEntityBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LegalEntity extends RosettaModelObject {
 
 	LegalEntityMeta metaData = new LegalEntityMeta();

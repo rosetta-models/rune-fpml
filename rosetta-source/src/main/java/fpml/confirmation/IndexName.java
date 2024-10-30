@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="IndexName", builder=IndexName.IndexNameBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="IndexName", builder=IndexName.IndexNameBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface IndexName extends RosettaModelObject {
 
 	IndexNameMeta metaData = new IndexNameMeta();

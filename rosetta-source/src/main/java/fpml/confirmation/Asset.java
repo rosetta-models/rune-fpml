@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Abstract base class for all underlying assets.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Asset", builder=Asset.AssetBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Asset", builder=Asset.AssetBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Asset extends RosettaModelObject {
 
 	AssetMeta metaData = new AssetMeta();

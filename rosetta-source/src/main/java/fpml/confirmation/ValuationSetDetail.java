@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The amount of detail provided in the valuation set, e.g. is market environment data provided, are risk definitions provided, etc.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ValuationSetDetail", builder=ValuationSetDetail.ValuationSetDetailBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ValuationSetDetail", builder=ValuationSetDetail.ValuationSetDetailBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ValuationSetDetail extends RosettaModelObject {
 
 	ValuationSetDetailMeta metaData = new ValuationSetDetailMeta();

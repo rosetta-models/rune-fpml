@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Allows for an option expiry cut time to be described by name, as per established market convention. Note: the FX Working Group has resolved not to extend the cutNameScheme coding scheme. The expiryTime element should be used in preference to cutName as the formal definition of FX option expiry time.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CutName", builder=CutName.CutNameBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CutName", builder=CutName.CutNameBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CutName extends RosettaModelObject {
 
 	CutNameMeta metaData = new CutNameMeta();

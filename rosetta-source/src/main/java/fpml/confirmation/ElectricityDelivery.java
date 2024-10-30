@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The physical delivery conditions for electricity.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ElectricityDelivery", builder=ElectricityDelivery.ElectricityDeliveryBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ElectricityDelivery", builder=ElectricityDelivery.ElectricityDeliveryBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ElectricityDelivery extends RosettaModelObject {
 
 	ElectricityDeliveryMeta metaData = new ElectricityDeliveryMeta();

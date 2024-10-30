@@ -34,9 +34,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * In a credit default swap one party (the protection seller) agrees to compensate another party (the protection buyer) if a specified company or Sovereign (the reference entity) experiences a credit event, indicating it is or may be unable to service its debts. The protection seller is typically paid a fee and/or premium, expressed as an annualized percent of the notional in basis points, regularly over the life of the transaction or otherwise as agreed by the parties.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CreditDefaultSwap", builder=CreditDefaultSwap.CreditDefaultSwapBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CreditDefaultSwap", builder=CreditDefaultSwap.CreditDefaultSwapBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CreditDefaultSwap extends Product {
 
 	CreditDefaultSwapMeta metaData = new CreditDefaultSwapMeta();

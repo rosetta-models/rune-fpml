@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Trigger point at which feature is effective.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Trigger", builder=Trigger.TriggerBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Trigger", builder=Trigger.TriggerBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Trigger extends RosettaModelObject {
 
 	TriggerMeta metaData = new TriggerMeta();

@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Details on the referenced payment. e.g. Its cashflow components, settlement details.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PaymentDetails", builder=PaymentDetails.PaymentDetailsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PaymentDetails", builder=PaymentDetails.PaymentDetailsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PaymentDetails extends RosettaModelObject {
 
 	PaymentDetailsMeta metaData = new PaymentDetailsMeta();

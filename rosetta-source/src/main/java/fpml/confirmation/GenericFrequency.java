@@ -26,9 +26,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="GenericFrequency", builder=GenericFrequency.GenericFrequencyBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="GenericFrequency", builder=GenericFrequency.GenericFrequencyBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface GenericFrequency extends Frequency {
 
 	GenericFrequencyMeta metaData = new GenericFrequencyMeta();

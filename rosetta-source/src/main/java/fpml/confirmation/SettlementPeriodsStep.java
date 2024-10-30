@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A reference to the range of Settlement Periods that applies to a given period of a transaction.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SettlementPeriodsStep", builder=SettlementPeriodsStep.SettlementPeriodsStepBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SettlementPeriodsStep", builder=SettlementPeriodsStep.SettlementPeriodsStepBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SettlementPeriodsStep extends RosettaModelObject {
 
 	SettlementPeriodsStepMeta metaData = new SettlementPeriodsStepMeta();

@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines the expiry/observation schedule of the target.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxAdjustedDateAndDateAdjustments", builder=FxAdjustedDateAndDateAdjustments.FxAdjustedDateAndDateAdjustmentsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxAdjustedDateAndDateAdjustments", builder=FxAdjustedDateAndDateAdjustments.FxAdjustedDateAndDateAdjustmentsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxAdjustedDateAndDateAdjustments extends RosettaModelObject {
 
 	FxAdjustedDateAndDateAdjustmentsMeta metaData = new FxAdjustedDateAndDateAdjustmentsMeta();

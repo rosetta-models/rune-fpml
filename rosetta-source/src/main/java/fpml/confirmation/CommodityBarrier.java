@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The specification of how a barrier option will trigger (that is, knock-in or knock-out) or expire based on the position of the spot rate relative to trigger level.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityBarrier", builder=CommodityBarrier.CommodityBarrierBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityBarrier", builder=CommodityBarrier.CommodityBarrierBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityBarrier extends RosettaModelObject {
 
 	CommodityBarrierMeta metaData = new CommodityBarrierMeta();

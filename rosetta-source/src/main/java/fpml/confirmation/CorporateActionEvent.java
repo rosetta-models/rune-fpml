@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure indicating that a trade has changed due to a corporate action
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CorporateActionEvent", builder=CorporateActionEvent.CorporateActionEventBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CorporateActionEvent", builder=CorporateActionEvent.CorporateActionEventBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CorporateActionEvent extends ChangeEvent {
 
 	CorporateActionEventMeta metaData = new CorporateActionEventMeta();

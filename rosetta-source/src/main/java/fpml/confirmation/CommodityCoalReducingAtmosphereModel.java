@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Items defining the attributes of the coal product determined by ash fusion tests.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityCoalReducingAtmosphereModel", builder=CommodityCoalReducingAtmosphereModel.CommodityCoalReducingAtmosphereModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityCoalReducingAtmosphereModel", builder=CommodityCoalReducingAtmosphereModel.CommodityCoalReducingAtmosphereModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityCoalReducingAtmosphereModel extends RosettaModelObject {
 
 	CommodityCoalReducingAtmosphereModelMeta metaData = new CommodityCoalReducingAtmosphereModelMeta();

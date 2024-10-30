@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that describes the option premium as quoted.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PremiumQuote", builder=PremiumQuote.PremiumQuoteBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PremiumQuote", builder=PremiumQuote.PremiumQuoteBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PremiumQuote extends RosettaModelObject {
 
 	PremiumQuoteMeta metaData = new PremiumQuoteMeta();

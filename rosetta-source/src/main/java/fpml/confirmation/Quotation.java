@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Some kind of numerical measure about an asset, eg. its NPV, together with characteristics of that measure, together with optional sensitivities.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Quotation", builder=Quotation.QuotationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Quotation", builder=Quotation.QuotationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Quotation extends RosettaModelObject {
 
 	QuotationMeta metaData = new QuotationMeta();

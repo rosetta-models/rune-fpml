@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the frequency at which calculation period end dates occur within the regular part of the calculation period schedule and thier roll date convention. In case the calculation frequency is of value T (term), the period is defined by the swap\swapStream\calculationPerioDates\effectiveDate and the swap\swapStream\calculationPerioDates\terminationDate.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CalculationPeriodFrequency", builder=CalculationPeriodFrequency.CalculationPeriodFrequencyBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CalculationPeriodFrequency", builder=CalculationPeriodFrequency.CalculationPeriodFrequencyBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CalculationPeriodFrequency extends Frequency {
 
 	CalculationPeriodFrequencyMeta metaData = new CalculationPeriodFrequencyMeta();

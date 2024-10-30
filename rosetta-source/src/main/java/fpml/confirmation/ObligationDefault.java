@@ -20,9 +20,9 @@ import fpml.confirmation.meta.ObligationDefaultMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ObligationDefault", builder=ObligationDefault.ObligationDefaultBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ObligationDefault", builder=ObligationDefault.ObligationDefaultBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ObligationDefault extends ObligationDefaultEvent {
 
 	ObligationDefaultMeta metaData = new ObligationDefaultMeta();

@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Average calculation method e.g. Arithmetic, Harmonic)
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaEnum("FxAveragingMethodEnum")
 public enum FxAveragingMethodEnum {

@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that describes the type of collateral allocation action that is requested. The purpose is to allow FCMs to specify how the allocations are to be processed.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RequestedCollateralAllocationAction", builder=RequestedCollateralAllocationAction.RequestedCollateralAllocationActionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RequestedCollateralAllocationAction", builder=RequestedCollateralAllocationAction.RequestedCollateralAllocationActionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RequestedCollateralAllocationAction extends RosettaModelObject {
 
 	RequestedCollateralAllocationActionMeta metaData = new RequestedCollateralAllocationActionMeta();

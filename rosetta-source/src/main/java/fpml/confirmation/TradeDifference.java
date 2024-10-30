@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type used to record the details of a difference between two business objects/
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradeDifference", builder=TradeDifference.TradeDifferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradeDifference", builder=TradeDifference.TradeDifferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradeDifference extends RosettaModelObject {
 
 	TradeDifferenceMeta metaData = new TradeDifferenceMeta();

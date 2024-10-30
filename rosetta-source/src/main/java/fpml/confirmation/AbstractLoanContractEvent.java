@@ -32,9 +32,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An abstract base type for all loan contract-level business events.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AbstractLoanContractEvent", builder=AbstractLoanContractEvent.AbstractLoanContractEventBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AbstractLoanContractEvent", builder=AbstractLoanContractEvent.AbstractLoanContractEventBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AbstractLoanContractEvent extends AbstractLoanServicingEvent {
 
 	AbstractLoanContractEventMeta metaData = new AbstractLoanContractEventMeta();

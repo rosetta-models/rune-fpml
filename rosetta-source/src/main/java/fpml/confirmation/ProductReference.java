@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to a full FpML product.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ProductReference", builder=ProductReference.ProductReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ProductReference", builder=ProductReference.ProductReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ProductReference extends Reference {
 
 	ProductReferenceMeta metaData = new ProductReferenceMeta();

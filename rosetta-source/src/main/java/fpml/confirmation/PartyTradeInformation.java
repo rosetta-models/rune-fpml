@@ -49,9 +49,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining party-specific additional information that may be recorded against a trade.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PartyTradeInformation", builder=PartyTradeInformation.PartyTradeInformationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PartyTradeInformation", builder=PartyTradeInformation.PartyTradeInformationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PartyTradeInformation extends RosettaModelObject {
 
 	PartyTradeInformationMeta metaData = new PartyTradeInformationMeta();

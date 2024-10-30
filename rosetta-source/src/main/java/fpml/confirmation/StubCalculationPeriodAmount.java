@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining how the initial or final stub calculation period amounts is calculated. For example, the rate to be applied to the initial or final stub calculation period may be the linear interpolation of two different tenors for the floating rate index specified in the calculation period amount component, e.g. A two month stub period may used the linear interpolation of a one month and three month floating rate. The different rate tenors would be specified in this component. Note that a maximum of two rate tenors can be specified. If a stub period uses a single index tenor and this is the same as that specified in the calculation period amount component then the initial stub or final stub component, as the case may be, must not be included.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="StubCalculationPeriodAmount", builder=StubCalculationPeriodAmount.StubCalculationPeriodAmountBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="StubCalculationPeriodAmount", builder=StubCalculationPeriodAmount.StubCalculationPeriodAmountBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface StubCalculationPeriodAmount extends RosettaModelObject {
 
 	StubCalculationPeriodAmountMeta metaData = new StubCalculationPeriodAmountMeta();

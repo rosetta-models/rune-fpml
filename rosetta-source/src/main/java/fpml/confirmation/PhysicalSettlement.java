@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that describes how an option settles into a physical trade.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PhysicalSettlement", builder=PhysicalSettlement.PhysicalSettlementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PhysicalSettlement", builder=PhysicalSettlement.PhysicalSettlementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PhysicalSettlement extends RosettaModelObject {
 
 	PhysicalSettlementMeta metaData = new PhysicalSettlementMeta();

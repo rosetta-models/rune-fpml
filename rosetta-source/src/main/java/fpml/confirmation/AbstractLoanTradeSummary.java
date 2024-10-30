@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An underlying structure defining all loan trade information i.e. this structure contains the main (e.g. fund manager/main counterparty) trade details.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AbstractLoanTradeSummary", builder=AbstractLoanTradeSummary.AbstractLoanTradeSummaryBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AbstractLoanTradeSummary", builder=AbstractLoanTradeSummary.AbstractLoanTradeSummaryBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AbstractLoanTradeSummary extends RosettaModelObject {
 
 	AbstractLoanTradeSummaryMeta metaData = new AbstractLoanTradeSummaryMeta();

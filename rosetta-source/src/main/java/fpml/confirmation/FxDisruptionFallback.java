@@ -17,9 +17,9 @@ import fpml.confirmation.meta.FxDisruptionFallbackMeta;
 
 /**
  * The abstract element used to create the extendible set of disruption fallbacks. The base class for all disruption fallbacks
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxDisruptionFallback", builder=FxDisruptionFallback.FxDisruptionFallbackBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxDisruptionFallback", builder=FxDisruptionFallback.FxDisruptionFallbackBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxDisruptionFallback extends RosettaModelObject {
 
 	FxDisruptionFallbackMeta metaData = new FxDisruptionFallbackMeta();

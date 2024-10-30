@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * This indicator defines which type of assets (cash or securities) is specified to apply as margin to the repo transaction.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaEnum("MarginTypeEnum")
 public enum MarginTypeEnum {

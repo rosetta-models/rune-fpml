@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A full definition of the accrual characteristics of a letter of credit. This structure defines both the underlying letter of credit issuance fee rate as well as any FX rates applied.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LcAccrual", builder=LcAccrual.LcAccrualBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LcAccrual", builder=LcAccrual.LcAccrualBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LcAccrual extends FeeRateOptionBase {
 
 	LcAccrualMeta metaData = new LcAccrualMeta();

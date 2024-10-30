@@ -26,9 +26,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RoutingExplicitDetailsModel", builder=RoutingExplicitDetailsModel.RoutingExplicitDetailsModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RoutingExplicitDetailsModel", builder=RoutingExplicitDetailsModel.RoutingExplicitDetailsModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RoutingExplicitDetailsModel extends RosettaModelObject {
 
 	RoutingExplicitDetailsModelMeta metaData = new RoutingExplicitDetailsModelMeta();

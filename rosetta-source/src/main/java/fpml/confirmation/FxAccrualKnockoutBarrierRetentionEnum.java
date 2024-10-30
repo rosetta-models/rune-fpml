@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * The type of a knockout barrier used in an accrual product (e.g. American or European)
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaEnum("FxAccrualKnockoutBarrierRetentionEnum")
 public enum FxAccrualKnockoutBarrierRetentionEnum {

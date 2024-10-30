@@ -22,9 +22,9 @@ import fpml.confirmation.meta.RestructuringElementMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RestructuringElement", builder=RestructuringElement.RestructuringElementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RestructuringElement", builder=RestructuringElement.RestructuringElementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RestructuringElement extends RestructuringEvent {
 
 	RestructuringElementMeta metaData = new RestructuringElementMeta();

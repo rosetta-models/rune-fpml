@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type to describe an institution (party) identified by means of a coding scheme and an optional name.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReferenceBank", builder=ReferenceBank.ReferenceBankBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReferenceBank", builder=ReferenceBank.ReferenceBankBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReferenceBank extends RosettaModelObject {
 
 	ReferenceBankMeta metaData = new ReferenceBankMeta();

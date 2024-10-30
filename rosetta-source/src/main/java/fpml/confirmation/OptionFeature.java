@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type for defining option features.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="OptionFeature", builder=OptionFeature.OptionFeatureBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="OptionFeature", builder=OptionFeature.OptionFeatureBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface OptionFeature extends RosettaModelObject {
 
 	OptionFeatureMeta metaData = new OptionFeatureMeta();

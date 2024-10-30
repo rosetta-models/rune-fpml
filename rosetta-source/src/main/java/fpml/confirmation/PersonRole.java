@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing a role played by a person in one or more transactions. Examples include roles such as Trader, Broker, MiddleOffice, Legal, etc. This can be extended to provide custom roles.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PersonRole", builder=PersonRole.PersonRoleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PersonRole", builder=PersonRole.PersonRoleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PersonRole extends RosettaModelObject {
 
 	PersonRoleMeta metaData = new PersonRoleMeta();

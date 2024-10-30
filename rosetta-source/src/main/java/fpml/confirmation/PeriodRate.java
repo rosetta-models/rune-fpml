@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that represents a rate applicable against a well-defined or open-ended period.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PeriodRate", builder=PeriodRate.PeriodRateBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PeriodRate", builder=PeriodRate.PeriodRateBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PeriodRate extends RosettaModelObject {
 
 	PeriodRateMeta metaData = new PeriodRateMeta();

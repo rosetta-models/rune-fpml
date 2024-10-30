@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing the type of loan facility.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FacilityType", builder=FacilityType.FacilityTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FacilityType", builder=FacilityType.FacilityTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FacilityType extends RosettaModelObject {
 
 	FacilityTypeMeta metaData = new FacilityTypeMeta();

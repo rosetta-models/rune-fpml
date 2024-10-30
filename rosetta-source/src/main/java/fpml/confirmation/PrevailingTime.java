@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type for defining a time with respect to a geographic location, for example 11:00 Phoenix, USA. This type should be used where a wider range of locations than those available as business centres is required.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PrevailingTime", builder=PrevailingTime.PrevailingTimeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PrevailingTime", builder=PrevailingTime.PrevailingTimeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PrevailingTime extends RosettaModelObject {
 
 	PrevailingTimeMeta metaData = new PrevailingTimeMeta();

@@ -25,9 +25,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxTargetSettlementPeriodSchedule", builder=FxTargetSettlementPeriodSchedule.FxTargetSettlementPeriodScheduleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxTargetSettlementPeriodSchedule", builder=FxTargetSettlementPeriodSchedule.FxTargetSettlementPeriodScheduleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxTargetSettlementPeriodSchedule extends RosettaModelObject {
 
 	FxTargetSettlementPeriodScheduleMeta metaData = new FxTargetSettlementPeriodScheduleMeta();

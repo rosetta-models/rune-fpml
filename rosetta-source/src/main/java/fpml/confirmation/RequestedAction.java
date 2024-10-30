@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RequestedAction", builder=RequestedAction.RequestedActionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RequestedAction", builder=RequestedAction.RequestedActionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RequestedAction extends RosettaModelObject {
 
 	RequestedActionMeta metaData = new RequestedActionMeta();

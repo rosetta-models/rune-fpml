@@ -33,9 +33,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A component of a clearing status report. This provides the clearing status for a single trade.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ClearingStatusItem", builder=ClearingStatusItem.ClearingStatusItemBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ClearingStatusItem", builder=ClearingStatusItem.ClearingStatusItemBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ClearingStatusItem extends RosettaModelObject {
 
 	ClearingStatusItemMeta metaData = new ClearingStatusItemMeta();

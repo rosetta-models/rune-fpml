@@ -34,9 +34,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An entity for defining the definitions that govern the document and should include the year and type of definitions referenced, along with any relevant documentation (such as master agreement) and the date it was signed.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Documentation", builder=Documentation.DocumentationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Documentation", builder=Documentation.DocumentationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Documentation extends RosettaModelObject {
 
 	DocumentationMeta metaData = new DocumentationMeta();

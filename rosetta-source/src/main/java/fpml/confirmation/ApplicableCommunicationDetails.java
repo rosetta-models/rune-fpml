@@ -33,9 +33,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that defines the assets (or type of assets) that a particular set of communication details may be associated with.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ApplicableCommunicationDetails", builder=ApplicableCommunicationDetails.ApplicableCommunicationDetailsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ApplicableCommunicationDetails", builder=ApplicableCommunicationDetails.ApplicableCommunicationDetailsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ApplicableCommunicationDetails extends AbstractApplicablePartyProfileObjects {
 
 	ApplicableCommunicationDetailsMeta metaData = new ApplicableCommunicationDetailsMeta();

@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type for defining the merger events and their treatment.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EquityCorporateEvents", builder=EquityCorporateEvents.EquityCorporateEventsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EquityCorporateEvents", builder=EquityCorporateEvents.EquityCorporateEventsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EquityCorporateEvents extends RosettaModelObject {
 
 	EquityCorporateEventsMeta metaData = new EquityCorporateEventsMeta();

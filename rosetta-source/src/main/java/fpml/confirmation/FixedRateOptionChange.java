@@ -33,9 +33,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An event representing a change in a fixed rate accrual option. In real terms - an example of this would be a margin rate change.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FixedRateOptionChange", builder=FixedRateOptionChange.FixedRateOptionChangeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FixedRateOptionChange", builder=FixedRateOptionChange.FixedRateOptionChangeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FixedRateOptionChange extends AbstractFacilityEvent {
 
 	FixedRateOptionChangeMeta metaData = new FixedRateOptionChangeMeta();

@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The tri-party terms.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TriParty", builder=TriParty.TriPartyBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TriParty", builder=TriParty.TriPartyBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TriParty extends RosettaModelObject {
 
 	TriPartyMeta metaData = new TriPartyMeta();

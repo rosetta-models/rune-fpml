@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A message withdrawing a request that a trade be split among several accounts.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RequestAllocationRetracted", builder=RequestAllocationRetracted.RequestAllocationRetractedBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RequestAllocationRetracted", builder=RequestAllocationRetracted.RequestAllocationRetractedBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RequestAllocationRetracted extends NonCorrectableRequestMessage {
 
 	RequestAllocationRetractedMeta metaData = new RequestAllocationRetractedMeta();

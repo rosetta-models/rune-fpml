@@ -27,9 +27,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RepoNearLegSequence", builder=RepoNearLegSequence.RepoNearLegSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RepoNearLegSequence", builder=RepoNearLegSequence.RepoNearLegSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RepoNearLegSequence extends RosettaModelObject {
 
 	RepoNearLegSequenceMeta metaData = new RepoNearLegSequenceMeta();

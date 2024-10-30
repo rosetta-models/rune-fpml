@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A scheme that describes transaction types.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ApplicableTransactionType", builder=ApplicableTransactionType.ApplicableTransactionTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ApplicableTransactionType", builder=ApplicableTransactionType.ApplicableTransactionTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ApplicableTransactionType extends RosettaModelObject {
 
 	ApplicableTransactionTypeMeta metaData = new ApplicableTransactionTypeMeta();

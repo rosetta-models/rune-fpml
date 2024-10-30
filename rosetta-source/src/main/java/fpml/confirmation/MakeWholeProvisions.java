@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type to hold early exercise provisions.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MakeWholeProvisions", builder=MakeWholeProvisions.MakeWholeProvisionsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MakeWholeProvisions", builder=MakeWholeProvisions.MakeWholeProvisionsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MakeWholeProvisions extends RosettaModelObject {
 
 	MakeWholeProvisionsMeta metaData = new MakeWholeProvisionsMeta();

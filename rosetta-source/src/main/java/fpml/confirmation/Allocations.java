@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The allocations for a single side of a trade.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Allocations", builder=Allocations.AllocationsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Allocations", builder=Allocations.AllocationsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Allocations extends RosettaModelObject {
 
 	AllocationsMeta metaData = new AllocationsMeta();

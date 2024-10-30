@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing a financial formula, with its description and components.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Formula", builder=Formula.FormulaBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Formula", builder=Formula.FormulaBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Formula extends RosettaModelObject {
 
 	FormulaMeta metaData = new FormulaMeta();

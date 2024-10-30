@@ -22,9 +22,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="NoTouchLowerBarrierObservationSequence0", builder=NoTouchLowerBarrierObservationSequence0.NoTouchLowerBarrierObservationSequence0BuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="NoTouchLowerBarrierObservationSequence0", builder=NoTouchLowerBarrierObservationSequence0.NoTouchLowerBarrierObservationSequence0BuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface NoTouchLowerBarrierObservationSequence0 extends RosettaModelObject {
 
 	NoTouchLowerBarrierObservationSequence0Meta metaData = new NoTouchLowerBarrierObservationSequence0Meta();

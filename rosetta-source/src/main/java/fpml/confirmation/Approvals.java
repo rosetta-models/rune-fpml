@@ -25,9 +25,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Approvals", builder=Approvals.ApprovalsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Approvals", builder=Approvals.ApprovalsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Approvals extends RosettaModelObject {
 
 	ApprovalsMeta metaData = new ApprovalsMeta();

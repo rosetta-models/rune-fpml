@@ -30,9 +30,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the characteristics of the environmental allowance or credit being traded. Settlement of environmental transactions is classified as physical because settlement is accomplished through the exchange of one or more certificates (despite the fact that this exchange is almost always executed through electronic book entry transfer between the parties allowance accounts).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EnvironmentalProduct", builder=EnvironmentalProduct.EnvironmentalProductBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EnvironmentalProduct", builder=EnvironmentalProduct.EnvironmentalProductBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EnvironmentalProduct extends RosettaModelObject {
 
 	EnvironmentalProductMeta metaData = new EnvironmentalProductMeta();

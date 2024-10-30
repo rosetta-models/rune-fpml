@@ -16,9 +16,9 @@ import fpml.confirmation.meta.SignaturePropertyTypeChoiceMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SignaturePropertyTypeChoice", builder=SignaturePropertyTypeChoice.SignaturePropertyTypeChoiceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SignaturePropertyTypeChoice", builder=SignaturePropertyTypeChoice.SignaturePropertyTypeChoiceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SignaturePropertyTypeChoice extends RosettaModelObject {
 
 	SignaturePropertyTypeChoiceMeta metaData = new SignaturePropertyTypeChoiceMeta();

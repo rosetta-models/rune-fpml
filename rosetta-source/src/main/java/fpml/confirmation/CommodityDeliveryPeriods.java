@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The different options for specifying the Delivery Periods of a physical leg.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityDeliveryPeriods", builder=CommodityDeliveryPeriods.CommodityDeliveryPeriodsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityDeliveryPeriods", builder=CommodityDeliveryPeriods.CommodityDeliveryPeriodsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityDeliveryPeriods extends RosettaModelObject {
 
 	CommodityDeliveryPeriodsMeta metaData = new CommodityDeliveryPeriodsMeta();

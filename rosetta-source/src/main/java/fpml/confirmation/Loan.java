@@ -40,9 +40,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Identifies a simple underlying asset that is a loan. A type describing a loan underlying asset.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Loan", builder=Loan.LoanBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Loan", builder=Loan.LoanBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Loan extends UnderlyingAssetType {
 
 	LoanMeta metaData = new LoanMeta();

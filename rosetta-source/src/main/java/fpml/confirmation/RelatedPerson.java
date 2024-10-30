@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RelatedPerson", builder=RelatedPerson.RelatedPersonBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RelatedPerson", builder=RelatedPerson.RelatedPersonBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RelatedPerson extends RosettaModelObject {
 
 	RelatedPersonMeta metaData = new RelatedPersonMeta();

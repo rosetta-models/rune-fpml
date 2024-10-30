@@ -27,9 +27,9 @@ import java.util.stream.Collectors;
 
 /**
  * Pivot is expressed as Schedule, with an initial value and optional steps.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxPivot", builder=FxPivot.FxPivotBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxPivot", builder=FxPivot.FxPivotBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxPivot extends Schedule {
 
 	FxPivotMeta metaData = new FxPivotMeta();

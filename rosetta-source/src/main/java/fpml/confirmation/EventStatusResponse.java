@@ -35,9 +35,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the content model for a message normally generated in response to a requestEventStatus request.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EventStatusResponse", builder=EventStatusResponse.EventStatusResponseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EventStatusResponse", builder=EventStatusResponse.EventStatusResponseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EventStatusResponse extends ResponseMessage {
 
 	EventStatusResponseMeta metaData = new EventStatusResponseMeta();

@@ -19,7 +19,7 @@ import java.util.function.Function;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaMeta(model=CommodityForward.class)
 public class CommodityForwardMeta implements RosettaMetaData<CommodityForward> {

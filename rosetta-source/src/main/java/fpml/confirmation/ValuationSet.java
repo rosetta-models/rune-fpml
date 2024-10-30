@@ -32,9 +32,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A set of valuation inputs and results. This structure can be used for requesting valuations, or for reporting them. In general, the request fills in fewer elements.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ValuationSet", builder=ValuationSet.ValuationSetBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ValuationSet", builder=ValuationSet.ValuationSetBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ValuationSet extends RosettaModelObject {
 
 	ValuationSetMeta metaData = new ValuationSetMeta();

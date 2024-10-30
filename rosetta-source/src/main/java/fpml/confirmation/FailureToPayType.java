@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FailureToPayType", builder=FailureToPayType.FailureToPayTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FailureToPayType", builder=FailureToPayType.FailureToPayTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FailureToPayType extends RosettaModelObject {
 
 	FailureToPayTypeMeta metaData = new FailureToPayTypeMeta();

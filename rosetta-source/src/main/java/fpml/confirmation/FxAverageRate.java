@@ -29,9 +29,9 @@ import java.util.stream.Collectors;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxAverageRate", builder=FxAverageRate.FxAverageRateBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxAverageRate", builder=FxAverageRate.FxAverageRateBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxAverageRate extends FxAveragingProcess {
 
 	FxAverageRateMeta metaData = new FxAverageRateMeta();

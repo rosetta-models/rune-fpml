@@ -36,9 +36,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An event describing an accruing fee payment made at the facility level.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AccruingFeePayment", builder=AccruingFeePayment.AccruingFeePaymentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AccruingFeePayment", builder=AccruingFeePayment.AccruingFeePaymentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AccruingFeePayment extends AbstractFacilityEvent {
 
 	AccruingFeePaymentMeta metaData = new AccruingFeePaymentMeta();

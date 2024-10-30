@@ -25,9 +25,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the physical quantity of the commodity to be delivered.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityPhysicalQuantity", builder=CommodityPhysicalQuantity.CommodityPhysicalQuantityBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityPhysicalQuantity", builder=CommodityPhysicalQuantity.CommodityPhysicalQuantityBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityPhysicalQuantity extends CommodityPhysicalQuantityBase {
 
 	CommodityPhysicalQuantityMeta metaData = new CommodityPhysicalQuantityMeta();

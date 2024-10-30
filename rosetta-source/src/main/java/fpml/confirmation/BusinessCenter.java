@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A code identifying a business day calendar location. A business day calendar location is drawn from the list identified by the business day calendar location scheme.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BusinessCenter", builder=BusinessCenter.BusinessCenterBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BusinessCenter", builder=BusinessCenter.BusinessCenterBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BusinessCenter extends RosettaModelObject {
 
 	BusinessCenterMeta metaData = new BusinessCenterMeta();

@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the beneficiary of the funds.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Beneficiary", builder=Beneficiary.BeneficiaryBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Beneficiary", builder=Beneficiary.BeneficiaryBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Beneficiary extends RosettaModelObject {
 
 	BeneficiaryMeta metaData = new BeneficiaryMeta();

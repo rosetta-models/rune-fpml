@@ -37,9 +37,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A document that includes trade and/or valuation (pricing and risk) data without expressing any processing intention. A type defining a content model that includes valuation (pricing and risk) data without expressing any processing intention.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ValuationDocument", builder=ValuationDocument.ValuationDocumentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ValuationDocument", builder=ValuationDocument.ValuationDocumentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ValuationDocument extends DataDocument {
 
 	ValuationDocumentMeta metaData = new ValuationDocumentMeta();

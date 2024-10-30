@@ -37,9 +37,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structured product which consists of a single cash payment or a strip of cash payments. At each settlement the settled amounts are a fraction of the notional amount for that settlement period calculated as the number of fixings which fall within accrual regions divided by the total number of fixings in the settlement period. An FX Range Accrual product. A strip of Digital Options product The product defines a list of fixing (or observation) dates. There are m total fixings. On the relevant Settlement Date, the Option Seller shall pay to the Option Buyer an amount, in the Settlement Currency, calculated according to the following formula: Accrual Currency and Notional Amount x (the total number of Accrual Days / Total Number of Calendar Days in the Accrual Period). Payout can be cash.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxRangeAccrual", builder=FxRangeAccrual.FxRangeAccrualBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxRangeAccrual", builder=FxRangeAccrual.FxRangeAccrualBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxRangeAccrual extends Product {
 
 	FxRangeAccrualMeta metaData = new FxRangeAccrualMeta();

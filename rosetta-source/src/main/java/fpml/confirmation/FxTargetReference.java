@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to a target structure.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxTargetReference", builder=FxTargetReference.FxTargetReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxTargetReference", builder=FxTargetReference.FxTargetReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxTargetReference extends Reference {
 
 	FxTargetReferenceMeta metaData = new FxTargetReferenceMeta();

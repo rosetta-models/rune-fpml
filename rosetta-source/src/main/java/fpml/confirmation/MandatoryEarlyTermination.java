@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type to define an early termination provision for which exercise is mandatory.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MandatoryEarlyTermination", builder=MandatoryEarlyTermination.MandatoryEarlyTerminationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MandatoryEarlyTermination", builder=MandatoryEarlyTermination.MandatoryEarlyTerminationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MandatoryEarlyTermination extends RosettaModelObject {
 
 	MandatoryEarlyTerminationMeta metaData = new MandatoryEarlyTerminationMeta();

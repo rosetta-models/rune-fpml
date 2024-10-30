@@ -34,9 +34,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An event describing changes in a facility-level rate.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FacilityRateChangeEvent", builder=FacilityRateChangeEvent.FacilityRateChangeEventBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FacilityRateChangeEvent", builder=FacilityRateChangeEvent.FacilityRateChangeEventBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FacilityRateChangeEvent extends AbstractFacilityContractEvent {
 
 	FacilityRateChangeEventMeta metaData = new FacilityRateChangeEventMeta();

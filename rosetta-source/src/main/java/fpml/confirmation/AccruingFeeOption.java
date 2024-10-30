@@ -30,9 +30,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that represents the accruing fee option associated within a facility.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AccruingFeeOption", builder=AccruingFeeOption.AccruingFeeOptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AccruingFeeOption", builder=AccruingFeeOption.AccruingFeeOptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AccruingFeeOption extends FeeRateOptionBase {
 
 	AccruingFeeOptionMeta metaData = new AccruingFeeOptionMeta();

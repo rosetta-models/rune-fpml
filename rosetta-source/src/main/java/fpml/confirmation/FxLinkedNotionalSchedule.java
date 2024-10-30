@@ -25,9 +25,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type to describe a notional schedule where each notional that applies to a calculation period is calculated with reference to a notional amount or notional amount schedule in a different currency by means of a spot currency exchange rate which is normally observed at the beginning of each period.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxLinkedNotionalSchedule", builder=FxLinkedNotionalSchedule.FxLinkedNotionalScheduleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxLinkedNotionalSchedule", builder=FxLinkedNotionalSchedule.FxLinkedNotionalScheduleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxLinkedNotionalSchedule extends RosettaModelObject {
 
 	FxLinkedNotionalScheduleMeta metaData = new FxLinkedNotionalScheduleMeta();

@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Include or reference an underlying asset definition.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="UnderlyingAssetOrReferenceModel", builder=UnderlyingAssetOrReferenceModel.UnderlyingAssetOrReferenceModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="UnderlyingAssetOrReferenceModel", builder=UnderlyingAssetOrReferenceModel.UnderlyingAssetOrReferenceModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface UnderlyingAssetOrReferenceModel extends RosettaModelObject {
 
 	UnderlyingAssetOrReferenceModelMeta metaData = new UnderlyingAssetOrReferenceModelMeta();

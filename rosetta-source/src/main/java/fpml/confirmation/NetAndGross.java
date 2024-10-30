@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure including a net and/or a gross amount and possibly fees and commissions.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="NetAndGross", builder=NetAndGross.NetAndGrossBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="NetAndGross", builder=NetAndGross.NetAndGrossBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface NetAndGross extends RosettaModelObject {
 
 	NetAndGrossMeta metaData = new NetAndGrossMeta();

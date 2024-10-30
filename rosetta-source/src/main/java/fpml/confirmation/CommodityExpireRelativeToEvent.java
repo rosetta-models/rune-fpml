@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A scheme identifying the physical event relative to which option expiration occurs.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityExpireRelativeToEvent", builder=CommodityExpireRelativeToEvent.CommodityExpireRelativeToEventBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityExpireRelativeToEvent", builder=CommodityExpireRelativeToEvent.CommodityExpireRelativeToEventBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityExpireRelativeToEvent extends RosettaModelObject {
 
 	CommodityExpireRelativeToEventMeta metaData = new CommodityExpireRelativeToEventMeta();

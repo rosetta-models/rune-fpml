@@ -27,9 +27,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CreditLimitInformation", builder=CreditLimitInformation.CreditLimitInformationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CreditLimitInformation", builder=CreditLimitInformation.CreditLimitInformationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CreditLimitInformation extends RosettaModelObject {
 
 	CreditLimitInformationMeta metaData = new CreditLimitInformationMeta();

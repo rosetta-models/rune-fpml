@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining parameters associated with a floating rate reset. This type forms part of the cashflows representation of a stream.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FloatingRateDefinition", builder=FloatingRateDefinition.FloatingRateDefinitionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FloatingRateDefinition", builder=FloatingRateDefinition.FloatingRateDefinitionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FloatingRateDefinition extends RosettaModelObject {
 
 	FloatingRateDefinitionMeta metaData = new FloatingRateDefinitionMeta();

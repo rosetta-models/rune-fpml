@@ -37,9 +37,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A message requesting that a trade be split among several accounts.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RequestAllocation", builder=RequestAllocation.RequestAllocationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RequestAllocation", builder=RequestAllocation.RequestAllocationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RequestAllocation extends CorrectableRequestMessage {
 
 	RequestAllocationMeta metaData = new RequestAllocationMeta();

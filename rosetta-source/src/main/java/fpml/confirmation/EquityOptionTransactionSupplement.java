@@ -40,9 +40,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A component describing an Equity Option Transaction Supplement. A type for defining equity option transaction supplements.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EquityOptionTransactionSupplement", builder=EquityOptionTransactionSupplement.EquityOptionTransactionSupplementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EquityOptionTransactionSupplement", builder=EquityOptionTransactionSupplement.EquityOptionTransactionSupplementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EquityOptionTransactionSupplement extends EquityDerivativeShortFormBase {
 
 	EquityOptionTransactionSupplementMeta metaData = new EquityOptionTransactionSupplementMeta();

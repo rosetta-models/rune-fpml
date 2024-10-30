@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that describes the composition of a rate that has been quoted or is to be quoted. This includes the two currencies and the quotation relationship between the two currencies and is used as a building block throughout the FX specification.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="GenericProductQuotedCurrencyPair", builder=GenericProductQuotedCurrencyPair.GenericProductQuotedCurrencyPairBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="GenericProductQuotedCurrencyPair", builder=GenericProductQuotedCurrencyPair.GenericProductQuotedCurrencyPairBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface GenericProductQuotedCurrencyPair extends RosettaModelObject {
 
 	GenericProductQuotedCurrencyPairMeta metaData = new GenericProductQuotedCurrencyPairMeta();

@@ -28,9 +28,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReportingNotionalChangeModel", builder=ReportingNotionalChangeModel.ReportingNotionalChangeModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReportingNotionalChangeModel", builder=ReportingNotionalChangeModel.ReportingNotionalChangeModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReportingNotionalChangeModel extends RosettaModelObject {
 
 	ReportingNotionalChangeModelMeta metaData = new ReportingNotionalChangeModelMeta();

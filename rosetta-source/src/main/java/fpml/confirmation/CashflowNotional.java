@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The notional/principal value/quantity/volume used to compute the cashflow.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CashflowNotional", builder=CashflowNotional.CashflowNotionalBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CashflowNotional", builder=CashflowNotional.CashflowNotionalBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CashflowNotional extends RosettaModelObject {
 
 	CashflowNotionalMeta metaData = new CashflowNotionalMeta();

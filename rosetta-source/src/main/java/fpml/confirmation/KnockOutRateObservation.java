@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Describes an observation that caused a barrier knock out to trigger
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="KnockOutRateObservation", builder=KnockOutRateObservation.KnockOutRateObservationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="KnockOutRateObservation", builder=KnockOutRateObservation.KnockOutRateObservationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface KnockOutRateObservation extends TriggerRateObservation {
 
 	KnockOutRateObservationMeta metaData = new KnockOutRateObservationMeta();

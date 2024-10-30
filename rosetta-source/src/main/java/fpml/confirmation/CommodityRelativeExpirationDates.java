@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The Expiration Dates of the trade relative to the Calculation Periods.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityRelativeExpirationDates", builder=CommodityRelativeExpirationDates.CommodityRelativeExpirationDatesBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityRelativeExpirationDates", builder=CommodityRelativeExpirationDates.CommodityRelativeExpirationDatesBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityRelativeExpirationDates extends RosettaModelObject {
 
 	CommodityRelativeExpirationDatesMeta metaData = new CommodityRelativeExpirationDatesMeta();

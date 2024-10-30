@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A list of all non-recurring (one-off) fee types.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="NonRecurringMiscFeeType", builder=NonRecurringMiscFeeType.NonRecurringMiscFeeTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="NonRecurringMiscFeeType", builder=NonRecurringMiscFeeType.NonRecurringMiscFeeTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface NonRecurringMiscFeeType extends RosettaModelObject {
 
 	NonRecurringMiscFeeTypeMeta metaData = new NonRecurringMiscFeeTypeMeta();

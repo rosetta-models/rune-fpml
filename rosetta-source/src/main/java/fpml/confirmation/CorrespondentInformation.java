@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that describes the information to identify a correspondent bank that will make delivery of the funds on the paying bank&#39;s behalf in the country where the payment is to be made.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CorrespondentInformation", builder=CorrespondentInformation.CorrespondentInformationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CorrespondentInformation", builder=CorrespondentInformation.CorrespondentInformationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CorrespondentInformation extends RosettaModelObject {
 
 	CorrespondentInformationMeta metaData = new CorrespondentInformationMeta();

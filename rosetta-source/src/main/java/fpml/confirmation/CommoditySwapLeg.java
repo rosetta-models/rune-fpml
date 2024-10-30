@@ -22,9 +22,9 @@ import fpml.confirmation.meta.CommoditySwapLegMeta;
 
 /**
  * Defines the substitutable commodity swap leg Abstract base class for all commodity swap legs
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommoditySwapLeg", builder=CommoditySwapLeg.CommoditySwapLegBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommoditySwapLeg", builder=CommoditySwapLeg.CommoditySwapLegBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommoditySwapLeg extends Leg {
 
 	CommoditySwapLegMeta metaData = new CommoditySwapLegMeta();

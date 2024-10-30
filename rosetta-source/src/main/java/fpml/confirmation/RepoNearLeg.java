@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A transaction leg for a repo is equivalent to a single cash transaction.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RepoNearLeg", builder=RepoNearLeg.RepoNearLegBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RepoNearLeg", builder=RepoNearLeg.RepoNearLegBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RepoNearLeg extends RepoLegBase {
 
 	RepoNearLegMeta metaData = new RepoNearLegMeta();

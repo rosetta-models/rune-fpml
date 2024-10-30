@@ -36,9 +36,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An event representing the lender-specific capitalization of interest amounts for a given accrual period against a single loan contract.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="InterestCapitalization", builder=InterestCapitalization.InterestCapitalizationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="InterestCapitalization", builder=InterestCapitalization.InterestCapitalizationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface InterestCapitalization extends AbstractLoanContractEvent {
 
 	InterestCapitalizationMeta metaData = new InterestCapitalizationMeta();

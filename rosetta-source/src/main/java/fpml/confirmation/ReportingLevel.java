@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type containing a code representing the level at which this is reported (e.g. Trade or Position)
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReportingLevel", builder=ReportingLevel.ReportingLevelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReportingLevel", builder=ReportingLevel.ReportingLevelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReportingLevel extends RosettaModelObject {
 
 	ReportingLevelMeta metaData = new ReportingLevelMeta();

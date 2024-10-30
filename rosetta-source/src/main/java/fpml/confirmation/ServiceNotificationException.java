@@ -25,9 +25,9 @@ import fpml.confirmation.meta.ServiceNotificationExceptionMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ServiceNotificationException", builder=ServiceNotificationException.ServiceNotificationExceptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ServiceNotificationException", builder=ServiceNotificationException.ServiceNotificationExceptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ServiceNotificationException extends Exception {
 
 	ServiceNotificationExceptionMeta metaData = new ServiceNotificationExceptionMeta();

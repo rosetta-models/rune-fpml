@@ -20,9 +20,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="X509DataTypeSequence", builder=X509DataTypeSequence.X509DataTypeSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="X509DataTypeSequence", builder=X509DataTypeSequence.X509DataTypeSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface X509DataTypeSequence extends RosettaModelObject {
 
 	X509DataTypeSequenceMeta metaData = new X509DataTypeSequenceMeta();

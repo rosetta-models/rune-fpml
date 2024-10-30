@@ -19,7 +19,7 @@ import java.util.function.Function;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaMeta(model=AdjustableRelativeOrPeriodicDates2.class)
 public class AdjustableRelativeOrPeriodicDates2Meta implements RosettaMetaData<AdjustableRelativeOrPeriodicDates2> {

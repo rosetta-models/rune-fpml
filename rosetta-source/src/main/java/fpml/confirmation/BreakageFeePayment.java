@@ -35,9 +35,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A fee calculated as the cost of breaking financing against a loan contract which is repaid early.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BreakageFeePayment", builder=BreakageFeePayment.BreakageFeePaymentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BreakageFeePayment", builder=BreakageFeePayment.BreakageFeePaymentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BreakageFeePayment extends NonRecurringFeePayment {
 
 	BreakageFeePaymentMeta metaData = new BreakageFeePaymentMeta();

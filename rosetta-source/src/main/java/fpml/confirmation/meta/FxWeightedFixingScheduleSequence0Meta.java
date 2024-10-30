@@ -19,7 +19,7 @@ import java.util.function.Function;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaMeta(model=FxWeightedFixingScheduleSequence0.class)
 public class FxWeightedFixingScheduleSequence0Meta implements RosettaMetaData<FxWeightedFixingScheduleSequence0> {

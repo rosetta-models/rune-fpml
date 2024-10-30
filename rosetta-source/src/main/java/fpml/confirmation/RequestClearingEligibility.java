@@ -31,9 +31,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RequestClearingEligibility", builder=RequestClearingEligibility.RequestClearingEligibilityBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RequestClearingEligibility", builder=RequestClearingEligibility.RequestClearingEligibilityBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RequestClearingEligibility extends CorrectableRequestMessage {
 
 	RequestClearingEligibilityMeta metaData = new RequestClearingEligibilityMeta();

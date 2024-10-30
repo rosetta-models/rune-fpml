@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining an offset used in calculating a new date relative to a reference date. E.g. calendar days, business days, Commodity Business days, etc..
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Offset", builder=Offset.OffsetBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Offset", builder=Offset.OffsetBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Offset extends Period {
 
 	OffsetMeta metaData = new OffsetMeta();

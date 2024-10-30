@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * CDS Basket Reference Information
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BasketReferenceInformation", builder=BasketReferenceInformation.BasketReferenceInformationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BasketReferenceInformation", builder=BasketReferenceInformation.BasketReferenceInformationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BasketReferenceInformation extends RosettaModelObject {
 
 	BasketReferenceInformationMeta metaData = new BasketReferenceInformationMeta();

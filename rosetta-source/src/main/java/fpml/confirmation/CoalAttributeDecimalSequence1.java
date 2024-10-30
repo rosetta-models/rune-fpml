@@ -20,9 +20,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CoalAttributeDecimalSequence1", builder=CoalAttributeDecimalSequence1.CoalAttributeDecimalSequence1BuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CoalAttributeDecimalSequence1", builder=CoalAttributeDecimalSequence1.CoalAttributeDecimalSequence1BuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CoalAttributeDecimalSequence1 extends RosettaModelObject {
 
 	CoalAttributeDecimalSequence1Meta metaData = new CoalAttributeDecimalSequence1Meta();

@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Records supporting information justifying an end user exception under 17 CFR part 39.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EndUserExceptionDeclaration", builder=EndUserExceptionDeclaration.EndUserExceptionDeclarationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EndUserExceptionDeclaration", builder=EndUserExceptionDeclaration.EndUserExceptionDeclarationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EndUserExceptionDeclaration extends RosettaModelObject {
 
 	EndUserExceptionDeclarationMeta metaData = new EndUserExceptionDeclarationMeta();

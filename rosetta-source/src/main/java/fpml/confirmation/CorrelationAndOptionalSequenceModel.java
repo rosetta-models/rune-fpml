@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model group defining the full messsage correlation mechanism, but with optional sequence. Please note that for reports in Reporting view, usage of the correlation and sequence model is not well defined in the standard an may be deprecated from future versions of the standard. Use the ReportReference structure to identify report instances and section numbers if a report must be divided into chunks.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CorrelationAndOptionalSequenceModel", builder=CorrelationAndOptionalSequenceModel.CorrelationAndOptionalSequenceModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CorrelationAndOptionalSequenceModel", builder=CorrelationAndOptionalSequenceModel.CorrelationAndOptionalSequenceModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CorrelationAndOptionalSequenceModel extends RosettaModelObject {
 
 	CorrelationAndOptionalSequenceModelMeta metaData = new CorrelationAndOptionalSequenceModelMeta();

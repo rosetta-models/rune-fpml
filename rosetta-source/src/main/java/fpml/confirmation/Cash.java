@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Identifies a simple underlying asset type that is a cash payment. Used for specifying discounting factors for future cash flows in the pricing and risk model.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Cash", builder=Cash.CashBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Cash", builder=Cash.CashBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Cash extends Asset {
 
 	CashMeta metaData = new CashMeta();

@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A scheme identifying the types of measures that can be used to describe an asset.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AssetMeasureType", builder=AssetMeasureType.AssetMeasureTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AssetMeasureType", builder=AssetMeasureType.AssetMeasureTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AssetMeasureType extends RosettaModelObject {
 
 	AssetMeasureTypeMeta metaData = new AssetMeasureTypeMeta();

@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The Notional Quantity per Calculation Period. There must be a Notional Quantity step specified for each Calculation Period, regardless of whether the Notional Quantity changes or remains the same between periods.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityNotionalQuantitySchedule", builder=CommodityNotionalQuantitySchedule.CommodityNotionalQuantityScheduleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityNotionalQuantitySchedule", builder=CommodityNotionalQuantitySchedule.CommodityNotionalQuantityScheduleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityNotionalQuantitySchedule extends RosettaModelObject {
 
 	CommodityNotionalQuantityScheduleMeta metaData = new CommodityNotionalQuantityScheduleMeta();

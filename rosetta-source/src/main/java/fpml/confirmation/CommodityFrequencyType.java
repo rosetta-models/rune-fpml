@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Frequency Type for use in Pricing Date specifications.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityFrequencyType", builder=CommodityFrequencyType.CommodityFrequencyTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityFrequencyType", builder=CommodityFrequencyType.CommodityFrequencyTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityFrequencyType extends RosettaModelObject {
 
 	CommodityFrequencyTypeMeta metaData = new CommodityFrequencyTypeMeta();

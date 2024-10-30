@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Provides a lexical location (i.e. a line number and character for bad XML) or an XPath location (i.e. place to identify the bad location for valid XML).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ProblemLocation", builder=ProblemLocation.ProblemLocationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ProblemLocation", builder=ProblemLocation.ProblemLocationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ProblemLocation extends RosettaModelObject {
 
 	ProblemLocationMeta metaData = new ProblemLocationMeta();

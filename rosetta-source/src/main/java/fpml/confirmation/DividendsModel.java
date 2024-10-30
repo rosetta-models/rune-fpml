@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A group containing Dividend content
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DividendsModel", builder=DividendsModel.DividendsModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DividendsModel", builder=DividendsModel.DividendsModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DividendsModel extends RosettaModelObject {
 
 	DividendsModelMeta metaData = new DividendsModelMeta();

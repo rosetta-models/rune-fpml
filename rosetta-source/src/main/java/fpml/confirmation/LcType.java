@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A list of L/C types.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LcType", builder=LcType.LcTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LcType", builder=LcType.LcTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LcType extends RosettaModelObject {
 
 	LcTypeMeta metaData = new LcTypeMeta();

@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type for defining payments. In Transparency view, normally the payer and receiver party references are not used; however they may be provided if necessary for administrative activities such as Reporting Party Determination in FX.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Payment", builder=Payment.PaymentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Payment", builder=Payment.PaymentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Payment extends PaymentBase {
 
 	PaymentMeta metaData = new PaymentMeta();

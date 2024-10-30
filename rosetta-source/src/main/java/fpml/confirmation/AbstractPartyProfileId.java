@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An abstract base type that identifies a party profile.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AbstractPartyProfileId", builder=AbstractPartyProfileId.AbstractPartyProfileIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AbstractPartyProfileId", builder=AbstractPartyProfileId.AbstractPartyProfileIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AbstractPartyProfileId extends RosettaModelObject {
 
 	AbstractPartyProfileIdMeta metaData = new AbstractPartyProfileIdMeta();

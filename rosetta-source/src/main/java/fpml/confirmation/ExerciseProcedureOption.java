@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing how notice of exercise should be given. This can be either manual or automatic.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ExerciseProcedureOption", builder=ExerciseProcedureOption.ExerciseProcedureOptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ExerciseProcedureOption", builder=ExerciseProcedureOption.ExerciseProcedureOptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ExerciseProcedureOption extends RosettaModelObject {
 
 	ExerciseProcedureOptionMeta metaData = new ExerciseProcedureOptionMeta();

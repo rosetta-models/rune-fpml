@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that can be used to describe what stage of processing a service is in. For example, Netting or Valuation.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ServiceProcessingStep", builder=ServiceProcessingStep.ServiceProcessingStepBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ServiceProcessingStep", builder=ServiceProcessingStep.ServiceProcessingStepBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ServiceProcessingStep extends RosettaModelObject {
 
 	ServiceProcessingStepMeta metaData = new ServiceProcessingStepMeta();

@@ -34,9 +34,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure describing a trade change.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradeChangeBase", builder=TradeChangeBase.TradeChangeBaseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradeChangeBase", builder=TradeChangeBase.TradeChangeBaseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradeChangeBase extends AbstractEvent {
 
 	TradeChangeBaseMeta metaData = new TradeChangeBaseMeta();

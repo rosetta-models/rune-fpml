@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * The Lower Bound Direction. It only contains the AtOrAbove and Above values.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaEnum("FxRegionLowerBoundDirectionEnum")
 public enum FxRegionLowerBoundDirectionEnum {

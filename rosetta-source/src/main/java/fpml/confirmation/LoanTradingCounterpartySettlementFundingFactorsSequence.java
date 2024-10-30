@@ -27,9 +27,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanTradingCounterpartySettlementFundingFactorsSequence", builder=LoanTradingCounterpartySettlementFundingFactorsSequence.LoanTradingCounterpartySettlementFundingFactorsSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanTradingCounterpartySettlementFundingFactorsSequence", builder=LoanTradingCounterpartySettlementFundingFactorsSequence.LoanTradingCounterpartySettlementFundingFactorsSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanTradingCounterpartySettlementFundingFactorsSequence extends RosettaModelObject {
 
 	LoanTradingCounterpartySettlementFundingFactorsSequenceMeta metaData = new LoanTradingCounterpartySettlementFundingFactorsSequenceMeta();

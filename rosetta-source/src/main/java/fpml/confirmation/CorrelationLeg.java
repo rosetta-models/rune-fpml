@@ -35,9 +35,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing return which is driven by a Correlation calculation.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CorrelationLeg", builder=CorrelationLeg.CorrelationLegBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CorrelationLeg", builder=CorrelationLeg.CorrelationLegBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CorrelationLeg extends DirectionalLegUnderlyerValuation {
 
 	CorrelationLegMeta metaData = new CorrelationLegMeta();

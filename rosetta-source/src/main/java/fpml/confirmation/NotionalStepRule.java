@@ -25,9 +25,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining a parametric representation of the notional step schedule, i.e. parameters used to generate the notional balance on each step date. The step change in notional can be expressed in terms of either a fixed amount or as a percentage of either the initial notional or previous notional amount. This parametric representation is intended to cover the more common amortizing/accreting.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="NotionalStepRule", builder=NotionalStepRule.NotionalStepRuleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="NotionalStepRule", builder=NotionalStepRule.NotionalStepRuleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface NotionalStepRule extends RosettaModelObject {
 
 	NotionalStepRuleMeta metaData = new NotionalStepRuleMeta();

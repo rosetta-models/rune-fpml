@@ -40,9 +40,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A loan servicing notification used to communicate a non-recurring fee payment made by the borrower.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="NonRecurringFeePaymentNotification", builder=NonRecurringFeePaymentNotification.NonRecurringFeePaymentNotificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="NonRecurringFeePaymentNotification", builder=NonRecurringFeePaymentNotification.NonRecurringFeePaymentNotificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface NonRecurringFeePaymentNotification extends AbstractContractNotification {
 
 	NonRecurringFeePaymentNotificationMeta metaData = new NonRecurringFeePaymentNotificationMeta();

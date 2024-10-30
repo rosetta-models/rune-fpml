@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Specifies the return payments of a commodity return swap. There can be one or two return legs. In simple return swaps there is a return leg and an interest (a.k.a. &#39;fee&#39;) leg. In the case of a outperformance swap there are two return legs: the return performance of two commodity underlyers are swapped. In the case of a fully-funded return swap there is no financing component and, therefore, only a single return leg is specified. A type describing the return leg of a commodity return swap.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityReturnLeg", builder=CommodityReturnLeg.CommodityReturnLegBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityReturnLeg", builder=CommodityReturnLeg.CommodityReturnLegBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityReturnLeg extends CommodityPerformanceSwapLeg {
 
 	CommodityReturnLegMeta metaData = new CommodityReturnLegMeta();

@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The fixed price schedule for electricity that applies to one or more groups of Settlement Periods.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommoditySettlementPeriodsPriceSchedule", builder=CommoditySettlementPeriodsPriceSchedule.CommoditySettlementPeriodsPriceScheduleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommoditySettlementPeriodsPriceSchedule", builder=CommoditySettlementPeriodsPriceSchedule.CommoditySettlementPeriodsPriceScheduleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommoditySettlementPeriodsPriceSchedule extends RosettaModelObject {
 
 	CommoditySettlementPeriodsPriceScheduleMeta metaData = new CommoditySettlementPeriodsPriceScheduleMeta();

@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A credit arrangement used in support of swaps trading.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CreditDocument", builder=CreditDocument.CreditDocumentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CreditDocument", builder=CreditDocument.CreditDocumentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CreditDocument extends RosettaModelObject {
 
 	CreditDocumentMeta metaData = new CreditDocumentMeta();

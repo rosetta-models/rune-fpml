@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type to define business date convention adjustment to final payment period per leg.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FinalCalculationPeriodDateAdjustment", builder=FinalCalculationPeriodDateAdjustment.FinalCalculationPeriodDateAdjustmentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FinalCalculationPeriodDateAdjustment", builder=FinalCalculationPeriodDateAdjustment.FinalCalculationPeriodDateAdjustmentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FinalCalculationPeriodDateAdjustment extends RosettaModelObject {
 
 	FinalCalculationPeriodDateAdjustmentMeta metaData = new FinalCalculationPeriodDateAdjustmentMeta();

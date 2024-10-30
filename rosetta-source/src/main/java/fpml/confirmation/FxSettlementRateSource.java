@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxSettlementRateSource", builder=FxSettlementRateSource.FxSettlementRateSourceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxSettlementRateSource", builder=FxSettlementRateSource.FxSettlementRateSourceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxSettlementRateSource extends RosettaModelObject {
 
 	FxSettlementRateSourceMeta metaData = new FxSettlementRateSourceMeta();

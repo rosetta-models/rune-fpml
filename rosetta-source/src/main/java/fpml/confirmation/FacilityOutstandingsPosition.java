@@ -32,9 +32,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that represents current/prior facility commitment and outstanding amounts on both the global and lender position levels.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FacilityOutstandingsPosition", builder=FacilityOutstandingsPosition.FacilityOutstandingsPositionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FacilityOutstandingsPosition", builder=FacilityOutstandingsPosition.FacilityOutstandingsPositionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FacilityOutstandingsPosition extends FacilityPosition {
 
 	FacilityOutstandingsPositionMeta metaData = new FacilityOutstandingsPositionMeta();

@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReferenceLevel", builder=ReferenceLevel.ReferenceLevelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReferenceLevel", builder=ReferenceLevel.ReferenceLevelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReferenceLevel extends RosettaModelObject {
 
 	ReferenceLevelMeta metaData = new ReferenceLevelMeta();

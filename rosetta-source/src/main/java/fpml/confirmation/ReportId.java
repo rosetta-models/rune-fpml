@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that can be used to hold an identifier for a report instance.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReportId", builder=ReportId.ReportIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReportId", builder=ReportId.ReportIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReportId extends RosettaModelObject {
 
 	ReportIdMeta metaData = new ReportIdMeta();

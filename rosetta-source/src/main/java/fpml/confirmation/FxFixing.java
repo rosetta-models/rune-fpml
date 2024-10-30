@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that specifies the source for and timing of a fixing of an exchange rate. This is used in the agreement of non-deliverable forward trades as well as various types of FX OTC options that require observations against a particular rate.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxFixing", builder=FxFixing.FxFixingBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxFixing", builder=FxFixing.FxFixingBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxFixing extends RosettaModelObject {
 
 	FxFixingMeta metaData = new FxFixingMeta();

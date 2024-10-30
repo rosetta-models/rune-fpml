@@ -33,9 +33,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An event representing the initial setting of the rate on a single (new) loan contract.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanContractBaseRateSet", builder=LoanContractBaseRateSet.LoanContractBaseRateSetBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanContractBaseRateSet", builder=LoanContractBaseRateSet.LoanContractBaseRateSetBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanContractBaseRateSet extends AbstractLoanContractEvent {
 
 	LoanContractBaseRateSetMeta metaData = new LoanContractBaseRateSetMeta();

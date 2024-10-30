@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An identifier used to identify an individual person.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PersonId", builder=PersonId.PersonIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PersonId", builder=PersonId.PersonIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PersonId extends RosettaModelObject {
 
 	PersonIdMeta metaData = new PersonIdMeta();

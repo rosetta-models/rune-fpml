@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * For US Emissions Allowance Transactions. A system where all electronic certificates are stored and emissions are tracked.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EnvironmentalTrackingSystem", builder=EnvironmentalTrackingSystem.EnvironmentalTrackingSystemBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EnvironmentalTrackingSystem", builder=EnvironmentalTrackingSystem.EnvironmentalTrackingSystemBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EnvironmentalTrackingSystem extends RosettaModelObject {
 
 	EnvironmentalTrackingSystemMeta metaData = new EnvironmentalTrackingSystemMeta();

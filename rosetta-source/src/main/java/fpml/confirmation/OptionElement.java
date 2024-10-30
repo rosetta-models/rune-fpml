@@ -38,9 +38,9 @@ import java.util.stream.Collectors;
 
 /**
  * Identifies the underlying asset when it is a listed option contract.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="OptionElement", builder=OptionElement.OptionElementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="OptionElement", builder=OptionElement.OptionElementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface OptionElement extends ExchangeTradedOption {
 
 	OptionElementMeta metaData = new OptionElementMeta();

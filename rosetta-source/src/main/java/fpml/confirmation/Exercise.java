@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An placeholder for the actual option exercise definitions. The abstract base class for all types which define way in which options may be exercised.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Exercise", builder=Exercise.ExerciseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Exercise", builder=Exercise.ExerciseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Exercise extends RosettaModelObject {
 
 	ExerciseMeta metaData = new ExerciseMeta();

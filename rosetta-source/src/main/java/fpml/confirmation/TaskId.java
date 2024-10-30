@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that defines a task identifier based on a qualifying scheme.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TaskId", builder=TaskId.TaskIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TaskId", builder=TaskId.TaskIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TaskId extends RosettaModelObject {
 
 	TaskIdMeta metaData = new TaskIdMeta();

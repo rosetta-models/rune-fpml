@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that represents the accruing PIK option associated within a facility.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AccruingPikOption", builder=AccruingPikOption.AccruingPikOptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AccruingPikOption", builder=AccruingPikOption.AccruingPikOptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AccruingPikOption extends FeeRateOptionBase {
 
 	AccruingPikOptionMeta metaData = new AccruingPikOptionMeta();

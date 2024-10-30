@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Floating FX Rate describes Fixed FX Rate Payer and Fixed Rate
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxPerformanceLeg", builder=FxPerformanceLeg.FxPerformanceLegBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxPerformanceLeg", builder=FxPerformanceLeg.FxPerformanceLegBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxPerformanceLeg extends RosettaModelObject {
 
 	FxPerformanceLegMeta metaData = new FxPerformanceLegMeta();

@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A short form of a loan contract.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanContractSummary", builder=LoanContractSummary.LoanContractSummaryBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanContractSummary", builder=LoanContractSummary.LoanContractSummaryBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanContractSummary extends RosettaModelObject {
 
 	LoanContractSummaryMeta metaData = new LoanContractSummaryMeta();

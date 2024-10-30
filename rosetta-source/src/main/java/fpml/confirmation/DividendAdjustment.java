@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Container for Dividend Adjustment Periods, which are used to calculate the Deviation between Expected Dividend and Actual Dividend in that Period.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DividendAdjustment", builder=DividendAdjustment.DividendAdjustmentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DividendAdjustment", builder=DividendAdjustment.DividendAdjustmentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DividendAdjustment extends RosettaModelObject {
 
 	DividendAdjustmentMeta metaData = new DividendAdjustmentMeta();

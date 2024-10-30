@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to a reset dates component.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ResetDatesReference", builder=ResetDatesReference.ResetDatesReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ResetDatesReference", builder=ResetDatesReference.ResetDatesReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ResetDatesReference extends Reference {
 
 	ResetDatesReferenceMeta metaData = new ResetDatesReferenceMeta();

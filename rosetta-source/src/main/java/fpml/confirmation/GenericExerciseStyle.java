@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The data type used to hold the exercise style description of an option in a generic product (e.g. American, European, Bermudan).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="GenericExerciseStyle", builder=GenericExerciseStyle.GenericExerciseStyleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="GenericExerciseStyle", builder=GenericExerciseStyle.GenericExerciseStyleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface GenericExerciseStyle extends RosettaModelObject {
 
 	GenericExerciseStyleMeta metaData = new GenericExerciseStyleMeta();

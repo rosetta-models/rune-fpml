@@ -32,9 +32,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Physically settled environmental leg.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EnvironmentalPhysicalLeg", builder=EnvironmentalPhysicalLeg.EnvironmentalPhysicalLegBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EnvironmentalPhysicalLeg", builder=EnvironmentalPhysicalLeg.EnvironmentalPhysicalLegBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EnvironmentalPhysicalLeg extends PhysicalSwapLeg {
 
 	EnvironmentalPhysicalLegMeta metaData = new EnvironmentalPhysicalLegMeta();

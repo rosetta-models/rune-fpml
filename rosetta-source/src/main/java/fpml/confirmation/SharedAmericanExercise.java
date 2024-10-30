@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * TBA
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SharedAmericanExercise", builder=SharedAmericanExercise.SharedAmericanExerciseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SharedAmericanExercise", builder=SharedAmericanExercise.SharedAmericanExerciseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SharedAmericanExercise extends Exercise {
 
 	SharedAmericanExerciseMeta metaData = new SharedAmericanExerciseMeta();

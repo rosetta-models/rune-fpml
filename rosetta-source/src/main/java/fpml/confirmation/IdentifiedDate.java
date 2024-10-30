@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A date which can be referenced elsewhere.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="IdentifiedDate", builder=IdentifiedDate.IdentifiedDateBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="IdentifiedDate", builder=IdentifiedDate.IdentifiedDateBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface IdentifiedDate extends RosettaModelObject {
 
 	IdentifiedDateMeta metaData = new IdentifiedDateMeta();

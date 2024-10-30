@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining a cash settlement details identifier and qualifying scheme
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SettlementInstructionId", builder=SettlementInstructionId.SettlementInstructionIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SettlementInstructionId", builder=SettlementInstructionId.SettlementInstructionIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SettlementInstructionId extends RosettaModelObject {
 
 	SettlementInstructionIdMeta metaData = new SettlementInstructionIdMeta();

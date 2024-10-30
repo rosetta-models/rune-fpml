@@ -33,9 +33,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining a Credit Default Swap Index.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="IndexReferenceInformation", builder=IndexReferenceInformation.IndexReferenceInformationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="IndexReferenceInformation", builder=IndexReferenceInformation.IndexReferenceInformationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface IndexReferenceInformation extends RosettaModelObject {
 
 	IndexReferenceInformationMeta metaData = new IndexReferenceInformationMeta();

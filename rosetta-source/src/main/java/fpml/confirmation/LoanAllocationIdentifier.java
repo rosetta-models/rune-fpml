@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that contains sender-specific and optional shared loan allocation identifiers.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanAllocationIdentifier", builder=LoanAllocationIdentifier.LoanAllocationIdentifierBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanAllocationIdentifier", builder=LoanAllocationIdentifier.LoanAllocationIdentifierBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanAllocationIdentifier extends TradeIdentifier {
 
 	LoanAllocationIdentifierMeta metaData = new LoanAllocationIdentifierMeta();

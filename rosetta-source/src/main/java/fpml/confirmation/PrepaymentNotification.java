@@ -40,9 +40,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A loan servicing notification designed to communicate the specific business events associated with a pre-payment made by the borrower.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PrepaymentNotification", builder=PrepaymentNotification.PrepaymentNotificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PrepaymentNotification", builder=PrepaymentNotification.PrepaymentNotificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PrepaymentNotification extends AbstractContractNotification {
 
 	PrepaymentNotificationMeta metaData = new PrepaymentNotificationMeta();

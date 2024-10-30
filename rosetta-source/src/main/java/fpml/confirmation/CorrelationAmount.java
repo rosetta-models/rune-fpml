@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Correlation Amount.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CorrelationAmount", builder=CorrelationAmount.CorrelationAmountBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CorrelationAmount", builder=CorrelationAmount.CorrelationAmountBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CorrelationAmount extends CalculatedAmount {
 
 	CorrelationAmountMeta metaData = new CorrelationAmountMeta();

@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The dates that might be relevant for a pricing input, e.g. what valuation date it applies to, when it was built, when the data comes from, etc..
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PricingInputDatesModel", builder=PricingInputDatesModel.PricingInputDatesModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PricingInputDatesModel", builder=PricingInputDatesModel.PricingInputDatesModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PricingInputDatesModel extends RosettaModelObject {
 
 	PricingInputDatesModelMeta metaData = new PricingInputDatesModelMeta();

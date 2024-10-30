@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Defines the method for calculating the gain in the period where the Target Knock-Out event occurs (Exact, Exclusive, Inclusive).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaEnum("FxTargetStyleEnum")
 public enum FxTargetStyleEnum {

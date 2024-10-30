@@ -37,9 +37,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Physically settled electricity leg. Physically settled leg of a physically settled electricity transaction.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ElectricityPhysicalLeg", builder=ElectricityPhysicalLeg.ElectricityPhysicalLegBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ElectricityPhysicalLeg", builder=ElectricityPhysicalLeg.ElectricityPhysicalLegBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ElectricityPhysicalLeg extends PhysicalSwapLeg {
 
 	ElectricityPhysicalLegMeta metaData = new ElectricityPhysicalLegMeta();

@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BasketId", builder=BasketId.BasketIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BasketId", builder=BasketId.BasketIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BasketId extends RosettaModelObject {
 
 	BasketIdMeta metaData = new BasketIdMeta();

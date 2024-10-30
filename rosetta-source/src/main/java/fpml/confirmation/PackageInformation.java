@@ -32,9 +32,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining additional information that may be recorded against a package of trades.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PackageInformation", builder=PackageInformation.PackageInformationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PackageInformation", builder=PackageInformation.PackageInformationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PackageInformation extends RosettaModelObject {
 
 	PackageInformationMeta metaData = new PackageInformationMeta();

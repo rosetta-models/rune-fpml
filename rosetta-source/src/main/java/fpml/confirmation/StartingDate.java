@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type specifying the date from which the early termination clause can be exercised.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="StartingDate", builder=StartingDate.StartingDateBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="StartingDate", builder=StartingDate.StartingDateBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface StartingDate extends RosettaModelObject {
 
 	StartingDateMeta metaData = new StartingDateMeta();

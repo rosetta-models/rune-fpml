@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Determines the currency rate that the seller of the equity amounts will apply at each valuation date for converting the respective amounts into a currency that is different from the currency denomination of the underlyer.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Quanto", builder=Quanto.QuantoBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Quanto", builder=Quanto.QuantoBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Quanto extends RosettaModelObject {
 
 	QuantoMeta metaData = new QuantoMeta();

@@ -30,9 +30,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that incorporates sub-periods of an accrual calculation for a traded letter of credit.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanTradingLetterOfCreditAccrual", builder=LoanTradingLetterOfCreditAccrual.LoanTradingLetterOfCreditAccrualBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanTradingLetterOfCreditAccrual", builder=LoanTradingLetterOfCreditAccrual.LoanTradingLetterOfCreditAccrualBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanTradingLetterOfCreditAccrual extends AbstractTradingAccrual {
 
 	LoanTradingLetterOfCreditAccrualMeta metaData = new LoanTradingLetterOfCreditAccrualMeta();

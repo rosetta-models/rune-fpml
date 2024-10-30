@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A fixing region in which the payoff is a constant value (a binary|digital payoff, or zero).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxTargetConstantPayoffRegion", builder=FxTargetConstantPayoffRegion.FxTargetConstantPayoffRegionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxTargetConstantPayoffRegion", builder=FxTargetConstantPayoffRegion.FxTargetConstantPayoffRegionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxTargetConstantPayoffRegion extends FxTargetPayoffRegion {
 
 	FxTargetConstantPayoffRegionMeta metaData = new FxTargetConstantPayoffRegionMeta();

@@ -31,9 +31,9 @@ import java.util.stream.Collectors;
 
 /**
  * An event representing expiration of the default rate applicable to borrowers in default.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DefaultRateExpiry", builder=DefaultRateExpiry.DefaultRateExpiryBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DefaultRateExpiry", builder=DefaultRateExpiry.DefaultRateExpiryBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DefaultRateExpiry extends AbstractFacilityContractEvent {
 
 	DefaultRateExpiryMeta metaData = new DefaultRateExpiryMeta();

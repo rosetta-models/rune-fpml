@@ -31,9 +31,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxTargetBarrier", builder=FxTargetBarrier.FxTargetBarrierBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxTargetBarrier", builder=FxTargetBarrier.FxTargetBarrierBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxTargetBarrier extends FxComplexBarrierBase {
 
 	FxTargetBarrierMeta metaData = new FxTargetBarrierMeta();

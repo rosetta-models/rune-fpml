@@ -26,9 +26,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityMarketDisruptionSequence", builder=CommodityMarketDisruptionSequence.CommodityMarketDisruptionSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityMarketDisruptionSequence", builder=CommodityMarketDisruptionSequence.CommodityMarketDisruptionSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityMarketDisruptionSequence extends RosettaModelObject {
 
 	CommodityMarketDisruptionSequenceMeta metaData = new CommodityMarketDisruptionSequenceMeta();

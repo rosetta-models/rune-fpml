@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that describes the details of the underlying elements that explain the calculation of an accrual against a reference balance.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AccrualPeriod", builder=AccrualPeriod.AccrualPeriodBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AccrualPeriod", builder=AccrualPeriod.AccrualPeriodBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AccrualPeriod extends RosettaModelObject {
 
 	AccrualPeriodMeta metaData = new AccrualPeriodMeta();

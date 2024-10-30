@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that defines no-settle period types based on a qualifying scheme.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanAllocationNoSettlePeriodType", builder=LoanAllocationNoSettlePeriodType.LoanAllocationNoSettlePeriodTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanAllocationNoSettlePeriodType", builder=LoanAllocationNoSettlePeriodType.LoanAllocationNoSettlePeriodTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanAllocationNoSettlePeriodType extends RosettaModelObject {
 
 	LoanAllocationNoSettlePeriodTypeMeta metaData = new LoanAllocationNoSettlePeriodTypeMeta();

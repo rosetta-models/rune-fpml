@@ -19,7 +19,7 @@ import java.util.function.Function;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaMeta(model=NonRecurringMiscFeeType.class)
 public class NonRecurringMiscFeeTypeMeta implements RosettaMetaData<NonRecurringMiscFeeType> {

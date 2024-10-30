@@ -32,9 +32,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Identifies the class of unit issued by a fund.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MutualFund", builder=MutualFund.MutualFundBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MutualFund", builder=MutualFund.MutualFundBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MutualFund extends UnderlyingAssetType {
 
 	MutualFundMeta metaData = new MutualFundMeta();

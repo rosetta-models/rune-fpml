@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model group defining the elements used for process correlation. The correlation ID is used to link followup corrections and retractions to the original request, and to help identify which replies link to which requests. The parent correlation ID is used to keep track of the parent process.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CorrelationModel", builder=CorrelationModel.CorrelationModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CorrelationModel", builder=CorrelationModel.CorrelationModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CorrelationModel extends RosettaModelObject {
 
 	CorrelationModelMeta metaData = new CorrelationModelMeta();

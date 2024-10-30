@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The set of characterstics that describe the outputs of a credit curve.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CreditCurveCharacteristicsModel", builder=CreditCurveCharacteristicsModel.CreditCurveCharacteristicsModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CreditCurveCharacteristicsModel", builder=CreditCurveCharacteristicsModel.CreditCurveCharacteristicsModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CreditCurveCharacteristicsModel extends RosettaModelObject {
 
 	CreditCurveCharacteristicsModelMeta metaData = new CreditCurveCharacteristicsModelMeta();

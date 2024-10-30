@@ -34,9 +34,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Straddle details. Straddle is composed of two options: a call and a put involving the quotedCurrencyPair.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxStraddle", builder=FxStraddle.FxStraddleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxStraddle", builder=FxStraddle.FxStraddleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxStraddle extends RosettaModelObject {
 
 	FxStraddleMeta metaData = new FxStraddleMeta();

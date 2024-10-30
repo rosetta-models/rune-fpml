@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A curve used to model a set of zero-coupon interest rates.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ZeroRateCurve", builder=ZeroRateCurve.ZeroRateCurveBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ZeroRateCurve", builder=ZeroRateCurve.ZeroRateCurveBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ZeroRateCurve extends RosettaModelObject {
 
 	ZeroRateCurveMeta metaData = new ZeroRateCurveMeta();

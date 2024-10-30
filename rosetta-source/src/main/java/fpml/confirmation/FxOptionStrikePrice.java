@@ -30,9 +30,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that describes the rate of exchange at which the option has been struck.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxOptionStrikePrice", builder=FxOptionStrikePrice.FxOptionStrikePriceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxOptionStrikePrice", builder=FxOptionStrikePrice.FxOptionStrikePriceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxOptionStrikePrice extends FxAccrualStrike {
 
 	FxOptionStrikePriceMeta metaData = new FxOptionStrikePriceMeta();

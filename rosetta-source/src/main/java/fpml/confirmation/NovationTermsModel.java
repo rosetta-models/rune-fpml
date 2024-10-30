@@ -30,9 +30,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Documentation and other terms (such as date terms) specific to this novation event.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="NovationTermsModel", builder=NovationTermsModel.NovationTermsModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="NovationTermsModel", builder=NovationTermsModel.NovationTermsModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface NovationTermsModel extends RosettaModelObject {
 
 	NovationTermsModelMeta metaData = new NovationTermsModelMeta();

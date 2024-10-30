@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A specific approval state in the workflow.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Approval", builder=Approval.ApprovalBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Approval", builder=Approval.ApprovalBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Approval extends RosettaModelObject {
 
 	ApprovalMeta metaData = new ApprovalMeta();

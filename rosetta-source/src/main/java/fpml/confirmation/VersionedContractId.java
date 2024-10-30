@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Contract Id with Version Support
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="VersionedContractId", builder=VersionedContractId.VersionedContractIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="VersionedContractId", builder=VersionedContractId.VersionedContractIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface VersionedContractId extends RosettaModelObject {
 
 	VersionedContractIdMeta metaData = new VersionedContractIdMeta();

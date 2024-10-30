@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An identifier used to identify matched cashflows.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MatchId", builder=MatchId.MatchIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MatchId", builder=MatchId.MatchIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MatchId extends RosettaModelObject {
 
 	MatchIdMeta metaData = new MatchIdMeta();

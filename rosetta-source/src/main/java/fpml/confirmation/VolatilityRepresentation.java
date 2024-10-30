@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A representation of volatilities of an asset. This is a generic structure whose values can be supplied in a specific volatility matrix.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="VolatilityRepresentation", builder=VolatilityRepresentation.VolatilityRepresentationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="VolatilityRepresentation", builder=VolatilityRepresentation.VolatilityRepresentationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface VolatilityRepresentation extends PricingStructure {
 
 	VolatilityRepresentationMeta metaData = new VolatilityRepresentationMeta();

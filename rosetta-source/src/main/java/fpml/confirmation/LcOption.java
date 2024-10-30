@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that represents the accruing L/C rate option associated within a facility.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LcOption", builder=LcOption.LcOptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LcOption", builder=LcOption.LcOptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LcOption extends FeeRateOptionBase {
 
 	LcOptionMeta metaData = new LcOptionMeta();

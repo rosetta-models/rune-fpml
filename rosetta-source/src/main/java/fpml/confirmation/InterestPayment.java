@@ -33,9 +33,9 @@ import java.util.stream.Collectors;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="InterestPayment", builder=InterestPayment.InterestPaymentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="InterestPayment", builder=InterestPayment.InterestPaymentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface InterestPayment extends LoanInterestPayment {
 
 	InterestPaymentMeta metaData = new InterestPaymentMeta();

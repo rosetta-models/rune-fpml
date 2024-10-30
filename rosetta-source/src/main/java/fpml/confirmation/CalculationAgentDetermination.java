@@ -21,9 +21,9 @@ import fpml.confirmation.meta.CalculationAgentDeterminationMeta;
 
 /**
  * Indicates that the Calculation Agent shall determine the Spot Rate (or a method for determining the Spot Rate) taking into consideration all available information that it reasonably and in good faith deems relevent.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CalculationAgentDetermination", builder=CalculationAgentDetermination.CalculationAgentDeterminationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CalculationAgentDetermination", builder=CalculationAgentDetermination.CalculationAgentDeterminationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CalculationAgentDetermination extends FxDisruptionFallback {
 
 	CalculationAgentDeterminationMeta metaData = new CalculationAgentDeterminationMeta();

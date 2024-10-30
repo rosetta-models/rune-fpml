@@ -32,9 +32,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An event structure defining counterparty-to-admin agent loan trade information.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanTransfer", builder=LoanTransfer.LoanTransferBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanTransfer", builder=LoanTransfer.LoanTransferBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanTransfer extends AbstractLoanTrade {
 
 	LoanTransferMeta metaData = new LoanTransferMeta();

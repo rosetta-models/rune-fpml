@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that represents the withholding tax being applied to a particular cash flow.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TaxWithholding", builder=TaxWithholding.TaxWithholdingBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TaxWithholding", builder=TaxWithholding.TaxWithholdingBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TaxWithholding extends RosettaModelObject {
 
 	TaxWithholdingMeta metaData = new TaxWithholdingMeta();

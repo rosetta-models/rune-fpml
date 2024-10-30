@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Conditions can be expressed in different ways: as a specific level, or a reference to a strike, or a reference to an average strike in FxAccrualForward and FxAccrualOption, or a reference to a trigger in FxDigitalOption.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxAccrualConditionLevelModel", builder=FxAccrualConditionLevelModel.FxAccrualConditionLevelModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxAccrualConditionLevelModel", builder=FxAccrualConditionLevelModel.FxAccrualConditionLevelModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxAccrualConditionLevelModel extends RosettaModelObject {
 
 	FxAccrualConditionLevelModelMeta metaData = new FxAccrualConditionLevelModelMeta();

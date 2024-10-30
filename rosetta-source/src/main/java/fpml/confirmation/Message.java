@@ -22,9 +22,9 @@ import fpml.confirmation.meta.MessageMeta;
 
 /**
  * A type defining the basic structure of all FpML messages which is refined by its derived types.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Message", builder=Message.MessageBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Message", builder=Message.MessageBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Message extends Document {
 
 	MessageMeta metaData = new MessageMeta();

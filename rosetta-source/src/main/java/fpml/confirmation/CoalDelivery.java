@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The physical delivery conditions for coal.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CoalDelivery", builder=CoalDelivery.CoalDeliveryBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CoalDelivery", builder=CoalDelivery.CoalDeliveryBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CoalDelivery extends RosettaModelObject {
 
 	CoalDeliveryMeta metaData = new CoalDeliveryMeta();

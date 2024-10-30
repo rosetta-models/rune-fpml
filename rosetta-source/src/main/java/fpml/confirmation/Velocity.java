@@ -20,9 +20,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Velocity", builder=Velocity.VelocityBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Velocity", builder=Velocity.VelocityBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Velocity extends RosettaModelObject {
 
 	VelocityMeta metaData = new VelocityMeta();

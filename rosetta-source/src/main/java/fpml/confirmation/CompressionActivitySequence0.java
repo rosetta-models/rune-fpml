@@ -25,9 +25,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CompressionActivitySequence0", builder=CompressionActivitySequence0.CompressionActivitySequence0BuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CompressionActivitySequence0", builder=CompressionActivitySequence0.CompressionActivitySequence0BuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CompressionActivitySequence0 extends RosettaModelObject {
 
 	CompressionActivitySequence0Meta metaData = new CompressionActivitySequence0Meta();

@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The reason a trade&#39;s price does not reflect the current market price.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PricingContext", builder=PricingContext.PricingContextBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PricingContext", builder=PricingContext.PricingContextBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PricingContext extends RosettaModelObject {
 
 	PricingContextMeta metaData = new PricingContextMeta();

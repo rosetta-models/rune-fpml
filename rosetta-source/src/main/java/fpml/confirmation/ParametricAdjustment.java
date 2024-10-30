@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An adjustment used to accommodate a parameter of the input trade, e.g. the strike.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ParametricAdjustment", builder=ParametricAdjustment.ParametricAdjustmentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ParametricAdjustment", builder=ParametricAdjustment.ParametricAdjustmentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ParametricAdjustment extends RosettaModelObject {
 
 	ParametricAdjustmentMeta metaData = new ParametricAdjustmentMeta();

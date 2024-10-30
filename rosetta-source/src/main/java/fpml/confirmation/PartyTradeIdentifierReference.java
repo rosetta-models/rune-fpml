@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A reference to a partyTradeIdentifier object.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PartyTradeIdentifierReference", builder=PartyTradeIdentifierReference.PartyTradeIdentifierReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PartyTradeIdentifierReference", builder=PartyTradeIdentifierReference.PartyTradeIdentifierReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PartyTradeIdentifierReference extends Reference {
 
 	PartyTradeIdentifierReferenceMeta metaData = new PartyTradeIdentifierReferenceMeta();

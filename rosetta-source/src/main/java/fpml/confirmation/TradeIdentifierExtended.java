@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining a trade identifier with a reference to the party that this trade is associated with.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradeIdentifierExtended", builder=TradeIdentifierExtended.TradeIdentifierExtendedBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradeIdentifierExtended", builder=TradeIdentifierExtended.TradeIdentifierExtendedBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradeIdentifierExtended extends TradeIdentifier {
 
 	TradeIdentifierExtendedMeta metaData = new TradeIdentifierExtendedMeta();

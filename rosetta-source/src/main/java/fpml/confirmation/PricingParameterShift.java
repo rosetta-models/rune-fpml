@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A definition of a shift with respect to a specific pricing parameter.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PricingParameterShift", builder=PricingParameterShift.PricingParameterShiftBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PricingParameterShift", builder=PricingParameterShift.PricingParameterShiftBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PricingParameterShift extends RosettaModelObject {
 
 	PricingParameterShiftMeta metaData = new PricingParameterShiftMeta();

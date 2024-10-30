@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A time bounded dividend period, with fixed strike and a dividend payment date per period.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DividendPeriodPayment", builder=DividendPeriodPayment.DividendPeriodPaymentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DividendPeriodPayment", builder=DividendPeriodPayment.DividendPeriodPaymentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DividendPeriodPayment extends DividendPeriod {
 
 	DividendPeriodPaymentMeta metaData = new DividendPeriodPaymentMeta();

@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Describes the characteristics for European exercise of FX products.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxEuropeanExercise", builder=FxEuropeanExercise.FxEuropeanExerciseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxEuropeanExercise", builder=FxEuropeanExercise.FxEuropeanExerciseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxEuropeanExercise extends Exercise {
 
 	FxEuropeanExerciseMeta metaData = new FxEuropeanExerciseMeta();

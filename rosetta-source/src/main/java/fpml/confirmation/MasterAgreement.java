@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An entity for defining the agreement executed between the parties and intended to govern all OTC derivatives transactions between those parties.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MasterAgreement", builder=MasterAgreement.MasterAgreementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MasterAgreement", builder=MasterAgreement.MasterAgreementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MasterAgreement extends RosettaModelObject {
 
 	MasterAgreementMeta metaData = new MasterAgreementMeta();

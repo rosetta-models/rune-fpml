@@ -29,9 +29,9 @@ import fpml.confirmation.meta.ConfirmationAcknowledgementMeta;
 
 /**
  * A business acknowledgement message to indicate that the previously sent message was sucessfully processed.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ConfirmationAcknowledgement", builder=ConfirmationAcknowledgement.ConfirmationAcknowledgementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ConfirmationAcknowledgement", builder=ConfirmationAcknowledgement.ConfirmationAcknowledgementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ConfirmationAcknowledgement extends EventRequestAcknowledgement {
 
 	ConfirmationAcknowledgementMeta metaData = new ConfirmationAcknowledgementMeta();

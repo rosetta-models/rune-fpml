@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * A list of accruing fee types associated with a facility.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaEnum("LoanTradingNonRecurringFeeTypeEnum")
 public enum LoanTradingNonRecurringFeeTypeEnum {

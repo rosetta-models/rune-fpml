@@ -25,9 +25,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The common components of a physically settled leg of a Commodity Swap. This is an abstract type and should be extended by commodity-specific types.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PhysicalSwapLeg", builder=PhysicalSwapLeg.PhysicalSwapLegBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PhysicalSwapLeg", builder=PhysicalSwapLeg.PhysicalSwapLegBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PhysicalSwapLeg extends CommoditySwapLeg {
 
 	PhysicalSwapLegMeta metaData = new PhysicalSwapLegMeta();

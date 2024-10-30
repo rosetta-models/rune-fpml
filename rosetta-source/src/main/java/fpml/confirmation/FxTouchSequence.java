@@ -22,9 +22,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxTouchSequence", builder=FxTouchSequence.FxTouchSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxTouchSequence", builder=FxTouchSequence.FxTouchSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxTouchSequence extends RosettaModelObject {
 
 	FxTouchSequenceMeta metaData = new FxTouchSequenceMeta();

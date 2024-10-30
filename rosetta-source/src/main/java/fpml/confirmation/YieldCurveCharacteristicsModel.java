@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The set of characteristics that describe the outputs of a yield curve.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="YieldCurveCharacteristicsModel", builder=YieldCurveCharacteristicsModel.YieldCurveCharacteristicsModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="YieldCurveCharacteristicsModel", builder=YieldCurveCharacteristicsModel.YieldCurveCharacteristicsModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface YieldCurveCharacteristicsModel extends RosettaModelObject {
 
 	YieldCurveCharacteristicsModelMeta metaData = new YieldCurveCharacteristicsModelMeta();

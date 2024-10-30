@@ -30,9 +30,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReturnLegValuationPrice", builder=ReturnLegValuationPrice.ReturnLegValuationPriceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReturnLegValuationPrice", builder=ReturnLegValuationPrice.ReturnLegValuationPriceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReturnLegValuationPrice extends Price {
 
 	ReturnLegValuationPriceMeta metaData = new ReturnLegValuationPriceMeta();

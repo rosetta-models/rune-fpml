@@ -21,9 +21,9 @@ import fpml.confirmation.meta.NoFaultTerminationMeta;
 
 /**
  * Indicates that the event may cause the transaction to terminate if all applicable provisions have been met.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="NoFaultTermination", builder=NoFaultTermination.NoFaultTerminationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="NoFaultTermination", builder=NoFaultTermination.NoFaultTerminationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface NoFaultTermination extends FxDisruptionFallback {
 
 	NoFaultTerminationMeta metaData = new NoFaultTerminationMeta();

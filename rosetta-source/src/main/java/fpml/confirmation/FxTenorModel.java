@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxTenorModel", builder=FxTenorModel.FxTenorModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxTenorModel", builder=FxTenorModel.FxTenorModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxTenorModel extends RosettaModelObject {
 
 	FxTenorModelMeta metaData = new FxTenorModelMeta();

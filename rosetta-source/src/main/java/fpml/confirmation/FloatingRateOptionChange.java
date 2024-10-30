@@ -33,9 +33,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An event describing a change in a floating rate accrual option. In real terms - an example of this would be a margin rate change associated with the 3-Month LIBOR accrual option.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FloatingRateOptionChange", builder=FloatingRateOptionChange.FloatingRateOptionChangeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FloatingRateOptionChange", builder=FloatingRateOptionChange.FloatingRateOptionChangeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FloatingRateOptionChange extends AbstractFacilityEvent {
 
 	FloatingRateOptionChangeMeta metaData = new FloatingRateOptionChangeMeta();

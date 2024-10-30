@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A coding scheme used to describe the type or purpose of a cash flow or cash flow component.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CashflowType", builder=CashflowType.CashflowTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CashflowType", builder=CashflowType.CashflowTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CashflowType extends RosettaModelObject {
 
 	CashflowTypeMeta metaData = new CashflowTypeMeta();

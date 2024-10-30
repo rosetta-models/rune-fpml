@@ -22,9 +22,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityVarianceCalculation", builder=CommodityVarianceCalculation.CommodityVarianceCalculationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityVarianceCalculation", builder=CommodityVarianceCalculation.CommodityVarianceCalculationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityVarianceCalculation extends RosettaModelObject {
 
 	CommodityVarianceCalculationMeta metaData = new CommodityVarianceCalculationMeta();

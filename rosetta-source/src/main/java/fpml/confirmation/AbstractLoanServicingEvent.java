@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An abstract base type defining common features of a syndicated loan servicing business event. Such events are originated by the borrower and are required to be communicated to the lender syndicate by agents.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AbstractLoanServicingEvent", builder=AbstractLoanServicingEvent.AbstractLoanServicingEventBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AbstractLoanServicingEvent", builder=AbstractLoanServicingEvent.AbstractLoanServicingEventBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AbstractLoanServicingEvent extends AbstractLoanEvent {
 
 	AbstractLoanServicingEventMeta metaData = new AbstractLoanServicingEventMeta();

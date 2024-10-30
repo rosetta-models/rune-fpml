@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An identifier used to identify a single component cashflow.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CashflowId", builder=CashflowId.CashflowIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CashflowId", builder=CashflowId.CashflowIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CashflowId extends RosettaModelObject {
 
 	CashflowIdMeta metaData = new CashflowIdMeta();

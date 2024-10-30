@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Choice between identification and representation of trade execution.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradeOrTradeReferenceModel", builder=TradeOrTradeReferenceModel.TradeOrTradeReferenceModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradeOrTradeReferenceModel", builder=TradeOrTradeReferenceModel.TradeOrTradeReferenceModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradeOrTradeReferenceModel extends RosettaModelObject {
 
 	TradeOrTradeReferenceModelMeta metaData = new TradeOrTradeReferenceModelMeta();

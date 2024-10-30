@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that describes the rate of exchange at which the option has been struck.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxStrikePrice", builder=FxStrikePrice.FxStrikePriceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxStrikePrice", builder=FxStrikePrice.FxStrikePriceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxStrikePrice extends RosettaModelObject {
 
 	FxStrikePriceMeta metaData = new FxStrikePriceMeta();

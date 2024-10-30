@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EquityStrikeSequence", builder=EquityStrikeSequence.EquityStrikeSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EquityStrikeSequence", builder=EquityStrikeSequence.EquityStrikeSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EquityStrikeSequence extends RosettaModelObject {
 
 	EquityStrikeSequenceMeta metaData = new EquityStrikeSequenceMeta();

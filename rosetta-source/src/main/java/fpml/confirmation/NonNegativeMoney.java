@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining a non negative money amount.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="NonNegativeMoney", builder=NonNegativeMoney.NonNegativeMoneyBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="NonNegativeMoney", builder=NonNegativeMoney.NonNegativeMoneyBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface NonNegativeMoney extends MoneyBase {
 
 	NonNegativeMoneyMeta metaData = new NonNegativeMoneyMeta();

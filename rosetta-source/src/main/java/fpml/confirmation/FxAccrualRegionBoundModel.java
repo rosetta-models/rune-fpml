@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines the boundaries of the accrual region. If an upper or lower barrier is not defined then it is understood that if the barrier is missing in the direction facing the strike then the region is bounded by the strike but excludes the strike; if the barrier is missing in the direction facing away from the strike then the accrual region is unbounded in that direction. If the region is bounded by the strike then a barrier should be included to define whether the region includes or excludes the strike. If accrual regions overlap, it is understood that if one is nested within another wider region, the nested region takes precedence over the spot range that it applies. If there is an overlap but no nesting then this is invalid and barriers must be used to unequivocally define the regions.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxAccrualRegionBoundModel", builder=FxAccrualRegionBoundModel.FxAccrualRegionBoundModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxAccrualRegionBoundModel", builder=FxAccrualRegionBoundModel.FxAccrualRegionBoundModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxAccrualRegionBoundModel extends RosettaModelObject {
 
 	FxAccrualRegionBoundModelMeta metaData = new FxAccrualRegionBoundModelMeta();

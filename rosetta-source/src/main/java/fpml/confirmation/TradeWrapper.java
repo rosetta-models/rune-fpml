@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that contains a business event.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradeWrapper", builder=TradeWrapper.TradeWrapperBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradeWrapper", builder=TradeWrapper.TradeWrapperBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradeWrapper extends RosettaModelObject {
 
 	TradeWrapperMeta metaData = new TradeWrapperMeta();

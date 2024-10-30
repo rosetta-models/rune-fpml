@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Stock Loan Content Model
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="StockLoanModel", builder=StockLoanModel.StockLoanModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="StockLoanModel", builder=StockLoanModel.StockLoanModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface StockLoanModel extends RosettaModelObject {
 
 	StockLoanModelMeta metaData = new StockLoanModelMeta();

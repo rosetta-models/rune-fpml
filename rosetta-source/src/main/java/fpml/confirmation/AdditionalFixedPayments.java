@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AdditionalFixedPayments", builder=AdditionalFixedPayments.AdditionalFixedPaymentsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AdditionalFixedPayments", builder=AdditionalFixedPayments.AdditionalFixedPaymentsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AdditionalFixedPayments extends RosettaModelObject {
 
 	AdditionalFixedPaymentsMeta metaData = new AdditionalFixedPaymentsMeta();

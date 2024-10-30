@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Describes the limits on the size of notional when multiple exercise is allowed.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxMultipleExercise", builder=FxMultipleExercise.FxMultipleExerciseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxMultipleExercise", builder=FxMultipleExercise.FxMultipleExerciseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxMultipleExercise extends RosettaModelObject {
 
 	FxMultipleExerciseMeta metaData = new FxMultipleExerciseMeta();

@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The data type used for indicating the language of the resource, described using the ISO 639-2/T Code.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Language", builder=Language.LanguageBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Language", builder=Language.LanguageBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Language extends RosettaModelObject {
 
 	LanguageMeta metaData = new LanguageMeta();

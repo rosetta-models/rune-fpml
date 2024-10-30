@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CalculationFromObservationChoice", builder=CalculationFromObservationChoice.CalculationFromObservationChoiceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CalculationFromObservationChoice", builder=CalculationFromObservationChoice.CalculationFromObservationChoiceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CalculationFromObservationChoice extends RosettaModelObject {
 
 	CalculationFromObservationChoiceMeta metaData = new CalculationFromObservationChoiceMeta();

@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A reference to a facility.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FacilityReference", builder=FacilityReference.FacilityReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FacilityReference", builder=FacilityReference.FacilityReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FacilityReference extends Reference {
 
 	FacilityReferenceMeta metaData = new FacilityReferenceMeta();

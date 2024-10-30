@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An adjustable offset can be used to specify a number of days, business or calendar, for example in a notice period.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AdjustableOffset", builder=AdjustableOffset.AdjustableOffsetBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AdjustableOffset", builder=AdjustableOffset.AdjustableOffsetBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AdjustableOffset extends Offset {
 
 	AdjustableOffsetMeta metaData = new AdjustableOffsetMeta();

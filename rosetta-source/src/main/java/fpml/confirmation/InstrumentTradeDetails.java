@@ -30,9 +30,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type to hold trades of multiply-traded instruments such as securities (e.g., stocks or bonds) or listed derivatives. Typically this will be used to represent the trade resulting from a physically-settled OTC product where the underlying is a security, for example the exercise of a physically-settled option. The economics of a trade of a multiply traded instrument.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="InstrumentTradeDetails", builder=InstrumentTradeDetails.InstrumentTradeDetailsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="InstrumentTradeDetails", builder=InstrumentTradeDetails.InstrumentTradeDetailsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface InstrumentTradeDetails extends Product {
 
 	InstrumentTradeDetailsMeta metaData = new InstrumentTradeDetailsMeta();

@@ -26,9 +26,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DaysModelSequence1", builder=DaysModelSequence1.DaysModelSequence1BuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DaysModelSequence1", builder=DaysModelSequence1.DaysModelSequence1BuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DaysModelSequence1 extends RosettaModelObject {
 
 	DaysModelSequence1Meta metaData = new DaysModelSequence1Meta();

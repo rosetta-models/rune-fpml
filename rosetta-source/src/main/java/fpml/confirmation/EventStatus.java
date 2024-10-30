@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A coding scheme used to describe the matching/confirmation status of a trade, post-trade event, position, or cash flows.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EventStatus", builder=EventStatus.EventStatusBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EventStatus", builder=EventStatus.EventStatusBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EventStatus extends RosettaModelObject {
 
 	EventStatusMeta metaData = new EventStatusMeta();

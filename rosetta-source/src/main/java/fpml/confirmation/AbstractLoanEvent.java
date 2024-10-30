@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An abstract base type defining common features of a syndicated loan business event.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AbstractLoanEvent", builder=AbstractLoanEvent.AbstractLoanEventBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AbstractLoanEvent", builder=AbstractLoanEvent.AbstractLoanEventBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AbstractLoanEvent extends AbstractEventRequireId {
 
 	AbstractLoanEventMeta metaData = new AbstractLoanEventMeta();

@@ -33,9 +33,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines the underlying asset when it is a basket. A type describing the underlyer features of a basket swap. Each of the basket constituents are described through an embedded component, the basketConstituentsType.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Basket", builder=Basket.BasketBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Basket", builder=Basket.BasketBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Basket extends Asset {
 
 	BasketMeta metaData = new BasketMeta();

@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Payoff region
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxTargetSettlementPeriodPayoff", builder=FxTargetSettlementPeriodPayoff.FxTargetSettlementPeriodPayoffBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxTargetSettlementPeriodPayoff", builder=FxTargetSettlementPeriodPayoff.FxTargetSettlementPeriodPayoffBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxTargetSettlementPeriodPayoff extends RosettaModelObject {
 
 	FxTargetSettlementPeriodPayoffMeta metaData = new FxTargetSettlementPeriodPayoffMeta();

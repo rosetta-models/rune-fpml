@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type to define recurring periods or time offsets.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Period", builder=Period.PeriodBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Period", builder=Period.PeriodBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Period extends RosettaModelObject {
 
 	PeriodMeta metaData = new PeriodMeta();

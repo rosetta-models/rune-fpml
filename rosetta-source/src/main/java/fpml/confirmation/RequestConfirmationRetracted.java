@@ -29,9 +29,9 @@ import fpml.confirmation.meta.RequestConfirmationRetractedMeta;
 
 /**
  * A requestConfirmation message may be cancelled using the requestConfirmationRetracted message.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RequestConfirmationRetracted", builder=RequestConfirmationRetracted.RequestConfirmationRetractedBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RequestConfirmationRetracted", builder=RequestConfirmationRetracted.RequestConfirmationRetractedBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RequestConfirmationRetracted extends ConfirmationRetracted {
 
 	RequestConfirmationRetractedMeta metaData = new RequestConfirmationRetractedMeta();

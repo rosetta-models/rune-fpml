@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Identification of the border(s) or border point(s) of a transportation contract. Use the list of EIC codes for timelines for electricity (T Codes) or the list of EIC codes for measurement points for gas (Z Codes).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="InterconnectionPoint", builder=InterconnectionPoint.InterconnectionPointBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="InterconnectionPoint", builder=InterconnectionPoint.InterconnectionPointBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface InterconnectionPoint extends RosettaModelObject {
 
 	InterconnectionPointMeta metaData = new InterconnectionPointMeta();

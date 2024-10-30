@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A unique identifier for outstanding contracts.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FacilityContractIdentifier", builder=FacilityContractIdentifier.FacilityContractIdentifierBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FacilityContractIdentifier", builder=FacilityContractIdentifier.FacilityContractIdentifierBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FacilityContractIdentifier extends ContractIdentifier {
 
 	FacilityContractIdentifierMeta metaData = new FacilityContractIdentifierMeta();

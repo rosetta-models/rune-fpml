@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model that defines all parties playing various roles within a given deal.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DealRolesModel", builder=DealRolesModel.DealRolesModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DealRolesModel", builder=DealRolesModel.DealRolesModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DealRolesModel extends RosettaModelObject {
 
 	DealRolesModelMeta metaData = new DealRolesModelMeta();

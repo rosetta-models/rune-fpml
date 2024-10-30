@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Deprecated: A type defining a USI for the a subproduct component of a strategy.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ProductComponentIdentifier", builder=ProductComponentIdentifier.ProductComponentIdentifierBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ProductComponentIdentifier", builder=ProductComponentIdentifier.ProductComponentIdentifierBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ProductComponentIdentifier extends RosettaModelObject {
 
 	ProductComponentIdentifierMeta metaData = new ProductComponentIdentifierMeta();

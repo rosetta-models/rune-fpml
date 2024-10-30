@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining a time frequency, e.g. one day, three months. Used for specifying payment or calculation frequencies at which the value T (Term) is applicable.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Frequency", builder=Frequency.FrequencyBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Frequency", builder=Frequency.FrequencyBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Frequency extends RosettaModelObject {
 
 	FrequencyMeta metaData = new FrequencyMeta();

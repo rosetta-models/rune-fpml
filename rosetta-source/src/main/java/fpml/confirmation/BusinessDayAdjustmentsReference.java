@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to a business day adjustments structure.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BusinessDayAdjustmentsReference", builder=BusinessDayAdjustmentsReference.BusinessDayAdjustmentsReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BusinessDayAdjustmentsReference", builder=BusinessDayAdjustmentsReference.BusinessDayAdjustmentsReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BusinessDayAdjustmentsReference extends Reference {
 
 	BusinessDayAdjustmentsReferenceMeta metaData = new BusinessDayAdjustmentsReferenceMeta();

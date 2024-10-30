@@ -38,9 +38,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A statement containing the commitment amounts for a single facility at the global and (optionally) the lender postion levels, on a specific date.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FacilityPositionStatement", builder=FacilityPositionStatement.FacilityPositionStatementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FacilityPositionStatement", builder=FacilityPositionStatement.FacilityPositionStatementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FacilityPositionStatement extends AbstractLoanStatement {
 
 	FacilityPositionStatementMeta metaData = new FacilityPositionStatementMeta();

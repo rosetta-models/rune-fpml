@@ -30,9 +30,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines the structure that contains routing and identification information, which allows processing and transfer of the message. It contains only messaging information that is applicable to all messages. If the information is not message related or is not applicable to all messages then it is not defined in the message header.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MessageHeaderModel", builder=MessageHeaderModel.MessageHeaderModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MessageHeaderModel", builder=MessageHeaderModel.MessageHeaderModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MessageHeaderModel extends RosettaModelObject {
 
 	MessageHeaderModelMeta metaData = new MessageHeaderModelMeta();

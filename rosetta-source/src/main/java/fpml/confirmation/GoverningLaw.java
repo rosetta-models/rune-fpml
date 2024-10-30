@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Identification of the law governing the transaction.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="GoverningLaw", builder=GoverningLaw.GoverningLawBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="GoverningLaw", builder=GoverningLaw.GoverningLawBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface GoverningLaw extends RosettaModelObject {
 
 	GoverningLawMeta metaData = new GoverningLawMeta();

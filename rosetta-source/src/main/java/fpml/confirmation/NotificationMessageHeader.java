@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that refines the generic message header to match the requirements of a NotificationMessage.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="NotificationMessageHeader", builder=NotificationMessageHeader.NotificationMessageHeaderBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="NotificationMessageHeader", builder=NotificationMessageHeader.NotificationMessageHeaderBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface NotificationMessageHeader extends MessageHeader {
 
 	NotificationMessageHeaderMeta metaData = new NotificationMessageHeaderMeta();

@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that is used for describing cash settlement of a variance or volatility swap option. It includes the settlement currency together with the spot currency exchange required to calculate the settlement currency amount.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxCashSettlementSimple", builder=FxCashSettlementSimple.FxCashSettlementSimpleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxCashSettlementSimple", builder=FxCashSettlementSimple.FxCashSettlementSimpleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxCashSettlementSimple extends RosettaModelObject {
 
 	FxCashSettlementSimpleMeta metaData = new FxCashSettlementSimpleMeta();

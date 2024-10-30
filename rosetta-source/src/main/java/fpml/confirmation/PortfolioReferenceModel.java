@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines a model group that allows a portfolio reference request structure to be included in a message.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PortfolioReferenceModel", builder=PortfolioReferenceModel.PortfolioReferenceModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PortfolioReferenceModel", builder=PortfolioReferenceModel.PortfolioReferenceModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PortfolioReferenceModel extends RosettaModelObject {
 
 	PortfolioReferenceModelMeta metaData = new PortfolioReferenceModelMeta();

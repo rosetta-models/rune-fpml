@@ -27,9 +27,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxFixingScheduleSequence1", builder=FxFixingScheduleSequence1.FxFixingScheduleSequence1BuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxFixingScheduleSequence1", builder=FxFixingScheduleSequence1.FxFixingScheduleSequence1BuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxFixingScheduleSequence1 extends RosettaModelObject {
 
 	FxFixingScheduleSequence1Meta metaData = new FxFixingScheduleSequence1Meta();

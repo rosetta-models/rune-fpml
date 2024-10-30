@@ -41,9 +41,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A message indicating that the sender does not grant consent for the recipient to perform the requested action.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ConsentRefused", builder=ConsentRefused.ConsentRefusedBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ConsentRefused", builder=ConsentRefused.ConsentRefusedBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ConsentRefused extends ResponseMessage {
 
 	ConsentRefusedMeta metaData = new ConsentRefusedMeta();

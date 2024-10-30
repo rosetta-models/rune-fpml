@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The data type used for describing the type or purpose of a resource, e.g. &quot;Confirmation&quot;.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ResourceType", builder=ResourceType.ResourceTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ResourceType", builder=ResourceType.ResourceTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ResourceType extends RosettaModelObject {
 
 	ResourceTypeMeta metaData = new ResourceTypeMeta();

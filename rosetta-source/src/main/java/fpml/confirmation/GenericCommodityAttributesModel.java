@@ -31,9 +31,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="GenericCommodityAttributesModel", builder=GenericCommodityAttributesModel.GenericCommodityAttributesModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="GenericCommodityAttributesModel", builder=GenericCommodityAttributesModel.GenericCommodityAttributesModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface GenericCommodityAttributesModel extends RosettaModelObject {
 
 	GenericCommodityAttributesModelMeta metaData = new GenericCommodityAttributesModelMeta();

@@ -33,9 +33,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Identifies the underlying asset when it is an exchange-traded fund. An exchange traded fund whose price depends on exchange traded constituents.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ExchangeTradedFund", builder=ExchangeTradedFund.ExchangeTradedFundBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ExchangeTradedFund", builder=ExchangeTradedFund.ExchangeTradedFundBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ExchangeTradedFund extends ExchangeTradedCalculatedPrice {
 
 	ExchangeTradedFundMeta metaData = new ExchangeTradedFundMeta();

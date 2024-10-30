@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A formula for computing a complex derivative from partial derivatives. Its value is the sum of the terms divided by the product of the denominator terms.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DerivativeFormula", builder=DerivativeFormula.DerivativeFormulaBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DerivativeFormula", builder=DerivativeFormula.DerivativeFormulaBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DerivativeFormula extends RosettaModelObject {
 
 	DerivativeFormulaMeta metaData = new DerivativeFormulaMeta();

@@ -22,9 +22,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReferencePair", builder=ReferencePair.ReferencePairBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReferencePair", builder=ReferencePair.ReferencePairBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReferencePair extends RosettaModelObject {
 
 	ReferencePairMeta metaData = new ReferencePairMeta();

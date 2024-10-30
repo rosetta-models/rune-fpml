@@ -25,9 +25,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A group that specifies Bond Content elements.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FixedIncomeSecurityContentModel", builder=FixedIncomeSecurityContentModel.FixedIncomeSecurityContentModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FixedIncomeSecurityContentModel", builder=FixedIncomeSecurityContentModel.FixedIncomeSecurityContentModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FixedIncomeSecurityContentModel extends RosettaModelObject {
 
 	FixedIncomeSecurityContentModelMeta metaData = new FixedIncomeSecurityContentModelMeta();

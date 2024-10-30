@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A generic credit curve definition.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CreditCurve", builder=CreditCurve.CreditCurveBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CreditCurve", builder=CreditCurve.CreditCurveBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CreditCurve extends PricingStructure {
 
 	CreditCurveMeta metaData = new CreditCurveMeta();

@@ -38,9 +38,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that represents the accruing floating rate option associated within a facility.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FloatingRateOption", builder=FloatingRateOption.FloatingRateOptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FloatingRateOption", builder=FloatingRateOption.FloatingRateOptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FloatingRateOption extends FloatingRateOptionBase {
 
 	FloatingRateOptionMeta metaData = new FloatingRateOptionMeta();

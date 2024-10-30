@@ -28,9 +28,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SignatureType", builder=SignatureType.SignatureTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SignatureType", builder=SignatureType.SignatureTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SignatureType extends RosettaModelObject {
 
 	SignatureTypeMeta metaData = new SignatureTypeMeta();

@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A scheme identifying the types of the Delivery Point for a physically settled coal trade.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CoalDeliveryPoint", builder=CoalDeliveryPoint.CoalDeliveryPointBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CoalDeliveryPoint", builder=CoalDeliveryPoint.CoalDeliveryPointBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CoalDeliveryPoint extends RosettaModelObject {
 
 	CoalDeliveryPointMeta metaData = new CoalDeliveryPointMeta();

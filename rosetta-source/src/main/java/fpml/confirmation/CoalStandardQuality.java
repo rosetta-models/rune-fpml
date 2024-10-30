@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The quality attributes of the coal to be delivered.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CoalStandardQuality", builder=CoalStandardQuality.CoalStandardQualityBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CoalStandardQuality", builder=CoalStandardQuality.CoalStandardQualityBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CoalStandardQuality extends RosettaModelObject {
 
 	CoalStandardQualityMeta metaData = new CoalStandardQualityMeta();

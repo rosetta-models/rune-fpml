@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A list of lender clasifications. These are used to derive other rules associated with specific lender types.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LenderClassification", builder=LenderClassification.LenderClassificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LenderClassification", builder=LenderClassification.LenderClassificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LenderClassification extends RosettaModelObject {
 
 	LenderClassificationMeta metaData = new LenderClassificationMeta();

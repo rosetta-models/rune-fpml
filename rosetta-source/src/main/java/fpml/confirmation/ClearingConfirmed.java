@@ -39,9 +39,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A message indicating that a clearing request has been acted on and as a result a trade has been cleared.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ClearingConfirmed", builder=ClearingConfirmed.ClearingConfirmedBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ClearingConfirmed", builder=ClearingConfirmed.ClearingConfirmedBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ClearingConfirmed extends NotificationMessage {
 
 	ClearingConfirmedMeta metaData = new ClearingConfirmedMeta();

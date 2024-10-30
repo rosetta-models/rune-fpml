@@ -30,9 +30,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Describes the FX fixing schedule, a single continuous observation period which follows the applicable business day schedule for the quoted rate source.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxFixingScheduleSimple", builder=FxFixingScheduleSimple.FxFixingScheduleSimpleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxFixingScheduleSimple", builder=FxFixingScheduleSimple.FxFixingScheduleSimpleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxFixingScheduleSimple extends RosettaModelObject {
 
 	FxFixingScheduleSimpleMeta metaData = new FxFixingScheduleSimpleMeta();

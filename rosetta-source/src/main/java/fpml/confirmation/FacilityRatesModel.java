@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model that describes various facility rate details.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FacilityRatesModel", builder=FacilityRatesModel.FacilityRatesModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FacilityRatesModel", builder=FacilityRatesModel.FacilityRatesModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FacilityRatesModel extends RosettaModelObject {
 
 	FacilityRatesModelMeta metaData = new FacilityRatesModelMeta();

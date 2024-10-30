@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The bid, mid, or ask values relevant for a quote
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BidMidAskModel", builder=BidMidAskModel.BidMidAskModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BidMidAskModel", builder=BidMidAskModel.BidMidAskModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BidMidAskModel extends RosettaModelObject {
 
 	BidMidAskModelMeta metaData = new BidMidAskModelMeta();

@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Parameters used in the computation of a derivative using numerical (finite difference) techniques.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FiniteDifferenceDerivativeParametersModel", builder=FiniteDifferenceDerivativeParametersModel.FiniteDifferenceDerivativeParametersModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FiniteDifferenceDerivativeParametersModel", builder=FiniteDifferenceDerivativeParametersModel.FiniteDifferenceDerivativeParametersModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FiniteDifferenceDerivativeParametersModel extends RosettaModelObject {
 
 	FiniteDifferenceDerivativeParametersModelMeta metaData = new FiniteDifferenceDerivativeParametersModelMeta();

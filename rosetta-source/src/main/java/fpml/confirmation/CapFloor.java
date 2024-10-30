@@ -33,9 +33,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A cap, floor or cap floor structures product definition. A type defining an interest rate cap, floor, or cap/floor strategy (e.g. collar) product.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CapFloor", builder=CapFloor.CapFloorBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CapFloor", builder=CapFloor.CapFloorBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CapFloor extends Product {
 
 	CapFloorMeta metaData = new CapFloorMeta();

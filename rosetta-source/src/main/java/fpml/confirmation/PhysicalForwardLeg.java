@@ -25,9 +25,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The common components of a physically settled leg of a Commodity Forward. This is an abstract type and should be extended by commodity-specific types.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PhysicalForwardLeg", builder=PhysicalForwardLeg.PhysicalForwardLegBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PhysicalForwardLeg", builder=PhysicalForwardLeg.PhysicalForwardLegBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PhysicalForwardLeg extends CommodityForwardLeg {
 
 	PhysicalForwardLegMeta metaData = new PhysicalForwardLegMeta();

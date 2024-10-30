@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing the liens associated with a loan facility.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Lien", builder=Lien.LienBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Lien", builder=Lien.LienBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Lien extends RosettaModelObject {
 
 	LienMeta metaData = new LienMeta();

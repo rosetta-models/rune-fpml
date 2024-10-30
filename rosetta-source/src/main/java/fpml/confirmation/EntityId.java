@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A legal entity identifier (e.g. RED entity code).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EntityId", builder=EntityId.EntityIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EntityId", builder=EntityId.EntityIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EntityId extends RosettaModelObject {
 
 	EntityIdMeta metaData = new EntityIdMeta();

@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining a schedule of non-negative rates or amounts in terms of an initial value and then a series of step date and value pairs. On each step date the rate or amount changes to the new step value. The series of step date and value pairs are optional. If not specified, this implies that the initial value remains unchanged over time.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="NonNegativeSchedule", builder=NonNegativeSchedule.NonNegativeScheduleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="NonNegativeSchedule", builder=NonNegativeSchedule.NonNegativeScheduleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface NonNegativeSchedule extends RosettaModelObject {
 
 	NonNegativeScheduleMeta metaData = new NonNegativeScheduleMeta();

@@ -42,9 +42,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A forward rate agreement product definition. A type defining a Forward Rate Agreement (FRA) product.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Fra", builder=Fra.FraBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Fra", builder=Fra.FraBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Fra extends Product {
 
 	FraMeta metaData = new FraMeta();

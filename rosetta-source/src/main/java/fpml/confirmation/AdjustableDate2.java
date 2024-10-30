@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that is different from AdjustableDate in two regards. First, date adjustments can be specified with either a dateAdjustments element or a reference to an existing dateAdjustments element. Second, it does not require the specification of date adjustments.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AdjustableDate2", builder=AdjustableDate2.AdjustableDate2BuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AdjustableDate2", builder=AdjustableDate2.AdjustableDate2BuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AdjustableDate2 extends RosettaModelObject {
 
 	AdjustableDate2Meta metaData = new AdjustableDate2Meta();

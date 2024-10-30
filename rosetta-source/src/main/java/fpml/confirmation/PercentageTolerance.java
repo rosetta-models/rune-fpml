@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The acceptable tolerance in the delivered quantity of a physical commodity product in terms of a percentage of the agreed delivery quantity.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PercentageTolerance", builder=PercentageTolerance.PercentageToleranceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PercentageTolerance", builder=PercentageTolerance.PercentageToleranceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PercentageTolerance extends RosettaModelObject {
 
 	PercentageToleranceMeta metaData = new PercentageToleranceMeta();

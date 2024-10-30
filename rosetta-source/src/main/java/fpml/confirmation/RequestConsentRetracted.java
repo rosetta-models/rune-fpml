@@ -34,9 +34,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A message withdrawing a request that the sender be authorized by the recipient to peform an action.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RequestConsentRetracted", builder=RequestConsentRetracted.RequestConsentRetractedBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RequestConsentRetracted", builder=RequestConsentRetracted.RequestConsentRetractedBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RequestConsentRetracted extends NonCorrectableRequestMessage {
 
 	RequestConsentRetractedMeta metaData = new RequestConsentRetractedMeta();

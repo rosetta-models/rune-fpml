@@ -31,9 +31,9 @@ import java.util.stream.Collectors;
 
 /**
  * An event representing expiration of the mandatory cost rate applicable in the UK market.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MandatoryCostRateExpiry", builder=MandatoryCostRateExpiry.MandatoryCostRateExpiryBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MandatoryCostRateExpiry", builder=MandatoryCostRateExpiry.MandatoryCostRateExpiryBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MandatoryCostRateExpiry extends AbstractFacilityContractEvent {
 
 	MandatoryCostRateExpiryMeta metaData = new MandatoryCostRateExpiryMeta();

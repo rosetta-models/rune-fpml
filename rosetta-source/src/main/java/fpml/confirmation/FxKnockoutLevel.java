@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines the Target level of gain.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxKnockoutLevel", builder=FxKnockoutLevel.FxKnockoutLevelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxKnockoutLevel", builder=FxKnockoutLevel.FxKnockoutLevelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxKnockoutLevel extends RosettaModelObject {
 
 	FxKnockoutLevelMeta metaData = new FxKnockoutLevelMeta();

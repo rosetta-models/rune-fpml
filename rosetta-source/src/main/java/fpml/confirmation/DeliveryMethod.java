@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Specifies delivery methods for securities transactions. This coding-scheme defines the possible delivery methods for securities.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DeliveryMethod", builder=DeliveryMethod.DeliveryMethodBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DeliveryMethod", builder=DeliveryMethod.DeliveryMethodBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DeliveryMethod extends RosettaModelObject {
 
 	DeliveryMethodMeta metaData = new DeliveryMethodMeta();

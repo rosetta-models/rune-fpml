@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model which contains the master trade settlement terms.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanTradingCounterpartyCashSettlementRulesModel", builder=LoanTradingCounterpartyCashSettlementRulesModel.LoanTradingCounterpartyCashSettlementRulesModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanTradingCounterpartyCashSettlementRulesModel", builder=LoanTradingCounterpartyCashSettlementRulesModel.LoanTradingCounterpartyCashSettlementRulesModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanTradingCounterpartyCashSettlementRulesModel extends RosettaModelObject {
 
 	LoanTradingCounterpartyCashSettlementRulesModelMeta metaData = new LoanTradingCounterpartyCashSettlementRulesModelMeta();

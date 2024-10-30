@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The specification for how the number of days between two dates is calculated for purposes of calculation of a fixed or floating payment amount and the basis for how many days are assumed to be in a year. Day Count Fraction is an ISDA term. The equivalent AFB (Association Francaise de Banques) term is Calculation Basis.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DayCountFraction", builder=DayCountFraction.DayCountFractionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DayCountFraction", builder=DayCountFraction.DayCountFractionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DayCountFraction extends RosettaModelObject {
 
 	DayCountFractionMeta metaData = new DayCountFractionMeta();

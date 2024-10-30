@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxKnockoutCount", builder=FxKnockoutCount.FxKnockoutCountBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxKnockoutCount", builder=FxKnockoutCount.FxKnockoutCountBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxKnockoutCount extends RosettaModelObject {
 
 	FxKnockoutCountMeta metaData = new FxKnockoutCountMeta();

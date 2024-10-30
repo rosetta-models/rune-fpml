@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to a strike structure in FxAccrualForward or FxAccrualOption products.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxAccrualStrikeReference", builder=FxAccrualStrikeReference.FxAccrualStrikeReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxAccrualStrikeReference", builder=FxAccrualStrikeReference.FxAccrualStrikeReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxAccrualStrikeReference extends Reference {
 
 	FxAccrualStrikeReferenceMeta metaData = new FxAccrualStrikeReferenceMeta();

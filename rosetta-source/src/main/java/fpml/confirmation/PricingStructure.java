@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An abstract pricing structure base type. Used as a base for structures such as yield curves and volatility matrices.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PricingStructure", builder=PricingStructure.PricingStructureBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PricingStructure", builder=PricingStructure.PricingStructureBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PricingStructure extends RosettaModelObject {
 
 	PricingStructureMeta metaData = new PricingStructureMeta();

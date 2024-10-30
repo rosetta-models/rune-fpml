@@ -33,9 +33,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The elements common to FX spot, forward and swap legs.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxCoreDetailsModel", builder=FxCoreDetailsModel.FxCoreDetailsModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxCoreDetailsModel", builder=FxCoreDetailsModel.FxCoreDetailsModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxCoreDetailsModel extends RosettaModelObject {
 
 	FxCoreDetailsModelMeta metaData = new FxCoreDetailsModelMeta();

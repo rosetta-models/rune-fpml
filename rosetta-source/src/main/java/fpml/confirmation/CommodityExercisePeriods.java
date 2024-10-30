@@ -20,9 +20,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityExercisePeriods", builder=CommodityExercisePeriods.CommodityExercisePeriodsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityExercisePeriods", builder=CommodityExercisePeriods.CommodityExercisePeriodsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityExercisePeriods extends RosettaModelObject {
 
 	CommodityExercisePeriodsMeta metaData = new CommodityExercisePeriodsMeta();

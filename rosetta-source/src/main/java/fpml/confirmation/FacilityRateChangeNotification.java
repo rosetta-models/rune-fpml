@@ -40,9 +40,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A loan servicing notification used to communicate changes in facility-level rates (e.g. penalty rate, default rate etc.).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FacilityRateChangeNotification", builder=FacilityRateChangeNotification.FacilityRateChangeNotificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FacilityRateChangeNotification", builder=FacilityRateChangeNotification.FacilityRateChangeNotificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FacilityRateChangeNotification extends AbstractFacilityNotification {
 
 	FacilityRateChangeNotificationMeta metaData = new FacilityRateChangeNotificationMeta();

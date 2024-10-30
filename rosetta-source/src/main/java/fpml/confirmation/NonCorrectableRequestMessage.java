@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the content model for a request message that cannot be subsequently corrected or retracted.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="NonCorrectableRequestMessage", builder=NonCorrectableRequestMessage.NonCorrectableRequestMessageBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="NonCorrectableRequestMessage", builder=NonCorrectableRequestMessage.NonCorrectableRequestMessageBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface NonCorrectableRequestMessage extends RequestMessage {
 
 	NonCorrectableRequestMessageMeta metaData = new NonCorrectableRequestMessageMeta();

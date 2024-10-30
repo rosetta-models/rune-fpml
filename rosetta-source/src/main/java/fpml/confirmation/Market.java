@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * This is a global element used for creating global types. It holds Market information, e.g. curves, surfaces, quotes, etc. A collection of pricing inputs.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Market", builder=Market.MarketBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Market", builder=Market.MarketBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Market extends RosettaModelObject {
 
 	MarketMeta metaData = new MarketMeta();

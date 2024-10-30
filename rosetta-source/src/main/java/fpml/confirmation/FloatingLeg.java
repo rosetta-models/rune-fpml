@@ -29,9 +29,9 @@ import fpml.confirmation.meta.FloatingLegMeta;
 
 /**
  * Floating Price leg.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FloatingLeg", builder=FloatingLeg.FloatingLegBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FloatingLeg", builder=FloatingLeg.FloatingLegBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FloatingLeg extends FloatingPriceLeg {
 
 	FloatingLegMeta metaData = new FloatingLegMeta();

@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to an organizational unit.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BusinessUnitReference", builder=BusinessUnitReference.BusinessUnitReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BusinessUnitReference", builder=BusinessUnitReference.BusinessUnitReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BusinessUnitReference extends Reference {
 
 	BusinessUnitReferenceMeta metaData = new BusinessUnitReferenceMeta();

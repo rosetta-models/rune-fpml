@@ -25,9 +25,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the FX observations to be used to convert the observed Commodity Reference Price to the Settlement Currency. The rate source must be specified. Additionally, a time for the spot price to be observed on that source may be specified, or else an averaging schedule for trades priced using an average FX rate.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityFx", builder=CommodityFx.CommodityFxBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityFx", builder=CommodityFx.CommodityFxBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityFx extends RosettaModelObject {
 
 	CommodityFxMeta metaData = new CommodityFxMeta();

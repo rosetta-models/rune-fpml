@@ -30,9 +30,9 @@ import java.util.stream.Collectors;
 
 /**
  * Head of the substitution group for all facility events.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FacilityEventGroup", builder=FacilityEventGroup.FacilityEventGroupBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FacilityEventGroup", builder=FacilityEventGroup.FacilityEventGroupBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FacilityEventGroup extends AbstractFacilityEvent {
 
 	FacilityEventGroupMeta metaData = new FacilityEventGroupMeta();

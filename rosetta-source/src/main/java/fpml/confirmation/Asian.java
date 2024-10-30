@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * As per ISDA 2002 Definitions.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Asian", builder=Asian.AsianBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Asian", builder=Asian.AsianBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Asian extends RosettaModelObject {
 
 	AsianMeta metaData = new AsianMeta();

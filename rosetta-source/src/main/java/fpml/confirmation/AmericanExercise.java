@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The parameters for defining the exercise period for an American style option together with any rules governing the notional amount of the underlying which can be exercised on any given exercise date and any associated exercise fees. A type defining the exercise period for an American style option together with any rules governing the notional amount of the underlying which can be exercised on any given exercise date and any associated exercise fees.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AmericanExercise", builder=AmericanExercise.AmericanExerciseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AmericanExercise", builder=AmericanExercise.AmericanExerciseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AmericanExercise extends Exercise {
 
 	AmericanExerciseMeta metaData = new AmericanExerciseMeta();

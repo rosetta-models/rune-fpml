@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Abstract base class for all calculation from observed values.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CalculationFromObservation", builder=CalculationFromObservation.CalculationFromObservationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CalculationFromObservation", builder=CalculationFromObservation.CalculationFromObservationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CalculationFromObservation extends RosettaModelObject {
 
 	CalculationFromObservationMeta metaData = new CalculationFromObservationMeta();

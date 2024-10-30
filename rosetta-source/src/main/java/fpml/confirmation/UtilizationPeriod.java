@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A schedule that incorporates all sub-periods of an interest accrual calculation.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="UtilizationPeriod", builder=UtilizationPeriod.UtilizationPeriodBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="UtilizationPeriod", builder=UtilizationPeriod.UtilizationPeriodBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface UtilizationPeriod extends RosettaModelObject {
 
 	UtilizationPeriodMeta metaData = new UtilizationPeriodMeta();

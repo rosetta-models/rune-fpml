@@ -20,9 +20,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityPhysicalAmericanExerciseSequence0", builder=CommodityPhysicalAmericanExerciseSequence0.CommodityPhysicalAmericanExerciseSequence0BuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityPhysicalAmericanExerciseSequence0", builder=CommodityPhysicalAmericanExerciseSequence0.CommodityPhysicalAmericanExerciseSequence0BuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityPhysicalAmericanExerciseSequence0 extends RosettaModelObject {
 
 	CommodityPhysicalAmericanExerciseSequence0Meta metaData = new CommodityPhysicalAmericanExerciseSequence0Meta();

@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that details key dates related to a task that is a prerequisite to trade settlement.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanTradingSettlementTaskDates", builder=LoanTradingSettlementTaskDates.LoanTradingSettlementTaskDatesBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanTradingSettlementTaskDates", builder=LoanTradingSettlementTaskDates.LoanTradingSettlementTaskDatesBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanTradingSettlementTaskDates extends RosettaModelObject {
 
 	LoanTradingSettlementTaskDatesMeta metaData = new LoanTradingSettlementTaskDatesMeta();

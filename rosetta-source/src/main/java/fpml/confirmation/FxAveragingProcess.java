@@ -32,9 +32,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Accrual calculation process.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxAveragingProcess", builder=FxAveragingProcess.FxAveragingProcessBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxAveragingProcess", builder=FxAveragingProcess.FxAveragingProcessBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxAveragingProcess extends FxRateObservable {
 
 	FxAveragingProcessMeta metaData = new FxAveragingProcessMeta();

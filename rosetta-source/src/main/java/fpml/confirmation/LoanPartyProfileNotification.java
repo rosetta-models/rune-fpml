@@ -35,9 +35,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A profile generated and communicated by parties containing their relevant contact and payment details. This is communicated by parties to anyone who wishes to initiate payments and/or communicate with them.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanPartyProfileNotification", builder=LoanPartyProfileNotification.LoanPartyProfileNotificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanPartyProfileNotification", builder=LoanPartyProfileNotification.LoanPartyProfileNotificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanPartyProfileNotification extends AbstractLoanPartyProfileNotification {
 
 	LoanPartyProfileNotificationMeta metaData = new LoanPartyProfileNotificationMeta();

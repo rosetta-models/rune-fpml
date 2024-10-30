@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that allows the specific report and section to be identified.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReportSectionIdentification", builder=ReportSectionIdentification.ReportSectionIdentificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReportSectionIdentification", builder=ReportSectionIdentification.ReportSectionIdentificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReportSectionIdentification extends RosettaModelObject {
 
 	ReportSectionIdentificationMeta metaData = new ReportSectionIdentificationMeta();

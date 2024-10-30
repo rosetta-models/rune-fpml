@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * The specification of whether payments occur relative to the calculation period start or end date, or the reset date.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaEnum("PayRelativeToEnum")
 public enum PayRelativeToEnum {

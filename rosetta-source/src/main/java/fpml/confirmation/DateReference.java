@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to an identified date or a complex date structure.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DateReference", builder=DateReference.DateReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DateReference", builder=DateReference.DateReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DateReference extends Reference {
 
 	DateReferenceMeta metaData = new DateReferenceMeta();

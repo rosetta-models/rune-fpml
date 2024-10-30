@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model group which provides choices between all bond underlyers.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BondChoiceModel", builder=BondChoiceModel.BondChoiceModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BondChoiceModel", builder=BondChoiceModel.BondChoiceModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BondChoiceModel extends RosettaModelObject {
 
 	BondChoiceModelMeta metaData = new BondChoiceModelMeta();

@@ -30,9 +30,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines the structure for a message requesting information updates to a trade. The trade reference information should contain at least one trade identifier that the recipient is aware of.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RequestTradeReferenceInformationUpdate", builder=RequestTradeReferenceInformationUpdate.RequestTradeReferenceInformationUpdateBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RequestTradeReferenceInformationUpdate", builder=RequestTradeReferenceInformationUpdate.RequestTradeReferenceInformationUpdateBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RequestTradeReferenceInformationUpdate extends CorrectableRequestMessage {
 
 	RequestTradeReferenceInformationUpdateMeta metaData = new RequestTradeReferenceInformationUpdateMeta();

@@ -23,9 +23,9 @@ import fpml.confirmation.meta.PGPDataMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PGPData", builder=PGPData.PGPDataBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PGPData", builder=PGPData.PGPDataBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PGPData extends PGPDataType {
 
 	PGPDataMeta metaData = new PGPDataMeta();

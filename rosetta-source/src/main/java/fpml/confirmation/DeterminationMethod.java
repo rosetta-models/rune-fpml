@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Coding scheme that specifies the method according to which an amount or a date is determined.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DeterminationMethod", builder=DeterminationMethod.DeterminationMethodBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DeterminationMethod", builder=DeterminationMethod.DeterminationMethodBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DeterminationMethod extends RosettaModelObject {
 
 	DeterminationMethodMeta metaData = new DeterminationMethodMeta();

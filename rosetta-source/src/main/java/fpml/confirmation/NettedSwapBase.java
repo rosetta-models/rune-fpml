@@ -32,9 +32,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An abstract base class for all swap types which have a single netted leg, such as Variance Swaps, and Correlation Swaps.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="NettedSwapBase", builder=NettedSwapBase.NettedSwapBaseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="NettedSwapBase", builder=NettedSwapBase.NettedSwapBaseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface NettedSwapBase extends Product {
 
 	NettedSwapBaseMeta metaData = new NettedSwapBaseMeta();

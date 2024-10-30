@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The type of option transaction (e.g. Call, Put); specifies whether the option allows the holder to buy or sell the underlying asset, or pay or receive a payment related to the price of underlying asset, in the event of exercise.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="OptionType", builder=OptionType.OptionTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="OptionType", builder=OptionType.OptionTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface OptionType extends RosettaModelObject {
 
 	OptionTypeMeta metaData = new OptionTypeMeta();

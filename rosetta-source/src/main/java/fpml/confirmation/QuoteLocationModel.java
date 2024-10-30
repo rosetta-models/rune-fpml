@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A group describing where a quote was or will be obtained, e.g. observed or calculated.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="QuoteLocationModel", builder=QuoteLocationModel.QuoteLocationModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="QuoteLocationModel", builder=QuoteLocationModel.QuoteLocationModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface QuoteLocationModel extends RosettaModelObject {
 
 	QuoteLocationModelMeta metaData = new QuoteLocationModelMeta();

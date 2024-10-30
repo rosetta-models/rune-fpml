@@ -36,9 +36,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A syndicated bank loan deal (credit agreement) definition.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Deal", builder=Deal.DealBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Deal", builder=Deal.DealBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Deal extends DealSummary {
 
 	DealMeta metaData = new DealMeta();

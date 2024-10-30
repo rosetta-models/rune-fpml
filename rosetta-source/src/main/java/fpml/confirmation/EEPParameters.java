@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Excess Emission Penalty related parameters.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EEPParameters", builder=EEPParameters.EEPParametersBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EEPParameters", builder=EEPParameters.EEPParametersBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EEPParameters extends RosettaModelObject {
 
 	EEPParametersMeta metaData = new EEPParametersMeta();

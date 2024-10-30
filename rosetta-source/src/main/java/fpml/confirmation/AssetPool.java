@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Characterise the asset pool behind an asset backed bond.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AssetPool", builder=AssetPool.AssetPoolBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AssetPool", builder=AssetPool.AssetPoolBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AssetPool extends RosettaModelObject {
 
 	AssetPoolMeta metaData = new AssetPoolMeta();

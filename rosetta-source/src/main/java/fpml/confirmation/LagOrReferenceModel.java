@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Allows a Lag or a LagReference to be specified.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LagOrReferenceModel", builder=LagOrReferenceModel.LagOrReferenceModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LagOrReferenceModel", builder=LagOrReferenceModel.LagOrReferenceModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LagOrReferenceModel extends RosettaModelObject {
 
 	LagOrReferenceModelMeta metaData = new LagOrReferenceModelMeta();

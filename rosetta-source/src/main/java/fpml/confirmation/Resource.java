@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Describes the resource that contains the media representation of a business event (i.e used for stating the Publicly Available Information). For example, can describe a file or a URL that represents the event. This type is an extended version of a type defined by RIXML (www.rixml.org).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Resource", builder=Resource.ResourceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Resource", builder=Resource.ResourceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Resource extends RosettaModelObject {
 
 	ResourceMeta metaData = new ResourceMeta();

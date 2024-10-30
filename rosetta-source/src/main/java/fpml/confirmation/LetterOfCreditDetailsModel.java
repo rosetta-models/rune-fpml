@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model used to reference an L/C by either identifier, summary or full L/C details, within various notifications.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LetterOfCreditDetailsModel", builder=LetterOfCreditDetailsModel.LetterOfCreditDetailsModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LetterOfCreditDetailsModel", builder=LetterOfCreditDetailsModel.LetterOfCreditDetailsModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LetterOfCreditDetailsModel extends RosettaModelObject {
 
 	LetterOfCreditDetailsModelMeta metaData = new LetterOfCreditDetailsModelMeta();

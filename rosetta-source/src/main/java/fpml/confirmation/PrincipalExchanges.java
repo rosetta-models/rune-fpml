@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining which principal exchanges occur for the stream.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PrincipalExchanges", builder=PrincipalExchanges.PrincipalExchangesBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PrincipalExchanges", builder=PrincipalExchanges.PrincipalExchangesBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PrincipalExchanges extends RosettaModelObject {
 
 	PrincipalExchangesMeta metaData = new PrincipalExchangesMeta();

@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining a date (referred to as the derived date) as a relative offset from another date (referred to as the anchor date) plus optional date adjustments.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AdjustedRelativeDateOffset", builder=AdjustedRelativeDateOffset.AdjustedRelativeDateOffsetBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AdjustedRelativeDateOffset", builder=AdjustedRelativeDateOffset.AdjustedRelativeDateOffsetBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AdjustedRelativeDateOffset extends RelativeDateOffset {
 
 	AdjustedRelativeDateOffsetMeta metaData = new AdjustedRelativeDateOffsetMeta();

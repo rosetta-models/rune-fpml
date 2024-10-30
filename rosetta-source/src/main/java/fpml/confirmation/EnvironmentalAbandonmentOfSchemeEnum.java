@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Upon the occurrence of an Abandonment of Scheme, as defined in clause (h)(iv) of the Emissions Annex, one of the following elections, the specific terms of which are set forth in clause (b)(iii) of the Emissions Annex, will govern the parties’ rights and obligations with respect to this Emissions Transaction. If none of the above options is selected, Option A(1) will apply.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaEnum("EnvironmentalAbandonmentOfSchemeEnum")
 public enum EnvironmentalAbandonmentOfSchemeEnum {

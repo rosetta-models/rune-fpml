@@ -33,9 +33,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An abstract base class for all directional leg types with effective date, termination date, and underlyer where a payer makes a stream of payments of greater than zero value to a receiver.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DirectionalLegUnderlyer", builder=DirectionalLegUnderlyer.DirectionalLegUnderlyerBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DirectionalLegUnderlyer", builder=DirectionalLegUnderlyer.DirectionalLegUnderlyerBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DirectionalLegUnderlyer extends DirectionalLeg {
 
 	DirectionalLegUnderlyerMeta metaData = new DirectionalLegUnderlyerMeta();

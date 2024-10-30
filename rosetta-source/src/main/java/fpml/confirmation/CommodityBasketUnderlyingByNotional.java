@@ -30,9 +30,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityBasketUnderlyingByNotional", builder=CommodityBasketUnderlyingByNotional.CommodityBasketUnderlyingByNotionalBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityBasketUnderlyingByNotional", builder=CommodityBasketUnderlyingByNotional.CommodityBasketUnderlyingByNotionalBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityBasketUnderlyingByNotional extends CommodityBasketUnderlyingBase {
 
 	CommodityBasketUnderlyingByNotionalMeta metaData = new CommodityBasketUnderlyingByNotionalMeta();

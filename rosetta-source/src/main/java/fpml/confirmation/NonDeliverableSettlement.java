@@ -25,9 +25,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the parameters used when the reference currency of the swapStream is non-deliverable.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="NonDeliverableSettlement", builder=NonDeliverableSettlement.NonDeliverableSettlementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="NonDeliverableSettlement", builder=NonDeliverableSettlement.NonDeliverableSettlementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface NonDeliverableSettlement extends RosettaModelObject {
 
 	NonDeliverableSettlementMeta metaData = new NonDeliverableSettlementMeta();

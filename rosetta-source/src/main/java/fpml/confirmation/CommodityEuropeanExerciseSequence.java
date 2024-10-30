@@ -26,9 +26,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityEuropeanExerciseSequence", builder=CommodityEuropeanExerciseSequence.CommodityEuropeanExerciseSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityEuropeanExerciseSequence", builder=CommodityEuropeanExerciseSequence.CommodityEuropeanExerciseSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityEuropeanExerciseSequence extends RosettaModelObject {
 
 	CommodityEuropeanExerciseSequenceMeta metaData = new CommodityEuropeanExerciseSequenceMeta();

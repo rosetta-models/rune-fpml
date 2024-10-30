@@ -30,9 +30,9 @@ import java.util.stream.Collectors;
 
 /**
  * Head of the substitution group for all loan contract events.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanContractEventGroup", builder=LoanContractEventGroup.LoanContractEventGroupBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanContractEventGroup", builder=LoanContractEventGroup.LoanContractEventGroupBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanContractEventGroup extends AbstractLoanContractEvent {
 
 	LoanContractEventGroupMeta metaData = new LoanContractEventGroupMeta();

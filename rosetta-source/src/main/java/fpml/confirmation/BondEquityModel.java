@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model group that allows us to specify that a repo contract can reference bond or equity instruments.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BondEquityModel", builder=BondEquityModel.BondEquityModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BondEquityModel", builder=BondEquityModel.BondEquityModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BondEquityModel extends RosettaModelObject {
 
 	BondEquityModelMeta metaData = new BondEquityModelMeta();

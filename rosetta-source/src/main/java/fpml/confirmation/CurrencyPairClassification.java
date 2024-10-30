@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type containing a code representing the risk classification of a currency pair, as specified by a regulator.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CurrencyPairClassification", builder=CurrencyPairClassification.CurrencyPairClassificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CurrencyPairClassification", builder=CurrencyPairClassification.CurrencyPairClassificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CurrencyPairClassification extends RosettaModelObject {
 
 	CurrencyPairClassificationMeta metaData = new CurrencyPairClassificationMeta();

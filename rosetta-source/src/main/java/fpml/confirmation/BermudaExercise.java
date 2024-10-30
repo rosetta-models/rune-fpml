@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The parameters for defining the exercise period for a Bermuda style option together with any rules governing the notional amount of the underlying which can be exercised on any given exercise date and any associated exercise fees. A type defining the Bermuda option exercise dates and the expiration date together with any rules govenerning the notional amount of the underlying which can be exercised on any given exercise date and any associated exercise fee.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BermudaExercise", builder=BermudaExercise.BermudaExerciseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BermudaExercise", builder=BermudaExercise.BermudaExerciseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BermudaExercise extends Exercise {
 
 	BermudaExerciseMeta metaData = new BermudaExerciseMeta();

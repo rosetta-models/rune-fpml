@@ -32,9 +32,9 @@ import java.util.stream.Collectors;
 
 /**
  * This fee represents any fee paid by the borrower to the syndicate lenders for extending an existing facility.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FacilityExtensionFeePayment", builder=FacilityExtensionFeePayment.FacilityExtensionFeePaymentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FacilityExtensionFeePayment", builder=FacilityExtensionFeePayment.FacilityExtensionFeePaymentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FacilityExtensionFeePayment extends NonRecurringFeePayment {
 
 	FacilityExtensionFeePaymentMeta metaData = new FacilityExtensionFeePaymentMeta();

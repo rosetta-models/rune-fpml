@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing a role played by a unit in one or more transactions. Examples include roles such as Trader, Collateral, Confirmation, Settlement, etc. This can be extended to provide custom roles.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BusinessUnitRole", builder=BusinessUnitRole.BusinessUnitRoleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BusinessUnitRole", builder=BusinessUnitRole.BusinessUnitRoleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BusinessUnitRole extends RosettaModelObject {
 
 	BusinessUnitRoleMeta metaData = new BusinessUnitRoleMeta();

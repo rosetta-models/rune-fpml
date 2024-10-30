@@ -32,9 +32,9 @@ import java.util.stream.Collectors;
 
 /**
  * A fee structure that represents a payment made by the borrower to the syndicate lenders for processing and accepting a waiver request. The request is sent by the borrower to obtain approval from the syndicate lenders formally requesting waivers around particular terms of the credit agreement.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="WaiverFeePayment", builder=WaiverFeePayment.WaiverFeePaymentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="WaiverFeePayment", builder=WaiverFeePayment.WaiverFeePaymentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface WaiverFeePayment extends NonRecurringFeePayment {
 
 	WaiverFeePaymentMeta metaData = new WaiverFeePaymentMeta();

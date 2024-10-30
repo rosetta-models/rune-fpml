@@ -26,9 +26,9 @@ import java.util.stream.Collectors;
 
 /**
  * A unique identifier to a facility.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FacilityIdentifier", builder=FacilityIdentifier.FacilityIdentifierBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FacilityIdentifier", builder=FacilityIdentifier.FacilityIdentifierBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FacilityIdentifier extends IdentifiedAsset {
 
 	FacilityIdentifierMeta metaData = new FacilityIdentifierMeta();

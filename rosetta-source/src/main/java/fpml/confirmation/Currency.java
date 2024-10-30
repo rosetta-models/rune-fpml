@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The code representation of a currency or fund. By default it is a valid currency code as defined by the ISO standard 4217 - Codes for representation of currencies and funds http://www.iso.org/iso/en/prods-services/popstds/currencycodeslist.html.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Currency", builder=Currency.CurrencyBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Currency", builder=Currency.CurrencyBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Currency extends RosettaModelObject {
 
 	CurrencyMeta metaData = new CurrencyMeta();

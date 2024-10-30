@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Specifies Currency with ID attribute.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="IdentifiedCurrency", builder=IdentifiedCurrency.IdentifiedCurrencyBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="IdentifiedCurrency", builder=IdentifiedCurrency.IdentifiedCurrencyBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface IdentifiedCurrency extends Currency {
 
 	IdentifiedCurrencyMeta metaData = new IdentifiedCurrencyMeta();

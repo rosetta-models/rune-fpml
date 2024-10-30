@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing the method for obtaining a settlement rate.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SettlementRateSource", builder=SettlementRateSource.SettlementRateSourceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SettlementRateSource", builder=SettlementRateSource.SettlementRateSourceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SettlementRateSource extends RosettaModelObject {
 
 	SettlementRateSourceMeta metaData = new SettlementRateSourceMeta();

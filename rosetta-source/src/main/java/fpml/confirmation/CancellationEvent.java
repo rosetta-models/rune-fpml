@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The adjusted dates for a specific cancellation date, including the adjusted exercise date and adjusted termination date.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CancellationEvent", builder=CancellationEvent.CancellationEventBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CancellationEvent", builder=CancellationEvent.CancellationEventBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CancellationEvent extends RosettaModelObject {
 
 	CancellationEventMeta metaData = new CancellationEventMeta();

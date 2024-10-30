@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure describing how disruption for a specified currency pair should be handled
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxDisruption", builder=FxDisruption.FxDisruptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxDisruption", builder=FxDisruption.FxDisruptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxDisruption extends RosettaModelObject {
 
 	FxDisruptionMeta metaData = new FxDisruptionMeta();

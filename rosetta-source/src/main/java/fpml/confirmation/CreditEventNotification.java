@@ -35,9 +35,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A message defining the ISDA defined Credit Event Notice. ISDA defines it as an irrevocable notice from a Notifying Party to the other party that describes a Credit Event that occurred. A Credit Event Notice must contain detail of the facts relevant to the determination that a Credit Event has occurred. A message type defining the ISDA defined Credit Event Notice. ISDA defines it as an irrevocable notice from a Notifying Party to the other party that describes a Credit Event that occurred. A Credit Event Notice must contain detail of the facts relevant to the determination that a Credit Event has occurred.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CreditEventNotification", builder=CreditEventNotification.CreditEventNotificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CreditEventNotification", builder=CreditEventNotification.CreditEventNotificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CreditEventNotification extends CorrectableRequestMessage {
 
 	CreditEventNotificationMeta metaData = new CreditEventNotificationMeta();

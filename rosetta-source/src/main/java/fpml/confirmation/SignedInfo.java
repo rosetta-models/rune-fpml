@@ -27,9 +27,9 @@ import java.util.stream.Collectors;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SignedInfo", builder=SignedInfo.SignedInfoBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SignedInfo", builder=SignedInfo.SignedInfoBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SignedInfo extends SignedInfoType {
 
 	SignedInfoMeta metaData = new SignedInfoMeta();

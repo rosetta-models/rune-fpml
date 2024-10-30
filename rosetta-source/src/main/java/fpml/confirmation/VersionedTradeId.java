@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Trade Id with Version Support
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="VersionedTradeId", builder=VersionedTradeId.VersionedTradeIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="VersionedTradeId", builder=VersionedTradeId.VersionedTradeIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface VersionedTradeId extends RosettaModelObject {
 
 	VersionedTradeIdMeta metaData = new VersionedTradeIdMeta();

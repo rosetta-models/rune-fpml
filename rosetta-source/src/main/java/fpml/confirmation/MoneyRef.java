@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining a currency amount with a reference.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MoneyRef", builder=MoneyRef.MoneyRefBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MoneyRef", builder=MoneyRef.MoneyRefBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MoneyRef extends PositiveMoney {
 
 	MoneyRefMeta metaData = new MoneyRefMeta();

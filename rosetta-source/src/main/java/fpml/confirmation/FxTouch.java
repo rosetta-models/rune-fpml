@@ -32,9 +32,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Describes an american or discrete touch or no-touch trigger applied to an FX binary or digital option.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxTouch", builder=FxTouch.FxTouchBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxTouch", builder=FxTouch.FxTouchBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxTouch extends RosettaModelObject {
 
 	FxTouchMeta metaData = new FxTouchMeta();

@@ -25,9 +25,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Conditions can be expressed in different ways: as a specific level, as strike, pivot, or barrier.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxTargetConditionLevelModel", builder=FxTargetConditionLevelModel.FxTargetConditionLevelModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxTargetConditionLevelModel", builder=FxTargetConditionLevelModel.FxTargetConditionLevelModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxTargetConditionLevelModel extends RosettaModelObject {
 
 	FxTargetConditionLevelModelMeta metaData = new FxTargetConditionLevelModelMeta();

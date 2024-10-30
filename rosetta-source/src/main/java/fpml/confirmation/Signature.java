@@ -28,9 +28,9 @@ import java.util.stream.Collectors;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Signature", builder=Signature.SignatureBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Signature", builder=Signature.SignatureBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Signature extends SignatureType {
 
 	SignatureMeta metaData = new SignatureMeta();

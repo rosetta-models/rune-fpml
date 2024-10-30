@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that is used for including the currency exchange rates information used to cross between the traded currencies for non-base currency FX contracts.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxCrossRateObservable", builder=FxCrossRateObservable.FxCrossRateObservableBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxCrossRateObservable", builder=FxCrossRateObservable.FxCrossRateObservableBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxCrossRateObservable extends RosettaModelObject {
 
 	FxCrossRateObservableMeta metaData = new FxCrossRateObservableMeta();

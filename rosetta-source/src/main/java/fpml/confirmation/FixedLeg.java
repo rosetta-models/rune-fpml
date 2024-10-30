@@ -28,9 +28,9 @@ import fpml.confirmation.meta.FixedLegMeta;
 
 /**
  * Fixed Price Leg.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FixedLeg", builder=FixedLeg.FixedLegBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FixedLeg", builder=FixedLeg.FixedLegBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FixedLeg extends FixedPriceLeg {
 
 	FixedLegMeta metaData = new FixedLegMeta();

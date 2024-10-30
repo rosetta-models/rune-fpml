@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * The specification of a time period containing additional values such as Term.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaEnum("PeriodTimeEnum")
 public enum PeriodTimeEnum {

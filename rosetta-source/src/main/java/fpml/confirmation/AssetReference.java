@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to an underlying asset.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AssetReference", builder=AssetReference.AssetReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AssetReference", builder=AssetReference.AssetReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AssetReference extends Reference {
 
 	AssetReferenceMeta metaData = new AssetReferenceMeta();

@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FacilityCommitmentSequence", builder=FacilityCommitmentSequence.FacilityCommitmentSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FacilityCommitmentSequence", builder=FacilityCommitmentSequence.FacilityCommitmentSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FacilityCommitmentSequence extends RosettaModelObject {
 
 	FacilityCommitmentSequenceMeta metaData = new FacilityCommitmentSequenceMeta();

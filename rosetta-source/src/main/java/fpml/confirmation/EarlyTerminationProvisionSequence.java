@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EarlyTerminationProvisionSequence", builder=EarlyTerminationProvisionSequence.EarlyTerminationProvisionSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EarlyTerminationProvisionSequence", builder=EarlyTerminationProvisionSequence.EarlyTerminationProvisionSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EarlyTerminationProvisionSequence extends RosettaModelObject {
 
 	EarlyTerminationProvisionSequenceMeta metaData = new EarlyTerminationProvisionSequenceMeta();

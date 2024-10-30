@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A message indicating that a confirmation request has been withdrawn by the submitter.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ConfirmationRetracted", builder=ConfirmationRetracted.ConfirmationRetractedBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ConfirmationRetracted", builder=ConfirmationRetracted.ConfirmationRetractedBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ConfirmationRetracted extends NonCorrectableRequestMessage {
 
 	ConfirmationRetractedMeta metaData = new ConfirmationRetractedMeta();

@@ -40,9 +40,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The confirmationDisputed message is sent when the matching process returns a proposed match (trade or event) and the Confirmation Requester disputes it. A message indicating that a confirmation has not been agreed by a counterparty.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ConfirmationDisputed", builder=ConfirmationDisputed.ConfirmationDisputedBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ConfirmationDisputed", builder=ConfirmationDisputed.ConfirmationDisputedBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ConfirmationDisputed extends ResponseMessage {
 
 	ConfirmationDisputedMeta metaData = new ConfirmationDisputedMeta();

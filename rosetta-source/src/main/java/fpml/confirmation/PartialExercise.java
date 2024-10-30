@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining partial exercise. As defined in the 2000 ISDA Definitions, Section 12.3 Partial Exercise, the buyer of the option may exercise all or less than all the notional amount of the underlying swap but may not be less than the minimum notional amount (if specified) and must be an integral multiple of the integral multiple amount if specified.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PartialExercise", builder=PartialExercise.PartialExerciseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PartialExercise", builder=PartialExercise.PartialExerciseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PartialExercise extends RosettaModelObject {
 
 	PartialExerciseMeta metaData = new PartialExerciseMeta();

@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A curve used to model a set of forward interest rates. Used for forecasting interest rates as part of a pricing calculation.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ForwardRateCurve", builder=ForwardRateCurve.ForwardRateCurveBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ForwardRateCurve", builder=ForwardRateCurve.ForwardRateCurveBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ForwardRateCurve extends RosettaModelObject {
 
 	ForwardRateCurveMeta metaData = new ForwardRateCurveMeta();

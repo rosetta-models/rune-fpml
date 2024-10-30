@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining a task identifier issued by the indicated party.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TaskIdentifier", builder=TaskIdentifier.TaskIdentifierBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TaskIdentifier", builder=TaskIdentifier.TaskIdentifierBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TaskIdentifier extends RosettaModelObject {
 
 	TaskIdentifierMeta metaData = new TaskIdentifierMeta();

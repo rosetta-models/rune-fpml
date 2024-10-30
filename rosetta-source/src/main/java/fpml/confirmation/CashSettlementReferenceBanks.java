@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the list of reference institutions polled for relevant rates or prices when determining the cash settlement amount for a product where cash settlement is applicable.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CashSettlementReferenceBanks", builder=CashSettlementReferenceBanks.CashSettlementReferenceBanksBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CashSettlementReferenceBanks", builder=CashSettlementReferenceBanks.CashSettlementReferenceBanksBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CashSettlementReferenceBanks extends RosettaModelObject {
 
 	CashSettlementReferenceBanksMeta metaData = new CashSettlementReferenceBanksMeta();

@@ -34,9 +34,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Identifies the underlying asset when it is a financial index. A published index whose price depends on exchange traded constituents.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Index", builder=Index.IndexBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Index", builder=Index.IndexBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Index extends ExchangeTradedCalculatedPrice {
 
 	IndexMeta metaData = new IndexMeta();

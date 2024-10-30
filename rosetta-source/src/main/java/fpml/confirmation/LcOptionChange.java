@@ -33,9 +33,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An event representing a change in an L/C accrual option. In real terms - an example of this would be an L/C margin rate change.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LcOptionChange", builder=LcOptionChange.LcOptionChangeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LcOptionChange", builder=LcOptionChange.LcOptionChangeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LcOptionChange extends AbstractFacilityEvent {
 
 	LcOptionChangeMeta metaData = new LcOptionChangeMeta();

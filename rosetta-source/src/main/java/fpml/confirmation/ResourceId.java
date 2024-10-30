@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The data type used for resource identifiers.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ResourceId", builder=ResourceId.ResourceIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ResourceId", builder=ResourceId.ResourceIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ResourceId extends RosettaModelObject {
 
 	ResourceIdMeta metaData = new ResourceIdMeta();

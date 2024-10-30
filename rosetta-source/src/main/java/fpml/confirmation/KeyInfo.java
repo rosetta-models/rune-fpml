@@ -25,9 +25,9 @@ import java.util.stream.Collectors;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="KeyInfo", builder=KeyInfo.KeyInfoBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="KeyInfo", builder=KeyInfo.KeyInfoBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface KeyInfo extends KeyInfoType {
 
 	KeyInfoMeta metaData = new KeyInfoMeta();

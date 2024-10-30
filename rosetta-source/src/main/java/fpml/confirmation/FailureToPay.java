@@ -20,9 +20,9 @@ import fpml.confirmation.meta.FailureToPayMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FailureToPay", builder=FailureToPay.FailureToPayBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FailureToPay", builder=FailureToPay.FailureToPayBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FailureToPay extends FailureToPayEvent {
 
 	FailureToPayMeta metaData = new FailureToPayMeta();

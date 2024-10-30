@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A Market Disruption Event.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MarketDisruptionEvent", builder=MarketDisruptionEvent.MarketDisruptionEventBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MarketDisruptionEvent", builder=MarketDisruptionEvent.MarketDisruptionEventBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MarketDisruptionEvent extends RosettaModelObject {
 
 	MarketDisruptionEventMeta metaData = new MarketDisruptionEventMeta();

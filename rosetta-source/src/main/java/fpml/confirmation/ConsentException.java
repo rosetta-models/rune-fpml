@@ -25,9 +25,9 @@ import fpml.confirmation.meta.ConsentExceptionMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ConsentException", builder=ConsentException.ConsentExceptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ConsentException", builder=ConsentException.ConsentExceptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ConsentException extends Exception {
 
 	ConsentExceptionMeta metaData = new ConsentExceptionMeta();

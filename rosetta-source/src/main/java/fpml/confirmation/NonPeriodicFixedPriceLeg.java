@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The details of a fixed payment. Can be used for a forward transaction or as the base for a more complex fixed leg component such as the fixed leg of a swap.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="NonPeriodicFixedPriceLeg", builder=NonPeriodicFixedPriceLeg.NonPeriodicFixedPriceLegBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="NonPeriodicFixedPriceLeg", builder=NonPeriodicFixedPriceLeg.NonPeriodicFixedPriceLegBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface NonPeriodicFixedPriceLeg extends CommoditySwapLeg {
 
 	NonPeriodicFixedPriceLegMeta metaData = new NonPeriodicFixedPriceLegMeta();

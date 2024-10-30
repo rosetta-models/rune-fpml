@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * How a notional is to be reported for this reporting regime. E.g. for ESMA EMIR, it would be Nominal or Monetary Amount
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="NotionalReportingType", builder=NotionalReportingType.NotionalReportingTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="NotionalReportingType", builder=NotionalReportingType.NotionalReportingTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface NotionalReportingType extends RosettaModelObject {
 
 	NotionalReportingTypeMeta metaData = new NotionalReportingTypeMeta();

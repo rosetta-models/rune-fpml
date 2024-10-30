@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A master agreement identifier allocated by a party. FpML does not define the domain values associated with this element. Note that the domain values for this element are not strictly an enumerated list.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MasterAgreementId", builder=MasterAgreementId.MasterAgreementIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MasterAgreementId", builder=MasterAgreementId.MasterAgreementIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MasterAgreementId extends RosettaModelObject {
 
 	MasterAgreementIdMeta metaData = new MasterAgreementIdMeta();

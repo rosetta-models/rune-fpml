@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Base type for payments.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PaymentBaseExtended", builder=PaymentBaseExtended.PaymentBaseExtendedBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PaymentBaseExtended", builder=PaymentBaseExtended.PaymentBaseExtendedBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PaymentBaseExtended extends PaymentBase {
 
 	PaymentBaseExtendedMeta metaData = new PaymentBaseExtendedMeta();

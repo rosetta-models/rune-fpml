@@ -29,9 +29,9 @@ import java.util.stream.Collectors;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="VolatilityMatrixValuation", builder=VolatilityMatrixValuation.VolatilityMatrixValuationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="VolatilityMatrixValuation", builder=VolatilityMatrixValuation.VolatilityMatrixValuationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface VolatilityMatrixValuation extends VolatilityMatrix {
 
 	VolatilityMatrixValuationMeta metaData = new VolatilityMatrixValuationMeta();

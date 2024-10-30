@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the settlement rate options through a scheme reflecting the terms of the Annex A to the 1998 FX and Currency Option Definitions.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SettlementRateOption", builder=SettlementRateOption.SettlementRateOptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SettlementRateOption", builder=SettlementRateOption.SettlementRateOptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SettlementRateOption extends RosettaModelObject {
 
 	SettlementRateOptionMeta metaData = new SettlementRateOptionMeta();

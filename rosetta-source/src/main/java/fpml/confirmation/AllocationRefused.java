@@ -37,9 +37,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A message indicating that a request to allocate a trade has been refused by the sender.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AllocationRefused", builder=AllocationRefused.AllocationRefusedBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AllocationRefused", builder=AllocationRefused.AllocationRefusedBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AllocationRefused extends ResponseMessage {
 
 	AllocationRefusedMeta metaData = new AllocationRefusedMeta();

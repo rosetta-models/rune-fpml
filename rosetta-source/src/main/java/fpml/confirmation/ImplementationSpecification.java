@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A version of a specification document used by the message generator to format the document.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ImplementationSpecification", builder=ImplementationSpecification.ImplementationSpecificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ImplementationSpecification", builder=ImplementationSpecification.ImplementationSpecificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ImplementationSpecification extends RosettaModelObject {
 
 	ImplementationSpecificationMeta metaData = new ImplementationSpecificationMeta();

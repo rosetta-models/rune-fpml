@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to a level structure.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxLevelReference", builder=FxLevelReference.FxLevelReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxLevelReference", builder=FxLevelReference.FxLevelReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxLevelReference extends Reference {
 
 	FxLevelReferenceMeta metaData = new FxLevelReferenceMeta();

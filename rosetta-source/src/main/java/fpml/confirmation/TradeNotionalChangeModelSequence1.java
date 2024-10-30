@@ -20,9 +20,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradeNotionalChangeModelSequence1", builder=TradeNotionalChangeModelSequence1.TradeNotionalChangeModelSequence1BuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradeNotionalChangeModelSequence1", builder=TradeNotionalChangeModelSequence1.TradeNotionalChangeModelSequence1BuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradeNotionalChangeModelSequence1 extends RosettaModelObject {
 
 	TradeNotionalChangeModelSequence1Meta metaData = new TradeNotionalChangeModelSequence1Meta();

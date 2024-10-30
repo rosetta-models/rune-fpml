@@ -17,9 +17,9 @@ import fpml.confirmation.meta.EmptyMeta;
 
 /**
  * A special type meant to be used for elements with no content and no attributes.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Empty", builder=Empty.EmptyBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Empty", builder=Empty.EmptyBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Empty extends RosettaModelObject {
 
 	EmptyMeta metaData = new EmptyMeta();

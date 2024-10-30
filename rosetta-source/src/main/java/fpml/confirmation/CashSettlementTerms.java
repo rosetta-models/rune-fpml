@@ -36,9 +36,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CashSettlementTerms", builder=CashSettlementTerms.CashSettlementTermsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CashSettlementTerms", builder=CashSettlementTerms.CashSettlementTermsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CashSettlementTerms extends SettlementTerms {
 
 	CashSettlementTermsMeta metaData = new CashSettlementTermsMeta();

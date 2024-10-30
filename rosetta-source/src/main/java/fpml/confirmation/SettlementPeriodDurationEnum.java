@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Defines the Settlement Period Duration for an Electricity Transaction.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaEnum("SettlementPeriodDurationEnum")
 public enum SettlementPeriodDurationEnum {

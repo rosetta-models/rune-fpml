@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines the handling of an averaging date market disruption for an equity derivative transaction.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MarketDisruption", builder=MarketDisruption.MarketDisruptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MarketDisruption", builder=MarketDisruption.MarketDisruptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MarketDisruption extends RosettaModelObject {
 
 	MarketDisruptionMeta metaData = new MarketDisruptionMeta();

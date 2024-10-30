@@ -33,9 +33,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxAccrualSettlementPeriod", builder=FxAccrualSettlementPeriod.FxAccrualSettlementPeriodBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxAccrualSettlementPeriod", builder=FxAccrualSettlementPeriod.FxAccrualSettlementPeriodBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxAccrualSettlementPeriod extends SettlementPeriod {
 
 	FxAccrualSettlementPeriodMeta metaData = new FxAccrualSettlementPeriodMeta();

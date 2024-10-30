@@ -20,9 +20,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="NotDomesticCurrency", builder=NotDomesticCurrency.NotDomesticCurrencyBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="NotDomesticCurrency", builder=NotDomesticCurrency.NotDomesticCurrencyBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface NotDomesticCurrency extends RosettaModelObject {
 
 	NotDomesticCurrencyMeta metaData = new NotDomesticCurrencyMeta();

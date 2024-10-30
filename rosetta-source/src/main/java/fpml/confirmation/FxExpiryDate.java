@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines the expiry date of the accrual. The date is adjusted, date adjustments may be provided, and also the expiry time.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxExpiryDate", builder=FxExpiryDate.FxExpiryDateBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxExpiryDate", builder=FxExpiryDate.FxExpiryDateBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxExpiryDate extends FxAdjustedDateAndDateAdjustments {
 
 	FxExpiryDateMeta metaData = new FxExpiryDateMeta();

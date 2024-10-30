@@ -26,9 +26,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CollateralValueAllocation", builder=CollateralValueAllocation.CollateralValueAllocationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CollateralValueAllocation", builder=CollateralValueAllocation.CollateralValueAllocationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CollateralValueAllocation extends RosettaModelObject {
 
 	CollateralValueAllocationMeta metaData = new CollateralValueAllocationMeta();

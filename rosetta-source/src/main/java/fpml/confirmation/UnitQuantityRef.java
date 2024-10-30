@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining a quantity and unit with a reference.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="UnitQuantityRef", builder=UnitQuantityRef.UnitQuantityRefBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="UnitQuantityRef", builder=UnitQuantityRef.UnitQuantityRefBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface UnitQuantityRef extends UnitQuantity {
 
 	UnitQuantityRefMeta metaData = new UnitQuantityRefMeta();

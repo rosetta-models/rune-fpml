@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model which contains factors associated with the payment of a transfer fee.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanTradingTransferFeeDeterminationModel", builder=LoanTradingTransferFeeDeterminationModel.LoanTradingTransferFeeDeterminationModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanTradingTransferFeeDeterminationModel", builder=LoanTradingTransferFeeDeterminationModel.LoanTradingTransferFeeDeterminationModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanTradingTransferFeeDeterminationModel extends RosettaModelObject {
 
 	LoanTradingTransferFeeDeterminationModelMeta metaData = new LoanTradingTransferFeeDeterminationModelMeta();

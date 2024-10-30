@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines a region of spot rate where the notional for the settlement period accrues by the accrued amount per fixing each time the spot rate fixes within the region.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxAccrualRegion", builder=FxAccrualRegion.FxAccrualRegionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxAccrualRegion", builder=FxAccrualRegion.FxAccrualRegionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxAccrualRegion extends RosettaModelObject {
 
 	FxAccrualRegionMeta metaData = new FxAccrualRegionMeta();

@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model group holding valuation information for an event.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EventValuationModel", builder=EventValuationModel.EventValuationModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EventValuationModel", builder=EventValuationModel.EventValuationModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EventValuationModel extends RosettaModelObject {
 
 	EventValuationModelMeta metaData = new EventValuationModelMeta();

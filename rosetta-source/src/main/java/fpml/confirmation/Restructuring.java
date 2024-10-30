@@ -20,9 +20,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Restructuring", builder=Restructuring.RestructuringBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Restructuring", builder=Restructuring.RestructuringBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Restructuring extends RosettaModelObject {
 
 	RestructuringMeta metaData = new RestructuringMeta();

@@ -23,9 +23,9 @@ import fpml.confirmation.meta.ReferenceElementMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReferenceElement", builder=ReferenceElement.ReferenceElementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReferenceElement", builder=ReferenceElement.ReferenceElementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReferenceElement extends ReferenceType {
 
 	ReferenceElementMeta metaData = new ReferenceElementMeta();

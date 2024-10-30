@@ -34,9 +34,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Identifies a simple underlying asset that is a forward rate agreement.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SimpleFra", builder=SimpleFra.SimpleFraBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SimpleFra", builder=SimpleFra.SimpleFraBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SimpleFra extends UnderlyingAssetType {
 
 	SimpleFraMeta metaData = new SimpleFraMeta();

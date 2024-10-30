@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type to define the adjusted dates for a cancelable provision on a swap transaction.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CancelableProvisionAdjustedDates", builder=CancelableProvisionAdjustedDates.CancelableProvisionAdjustedDatesBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CancelableProvisionAdjustedDates", builder=CancelableProvisionAdjustedDates.CancelableProvisionAdjustedDatesBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CancelableProvisionAdjustedDates extends RosettaModelObject {
 
 	CancelableProvisionAdjustedDatesMeta metaData = new CancelableProvisionAdjustedDatesMeta();

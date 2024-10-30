@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that provides three alternative ways of identifying a party involved in the routing of a payment. The identification may use payment system identifiers only; actual name, address and other reference information; or a combination of both.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Routing", builder=Routing.RoutingBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Routing", builder=Routing.RoutingBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Routing extends RosettaModelObject {
 
 	RoutingMeta metaData = new RoutingMeta();

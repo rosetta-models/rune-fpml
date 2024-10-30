@@ -39,9 +39,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structured option product which consists of a single digital option or a strip of digital options. At each settlement the settled amounts are a fraction of the notional amount for that settlement period calculated as the number of fixings which fall within accrual regions divided by the total number of fixings in the settlement period. An FX Accrual Digital Option product The product defines a list of fixing (or observation) dates. There are m total fixings. At the expiry date of the product, the buyer of the option has the right to an FX settlement with n/m * Notional. Payout can be cash or physical.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxAccrualDigitalOption", builder=FxAccrualDigitalOption.FxAccrualDigitalOptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxAccrualDigitalOption", builder=FxAccrualDigitalOption.FxAccrualDigitalOptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxAccrualDigitalOption extends Option {
 
 	FxAccrualDigitalOptionMeta metaData = new FxAccrualDigitalOptionMeta();

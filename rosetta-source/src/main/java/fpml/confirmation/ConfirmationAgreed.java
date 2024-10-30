@@ -34,9 +34,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The confirmationAgreed message is sent when the matching process returns a proposed match (trade or event) and the Confirmation Requester agrees with it. A message indicating that a confirmation has been agreed by a counterparty.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ConfirmationAgreed", builder=ConfirmationAgreed.ConfirmationAgreedBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ConfirmationAgreed", builder=ConfirmationAgreed.ConfirmationAgreedBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ConfirmationAgreed extends ResponseMessage {
 
 	ConfirmationAgreedMeta metaData = new ConfirmationAgreedMeta();

@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that models name, address and supplementary textual information for the purposes of identifying a party involved in the routing of a payment.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RoutingExplicitDetails", builder=RoutingExplicitDetails.RoutingExplicitDetailsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RoutingExplicitDetails", builder=RoutingExplicitDetails.RoutingExplicitDetailsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RoutingExplicitDetails extends RosettaModelObject {
 
 	RoutingExplicitDetailsMeta metaData = new RoutingExplicitDetailsMeta();

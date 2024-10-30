@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining a range of contiguous business days by defining an unadjusted first date, an unadjusted last date and a business day convention and business centers for adjusting the first and last dates if they would otherwise fall on a non business day in the specified business centers. The days between the first and last date must also be good business days in the specified centers to be counted in the range.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BusinessDateRange", builder=BusinessDateRange.BusinessDateRangeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BusinessDateRange", builder=BusinessDateRange.BusinessDateRangeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BusinessDateRange extends DateRange {
 
 	BusinessDateRangeMeta metaData = new BusinessDateRangeMeta();

@@ -32,9 +32,9 @@ import java.util.stream.Collectors;
 
 /**
  * A fee associated with the funding requirements for given facility.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FundingFeePayment", builder=FundingFeePayment.FundingFeePaymentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FundingFeePayment", builder=FundingFeePayment.FundingFeePaymentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FundingFeePayment extends NonRecurringFeePayment {
 
 	FundingFeePaymentMeta metaData = new FundingFeePaymentMeta();

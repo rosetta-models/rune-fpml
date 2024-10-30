@@ -32,9 +32,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type to capture details relevant to the calculation of the floating price.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FloatingLegCalculation", builder=FloatingLegCalculation.FloatingLegCalculationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FloatingLegCalculation", builder=FloatingLegCalculation.FloatingLegCalculationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FloatingLegCalculation extends RosettaModelObject {
 
 	FloatingLegCalculationMeta metaData = new FloatingLegCalculationMeta();

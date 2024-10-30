@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Defines the barrier observation style i.e. continuous (American) or discrete (Euriopean).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaEnum("FxBarrierStyleEnum")
 public enum FxBarrierStyleEnum {

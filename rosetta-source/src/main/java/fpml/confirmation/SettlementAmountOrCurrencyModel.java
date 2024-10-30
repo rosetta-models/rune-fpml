@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SettlementAmountOrCurrencyModel", builder=SettlementAmountOrCurrencyModel.SettlementAmountOrCurrencyModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SettlementAmountOrCurrencyModel", builder=SettlementAmountOrCurrencyModel.SettlementAmountOrCurrencyModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SettlementAmountOrCurrencyModel extends RosettaModelObject {
 
 	SettlementAmountOrCurrencyModelMeta metaData = new SettlementAmountOrCurrencyModelMeta();

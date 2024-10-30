@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model group with the content model of a party.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PartyModel", builder=PartyModel.PartyModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PartyModel", builder=PartyModel.PartyModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PartyModel extends RosettaModelObject {
 
 	PartyModelMeta metaData = new PartyModelMeta();

@@ -39,9 +39,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A loan servicing notification used to communicate an accruing PIK rate being capitalized by the borrower.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AccruingPikPaymentNotification", builder=AccruingPikPaymentNotification.AccruingPikPaymentNotificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AccruingPikPaymentNotification", builder=AccruingPikPaymentNotification.AccruingPikPaymentNotificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AccruingPikPaymentNotification extends AbstractFacilityNotification {
 
 	AccruingPikPaymentNotificationMeta metaData = new AccruingPikPaymentNotificationMeta();

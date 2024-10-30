@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A container for the disruption fallback set
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxDisruptionFallbacks", builder=FxDisruptionFallbacks.FxDisruptionFallbacksBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxDisruptionFallbacks", builder=FxDisruptionFallbacks.FxDisruptionFallbacksBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxDisruptionFallbacks extends RosettaModelObject {
 
 	FxDisruptionFallbacksMeta metaData = new FxDisruptionFallbacksMeta();

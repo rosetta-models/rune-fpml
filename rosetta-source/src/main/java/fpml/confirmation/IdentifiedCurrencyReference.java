@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to a currency with ID attribute
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="IdentifiedCurrencyReference", builder=IdentifiedCurrencyReference.IdentifiedCurrencyReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="IdentifiedCurrencyReference", builder=IdentifiedCurrencyReference.IdentifiedCurrencyReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface IdentifiedCurrencyReference extends Reference {
 
 	IdentifiedCurrencyReferenceMeta metaData = new IdentifiedCurrencyReferenceMeta();

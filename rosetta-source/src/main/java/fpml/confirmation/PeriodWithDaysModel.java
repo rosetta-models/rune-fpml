@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model that describes a period, with an element to define number of days within the period.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PeriodWithDaysModel", builder=PeriodWithDaysModel.PeriodWithDaysModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PeriodWithDaysModel", builder=PeriodWithDaysModel.PeriodWithDaysModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PeriodWithDaysModel extends RosettaModelObject {
 
 	PeriodWithDaysModelMeta metaData = new PeriodWithDaysModelMeta();

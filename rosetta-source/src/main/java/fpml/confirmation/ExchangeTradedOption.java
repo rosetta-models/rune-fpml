@@ -40,9 +40,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An exchange traded option.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ExchangeTradedOption", builder=ExchangeTradedOption.ExchangeTradedOptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ExchangeTradedOption", builder=ExchangeTradedOption.ExchangeTradedOptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ExchangeTradedOption extends ExchangeTradedContract {
 
 	ExchangeTradedOptionMeta metaData = new ExchangeTradedOptionMeta();

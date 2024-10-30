@@ -33,9 +33,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An event representing a change in either the [L/C -&amp;gt; Facility] or [Accrual -&amp;gt; L/C] FX rates (or both) on an outstanding letter of credit.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LcFxRevaluation", builder=LcFxRevaluation.LcFxRevaluationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LcFxRevaluation", builder=LcFxRevaluation.LcFxRevaluationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LcFxRevaluation extends AbstractLcEvent {
 
 	LcFxRevaluationMeta metaData = new LcFxRevaluationMeta();

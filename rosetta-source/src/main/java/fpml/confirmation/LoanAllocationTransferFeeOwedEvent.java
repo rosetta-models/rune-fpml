@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that defines details related to the admin agent&#39;s determination of transfer fee(s) owed on an allocation.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanAllocationTransferFeeOwedEvent", builder=LoanAllocationTransferFeeOwedEvent.LoanAllocationTransferFeeOwedEventBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanAllocationTransferFeeOwedEvent", builder=LoanAllocationTransferFeeOwedEvent.LoanAllocationTransferFeeOwedEventBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanAllocationTransferFeeOwedEvent extends AbstractLoanAllocationEvent {
 
 	LoanAllocationTransferFeeOwedEventMeta metaData = new LoanAllocationTransferFeeOwedEventMeta();

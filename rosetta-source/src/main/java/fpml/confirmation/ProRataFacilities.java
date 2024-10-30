@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that defines a restriction pertaining to which facilities must be traded on a pro-rata basis.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ProRataFacilities", builder=ProRataFacilities.ProRataFacilitiesBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ProRataFacilities", builder=ProRataFacilities.ProRataFacilitiesBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ProRataFacilities extends RosettaModelObject {
 
 	ProRataFacilitiesMeta metaData = new ProRataFacilitiesMeta();

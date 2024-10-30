@@ -25,9 +25,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The physical delivery conditions for an oil product.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="OilDelivery", builder=OilDelivery.OilDeliveryBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="OilDelivery", builder=OilDelivery.OilDeliveryBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface OilDelivery extends RosettaModelObject {
 
 	OilDeliveryMeta metaData = new OilDeliveryMeta();

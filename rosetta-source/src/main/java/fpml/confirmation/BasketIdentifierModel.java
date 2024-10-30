@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A group that specifies a name and an identifier for a given basket.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BasketIdentifierModel", builder=BasketIdentifierModel.BasketIdentifierModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BasketIdentifierModel", builder=BasketIdentifierModel.BasketIdentifierModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BasketIdentifierModel extends RosettaModelObject {
 
 	BasketIdentifierModelMeta metaData = new BasketIdentifierModelMeta();

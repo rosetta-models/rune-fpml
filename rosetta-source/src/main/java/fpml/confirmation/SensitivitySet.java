@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A collection of sensitivities. References a definition that explains the meaning/type of the sensitivities.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SensitivitySet", builder=SensitivitySet.SensitivitySetBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SensitivitySet", builder=SensitivitySet.SensitivitySetBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SensitivitySet extends RosettaModelObject {
 
 	SensitivitySetMeta metaData = new SensitivitySetMeta();

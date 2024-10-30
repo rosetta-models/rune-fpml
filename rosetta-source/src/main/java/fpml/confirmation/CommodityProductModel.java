@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A group used to specify details of a commodity underlyer.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityProductModel", builder=CommodityProductModel.CommodityProductModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityProductModel", builder=CommodityProductModel.CommodityProductModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityProductModel extends RosettaModelObject {
 
 	CommodityProductModelMeta metaData = new CommodityProductModelMeta();

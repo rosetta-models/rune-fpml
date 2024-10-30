@@ -34,9 +34,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A message notifying a party that a trade execution has occurred. (Typically this is sent by an execution platform to a participant.)
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ExecutionNotification", builder=ExecutionNotification.ExecutionNotificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ExecutionNotification", builder=ExecutionNotification.ExecutionNotificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ExecutionNotification extends CorrectableRequestMessage {
 
 	ExecutionNotificationMeta metaData = new ExecutionNotificationMeta();

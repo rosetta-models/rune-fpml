@@ -30,9 +30,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines a commodity forward product. Commodity Forward
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityForward", builder=CommodityForward.CommodityForwardBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityForward", builder=CommodityForward.CommodityForwardBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityForward extends Product {
 
 	CommodityForwardMeta metaData = new CommodityForwardMeta();

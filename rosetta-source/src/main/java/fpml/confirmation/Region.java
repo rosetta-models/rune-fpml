@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A code that describes the world region of a counterparty. For example, NorthAmerica, Europe, Asia.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Region", builder=Region.RegionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Region", builder=Region.RegionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Region extends RosettaModelObject {
 
 	RegionMeta metaData = new RegionMeta();

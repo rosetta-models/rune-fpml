@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The different options for specifying the Notional Quantity. A flat notional for the term of the contract may be specified, or else the Notional Quantity per Calculation Period. In the latter case, there must be a notional quantity step specified for each Calculation Period, regardless of whether the Notional Quantity changes or remains the same between periods.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityNotionalQuantityModel", builder=CommodityNotionalQuantityModel.CommodityNotionalQuantityModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityNotionalQuantityModel", builder=CommodityNotionalQuantityModel.CommodityNotionalQuantityModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityNotionalQuantityModel extends RosettaModelObject {
 
 	CommodityNotionalQuantityModelMeta metaData = new CommodityNotionalQuantityModelMeta();

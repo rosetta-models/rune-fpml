@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A simple FX spot or forward transaction definition. A type defining either a spot or forward FX transactions.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxSingleLeg", builder=FxSingleLeg.FxSingleLegBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxSingleLeg", builder=FxSingleLeg.FxSingleLegBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxSingleLeg extends Product {
 
 	FxSingleLegMeta metaData = new FxSingleLegMeta();

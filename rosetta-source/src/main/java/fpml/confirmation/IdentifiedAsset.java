@@ -30,9 +30,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A generic type describing an identified asset.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="IdentifiedAsset", builder=IdentifiedAsset.IdentifiedAssetBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="IdentifiedAsset", builder=IdentifiedAsset.IdentifiedAssetBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface IdentifiedAsset extends Asset {
 
 	IdentifiedAssetMeta metaData = new IdentifiedAssetMeta();

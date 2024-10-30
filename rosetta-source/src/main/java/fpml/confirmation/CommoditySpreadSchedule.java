@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The Spread per Calculation Period. There must be a Spread specified for each Calculation Period, regardless of whether the Spread changes or remains the same between periods.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommoditySpreadSchedule", builder=CommoditySpreadSchedule.CommoditySpreadScheduleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommoditySpreadSchedule", builder=CommoditySpreadSchedule.CommoditySpreadScheduleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommoditySpreadSchedule extends RosettaModelObject {
 
 	CommoditySpreadScheduleMeta metaData = new CommoditySpreadScheduleMeta();

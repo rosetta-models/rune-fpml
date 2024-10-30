@@ -27,9 +27,9 @@ import fpml.confirmation.meta.VerificationStatusAcknowledgementMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="VerificationStatusAcknowledgement", builder=VerificationStatusAcknowledgement.VerificationStatusAcknowledgementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="VerificationStatusAcknowledgement", builder=VerificationStatusAcknowledgement.VerificationStatusAcknowledgementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface VerificationStatusAcknowledgement extends Acknowledgement {
 
 	VerificationStatusAcknowledgementMeta metaData = new VerificationStatusAcknowledgementMeta();

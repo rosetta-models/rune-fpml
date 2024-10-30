@@ -20,9 +20,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SwaptionPhysicalSettlement", builder=SwaptionPhysicalSettlement.SwaptionPhysicalSettlementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SwaptionPhysicalSettlement", builder=SwaptionPhysicalSettlement.SwaptionPhysicalSettlementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SwaptionPhysicalSettlement extends RosettaModelObject {
 
 	SwaptionPhysicalSettlementMeta metaData = new SwaptionPhysicalSettlementMeta();

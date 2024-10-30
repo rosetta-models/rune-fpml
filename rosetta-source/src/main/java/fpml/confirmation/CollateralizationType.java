@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Code that describes what type of collateral is posted by a party to a transaction. Options include Uncollateralized, Partial, Full, One-Way.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CollateralizationType", builder=CollateralizationType.CollateralizationTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CollateralizationType", builder=CollateralizationType.CollateralizationTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CollateralizationType extends RosettaModelObject {
 
 	CollateralizationTypeMeta metaData = new CollateralizationTypeMeta();

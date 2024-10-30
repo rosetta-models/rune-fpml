@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model which contains the main parties involved in a loan allocation situation.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanAllocationPartiesModel", builder=LoanAllocationPartiesModel.LoanAllocationPartiesModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanAllocationPartiesModel", builder=LoanAllocationPartiesModel.LoanAllocationPartiesModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanAllocationPartiesModel extends RosettaModelObject {
 
 	LoanAllocationPartiesModelMeta metaData = new LoanAllocationPartiesModelMeta();

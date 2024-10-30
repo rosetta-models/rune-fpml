@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The type of physical commodity product to be delivered.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="OilProductType", builder=OilProductType.OilProductTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="OilProductType", builder=OilProductType.OilProductTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface OilProductType extends RosettaModelObject {
 
 	OilProductTypeMeta metaData = new OilProductTypeMeta();

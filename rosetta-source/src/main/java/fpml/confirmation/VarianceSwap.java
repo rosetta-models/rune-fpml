@@ -33,9 +33,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Specifies the structure of a variance swap. A Variance Swap.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="VarianceSwap", builder=VarianceSwap.VarianceSwapBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="VarianceSwap", builder=VarianceSwap.VarianceSwapBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface VarianceSwap extends NettedSwapBase {
 
 	VarianceSwapMeta metaData = new VarianceSwapMeta();

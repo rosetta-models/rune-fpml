@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The specification of the oil product to be delivered.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="OilProduct", builder=OilProduct.OilProductBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="OilProduct", builder=OilProduct.OilProductBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface OilProduct extends RosettaModelObject {
 
 	OilProductMeta metaData = new OilProductMeta();

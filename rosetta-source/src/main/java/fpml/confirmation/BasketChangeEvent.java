@@ -26,9 +26,9 @@ import java.util.stream.Collectors;
 
 /**
  * A structure indicating that the basket underlyer of the trade has changed due to client trading activity
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BasketChangeEvent", builder=BasketChangeEvent.BasketChangeEventBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BasketChangeEvent", builder=BasketChangeEvent.BasketChangeEventBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BasketChangeEvent extends ChangeEvent {
 
 	BasketChangeEventMeta metaData = new BasketChangeEventMeta();

@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BusinessCentersOrReferenceModel", builder=BusinessCentersOrReferenceModel.BusinessCentersOrReferenceModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BusinessCentersOrReferenceModel", builder=BusinessCentersOrReferenceModel.BusinessCentersOrReferenceModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BusinessCentersOrReferenceModel extends RosettaModelObject {
 
 	BusinessCentersOrReferenceModelMeta metaData = new BusinessCentersOrReferenceModelMeta();

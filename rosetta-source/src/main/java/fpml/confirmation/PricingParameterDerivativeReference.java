@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to a partial derivative.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PricingParameterDerivativeReference", builder=PricingParameterDerivativeReference.PricingParameterDerivativeReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PricingParameterDerivativeReference", builder=PricingParameterDerivativeReference.PricingParameterDerivativeReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PricingParameterDerivativeReference extends Reference {
 
 	PricingParameterDerivativeReferenceMeta metaData = new PricingParameterDerivativeReferenceMeta();

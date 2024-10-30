@@ -15,7 +15,7 @@ import java.util.Arrays;
 import static com.rosetta.model.lib.expression.ExpressionOperators.*;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaDataRule("CalculationPeriodDatesChoice1")
 @ImplementedBy(CalculationPeriodDatesChoice1.Default.class)

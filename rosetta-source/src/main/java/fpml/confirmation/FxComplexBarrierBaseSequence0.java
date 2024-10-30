@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxComplexBarrierBaseSequence0", builder=FxComplexBarrierBaseSequence0.FxComplexBarrierBaseSequence0BuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxComplexBarrierBaseSequence0", builder=FxComplexBarrierBaseSequence0.FxComplexBarrierBaseSequence0BuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxComplexBarrierBaseSequence0 extends RosettaModelObject {
 
 	FxComplexBarrierBaseSequence0Meta metaData = new FxComplexBarrierBaseSequence0Meta();

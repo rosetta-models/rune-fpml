@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the content model for a message that allows a service to send a notification message to a user of the service.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ServiceNotification", builder=ServiceNotification.ServiceNotificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ServiceNotification", builder=ServiceNotification.ServiceNotificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ServiceNotification extends NotificationMessage {
 
 	ServiceNotificationMeta metaData = new ServiceNotificationMeta();

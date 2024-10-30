@@ -25,9 +25,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A parametric representation of the Calculation Periods for on Asian option or a leg of a swap. In case the calculation frequency is of value T (term), the period is defined by the commoditySwap\effectiveDate and the commoditySwap\terminationDate.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityCalculationPeriodsSchedule", builder=CommodityCalculationPeriodsSchedule.CommodityCalculationPeriodsScheduleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityCalculationPeriodsSchedule", builder=CommodityCalculationPeriodsSchedule.CommodityCalculationPeriodsScheduleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityCalculationPeriodsSchedule extends Frequency {
 
 	CommodityCalculationPeriodsScheduleMeta metaData = new CommodityCalculationPeriodsScheduleMeta();

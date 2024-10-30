@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A single valued point with a set of coordinates that define an arbitrary number of indentifying indexes (0 or more). Note that the collection of coordinates/coordinate references for a PricingStructurePoint must not define a given dimension (other than &quot;generic&quot;) more than once. This is to avoid ambiguity.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PricingStructurePoint", builder=PricingStructurePoint.PricingStructurePointBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PricingStructurePoint", builder=PricingStructurePoint.PricingStructurePointBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PricingStructurePoint extends RosettaModelObject {
 
 	PricingStructurePointMeta metaData = new PricingStructurePointMeta();

@@ -19,7 +19,7 @@ import java.util.function.Function;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaMeta(model=PackageInformation.class)
 public class PackageInformationMeta implements RosettaMetaData<PackageInformation> {

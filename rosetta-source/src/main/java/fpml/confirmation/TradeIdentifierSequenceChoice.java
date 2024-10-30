@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradeIdentifierSequenceChoice", builder=TradeIdentifierSequenceChoice.TradeIdentifierSequenceChoiceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradeIdentifierSequenceChoice", builder=TradeIdentifierSequenceChoice.TradeIdentifierSequenceChoiceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradeIdentifierSequenceChoice extends RosettaModelObject {
 
 	TradeIdentifierSequenceChoiceMeta metaData = new TradeIdentifierSequenceChoiceMeta();

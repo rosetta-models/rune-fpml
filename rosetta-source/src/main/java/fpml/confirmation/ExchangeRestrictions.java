@@ -21,9 +21,9 @@ import fpml.confirmation.meta.ExchangeRestrictionsMeta;
 
 /**
  * If present indicates that the event is considered to have occured if the settlement in either currency is prohibited or materially restricted.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ExchangeRestrictions", builder=ExchangeRestrictions.ExchangeRestrictionsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ExchangeRestrictions", builder=ExchangeRestrictions.ExchangeRestrictionsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ExchangeRestrictions extends FxDisruptionEvent {
 
 	ExchangeRestrictionsMeta metaData = new ExchangeRestrictionsMeta();

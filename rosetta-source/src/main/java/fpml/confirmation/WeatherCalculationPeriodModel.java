@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Descriptions of a calculation period.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="WeatherCalculationPeriodModel", builder=WeatherCalculationPeriodModel.WeatherCalculationPeriodModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="WeatherCalculationPeriodModel", builder=WeatherCalculationPeriodModel.WeatherCalculationPeriodModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface WeatherCalculationPeriodModel extends RosettaModelObject {
 
 	WeatherCalculationPeriodModelMeta metaData = new WeatherCalculationPeriodModelMeta();

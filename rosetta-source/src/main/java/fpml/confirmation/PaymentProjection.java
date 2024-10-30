@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that represents interest payment projections.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PaymentProjection", builder=PaymentProjection.PaymentProjectionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PaymentProjection", builder=PaymentProjection.PaymentProjectionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PaymentProjection extends RosettaModelObject {
 
 	PaymentProjectionMeta metaData = new PaymentProjectionMeta();

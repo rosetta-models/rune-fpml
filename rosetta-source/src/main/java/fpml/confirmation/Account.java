@@ -30,9 +30,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A generic account that represents any party&#39;s account at another party. Parties may be identified by the account at another party.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Account", builder=Account.AccountBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Account", builder=Account.AccountBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Account extends RosettaModelObject {
 
 	AccountMeta metaData = new AccountMeta();

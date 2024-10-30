@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining parameters used to generate the payment dates schedule, including the specification of early or delayed payments. Payment dates are determined relative to the calculation period dates or the reset dates.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PaymentDates", builder=PaymentDates.PaymentDatesBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PaymentDates", builder=PaymentDates.PaymentDatesBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PaymentDates extends RosettaModelObject {
 
 	PaymentDatesMeta metaData = new PaymentDatesMeta();

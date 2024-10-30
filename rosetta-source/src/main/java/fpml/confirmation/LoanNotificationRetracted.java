@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A message used to indicate a retraction of a loan notification.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanNotificationRetracted", builder=LoanNotificationRetracted.LoanNotificationRetractedBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanNotificationRetracted", builder=LoanNotificationRetracted.LoanNotificationRetractedBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanNotificationRetracted extends NonCorrectableRequestMessage {
 
 	LoanNotificationRetractedMeta metaData = new LoanNotificationRetractedMeta();

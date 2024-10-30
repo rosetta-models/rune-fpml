@@ -30,9 +30,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An abstract structure defining fundamental master loan trade event information.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AbstractLoanTradeEvent", builder=AbstractLoanTradeEvent.AbstractLoanTradeEventBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AbstractLoanTradeEvent", builder=AbstractLoanTradeEvent.AbstractLoanTradeEventBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AbstractLoanTradeEvent extends AbstractLoanEvent {
 
 	AbstractLoanTradeEventMeta metaData = new AbstractLoanTradeEventMeta();

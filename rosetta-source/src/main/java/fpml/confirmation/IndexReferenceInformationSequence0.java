@@ -26,9 +26,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="IndexReferenceInformationSequence0", builder=IndexReferenceInformationSequence0.IndexReferenceInformationSequence0BuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="IndexReferenceInformationSequence0", builder=IndexReferenceInformationSequence0.IndexReferenceInformationSequence0BuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface IndexReferenceInformationSequence0 extends RosettaModelObject {
 
 	IndexReferenceInformationSequence0Meta metaData = new IndexReferenceInformationSequence0Meta();

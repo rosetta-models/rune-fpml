@@ -32,9 +32,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An abstract base type for all LC-level business events.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AbstractLcEvent", builder=AbstractLcEvent.AbstractLcEventBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AbstractLcEvent", builder=AbstractLcEvent.AbstractLcEventBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AbstractLcEvent extends AbstractLoanServicingEvent {
 
 	AbstractLcEventMeta metaData = new AbstractLcEventMeta();

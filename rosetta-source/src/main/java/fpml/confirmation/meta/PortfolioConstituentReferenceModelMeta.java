@@ -19,7 +19,7 @@ import java.util.function.Function;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaMeta(model=PortfolioConstituentReferenceModel.class)
 public class PortfolioConstituentReferenceModelMeta implements RosettaMetaData<PortfolioConstituentReferenceModel> {

@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that supports the division of a gross settlement amount into a number of split settlements, each requiring its own settlement instruction.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SplitSettlement", builder=SplitSettlement.SplitSettlementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SplitSettlement", builder=SplitSettlement.SplitSettlementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SplitSettlement extends RosettaModelObject {
 
 	SplitSettlementMeta metaData = new SplitSettlementMeta();

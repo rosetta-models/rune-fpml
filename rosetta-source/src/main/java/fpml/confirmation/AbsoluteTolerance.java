@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The acceptable tolerance in the delivered quantity of a physical commodity product in terms of a number of units of that product.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AbsoluteTolerance", builder=AbsoluteTolerance.AbsoluteToleranceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AbsoluteTolerance", builder=AbsoluteTolerance.AbsoluteToleranceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AbsoluteTolerance extends RosettaModelObject {
 
 	AbsoluteToleranceMeta metaData = new AbsoluteToleranceMeta();

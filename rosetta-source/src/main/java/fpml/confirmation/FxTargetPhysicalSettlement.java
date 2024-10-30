@@ -22,9 +22,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxTargetPhysicalSettlement", builder=FxTargetPhysicalSettlement.FxTargetPhysicalSettlementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxTargetPhysicalSettlement", builder=FxTargetPhysicalSettlement.FxTargetPhysicalSettlementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxTargetPhysicalSettlement extends RosettaModelObject {
 
 	FxTargetPhysicalSettlementMeta metaData = new FxTargetPhysicalSettlementMeta();

@@ -17,9 +17,9 @@ import fpml.confirmation.meta.PaymentRuleMeta;
 
 /**
  * The abstract base type from which all calculation rules of the independent amount must be derived.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PaymentRule", builder=PaymentRule.PaymentRuleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PaymentRule", builder=PaymentRule.PaymentRuleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PaymentRule extends RosettaModelObject {
 
 	PaymentRuleMeta metaData = new PaymentRuleMeta();

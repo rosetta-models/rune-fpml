@@ -19,7 +19,7 @@ import java.util.function.Function;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaMeta(model=FxDigitalOptionSequence0.class)
 public class FxDigitalOptionSequence0Meta implements RosettaMetaData<FxDigitalOptionSequence0> {

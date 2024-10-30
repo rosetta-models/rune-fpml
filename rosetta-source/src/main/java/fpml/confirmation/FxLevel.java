@@ -27,9 +27,9 @@ import java.util.stream.Collectors;
 
 /**
  * Level is expressed as Schedule, with an initial value and optional steps.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxLevel", builder=FxLevel.FxLevelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxLevel", builder=FxLevel.FxLevelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxLevel extends Schedule {
 
 	FxLevelMeta metaData = new FxLevelMeta();

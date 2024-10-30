@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A reference to the return swap notional amount.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReturnSwapNotionalAmountReference", builder=ReturnSwapNotionalAmountReference.ReturnSwapNotionalAmountReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReturnSwapNotionalAmountReference", builder=ReturnSwapNotionalAmountReference.ReturnSwapNotionalAmountReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReturnSwapNotionalAmountReference extends Reference {
 
 	ReturnSwapNotionalAmountReferenceMeta metaData = new ReturnSwapNotionalAmountReferenceMeta();

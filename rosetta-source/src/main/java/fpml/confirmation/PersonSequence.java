@@ -25,9 +25,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PersonSequence", builder=PersonSequence.PersonSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PersonSequence", builder=PersonSequence.PersonSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PersonSequence extends RosettaModelObject {
 
 	PersonSequenceMeta metaData = new PersonSequenceMeta();

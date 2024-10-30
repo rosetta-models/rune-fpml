@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the content model for report on the status of the processing by a service. In the future we may wish to provide some kind of scope or other qualification for the event, e.g. the currencies, products, or books to which it applies.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ServiceProcessingStatus", builder=ServiceProcessingStatus.ServiceProcessingStatusBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ServiceProcessingStatus", builder=ServiceProcessingStatus.ServiceProcessingStatusBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ServiceProcessingStatus extends RosettaModelObject {
 
 	ServiceProcessingStatusMeta metaData = new ServiceProcessingStatusMeta();

@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The substitution of a pricing input (e.g. curve) for another, used in generating prices and risks for valuation scenarios.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PricingInputReplacement", builder=PricingInputReplacement.PricingInputReplacementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PricingInputReplacement", builder=PricingInputReplacement.PricingInputReplacementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PricingInputReplacement extends RosettaModelObject {
 
 	PricingInputReplacementMeta metaData = new PricingInputReplacementMeta();

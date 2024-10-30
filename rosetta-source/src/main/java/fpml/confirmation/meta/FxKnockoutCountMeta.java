@@ -19,7 +19,7 @@ import java.util.function.Function;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaMeta(model=FxKnockoutCount.class)
 public class FxKnockoutCountMeta implements RosettaMetaData<FxKnockoutCount> {

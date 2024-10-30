@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TransformTypeChoice", builder=TransformTypeChoice.TransformTypeChoiceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TransformTypeChoice", builder=TransformTypeChoice.TransformTypeChoiceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TransformTypeChoice extends RosettaModelObject {
 
 	TransformTypeChoiceMeta metaData = new TransformTypeChoiceMeta();

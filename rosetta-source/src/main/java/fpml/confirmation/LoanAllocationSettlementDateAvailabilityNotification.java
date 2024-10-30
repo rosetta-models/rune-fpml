@@ -40,9 +40,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A loan servicing notification used to communicate trade settlement date coordination (i.e. availability) details, between admin agent and counterparties.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanAllocationSettlementDateAvailabilityNotification", builder=LoanAllocationSettlementDateAvailabilityNotification.LoanAllocationSettlementDateAvailabilityNotificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanAllocationSettlementDateAvailabilityNotification", builder=LoanAllocationSettlementDateAvailabilityNotification.LoanAllocationSettlementDateAvailabilityNotificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanAllocationSettlementDateAvailabilityNotification extends AbstractLoanTradingNotification {
 
 	LoanAllocationSettlementDateAvailabilityNotificationMeta metaData = new LoanAllocationSettlementDateAvailabilityNotificationMeta();

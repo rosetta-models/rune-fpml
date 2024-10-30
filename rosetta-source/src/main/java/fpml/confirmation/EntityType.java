@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines a coding scheme of the entity types defined in the ISDA First to Default documentation.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EntityType", builder=EntityType.EntityTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EntityType", builder=EntityType.EntityTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EntityType extends RosettaModelObject {
 
 	EntityTypeMeta metaData = new EntityTypeMeta();

@@ -26,9 +26,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PartialExerciseModel", builder=PartialExerciseModel.PartialExerciseModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PartialExerciseModel", builder=PartialExerciseModel.PartialExerciseModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PartialExerciseModel extends RosettaModelObject {
 
 	PartialExerciseModelMeta metaData = new PartialExerciseModelMeta();

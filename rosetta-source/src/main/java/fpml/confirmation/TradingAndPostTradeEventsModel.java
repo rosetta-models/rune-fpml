@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Choice between a trading, a post-trade event, and the extension point additional event
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradingAndPostTradeEventsModel", builder=TradingAndPostTradeEventsModel.TradingAndPostTradeEventsModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradingAndPostTradeEventsModel", builder=TradingAndPostTradeEventsModel.TradingAndPostTradeEventsModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradingAndPostTradeEventsModel extends RosettaModelObject {
 
 	TradingAndPostTradeEventsModelMeta metaData = new TradingAndPostTradeEventsModelMeta();

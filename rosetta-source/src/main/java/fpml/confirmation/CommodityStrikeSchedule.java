@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The Strike Price per Unit per Calculation Period. There must be a Strike Price per Unit step specified for each Calculation Period, regardless of whether the Strike changes or remains the same between periods.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityStrikeSchedule", builder=CommodityStrikeSchedule.CommodityStrikeScheduleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityStrikeSchedule", builder=CommodityStrikeSchedule.CommodityStrikeScheduleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityStrikeSchedule extends RosettaModelObject {
 
 	CommodityStrikeScheduleMeta metaData = new CommodityStrikeScheduleMeta();

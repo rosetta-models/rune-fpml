@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model group containing the option denomination components.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="OptionDenominationModel", builder=OptionDenominationModel.OptionDenominationModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="OptionDenominationModel", builder=OptionDenominationModel.OptionDenominationModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface OptionDenominationModel extends RosettaModelObject {
 
 	OptionDenominationModelMeta metaData = new OptionDenominationModelMeta();

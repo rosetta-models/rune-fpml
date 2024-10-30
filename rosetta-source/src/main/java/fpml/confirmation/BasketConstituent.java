@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing each of the constituents of a basket.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BasketConstituent", builder=BasketConstituent.BasketConstituentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BasketConstituent", builder=BasketConstituent.BasketConstituentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BasketConstituent extends RosettaModelObject {
 
 	BasketConstituentMeta metaData = new BasketConstituentMeta();

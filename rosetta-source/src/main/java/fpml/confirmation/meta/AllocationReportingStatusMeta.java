@@ -19,7 +19,7 @@ import java.util.function.Function;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaMeta(model=AllocationReportingStatus.class)
 public class AllocationReportingStatusMeta implements RosettaMetaData<AllocationReportingStatus> {

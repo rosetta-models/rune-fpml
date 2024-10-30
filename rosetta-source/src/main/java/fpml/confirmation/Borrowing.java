@@ -34,9 +34,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An event representing the fact that a new loan contract (funded borrowing) has been requested by the borrower.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Borrowing", builder=Borrowing.BorrowingBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Borrowing", builder=Borrowing.BorrowingBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Borrowing extends AbstractLoanContractEvent {
 
 	BorrowingMeta metaData = new BorrowingMeta();

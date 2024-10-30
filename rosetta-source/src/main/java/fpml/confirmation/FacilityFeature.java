@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A list of facility features.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FacilityFeature", builder=FacilityFeature.FacilityFeatureBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FacilityFeature", builder=FacilityFeature.FacilityFeatureBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FacilityFeature extends RosettaModelObject {
 
 	FacilityFeatureMeta metaData = new FacilityFeatureMeta();

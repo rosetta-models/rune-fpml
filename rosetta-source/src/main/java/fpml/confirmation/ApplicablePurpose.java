@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A scheme that describes the purpose of a contact in relation to an asset or assets.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ApplicablePurpose", builder=ApplicablePurpose.ApplicablePurposeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ApplicablePurpose", builder=ApplicablePurpose.ApplicablePurposeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ApplicablePurpose extends RosettaModelObject {
 
 	ApplicablePurposeMeta metaData = new ApplicablePurposeMeta();

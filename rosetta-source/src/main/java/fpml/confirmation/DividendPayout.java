@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing the dividend payout ratio associated with an equity underlyer. In certain cases the actual ratio is not known on trade inception, and only general conditions are then specified.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DividendPayout", builder=DividendPayout.DividendPayoutBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DividendPayout", builder=DividendPayout.DividendPayoutBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DividendPayout extends RosettaModelObject {
 
 	DividendPayoutMeta metaData = new DividendPayoutMeta();

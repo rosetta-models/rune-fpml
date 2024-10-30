@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines a model group that allows either details of an event or information about a trade to be provided. Typically this will be used in a response to a request.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EventsOrInfoModel", builder=EventsOrInfoModel.EventsOrInfoModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EventsOrInfoModel", builder=EventsOrInfoModel.EventsOrInfoModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EventsOrInfoModel extends RosettaModelObject {
 
 	EventsOrInfoModelMeta metaData = new EventsOrInfoModelMeta();

@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the parameters used in the calculation of fixed or floating rate calculation period amounts or for specifying a known calculation period amount or known amount schedule.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CalculationPeriodAmount", builder=CalculationPeriodAmount.CalculationPeriodAmountBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CalculationPeriodAmount", builder=CalculationPeriodAmount.CalculationPeriodAmountBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CalculationPeriodAmount extends RosettaModelObject {
 
 	CalculationPeriodAmountMeta metaData = new CalculationPeriodAmountMeta();

@@ -35,9 +35,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Identifies a simple underlying asset that is an interest rate index. Used for specifying benchmark assets in the market environment in the pricing and risk model.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RateIndex", builder=RateIndex.RateIndexBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RateIndex", builder=RateIndex.RateIndexBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RateIndex extends UnderlyingAssetType {
 
 	RateIndexMeta metaData = new RateIndexMeta();

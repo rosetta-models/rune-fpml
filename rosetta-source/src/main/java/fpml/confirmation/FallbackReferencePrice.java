@@ -23,9 +23,9 @@ import fpml.confirmation.meta.FallbackReferencePriceMeta;
 
 /**
  * If present indicates alternative price sources
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FallbackReferencePrice", builder=FallbackReferencePrice.FallbackReferencePriceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FallbackReferencePrice", builder=FallbackReferencePrice.FallbackReferencePriceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FallbackReferencePrice extends FxFallbackReferencePrice {
 
 	FallbackReferencePriceMeta metaData = new FallbackReferencePriceMeta();

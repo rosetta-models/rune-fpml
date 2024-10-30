@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A Disruption Fallback.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DisruptionFallback", builder=DisruptionFallback.DisruptionFallbackBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DisruptionFallback", builder=DisruptionFallback.DisruptionFallbackBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DisruptionFallback extends RosettaModelObject {
 
 	DisruptionFallbackMeta metaData = new DisruptionFallbackMeta();

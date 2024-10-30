@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * A list that defines the status of a settlement task.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaEnum("LoanTradingSettlementTaskStatusEnum")
 public enum LoanTradingSettlementTaskStatusEnum {

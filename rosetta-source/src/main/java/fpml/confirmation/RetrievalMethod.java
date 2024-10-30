@@ -22,9 +22,9 @@ import fpml.confirmation.meta.RetrievalMethodMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RetrievalMethod", builder=RetrievalMethod.RetrievalMethodBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RetrievalMethod", builder=RetrievalMethod.RetrievalMethodBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RetrievalMethod extends RetrievalMethodType {
 
 	RetrievalMethodMeta metaData = new RetrievalMethodMeta();

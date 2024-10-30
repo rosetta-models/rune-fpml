@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Commodity Notional.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityNotionalQuantity", builder=CommodityNotionalQuantity.CommodityNotionalQuantityBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityNotionalQuantity", builder=CommodityNotionalQuantity.CommodityNotionalQuantityBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityNotionalQuantity extends RosettaModelObject {
 
 	CommodityNotionalQuantityMeta metaData = new CommodityNotionalQuantityMeta();

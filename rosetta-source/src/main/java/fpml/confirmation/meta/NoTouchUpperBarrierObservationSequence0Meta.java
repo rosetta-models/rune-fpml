@@ -19,7 +19,7 @@ import java.util.function.Function;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaMeta(model=NoTouchUpperBarrierObservationSequence0.class)
 public class NoTouchUpperBarrierObservationSequence0Meta implements RosettaMetaData<NoTouchUpperBarrierObservationSequence0> {

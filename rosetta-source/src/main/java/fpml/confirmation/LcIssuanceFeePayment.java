@@ -38,9 +38,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An event representing a letter of credit issuance fee payment.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LcIssuanceFeePayment", builder=LcIssuanceFeePayment.LcIssuanceFeePaymentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LcIssuanceFeePayment", builder=LcIssuanceFeePayment.LcIssuanceFeePaymentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LcIssuanceFeePayment extends AbstractLcEvent {
 
 	LcIssuanceFeePaymentMeta metaData = new LcIssuanceFeePaymentMeta();

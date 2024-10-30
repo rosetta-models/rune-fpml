@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining a currency amount.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Money", builder=Money.MoneyBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Money", builder=Money.MoneyBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Money extends MoneyBase {
 
 	MoneyMeta metaData = new MoneyMeta();

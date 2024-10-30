@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that represents countparty shares or alternatively the total amount of the assignment fee owed to the admin agent.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanTransferFee", builder=LoanTransferFee.LoanTransferFeeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanTransferFee", builder=LoanTransferFee.LoanTransferFeeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanTransferFee extends RosettaModelObject {
 
 	LoanTransferFeeMeta metaData = new LoanTransferFeeMeta();

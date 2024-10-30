@@ -25,9 +25,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradeNotionalChangeModelSequence0", builder=TradeNotionalChangeModelSequence0.TradeNotionalChangeModelSequence0BuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradeNotionalChangeModelSequence0", builder=TradeNotionalChangeModelSequence0.TradeNotionalChangeModelSequence0BuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradeNotionalChangeModelSequence0 extends RosettaModelObject {
 
 	TradeNotionalChangeModelSequence0Meta metaData = new TradeNotionalChangeModelSequence0Meta();

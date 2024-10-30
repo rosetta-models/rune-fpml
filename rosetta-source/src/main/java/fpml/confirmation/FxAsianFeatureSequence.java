@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxAsianFeatureSequence", builder=FxAsianFeatureSequence.FxAsianFeatureSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxAsianFeatureSequence", builder=FxAsianFeatureSequence.FxAsianFeatureSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxAsianFeatureSequence extends RosettaModelObject {
 
 	FxAsianFeatureSequenceMeta metaData = new FxAsianFeatureSequenceMeta();

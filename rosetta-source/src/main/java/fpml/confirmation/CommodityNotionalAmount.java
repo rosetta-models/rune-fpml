@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A complex type to specify the notional amount.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityNotionalAmount", builder=CommodityNotionalAmount.CommodityNotionalAmountBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityNotionalAmount", builder=CommodityNotionalAmount.CommodityNotionalAmountBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityNotionalAmount extends NonNegativeMoney {
 
 	CommodityNotionalAmountMeta metaData = new CommodityNotionalAmountMeta();

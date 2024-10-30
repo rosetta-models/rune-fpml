@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that provides a combination of payment system identification codes with physical postal address details, for the purposes of identifying a party involved in the routing of a payment.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RoutingIdsAndExplicitDetails", builder=RoutingIdsAndExplicitDetails.RoutingIdsAndExplicitDetailsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RoutingIdsAndExplicitDetails", builder=RoutingIdsAndExplicitDetails.RoutingIdsAndExplicitDetailsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RoutingIdsAndExplicitDetails extends RosettaModelObject {
 
 	RoutingIdsAndExplicitDetailsMeta metaData = new RoutingIdsAndExplicitDetailsMeta();

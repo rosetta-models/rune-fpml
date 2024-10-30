@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The type that indicates the length of the resource.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ResourceLength", builder=ResourceLength.ResourceLengthBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ResourceLength", builder=ResourceLength.ResourceLengthBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ResourceLength extends RosettaModelObject {
 
 	ResourceLengthMeta metaData = new ResourceLengthMeta();

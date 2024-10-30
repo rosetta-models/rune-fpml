@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The parameters for defining the exercise period for a European style option together with any rules governing the notional amount of the underlying which can be exercised on any given exercise date and any associated exercise fees. A type defining the exercise period for a European style option together with any rules governing the notional amount of the underlying which can be exercised on any given exercise date and any associated exercise fees.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EuropeanExercise", builder=EuropeanExercise.EuropeanExerciseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EuropeanExercise", builder=EuropeanExercise.EuropeanExerciseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EuropeanExercise extends Exercise {
 
 	EuropeanExerciseMeta metaData = new EuropeanExerciseMeta();

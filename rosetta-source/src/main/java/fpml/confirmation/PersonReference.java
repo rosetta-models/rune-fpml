@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to an individual.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PersonReference", builder=PersonReference.PersonReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PersonReference", builder=PersonReference.PersonReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PersonReference extends Reference {
 
 	PersonReferenceMeta metaData = new PersonReferenceMeta();

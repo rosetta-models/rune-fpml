@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that describes what type of corporate action occurred.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CorporateActionType", builder=CorporateActionType.CorporateActionTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CorporateActionType", builder=CorporateActionType.CorporateActionTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CorporateActionType extends RosettaModelObject {
 
 	CorporateActionTypeMeta metaData = new CorporateActionTypeMeta();

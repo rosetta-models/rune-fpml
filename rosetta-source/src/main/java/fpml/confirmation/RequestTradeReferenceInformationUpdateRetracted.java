@@ -30,9 +30,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines the structure for a message retracting a request to updated information about trade.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RequestTradeReferenceInformationUpdateRetracted", builder=RequestTradeReferenceInformationUpdateRetracted.RequestTradeReferenceInformationUpdateRetractedBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RequestTradeReferenceInformationUpdateRetracted", builder=RequestTradeReferenceInformationUpdateRetracted.RequestTradeReferenceInformationUpdateRetractedBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RequestTradeReferenceInformationUpdateRetracted extends NonCorrectableRequestMessage {
 
 	RequestTradeReferenceInformationUpdateRetractedMeta metaData = new RequestTradeReferenceInformationUpdateRetractedMeta();

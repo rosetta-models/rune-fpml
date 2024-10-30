@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The time dimensions of a term-structure. The user must supply either a tenor or a date or both.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TimeDimension", builder=TimeDimension.TimeDimensionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TimeDimension", builder=TimeDimension.TimeDimensionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TimeDimension extends RosettaModelObject {
 
 	TimeDimensionMeta metaData = new TimeDimensionMeta();

@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Version aware identification of a leg.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LegIdentifier", builder=LegIdentifier.LegIdentifierBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LegIdentifier", builder=LegIdentifier.LegIdentifierBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LegIdentifier extends RosettaModelObject {
 
 	LegIdentifierMeta metaData = new LegIdentifierMeta();

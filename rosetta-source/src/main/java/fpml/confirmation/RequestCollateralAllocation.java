@@ -36,9 +36,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RequestCollateralAllocation", builder=RequestCollateralAllocation.RequestCollateralAllocationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RequestCollateralAllocation", builder=RequestCollateralAllocation.RequestCollateralAllocationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RequestCollateralAllocation extends CorrectableRequestMessage {
 
 	RequestCollateralAllocationMeta metaData = new RequestCollateralAllocationMeta();

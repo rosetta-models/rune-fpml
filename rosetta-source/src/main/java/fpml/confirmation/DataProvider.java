@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Specify as applicable. Parties may wish to refer to the state meteorological authority in a particular location or to an exchange or other third party data provider. Parties may find the definitions in the Commodity Definitions useful as a means of identifying potential Data Providers.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DataProvider", builder=DataProvider.DataProviderBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DataProvider", builder=DataProvider.DataProviderBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DataProvider extends RosettaModelObject {
 
 	DataProviderMeta metaData = new DataProviderMeta();

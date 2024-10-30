@@ -37,9 +37,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure describing a change to the size of a trade.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradeNotionalChange", builder=TradeNotionalChange.TradeNotionalChangeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradeNotionalChange", builder=TradeNotionalChange.TradeNotionalChangeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradeNotionalChange extends TradeChangeBase {
 
 	TradeNotionalChangeMeta metaData = new TradeNotionalChangeMeta();

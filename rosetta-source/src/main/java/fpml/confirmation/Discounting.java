@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining discounting information. The 2000 ISDA definitions, section 8.4. discounting (related to the calculation of a discounted fixed amount or floating amount) apply. This type must only be included if discounting applies.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Discounting", builder=Discounting.DiscountingBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Discounting", builder=Discounting.DiscountingBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Discounting extends RosettaModelObject {
 
 	DiscountingMeta metaData = new DiscountingMeta();

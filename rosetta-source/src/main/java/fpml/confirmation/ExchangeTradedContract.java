@@ -35,9 +35,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An exchange traded derivative contract.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ExchangeTradedContract", builder=ExchangeTradedContract.ExchangeTradedContractBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ExchangeTradedContract", builder=ExchangeTradedContract.ExchangeTradedContractBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ExchangeTradedContract extends ExchangeTraded {
 
 	ExchangeTradedContractMeta metaData = new ExchangeTradedContractMeta();

@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that defines an override identifier based on a qualifying scheme.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="OverrideId", builder=OverrideId.OverrideIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="OverrideId", builder=OverrideId.OverrideIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface OverrideId extends RosettaModelObject {
 
 	OverrideIdMeta metaData = new OverrideIdMeta();

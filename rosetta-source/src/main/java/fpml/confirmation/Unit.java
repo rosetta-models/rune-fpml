@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type used to record information about a unit, subdivision, desk, or other similar business entity.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Unit", builder=Unit.UnitBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Unit", builder=Unit.UnitBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Unit extends RosettaModelObject {
 
 	UnitMeta metaData = new UnitMeta();

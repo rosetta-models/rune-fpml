@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The barrier which, when breached, triggers the knock-in or knock-out of the barrier option.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityTrigger", builder=CommodityTrigger.CommodityTriggerBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityTrigger", builder=CommodityTrigger.CommodityTriggerBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityTrigger extends RosettaModelObject {
 
 	CommodityTriggerMeta metaData = new CommodityTriggerMeta();

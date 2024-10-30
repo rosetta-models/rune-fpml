@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that describes the rate of exchange at which the embedded option in a Dual Currency Deposit has been struck.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DualCurrencyStrikePrice", builder=DualCurrencyStrikePrice.DualCurrencyStrikePriceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DualCurrencyStrikePrice", builder=DualCurrencyStrikePrice.DualCurrencyStrikePriceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DualCurrencyStrikePrice extends RosettaModelObject {
 
 	DualCurrencyStrikePriceMeta metaData = new DualCurrencyStrikePriceMeta();

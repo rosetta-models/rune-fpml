@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The name of the entity that issues the brand
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityMetalBrandName", builder=CommodityMetalBrandName.CommodityMetalBrandNameBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityMetalBrandName", builder=CommodityMetalBrandName.CommodityMetalBrandNameBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityMetalBrandName extends RosettaModelObject {
 
 	CommodityMetalBrandNameMeta metaData = new CommodityMetalBrandNameMeta();

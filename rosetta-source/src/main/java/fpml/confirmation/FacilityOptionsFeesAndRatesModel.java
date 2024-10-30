@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model that describes additional (non-static) facility rate details. These are managed separate since they can change independently during the life of the facility.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FacilityOptionsFeesAndRatesModel", builder=FacilityOptionsFeesAndRatesModel.FacilityOptionsFeesAndRatesModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FacilityOptionsFeesAndRatesModel", builder=FacilityOptionsFeesAndRatesModel.FacilityOptionsFeesAndRatesModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FacilityOptionsFeesAndRatesModel extends RosettaModelObject {
 
 	FacilityOptionsFeesAndRatesModelMeta metaData = new FacilityOptionsFeesAndRatesModelMeta();

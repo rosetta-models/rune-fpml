@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A flexible description of the type or characteristics of a commodity grade
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="GenericCommodityGrade", builder=GenericCommodityGrade.GenericCommodityGradeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="GenericCommodityGrade", builder=GenericCommodityGrade.GenericCommodityGradeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface GenericCommodityGrade extends RosettaModelObject {
 
 	GenericCommodityGradeMeta metaData = new GenericCommodityGradeMeta();

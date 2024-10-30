@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type for defining a time with respect to a business day calendar location. For example, 11:00am London time.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BusinessCenterTime", builder=BusinessCenterTime.BusinessCenterTimeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BusinessCenterTime", builder=BusinessCenterTime.BusinessCenterTimeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BusinessCenterTime extends RosettaModelObject {
 
 	BusinessCenterTimeMeta metaData = new BusinessCenterTimeMeta();

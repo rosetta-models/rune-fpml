@@ -35,9 +35,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Base type for options starting with the 4-3 release, until we refactor the schema as part of the 5-0 release series.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="OptionBaseExtended", builder=OptionBaseExtended.OptionBaseExtendedBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="OptionBaseExtended", builder=OptionBaseExtended.OptionBaseExtendedBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface OptionBaseExtended extends OptionBase {
 
 	OptionBaseExtendedMeta metaData = new OptionBaseExtendedMeta();

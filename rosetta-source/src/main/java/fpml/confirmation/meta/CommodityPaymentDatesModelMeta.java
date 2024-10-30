@@ -19,7 +19,7 @@ import java.util.function.Function;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaMeta(model=CommodityPaymentDatesModel.class)
 public class CommodityPaymentDatesModelMeta implements RosettaMetaData<CommodityPaymentDatesModel> {

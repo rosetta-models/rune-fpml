@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model group defining the element used for message sequencing
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SequenceModel", builder=SequenceModel.SequenceModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SequenceModel", builder=SequenceModel.SequenceModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SequenceModel extends RosettaModelObject {
 
 	SequenceModelMeta metaData = new SequenceModelMeta();

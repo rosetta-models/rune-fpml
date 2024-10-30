@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A contact id identifier allocated by a party. FpML does not define the domain values associated with this element.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ContractId", builder=ContractId.ContractIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ContractId", builder=ContractId.ContractIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ContractId extends RosettaModelObject {
 
 	ContractIdMeta metaData = new ContractIdMeta();

@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A list of reasons for withholding tax being applied to a cash flow.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="WithholdingTaxReason", builder=WithholdingTaxReason.WithholdingTaxReasonBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="WithholdingTaxReason", builder=WithholdingTaxReason.WithholdingTaxReasonBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface WithholdingTaxReason extends RosettaModelObject {
 
 	WithholdingTaxReasonMeta metaData = new WithholdingTaxReasonMeta();

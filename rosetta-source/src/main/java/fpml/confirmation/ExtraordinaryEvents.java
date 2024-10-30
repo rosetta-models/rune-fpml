@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Where the underlying is shares, defines market events affecting the issuer of those shares that may require the terms of the transaction to be adjusted.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ExtraordinaryEvents", builder=ExtraordinaryEvents.ExtraordinaryEventsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ExtraordinaryEvents", builder=ExtraordinaryEvents.ExtraordinaryEventsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ExtraordinaryEvents extends RosettaModelObject {
 
 	ExtraordinaryEventsMeta metaData = new ExtraordinaryEventsMeta();

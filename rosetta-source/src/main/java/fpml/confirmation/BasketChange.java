@@ -26,9 +26,9 @@ import java.util.stream.Collectors;
 
 /**
  * Describes a change due to change in composition of basket underlyer
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BasketChange", builder=BasketChange.BasketChangeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BasketChange", builder=BasketChange.BasketChangeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BasketChange extends BasketChangeEvent {
 
 	BasketChangeMeta metaData = new BasketChangeMeta();

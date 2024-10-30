@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AdditionalTerm", builder=AdditionalTerm.AdditionalTermBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AdditionalTerm", builder=AdditionalTerm.AdditionalTermBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AdditionalTerm extends RosettaModelObject {
 
 	AdditionalTermMeta metaData = new AdditionalTermMeta();

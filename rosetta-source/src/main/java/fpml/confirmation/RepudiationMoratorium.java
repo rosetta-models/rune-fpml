@@ -20,9 +20,9 @@ import fpml.confirmation.meta.RepudiationMoratoriumMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RepudiationMoratorium", builder=RepudiationMoratorium.RepudiationMoratoriumBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RepudiationMoratorium", builder=RepudiationMoratorium.RepudiationMoratoriumBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RepudiationMoratorium extends RepudiationMoratoriumEvent {
 
 	RepudiationMoratoriumMeta metaData = new RepudiationMoratoriumMeta();

@@ -23,9 +23,9 @@ import fpml.confirmation.meta.DSAKeyValueMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DSAKeyValue", builder=DSAKeyValue.DSAKeyValueBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DSAKeyValue", builder=DSAKeyValue.DSAKeyValueBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DSAKeyValue extends DSAKeyValueType {
 
 	DSAKeyValueMeta metaData = new DSAKeyValueMeta();

@@ -32,9 +32,9 @@ import java.util.stream.Collectors;
 
 /**
  * An event representing a change in the default rate, applicable to outstanding loans in the event that the borrower is declared to be in default.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DefaultRateChange", builder=DefaultRateChange.DefaultRateChangeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DefaultRateChange", builder=DefaultRateChange.DefaultRateChangeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DefaultRateChange extends FacilityRateChangeEvent {
 
 	DefaultRateChangeMeta metaData = new DefaultRateChangeMeta();

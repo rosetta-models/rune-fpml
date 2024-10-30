@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An observation period that is offset from a Calculation Period.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Lag", builder=Lag.LagBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Lag", builder=Lag.LagBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Lag extends RosettaModelObject {
 
 	LagMeta metaData = new LagMeta();

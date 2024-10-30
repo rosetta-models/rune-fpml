@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An abstract base class for all calculated money amounts, which are in the currency of the cash multiplier of the calculation.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CalculatedAmount", builder=CalculatedAmount.CalculatedAmountBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CalculatedAmount", builder=CalculatedAmount.CalculatedAmountBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CalculatedAmount extends RosettaModelObject {
 
 	CalculatedAmountMeta metaData = new CalculatedAmountMeta();

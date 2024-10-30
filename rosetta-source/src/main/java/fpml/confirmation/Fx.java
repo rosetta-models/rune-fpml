@@ -32,9 +32,9 @@ import java.util.stream.Collectors;
 
 /**
  * Identifies a simple underlying asset type that is an FX rate. Used for specifying FX rates in the pricing and risk model.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Fx", builder=Fx.FxBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Fx", builder=Fx.FxBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Fx extends FxRateAsset {
 
 	FxMeta metaData = new FxMeta();

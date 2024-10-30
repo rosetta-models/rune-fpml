@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="VolatilityCap", builder=VolatilityCap.VolatilityCapBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="VolatilityCap", builder=VolatilityCap.VolatilityCapBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface VolatilityCap extends RosettaModelObject {
 
 	VolatilityCapMeta metaData = new VolatilityCapMeta();

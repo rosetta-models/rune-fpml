@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A reference identifying a rule within a validation scheme.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Validation", builder=Validation.ValidationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Validation", builder=Validation.ValidationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Validation extends RosettaModelObject {
 
 	ValidationMeta metaData = new ValidationMeta();

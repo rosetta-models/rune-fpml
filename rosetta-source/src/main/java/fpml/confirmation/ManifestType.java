@@ -25,9 +25,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ManifestType", builder=ManifestType.ManifestTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ManifestType", builder=ManifestType.ManifestTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ManifestType extends RosettaModelObject {
 
 	ManifestTypeMeta metaData = new ManifestTypeMeta();

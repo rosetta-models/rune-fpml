@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A reference to the number of units.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="NumberOfUnitsReference", builder=NumberOfUnitsReference.NumberOfUnitsReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="NumberOfUnitsReference", builder=NumberOfUnitsReference.NumberOfUnitsReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface NumberOfUnitsReference extends Reference {
 
 	NumberOfUnitsReferenceMeta metaData = new NumberOfUnitsReferenceMeta();

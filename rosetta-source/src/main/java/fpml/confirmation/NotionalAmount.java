@@ -24,9 +24,9 @@ import java.math.BigDecimal;
 
 /**
  * A complex type to specify the notional amount.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="NotionalAmount", builder=NotionalAmount.NotionalAmountBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="NotionalAmount", builder=NotionalAmount.NotionalAmountBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface NotionalAmount extends NonNegativeMoney {
 
 	NotionalAmountMeta metaData = new NotionalAmountMeta();

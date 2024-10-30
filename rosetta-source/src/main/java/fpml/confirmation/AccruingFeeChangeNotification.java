@@ -39,9 +39,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A loan servicing notification used to communicate a change in an accruing fee option. These options define the rates/calculations associated with facility-level accruing fees.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AccruingFeeChangeNotification", builder=AccruingFeeChangeNotification.AccruingFeeChangeNotificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AccruingFeeChangeNotification", builder=AccruingFeeChangeNotification.AccruingFeeChangeNotificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AccruingFeeChangeNotification extends AbstractFacilityNotification {
 
 	AccruingFeeChangeNotificationMeta metaData = new AccruingFeeChangeNotificationMeta();

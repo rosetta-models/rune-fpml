@@ -26,9 +26,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanInterestPaymentSequence", builder=LoanInterestPaymentSequence.LoanInterestPaymentSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanInterestPaymentSequence", builder=LoanInterestPaymentSequence.LoanInterestPaymentSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanInterestPaymentSequence extends RosettaModelObject {
 
 	LoanInterestPaymentSequenceMeta metaData = new LoanInterestPaymentSequenceMeta();

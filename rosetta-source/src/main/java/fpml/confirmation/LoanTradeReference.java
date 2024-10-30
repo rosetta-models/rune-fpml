@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A reference to a loan trade.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanTradeReference", builder=LoanTradeReference.LoanTradeReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanTradeReference", builder=LoanTradeReference.LoanTradeReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanTradeReference extends Reference {
 
 	LoanTradeReferenceMeta metaData = new LoanTradeReferenceMeta();

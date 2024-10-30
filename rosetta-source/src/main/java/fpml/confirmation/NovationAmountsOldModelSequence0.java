@@ -25,9 +25,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="NovationAmountsOldModelSequence0", builder=NovationAmountsOldModelSequence0.NovationAmountsOldModelSequence0BuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="NovationAmountsOldModelSequence0", builder=NovationAmountsOldModelSequence0.NovationAmountsOldModelSequence0BuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface NovationAmountsOldModelSequence0 extends RosettaModelObject {
 
 	NovationAmountsOldModelSequence0Meta metaData = new NovationAmountsOldModelSequence0Meta();

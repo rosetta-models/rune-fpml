@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A group which has Option Settlement elements.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="OptionSettlementModel", builder=OptionSettlementModel.OptionSettlementModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="OptionSettlementModel", builder=OptionSettlementModel.OptionSettlementModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface OptionSettlementModel extends RosettaModelObject {
 
 	OptionSettlementModelMeta metaData = new OptionSettlementModelMeta();

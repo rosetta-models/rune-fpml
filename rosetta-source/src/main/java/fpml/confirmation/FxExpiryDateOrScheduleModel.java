@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines the expiry/observation date or schedule of the accrual product.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxExpiryDateOrScheduleModel", builder=FxExpiryDateOrScheduleModel.FxExpiryDateOrScheduleModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxExpiryDateOrScheduleModel", builder=FxExpiryDateOrScheduleModel.FxExpiryDateOrScheduleModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxExpiryDateOrScheduleModel extends RosettaModelObject {
 
 	FxExpiryDateOrScheduleModelMeta metaData = new FxExpiryDateOrScheduleModelMeta();

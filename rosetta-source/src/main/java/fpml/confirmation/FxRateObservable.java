@@ -27,9 +27,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxRateObservable", builder=FxRateObservable.FxRateObservableBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxRateObservable", builder=FxRateObservable.FxRateObservableBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxRateObservable extends RosettaModelObject {
 
 	FxRateObservableMeta metaData = new FxRateObservableMeta();

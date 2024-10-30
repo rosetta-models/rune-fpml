@@ -33,9 +33,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the physical quantity of the electricity to be delivered.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ElectricityPhysicalDeliveryQuantity", builder=ElectricityPhysicalDeliveryQuantity.ElectricityPhysicalDeliveryQuantityBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ElectricityPhysicalDeliveryQuantity", builder=ElectricityPhysicalDeliveryQuantity.ElectricityPhysicalDeliveryQuantityBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ElectricityPhysicalDeliveryQuantity extends CommodityNotionalQuantity {
 
 	ElectricityPhysicalDeliveryQuantityMeta metaData = new ElectricityPhysicalDeliveryQuantityMeta();

@@ -25,9 +25,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SinglePayment", builder=SinglePayment.SinglePaymentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SinglePayment", builder=SinglePayment.SinglePaymentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SinglePayment extends PaymentBase {
 
 	SinglePaymentMeta metaData = new SinglePaymentMeta();

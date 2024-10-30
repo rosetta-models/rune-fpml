@@ -25,9 +25,9 @@ import java.util.stream.Collectors;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SignatureProperties", builder=SignatureProperties.SignaturePropertiesBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SignatureProperties", builder=SignatureProperties.SignaturePropertiesBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SignatureProperties extends SignaturePropertiesType {
 
 	SignaturePropertiesMeta metaData = new SignaturePropertiesMeta();

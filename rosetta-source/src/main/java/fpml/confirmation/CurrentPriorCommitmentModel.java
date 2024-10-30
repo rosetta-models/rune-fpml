@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model that represents current and prior global commitment break-down. The model requires global amounts and can optionally represent lender-specific share amounts.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CurrentPriorCommitmentModel", builder=CurrentPriorCommitmentModel.CurrentPriorCommitmentModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CurrentPriorCommitmentModel", builder=CurrentPriorCommitmentModel.CurrentPriorCommitmentModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CurrentPriorCommitmentModel extends RosettaModelObject {
 
 	CurrentPriorCommitmentModelMeta metaData = new CurrentPriorCommitmentModelMeta();

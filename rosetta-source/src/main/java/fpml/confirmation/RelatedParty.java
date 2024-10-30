@@ -22,9 +22,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RelatedParty", builder=RelatedParty.RelatedPartyBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RelatedParty", builder=RelatedParty.RelatedPartyBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RelatedParty extends RosettaModelObject {
 
 	RelatedPartyMeta metaData = new RelatedPartyMeta();

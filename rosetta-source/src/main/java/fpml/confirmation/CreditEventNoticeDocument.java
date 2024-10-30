@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An event type that records the occurrence of a credit event notice.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CreditEventNoticeDocument", builder=CreditEventNoticeDocument.CreditEventNoticeDocumentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CreditEventNoticeDocument", builder=CreditEventNoticeDocument.CreditEventNoticeDocumentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CreditEventNoticeDocument extends RosettaModelObject {
 
 	CreditEventNoticeDocumentMeta metaData = new CreditEventNoticeDocumentMeta();

@@ -22,9 +22,9 @@ import fpml.confirmation.meta.CommodityForwardLegMeta;
 
 /**
  * Defines the substitutable commodity forward leg. Abstract base class for all commodity forward legs.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityForwardLeg", builder=CommodityForwardLeg.CommodityForwardLegBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityForwardLeg", builder=CommodityForwardLeg.CommodityForwardLegBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityForwardLeg extends Leg {
 
 	CommodityForwardLegMeta metaData = new CommodityForwardLegMeta();

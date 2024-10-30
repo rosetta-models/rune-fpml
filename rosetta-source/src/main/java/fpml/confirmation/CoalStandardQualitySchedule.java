@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The quality attributes of the coal to be delivered, specified on a periodic basis.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CoalStandardQualitySchedule", builder=CoalStandardQualitySchedule.CoalStandardQualityScheduleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CoalStandardQualitySchedule", builder=CoalStandardQualitySchedule.CoalStandardQualityScheduleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CoalStandardQualitySchedule extends RosettaModelObject {
 
 	CoalStandardQualityScheduleMeta metaData = new CoalStandardQualityScheduleMeta();

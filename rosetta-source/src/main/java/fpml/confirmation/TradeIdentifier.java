@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining a trade identifier issued by the indicated party.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradeIdentifier", builder=TradeIdentifier.TradeIdentifierBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradeIdentifier", builder=TradeIdentifier.TradeIdentifierBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradeIdentifier extends RosettaModelObject {
 
 	TradeIdentifierMeta metaData = new TradeIdentifierMeta();

@@ -24,9 +24,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EventsChoice", builder=EventsChoice.EventsChoiceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EventsChoice", builder=EventsChoice.EventsChoiceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EventsChoice extends RosettaModelObject {
 
 	EventsChoiceMeta metaData = new EventsChoiceMeta();

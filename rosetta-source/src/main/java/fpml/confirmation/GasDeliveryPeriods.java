@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The different options for specifying the Delivery Periods for a physically settled gas trade.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="GasDeliveryPeriods", builder=GasDeliveryPeriods.GasDeliveryPeriodsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="GasDeliveryPeriods", builder=GasDeliveryPeriods.GasDeliveryPeriodsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface GasDeliveryPeriods extends CommodityDeliveryPeriods {
 
 	GasDeliveryPeriodsMeta metaData = new GasDeliveryPeriodsMeta();

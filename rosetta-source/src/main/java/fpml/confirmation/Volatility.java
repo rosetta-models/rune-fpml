@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Under 2002 Definitions, When entering into the Transaction, the parties should specify whether, for purposes of determining the initial Share price, they are agreeing to (a) a specific initial price (in which case, the initialLevel element should be populated with the price) or (b) use the price of a Share at the close of the regular trading session on the Trade Date (in which case the closingLevel element should be populated as true) or (c) in the case of a forward starting transaction only, use the Official Settlement Price of the Expiring Contract on the Observation Start Date (in which case expiring Level element should be populated as true). Under 2011 definitions, When entering into the Transaction, the parties should specify whether, for purposes of determining the OPSD Pricing Election, they are agreeing to (a) an agreed price (in which case, the initialLevel element should be populated with the price) or (b) use the Index Close Pricing (Official), (in which case closingLevel element should be populated as true) or (c) use OSP Pricing (in which case the initialLevelSource element should be populated with “OSPPrice”).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Volatility", builder=Volatility.VolatilityBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Volatility", builder=Volatility.VolatilityBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Volatility extends CalculationFromObservation {
 
 	VolatilityMeta metaData = new VolatilityMeta();

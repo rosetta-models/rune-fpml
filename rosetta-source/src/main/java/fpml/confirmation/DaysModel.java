@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The different options for specifying which days are pricing days within a pricing period. Unless a lag element is present, the pricing period will be contained within the calculation period.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DaysModel", builder=DaysModel.DaysModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DaysModel", builder=DaysModel.DaysModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DaysModel extends RosettaModelObject {
 
 	DaysModelMeta metaData = new DaysModelMeta();

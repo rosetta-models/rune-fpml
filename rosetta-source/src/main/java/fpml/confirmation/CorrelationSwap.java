@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Specifies the structure of a correlation swap. A Correlation Swap modelled using a single netted leg.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CorrelationSwap", builder=CorrelationSwap.CorrelationSwapBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CorrelationSwap", builder=CorrelationSwap.CorrelationSwapBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CorrelationSwap extends NettedSwapBase {
 
 	CorrelationSwapMeta metaData = new CorrelationSwapMeta();

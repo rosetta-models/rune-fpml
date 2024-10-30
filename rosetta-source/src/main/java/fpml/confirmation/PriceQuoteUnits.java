@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PriceQuoteUnits", builder=PriceQuoteUnits.PriceQuoteUnitsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PriceQuoteUnits", builder=PriceQuoteUnits.PriceQuoteUnitsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PriceQuoteUnits extends RosettaModelObject {
 
 	PriceQuoteUnitsMeta metaData = new PriceQuoteUnitsMeta();

@@ -28,9 +28,9 @@ import java.util.stream.Collectors;
 
 /**
  * An placeholder for the actual Return Swap Leg definition.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReturnSwapLeg", builder=ReturnSwapLeg.ReturnSwapLegBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReturnSwapLeg", builder=ReturnSwapLeg.ReturnSwapLegBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReturnSwapLeg extends DirectionalLeg {
 
 	ReturnSwapLegMeta metaData = new ReturnSwapLegMeta();

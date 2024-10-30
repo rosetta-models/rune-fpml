@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the cashflow representation of a swap trade.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Cashflows", builder=Cashflows.CashflowsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Cashflows", builder=Cashflows.CashflowsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Cashflows extends RosettaModelObject {
 
 	CashflowsMeta metaData = new CashflowsMeta();

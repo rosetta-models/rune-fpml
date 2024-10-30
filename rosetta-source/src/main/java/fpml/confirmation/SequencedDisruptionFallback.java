@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A Disruption Fallback with the sequence in which it should be applied relative to other Disruption Fallbacks.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SequencedDisruptionFallback", builder=SequencedDisruptionFallback.SequencedDisruptionFallbackBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SequencedDisruptionFallback", builder=SequencedDisruptionFallback.SequencedDisruptionFallbackBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SequencedDisruptionFallback extends RosettaModelObject {
 
 	SequencedDisruptionFallbackMeta metaData = new SequencedDisruptionFallbackMeta();

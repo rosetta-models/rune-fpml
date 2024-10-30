@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A scheme identifying the types of the Delivery Point for a physically settled commodity trade.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityDeliveryPoint", builder=CommodityDeliveryPoint.CommodityDeliveryPointBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityDeliveryPoint", builder=CommodityDeliveryPoint.CommodityDeliveryPointBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityDeliveryPoint extends RosettaModelObject {
 
 	CommodityDeliveryPointMeta metaData = new CommodityDeliveryPointMeta();

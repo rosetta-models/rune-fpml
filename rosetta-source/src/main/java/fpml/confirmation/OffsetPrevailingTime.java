@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Allows the specification of a time that may be on a day prior or subsequent to the day in question. This type is intended for use with a day of the week (i.e. where no actual date is specified) as part of, for example, a period that runs from 23:00-07:00 on a series of days and where holidays on the actual days would affect the entire time period.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="OffsetPrevailingTime", builder=OffsetPrevailingTime.OffsetPrevailingTimeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="OffsetPrevailingTime", builder=OffsetPrevailingTime.OffsetPrevailingTimeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface OffsetPrevailingTime extends RosettaModelObject {
 
 	OffsetPrevailingTimeMeta metaData = new OffsetPrevailingTimeMeta();

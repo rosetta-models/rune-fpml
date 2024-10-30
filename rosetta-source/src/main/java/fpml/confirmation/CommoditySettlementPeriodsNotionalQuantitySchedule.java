@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The notional quantity schedule of electricity that applies to one or more groups of Settlement Periods.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommoditySettlementPeriodsNotionalQuantitySchedule", builder=CommoditySettlementPeriodsNotionalQuantitySchedule.CommoditySettlementPeriodsNotionalQuantityScheduleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommoditySettlementPeriodsNotionalQuantitySchedule", builder=CommoditySettlementPeriodsNotionalQuantitySchedule.CommoditySettlementPeriodsNotionalQuantityScheduleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommoditySettlementPeriodsNotionalQuantitySchedule extends RosettaModelObject {
 
 	CommoditySettlementPeriodsNotionalQuantityScheduleMeta metaData = new CommoditySettlementPeriodsNotionalQuantityScheduleMeta();

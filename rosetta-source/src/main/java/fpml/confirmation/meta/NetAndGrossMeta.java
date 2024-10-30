@@ -19,7 +19,7 @@ import java.util.function.Function;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaMeta(model=NetAndGross.class)
 public class NetAndGrossMeta implements RosettaMetaData<NetAndGross> {

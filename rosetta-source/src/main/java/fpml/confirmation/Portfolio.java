@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type representing an arbitary grouping of trade references.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Portfolio", builder=Portfolio.PortfolioBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Portfolio", builder=Portfolio.PortfolioBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Portfolio extends RosettaModelObject {
 
 	PortfolioMeta metaData = new PortfolioMeta();

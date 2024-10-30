@@ -32,9 +32,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that holds a set of measures about an asset.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BasicAssetValuation", builder=BasicAssetValuation.BasicAssetValuationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BasicAssetValuation", builder=BasicAssetValuation.BasicAssetValuationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BasicAssetValuation extends Valuation {
 
 	BasicAssetValuationMeta metaData = new BasicAssetValuationMeta();

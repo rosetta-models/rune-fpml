@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Fixed payment amount within a Dividend Swap.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FixedPaymentAmount", builder=FixedPaymentAmount.FixedPaymentAmountBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FixedPaymentAmount", builder=FixedPaymentAmount.FixedPaymentAmountBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FixedPaymentAmount extends PaymentBase {
 
 	FixedPaymentAmountMeta metaData = new FixedPaymentAmountMeta();

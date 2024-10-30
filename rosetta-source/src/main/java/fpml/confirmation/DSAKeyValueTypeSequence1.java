@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DSAKeyValueTypeSequence1", builder=DSAKeyValueTypeSequence1.DSAKeyValueTypeSequence1BuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DSAKeyValueTypeSequence1", builder=DSAKeyValueTypeSequence1.DSAKeyValueTypeSequence1BuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DSAKeyValueTypeSequence1 extends RosettaModelObject {
 
 	DSAKeyValueTypeSequence1Meta metaData = new DSAKeyValueTypeSequence1Meta();

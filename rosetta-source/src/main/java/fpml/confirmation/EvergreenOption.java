@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A struture that represents an evergreen option that is available within a letter of credit instrument.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EvergreenOption", builder=EvergreenOption.EvergreenOptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EvergreenOption", builder=EvergreenOption.EvergreenOptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EvergreenOption extends RosettaModelObject {
 
 	EvergreenOptionMeta metaData = new EvergreenOptionMeta();

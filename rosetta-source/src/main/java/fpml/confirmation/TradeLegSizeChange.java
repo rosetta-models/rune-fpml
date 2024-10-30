@@ -25,9 +25,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure describing a change to the size of a single leg or stream of a trade.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradeLegSizeChange", builder=TradeLegSizeChange.TradeLegSizeChangeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradeLegSizeChange", builder=TradeLegSizeChange.TradeLegSizeChangeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradeLegSizeChange extends RosettaModelObject {
 
 	TradeLegSizeChangeMeta metaData = new TradeLegSizeChangeMeta();

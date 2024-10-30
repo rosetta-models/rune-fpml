@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type for defining a date that shall be subject to adjustment if it would otherwise fall on a day that is not a business day in the specified business centers, together with the convention for adjusting the date.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AdjustableOrAdjustedDate", builder=AdjustableOrAdjustedDate.AdjustableOrAdjustedDateBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AdjustableOrAdjustedDate", builder=AdjustableOrAdjustedDate.AdjustableOrAdjustedDateBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AdjustableOrAdjustedDate extends RosettaModelObject {
 
 	AdjustableOrAdjustedDateMeta metaData = new AdjustableOrAdjustedDateMeta();

@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the parameters required for each of the ISDA defined yield curve methods for cash settlement.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="YieldCurveMethod", builder=YieldCurveMethod.YieldCurveMethodBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="YieldCurveMethod", builder=YieldCurveMethod.YieldCurveMethodBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface YieldCurveMethod extends RosettaModelObject {
 
 	YieldCurveMethodMeta metaData = new YieldCurveMethodMeta();

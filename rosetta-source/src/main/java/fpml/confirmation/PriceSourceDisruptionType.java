@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the parameters used to get a price quote to replace the settlement rate option that is disrupted.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PriceSourceDisruptionType", builder=PriceSourceDisruptionType.PriceSourceDisruptionTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PriceSourceDisruptionType", builder=PriceSourceDisruptionType.PriceSourceDisruptionTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PriceSourceDisruptionType extends RosettaModelObject {
 
 	PriceSourceDisruptionTypeMeta metaData = new PriceSourceDisruptionTypeMeta();

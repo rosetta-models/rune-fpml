@@ -34,9 +34,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Identifies a simple underlying asset that is a swap.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SimpleIRSwap", builder=SimpleIRSwap.SimpleIRSwapBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SimpleIRSwap", builder=SimpleIRSwap.SimpleIRSwapBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SimpleIRSwap extends UnderlyingAssetType {
 
 	SimpleIRSwapMeta metaData = new SimpleIRSwapMeta();

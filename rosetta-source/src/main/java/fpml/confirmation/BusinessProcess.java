@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that can be used to identify the type of business process in a request. Examples include Allocation, Clearing, Confirmation, etc.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BusinessProcess", builder=BusinessProcess.BusinessProcessBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BusinessProcess", builder=BusinessProcess.BusinessProcessBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BusinessProcess extends RosettaModelObject {
 
 	BusinessProcessMeta metaData = new BusinessProcessMeta();

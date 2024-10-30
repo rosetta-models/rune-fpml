@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Provides a reference to a spread schedule.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SpreadScheduleReference", builder=SpreadScheduleReference.SpreadScheduleReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SpreadScheduleReference", builder=SpreadScheduleReference.SpreadScheduleReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SpreadScheduleReference extends Reference {
 
 	SpreadScheduleReferenceMeta metaData = new SpreadScheduleReferenceMeta();

@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining a principal exchange amount and adjusted exchange date. The type forms part of the cashflow representation of a swap stream.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PrincipalExchange", builder=PrincipalExchange.PrincipalExchangeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PrincipalExchange", builder=PrincipalExchange.PrincipalExchangeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PrincipalExchange extends RosettaModelObject {
 
 	PrincipalExchangeMeta metaData = new PrincipalExchangeMeta();

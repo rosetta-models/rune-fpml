@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A complex type for a two part identifier such as a USI.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="IssuerTradeId", builder=IssuerTradeId.IssuerTradeIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="IssuerTradeId", builder=IssuerTradeId.IssuerTradeIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface IssuerTradeId extends RosettaModelObject {
 
 	IssuerTradeIdMeta metaData = new IssuerTradeIdMeta();

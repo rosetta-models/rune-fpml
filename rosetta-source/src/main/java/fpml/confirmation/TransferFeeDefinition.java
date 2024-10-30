@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that represents the rules for payment of transfer fees to the agent.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TransferFeeDefinition", builder=TransferFeeDefinition.TransferFeeDefinitionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TransferFeeDefinition", builder=TransferFeeDefinition.TransferFeeDefinitionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TransferFeeDefinition extends RosettaModelObject {
 
 	TransferFeeDefinitionMeta metaData = new TransferFeeDefinitionMeta();

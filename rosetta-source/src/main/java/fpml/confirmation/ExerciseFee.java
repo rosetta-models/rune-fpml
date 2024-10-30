@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the fee payable on exercise of an option. This fee may be defined as an amount or a percentage of the notional exercised.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ExerciseFee", builder=ExerciseFee.ExerciseFeeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ExerciseFee", builder=ExerciseFee.ExerciseFeeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ExerciseFee extends RosettaModelObject {
 
 	ExerciseFeeMeta metaData = new ExerciseFeeMeta();

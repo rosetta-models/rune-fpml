@@ -37,9 +37,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Identifies the underlying asset when it is a listed future contract. An exchange traded future contract.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Future", builder=Future.FutureBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Future", builder=Future.FutureBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Future extends ExchangeTraded {
 
 	FutureMeta metaData = new FutureMeta();

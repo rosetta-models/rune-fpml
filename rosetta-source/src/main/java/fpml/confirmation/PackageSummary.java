@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Summary information about a trade package.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PackageSummary", builder=PackageSummary.PackageSummaryBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PackageSummary", builder=PackageSummary.PackageSummaryBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PackageSummary extends RosettaModelObject {
 
 	PackageSummaryMeta metaData = new PackageSummaryMeta();

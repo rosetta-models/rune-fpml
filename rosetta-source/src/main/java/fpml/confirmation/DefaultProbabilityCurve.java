@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A set of default probabilities.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DefaultProbabilityCurve", builder=DefaultProbabilityCurve.DefaultProbabilityCurveBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DefaultProbabilityCurve", builder=DefaultProbabilityCurve.DefaultProbabilityCurveBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DefaultProbabilityCurve extends PricingStructureValuation {
 
 	DefaultProbabilityCurveMeta metaData = new DefaultProbabilityCurveMeta();

@@ -30,9 +30,9 @@ import java.util.stream.Collectors;
 
 /**
  * Head of the substitution group for all letter of credit events.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LcEventGroup", builder=LcEventGroup.LcEventGroupBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LcEventGroup", builder=LcEventGroup.LcEventGroupBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LcEventGroup extends AbstractLcEvent {
 
 	LcEventGroupMeta metaData = new LcEventGroupMeta();

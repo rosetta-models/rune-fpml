@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Some kind of numerical measure about an asset, eg. its NPV, together with characteristics of that measure.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BasicQuotation", builder=BasicQuotation.BasicQuotationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BasicQuotation", builder=BasicQuotation.BasicQuotationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BasicQuotation extends RosettaModelObject {
 
 	BasicQuotationMeta metaData = new BasicQuotationMeta();

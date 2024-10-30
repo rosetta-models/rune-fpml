@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A quantity and associated unit.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="UnitQuantity", builder=UnitQuantity.UnitQuantityBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="UnitQuantity", builder=UnitQuantity.UnitQuantityBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface UnitQuantity extends RosettaModelObject {
 
 	UnitQuantityMeta metaData = new UnitQuantityMeta();

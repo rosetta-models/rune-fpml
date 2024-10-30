@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The schedule of Calculation Period First Days and Lasts Days. If there is only one First Day - Last Day pair then the First is equal to the Effective Date and the Last Day is equal to the Termination Date.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="WeatherCalculationPeriod", builder=WeatherCalculationPeriod.WeatherCalculationPeriodBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="WeatherCalculationPeriod", builder=WeatherCalculationPeriod.WeatherCalculationPeriodBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface WeatherCalculationPeriod extends RosettaModelObject {
 
 	WeatherCalculationPeriodMeta metaData = new WeatherCalculationPeriodMeta();

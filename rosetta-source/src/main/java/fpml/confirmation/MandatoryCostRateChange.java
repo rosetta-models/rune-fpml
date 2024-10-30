@@ -32,9 +32,9 @@ import java.util.stream.Collectors;
 
 /**
  * An event representing a change in the mandatory cost rate, applicable to certain outstanding loans in the UK market.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MandatoryCostRateChange", builder=MandatoryCostRateChange.MandatoryCostRateChangeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MandatoryCostRateChange", builder=MandatoryCostRateChange.MandatoryCostRateChangeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MandatoryCostRateChange extends FacilityRateChangeEvent {
 
 	MandatoryCostRateChangeMeta metaData = new MandatoryCostRateChangeMeta();

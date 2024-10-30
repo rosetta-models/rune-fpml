@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Choice between options related events.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="OptionsEventsBaseModel", builder=OptionsEventsBaseModel.OptionsEventsBaseModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="OptionsEventsBaseModel", builder=OptionsEventsBaseModel.OptionsEventsBaseModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface OptionsEventsBaseModel extends RosettaModelObject {
 
 	OptionsEventsBaseModelMeta metaData = new OptionsEventsBaseModelMeta();

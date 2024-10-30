@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An abstract base class for payment types.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PaymentBase", builder=PaymentBase.PaymentBaseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PaymentBase", builder=PaymentBase.PaymentBaseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PaymentBase extends RosettaModelObject {
 
 	PaymentBaseMeta metaData = new PaymentBaseMeta();

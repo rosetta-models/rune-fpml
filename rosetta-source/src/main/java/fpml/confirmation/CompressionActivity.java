@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that shows how multiple trades have been combined into a result.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CompressionActivity", builder=CompressionActivity.CompressionActivityBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CompressionActivity", builder=CompressionActivity.CompressionActivityBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CompressionActivity extends RosettaModelObject {
 
 	CompressionActivityMeta metaData = new CompressionActivityMeta();

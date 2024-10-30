@@ -36,9 +36,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A floating rate calculation definition. A type defining the floating rate and definitions relating to the calculation of floating rate amounts.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FloatingRateCalculation", builder=FloatingRateCalculation.FloatingRateCalculationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FloatingRateCalculation", builder=FloatingRateCalculation.FloatingRateCalculationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FloatingRateCalculation extends FloatingRate {
 
 	FloatingRateCalculationMeta metaData = new FloatingRateCalculationMeta();

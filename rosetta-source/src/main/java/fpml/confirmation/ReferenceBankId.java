@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReferenceBankId", builder=ReferenceBankId.ReferenceBankIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReferenceBankId", builder=ReferenceBankId.ReferenceBankIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReferenceBankId extends RosettaModelObject {
 
 	ReferenceBankIdMeta metaData = new ReferenceBankIdMeta();

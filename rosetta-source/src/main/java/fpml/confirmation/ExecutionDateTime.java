@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the trade execution date time and the source of it. For use inside containing types which already have a Reference to a Party that has assigned this trade execution date time.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ExecutionDateTime", builder=ExecutionDateTime.ExecutionDateTimeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ExecutionDateTime", builder=ExecutionDateTime.ExecutionDateTimeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ExecutionDateTime extends RosettaModelObject {
 
 	ExecutionDateTimeMeta metaData = new ExecutionDateTimeMeta();

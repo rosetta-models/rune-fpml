@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A complex type to specified payments in a simpler fashion than the Payment type. This construct should be used from the version 4.3 onwards.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SimplePayment", builder=SimplePayment.SimplePaymentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SimplePayment", builder=SimplePayment.SimplePaymentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SimplePayment extends PaymentBase {
 
 	SimplePaymentMeta metaData = new SimplePaymentMeta();

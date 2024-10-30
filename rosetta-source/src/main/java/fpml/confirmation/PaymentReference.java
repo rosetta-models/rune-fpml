@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to a payment.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PaymentReference", builder=PaymentReference.PaymentReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PaymentReference", builder=PaymentReference.PaymentReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PaymentReference extends Reference {
 
 	PaymentReferenceMeta metaData = new PaymentReferenceMeta();

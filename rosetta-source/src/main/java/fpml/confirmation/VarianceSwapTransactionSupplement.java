@@ -32,9 +32,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Specifies the structure of a variance swap transaction supplement. A Variance Swap Transaction Supplement.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="VarianceSwapTransactionSupplement", builder=VarianceSwapTransactionSupplement.VarianceSwapTransactionSupplementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="VarianceSwapTransactionSupplement", builder=VarianceSwapTransactionSupplement.VarianceSwapTransactionSupplementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface VarianceSwapTransactionSupplement extends Product {
 
 	VarianceSwapTransactionSupplementMeta metaData = new VarianceSwapTransactionSupplementMeta();

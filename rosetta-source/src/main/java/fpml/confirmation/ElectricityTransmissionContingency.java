@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure to specify the tranmission contingency and the party that bears the obligation.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ElectricityTransmissionContingency", builder=ElectricityTransmissionContingency.ElectricityTransmissionContingencyBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ElectricityTransmissionContingency", builder=ElectricityTransmissionContingency.ElectricityTransmissionContingencyBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ElectricityTransmissionContingency extends RosettaModelObject {
 
 	ElectricityTransmissionContingencyMeta metaData = new ElectricityTransmissionContingencyMeta();

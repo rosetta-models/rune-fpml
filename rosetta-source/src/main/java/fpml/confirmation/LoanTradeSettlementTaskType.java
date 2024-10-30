@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that uniquely identifies a settlement task type within a syndicated loan structure.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanTradeSettlementTaskType", builder=LoanTradeSettlementTaskType.LoanTradeSettlementTaskTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanTradeSettlementTaskType", builder=LoanTradeSettlementTaskType.LoanTradeSettlementTaskTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanTradeSettlementTaskType extends RosettaModelObject {
 
 	LoanTradeSettlementTaskTypeMeta metaData = new LoanTradeSettlementTaskTypeMeta();

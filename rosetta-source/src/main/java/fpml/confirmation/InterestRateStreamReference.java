@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to an InterestRateStream component.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="InterestRateStreamReference", builder=InterestRateStreamReference.InterestRateStreamReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="InterestRateStreamReference", builder=InterestRateStreamReference.InterestRateStreamReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface InterestRateStreamReference extends Reference {
 
 	InterestRateStreamReferenceMeta metaData = new InterestRateStreamReferenceMeta();

@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that an order&#39;s identifier(s).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="OrderIdentifier", builder=OrderIdentifier.OrderIdentifierBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="OrderIdentifier", builder=OrderIdentifier.OrderIdentifierBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface OrderIdentifier extends RosettaModelObject {
 
 	OrderIdentifierMeta metaData = new OrderIdentifierMeta();

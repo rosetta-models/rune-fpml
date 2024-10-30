@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type to define the cash settlement terms for a product where cash settlement is applicable.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CashSettlement", builder=CashSettlement.CashSettlementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CashSettlement", builder=CashSettlement.CashSettlementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CashSettlement extends RosettaModelObject {
 
 	CashSettlementMeta metaData = new CashSettlementMeta();

@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type to define the main publication source.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MainPublication", builder=MainPublication.MainPublicationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MainPublication", builder=MainPublication.MainPublicationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MainPublication extends RosettaModelObject {
 
 	MainPublicationMeta metaData = new MainPublicationMeta();

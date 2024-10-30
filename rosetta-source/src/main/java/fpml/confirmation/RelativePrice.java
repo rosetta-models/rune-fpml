@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type which represents Pricing relative to a Benchmark.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RelativePrice", builder=RelativePrice.RelativePriceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RelativePrice", builder=RelativePrice.RelativePriceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RelativePrice extends RosettaModelObject {
 
 	RelativePriceMeta metaData = new RelativePriceMeta();

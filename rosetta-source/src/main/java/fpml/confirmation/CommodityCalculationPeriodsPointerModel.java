@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Model group enables users to reference a Calculation Periods schedule in the form of a series of actual dates in a calculationPeriods container or in the form of a parameterized schedule in a calculationPeriodsSchedule container.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityCalculationPeriodsPointerModel", builder=CommodityCalculationPeriodsPointerModel.CommodityCalculationPeriodsPointerModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityCalculationPeriodsPointerModel", builder=CommodityCalculationPeriodsPointerModel.CommodityCalculationPeriodsPointerModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityCalculationPeriodsPointerModel extends RosettaModelObject {
 
 	CommodityCalculationPeriodsPointerModelMeta metaData = new CommodityCalculationPeriodsPointerModelMeta();

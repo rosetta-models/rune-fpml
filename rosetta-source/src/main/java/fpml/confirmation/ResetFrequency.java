@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the reset frequency. In the case of a weekly reset, also specifies the day of the week that the reset occurs. If the reset frequency is greater than the calculation period frequency the this implies that more or more reset dates is established for each calculation period and some form of rate averaginhg is applicable. The specific averaging method of calculation is specified in FloatingRateCalculation. In case the reset frequency is of value T (term), the period is defined by the swap\swapStream\calculationPerioDates\effectiveDate and the swap\swapStream\calculationPerioDates\terminationDate.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ResetFrequency", builder=ResetFrequency.ResetFrequencyBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ResetFrequency", builder=ResetFrequency.ResetFrequencyBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ResetFrequency extends Frequency {
 
 	ResetFrequencyMeta metaData = new ResetFrequencyMeta();

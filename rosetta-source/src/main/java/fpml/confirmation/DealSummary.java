@@ -32,9 +32,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A short form of a deal.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DealSummary", builder=DealSummary.DealSummaryBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DealSummary", builder=DealSummary.DealSummaryBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DealSummary extends DealIdentifier {
 
 	DealSummaryMeta metaData = new DealSummaryMeta();

@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Standard FX Spot and Forward offset conventions.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaEnum("FxOffsetConventionEnum")
 public enum FxOffsetConventionEnum {

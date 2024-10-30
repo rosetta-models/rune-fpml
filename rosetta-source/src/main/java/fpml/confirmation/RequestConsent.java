@@ -38,9 +38,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A message requesting that the sender be authorized by the recipient to peform an action.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RequestConsent", builder=RequestConsent.RequestConsentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RequestConsent", builder=RequestConsent.RequestConsentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RequestConsent extends CorrectableRequestMessage {
 
 	RequestConsentMeta metaData = new RequestConsentMeta();

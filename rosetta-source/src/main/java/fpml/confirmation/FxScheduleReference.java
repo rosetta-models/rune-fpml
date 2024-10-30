@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to a FX Schedule structure.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxScheduleReference", builder=FxScheduleReference.FxScheduleReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxScheduleReference", builder=FxScheduleReference.FxScheduleReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxScheduleReference extends Reference {
 
 	FxScheduleReferenceMeta metaData = new FxScheduleReferenceMeta();

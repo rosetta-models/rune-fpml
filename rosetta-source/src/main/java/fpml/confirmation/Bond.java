@@ -35,9 +35,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Identifies the underlying asset when it is a series or a class of bonds. An exchange traded bond.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Bond", builder=Bond.BondBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Bond", builder=Bond.BondBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Bond extends UnderlyingAssetType {
 
 	BondMeta metaData = new BondMeta();

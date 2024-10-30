@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the basic content for a message sent to inform another system that some exception has been detected.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Exception", builder=Exception.ExceptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Exception", builder=Exception.ExceptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Exception extends Message {
 
 	ExceptionMeta metaData = new ExceptionMeta();

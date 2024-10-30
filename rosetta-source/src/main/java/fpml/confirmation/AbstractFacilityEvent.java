@@ -32,9 +32,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An abstract base type for all facility-level business events.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AbstractFacilityEvent", builder=AbstractFacilityEvent.AbstractFacilityEventBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AbstractFacilityEvent", builder=AbstractFacilityEvent.AbstractFacilityEventBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AbstractFacilityEvent extends AbstractLoanServicingEvent {
 
 	AbstractFacilityEventMeta metaData = new AbstractFacilityEventMeta();

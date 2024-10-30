@@ -33,9 +33,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A message requesting that a trade be cleared by a clearing service.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RequestClearing", builder=RequestClearing.RequestClearingBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RequestClearing", builder=RequestClearing.RequestClearingBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RequestClearing extends CorrectableRequestMessage {
 
 	RequestClearingMeta metaData = new RequestClearingMeta();

@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to a valuation scenario.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ValuationScenarioReference", builder=ValuationScenarioReference.ValuationScenarioReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ValuationScenarioReference", builder=ValuationScenarioReference.ValuationScenarioReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ValuationScenarioReference extends Reference {
 
 	ValuationScenarioReferenceMeta metaData = new ValuationScenarioReferenceMeta();

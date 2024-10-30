@@ -17,9 +17,9 @@ import fpml.confirmation.meta.FxDisruptionEventMeta;
 
 /**
  * The abstract element used to create the extendible set of disruption events The base class for all disruption events
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxDisruptionEvent", builder=FxDisruptionEvent.FxDisruptionEventBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxDisruptionEvent", builder=FxDisruptionEvent.FxDisruptionEventBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxDisruptionEvent extends RosettaModelObject {
 
 	FxDisruptionEventMeta metaData = new FxDisruptionEventMeta();

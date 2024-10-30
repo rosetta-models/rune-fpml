@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ElectricityDeliverySequence1", builder=ElectricityDeliverySequence1.ElectricityDeliverySequence1BuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ElectricityDeliverySequence1", builder=ElectricityDeliverySequence1.ElectricityDeliverySequence1BuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ElectricityDeliverySequence1 extends RosettaModelObject {
 
 	ElectricityDeliverySequence1Meta metaData = new ElectricityDeliverySequence1Meta();

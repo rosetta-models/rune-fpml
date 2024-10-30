@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * A list of standard market rules for the treatment of split of assignment fees between counterparties.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaEnum("LoanTransferFeePaidByEnum")
 public enum LoanTransferFeePaidByEnum {

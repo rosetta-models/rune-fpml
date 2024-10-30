@@ -31,9 +31,9 @@ import java.util.stream.Collectors;
 
 /**
  * An event representing expiration of the penalty rate.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PenaltyRateExpiry", builder=PenaltyRateExpiry.PenaltyRateExpiryBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PenaltyRateExpiry", builder=PenaltyRateExpiry.PenaltyRateExpiryBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PenaltyRateExpiry extends AbstractFacilityContractEvent {
 
 	PenaltyRateExpiryMeta metaData = new PenaltyRateExpiryMeta();

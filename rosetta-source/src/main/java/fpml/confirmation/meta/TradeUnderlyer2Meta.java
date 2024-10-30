@@ -19,7 +19,7 @@ import java.util.function.Function;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaMeta(model=TradeUnderlyer2.class)
 public class TradeUnderlyer2Meta implements RosettaMetaData<TradeUnderlyer2> {

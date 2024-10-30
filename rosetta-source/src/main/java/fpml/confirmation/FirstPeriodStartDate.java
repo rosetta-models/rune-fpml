@@ -20,9 +20,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FirstPeriodStartDate", builder=FirstPeriodStartDate.FirstPeriodStartDateBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FirstPeriodStartDate", builder=FirstPeriodStartDate.FirstPeriodStartDateBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FirstPeriodStartDate extends RosettaModelObject {
 
 	FirstPeriodStartDateMeta metaData = new FirstPeriodStartDateMeta();

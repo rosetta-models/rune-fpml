@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that models a complete instruction for settling a currency payment, including the settlement method to be used, the correspondent bank, any intermediary banks and the ultimate beneficary.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SettlementInstruction", builder=SettlementInstruction.SettlementInstructionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SettlementInstruction", builder=SettlementInstruction.SettlementInstructionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SettlementInstruction extends RosettaModelObject {
 
 	SettlementInstructionMeta metaData = new SettlementInstructionMeta();

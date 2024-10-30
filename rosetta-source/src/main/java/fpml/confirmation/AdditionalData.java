@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Provides extra information not represented in the model that may be useful in processing the message i.e. diagnosing the reason for failure.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AdditionalData", builder=AdditionalData.AdditionalDataBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AdditionalData", builder=AdditionalData.AdditionalDataBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AdditionalData extends RosettaModelObject {
 
 	AdditionalDataMeta metaData = new AdditionalDataMeta();

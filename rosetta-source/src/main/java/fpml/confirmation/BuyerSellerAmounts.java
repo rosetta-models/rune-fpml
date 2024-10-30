@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that defines the buyer and seller amounts of a payable.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BuyerSellerAmounts", builder=BuyerSellerAmounts.BuyerSellerAmountsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BuyerSellerAmounts", builder=BuyerSellerAmounts.BuyerSellerAmountsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BuyerSellerAmounts extends RosettaModelObject {
 
 	BuyerSellerAmountsMeta metaData = new BuyerSellerAmountsMeta();

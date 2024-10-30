@@ -40,9 +40,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A message that withdraws an advice to a third party that a trade execution has occurred.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ExecutionAdviceRetracted", builder=ExecutionAdviceRetracted.ExecutionAdviceRetractedBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ExecutionAdviceRetracted", builder=ExecutionAdviceRetracted.ExecutionAdviceRetractedBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ExecutionAdviceRetracted extends NonCorrectableRequestMessage {
 
 	ExecutionAdviceRetractedMeta metaData = new ExecutionAdviceRetractedMeta();

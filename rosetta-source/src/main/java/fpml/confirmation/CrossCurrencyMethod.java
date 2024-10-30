@@ -27,9 +27,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CrossCurrencyMethod", builder=CrossCurrencyMethod.CrossCurrencyMethodBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CrossCurrencyMethod", builder=CrossCurrencyMethod.CrossCurrencyMethodBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CrossCurrencyMethod extends RosettaModelObject {
 
 	CrossCurrencyMethodMeta metaData = new CrossCurrencyMethodMeta();

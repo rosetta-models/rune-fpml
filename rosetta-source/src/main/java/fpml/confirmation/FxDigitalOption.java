@@ -38,9 +38,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An FX digital option transaction definition. Describes an option having a triggerable fixed payout.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxDigitalOption", builder=FxDigitalOption.FxDigitalOptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxDigitalOption", builder=FxDigitalOption.FxDigitalOptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxDigitalOption extends Option {
 
 	FxDigitalOptionMeta metaData = new FxDigitalOptionMeta();

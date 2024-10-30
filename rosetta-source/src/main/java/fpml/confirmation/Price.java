@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing the strike price.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Price", builder=Price.PriceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Price", builder=Price.PriceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Price extends RosettaModelObject {
 
 	PriceMeta metaData = new PriceMeta();

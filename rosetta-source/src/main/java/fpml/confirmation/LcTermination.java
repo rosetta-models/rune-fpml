@@ -32,9 +32,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An event representing either the expiry or cancellation of a letter of credit
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LcTermination", builder=LcTermination.LcTerminationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LcTermination", builder=LcTermination.LcTerminationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LcTermination extends AbstractLcEvent {
 
 	LcTerminationMeta metaData = new LcTerminationMeta();

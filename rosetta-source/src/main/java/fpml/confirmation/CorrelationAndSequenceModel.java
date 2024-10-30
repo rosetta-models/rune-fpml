@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model group defining the full messsage correlation mechanism. The correlation ID is used to link followup corrections and retractions to the original request, and to help identify which replies link to which requests. (The &quot;inReplyTo&quot; element may also be used for this purpose, but it contains a message identifier rather than a business object identifier.) The sequence ID is used to establish an ordering between multiple messages related to the same business object (identified by the same correlation identifier). It contains a value the must ascend (possibly with gaps) messages on the same correlation ID.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CorrelationAndSequenceModel", builder=CorrelationAndSequenceModel.CorrelationAndSequenceModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CorrelationAndSequenceModel", builder=CorrelationAndSequenceModel.CorrelationAndSequenceModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CorrelationAndSequenceModel extends RosettaModelObject {
 
 	CorrelationAndSequenceModelMeta metaData = new CorrelationAndSequenceModelMeta();

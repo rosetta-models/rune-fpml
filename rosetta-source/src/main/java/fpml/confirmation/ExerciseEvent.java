@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the adjusted dates associated with a particular exercise event.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ExerciseEvent", builder=ExerciseEvent.ExerciseEventBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ExerciseEvent", builder=ExerciseEvent.ExerciseEventBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ExerciseEvent extends RosettaModelObject {
 
 	ExerciseEventMeta metaData = new ExerciseEventMeta();

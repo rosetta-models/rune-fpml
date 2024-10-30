@@ -28,9 +28,9 @@ import java.util.stream.Collectors;
 
 /**
  * An event structure defining counterparty-to-counterparty loan trade information. This structure contains the main (e.g. fund manager/main counterparty) trade details.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanTradeEvent", builder=LoanTradeEvent.LoanTradeEventBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanTradeEvent", builder=LoanTradeEvent.LoanTradeEventBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanTradeEvent extends AbstractLoanTradeEvent {
 
 	LoanTradeEventMeta metaData = new LoanTradeEventMeta();

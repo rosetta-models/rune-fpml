@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Describes a rate source to be fixed and the date the fixing occurs
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxRateSourceFixing", builder=FxRateSourceFixing.FxRateSourceFixingBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxRateSourceFixing", builder=FxRateSourceFixing.FxRateSourceFixingBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxRateSourceFixing extends RosettaModelObject {
 
 	FxRateSourceFixingMeta metaData = new FxRateSourceFixingMeta();

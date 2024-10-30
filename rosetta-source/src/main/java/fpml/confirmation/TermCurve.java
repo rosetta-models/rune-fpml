@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A curve consisting only of values over a term. This is a restricted form of One Dimensional Structure.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TermCurve", builder=TermCurve.TermCurveBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TermCurve", builder=TermCurve.TermCurveBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TermCurve extends RosettaModelObject {
 
 	TermCurveMeta metaData = new TermCurveMeta();

@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to a Valuation dates node.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ValuationDatesReference", builder=ValuationDatesReference.ValuationDatesReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ValuationDatesReference", builder=ValuationDatesReference.ValuationDatesReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ValuationDatesReference extends Reference {
 
 	ValuationDatesReferenceMeta metaData = new ValuationDatesReferenceMeta();

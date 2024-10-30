@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FeeTradeModel", builder=FeeTradeModel.FeeTradeModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FeeTradeModel", builder=FeeTradeModel.FeeTradeModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FeeTradeModel extends RosettaModelObject {
 
 	FeeTradeModelMeta metaData = new FeeTradeModelMeta();

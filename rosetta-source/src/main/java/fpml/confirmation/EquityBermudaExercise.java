@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type for defining exercise procedures associated with a Bermuda style exercise of an equity option. The term Bermuda is adopted in FpML for consistency with the ISDA Definitions.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EquityBermudaExercise", builder=EquityBermudaExercise.EquityBermudaExerciseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EquityBermudaExercise", builder=EquityBermudaExercise.EquityBermudaExerciseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EquityBermudaExercise extends SharedAmericanExercise {
 
 	EquityBermudaExerciseMeta metaData = new EquityBermudaExerciseMeta();

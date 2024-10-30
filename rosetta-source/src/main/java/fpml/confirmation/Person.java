@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that represents information about a person connected with a trade or business process.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Person", builder=Person.PersonBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Person", builder=Person.PersonBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Person extends RosettaModelObject {
 
 	PersonMeta metaData = new PersonMeta();

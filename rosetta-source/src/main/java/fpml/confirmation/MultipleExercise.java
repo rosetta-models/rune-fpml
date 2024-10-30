@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining multiple exercises. As defining in the 2000 ISDA Definitions, Section 12.4. Multiple Exercise, the buyer of the option has the right to exercise all or less than all the unexercised notional amount of the underlying swap on one or more days in the exercise period, but on any such day may not exercise less than the minimum notional amount or more than the maximum notional amount, and if an integral multiple amount is specified, the notional exercised must be equal to or, be an integral multiple of, the integral multiple amount.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MultipleExercise", builder=MultipleExercise.MultipleExerciseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MultipleExercise", builder=MultipleExercise.MultipleExerciseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MultipleExercise extends RosettaModelObject {
 
 	MultipleExerciseMeta metaData = new MultipleExerciseMeta();

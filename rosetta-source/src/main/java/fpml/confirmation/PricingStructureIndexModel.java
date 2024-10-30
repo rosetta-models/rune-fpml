@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The index (an ordinate) of a pricing structure. The index expresses how far along a particular dimension (e.g. time, strike, etc.) a point is located.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PricingStructureIndexModel", builder=PricingStructureIndexModel.PricingStructureIndexModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PricingStructureIndexModel", builder=PricingStructureIndexModel.PricingStructureIndexModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PricingStructureIndexModel extends RosettaModelObject {
 
 	PricingStructureIndexModelMeta metaData = new PricingStructureIndexModelMeta();

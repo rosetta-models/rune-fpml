@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that contains full details of a predefined fixed payout which may occur (or not) in a Barrier Option or Digital Option when a trigger event occurs (or not).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxOptionPayout", builder=FxOptionPayout.FxOptionPayoutBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxOptionPayout", builder=FxOptionPayout.FxOptionPayoutBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxOptionPayout extends NonNegativeMoney {
 
 	FxOptionPayoutMeta metaData = new FxOptionPayoutMeta();

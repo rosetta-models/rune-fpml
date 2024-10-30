@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A reference to a loan contract.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanContractReference", builder=LoanContractReference.LoanContractReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanContractReference", builder=LoanContractReference.LoanContractReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanContractReference extends Reference {
 
 	LoanContractReferenceMeta metaData = new LoanContractReferenceMeta();

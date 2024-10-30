@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ValuationDate", builder=ValuationDate.ValuationDateBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ValuationDate", builder=ValuationDate.ValuationDateBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ValuationDate extends RosettaModelObject {
 
 	ValuationDateMeta metaData = new ValuationDateMeta();

@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A scheme identifying the types of the Delivery Point for a physically settled gas trade.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="GasDeliveryPoint", builder=GasDeliveryPoint.GasDeliveryPointBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="GasDeliveryPoint", builder=GasDeliveryPoint.GasDeliveryPointBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface GasDeliveryPoint extends RosettaModelObject {
 
 	GasDeliveryPointMeta metaData = new GasDeliveryPointMeta();

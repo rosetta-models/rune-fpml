@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MasterAgreementType", builder=MasterAgreementType.MasterAgreementTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MasterAgreementType", builder=MasterAgreementType.MasterAgreementTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MasterAgreementType extends RosettaModelObject {
 
 	MasterAgreementTypeMeta metaData = new MasterAgreementTypeMeta();

@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ExchangeRateSequence", builder=ExchangeRateSequence.ExchangeRateSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ExchangeRateSequence", builder=ExchangeRateSequence.ExchangeRateSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ExchangeRateSequence extends RosettaModelObject {
 
 	ExchangeRateSequenceMeta metaData = new ExchangeRateSequenceMeta();

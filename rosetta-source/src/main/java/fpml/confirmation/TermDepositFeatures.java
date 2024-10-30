@@ -20,9 +20,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TermDepositFeatures", builder=TermDepositFeatures.TermDepositFeaturesBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TermDepositFeatures", builder=TermDepositFeatures.TermDepositFeaturesBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TermDepositFeatures extends RosettaModelObject {
 
 	TermDepositFeaturesMeta metaData = new TermDepositFeaturesMeta();

@@ -36,9 +36,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure describing an option expiring (i.e. passing its last exercise time and becoming worthless.)
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="OptionExpiry", builder=OptionExpiry.OptionExpiryBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="OptionExpiry", builder=OptionExpiry.OptionExpiryBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface OptionExpiry extends AbstractEvent {
 
 	OptionExpiryMeta metaData = new OptionExpiryMeta();

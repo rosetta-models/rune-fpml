@@ -35,9 +35,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An event representing a principal repayment being made by the borrower.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Repayment", builder=Repayment.RepaymentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Repayment", builder=Repayment.RepaymentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Repayment extends AbstractLoanContractEvent {
 
 	RepaymentMeta metaData = new RepaymentMeta();

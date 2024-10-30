@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure describing the value in &quot;native&quot; currency of an instrument that was traded.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="InstrumentTradePrincipal", builder=InstrumentTradePrincipal.InstrumentTradePrincipalBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="InstrumentTradePrincipal", builder=InstrumentTradePrincipal.InstrumentTradePrincipalBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface InstrumentTradePrincipal extends RosettaModelObject {
 
 	InstrumentTradePrincipalMeta metaData = new InstrumentTradePrincipalMeta();

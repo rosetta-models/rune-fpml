@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The data type use for message identifiers.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MessageId", builder=MessageId.MessageIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MessageId", builder=MessageId.MessageIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MessageId extends RosettaModelObject {
 
 	MessageIdMeta metaData = new MessageIdMeta();

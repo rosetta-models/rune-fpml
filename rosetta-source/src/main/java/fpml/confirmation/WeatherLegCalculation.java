@@ -25,9 +25,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type to capture details of the calculation of the Payment Amount on a Weather Index Transaction.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="WeatherLegCalculation", builder=WeatherLegCalculation.WeatherLegCalculationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="WeatherLegCalculation", builder=WeatherLegCalculation.WeatherLegCalculationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface WeatherLegCalculation extends RosettaModelObject {
 
 	WeatherLegCalculationMeta metaData = new WeatherLegCalculationMeta();

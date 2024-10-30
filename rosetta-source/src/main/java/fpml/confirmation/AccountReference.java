@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to an account.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AccountReference", builder=AccountReference.AccountReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AccountReference", builder=AccountReference.AccountReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AccountReference extends Reference {
 
 	AccountReferenceMeta metaData = new AccountReferenceMeta();

@@ -34,9 +34,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing interest payments associated with and underlyer, such as financing
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="UnderlyerInterestLeg", builder=UnderlyerInterestLeg.UnderlyerInterestLegBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="UnderlyerInterestLeg", builder=UnderlyerInterestLeg.UnderlyerInterestLegBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface UnderlyerInterestLeg extends DirectionalLeg {
 
 	UnderlyerInterestLegMeta metaData = new UnderlyerInterestLegMeta();

@@ -35,9 +35,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing return which is driven by a Variance Calculation.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="VarianceLeg", builder=VarianceLeg.VarianceLegBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="VarianceLeg", builder=VarianceLeg.VarianceLegBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface VarianceLeg extends DirectionalLegUnderlyerValuation {
 
 	VarianceLegMeta metaData = new VarianceLegMeta();

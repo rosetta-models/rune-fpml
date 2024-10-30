@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining how a stub calculation period amount is calculated and the start and end date of the stub. A single floating rate tenor different to that used for the regular part of the calculation periods schedule may be specified, or two floating rate tenors many be specified. If two floating rate tenors are specified then Linear Interpolation (in accordance with the 2000 ISDA Definitions, Section 8.3 Interpolation) is assumed to apply. Alternatively, an actual known stub rate or stub amount may be specified.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Stub", builder=Stub.StubBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Stub", builder=Stub.StubBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Stub extends StubValue {
 
 	StubMeta metaData = new StubMeta();

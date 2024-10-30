@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure which specifies FX conversion terms.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxTerms", builder=FxTerms.FxTermsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxTerms", builder=FxTerms.FxTermsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxTerms extends FxFixing {
 
 	FxTermsMeta metaData = new FxTermsMeta();

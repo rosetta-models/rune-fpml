@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Describes the features a commodity basket option.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityBasketOptionFeaturesModel", builder=CommodityBasketOptionFeaturesModel.CommodityBasketOptionFeaturesModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityBasketOptionFeaturesModel", builder=CommodityBasketOptionFeaturesModel.CommodityBasketOptionFeaturesModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityBasketOptionFeaturesModel extends RosettaModelObject {
 
 	CommodityBasketOptionFeaturesModelMeta metaData = new CommodityBasketOptionFeaturesModelMeta();

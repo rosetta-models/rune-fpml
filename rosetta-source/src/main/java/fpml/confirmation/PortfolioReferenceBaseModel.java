@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines a model group that allows a portfolio to be identified in a response message.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PortfolioReferenceBaseModel", builder=PortfolioReferenceBaseModel.PortfolioReferenceBaseModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PortfolioReferenceBaseModel", builder=PortfolioReferenceBaseModel.PortfolioReferenceBaseModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PortfolioReferenceBaseModel extends RosettaModelObject {
 
 	PortfolioReferenceBaseModelMeta metaData = new PortfolioReferenceBaseModelMeta();

@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defined the conditions under which the digital option can triggers and, if triggered, what payment results.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityDigital", builder=CommodityDigital.CommodityDigitalBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityDigital", builder=CommodityDigital.CommodityDigitalBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityDigital extends RosettaModelObject {
 
 	CommodityDigitalMeta metaData = new CommodityDigitalMeta();

@@ -27,9 +27,9 @@ import java.util.stream.Collectors;
 
 /**
  * A collection of spot FX rates used in pricing.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxRateSet", builder=FxRateSet.FxRateSetBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxRateSet", builder=FxRateSet.FxRateSetBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxRateSet extends QuotedAssetSet {
 
 	FxRateSetMeta metaData = new FxRateSetMeta();

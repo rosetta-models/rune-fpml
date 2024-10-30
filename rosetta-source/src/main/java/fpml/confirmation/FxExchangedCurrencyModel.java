@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Indicates the directions of who pays and receives a specific currency without specifying the amount.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxExchangedCurrencyModel", builder=FxExchangedCurrencyModel.FxExchangedCurrencyModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxExchangedCurrencyModel", builder=FxExchangedCurrencyModel.FxExchangedCurrencyModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxExchangedCurrencyModel extends RosettaModelObject {
 
 	FxExchangedCurrencyModelMeta metaData = new FxExchangedCurrencyModelMeta();

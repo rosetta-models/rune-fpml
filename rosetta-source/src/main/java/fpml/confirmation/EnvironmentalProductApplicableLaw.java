@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * TBD.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EnvironmentalProductApplicableLaw", builder=EnvironmentalProductApplicableLaw.EnvironmentalProductApplicableLawBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EnvironmentalProductApplicableLaw", builder=EnvironmentalProductApplicableLaw.EnvironmentalProductApplicableLawBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EnvironmentalProductApplicableLaw extends RosettaModelObject {
 
 	EnvironmentalProductApplicableLawMeta metaData = new EnvironmentalProductApplicableLawMeta();

@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model used to reference a facility by either identifier or summary, within various notifications.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FacilityLoanContractDetailsModel", builder=FacilityLoanContractDetailsModel.FacilityLoanContractDetailsModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FacilityLoanContractDetailsModel", builder=FacilityLoanContractDetailsModel.FacilityLoanContractDetailsModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FacilityLoanContractDetailsModel extends RosettaModelObject {
 
 	FacilityLoanContractDetailsModelMeta metaData = new FacilityLoanContractDetailsModelMeta();

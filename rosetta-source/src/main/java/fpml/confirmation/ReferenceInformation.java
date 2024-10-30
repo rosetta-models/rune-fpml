@@ -27,9 +27,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReferenceInformation", builder=ReferenceInformation.ReferenceInformationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReferenceInformation", builder=ReferenceInformation.ReferenceInformationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReferenceInformation extends RosettaModelObject {
 
 	ReferenceInformationMeta metaData = new ReferenceInformationMeta();

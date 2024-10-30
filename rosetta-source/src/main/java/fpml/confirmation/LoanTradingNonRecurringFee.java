@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that details the underlying elements that affect the calculation of a fee accrual.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanTradingNonRecurringFee", builder=LoanTradingNonRecurringFee.LoanTradingNonRecurringFeeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanTradingNonRecurringFee", builder=LoanTradingNonRecurringFee.LoanTradingNonRecurringFeeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanTradingNonRecurringFee extends RosettaModelObject {
 
 	LoanTradingNonRecurringFeeMeta metaData = new LoanTradingNonRecurringFeeMeta();

@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that is used for including the currency exchange rates used to cross between the traded currencies for non-base currency FX contracts.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CrossRate", builder=CrossRate.CrossRateBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CrossRate", builder=CrossRate.CrossRateBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CrossRate extends QuotedCurrencyPair {
 
 	CrossRateMeta metaData = new CrossRateMeta();

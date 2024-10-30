@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A rebate can be expressed as a payment amount or as amount of outstanding gain.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxTargetRebate", builder=FxTargetRebate.FxTargetRebateBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxTargetRebate", builder=FxTargetRebate.FxTargetRebateBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxTargetRebate extends RosettaModelObject {
 
 	FxTargetRebateMeta metaData = new FxTargetRebateMeta();

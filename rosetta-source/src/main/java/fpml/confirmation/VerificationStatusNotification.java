@@ -36,9 +36,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="VerificationStatusNotification", builder=VerificationStatusNotification.VerificationStatusNotificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="VerificationStatusNotification", builder=VerificationStatusNotification.VerificationStatusNotificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface VerificationStatusNotification extends NonCorrectableRequestMessage {
 
 	VerificationStatusNotificationMeta metaData = new VerificationStatusNotificationMeta();

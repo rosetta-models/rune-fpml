@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="InterpolationMethod", builder=InterpolationMethod.InterpolationMethodBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="InterpolationMethod", builder=InterpolationMethod.InterpolationMethodBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface InterpolationMethod extends RosettaModelObject {
 
 	InterpolationMethodMeta metaData = new InterpolationMethodMeta();

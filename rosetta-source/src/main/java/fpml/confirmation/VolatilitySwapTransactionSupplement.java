@@ -31,9 +31,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="VolatilitySwapTransactionSupplement", builder=VolatilitySwapTransactionSupplement.VolatilitySwapTransactionSupplementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="VolatilitySwapTransactionSupplement", builder=VolatilitySwapTransactionSupplement.VolatilitySwapTransactionSupplementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface VolatilitySwapTransactionSupplement extends Product {
 
 	VolatilitySwapTransactionSupplementMeta metaData = new VolatilitySwapTransactionSupplementMeta();

@@ -20,9 +20,9 @@ import fpml.confirmation.meta.ObligationAccelerationMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ObligationAcceleration", builder=ObligationAcceleration.ObligationAccelerationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ObligationAcceleration", builder=ObligationAcceleration.ObligationAccelerationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ObligationAcceleration extends ObligationAccelerationEvent {
 
 	ObligationAccelerationMeta metaData = new ObligationAccelerationMeta();

@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Allows timing information about when a trade was processed and reported to be recorded.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradeProcessingTimestamps", builder=TradeProcessingTimestamps.TradeProcessingTimestampsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradeProcessingTimestamps", builder=TradeProcessingTimestamps.TradeProcessingTimestampsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradeProcessingTimestamps extends RosettaModelObject {
 
 	TradeProcessingTimestampsMeta metaData = new TradeProcessingTimestampsMeta();

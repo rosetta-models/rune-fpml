@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradeLegFixedAmountChangeModel", builder=TradeLegFixedAmountChangeModel.TradeLegFixedAmountChangeModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradeLegFixedAmountChangeModel", builder=TradeLegFixedAmountChangeModel.TradeLegFixedAmountChangeModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradeLegFixedAmountChangeModel extends RosettaModelObject {
 
 	TradeLegFixedAmountChangeModelMeta metaData = new TradeLegFixedAmountChangeModelMeta();

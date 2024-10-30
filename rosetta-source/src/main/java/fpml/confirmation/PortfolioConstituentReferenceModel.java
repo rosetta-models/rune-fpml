@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines a model group that allows a constituent of a portfolio to be included in a request retransmission message.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PortfolioConstituentReferenceModel", builder=PortfolioConstituentReferenceModel.PortfolioConstituentReferenceModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PortfolioConstituentReferenceModel", builder=PortfolioConstituentReferenceModel.PortfolioConstituentReferenceModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PortfolioConstituentReferenceModel extends RosettaModelObject {
 
 	PortfolioConstituentReferenceModelMeta metaData = new PortfolioConstituentReferenceModelMeta();

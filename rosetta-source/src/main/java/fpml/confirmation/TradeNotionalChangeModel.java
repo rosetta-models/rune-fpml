@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * DEPRECATED. A structure describing a change to the trade notional.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradeNotionalChangeModel", builder=TradeNotionalChangeModel.TradeNotionalChangeModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradeNotionalChangeModel", builder=TradeNotionalChangeModel.TradeNotionalChangeModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradeNotionalChangeModel extends RosettaModelObject {
 
 	TradeNotionalChangeModelMeta metaData = new TradeNotionalChangeModelMeta();

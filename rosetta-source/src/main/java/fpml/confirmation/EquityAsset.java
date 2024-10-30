@@ -31,9 +31,9 @@ import java.util.stream.Collectors;
 
 /**
  * An exchange traded equity asset.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EquityAsset", builder=EquityAsset.EquityAssetBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EquityAsset", builder=EquityAsset.EquityAssetBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EquityAsset extends ExchangeTraded {
 
 	EquityAssetMeta metaData = new EquityAssetMeta();

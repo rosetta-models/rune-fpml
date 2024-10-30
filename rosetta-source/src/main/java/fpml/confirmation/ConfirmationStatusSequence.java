@@ -26,9 +26,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ConfirmationStatusSequence", builder=ConfirmationStatusSequence.ConfirmationStatusSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ConfirmationStatusSequence", builder=ConfirmationStatusSequence.ConfirmationStatusSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ConfirmationStatusSequence extends RosettaModelObject {
 
 	ConfirmationStatusSequenceMeta metaData = new ConfirmationStatusSequenceMeta();

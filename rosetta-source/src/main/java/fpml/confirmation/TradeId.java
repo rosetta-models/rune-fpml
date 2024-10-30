@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A trade reference identifier allocated by a party. FpML does not define the domain values associated with this element. Note that the domain values for this element are not strictly an enumerated list.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradeId", builder=TradeId.TradeIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradeId", builder=TradeId.TradeIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradeId extends RosettaModelObject {
 
 	TradeIdMeta metaData = new TradeIdMeta();

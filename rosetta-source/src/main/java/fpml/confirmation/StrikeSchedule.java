@@ -30,9 +30,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing a schedule of cap or floor rates.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="StrikeSchedule", builder=StrikeSchedule.StrikeScheduleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="StrikeSchedule", builder=StrikeSchedule.StrikeScheduleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface StrikeSchedule extends Schedule {
 
 	StrikeScheduleMeta metaData = new StrikeScheduleMeta();

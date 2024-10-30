@@ -33,9 +33,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type for defining the common features of equity derivatives.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EquityDerivativeBase", builder=EquityDerivativeBase.EquityDerivativeBaseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EquityDerivativeBase", builder=EquityDerivativeBase.EquityDerivativeBaseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EquityDerivativeBase extends Product {
 
 	EquityDerivativeBaseMeta metaData = new EquityDerivativeBaseMeta();

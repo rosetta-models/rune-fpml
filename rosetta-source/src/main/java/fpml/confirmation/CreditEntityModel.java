@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An item which has credit characteristics that can be modeled, e.g. a firm, index, or region.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CreditEntityModel", builder=CreditEntityModel.CreditEntityModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CreditEntityModel", builder=CreditEntityModel.CreditEntityModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CreditEntityModel extends RosettaModelObject {
 
 	CreditEntityModelMeta metaData = new CreditEntityModelMeta();

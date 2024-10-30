@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model which captures the index and tenor associated with the floating rate. We are referring to a loan-specific floating rate scheme.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FloatingRateIndexLoanModel", builder=FloatingRateIndexLoanModel.FloatingRateIndexLoanModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FloatingRateIndexLoanModel", builder=FloatingRateIndexLoanModel.FloatingRateIndexLoanModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FloatingRateIndexLoanModel extends RosettaModelObject {
 
 	FloatingRateIndexLoanModelMeta metaData = new FloatingRateIndexLoanModelMeta();

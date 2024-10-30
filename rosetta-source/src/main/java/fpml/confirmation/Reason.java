@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining a content model for describing the nature and possible location of a error within a previous message.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Reason", builder=Reason.ReasonBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Reason", builder=Reason.ReasonBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Reason extends RosettaModelObject {
 
 	ReasonMeta metaData = new ReasonMeta();

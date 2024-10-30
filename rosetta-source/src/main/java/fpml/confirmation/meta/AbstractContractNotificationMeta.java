@@ -19,7 +19,7 @@ import java.util.function.Function;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaMeta(model=AbstractContractNotification.class)
 public class AbstractContractNotificationMeta implements RosettaMetaData<AbstractContractNotification> {

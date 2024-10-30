@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the adjusted dates associated with an optional early termination provision.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="OptionalEarlyTerminationAdjustedDates", builder=OptionalEarlyTerminationAdjustedDates.OptionalEarlyTerminationAdjustedDatesBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="OptionalEarlyTerminationAdjustedDates", builder=OptionalEarlyTerminationAdjustedDates.OptionalEarlyTerminationAdjustedDatesBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface OptionalEarlyTerminationAdjustedDates extends RosettaModelObject {
 
 	OptionalEarlyTerminationAdjustedDatesMeta metaData = new OptionalEarlyTerminationAdjustedDatesMeta();

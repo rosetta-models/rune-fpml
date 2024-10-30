@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type for defining a calendar spread feature.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CalendarSpread", builder=CalendarSpread.CalendarSpreadBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CalendarSpread", builder=CalendarSpread.CalendarSpreadBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CalendarSpread extends RosettaModelObject {
 
 	CalendarSpreadMeta metaData = new CalendarSpreadMeta();

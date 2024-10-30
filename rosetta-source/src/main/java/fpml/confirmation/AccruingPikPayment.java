@@ -37,9 +37,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An event representing a payment to facilitate capitalization of interest on all outstanding contracts against a particular facility.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AccruingPikPayment", builder=AccruingPikPayment.AccruingPikPaymentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AccruingPikPayment", builder=AccruingPikPayment.AccruingPikPaymentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AccruingPikPayment extends AbstractFacilityEvent {
 
 	AccruingPikPaymentMeta metaData = new AccruingPikPaymentMeta();

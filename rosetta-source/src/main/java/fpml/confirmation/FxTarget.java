@@ -27,9 +27,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxTarget", builder=FxTarget.FxTargetBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxTarget", builder=FxTarget.FxTargetBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxTarget extends RosettaModelObject {
 
 	FxTargetMeta metaData = new FxTargetMeta();

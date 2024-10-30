@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Identifes how the FX rate will be applied. This is intended to differentiate between the various methods for applying FX to the floating price such as a daily calculation, or averaging the FX and applying the average at the end of each CalculationPeriod.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityFxType", builder=CommodityFxType.CommodityFxTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityFxType", builder=CommodityFxType.CommodityFxTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityFxType extends RosettaModelObject {
 
 	CommodityFxTypeMeta metaData = new CommodityFxTypeMeta();

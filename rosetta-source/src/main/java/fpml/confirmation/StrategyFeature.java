@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type for definining equity option simple strike or calendar spread strategy features.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="StrategyFeature", builder=StrategyFeature.StrategyFeatureBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="StrategyFeature", builder=StrategyFeature.StrategyFeatureBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface StrategyFeature extends RosettaModelObject {
 
 	StrategyFeatureMeta metaData = new StrategyFeatureMeta();

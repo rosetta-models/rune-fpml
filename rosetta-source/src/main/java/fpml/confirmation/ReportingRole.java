@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type containing a code representing the role of a party in a report, e.g. the originator, the recipient, the counterparty, etc. This is used to clarify which participant&#39;s information is being reported.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReportingRole", builder=ReportingRole.ReportingRoleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReportingRole", builder=ReportingRole.ReportingRoleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReportingRole extends RosettaModelObject {
 
 	ReportingRoleMeta metaData = new ReportingRoleMeta();

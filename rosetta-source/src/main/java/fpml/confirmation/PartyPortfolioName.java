@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type to represent a portfolio name for a particular party.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PartyPortfolioName", builder=PartyPortfolioName.PartyPortfolioNameBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PartyPortfolioName", builder=PartyPortfolioName.PartyPortfolioNameBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PartyPortfolioName extends RosettaModelObject {
 
 	PartyPortfolioNameMeta metaData = new PartyPortfolioNameMeta();

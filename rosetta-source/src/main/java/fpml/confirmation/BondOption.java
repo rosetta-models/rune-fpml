@@ -37,9 +37,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A component describing a Bond Option product. A Bond Option
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BondOption", builder=BondOption.BondOptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BondOption", builder=BondOption.BondOptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BondOption extends OptionBaseExtended {
 
 	BondOptionMeta metaData = new BondOptionMeta();

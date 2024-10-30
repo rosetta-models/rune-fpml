@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CreditDefaultSwapChoice", builder=CreditDefaultSwapChoice.CreditDefaultSwapChoiceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CreditDefaultSwapChoice", builder=CreditDefaultSwapChoice.CreditDefaultSwapChoiceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CreditDefaultSwapChoice extends RosettaModelObject {
 
 	CreditDefaultSwapChoiceMeta metaData = new CreditDefaultSwapChoiceMeta();

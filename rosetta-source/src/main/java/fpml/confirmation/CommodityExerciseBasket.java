@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The parameters for defining how the commodity option can be exercised, how it is priced and how it is settled.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityExerciseBasket", builder=CommodityExerciseBasket.CommodityExerciseBasketBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityExerciseBasket", builder=CommodityExerciseBasket.CommodityExerciseBasketBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityExerciseBasket extends RosettaModelObject {
 
 	CommodityExerciseBasketMeta metaData = new CommodityExerciseBasketMeta();

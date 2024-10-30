@@ -41,9 +41,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines a commodity basket option product.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityBasketOption", builder=CommodityBasketOption.CommodityBasketOptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityBasketOption", builder=CommodityBasketOption.CommodityBasketOptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityBasketOption extends Option {
 
 	CommodityBasketOptionMeta metaData = new CommodityBasketOptionMeta();

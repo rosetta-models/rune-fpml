@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An entity for defining the master confirmation agreement executed between the parties.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MasterConfirmation", builder=MasterConfirmation.MasterConfirmationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MasterConfirmation", builder=MasterConfirmation.MasterConfirmationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MasterConfirmation extends RosettaModelObject {
 
 	MasterConfirmationMeta metaData = new MasterConfirmationMeta();

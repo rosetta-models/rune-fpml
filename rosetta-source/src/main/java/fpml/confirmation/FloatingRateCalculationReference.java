@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to a floating rate calculation of interest calculation component.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FloatingRateCalculationReference", builder=FloatingRateCalculationReference.FloatingRateCalculationReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FloatingRateCalculationReference", builder=FloatingRateCalculationReference.FloatingRateCalculationReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FloatingRateCalculationReference extends Reference {
 
 	FloatingRateCalculationReferenceMeta metaData = new FloatingRateCalculationReferenceMeta();

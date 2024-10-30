@@ -38,9 +38,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An FX option transaction definition. Describes an FX option with optional asian and barrier features.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxOption", builder=FxOption.FxOptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxOption", builder=FxOption.FxOptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxOption extends Option {
 
 	FxOptionMeta metaData = new FxOptionMeta();

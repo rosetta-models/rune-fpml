@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that represents the choice of methods for settling a potential currency payment resulting from a trade: by means of a standard settlement instruction, by netting it out with other payments, or with an explicit settlement instruction.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SettlementInformation", builder=SettlementInformation.SettlementInformationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SettlementInformation", builder=SettlementInformation.SettlementInformationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SettlementInformation extends RosettaModelObject {
 
 	SettlementInformationMeta metaData = new SettlementInformationMeta();

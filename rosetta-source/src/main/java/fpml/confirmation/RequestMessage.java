@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the basic content of a message that requests the receiver to perform some business operation determined by the message type and its content.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RequestMessage", builder=RequestMessage.RequestMessageBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RequestMessage", builder=RequestMessage.RequestMessageBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RequestMessage extends Message {
 
 	RequestMessageMeta metaData = new RequestMessageMeta();

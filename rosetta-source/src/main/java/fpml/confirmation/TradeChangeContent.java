@@ -25,9 +25,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure describing a non-negotiated trade resulting from a market event.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradeChangeContent", builder=TradeChangeContent.TradeChangeContentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradeChangeContent", builder=TradeChangeContent.TradeChangeContentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradeChangeContent extends RosettaModelObject {
 
 	TradeChangeContentMeta metaData = new TradeChangeContentMeta();

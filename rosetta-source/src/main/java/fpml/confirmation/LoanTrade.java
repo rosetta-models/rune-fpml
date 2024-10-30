@@ -35,9 +35,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that defines counterparty-to-counterparty loan trade information. This structure contains the main (e.g. fund manager/main counterparty) trade details.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanTrade", builder=LoanTrade.LoanTradeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanTrade", builder=LoanTrade.LoanTradeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanTrade extends AbstractLoanTrade {
 
 	LoanTradeMeta metaData = new LoanTradeMeta();

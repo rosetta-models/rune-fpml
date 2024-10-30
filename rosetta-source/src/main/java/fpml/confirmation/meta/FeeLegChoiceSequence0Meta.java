@@ -19,7 +19,7 @@ import java.util.function.Function;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaMeta(model=FeeLegChoiceSequence0.class)
 public class FeeLegChoiceSequence0Meta implements RosettaMetaData<FeeLegChoiceSequence0> {

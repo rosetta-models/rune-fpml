@@ -30,9 +30,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Specifies the fixed payments of a commodity performance swap. Sometimes also referred to as the fee. A type describing the interest rate leg (a.k.a fee leg) of the commodity performance swap.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityInterestLeg", builder=CommodityInterestLeg.CommodityInterestLegBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityInterestLeg", builder=CommodityInterestLeg.CommodityInterestLegBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityInterestLeg extends CommodityPerformanceSwapLeg {
 
 	CommodityInterestLegMeta metaData = new CommodityInterestLegMeta();

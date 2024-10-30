@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A message withdrawing a request that an order be executed.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RequestExecutionRetracted", builder=RequestExecutionRetracted.RequestExecutionRetractedBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RequestExecutionRetracted", builder=RequestExecutionRetracted.RequestExecutionRetractedBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RequestExecutionRetracted extends NonCorrectableRequestMessage {
 
 	RequestExecutionRetractedMeta metaData = new RequestExecutionRetractedMeta();

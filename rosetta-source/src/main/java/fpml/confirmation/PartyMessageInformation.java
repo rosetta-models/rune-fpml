@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining additional information that may be recorded against a message.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PartyMessageInformation", builder=PartyMessageInformation.PartyMessageInformationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PartyMessageInformation", builder=PartyMessageInformation.PartyMessageInformationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PartyMessageInformation extends RosettaModelObject {
 
 	PartyMessageInformationMeta metaData = new PartyMessageInformationMeta();

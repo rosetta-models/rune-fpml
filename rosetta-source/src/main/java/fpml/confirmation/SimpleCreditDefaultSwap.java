@@ -34,9 +34,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Identifies a simple underlying asset that is a credit default swap.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SimpleCreditDefaultSwap", builder=SimpleCreditDefaultSwap.SimpleCreditDefaultSwapBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SimpleCreditDefaultSwap", builder=SimpleCreditDefaultSwap.SimpleCreditDefaultSwapBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SimpleCreditDefaultSwap extends UnderlyingAssetType {
 
 	SimpleCreditDefaultSwapMeta metaData = new SimpleCreditDefaultSwapMeta();

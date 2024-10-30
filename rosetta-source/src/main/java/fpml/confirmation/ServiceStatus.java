@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that can be used to describe the availability or other state of a service, e.g. Available, Unavaialble.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ServiceStatus", builder=ServiceStatus.ServiceStatusBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ServiceStatus", builder=ServiceStatus.ServiceStatusBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ServiceStatus extends RosettaModelObject {
 
 	ServiceStatusMeta metaData = new ServiceStatusMeta();

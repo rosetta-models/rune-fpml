@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * A list that defines how the interest accrued during the settlement period is calculated and paid.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaEnum("LoanTradingAccrualSettlementEnum")
 public enum LoanTradingAccrualSettlementEnum {

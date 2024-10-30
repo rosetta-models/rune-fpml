@@ -37,9 +37,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that represents the prepayment structure associated within a facility.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EventPayment", builder=EventPayment.EventPaymentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EventPayment", builder=EventPayment.EventPaymentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EventPayment extends Payment {
 
 	EventPaymentMeta metaData = new EventPaymentMeta();

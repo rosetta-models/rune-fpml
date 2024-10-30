@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A complex type to specify non negative payments.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="NonNegativePayment", builder=NonNegativePayment.NonNegativePaymentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="NonNegativePayment", builder=NonNegativePayment.NonNegativePaymentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface NonNegativePayment extends PaymentBaseExtended {
 
 	NonNegativePaymentMeta metaData = new NonNegativePaymentMeta();

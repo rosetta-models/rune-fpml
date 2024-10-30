@@ -37,9 +37,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A group collecting a set of characteristics that can be used to describe a quotation.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="QuotationCharacteristicsModel", builder=QuotationCharacteristicsModel.QuotationCharacteristicsModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="QuotationCharacteristicsModel", builder=QuotationCharacteristicsModel.QuotationCharacteristicsModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface QuotationCharacteristicsModel extends RosettaModelObject {
 
 	QuotationCharacteristicsModelMeta metaData = new QuotationCharacteristicsModelMeta();

@@ -26,9 +26,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="InterestCapitalizationSequence", builder=InterestCapitalizationSequence.InterestCapitalizationSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="InterestCapitalizationSequence", builder=InterestCapitalizationSequence.InterestCapitalizationSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface InterestCapitalizationSequence extends RosettaModelObject {
 
 	InterestCapitalizationSequenceMeta metaData = new InterestCapitalizationSequenceMeta();

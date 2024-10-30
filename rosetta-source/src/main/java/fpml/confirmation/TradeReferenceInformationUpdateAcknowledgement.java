@@ -28,9 +28,9 @@ import fpml.confirmation.meta.TradeReferenceInformationUpdateAcknowledgementMeta
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradeReferenceInformationUpdateAcknowledgement", builder=TradeReferenceInformationUpdateAcknowledgement.TradeReferenceInformationUpdateAcknowledgementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradeReferenceInformationUpdateAcknowledgement", builder=TradeReferenceInformationUpdateAcknowledgement.TradeReferenceInformationUpdateAcknowledgementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradeReferenceInformationUpdateAcknowledgement extends EventRequestAcknowledgement {
 
 	TradeReferenceInformationUpdateAcknowledgementMeta metaData = new TradeReferenceInformationUpdateAcknowledgementMeta();

@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxAccrualOptionSequence", builder=FxAccrualOptionSequence.FxAccrualOptionSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxAccrualOptionSequence", builder=FxAccrualOptionSequence.FxAccrualOptionSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxAccrualOptionSequence extends RosettaModelObject {
 
 	FxAccrualOptionSequenceMeta metaData = new FxAccrualOptionSequenceMeta();

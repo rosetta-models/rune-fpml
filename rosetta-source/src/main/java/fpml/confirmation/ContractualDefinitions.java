@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The definitions, such as those published by ISDA, that will define the terms of the trade.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ContractualDefinitions", builder=ContractualDefinitions.ContractualDefinitionsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ContractualDefinitions", builder=ContractualDefinitions.ContractualDefinitionsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ContractualDefinitions extends RosettaModelObject {
 
 	ContractualDefinitionsMeta metaData = new ContractualDefinitionsMeta();

@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Model group containing features specific to Asian/averaging commodity options.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityAsianModel", builder=CommodityAsianModel.CommodityAsianModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityAsianModel", builder=CommodityAsianModel.CommodityAsianModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityAsianModel extends RosettaModelObject {
 
 	CommodityAsianModelMeta metaData = new CommodityAsianModelMeta();

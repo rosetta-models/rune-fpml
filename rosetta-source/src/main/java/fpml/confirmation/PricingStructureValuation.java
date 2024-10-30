@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An abstract pricing structure valuation base type. Used as a base for values of pricing structures such as yield curves and volatility matrices. Derived from the &quot;Valuation&quot; type.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PricingStructureValuation", builder=PricingStructureValuation.PricingStructureValuationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PricingStructureValuation", builder=PricingStructureValuation.PricingStructureValuationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PricingStructureValuation extends Valuation {
 
 	PricingStructureValuationMeta metaData = new PricingStructureValuationMeta();

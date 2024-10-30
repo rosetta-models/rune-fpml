@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Choice between expiration expressed as symbolic and optional literal time, or using a determination method.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EquityExpirationModel", builder=EquityExpirationModel.EquityExpirationModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EquityExpirationModel", builder=EquityExpirationModel.EquityExpirationModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EquityExpirationModel extends RosettaModelObject {
 
 	EquityExpirationModelMeta metaData = new EquityExpirationModelMeta();

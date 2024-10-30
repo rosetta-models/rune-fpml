@@ -32,9 +32,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxAverageStrike", builder=FxAverageStrike.FxAverageStrikeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxAverageStrike", builder=FxAverageStrike.FxAverageStrikeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxAverageStrike extends FxAveragingProcess {
 
 	FxAverageStrikeMeta metaData = new FxAverageStrikeMeta();

@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining a rate index.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ForecastRateIndex", builder=ForecastRateIndex.ForecastRateIndexBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ForecastRateIndex", builder=ForecastRateIndex.ForecastRateIndexBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ForecastRateIndex extends RosettaModelObject {
 
 	ForecastRateIndexMeta metaData = new ForecastRateIndexMeta();

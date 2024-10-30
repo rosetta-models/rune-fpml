@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to a pivot structure.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxPivotReference", builder=FxPivotReference.FxPivotReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxPivotReference", builder=FxPivotReference.FxPivotReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxPivotReference extends Reference {
 
 	FxPivotReferenceMeta metaData = new FxPivotReferenceMeta();

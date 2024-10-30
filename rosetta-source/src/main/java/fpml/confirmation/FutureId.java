@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining a short form unique identifier for a future contract.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FutureId", builder=FutureId.FutureIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FutureId", builder=FutureId.FutureIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FutureId extends RosettaModelObject {
 
 	FutureIdMeta metaData = new FutureIdMeta();

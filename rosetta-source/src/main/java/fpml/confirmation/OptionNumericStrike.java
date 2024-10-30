@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type for defining the strike price for an option as a numeric value without currency.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="OptionNumericStrike", builder=OptionNumericStrike.OptionNumericStrikeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="OptionNumericStrike", builder=OptionNumericStrike.OptionNumericStrikeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface OptionNumericStrike extends RosettaModelObject {
 
 	OptionNumericStrikeMeta metaData = new OptionNumericStrikeMeta();

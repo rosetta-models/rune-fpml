@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the Fixed Price.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FixedPrice", builder=FixedPrice.FixedPriceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FixedPrice", builder=FixedPrice.FixedPriceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FixedPrice extends RosettaModelObject {
 
 	FixedPriceMeta metaData = new FixedPriceMeta();

@@ -36,9 +36,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A single facility definition stated as of a certain date.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FacilityStatement", builder=FacilityStatement.FacilityStatementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FacilityStatement", builder=FacilityStatement.FacilityStatementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FacilityStatement extends AbstractLoanStatement {
 
 	FacilityStatementMeta metaData = new FacilityStatementMeta();

@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TriggerRateObservationSequence0", builder=TriggerRateObservationSequence0.TriggerRateObservationSequence0BuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TriggerRateObservationSequence0", builder=TriggerRateObservationSequence0.TriggerRateObservationSequence0BuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TriggerRateObservationSequence0 extends RosettaModelObject {
 
 	TriggerRateObservationSequence0Meta metaData = new TriggerRateObservationSequence0Meta();

@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Parameters used in the computation of a derivative using analytical (closed form formula) techiques.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AnalyticDerivativeParametersModel", builder=AnalyticDerivativeParametersModel.AnalyticDerivativeParametersModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AnalyticDerivativeParametersModel", builder=AnalyticDerivativeParametersModel.AnalyticDerivativeParametersModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AnalyticDerivativeParametersModel extends RosettaModelObject {
 
 	AnalyticDerivativeParametersModelMeta metaData = new AnalyticDerivativeParametersModelMeta();

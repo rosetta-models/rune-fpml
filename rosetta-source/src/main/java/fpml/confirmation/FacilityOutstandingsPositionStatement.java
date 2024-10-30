@@ -39,9 +39,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that represents position details (including outstandings) for a single facility. Positions can be stated at the global and (optionally) at the lender-specific level.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FacilityOutstandingsPositionStatement", builder=FacilityOutstandingsPositionStatement.FacilityOutstandingsPositionStatementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FacilityOutstandingsPositionStatement", builder=FacilityOutstandingsPositionStatement.FacilityOutstandingsPositionStatementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FacilityOutstandingsPositionStatement extends AbstractLoanStatement {
 
 	FacilityOutstandingsPositionStatementMeta metaData = new FacilityOutstandingsPositionStatementMeta();

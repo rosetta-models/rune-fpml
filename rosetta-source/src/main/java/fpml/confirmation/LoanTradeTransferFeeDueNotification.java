@@ -41,9 +41,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A loan servicing notification used to communicate transfer fee details, from admin agent to counterparty.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanTradeTransferFeeDueNotification", builder=LoanTradeTransferFeeDueNotification.LoanTradeTransferFeeDueNotificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanTradeTransferFeeDueNotification", builder=LoanTradeTransferFeeDueNotification.LoanTradeTransferFeeDueNotificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanTradeTransferFeeDueNotification extends AbstractLoanTradePaymentNotification {
 
 	LoanTradeTransferFeeDueNotificationMeta metaData = new LoanTradeTransferFeeDueNotificationMeta();

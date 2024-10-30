@@ -32,9 +32,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The confirmationStatus message provides the status of the matching process: matched, mismatched, unmatched, or alleged. It may also provide the best fit trade(s) or event(s) as result of the matching process. Message for sending matching results. Response message that returns the status of an event that have been submitted for matching.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ConfirmationStatus", builder=ConfirmationStatus.ConfirmationStatusBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ConfirmationStatus", builder=ConfirmationStatus.ConfirmationStatusBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ConfirmationStatus extends ResponseMessage {
 
 	ConfirmationStatusMeta metaData = new ConfirmationStatusMeta();

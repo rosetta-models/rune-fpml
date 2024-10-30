@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A message used to indicate an exception issue with a loan notification.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanNotificationException", builder=LoanNotificationException.LoanNotificationExceptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanNotificationException", builder=LoanNotificationException.LoanNotificationExceptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanNotificationException extends Exception {
 
 	LoanNotificationExceptionMeta metaData = new LoanNotificationExceptionMeta();

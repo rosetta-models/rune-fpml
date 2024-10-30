@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that qualifies the type of approval.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ApprovalType", builder=ApprovalType.ApprovalTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ApprovalType", builder=ApprovalType.ApprovalTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ApprovalType extends RosettaModelObject {
 
 	ApprovalTypeMeta metaData = new ApprovalTypeMeta();

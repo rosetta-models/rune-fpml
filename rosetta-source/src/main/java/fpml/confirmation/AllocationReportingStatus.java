@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Code that describes what type of allocation applies to the trade. Options include Unallocated, PreAllocation, PostAllocation.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AllocationReportingStatus", builder=AllocationReportingStatus.AllocationReportingStatusBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AllocationReportingStatus", builder=AllocationReportingStatus.AllocationReportingStatusBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AllocationReportingStatus extends RosettaModelObject {
 
 	AllocationReportingStatusMeta metaData = new AllocationReportingStatusMeta();

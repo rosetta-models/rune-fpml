@@ -35,9 +35,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A set of instructions communicated by parties to override standard payment details for a specific to a set of (any) loan events.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanPartyEventInstructionOverrideNotification", builder=LoanPartyEventInstructionOverrideNotification.LoanPartyEventInstructionOverrideNotificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanPartyEventInstructionOverrideNotification", builder=LoanPartyEventInstructionOverrideNotification.LoanPartyEventInstructionOverrideNotificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanPartyEventInstructionOverrideNotification extends AbstractLoanPartyProfileNotification {
 
 	LoanPartyEventInstructionOverrideNotificationMeta metaData = new LoanPartyEventInstructionOverrideNotificationMeta();

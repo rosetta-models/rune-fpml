@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Associates trade identifiers with components of a strategy.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="StrategyComponentIdentification", builder=StrategyComponentIdentification.StrategyComponentIdentificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="StrategyComponentIdentification", builder=StrategyComponentIdentification.StrategyComponentIdentificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface StrategyComponentIdentification extends RosettaModelObject {
 
 	StrategyComponentIdentificationMeta metaData = new StrategyComponentIdentificationMeta();

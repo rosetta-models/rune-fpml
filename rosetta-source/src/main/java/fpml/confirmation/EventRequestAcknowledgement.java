@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines the structure for a message acknowledging an event request.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EventRequestAcknowledgement", builder=EventRequestAcknowledgement.EventRequestAcknowledgementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EventRequestAcknowledgement", builder=EventRequestAcknowledgement.EventRequestAcknowledgementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EventRequestAcknowledgement extends ResponseMessage {
 
 	EventRequestAcknowledgementMeta metaData = new EventRequestAcknowledgementMeta();

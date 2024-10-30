@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that defines an association identifier based on a qualifying scheme.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AssociationToAssetId", builder=AssociationToAssetId.AssociationToAssetIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AssociationToAssetId", builder=AssociationToAssetId.AssociationToAssetIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AssociationToAssetId extends RosettaModelObject {
 
 	AssociationToAssetIdMeta metaData = new AssociationToAssetIdMeta();

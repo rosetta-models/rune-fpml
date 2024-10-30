@@ -26,9 +26,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="GenericOptionStrike", builder=GenericOptionStrike.GenericOptionStrikeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="GenericOptionStrike", builder=GenericOptionStrike.GenericOptionStrikeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface GenericOptionStrike extends EquityStrike {
 
 	GenericOptionStrikeMeta metaData = new GenericOptionStrikeMeta();

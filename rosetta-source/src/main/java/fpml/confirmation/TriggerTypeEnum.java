@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * The specification of whether an option will trigger or expire depending upon whether the spot rate is above or below the barrier rate.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaEnum("TriggerTypeEnum")
 public enum TriggerTypeEnum {

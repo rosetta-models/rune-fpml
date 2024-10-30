@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A complex type used to specify the option and convertible bond option strike when expressed in reference to a swap curve.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReferenceSwapCurve", builder=ReferenceSwapCurve.ReferenceSwapCurveBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReferenceSwapCurve", builder=ReferenceSwapCurve.ReferenceSwapCurveBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReferenceSwapCurve extends RosettaModelObject {
 
 	ReferenceSwapCurveMeta metaData = new ReferenceSwapCurveMeta();

@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The proposed collateral allocation.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ProposedCollateralAllocation", builder=ProposedCollateralAllocation.ProposedCollateralAllocationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ProposedCollateralAllocation", builder=ProposedCollateralAllocation.ProposedCollateralAllocationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ProposedCollateralAllocation extends RosettaModelObject {
 
 	ProposedCollateralAllocationMeta metaData = new ProposedCollateralAllocationMeta();

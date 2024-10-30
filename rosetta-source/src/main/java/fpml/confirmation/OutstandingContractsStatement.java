@@ -37,9 +37,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A collection of outstanding loan contract and/or letter of credit structures belonging to a single facility.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="OutstandingContractsStatement", builder=OutstandingContractsStatement.OutstandingContractsStatementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="OutstandingContractsStatement", builder=OutstandingContractsStatement.OutstandingContractsStatementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface OutstandingContractsStatement extends AbstractLoanStatement {
 
 	OutstandingContractsStatementMeta metaData = new OutstandingContractsStatementMeta();

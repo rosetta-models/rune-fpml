@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A characteristic of an organization used in declaring an end-user exception.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="OrganizationCharacteristic", builder=OrganizationCharacteristic.OrganizationCharacteristicBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="OrganizationCharacteristic", builder=OrganizationCharacteristic.OrganizationCharacteristicBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface OrganizationCharacteristic extends RosettaModelObject {
 
 	OrganizationCharacteristicMeta metaData = new OrganizationCharacteristicMeta();

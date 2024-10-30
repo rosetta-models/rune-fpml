@@ -43,9 +43,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A loan servicing notification used to update an accrual option within a single facility. Embedded business events simply re-state the given accrual option.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AccrualOptionChangeNotification", builder=AccrualOptionChangeNotification.AccrualOptionChangeNotificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AccrualOptionChangeNotification", builder=AccrualOptionChangeNotification.AccrualOptionChangeNotificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AccrualOptionChangeNotification extends AbstractContractNotification {
 
 	AccrualOptionChangeNotificationMeta metaData = new AccrualOptionChangeNotificationMeta();

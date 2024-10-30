@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The type or meaning of a timestamp.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TimestampTypeScheme", builder=TimestampTypeScheme.TimestampTypeSchemeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TimestampTypeScheme", builder=TimestampTypeScheme.TimestampTypeSchemeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TimestampTypeScheme extends RosettaModelObject {
 
 	TimestampTypeSchemeMeta metaData = new TimestampTypeSchemeMeta();

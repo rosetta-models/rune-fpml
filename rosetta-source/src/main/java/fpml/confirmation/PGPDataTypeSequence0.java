@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PGPDataTypeSequence0", builder=PGPDataTypeSequence0.PGPDataTypeSequence0BuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PGPDataTypeSequence0", builder=PGPDataTypeSequence0.PGPDataTypeSequence0BuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PGPDataTypeSequence0 extends RosettaModelObject {
 
 	PGPDataTypeSequence0Meta metaData = new PGPDataTypeSequence0Meta();

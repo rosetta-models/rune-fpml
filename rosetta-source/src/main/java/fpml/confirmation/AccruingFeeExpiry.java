@@ -34,9 +34,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An event describing a future expiry of one of the accruing fees associated with a specific facility.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AccruingFeeExpiry", builder=AccruingFeeExpiry.AccruingFeeExpiryBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AccruingFeeExpiry", builder=AccruingFeeExpiry.AccruingFeeExpiryBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AccruingFeeExpiry extends AbstractFacilityEvent {
 
 	AccruingFeeExpiryMeta metaData = new AccruingFeeExpiryMeta();

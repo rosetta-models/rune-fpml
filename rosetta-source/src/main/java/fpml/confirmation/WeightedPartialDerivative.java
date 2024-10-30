@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A partial derivative multiplied by a weighting factor.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="WeightedPartialDerivative", builder=WeightedPartialDerivative.WeightedPartialDerivativeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="WeightedPartialDerivative", builder=WeightedPartialDerivative.WeightedPartialDerivativeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface WeightedPartialDerivative extends RosettaModelObject {
 
 	WeightedPartialDerivativeMeta metaData = new WeightedPartialDerivativeMeta();

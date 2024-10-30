@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Specifies a reference to a monetary amount.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AmountReference", builder=AmountReference.AmountReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AmountReference", builder=AmountReference.AmountReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AmountReference extends Reference {
 
 	AmountReferenceMeta metaData = new AmountReferenceMeta();

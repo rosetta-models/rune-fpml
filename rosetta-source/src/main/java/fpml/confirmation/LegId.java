@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Leg identity.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LegId", builder=LegId.LegIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LegId", builder=LegId.LegIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LegId extends RosettaModelObject {
 
 	LegIdMeta metaData = new LegIdMeta();

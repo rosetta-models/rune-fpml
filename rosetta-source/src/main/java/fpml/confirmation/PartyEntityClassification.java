@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that specifies the classification of a party.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PartyEntityClassification", builder=PartyEntityClassification.PartyEntityClassificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PartyEntityClassification", builder=PartyEntityClassification.PartyEntityClassificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PartyEntityClassification extends RosettaModelObject {
 
 	PartyEntityClassificationMeta metaData = new PartyEntityClassificationMeta();

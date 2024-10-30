@@ -20,9 +20,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DeclaredCashAndCashEquivalentDividendPercentageModel", builder=DeclaredCashAndCashEquivalentDividendPercentageModel.DeclaredCashAndCashEquivalentDividendPercentageModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DeclaredCashAndCashEquivalentDividendPercentageModel", builder=DeclaredCashAndCashEquivalentDividendPercentageModel.DeclaredCashAndCashEquivalentDividendPercentageModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DeclaredCashAndCashEquivalentDividendPercentageModel extends RosettaModelObject {
 
 	DeclaredCashAndCashEquivalentDividendPercentageModelMeta metaData = new DeclaredCashAndCashEquivalentDividendPercentageModelMeta();

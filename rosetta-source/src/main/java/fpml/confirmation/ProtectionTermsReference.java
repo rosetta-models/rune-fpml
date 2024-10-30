@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to protectionTerms component.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ProtectionTermsReference", builder=ProtectionTermsReference.ProtectionTermsReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ProtectionTermsReference", builder=ProtectionTermsReference.ProtectionTermsReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ProtectionTermsReference extends Reference {
 
 	ProtectionTermsReferenceMeta metaData = new ProtectionTermsReferenceMeta();

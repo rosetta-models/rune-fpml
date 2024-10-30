@@ -32,9 +32,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing the conditions governing the payment of dividends to the receiver of the equity return. With the exception of the dividend payout ratio, which is defined for each of the underlying components.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DividendConditions", builder=DividendConditions.DividendConditionsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DividendConditions", builder=DividendConditions.DividendConditionsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DividendConditions extends RosettaModelObject {
 
 	DividendConditionsMeta metaData = new DividendConditionsMeta();

@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that incorporates elements of interest and fee accruals, for the purpose of defining delayed compensation.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanTradingDelayedCompensation", builder=LoanTradingDelayedCompensation.LoanTradingDelayedCompensationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanTradingDelayedCompensation", builder=LoanTradingDelayedCompensation.LoanTradingDelayedCompensationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanTradingDelayedCompensation extends RosettaModelObject {
 
 	LoanTradingDelayedCompensationMeta metaData = new LoanTradingDelayedCompensationMeta();

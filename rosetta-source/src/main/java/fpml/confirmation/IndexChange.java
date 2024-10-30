@@ -30,9 +30,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Describes a change due to an index component being adjusted. A structure describing the effect of a change to an index.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="IndexChange", builder=IndexChange.IndexChangeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="IndexChange", builder=IndexChange.IndexChangeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface IndexChange extends ChangeEvent {
 
 	IndexChangeMeta metaData = new IndexChangeMeta();

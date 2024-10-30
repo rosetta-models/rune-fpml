@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A code identifying a Weather Index WMO.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="WeatherStationWMO", builder=WeatherStationWMO.WeatherStationWMOBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="WeatherStationWMO", builder=WeatherStationWMO.WeatherStationWMOBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface WeatherStationWMO extends RosettaModelObject {
 
 	WeatherStationWMOMeta metaData = new WeatherStationWMOMeta();

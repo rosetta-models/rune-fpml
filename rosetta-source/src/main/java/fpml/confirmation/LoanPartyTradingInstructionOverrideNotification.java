@@ -37,9 +37,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A set of instructions communicated by parties to override standard payment details for a specific trade or allocation settlement only.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanPartyTradingInstructionOverrideNotification", builder=LoanPartyTradingInstructionOverrideNotification.LoanPartyTradingInstructionOverrideNotificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanPartyTradingInstructionOverrideNotification", builder=LoanPartyTradingInstructionOverrideNotification.LoanPartyTradingInstructionOverrideNotificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanPartyTradingInstructionOverrideNotification extends AbstractLoanPartyProfileNotification {
 
 	LoanPartyTradingInstructionOverrideNotificationMeta metaData = new LoanPartyTradingInstructionOverrideNotificationMeta();

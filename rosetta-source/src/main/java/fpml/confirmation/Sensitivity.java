@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The sensitivity of a value to a defined change in input parameters.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Sensitivity", builder=Sensitivity.SensitivityBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Sensitivity", builder=Sensitivity.SensitivityBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Sensitivity extends RosettaModelObject {
 
 	SensitivityMeta metaData = new SensitivityMeta();

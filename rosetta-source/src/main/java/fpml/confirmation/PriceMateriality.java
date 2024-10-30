@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines the require price materiality percentage for the rate source to be considered valid. A structure describing the criteria for price materiality.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PriceMateriality", builder=PriceMateriality.PriceMaterialityBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PriceMateriality", builder=PriceMateriality.PriceMaterialityBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PriceMateriality extends FxDisruptionEvent {
 
 	PriceMaterialityMeta metaData = new PriceMaterialityMeta();

@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A description of how a numerical derivative is computed.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DerivativeCalculationProcedure", builder=DerivativeCalculationProcedure.DerivativeCalculationProcedureBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DerivativeCalculationProcedure", builder=DerivativeCalculationProcedure.DerivativeCalculationProcedureBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DerivativeCalculationProcedure extends RosettaModelObject {
 
 	DerivativeCalculationProcedureMeta metaData = new DerivativeCalculationProcedureMeta();

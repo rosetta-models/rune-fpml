@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defines nearest Delivery Date of the underlying Commodity of expiration of the futures contract.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DeliveryNearby", builder=DeliveryNearby.DeliveryNearbyBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DeliveryNearby", builder=DeliveryNearby.DeliveryNearbyBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DeliveryNearby extends RosettaModelObject {
 
 	DeliveryNearbyMeta metaData = new DeliveryNearbyMeta();

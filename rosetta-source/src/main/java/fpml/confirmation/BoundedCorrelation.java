@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing correlation bounds, which form a cap and a floor on the realized correlation.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BoundedCorrelation", builder=BoundedCorrelation.BoundedCorrelationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BoundedCorrelation", builder=BoundedCorrelation.BoundedCorrelationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BoundedCorrelation extends RosettaModelObject {
 
 	BoundedCorrelationMeta metaData = new BoundedCorrelationMeta();

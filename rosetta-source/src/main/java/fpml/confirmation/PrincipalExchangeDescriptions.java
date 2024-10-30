@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Specifies each of the characteristics of the principal exchange cashflows, in terms of paying/receiving counterparties, amounts and dates.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PrincipalExchangeDescriptions", builder=PrincipalExchangeDescriptions.PrincipalExchangeDescriptionsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PrincipalExchangeDescriptions", builder=PrincipalExchangeDescriptions.PrincipalExchangeDescriptionsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PrincipalExchangeDescriptions extends RosettaModelObject {
 
 	PrincipalExchangeDescriptionsMeta metaData = new PrincipalExchangeDescriptionsMeta();

@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxOutstandingGain", builder=FxOutstandingGain.FxOutstandingGainBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxOutstandingGain", builder=FxOutstandingGain.FxOutstandingGainBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxOutstandingGain extends RosettaModelObject {
 
 	FxOutstandingGainMeta metaData = new FxOutstandingGainMeta();

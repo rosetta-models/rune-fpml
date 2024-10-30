@@ -35,9 +35,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A message retracting a previous credit event notification. A message type retracting a previous credit event notification.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CreditEventNotificationRetracted", builder=CreditEventNotificationRetracted.CreditEventNotificationRetractedBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CreditEventNotificationRetracted", builder=CreditEventNotificationRetracted.CreditEventNotificationRetractedBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CreditEventNotificationRetracted extends NonCorrectableRequestMessage {
 
 	CreditEventNotificationRetractedMeta metaData = new CreditEventNotificationRetractedMeta();

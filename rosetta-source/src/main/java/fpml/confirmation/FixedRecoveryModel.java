@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FixedRecoveryModel", builder=FixedRecoveryModel.FixedRecoveryModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FixedRecoveryModel", builder=FixedRecoveryModel.FixedRecoveryModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FixedRecoveryModel extends RosettaModelObject {
 
 	FixedRecoveryModelMeta metaData = new FixedRecoveryModelMeta();

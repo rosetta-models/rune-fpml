@@ -19,7 +19,7 @@ import java.util.function.Function;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaMeta(model=ExchangeRestrictions.class)
 public class ExchangeRestrictionsMeta implements RosettaMetaData<ExchangeRestrictions> {

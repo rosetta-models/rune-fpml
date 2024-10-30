@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The data type used for account identifiers.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AccountId", builder=AccountId.AccountIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AccountId", builder=AccountId.AccountIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AccountId extends RosettaModelObject {
 
 	AccountIdMeta metaData = new AccountIdMeta();

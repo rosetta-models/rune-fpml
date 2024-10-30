@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A scheme identifying the code for a hub or other reference for a physically settled commodity trade.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityHubCode", builder=CommodityHubCode.CommodityHubCodeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityHubCode", builder=CommodityHubCode.CommodityHubCodeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityHubCode extends RosettaModelObject {
 
 	CommodityHubCodeMeta metaData = new CommodityHubCodeMeta();

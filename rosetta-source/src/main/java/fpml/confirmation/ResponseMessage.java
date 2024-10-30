@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type refining the generic message content model to make it specific to response messages.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ResponseMessage", builder=ResponseMessage.ResponseMessageBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ResponseMessage", builder=ResponseMessage.ResponseMessageBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ResponseMessage extends Message {
 
 	ResponseMessageMeta metaData = new ResponseMessageMeta();

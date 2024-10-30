@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A scheme identifying the grade of physical commodity product to be delivered.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityProductGrade", builder=CommodityProductGrade.CommodityProductGradeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityProductGrade", builder=CommodityProductGrade.CommodityProductGradeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityProductGrade extends RosettaModelObject {
 
 	CommodityProductGradeMeta metaData = new CommodityProductGradeMeta();

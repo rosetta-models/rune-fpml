@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A scheme identifying the types of the Delivery Point for a physically settled electricity trade.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ElectricityDeliveryPoint", builder=ElectricityDeliveryPoint.ElectricityDeliveryPointBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ElectricityDeliveryPoint", builder=ElectricityDeliveryPoint.ElectricityDeliveryPointBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ElectricityDeliveryPoint extends RosettaModelObject {
 
 	ElectricityDeliveryPointMeta metaData = new ElectricityDeliveryPointMeta();

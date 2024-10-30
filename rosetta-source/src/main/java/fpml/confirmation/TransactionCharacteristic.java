@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A characteristic of a transaction used in declaring an end-user exception.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TransactionCharacteristic", builder=TransactionCharacteristic.TransactionCharacteristicBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TransactionCharacteristic", builder=TransactionCharacteristic.TransactionCharacteristicBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TransactionCharacteristic extends RosettaModelObject {
 
 	TransactionCharacteristicMeta metaData = new TransactionCharacteristicMeta();

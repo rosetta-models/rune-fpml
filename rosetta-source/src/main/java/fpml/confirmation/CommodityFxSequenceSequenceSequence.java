@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityFxSequenceSequenceSequence", builder=CommodityFxSequenceSequenceSequence.CommodityFxSequenceSequenceSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityFxSequenceSequenceSequence", builder=CommodityFxSequenceSequenceSequence.CommodityFxSequenceSequenceSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityFxSequenceSequenceSequence extends RosettaModelObject {
 
 	CommodityFxSequenceSequenceSequenceMeta metaData = new CommodityFxSequenceSequenceSequenceMeta();

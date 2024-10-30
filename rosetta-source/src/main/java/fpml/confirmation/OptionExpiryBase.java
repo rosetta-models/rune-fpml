@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure describing an option expiring.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="OptionExpiryBase", builder=OptionExpiryBase.OptionExpiryBaseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="OptionExpiryBase", builder=OptionExpiryBase.OptionExpiryBaseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface OptionExpiryBase extends RosettaModelObject {
 
 	OptionExpiryBaseMeta metaData = new OptionExpiryBaseMeta();

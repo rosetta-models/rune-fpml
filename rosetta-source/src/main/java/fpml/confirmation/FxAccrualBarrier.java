@@ -33,9 +33,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxAccrualBarrier", builder=FxAccrualBarrier.FxAccrualBarrierBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxAccrualBarrier", builder=FxAccrualBarrier.FxAccrualBarrierBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxAccrualBarrier extends FxComplexBarrierBase {
 
 	FxAccrualBarrierMeta metaData = new FxAccrualBarrierMeta();

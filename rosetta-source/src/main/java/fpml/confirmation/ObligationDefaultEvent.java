@@ -20,9 +20,9 @@ import fpml.confirmation.meta.ObligationDefaultEventMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ObligationDefaultEvent", builder=ObligationDefaultEvent.ObligationDefaultEventBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ObligationDefaultEvent", builder=ObligationDefaultEvent.ObligationDefaultEventBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ObligationDefaultEvent extends CreditEvent {
 
 	ObligationDefaultEventMeta metaData = new ObligationDefaultEventMeta();

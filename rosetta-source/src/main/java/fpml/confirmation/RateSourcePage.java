@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RateSourcePage", builder=RateSourcePage.RateSourcePageBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RateSourcePage", builder=RateSourcePage.RateSourcePageBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RateSourcePage extends RosettaModelObject {
 
 	RateSourcePageMeta metaData = new RateSourcePageMeta();

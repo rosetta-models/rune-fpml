@@ -25,9 +25,9 @@ import fpml.confirmation.meta.TradeChangeAdviceExceptionMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradeChangeAdviceException", builder=TradeChangeAdviceException.TradeChangeAdviceExceptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradeChangeAdviceException", builder=TradeChangeAdviceException.TradeChangeAdviceExceptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradeChangeAdviceException extends Exception {
 
 	TradeChangeAdviceExceptionMeta metaData = new TradeChangeAdviceExceptionMeta();

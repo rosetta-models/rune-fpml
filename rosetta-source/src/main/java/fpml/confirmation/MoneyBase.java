@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Abstract base class for all money types.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MoneyBase", builder=MoneyBase.MoneyBaseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MoneyBase", builder=MoneyBase.MoneyBaseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MoneyBase extends RosettaModelObject {
 
 	MoneyBaseMeta metaData = new MoneyBaseMeta();

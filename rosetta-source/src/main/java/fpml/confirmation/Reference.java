@@ -17,9 +17,9 @@ import fpml.confirmation.meta.ReferenceMeta;
 
 /**
  * The abstract base class for all types which define intra-document pointers.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Reference", builder=Reference.ReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Reference", builder=Reference.ReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Reference extends RosettaModelObject {
 
 	ReferenceMeta metaData = new ReferenceMeta();

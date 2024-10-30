@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A list of all eligible accruing facility-level fee types.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AccruingFeeType", builder=AccruingFeeType.AccruingFeeTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AccruingFeeType", builder=AccruingFeeType.AccruingFeeTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AccruingFeeType extends RosettaModelObject {
 
 	AccruingFeeTypeMeta metaData = new AccruingFeeTypeMeta();

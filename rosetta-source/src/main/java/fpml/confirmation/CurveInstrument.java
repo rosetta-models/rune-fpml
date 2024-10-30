@@ -22,9 +22,9 @@ import fpml.confirmation.meta.CurveInstrumentMeta;
 
 /**
  * Defines the underlying asset when it is a curve instrument.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CurveInstrument", builder=CurveInstrument.CurveInstrumentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CurveInstrument", builder=CurveInstrument.CurveInstrumentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CurveInstrument extends Asset {
 
 	CurveInstrumentMeta metaData = new CurveInstrumentMeta();

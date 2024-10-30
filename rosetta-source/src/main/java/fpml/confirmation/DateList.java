@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * List of Dates
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DateList", builder=DateList.DateListBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DateList", builder=DateList.DateListBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DateList extends RosettaModelObject {
 
 	DateListMeta metaData = new DateListMeta();

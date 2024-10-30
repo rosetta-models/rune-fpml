@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A set of characteristics describing a sensitivity.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SensitivityDefinition", builder=SensitivityDefinition.SensitivityDefinitionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SensitivityDefinition", builder=SensitivityDefinition.SensitivityDefinitionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SensitivityDefinition extends RosettaModelObject {
 
 	SensitivityDefinitionMeta metaData = new SensitivityDefinitionMeta();

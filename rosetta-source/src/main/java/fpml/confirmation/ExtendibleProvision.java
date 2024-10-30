@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining an option to extend an existing swap transaction on the specified exercise dates for a term ending on the specified new termination date.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ExtendibleProvision", builder=ExtendibleProvision.ExtendibleProvisionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ExtendibleProvision", builder=ExtendibleProvision.ExtendibleProvisionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ExtendibleProvision extends RosettaModelObject {
 
 	ExtendibleProvisionMeta metaData = new ExtendibleProvisionMeta();

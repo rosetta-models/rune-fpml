@@ -29,9 +29,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityBasketByNotional", builder=CommodityBasketByNotional.CommodityBasketByNotionalBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityBasketByNotional", builder=CommodityBasketByNotional.CommodityBasketByNotionalBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityBasketByNotional extends CommodityBasketBase {
 
 	CommodityBasketByNotionalMeta metaData = new CommodityBasketByNotionalMeta();

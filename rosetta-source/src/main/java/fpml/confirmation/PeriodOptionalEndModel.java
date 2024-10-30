@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model that describes a period, with an optional end date.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PeriodOptionalEndModel", builder=PeriodOptionalEndModel.PeriodOptionalEndModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PeriodOptionalEndModel", builder=PeriodOptionalEndModel.PeriodOptionalEndModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PeriodOptionalEndModel extends RosettaModelObject {
 
 	PeriodOptionalEndModelMeta metaData = new PeriodOptionalEndModelMeta();

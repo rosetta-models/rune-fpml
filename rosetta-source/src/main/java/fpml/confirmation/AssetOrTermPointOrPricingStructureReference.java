@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to an underlying asset, term point or pricing structure (yield curve).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AssetOrTermPointOrPricingStructureReference", builder=AssetOrTermPointOrPricingStructureReference.AssetOrTermPointOrPricingStructureReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AssetOrTermPointOrPricingStructureReference", builder=AssetOrTermPointOrPricingStructureReference.AssetOrTermPointOrPricingStructureReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AssetOrTermPointOrPricingStructureReference extends Reference {
 
 	AssetOrTermPointOrPricingStructureReferenceMeta metaData = new AssetOrTermPointOrPricingStructureReferenceMeta();

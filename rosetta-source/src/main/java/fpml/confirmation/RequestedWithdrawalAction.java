@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that describes what the requester would like to see done to implement the withdrawal, e.g. ExpungeRecords, RetainRecords.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RequestedWithdrawalAction", builder=RequestedWithdrawalAction.RequestedWithdrawalActionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RequestedWithdrawalAction", builder=RequestedWithdrawalAction.RequestedWithdrawalActionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RequestedWithdrawalAction extends RosettaModelObject {
 
 	RequestedWithdrawalActionMeta metaData = new RequestedWithdrawalActionMeta();

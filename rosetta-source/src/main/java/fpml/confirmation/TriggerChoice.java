@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TriggerChoice", builder=TriggerChoice.TriggerChoiceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TriggerChoice", builder=TriggerChoice.TriggerChoiceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TriggerChoice extends RosettaModelObject {
 
 	TriggerChoiceMeta metaData = new TriggerChoiceMeta();

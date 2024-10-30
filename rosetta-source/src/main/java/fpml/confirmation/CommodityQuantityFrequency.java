@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type for defining the frequency at which the Notional Quantity is deemed to apply for purposes of calculating the Total Notional Quantity.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityQuantityFrequency", builder=CommodityQuantityFrequency.CommodityQuantityFrequencyBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityQuantityFrequency", builder=CommodityQuantityFrequency.CommodityQuantityFrequencyBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityQuantityFrequency extends RosettaModelObject {
 
 	CommodityQuantityFrequencyMeta metaData = new CommodityQuantityFrequencyMeta();

@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Element to define how to deal with a none standard calculation period within a swap stream.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaEnum("StubPeriodTypeEnum")
 public enum StubPeriodTypeEnum {

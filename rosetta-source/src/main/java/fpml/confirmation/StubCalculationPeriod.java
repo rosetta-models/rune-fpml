@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing the Stub Calculation Period.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="StubCalculationPeriod", builder=StubCalculationPeriod.StubCalculationPeriodBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="StubCalculationPeriod", builder=StubCalculationPeriod.StubCalculationPeriodBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface StubCalculationPeriod extends RosettaModelObject {
 
 	StubCalculationPeriodMeta metaData = new StubCalculationPeriodMeta();

@@ -30,9 +30,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Adds an optional spread type element to the Schedule to identify a long or short spread value.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SpreadSchedule", builder=SpreadSchedule.SpreadScheduleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SpreadSchedule", builder=SpreadSchedule.SpreadScheduleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SpreadSchedule extends Schedule {
 
 	SpreadScheduleMeta metaData = new SpreadScheduleMeta();

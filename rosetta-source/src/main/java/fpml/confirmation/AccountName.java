@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The data type used for the name of the account.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AccountName", builder=AccountName.AccountNameBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AccountName", builder=AccountName.AccountNameBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AccountName extends RosettaModelObject {
 
 	AccountNameMeta metaData = new AccountNameMeta();

@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A scheme identifying the quality adjustment formulae for a physically settled coal trade.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CoalQualityAdjustments", builder=CoalQualityAdjustments.CoalQualityAdjustmentsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CoalQualityAdjustments", builder=CoalQualityAdjustments.CoalQualityAdjustmentsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CoalQualityAdjustments extends RosettaModelObject {
 
 	CoalQualityAdjustmentsMeta metaData = new CoalQualityAdjustmentsMeta();

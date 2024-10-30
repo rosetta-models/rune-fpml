@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type for defining exercise procedures associated with an American style exercise of a commodity option.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityAmericanExercise", builder=CommodityAmericanExercise.CommodityAmericanExerciseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityAmericanExercise", builder=CommodityAmericanExercise.CommodityAmericanExerciseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityAmericanExercise extends Exercise {
 
 	CommodityAmericanExerciseMeta metaData = new CommodityAmericanExerciseMeta();

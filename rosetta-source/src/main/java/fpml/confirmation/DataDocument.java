@@ -35,9 +35,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A document containing trade and/or portfolio and/or party data without expressing any processing intention. A type defining a content model that is backwards compatible with older FpML releases and which can be used to contain sets of data without expressing any processing intention.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DataDocument", builder=DataDocument.DataDocumentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DataDocument", builder=DataDocument.DataDocumentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DataDocument extends Document {
 
 	DataDocumentMeta metaData = new DataDocumentMeta();

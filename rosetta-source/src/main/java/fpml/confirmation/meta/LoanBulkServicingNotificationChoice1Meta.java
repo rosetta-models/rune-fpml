@@ -19,7 +19,7 @@ import java.util.function.Function;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaMeta(model=LoanBulkServicingNotificationChoice1.class)
 public class LoanBulkServicingNotificationChoice1Meta implements RosettaMetaData<LoanBulkServicingNotificationChoice1> {

@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An underlying abstract structure that defines the responsible party for tasks that must be completed.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AbstractLoanTask", builder=AbstractLoanTask.AbstractLoanTaskBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AbstractLoanTask", builder=AbstractLoanTask.AbstractLoanTaskBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AbstractLoanTask extends RosettaModelObject {
 
 	AbstractLoanTaskMeta metaData = new AbstractLoanTaskMeta();

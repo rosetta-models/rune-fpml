@@ -25,9 +25,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * If present indicates that the obligation to pay the In-the-Money amount of foreign currency is replaced with an obligation to pay an equivalent amount in another currency. Describes a currency which may be delivered instead
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="NonDeliverableSubstitute", builder=NonDeliverableSubstitute.NonDeliverableSubstituteBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="NonDeliverableSubstitute", builder=NonDeliverableSubstitute.NonDeliverableSubstituteBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface NonDeliverableSubstitute extends FxDisruptionFallback {
 
 	NonDeliverableSubstituteMeta metaData = new NonDeliverableSubstituteMeta();

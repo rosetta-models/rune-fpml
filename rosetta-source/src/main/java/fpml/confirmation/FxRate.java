@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing the rate of a currency conversion: pair of currency, quotation mode and exchange rate.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxRate", builder=FxRate.FxRateBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxRate", builder=FxRate.FxRateBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxRate extends RosettaModelObject {
 
 	FxRateMeta metaData = new FxRateMeta();

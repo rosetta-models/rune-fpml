@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The different options for specifying the attributes of a coal quality measure as a percentage of the measured value.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CoalAttributePercentage", builder=CoalAttributePercentage.CoalAttributePercentageBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CoalAttributePercentage", builder=CoalAttributePercentage.CoalAttributePercentageBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CoalAttributePercentage extends RosettaModelObject {
 
 	CoalAttributePercentageMeta metaData = new CoalAttributePercentageMeta();

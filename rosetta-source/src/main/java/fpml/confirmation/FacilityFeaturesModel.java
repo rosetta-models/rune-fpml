@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model that describes features/attributes associated with a given facility.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FacilityFeaturesModel", builder=FacilityFeaturesModel.FacilityFeaturesModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FacilityFeaturesModel", builder=FacilityFeaturesModel.FacilityFeaturesModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FacilityFeaturesModel extends RosettaModelObject {
 
 	FacilityFeaturesModelMeta metaData = new FacilityFeaturesModelMeta();

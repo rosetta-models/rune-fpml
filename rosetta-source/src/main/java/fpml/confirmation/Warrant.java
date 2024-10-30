@@ -33,9 +33,9 @@ import java.util.stream.Collectors;
 
 /**
  * Defines the underlying asset when it is a warrant.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Warrant", builder=Warrant.WarrantBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Warrant", builder=Warrant.WarrantBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Warrant extends ExchangeTradedContract {
 
 	WarrantMeta metaData = new WarrantMeta();

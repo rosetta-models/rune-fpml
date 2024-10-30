@@ -23,9 +23,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="WeatherIndexData", builder=WeatherIndexData.WeatherIndexDataBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="WeatherIndexData", builder=WeatherIndexData.WeatherIndexDataBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface WeatherIndexData extends RosettaModelObject {
 
 	WeatherIndexDataMeta metaData = new WeatherIndexDataMeta();

@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Additional terms to a swap contract.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SwapAdditionalTerms", builder=SwapAdditionalTerms.SwapAdditionalTermsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SwapAdditionalTerms", builder=SwapAdditionalTerms.SwapAdditionalTermsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SwapAdditionalTerms extends RosettaModelObject {
 
 	SwapAdditionalTermsMeta metaData = new SwapAdditionalTermsMeta();

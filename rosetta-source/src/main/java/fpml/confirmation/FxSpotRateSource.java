@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the rate source and fixing time for an fx rate.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxSpotRateSource", builder=FxSpotRateSource.FxSpotRateSourceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxSpotRateSource", builder=FxSpotRateSource.FxSpotRateSourceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxSpotRateSource extends RosettaModelObject {
 
 	FxSpotRateSourceMeta metaData = new FxSpotRateSourceMeta();

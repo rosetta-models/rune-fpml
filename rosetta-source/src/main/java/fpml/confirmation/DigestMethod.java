@@ -21,9 +21,9 @@ import fpml.confirmation.meta.DigestMethodMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DigestMethod", builder=DigestMethod.DigestMethodBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DigestMethod", builder=DigestMethod.DigestMethodBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DigestMethod extends DigestMethodType {
 
 	DigestMethodMeta metaData = new DigestMethodMeta();

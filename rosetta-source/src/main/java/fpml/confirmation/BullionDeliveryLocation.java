@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A scheme defining where bullion is to be delivered for a Bullion Transaction.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BullionDeliveryLocation", builder=BullionDeliveryLocation.BullionDeliveryLocationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BullionDeliveryLocation", builder=BullionDeliveryLocation.BullionDeliveryLocationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BullionDeliveryLocation extends RosettaModelObject {
 
 	BullionDeliveryLocationMeta metaData = new BullionDeliveryLocationMeta();

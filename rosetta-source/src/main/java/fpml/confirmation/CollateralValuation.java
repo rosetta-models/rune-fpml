@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * This type is used in Repo trades, to specify the valuation of a specific piece of collateral in the transaction.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CollateralValuation", builder=CollateralValuation.CollateralValuationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CollateralValuation", builder=CollateralValuation.CollateralValuationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CollateralValuation extends RosettaModelObject {
 
 	CollateralValuationMeta metaData = new CollateralValuationMeta();

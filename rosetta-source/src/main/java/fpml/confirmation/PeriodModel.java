@@ -20,9 +20,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PeriodModel", builder=PeriodModel.PeriodModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PeriodModel", builder=PeriodModel.PeriodModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PeriodModel extends RosettaModelObject {
 
 	PeriodModelMeta metaData = new PeriodModelMeta();

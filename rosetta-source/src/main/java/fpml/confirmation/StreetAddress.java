@@ -25,9 +25,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that describes the set of street and building number information that identifies a postal address within a city.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="StreetAddress", builder=StreetAddress.StreetAddressBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="StreetAddress", builder=StreetAddress.StreetAddressBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface StreetAddress extends RosettaModelObject {
 
 	StreetAddressMeta metaData = new StreetAddressMeta();

@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The different options for specifying the quality attributes of the coal to be delivered.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CoalProductSpecifications", builder=CoalProductSpecifications.CoalProductSpecificationsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CoalProductSpecifications", builder=CoalProductSpecifications.CoalProductSpecificationsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CoalProductSpecifications extends RosettaModelObject {
 
 	CoalProductSpecificationsMeta metaData = new CoalProductSpecificationsMeta();

@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining trade related information which is not product specific.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradeHeader", builder=TradeHeader.TradeHeaderBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradeHeader", builder=TradeHeader.TradeHeaderBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradeHeader extends RosettaModelObject {
 
 	TradeHeaderMeta metaData = new TradeHeaderMeta();

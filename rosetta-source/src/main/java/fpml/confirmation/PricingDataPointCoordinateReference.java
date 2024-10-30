@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to a Pricing Data Point Coordinate.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PricingDataPointCoordinateReference", builder=PricingDataPointCoordinateReference.PricingDataPointCoordinateReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PricingDataPointCoordinateReference", builder=PricingDataPointCoordinateReference.PricingDataPointCoordinateReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PricingDataPointCoordinateReference extends Reference {
 
 	PricingDataPointCoordinateReferenceMeta metaData = new PricingDataPointCoordinateReferenceMeta();

@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Defines applicable periods for interpolation.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaEnum("InterpolationPeriodEnum")
 public enum InterpolationPeriodEnum {

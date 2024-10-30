@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure representing a pending dividend or coupon payment.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PendingPayment", builder=PendingPayment.PendingPaymentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PendingPayment", builder=PendingPayment.PendingPaymentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PendingPayment extends PaymentBase {
 
 	PendingPaymentMeta metaData = new PendingPaymentMeta();

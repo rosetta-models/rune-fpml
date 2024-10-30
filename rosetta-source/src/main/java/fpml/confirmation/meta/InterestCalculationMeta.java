@@ -19,7 +19,7 @@ import java.util.function.Function;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaMeta(model=InterestCalculation.class)
 public class InterestCalculationMeta implements RosettaMetaData<InterestCalculation> {

@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Accrual calculation process.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxAccrual", builder=FxAccrual.FxAccrualBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxAccrual", builder=FxAccrual.FxAccrualBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxAccrual extends RosettaModelObject {
 
 	FxAccrualMeta metaData = new FxAccrualMeta();

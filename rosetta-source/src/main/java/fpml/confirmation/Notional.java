@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An type defining the notional amount or notional amount schedule associated with a swap stream. The notional schedule will be captured explicitly, specifying the dates that the notional changes and the outstanding notional amount that applies from that date. A parametric representation of the rules defining the notional step schedule can optionally be included.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Notional", builder=Notional.NotionalBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Notional", builder=Notional.NotionalBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Notional extends RosettaModelObject {
 
 	NotionalMeta metaData = new NotionalMeta();

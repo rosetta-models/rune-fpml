@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the content model for a message allowing one party to query the status of one event (trade or post-trade event) previously sent to another party.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RequestEventStatus", builder=RequestEventStatus.RequestEventStatusBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RequestEventStatus", builder=RequestEventStatus.RequestEventStatusBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RequestEventStatus extends NonCorrectableRequestMessage {
 
 	RequestEventStatusMeta metaData = new RequestEventStatusMeta();

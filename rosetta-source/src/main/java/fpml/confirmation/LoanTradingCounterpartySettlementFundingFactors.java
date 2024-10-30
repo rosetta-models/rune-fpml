@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that defines the factors that impact settlement cashflows.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanTradingCounterpartySettlementFundingFactors", builder=LoanTradingCounterpartySettlementFundingFactors.LoanTradingCounterpartySettlementFundingFactorsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanTradingCounterpartySettlementFundingFactors", builder=LoanTradingCounterpartySettlementFundingFactors.LoanTradingCounterpartySettlementFundingFactorsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanTradingCounterpartySettlementFundingFactors extends RosettaModelObject {
 
 	LoanTradingCounterpartySettlementFundingFactorsMeta metaData = new LoanTradingCounterpartySettlementFundingFactorsMeta();

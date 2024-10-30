@@ -25,9 +25,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DealRolesModelSequence", builder=DealRolesModelSequence.DealRolesModelSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DealRolesModelSequence", builder=DealRolesModelSequence.DealRolesModelSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DealRolesModelSequence extends RosettaModelObject {
 
 	DealRolesModelSequenceMeta metaData = new DealRolesModelSequenceMeta();

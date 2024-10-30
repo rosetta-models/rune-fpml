@@ -30,9 +30,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A set of credit curve values, which can include pricing inputs (which are typically credit spreads), default probabilities, and recovery rates.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CreditCurveValuation", builder=CreditCurveValuation.CreditCurveValuationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CreditCurveValuation", builder=CreditCurveValuation.CreditCurveValuationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CreditCurveValuation extends PricingStructureValuation {
 
 	CreditCurveValuationMeta metaData = new CreditCurveValuationMeta();

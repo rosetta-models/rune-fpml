@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The parameters for defining how the commodity digital option can be exercised. It differs from the CommodityExercise type in that it lacks a specification of Settlement Currency. The Settlement Currency is specified in the &#39;featurePayment&#39; element.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityDigitalExercise", builder=CommodityDigitalExercise.CommodityDigitalExerciseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityDigitalExercise", builder=CommodityDigitalExercise.CommodityDigitalExerciseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityDigitalExercise extends RosettaModelObject {
 
 	CommodityDigitalExerciseMeta metaData = new CommodityDigitalExerciseMeta();

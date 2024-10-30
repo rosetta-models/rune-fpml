@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A schedule that incorporates all sub-periods of an accrual calculation for the purposes of determining the cost of carry in the case of a trade with delayed settlement.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanTradingCostOfCarryAccrual", builder=LoanTradingCostOfCarryAccrual.LoanTradingCostOfCarryAccrualBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanTradingCostOfCarryAccrual", builder=LoanTradingCostOfCarryAccrual.LoanTradingCostOfCarryAccrualBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanTradingCostOfCarryAccrual extends RosettaModelObject {
 
 	LoanTradingCostOfCarryAccrualMeta metaData = new LoanTradingCostOfCarryAccrualMeta();

@@ -32,9 +32,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A strategy product. A type defining a group of products making up a single trade.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Strategy", builder=Strategy.StrategyBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Strategy", builder=Strategy.StrategyBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Strategy extends Product {
 
 	StrategyMeta metaData = new StrategyMeta();

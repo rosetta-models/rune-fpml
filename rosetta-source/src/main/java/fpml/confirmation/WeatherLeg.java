@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A weather leg of a Commodity Swap defines Weather Index Swap transactions. Weather Index Swap transactions are OTC derivative transactions which settle financially based on an index calculated from observations of temperature, precipitation and other weather-related measurements at weather stations throughout the world. Sub-Annex C of the 2005 ISDA Commodity Definitions provides definitions and terms for a number of types of weather indices. These indices include: HDD (heating degree days), CDD (cooling degree days), CPD (critical precipitation days). Weather Index Swap transactions result in a cash flow to one of the two counterparties each Calculation Period depending on the relationship between the Settlement Level and the Weather Index Level. A Weather Index swap transaction always consists of a commodity swap element as a parent to two weatherLeg elements.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="WeatherLeg", builder=WeatherLeg.WeatherLegBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="WeatherLeg", builder=WeatherLeg.WeatherLegBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface WeatherLeg extends FinancialSwapLeg {
 
 	WeatherLegMeta metaData = new WeatherLegMeta();

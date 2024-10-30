@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The elements common to FX rate observation.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxRateObservationModel", builder=FxRateObservationModel.FxRateObservationModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxRateObservationModel", builder=FxRateObservationModel.FxRateObservationModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxRateObservationModel extends RosettaModelObject {
 
 	FxRateObservationModelMeta metaData = new FxRateObservationModelMeta();

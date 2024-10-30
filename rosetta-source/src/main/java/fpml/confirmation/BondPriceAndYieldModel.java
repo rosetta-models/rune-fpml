@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A group which has either Bond Price or Yield elements.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BondPriceAndYieldModel", builder=BondPriceAndYieldModel.BondPriceAndYieldModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BondPriceAndYieldModel", builder=BondPriceAndYieldModel.BondPriceAndYieldModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BondPriceAndYieldModel extends RosettaModelObject {
 
 	BondPriceAndYieldModelMeta metaData = new BondPriceAndYieldModelMeta();

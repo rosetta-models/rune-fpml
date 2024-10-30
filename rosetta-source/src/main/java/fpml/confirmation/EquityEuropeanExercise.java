@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type for defining exercise procedures associated with a European style exercise of an equity option.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EquityEuropeanExercise", builder=EquityEuropeanExercise.EquityEuropeanExerciseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EquityEuropeanExercise", builder=EquityEuropeanExercise.EquityEuropeanExerciseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EquityEuropeanExercise extends Exercise {
 
 	EquityEuropeanExerciseMeta metaData = new EquityEuropeanExerciseMeta();

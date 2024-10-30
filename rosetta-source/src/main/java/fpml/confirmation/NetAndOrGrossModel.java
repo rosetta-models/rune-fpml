@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A group including a net and/or a gross amount.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="NetAndOrGrossModel", builder=NetAndOrGrossModel.NetAndOrGrossModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="NetAndOrGrossModel", builder=NetAndOrGrossModel.NetAndOrGrossModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface NetAndOrGrossModel extends RosettaModelObject {
 
 	NetAndOrGrossModelMeta metaData = new NetAndOrGrossModelMeta();

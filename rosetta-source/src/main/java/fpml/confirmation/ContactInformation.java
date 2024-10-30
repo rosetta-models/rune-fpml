@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that represents how to contact an individual or organization.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ContactInformation", builder=ContactInformation.ContactInformationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ContactInformation", builder=ContactInformation.ContactInformationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ContactInformation extends RosettaModelObject {
 
 	ContactInformationMeta metaData = new ContactInformationMeta();

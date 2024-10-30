@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model that defines all relevant dates related to a specific facility.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FacilityDatesModel", builder=FacilityDatesModel.FacilityDatesModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FacilityDatesModel", builder=FacilityDatesModel.FacilityDatesModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FacilityDatesModel extends RosettaModelObject {
 
 	FacilityDatesModelMeta metaData = new FacilityDatesModelMeta();

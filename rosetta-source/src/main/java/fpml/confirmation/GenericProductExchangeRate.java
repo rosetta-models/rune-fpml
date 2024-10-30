@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that is used for describing the exchange rate for a particular transaction.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="GenericProductExchangeRate", builder=GenericProductExchangeRate.GenericProductExchangeRateBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="GenericProductExchangeRate", builder=GenericProductExchangeRate.GenericProductExchangeRateBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface GenericProductExchangeRate extends RosettaModelObject {
 
 	GenericProductExchangeRateMeta metaData = new GenericProductExchangeRateMeta();

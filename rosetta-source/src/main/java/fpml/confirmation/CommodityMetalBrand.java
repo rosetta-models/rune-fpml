@@ -23,9 +23,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityMetalBrand", builder=CommodityMetalBrand.CommodityMetalBrandBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityMetalBrand", builder=CommodityMetalBrand.CommodityMetalBrandBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityMetalBrand extends RosettaModelObject {
 
 	CommodityMetalBrandMeta metaData = new CommodityMetalBrandMeta();

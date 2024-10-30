@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type for defining business day calendar used in determining whether a day is a business day or not. A list of business day calendar locations may be ordered in the document alphabetically based on business day calendar location code. An FpML document containing an unordered business day calendar location list is still regarded as a conformant document.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BusinessCenters", builder=BusinessCenters.BusinessCentersBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BusinessCenters", builder=BusinessCenters.BusinessCentersBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BusinessCenters extends RosettaModelObject {
 
 	BusinessCentersMeta metaData = new BusinessCentersMeta();

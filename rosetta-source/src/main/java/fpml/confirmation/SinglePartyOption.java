@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing the buyer and seller of an option.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SinglePartyOption", builder=SinglePartyOption.SinglePartyOptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SinglePartyOption", builder=SinglePartyOption.SinglePartyOptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SinglePartyOption extends RosettaModelObject {
 
 	SinglePartyOptionMeta metaData = new SinglePartyOptionMeta();

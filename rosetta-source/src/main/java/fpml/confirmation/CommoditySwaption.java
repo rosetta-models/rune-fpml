@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines a commodity swaption product Commodity Swaption.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommoditySwaption", builder=CommoditySwaption.CommoditySwaptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommoditySwaption", builder=CommoditySwaption.CommoditySwaptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommoditySwaption extends Product {
 
 	CommoditySwaptionMeta metaData = new CommoditySwaptionMeta();

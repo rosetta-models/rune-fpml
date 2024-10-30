@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Parameters used in the computation of a derivative by substituting a supplied market environment.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SubstitutionDerivativeParametersModel", builder=SubstitutionDerivativeParametersModel.SubstitutionDerivativeParametersModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SubstitutionDerivativeParametersModel", builder=SubstitutionDerivativeParametersModel.SubstitutionDerivativeParametersModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SubstitutionDerivativeParametersModel extends RosettaModelObject {
 
 	SubstitutionDerivativeParametersModelMeta metaData = new SubstitutionDerivativeParametersModelMeta();

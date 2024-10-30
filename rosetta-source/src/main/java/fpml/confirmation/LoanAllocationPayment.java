@@ -37,9 +37,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that represents a payment related to a loan trade.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanAllocationPayment", builder=LoanAllocationPayment.LoanAllocationPaymentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanAllocationPayment", builder=LoanAllocationPayment.LoanAllocationPaymentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanAllocationPayment extends Payment {
 
 	LoanAllocationPaymentMeta metaData = new LoanAllocationPaymentMeta();

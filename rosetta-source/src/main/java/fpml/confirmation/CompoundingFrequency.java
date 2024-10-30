@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CompoundingFrequency", builder=CompoundingFrequency.CompoundingFrequencyBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CompoundingFrequency", builder=CompoundingFrequency.CompoundingFrequencyBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CompoundingFrequency extends RosettaModelObject {
 
 	CompoundingFrequencyMeta metaData = new CompoundingFrequencyMeta();

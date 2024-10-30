@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The current status value of a clearing request.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ClearingStatusValue", builder=ClearingStatusValue.ClearingStatusValueBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ClearingStatusValue", builder=ClearingStatusValue.ClearingStatusValueBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ClearingStatusValue extends RosettaModelObject {
 
 	ClearingStatusValueMeta metaData = new ClearingStatusValueMeta();

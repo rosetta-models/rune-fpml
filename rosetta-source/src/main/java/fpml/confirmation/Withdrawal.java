@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure describing the removal of a trade from a service, such as a reporting service.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Withdrawal", builder=Withdrawal.WithdrawalBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Withdrawal", builder=Withdrawal.WithdrawalBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Withdrawal extends RosettaModelObject {
 
 	WithdrawalMeta metaData = new WithdrawalMeta();

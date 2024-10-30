@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A contractual supplement (such as those published by ISDA) that will apply to the trade.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ContractualSupplement", builder=ContractualSupplement.ContractualSupplementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ContractualSupplement", builder=ContractualSupplement.ContractualSupplementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ContractualSupplement extends RosettaModelObject {
 
 	ContractualSupplementMeta metaData = new ContractualSupplementMeta();

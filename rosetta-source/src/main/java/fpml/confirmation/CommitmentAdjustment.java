@@ -35,9 +35,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An event defining a future change in facility commitment.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommitmentAdjustment", builder=CommitmentAdjustment.CommitmentAdjustmentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommitmentAdjustment", builder=CommitmentAdjustment.CommitmentAdjustmentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommitmentAdjustment extends AbstractFacilityEvent {
 
 	CommitmentAdjustmentMeta metaData = new CommitmentAdjustmentMeta();

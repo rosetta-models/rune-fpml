@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A message withdrawing a request that a trade be cleared by a clearing service.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RequestClearingRetracted", builder=RequestClearingRetracted.RequestClearingRetractedBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RequestClearingRetracted", builder=RequestClearingRetracted.RequestClearingRetractedBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RequestClearingRetracted extends NonCorrectableRequestMessage {
 
 	RequestClearingRetractedMeta metaData = new RequestClearingRetractedMeta();

@@ -21,9 +21,9 @@ import fpml.confirmation.meta.RSAKeyValueMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RSAKeyValue", builder=RSAKeyValue.RSAKeyValueBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RSAKeyValue", builder=RSAKeyValue.RSAKeyValueBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RSAKeyValue extends RSAKeyValueType {
 
 	RSAKeyValueMeta metaData = new RSAKeyValueMeta();

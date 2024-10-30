@@ -33,9 +33,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An event representing the issuance of a new letter of credit under an existing facility.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LcIssuance", builder=LcIssuance.LcIssuanceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LcIssuance", builder=LcIssuance.LcIssuanceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LcIssuance extends AbstractLcEvent {
 
 	LcIssuanceMeta metaData = new LcIssuanceMeta();

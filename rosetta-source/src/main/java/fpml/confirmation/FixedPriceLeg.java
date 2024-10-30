@@ -30,9 +30,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Fixed Price Leg of a Commodity Swap. It defines schedule of fixed payments associated with a commodity swap.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FixedPriceLeg", builder=FixedPriceLeg.FixedPriceLegBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FixedPriceLeg", builder=FixedPriceLeg.FixedPriceLegBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FixedPriceLeg extends FinancialSwapLeg {
 
 	FixedPriceLegMeta metaData = new FixedPriceLegMeta();

@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The data type used for ESMA action type.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ActionType", builder=ActionType.ActionTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ActionType", builder=ActionType.ActionTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ActionType extends RosettaModelObject {
 
 	ActionTypeMeta metaData = new ActionTypeMeta();

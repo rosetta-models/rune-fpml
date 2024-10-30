@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type for defining a series of dates that shall be subject to adjustment if they would otherwise fall on a day that is not a business day in the specified business centers, together with the convention for adjusting the dates.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AdjustableDates", builder=AdjustableDates.AdjustableDatesBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AdjustableDates", builder=AdjustableDates.AdjustableDatesBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AdjustableDates extends RosettaModelObject {
 
 	AdjustableDatesMeta metaData = new AdjustableDatesMeta();

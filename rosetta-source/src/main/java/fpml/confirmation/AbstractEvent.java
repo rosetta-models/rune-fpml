@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Abstract base type for all events.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AbstractEvent", builder=AbstractEvent.AbstractEventBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AbstractEvent", builder=AbstractEvent.AbstractEventBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AbstractEvent extends RosettaModelObject {
 
 	AbstractEventMeta metaData = new AbstractEventMeta();

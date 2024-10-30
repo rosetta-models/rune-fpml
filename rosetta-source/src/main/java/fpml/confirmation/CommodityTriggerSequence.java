@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityTriggerSequence", builder=CommodityTriggerSequence.CommodityTriggerSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityTriggerSequence", builder=CommodityTriggerSequence.CommodityTriggerSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityTriggerSequence extends RosettaModelObject {
 
 	CommodityTriggerSequenceMeta metaData = new CommodityTriggerSequenceMeta();

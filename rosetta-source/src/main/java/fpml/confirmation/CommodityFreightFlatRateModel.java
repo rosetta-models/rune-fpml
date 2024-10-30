@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The Flat Rate, applicable to Wet Voyager Charter Freight Swaps.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityFreightFlatRateModel", builder=CommodityFreightFlatRateModel.CommodityFreightFlatRateModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityFreightFlatRateModel", builder=CommodityFreightFlatRateModel.CommodityFreightFlatRateModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityFreightFlatRateModel extends RosettaModelObject {
 
 	CommodityFreightFlatRateModelMeta metaData = new CommodityFreightFlatRateModelMeta();

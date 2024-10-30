@@ -23,9 +23,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MultipleValuationDates", builder=MultipleValuationDates.MultipleValuationDatesBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MultipleValuationDates", builder=MultipleValuationDates.MultipleValuationDatesBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MultipleValuationDates extends SingleValuationDate {
 
 	MultipleValuationDatesMeta metaData = new MultipleValuationDatesMeta();

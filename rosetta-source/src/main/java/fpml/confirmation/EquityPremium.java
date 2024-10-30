@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type used to describe the amount paid for an equity option.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EquityPremium", builder=EquityPremium.EquityPremiumBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EquityPremium", builder=EquityPremium.EquityPremiumBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EquityPremium extends PaymentBase {
 
 	EquityPremiumMeta metaData = new EquityPremiumMeta();

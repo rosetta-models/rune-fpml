@@ -21,9 +21,9 @@ import fpml.confirmation.meta.PriceSourceDisruptionMeta;
 
 /**
  * If present indicates that the event is considered to have occurred if it is impossible to obtain information about the Spot Rate for a Valuation Date from the price source specified in the Settlement Rate Option that hass been agreed by the parties.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PriceSourceDisruption", builder=PriceSourceDisruption.PriceSourceDisruptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PriceSourceDisruption", builder=PriceSourceDisruption.PriceSourceDisruptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PriceSourceDisruption extends FxDisruptionEvent {
 
 	PriceSourceDisruptionMeta metaData = new PriceSourceDisruptionMeta();

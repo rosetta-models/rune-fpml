@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The physical leg of a Commodity Forward Transaction for which the underlyer is Bullion. Physically settled leg of a physically settled Bullion Transaction.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BullionPhysicalLeg", builder=BullionPhysicalLeg.BullionPhysicalLegBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BullionPhysicalLeg", builder=BullionPhysicalLeg.BullionPhysicalLegBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BullionPhysicalLeg extends PhysicalForwardLeg {
 
 	BullionPhysicalLegMeta metaData = new BullionPhysicalLegMeta();

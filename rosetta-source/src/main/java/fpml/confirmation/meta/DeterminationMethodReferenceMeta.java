@@ -19,7 +19,7 @@ import java.util.function.Function;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaMeta(model=DeterminationMethodReference.class)
 public class DeterminationMethodReferenceMeta implements RosettaMetaData<DeterminationMethodReference> {

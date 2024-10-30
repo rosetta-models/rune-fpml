@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SettledEntityMatrix", builder=SettledEntityMatrix.SettledEntityMatrixBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SettledEntityMatrix", builder=SettledEntityMatrix.SettledEntityMatrixBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SettledEntityMatrix extends RosettaModelObject {
 
 	SettledEntityMatrixMeta metaData = new SettledEntityMatrixMeta();

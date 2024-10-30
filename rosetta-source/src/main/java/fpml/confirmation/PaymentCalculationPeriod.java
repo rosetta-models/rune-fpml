@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the adjusted payment date and associated calculation period parameters required to calculate the actual or projected payment amount. This type forms part of the cashflow representation of a swap stream.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PaymentCalculationPeriod", builder=PaymentCalculationPeriod.PaymentCalculationPeriodBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PaymentCalculationPeriod", builder=PaymentCalculationPeriod.PaymentCalculationPeriodBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PaymentCalculationPeriod extends RosettaModelObject {
 
 	PaymentCalculationPeriodMeta metaData = new PaymentCalculationPeriodMeta();

@@ -20,9 +20,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="VersionHistoryModel", builder=VersionHistoryModel.VersionHistoryModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="VersionHistoryModel", builder=VersionHistoryModel.VersionHistoryModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface VersionHistoryModel extends RosettaModelObject {
 
 	VersionHistoryModelMeta metaData = new VersionHistoryModelMeta();

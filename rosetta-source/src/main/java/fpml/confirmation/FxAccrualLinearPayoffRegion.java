@@ -35,9 +35,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A fixing region in which the payoff varies linearly with the fixing value.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxAccrualLinearPayoffRegion", builder=FxAccrualLinearPayoffRegion.FxAccrualLinearPayoffRegionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxAccrualLinearPayoffRegion", builder=FxAccrualLinearPayoffRegion.FxAccrualLinearPayoffRegionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxAccrualLinearPayoffRegion extends FxAccrualPayoffRegion {
 
 	FxAccrualLinearPayoffRegionMeta metaData = new FxAccrualLinearPayoffRegionMeta();

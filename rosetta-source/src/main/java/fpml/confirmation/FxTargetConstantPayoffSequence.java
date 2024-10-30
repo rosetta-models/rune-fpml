@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxTargetConstantPayoffSequence", builder=FxTargetConstantPayoffSequence.FxTargetConstantPayoffSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxTargetConstantPayoffSequence", builder=FxTargetConstantPayoffSequence.FxTargetConstantPayoffSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxTargetConstantPayoffSequence extends RosettaModelObject {
 
 	FxTargetConstantPayoffSequenceMeta metaData = new FxTargetConstantPayoffSequenceMeta();

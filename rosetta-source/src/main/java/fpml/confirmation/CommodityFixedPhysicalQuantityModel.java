@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The different options for specifying a fixed physical quantity of commodity to be delivered.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityFixedPhysicalQuantityModel", builder=CommodityFixedPhysicalQuantityModel.CommodityFixedPhysicalQuantityModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityFixedPhysicalQuantityModel", builder=CommodityFixedPhysicalQuantityModel.CommodityFixedPhysicalQuantityModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityFixedPhysicalQuantityModel extends RosettaModelObject {
 
 	CommodityFixedPhysicalQuantityModelMeta metaData = new CommodityFixedPhysicalQuantityModelMeta();

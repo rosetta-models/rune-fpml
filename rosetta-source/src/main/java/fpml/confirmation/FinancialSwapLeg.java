@@ -25,9 +25,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The common components of a financially settled leg of a Commodity Swap. This is an abstract type and should be extended by commodity-specific types.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FinancialSwapLeg", builder=FinancialSwapLeg.FinancialSwapLegBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FinancialSwapLeg", builder=FinancialSwapLeg.FinancialSwapLegBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FinancialSwapLeg extends CommoditySwapLeg {
 
 	FinancialSwapLegMeta metaData = new FinancialSwapLegMeta();

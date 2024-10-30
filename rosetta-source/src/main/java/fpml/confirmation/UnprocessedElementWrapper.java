@@ -17,9 +17,9 @@ import fpml.confirmation.meta.UnprocessedElementWrapperMeta;
 
 /**
  * A type holding a structure that is unvalidated
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="UnprocessedElementWrapper", builder=UnprocessedElementWrapper.UnprocessedElementWrapperBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="UnprocessedElementWrapper", builder=UnprocessedElementWrapper.UnprocessedElementWrapperBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface UnprocessedElementWrapper extends RosettaModelObject {
 
 	UnprocessedElementWrapperMeta metaData = new UnprocessedElementWrapperMeta();

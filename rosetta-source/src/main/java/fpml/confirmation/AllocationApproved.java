@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A message indicating that a request to allocate a trade has been approved by the sender.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AllocationApproved", builder=AllocationApproved.AllocationApprovedBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AllocationApproved", builder=AllocationApproved.AllocationApprovedBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AllocationApproved extends ResponseMessage {
 
 	AllocationApprovedMeta metaData = new AllocationApprovedMeta();

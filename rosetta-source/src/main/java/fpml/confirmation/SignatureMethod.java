@@ -21,9 +21,9 @@ import fpml.confirmation.meta.SignatureMethodMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SignatureMethod", builder=SignatureMethod.SignatureMethodBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SignatureMethod", builder=SignatureMethod.SignatureMethodBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SignatureMethod extends SignatureMethodType {
 
 	SignatureMethodMeta metaData = new SignatureMethodMeta();

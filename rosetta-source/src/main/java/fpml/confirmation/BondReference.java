@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type including a reference to a bond to support the representation of an asset swap or Condition Precedent Bond.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BondReference", builder=BondReference.BondReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BondReference", builder=BondReference.BondReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BondReference extends RosettaModelObject {
 
 	BondReferenceMeta metaData = new BondReferenceMeta();

@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type used to represent the type of mechanism that can be used to verify a trade.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="VerificationMethod", builder=VerificationMethod.VerificationMethodBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="VerificationMethod", builder=VerificationMethod.VerificationMethodBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface VerificationMethod extends RosettaModelObject {
 
 	VerificationMethodMeta metaData = new VerificationMethodMeta();

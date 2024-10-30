@@ -27,9 +27,9 @@ import fpml.confirmation.meta.ClearingEligibilityAcknowledgementMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ClearingEligibilityAcknowledgement", builder=ClearingEligibilityAcknowledgement.ClearingEligibilityAcknowledgementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ClearingEligibilityAcknowledgement", builder=ClearingEligibilityAcknowledgement.ClearingEligibilityAcknowledgementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ClearingEligibilityAcknowledgement extends Acknowledgement {
 
 	ClearingEligibilityAcknowledgementMeta metaData = new ClearingEligibilityAcknowledgementMeta();

@@ -26,9 +26,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AccrualOptionChangeNotificationSequence1", builder=AccrualOptionChangeNotificationSequence1.AccrualOptionChangeNotificationSequence1BuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AccrualOptionChangeNotificationSequence1", builder=AccrualOptionChangeNotificationSequence1.AccrualOptionChangeNotificationSequence1BuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AccrualOptionChangeNotificationSequence1 extends RosettaModelObject {
 
 	AccrualOptionChangeNotificationSequence1Meta metaData = new AccrualOptionChangeNotificationSequence1Meta();

@@ -37,9 +37,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines a commodity option product. The product support for financially-settled exercises or exercise into physical forward contracts written on precious and non-precious metals. options in FpML is based on the creation of a &#39;commodityOption&#39; product. The product references the &#39;commodity&#39; underlyer in order to support the underlying asset of the option. Defines a commodity option product type. The product support for financially-settled exercises or exercise into physical forward contracts written on precious and non-precious metals. options in FpML is based on the creation of a &#39;commodityOption&#39; product. The product references the &#39;commodity&#39; underlyer in order to support the underlying asset of the option.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityOption", builder=CommodityOption.CommodityOptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityOption", builder=CommodityOption.CommodityOptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityOption extends Product {
 
 	CommodityOptionMeta metaData = new CommodityOptionMeta();

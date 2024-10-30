@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines a commodity business day calendar.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityBusinessCalendar", builder=CommodityBusinessCalendar.CommodityBusinessCalendarBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityBusinessCalendar", builder=CommodityBusinessCalendar.CommodityBusinessCalendarBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityBusinessCalendar extends RosettaModelObject {
 
 	CommodityBusinessCalendarMeta metaData = new CommodityBusinessCalendarMeta();

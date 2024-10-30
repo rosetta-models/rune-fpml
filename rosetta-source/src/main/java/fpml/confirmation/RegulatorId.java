@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An ID assigned by a regulator to an organization registered with it. (NOTE: should this just by represented by an alternate party ID?)
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RegulatorId", builder=RegulatorId.RegulatorIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RegulatorId", builder=RegulatorId.RegulatorIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RegulatorId extends RosettaModelObject {
 
 	RegulatorIdMeta metaData = new RegulatorIdMeta();

@@ -22,9 +22,9 @@ import fpml.confirmation.meta.RateCalculationMeta;
 
 /**
  * The base element for the floating rate calculation definitions.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RateCalculation", builder=RateCalculation.RateCalculationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RateCalculation", builder=RateCalculation.RateCalculationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RateCalculation extends Rate {
 
 	RateCalculationMeta metaData = new RateCalculationMeta();

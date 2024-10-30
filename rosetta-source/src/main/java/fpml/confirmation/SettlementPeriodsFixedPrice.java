@@ -32,9 +32,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the Fixed Price applicable to a range or ranges of Settlement Periods.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SettlementPeriodsFixedPrice", builder=SettlementPeriodsFixedPrice.SettlementPeriodsFixedPriceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SettlementPeriodsFixedPrice", builder=SettlementPeriodsFixedPrice.SettlementPeriodsFixedPriceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SettlementPeriodsFixedPrice extends FixedPrice {
 
 	SettlementPeriodsFixedPriceMeta metaData = new SettlementPeriodsFixedPriceMeta();

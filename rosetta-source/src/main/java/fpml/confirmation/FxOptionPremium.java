@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that specifies the premium exchanged for a single option trade or option strategy.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxOptionPremium", builder=FxOptionPremium.FxOptionPremiumBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxOptionPremium", builder=FxOptionPremium.FxOptionPremiumBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxOptionPremium extends NonNegativePayment {
 
 	FxOptionPremiumMeta metaData = new FxOptionPremiumMeta();

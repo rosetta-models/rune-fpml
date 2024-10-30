@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the source of a commodity rate, price or index or of a market rate or of a conversion factor (e.g. a fx conversion factor).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityInformationSource", builder=CommodityInformationSource.CommodityInformationSourceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityInformationSource", builder=CommodityInformationSource.CommodityInformationSourceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityInformationSource extends RosettaModelObject {
 
 	CommodityInformationSourceMeta metaData = new CommodityInformationSourceMeta();

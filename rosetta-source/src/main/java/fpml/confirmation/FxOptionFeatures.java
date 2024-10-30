@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing the features that may be present in an FX option.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxOptionFeatures", builder=FxOptionFeatures.FxOptionFeaturesBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxOptionFeatures", builder=FxOptionFeatures.FxOptionFeaturesBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxOptionFeatures extends RosettaModelObject {
 
 	FxOptionFeaturesMeta metaData = new FxOptionFeaturesMeta();

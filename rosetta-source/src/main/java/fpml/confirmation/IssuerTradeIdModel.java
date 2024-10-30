@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model group for a two part identifier such as a USI.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="IssuerTradeIdModel", builder=IssuerTradeIdModel.IssuerTradeIdModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="IssuerTradeIdModel", builder=IssuerTradeIdModel.IssuerTradeIdModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface IssuerTradeIdModel extends RosettaModelObject {
 
 	IssuerTradeIdModelMeta metaData = new IssuerTradeIdModelMeta();

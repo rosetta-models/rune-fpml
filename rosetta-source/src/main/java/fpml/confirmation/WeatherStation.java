@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Weather Station.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="WeatherStation", builder=WeatherStation.WeatherStationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="WeatherStation", builder=WeatherStation.WeatherStationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface WeatherStation extends RosettaModelObject {
 
 	WeatherStationMeta metaData = new WeatherStationMeta();

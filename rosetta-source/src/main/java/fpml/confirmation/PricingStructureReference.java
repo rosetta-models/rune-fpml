@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to a pricing structure or any derived components (i.e. yield curve).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PricingStructureReference", builder=PricingStructureReference.PricingStructureReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PricingStructureReference", builder=PricingStructureReference.PricingStructureReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PricingStructureReference extends Reference {
 
 	PricingStructureReferenceMeta metaData = new PricingStructureReferenceMeta();

@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Specifies the amount of the fee along with, when applicable, the formula that supports its determination.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AdditionalPaymentAmount", builder=AdditionalPaymentAmount.AdditionalPaymentAmountBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AdditionalPaymentAmount", builder=AdditionalPaymentAmount.AdditionalPaymentAmountBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AdditionalPaymentAmount extends RosettaModelObject {
 
 	AdditionalPaymentAmountMeta metaData = new AdditionalPaymentAmountMeta();

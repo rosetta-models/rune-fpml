@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A pointer style reference to a product leg in the document
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="StrikePriceUnderlyingReference", builder=StrikePriceUnderlyingReference.StrikePriceUnderlyingReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="StrikePriceUnderlyingReference", builder=StrikePriceUnderlyingReference.StrikePriceUnderlyingReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface StrikePriceUnderlyingReference extends Reference {
 
 	StrikePriceUnderlyingReferenceMeta metaData = new StrikePriceUnderlyingReferenceMeta();

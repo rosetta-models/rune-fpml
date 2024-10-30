@@ -19,7 +19,7 @@ import java.util.function.Function;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaMeta(model=OilPhysicalLeg.class)
 public class OilPhysicalLegMeta implements RosettaMetaData<OilPhysicalLeg> {

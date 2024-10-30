@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining an association between party or settlement information with an asset or assets
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AssociationToAssetIdentifier", builder=AssociationToAssetIdentifier.AssociationToAssetIdentifierBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AssociationToAssetIdentifier", builder=AssociationToAssetIdentifier.AssociationToAssetIdentifierBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AssociationToAssetIdentifier extends RosettaModelObject {
 
 	AssociationToAssetIdentifierMeta metaData = new AssociationToAssetIdentifierMeta();

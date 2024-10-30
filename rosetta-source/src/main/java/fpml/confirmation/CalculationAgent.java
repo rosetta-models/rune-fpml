@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the ISDA calculation agent responsible for performing duties as defined in the applicable product definitions.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CalculationAgent", builder=CalculationAgent.CalculationAgentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CalculationAgent", builder=CalculationAgent.CalculationAgentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CalculationAgent extends RosettaModelObject {
 
 	CalculationAgentMeta metaData = new CalculationAgentMeta();

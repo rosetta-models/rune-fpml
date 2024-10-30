@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that describes a role played by a party in a trading transaction. Examples include roles such as guarantor, custodian, confirmation service provider, etc. This can be extended to provide custom roles.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanTradingPartyRole", builder=LoanTradingPartyRole.LoanTradingPartyRoleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanTradingPartyRole", builder=LoanTradingPartyRole.LoanTradingPartyRoleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanTradingPartyRole extends RosettaModelObject {
 
 	LoanTradingPartyRoleMeta metaData = new LoanTradingPartyRoleMeta();

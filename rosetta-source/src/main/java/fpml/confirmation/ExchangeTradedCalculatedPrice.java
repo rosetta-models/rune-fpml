@@ -35,9 +35,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Abstract base class for all exchange traded financial products with a price which is calculated from exchange traded constituents.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ExchangeTradedCalculatedPrice", builder=ExchangeTradedCalculatedPrice.ExchangeTradedCalculatedPriceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ExchangeTradedCalculatedPrice", builder=ExchangeTradedCalculatedPrice.ExchangeTradedCalculatedPriceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ExchangeTradedCalculatedPrice extends ExchangeTraded {
 
 	ExchangeTradedCalculatedPriceMeta metaData = new ExchangeTradedCalculatedPriceMeta();

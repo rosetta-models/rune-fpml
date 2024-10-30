@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="NotionalStepRuleSequence", builder=NotionalStepRuleSequence.NotionalStepRuleSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="NotionalStepRuleSequence", builder=NotionalStepRuleSequence.NotionalStepRuleSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface NotionalStepRuleSequence extends RosettaModelObject {
 
 	NotionalStepRuleSequenceMeta metaData = new NotionalStepRuleSequenceMeta();

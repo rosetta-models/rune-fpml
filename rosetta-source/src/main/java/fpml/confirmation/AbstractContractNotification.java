@@ -36,9 +36,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An extension of the AbstractServicingNotification which includes a reference to the facility and the loan contract to which embedded loan events apply. This abtract type should be used to &#39;wrap&#39; contract-level business events.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AbstractContractNotification", builder=AbstractContractNotification.AbstractContractNotificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AbstractContractNotification", builder=AbstractContractNotification.AbstractContractNotificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AbstractContractNotification extends AbstractServicingNotification {
 
 	AbstractContractNotificationMeta metaData = new AbstractContractNotificationMeta();

@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A rate which can be referenced elsewhere.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="IdentifiedRate", builder=IdentifiedRate.IdentifiedRateBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="IdentifiedRate", builder=IdentifiedRate.IdentifiedRateBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface IdentifiedRate extends RosettaModelObject {
 
 	IdentifiedRateMeta metaData = new IdentifiedRateMeta();

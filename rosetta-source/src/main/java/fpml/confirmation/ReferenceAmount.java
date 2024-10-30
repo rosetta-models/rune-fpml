@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Specifies the reference amount using a scheme.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReferenceAmount", builder=ReferenceAmount.ReferenceAmountBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReferenceAmount", builder=ReferenceAmount.ReferenceAmountBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReferenceAmount extends RosettaModelObject {
 
 	ReferenceAmountMeta metaData = new ReferenceAmountMeta();

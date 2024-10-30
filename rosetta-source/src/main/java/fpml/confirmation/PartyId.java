@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The data type used for party identifiers.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PartyId", builder=PartyId.PartyIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PartyId", builder=PartyId.PartyIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PartyId extends RosettaModelObject {
 
 	PartyIdMeta metaData = new PartyIdMeta();

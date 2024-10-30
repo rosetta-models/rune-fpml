@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * The method by which the Flat Rate is calculated for a commodity freight transaction.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaEnum("FlatRateEnum")
 public enum FlatRateEnum {

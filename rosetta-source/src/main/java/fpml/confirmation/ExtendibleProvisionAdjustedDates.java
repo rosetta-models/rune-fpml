@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the adjusted dates associated with a provision to extend a swap.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ExtendibleProvisionAdjustedDates", builder=ExtendibleProvisionAdjustedDates.ExtendibleProvisionAdjustedDatesBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ExtendibleProvisionAdjustedDates", builder=ExtendibleProvisionAdjustedDates.ExtendibleProvisionAdjustedDatesBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ExtendibleProvisionAdjustedDates extends RosettaModelObject {
 
 	ExtendibleProvisionAdjustedDatesMeta metaData = new ExtendibleProvisionAdjustedDatesMeta();

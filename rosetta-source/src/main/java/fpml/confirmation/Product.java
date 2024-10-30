@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An abstract element used as a place holder for the substituting product elements. The base type which all FpML products extend.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Product", builder=Product.ProductBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Product", builder=Product.ProductBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Product extends RosettaModelObject {
 
 	ProductMeta metaData = new ProductMeta();

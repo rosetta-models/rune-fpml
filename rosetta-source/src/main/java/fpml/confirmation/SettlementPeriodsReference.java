@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Allows a set of Settlement Periods to reference one already defined elsewhere in the trade.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SettlementPeriodsReference", builder=SettlementPeriodsReference.SettlementPeriodsReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SettlementPeriodsReference", builder=SettlementPeriodsReference.SettlementPeriodsReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SettlementPeriodsReference extends Reference {
 
 	SettlementPeriodsReferenceMeta metaData = new SettlementPeriodsReferenceMeta();

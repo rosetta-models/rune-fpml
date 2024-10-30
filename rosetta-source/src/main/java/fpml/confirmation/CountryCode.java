@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The code representation of a country or an area of special sovereignty. By default it is a valid 2 character country code as defined by the ISO standard 3166-1 alpha-2 - Codes for representation of countries http://www.niso.org/standards/resources/3166.html.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CountryCode", builder=CountryCode.CountryCodeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CountryCode", builder=CountryCode.CountryCodeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CountryCode extends RosettaModelObject {
 
 	CountryCodeMeta metaData = new CountryCodeMeta();

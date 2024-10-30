@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that describes the information to identify an intermediary through which payment will be made by the correspondent bank to the ultimate beneficiary of the funds.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="IntermediaryInformation", builder=IntermediaryInformation.IntermediaryInformationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="IntermediaryInformation", builder=IntermediaryInformation.IntermediaryInformationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface IntermediaryInformation extends RosettaModelObject {
 
 	IntermediaryInformationMeta metaData = new IntermediaryInformationMeta();

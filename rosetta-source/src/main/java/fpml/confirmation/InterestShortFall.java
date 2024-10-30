@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="InterestShortFall", builder=InterestShortFall.InterestShortFallBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="InterestShortFall", builder=InterestShortFall.InterestShortFallBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface InterestShortFall extends RosettaModelObject {
 
 	InterestShortFallMeta metaData = new InterestShortFallMeta();

@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The calculation period fixed rate. A per annum rate, expressed as a decimal. A fixed rate of 5% would be represented as 0.05.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FixedRate", builder=FixedRate.FixedRateBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FixedRate", builder=FixedRate.FixedRateBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FixedRate extends RosettaModelObject {
 
 	FixedRateMeta metaData = new FixedRateMeta();

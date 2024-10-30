@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that identifies a party profile record.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EventInstructionOverride", builder=EventInstructionOverride.EventInstructionOverrideBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EventInstructionOverride", builder=EventInstructionOverride.EventInstructionOverrideBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EventInstructionOverride extends RosettaModelObject {
 
 	EventInstructionOverrideMeta metaData = new EventInstructionOverrideMeta();

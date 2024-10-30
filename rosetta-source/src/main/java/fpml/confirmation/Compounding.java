@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Specifies the compounding method and the compounding rate.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Compounding", builder=Compounding.CompoundingBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Compounding", builder=Compounding.CompoundingBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Compounding extends RosettaModelObject {
 
 	CompoundingMeta metaData = new CompoundingMeta();

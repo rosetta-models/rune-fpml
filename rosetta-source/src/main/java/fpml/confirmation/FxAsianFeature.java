@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Descibes the averaging period properties for an asian option.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxAsianFeature", builder=FxAsianFeature.FxAsianFeatureBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxAsianFeature", builder=FxAsianFeature.FxAsianFeatureBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxAsianFeature extends RosettaModelObject {
 
 	FxAsianFeatureMeta metaData = new FxAsianFeatureMeta();

@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure which specifies the commitment changes occurring throughout the life of a facility.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommitmentChange", builder=CommitmentChange.CommitmentChangeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommitmentChange", builder=CommitmentChange.CommitmentChangeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommitmentChange extends RosettaModelObject {
 
 	CommitmentChangeMeta metaData = new CommitmentChangeMeta();

@@ -40,9 +40,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A loan servicing notification used to communicate various loan contract business events.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanContractNotification", builder=LoanContractNotification.LoanContractNotificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanContractNotification", builder=LoanContractNotification.LoanContractNotificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanContractNotification extends AbstractContractNotification {
 
 	LoanContractNotificationMeta metaData = new LoanContractNotificationMeta();

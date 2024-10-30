@@ -25,9 +25,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A placeholder within &#39;commodityPerformanceSwap&#39; structure for the actual commodity swap legs (e.g. &#39;commodityReturnLeg&#39; and &#39;commodityInterestLeg&#39;). Abstract base class for all commodity performance swap legs.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityPerformanceSwapLeg", builder=CommodityPerformanceSwapLeg.CommodityPerformanceSwapLegBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityPerformanceSwapLeg", builder=CommodityPerformanceSwapLeg.CommodityPerformanceSwapLegBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityPerformanceSwapLeg extends Leg {
 
 	CommodityPerformanceSwapLegMeta metaData = new CommodityPerformanceSwapLegMeta();

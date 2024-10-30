@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines a model group that allows information about a trade to be represented.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradeReferenceInformationModel", builder=TradeReferenceInformationModel.TradeReferenceInformationModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradeReferenceInformationModel", builder=TradeReferenceInformationModel.TradeReferenceInformationModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradeReferenceInformationModel extends RosettaModelObject {
 
 	TradeReferenceInformationModelMeta metaData = new TradeReferenceInformationModelMeta();

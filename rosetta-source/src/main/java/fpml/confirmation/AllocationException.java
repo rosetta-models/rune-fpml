@@ -25,9 +25,9 @@ import fpml.confirmation.meta.AllocationExceptionMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AllocationException", builder=AllocationException.AllocationExceptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AllocationException", builder=AllocationException.AllocationExceptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AllocationException extends Exception {
 
 	AllocationExceptionMeta metaData = new AllocationExceptionMeta();

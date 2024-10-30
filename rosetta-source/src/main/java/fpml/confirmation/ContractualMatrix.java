@@ -22,9 +22,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ContractualMatrix", builder=ContractualMatrix.ContractualMatrixBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ContractualMatrix", builder=ContractualMatrix.ContractualMatrixBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ContractualMatrix extends RosettaModelObject {
 
 	ContractualMatrixMeta metaData = new ContractualMatrixMeta();

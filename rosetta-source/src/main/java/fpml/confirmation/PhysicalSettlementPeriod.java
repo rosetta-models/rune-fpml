@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PhysicalSettlementPeriod", builder=PhysicalSettlementPeriod.PhysicalSettlementPeriodBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PhysicalSettlementPeriod", builder=PhysicalSettlementPeriod.PhysicalSettlementPeriodBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PhysicalSettlementPeriod extends RosettaModelObject {
 
 	PhysicalSettlementPeriodMeta metaData = new PhysicalSettlementPeriodMeta();

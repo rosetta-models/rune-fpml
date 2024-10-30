@@ -28,9 +28,9 @@ import java.util.stream.Collectors;
 
 /**
  * An event structure defining information related to a loan trade allocation.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanAllocationEvent", builder=LoanAllocationEvent.LoanAllocationEventBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanAllocationEvent", builder=LoanAllocationEvent.LoanAllocationEventBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanAllocationEvent extends AbstractLoanAllocationEvent {
 
 	LoanAllocationEventMeta metaData = new LoanAllocationEventMeta();

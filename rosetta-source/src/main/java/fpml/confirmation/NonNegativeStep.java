@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining a step date and non-negative step value pair. This step definitions are used to define varying rate or amount schedules, e.g. a notional amortization or a step-up coupon schedule.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="NonNegativeStep", builder=NonNegativeStep.NonNegativeStepBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="NonNegativeStep", builder=NonNegativeStep.NonNegativeStepBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface NonNegativeStep extends StepBase {
 
 	NonNegativeStepMeta metaData = new NonNegativeStepMeta();

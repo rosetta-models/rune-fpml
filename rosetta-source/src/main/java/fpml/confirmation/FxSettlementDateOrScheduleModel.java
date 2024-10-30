@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines the settlement/payment date or schedule of the accrual product.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxSettlementDateOrScheduleModel", builder=FxSettlementDateOrScheduleModel.FxSettlementDateOrScheduleModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxSettlementDateOrScheduleModel", builder=FxSettlementDateOrScheduleModel.FxSettlementDateOrScheduleModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxSettlementDateOrScheduleModel extends RosettaModelObject {
 
 	FxSettlementDateOrScheduleModelMeta metaData = new FxSettlementDateOrScheduleModelMeta();

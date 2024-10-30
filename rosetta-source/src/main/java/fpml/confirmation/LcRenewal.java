@@ -32,9 +32,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An event representing a change in the maturity date on an outstanding letter of credit.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LcRenewal", builder=LcRenewal.LcRenewalBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LcRenewal", builder=LcRenewal.LcRenewalBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LcRenewal extends AbstractLcEvent {
 
 	LcRenewalMeta metaData = new LcRenewalMeta();

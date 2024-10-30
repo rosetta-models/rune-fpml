@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The Fixed Price for a given Calculation Period during the life of the trade. There must be a Fixed Price step specified for each Calculation Period, regardless of whether the Fixed Price changes or remains the same between periods.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityFixedPriceSchedule", builder=CommodityFixedPriceSchedule.CommodityFixedPriceScheduleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityFixedPriceSchedule", builder=CommodityFixedPriceSchedule.CommodityFixedPriceScheduleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityFixedPriceSchedule extends RosettaModelObject {
 
 	CommodityFixedPriceScheduleMeta metaData = new CommodityFixedPriceScheduleMeta();

@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that represents a physical postal address.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Address", builder=Address.AddressBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Address", builder=Address.AddressBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Address extends RosettaModelObject {
 
 	AddressMeta metaData = new AddressMeta();

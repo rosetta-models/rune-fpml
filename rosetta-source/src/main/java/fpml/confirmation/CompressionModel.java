@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model group holding information about compressions affecting this trade/event.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CompressionModel", builder=CompressionModel.CompressionModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CompressionModel", builder=CompressionModel.CompressionModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CompressionModel extends RosettaModelObject {
 
 	CompressionModelMeta metaData = new CompressionModelMeta();

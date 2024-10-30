@@ -25,9 +25,9 @@ import java.util.stream.Collectors;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Transforms", builder=Transforms.TransformsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Transforms", builder=Transforms.TransformsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Transforms extends TransformsType {
 
 	TransformsMeta metaData = new TransformsMeta();

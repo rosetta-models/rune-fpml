@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing the dividend return conditions applicable to the swap.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Return", builder=Return.ReturnBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Return", builder=Return.ReturnBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Return extends RosettaModelObject {
 
 	ReturnMeta metaData = new ReturnMeta();

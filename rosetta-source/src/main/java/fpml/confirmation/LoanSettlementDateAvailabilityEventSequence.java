@@ -20,9 +20,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanSettlementDateAvailabilityEventSequence", builder=LoanSettlementDateAvailabilityEventSequence.LoanSettlementDateAvailabilityEventSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanSettlementDateAvailabilityEventSequence", builder=LoanSettlementDateAvailabilityEventSequence.LoanSettlementDateAvailabilityEventSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanSettlementDateAvailabilityEventSequence extends RosettaModelObject {
 
 	LoanSettlementDateAvailabilityEventSequenceMeta metaData = new LoanSettlementDateAvailabilityEventSequenceMeta();

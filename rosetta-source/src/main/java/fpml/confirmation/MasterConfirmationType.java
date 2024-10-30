@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MasterConfirmationType", builder=MasterConfirmationType.MasterConfirmationTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MasterConfirmationType", builder=MasterConfirmationType.MasterConfirmationTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MasterConfirmationType extends RosettaModelObject {
 
 	MasterConfirmationTypeMeta metaData = new MasterConfirmationTypeMeta();

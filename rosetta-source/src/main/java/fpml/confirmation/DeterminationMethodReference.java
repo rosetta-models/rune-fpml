@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A reference to the return swap notional determination method.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DeterminationMethodReference", builder=DeterminationMethodReference.DeterminationMethodReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DeterminationMethodReference", builder=DeterminationMethodReference.DeterminationMethodReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DeterminationMethodReference extends Reference {
 
 	DeterminationMethodReferenceMeta metaData = new DeterminationMethodReferenceMeta();

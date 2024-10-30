@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the content model for a generic message header that is refined by its derived classes.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MessageHeader", builder=MessageHeader.MessageHeaderBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MessageHeader", builder=MessageHeader.MessageHeaderBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MessageHeader extends RosettaModelObject {
 
 	MessageHeaderMeta metaData = new MessageHeaderMeta();

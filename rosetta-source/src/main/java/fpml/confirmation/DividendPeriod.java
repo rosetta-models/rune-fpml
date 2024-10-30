@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Abstract base class of all time bounded dividend period types.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DividendPeriod", builder=DividendPeriod.DividendPeriodBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DividendPeriod", builder=DividendPeriod.DividendPeriodBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DividendPeriod extends RosettaModelObject {
 
 	DividendPeriodMeta metaData = new DividendPeriodMeta();

@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model group for representing the discounting elements that can be associated with a payment.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PaymentDiscountingModel", builder=PaymentDiscountingModel.PaymentDiscountingModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PaymentDiscountingModel", builder=PaymentDiscountingModel.PaymentDiscountingModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PaymentDiscountingModel extends RosettaModelObject {
 
 	PaymentDiscountingModelMeta metaData = new PaymentDiscountingModelMeta();

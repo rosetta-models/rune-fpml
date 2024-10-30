@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * The specification of whether resets occur relative to the first or last day of a calculation period.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaEnum("ResetRelativeToEnum")
 public enum ResetRelativeToEnum {

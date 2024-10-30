@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxFlexibleForwardExecutionPeriod", builder=FxFlexibleForwardExecutionPeriod.FxFlexibleForwardExecutionPeriodBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxFlexibleForwardExecutionPeriod", builder=FxFlexibleForwardExecutionPeriod.FxFlexibleForwardExecutionPeriodBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxFlexibleForwardExecutionPeriod extends RosettaModelObject {
 
 	FxFlexibleForwardExecutionPeriodMeta metaData = new FxFlexibleForwardExecutionPeriodMeta();

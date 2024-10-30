@@ -26,9 +26,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PhysicalSettlementTerms", builder=PhysicalSettlementTerms.PhysicalSettlementTermsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PhysicalSettlementTerms", builder=PhysicalSettlementTerms.PhysicalSettlementTermsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PhysicalSettlementTerms extends SettlementTerms {
 
 	PhysicalSettlementTermsMeta metaData = new PhysicalSettlementTermsMeta();

@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Observation point for trigger.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TriggerEvent", builder=TriggerEvent.TriggerEventBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TriggerEvent", builder=TriggerEvent.TriggerEventBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TriggerEvent extends RosettaModelObject {
 
 	TriggerEventMeta metaData = new TriggerEventMeta();

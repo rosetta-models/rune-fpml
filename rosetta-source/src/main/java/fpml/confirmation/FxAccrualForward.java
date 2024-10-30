@@ -41,9 +41,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structured forward product consisting of a single forward or a strip of forwards. For each forward, a fixed proportion of Notional is accumulated for each occasion that spot fixes within pre-defined limits (the &#39;accrual region&#39;) - the proportion determined by the number of fixings, which may occur every business day or with some other defined frequency. The Notional does not accumulate during any period where fixings fall outside the accrual region, but resumes accruing when spot returns within the limits. At expiry, the accrued Notional is bought at the pre-agreed hedge rate (the &#39;strike&#39; rate). The trade allows for a hedge rate that is better than the forward rate, however the notional amount hedged is uncertain, and can be zero in the worst case. The product defines a schedule of expiry and delivery dates which specify settlement periods. The product further defines a schedule of fixing (or observation) dates and defines regions of spot where the product settlement amounts will accrue. There are n total fixings. One accumulates a fixed proportion of Notional (1/n) for every observation date that spot fixes within the pre-defined limits of the accrual regions. If spot breaks the limits, the Notional stops accumulating during the fixings outside the limits, but continues accruing once spot comes back to the accruing region. At expiry, one buys the accrued Notional at the pre-agreed hedge rate. Payout can be cash or physical. The variation of this product include: Accrual Forward (European and American), Double Accrual Forward (DAF), Boosted Accrual Forward, Fading Forward, Leveraged Accrual Forward, Accrual Forward with Collars, etc.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxAccrualForward", builder=FxAccrualForward.FxAccrualForwardBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxAccrualForward", builder=FxAccrualForward.FxAccrualForwardBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxAccrualForward extends Product {
 
 	FxAccrualForwardMeta metaData = new FxAccrualForwardMeta();

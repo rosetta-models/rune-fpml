@@ -25,9 +25,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AffectedTransactions", builder=AffectedTransactions.AffectedTransactionsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AffectedTransactions", builder=AffectedTransactions.AffectedTransactionsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AffectedTransactions extends RosettaModelObject {
 
 	AffectedTransactionsMeta metaData = new AffectedTransactionsMeta();

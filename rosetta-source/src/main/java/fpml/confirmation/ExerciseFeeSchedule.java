@@ -25,9 +25,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type to define a fee or schedule of fees to be payable on the exercise of an option. This fee may be defined as an amount or a percentage of the notional exercised.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ExerciseFeeSchedule", builder=ExerciseFeeSchedule.ExerciseFeeScheduleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ExerciseFeeSchedule", builder=ExerciseFeeSchedule.ExerciseFeeScheduleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ExerciseFeeSchedule extends RosettaModelObject {
 
 	ExerciseFeeScheduleMeta metaData = new ExerciseFeeScheduleMeta();

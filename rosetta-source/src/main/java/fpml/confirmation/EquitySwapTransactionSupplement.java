@@ -35,9 +35,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Specifies the structure of the equity swap transaction supplement. A type for defining Equity Swap Transaction Supplement
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EquitySwapTransactionSupplement", builder=EquitySwapTransactionSupplement.EquitySwapTransactionSupplementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EquitySwapTransactionSupplement", builder=EquitySwapTransactionSupplement.EquitySwapTransactionSupplementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EquitySwapTransactionSupplement extends ReturnSwapBase {
 
 	EquitySwapTransactionSupplementMeta metaData = new EquitySwapTransactionSupplementMeta();

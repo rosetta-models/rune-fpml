@@ -39,9 +39,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A swaption product definition. A type to define an option on a swap.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Swaption", builder=Swaption.SwaptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Swaption", builder=Swaption.SwaptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Swaption extends Product {
 
 	SwaptionMeta metaData = new SwaptionMeta();

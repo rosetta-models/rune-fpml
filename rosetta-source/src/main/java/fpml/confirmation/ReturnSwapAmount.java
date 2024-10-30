@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Specifies, in relation to each Payment Date, the amount to which the Payment Date relates. For Equity Swaps this element is equivalent to the Equity Amount term as defined in the ISDA 2002 Equity Derivatives Definitions.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReturnSwapAmount", builder=ReturnSwapAmount.ReturnSwapAmountBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReturnSwapAmount", builder=ReturnSwapAmount.ReturnSwapAmountBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReturnSwapAmount extends LegAmount {
 
 	ReturnSwapAmountMeta metaData = new ReturnSwapAmountMeta();

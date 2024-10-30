@@ -26,9 +26,9 @@ import java.util.stream.Collectors;
 
 /**
  * A unique reference to a syndicated bank loan deal (credit agreement).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DealIdentifier", builder=DealIdentifier.DealIdentifierBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DealIdentifier", builder=DealIdentifier.DealIdentifierBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DealIdentifier extends IdentifiedAsset {
 
 	DealIdentifierMeta metaData = new DealIdentifierMeta();

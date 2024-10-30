@@ -20,9 +20,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="StubCalculationPeriodAmountSequence", builder=StubCalculationPeriodAmountSequence.StubCalculationPeriodAmountSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="StubCalculationPeriodAmountSequence", builder=StubCalculationPeriodAmountSequence.StubCalculationPeriodAmountSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface StubCalculationPeriodAmountSequence extends RosettaModelObject {
 
 	StubCalculationPeriodAmountSequenceMeta metaData = new StubCalculationPeriodAmountSequenceMeta();

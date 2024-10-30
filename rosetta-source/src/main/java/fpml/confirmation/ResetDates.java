@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the parameters used to generate the reset dates schedule and associated fixing dates. The reset dates are determined relative to the calculation periods schedules dates.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ResetDates", builder=ResetDates.ResetDatesBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ResetDates", builder=ResetDates.ResetDatesBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ResetDates extends RosettaModelObject {
 
 	ResetDatesMeta metaData = new ResetDatesMeta();

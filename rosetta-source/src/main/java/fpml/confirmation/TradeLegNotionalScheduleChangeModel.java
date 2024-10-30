@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradeLegNotionalScheduleChangeModel", builder=TradeLegNotionalScheduleChangeModel.TradeLegNotionalScheduleChangeModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradeLegNotionalScheduleChangeModel", builder=TradeLegNotionalScheduleChangeModel.TradeLegNotionalScheduleChangeModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradeLegNotionalScheduleChangeModel extends RosettaModelObject {
 
 	TradeLegNotionalScheduleChangeModelMeta metaData = new TradeLegNotionalScheduleChangeModelMeta();

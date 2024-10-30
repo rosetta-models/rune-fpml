@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="IndexAnnexFallbackModel", builder=IndexAnnexFallbackModel.IndexAnnexFallbackModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="IndexAnnexFallbackModel", builder=IndexAnnexFallbackModel.IndexAnnexFallbackModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface IndexAnnexFallbackModel extends RosettaModelObject {
 
 	IndexAnnexFallbackModelMeta metaData = new IndexAnnexFallbackModelMeta();

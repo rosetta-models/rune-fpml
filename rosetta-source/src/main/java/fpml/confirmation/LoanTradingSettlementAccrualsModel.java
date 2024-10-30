@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model which contains all relevant amounts to settle a loan trade with accrued interest and fees.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanTradingSettlementAccrualsModel", builder=LoanTradingSettlementAccrualsModel.LoanTradingSettlementAccrualsModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanTradingSettlementAccrualsModel", builder=LoanTradingSettlementAccrualsModel.LoanTradingSettlementAccrualsModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanTradingSettlementAccrualsModel extends RosettaModelObject {
 
 	LoanTradingSettlementAccrualsModelMeta metaData = new LoanTradingSettlementAccrualsModelMeta();

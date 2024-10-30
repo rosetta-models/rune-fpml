@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxAccrualRegionSequence1", builder=FxAccrualRegionSequence1.FxAccrualRegionSequence1BuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxAccrualRegionSequence1", builder=FxAccrualRegionSequence1.FxAccrualRegionSequence1BuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxAccrualRegionSequence1 extends RosettaModelObject {
 
 	FxAccrualRegionSequence1Meta metaData = new FxAccrualRegionSequence1Meta();

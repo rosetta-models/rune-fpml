@@ -39,9 +39,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A component describing an Equity Option product. A type for defining equity options.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EquityOption", builder=EquityOption.EquityOptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EquityOption", builder=EquityOption.EquityOptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EquityOption extends EquityDerivativeLongFormBase {
 
 	EquityOptionMeta metaData = new EquityOptionMeta();

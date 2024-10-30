@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines the specification of the consequences of Index Events as defined by the 2002 ISDA Equity Derivatives Definitions.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="IndexAdjustmentEvents", builder=IndexAdjustmentEvents.IndexAdjustmentEventsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="IndexAdjustmentEvents", builder=IndexAdjustmentEvents.IndexAdjustmentEventsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface IndexAdjustmentEvents extends RosettaModelObject {
 
 	IndexAdjustmentEventsMeta metaData = new IndexAdjustmentEventsMeta();

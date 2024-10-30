@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * CPD Reference Level: millimeters or inches of daily precipitation HDD Reference Level: degree-days CDD Reference Level: degree-days.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReferenceLevelUnit", builder=ReferenceLevelUnit.ReferenceLevelUnitBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReferenceLevelUnit", builder=ReferenceLevelUnit.ReferenceLevelUnitBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReferenceLevelUnit extends RosettaModelObject {
 
 	ReferenceLevelUnitMeta metaData = new ReferenceLevelUnitMeta();

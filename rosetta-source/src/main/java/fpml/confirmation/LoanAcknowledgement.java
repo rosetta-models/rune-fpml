@@ -30,9 +30,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A base type to extend the FpML basic &#39;message&#39; type, similar in function to the &#39;response&#39; message, but specific to the needs loan asset class.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanAcknowledgement", builder=LoanAcknowledgement.LoanAcknowledgementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanAcknowledgement", builder=LoanAcknowledgement.LoanAcknowledgementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanAcknowledgement extends Message {
 
 	LoanAcknowledgementMeta metaData = new LoanAcknowledgementMeta();

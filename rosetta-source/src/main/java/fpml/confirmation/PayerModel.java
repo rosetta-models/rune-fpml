@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PayerModel", builder=PayerModel.PayerModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PayerModel", builder=PayerModel.PayerModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PayerModel extends RosettaModelObject {
 
 	PayerModelMeta metaData = new PayerModelMeta();

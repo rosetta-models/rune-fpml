@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * A type which permits the Dual Currency strike quote basis to be expressed in terms of the deposit and alternate currencies.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaEnum("DualCurrencyStrikeQuoteBasisEnum")
 public enum DualCurrencyStrikeQuoteBasisEnum {

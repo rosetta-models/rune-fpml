@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to a calculation period dates component.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CalculationPeriodDatesReference", builder=CalculationPeriodDatesReference.CalculationPeriodDatesReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CalculationPeriodDatesReference", builder=CalculationPeriodDatesReference.CalculationPeriodDatesReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CalculationPeriodDatesReference extends Reference {
 
 	CalculationPeriodDatesReferenceMeta metaData = new CalculationPeriodDatesReferenceMeta();

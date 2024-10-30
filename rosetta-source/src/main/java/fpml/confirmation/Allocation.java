@@ -29,9 +29,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Allocation", builder=Allocation.AllocationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Allocation", builder=Allocation.AllocationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Allocation extends RosettaModelObject {
 
 	AllocationMeta metaData = new AllocationMeta();

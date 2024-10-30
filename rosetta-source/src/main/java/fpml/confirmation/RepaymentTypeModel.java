@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model that establishes the flags that determine the type of repayment that is occurring and the flexibility asociated with it (from the lender&#39;s perspective).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RepaymentTypeModel", builder=RepaymentTypeModel.RepaymentTypeModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RepaymentTypeModel", builder=RepaymentTypeModel.RepaymentTypeModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RepaymentTypeModel extends RosettaModelObject {
 
 	RepaymentTypeModelMeta metaData = new RepaymentTypeModelMeta();

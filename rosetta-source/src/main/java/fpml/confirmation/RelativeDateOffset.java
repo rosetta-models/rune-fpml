@@ -30,9 +30,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining a date (referred to as the derived date) as a relative offset from another date (referred to as the anchor date). If the anchor date is itself an adjustable date then the offset is assumed to be calculated from the adjusted anchor date. A number of different scenarios can be supported, namely; 1) the derived date may simply be a number of calendar periods (days, weeks, months or years) preceding or following the anchor date; 2) the unadjusted derived date may be a number of calendar periods (days, weeks, months or years) preceding or following the anchor date with the resulting unadjusted derived date subject to adjustment in accordance with a specified business day convention, i.e. the derived date must fall on a good business day; 3) the derived date may be a number of business days preceding or following the anchor date. Note that the businessDayConvention specifies any required adjustment to the unadjusted derived date. A negative or positive value in the periodMultiplier indicates whether the unadjusted derived precedes or follows the anchor date. The businessDayConvention should contain a value NONE if the day type element contains a value of Business (since specifying a negative or positive business days offset would already guarantee that the derived date would fall on a good business day in the specified business centers).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RelativeDateOffset", builder=RelativeDateOffset.RelativeDateOffsetBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RelativeDateOffset", builder=RelativeDateOffset.RelativeDateOffsetBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RelativeDateOffset extends Offset {
 
 	RelativeDateOffsetMeta metaData = new RelativeDateOffsetMeta();

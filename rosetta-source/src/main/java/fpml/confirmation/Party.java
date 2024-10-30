@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining a legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Party", builder=Party.PartyBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Party", builder=Party.PartyBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Party extends RosettaModelObject {
 
 	PartyMeta metaData = new PartyMeta();

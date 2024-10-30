@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing the type of underlyer: a single commodity or a basket of commodities.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityUnderlyerChoiceModel", builder=CommodityUnderlyerChoiceModel.CommodityUnderlyerChoiceModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityUnderlyerChoiceModel", builder=CommodityUnderlyerChoiceModel.CommodityUnderlyerChoiceModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityUnderlyerChoiceModel extends RosettaModelObject {
 
 	CommodityUnderlyerChoiceModelMeta metaData = new CommodityUnderlyerChoiceModelMeta();

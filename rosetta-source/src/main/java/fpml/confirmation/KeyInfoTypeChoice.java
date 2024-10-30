@@ -24,9 +24,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="KeyInfoTypeChoice", builder=KeyInfoTypeChoice.KeyInfoTypeChoiceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="KeyInfoTypeChoice", builder=KeyInfoTypeChoice.KeyInfoTypeChoiceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface KeyInfoTypeChoice extends RosettaModelObject {
 
 	KeyInfoTypeChoiceMeta metaData = new KeyInfoTypeChoiceMeta();

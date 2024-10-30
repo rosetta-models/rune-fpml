@@ -15,7 +15,7 @@ import java.util.Arrays;
 import static com.rosetta.model.lib.expression.ExpressionOperators.*;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaDataRule("EquityExerciseValuationSettlementChoice0")
 @ImplementedBy(EquityExerciseValuationSettlementChoice0.Default.class)

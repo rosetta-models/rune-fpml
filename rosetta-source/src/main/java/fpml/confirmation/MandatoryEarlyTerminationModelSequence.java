@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MandatoryEarlyTerminationModelSequence", builder=MandatoryEarlyTerminationModelSequence.MandatoryEarlyTerminationModelSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MandatoryEarlyTerminationModelSequence", builder=MandatoryEarlyTerminationModelSequence.MandatoryEarlyTerminationModelSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MandatoryEarlyTerminationModelSequence extends RosettaModelObject {
 
 	MandatoryEarlyTerminationModelSequenceMeta metaData = new MandatoryEarlyTerminationModelSequenceMeta();

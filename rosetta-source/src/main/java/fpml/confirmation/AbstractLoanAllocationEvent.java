@@ -32,9 +32,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An abstract structure defining fundamental allocation event information.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AbstractLoanAllocationEvent", builder=AbstractLoanAllocationEvent.AbstractLoanAllocationEventBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AbstractLoanAllocationEvent", builder=AbstractLoanAllocationEvent.AbstractLoanAllocationEventBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AbstractLoanAllocationEvent extends AbstractLoanEvent {
 
 	AbstractLoanAllocationEventMeta metaData = new AbstractLoanAllocationEventMeta();

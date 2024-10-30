@@ -36,9 +36,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Specifies the structure of a return type swap. It can represent return swaps, total return swaps, variance swaps. A type describing return swaps including return swaps (long form), total return swaps, and variance swaps.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReturnSwap", builder=ReturnSwap.ReturnSwapBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReturnSwap", builder=ReturnSwap.ReturnSwapBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReturnSwap extends ReturnSwapBase {
 
 	ReturnSwapMeta metaData = new ReturnSwapMeta();

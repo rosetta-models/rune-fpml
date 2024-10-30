@@ -25,9 +25,9 @@ import java.util.stream.Collectors;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SPKIData", builder=SPKIData.SPKIDataBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SPKIData", builder=SPKIData.SPKIDataBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SPKIData extends SPKIDataType {
 
 	SPKIDataMeta metaData = new SPKIDataMeta();

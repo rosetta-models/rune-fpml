@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A agreement identifier allocated by a party. FpML does not define the domain values associated with this element. Note that the domain values for this element are not strictly an enumerated list.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="OtherAgreementId", builder=OtherAgreementId.OtherAgreementIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="OtherAgreementId", builder=OtherAgreementId.OtherAgreementIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface OtherAgreementId extends RosettaModelObject {
 
 	OtherAgreementIdMeta metaData = new OtherAgreementIdMeta();

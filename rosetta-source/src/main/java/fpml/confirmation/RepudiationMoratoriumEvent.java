@@ -20,9 +20,9 @@ import fpml.confirmation.meta.RepudiationMoratoriumEventMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RepudiationMoratoriumEvent", builder=RepudiationMoratoriumEvent.RepudiationMoratoriumEventBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RepudiationMoratoriumEvent", builder=RepudiationMoratoriumEvent.RepudiationMoratoriumEventBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RepudiationMoratoriumEvent extends CreditEvent {
 
 	RepudiationMoratoriumEventMeta metaData = new RepudiationMoratoriumEventMeta();

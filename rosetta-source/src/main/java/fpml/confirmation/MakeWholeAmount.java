@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A complex type to specify the amount to be paid by the buyer of the option if the option is exercised prior to the Early Call Date (Typically applicable to the convertible bond options).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MakeWholeAmount", builder=MakeWholeAmount.MakeWholeAmountBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MakeWholeAmount", builder=MakeWholeAmount.MakeWholeAmountBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MakeWholeAmount extends SwapCurveValuation {
 
 	MakeWholeAmountMeta metaData = new MakeWholeAmountMeta();

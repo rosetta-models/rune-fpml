@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The data type used for portfolio names.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PortfolioName", builder=PortfolioName.PortfolioNameBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PortfolioName", builder=PortfolioName.PortfolioNameBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PortfolioName extends RosettaModelObject {
 
 	PortfolioNameMeta metaData = new PortfolioNameMeta();

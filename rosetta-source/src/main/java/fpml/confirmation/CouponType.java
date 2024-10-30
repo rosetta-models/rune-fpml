@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines a scheme of values for specifiying if the bond has a variable coupon, step-up/down coupon or a zero-coupon.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CouponType", builder=CouponType.CouponTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CouponType", builder=CouponType.CouponTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CouponType extends RosettaModelObject {
 
 	CouponTypeMeta metaData = new CouponTypeMeta();

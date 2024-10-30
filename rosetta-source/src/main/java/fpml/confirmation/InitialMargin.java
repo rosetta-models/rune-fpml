@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines initial margin applied to a repo transaction. Initial margin is an agreed premium to the Purchase Price of a repo to determine the required Market Value of the collateral to be delivered on the Purchase Date. It reflects quality of the collateral. Its aim is to calculate the risk-adjusted or liquidation value of collateral.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="InitialMargin", builder=InitialMargin.InitialMarginBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="InitialMargin", builder=InitialMargin.InitialMarginBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface InitialMargin extends RosettaModelObject {
 
 	InitialMarginMeta metaData = new InitialMarginMeta();

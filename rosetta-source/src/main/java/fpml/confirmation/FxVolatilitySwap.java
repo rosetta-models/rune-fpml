@@ -38,9 +38,9 @@ import java.util.stream.Collectors;
 
 /**
  * An FX volatility swap transaction definition.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxVolatilitySwap", builder=FxVolatilitySwap.FxVolatilitySwapBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxVolatilitySwap", builder=FxVolatilitySwap.FxVolatilitySwapBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxVolatilitySwap extends FxPerformanceSwap {
 
 	FxVolatilitySwapMeta metaData = new FxVolatilitySwapMeta();

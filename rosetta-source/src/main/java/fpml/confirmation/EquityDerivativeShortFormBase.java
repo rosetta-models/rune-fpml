@@ -36,9 +36,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type for defining short form equity option basic features.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EquityDerivativeShortFormBase", builder=EquityDerivativeShortFormBase.EquityDerivativeShortFormBaseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EquityDerivativeShortFormBase", builder=EquityDerivativeShortFormBase.EquityDerivativeShortFormBaseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EquityDerivativeShortFormBase extends EquityDerivativeBase {
 
 	EquityDerivativeShortFormBaseMeta metaData = new EquityDerivativeShortFormBaseMeta();

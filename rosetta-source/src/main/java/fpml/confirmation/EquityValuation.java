@@ -25,9 +25,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type for defining how and when an equity option is to be valued.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EquityValuation", builder=EquityValuation.EquityValuationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EquityValuation", builder=EquityValuation.EquityValuationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EquityValuation extends RosettaModelObject {
 
 	EquityValuationMeta metaData = new EquityValuationMeta();

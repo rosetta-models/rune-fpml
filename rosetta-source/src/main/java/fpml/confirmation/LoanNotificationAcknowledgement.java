@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A message used to acknowledge a loan notification.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanNotificationAcknowledgement", builder=LoanNotificationAcknowledgement.LoanNotificationAcknowledgementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanNotificationAcknowledgement", builder=LoanNotificationAcknowledgement.LoanNotificationAcknowledgementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanNotificationAcknowledgement extends LoanAcknowledgement {
 
 	LoanNotificationAcknowledgementMeta metaData = new LoanNotificationAcknowledgementMeta();

@@ -26,9 +26,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FeeLegChoiceSequence1", builder=FeeLegChoiceSequence1.FeeLegChoiceSequence1BuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FeeLegChoiceSequence1", builder=FeeLegChoiceSequence1.FeeLegChoiceSequence1BuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FeeLegChoiceSequence1 extends RosettaModelObject {
 
 	FeeLegChoiceSequence1Meta metaData = new FeeLegChoiceSequence1Meta();

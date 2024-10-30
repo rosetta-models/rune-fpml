@@ -32,9 +32,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Abstract base class for all underlying assets.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="UnderlyingAssetType", builder=UnderlyingAssetType.UnderlyingAssetTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="UnderlyingAssetType", builder=UnderlyingAssetType.UnderlyingAssetTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface UnderlyingAssetType extends IdentifiedAsset {
 
 	UnderlyingAssetTypeMeta metaData = new UnderlyingAssetTypeMeta();

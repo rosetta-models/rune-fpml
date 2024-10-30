@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A supertype of leg. All swap legs extend this type.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Leg", builder=Leg.LegBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Leg", builder=Leg.LegBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Leg extends RosettaModelObject {
 
 	LegMeta metaData = new LegMeta();

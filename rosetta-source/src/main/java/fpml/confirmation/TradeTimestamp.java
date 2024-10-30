@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A generic trade timestamp
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradeTimestamp", builder=TradeTimestamp.TradeTimestampBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradeTimestamp", builder=TradeTimestamp.TradeTimestampBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradeTimestamp extends RosettaModelObject {
 
 	TradeTimestampMeta metaData = new TradeTimestampMeta();

@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The type defining a denominator term of the formula. Its value is (sum of weighted partials) ^ power.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DenominatorTerm", builder=DenominatorTerm.DenominatorTermBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DenominatorTerm", builder=DenominatorTerm.DenominatorTermBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DenominatorTerm extends RosettaModelObject {
 
 	DenominatorTermMeta metaData = new DenominatorTermMeta();

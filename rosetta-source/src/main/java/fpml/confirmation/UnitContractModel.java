@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A group which has unit based trade elements (copied from FpML Extensions 2.2 - fpmlext-repo.xsd).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="UnitContractModel", builder=UnitContractModel.UnitContractModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="UnitContractModel", builder=UnitContractModel.UnitContractModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface UnitContractModel extends RosettaModelObject {
 
 	UnitContractModelMeta metaData = new UnitContractModelMeta();

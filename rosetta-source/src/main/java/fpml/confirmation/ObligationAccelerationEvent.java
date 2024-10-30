@@ -20,9 +20,9 @@ import fpml.confirmation.meta.ObligationAccelerationEventMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ObligationAccelerationEvent", builder=ObligationAccelerationEvent.ObligationAccelerationEventBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ObligationAccelerationEvent", builder=ObligationAccelerationEvent.ObligationAccelerationEventBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ObligationAccelerationEvent extends CreditEvent {
 
 	ObligationAccelerationEventMeta metaData = new ObligationAccelerationEventMeta();

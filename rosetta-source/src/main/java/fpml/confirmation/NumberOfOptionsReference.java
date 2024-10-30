@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A reference to the number of options.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="NumberOfOptionsReference", builder=NumberOfOptionsReference.NumberOfOptionsReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="NumberOfOptionsReference", builder=NumberOfOptionsReference.NumberOfOptionsReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface NumberOfOptionsReference extends Reference {
 
 	NumberOfOptionsReferenceMeta metaData = new NumberOfOptionsReferenceMeta();

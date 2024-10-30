@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to a FX Accrual Payoff Region.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxAccrualPayoffRegionReference", builder=FxAccrualPayoffRegionReference.FxAccrualPayoffRegionReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxAccrualPayoffRegionReference", builder=FxAccrualPayoffRegionReference.FxAccrualPayoffRegionReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxAccrualPayoffRegionReference extends Reference {
 
 	FxAccrualPayoffRegionReferenceMeta metaData = new FxAccrualPayoffRegionReferenceMeta();

@@ -37,9 +37,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An FX Forward Volatility Agreement transaction definition. Describes a contract on future levels of implied volatility. The main characteristic of this product is that the underlying is a straddle (underlying options) with a specific tenor starting from the fixing (effective or pricing) date, and are priced on that fixing date using a level of volatility that is agreed at the time of execution of the volatility agreement.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxForwardVolatilityAgreement", builder=FxForwardVolatilityAgreement.FxForwardVolatilityAgreementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxForwardVolatilityAgreement", builder=FxForwardVolatilityAgreement.FxForwardVolatilityAgreementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxForwardVolatilityAgreement extends Product {
 
 	FxForwardVolatilityAgreementMeta metaData = new FxForwardVolatilityAgreementMeta();

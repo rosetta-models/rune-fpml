@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Abstract base class for all underlying assets.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityBasketBase", builder=CommodityBasketBase.CommodityBasketBaseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityBasketBase", builder=CommodityBasketBase.CommodityBasketBaseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityBasketBase extends RosettaModelObject {
 
 	CommodityBasketBaseMeta metaData = new CommodityBasketBaseMeta();

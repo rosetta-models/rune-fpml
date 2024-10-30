@@ -26,9 +26,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="GasPhysicalQuantitySequence", builder=GasPhysicalQuantitySequence.GasPhysicalQuantitySequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="GasPhysicalQuantitySequence", builder=GasPhysicalQuantitySequence.GasPhysicalQuantitySequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface GasPhysicalQuantitySequence extends RosettaModelObject {
 
 	GasPhysicalQuantitySequenceMeta metaData = new GasPhysicalQuantitySequenceMeta();

@@ -26,9 +26,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="InitialMarginCalculationSequence1", builder=InitialMarginCalculationSequence1.InitialMarginCalculationSequence1BuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="InitialMarginCalculationSequence1", builder=InitialMarginCalculationSequence1.InitialMarginCalculationSequence1BuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface InitialMarginCalculationSequence1 extends RosettaModelObject {
 
 	InitialMarginCalculationSequence1Meta metaData = new InitialMarginCalculationSequence1Meta();

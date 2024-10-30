@@ -34,9 +34,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A product with which to represent return swaps, total return swaps and excess return swaps.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityPerformanceSwapBase", builder=CommodityPerformanceSwapBase.CommodityPerformanceSwapBaseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityPerformanceSwapBase", builder=CommodityPerformanceSwapBase.CommodityPerformanceSwapBaseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityPerformanceSwapBase extends Product {
 
 	CommodityPerformanceSwapBaseMeta metaData = new CommodityPerformanceSwapBaseMeta();

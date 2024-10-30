@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Specifies the notional of return type swap. When used in the equity leg, the definition will typically combine the actual amount (using the notional component defined by the FpML industry group) and the determination method. When used in the interest leg, the definition will typically point to the definition of the equity leg.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReturnSwapNotional", builder=ReturnSwapNotional.ReturnSwapNotionalBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReturnSwapNotional", builder=ReturnSwapNotional.ReturnSwapNotionalBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReturnSwapNotional extends RosettaModelObject {
 
 	ReturnSwapNotionalMeta metaData = new ReturnSwapNotionalMeta();

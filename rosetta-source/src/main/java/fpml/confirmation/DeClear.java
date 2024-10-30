@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure describing a declear event. The deClear event allows a firm to request that a trade be removed from clearing, or a clearing service to request consent for this, or to report that is has been done.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DeClear", builder=DeClear.DeClearBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DeClear", builder=DeClear.DeClearBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DeClear extends RosettaModelObject {
 
 	DeClearMeta metaData = new DeClearMeta();

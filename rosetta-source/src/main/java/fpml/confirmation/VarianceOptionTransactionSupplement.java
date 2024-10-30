@@ -33,9 +33,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Specifies the structure of a variance option.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="VarianceOptionTransactionSupplement", builder=VarianceOptionTransactionSupplement.VarianceOptionTransactionSupplementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="VarianceOptionTransactionSupplement", builder=VarianceOptionTransactionSupplement.VarianceOptionTransactionSupplementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface VarianceOptionTransactionSupplement extends OptionBase {
 
 	VarianceOptionTransactionSupplementMeta metaData = new VarianceOptionTransactionSupplementMeta();

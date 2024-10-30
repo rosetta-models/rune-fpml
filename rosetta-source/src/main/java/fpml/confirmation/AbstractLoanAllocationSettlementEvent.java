@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An abstract structure defining fundamental settlement event information.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AbstractLoanAllocationSettlementEvent", builder=AbstractLoanAllocationSettlementEvent.AbstractLoanAllocationSettlementEventBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AbstractLoanAllocationSettlementEvent", builder=AbstractLoanAllocationSettlementEvent.AbstractLoanAllocationSettlementEventBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AbstractLoanAllocationSettlementEvent extends AbstractLoanEvent {
 
 	AbstractLoanAllocationSettlementEventMeta metaData = new AbstractLoanAllocationSettlementEventMeta();

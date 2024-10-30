@@ -25,9 +25,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Summary information about the product that was traded. This is intended primarily for trade reporting by TRs.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ProductSummary", builder=ProductSummary.ProductSummaryBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ProductSummary", builder=ProductSummary.ProductSummaryBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ProductSummary extends RosettaModelObject {
 
 	ProductSummaryMeta metaData = new ProductSummaryMeta();

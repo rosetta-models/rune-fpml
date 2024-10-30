@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that defines the limits associated with rates that can be applied to a loan instrument.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RateLimits", builder=RateLimits.RateLimitsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RateLimits", builder=RateLimits.RateLimitsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RateLimits extends RosettaModelObject {
 
 	RateLimitsMeta metaData = new RateLimitsMeta();

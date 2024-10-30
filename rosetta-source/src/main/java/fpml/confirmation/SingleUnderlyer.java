@@ -25,9 +25,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing a single underlyer
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SingleUnderlyer", builder=SingleUnderlyer.SingleUnderlyerBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SingleUnderlyer", builder=SingleUnderlyer.SingleUnderlyerBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SingleUnderlyer extends RosettaModelObject {
 
 	SingleUnderlyerMeta metaData = new SingleUnderlyerMeta();

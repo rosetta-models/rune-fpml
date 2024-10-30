@@ -30,9 +30,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxCounterCurrencyAmount", builder=FxCounterCurrencyAmount.FxCounterCurrencyAmountBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxCounterCurrencyAmount", builder=FxCounterCurrencyAmount.FxCounterCurrencyAmountBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxCounterCurrencyAmount extends NonNegativeAmountSchedule {
 
 	FxCounterCurrencyAmountMeta metaData = new FxCounterCurrencyAmountMeta();

@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the content model for an exception message header.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ExceptionMessageHeader", builder=ExceptionMessageHeader.ExceptionMessageHeaderBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ExceptionMessageHeader", builder=ExceptionMessageHeader.ExceptionMessageHeaderBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ExceptionMessageHeader extends MessageHeader {
 
 	ExceptionMessageHeaderMeta metaData = new ExceptionMessageHeaderMeta();

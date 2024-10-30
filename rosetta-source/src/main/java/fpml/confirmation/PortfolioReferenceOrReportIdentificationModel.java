@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines a model group that allows either details of a portoflio constituent or report constituent to be provided. Typically this will be used in a request retransmission message.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PortfolioReferenceOrReportIdentificationModel", builder=PortfolioReferenceOrReportIdentificationModel.PortfolioReferenceOrReportIdentificationModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PortfolioReferenceOrReportIdentificationModel", builder=PortfolioReferenceOrReportIdentificationModel.PortfolioReferenceOrReportIdentificationModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PortfolioReferenceOrReportIdentificationModel extends RosettaModelObject {
 
 	PortfolioReferenceOrReportIdentificationModelMeta metaData = new PortfolioReferenceOrReportIdentificationModelMeta();

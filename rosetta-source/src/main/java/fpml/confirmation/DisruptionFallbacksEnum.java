@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * The specification of how disruption fallbacks will be represented.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaEnum("DisruptionFallbacksEnum")
 public enum DisruptionFallbacksEnum {

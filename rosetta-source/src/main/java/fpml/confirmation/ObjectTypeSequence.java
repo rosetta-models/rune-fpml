@@ -16,9 +16,9 @@ import fpml.confirmation.meta.ObjectTypeSequenceMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ObjectTypeSequence", builder=ObjectTypeSequence.ObjectTypeSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ObjectTypeSequence", builder=ObjectTypeSequence.ObjectTypeSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ObjectTypeSequence extends RosettaModelObject {
 
 	ObjectTypeSequenceMeta metaData = new ObjectTypeSequenceMeta();

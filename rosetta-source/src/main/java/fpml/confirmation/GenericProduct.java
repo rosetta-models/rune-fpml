@@ -44,9 +44,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Generic products - for use in Transparency reporting to define a product that represents an OTC derivative transaction whose economics are not fully described using an FpML schema. In other views, generic products are present for convenience to support internal messaging and workflows that are cross-product. Generic products are not full trade representations as such they are not intended to be used for confirming trades. Simple product representation providing key information about a variety of different products. Generic products - for use in Transparency reporting to define a product that represents an OTC derivative transaction whose economics are not fully described using an FpML schema. In other views, generic products are present for convenience to support internal messaging and workflows that are cross-product. Generic products are not full trade representations as such they are not intended to be used for confirming trades.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="GenericProduct", builder=GenericProduct.GenericProductBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="GenericProduct", builder=GenericProduct.GenericProductBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface GenericProduct extends Product {
 
 	GenericProductMeta metaData = new GenericProductMeta();

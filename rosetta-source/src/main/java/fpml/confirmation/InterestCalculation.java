@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Specifies the calculation method of the interest rate leg of the return swap. Includes the floating or fixed rate calculation definitions, along with the determination of the day count fraction.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="InterestCalculation", builder=InterestCalculation.InterestCalculationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="InterestCalculation", builder=InterestCalculation.InterestCalculationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface InterestCalculation extends InterestAccrualsMethod {
 
 	InterestCalculationMeta metaData = new InterestCalculationMeta();

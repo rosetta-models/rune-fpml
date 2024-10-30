@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * When breakage cost is applicable, this defines who is calculating it.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaEnum("BreakageCalculatedByEnum")
 public enum BreakageCalculatedByEnum {

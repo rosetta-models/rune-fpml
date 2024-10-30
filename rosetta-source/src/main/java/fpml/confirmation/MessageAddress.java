@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The data type used for identifying a message address.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MessageAddress", builder=MessageAddress.MessageAddressBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MessageAddress", builder=MessageAddress.MessageAddressBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MessageAddress extends RosettaModelObject {
 
 	MessageAddressMeta metaData = new MessageAddressMeta();

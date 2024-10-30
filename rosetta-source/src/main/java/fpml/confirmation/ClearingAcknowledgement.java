@@ -28,9 +28,9 @@ import fpml.confirmation.meta.ClearingAcknowledgementMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ClearingAcknowledgement", builder=ClearingAcknowledgement.ClearingAcknowledgementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ClearingAcknowledgement", builder=ClearingAcknowledgement.ClearingAcknowledgementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ClearingAcknowledgement extends EventRequestAcknowledgement {
 
 	ClearingAcknowledgementMeta metaData = new ClearingAcknowledgementMeta();

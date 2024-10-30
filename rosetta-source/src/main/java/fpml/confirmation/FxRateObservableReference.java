@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to an &quot;FxRateObservable&quot; structure.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxRateObservableReference", builder=FxRateObservableReference.FxRateObservableReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxRateObservableReference", builder=FxRateObservableReference.FxRateObservableReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxRateObservableReference extends Reference {
 
 	FxRateObservableReferenceMeta metaData = new FxRateObservableReferenceMeta();

@@ -33,9 +33,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Specifies the structure of the dividend swap transaction supplement.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DividendSwapOptionTransactionSupplement", builder=DividendSwapOptionTransactionSupplement.DividendSwapOptionTransactionSupplementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DividendSwapOptionTransactionSupplement", builder=DividendSwapOptionTransactionSupplement.DividendSwapOptionTransactionSupplementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DividendSwapOptionTransactionSupplement extends OptionBase {
 
 	DividendSwapOptionTransactionSupplementMeta metaData = new DividendSwapOptionTransactionSupplementMeta();

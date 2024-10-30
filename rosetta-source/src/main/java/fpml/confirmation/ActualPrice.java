@@ -22,9 +22,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ActualPrice", builder=ActualPrice.ActualPriceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ActualPrice", builder=ActualPrice.ActualPriceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ActualPrice extends RosettaModelObject {
 
 	ActualPriceMeta metaData = new ActualPriceMeta();

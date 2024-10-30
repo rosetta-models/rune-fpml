@@ -30,9 +30,9 @@ import java.util.stream.Collectors;
 
 /**
  * Head of the substitution group for all facility events.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AccruingFeeChangeGroup", builder=AccruingFeeChangeGroup.AccruingFeeChangeGroupBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AccruingFeeChangeGroup", builder=AccruingFeeChangeGroup.AccruingFeeChangeGroupBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AccruingFeeChangeGroup extends AbstractFacilityEvent {
 
 	AccruingFeeChangeGroupMeta metaData = new AccruingFeeChangeGroupMeta();

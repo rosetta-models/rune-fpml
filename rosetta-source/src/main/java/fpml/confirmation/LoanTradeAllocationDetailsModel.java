@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model used to reference a single loan trade together with all associated allocations.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanTradeAllocationDetailsModel", builder=LoanTradeAllocationDetailsModel.LoanTradeAllocationDetailsModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanTradeAllocationDetailsModel", builder=LoanTradeAllocationDetailsModel.LoanTradeAllocationDetailsModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanTradeAllocationDetailsModel extends RosettaModelObject {
 
 	LoanTradeAllocationDetailsModelMeta metaData = new LoanTradeAllocationDetailsModelMeta();

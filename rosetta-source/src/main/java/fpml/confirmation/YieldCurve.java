@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A generic yield curve object, which can be valued in a variety of ways.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="YieldCurve", builder=YieldCurve.YieldCurveBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="YieldCurve", builder=YieldCurve.YieldCurveBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface YieldCurve extends PricingStructure {
 
 	YieldCurveMeta metaData = new YieldCurveMeta();

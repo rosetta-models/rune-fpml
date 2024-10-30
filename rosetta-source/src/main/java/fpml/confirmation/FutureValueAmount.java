@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining a currency amount as at a future value date.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FutureValueAmount", builder=FutureValueAmount.FutureValueAmountBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FutureValueAmount", builder=FutureValueAmount.FutureValueAmountBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FutureValueAmount extends NonNegativeMoney {
 
 	FutureValueAmountMeta metaData = new FutureValueAmountMeta();

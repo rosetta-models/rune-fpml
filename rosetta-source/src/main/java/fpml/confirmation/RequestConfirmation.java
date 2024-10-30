@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The confirmation process starts with the requestConfirmation message. The message may be used to request the confirmation of a new trade or any other event supported by FpML such as novation, terminations, amendments, etc. A message type defining the start of the confirmation process. The message may be used to request the confirmation of a new trade or any other event supported by FpML such as novation, terminations, amendments, etc.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RequestConfirmation", builder=RequestConfirmation.RequestConfirmationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RequestConfirmation", builder=RequestConfirmation.RequestConfirmationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RequestConfirmation extends CorrectableRequestMessage {
 
 	RequestConfirmationMeta metaData = new RequestConfirmationMeta();

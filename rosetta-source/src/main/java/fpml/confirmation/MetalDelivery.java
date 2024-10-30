@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The physical delivery conditions for the transaction.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MetalDelivery", builder=MetalDelivery.MetalDeliveryBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MetalDelivery", builder=MetalDelivery.MetalDeliveryBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MetalDelivery extends RosettaModelObject {
 
 	MetalDeliveryMeta metaData = new MetalDeliveryMeta();

@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DerivativeCalculationMethod", builder=DerivativeCalculationMethod.DerivativeCalculationMethodBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DerivativeCalculationMethod", builder=DerivativeCalculationMethod.DerivativeCalculationMethodBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DerivativeCalculationMethod extends RosettaModelObject {
 
 	DerivativeCalculationMethodMeta metaData = new DerivativeCalculationMethodMeta();

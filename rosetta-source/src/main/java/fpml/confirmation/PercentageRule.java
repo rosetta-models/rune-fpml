@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining a content model for a calculation rule defined as percentage of the notional amount.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PercentageRule", builder=PercentageRule.PercentageRuleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PercentageRule", builder=PercentageRule.PercentageRuleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PercentageRule extends PaymentRule {
 
 	PercentageRuleMeta metaData = new PercentageRuleMeta();

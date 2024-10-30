@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing variance bounds, which are used to exclude money price values outside of the specified range In a Up Conditional Swap Underlyer price must be equal to or higher than Lower Barrier In a Down Conditional Swap Underlyer price must be equal to or lower than Upper Barrier In a Corridor Conditional Swap Underlyer price must be equal to or higher than Lower Barrier and must be equal to or lower than Upper Barrier.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BoundedVariance", builder=BoundedVariance.BoundedVarianceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BoundedVariance", builder=BoundedVariance.BoundedVarianceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BoundedVariance extends RosettaModelObject {
 
 	BoundedVarianceMeta metaData = new BoundedVarianceMeta();

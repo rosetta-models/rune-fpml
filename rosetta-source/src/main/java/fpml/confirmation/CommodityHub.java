@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining a hub or other reference for a physically settled commodity trade.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityHub", builder=CommodityHub.CommodityHubBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityHub", builder=CommodityHub.CommodityHubBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityHub extends RosettaModelObject {
 
 	CommodityHubMeta metaData = new CommodityHubMeta();

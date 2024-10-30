@@ -25,9 +25,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The Payment Dates of the trade relative to the Calculation Periods.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityRelativePaymentDates", builder=CommodityRelativePaymentDates.CommodityRelativePaymentDatesBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityRelativePaymentDates", builder=CommodityRelativePaymentDates.CommodityRelativePaymentDatesBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityRelativePaymentDates extends RosettaModelObject {
 
 	CommodityRelativePaymentDatesMeta metaData = new CommodityRelativePaymentDatesMeta();

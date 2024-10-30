@@ -35,9 +35,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining an FpML trade.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Trade", builder=Trade.TradeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Trade", builder=Trade.TradeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Trade extends RosettaModelObject {
 
 	TradeMeta metaData = new TradeMeta();

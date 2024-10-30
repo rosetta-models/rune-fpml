@@ -29,9 +29,9 @@ import java.util.stream.Collectors;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MaturityChange", builder=MaturityChange.MaturityChangeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MaturityChange", builder=MaturityChange.MaturityChangeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MaturityChange extends LoanContractMaturityChange {
 
 	MaturityChangeMeta metaData = new MaturityChangeMeta();

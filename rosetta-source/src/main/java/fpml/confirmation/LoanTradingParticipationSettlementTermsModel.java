@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model which contains trade settlement terms for participations.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanTradingParticipationSettlementTermsModel", builder=LoanTradingParticipationSettlementTermsModel.LoanTradingParticipationSettlementTermsModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanTradingParticipationSettlementTermsModel", builder=LoanTradingParticipationSettlementTermsModel.LoanTradingParticipationSettlementTermsModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanTradingParticipationSettlementTermsModel extends RosettaModelObject {
 
 	LoanTradingParticipationSettlementTermsModelMeta metaData = new LoanTradingParticipationSettlementTermsModelMeta();

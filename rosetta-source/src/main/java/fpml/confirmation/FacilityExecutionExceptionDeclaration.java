@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Provides supporting evidence when a party invoked exception to not execute the trade on facility such as SEF and DCM even though the particular product is mandated to execute on a SEF.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FacilityExecutionExceptionDeclaration", builder=FacilityExecutionExceptionDeclaration.FacilityExecutionExceptionDeclarationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FacilityExecutionExceptionDeclaration", builder=FacilityExecutionExceptionDeclaration.FacilityExecutionExceptionDeclarationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FacilityExecutionExceptionDeclaration extends RosettaModelObject {
 
 	FacilityExecutionExceptionDeclarationMeta metaData = new FacilityExecutionExceptionDeclarationMeta();

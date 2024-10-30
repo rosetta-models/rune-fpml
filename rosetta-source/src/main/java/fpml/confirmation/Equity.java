@@ -31,9 +31,9 @@ import java.util.stream.Collectors;
 
 /**
  * Identifies the underlying asset when it is a listed equity.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Equity", builder=Equity.EquityBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Equity", builder=Equity.EquityBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Equity extends EquityAsset {
 
 	EquityMeta metaData = new EquityMeta();

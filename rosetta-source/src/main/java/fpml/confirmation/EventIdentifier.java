@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Identification of a business event, for example through its correlation id or a business identifier.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EventIdentifier", builder=EventIdentifier.EventIdentifierBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EventIdentifier", builder=EventIdentifier.EventIdentifierBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EventIdentifier extends RosettaModelObject {
 
 	EventIdentifierMeta metaData = new EventIdentifierMeta();

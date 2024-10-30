@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="StrikeOrStrikeReferenceModel", builder=StrikeOrStrikeReferenceModel.StrikeOrStrikeReferenceModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="StrikeOrStrikeReferenceModel", builder=StrikeOrStrikeReferenceModel.StrikeOrStrikeReferenceModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface StrikeOrStrikeReferenceModel extends RosettaModelObject {
 
 	StrikeOrStrikeReferenceModelMeta metaData = new StrikeOrStrikeReferenceModelMeta();

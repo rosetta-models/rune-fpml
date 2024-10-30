@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Describes a european trigger applied to an FX digtal option.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxTriggerBase", builder=FxTriggerBase.FxTriggerBaseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxTriggerBase", builder=FxTriggerBase.FxTriggerBaseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxTriggerBase extends RosettaModelObject {
 
 	FxTriggerBaseMeta metaData = new FxTriggerBaseMeta();

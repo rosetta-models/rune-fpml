@@ -20,9 +20,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EventPaymentSequence", builder=EventPaymentSequence.EventPaymentSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EventPaymentSequence", builder=EventPaymentSequence.EventPaymentSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EventPaymentSequence extends RosettaModelObject {
 
 	EventPaymentSequenceMeta metaData = new EventPaymentSequenceMeta();

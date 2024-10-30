@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Describes additional features within the option.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityOptionFeaturesModel", builder=CommodityOptionFeaturesModel.CommodityOptionFeaturesModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityOptionFeaturesModel", builder=CommodityOptionFeaturesModel.CommodityOptionFeaturesModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityOptionFeaturesModel extends RosettaModelObject {
 
 	CommodityOptionFeaturesModelMeta metaData = new CommodityOptionFeaturesModelMeta();

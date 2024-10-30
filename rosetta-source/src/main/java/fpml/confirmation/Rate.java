@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The abstract base class for all types which define interest rate streams.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Rate", builder=Rate.RateBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Rate", builder=Rate.RateBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Rate extends RosettaModelObject {
 
 	RateMeta metaData = new RateMeta();

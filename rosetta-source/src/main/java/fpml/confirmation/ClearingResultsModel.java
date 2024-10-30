@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Events/Results that are applicable to clearing processes.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ClearingResultsModel", builder=ClearingResultsModel.ClearingResultsModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ClearingResultsModel", builder=ClearingResultsModel.ClearingResultsModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ClearingResultsModel extends RosettaModelObject {
 
 	ClearingResultsModelMeta metaData = new ClearingResultsModelMeta();

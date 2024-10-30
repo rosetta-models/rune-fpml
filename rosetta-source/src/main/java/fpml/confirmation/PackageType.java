@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that describes what thpe of package this is, e.g. Butterfly.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PackageType", builder=PackageType.PackageTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PackageType", builder=PackageType.PackageTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PackageType extends RosettaModelObject {
 
 	PackageTypeMeta metaData = new PackageTypeMeta();

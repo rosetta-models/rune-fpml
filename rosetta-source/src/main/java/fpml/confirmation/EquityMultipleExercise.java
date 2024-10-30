@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type for defining the multiple exercise provisions of an American or Bermuda style equity option.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EquityMultipleExercise", builder=EquityMultipleExercise.EquityMultipleExerciseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EquityMultipleExercise", builder=EquityMultipleExercise.EquityMultipleExerciseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EquityMultipleExercise extends RosettaModelObject {
 
 	EquityMultipleExerciseMeta metaData = new EquityMultipleExerciseMeta();

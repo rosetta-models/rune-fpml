@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A group containing return swap amount currency definition methods
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CurrencyAndDeterminationMethodModel", builder=CurrencyAndDeterminationMethodModel.CurrencyAndDeterminationMethodModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CurrencyAndDeterminationMethodModel", builder=CurrencyAndDeterminationMethodModel.CurrencyAndDeterminationMethodModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CurrencyAndDeterminationMethodModel extends RosettaModelObject {
 
 	CurrencyAndDeterminationMethodModelMeta metaData = new CurrencyAndDeterminationMethodModelMeta();

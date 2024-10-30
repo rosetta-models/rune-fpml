@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines the expiry/observation schedule of the target.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxExpirySchedule", builder=FxExpirySchedule.FxExpiryScheduleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxExpirySchedule", builder=FxExpirySchedule.FxExpiryScheduleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxExpirySchedule extends FxSchedule {
 
 	FxExpiryScheduleMeta metaData = new FxExpiryScheduleMeta();

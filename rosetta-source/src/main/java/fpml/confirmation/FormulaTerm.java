@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining a term of the formula. Its value is the product of the its coefficient and the referenced partial derivatives.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FormulaTerm", builder=FormulaTerm.FormulaTermBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FormulaTerm", builder=FormulaTerm.FormulaTermBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FormulaTerm extends RosettaModelObject {
 
 	FormulaTermMeta metaData = new FormulaTermMeta();

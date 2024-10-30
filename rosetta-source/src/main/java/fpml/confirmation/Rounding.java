@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining a rounding direction and precision to be used in the rounding of a rate.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Rounding", builder=Rounding.RoundingBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Rounding", builder=Rounding.RoundingBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Rounding extends RosettaModelObject {
 
 	RoundingMeta metaData = new RoundingMeta();

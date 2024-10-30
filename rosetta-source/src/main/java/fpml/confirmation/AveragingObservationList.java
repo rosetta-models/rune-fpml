@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An un ordered list of weighted averaging observations.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AveragingObservationList", builder=AveragingObservationList.AveragingObservationListBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AveragingObservationList", builder=AveragingObservationList.AveragingObservationListBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AveragingObservationList extends RosettaModelObject {
 
 	AveragingObservationListMeta metaData = new AveragingObservationListMeta();

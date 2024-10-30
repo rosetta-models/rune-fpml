@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The amount of gain on the client upside or firm upside is limited. If spot settles above the cap, or below the floor, the payout is adjusted to limit the gain. The adjustment may be made by varying the strike, or by maintaining the strike, but varying the payout notionals.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxPayoffCap", builder=FxPayoffCap.FxPayoffCapBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxPayoffCap", builder=FxPayoffCap.FxPayoffCapBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxPayoffCap extends RosettaModelObject {
 
 	FxPayoffCapMeta metaData = new FxPayoffCapMeta();

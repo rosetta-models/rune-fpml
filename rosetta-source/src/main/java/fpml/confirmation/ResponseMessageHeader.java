@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type refining the generic message header to make it specific to response messages.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ResponseMessageHeader", builder=ResponseMessageHeader.ResponseMessageHeaderBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ResponseMessageHeader", builder=ResponseMessageHeader.ResponseMessageHeaderBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ResponseMessageHeader extends MessageHeader {
 
 	ResponseMessageHeaderMeta metaData = new ResponseMessageHeaderMeta();

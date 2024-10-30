@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A pricing data set that contains a series of points with coordinates. It is a sparse matrix representation of a multi-dimensional matrix.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MultiDimensionalPricingData", builder=MultiDimensionalPricingData.MultiDimensionalPricingDataBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MultiDimensionalPricingData", builder=MultiDimensionalPricingData.MultiDimensionalPricingDataBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MultiDimensionalPricingData extends RosettaModelObject {
 
 	MultiDimensionalPricingDataMeta metaData = new MultiDimensionalPricingDataMeta();

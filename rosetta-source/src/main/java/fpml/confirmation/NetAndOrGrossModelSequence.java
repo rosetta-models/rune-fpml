@@ -20,9 +20,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="NetAndOrGrossModelSequence", builder=NetAndOrGrossModelSequence.NetAndOrGrossModelSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="NetAndOrGrossModelSequence", builder=NetAndOrGrossModelSequence.NetAndOrGrossModelSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface NetAndOrGrossModelSequence extends RosettaModelObject {
 
 	NetAndOrGrossModelSequenceMeta metaData = new NetAndOrGrossModelSequenceMeta();

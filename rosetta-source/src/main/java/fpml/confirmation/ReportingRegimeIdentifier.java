@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that provides identification for reporting regimes.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReportingRegimeIdentifier", builder=ReportingRegimeIdentifier.ReportingRegimeIdentifierBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReportingRegimeIdentifier", builder=ReportingRegimeIdentifier.ReportingRegimeIdentifierBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReportingRegimeIdentifier extends RosettaModelObject {
 
 	ReportingRegimeIdentifierMeta metaData = new ReportingRegimeIdentifierMeta();

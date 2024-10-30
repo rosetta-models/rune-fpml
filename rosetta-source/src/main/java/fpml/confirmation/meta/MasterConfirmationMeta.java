@@ -19,7 +19,7 @@ import java.util.function.Function;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaMeta(model=MasterConfirmation.class)
 public class MasterConfirmationMeta implements RosettaMetaData<MasterConfirmation> {

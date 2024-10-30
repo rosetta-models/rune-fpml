@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A group that specifies Bond Calculation elements.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BondCalculationModel", builder=BondCalculationModel.BondCalculationModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BondCalculationModel", builder=BondCalculationModel.BondCalculationModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BondCalculationModel extends RosettaModelObject {
 
 	BondCalculationModelMeta metaData = new BondCalculationModelMeta();

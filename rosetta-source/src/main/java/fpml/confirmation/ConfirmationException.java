@@ -26,9 +26,9 @@ import fpml.confirmation.meta.ConfirmationExceptionMeta;
 
 /**
  * A message sent to inform another system that some exception has been detected.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ConfirmationException", builder=ConfirmationException.ConfirmationExceptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ConfirmationException", builder=ConfirmationException.ConfirmationExceptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ConfirmationException extends Exception {
 
 	ConfirmationExceptionMeta metaData = new ConfirmationExceptionMeta();

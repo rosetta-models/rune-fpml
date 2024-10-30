@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the parameters used to generate the calculation period dates schedule, including the specification of any initial or final stub calculation periods. A calculation perod schedule consists of an optional initial stub calculation period, one or more regular calculation periods and an optional final stub calculation period. In the absence of any initial or final stub calculation periods, the regular part of the calculation period schedule is assumed to be between the effective date and the termination date. No implicit stubs are allowed, i.e. stubs must be explicitly specified using an appropriate combination of firstPeriodStateDate, firstRegularPeriodStartDate and lastRegularPeriodEndDate.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CalculationPeriodDates", builder=CalculationPeriodDates.CalculationPeriodDatesBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CalculationPeriodDates", builder=CalculationPeriodDates.CalculationPeriodDatesBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CalculationPeriodDates extends RosettaModelObject {
 
 	CalculationPeriodDatesMeta metaData = new CalculationPeriodDatesMeta();

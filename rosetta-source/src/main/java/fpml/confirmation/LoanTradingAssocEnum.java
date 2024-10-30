@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * A list that defines the loan trading association responsible for defining the standardized legal framework that governs the trade.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaEnum("LoanTradingAssocEnum")
 public enum LoanTradingAssocEnum {

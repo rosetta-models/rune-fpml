@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing the date on which the dividend will be paid/received. This type is also used to specify the date on which the FX rate will be determined, when applicable.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DividendPaymentDate", builder=DividendPaymentDate.DividendPaymentDateBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DividendPaymentDate", builder=DividendPaymentDate.DividendPaymentDateBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DividendPaymentDate extends RosettaModelObject {
 
 	DividendPaymentDateMeta metaData = new DividendPaymentDateMeta();

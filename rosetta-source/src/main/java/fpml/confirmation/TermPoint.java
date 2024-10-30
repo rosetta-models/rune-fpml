@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A value point that can have a time dimension. Allows bid, mid, ask, and spread values to be represented.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TermPoint", builder=TermPoint.TermPointBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TermPoint", builder=TermPoint.TermPointBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TermPoint extends RosettaModelObject {
 
 	TermPointMeta metaData = new TermPointMeta();

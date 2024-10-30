@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing the method for accruing interests on dividends. Can be either a fixed rate reference or a floating rate reference.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="InterestAccrualsMethod", builder=InterestAccrualsMethod.InterestAccrualsMethodBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="InterestAccrualsMethod", builder=InterestAccrualsMethod.InterestAccrualsMethodBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface InterestAccrualsMethod extends RosettaModelObject {
 
 	InterestAccrualsMethodMeta metaData = new InterestAccrualsMethodMeta();

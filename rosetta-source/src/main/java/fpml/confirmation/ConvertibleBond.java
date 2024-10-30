@@ -37,9 +37,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Identifies the underlying asset when it is a convertible bond.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ConvertibleBond", builder=ConvertibleBond.ConvertibleBondBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ConvertibleBond", builder=ConvertibleBond.ConvertibleBondBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ConvertibleBond extends Bond {
 
 	ConvertibleBondMeta metaData = new ConvertibleBondMeta();

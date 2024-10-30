@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A party&#39;s credit rating.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CreditRating", builder=CreditRating.CreditRatingBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CreditRating", builder=CreditRating.CreditRatingBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CreditRating extends RosettaModelObject {
 
 	CreditRatingMeta metaData = new CreditRatingMeta();

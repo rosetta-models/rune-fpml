@@ -19,7 +19,7 @@ import java.util.function.Function;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaMeta(model=QuotationModel.class)
 public class QuotationModelMeta implements RosettaMetaData<QuotationModel> {

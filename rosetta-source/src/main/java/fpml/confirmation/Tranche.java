@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * This type represents a CDS Tranche.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Tranche", builder=Tranche.TrancheBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Tranche", builder=Tranche.TrancheBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Tranche extends RosettaModelObject {
 
 	TrancheMeta metaData = new TrancheMeta();

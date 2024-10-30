@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing a date when this date is defined in reference to another date through one or several date offsets.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RelativeDateSequence", builder=RelativeDateSequence.RelativeDateSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RelativeDateSequence", builder=RelativeDateSequence.RelativeDateSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RelativeDateSequence extends RosettaModelObject {
 
 	RelativeDateSequenceMeta metaData = new RelativeDateSequenceMeta();

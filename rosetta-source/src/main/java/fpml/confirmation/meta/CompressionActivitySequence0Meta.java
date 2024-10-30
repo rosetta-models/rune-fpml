@@ -19,7 +19,7 @@ import java.util.function.Function;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaMeta(model=CompressionActivitySequence0.class)
 public class CompressionActivitySequence0Meta implements RosettaMetaData<CompressionActivitySequence0> {

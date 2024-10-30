@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type used to represent the type of market where a trade can be executed.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ExecutionType", builder=ExecutionType.ExecutionTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ExecutionType", builder=ExecutionType.ExecutionTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ExecutionType extends RosettaModelObject {
 
 	ExecutionTypeMeta metaData = new ExecutionTypeMeta();

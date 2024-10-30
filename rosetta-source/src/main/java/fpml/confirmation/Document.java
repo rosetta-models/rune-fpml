@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The abstract base type from which all FpML compliant messages and documents must be derived.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Document", builder=Document.DocumentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Document", builder=Document.DocumentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Document extends RosettaModelObject {
 
 	DocumentMeta metaData = new DocumentMeta();

@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The different options for specifying the Fixed Price.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityFixedPriceModel", builder=CommodityFixedPriceModel.CommodityFixedPriceModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityFixedPriceModel", builder=CommodityFixedPriceModel.CommodityFixedPriceModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityFixedPriceModel extends RosettaModelObject {
 
 	CommodityFixedPriceModelMeta metaData = new CommodityFixedPriceModelMeta();

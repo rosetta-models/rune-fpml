@@ -30,9 +30,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that is extending the Offset structure for providing the ability to specify an FX fixing date as an offset to dates specified somewhere else in the document.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxFixingDate", builder=FxFixingDate.FxFixingDateBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxFixingDate", builder=FxFixingDate.FxFixingDateBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxFixingDate extends Offset {
 
 	FxFixingDateMeta metaData = new FxFixingDateMeta();

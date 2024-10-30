@@ -41,9 +41,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A loan servicing notification used to communicate confirmation of trade allocation details, from counterparty to counterparty, or admin agent to counterparty.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanAllocationConfirmationNotification", builder=LoanAllocationConfirmationNotification.LoanAllocationConfirmationNotificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanAllocationConfirmationNotification", builder=LoanAllocationConfirmationNotification.LoanAllocationConfirmationNotificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanAllocationConfirmationNotification extends AbstractLoanTradingNotification {
 
 	LoanAllocationConfirmationNotificationMeta metaData = new LoanAllocationConfirmationNotificationMeta();

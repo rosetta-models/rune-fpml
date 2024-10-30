@@ -25,9 +25,9 @@ import fpml.confirmation.meta.TradeReferenceInformationUpdateExceptionMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradeReferenceInformationUpdateException", builder=TradeReferenceInformationUpdateException.TradeReferenceInformationUpdateExceptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradeReferenceInformationUpdateException", builder=TradeReferenceInformationUpdateException.TradeReferenceInformationUpdateExceptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradeReferenceInformationUpdateException extends Exception {
 
 	TradeReferenceInformationUpdateExceptionMeta metaData = new TradeReferenceInformationUpdateExceptionMeta();

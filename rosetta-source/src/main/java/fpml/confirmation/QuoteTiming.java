@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="QuoteTiming", builder=QuoteTiming.QuoteTimingBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="QuoteTiming", builder=QuoteTiming.QuoteTimingBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface QuoteTiming extends RosettaModelObject {
 
 	QuoteTimingMeta metaData = new QuoteTimingMeta();

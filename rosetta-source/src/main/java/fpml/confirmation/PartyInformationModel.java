@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Information about a party for reporting purposes.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PartyInformationModel", builder=PartyInformationModel.PartyInformationModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PartyInformationModel", builder=PartyInformationModel.PartyInformationModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PartyInformationModel extends RosettaModelObject {
 
 	PartyInformationModelMeta metaData = new PartyInformationModelMeta();

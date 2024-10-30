@@ -25,9 +25,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TransformType", builder=TransformType.TransformTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TransformType", builder=TransformType.TransformTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TransformType extends RosettaModelObject {
 
 	TransformTypeMeta metaData = new TransformTypeMeta();

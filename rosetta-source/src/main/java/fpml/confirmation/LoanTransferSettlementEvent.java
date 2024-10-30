@@ -33,9 +33,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An event structure defining the agent-to-counterparty trade settlement details.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanTransferSettlementEvent", builder=LoanTransferSettlementEvent.LoanTransferSettlementEventBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanTransferSettlementEvent", builder=LoanTransferSettlementEvent.LoanTransferSettlementEventBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanTransferSettlementEvent extends AbstractLoanAllocationSettlementEvent {
 
 	LoanTransferSettlementEventMeta metaData = new LoanTransferSettlementEventMeta();

@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A full definition of the fixed rate accrual characteristics of a loan contract. This structure defines both the underlying base rate as well as any additional margins and costs associated with the loan contract.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FixedRateAccrual", builder=FixedRateAccrual.FixedRateAccrualBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FixedRateAccrual", builder=FixedRateAccrual.FixedRateAccrualBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FixedRateAccrual extends FixedRateOptionBase {
 
 	FixedRateAccrualMeta metaData = new FixedRateAccrualMeta();

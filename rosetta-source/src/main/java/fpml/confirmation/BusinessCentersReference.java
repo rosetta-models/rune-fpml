@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A pointer style reference to a set of business day calendar defined elsewhere in the document.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BusinessCentersReference", builder=BusinessCentersReference.BusinessCentersReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BusinessCentersReference", builder=BusinessCentersReference.BusinessCentersReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BusinessCentersReference extends Reference {
 
 	BusinessCentersReferenceMeta metaData = new BusinessCentersReferenceMeta();

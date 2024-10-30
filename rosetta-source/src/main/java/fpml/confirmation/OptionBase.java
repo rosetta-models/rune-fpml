@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type for defining the common features of options.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="OptionBase", builder=OptionBase.OptionBaseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="OptionBase", builder=OptionBase.OptionBaseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface OptionBase extends Option {
 
 	OptionBaseMeta metaData = new OptionBaseMeta();

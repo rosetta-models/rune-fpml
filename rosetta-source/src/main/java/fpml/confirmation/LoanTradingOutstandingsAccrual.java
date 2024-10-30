@@ -30,9 +30,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that incorporates sub-periods of an accrual calculation for a traded outstanding contract.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanTradingOutstandingsAccrual", builder=LoanTradingOutstandingsAccrual.LoanTradingOutstandingsAccrualBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanTradingOutstandingsAccrual", builder=LoanTradingOutstandingsAccrual.LoanTradingOutstandingsAccrualBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanTradingOutstandingsAccrual extends AbstractTradingAccrual {
 
 	LoanTradingOutstandingsAccrualMeta metaData = new LoanTradingOutstandingsAccrualMeta();

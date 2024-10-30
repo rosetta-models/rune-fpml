@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The method, prioritzed by the order it is listed in this element, to get a replacement rate for the disrupted settlement rate option.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FallbackReferencePriceType", builder=FallbackReferencePriceType.FallbackReferencePriceTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FallbackReferencePriceType", builder=FallbackReferencePriceType.FallbackReferencePriceTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FallbackReferencePriceType extends RosettaModelObject {
 
 	FallbackReferencePriceTypeMeta metaData = new FallbackReferencePriceTypeMeta();

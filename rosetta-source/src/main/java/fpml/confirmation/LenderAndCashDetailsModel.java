@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model that describes lender and cash flow details (relative to the lender), represented within a business event.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LenderAndCashDetailsModel", builder=LenderAndCashDetailsModel.LenderAndCashDetailsModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LenderAndCashDetailsModel", builder=LenderAndCashDetailsModel.LenderAndCashDetailsModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LenderAndCashDetailsModel extends RosettaModelObject {
 
 	LenderAndCashDetailsModelMeta metaData = new LenderAndCashDetailsModelMeta();

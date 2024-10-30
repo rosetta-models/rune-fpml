@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type to define automatic exercise of a swaption. With automatic exercise the option is deemed to have exercised if it is in the money by more than the threshold amount on the exercise date.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AutomaticExercise", builder=AutomaticExercise.AutomaticExerciseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AutomaticExercise", builder=AutomaticExercise.AutomaticExerciseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AutomaticExercise extends RosettaModelObject {
 
 	AutomaticExerciseMeta metaData = new AutomaticExerciseMeta();

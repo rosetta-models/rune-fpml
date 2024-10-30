@@ -27,9 +27,9 @@ import java.util.stream.Collectors;
 
 /**
  * Describes a change due to a corporate action
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CorporateAction", builder=CorporateAction.CorporateActionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CorporateAction", builder=CorporateAction.CorporateActionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CorporateAction extends CorporateActionEvent {
 
 	CorporateActionMeta metaData = new CorporateActionMeta();

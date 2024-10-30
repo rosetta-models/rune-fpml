@@ -21,9 +21,9 @@ import fpml.confirmation.meta.CanonicalizationMethodMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CanonicalizationMethod", builder=CanonicalizationMethod.CanonicalizationMethodBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CanonicalizationMethod", builder=CanonicalizationMethod.CanonicalizationMethodBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CanonicalizationMethod extends CanonicalizationMethodType {
 
 	CanonicalizationMethodMeta metaData = new CanonicalizationMethodMeta();

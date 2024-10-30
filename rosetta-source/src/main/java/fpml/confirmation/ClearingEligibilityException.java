@@ -25,9 +25,9 @@ import fpml.confirmation.meta.ClearingEligibilityExceptionMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ClearingEligibilityException", builder=ClearingEligibilityException.ClearingEligibilityExceptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ClearingEligibilityException", builder=ClearingEligibilityException.ClearingEligibilityExceptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ClearingEligibilityException extends Exception {
 
 	ClearingEligibilityExceptionMeta metaData = new ClearingEligibilityExceptionMeta();

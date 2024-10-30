@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining a contract identifier issued by the indicated party.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ContractIdentifier", builder=ContractIdentifier.ContractIdentifierBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ContractIdentifier", builder=ContractIdentifier.ContractIdentifierBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ContractIdentifier extends RosettaModelObject {
 
 	ContractIdentifierMeta metaData = new ContractIdentifierMeta();

@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PostTradeEventsBaseModelSequence", builder=PostTradeEventsBaseModelSequence.PostTradeEventsBaseModelSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PostTradeEventsBaseModelSequence", builder=PostTradeEventsBaseModelSequence.PostTradeEventsBaseModelSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PostTradeEventsBaseModelSequence extends RosettaModelObject {
 
 	PostTradeEventsBaseModelSequenceMeta metaData = new PostTradeEventsBaseModelSequenceMeta();

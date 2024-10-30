@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PricingInputType", builder=PricingInputType.PricingInputTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PricingInputType", builder=PricingInputType.PricingInputTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PricingInputType extends RosettaModelObject {
 
 	PricingInputTypeMeta metaData = new PricingInputTypeMeta();

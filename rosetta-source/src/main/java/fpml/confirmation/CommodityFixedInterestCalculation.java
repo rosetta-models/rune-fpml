@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityFixedInterestCalculation", builder=CommodityFixedInterestCalculation.CommodityFixedInterestCalculationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityFixedInterestCalculation", builder=CommodityFixedInterestCalculation.CommodityFixedInterestCalculationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityFixedInterestCalculation extends RosettaModelObject {
 
 	CommodityFixedInterestCalculationMeta metaData = new CommodityFixedInterestCalculationMeta();

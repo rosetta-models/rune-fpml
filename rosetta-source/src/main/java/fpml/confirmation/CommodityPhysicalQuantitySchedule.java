@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The Quantity per Delivery Period. There must be a Quantity step specified for each Delivery Period, regardless of whether the Quantity changes or remains the same between periods.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityPhysicalQuantitySchedule", builder=CommodityPhysicalQuantitySchedule.CommodityPhysicalQuantityScheduleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityPhysicalQuantitySchedule", builder=CommodityPhysicalQuantitySchedule.CommodityPhysicalQuantityScheduleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityPhysicalQuantitySchedule extends RosettaModelObject {
 
 	CommodityPhysicalQuantityScheduleMeta metaData = new CommodityPhysicalQuantityScheduleMeta();

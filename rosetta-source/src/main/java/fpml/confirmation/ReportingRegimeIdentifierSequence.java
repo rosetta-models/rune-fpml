@@ -26,9 +26,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReportingRegimeIdentifierSequence", builder=ReportingRegimeIdentifierSequence.ReportingRegimeIdentifierSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReportingRegimeIdentifierSequence", builder=ReportingRegimeIdentifierSequence.ReportingRegimeIdentifierSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReportingRegimeIdentifierSequence extends RosettaModelObject {
 
 	ReportingRegimeIdentifierSequenceMeta metaData = new ReportingRegimeIdentifierSequenceMeta();

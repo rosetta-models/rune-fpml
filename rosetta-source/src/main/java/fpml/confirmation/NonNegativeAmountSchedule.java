@@ -30,9 +30,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining a currency amount or a currency amount schedule.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="NonNegativeAmountSchedule", builder=NonNegativeAmountSchedule.NonNegativeAmountScheduleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="NonNegativeAmountSchedule", builder=NonNegativeAmountSchedule.NonNegativeAmountScheduleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface NonNegativeAmountSchedule extends NonNegativeSchedule {
 
 	NonNegativeAmountScheduleMeta metaData = new NonNegativeAmountScheduleMeta();

@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * ISDA 1993 or 2005 commodity market disruption elements.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityMarketDisruption", builder=CommodityMarketDisruption.CommodityMarketDisruptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityMarketDisruption", builder=CommodityMarketDisruption.CommodityMarketDisruptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityMarketDisruption extends RosettaModelObject {
 
 	CommodityMarketDisruptionMeta metaData = new CommodityMarketDisruptionMeta();

@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining a contiguous series of calendar dates. The date range is defined as all the dates between and including the first and the last date. The first date must fall before the last date.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DateRange", builder=DateRange.DateRangeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DateRange", builder=DateRange.DateRangeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DateRange extends RosettaModelObject {
 
 	DateRangeMeta metaData = new DateRangeMeta();

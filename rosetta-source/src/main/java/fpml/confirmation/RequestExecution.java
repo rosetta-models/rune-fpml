@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A message requesting that an order be executed.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RequestExecution", builder=RequestExecution.RequestExecutionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RequestExecution", builder=RequestExecution.RequestExecutionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RequestExecution extends CorrectableRequestMessage {
 
 	RequestExecutionMeta metaData = new RequestExecutionMeta();

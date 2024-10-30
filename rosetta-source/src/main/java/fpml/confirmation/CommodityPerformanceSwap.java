@@ -35,9 +35,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A swap the payoff of which is linked to the performance of the underlying asset. Examples of potential performance features are return, correlation, covariance, variance and volatility. A type describing a commodity performance swap in which one leg pays out based on the return on a reference commodity index or commodity reference price.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityPerformanceSwap", builder=CommodityPerformanceSwap.CommodityPerformanceSwapBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityPerformanceSwap", builder=CommodityPerformanceSwap.CommodityPerformanceSwapBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityPerformanceSwap extends CommodityPerformanceSwapBase {
 
 	CommodityPerformanceSwapMeta metaData = new CommodityPerformanceSwapMeta();

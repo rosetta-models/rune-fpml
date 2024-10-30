@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines a list of machine interpretable error codes.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReasonCode", builder=ReasonCode.ReasonCodeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReasonCode", builder=ReasonCode.ReasonCodeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReasonCode extends RosettaModelObject {
 
 	ReasonCodeMeta metaData = new ReasonCodeMeta();

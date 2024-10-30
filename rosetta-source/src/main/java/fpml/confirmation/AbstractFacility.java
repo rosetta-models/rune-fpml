@@ -35,9 +35,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An abstract type defining a facility baseline structure.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AbstractFacility", builder=AbstractFacility.AbstractFacilityBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AbstractFacility", builder=AbstractFacility.AbstractFacilityBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AbstractFacility extends FacilitySummary {
 
 	AbstractFacilityMeta metaData = new AbstractFacilityMeta();

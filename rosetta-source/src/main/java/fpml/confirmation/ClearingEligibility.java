@@ -37,9 +37,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ClearingEligibility", builder=ClearingEligibility.ClearingEligibilityBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ClearingEligibility", builder=ClearingEligibility.ClearingEligibilityBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ClearingEligibility extends ResponseMessage {
 
 	ClearingEligibilityMeta metaData = new ClearingEligibilityMeta();

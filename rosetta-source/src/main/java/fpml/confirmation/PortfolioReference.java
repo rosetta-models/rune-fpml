@@ -25,9 +25,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure used to group together individual messages that can be acted on at a group level.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PortfolioReference", builder=PortfolioReference.PortfolioReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PortfolioReference", builder=PortfolioReference.PortfolioReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PortfolioReference extends PortfolioReferenceBase {
 
 	PortfolioReferenceMeta metaData = new PortfolioReferenceMeta();

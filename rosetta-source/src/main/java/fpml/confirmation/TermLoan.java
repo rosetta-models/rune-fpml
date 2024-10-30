@@ -33,9 +33,9 @@ import java.util.stream.Collectors;
 
 /**
  * A term loan facility. A facility which is fully funded (utilized) at deal closing.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TermLoan", builder=TermLoan.TermLoanBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TermLoan", builder=TermLoan.TermLoanBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TermLoan extends AbstractFacility {
 
 	TermLoanMeta metaData = new TermLoanMeta();

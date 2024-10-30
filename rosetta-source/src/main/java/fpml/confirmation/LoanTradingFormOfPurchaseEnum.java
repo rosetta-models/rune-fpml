@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * A list describing forms of purchase.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaEnum("LoanTradingFormOfPurchaseEnum")
 public enum LoanTradingFormOfPurchaseEnum {

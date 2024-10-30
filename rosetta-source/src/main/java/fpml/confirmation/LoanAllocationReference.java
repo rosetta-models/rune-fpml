@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A reference to a loan trade allocation.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanAllocationReference", builder=LoanAllocationReference.LoanAllocationReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanAllocationReference", builder=LoanAllocationReference.LoanAllocationReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanAllocationReference extends Reference {
 
 	LoanAllocationReferenceMeta metaData = new LoanAllocationReferenceMeta();

@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the right of a party to cancel a swap transaction on the specified exercise dates. The provision is for &#39;walkaway&#39; cancellation (i.e. the fair value of the swap is not paid). A fee payable on exercise can be specified.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CancelableProvision", builder=CancelableProvision.CancelableProvisionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CancelableProvision", builder=CancelableProvision.CancelableProvisionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CancelableProvision extends RosettaModelObject {
 
 	CancelableProvisionMeta metaData = new CancelableProvisionMeta();

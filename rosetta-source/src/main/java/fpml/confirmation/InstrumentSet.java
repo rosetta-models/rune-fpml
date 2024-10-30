@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A collection of instruments usable for quotation purposes. In future releases, quotable derivative assets may be added after the underlying asset.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="InstrumentSet", builder=InstrumentSet.InstrumentSetBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="InstrumentSet", builder=InstrumentSet.InstrumentSetBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface InstrumentSet extends RosettaModelObject {
 
 	InstrumentSetMeta metaData = new InstrumentSetMeta();

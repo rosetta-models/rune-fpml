@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The different options for specifying the attributes of a coal quality measure as a decimal value.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CoalAttributeDecimal", builder=CoalAttributeDecimal.CoalAttributeDecimalBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CoalAttributeDecimal", builder=CoalAttributeDecimal.CoalAttributeDecimalBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CoalAttributeDecimal extends RosettaModelObject {
 
 	CoalAttributeDecimalMeta metaData = new CoalAttributeDecimalMeta();

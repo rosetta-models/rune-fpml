@@ -20,9 +20,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Algorithm", builder=Algorithm.AlgorithmBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Algorithm", builder=Algorithm.AlgorithmBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Algorithm extends RosettaModelObject {
 
 	AlgorithmMeta metaData = new AlgorithmMeta();

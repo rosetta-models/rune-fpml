@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LimitId", builder=LimitId.LimitIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LimitId", builder=LimitId.LimitIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LimitId extends RosettaModelObject {
 
 	LimitIdMeta metaData = new LimitIdMeta();

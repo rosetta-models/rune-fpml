@@ -35,9 +35,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that describes a party profile record.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PartyProfile", builder=PartyProfile.PartyProfileBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PartyProfile", builder=PartyProfile.PartyProfileBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PartyProfile extends AbstractPartyProfile {
 
 	PartyProfileMeta metaData = new PartyProfileMeta();

@@ -33,9 +33,9 @@ import java.util.stream.Collectors;
 
 /**
  * A letter of credit facility. A facility designed to issue letter of credit products.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LetterOfCreditFacility", builder=LetterOfCreditFacility.LetterOfCreditFacilityBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LetterOfCreditFacility", builder=LetterOfCreditFacility.LetterOfCreditFacilityBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LetterOfCreditFacility extends AbstractFacility {
 
 	LetterOfCreditFacilityMeta metaData = new LetterOfCreditFacilityMeta();

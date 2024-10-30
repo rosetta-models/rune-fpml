@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference a code defining the origin of the trade template terms
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxTemplateTerms", builder=FxTemplateTerms.FxTemplateTermsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxTemplateTerms", builder=FxTemplateTerms.FxTemplateTermsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxTemplateTerms extends RosettaModelObject {
 
 	FxTemplateTermsMeta metaData = new FxTemplateTermsMeta();

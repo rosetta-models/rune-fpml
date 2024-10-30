@@ -34,9 +34,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing the components that are common for return type swaps, including short and long form return swaps representations.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReturnSwapBase", builder=ReturnSwapBase.ReturnSwapBaseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReturnSwapBase", builder=ReturnSwapBase.ReturnSwapBaseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReturnSwapBase extends Product {
 
 	ReturnSwapBaseMeta metaData = new ReturnSwapBaseMeta();

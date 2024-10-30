@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model that represents the main parties involved in any business event.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BusinessEventPartiesModel", builder=BusinessEventPartiesModel.BusinessEventPartiesModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BusinessEventPartiesModel", builder=BusinessEventPartiesModel.BusinessEventPartiesModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BusinessEventPartiesModel extends RosettaModelObject {
 
 	BusinessEventPartiesModelMeta metaData = new BusinessEventPartiesModelMeta();

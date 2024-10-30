@@ -36,9 +36,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A component describing an Equity Forward product. A type for defining equity forwards.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EquityForward", builder=EquityForward.EquityForwardBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EquityForward", builder=EquityForward.EquityForwardBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EquityForward extends EquityDerivativeLongFormBase {
 
 	EquityForwardMeta metaData = new EquityForwardMeta();

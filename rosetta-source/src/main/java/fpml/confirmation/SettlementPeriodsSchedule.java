@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The specification of the Settlement Periods in which the electricity will be delivered for a &quot;shaped&quot; trade i.e. where different Settlement Period ranges will apply to different periods of the trade.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SettlementPeriodsSchedule", builder=SettlementPeriodsSchedule.SettlementPeriodsScheduleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SettlementPeriodsSchedule", builder=SettlementPeriodsSchedule.SettlementPeriodsScheduleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SettlementPeriodsSchedule extends RosettaModelObject {
 
 	SettlementPeriodsScheduleMeta metaData = new SettlementPeriodsScheduleMeta();

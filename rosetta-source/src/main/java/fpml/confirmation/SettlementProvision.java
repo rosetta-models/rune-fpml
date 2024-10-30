@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the specification of settlement terms, occuring when the settlement currency is different to the notional currency of the trade.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SettlementProvision", builder=SettlementProvision.SettlementProvisionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SettlementProvision", builder=SettlementProvision.SettlementProvisionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SettlementProvision extends RosettaModelObject {
 
 	SettlementProvisionMeta metaData = new SettlementProvisionMeta();

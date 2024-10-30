@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An FX Swap transaction definition. A type defining either a spot/forward or forward/forward FX swap transaction.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxSwap", builder=FxSwap.FxSwapBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxSwap", builder=FxSwap.FxSwapBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxSwap extends Product {
 
 	FxSwapMeta metaData = new FxSwapMeta();

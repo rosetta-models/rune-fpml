@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A value that explains the reason or purpose that information is being reported. Examples might include RealTimePublic reporting, PrimaryEconomicTerms reporting, Confirmation reporting, or Snapshot reporting.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReportingPurpose", builder=ReportingPurpose.ReportingPurposeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReportingPurpose", builder=ReportingPurpose.ReportingPurposeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReportingPurpose extends RosettaModelObject {
 
 	ReportingPurposeMeta metaData = new ReportingPurposeMeta();

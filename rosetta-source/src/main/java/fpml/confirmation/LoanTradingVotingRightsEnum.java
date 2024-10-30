@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * A list that specifies type of voting rights process, i.e. whether voting rights are passed along to buyer or retained by seller.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaEnum("LoanTradingVotingRightsEnum")
 public enum LoanTradingVotingRightsEnum {

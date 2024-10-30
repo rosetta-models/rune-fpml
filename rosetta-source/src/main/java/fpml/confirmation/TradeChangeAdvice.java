@@ -37,9 +37,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines the structure for a message indicating that a trade is being changed due to a non-negotiated event.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradeChangeAdvice", builder=TradeChangeAdvice.TradeChangeAdviceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradeChangeAdvice", builder=TradeChangeAdvice.TradeChangeAdviceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradeChangeAdvice extends CorrectableRequestMessage {
 
 	TradeChangeAdviceMeta metaData = new TradeChangeAdviceMeta();

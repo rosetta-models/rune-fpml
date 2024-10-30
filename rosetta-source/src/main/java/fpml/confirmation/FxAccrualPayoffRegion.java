@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxAccrualPayoffRegion", builder=FxAccrualPayoffRegion.FxAccrualPayoffRegionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxAccrualPayoffRegion", builder=FxAccrualPayoffRegion.FxAccrualPayoffRegionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxAccrualPayoffRegion extends RosettaModelObject {
 
 	FxAccrualPayoffRegionMeta metaData = new FxAccrualPayoffRegionMeta();

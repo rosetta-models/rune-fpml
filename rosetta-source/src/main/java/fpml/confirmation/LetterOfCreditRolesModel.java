@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model that describes the various roles played by parties within a given letter of credit.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LetterOfCreditRolesModel", builder=LetterOfCreditRolesModel.LetterOfCreditRolesModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LetterOfCreditRolesModel", builder=LetterOfCreditRolesModel.LetterOfCreditRolesModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LetterOfCreditRolesModel extends RosettaModelObject {
 
 	LetterOfCreditRolesModelMeta metaData = new LetterOfCreditRolesModelMeta();

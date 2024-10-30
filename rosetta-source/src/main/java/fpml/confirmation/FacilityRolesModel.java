@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model that describes the various roles played by parties within a given facility.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FacilityRolesModel", builder=FacilityRolesModel.FacilityRolesModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FacilityRolesModel", builder=FacilityRolesModel.FacilityRolesModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FacilityRolesModel extends RosettaModelObject {
 
 	FacilityRolesModelMeta metaData = new FacilityRolesModelMeta();

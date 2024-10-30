@@ -34,9 +34,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the components specifiying an interest rate stream, including both a parametric and cashflow representation for the stream of payments.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="InterestRateStream", builder=InterestRateStream.InterestRateStreamBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="InterestRateStream", builder=InterestRateStream.InterestRateStreamBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface InterestRateStream extends Leg {
 
 	InterestRateStreamMeta metaData = new InterestRateStreamMeta();

@@ -35,9 +35,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An abstract base type for all syndicated loan servicing notifications; the wrapper for loan events which occur through the life-cycle of a deal.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AbstractServicingNotification", builder=AbstractServicingNotification.AbstractServicingNotificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AbstractServicingNotification", builder=AbstractServicingNotification.AbstractServicingNotificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AbstractServicingNotification extends CorrectableRequestMessage {
 
 	AbstractServicingNotificationMeta metaData = new AbstractServicingNotificationMeta();

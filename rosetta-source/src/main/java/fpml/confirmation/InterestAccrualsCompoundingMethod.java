@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the way in which interests are accrued: the applicable rate (fixed or floating reference) and the compounding method.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="InterestAccrualsCompoundingMethod", builder=InterestAccrualsCompoundingMethod.InterestAccrualsCompoundingMethodBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="InterestAccrualsCompoundingMethod", builder=InterestAccrualsCompoundingMethod.InterestAccrualsCompoundingMethodBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface InterestAccrualsCompoundingMethod extends InterestAccrualsMethod {
 
 	InterestAccrualsCompoundingMethodMeta metaData = new InterestAccrualsCompoundingMethodMeta();

@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * A list describing the type of documentation used to settle a secondary market syndicated loan trade.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaEnum("LoanTradingDocTypeEnum")
 public enum LoanTradingDocTypeEnum {

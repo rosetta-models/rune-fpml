@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A short sale concluded by an investment firm on its own behalf or on behalf of a client, as described in Article 11.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ShortSale", builder=ShortSale.ShortSaleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ShortSale", builder=ShortSale.ShortSaleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ShortSale extends RosettaModelObject {
 
 	ShortSaleMeta metaData = new ShortSaleMeta();

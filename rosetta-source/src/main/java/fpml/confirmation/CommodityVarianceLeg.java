@@ -32,9 +32,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Specifies the variance payments of a commodity variance swap. A type describing the variance leg of a commodity variance swap.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityVarianceLeg", builder=CommodityVarianceLeg.CommodityVarianceLegBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityVarianceLeg", builder=CommodityVarianceLeg.CommodityVarianceLegBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityVarianceLeg extends CommodityPerformanceSwapLeg {
 
 	CommodityVarianceLegMeta metaData = new CommodityVarianceLegMeta();

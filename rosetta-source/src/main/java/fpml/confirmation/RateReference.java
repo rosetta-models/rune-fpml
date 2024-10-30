@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to any rate (floating, inflation) derived from the abstract Rate component.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RateReference", builder=RateReference.RateReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RateReference", builder=RateReference.RateReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RateReference extends RosettaModelObject {
 
 	RateReferenceMeta metaData = new RateReferenceMeta();

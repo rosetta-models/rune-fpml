@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A group used to specify the commodity underlyer in the event that no ISDA Commofity Reference Price exists.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityReferencePriceFrameworkModel", builder=CommodityReferencePriceFrameworkModel.CommodityReferencePriceFrameworkModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityReferencePriceFrameworkModel", builder=CommodityReferencePriceFrameworkModel.CommodityReferencePriceFrameworkModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityReferencePriceFrameworkModel extends RosettaModelObject {
 
 	CommodityReferencePriceFrameworkModelMeta metaData = new CommodityReferencePriceFrameworkModelMeta();

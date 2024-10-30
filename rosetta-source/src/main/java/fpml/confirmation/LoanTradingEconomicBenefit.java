@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that combines a simple (money) amount with an optional event, for the purpose of defining economic benefit at settlement.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanTradingEconomicBenefit", builder=LoanTradingEconomicBenefit.LoanTradingEconomicBenefitBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanTradingEconomicBenefit", builder=LoanTradingEconomicBenefit.LoanTradingEconomicBenefitBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanTradingEconomicBenefit extends RosettaModelObject {
 
 	LoanTradingEconomicBenefitMeta metaData = new LoanTradingEconomicBenefitMeta();

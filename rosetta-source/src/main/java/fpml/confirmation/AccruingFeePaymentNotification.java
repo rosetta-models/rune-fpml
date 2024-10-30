@@ -39,9 +39,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A loan servicing notification used to communicate an accruing fee payment made by the borrower.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AccruingFeePaymentNotification", builder=AccruingFeePaymentNotification.AccruingFeePaymentNotificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AccruingFeePaymentNotification", builder=AccruingFeePaymentNotification.AccruingFeePaymentNotificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AccruingFeePaymentNotification extends AbstractFacilityNotification {
 
 	AccruingFeePaymentNotificationMeta metaData = new AccruingFeePaymentNotificationMeta();

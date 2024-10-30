@@ -30,9 +30,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that details tasks and their statuses, the completion of which are prerequisites to the settlement of a trade or allocation.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanAllocationSettlementTask", builder=LoanAllocationSettlementTask.LoanAllocationSettlementTaskBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanAllocationSettlementTask", builder=LoanAllocationSettlementTask.LoanAllocationSettlementTaskBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanAllocationSettlementTask extends AbstractLoanTask {
 
 	LoanAllocationSettlementTaskMeta metaData = new LoanAllocationSettlementTaskMeta();

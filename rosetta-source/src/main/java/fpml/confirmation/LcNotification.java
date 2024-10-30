@@ -40,9 +40,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A loan servicing notification used to communicate various letter of credit business events.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LcNotification", builder=LcNotification.LcNotificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LcNotification", builder=LcNotification.LcNotificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LcNotification extends AbstractContractNotification {
 
 	LcNotificationMeta metaData = new LcNotificationMeta();

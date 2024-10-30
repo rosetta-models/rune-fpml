@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A short form unique identifier for an exchange. If the element is not present then the exchange shall be the primary exchange on which the underlying is listed. The term &quot;Exchange&quot; is assumed to have the meaning as defined in the ISDA 2002 Equity Derivatives Definitions.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ExchangeId", builder=ExchangeId.ExchangeIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ExchangeId", builder=ExchangeId.ExchangeIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ExchangeId extends RosettaModelObject {
 
 	ExchangeIdMeta metaData = new ExchangeIdMeta();

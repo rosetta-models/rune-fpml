@@ -26,9 +26,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LegalEntitySequence", builder=LegalEntitySequence.LegalEntitySequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LegalEntitySequence", builder=LegalEntitySequence.LegalEntitySequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LegalEntitySequence extends RosettaModelObject {
 
 	LegalEntitySequenceMeta metaData = new LegalEntitySequenceMeta();

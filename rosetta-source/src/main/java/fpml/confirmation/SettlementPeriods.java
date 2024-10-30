@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Specifies a set of Settlement Periods associated with an Electricity Transaction for delivery on an Applicable Day or for a series of Applicable Days.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SettlementPeriods", builder=SettlementPeriods.SettlementPeriodsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SettlementPeriods", builder=SettlementPeriods.SettlementPeriodsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SettlementPeriods extends RosettaModelObject {
 
 	SettlementPeriodsMeta metaData = new SettlementPeriodsMeta();

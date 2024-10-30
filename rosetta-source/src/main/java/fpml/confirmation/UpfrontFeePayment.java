@@ -32,9 +32,9 @@ import java.util.stream.Collectors;
 
 /**
  * A structure that represents a fee, also known as Participation Fee, Arrangement Fee etc. This fee represents compensation to the members of the lending syndicate (and sometimes to institutional investors as well) in return for their commitment of capital.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="UpfrontFeePayment", builder=UpfrontFeePayment.UpfrontFeePaymentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="UpfrontFeePayment", builder=UpfrontFeePayment.UpfrontFeePaymentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface UpfrontFeePayment extends NonRecurringFeePayment {
 
 	UpfrontFeePaymentMeta metaData = new UpfrontFeePaymentMeta();

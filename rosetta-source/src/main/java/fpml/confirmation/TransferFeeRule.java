@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A list of rules associated with the way in which transfer fees should be paid.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TransferFeeRule", builder=TransferFeeRule.TransferFeeRuleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TransferFeeRule", builder=TransferFeeRule.TransferFeeRuleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TransferFeeRule extends RosettaModelObject {
 
 	TransferFeeRuleMeta metaData = new TransferFeeRuleMeta();

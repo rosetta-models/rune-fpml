@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * A list that specifies whether a trade was executed during the syndication period or in the post-syndication market.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaEnum("LoanTradingTypeEnum")
 public enum LoanTradingTypeEnum {

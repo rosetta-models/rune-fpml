@@ -30,9 +30,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A message to request that a message be retransmitted. The original message will typically be a component of a group of messages, such as a portfolio or a report in multiple parts.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RequestRetransmission", builder=RequestRetransmission.RequestRetransmissionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RequestRetransmission", builder=RequestRetransmission.RequestRetransmissionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RequestRetransmission extends NonCorrectableRequestMessage {
 
 	RequestRetransmissionMeta metaData = new RequestRetransmissionMeta();

@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Described Weather Index Option component. Weather Index Option transactions are OTC derivative transactions which settle financially based on an index calculated from observations of temperature and precipitation at weather stations throughout the world. Sub-Annex C of the 2005 ISDA Commodity Definitions provides definitions and terms for a number of types of weather indices. These indices include: HDD (heating degree days), CDD (cooling degree days), CPD (critical precipitation days). Weather Index Option Transactions results in a cash flow to the buyer depending on the relationship between the Settlement Level to the Weather Index Strike Level.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityWeatherOptionModel", builder=CommodityWeatherOptionModel.CommodityWeatherOptionModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityWeatherOptionModel", builder=CommodityWeatherOptionModel.CommodityWeatherOptionModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityWeatherOptionModel extends RosettaModelObject {
 
 	CommodityWeatherOptionModelMeta metaData = new CommodityWeatherOptionModelMeta();

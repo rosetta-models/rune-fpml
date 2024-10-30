@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * This type contains all the constituent weight and reference information.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReferencePoolItem", builder=ReferencePoolItem.ReferencePoolItemBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReferencePoolItem", builder=ReferencePoolItem.ReferencePoolItemBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReferencePoolItem extends RosettaModelObject {
 
 	ReferencePoolItemMeta metaData = new ReferencePoolItemMeta();

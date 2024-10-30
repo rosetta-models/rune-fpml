@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="QuantityUnit", builder=QuantityUnit.QuantityUnitBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="QuantityUnit", builder=QuantityUnit.QuantityUnitBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface QuantityUnit extends RosettaModelObject {
 
 	QuantityUnitMeta metaData = new QuantityUnitMeta();

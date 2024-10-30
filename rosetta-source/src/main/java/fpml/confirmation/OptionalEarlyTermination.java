@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining an early termination provision where either or both parties have the right to exercise.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="OptionalEarlyTermination", builder=OptionalEarlyTermination.OptionalEarlyTerminationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="OptionalEarlyTermination", builder=OptionalEarlyTermination.OptionalEarlyTerminationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface OptionalEarlyTermination extends RosettaModelObject {
 
 	OptionalEarlyTerminationMeta metaData = new OptionalEarlyTerminationMeta();

@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A list of L/C purposes.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LcPurpose", builder=LcPurpose.LcPurposeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LcPurpose", builder=LcPurpose.LcPurposeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LcPurpose extends RosettaModelObject {
 
 	LcPurposeMeta metaData = new LcPurposeMeta();

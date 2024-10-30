@@ -27,9 +27,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RepoFarLegSequence", builder=RepoFarLegSequence.RepoFarLegSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RepoFarLegSequence", builder=RepoFarLegSequence.RepoFarLegSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RepoFarLegSequence extends RosettaModelObject {
 
 	RepoFarLegSequenceMeta metaData = new RepoFarLegSequenceMeta();

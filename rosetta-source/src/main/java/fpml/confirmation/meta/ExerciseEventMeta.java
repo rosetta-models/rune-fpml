@@ -19,7 +19,7 @@ import java.util.function.Function;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaMeta(model=ExerciseEvent.class)
 public class ExerciseEventMeta implements RosettaMetaData<ExerciseEvent> {

@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The model of the recovery rate (single value or curve).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RecoveryRateModel", builder=RecoveryRateModel.RecoveryRateModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RecoveryRateModel", builder=RecoveryRateModel.RecoveryRateModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RecoveryRateModel extends RosettaModelObject {
 
 	RecoveryRateModelMeta metaData = new RecoveryRateModelMeta();

@@ -25,9 +25,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ValidationModel", builder=ValidationModel.ValidationModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ValidationModel", builder=ValidationModel.ValidationModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ValidationModel extends RosettaModelObject {
 
 	ValidationModelMeta metaData = new ValidationModelMeta();

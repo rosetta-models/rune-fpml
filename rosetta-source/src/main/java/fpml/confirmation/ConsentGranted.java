@@ -41,9 +41,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A message indicating that the sender grants consent for the recipient to perform the requested action.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ConsentGranted", builder=ConsentGranted.ConsentGrantedBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ConsentGranted", builder=ConsentGranted.ConsentGrantedBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ConsentGranted extends ResponseMessage {
 
 	ConsentGrantedMeta metaData = new ConsentGrantedMeta();

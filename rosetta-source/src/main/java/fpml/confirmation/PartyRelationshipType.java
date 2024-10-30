@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type containing a code representing how two parties are related, e.g. Affiliated, Intragroup, None.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PartyRelationshipType", builder=PartyRelationshipType.PartyRelationshipTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PartyRelationshipType", builder=PartyRelationshipType.PartyRelationshipTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PartyRelationshipType extends RosettaModelObject {
 
 	PartyRelationshipTypeMeta metaData = new PartyRelationshipTypeMeta();

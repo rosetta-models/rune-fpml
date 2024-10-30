@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The ISDA Floating Rate Option, i.e. the floating rate index.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FloatingRateIndex", builder=FloatingRateIndex.FloatingRateIndexBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FloatingRateIndex", builder=FloatingRateIndex.FloatingRateIndexBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FloatingRateIndex extends RosettaModelObject {
 
 	FloatingRateIndexMeta metaData = new FloatingRateIndexMeta();

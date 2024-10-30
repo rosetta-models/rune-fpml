@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SettlementMethod", builder=SettlementMethod.SettlementMethodBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SettlementMethod", builder=SettlementMethod.SettlementMethodBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SettlementMethod extends RosettaModelObject {
 
 	SettlementMethodMeta metaData = new SettlementMethodMeta();

@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model group defining the element used for process correlation. The correlation ID is used to link followup corrections and retractions to the original request, and to help identify which replies link to which requests.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CorrelationIdModel", builder=CorrelationIdModel.CorrelationIdModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CorrelationIdModel", builder=CorrelationIdModel.CorrelationIdModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CorrelationIdModel extends RosettaModelObject {
 
 	CorrelationIdModelMeta metaData = new CorrelationIdModelMeta();

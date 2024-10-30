@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A payment component owed from one party to the other for the cash flow date. This payment component should by of only a single type, e.g. a fee or a cashflow from a cashflow stream.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="GrossCashflow", builder=GrossCashflow.GrossCashflowBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="GrossCashflow", builder=GrossCashflow.GrossCashflowBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface GrossCashflow extends RosettaModelObject {
 
 	GrossCashflowMeta metaData = new GrossCashflowMeta();

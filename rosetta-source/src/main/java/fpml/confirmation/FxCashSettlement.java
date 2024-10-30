@@ -30,9 +30,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that is used for describing cash settlement of an option / non deliverable forward. It includes the currency to settle into together with the fixings required to calculate the currency amount.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxCashSettlement", builder=FxCashSettlement.FxCashSettlementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxCashSettlement", builder=FxCashSettlement.FxCashSettlementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxCashSettlement extends RosettaModelObject {
 
 	FxCashSettlementMeta metaData = new FxCashSettlementMeta();

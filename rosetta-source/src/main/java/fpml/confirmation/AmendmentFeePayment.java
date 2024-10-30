@@ -32,9 +32,9 @@ import java.util.stream.Collectors;
 
 /**
  * A fee charged to the borrower for an amendment being made to the originally agreed credit agreement. The fee is based on a rate (as stated in the agreement) applied to the current commitment level. Calculated as a percentage of the unutilized portion of the facility.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AmendmentFeePayment", builder=AmendmentFeePayment.AmendmentFeePaymentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AmendmentFeePayment", builder=AmendmentFeePayment.AmendmentFeePaymentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AmendmentFeePayment extends NonRecurringFeePayment {
 
 	AmendmentFeePaymentMeta metaData = new AmendmentFeePaymentMeta();

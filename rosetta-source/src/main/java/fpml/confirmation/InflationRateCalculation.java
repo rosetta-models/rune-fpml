@@ -40,9 +40,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An inflation rate calculation definition. A type defining the components specifiying an Inflation Rate Calculation
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="InflationRateCalculation", builder=InflationRateCalculation.InflationRateCalculationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="InflationRateCalculation", builder=InflationRateCalculation.InflationRateCalculationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface InflationRateCalculation extends FloatingRateCalculation {
 
 	InflationRateCalculationMeta metaData = new InflationRateCalculationMeta();

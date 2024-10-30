@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Identifying information for a tradePackage (a bundle of trades).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PackageHeader", builder=PackageHeader.PackageHeaderBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PackageHeader", builder=PackageHeader.PackageHeaderBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PackageHeader extends RosettaModelObject {
 
 	PackageHeaderMeta metaData = new PackageHeaderMeta();

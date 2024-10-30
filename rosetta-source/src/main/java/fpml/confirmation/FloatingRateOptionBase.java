@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An abstract type that specifies an underlying floating rate cash accrual option.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FloatingRateOptionBase", builder=FloatingRateOptionBase.FloatingRateOptionBaseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FloatingRateOptionBase", builder=FloatingRateOptionBase.FloatingRateOptionBaseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FloatingRateOptionBase extends AccrualOptionBase {
 
 	FloatingRateOptionBaseMeta metaData = new FloatingRateOptionBaseMeta();

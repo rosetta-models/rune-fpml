@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An abstract base class for physical quantity types.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityPhysicalQuantityBase", builder=CommodityPhysicalQuantityBase.CommodityPhysicalQuantityBaseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityPhysicalQuantityBase", builder=CommodityPhysicalQuantityBase.CommodityPhysicalQuantityBaseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityPhysicalQuantityBase extends RosettaModelObject {
 
 	CommodityPhysicalQuantityBaseMeta metaData = new CommodityPhysicalQuantityBaseMeta();

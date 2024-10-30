@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AdjustedPaymentDates", builder=AdjustedPaymentDates.AdjustedPaymentDatesBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AdjustedPaymentDates", builder=AdjustedPaymentDates.AdjustedPaymentDatesBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AdjustedPaymentDates extends RosettaModelObject {
 
 	AdjustedPaymentDatesMeta metaData = new AdjustedPaymentDatesMeta();

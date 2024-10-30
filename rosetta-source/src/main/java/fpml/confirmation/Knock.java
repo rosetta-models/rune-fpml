@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Knock In means option to exercise comes into existence. Knock Out means option to exercise goes out of existence.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Knock", builder=Knock.KnockBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Knock", builder=Knock.KnockBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Knock extends RosettaModelObject {
 
 	KnockMeta metaData = new KnockMeta();

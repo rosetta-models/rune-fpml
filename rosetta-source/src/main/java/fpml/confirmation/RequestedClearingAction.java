@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that describes whether a trade is to be cleared.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RequestedClearingAction", builder=RequestedClearingAction.RequestedClearingActionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RequestedClearingAction", builder=RequestedClearingAction.RequestedClearingActionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RequestedClearingAction extends RosettaModelObject {
 
 	RequestedClearingActionMeta metaData = new RequestedClearingActionMeta();

@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A pointer style reference to a basket in the document
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="StrikePriceBasketReference", builder=StrikePriceBasketReference.StrikePriceBasketReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="StrikePriceBasketReference", builder=StrikePriceBasketReference.StrikePriceBasketReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface StrikePriceBasketReference extends Reference {
 
 	StrikePriceBasketReferenceMeta metaData = new StrikePriceBasketReferenceMeta();

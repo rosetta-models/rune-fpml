@@ -39,9 +39,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Identifies a mortgage backed security. A type describing a mortgage asset.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Mortgage", builder=Mortgage.MortgageBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Mortgage", builder=Mortgage.MortgageBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Mortgage extends UnderlyingAssetType {
 
 	MortgageMeta metaData = new MortgageMeta();

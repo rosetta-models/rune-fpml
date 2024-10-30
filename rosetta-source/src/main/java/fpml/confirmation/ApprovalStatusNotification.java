@@ -32,9 +32,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A message describing the approvals currently applied to the trade and their status (e.g. pending, approved, refused).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ApprovalStatusNotification", builder=ApprovalStatusNotification.ApprovalStatusNotificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ApprovalStatusNotification", builder=ApprovalStatusNotification.ApprovalStatusNotificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ApprovalStatusNotification extends NotificationMessage {
 
 	ApprovalStatusNotificationMeta metaData = new ApprovalStatusNotificationMeta();

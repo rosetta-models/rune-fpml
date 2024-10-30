@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that defines documentation related to a party profile.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PartyProfileDocumentation", builder=PartyProfileDocumentation.PartyProfileDocumentationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PartyProfileDocumentation", builder=PartyProfileDocumentation.PartyProfileDocumentationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PartyProfileDocumentation extends RosettaModelObject {
 
 	PartyProfileDocumentationMeta metaData = new PartyProfileDocumentationMeta();

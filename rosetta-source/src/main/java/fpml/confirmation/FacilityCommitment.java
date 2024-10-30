@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that represents the commitment amount against a facility or facility portion. Also shows the utilization levels against the total commitment amount (in facility currency).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FacilityCommitment", builder=FacilityCommitment.FacilityCommitmentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FacilityCommitment", builder=FacilityCommitment.FacilityCommitmentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FacilityCommitment extends RosettaModelObject {
 
 	FacilityCommitmentMeta metaData = new FacilityCommitmentMeta();

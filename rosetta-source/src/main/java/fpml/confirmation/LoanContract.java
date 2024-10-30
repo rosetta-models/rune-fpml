@@ -34,9 +34,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A funded borrowing instrument which utilizes a portion of an available under a single facility (line of credit) within a bank deal (credit agreement).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanContract", builder=LoanContract.LoanContractBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanContract", builder=LoanContract.LoanContractBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanContract extends LoanContractSummary {
 
 	LoanContractMeta metaData = new LoanContractMeta();

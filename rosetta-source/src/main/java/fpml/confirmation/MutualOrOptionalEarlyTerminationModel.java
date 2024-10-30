@@ -20,9 +20,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MutualOrOptionalEarlyTerminationModel", builder=MutualOrOptionalEarlyTerminationModel.MutualOrOptionalEarlyTerminationModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MutualOrOptionalEarlyTerminationModel", builder=MutualOrOptionalEarlyTerminationModel.MutualOrOptionalEarlyTerminationModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MutualOrOptionalEarlyTerminationModel extends RosettaModelObject {
 
 	MutualOrOptionalEarlyTerminationModelMeta metaData = new MutualOrOptionalEarlyTerminationModelMeta();

@@ -32,9 +32,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Standard products - for use in Transparency reporting to define a product that represents a standardized OTC derivative transaction whose economics do not need to be fully described using an FpML schema because they are implied by the product ID. In other views, standard products are present for convenience to support internal messaging and workflows that are cross-product. Standard products are not full trade representations as such they are not intended to be used for confirming trades. Simple product representation providing key information about a variety of different products. Standard products - for use in Transparency reporting to define a product that represents a standardized OTC derivative transaction whose economics do not need to be fully described using an FpML schema because they are implied by the product ID. In other views, standard products are present for convenience to support internal messaging and workflows that are cross-product. Standard products are not full trade representations as such they are not intended to be used for confirming trades.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="StandardProduct", builder=StandardProduct.StandardProductBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="StandardProduct", builder=StandardProduct.StandardProductBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface StandardProduct extends Product {
 
 	StandardProductMeta metaData = new StandardProductMeta();

@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Identifies the market sector in which the trade has been arranged.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BrokerConfirmationType", builder=BrokerConfirmationType.BrokerConfirmationTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BrokerConfirmationType", builder=BrokerConfirmationType.BrokerConfirmationTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BrokerConfirmationType extends RosettaModelObject {
 
 	BrokerConfirmationTypeMeta metaData = new BrokerConfirmationTypeMeta();

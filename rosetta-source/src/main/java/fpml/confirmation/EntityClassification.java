@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing the entity of a party, for example Financial, NonFinancial etc.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EntityClassification", builder=EntityClassification.EntityClassificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EntityClassification", builder=EntityClassification.EntityClassificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EntityClassification extends RosettaModelObject {
 
 	EntityClassificationMeta metaData = new EntityClassificationMeta();

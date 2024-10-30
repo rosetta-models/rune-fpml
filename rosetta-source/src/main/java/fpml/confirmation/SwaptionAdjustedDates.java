@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing the adjusted dates associated with swaption exercise and settlement.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SwaptionAdjustedDates", builder=SwaptionAdjustedDates.SwaptionAdjustedDatesBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SwaptionAdjustedDates", builder=SwaptionAdjustedDates.SwaptionAdjustedDatesBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SwaptionAdjustedDates extends RosettaModelObject {
 
 	SwaptionAdjustedDatesMeta metaData = new SwaptionAdjustedDatesMeta();

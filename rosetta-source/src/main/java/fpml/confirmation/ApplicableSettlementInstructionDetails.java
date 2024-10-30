@@ -33,9 +33,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that defines the assets (or type of assets) that a particular set of settlement instrution details may be associated with.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ApplicableSettlementInstructionDetails", builder=ApplicableSettlementInstructionDetails.ApplicableSettlementInstructionDetailsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ApplicableSettlementInstructionDetails", builder=ApplicableSettlementInstructionDetails.ApplicableSettlementInstructionDetailsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ApplicableSettlementInstructionDetails extends AbstractApplicablePartyProfileObjects {
 
 	ApplicableSettlementInstructionDetailsMeta metaData = new ApplicableSettlementInstructionDetailsMeta();

@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type extending the PayerReceiverEnum type wih an id attribute.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="IdentifiedPayerReceiver", builder=IdentifiedPayerReceiver.IdentifiedPayerReceiverBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="IdentifiedPayerReceiver", builder=IdentifiedPayerReceiver.IdentifiedPayerReceiverBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface IdentifiedPayerReceiver extends RosettaModelObject {
 
 	IdentifiedPayerReceiverMeta metaData = new IdentifiedPayerReceiverMeta();

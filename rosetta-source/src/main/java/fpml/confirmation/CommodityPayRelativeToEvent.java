@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A scheme identifying the physical event relative to which payment occurs.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityPayRelativeToEvent", builder=CommodityPayRelativeToEvent.CommodityPayRelativeToEventBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityPayRelativeToEvent", builder=CommodityPayRelativeToEvent.CommodityPayRelativeToEventBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityPayRelativeToEvent extends RosettaModelObject {
 
 	CommodityPayRelativeToEventMeta metaData = new CommodityPayRelativeToEventMeta();

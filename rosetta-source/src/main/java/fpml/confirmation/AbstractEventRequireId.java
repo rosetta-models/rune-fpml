@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An abstract base type for all loan business events.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AbstractEventRequireId", builder=AbstractEventRequireId.AbstractEventRequireIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AbstractEventRequireId", builder=AbstractEventRequireId.AbstractEventRequireIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AbstractEventRequireId extends RosettaModelObject {
 
 	AbstractEventRequireIdMeta metaData = new AbstractEventRequireIdMeta();

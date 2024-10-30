@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model that describes the breakdown of the utilization profile against a single facility.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="UtilizationModel", builder=UtilizationModel.UtilizationModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="UtilizationModel", builder=UtilizationModel.UtilizationModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface UtilizationModel extends RosettaModelObject {
 
 	UtilizationModelMeta metaData = new UtilizationModelMeta();

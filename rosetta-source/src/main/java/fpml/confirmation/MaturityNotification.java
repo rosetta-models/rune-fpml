@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A message used to notify another party that a trade has matured. This can be used to report, for example, that a swap has passed its final payment and can be removed, or that an option has expired without being executed.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MaturityNotification", builder=MaturityNotification.MaturityNotificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MaturityNotification", builder=MaturityNotification.MaturityNotificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MaturityNotification extends CorrectableRequestMessage {
 
 	MaturityNotificationMeta metaData = new MaturityNotificationMeta();

@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ImplementationSpecificationVersion", builder=ImplementationSpecificationVersion.ImplementationSpecificationVersionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ImplementationSpecificationVersion", builder=ImplementationSpecificationVersion.ImplementationSpecificationVersionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ImplementationSpecificationVersion extends RosettaModelObject {
 
 	ImplementationSpecificationVersionMeta metaData = new ImplementationSpecificationVersionMeta();

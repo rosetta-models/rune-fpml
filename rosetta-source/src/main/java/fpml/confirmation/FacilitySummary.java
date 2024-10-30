@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A short form of a facility.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FacilitySummary", builder=FacilitySummary.FacilitySummaryBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FacilitySummary", builder=FacilitySummary.FacilitySummaryBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FacilitySummary extends FacilityIdentifier {
 
 	FacilitySummaryMeta metaData = new FacilitySummaryMeta();

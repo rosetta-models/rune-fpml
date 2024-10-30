@@ -22,9 +22,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ExchangeTradedOptionSequence", builder=ExchangeTradedOptionSequence.ExchangeTradedOptionSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ExchangeTradedOptionSequence", builder=ExchangeTradedOptionSequence.ExchangeTradedOptionSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ExchangeTradedOptionSequence extends RosettaModelObject {
 
 	ExchangeTradedOptionSequenceMeta metaData = new ExchangeTradedOptionSequenceMeta();

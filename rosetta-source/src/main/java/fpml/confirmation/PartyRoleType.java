@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type refining the role a role played by a party in one or more transactions. Examples include &quot;AllPositions&quot; and &quot;SomePositions&quot; for Guarantor. This can be extended to provide custom types.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PartyRoleType", builder=PartyRoleType.PartyRoleTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PartyRoleType", builder=PartyRoleType.PartyRoleTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PartyRoleType extends RosettaModelObject {
 
 	PartyRoleTypeMeta metaData = new PartyRoleTypeMeta();

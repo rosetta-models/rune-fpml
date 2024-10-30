@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure describing a trade registration event that is part of a clearing process.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Clearing", builder=Clearing.ClearingBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Clearing", builder=Clearing.ClearingBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Clearing extends RosettaModelObject {
 
 	ClearingMeta metaData = new ClearingMeta();

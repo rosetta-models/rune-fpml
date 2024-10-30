@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityPerformanceSwapEarlyTermination", builder=CommodityPerformanceSwapEarlyTermination.CommodityPerformanceSwapEarlyTerminationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityPerformanceSwapEarlyTermination", builder=CommodityPerformanceSwapEarlyTermination.CommodityPerformanceSwapEarlyTerminationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityPerformanceSwapEarlyTermination extends RosettaModelObject {
 
 	CommodityPerformanceSwapEarlyTerminationMeta metaData = new CommodityPerformanceSwapEarlyTerminationMeta();

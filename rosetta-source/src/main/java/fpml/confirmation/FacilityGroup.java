@@ -33,9 +33,9 @@ import java.util.stream.Collectors;
 
 /**
  * Head of the substitution group for all facility types.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FacilityGroup", builder=FacilityGroup.FacilityGroupBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FacilityGroup", builder=FacilityGroup.FacilityGroupBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FacilityGroup extends AbstractFacility {
 
 	FacilityGroupMeta metaData = new FacilityGroupMeta();

@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that an identifier for an order.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="OrderId", builder=OrderId.OrderIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="OrderId", builder=OrderId.OrderIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface OrderId extends RosettaModelObject {
 
 	OrderIdMeta metaData = new OrderIdMeta();

@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type for defining the common features of options. Buyer/seller information is not normally used in Transparency view but is optional in case the information is needed for administrative purposes such as Reporting Party determination.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Option", builder=Option.OptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Option", builder=Option.OptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Option extends Product {
 
 	OptionMeta metaData = new OptionMeta();

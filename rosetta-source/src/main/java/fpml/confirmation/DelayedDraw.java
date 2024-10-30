@@ -36,9 +36,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A revolver facility. A facility which can be drawn at any point during a pre-defined period after the initial deal closing date,
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DelayedDraw", builder=DelayedDraw.DelayedDrawBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DelayedDraw", builder=DelayedDraw.DelayedDrawBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DelayedDraw extends AbstractFacility {
 
 	DelayedDrawMeta metaData = new DelayedDrawMeta();

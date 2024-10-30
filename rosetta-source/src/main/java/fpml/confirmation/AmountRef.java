@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining a nominal amount with a reference.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AmountRef", builder=AmountRef.AmountRefBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AmountRef", builder=AmountRef.AmountRefBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AmountRef extends RosettaModelObject {
 
 	AmountRefMeta metaData = new AmountRefMeta();

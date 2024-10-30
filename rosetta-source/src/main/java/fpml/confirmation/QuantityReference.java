@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A pointer tyle reference to a Quantity defined elsewhere.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="QuantityReference", builder=QuantityReference.QuantityReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="QuantityReference", builder=QuantityReference.QuantityReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface QuantityReference extends Reference {
 
 	QuantityReferenceMeta metaData = new QuantityReferenceMeta();

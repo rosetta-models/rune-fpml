@@ -30,9 +30,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that describes the rate of exchange between the two currencies of the leg of a deal.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxForwardStrikePrice", builder=FxForwardStrikePrice.FxForwardStrikePriceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxForwardStrikePrice", builder=FxForwardStrikePrice.FxForwardStrikePriceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxForwardStrikePrice extends FxAccrualStrike {
 
 	FxForwardStrikePriceMeta metaData = new FxForwardStrikePriceMeta();

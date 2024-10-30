@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CreditSeniority", builder=CreditSeniority.CreditSeniorityBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CreditSeniority", builder=CreditSeniority.CreditSeniorityBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CreditSeniority extends RosettaModelObject {
 
 	CreditSeniorityMeta metaData = new CreditSeniorityMeta();

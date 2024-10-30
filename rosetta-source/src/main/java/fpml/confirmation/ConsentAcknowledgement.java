@@ -28,9 +28,9 @@ import fpml.confirmation.meta.ConsentAcknowledgementMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ConsentAcknowledgement", builder=ConsentAcknowledgement.ConsentAcknowledgementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ConsentAcknowledgement", builder=ConsentAcknowledgement.ConsentAcknowledgementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ConsentAcknowledgement extends EventRequestAcknowledgement {
 
 	ConsentAcknowledgementMeta metaData = new ConsentAcknowledgementMeta();

@@ -19,7 +19,7 @@ import java.util.function.Function;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaMeta(model=CoalAttributeDecimalSequence0.class)
 public class CoalAttributeDecimalSequence0Meta implements RosettaMetaData<CoalAttributeDecimalSequence0> {

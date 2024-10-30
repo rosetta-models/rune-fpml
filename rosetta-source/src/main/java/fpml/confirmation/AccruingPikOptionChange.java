@@ -33,9 +33,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An event representing a change in a PIK accrual option. In real terms - an example of this would be a margin rate change.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AccruingPikOptionChange", builder=AccruingPikOptionChange.AccruingPikOptionChangeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AccruingPikOptionChange", builder=AccruingPikOptionChange.AccruingPikOptionChangeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AccruingPikOptionChange extends AbstractFacilityEvent {
 
 	AccruingPikOptionChangeMeta metaData = new AccruingPikOptionChangeMeta();

@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that represents outstanding loan contracts or outstanding letter of credit position. Both the global and lender position (current and prior) levels can be represented.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="OutstandingsPosition", builder=OutstandingsPosition.OutstandingsPositionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="OutstandingsPosition", builder=OutstandingsPosition.OutstandingsPositionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface OutstandingsPosition extends RosettaModelObject {
 
 	OutstandingsPositionMeta metaData = new OutstandingsPositionMeta();

@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type for defining a strike spread feature.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="StrikeSpread", builder=StrikeSpread.StrikeSpreadBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="StrikeSpread", builder=StrikeSpread.StrikeSpreadBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface StrikeSpread extends RosettaModelObject {
 
 	StrikeSpreadMeta metaData = new StrikeSpreadMeta();

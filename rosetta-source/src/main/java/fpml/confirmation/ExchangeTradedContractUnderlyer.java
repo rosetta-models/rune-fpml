@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing a single underlyer
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ExchangeTradedContractUnderlyer", builder=ExchangeTradedContractUnderlyer.ExchangeTradedContractUnderlyerBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ExchangeTradedContractUnderlyer", builder=ExchangeTradedContractUnderlyer.ExchangeTradedContractUnderlyerBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ExchangeTradedContractUnderlyer extends RosettaModelObject {
 
 	ExchangeTradedContractUnderlyerMeta metaData = new ExchangeTradedContractUnderlyerMeta();

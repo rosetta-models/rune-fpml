@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxTargetRegionUpperBound", builder=FxTargetRegionUpperBound.FxTargetRegionUpperBoundBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxTargetRegionUpperBound", builder=FxTargetRegionUpperBound.FxTargetRegionUpperBoundBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxTargetRegionUpperBound extends RosettaModelObject {
 
 	FxTargetRegionUpperBoundMeta metaData = new FxTargetRegionUpperBoundMeta();

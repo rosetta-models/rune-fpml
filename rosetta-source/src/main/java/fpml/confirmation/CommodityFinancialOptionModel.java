@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Items specific to financially-settled commodity options.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityFinancialOptionModel", builder=CommodityFinancialOptionModel.CommodityFinancialOptionModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityFinancialOptionModel", builder=CommodityFinancialOptionModel.CommodityFinancialOptionModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityFinancialOptionModel extends RosettaModelObject {
 
 	CommodityFinancialOptionModelMeta metaData = new CommodityFinancialOptionModelMeta();

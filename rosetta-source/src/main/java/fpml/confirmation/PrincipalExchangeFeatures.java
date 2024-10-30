@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing the principal exchange features of the return swap.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PrincipalExchangeFeatures", builder=PrincipalExchangeFeatures.PrincipalExchangeFeaturesBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PrincipalExchangeFeatures", builder=PrincipalExchangeFeatures.PrincipalExchangeFeaturesBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PrincipalExchangeFeatures extends RosettaModelObject {
 
 	PrincipalExchangeFeaturesMeta metaData = new PrincipalExchangeFeaturesMeta();

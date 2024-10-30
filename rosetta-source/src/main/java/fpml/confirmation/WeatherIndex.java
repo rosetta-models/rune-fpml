@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the Weather Index Level or Weather Index Strike Level.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="WeatherIndex", builder=WeatherIndex.WeatherIndexBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="WeatherIndex", builder=WeatherIndex.WeatherIndexBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface WeatherIndex extends RosettaModelObject {
 
 	WeatherIndexMeta metaData = new WeatherIndexMeta();

@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines a primary and optional secondary rate sources
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PrioritizedRateSourceModel", builder=PrioritizedRateSourceModel.PrioritizedRateSourceModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PrioritizedRateSourceModel", builder=PrioritizedRateSourceModel.PrioritizedRateSourceModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PrioritizedRateSourceModel extends RosettaModelObject {
 
 	PrioritizedRateSourceModelMeta metaData = new PrioritizedRateSourceModelMeta();

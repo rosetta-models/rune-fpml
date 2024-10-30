@@ -26,9 +26,9 @@ import java.util.stream.Collectors;
 
 /**
  * Abstract substitutable place holder for specific change details. Abstract base type for non-negotiated trade change descriptions
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ChangeEvent", builder=ChangeEvent.ChangeEventBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ChangeEvent", builder=ChangeEvent.ChangeEventBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ChangeEvent extends AbstractEvent {
 
 	ChangeEventMeta metaData = new ChangeEventMeta();

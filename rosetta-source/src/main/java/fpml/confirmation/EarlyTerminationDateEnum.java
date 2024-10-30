@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Symbolic specification of early termination date.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaEnum("EarlyTerminationDateEnum")
 public enum EarlyTerminationDateEnum {

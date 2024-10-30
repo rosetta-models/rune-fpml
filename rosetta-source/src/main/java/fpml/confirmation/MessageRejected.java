@@ -26,9 +26,9 @@ import fpml.confirmation.meta.MessageRejectedMeta;
 
 /**
  * The root element used for rejected message exceptions
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MessageRejected", builder=MessageRejected.MessageRejectedBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MessageRejected", builder=MessageRejected.MessageRejectedBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MessageRejected extends Exception {
 
 	MessageRejectedMeta metaData = new MessageRejectedMeta();

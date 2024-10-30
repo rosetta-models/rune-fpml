@@ -38,9 +38,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An option on a credit default swap. A complex type to support the credit default swap option.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CreditDefaultSwapOption", builder=CreditDefaultSwapOption.CreditDefaultSwapOptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CreditDefaultSwapOption", builder=CreditDefaultSwapOption.CreditDefaultSwapOptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CreditDefaultSwapOption extends OptionBaseExtended {
 
 	CreditDefaultSwapOptionMeta metaData = new CreditDefaultSwapOptionMeta();

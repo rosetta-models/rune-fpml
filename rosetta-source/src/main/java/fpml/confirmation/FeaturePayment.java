@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Payment made following trigger occurence.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FeaturePayment", builder=FeaturePayment.FeaturePaymentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FeaturePayment", builder=FeaturePayment.FeaturePaymentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FeaturePayment extends PaymentBase {
 
 	FeaturePaymentMeta metaData = new FeaturePaymentMeta();

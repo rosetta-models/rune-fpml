@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A valuation of an valuable object - an asset or a pricing input. This is an abstract type, used as a base for values of pricing structures such as yield curves as well as asset values.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Valuation", builder=Valuation.ValuationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Valuation", builder=Valuation.ValuationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Valuation extends RosettaModelObject {
 
 	ValuationMeta metaData = new ValuationMeta();

@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An extension of the money type with the ability to specify a lender share amount in addition to the global amount (represented by &#39;amount&#39;).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MoneyWithParticipantShare", builder=MoneyWithParticipantShare.MoneyWithParticipantShareBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MoneyWithParticipantShare", builder=MoneyWithParticipantShare.MoneyWithParticipantShareBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MoneyWithParticipantShare extends Money {
 
 	MoneyWithParticipantShareMeta metaData = new MoneyWithParticipantShareMeta();

@@ -35,9 +35,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The fixed income amounts of the return type swap. A type describing the fixed income leg of the equity swap.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="InterestLeg", builder=InterestLeg.InterestLegBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="InterestLeg", builder=InterestLeg.InterestLegBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface InterestLeg extends DirectionalLeg {
 
 	InterestLegMeta metaData = new InterestLegMeta();

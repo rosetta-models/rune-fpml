@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ClearingInstructions", builder=ClearingInstructions.ClearingInstructionsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ClearingInstructions", builder=ClearingInstructions.ClearingInstructionsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ClearingInstructions extends RosettaModelObject {
 
 	ClearingInstructionsMeta metaData = new ClearingInstructionsMeta();

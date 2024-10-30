@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="UnderlyingAssetTranche", builder=UnderlyingAssetTranche.UnderlyingAssetTrancheBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="UnderlyingAssetTranche", builder=UnderlyingAssetTranche.UnderlyingAssetTrancheBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface UnderlyingAssetTranche extends RosettaModelObject {
 
 	UnderlyingAssetTrancheMeta metaData = new UnderlyingAssetTrancheMeta();

@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Describes the swap&#39;s underlyer when it has multiple asset components.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityBasket", builder=CommodityBasket.CommodityBasketBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityBasket", builder=CommodityBasket.CommodityBasketBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityBasket extends RosettaModelObject {
 
 	CommodityBasketMeta metaData = new CommodityBasketMeta();

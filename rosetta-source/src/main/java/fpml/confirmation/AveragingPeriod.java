@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Period over which an average value is taken.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AveragingPeriod", builder=AveragingPeriod.AveragingPeriodBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AveragingPeriod", builder=AveragingPeriod.AveragingPeriodBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AveragingPeriod extends RosettaModelObject {
 
 	AveragingPeriodMeta metaData = new AveragingPeriodMeta();

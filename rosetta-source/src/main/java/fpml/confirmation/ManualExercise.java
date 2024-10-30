@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining manual exercise, i.e. that the option buyer counterparty must give notice to the option seller of exercise.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ManualExercise", builder=ManualExercise.ManualExerciseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ManualExercise", builder=ManualExercise.ManualExerciseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ManualExercise extends RosettaModelObject {
 
 	ManualExerciseMeta metaData = new ManualExerciseMeta();

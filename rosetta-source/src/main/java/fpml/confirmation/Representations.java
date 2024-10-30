@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type for defining ISDA 2002 Equity Derivative Representations.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Representations", builder=Representations.RepresentationsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Representations", builder=Representations.RepresentationsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Representations extends RosettaModelObject {
 
 	RepresentationsMeta metaData = new RepresentationsMeta();

@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * The specification of the interest shortfall cap, applicable to mortgage derivatives.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaEnum("InterestShortfallCapEnum")
 public enum InterestShortfallCapEnum {

@@ -32,9 +32,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Allows the documentation of a shaped quantity trade where the quantity changes over the life of the transaction.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ElectricityPhysicalDeliveryQuantitySchedule", builder=ElectricityPhysicalDeliveryQuantitySchedule.ElectricityPhysicalDeliveryQuantityScheduleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ElectricityPhysicalDeliveryQuantitySchedule", builder=ElectricityPhysicalDeliveryQuantitySchedule.ElectricityPhysicalDeliveryQuantityScheduleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ElectricityPhysicalDeliveryQuantitySchedule extends CommodityPhysicalQuantitySchedule {
 
 	ElectricityPhysicalDeliveryQuantityScheduleMeta metaData = new ElectricityPhysicalDeliveryQuantityScheduleMeta();

@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to a trigger structure in FxAccrualDigitalOption product.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxAccrualTriggerReference", builder=FxAccrualTriggerReference.FxAccrualTriggerReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxAccrualTriggerReference", builder=FxAccrualTriggerReference.FxAccrualTriggerReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxAccrualTriggerReference extends Reference {
 
 	FxAccrualTriggerReferenceMeta metaData = new FxAccrualTriggerReferenceMeta();

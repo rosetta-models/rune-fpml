@@ -28,9 +28,9 @@ import fpml.confirmation.meta.MaturityAcknowledgementMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MaturityAcknowledgement", builder=MaturityAcknowledgement.MaturityAcknowledgementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MaturityAcknowledgement", builder=MaturityAcknowledgement.MaturityAcknowledgementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MaturityAcknowledgement extends EventRequestAcknowledgement {
 
 	MaturityAcknowledgementMeta metaData = new MaturityAcknowledgementMeta();

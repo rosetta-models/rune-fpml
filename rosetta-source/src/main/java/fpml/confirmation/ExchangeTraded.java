@@ -33,9 +33,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An abstract base class for all exchange traded financial products.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ExchangeTraded", builder=ExchangeTraded.ExchangeTradedBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ExchangeTraded", builder=ExchangeTraded.ExchangeTradedBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ExchangeTraded extends UnderlyingAssetType {
 
 	ExchangeTradedMeta metaData = new ExchangeTradedMeta();

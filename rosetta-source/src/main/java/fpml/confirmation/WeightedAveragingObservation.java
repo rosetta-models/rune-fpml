@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A single weighted averaging observation.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="WeightedAveragingObservation", builder=WeightedAveragingObservation.WeightedAveragingObservationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="WeightedAveragingObservation", builder=WeightedAveragingObservation.WeightedAveragingObservationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface WeightedAveragingObservation extends RosettaModelObject {
 
 	WeightedAveragingObservationMeta metaData = new WeightedAveragingObservationMeta();

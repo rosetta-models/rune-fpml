@@ -26,9 +26,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="IndependentAmount", builder=IndependentAmount.IndependentAmountBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="IndependentAmount", builder=IndependentAmount.IndependentAmountBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface IndependentAmount extends RosettaModelObject {
 
 	IndependentAmountMeta metaData = new IndependentAmountMeta();

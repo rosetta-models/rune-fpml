@@ -25,9 +25,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ExchangeIdentifierModel", builder=ExchangeIdentifierModel.ExchangeIdentifierModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ExchangeIdentifierModel", builder=ExchangeIdentifierModel.ExchangeIdentifierModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ExchangeIdentifierModel extends RosettaModelObject {
 
 	ExchangeIdentifierModelMeta metaData = new ExchangeIdentifierModelMeta();

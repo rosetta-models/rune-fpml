@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Items specific to the definition of the delivery of a US Coal Product.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityUSCoalDeliveryModel", builder=CommodityUSCoalDeliveryModel.CommodityUSCoalDeliveryModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityUSCoalDeliveryModel", builder=CommodityUSCoalDeliveryModel.CommodityUSCoalDeliveryModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityUSCoalDeliveryModel extends RosettaModelObject {
 
 	CommodityUSCoalDeliveryModelMeta metaData = new CommodityUSCoalDeliveryModelMeta();

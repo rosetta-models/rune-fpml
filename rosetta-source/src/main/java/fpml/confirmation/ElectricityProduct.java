@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The specification of the electricity to be delivered.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ElectricityProduct", builder=ElectricityProduct.ElectricityProductBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ElectricityProduct", builder=ElectricityProduct.ElectricityProductBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ElectricityProduct extends RosettaModelObject {
 
 	ElectricityProductMeta metaData = new ElectricityProductMeta();

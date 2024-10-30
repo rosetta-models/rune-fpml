@@ -42,9 +42,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A message advising a third party that a trade execution has occurred.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ExecutionAdvice", builder=ExecutionAdvice.ExecutionAdviceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ExecutionAdvice", builder=ExecutionAdvice.ExecutionAdviceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ExecutionAdvice extends CorrectableRequestMessage {
 
 	ExecutionAdviceMeta metaData = new ExecutionAdviceMeta();

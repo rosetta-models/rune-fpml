@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The type that indicates the type of media used to store the content. MimeType is used to determine the software product(s) that can read the content. MIME types are described in RFC 2046.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MimeType", builder=MimeType.MimeTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MimeType", builder=MimeType.MimeTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MimeType extends RosettaModelObject {
 
 	MimeTypeMeta metaData = new MimeTypeMeta();

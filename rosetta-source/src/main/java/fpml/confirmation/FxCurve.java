@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An fx curve object., which includes pricing inputs and term structures for fx forwards.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxCurve", builder=FxCurve.FxCurveBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxCurve", builder=FxCurve.FxCurveBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxCurve extends PricingStructure {
 
 	FxCurveMeta metaData = new FxCurveMeta();

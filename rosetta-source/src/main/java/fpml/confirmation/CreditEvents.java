@@ -23,9 +23,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CreditEvents", builder=CreditEvents.CreditEventsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CreditEvents", builder=CreditEvents.CreditEventsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CreditEvents extends RosettaModelObject {
 
 	CreditEventsMeta metaData = new CreditEventsMeta();

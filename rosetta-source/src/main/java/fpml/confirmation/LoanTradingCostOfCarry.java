@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that incorporates elements of an accrual calculation, for the purpose of defining cost-of-carry.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanTradingCostOfCarry", builder=LoanTradingCostOfCarry.LoanTradingCostOfCarryBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanTradingCostOfCarry", builder=LoanTradingCostOfCarry.LoanTradingCostOfCarryBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanTradingCostOfCarry extends RosettaModelObject {
 
 	LoanTradingCostOfCarryMeta metaData = new LoanTradingCostOfCarryMeta();

@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The Currency and Amount to be paid by the Buyer to the Seller. The straddle premium is calculated on the Fixing Date using the Forward Volatility Agreement parameters.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxStraddlePremium", builder=FxStraddlePremium.FxStraddlePremiumBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxStraddlePremium", builder=FxStraddlePremium.FxStraddlePremiumBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxStraddlePremium extends PaymentBaseExtended {
 
 	FxStraddlePremiumMeta metaData = new FxStraddlePremiumMeta();

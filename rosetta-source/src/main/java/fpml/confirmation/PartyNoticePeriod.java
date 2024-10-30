@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type to represent agreed period of notice to be given in advance before exercise of the open repo trade by a party requesting such exercise and reference to that party.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PartyNoticePeriod", builder=PartyNoticePeriod.PartyNoticePeriodBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PartyNoticePeriod", builder=PartyNoticePeriod.PartyNoticePeriodBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PartyNoticePeriod extends RosettaModelObject {
 
 	PartyNoticePeriodMeta metaData = new PartyNoticePeriodMeta();

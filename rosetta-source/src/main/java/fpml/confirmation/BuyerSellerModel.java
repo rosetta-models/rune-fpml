@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BuyerSellerModel", builder=BuyerSellerModel.BuyerSellerModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BuyerSellerModel", builder=BuyerSellerModel.BuyerSellerModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BuyerSellerModel extends RosettaModelObject {
 
 	BuyerSellerModelMeta metaData = new BuyerSellerModelMeta();

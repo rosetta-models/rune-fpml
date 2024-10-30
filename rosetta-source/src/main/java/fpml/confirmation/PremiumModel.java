@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model group for representing the option premium when expressed in a way other than an amount.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PremiumModel", builder=PremiumModel.PremiumModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PremiumModel", builder=PremiumModel.PremiumModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PremiumModel extends RosettaModelObject {
 
 	PremiumModelMeta metaData = new PremiumModelMeta();

@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Information about a trading event that represents a new trading activity (on a newly-created trade or package of trades), or in some cases the a representation of the trade&#39;s current state..
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradingEventsBaseModel", builder=TradingEventsBaseModel.TradingEventsBaseModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradingEventsBaseModel", builder=TradingEventsBaseModel.TradingEventsBaseModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradingEventsBaseModel extends RosettaModelObject {
 
 	TradingEventsBaseModelMeta metaData = new TradingEventsBaseModelMeta();

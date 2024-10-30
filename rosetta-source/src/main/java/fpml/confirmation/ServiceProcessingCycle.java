@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that can be used to describe the processing phase of a service. For example, EndOfDay, Intraday.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ServiceProcessingCycle", builder=ServiceProcessingCycle.ServiceProcessingCycleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ServiceProcessingCycle", builder=ServiceProcessingCycle.ServiceProcessingCycleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ServiceProcessingCycle extends RosettaModelObject {
 
 	ServiceProcessingCycleMeta metaData = new ServiceProcessingCycleMeta();

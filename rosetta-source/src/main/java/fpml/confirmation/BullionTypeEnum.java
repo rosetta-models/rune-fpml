@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Defines which type of bullion is applicable for a Bullion Transaction.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaEnum("BullionTypeEnum")
 public enum BullionTypeEnum {

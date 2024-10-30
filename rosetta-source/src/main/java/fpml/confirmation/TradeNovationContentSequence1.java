@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradeNovationContentSequence1", builder=TradeNovationContentSequence1.TradeNovationContentSequence1BuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradeNovationContentSequence1", builder=TradeNovationContentSequence1.TradeNovationContentSequence1BuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradeNovationContentSequence1 extends RosettaModelObject {
 
 	TradeNovationContentSequence1Meta metaData = new TradeNovationContentSequence1Meta();

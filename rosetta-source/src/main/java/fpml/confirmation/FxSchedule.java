@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The FxSchedule may be expressed as explicit adjusted dates, or a parametric representation plus optional adjusted dates, or as an offset plus optional adusted dates.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxSchedule", builder=FxSchedule.FxScheduleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxSchedule", builder=FxSchedule.FxScheduleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxSchedule extends RosettaModelObject {
 
 	FxScheduleMeta metaData = new FxScheduleMeta();

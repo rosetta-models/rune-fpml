@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The data type used for issuer identifiers.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="IssuerId", builder=IssuerId.IssuerIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="IssuerId", builder=IssuerId.IssuerIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface IssuerId extends RosettaModelObject {
 
 	IssuerIdMeta metaData = new IssuerIdMeta();

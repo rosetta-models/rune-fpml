@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure describing the amount of an instrument that was traded.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="InstrumentTradeQuantity", builder=InstrumentTradeQuantity.InstrumentTradeQuantityBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="InstrumentTradeQuantity", builder=InstrumentTradeQuantity.InstrumentTradeQuantityBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface InstrumentTradeQuantity extends RosettaModelObject {
 
 	InstrumentTradeQuantityMeta metaData = new InstrumentTradeQuantityMeta();

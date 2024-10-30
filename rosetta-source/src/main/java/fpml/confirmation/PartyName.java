@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The data type used for the legal name of an organization.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PartyName", builder=PartyName.PartyNameBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PartyName", builder=PartyName.PartyNameBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PartyName extends RosettaModelObject {
 
 	PartyNameMeta metaData = new PartyNameMeta();

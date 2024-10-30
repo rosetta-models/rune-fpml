@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The physical delivery obligation options specific to a system firm transaction.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ElectricityDeliverySystemFirm", builder=ElectricityDeliverySystemFirm.ElectricityDeliverySystemFirmBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ElectricityDeliverySystemFirm", builder=ElectricityDeliverySystemFirm.ElectricityDeliverySystemFirmBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ElectricityDeliverySystemFirm extends RosettaModelObject {
 
 	ElectricityDeliverySystemFirmMeta metaData = new ElectricityDeliverySystemFirmMeta();

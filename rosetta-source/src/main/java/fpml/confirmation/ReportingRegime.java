@@ -38,9 +38,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Provides information about how the information in this message is applicable to a regulatory reporting process.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReportingRegime", builder=ReportingRegime.ReportingRegimeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReportingRegime", builder=ReportingRegime.ReportingRegimeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReportingRegime extends RosettaModelObject {
 
 	ReportingRegimeMeta metaData = new ReportingRegimeMeta();

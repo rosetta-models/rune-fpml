@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The commodity option premium payable by the buyer to the seller.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityPremium", builder=CommodityPremium.CommodityPremiumBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityPremium", builder=CommodityPremium.CommodityPremiumBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityPremium extends NonNegativePayment {
 
 	CommodityPremiumMeta metaData = new CommodityPremiumMeta();

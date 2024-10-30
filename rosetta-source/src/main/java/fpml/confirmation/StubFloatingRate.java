@@ -34,9 +34,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining a floating rate.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="StubFloatingRate", builder=StubFloatingRate.StubFloatingRateBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="StubFloatingRate", builder=StubFloatingRate.StubFloatingRateBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface StubFloatingRate extends Rate {
 
 	StubFloatingRateMeta metaData = new StubFloatingRateMeta();

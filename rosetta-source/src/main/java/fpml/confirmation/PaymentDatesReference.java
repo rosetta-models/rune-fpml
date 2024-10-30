@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to a payment dates structure.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PaymentDatesReference", builder=PaymentDatesReference.PaymentDatesReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PaymentDatesReference", builder=PaymentDatesReference.PaymentDatesReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PaymentDatesReference extends Reference {
 
 	PaymentDatesReferenceMeta metaData = new PaymentDatesReferenceMeta();

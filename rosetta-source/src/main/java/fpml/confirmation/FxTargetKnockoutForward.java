@@ -45,9 +45,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structured forward product which consists of a strip of forwards. Each forward may be settled as an exchange of currencies or cash settled. At each settlement, the amount of gain that one party achieves is measured. The product has a target level of gain. Once the accumulated gain exceeds the target level, the product terminates and there are no further settlements. A structured forward product which consists of a strip of forwards. Each forward may be settled as an exchange of currencies or cash settled. At each settlement, the amount of gain that one party achieves is measured. The product has a target level of gain. Once the accumulated gain exceeds the target level, the product terminates and there are no further settlements.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxTargetKnockoutForward", builder=FxTargetKnockoutForward.FxTargetKnockoutForwardBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxTargetKnockoutForward", builder=FxTargetKnockoutForward.FxTargetKnockoutForwardBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxTargetKnockoutForward extends Product {
 
 	FxTargetKnockoutForwardMeta metaData = new FxTargetKnockoutForwardMeta();

@@ -27,9 +27,9 @@ import java.util.stream.Collectors;
 
 /**
  * A shared type between accrual forwards and options where the FX accrual strike reference can point to.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxAccrualStrike", builder=FxAccrualStrike.FxAccrualStrikeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxAccrualStrike", builder=FxAccrualStrike.FxAccrualStrikeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxAccrualStrike extends Schedule {
 
 	FxAccrualStrikeMeta metaData = new FxAccrualStrikeMeta();

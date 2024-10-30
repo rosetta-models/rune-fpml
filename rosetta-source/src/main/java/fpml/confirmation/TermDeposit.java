@@ -39,9 +39,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A term deposit product definition. A class defining the content model for a term deposit product.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TermDeposit", builder=TermDeposit.TermDepositBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TermDeposit", builder=TermDeposit.TermDepositBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TermDeposit extends Product {
 
 	TermDepositMeta metaData = new TermDepositMeta();

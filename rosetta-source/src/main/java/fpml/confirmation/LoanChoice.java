@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanChoice", builder=LoanChoice.LoanChoiceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanChoice", builder=LoanChoice.LoanChoiceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanChoice extends RosettaModelObject {
 
 	LoanChoiceMeta metaData = new LoanChoiceMeta();

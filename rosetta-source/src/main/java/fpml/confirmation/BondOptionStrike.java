@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A complex type to specify the strike of a bond or convertible bond option.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BondOptionStrike", builder=BondOptionStrike.BondOptionStrikeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BondOptionStrike", builder=BondOptionStrike.BondOptionStrikeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BondOptionStrike extends RosettaModelObject {
 
 	BondOptionStrikeMeta metaData = new BondOptionStrikeMeta();

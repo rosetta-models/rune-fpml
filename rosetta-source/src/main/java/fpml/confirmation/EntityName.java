@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The name of the reference entity. A free format string. FpML does not define usage rules for this element.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EntityName", builder=EntityName.EntityNameBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EntityName", builder=EntityName.EntityNameBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EntityName extends RosettaModelObject {
 
 	EntityNameMeta metaData = new EntityNameMeta();

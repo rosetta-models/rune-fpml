@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxAccrualRegionUpperBound", builder=FxAccrualRegionUpperBound.FxAccrualRegionUpperBoundBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxAccrualRegionUpperBound", builder=FxAccrualRegionUpperBound.FxAccrualRegionUpperBoundBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxAccrualRegionUpperBound extends RosettaModelObject {
 
 	FxAccrualRegionUpperBoundMeta metaData = new FxAccrualRegionUpperBoundMeta();

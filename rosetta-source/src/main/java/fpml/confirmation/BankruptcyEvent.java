@@ -20,9 +20,9 @@ import fpml.confirmation.meta.BankruptcyEventMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BankruptcyEvent", builder=BankruptcyEvent.BankruptcyEventBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BankruptcyEvent", builder=BankruptcyEvent.BankruptcyEventBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BankruptcyEvent extends CreditEvent {
 
 	BankruptcyEventMeta metaData = new BankruptcyEventMeta();

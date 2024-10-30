@@ -30,9 +30,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A message providing the current status of a clearing request.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ClearingStatus", builder=ClearingStatus.ClearingStatusBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ClearingStatus", builder=ClearingStatus.ClearingStatusBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ClearingStatus extends NotificationMessage {
 
 	ClearingStatusMeta metaData = new ClearingStatusMeta();

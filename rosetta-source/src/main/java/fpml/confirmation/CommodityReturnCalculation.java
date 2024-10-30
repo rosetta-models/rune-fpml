@@ -23,9 +23,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityReturnCalculation", builder=CommodityReturnCalculation.CommodityReturnCalculationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityReturnCalculation", builder=CommodityReturnCalculation.CommodityReturnCalculationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityReturnCalculation extends RosettaModelObject {
 
 	CommodityReturnCalculationMeta metaData = new CommodityReturnCalculationMeta();

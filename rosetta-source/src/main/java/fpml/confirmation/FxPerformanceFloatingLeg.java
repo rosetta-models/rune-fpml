@@ -24,9 +24,9 @@ import fpml.confirmation.meta.FxPerformanceFloatingLegMeta;
 
 /**
  * Fx Performance Floating Leg describes Floating FX Rate Payer.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxPerformanceFloatingLeg", builder=FxPerformanceFloatingLeg.FxPerformanceFloatingLegBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxPerformanceFloatingLeg", builder=FxPerformanceFloatingLeg.FxPerformanceFloatingLegBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxPerformanceFloatingLeg extends FxPerformanceLeg {
 
 	FxPerformanceFloatingLegMeta metaData = new FxPerformanceFloatingLegMeta();

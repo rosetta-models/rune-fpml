@@ -36,9 +36,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A definition of an unfunded borrowing (guarantee) instrument known as a Letter of Credit.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LetterOfCredit", builder=LetterOfCredit.LetterOfCreditBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LetterOfCredit", builder=LetterOfCredit.LetterOfCreditBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LetterOfCredit extends LetterOfCreditSummary {
 
 	LetterOfCreditMeta metaData = new LetterOfCreditMeta();

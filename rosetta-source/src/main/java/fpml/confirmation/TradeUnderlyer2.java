@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The underlying asset/index/reference price etc. whose rate/price may be observed to compute the value of the cashflow. It can be an index, fixed rate, listed security, quoted currency pair, or a reference entity (for credit derivatives). For use with Generic products in Transparency reporting. Generic products define a product that represents an OTC derivative transaction whose economics are not fully described using an FpML schema. In other views, generic products are present for convenience to support internal messaging and workflows that are cross-product. Generic products are not full trade representations as such they are not intended to be used for confirming trades.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradeUnderlyer2", builder=TradeUnderlyer2.TradeUnderlyer2BuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradeUnderlyer2", builder=TradeUnderlyer2.TradeUnderlyer2BuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradeUnderlyer2 extends RosettaModelObject {
 
 	TradeUnderlyer2Meta metaData = new TradeUnderlyer2Meta();

@@ -37,9 +37,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A component describing a Broker View of an Equity Option. A type for defining the broker equity options.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BrokerEquityOption", builder=BrokerEquityOption.BrokerEquityOptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BrokerEquityOption", builder=BrokerEquityOption.BrokerEquityOptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BrokerEquityOption extends EquityDerivativeShortFormBase {
 
 	BrokerEquityOptionMeta metaData = new BrokerEquityOptionMeta();

@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="OriginatingEvent", builder=OriginatingEvent.OriginatingEventBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="OriginatingEvent", builder=OriginatingEvent.OriginatingEventBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface OriginatingEvent extends RosettaModelObject {
 
 	OriginatingEventMeta metaData = new OriginatingEventMeta();

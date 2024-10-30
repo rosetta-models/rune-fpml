@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model group which has exception elements.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ExceptionModel", builder=ExceptionModel.ExceptionModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ExceptionModel", builder=ExceptionModel.ExceptionModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ExceptionModel extends RosettaModelObject {
 
 	ExceptionModelMeta metaData = new ExceptionModelMeta();

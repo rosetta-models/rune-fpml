@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type giving the choice between defining a date as an explicit date together with applicable adjustments or as relative to some other (anchor) date.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AdjustableOrRelativeDate", builder=AdjustableOrRelativeDate.AdjustableOrRelativeDateBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AdjustableOrRelativeDate", builder=AdjustableOrRelativeDate.AdjustableOrRelativeDateBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AdjustableOrRelativeDate extends RosettaModelObject {
 
 	AdjustableOrRelativeDateMeta metaData = new AdjustableOrRelativeDateMeta();

@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="GenericProductExchangeRateSequence", builder=GenericProductExchangeRateSequence.GenericProductExchangeRateSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="GenericProductExchangeRateSequence", builder=GenericProductExchangeRateSequence.GenericProductExchangeRateSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface GenericProductExchangeRateSequence extends RosettaModelObject {
 
 	GenericProductExchangeRateSequenceMeta metaData = new GenericProductExchangeRateSequenceMeta();

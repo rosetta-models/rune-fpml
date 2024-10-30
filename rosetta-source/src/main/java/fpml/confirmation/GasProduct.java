@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the characteristics of the gas being traded in a physically settled gas transaction.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="GasProduct", builder=GasProduct.GasProductBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="GasProduct", builder=GasProduct.GasProductBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface GasProduct extends RosettaModelObject {
 
 	GasProductMeta metaData = new GasProductMeta();

@@ -35,9 +35,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="OptionEvent", builder=OptionEvent.OptionEventBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="OptionEvent", builder=OptionEvent.OptionEventBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface OptionEvent extends AbstractEvent {
 
 	OptionEventMeta metaData = new OptionEventMeta();

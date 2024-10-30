@@ -37,9 +37,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A message indicating that a clearing request has not been acted on due to a business decision and therefore no trade has been cleared.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ClearingRefused", builder=ClearingRefused.ClearingRefusedBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ClearingRefused", builder=ClearingRefused.ClearingRefusedBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ClearingRefused extends NotificationMessage {
 
 	ClearingRefusedMeta metaData = new ClearingRefusedMeta();

@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An abstract type used for defining accrual structures within loan instruments.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AccrualOptionBase", builder=AccrualOptionBase.AccrualOptionBaseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AccrualOptionBase", builder=AccrualOptionBase.AccrualOptionBaseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AccrualOptionBase extends RosettaModelObject {
 
 	AccrualOptionBaseMeta metaData = new AccrualOptionBaseMeta();

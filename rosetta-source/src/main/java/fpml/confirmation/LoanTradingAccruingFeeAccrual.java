@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that details the underlying elements that affect the calculation of a fee accrual.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanTradingAccruingFeeAccrual", builder=LoanTradingAccruingFeeAccrual.LoanTradingAccruingFeeAccrualBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanTradingAccruingFeeAccrual", builder=LoanTradingAccruingFeeAccrual.LoanTradingAccruingFeeAccrualBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanTradingAccruingFeeAccrual extends AbstractTradingAccrual {
 
 	LoanTradingAccruingFeeAccrualMeta metaData = new LoanTradingAccruingFeeAccrualMeta();

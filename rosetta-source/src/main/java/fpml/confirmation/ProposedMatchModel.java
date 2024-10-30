@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure that describes a potential match for a trade or event, together with descriptors of that match (quality, etc.).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ProposedMatchModel", builder=ProposedMatchModel.ProposedMatchModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ProposedMatchModel", builder=ProposedMatchModel.ProposedMatchModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ProposedMatchModel extends RosettaModelObject {
 
 	ProposedMatchModelMeta metaData = new ProposedMatchModelMeta();

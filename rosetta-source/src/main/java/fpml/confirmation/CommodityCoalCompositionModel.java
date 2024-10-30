@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Items defining the chemical composition of the coal product.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityCoalCompositionModel", builder=CommodityCoalCompositionModel.CommodityCoalCompositionModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityCoalCompositionModel", builder=CommodityCoalCompositionModel.CommodityCoalCompositionModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityCoalCompositionModel extends RosettaModelObject {
 
 	CommodityCoalCompositionModelMeta metaData = new CommodityCoalCompositionModelMeta();

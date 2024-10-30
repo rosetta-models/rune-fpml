@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type to provide the ability to point to multiple payment nodes in the document through the unbounded paymentDatesReference.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DateRelativeToPaymentDates", builder=DateRelativeToPaymentDates.DateRelativeToPaymentDatesBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DateRelativeToPaymentDates", builder=DateRelativeToPaymentDates.DateRelativeToPaymentDatesBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DateRelativeToPaymentDates extends RosettaModelObject {
 
 	DateRelativeToPaymentDatesMeta metaData = new DateRelativeToPaymentDatesMeta();

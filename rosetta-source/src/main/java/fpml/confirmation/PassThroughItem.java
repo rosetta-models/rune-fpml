@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Type to represent a single pass through payment.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PassThroughItem", builder=PassThroughItem.PassThroughItemBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PassThroughItem", builder=PassThroughItem.PassThroughItemBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PassThroughItem extends RosettaModelObject {
 
 	PassThroughItemMeta metaData = new PassThroughItemMeta();

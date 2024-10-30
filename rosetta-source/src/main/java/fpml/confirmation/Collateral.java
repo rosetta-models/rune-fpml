@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type for defining the obligations of the counterparty subject to credit support requirements.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Collateral", builder=Collateral.CollateralBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Collateral", builder=Collateral.CollateralBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Collateral extends RosettaModelObject {
 
 	CollateralMeta metaData = new CollateralMeta();

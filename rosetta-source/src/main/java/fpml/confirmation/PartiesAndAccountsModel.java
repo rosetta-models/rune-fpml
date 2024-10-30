@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Supporting party and account definitions.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PartiesAndAccountsModel", builder=PartiesAndAccountsModel.PartiesAndAccountsModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PartiesAndAccountsModel", builder=PartiesAndAccountsModel.PartiesAndAccountsModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PartiesAndAccountsModel extends RosettaModelObject {
 
 	PartiesAndAccountsModelMeta metaData = new PartiesAndAccountsModelMeta();

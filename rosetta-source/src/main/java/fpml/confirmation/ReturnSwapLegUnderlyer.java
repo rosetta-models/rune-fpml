@@ -32,9 +32,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A base class for all return leg types with an underlyer.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReturnSwapLegUnderlyer", builder=ReturnSwapLegUnderlyer.ReturnSwapLegUnderlyerBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReturnSwapLegUnderlyer", builder=ReturnSwapLegUnderlyer.ReturnSwapLegUnderlyerBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReturnSwapLegUnderlyer extends DirectionalLeg {
 
 	ReturnSwapLegUnderlyerMeta metaData = new ReturnSwapLegUnderlyerMeta();

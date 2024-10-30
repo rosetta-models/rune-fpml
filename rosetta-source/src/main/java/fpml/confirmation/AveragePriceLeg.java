@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The average price leg of an average price commodity bullion or non-precious metal forward transaction.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AveragePriceLeg", builder=AveragePriceLeg.AveragePriceLegBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AveragePriceLeg", builder=AveragePriceLeg.AveragePriceLegBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AveragePriceLeg extends CommoditySwapLeg {
 
 	AveragePriceLegMeta metaData = new AveragePriceLegMeta();

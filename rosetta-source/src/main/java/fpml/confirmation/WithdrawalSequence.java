@@ -26,9 +26,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="WithdrawalSequence", builder=WithdrawalSequence.WithdrawalSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="WithdrawalSequence", builder=WithdrawalSequence.WithdrawalSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface WithdrawalSequence extends RosettaModelObject {
 
 	WithdrawalSequenceMeta metaData = new WithdrawalSequenceMeta();

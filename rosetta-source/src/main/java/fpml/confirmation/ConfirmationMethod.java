@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type used to represent the type of mechanism that can be used to confirm a trade.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ConfirmationMethod", builder=ConfirmationMethod.ConfirmationMethodBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ConfirmationMethod", builder=ConfirmationMethod.ConfirmationMethodBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ConfirmationMethod extends RosettaModelObject {
 
 	ConfirmationMethodMeta metaData = new ConfirmationMethodMeta();

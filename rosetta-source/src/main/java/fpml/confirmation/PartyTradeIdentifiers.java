@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type containing multiple partyTradeIdentifier.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PartyTradeIdentifiers", builder=PartyTradeIdentifiers.PartyTradeIdentifiersBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PartyTradeIdentifiers", builder=PartyTradeIdentifiers.PartyTradeIdentifiersBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PartyTradeIdentifiers extends RosettaModelObject {
 
 	PartyTradeIdentifiersMeta metaData = new PartyTradeIdentifiersMeta();

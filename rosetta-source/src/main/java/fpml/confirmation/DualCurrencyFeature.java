@@ -25,9 +25,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Describes the parameters for a dual currency option transaction.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DualCurrencyFeature", builder=DualCurrencyFeature.DualCurrencyFeatureBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DualCurrencyFeature", builder=DualCurrencyFeature.DualCurrencyFeatureBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DualCurrencyFeature extends RosettaModelObject {
 
 	DualCurrencyFeatureMeta metaData = new DualCurrencyFeatureMeta();

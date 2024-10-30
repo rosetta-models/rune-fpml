@@ -19,7 +19,7 @@ import java.util.function.Function;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaMeta(model=AbstractApplicablePartyProfileObjects.class)
 public class AbstractApplicablePartyProfileObjectsMeta implements RosettaMetaData<AbstractApplicablePartyProfileObjects> {

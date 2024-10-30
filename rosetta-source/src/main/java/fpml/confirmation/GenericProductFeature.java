@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A flexible description a special feature or characteristic of a complex product not otherwise modeled, such as digital payout.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="GenericProductFeature", builder=GenericProductFeature.GenericProductFeatureBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="GenericProductFeature", builder=GenericProductFeature.GenericProductFeatureBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface GenericProductFeature extends RosettaModelObject {
 
 	GenericProductFeatureMeta metaData = new GenericProductFeatureMeta();

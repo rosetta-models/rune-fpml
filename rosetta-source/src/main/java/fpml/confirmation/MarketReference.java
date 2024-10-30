@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to a market structure.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MarketReference", builder=MarketReference.MarketReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MarketReference", builder=MarketReference.MarketReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MarketReference extends Reference {
 
 	MarketReferenceMeta metaData = new MarketReferenceMeta();

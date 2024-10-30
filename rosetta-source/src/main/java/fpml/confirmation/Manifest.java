@@ -25,9 +25,9 @@ import java.util.stream.Collectors;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Manifest", builder=Manifest.ManifestBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Manifest", builder=Manifest.ManifestBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Manifest extends ManifestType {
 
 	ManifestMeta metaData = new ManifestMeta();

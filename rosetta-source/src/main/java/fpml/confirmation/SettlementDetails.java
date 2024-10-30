@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A set of currency-specific settlement instructions.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SettlementDetails", builder=SettlementDetails.SettlementDetailsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SettlementDetails", builder=SettlementDetails.SettlementDetailsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SettlementDetails extends RosettaModelObject {
 
 	SettlementDetailsMeta metaData = new SettlementDetailsMeta();

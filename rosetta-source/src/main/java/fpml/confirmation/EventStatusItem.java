@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type used in event status enquiry messages which relates an event identifier to its current status value.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EventStatusItem", builder=EventStatusItem.EventStatusItemBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EventStatusItem", builder=EventStatusItem.EventStatusItemBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EventStatusItem extends RosettaModelObject {
 
 	EventStatusItemMeta metaData = new EventStatusItemMeta();

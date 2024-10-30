@@ -20,9 +20,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="GenericEquityAttributesModel", builder=GenericEquityAttributesModel.GenericEquityAttributesModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="GenericEquityAttributesModel", builder=GenericEquityAttributesModel.GenericEquityAttributesModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface GenericEquityAttributesModel extends RosettaModelObject {
 
 	GenericEquityAttributesModelMeta metaData = new GenericEquityAttributesModelMeta();

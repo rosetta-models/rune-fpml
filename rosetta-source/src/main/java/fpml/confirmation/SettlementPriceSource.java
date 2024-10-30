@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The source from which the settlement price is to be obtained, e.g. a Reuters page, Prezzo di Riferimento, etc.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SettlementPriceSource", builder=SettlementPriceSource.SettlementPriceSourceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SettlementPriceSource", builder=SettlementPriceSource.SettlementPriceSourceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SettlementPriceSource extends RosettaModelObject {
 
 	SettlementPriceSourceMeta metaData = new SettlementPriceSourceMeta();

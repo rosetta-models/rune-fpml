@@ -33,9 +33,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A classified non negative payment.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ClassifiablePayment", builder=ClassifiablePayment.ClassifiablePaymentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ClassifiablePayment", builder=ClassifiablePayment.ClassifiablePaymentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ClassifiablePayment extends NonNegativePayment {
 
 	ClassifiablePaymentMeta metaData = new ClassifiablePaymentMeta();

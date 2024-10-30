@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing the correlation amount of a correlation swap.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Correlation", builder=Correlation.CorrelationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Correlation", builder=Correlation.CorrelationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Correlation extends CalculationFromObservation {
 
 	CorrelationMeta metaData = new CorrelationMeta();

@@ -36,9 +36,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A swap product definition. A type defining swap streams and additional payments between the principal parties involved in the swap.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Swap", builder=Swap.SwapBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Swap", builder=Swap.SwapBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Swap extends Product {
 
 	SwapMeta metaData = new SwapMeta();

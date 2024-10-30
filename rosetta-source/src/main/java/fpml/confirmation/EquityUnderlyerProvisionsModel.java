@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A group containing Equity Underlyer provisions.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EquityUnderlyerProvisionsModel", builder=EquityUnderlyerProvisionsModel.EquityUnderlyerProvisionsModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EquityUnderlyerProvisionsModel", builder=EquityUnderlyerProvisionsModel.EquityUnderlyerProvisionsModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EquityUnderlyerProvisionsModel extends RosettaModelObject {
 
 	EquityUnderlyerProvisionsModelMeta metaData = new EquityUnderlyerProvisionsModelMeta();

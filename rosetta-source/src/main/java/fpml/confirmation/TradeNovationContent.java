@@ -36,9 +36,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure describing a novation.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradeNovationContent", builder=TradeNovationContent.TradeNovationContentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradeNovationContent", builder=TradeNovationContent.TradeNovationContentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradeNovationContent extends AbstractEvent {
 
 	TradeNovationContentMeta metaData = new TradeNovationContentMeta();

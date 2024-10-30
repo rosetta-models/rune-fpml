@@ -22,9 +22,9 @@ import fpml.confirmation.meta.UnderlyingAssetMeta;
 
 /**
  * Define the underlying asset, either a listed security or other instrument.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="UnderlyingAsset", builder=UnderlyingAsset.UnderlyingAssetBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="UnderlyingAsset", builder=UnderlyingAsset.UnderlyingAssetBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface UnderlyingAsset extends Asset {
 
 	UnderlyingAssetMeta metaData = new UnderlyingAssetMeta();

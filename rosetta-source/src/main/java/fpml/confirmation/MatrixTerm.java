@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MatrixTerm", builder=MatrixTerm.MatrixTermBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MatrixTerm", builder=MatrixTerm.MatrixTermBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MatrixTerm extends RosettaModelObject {
 
 	MatrixTermMeta metaData = new MatrixTermMeta();

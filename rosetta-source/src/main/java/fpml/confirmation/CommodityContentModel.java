@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Items common to all Commodity Transactions.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityContentModel", builder=CommodityContentModel.CommodityContentModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityContentModel", builder=CommodityContentModel.CommodityContentModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityContentModel extends RosettaModelObject {
 
 	CommodityContentModelMeta metaData = new CommodityContentModelMeta();

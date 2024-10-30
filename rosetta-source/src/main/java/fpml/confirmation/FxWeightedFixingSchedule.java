@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Describes a schedule of fixing dates as a parametric description, an explicit list of dates or both.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxWeightedFixingSchedule", builder=FxWeightedFixingSchedule.FxWeightedFixingScheduleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxWeightedFixingSchedule", builder=FxWeightedFixingSchedule.FxWeightedFixingScheduleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxWeightedFixingSchedule extends RosettaModelObject {
 
 	FxWeightedFixingScheduleMeta metaData = new FxWeightedFixingScheduleMeta();

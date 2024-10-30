@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining parameters associated with an individual observation or fixing. This type forms part of the cashflow representation of a stream.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RateObservation", builder=RateObservation.RateObservationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RateObservation", builder=RateObservation.RateObservationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RateObservation extends RosettaModelObject {
 
 	RateObservationMeta metaData = new RateObservationMeta();

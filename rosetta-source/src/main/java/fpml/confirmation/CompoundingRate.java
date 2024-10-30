@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining a compounding rate. The compounding interest can either point back to the floating rate calculation of interest calculation node on the Interest Leg, or be defined specifically.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CompoundingRate", builder=CompoundingRate.CompoundingRateBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CompoundingRate", builder=CompoundingRate.CompoundingRateBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CompoundingRate extends RosettaModelObject {
 
 	CompoundingRateMeta metaData = new CompoundingRateMeta();

@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Method of generating a series of dates.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AveragingSchedule", builder=AveragingSchedule.AveragingScheduleBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AveragingSchedule", builder=AveragingSchedule.AveragingScheduleBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AveragingSchedule extends RosettaModelObject {
 
 	AveragingScheduleMeta metaData = new AveragingScheduleMeta();

@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining an event identifier issued by the indicated party.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BusinessEventIdentifier", builder=BusinessEventIdentifier.BusinessEventIdentifierBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BusinessEventIdentifier", builder=BusinessEventIdentifier.BusinessEventIdentifierBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BusinessEventIdentifier extends RosettaModelObject {
 
 	BusinessEventIdentifierMeta metaData = new BusinessEventIdentifierMeta();

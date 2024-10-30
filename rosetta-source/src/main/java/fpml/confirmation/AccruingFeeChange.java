@@ -33,9 +33,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An event describing a future change an accruing fee associated with a specific facility.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AccruingFeeChange", builder=AccruingFeeChange.AccruingFeeChangeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AccruingFeeChange", builder=AccruingFeeChange.AccruingFeeChangeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AccruingFeeChange extends AbstractFacilityEvent {
 
 	AccruingFeeChangeMeta metaData = new AccruingFeeChangeMeta();

@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure describing the price paid for the instrument.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="InstrumentTradePricing", builder=InstrumentTradePricing.InstrumentTradePricingBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="InstrumentTradePricing", builder=InstrumentTradePricing.InstrumentTradePricingBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface InstrumentTradePricing extends RosettaModelObject {
 
 	InstrumentTradePricingMeta metaData = new InstrumentTradePricingMeta();

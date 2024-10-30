@@ -35,9 +35,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An event representing the prepayment structure associated within a facility.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Rollover", builder=Rollover.RolloverBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Rollover", builder=Rollover.RolloverBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Rollover extends AbstractFacilityEvent {
 
 	RolloverMeta metaData = new RolloverMeta();

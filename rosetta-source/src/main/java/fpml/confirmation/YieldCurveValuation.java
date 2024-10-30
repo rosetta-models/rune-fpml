@@ -36,9 +36,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The values of a yield curve, including possibly inputs and outputs (dfs, forwards, zero rates).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="YieldCurveValuation", builder=YieldCurveValuation.YieldCurveValuationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="YieldCurveValuation", builder=YieldCurveValuation.YieldCurveValuationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface YieldCurveValuation extends PricingStructureValuation {
 
 	YieldCurveValuationMeta metaData = new YieldCurveValuationMeta();

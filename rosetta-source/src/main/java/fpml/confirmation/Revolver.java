@@ -33,9 +33,9 @@ import java.util.stream.Collectors;
 
 /**
  * A revolver facility. A facility which allows a flexible line of credit which can be drawn and repaid multiple times over the life of the facility.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Revolver", builder=Revolver.RevolverBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Revolver", builder=Revolver.RevolverBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Revolver extends AbstractFacility {
 
 	RevolverMeta metaData = new RevolverMeta();

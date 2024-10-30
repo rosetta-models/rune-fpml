@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that identifies an override record.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="OverrideIdentifier", builder=OverrideIdentifier.OverrideIdentifierBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="OverrideIdentifier", builder=OverrideIdentifier.OverrideIdentifierBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface OverrideIdentifier extends RosettaModelObject {
 
 	OverrideIdentifierMeta metaData = new OverrideIdentifierMeta();

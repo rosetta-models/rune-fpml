@@ -30,9 +30,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type for defining exercise procedures associated with an American style exercise of an equity option. This entity inherits from the type SharedAmericanExercise.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EquityAmericanExercise", builder=EquityAmericanExercise.EquityAmericanExerciseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EquityAmericanExercise", builder=EquityAmericanExercise.EquityAmericanExerciseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EquityAmericanExercise extends SharedAmericanExercise {
 
 	EquityAmericanExerciseMeta metaData = new EquityAmericanExerciseMeta();

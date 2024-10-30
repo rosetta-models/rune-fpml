@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the business day convention and financial business centers used for adjusting any relevant date if it would otherwise fall on a day that is not a business day in the specified business centers.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BusinessDayAdjustments", builder=BusinessDayAdjustments.BusinessDayAdjustmentsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BusinessDayAdjustments", builder=BusinessDayAdjustments.BusinessDayAdjustmentsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BusinessDayAdjustments extends RosettaModelObject {
 
 	BusinessDayAdjustmentsMeta metaData = new BusinessDayAdjustmentsMeta();

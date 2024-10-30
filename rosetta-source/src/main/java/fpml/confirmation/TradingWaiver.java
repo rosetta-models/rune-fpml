@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Indication as to whether the transaction was executed under a pre-trade waiver in accordance with Articles 4 and 9 of Regulation (EU) 600/2014.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradingWaiver", builder=TradingWaiver.TradingWaiverBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradingWaiver", builder=TradingWaiver.TradingWaiverBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradingWaiver extends RosettaModelObject {
 
 	TradingWaiverMeta metaData = new TradingWaiverMeta();

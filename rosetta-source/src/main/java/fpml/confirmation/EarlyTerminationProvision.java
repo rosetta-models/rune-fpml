@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining an early termination provision for a swap. This early termination is at fair value, i.e. on termination the fair value of the product must be settled between the parties.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EarlyTerminationProvision", builder=EarlyTerminationProvision.EarlyTerminationProvisionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EarlyTerminationProvision", builder=EarlyTerminationProvision.EarlyTerminationProvisionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EarlyTerminationProvision extends RosettaModelObject {
 
 	EarlyTerminationProvisionMeta metaData = new EarlyTerminationProvisionMeta();

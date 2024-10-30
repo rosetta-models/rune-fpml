@@ -28,9 +28,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityBasketUnderlyingByPercentage", builder=CommodityBasketUnderlyingByPercentage.CommodityBasketUnderlyingByPercentageBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityBasketUnderlyingByPercentage", builder=CommodityBasketUnderlyingByPercentage.CommodityBasketUnderlyingByPercentageBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityBasketUnderlyingByPercentage extends CommodityBasketUnderlyingBase {
 
 	CommodityBasketUnderlyingByPercentageMeta metaData = new CommodityBasketUnderlyingByPercentageMeta();

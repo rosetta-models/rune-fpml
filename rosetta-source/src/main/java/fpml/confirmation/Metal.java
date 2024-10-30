@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the characteristics of the metal product being traded in a physically settled metal transaction.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Metal", builder=Metal.MetalBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Metal", builder=Metal.MetalBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Metal extends RosettaModelObject {
 
 	MetalMeta metaData = new MetalMeta();

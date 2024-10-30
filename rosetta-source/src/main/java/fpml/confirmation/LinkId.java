@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The data type used for link identifiers.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LinkId", builder=LinkId.LinkIdBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LinkId", builder=LinkId.LinkIdBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LinkId extends RosettaModelObject {
 
 	LinkIdMeta metaData = new LinkIdMeta();

@@ -25,9 +25,9 @@ import java.util.stream.Collectors;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="X509Data", builder=X509Data.X509DataBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="X509Data", builder=X509Data.X509DataBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface X509Data extends X509DataType {
 
 	X509DataMeta metaData = new X509DataMeta();

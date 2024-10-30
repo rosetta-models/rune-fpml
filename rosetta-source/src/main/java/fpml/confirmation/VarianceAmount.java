@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Calculation of a Variance Amount.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="VarianceAmount", builder=VarianceAmount.VarianceAmountBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="VarianceAmount", builder=VarianceAmount.VarianceAmountBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface VarianceAmount extends CalculatedAmount {
 
 	VarianceAmountMeta metaData = new VarianceAmountMeta();

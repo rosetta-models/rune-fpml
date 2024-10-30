@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A collection of quoted assets.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="QuotedAssetSet", builder=QuotedAssetSet.QuotedAssetSetBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="QuotedAssetSet", builder=QuotedAssetSet.QuotedAssetSetBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface QuotedAssetSet extends RosettaModelObject {
 
 	QuotedAssetSetMeta metaData = new QuotedAssetSetMeta();

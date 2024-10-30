@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A reference to a letter of credit.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LetterOfCreditReference", builder=LetterOfCreditReference.LetterOfCreditReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LetterOfCreditReference", builder=LetterOfCreditReference.LetterOfCreditReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LetterOfCreditReference extends Reference {
 
 	LetterOfCreditReferenceMeta metaData = new LetterOfCreditReferenceMeta();

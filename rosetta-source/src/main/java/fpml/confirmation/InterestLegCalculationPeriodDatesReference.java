@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to the calculation period dates of the interest leg.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="InterestLegCalculationPeriodDatesReference", builder=InterestLegCalculationPeriodDatesReference.InterestLegCalculationPeriodDatesReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="InterestLegCalculationPeriodDatesReference", builder=InterestLegCalculationPeriodDatesReference.InterestLegCalculationPeriodDatesReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface InterestLegCalculationPeriodDatesReference extends Reference {
 
 	InterestLegCalculationPeriodDatesReferenceMeta metaData = new InterestLegCalculationPeriodDatesReferenceMeta();

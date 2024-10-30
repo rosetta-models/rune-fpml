@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines a model group that allows a chunck of a report to be included in a request retransmission message.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReportSectionIdentificationModel", builder=ReportSectionIdentificationModel.ReportSectionIdentificationModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReportSectionIdentificationModel", builder=ReportSectionIdentificationModel.ReportSectionIdentificationModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReportSectionIdentificationModel extends RosettaModelObject {
 
 	ReportSectionIdentificationModelMeta metaData = new ReportSectionIdentificationModelMeta();

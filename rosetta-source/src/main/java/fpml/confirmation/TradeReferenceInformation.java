@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Defines a type that allows trade identifiers and/or trade information to be represented for a trade.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradeReferenceInformation", builder=TradeReferenceInformation.TradeReferenceInformationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradeReferenceInformation", builder=TradeReferenceInformation.TradeReferenceInformationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradeReferenceInformation extends RosettaModelObject {
 
 	TradeReferenceInformationMeta metaData = new TradeReferenceInformationMeta();

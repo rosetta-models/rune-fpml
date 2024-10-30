@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The quantity of gas to be delivered.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="GasQuality", builder=GasQuality.GasQualityBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="GasQuality", builder=GasQuality.GasQualityBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface GasQuality extends RosettaModelObject {
 
 	GasQualityMeta metaData = new GasQualityMeta();

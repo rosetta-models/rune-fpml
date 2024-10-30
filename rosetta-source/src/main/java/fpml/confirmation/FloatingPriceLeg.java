@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Floating Price Leg of a Commodity Swap. Each &#39;floatingLeg&#39; defines a series of financial payments for a commodity the value of which is derived from a floating price such as an exchange or an index publication.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FloatingPriceLeg", builder=FloatingPriceLeg.FloatingPriceLegBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FloatingPriceLeg", builder=FloatingPriceLeg.FloatingPriceLegBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FloatingPriceLeg extends FinancialSwapLeg {
 
 	FloatingPriceLegMeta metaData = new FloatingPriceLegMeta();

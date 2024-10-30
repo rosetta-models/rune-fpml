@@ -26,9 +26,9 @@ import java.util.stream.Collectors;
 
 /**
  * The additionalEvent element is an extension/substitution point to customize FpML and add additional events. Abstract base type for an extension/substitution point to customize FpML and add additional events.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AdditionalEvent", builder=AdditionalEvent.AdditionalEventBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AdditionalEvent", builder=AdditionalEvent.AdditionalEventBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AdditionalEvent extends AbstractEvent {
 
 	AdditionalEventMeta metaData = new AdditionalEventMeta();

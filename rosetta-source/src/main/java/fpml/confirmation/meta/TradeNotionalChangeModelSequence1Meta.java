@@ -19,7 +19,7 @@ import java.util.function.Function;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaMeta(model=TradeNotionalChangeModelSequence1.class)
 public class TradeNotionalChangeModelSequence1Meta implements RosettaMetaData<TradeNotionalChangeModelSequence1> {

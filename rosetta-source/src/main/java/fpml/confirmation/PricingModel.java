@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A scheme identifying the types of pricing model used to evaluate the price of an asset. Examples include Intrinsic, ClosedForm, MonteCarlo, BackwardInduction.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PricingModel", builder=PricingModel.PricingModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PricingModel", builder=PricingModel.PricingModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PricingModel extends RosettaModelObject {
 
 	PricingModelMeta metaData = new PricingModelMeta();

@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing the amount that will paid or received on each of the payment dates. This type is used to define both the Equity Amount and the Interest Amount.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LegAmount", builder=LegAmount.LegAmountBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LegAmount", builder=LegAmount.LegAmountBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LegAmount extends RosettaModelObject {
 
 	LegAmountMeta metaData = new LegAmountMeta();

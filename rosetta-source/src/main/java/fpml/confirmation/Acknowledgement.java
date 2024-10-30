@@ -29,9 +29,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Acknowledgement", builder=Acknowledgement.AcknowledgementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Acknowledgement", builder=Acknowledgement.AcknowledgementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Acknowledgement extends ResponseMessage {
 
 	AcknowledgementMeta metaData = new AcknowledgementMeta();

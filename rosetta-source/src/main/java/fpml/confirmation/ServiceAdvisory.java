@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the content model for a human-readable notification to the users of a service.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ServiceAdvisory", builder=ServiceAdvisory.ServiceAdvisoryBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ServiceAdvisory", builder=ServiceAdvisory.ServiceAdvisoryBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ServiceAdvisory extends RosettaModelObject {
 
 	ServiceAdvisoryMeta metaData = new ServiceAdvisoryMeta();

@@ -35,9 +35,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A flexible term fx forward product definition. Product model for a flexible-term fx forward (also known as callable forward, window forward). This is a term forward transaction over a specific period, allowing the client full flexibility on the timing of the transactional flow(s). The product allows for (full or partial) execution at a predetermined forward rate, at any time between the start date and the expiry date. Although, the product is an outright, it has some option-like characteristics, leading to the use of option components in the model: (i) the BuyerSeller model expresses the roles of the parties in the overall transaction - the client &quot;buys&quot; the product (ii) the PutCallCurrency model expresses the buyer&#39;s perspective on the exchanged currencies i.e. the client may buy (call) or sell (put) the notional currency for the alternative currency.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxFlexibleForward", builder=FxFlexibleForward.FxFlexibleForwardBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxFlexibleForward", builder=FxFlexibleForward.FxFlexibleForwardBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxFlexibleForward extends Product {
 
 	FxFlexibleForwardMeta metaData = new FxFlexibleForwardMeta();

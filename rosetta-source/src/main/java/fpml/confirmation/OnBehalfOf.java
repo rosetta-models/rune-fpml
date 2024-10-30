@@ -26,9 +26,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="OnBehalfOf", builder=OnBehalfOf.OnBehalfOfBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="OnBehalfOf", builder=OnBehalfOf.OnBehalfOfBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface OnBehalfOf extends RosettaModelObject {
 
 	OnBehalfOfMeta metaData = new OnBehalfOfMeta();

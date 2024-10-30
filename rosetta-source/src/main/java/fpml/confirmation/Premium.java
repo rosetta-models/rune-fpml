@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type for defining a premium.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Premium", builder=Premium.PremiumBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Premium", builder=Premium.PremiumBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Premium extends SimplePayment {
 
 	PremiumMeta metaData = new PremiumMeta();

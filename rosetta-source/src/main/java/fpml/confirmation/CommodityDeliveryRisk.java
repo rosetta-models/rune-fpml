@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A scheme identifying how the parties to the trade aportion responsibility for the delivery of the commodity product (for example Free On Board, Cost, Insurance, Freight)
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityDeliveryRisk", builder=CommodityDeliveryRisk.CommodityDeliveryRiskBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityDeliveryRisk", builder=CommodityDeliveryRisk.CommodityDeliveryRiskBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityDeliveryRisk extends RosettaModelObject {
 
 	CommodityDeliveryRiskMeta metaData = new CommodityDeliveryRiskMeta();

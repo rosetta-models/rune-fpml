@@ -30,9 +30,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A short form definition of a letter of credit.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LetterOfCreditSummary", builder=LetterOfCreditSummary.LetterOfCreditSummaryBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LetterOfCreditSummary", builder=LetterOfCreditSummary.LetterOfCreditSummaryBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LetterOfCreditSummary extends RosettaModelObject {
 
 	LetterOfCreditSummaryMeta metaData = new LetterOfCreditSummaryMeta();

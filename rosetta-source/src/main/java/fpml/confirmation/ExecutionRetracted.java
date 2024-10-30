@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A message retracting a notification to a party that a trade execution has occurred. (Typically this is sent by an execution platform to a participant.)
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ExecutionRetracted", builder=ExecutionRetracted.ExecutionRetractedBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ExecutionRetracted", builder=ExecutionRetracted.ExecutionRetractedBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ExecutionRetracted extends NonCorrectableRequestMessage {
 
 	ExecutionRetractedMeta metaData = new ExecutionRetractedMeta();

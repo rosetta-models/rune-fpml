@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Information about whether and when a product was admitted to trading on a facility.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AdmissionToTrading", builder=AdmissionToTrading.AdmissionToTradingBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AdmissionToTrading", builder=AdmissionToTrading.AdmissionToTradingBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AdmissionToTrading extends RosettaModelObject {
 
 	AdmissionToTradingMeta metaData = new AdmissionToTradingMeta();

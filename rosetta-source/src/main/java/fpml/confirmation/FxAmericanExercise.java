@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Describes the characteristics for american exercise of FX products.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxAmericanExercise", builder=FxAmericanExercise.FxAmericanExerciseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxAmericanExercise", builder=FxAmericanExercise.FxAmericanExerciseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxAmericanExercise extends FxDigitalAmericanExercise {
 
 	FxAmericanExerciseMeta metaData = new FxAmericanExerciseMeta();

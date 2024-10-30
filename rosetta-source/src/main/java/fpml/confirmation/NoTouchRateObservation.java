@@ -23,9 +23,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="NoTouchRateObservation", builder=NoTouchRateObservation.NoTouchRateObservationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="NoTouchRateObservation", builder=NoTouchRateObservation.NoTouchRateObservationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface NoTouchRateObservation extends RosettaModelObject {
 
 	NoTouchRateObservationMeta metaData = new NoTouchRateObservationMeta();

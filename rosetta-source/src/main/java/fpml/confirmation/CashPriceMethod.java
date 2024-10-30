@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the parameters necessary for each of the ISDA cash price methods for cash settlement.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CashPriceMethod", builder=CashPriceMethod.CashPriceMethodBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CashPriceMethod", builder=CashPriceMethod.CashPriceMethodBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CashPriceMethod extends RosettaModelObject {
 
 	CashPriceMethodMeta metaData = new CashPriceMethodMeta();

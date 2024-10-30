@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * a model that defines deal-level rules.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DealRulesModel", builder=DealRulesModel.DealRulesModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DealRulesModel", builder=DealRulesModel.DealRulesModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DealRulesModel extends RosettaModelObject {
 
 	DealRulesModelMeta metaData = new DealRulesModelMeta();

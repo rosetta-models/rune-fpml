@@ -32,9 +32,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An event structure defining the trade settlement date.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanSettlementDateFinalizationEvent", builder=LoanSettlementDateFinalizationEvent.LoanSettlementDateFinalizationEventBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanSettlementDateFinalizationEvent", builder=LoanSettlementDateFinalizationEvent.LoanSettlementDateFinalizationEventBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanSettlementDateFinalizationEvent extends AbstractLoanAllocationEvent {
 
 	LoanSettlementDateFinalizationEventMeta metaData = new LoanSettlementDateFinalizationEventMeta();

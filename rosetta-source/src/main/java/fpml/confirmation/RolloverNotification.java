@@ -39,9 +39,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A loan servicing notification designed to communicate the combination of business events associated with a rollover transaction.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RolloverNotification", builder=RolloverNotification.RolloverNotificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RolloverNotification", builder=RolloverNotification.RolloverNotificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RolloverNotification extends AbstractContractNotification {
 
 	RolloverNotificationMeta metaData = new RolloverNotificationMeta();

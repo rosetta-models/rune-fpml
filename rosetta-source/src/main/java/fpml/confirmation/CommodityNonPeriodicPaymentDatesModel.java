@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The different options for specifying the Payment Date.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityNonPeriodicPaymentDatesModel", builder=CommodityNonPeriodicPaymentDatesModel.CommodityNonPeriodicPaymentDatesModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityNonPeriodicPaymentDatesModel", builder=CommodityNonPeriodicPaymentDatesModel.CommodityNonPeriodicPaymentDatesModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityNonPeriodicPaymentDatesModel extends RosettaModelObject {
 
 	CommodityNonPeriodicPaymentDatesModelMeta metaData = new CommodityNonPeriodicPaymentDatesModelMeta();

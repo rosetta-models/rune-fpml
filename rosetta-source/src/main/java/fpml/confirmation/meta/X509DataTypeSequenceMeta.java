@@ -19,7 +19,7 @@ import java.util.function.Function;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaMeta(model=X509DataTypeSequence.class)
 public class X509DataTypeSequenceMeta implements RosettaMetaData<X509DataTypeSequence> {

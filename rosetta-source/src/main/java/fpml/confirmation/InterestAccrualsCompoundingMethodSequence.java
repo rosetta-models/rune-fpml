@@ -20,9 +20,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="InterestAccrualsCompoundingMethodSequence", builder=InterestAccrualsCompoundingMethodSequence.InterestAccrualsCompoundingMethodSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="InterestAccrualsCompoundingMethodSequence", builder=InterestAccrualsCompoundingMethodSequence.InterestAccrualsCompoundingMethodSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface InterestAccrualsCompoundingMethodSequence extends RosettaModelObject {
 
 	InterestAccrualsCompoundingMethodSequenceMeta metaData = new InterestAccrualsCompoundingMethodSequenceMeta();

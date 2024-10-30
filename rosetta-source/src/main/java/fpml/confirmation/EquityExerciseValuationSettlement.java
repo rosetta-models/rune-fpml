@@ -32,9 +32,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type for defining exercise procedures for equity options.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EquityExerciseValuationSettlement", builder=EquityExerciseValuationSettlement.EquityExerciseValuationSettlementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EquityExerciseValuationSettlement", builder=EquityExerciseValuationSettlement.EquityExerciseValuationSettlementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EquityExerciseValuationSettlement extends RosettaModelObject {
 
 	EquityExerciseValuationSettlementMeta metaData = new EquityExerciseValuationSettlementMeta();

@@ -27,9 +27,9 @@ import java.util.stream.Collectors;
 
 /**
  * Strike is expressed as Schedule, with an initial value and optional steps.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxStrike", builder=FxStrike.FxStrikeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxStrike", builder=FxStrike.FxStrikeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxStrike extends Schedule {
 
 	FxStrikeMeta metaData = new FxStrikeMeta();

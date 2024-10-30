@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Environmental Product (e.g. allowance, certificate or unit).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
 @RosettaEnum("EnvironmentalProductTypeEnum")
 public enum EnvironmentalProductTypeEnum {

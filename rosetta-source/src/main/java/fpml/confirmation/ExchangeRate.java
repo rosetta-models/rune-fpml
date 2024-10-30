@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that is used for describing the exchange rate for a particular transaction.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ExchangeRate", builder=ExchangeRate.ExchangeRateBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ExchangeRate", builder=ExchangeRate.ExchangeRateBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ExchangeRate extends RosettaModelObject {
 
 	ExchangeRateMeta metaData = new ExchangeRateMeta();

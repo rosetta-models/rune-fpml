@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * As per ISDA 2002 Definitions.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Barrier", builder=Barrier.BarrierBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Barrier", builder=Barrier.BarrierBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Barrier extends RosettaModelObject {
 
 	BarrierMeta metaData = new BarrierMeta();

@@ -25,9 +25,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Choice between amendment, increase, termination, and novation events.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PostTradeEventsBaseModel", builder=PostTradeEventsBaseModel.PostTradeEventsBaseModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PostTradeEventsBaseModel", builder=PostTradeEventsBaseModel.PostTradeEventsBaseModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PostTradeEventsBaseModel extends RosettaModelObject {
 
 	PostTradeEventsBaseModelMeta metaData = new PostTradeEventsBaseModelMeta();

@@ -31,9 +31,9 @@ import java.util.stream.Collectors;
 
 /**
  * A global element used to hold CENs.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CreditEventNotice", builder=CreditEventNotice.CreditEventNoticeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CreditEventNotice", builder=CreditEventNotice.CreditEventNoticeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CreditEventNotice extends CreditEventNoticeDocument {
 
 	CreditEventNoticeMeta metaData = new CreditEventNoticeMeta();

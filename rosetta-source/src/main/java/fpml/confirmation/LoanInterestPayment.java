@@ -36,9 +36,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An event representing the lender-specific payment of interest amounts for a given accrual period against a single loan contract.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanInterestPayment", builder=LoanInterestPayment.LoanInterestPaymentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanInterestPayment", builder=LoanInterestPayment.LoanInterestPaymentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanInterestPayment extends AbstractLoanContractEvent {
 
 	LoanInterestPaymentMeta metaData = new LoanInterestPaymentMeta();

@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that can be used to describe the category of an advisory message, e.g.. Availability, Rules, Products, etc., etc..
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ServiceAdvisoryCategory", builder=ServiceAdvisoryCategory.ServiceAdvisoryCategoryBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ServiceAdvisoryCategory", builder=ServiceAdvisoryCategory.ServiceAdvisoryCategoryBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ServiceAdvisoryCategory extends RosettaModelObject {
 
 	ServiceAdvisoryCategoryMeta metaData = new ServiceAdvisoryCategoryMeta();

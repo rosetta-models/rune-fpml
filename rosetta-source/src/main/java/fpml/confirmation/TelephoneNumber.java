@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type that represents a telephonic contact.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TelephoneNumber", builder=TelephoneNumber.TelephoneNumberBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TelephoneNumber", builder=TelephoneNumber.TelephoneNumberBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TelephoneNumber extends RosettaModelObject {
 
 	TelephoneNumberMeta metaData = new TelephoneNumberMeta();

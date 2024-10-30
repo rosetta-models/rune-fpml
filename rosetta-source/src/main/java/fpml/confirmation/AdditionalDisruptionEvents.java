@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type for defining ISDA 2002 Equity Derivative Additional Disruption Events.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AdditionalDisruptionEvents", builder=AdditionalDisruptionEvents.AdditionalDisruptionEventsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AdditionalDisruptionEvents", builder=AdditionalDisruptionEvents.AdditionalDisruptionEventsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AdditionalDisruptionEvents extends RosettaModelObject {
 
 	AdditionalDisruptionEventsMeta metaData = new AdditionalDisruptionEventsMeta();

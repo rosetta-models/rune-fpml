@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type for defining the strike price for an equity option. The strike price is either: (i) in respect of an index option transaction, the level of the relevant index specified or otherwise determined in the transaction; or (ii) in respect of a share option transaction, the price per share specified or otherwise determined in the transaction. This can be expressed either as a percentage of notional amount or as an absolute value.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EquityStrike", builder=EquityStrike.EquityStrikeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EquityStrike", builder=EquityStrike.EquityStrikeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EquityStrike extends RosettaModelObject {
 
 	EquityStrikeMeta metaData = new EquityStrikeMeta();

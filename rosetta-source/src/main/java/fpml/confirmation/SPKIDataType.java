@@ -25,9 +25,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SPKIDataType", builder=SPKIDataType.SPKIDataTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SPKIDataType", builder=SPKIDataType.SPKIDataTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SPKIDataType extends RosettaModelObject {
 
 	SPKIDataTypeMeta metaData = new SPKIDataTypeMeta();

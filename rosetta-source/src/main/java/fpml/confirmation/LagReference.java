@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Allows a lag to reference one already defined elsewhere in the trade.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LagReference", builder=LagReference.LagReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LagReference", builder=LagReference.LagReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LagReference extends Reference {
 
 	LagReferenceMeta metaData = new LagReferenceMeta();

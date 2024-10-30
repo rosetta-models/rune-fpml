@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to a settlement terms derived construct (cashSettlementTerms or physicalSettlementTerms).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SettlementTermsReference", builder=SettlementTermsReference.SettlementTermsReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SettlementTermsReference", builder=SettlementTermsReference.SettlementTermsReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SettlementTermsReference extends Reference {
 
 	SettlementTermsReferenceMeta metaData = new SettlementTermsReferenceMeta();

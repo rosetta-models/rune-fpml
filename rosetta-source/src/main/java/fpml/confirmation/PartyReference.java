@@ -24,9 +24,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Reference to a party.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PartyReference", builder=PartyReference.PartyReferenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PartyReference", builder=PartyReference.PartyReferenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PartyReference extends Reference {
 
 	PartyReferenceMeta metaData = new PartyReferenceMeta();

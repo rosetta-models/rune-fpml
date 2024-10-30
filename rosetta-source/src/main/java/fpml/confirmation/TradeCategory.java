@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A scheme used to categorize positions.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TradeCategory", builder=TradeCategory.TradeCategoryBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TradeCategory", builder=TradeCategory.TradeCategoryBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TradeCategory extends RosettaModelObject {
 
 	TradeCategoryMeta metaData = new TradeCategoryMeta();

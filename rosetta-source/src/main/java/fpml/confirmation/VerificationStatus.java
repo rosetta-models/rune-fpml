@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The verification status of the position as reported by the sender (Verified, Disputed).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="VerificationStatus", builder=VerificationStatus.VerificationStatusBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="VerificationStatus", builder=VerificationStatus.VerificationStatusBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface VerificationStatus extends RosettaModelObject {
 
 	VerificationStatusMeta metaData = new VerificationStatusMeta();

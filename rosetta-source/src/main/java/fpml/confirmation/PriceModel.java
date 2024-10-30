@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Price model group.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PriceModel", builder=PriceModel.PriceModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PriceModel", builder=PriceModel.PriceModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PriceModel extends RosettaModelObject {
 
 	PriceModelMeta metaData = new PriceModelMeta();

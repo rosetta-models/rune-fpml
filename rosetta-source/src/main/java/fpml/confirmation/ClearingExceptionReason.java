@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The reason a trade is exempted from a clearing mandate.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ClearingExceptionReason", builder=ClearingExceptionReason.ClearingExceptionReasonBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ClearingExceptionReason", builder=ClearingExceptionReason.ClearingExceptionReasonBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ClearingExceptionReason extends RosettaModelObject {
 
 	ClearingExceptionReasonMeta metaData = new ClearingExceptionReasonMeta();

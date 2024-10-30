@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * This defines the time interval to the start of the exercise period, i.e. the earliest exercise date, and the frequency of subsequent exercise dates (if any).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ExercisePeriod", builder=ExercisePeriod.ExercisePeriodBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ExercisePeriod", builder=ExercisePeriod.ExercisePeriodBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ExercisePeriod extends RosettaModelObject {
 
 	ExercisePeriodMeta metaData = new ExercisePeriodMeta();

@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The pipeline through which the physical commodity will be delivered.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityPipeline", builder=CommodityPipeline.CommodityPipelineBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityPipeline", builder=CommodityPipeline.CommodityPipelineBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityPipeline extends RosettaModelObject {
 
 	CommodityPipelineMeta metaData = new CommodityPipelineMeta();

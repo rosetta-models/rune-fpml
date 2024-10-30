@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="OtherAgreementType", builder=OtherAgreementType.OtherAgreementTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="OtherAgreementType", builder=OtherAgreementType.OtherAgreementTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface OtherAgreementType extends RosettaModelObject {
 
 	OtherAgreementTypeMeta metaData = new OtherAgreementTypeMeta();

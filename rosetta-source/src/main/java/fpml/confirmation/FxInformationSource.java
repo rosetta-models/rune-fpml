@@ -26,9 +26,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxInformationSource", builder=FxInformationSource.FxInformationSourceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxInformationSource", builder=FxInformationSource.FxInformationSourceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxInformationSource extends InformationSource {
 
 	FxInformationSourceMeta metaData = new FxInformationSourceMeta();

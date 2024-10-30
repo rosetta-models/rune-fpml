@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model group defining agreement and effective dates.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AgreementAndEffectiveDatesModel", builder=AgreementAndEffectiveDatesModel.AgreementAndEffectiveDatesModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AgreementAndEffectiveDatesModel", builder=AgreementAndEffectiveDatesModel.AgreementAndEffectiveDatesModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AgreementAndEffectiveDatesModel extends RosettaModelObject {
 
 	AgreementAndEffectiveDatesModelMeta metaData = new AgreementAndEffectiveDatesModelMeta();

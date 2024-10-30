@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * For an asset (e.g. a reference/benchmark asset), the pricing structure used to price it. Used, for example, to specify that the rateIndex &quot;USD-LIBOR-Telerate&quot; with term = 6M is priced using the &quot;USD-LIBOR-Close&quot; curve.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PricingMethod", builder=PricingMethod.PricingMethodBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PricingMethod", builder=PricingMethod.PricingMethodBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PricingMethod extends RosettaModelObject {
 
 	PricingMethodMeta metaData = new PricingMethodMeta();

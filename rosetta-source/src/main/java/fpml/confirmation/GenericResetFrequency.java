@@ -25,9 +25,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="GenericResetFrequency", builder=GenericResetFrequency.GenericResetFrequencyBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="GenericResetFrequency", builder=GenericResetFrequency.GenericResetFrequencyBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface GenericResetFrequency extends Frequency {
 
 	GenericResetFrequencyMeta metaData = new GenericResetFrequencyMeta();

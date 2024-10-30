@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Model group to enable users to reference a Delivery Periods schedule in the form of a series of actual dates in a deliveryPeriods container or in the form of a parameterised schedule in a deliveryPeriodsSchedule container.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityDeliveryPeriodsPointerModel", builder=CommodityDeliveryPeriodsPointerModel.CommodityDeliveryPeriodsPointerModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityDeliveryPeriodsPointerModel", builder=CommodityDeliveryPeriodsPointerModel.CommodityDeliveryPeriodsPointerModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityDeliveryPeriodsPointerModel extends RosettaModelObject {
 
 	CommodityDeliveryPeriodsPointerModelMeta metaData = new CommodityDeliveryPeriodsPointerModelMeta();

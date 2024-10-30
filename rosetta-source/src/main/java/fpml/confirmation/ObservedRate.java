@@ -23,9 +23,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ObservedRate", builder=ObservedRate.ObservedRateBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ObservedRate", builder=ObservedRate.ObservedRateBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ObservedRate extends RosettaModelObject {
 
 	ObservedRateMeta metaData = new ObservedRateMeta();

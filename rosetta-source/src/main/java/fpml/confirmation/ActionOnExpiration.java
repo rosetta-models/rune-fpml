@@ -20,9 +20,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ActionOnExpiration", builder=ActionOnExpiration.ActionOnExpirationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ActionOnExpiration", builder=ActionOnExpiration.ActionOnExpirationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ActionOnExpiration extends RosettaModelObject {
 
 	ActionOnExpirationMeta metaData = new ActionOnExpirationMeta();

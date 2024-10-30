@@ -29,9 +29,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing the variance amount of a variance swap.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="Variance", builder=Variance.VarianceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="Variance", builder=Variance.VarianceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface Variance extends CalculationFromObservation {
 
 	VarianceMeta metaData = new VarianceMeta();

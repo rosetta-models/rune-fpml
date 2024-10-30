@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * FX Performance Fixed Leg describes Fixed FX Rate Payer and Fixed Rate.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxPerformanceFixedLeg", builder=FxPerformanceFixedLeg.FxPerformanceFixedLegBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxPerformanceFixedLeg", builder=FxPerformanceFixedLeg.FxPerformanceFixedLegBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxPerformanceFixedLeg extends FxPerformanceLeg {
 
 	FxPerformanceFixedLegMeta metaData = new FxPerformanceFixedLegMeta();

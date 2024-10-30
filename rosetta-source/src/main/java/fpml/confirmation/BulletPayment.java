@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A product to represent a single known payment. A product to represent a single cashflow.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="BulletPayment", builder=BulletPayment.BulletPaymentBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="BulletPayment", builder=BulletPayment.BulletPaymentBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface BulletPayment extends Product {
 
 	BulletPaymentMeta metaData = new BulletPaymentMeta();

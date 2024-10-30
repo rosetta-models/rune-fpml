@@ -32,9 +32,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A sensitivity report definition, consisting of a collection of sensitivity definitions.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SensitivitySetDefinition", builder=SensitivitySetDefinition.SensitivitySetDefinitionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SensitivitySetDefinition", builder=SensitivitySetDefinition.SensitivitySetDefinitionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SensitivitySetDefinition extends RosettaModelObject {
 
 	SensitivitySetDefinitionMeta metaData = new SensitivitySetDefinitionMeta();

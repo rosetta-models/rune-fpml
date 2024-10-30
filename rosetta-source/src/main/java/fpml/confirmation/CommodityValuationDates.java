@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The dates on which prices are observed for the underlyer.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityValuationDates", builder=CommodityValuationDates.CommodityValuationDatesBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityValuationDates", builder=CommodityValuationDates.CommodityValuationDatesBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityValuationDates extends RosettaModelObject {
 
 	CommodityValuationDatesMeta metaData = new CommodityValuationDatesMeta();

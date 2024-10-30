@@ -25,9 +25,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Describes an alternative set of price sources
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxFallbackReferencePrice", builder=FxFallbackReferencePrice.FxFallbackReferencePriceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxFallbackReferencePrice", builder=FxFallbackReferencePrice.FxFallbackReferencePriceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxFallbackReferencePrice extends FxDisruptionFallback {
 
 	FxFallbackReferencePriceMeta metaData = new FxFallbackReferencePriceMeta();

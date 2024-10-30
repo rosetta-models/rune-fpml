@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining the cash settlement payment date(s) as either a set of explicit dates, together with applicable adjustments, or as a date relative to some other (anchor) date, or as any date in a range of contiguous business days.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CashSettlementPaymentDate", builder=CashSettlementPaymentDate.CashSettlementPaymentDateBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CashSettlementPaymentDate", builder=CashSettlementPaymentDate.CashSettlementPaymentDateBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CashSettlementPaymentDate extends RosettaModelObject {
 
 	CashSettlementPaymentDateMeta metaData = new CashSettlementPaymentDateMeta();

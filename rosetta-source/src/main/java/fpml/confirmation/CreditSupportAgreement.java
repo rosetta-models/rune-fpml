@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The agreement executed between the parties and intended to govern collateral arrangement for all OTC derivatives transactions between those parties.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CreditSupportAgreement", builder=CreditSupportAgreement.CreditSupportAgreementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CreditSupportAgreement", builder=CreditSupportAgreement.CreditSupportAgreementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CreditSupportAgreement extends RosettaModelObject {
 
 	CreditSupportAgreementMeta metaData = new CreditSupportAgreementMeta();

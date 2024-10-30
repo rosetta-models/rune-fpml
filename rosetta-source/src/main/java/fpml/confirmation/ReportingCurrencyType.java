@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A scheme identifying the type of currency that was used to report the value of an asset. For example, this could contain values like SettlementCurrency, QuoteCurrency, UnitCurrency, etc.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReportingCurrencyType", builder=ReportingCurrencyType.ReportingCurrencyTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReportingCurrencyType", builder=ReportingCurrencyType.ReportingCurrencyTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReportingCurrencyType extends RosettaModelObject {
 
 	ReportingCurrencyTypeMeta metaData = new ReportingCurrencyTypeMeta();

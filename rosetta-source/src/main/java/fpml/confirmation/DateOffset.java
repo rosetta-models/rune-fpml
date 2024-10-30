@@ -27,9 +27,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type defining an offset used in calculating a date when this date is defined in reference to another date through a date offset. The type includes the convention for adjusting the date and an optional sequence element to indicate the order in a sequence of multiple date offsets.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DateOffset", builder=DateOffset.DateOffsetBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DateOffset", builder=DateOffset.DateOffsetBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DateOffset extends Offset {
 
 	DateOffsetMeta metaData = new DateOffsetMeta();

@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A party&#39;s industry sector classification.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="IndustryClassification", builder=IndustryClassification.IndustryClassificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="IndustryClassification", builder=IndustryClassification.IndustryClassificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface IndustryClassification extends RosettaModelObject {
 
 	IndustryClassificationMeta metaData = new IndustryClassificationMeta();

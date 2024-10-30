@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type describing the initial and final valuation of the underlyer.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ReturnLegValuation", builder=ReturnLegValuation.ReturnLegValuationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ReturnLegValuation", builder=ReturnLegValuation.ReturnLegValuationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ReturnLegValuation extends RosettaModelObject {
 
 	ReturnLegValuationMeta metaData = new ReturnLegValuationMeta();

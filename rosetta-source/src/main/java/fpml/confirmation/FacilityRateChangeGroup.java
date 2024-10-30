@@ -31,9 +31,9 @@ import java.util.stream.Collectors;
 
 /**
  * Head of the substitution group for all facility rate update events.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FacilityRateChangeGroup", builder=FacilityRateChangeGroup.FacilityRateChangeGroupBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FacilityRateChangeGroup", builder=FacilityRateChangeGroup.FacilityRateChangeGroupBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FacilityRateChangeGroup extends AbstractFacilityContractEvent {
 
 	FacilityRateChangeGroupMeta metaData = new FacilityRateChangeGroupMeta();

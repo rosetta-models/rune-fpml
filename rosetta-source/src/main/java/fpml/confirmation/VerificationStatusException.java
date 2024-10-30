@@ -25,9 +25,9 @@ import fpml.confirmation.meta.VerificationStatusExceptionMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="VerificationStatusException", builder=VerificationStatusException.VerificationStatusExceptionBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="VerificationStatusException", builder=VerificationStatusException.VerificationStatusExceptionBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface VerificationStatusException extends Exception {
 
 	VerificationStatusExceptionMeta metaData = new VerificationStatusExceptionMeta();

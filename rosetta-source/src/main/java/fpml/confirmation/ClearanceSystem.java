@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Unless otherwise specified, the principal clearance system customarily used for settling trades in the relevant underlying.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ClearanceSystem", builder=ClearanceSystem.ClearanceSystemBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ClearanceSystem", builder=ClearanceSystem.ClearanceSystemBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ClearanceSystem extends RosettaModelObject {
 
 	ClearanceSystemMeta metaData = new ClearanceSystemMeta();

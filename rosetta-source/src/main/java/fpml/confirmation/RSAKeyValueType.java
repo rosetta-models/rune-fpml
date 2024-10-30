@@ -19,9 +19,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RSAKeyValueType", builder=RSAKeyValueType.RSAKeyValueTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RSAKeyValueType", builder=RSAKeyValueType.RSAKeyValueTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RSAKeyValueType extends RosettaModelObject {
 
 	RSAKeyValueTypeMeta metaData = new RSAKeyValueTypeMeta();

@@ -20,9 +20,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="SettlementPeriodLeverageSequence", builder=SettlementPeriodLeverageSequence.SettlementPeriodLeverageSequenceBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="SettlementPeriodLeverageSequence", builder=SettlementPeriodLeverageSequence.SettlementPeriodLeverageSequenceBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface SettlementPeriodLeverageSequence extends RosettaModelObject {
 
 	SettlementPeriodLeverageSequenceMeta metaData = new SettlementPeriodLeverageSequenceMeta();

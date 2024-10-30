@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type to define the adjusted dates associated with an individual extension event.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="ExtensionEvent", builder=ExtensionEvent.ExtensionEventBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="ExtensionEvent", builder=ExtensionEvent.ExtensionEventBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface ExtensionEvent extends RosettaModelObject {
 
 	ExtensionEventMeta metaData = new ExtensionEventMeta();

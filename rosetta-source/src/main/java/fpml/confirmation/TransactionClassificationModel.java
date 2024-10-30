@@ -27,9 +27,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TransactionClassificationModel", builder=TransactionClassificationModel.TransactionClassificationModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TransactionClassificationModel", builder=TransactionClassificationModel.TransactionClassificationModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TransactionClassificationModel extends RosettaModelObject {
 
 	TransactionClassificationModelMeta metaData = new TransactionClassificationModelMeta();

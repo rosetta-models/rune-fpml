@@ -32,9 +32,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A full definition of the accrual characteristics of a loan contract. This structure defines both the underlying base rate as well as any additional margins and costs associated with the loan contract.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FloatingRateAccrual", builder=FloatingRateAccrual.FloatingRateAccrualBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FloatingRateAccrual", builder=FloatingRateAccrual.FloatingRateAccrualBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FloatingRateAccrual extends FloatingRateOptionBase {
 
 	FloatingRateAccrualMeta metaData = new FloatingRateAccrualMeta();

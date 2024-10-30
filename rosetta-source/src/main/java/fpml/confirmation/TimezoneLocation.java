@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A geophraphic location for the purposes of defining a prevailing time according to the tz database.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="TimezoneLocation", builder=TimezoneLocation.TimezoneLocationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="TimezoneLocation", builder=TimezoneLocation.TimezoneLocationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface TimezoneLocation extends RosettaModelObject {
 
 	TimezoneLocationMeta metaData = new TimezoneLocationMeta();

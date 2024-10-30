@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type refining the generic message header content to make it specific to request messages.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="RequestMessageHeader", builder=RequestMessageHeader.RequestMessageHeaderBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="RequestMessageHeader", builder=RequestMessageHeader.RequestMessageHeaderBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface RequestMessageHeader extends MessageHeader {
 
 	RequestMessageHeaderMeta metaData = new RequestMessageHeaderMeta();

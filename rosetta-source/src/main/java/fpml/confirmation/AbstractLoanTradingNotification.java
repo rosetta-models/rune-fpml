@@ -31,9 +31,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * An underlying abstract structure for all syndicated loan servicing notifications; the wrapper for events which occur through the life-cycle of a loan trade.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AbstractLoanTradingNotification", builder=AbstractLoanTradingNotification.AbstractLoanTradingNotificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AbstractLoanTradingNotification", builder=AbstractLoanTradingNotification.AbstractLoanTradingNotificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AbstractLoanTradingNotification extends CorrectableRequestMessage {
 
 	AbstractLoanTradingNotificationMeta metaData = new AbstractLoanTradingNotificationMeta();

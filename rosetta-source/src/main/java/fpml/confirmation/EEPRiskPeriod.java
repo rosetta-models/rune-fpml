@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * TBD.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="EEPRiskPeriod", builder=EEPRiskPeriod.EEPRiskPeriodBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="EEPRiskPeriod", builder=EEPRiskPeriod.EEPRiskPeriodBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface EEPRiskPeriod extends RosettaModelObject {
 
 	EEPRiskPeriodMeta metaData = new EEPRiskPeriodMeta();

@@ -36,9 +36,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A full set of deal and facility definitions valid as of a specific date.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="DealStatement", builder=DealStatement.DealStatementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="DealStatement", builder=DealStatement.DealStatementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface DealStatement extends AbstractLoanStatement {
 
 	DealStatementMeta metaData = new DealStatementMeta();

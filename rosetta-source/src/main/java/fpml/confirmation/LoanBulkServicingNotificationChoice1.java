@@ -21,9 +21,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LoanBulkServicingNotificationChoice1", builder=LoanBulkServicingNotificationChoice1.LoanBulkServicingNotificationChoice1BuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LoanBulkServicingNotificationChoice1", builder=LoanBulkServicingNotificationChoice1.LoanBulkServicingNotificationChoice1BuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LoanBulkServicingNotificationChoice1 extends RosettaModelObject {
 
 	LoanBulkServicingNotificationChoice1Meta metaData = new LoanBulkServicingNotificationChoice1Meta();

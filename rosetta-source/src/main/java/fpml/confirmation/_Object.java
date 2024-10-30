@@ -25,9 +25,9 @@ import java.util.stream.Collectors;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="_Object", builder=_Object._ObjectBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="_Object", builder=_Object._ObjectBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface _Object extends ObjectType {
 
 	_ObjectMeta metaData = new _ObjectMeta();

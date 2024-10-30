@@ -23,9 +23,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="LimitApplicable", builder=LimitApplicable.LimitApplicableBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="LimitApplicable", builder=LimitApplicable.LimitApplicableBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface LimitApplicable extends RosettaModelObject {
 
 	LimitApplicableMeta metaData = new LimitApplicableMeta();

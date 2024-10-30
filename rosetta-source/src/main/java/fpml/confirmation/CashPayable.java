@@ -28,9 +28,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A structure taht represents payable cash, together with reference to any withholding tax being applied. This is used as a generic cash flow container across all loan business events (within the event header).
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CashPayable", builder=CashPayable.CashPayableBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CashPayable", builder=CashPayable.CashPayableBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CashPayable extends RosettaModelObject {
 
 	CashPayableMeta metaData = new CashPayableMeta();

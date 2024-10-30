@@ -22,9 +22,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A model group containing Option Base Feature Elements.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="OptionBaseFeatureModel", builder=OptionBaseFeatureModel.OptionBaseFeatureModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="OptionBaseFeatureModel", builder=OptionBaseFeatureModel.OptionBaseFeatureModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface OptionBaseFeatureModel extends RosettaModelObject {
 
 	OptionBaseFeatureModelMeta metaData = new OptionBaseFeatureModelMeta();

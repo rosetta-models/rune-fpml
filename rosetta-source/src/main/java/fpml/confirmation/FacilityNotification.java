@@ -39,9 +39,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A loan servicing notification which can be used to communicate any facility-level business event.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FacilityNotification", builder=FacilityNotification.FacilityNotificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FacilityNotification", builder=FacilityNotification.FacilityNotificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FacilityNotification extends AbstractFacilityNotification {
 
 	FacilityNotificationMeta metaData = new FacilityNotificationMeta();

@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A container for the disruption event set
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="FxDisruptionEvents", builder=FxDisruptionEvents.FxDisruptionEventsBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="FxDisruptionEvents", builder=FxDisruptionEvents.FxDisruptionEventsBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface FxDisruptionEvents extends RosettaModelObject {
 
 	FxDisruptionEventsMeta metaData = new FxDisruptionEventsMeta();

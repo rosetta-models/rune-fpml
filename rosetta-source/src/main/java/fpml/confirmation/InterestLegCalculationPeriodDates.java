@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Component that holds the various dates used to specify the interest leg of the return swap. It is used to define the InterestPeriodDates identifyer.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="InterestLegCalculationPeriodDates", builder=InterestLegCalculationPeriodDates.InterestLegCalculationPeriodDatesBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="InterestLegCalculationPeriodDates", builder=InterestLegCalculationPeriodDates.InterestLegCalculationPeriodDatesBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface InterestLegCalculationPeriodDates extends RosettaModelObject {
 
 	InterestLegCalculationPeriodDatesMeta metaData = new InterestLegCalculationPeriodDatesMeta();

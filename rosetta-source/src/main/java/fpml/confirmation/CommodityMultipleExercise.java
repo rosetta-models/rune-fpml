@@ -21,9 +21,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A type for defining the multiple exercise provisions of an American style commodity option.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityMultipleExercise", builder=CommodityMultipleExercise.CommodityMultipleExerciseBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityMultipleExercise", builder=CommodityMultipleExercise.CommodityMultipleExerciseBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityMultipleExercise extends RosettaModelObject {
 
 	CommodityMultipleExerciseMeta metaData = new CommodityMultipleExerciseMeta();

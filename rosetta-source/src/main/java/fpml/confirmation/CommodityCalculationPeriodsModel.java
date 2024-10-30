@@ -23,9 +23,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The different options for specifying the Calculation Periods.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CommodityCalculationPeriodsModel", builder=CommodityCalculationPeriodsModel.CommodityCalculationPeriodsModelBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CommodityCalculationPeriodsModel", builder=CommodityCalculationPeriodsModel.CommodityCalculationPeriodsModelBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CommodityCalculationPeriodsModel extends RosettaModelObject {
 
 	CommodityCalculationPeriodsModelMeta metaData = new CommodityCalculationPeriodsModelMeta();

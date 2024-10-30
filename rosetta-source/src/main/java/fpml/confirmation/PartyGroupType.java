@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The data type used for party group classification.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="PartyGroupType", builder=PartyGroupType.PartyGroupTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="PartyGroupType", builder=PartyGroupType.PartyGroupTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface PartyGroupType extends RosettaModelObject {
 
 	PartyGroupTypeMeta metaData = new PartyGroupTypeMeta();

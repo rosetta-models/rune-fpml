@@ -22,9 +22,9 @@ import java.util.Objects;
 import static java.util.Optional.ofNullable;
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CreditEventNoticeType", builder=CreditEventNoticeType.CreditEventNoticeTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CreditEventNoticeType", builder=CreditEventNoticeType.CreditEventNoticeTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CreditEventNoticeType extends RosettaModelObject {
 
 	CreditEventNoticeTypeMeta metaData = new CreditEventNoticeTypeMeta();

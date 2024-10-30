@@ -27,9 +27,9 @@ import fpml.confirmation.meta.CreditEventAcknowledgementMeta;
 
 
 /**
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="CreditEventAcknowledgement", builder=CreditEventAcknowledgement.CreditEventAcknowledgementBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="CreditEventAcknowledgement", builder=CreditEventAcknowledgement.CreditEventAcknowledgementBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface CreditEventAcknowledgement extends Acknowledgement {
 
 	CreditEventAcknowledgementMeta metaData = new CreditEventAcknowledgementMeta();

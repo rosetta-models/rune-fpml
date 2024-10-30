@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * The data type used for account type.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="AccountType", builder=AccountType.AccountTypeBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="AccountType", builder=AccountType.AccountTypeBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface AccountType extends RosettaModelObject {
 
 	AccountTypeMeta metaData = new AccountTypeMeta();

@@ -26,9 +26,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * A struture that defines all the currencies in which funds can be drawn against a facility.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="MultiCurrency", builder=MultiCurrency.MultiCurrencyBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="MultiCurrency", builder=MultiCurrency.MultiCurrencyBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface MultiCurrency extends RosettaModelObject {
 
 	MultiCurrencyMeta metaData = new MultiCurrencyMeta();

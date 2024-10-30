@@ -20,9 +20,9 @@ import static java.util.Optional.ofNullable;
 
 /**
  * Indicator as to the type of transaction in accordance with Articles 20(3)(a) and 21(5)(a) of Regulation (EU) 600/2014.
- * @version ${project.version}
+ * @version 0.0.0.master-SNAPSHOT
  */
-@RosettaDataType(value="OtcClassification", builder=OtcClassification.OtcClassificationBuilderImpl.class, version="${project.version}")
+@RosettaDataType(value="OtcClassification", builder=OtcClassification.OtcClassificationBuilderImpl.class, version="0.0.0.master-SNAPSHOT")
 public interface OtcClassification extends RosettaModelObject {
 
 	OtcClassificationMeta metaData = new OtcClassificationMeta();
