@@ -9,6 +9,8 @@ import com.rosetta.model.lib.meta.BasicRosettaMetaData;
 import com.rosetta.model.lib.meta.GlobalKeyFields;
 import com.rosetta.model.lib.meta.GlobalKeyFields.GlobalKeyFieldsBuilder;
 import com.rosetta.model.lib.meta.Key;
+import com.rosetta.model.lib.meta.MetaDataFields;
+import com.rosetta.model.lib.meta.MetaDataFields.MetaDataFieldsBuilder;
 import com.rosetta.model.lib.meta.RosettaMetaData;
 import com.rosetta.model.lib.meta.TemplateFields;
 import com.rosetta.model.lib.meta.TemplateFields.TemplateFieldsBuilder;
@@ -29,11 +31,12 @@ import static java.util.Optional.ofNullable;
  * @version 1
  */
 @RosettaDataType(value="MetaAndTemplateFields", builder=MetaAndTemplateFields.MetaAndTemplateFieldsBuilderImpl.class, version="0.0.0")
-public interface MetaAndTemplateFields extends RosettaModelObject, GlobalKeyFields, TemplateFields {
+public interface MetaAndTemplateFields extends RosettaModelObject, GlobalKeyFields, TemplateFields, MetaDataFields {
 
 	MetaAndTemplateFieldsMeta metaData = new MetaAndTemplateFieldsMeta();
 
 	/*********************** Getter Methods  ***********************/
+	String getScheme();
 	String getTemplateGlobalReference();
 	String getGlobalKey();
 	String getExternalKey();
@@ -62,6 +65,7 @@ public interface MetaAndTemplateFields extends RosettaModelObject, GlobalKeyFiel
 	
 	@Override
 	default void process(RosettaPath path, Processor processor) {
+		processor.processBasic(path.newSubPath("scheme"), String.class, getScheme(), this, AttributeMeta.META);
 		processor.processBasic(path.newSubPath("templateGlobalReference"), String.class, getTemplateGlobalReference(), this, AttributeMeta.META);
 		processor.processBasic(path.newSubPath("globalKey"), String.class, getGlobalKey(), this, AttributeMeta.META);
 		processor.processBasic(path.newSubPath("externalKey"), String.class, getExternalKey(), this, AttributeMeta.META);
@@ -70,9 +74,10 @@ public interface MetaAndTemplateFields extends RosettaModelObject, GlobalKeyFiel
 	
 
 	/*********************** Builder Interface  ***********************/
-	interface MetaAndTemplateFieldsBuilder extends MetaAndTemplateFields, RosettaModelObjectBuilder, GlobalKeyFields.GlobalKeyFieldsBuilder, TemplateFields.TemplateFieldsBuilder {
+	interface MetaAndTemplateFieldsBuilder extends MetaAndTemplateFields, RosettaModelObjectBuilder, GlobalKeyFields.GlobalKeyFieldsBuilder, TemplateFields.TemplateFieldsBuilder, MetaDataFields.MetaDataFieldsBuilder {
 		Key.KeyBuilder getOrCreateKey(int _index);
 		List<? extends Key.KeyBuilder> getKey();
+		MetaAndTemplateFields.MetaAndTemplateFieldsBuilder setScheme(String scheme);
 		MetaAndTemplateFields.MetaAndTemplateFieldsBuilder setTemplateGlobalReference(String templateGlobalReference);
 		MetaAndTemplateFields.MetaAndTemplateFieldsBuilder setGlobalKey(String globalKey);
 		MetaAndTemplateFields.MetaAndTemplateFieldsBuilder setExternalKey(String externalKey);
@@ -83,6 +88,7 @@ public interface MetaAndTemplateFields extends RosettaModelObject, GlobalKeyFiel
 
 		@Override
 		default void process(RosettaPath path, BuilderProcessor processor) {
+			processor.processBasic(path.newSubPath("scheme"), String.class, getScheme(), this, AttributeMeta.META);
 			processor.processBasic(path.newSubPath("templateGlobalReference"), String.class, getTemplateGlobalReference(), this, AttributeMeta.META);
 			processor.processBasic(path.newSubPath("globalKey"), String.class, getGlobalKey(), this, AttributeMeta.META);
 			processor.processBasic(path.newSubPath("externalKey"), String.class, getExternalKey(), this, AttributeMeta.META);
@@ -95,16 +101,24 @@ public interface MetaAndTemplateFields extends RosettaModelObject, GlobalKeyFiel
 
 	/*********************** Immutable Implementation of MetaAndTemplateFields  ***********************/
 	class MetaAndTemplateFieldsImpl implements MetaAndTemplateFields {
+		private final String scheme;
 		private final String templateGlobalReference;
 		private final String globalKey;
 		private final String externalKey;
 		private final List<? extends Key> key;
 		
 		protected MetaAndTemplateFieldsImpl(MetaAndTemplateFields.MetaAndTemplateFieldsBuilder builder) {
+			this.scheme = builder.getScheme();
 			this.templateGlobalReference = builder.getTemplateGlobalReference();
 			this.globalKey = builder.getGlobalKey();
 			this.externalKey = builder.getExternalKey();
 			this.key = ofNullable(builder.getKey()).filter(_l->!_l.isEmpty()).map(list -> list.stream().filter(Objects::nonNull).map(f->f.build()).filter(Objects::nonNull).collect(ImmutableList.toImmutableList())).orElse(null);
+		}
+		
+		@Override
+		@RosettaAttribute("scheme")
+		public String getScheme() {
+			return scheme;
 		}
 		
 		@Override
@@ -144,6 +158,7 @@ public interface MetaAndTemplateFields extends RosettaModelObject, GlobalKeyFiel
 		}
 		
 		protected void setBuilderFields(MetaAndTemplateFields.MetaAndTemplateFieldsBuilder builder) {
+			ofNullable(getScheme()).ifPresent(builder::setScheme);
 			ofNullable(getTemplateGlobalReference()).ifPresent(builder::setTemplateGlobalReference);
 			ofNullable(getGlobalKey()).ifPresent(builder::setGlobalKey);
 			ofNullable(getExternalKey()).ifPresent(builder::setExternalKey);
@@ -157,6 +172,7 @@ public interface MetaAndTemplateFields extends RosettaModelObject, GlobalKeyFiel
 		
 			MetaAndTemplateFields _that = getType().cast(o);
 		
+			if (!Objects.equals(scheme, _that.getScheme())) return false;
 			if (!Objects.equals(templateGlobalReference, _that.getTemplateGlobalReference())) return false;
 			if (!Objects.equals(globalKey, _that.getGlobalKey())) return false;
 			if (!Objects.equals(externalKey, _that.getExternalKey())) return false;
@@ -167,6 +183,7 @@ public interface MetaAndTemplateFields extends RosettaModelObject, GlobalKeyFiel
 		@Override
 		public int hashCode() {
 			int _result = 0;
+			_result = 31 * _result + (scheme != null ? scheme.hashCode() : 0);
 			_result = 31 * _result + (templateGlobalReference != null ? templateGlobalReference.hashCode() : 0);
 			_result = 31 * _result + (globalKey != null ? globalKey.hashCode() : 0);
 			_result = 31 * _result + (externalKey != null ? externalKey.hashCode() : 0);
@@ -177,6 +194,7 @@ public interface MetaAndTemplateFields extends RosettaModelObject, GlobalKeyFiel
 		@Override
 		public String toString() {
 			return "MetaAndTemplateFields {" +
+				"scheme=" + this.scheme + ", " +
 				"templateGlobalReference=" + this.templateGlobalReference + ", " +
 				"globalKey=" + this.globalKey + ", " +
 				"externalKey=" + this.externalKey + ", " +
@@ -188,6 +206,7 @@ public interface MetaAndTemplateFields extends RosettaModelObject, GlobalKeyFiel
 	/*********************** Builder Implementation of MetaAndTemplateFields  ***********************/
 	class MetaAndTemplateFieldsBuilderImpl implements MetaAndTemplateFields.MetaAndTemplateFieldsBuilder {
 	
+		protected String scheme;
 		protected String templateGlobalReference;
 		protected String globalKey;
 		protected String externalKey;
@@ -196,6 +215,12 @@ public interface MetaAndTemplateFields extends RosettaModelObject, GlobalKeyFiel
 		public MetaAndTemplateFieldsBuilderImpl() {
 		}
 	
+		@Override
+		@RosettaAttribute("scheme")
+		public String getScheme() {
+			return scheme;
+		}
+		
 		@Override
 		@RosettaAttribute("templateGlobalReference")
 		public String getTemplateGlobalReference() {
@@ -233,6 +258,12 @@ public interface MetaAndTemplateFields extends RosettaModelObject, GlobalKeyFiel
 					});
 		}
 		
+		@Override
+		@RosettaAttribute("scheme")
+		public MetaAndTemplateFields.MetaAndTemplateFieldsBuilder setScheme(String scheme) {
+			this.scheme = scheme==null?null:scheme;
+			return this;
+		}
 		@Override
 		@RosettaAttribute("templateGlobalReference")
 		public MetaAndTemplateFields.MetaAndTemplateFieldsBuilder setTemplateGlobalReference(String templateGlobalReference) {
@@ -306,6 +337,7 @@ public interface MetaAndTemplateFields extends RosettaModelObject, GlobalKeyFiel
 		
 		@Override
 		public boolean hasData() {
+			if (getScheme()!=null) return true;
 			if (getTemplateGlobalReference()!=null) return true;
 			if (getGlobalKey()!=null) return true;
 			if (getExternalKey()!=null) return true;
@@ -320,6 +352,7 @@ public interface MetaAndTemplateFields extends RosettaModelObject, GlobalKeyFiel
 			
 			merger.mergeRosetta(getKey(), o.getKey(), this::getOrCreateKey);
 			
+			merger.mergeBasic(getScheme(), o.getScheme(), this::setScheme);
 			merger.mergeBasic(getTemplateGlobalReference(), o.getTemplateGlobalReference(), this::setTemplateGlobalReference);
 			merger.mergeBasic(getGlobalKey(), o.getGlobalKey(), this::setGlobalKey);
 			merger.mergeBasic(getExternalKey(), o.getExternalKey(), this::setExternalKey);
@@ -333,6 +366,7 @@ public interface MetaAndTemplateFields extends RosettaModelObject, GlobalKeyFiel
 		
 			MetaAndTemplateFields _that = getType().cast(o);
 		
+			if (!Objects.equals(scheme, _that.getScheme())) return false;
 			if (!Objects.equals(templateGlobalReference, _that.getTemplateGlobalReference())) return false;
 			if (!Objects.equals(globalKey, _that.getGlobalKey())) return false;
 			if (!Objects.equals(externalKey, _that.getExternalKey())) return false;
@@ -343,6 +377,7 @@ public interface MetaAndTemplateFields extends RosettaModelObject, GlobalKeyFiel
 		@Override
 		public int hashCode() {
 			int _result = 0;
+			_result = 31 * _result + (scheme != null ? scheme.hashCode() : 0);
 			_result = 31 * _result + (templateGlobalReference != null ? templateGlobalReference.hashCode() : 0);
 			_result = 31 * _result + (globalKey != null ? globalKey.hashCode() : 0);
 			_result = 31 * _result + (externalKey != null ? externalKey.hashCode() : 0);
@@ -353,6 +388,7 @@ public interface MetaAndTemplateFields extends RosettaModelObject, GlobalKeyFiel
 		@Override
 		public String toString() {
 			return "MetaAndTemplateFieldsBuilder {" +
+				"scheme=" + this.scheme + ", " +
 				"templateGlobalReference=" + this.templateGlobalReference + ", " +
 				"globalKey=" + this.globalKey + ", " +
 				"externalKey=" + this.externalKey + ", " +
