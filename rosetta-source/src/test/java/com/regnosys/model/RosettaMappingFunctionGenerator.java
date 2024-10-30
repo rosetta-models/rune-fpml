@@ -34,8 +34,6 @@ public class RosettaMappingFunctionGenerator {
         Path tempContents = Files.createTempFile("mappingFnContent", null);
         BufferedWriter contentWriter = new BufferedWriter(new FileWriter(tempContents.toFile()));
 
-        contentWriter.append("import cdm.fpml.confirmation.* as fpml\n\n");
-
         while (!functionsToGenerateQueue.isEmpty()) {
             FunctionToGenerate functionToGenerate = functionsToGenerateQueue.remove();
             String mappingFunction = functionToGenerate.outputType instanceof Data ? generateDataTypeMappingFunction(functionToGenerate) : generateNonDataTypeMappingFunction(functionToGenerate);
@@ -46,13 +44,15 @@ public class RosettaMappingFunctionGenerator {
 
         Path tempImports = Files.createTempFile("mappingFnImports", null);
         BufferedWriter importsWriter = new BufferedWriter(new FileWriter(tempImports.toFile()));
+        importsWriter.append("namespace fpml.mapping : < \"fpml mappings\" >\n");
+        importsWriter.append("version \"${project.version}\"\n\n");
         for (String i : imports) {
             importsWriter.append(i).append("\n");
         }
+        importsWriter.append("import fpml.confirmation.* as fpml\n\n");
         importsWriter.close();
 
         Path outputPath = Path.of("./rosetta-source/src/main/rosetta/mapping-functions.rosetta");
-
         try(OutputStream output = Files.newOutputStream(outputPath)) {
             Files.copy(tempImports, output);
             Files.copy(tempContents, output);
