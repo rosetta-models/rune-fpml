@@ -48,14 +48,14 @@ public class JavaCodeGenHelper {
     public static void main(String[] args) throws IOException {
         Injector injector = new RosettaTestingInjectorProvider().getInjector();
         JavaCodeGenHelper helper = injector.getInstance(JavaCodeGenHelper.class);
-        helper.runMappingGenerator();
+        helper.runRosettaEnumGenerator();
     }
 
-    public void runRosettaEnumGenerator() {
+    public void runRosettaEnumGenerator() throws IOException {
         List<RosettaModel> models = getModels();
         Set<RosettaExternalEnum> allExternalEnums = findAllExternalEnums(models);
 
-        allExternalEnums.stream().map(rosettaEnumGenerator::generateRosettaEnum).forEach(System.out::println);
+        rosettaEnumGenerator.generateRosettaEnum(allExternalEnums);
     }
 
     public void runJavaEnumGenerator() {
@@ -105,6 +105,7 @@ public class JavaCodeGenHelper {
                 .flatMap(m -> m.getElements().stream())
                 .filter(RosettaExternalSynonymSource.class::isInstance)
                 .map(RosettaExternalSynonymSource.class::cast)
+                .filter(s -> s.getName().equals("FpML_5_Confirmation_To_TradeState"))  //filtering out anything other than TradeState for now so we don't get dupes
                 .forEach(externalSynonymSource -> {
                     listOfExternalEnums.addAll(externalSynonymSource.getExternalEnums());
                 });
