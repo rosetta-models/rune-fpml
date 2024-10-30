@@ -50,6 +50,7 @@ public class JavaCodeGenHelper {
         Injector injector = new RosettaTestingInjectorProvider().getInjector();
         JavaCodeGenHelper helper = injector.getInstance(JavaCodeGenHelper.class);
         helper.runRosettaEnumGenerator();
+        helper.runMappingGenerator();
     }
 
     public void runRosettaEnumGenerator() throws IOException {
