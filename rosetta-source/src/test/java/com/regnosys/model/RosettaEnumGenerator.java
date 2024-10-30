@@ -49,9 +49,9 @@ public class RosettaEnumGenerator {
 
         imports.forEach(i -> sb.insert(0, i + "\n"));
 
-        Path outputFile = Path.of("./rosetta-source/src/main/rosetta/enumeration-mapping-functions.rosetta");
+        Path outputFile = Path.of("./rosetta-source/src/main/rosetta/ingest-enumerations-func.rosetta");
         BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile.toFile()));
-        writer.append("namespace fpml.enumeration.mapping : < \"fpml enumeration mappings\" >\n");
+        writer.append("namespace fpml.ingest.enumerations : < \"fpml enumeration mappings\" >\n");
         writer.append("version \"${project.version}\"\n\n");
         writer.append(sb.toString());
         writer.close();
