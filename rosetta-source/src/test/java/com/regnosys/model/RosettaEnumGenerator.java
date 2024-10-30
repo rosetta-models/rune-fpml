@@ -16,7 +16,7 @@ import java.util.Set;
 public class RosettaEnumGenerator {
 
 
-    public void generateRosettaEnum(Set<RosettaExternalEnum> rosettaExternalEnums) throws IOException {
+    public void generateRosettaEnum(List<RosettaExternalEnum> rosettaExternalEnums) throws IOException {
         Set<String> imports = new HashSet<>();
 
         StringBuilder sb = new StringBuilder();
@@ -31,12 +31,17 @@ public class RosettaEnumGenerator {
             sb.append("\toutput:\n");
             sb.append("\t\tresult %s (0..1)\n".formatted(enumName));
             sb.append("\tset result: value switch\n");
+            Set<SynonymEnumValuePair> synonymEnumValuePairs = new HashSet<>();  //This is to get rid of duplicate junk synonyms in the model
             rosettaExternalEnum.getRegularValues().forEach(enumValueSynonym -> {
                 RosettaEnumValue enumRef = enumValueSynonym.getEnumRef();
                 String enumValue = enumRef.getName();
                 List<String> synonyms = enumValueSynonym.getExternalEnumSynonyms().stream().map(RosettaEnumSynonym::getSynonymValue).toList();
                 synonyms.forEach(s -> {
-                    sb.append("\t\t\"%s\" then %s,\n".formatted(s, enumValue));
+                    SynonymEnumValuePair synonymEnumValuePair = new SynonymEnumValuePair(s, enumValue);
+                    if (!synonymEnumValuePairs.contains(synonymEnumValuePair)) {
+                        sb.append("\t\t\"%s\" then %s,\n".formatted(s, enumValue));
+//                        synonymEnumValuePairs.add(synonymEnumValuePair);
+                    }
                 });
             });
             sb.append("\t\tdefault empty\n\n");
@@ -51,4 +56,6 @@ public class RosettaEnumGenerator {
         writer.append(sb.toString());
         writer.close();
     }
+
+    private record SynonymEnumValuePair(String synonym, String enumValue) {}
 }

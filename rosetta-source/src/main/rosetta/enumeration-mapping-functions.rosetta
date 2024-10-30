@@ -23,300 +23,6 @@ import cdm.base.staticdata.asset.credit.*
 import cdm.observable.common.*
 import cdm.observable.event.*
 
-func MapInformationProviderEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result InformationProviderEnum (0..1)
-	set result: value switch
-		"AssocBanksSingapore" then AssocBanksSingapore,
-		"BankOfCanada" then BankOfCanada,
-		"BankOfEngland" then BankOfEngland,
-		"BankOfJapan" then BankOfJapan,
-		"Bloomberg" then Bloomberg,
-		"EuroCentralBank" then EuroCentralBank,
-		"FHLBSF" then FHLBSF,
-		"FederalReserve" then FederalReserve,
-		"ISDA" then ISDA,
-		"ReserveBankAustralia" then ReserveBankAustralia,
-		"ReserveBankNewZealand" then ReserveBankNewZealand,
-		"Reuters" then Reuters,
-		"SAFEX" then SAFEX,
-		"Telerate" then Telerate,
-		default empty
-
-func MapCompoundingMethodEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result CompoundingMethodEnum (0..1)
-	set result: value switch
-		"Flat" then Flat,
-		"None" then None,
-		"Straight" then Straight,
-		"SpreadExclusive" then SpreadExclusive,
-		default empty
-
-func MapSettledEntityMatrixSourceEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result SettledEntityMatrixSourceEnum (0..1)
-	set result: value switch
-		"ConfirmationAnnex" then ConfirmationAnnex,
-		"NotApplicable" then NotApplicable,
-		"Publisher" then Publisher,
-		default empty
-
-func MapDividendCompositionEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result DividendCompositionEnum (0..1)
-	set result: value switch
-		"EquityAmountReceiverElection" then EquityAmountReceiverElection,
-		"CalculationAgentElection" then CalculationAgentElection,
-		default empty
-
-func MapNationalizationOrInsolvencyOrDelistingEventEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result NationalizationOrInsolvencyOrDelistingEventEnum (0..1)
-	set result: value switch
-		"NegotiatedCloseout" then NegotiatedCloseout,
-		"CancellationAndPayment" then CancellationAndPayment,
-		default empty
-
-func MapDeterminationMethodEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result DeterminationMethodEnum (0..1)
-	set result: value switch
-		"AgreedInitialPrice" then AgreedInitialPrice,
-		"AsSpecifiedInMasterConfirmation" then AsSpecifiedInMasterConfirmation,
-		"CalculationAgent" then CalculationAgent,
-		"ClosingPrice" then ClosingPrice,
-		"DividendCurrency" then DividendCurrency,
-		"ExpiringContractLevel" then ExpiringContractLevel,
-		"HedgeExecution" then HedgeExecution,
-		"IssuerPaymentCurrency" then IssuerPaymentCurrency,
-		"NAV" then NAV,
-		"OpenPrice" then OpenPrice,
-		"OSPPrice" then OSPPrice,
-		"SettlementCurrency" then SettlementCurrency,
-		"StrikeDateDetermination" then StrikeDateDetermination,
-		"TWAPPrice" then TWAPPrice,
-		"ValuationTime" then ValuationTime,
-		"VWAPPrice" then VWAPPrice,
-		default empty
-
-func MapPayerReceiverEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result PayerReceiverEnum (0..1)
-	set result: value switch
-		"Payer" then Payer,
-		"Receiver" then Receiver,
-		default empty
-
-func MapExpirationTimeTypeEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result ExpirationTimeTypeEnum (0..1)
-	set result: value switch
-		"Close" then Close,
-		"Open" then Open,
-		"OSP" then OSP,
-		"SpecificTime" then SpecificTime,
-		"XETRA" then XETRA,
-		"DerivativesClose" then DerivativesClose,
-		"AsSpecifiedInMasterConfirmation" then AsSpecifiedInMasterConfirmation,
-		default empty
-
-func MapTelephoneTypeEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result TelephoneTypeEnum (0..1)
-	set result: value switch
-		"Work" then Work,
-		"Mobile" then Mobile,
-		"Fax" then Fax,
-		"Personal" then Personal,
-		default empty
-
-func MapCreditRatingAgencyEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result CreditRatingAgencyEnum (0..1)
-	set result: value switch
-		"AMBest" then AMBest,
-		"CBRS" then CBRS,
-		"DBRS" then DBRS,
-		"Fitch" then Fitch,
-		"Japanagency" then Japanagency,
-		"Moodys" then Moodys,
-		"RatingAndInvestmentInformation" then RatingAndInvestmentInformation,
-		"StandardAndPoors" then StandardAndPoors,
-		default empty
-
-func MapStubPeriodTypeEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result StubPeriodTypeEnum (0..1)
-	set result: value switch
-		"ShortInitial" then ShortInitial,
-		"ShortFinal" then ShortFinal,
-		"LongInitial" then LongInitial,
-		"LongFinal" then LongFinal,
-		default empty
-
-func MapSettlementTypeEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result SettlementTypeEnum (0..1)
-	set result: value switch
-		"Cash" then Cash,
-		"Physical" then Physical,
-		"Election" then Election,
-		"CashOrPhysical" then CashOrPhysical,
-		default empty
-
-func MapRepoDurationEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result RepoDurationEnum (0..1)
-	set result: value switch
-		"Overnight" then Overnight,
-		"Term" then Term,
-		default empty
-
-func MapDividendPeriodEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result DividendPeriodEnum (0..1)
-	set result: value switch
-		"FirstPeriod" then FirstPeriod,
-		"SecondPeriod" then SecondPeriod,
-		default empty
-
-func MapEntityTypeEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result EntityTypeEnum (0..1)
-	set result: value switch
-		"Asian" then Asian,
-		"AustralianAndNewZealand" then AustralianAndNewZealand,
-		"EuropeanEmergingMarket" then EuropeanEmergingMarkets,
-		"Japanese" then Japanese,
-		"NorthAmericanHighYield" then NorthAmericanHighYield,
-		"NorthAmericanInsurance" then NorthAmericanInsurance,
-		"NorthAmericanInvestmentGrade" then NorthAmericanInvestmentGrade,
-		"Singaporean" then Singaporean,
-		"WesternEuropean" then WesternEuropean,
-		"WesternEuropeanInsurance" then WesternEuropeanInsurance,
-		default empty
-
-func MapDividendAmountTypeEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result DividendAmountTypeEnum (0..1)
-	set result: value switch
-		"RecordAmount" then RecordAmount,
-		"ExAmount" then ExAmount,
-		"PaidAmount" then PaidAmount,
-		"AsSpecifiedInMasterConfirmation" then AsSpecifiedInMasterConfirmation,
-		default empty
-
-func MapOptionTypeEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result OptionTypeEnum (0..1)
-	set result: value switch
-		"Payer" then Payer,
-		"Receiver" then Receiver,
-		"Straddle" then Straddle,
-		default empty
-
-func MapContractualDefinitionsEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result ContractualDefinitionsEnum (0..1)
-	set result: value switch
-		"ISDA1991" then ISDA1991InterestRate,
-		"ISDA1993Commodity" then ISDA1993CommodityDerivatives,
-		"ISDA1996Equity" then ISDA1996EquityDerivatives,
-		"ISDA1997Bullion" then ISDA1997Bullion,
-		"ISDA1997GovernmentBond" then ISDA1997GovernmentBondOption,
-		"ISDA1998FX" then ISDA1998FxAndCurrencyOption,
-		"ISDA1999Credit" then ISDA1999CreditDerivatives,
-		"ISDA2000" then ISDA2000,
-		"ISDA2002Equity" then ISDA2002EquityDerivatives,
-		"ISDA2003Credit" then ISDA2003CreditDerivatives,
-		"ISDA2004Novation" then ISDA2004Novation,
-		"ISDA2005Commodity" then ISDA2005Commodity,
-		"ISDA2006" then ISDA2006,
-		"ISDA2006Inflation" then ISDA2006InflationDerivatives,
-		"ISDA2008Inflation" then ISDA2008InflationDerivatives,
-		"ISDA2011Equity" then ISDA2011EquityDerivatives,
-		"ISDA2014Credit" then ISDA2014CreditDerivatives,
-		default empty
-
-func MapSpreadScheduleTypeEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result SpreadScheduleTypeEnum (0..1)
-	set result: value switch
-		"Long" then Long,
-		"Short" then Short,
-		default empty
-
-func MapPartyDeterminationEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result PartyDeterminationEnum (0..1)
-	set result: value switch
-		"ExercisingParty" then ExercisingParty,
-		"NonExercisingParty" then NonExercisingParty,
-		"AsSpecifiedInMasterAgreement" then AsSpecifiedInMasterAgreement,
-		"AsSpecifiedInStandardTermsSupplement" then AsSpecifiedInStandardTermsSupplement,
-		"Both" then Both,
-		default empty
-
-func MapDividendEntitlementEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result DividendEntitlementEnum (0..1)
-	set result: value switch
-		"ExDate" then ExDate,
-		default empty
-
-func MapInterestShortfallCapEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result InterestShortfallCapEnum (0..1)
-	set result: value switch
-		"Fixed" then Fixed,
-		"Variable" then Variable,
-		default empty
-
 func MapAccountTypeEnum:
 	inputs:
 		value string (0..1)
@@ -326,6 +32,308 @@ func MapAccountTypeEnum:
 		"AggregateClient" then AggregateClient,
 		"Client" then Client,
 		"House" then House,
+		default empty
+
+func MapAssetClassEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result AssetClassEnum (0..1)
+	set result: value switch
+		"Commodity" then Commodity,
+		"Credit" then Credit,
+		"Equity" then Equity,
+		"ForeignExchange" then ForeignExchange,
+		"InterestRate" then InterestRate,
+		default empty
+
+func MapAveragingCalculationMethodEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result AveragingCalculationMethodEnum (0..1)
+	set result: value switch
+		"Unweighted" then Arithmetic,
+		"Weighted" then Arithmetic,
+		"Arithmetic" then Arithmetic,
+		"Geometric" then Geometric,
+		"Harmonic" then Harmonic,
+		default empty
+
+func MapAveragingInOutEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result AveragingInOutEnum (0..1)
+	set result: value switch
+		"In" then In,
+		"Out" then Out,
+		"Both" then Both,
+		default empty
+
+func MapAveragingWeightingMethodEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result AveragingWeightingMethodEnum (0..1)
+	set result: value switch
+		"Unweighted" then Unweighted,
+		"Arithmetic" then Unweighted,
+		"Geometric" then Unweighted,
+		"Harmonic" then Unweighted,
+		"Weighted" then Weighted,
+		default empty
+
+func MapBusinessCenterEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result BusinessCenterEnum (0..1)
+	set result: value switch
+		"AEAB" then AEAB,
+		"AEAD" then AEAD,
+		"AEDU" then AEDU,
+		"AMYE" then AMYE,
+		"AOLU" then AOLU,
+		"ARBA" then ARBA,
+		"ATVI" then ATVI,
+		"AUAD" then AUAD,
+		"AUBR" then AUBR,
+		"AUCA" then AUCA,
+		"AUDA" then AUDA,
+		"AUME" then AUME,
+		"AUPE" then AUPE,
+		"AUSY" then AUSY,
+		"BBBR" then BBBR,
+		"BDDH" then BDDH,
+		"BEBR" then BEBR,
+		"BGSO" then BGSO,
+		"BHMA" then BHMA,
+		"BMHA" then BMHA,
+		"BNBS" then BNBS,
+		"BOLP" then BOLP,
+		"BRBD" then BRBD,
+		"BRBR" then BRBR,
+		"BRRJ" then BRRJ,
+		"BRSP" then BRSP,
+		"BSNA" then BSNA,
+		"BWGA" then BWGA,
+		"BYMI" then BYMI,
+		"CACL" then CACL,
+		"CAMO" then CAMO,
+		"CAOT" then CAOT,
+		"CATO" then CATO,
+		"CAVA" then CAVA,
+		"CAWI" then CAWI,
+		"CHBA" then CHBA,
+		"CHGE" then CHGE,
+		"CHZU" then CHZU,
+		"CIAB" then CIAB,
+		"CLSA" then CLSA,
+		"CMYA" then CMYA,
+		"CNBE" then CNBE,
+		"CNSH" then CNSH,
+		"COBO" then COBO,
+		"CRSJ" then CRSJ,
+		"CWWI" then CWWI,
+		"CYNI" then CYNI,
+		"CZPR" then CZPR,
+		"DECO" then DECO,
+		"DEDU" then DEDU,
+		"DEFR" then DEFR,
+		"DEHH" then DEHH,
+		"DELE" then DELE,
+		"DEMA" then DEMA,
+		"DEMU" then DEMU,
+		"DEST" then DEST,
+		"DKCO" then DKCO,
+		"DOSD" then DOSD,
+		"DZAL" then DZAL,
+		"ECGU" then ECGU,
+		"EETA" then EETA,
+		"EGCA" then EGCA,
+		"ESAS" then ESAS,
+		"ESBA" then ESBA,
+		"ESMA" then ESMA,
+		"ESSS" then ESSS,
+		"ETAA" then ETAA,
+		"EUR-ICESWAP" then EUR_ICESWAP,
+		"EUTA" then EUTA,
+		"FIHE" then FIHE,
+		"FRPA" then FRPA,
+		"GBED" then GBED,
+		"GBLO" then GBLO,
+		"GBP-ICESWAP" then GBP_ICESWAP,
+		"GETB" then GETB,
+		"GGSP" then GGSP,
+		"GHAC" then GHAC,
+		"GIGI" then GIGI,
+		"GMBA" then GMBA,
+		"GNCO" then GNCO,
+		"GRAT" then GRAT,
+		"GTGC" then GTGC,
+		"HKHK" then HKHK,
+		"HNTE" then HNTE,
+		"HRZA" then HRZA,
+		"HUBU" then HUBU,
+		"IDJA" then IDJA,
+		"IEDU" then IEDU,
+		"ILJE" then ILJE,
+		"ILS-TELBOR" then ILS_TELBOR,
+		"ILTA" then ILTA,
+		"INAH" then INAH,
+		"INBA" then INBA,
+		"INCH" then INCH,
+		"INHY" then INHY,
+		"INKO" then INKO,
+		"INMU" then INMU,
+		"INND" then INND,
+		"IQBA" then IQBA,
+		"IRTE" then IRTE,
+		"ISRE" then ISRE,
+		"ITMI" then ITMI,
+		"ITRO" then ITRO,
+		"ITTU" then ITTU,
+		"JESH" then JESH,
+		"JMKI" then JMKI,
+		"JOAM" then JOAM,
+		"JPTO" then JPTO,
+		"KENA" then KENA,
+		"KRSE" then KRSE,
+		"KWKC" then KWKC,
+		"KYGE" then KYGE,
+		"KZAL" then KZAL,
+		"LAVI" then LAVI,
+		"LBBE" then LBBE,
+		"LKCO" then LKCO,
+		"LULU" then LULU,
+		"LVRI" then LVRI,
+		"MACA" then MACA,
+		"MARA" then MARA,
+		"MCMO" then MCMO,
+		"MNUB" then MNUB,
+		"MOMA" then MOMA,
+		"MTVA" then MTVA,
+		"MUPL" then MUPL,
+		"MVMA" then MVMA,
+		"MWLI" then MWLI,
+		"MXMC" then MXMC,
+		"MYKL" then MYKL,
+		"MYLA" then MYLA,
+		"MZMA" then MZMA,
+		"NAWI" then NAWI,
+		"NGAB" then NGAB,
+		"NGLA" then NGLA,
+		"NLAM" then NLAM,
+		"NLRO" then NLRO,
+		"NOOS" then NOOS,
+		"NPKA" then NPKA,
+		"NYFD" then NYFD,
+		"NYSE" then NYSE,
+		"NZAU" then NZAU,
+		"NZWE" then NZWE,
+		"OMMU" then OMMU,
+		"PAPC" then PAPC,
+		"PELI" then PELI,
+		"PHMA" then PHMA,
+		"PHMK" then PHMK,
+		"PKKA" then PKKA,
+		"PLWA" then PLWA,
+		"PRSJ" then PRSJ,
+		"PTLI" then PTLI,
+		"QADO" then QADO,
+		"ROBU" then ROBU,
+		"RSBE" then RSBE,
+		"RUMO" then RUMO,
+		"SAAB" then SAAB,
+		"SAJE" then SAJE,
+		"SARI" then SARI,
+		"SEST" then SEST,
+		"SGSI" then SGSI,
+		"SILJ" then SILJ,
+		"SKBR" then SKBR,
+		"SLFR" then SLFR,
+		"SNDA" then SNDA,
+		"SVSS" then SVSS,
+		"THBA" then THBA,
+		"TNTU" then TNTU,
+		"TRAN" then TRAN,
+		"TRIS" then TRIS,
+		"TTPS" then TTPS,
+		"TWTA" then TWTA,
+		"TZDA" then TZDA,
+		"TZDO" then TZDO,
+		"UAKI" then UAKI,
+		"UGKA" then UGKA,
+		"USBO" then USBO,
+		"USCH" then USCH,
+		"USCR" then USCR,
+		"USD-ICESWAP" then USD_ICESWAP,
+		"USD-MUNI" then USD_MUNI,
+		"USDC" then USDC,
+		"USDN" then USDN,
+		"USDT" then USDT,
+		"USGS" then USGS,
+		"USHL" then USHL,
+		"USHO" then USHO,
+		"USLA" then USLA,
+		"USMB" then USMB,
+		"USMN" then USMN,
+		"USNY" then USNY,
+		"USPO" then USPO,
+		"USSA" then USSA,
+		"USSE" then USSE,
+		"USSF" then USSF,
+		"USWT" then USWT,
+		"UYMO" then UYMO,
+		"UZTA" then UZTA,
+		"VECA" then VECA,
+		"VGRT" then VGRT,
+		"VNHA" then VNHA,
+		"VNHC" then VNHC,
+		"YEAD" then YEAD,
+		"ZAJO" then ZAJO,
+		"ZMLU" then ZMLU,
+		"ZWHA" then ZWHA,
+		default empty
+
+func MapBusinessDayConventionEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result BusinessDayConventionEnum (0..1)
+	set result: value switch
+		"FOLLOWING" then FOLLOWING,
+		"FRN" then FRN,
+		"MODFOLLOWING" then MODFOLLOWING,
+		"PRECEDING" then PRECEDING,
+		"MODPRECEDING" then MODPRECEDING,
+		"NEAREST" then NEAREST,
+		"NONE" then NONE,
+		"NotApplicable" then NotApplicable,
+		default empty
+
+func MapCalculationMethodEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result CalculationMethodEnum (0..1)
+	set result: value switch
+		"Averaging" then Averaging,
+		"Compounding" then Compounding,
+		"CompoundedIndex" then CompoundedIndex,
+		default empty
+
+func MapCallingPartyEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result CallingPartyEnum (0..1)
+	set result: value switch
+		"InitialBuyer" then InitialBuyer,
+		"InitialSeller" then InitialSeller,
+		"Either" then Either,
+		"AsDefinedInMasterAgreement" then AsDefinedInMasterAgreement,
 		default empty
 
 func MapCapacityUnitEnum:
@@ -387,574 +395,6 @@ func MapCapacityUnitEnum:
 		"USTHM" then USTHM,
 		"t" then GBT,
 		"TEU" then TEU,
-		default empty
-
-func MapDiscountingTypeEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result DiscountingTypeEnum (0..1)
-	set result: value switch
-		"Standard" then Standard,
-		"FRA" then FRA,
-		"ISDA" then FRA,
-		"FRAYield" then FRAYield,
-		"AFMA" then AFMA,
-		default empty
-
-func MapCreditSupportAgreementTypeEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result CreditSupportAgreementTypeEnum (0..1)
-	set result: value switch
-		"CreditSupportDeed" then CreditSupportDeed,
-		"ISDA1995CreditSupportDeedEnglishLaw" then CreditSupportDeed,
-		"CreditSupportAnnex" then CreditSupportAnnex,
-		"ISDA1994CreditSupportAnnexNewYorkLaw" then CreditSupportAnnex,
-		"ISDA1995CreditSupportAnnexEnglishLaw" then CreditSupportAnnex,
-		"ISDA1995CreditSupportAnnexJapaneseLaw" then CreditSupportAnnex,
-		"CollateralTransferAgreement" then CollateralTransferAgreement,
-		default empty
-
-func MapPeriodEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result PeriodEnum (0..1)
-	set result: value switch
-		"D" then D,
-		"PerCalendarDay" then D,
-		"W" then W,
-		"NearbyWeek" then W,
-		"M" then M,
-		"NearbyMonth" then M,
-		"Y" then Y,
-		default empty
-
-func MapTimeTypeEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result TimeTypeEnum (0..1)
-	set result: value switch
-		"Close" then Close,
-		"Open" then Open,
-		"OSP" then OSP,
-		"SpecificTime" then SpecificTime,
-		"XETRA" then XETRA,
-		"DerivativesClose" then DerivativesClose,
-		"AsSpecifiedInMasterConfirmation" then AsSpecifiedInMasterConfirmation,
-		default empty
-
-func MapDayCountFractionEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result DayCountFractionEnum (0..1)
-	set result: value switch
-		"ACT/360" then ACT_360,
-		"ACT/365L" then ACT_365L,
-		"ACT/365.FIXED" then ACT_365_FIXED,
-		"ACT/ACT.AFB" then ACT_ACT_AFB,
-		"ACT/ACT.ICMA" then ACT_ACT_ICMA,
-		"ACT/ACT.ISMA" then ACT_ACT_ISMA,
-		"ACT/ACT.ISDA" then ACT_ACT_ISDA,
-		"CAL/252" then CAL_252,
-		"BUS/252" then CAL_252,
-		"1/1" then _1_1,
-		"30E/360" then _30E_360,
-		"30E/360.ISDA" then _30E_360_ISDA,
-		"30/360" then _30_360,
-		"RBA" then RBA_BOND_BASIS,
-		default empty
-
-func MapAssetClassEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result AssetClassEnum (0..1)
-	set result: value switch
-		"Commodity" then Commodity,
-		"Credit" then Credit,
-		"Equity" then Equity,
-		"ForeignExchange" then ForeignExchange,
-		"InterestRate" then InterestRate,
-		default empty
-
-func MapIndexEventConsequenceEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result IndexEventConsequenceEnum (0..1)
-	set result: value switch
-		"CalculationAgentAdjustment" then CalculationAgentAdjustment,
-		"NegotiatedCloseOut" then NegotiatedCloseOut,
-		"CancellationAndPayment" then CancellationAndPayment,
-		"RelatedExchange" then RelatedExchange,
-		default empty
-
-func MapObligationCategoryEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result ObligationCategoryEnum (0..1)
-	set result: value switch
-		"Payment" then Payment,
-		"BorrowedMoney" then BorrowedMoney,
-		"ReferenceObligationsOnly" then ReferenceObligationsOnly,
-		"Bond" then Bond,
-		"Loan" then Loan,
-		"BondOrLoan" then BondOrLoan,
-		default empty
-
-func MapDayDistributionEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result DayDistributionEnum (0..1)
-	set result: value switch
-		"All" then All,
-		"First" then First,
-		"Last" then Last,
-		"Penultimate" then Penultimate,
-		default empty
-
-func MapPriceExpressionEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result PriceExpressionEnum (0..1)
-	set result: value switch
-		"AbsoluteTerms" then AbsoluteTerms,
-		"PercentageOfNotional" then PercentageOfNotional,
-		default empty
-
-func MapAveragingInOutEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result AveragingInOutEnum (0..1)
-	set result: value switch
-		"In" then In,
-		"Out" then Out,
-		"Both" then Both,
-		default empty
-
-func MapRoundingDirectionEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result RoundingDirectionEnum (0..1)
-	set result: value switch
-		"Up" then Up,
-		"Down" then Down,
-		"Nearest" then Nearest,
-		default empty
-
-func MapPeriodExtendedEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result PeriodExtendedEnum (0..1)
-	set result: value switch
-		"D" then D,
-		"PerCalendarDay" then D,
-		"W" then W,
-		"M" then M,
-		"PerMonth" then M,
-		"Y" then Y,
-		"T" then T,
-		"Term" then T,
-		"PerCalculationPeriod" then C,
-		default empty
-
-func MapTriggerTypeEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result TriggerTypeEnum (0..1)
-	set result: value switch
-		"EqualOrLess" then EqualOrLess,
-		"EqualOrGreater" then EqualOrGreater,
-		"Equal" then Equal,
-		"Less" then Less,
-		"Greater" then Greater,
-		default empty
-
-func MapLengthUnitEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result LengthUnitEnum (0..1)
-	set result: value switch
-		"Pages" then Pages,
-		"TimeUnit" then TimeUnit,
-		default empty
-
-func MapFPVFinalPriceElectionFallbackEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result FPVFinalPriceElectionFallbackEnum (0..1)
-	set result: value switch
-		"FPVClose" then FPVClose,
-		"FPVHedgeExecution" then FPVHedgeExecution,
-		default empty
-
-func MapPremiumTypeEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result PremiumTypeEnum (0..1)
-	set result: value switch
-		"PrePaid" then PrePaid,
-		"PostPaid" then PostPaid,
-		"Variable" then Variable,
-		"Fixed" then Fixed,
-		default empty
-
-func MapMasterConfirmationTypeEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result MasterConfirmationTypeEnum (0..1)
-	set result: value switch
-		"DJ.CDX.EM" then DJ_CDX_EM,
-		"DJ.CDX.EM.DIV" then DJ_CDX_EM_DIV,
-		"DJ.CDX.NA" then DJ_CDX_NA,
-		"DJ.iTraxx.Europe" then DJ_iTraxx_Europe,
-		"EquityAmericas" then EquityAmericas,
-		"EquityAsia" then EquityAsia,
-		"EquityEuropean" then EquityEuropean,
-		"ISDA1999Credit" then ISDA1999Credit,
-		"ISDA2003CreditAsia" then ISDA2003CreditAsia,
-		"ISDA2003CreditAustraliaNewZealand" then ISDA2003CreditAustraliaNewZealand,
-		"ISDA2003CreditEuropean" then ISDA2003CreditEuropean,
-		"ISDA2003CreditJapan" then ISDA2003CreditJapan,
-		"ISDA2003CreditNorthAmerican" then ISDA2003CreditNorthAmerican,
-		"ISDA2003CreditSingapore" then ISDA2003CreditSingapore,
-		"ISDA2003CreditSovereignAsia" then ISDA2003CreditSovereignAsia,
-		"ISDA2003CreditSovereignCentralAndEasternEurope" then ISDA2003CreditSovereignCentralAndEasternEurope,
-		"ISDA2003CreditSovereignJapan" then ISDA2003CreditSovereignJapan,
-		"ISDA2003CreditSovereignLatinAmerica" then ISDA2003CreditSovereignLatinAmerica,
-		"ISDA2003CreditSovereignMiddleEast" then ISDA2003CreditSovereignMiddleEast,
-		"ISDA2003CreditSovereignWesternEurope" then ISDA2003CreditSovereignWesternEurope,
-		"ISDA2003StandardCreditAsia" then ISDA2003StandardCreditAsia,
-		"ISDA2003StandardCreditAustraliaNewZealand" then ISDA2003StandardCreditAustraliaNewZealand,
-		"ISDA2003StandardCreditEuropean" then ISDA2003StandardCreditEuropean,
-		"ISDA2003StandardCreditJapan" then ISDA2003StandardCreditJapan,
-		"ISDA2003StandardCreditNorthAmerican" then ISDA2003StandardCreditNorthAmerican,
-		"ISDA2003StandardCreditSingapore" then ISDA2003StandardCreditSingapore,
-		"ISDA2004CreditSovereignAsia" then ISDA2004CreditSovereignAsia,
-		"ISDA2004CreditSovereignEmergingEuropeanAndMiddleEastern" then ISDA2004CreditSovereignEmergingEuropeanAndMiddleEastern,
-		"ISDA2004CreditSovereignJapan" then ISDA2004CreditSovereignJapan,
-		"ISDA2004CreditSovereignLatinAmerican" then ISDA2004CreditSovereignLatinAmerican,
-		"ISDA2004CreditSovereignWesternEuropean" then ISDA2004CreditSovereignWesternEuropean,
-		"ISDA2004EquityAmericasInterdealer" then ISDA2004EquityAmericasInterdealer,
-		"ISDA2004EquityAmericasInterdealerRev1" then ISDA2004EquityAmericasInterdealerRev1,
-		"ISDA2004StandardCreditSovereignAsia" then ISDA2004StandardCreditSovereignAsia,
-		"ISDA2004StandardCreditSovereignEmergingEuropeanAndMiddleEastern" then ISDA2004StandardCreditSovereignEmergingEuropeanAndMiddleEastern,
-		"ISDA2004StandardCreditSovereignJapan" then ISDA2004StandardCreditSovereignJapan,
-		"ISDA2004StandardCreditSovereignLatinAmerican" then ISDA2004StandardCreditSovereignLatinAmerican,
-		"ISDA2004StandardCreditSovereignWesternEuropean" then ISDA2004StandardCreditSovereignWesternEuropean,
-		"ISDA2005EquityAsiaExcludingJapanInterdealer" then ISDA2005EquityAsiaExcludingJapanInterdealer,
-		"ISDA2005EquityAsiaExcludingJapanInterdealerRev2" then ISDA2005EquityAsiaExcludingJapanInterdealerRev2,
-		"ISDA2005EquityJapaneseInterdealer" then ISDA2005EquityJapaneseInterdealer,
-		"ISDA2006VarianceSwapJapanese" then ISDA2006VarianceSwapJapanese,
-		"ISDA2006VarianceSwapJapaneseInterdealer" then ISDA2006VarianceSwapJapaneseInterdealer,
-		"ISDA2007EquityEuropean" then ISDA2007EquityEuropean,
-		"ISDA2007VarianceSwapAmericas" then ISDA2007VarianceSwapAmericas,
-		"ISDA2007VarianceSwapAsiaExcludingJapan" then ISDA2007VarianceSwapAsiaExcludingJapan,
-		"ISDA2007VarianceSwapAsiaExcludingJapanRev1" then ISDA2007VarianceSwapAsiaExcludingJapanRev1,
-		"ISDA2007VarianceSwapAsiaExcludingJapanRev2" then ISDA2007VarianceSwapAsiaExcludingJapanRev2,
-		"ISDA2007VarianceSwapEuropean" then ISDA2007VarianceSwapEuropean,
-		"ISDA2007VarianceSwapEuropeanRev1" then ISDA2007VarianceSwapEuropeanRev1,
-		"ISDA2008DividendSwapJapan" then ISDA2008DividendSwapJapan,
-		"ISDA2008DividendSwapJapaneseRev1" then ISDA2008DividendSwapJapaneseRev1,
-		"ISDA2008EquityAmericas" then ISDA2008EquityAmericas,
-		"ISDA2008EquityAsiaExcludingJapan" then ISDA2008EquityAsiaExcludingJapan,
-		"ISDA2008EquityAsiaExcludingJapanRev1" then ISDA2008EquityAsiaExcludingJapanRev1,
-		"ISDA2008EquityJapan" then ISDA2008EquityJapan,
-		"ISDA2009EquityAmericas" then ISDA2009EquityAmericas,
-		"ISDA2009EquityEuropeanInterdealer" then ISDA2009EquityEuropeanInterdealer,
-		"ISDA2009EquityPanAsia" then ISDA2009EquityPanAsia,
-		"ISDA2010EquityEMEAInterdealer" then ISDA2010EquityEMEAInterdealer,
-		"ISDA2013VolatilitySwapAmericas" then ISDA2013VolatilitySwapAmericas,
-		"ISDA2013VolatilitySwapAsiaExcludingJapan" then ISDA2013VolatilitySwapAsiaExcludingJapan,
-		"ISDA2013VolatilitySwapEuropean" then ISDA2013VolatilitySwapEuropean,
-		"ISDA2013VolatilitySwapJapanese" then ISDA2013VolatilitySwapJapanese,
-		"2003CreditIndex" then _2003CreditIndex,
-		"2004EquityEuropeanInterdealer" then _2004EquityEuropeanInterdealer,
-		"2005VarianceSwapEuropeanInterdealer" then _2005VarianceSwapEuropeanInterdealer,
-		"2006DividendSwapEuropean" then _2006DividendSwapEuropean,
-		"2006DividendSwapEuropeanInterdealer" then _2006DividendSwapEuropeanInterdealer,
-		"2014CreditAsia" then _2014CreditAsia,
-		"2014CreditAsiaFinancial" then _2014CreditAsiaFinancial,
-		"2014CreditAustraliaNewZealand" then _2014CreditAustraliaNewZealand,
-		"2014CreditAustraliaNewZealandFinancial" then _2014CreditAustraliaNewZealandFinancial,
-		"2014CreditEuropean" then _2014CreditEuropean,
-		"2014CreditEuropeanCoCoFinancial" then _2014CreditEuropeanCoCoFinancial,
-		"2014CreditEuropeanFinancial" then _2014CreditEuropeanFinancial,
-		"2014CreditJapan" then _2014CreditJapan,
-		"2014CreditJapanFinancial" then _2014CreditJapanFinancial,
-		"2014CreditNorthAmerican" then _2014CreditNorthAmerican,
-		"2014CreditNorthAmericanFinancial" then _2014CreditNorthAmericanFinancial,
-		"2014CreditSingapore" then _2014CreditSingapore,
-		"2014CreditSingaporeFinancial" then _2014CreditSingaporeFinancial,
-		"2014CreditSovereignAsia" then _2014CreditSovereignAsia,
-		"2014CreditSovereignEmergingEuropeanAndMiddleEastern" then _2014CreditSovereignEmergingEuropeanAndMiddleEastern,
-		"2014CreditSovereignJapan" then _2014CreditSovereignJapan,
-		"2014CreditSovereignLatinAmerican" then _2014CreditSovereignLatinAmerican,
-		"2014CreditSovereignWesternEuropean" then _2014CreditSovereignWesternEuropean,
-		"2014StandardCreditAsia" then _2014StandardCreditAsia,
-		"2014StandardCreditAsiaFinancial" then _2014StandardCreditAsiaFinancial,
-		"2014StandardCreditAustraliaNewZealand" then _2014StandardCreditAustraliaNewZealand,
-		"2014StandardCreditAustraliaNewZealandFinancial" then _2014StandardCreditAustraliaNewZealandFinancial,
-		"2014StandardCreditEuropean" then _2014StandardCreditEuropean,
-		"2014StandardCreditEuropeanCoCoFinancial" then _2014StandardCreditEuropeanCoCoFinancial,
-		"2014StandardCreditEuropeanFinancial" then _2014StandardCreditEuropeanFinancial,
-		"2014StandardCreditJapan" then _2014StandardCreditJapan,
-		"2014StandardCreditJapanFinancial" then _2014StandardCreditJapanFinancial,
-		"2014StandardCreditNorthAmerican" then _2014StandardCreditNorthAmerican,
-		"2014StandardCreditNorthAmericanFinancial" then _2014StandardCreditNorthAmericanFinancial,
-		"2014StandardCreditSingapore" then _2014StandardCreditSingapore,
-		"2014StandardCreditSingaporeFinancial" then _2014StandardCreditSingaporeFinancial,
-		"2014StandardCreditSovereignAsia" then _2014StandardCreditSovereignAsia,
-		"2014StandardCreditSovereignEmergingEuropeanAndMiddleEastern" then _2014StandardCreditSovereignEmergingEuropeanAndMiddleEastern,
-		"2014StandardCreditSovereignJapan" then _2014StandardCreditSovereignJapan,
-		"2014StandardCreditSovereignLatinAmerican" then _2014StandardCreditSovereignLatinAmerican,
-		"2014StandardCreditSovereignWesternEuropean" then _2014StandardCreditSovereignWesternEuropean,
-		default empty
-
-func MapNotionalAdjustmentEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result NotionalAdjustmentEnum (0..1)
-	set result: value switch
-		"Execution" then Execution,
-		"PortfolioRebalancing" then PortfolioRebalancing,
-		"Standard" then Standard,
-		default empty
-
-func MapPartyRoleEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result PartyRoleEnum (0..1)
-	set result: value switch
-		"Accountant" then Accountant,
-		"AllocationAgent" then AllocationAgent,
-		"ArrangingBroker" then ArrangingBroker,
-		"Beneficiary" then Beneficiary,
-		"BookingParty" then BookingParty,
-		"Buyer" then Buyer,
-		"BuyerDecisionMaker" then BuyerDecisionMaker,
-		"ClearingClient" then ClearingClient,
-		"ClearingExceptionParty" then ClearingExceptionParty,
-		"ClearingFirm" then ClearingFirm,
-		"ClearingOrganization" then ClearingOrganization,
-		"Client" then Client,
-		"ClientDecisionMaker" then ClientDecisionMaker,
-		"ConfirmationPlatform" then ConfirmationPlatform,
-		"ConfirmationService" then ConfirmationPlatform,
-		"ContractualParty" then ContractualParty,
-		"CounterPartyAffiliate" then CounterPartyAffiliate,
-		"CounterPartyUltimateParent" then CounterPartyUltimateParent,
-		"Counterparty" then Counterparty,
-		"CreditSupportProvider" then CreditSupportProvider,
-		"Custodian" then Custodian,
-		"DataSubmitter" then DataSubmitter,
-		"DisputingParty" then DisputingParty,
-		"DocumentRepository" then DocumentRepository,
-		"ExecutingBroker" then ExecutingBroker,
-		"ExecutingEntity" then ExecutingEntity,
-		"ExecutionAgent" then ExecutionAgent,
-		"ExecutionFacility" then ExecutionFacility,
-		"Guarantor" then Guarantor,
-		"OrderTransmitter" then OrderTransmitter,
-		"PrimeBroker" then PrimeBroker,
-		"PriorTradeRepository" then PriorTradeRepository,
-		"PTRRCompressionProvider" then PTRRServiceProvider,
-		"PTRRRebalancingProvider" then PTRRServiceProvider,
-		"PublicationVenue" then PublicationVenue,
-		"ReportingParty" then ReportingParty,
-		"ReportingPartyAffiliate" then ReportingPartyAffiliate,
-		"ReportingPartyUltimateParent" then ReportingPartyUltimateParent,
-		"Seller" then Seller,
-		"SellerDecisionMaker" then SellerDecisionMaker,
-		"SettlementAgent" then SettlementAgent,
-		"TradeRepository" then TradeRepository,
-		"TradeSource" then TradeSource,
-		"TradingManager" then TradingManager,
-		"TradingPartner" then TradingPartner,
-		default empty
-
-func MapQuotationStyleEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result QuotationStyleEnum (0..1)
-	set result: value switch
-		"PointsUpFront" then PointsUpFront,
-		"TradedSpread" then TradedSpread,
-		"Price" then Price,
-		default empty
-
-func MapNegativeInterestRateTreatmentEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result NegativeInterestRateTreatmentEnum (0..1)
-	set result: value switch
-		"NegativeInterestRateMethod" then NegativeInterestRateMethod,
-		"ZeroInterestRateMethod" then ZeroInterestRateMethod,
-		"ZeroInterestRateMethodExcludingSpread" then ZeroInterestRateExcludingSpreadMethod,
-		default empty
-
-func MapPayRelativeToEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result PayRelativeToEnum (0..1)
-	set result: value switch
-		"CalculationPeriodStartDate" then CalculationPeriodStartDate,
-		"CalculationPeriodEndDate" then CalculationPeriodEndDate,
-		"LastPricingDate" then LastPricingDate,
-		"ResetDate" then ResetDate,
-		"ValuationDate" then ValuationDate,
-		default empty
-
-func MapTriggerTimeTypeEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result TriggerTimeTypeEnum (0..1)
-	set result: value switch
-		"Closing" then Closing,
-		"Anytime" then Anytime,
-		default empty
-
-func MapRollConventionEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result RollConventionEnum (0..1)
-	set result: value switch
-		"EOM" then EOM,
-		"FRN" then FRN,
-		"IMM" then IMM,
-		"IMMCAD" then IMMCAD,
-		"IMMAUD" then IMMAUD,
-		"IMMNZD" then IMMNZD,
-		"SFE" then SFE,
-		"NONE" then NONE,
-		"TBILL" then TBILL,
-		"1" then _1,
-		"2" then _2,
-		"3" then _3,
-		"4" then _4,
-		"5" then _5,
-		"6" then _6,
-		"7" then _7,
-		"8" then _8,
-		"9" then _9,
-		"10" then _10,
-		"11" then _11,
-		"12" then _12,
-		"13" then _13,
-		"14" then _14,
-		"15" then _15,
-		"16" then _16,
-		"17" then _17,
-		"18" then _18,
-		"19" then _19,
-		"20" then _20,
-		"21" then _21,
-		"22" then _22,
-		"23" then _23,
-		"24" then _24,
-		"25" then _25,
-		"26" then _26,
-		"27" then _27,
-		"28" then _28,
-		"29" then _29,
-		"30" then _30,
-		"MON" then MON,
-		"TUE" then TUE,
-		"WED" then WED,
-		"THU" then THU,
-		"FRI" then FRI,
-		"SAT" then SAT,
-		"SUN" then SUN,
-		default empty
-
-func MapCommodityReferencePriceEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result CommodityReferencePriceEnum (0..1)
-	set result: value switch
-		"ALUMINIUM ALLOY-LME 15 MONTH" then ALUMINIUM_ALLOY_LME_15_MONTH,
-		"COAL-CENTRAL APPALACHIAN-NYMEX" then COAL_CENTRAL_APPALACHIAN_NYMEX,
-		"COCOA-ICE" then COCOA_ICE,
-		"COFFEE ARABICA-ICE" then COFFEE_ARABICA_ICE,
-		"COFFEE ROBUSTA-ICE" then COFFEE_ROBUSTA_ICE,
-		"COPPER-COMEX" then COPPER_COMEX,
-		"CORN-CBOT" then CORN_CBOT,
-		"COTTON NO. 2-ICE" then COTTON_NO__2_ICE,
-		"ETHANOL-CBOT" then ETHANOL_CBOT,
-		"FEEDER CATTLE-CME" then FEEDER_CATTLE_CME,
-		"FROZEN CONCENTRATED ORANGE JUICE NO. 1-ICE" then FROZEN_CONCENTRATED_ORANGE_JUICE_NO__1_ICE,
-		"GASOLINE-RBOB-NEW YORK-ICE" then GASOLINE_RBOB_NEW_YORK_ICE,
-		"GASOLINE-RBOB-NEW YORK-NYMEX" then GASOLINE_RBOB_NEW_YORK_NYMEX,
-		"GOLD-COMEX" then GOLD_COMEX,
-		"HEATING OIL-NEW YORK-NYMEX" then HEATING_OIL_NEW_YORK_NYMEX,
-		"LEAN HOGS-CME" then LEAN_HOGS_CME,
-		"LIVE CATTLE-CME" then LIVE_CATTLE_CME,
-		"LUMBER-CME" then LUMBER_CME,
-		"MILK-CLASS III-CME" then MILK_CLASS_III_CME,
-		"MILK-NONFAT-DRY-CME" then MILK_NONFAT_DRY_CME,
-		"NATURAL GAS-NYMEX" then NATURAL_GAS_NYMEX,
-		"NATURAL GAS-PEPL (TEXOK MAINLINE)-INSIDE FERC" then NATURAL_GAS_PEPL__TEXOK_MAINLINE__INSIDE_FERC,
-		"NATURAL GAS-W. TEXAS (WAHA)-INSIDE FERC" then NATURAL_GAS_W__TEXAS__WAHA__INSIDE_FERC,
-		"OATS-CBOT" then OATS_CBOT,
-		"OIL-WTI-NYMEX" then OIL_WTI_NYMEX,
-		"PALLADIUM-NYMEX" then PALLADIUM_NYMEX,
-		"PLATINUM-NYMEX" then PLATINUM_NYMEX,
-		"RICE-CBOT" then RICE_CBOT,
-		"SILVER-COMEX" then SILVER_COMEX,
-		"SOYBEANS-CBOT" then SOYBEANS_CBOT,
-		"SOYBEAN MEAL-CBOT" then SOYBEAN_MEAL_CBOT,
-		"SOYBEAN OIL-CBOT" then SOYBEAN_OIL_CBOT,
-		"SUGAR # 11 (WORLD)-ICE" then SUGAR___11__WORLD__ICE,
-		"SUGAR # 16 (US)-ICE" then SUGAR___16__US__ICE,
-		"WHEAT-CBOT" then WHEAT_CBOT,
-		"WHEAT HRW-KCBOT" then WHEAT_HRW_KCBOT,
-		"WHEAT RED SPRING-MGE" then WHEAT_RED_SPRING_MGE,
-		default empty
-
-func MapMarketDisruptionEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result MarketDisruptionEnum (0..1)
-	set result: value switch
-		"ModifiedPostponement" then ModifiedPostponement,
-		"Omission" then Omission,
-		"Postponement" then Postponement,
-		default empty
-
-func MapResourceTypeEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result ResourceTypeEnum (0..1)
-	set result: value switch
-		"Confirmation" then Confirmation,
-		"SupplementalMaterialEconomicTerms" then SupplementalMaterialEconomicTerms,
-		"TermSheet" then TermSheet,
 		default empty
 
 func MapCommodityBusinessCalendarEnum:
@@ -1077,6 +517,500 @@ func MapCommodityBusinessCalendarEnum:
 		"TOCOM-SOFT" then TOCOM_SOFT,
 		"UX-WEEKLY" then UX_WEEKLY,
 		"WORLD-PULP-MONTHLY" then WORLD_PULP_MONTHLY,
+		default empty
+
+func MapCommodityReferencePriceEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result CommodityReferencePriceEnum (0..1)
+	set result: value switch
+		"ALUMINIUM ALLOY-LME 15 MONTH" then ALUMINIUM_ALLOY_LME_15_MONTH,
+		"COAL-CENTRAL APPALACHIAN-NYMEX" then COAL_CENTRAL_APPALACHIAN_NYMEX,
+		"COCOA-ICE" then COCOA_ICE,
+		"COFFEE ARABICA-ICE" then COFFEE_ARABICA_ICE,
+		"COFFEE ROBUSTA-ICE" then COFFEE_ROBUSTA_ICE,
+		"COPPER-COMEX" then COPPER_COMEX,
+		"CORN-CBOT" then CORN_CBOT,
+		"COTTON NO. 2-ICE" then COTTON_NO__2_ICE,
+		"ETHANOL-CBOT" then ETHANOL_CBOT,
+		"FEEDER CATTLE-CME" then FEEDER_CATTLE_CME,
+		"FROZEN CONCENTRATED ORANGE JUICE NO. 1-ICE" then FROZEN_CONCENTRATED_ORANGE_JUICE_NO__1_ICE,
+		"GASOLINE-RBOB-NEW YORK-ICE" then GASOLINE_RBOB_NEW_YORK_ICE,
+		"GASOLINE-RBOB-NEW YORK-NYMEX" then GASOLINE_RBOB_NEW_YORK_NYMEX,
+		"GOLD-COMEX" then GOLD_COMEX,
+		"HEATING OIL-NEW YORK-NYMEX" then HEATING_OIL_NEW_YORK_NYMEX,
+		"LEAN HOGS-CME" then LEAN_HOGS_CME,
+		"LIVE CATTLE-CME" then LIVE_CATTLE_CME,
+		"LUMBER-CME" then LUMBER_CME,
+		"MILK-CLASS III-CME" then MILK_CLASS_III_CME,
+		"MILK-NONFAT-DRY-CME" then MILK_NONFAT_DRY_CME,
+		"NATURAL GAS-NYMEX" then NATURAL_GAS_NYMEX,
+		"NATURAL GAS-PEPL (TEXOK MAINLINE)-INSIDE FERC" then NATURAL_GAS_PEPL__TEXOK_MAINLINE__INSIDE_FERC,
+		"NATURAL GAS-W. TEXAS (WAHA)-INSIDE FERC" then NATURAL_GAS_W__TEXAS__WAHA__INSIDE_FERC,
+		"OATS-CBOT" then OATS_CBOT,
+		"OIL-WTI-NYMEX" then OIL_WTI_NYMEX,
+		"PALLADIUM-NYMEX" then PALLADIUM_NYMEX,
+		"PLATINUM-NYMEX" then PLATINUM_NYMEX,
+		"RICE-CBOT" then RICE_CBOT,
+		"SILVER-COMEX" then SILVER_COMEX,
+		"SOYBEANS-CBOT" then SOYBEANS_CBOT,
+		"SOYBEAN MEAL-CBOT" then SOYBEAN_MEAL_CBOT,
+		"SOYBEAN OIL-CBOT" then SOYBEAN_OIL_CBOT,
+		"SUGAR # 11 (WORLD)-ICE" then SUGAR___11__WORLD__ICE,
+		"SUGAR # 16 (US)-ICE" then SUGAR___16__US__ICE,
+		"WHEAT-CBOT" then WHEAT_CBOT,
+		"WHEAT HRW-KCBOT" then WHEAT_HRW_KCBOT,
+		"WHEAT RED SPRING-MGE" then WHEAT_RED_SPRING_MGE,
+		default empty
+
+func MapCompoundingMethodEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result CompoundingMethodEnum (0..1)
+	set result: value switch
+		"Flat" then Flat,
+		"None" then None,
+		"Straight" then Straight,
+		"SpreadExclusive" then SpreadExclusive,
+		default empty
+
+func MapContractualDefinitionsEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result ContractualDefinitionsEnum (0..1)
+	set result: value switch
+		"ISDA1991" then ISDA1991InterestRate,
+		"ISDA1993Commodity" then ISDA1993CommodityDerivatives,
+		"ISDA1996Equity" then ISDA1996EquityDerivatives,
+		"ISDA1997Bullion" then ISDA1997Bullion,
+		"ISDA1997GovernmentBond" then ISDA1997GovernmentBondOption,
+		"ISDA1998FX" then ISDA1998FxAndCurrencyOption,
+		"ISDA1999Credit" then ISDA1999CreditDerivatives,
+		"ISDA2000" then ISDA2000,
+		"ISDA2002Equity" then ISDA2002EquityDerivatives,
+		"ISDA2003Credit" then ISDA2003CreditDerivatives,
+		"ISDA2004Novation" then ISDA2004Novation,
+		"ISDA2005Commodity" then ISDA2005Commodity,
+		"ISDA2006" then ISDA2006,
+		"ISDA2006Inflation" then ISDA2006InflationDerivatives,
+		"ISDA2008Inflation" then ISDA2008InflationDerivatives,
+		"ISDA2011Equity" then ISDA2011EquityDerivatives,
+		"ISDA2014Credit" then ISDA2014CreditDerivatives,
+		default empty
+
+func MapContractualSupplementTypeEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result ContractualSupplementTypeEnum (0..1)
+	set result: value switch
+		"ABX" then ABX,
+		"ABXTranche" then ABXTranche,
+		"CDSonLeveragedLoans" then CDSonLeveragedLoans,
+		"CDSonMBS" then CDSonMBS,
+		"CDX" then CDX,
+		"CDXEmergingMarkets" then CDXEmergingMarkets,
+		"CDXEmergingMarketsDiversified" then CDXEmergingMarketsDiversified,
+		"CDXSwaption" then CDXSwaption,
+		"CDXTranche" then CDXTranche,
+		"CMBX" then CMBX,
+		"EuropeanCMBS" then EuropeanCMBS,
+		"EuropeanRMBS" then EuropeanRMBS,
+		"IOS" then IOS,
+		"ISDA1999CreditConvertibleExchangeableAccretingObligations" then ISDA1999CreditConvertibleExchangeableAccretingObligations,
+		"ISDA1999CreditRestructuring" then ISDA1999CreditRestructuring,
+		"ISDA1999CreditSuccessorAndCreditEvents" then ISDA1999CreditSuccessorAndCreditEvents,
+		"ISDA2003AdditionalProvisionsLPN" then ISDA2003AdditionalProvisionsLPN,
+		"ISDA2003ContingentCreditSpreadTransaction" then ISDA2003ContingentCreditSpreadTransaction,
+		"ISDA2003Credit2005MatrixSupplement" then ISDA2003Credit2005MatrixSupplement,
+		"ISDA2003CreditArgentineRepublic" then ISDA2003CreditArgentineRepublic,
+		"ISDA2003CreditAuctionSupplement" then ISDA2003CreditAuctionSupplement,
+		"ISDA2003CreditMay2003" then ISDA2003CreditMay2003,
+		"ISDA2003CreditMonolineInsurers" then ISDA2003CreditMonolineInsurers,
+		"ISDA2003CreditMonolineInsurers2005" then ISDA2003CreditMonolineInsurers2005,
+		"ISDA2003CreditRepublicOfHungary" then ISDA2003CreditRepublicOfHungary,
+		"ISDA2003CreditRepublicOfHungary2005" then ISDA2003CreditRepublicOfHungary2005,
+		"ISDA2003CreditRussianFederation" then ISDA2003CreditRussianFederation,
+		"ISDA2003CreditUSMunicipals" then ISDA2003CreditUSMunicipals,
+		"ISDA2003STMicroelectronicsNV" then ISDA2003STMicroelectronicsNV,
+		"ISDA2007FullLookthroughDepositoryReceiptSupplement" then ISDA2007FullLookthroughDepositoryReceiptSupplement,
+		"ISDA2007PartialLookthroughDepositoryReceiptSupplement" then ISDA2007PartialLookthroughDepositoryReceiptSupplement,
+		"ISDACreditMonolineInsurers" then ISDACreditMonolineInsurers,
+		"ISDADeliveryRestrictions" then ISDADeliveryRestrictions,
+		"ISDAFixedRecovery" then ISDAFixedRecovery,
+		"ISDALPNReferenceEntities" then ISDALPNReferenceEntities,
+		"ISDAMarch2004EquityCanadianSupplement" then ISDAMarch2004EquityCanadianSupplement,
+		"ISDARecoveryLock" then ISDARecoveryLock,
+		"ISDASecuredDeliverableObligationCharacteristic" then ISDASecuredDeliverableObligationCharacteristic,
+		"LCDX" then LCDX,
+		"LCDXTranche" then LCDXTranche,
+		"MBX" then MBX,
+		"MCDX" then MCDX,
+		"PO" then PO,
+		"PrimeX" then PrimeX,
+		"StandardCDXTranche" then StandardCDXTranche,
+		"StandardLCDS" then StandardLCDS,
+		"StandardLCDSBullet" then StandardLCDSBullet,
+		"StandardLCDXBullet" then StandardLCDXBullet,
+		"StandardLCDXBulletTranche" then StandardLCDXBulletTranche,
+		"StandardiTraxxEuropeTranche" then StandardiTraxxEuropeTranche,
+		"SyndicatedSecuredLoanCDS" then SyndicatedSecuredLoanCDS,
+		"TRX" then TRX,
+		"TRX.II" then TRX_II,
+		"iTraxxAsiaExJapan" then iTraxxAsiaExJapan,
+		"iTraxxAsiaExJapanSwaption" then iTraxxAsiaExJapanSwaption,
+		"iTraxxAsiaExJapanTranche" then iTraxxAsiaExJapanTranche,
+		"iTraxxAustralia" then iTraxxAustralia,
+		"iTraxxAustraliaSwaption" then iTraxxAustraliaSwaption,
+		"iTraxxAustraliaTranche" then iTraxxAustraliaTranche,
+		"iTraxxCJ" then iTraxxCJ,
+		"iTraxxCJTranche" then iTraxxCJTranche,
+		"iTraxxEurope" then iTraxxEurope,
+		"iTraxxEuropeDealer" then iTraxxEuropeDealer,
+		"iTraxxEuropeNonDealer" then iTraxxEuropeNonDealer,
+		"iTraxxEuropeSwaption" then iTraxxEuropeSwaption,
+		"iTraxxEuropeTranche" then iTraxxEuropeTranche,
+		"iTraxxJapan" then iTraxxJapan,
+		"iTraxxJapanSwaption" then iTraxxJapanSwaption,
+		"iTraxxJapanTranche" then iTraxxJapanTranche,
+		"iTraxxLevX" then iTraxxLevX,
+		"iTraxxSDI75Dealer" then iTraxxSDI75Dealer,
+		"iTraxxSDI75NonDealer" then iTraxxSDI75NonDealer,
+		"iTraxxSovX" then iTraxxSovX,
+		default empty
+
+func MapCreditLimitTypeEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result CreditLimitTypeEnum (0..1)
+	set result: value switch
+		"CS01" then CS01,
+		"DV01" then DV01,
+		"IM" then IM,
+		"Notional" then Notional,
+		"NPV" then NPV,
+		"PV01" then PV01,
+		default empty
+
+func MapCreditRatingAgencyEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result CreditRatingAgencyEnum (0..1)
+	set result: value switch
+		"AMBest" then AMBest,
+		"CBRS" then CBRS,
+		"DBRS" then DBRS,
+		"Fitch" then Fitch,
+		"Japanagency" then Japanagency,
+		"Moodys" then Moodys,
+		"RatingAndInvestmentInformation" then RatingAndInvestmentInformation,
+		"StandardAndPoors" then StandardAndPoors,
+		default empty
+
+func MapCreditSeniorityEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result CreditSeniorityEnum (0..1)
+	set result: value switch
+		"Other" then Other,
+		"SeniorLossAbsorbingCapacity" then SeniorLossAbsorbingCapacity,
+		"SeniorSec" then SeniorSec,
+		"SeniorUnSec" then SeniorUnSec,
+		"SubLowerTier2" then SubLowerTier2,
+		"SubTier1" then SubTier1,
+		"SubTier3" then SubTier3,
+		"SubUpperTier2" then SubUpperTier2,
+		default empty
+
+func MapCreditSupportAgreementTypeEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result CreditSupportAgreementTypeEnum (0..1)
+	set result: value switch
+		"CreditSupportDeed" then CreditSupportDeed,
+		"ISDA1995CreditSupportDeedEnglishLaw" then CreditSupportDeed,
+		"CreditSupportAnnex" then CreditSupportAnnex,
+		"ISDA1994CreditSupportAnnexNewYorkLaw" then CreditSupportAnnex,
+		"ISDA1995CreditSupportAnnexEnglishLaw" then CreditSupportAnnex,
+		"ISDA1995CreditSupportAnnexJapaneseLaw" then CreditSupportAnnex,
+		"CollateralTransferAgreement" then CollateralTransferAgreement,
+		default empty
+
+func MapCsaTypeEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result CsaTypeEnum (0..1)
+	set result: value switch
+		"NoCSA" then NoCSA,
+		"ExistingCSA" then ExistingCSA,
+		"ReferenceVMCSA" then ReferenceVMCSA,
+		default empty
+
+func MapDayCountFractionEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result DayCountFractionEnum (0..1)
+	set result: value switch
+		"ACT/360" then ACT_360,
+		"ACT/365L" then ACT_365L,
+		"ACT/365.FIXED" then ACT_365_FIXED,
+		"ACT/ACT.AFB" then ACT_ACT_AFB,
+		"ACT/ACT.ICMA" then ACT_ACT_ICMA,
+		"ACT/ACT.ISMA" then ACT_ACT_ISMA,
+		"ACT/ACT.ISDA" then ACT_ACT_ISDA,
+		"CAL/252" then CAL_252,
+		"BUS/252" then CAL_252,
+		"1/1" then _1_1,
+		"30E/360" then _30E_360,
+		"30E/360.ISDA" then _30E_360_ISDA,
+		"30/360" then _30_360,
+		"RBA" then RBA_BOND_BASIS,
+		default empty
+
+func MapDayDistributionEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result DayDistributionEnum (0..1)
+	set result: value switch
+		"All" then All,
+		"First" then First,
+		"Last" then Last,
+		"Penultimate" then Penultimate,
+		default empty
+
+func MapDayOfWeekEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result DayOfWeekEnum (0..1)
+	set result: value switch
+		"MON" then MON,
+		"TUE" then TUE,
+		"WED" then WED,
+		"THU" then THU,
+		"FRI" then FRI,
+		"SAT" then SAT,
+		"SUN" then SUN,
+		default empty
+
+func MapDayTypeEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result DayTypeEnum (0..1)
+	set result: value switch
+		"Business" then Business,
+		"CommodityBusiness" then Business,
+		"Calendar" then Calendar,
+		"CurrencyBusiness" then CurrencyBusiness,
+		"ExchangeBusiness" then ExchangeBusiness,
+		"ScheduledTradingDay" then ScheduledTradingDay,
+		default empty
+
+func MapDeliveryMethodEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result DeliveryMethodEnum (0..1)
+	set result: value switch
+		"DeliveryVersusPayment" then DeliveryVersusPayment,
+		"FreeOfPayment" then FreeOfPayment,
+		"PreDelivery" then PreDelivery,
+		"PrePayment" then PrePayment,
+		default empty
+
+func MapDeterminationMethodEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result DeterminationMethodEnum (0..1)
+	set result: value switch
+		"AgreedInitialPrice" then AgreedInitialPrice,
+		"AsSpecifiedInMasterConfirmation" then AsSpecifiedInMasterConfirmation,
+		"CalculationAgent" then CalculationAgent,
+		"ClosingPrice" then ClosingPrice,
+		"DividendCurrency" then DividendCurrency,
+		"ExpiringContractLevel" then ExpiringContractLevel,
+		"HedgeExecution" then HedgeExecution,
+		"IssuerPaymentCurrency" then IssuerPaymentCurrency,
+		"NAV" then NAV,
+		"OpenPrice" then OpenPrice,
+		"OSPPrice" then OSPPrice,
+		"SettlementCurrency" then SettlementCurrency,
+		"StrikeDateDetermination" then StrikeDateDetermination,
+		"TWAPPrice" then TWAPPrice,
+		"ValuationTime" then ValuationTime,
+		"VWAPPrice" then VWAPPrice,
+		default empty
+
+func MapDiscountingTypeEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result DiscountingTypeEnum (0..1)
+	set result: value switch
+		"Standard" then Standard,
+		"FRA" then FRA,
+		"ISDA" then FRA,
+		"FRAYield" then FRAYield,
+		"AFMA" then AFMA,
+		default empty
+
+func MapDividendAmountTypeEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result DividendAmountTypeEnum (0..1)
+	set result: value switch
+		"RecordAmount" then RecordAmount,
+		"ExAmount" then ExAmount,
+		"PaidAmount" then PaidAmount,
+		"AsSpecifiedInMasterConfirmation" then AsSpecifiedInMasterConfirmation,
+		default empty
+
+func MapDividendCompositionEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result DividendCompositionEnum (0..1)
+	set result: value switch
+		"EquityAmountReceiverElection" then EquityAmountReceiverElection,
+		"CalculationAgentElection" then CalculationAgentElection,
+		default empty
+
+func MapDividendDateReferenceEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result DividendDateReferenceEnum (0..1)
+	set result: value switch
+		"AdHocDate" then AdHocDate,
+		"CashSettlementPaymentDate" then CashSettlementPaymentDate,
+		"CashSettlePaymentDateExDiv" then CashSettlePaymentDateExDiv,
+		"CashSettlePaymentDateIssuerPayment" then CashSettlePaymentDateIssuerPayment,
+		"CumulativeEquityExDiv" then CumulativeEquityExDiv,
+		"CumulativeEquityPaid" then CumulativeEquityPaid,
+		"CumulativeLiborExDiv" then CumulativeInterestExDiv,
+		"CumulativeLiborPaid" then CumulativeInterestPaid,
+		"DividendPaymentDate" then DividendPaymentDate,
+		"DividendValuationDate" then DividendValuationDate,
+		"EquityPaymentDate" then EquityPaymentDate,
+		"ExDate" then ExDate,
+		"FloatingAmountPaymentDate" then FloatingAmountPaymentDate,
+		"FollowingPaymentDate" then FollowingPaymentDate,
+		"RecordDate" then RecordDate,
+		"SharePayment" then SharePayment,
+		"TerminationDate" then TerminationDate,
+		default empty
+
+func MapDividendEntitlementEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result DividendEntitlementEnum (0..1)
+	set result: value switch
+		"ExDate" then ExDate,
+		default empty
+
+func MapDividendPeriodEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result DividendPeriodEnum (0..1)
+	set result: value switch
+		"FirstPeriod" then FirstPeriod,
+		"SecondPeriod" then SecondPeriod,
+		default empty
+
+func MapEntityTypeEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result EntityTypeEnum (0..1)
+	set result: value switch
+		"Asian" then Asian,
+		"AustralianAndNewZealand" then AustralianAndNewZealand,
+		"EuropeanEmergingMarket" then EuropeanEmergingMarkets,
+		"Japanese" then Japanese,
+		"NorthAmericanHighYield" then NorthAmericanHighYield,
+		"NorthAmericanInsurance" then NorthAmericanInsurance,
+		"NorthAmericanInvestmentGrade" then NorthAmericanInvestmentGrade,
+		"Singaporean" then Singaporean,
+		"WesternEuropean" then WesternEuropean,
+		"WesternEuropeanInsurance" then WesternEuropeanInsurance,
+		default empty
+
+func MapExecutionTypeEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result ExecutionTypeEnum (0..1)
+	set result: value switch
+		"Electronic" then Electronic,
+		"Voice" then OffFacility,
+		default empty
+
+func MapExpirationTimeTypeEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result ExpirationTimeTypeEnum (0..1)
+	set result: value switch
+		"Close" then Close,
+		"Open" then Open,
+		"OSP" then OSP,
+		"SpecificTime" then SpecificTime,
+		"XETRA" then XETRA,
+		"DerivativesClose" then DerivativesClose,
+		"AsSpecifiedInMasterConfirmation" then AsSpecifiedInMasterConfirmation,
+		default empty
+
+func MapFPVFinalPriceElectionFallbackEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result FPVFinalPriceElectionFallbackEnum (0..1)
+	set result: value switch
+		"FPVClose" then FPVClose,
+		"FPVHedgeExecution" then FPVHedgeExecution,
+		default empty
+
+func MapFeeTypeEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result FeeTypeEnum (0..1)
+	set result: value switch
+		"AmendmentFee" then Renegotiation,
+		"AssignmentFee" then Assignment,
+		"IncreaseFee" then Increase,
+		"PartialTerminationFee" then PartialTermination,
+		"TerminationFee" then Termination,
+		"UPFRONT_FEE" then Upfront,
+		"Upfront fee" then Upfront,
+		default empty
+
+func MapFinancialUnitEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result FinancialUnitEnum (0..1)
+	set result: value switch
+		"IndexUnits" then IndexUnit,
+		"LogNormalVolatility" then LogNormalVolatility,
+		"Shares" then Share,
+		"ValuePerDay" then ValuePerDay,
+		"ValuePerPercent" then ValuePerPercent,
 		default empty
 
 func MapFloatingRateIndexEnum:
@@ -1737,14 +1671,214 @@ func MapFloatingRateIndexEnum:
 		"ZAR-ZARONIA-OIS Compound" then ZAR_ZARONIA_OIS_Compound,
 		default empty
 
-func MapExecutionTypeEnum:
+func MapGoverningLawEnum:
 	inputs:
 		value string (0..1)
 	output:
-		result ExecutionTypeEnum (0..1)
+		result GoverningLawEnum (0..1)
 	set result: value switch
-		"Electronic" then Electronic,
-		"Voice" then OffFacility,
+		"AsSpecifiedInMasterAgreement" then AsSpecifiedInMasterAgreement,
+		"CAAB" then CAAB,
+		"CABC" then CABC,
+		"CAMN" then CAMN,
+		"CAON" then CAON,
+		"CAQC" then CAQC,
+		"DE" then DE,
+		"FR" then FR,
+		"GBEN" then GBEN,
+		"GBGY" then GBGY,
+		"GBIM" then GBIM,
+		"GBJY" then GBJY,
+		"GBSC" then GBSC,
+		"JP" then JP,
+		"USCA" then USCA,
+		"USDE" then USDE,
+		"USIL" then USIL,
+		"USNY" then USNY,
+		default empty
+
+func MapIndexAnnexSourceEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result IndexAnnexSourceEnum (0..1)
+	set result: value switch
+		"MasterConfirmation" then MasterConfirmation,
+		"Publisher" then Publisher,
+		default empty
+
+func MapIndexEventConsequenceEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result IndexEventConsequenceEnum (0..1)
+	set result: value switch
+		"CalculationAgentAdjustment" then CalculationAgentAdjustment,
+		"NegotiatedCloseOut" then NegotiatedCloseOut,
+		"CancellationAndPayment" then CancellationAndPayment,
+		"RelatedExchange" then RelatedExchange,
+		default empty
+
+func MapInflationRateIndexEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result InflationRateIndexEnum (0..1)
+	set result: value switch
+		"AUD-CPI" then AUD_CPI,
+		"AUS-CPI" then AUS_CPI,
+		"AUS-HICP" then AUS_HICP,
+		"BLG-CPI-GI" then BLG_CPI_GI,
+		"BLG-CPI-HI" then BLG_CPI_HI,
+		"BLG-HICP" then BLG_HICP,
+		"BRL-IGPM" then BRL_IGPM,
+		"BRL-IPCA" then BRL_IPCA,
+		"CAD-CPI" then CAD_CPI,
+		"CLP-CPI" then CLP_CPI,
+		"CNY-CPI" then CNY_CPI,
+		"CZK-CPI" then CZK_CPI,
+		"DEK-CPI" then DEK_CPI,
+		"DEK-HICP" then DEK_HICP,
+		"DEM-CPI" then DEM_CPI,
+		"DEM-CPI-NRW" then DEM_CPI_NRW,
+		"DEM-HICP" then DEM_HICP,
+		"ESP-CPI" then ESP_CPI,
+		"ESP-HICP" then ESP_HICP,
+		"ESP-R-CPI" then ESP_R_CPI,
+		"ESP-R-HICP" then ESP_R_HICP,
+		"EUR-AI-CPI" then EUR_AI_CPI,
+		"EUR-AI-R-CPI" then EUR_AI_R_CPI,
+		"EUR-EXT-CPI" then EUR_EXT_CPI,
+		"EUR-EXT-R-CPI" then EUR_EXT_R_CPI,
+		"FIN-CPI" then FIN_CPI,
+		"FIN-HICP" then FIN_HICP,
+		"FRC-EXT-CPI" then FRC_EXT_CPI,
+		"FRC-HICP" then FRC_HICP,
+		"GRD-CPI" then GRD_CPI,
+		"GRD-HICP" then GRD_HICP,
+		"HKD-CPI" then HKD_CPI,
+		"HUF-CPI" then HUF_CPI,
+		"IDR-CPI" then IDR_CPI,
+		"ILS-CPI" then ILS_CPI,
+		"IRL-CPI" then IRL_CPI,
+		"IRL-HICP" then IRL_HICP,
+		"ISK-CPI" then ISK_CPI,
+		"ISK-HICP" then ISK_HICP,
+		"ITL-BC-EXT-CPI" then ITL_BC_EXT_CPI,
+		"ITL-BC-INT-CPI" then ITL_BC_INT_CPI,
+		"ITL-HICP" then ITL_HICP,
+		"ITL-WC-EXT-CPI" then ITL_WC_EXT_CPI,
+		"ITL-WC-INT-CPI" then ITL_WC_INT_CPI,
+		"JPY-CPI-EXF" then JPY_CPI_EXF,
+		"KRW-CPI" then KRW_CPI,
+		"LUX-CPI" then LUX_CPI,
+		"LUX-HICP" then LUX_HICP,
+		"MXN-CPI" then MXN_CPI,
+		"MXN-UDI" then MXN_UDI,
+		"MYR-CPI" then MYR_CPI,
+		"NLG-CPI" then NLG_CPI,
+		"NLG-HICP" then NLG_HICP,
+		"NOK-CPI" then NOK_CPI,
+		"NZD-CPI" then NZD_CPI,
+		"PER-CPI" then PER_CPI,
+		"PLN-CPI" then PLN_CPI,
+		"POR-CPI" then POR_CPI,
+		"POR-HICP" then POR_HICP,
+		"RUB-CPI" then RUB_CPI,
+		"SEK-CPI" then SEK_CPI,
+		"SGD-CPI" then SGD_CPI,
+		"SWF-CPI" then SWF_CPI,
+		"TRY-CPI" then TRY_CPI,
+		"TWD-CPI" then TWD_CPI,
+		"UK-HICP" then UK_HICP,
+		"UK-RPI" then UK_RPI,
+		"UK-RPIX" then UK_RPIX,
+		"USA-CPI-U" then USA_CPI_U,
+		"ZAR-CPI" then ZAR_CPI,
+		"ZAR-CPIX" then ZAR_CPIX,
+		default empty
+
+func MapInformationProviderEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result InformationProviderEnum (0..1)
+	set result: value switch
+		"AssocBanksSingapore" then AssocBanksSingapore,
+		"BankOfCanada" then BankOfCanada,
+		"BankOfEngland" then BankOfEngland,
+		"BankOfJapan" then BankOfJapan,
+		"Bloomberg" then Bloomberg,
+		"EuroCentralBank" then EuroCentralBank,
+		"FHLBSF" then FHLBSF,
+		"FederalReserve" then FederalReserve,
+		"ISDA" then ISDA,
+		"ReserveBankAustralia" then ReserveBankAustralia,
+		"ReserveBankNewZealand" then ReserveBankNewZealand,
+		"Reuters" then Reuters,
+		"SAFEX" then SAFEX,
+		"Telerate" then Telerate,
+		default empty
+
+func MapInterestShortfallCapEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result InterestShortfallCapEnum (0..1)
+	set result: value switch
+		"Fixed" then Fixed,
+		"Variable" then Variable,
+		default empty
+
+func MapInterpolationMethodEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result InterpolationMethodEnum (0..1)
+	set result: value switch
+		"LinearZeroYield" then LinearZeroYield,
+		"None" then None,
+		default empty
+
+func MapLegalAgreementPublisherEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result LegalAgreementPublisherEnum (0..1)
+	set result: value switch
+		"AFB" then AFB,
+		"ISDA" then ISDA,
+		default empty
+
+func MapLengthUnitEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result LengthUnitEnum (0..1)
+	set result: value switch
+		"Pages" then Pages,
+		"TimeUnit" then TimeUnit,
+		default empty
+
+func MapMarginTypeEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result MarginTypeEnum (0..1)
+	set result: value switch
+		"Cash" then Cash,
+		"Instrument" then Instrument,
+		default empty
+
+func MapMarketDisruptionEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result MarketDisruptionEnum (0..1)
+	set result: value switch
+		"ModifiedPostponement" then ModifiedPostponement,
+		"Omission" then Omission,
+		"Postponement" then Postponement,
 		default empty
 
 func MapMasterAgreementTypeEnum:
@@ -1790,267 +1924,6 @@ func MapMasterAgreementTypeEnum:
 		"ZBT" then ZBT,
 		default empty
 
-func MapNaturalPersonRoleEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result NaturalPersonRoleEnum (0..1)
-	set result: value switch
-		"Broker" then Broker,
-		"Buyer" then Buyer,
-		"DecisionMaker" then DecisionMaker,
-		"ExecutionWithinFirm" then ExecutionWithinFirm,
-		"InvestmentDecisionMaker" then InvestmentDecisionMaker,
-		"Seller" then Seller,
-		"Trader" then Trader,
-		default empty
-
-func MapCreditSeniorityEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result CreditSeniorityEnum (0..1)
-	set result: value switch
-		"Other" then Other,
-		"SeniorLossAbsorbingCapacity" then SeniorLossAbsorbingCapacity,
-		"SeniorSec" then SeniorSec,
-		"SeniorUnSec" then SeniorUnSec,
-		"SubLowerTier2" then SubLowerTier2,
-		"SubTier1" then SubTier1,
-		"SubTier3" then SubTier3,
-		"SubUpperTier2" then SubUpperTier2,
-		default empty
-
-func MapPutCallEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result PutCallEnum (0..1)
-	set result: value switch
-		"Put" then Put,
-		"CallCurrencyPerPutCurrency" then Put,
-		"Call" then Call,
-		"PutCurrencyPerCallCurrency" then Call,
-		default empty
-
-func MapCreditLimitTypeEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result CreditLimitTypeEnum (0..1)
-	set result: value switch
-		"CS01" then CS01,
-		"DV01" then DV01,
-		"IM" then IM,
-		"Notional" then Notional,
-		"NPV" then NPV,
-		"PV01" then PV01,
-		default empty
-
-func MapIndexAnnexSourceEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result IndexAnnexSourceEnum (0..1)
-	set result: value switch
-		"MasterConfirmation" then MasterConfirmation,
-		"Publisher" then Publisher,
-		default empty
-
-func MapObservationPeriodDatesEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result ObservationPeriodDatesEnum (0..1)
-	set result: value switch
-		"Standard" then Standard,
-		"SetInAdvance" then SetInAdvance,
-		"FixingDate" then FixingDate,
-		default empty
-
-func MapLegalAgreementPublisherEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result LegalAgreementPublisherEnum (0..1)
-	set result: value switch
-		"AFB" then AFB,
-		"ISDA" then ISDA,
-		default empty
-
-func MapDeliveryMethodEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result DeliveryMethodEnum (0..1)
-	set result: value switch
-		"DeliveryVersusPayment" then DeliveryVersusPayment,
-		"FreeOfPayment" then FreeOfPayment,
-		"PreDelivery" then PreDelivery,
-		"PrePayment" then PrePayment,
-		default empty
-
-func MapDividendDateReferenceEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result DividendDateReferenceEnum (0..1)
-	set result: value switch
-		"AdHocDate" then AdHocDate,
-		"CashSettlementPaymentDate" then CashSettlementPaymentDate,
-		"CashSettlePaymentDateExDiv" then CashSettlePaymentDateExDiv,
-		"CashSettlePaymentDateIssuerPayment" then CashSettlePaymentDateIssuerPayment,
-		"CumulativeEquityExDiv" then CumulativeEquityExDiv,
-		"CumulativeEquityPaid" then CumulativeEquityPaid,
-		"CumulativeLiborExDiv" then CumulativeInterestExDiv,
-		"CumulativeLiborPaid" then CumulativeInterestPaid,
-		"DividendPaymentDate" then DividendPaymentDate,
-		"DividendValuationDate" then DividendValuationDate,
-		"EquityPaymentDate" then EquityPaymentDate,
-		"ExDate" then ExDate,
-		"FloatingAmountPaymentDate" then FloatingAmountPaymentDate,
-		"FollowingPaymentDate" then FollowingPaymentDate,
-		"RecordDate" then RecordDate,
-		"SharePayment" then SharePayment,
-		"TerminationDate" then TerminationDate,
-		default empty
-
-func MapMarginTypeEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result MarginTypeEnum (0..1)
-	set result: value switch
-		"Cash" then Cash,
-		"Instrument" then Instrument,
-		default empty
-
-func MapContractualSupplementTypeEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result ContractualSupplementTypeEnum (0..1)
-	set result: value switch
-		"ABX" then ABX,
-		"ABXTranche" then ABXTranche,
-		"CDSonLeveragedLoans" then CDSonLeveragedLoans,
-		"CDSonMBS" then CDSonMBS,
-		"CDX" then CDX,
-		"CDXEmergingMarkets" then CDXEmergingMarkets,
-		"CDXEmergingMarketsDiversified" then CDXEmergingMarketsDiversified,
-		"CDXSwaption" then CDXSwaption,
-		"CDXTranche" then CDXTranche,
-		"CMBX" then CMBX,
-		"EuropeanCMBS" then EuropeanCMBS,
-		"EuropeanRMBS" then EuropeanRMBS,
-		"IOS" then IOS,
-		"ISDA1999CreditConvertibleExchangeableAccretingObligations" then ISDA1999CreditConvertibleExchangeableAccretingObligations,
-		"ISDA1999CreditRestructuring" then ISDA1999CreditRestructuring,
-		"ISDA1999CreditSuccessorAndCreditEvents" then ISDA1999CreditSuccessorAndCreditEvents,
-		"ISDA2003AdditionalProvisionsLPN" then ISDA2003AdditionalProvisionsLPN,
-		"ISDA2003ContingentCreditSpreadTransaction" then ISDA2003ContingentCreditSpreadTransaction,
-		"ISDA2003Credit2005MatrixSupplement" then ISDA2003Credit2005MatrixSupplement,
-		"ISDA2003CreditArgentineRepublic" then ISDA2003CreditArgentineRepublic,
-		"ISDA2003CreditAuctionSupplement" then ISDA2003CreditAuctionSupplement,
-		"ISDA2003CreditMay2003" then ISDA2003CreditMay2003,
-		"ISDA2003CreditMonolineInsurers" then ISDA2003CreditMonolineInsurers,
-		"ISDA2003CreditMonolineInsurers2005" then ISDA2003CreditMonolineInsurers2005,
-		"ISDA2003CreditRepublicOfHungary" then ISDA2003CreditRepublicOfHungary,
-		"ISDA2003CreditRepublicOfHungary2005" then ISDA2003CreditRepublicOfHungary2005,
-		"ISDA2003CreditRussianFederation" then ISDA2003CreditRussianFederation,
-		"ISDA2003CreditUSMunicipals" then ISDA2003CreditUSMunicipals,
-		"ISDA2003STMicroelectronicsNV" then ISDA2003STMicroelectronicsNV,
-		"ISDA2007FullLookthroughDepositoryReceiptSupplement" then ISDA2007FullLookthroughDepositoryReceiptSupplement,
-		"ISDA2007PartialLookthroughDepositoryReceiptSupplement" then ISDA2007PartialLookthroughDepositoryReceiptSupplement,
-		"ISDACreditMonolineInsurers" then ISDACreditMonolineInsurers,
-		"ISDADeliveryRestrictions" then ISDADeliveryRestrictions,
-		"ISDAFixedRecovery" then ISDAFixedRecovery,
-		"ISDALPNReferenceEntities" then ISDALPNReferenceEntities,
-		"ISDAMarch2004EquityCanadianSupplement" then ISDAMarch2004EquityCanadianSupplement,
-		"ISDARecoveryLock" then ISDARecoveryLock,
-		"ISDASecuredDeliverableObligationCharacteristic" then ISDASecuredDeliverableObligationCharacteristic,
-		"LCDX" then LCDX,
-		"LCDXTranche" then LCDXTranche,
-		"MBX" then MBX,
-		"MCDX" then MCDX,
-		"PO" then PO,
-		"PrimeX" then PrimeX,
-		"StandardCDXTranche" then StandardCDXTranche,
-		"StandardLCDS" then StandardLCDS,
-		"StandardLCDSBullet" then StandardLCDSBullet,
-		"StandardLCDXBullet" then StandardLCDXBullet,
-		"StandardLCDXBulletTranche" then StandardLCDXBulletTranche,
-		"StandardiTraxxEuropeTranche" then StandardiTraxxEuropeTranche,
-		"SyndicatedSecuredLoanCDS" then SyndicatedSecuredLoanCDS,
-		"TRX" then TRX,
-		"TRX.II" then TRX_II,
-		"iTraxxAsiaExJapan" then iTraxxAsiaExJapan,
-		"iTraxxAsiaExJapanSwaption" then iTraxxAsiaExJapanSwaption,
-		"iTraxxAsiaExJapanTranche" then iTraxxAsiaExJapanTranche,
-		"iTraxxAustralia" then iTraxxAustralia,
-		"iTraxxAustraliaSwaption" then iTraxxAustraliaSwaption,
-		"iTraxxAustraliaTranche" then iTraxxAustraliaTranche,
-		"iTraxxCJ" then iTraxxCJ,
-		"iTraxxCJTranche" then iTraxxCJTranche,
-		"iTraxxEurope" then iTraxxEurope,
-		"iTraxxEuropeDealer" then iTraxxEuropeDealer,
-		"iTraxxEuropeNonDealer" then iTraxxEuropeNonDealer,
-		"iTraxxEuropeSwaption" then iTraxxEuropeSwaption,
-		"iTraxxEuropeTranche" then iTraxxEuropeTranche,
-		"iTraxxJapan" then iTraxxJapan,
-		"iTraxxJapanSwaption" then iTraxxJapanSwaption,
-		"iTraxxJapanTranche" then iTraxxJapanTranche,
-		"iTraxxLevX" then iTraxxLevX,
-		"iTraxxSDI75Dealer" then iTraxxSDI75Dealer,
-		"iTraxxSDI75NonDealer" then iTraxxSDI75NonDealer,
-		"iTraxxSovX" then iTraxxSovX,
-		default empty
-
-func MapInterpolationMethodEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result InterpolationMethodEnum (0..1)
-	set result: value switch
-		"LinearZeroYield" then LinearZeroYield,
-		"None" then None,
-		default empty
-
-func MapFinancialUnitEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result FinancialUnitEnum (0..1)
-	set result: value switch
-		"IndexUnits" then IndexUnit,
-		"LogNormalVolatility" then LogNormalVolatility,
-		"Shares" then Share,
-		"ValuePerDay" then ValuePerDay,
-		"ValuePerPercent" then ValuePerPercent,
-		default empty
-
-func MapCsaTypeEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result CsaTypeEnum (0..1)
-	set result: value switch
-		"NoCSA" then NoCSA,
-		"ExistingCSA" then ExistingCSA,
-		"ReferenceVMCSA" then ReferenceVMCSA,
-		default empty
-
-func MapMatrixTypeEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result MatrixTypeEnum (0..1)
-	set result: value switch
-		"CreditDerivativesPhysicalSettlementMatrix" then CreditDerivativesPhysicalSettlementMatrix,
-		"EquityDerivativesMatrix" then EquityDerivativesMatrix,
-		"SettlementMatrix" then SettlementMatrix,
-		default empty
-
 func MapMasterConfirmationAnnexTypeEnum:
 	inputs:
 		value string (0..1)
@@ -2080,6 +1953,322 @@ func MapMasterConfirmationAnnexTypeEnum:
 		"ISDA2010IndexShareOptionEMEAInterdealer" then ISDA2010IndexShareOptionEMEAInterdealer,
 		default empty
 
+func MapMasterConfirmationTypeEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result MasterConfirmationTypeEnum (0..1)
+	set result: value switch
+		"DJ.CDX.EM" then DJ_CDX_EM,
+		"DJ.CDX.EM.DIV" then DJ_CDX_EM_DIV,
+		"DJ.CDX.NA" then DJ_CDX_NA,
+		"DJ.iTraxx.Europe" then DJ_iTraxx_Europe,
+		"EquityAmericas" then EquityAmericas,
+		"EquityAsia" then EquityAsia,
+		"EquityEuropean" then EquityEuropean,
+		"ISDA1999Credit" then ISDA1999Credit,
+		"ISDA2003CreditAsia" then ISDA2003CreditAsia,
+		"ISDA2003CreditAustraliaNewZealand" then ISDA2003CreditAustraliaNewZealand,
+		"ISDA2003CreditEuropean" then ISDA2003CreditEuropean,
+		"ISDA2003CreditJapan" then ISDA2003CreditJapan,
+		"ISDA2003CreditNorthAmerican" then ISDA2003CreditNorthAmerican,
+		"ISDA2003CreditSingapore" then ISDA2003CreditSingapore,
+		"ISDA2003CreditSovereignAsia" then ISDA2003CreditSovereignAsia,
+		"ISDA2003CreditSovereignCentralAndEasternEurope" then ISDA2003CreditSovereignCentralAndEasternEurope,
+		"ISDA2003CreditSovereignJapan" then ISDA2003CreditSovereignJapan,
+		"ISDA2003CreditSovereignLatinAmerica" then ISDA2003CreditSovereignLatinAmerica,
+		"ISDA2003CreditSovereignMiddleEast" then ISDA2003CreditSovereignMiddleEast,
+		"ISDA2003CreditSovereignWesternEurope" then ISDA2003CreditSovereignWesternEurope,
+		"ISDA2003StandardCreditAsia" then ISDA2003StandardCreditAsia,
+		"ISDA2003StandardCreditAustraliaNewZealand" then ISDA2003StandardCreditAustraliaNewZealand,
+		"ISDA2003StandardCreditEuropean" then ISDA2003StandardCreditEuropean,
+		"ISDA2003StandardCreditJapan" then ISDA2003StandardCreditJapan,
+		"ISDA2003StandardCreditNorthAmerican" then ISDA2003StandardCreditNorthAmerican,
+		"ISDA2003StandardCreditSingapore" then ISDA2003StandardCreditSingapore,
+		"ISDA2004CreditSovereignAsia" then ISDA2004CreditSovereignAsia,
+		"ISDA2004CreditSovereignEmergingEuropeanAndMiddleEastern" then ISDA2004CreditSovereignEmergingEuropeanAndMiddleEastern,
+		"ISDA2004CreditSovereignJapan" then ISDA2004CreditSovereignJapan,
+		"ISDA2004CreditSovereignLatinAmerican" then ISDA2004CreditSovereignLatinAmerican,
+		"ISDA2004CreditSovereignWesternEuropean" then ISDA2004CreditSovereignWesternEuropean,
+		"ISDA2004EquityAmericasInterdealer" then ISDA2004EquityAmericasInterdealer,
+		"ISDA2004EquityAmericasInterdealerRev1" then ISDA2004EquityAmericasInterdealerRev1,
+		"ISDA2004StandardCreditSovereignAsia" then ISDA2004StandardCreditSovereignAsia,
+		"ISDA2004StandardCreditSovereignEmergingEuropeanAndMiddleEastern" then ISDA2004StandardCreditSovereignEmergingEuropeanAndMiddleEastern,
+		"ISDA2004StandardCreditSovereignJapan" then ISDA2004StandardCreditSovereignJapan,
+		"ISDA2004StandardCreditSovereignLatinAmerican" then ISDA2004StandardCreditSovereignLatinAmerican,
+		"ISDA2004StandardCreditSovereignWesternEuropean" then ISDA2004StandardCreditSovereignWesternEuropean,
+		"ISDA2005EquityAsiaExcludingJapanInterdealer" then ISDA2005EquityAsiaExcludingJapanInterdealer,
+		"ISDA2005EquityAsiaExcludingJapanInterdealerRev2" then ISDA2005EquityAsiaExcludingJapanInterdealerRev2,
+		"ISDA2005EquityJapaneseInterdealer" then ISDA2005EquityJapaneseInterdealer,
+		"ISDA2006VarianceSwapJapanese" then ISDA2006VarianceSwapJapanese,
+		"ISDA2006VarianceSwapJapaneseInterdealer" then ISDA2006VarianceSwapJapaneseInterdealer,
+		"ISDA2007EquityEuropean" then ISDA2007EquityEuropean,
+		"ISDA2007VarianceSwapAmericas" then ISDA2007VarianceSwapAmericas,
+		"ISDA2007VarianceSwapAsiaExcludingJapan" then ISDA2007VarianceSwapAsiaExcludingJapan,
+		"ISDA2007VarianceSwapAsiaExcludingJapanRev1" then ISDA2007VarianceSwapAsiaExcludingJapanRev1,
+		"ISDA2007VarianceSwapAsiaExcludingJapanRev2" then ISDA2007VarianceSwapAsiaExcludingJapanRev2,
+		"ISDA2007VarianceSwapEuropean" then ISDA2007VarianceSwapEuropean,
+		"ISDA2007VarianceSwapEuropeanRev1" then ISDA2007VarianceSwapEuropeanRev1,
+		"ISDA2008DividendSwapJapan" then ISDA2008DividendSwapJapan,
+		"ISDA2008DividendSwapJapaneseRev1" then ISDA2008DividendSwapJapaneseRev1,
+		"ISDA2008EquityAmericas" then ISDA2008EquityAmericas,
+		"ISDA2008EquityAsiaExcludingJapan" then ISDA2008EquityAsiaExcludingJapan,
+		"ISDA2008EquityAsiaExcludingJapanRev1" then ISDA2008EquityAsiaExcludingJapanRev1,
+		"ISDA2008EquityJapan" then ISDA2008EquityJapan,
+		"ISDA2009EquityAmericas" then ISDA2009EquityAmericas,
+		"ISDA2009EquityEuropeanInterdealer" then ISDA2009EquityEuropeanInterdealer,
+		"ISDA2009EquityPanAsia" then ISDA2009EquityPanAsia,
+		"ISDA2010EquityEMEAInterdealer" then ISDA2010EquityEMEAInterdealer,
+		"ISDA2013VolatilitySwapAmericas" then ISDA2013VolatilitySwapAmericas,
+		"ISDA2013VolatilitySwapAsiaExcludingJapan" then ISDA2013VolatilitySwapAsiaExcludingJapan,
+		"ISDA2013VolatilitySwapEuropean" then ISDA2013VolatilitySwapEuropean,
+		"ISDA2013VolatilitySwapJapanese" then ISDA2013VolatilitySwapJapanese,
+		"2003CreditIndex" then _2003CreditIndex,
+		"2004EquityEuropeanInterdealer" then _2004EquityEuropeanInterdealer,
+		"2005VarianceSwapEuropeanInterdealer" then _2005VarianceSwapEuropeanInterdealer,
+		"2006DividendSwapEuropean" then _2006DividendSwapEuropean,
+		"2006DividendSwapEuropeanInterdealer" then _2006DividendSwapEuropeanInterdealer,
+		"2014CreditAsia" then _2014CreditAsia,
+		"2014CreditAsiaFinancial" then _2014CreditAsiaFinancial,
+		"2014CreditAustraliaNewZealand" then _2014CreditAustraliaNewZealand,
+		"2014CreditAustraliaNewZealandFinancial" then _2014CreditAustraliaNewZealandFinancial,
+		"2014CreditEuropean" then _2014CreditEuropean,
+		"2014CreditEuropeanCoCoFinancial" then _2014CreditEuropeanCoCoFinancial,
+		"2014CreditEuropeanFinancial" then _2014CreditEuropeanFinancial,
+		"2014CreditJapan" then _2014CreditJapan,
+		"2014CreditJapanFinancial" then _2014CreditJapanFinancial,
+		"2014CreditNorthAmerican" then _2014CreditNorthAmerican,
+		"2014CreditNorthAmericanFinancial" then _2014CreditNorthAmericanFinancial,
+		"2014CreditSingapore" then _2014CreditSingapore,
+		"2014CreditSingaporeFinancial" then _2014CreditSingaporeFinancial,
+		"2014CreditSovereignAsia" then _2014CreditSovereignAsia,
+		"2014CreditSovereignEmergingEuropeanAndMiddleEastern" then _2014CreditSovereignEmergingEuropeanAndMiddleEastern,
+		"2014CreditSovereignJapan" then _2014CreditSovereignJapan,
+		"2014CreditSovereignLatinAmerican" then _2014CreditSovereignLatinAmerican,
+		"2014CreditSovereignWesternEuropean" then _2014CreditSovereignWesternEuropean,
+		"2014StandardCreditAsia" then _2014StandardCreditAsia,
+		"2014StandardCreditAsiaFinancial" then _2014StandardCreditAsiaFinancial,
+		"2014StandardCreditAustraliaNewZealand" then _2014StandardCreditAustraliaNewZealand,
+		"2014StandardCreditAustraliaNewZealandFinancial" then _2014StandardCreditAustraliaNewZealandFinancial,
+		"2014StandardCreditEuropean" then _2014StandardCreditEuropean,
+		"2014StandardCreditEuropeanCoCoFinancial" then _2014StandardCreditEuropeanCoCoFinancial,
+		"2014StandardCreditEuropeanFinancial" then _2014StandardCreditEuropeanFinancial,
+		"2014StandardCreditJapan" then _2014StandardCreditJapan,
+		"2014StandardCreditJapanFinancial" then _2014StandardCreditJapanFinancial,
+		"2014StandardCreditNorthAmerican" then _2014StandardCreditNorthAmerican,
+		"2014StandardCreditNorthAmericanFinancial" then _2014StandardCreditNorthAmericanFinancial,
+		"2014StandardCreditSingapore" then _2014StandardCreditSingapore,
+		"2014StandardCreditSingaporeFinancial" then _2014StandardCreditSingaporeFinancial,
+		"2014StandardCreditSovereignAsia" then _2014StandardCreditSovereignAsia,
+		"2014StandardCreditSovereignEmergingEuropeanAndMiddleEastern" then _2014StandardCreditSovereignEmergingEuropeanAndMiddleEastern,
+		"2014StandardCreditSovereignJapan" then _2014StandardCreditSovereignJapan,
+		"2014StandardCreditSovereignLatinAmerican" then _2014StandardCreditSovereignLatinAmerican,
+		"2014StandardCreditSovereignWesternEuropean" then _2014StandardCreditSovereignWesternEuropean,
+		default empty
+
+func MapMatrixTermEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result MatrixTermEnum (0..1)
+	set result: value switch
+		"AsiaCorporate" then AsiaCorporate,
+		"AsiaFinancialCorporate" then AsiaFinancialCorporate,
+		"AsiaSovereign" then AsiaSovereign,
+		"AustraliaCorporate" then AustraliaCorporate,
+		"AustraliaFinancialCorporate" then AustraliaFinancialCorporate,
+		"AustraliaSovereign" then AustraliaSovereign,
+		"EmergingEuropeanAndMiddleEasternSovereign" then EmergingEuropeanAndMiddleEasternSovereign,
+		"EmergingEuropeanCorporate" then EmergingEuropeanCorporate,
+		"EmergingEuropeanCorporateLPN" then EmergingEuropeanCorporateLPN,
+		"EmergingEuropeanFinancialCorporate" then EmergingEuropeanFinancialCorporate,
+		"EmergingEuropeanFinancialCorporateLPN" then EmergingEuropeanFinancialCorporateLPN,
+		"EuropeanCoCoFinancialCorporate" then EuropeanCoCoFinancialCorporate,
+		"EuropeanCorporate" then EuropeanCorporate,
+		"EuropeanFinancialCorporate" then EuropeanFinancialCorporate,
+		"EuropeanSeniorNonPreferredFinancialCorporate" then EuropeanSeniorNonPreferredFinancialCorporate,
+		"IVS1OpenMarkets" then IVS1OpenMarkets,
+		"JapanCorporate" then JapanCorporate,
+		"JapanFinancialCorporate" then JapanFinancialCorporate,
+		"JapanSovereign" then JapanSovereign,
+		"LatinAmericaCorporate" then LatinAmericaCorporate,
+		"LatinAmericaCorporateBond" then LatinAmericaCorporateBond,
+		"LatinAmericaCorporateBondOrLoan" then LatinAmericaCorporateBondOrLoan,
+		"LatinAmericaFinancialCorporateBond" then LatinAmericaFinancialCorporateBond,
+		"LatinAmericaFinancialCorporateBondOrLoan" then LatinAmericaFinancialCorporateBondOrLoan,
+		"LatinAmericaSovereign" then LatinAmericaSovereign,
+		"NewZealandCorporate" then NewZealandCorporate,
+		"NewZealandFinancialCorporate" then NewZealandFinancialCorporate,
+		"NewZealandSovereign" then NewZealandSovereign,
+		"NorthAmericanCorporate" then NorthAmericanCorporate,
+		"NorthAmericanFinancialCorporate" then NorthAmericanFinancialCorporate,
+		"SingaporeCorporate" then SingaporeCorporate,
+		"SingaporeFinancialCorporate" then SingaporeFinancialCorporate,
+		"SingaporeSovereign" then SingaporeSovereign,
+		"StandardAsiaCorporate" then StandardAsiaCorporate,
+		"StandardAsiaFinancialCorporate" then StandardAsiaFinancialCorporate,
+		"StandardAsiaSovereign" then StandardAsiaSovereign,
+		"StandardAustraliaCorporate" then StandardAustraliaCorporate,
+		"StandardAustraliaFinancialCorporate" then StandardAustraliaFinancialCorporate,
+		"StandardAustraliaSovereign" then StandardAustraliaSovereign,
+		"StandardEmergingEuropeanAndMiddleEasternSovereign" then StandardEmergingEuropeanAndMiddleEasternSovereign,
+		"StandardEmergingEuropeanCorporate" then StandardEmergingEuropeanCorporate,
+		"StandardEmergingEuropeanCorporateLPN" then StandardEmergingEuropeanCorporateLPN,
+		"StandardEmergingEuropeanFinancialCorporate" then StandardEmergingEuropeanFinancialCorporate,
+		"StandardEmergingEuropeanFinancialCorporateLPN" then StandardEmergingEuropeanFinancialCorporateLPN,
+		"StandardEuropeanCoCoFinancialCorporate" then StandardEuropeanCoCoFinancialCorporate,
+		"StandardEuropeanCorporate" then StandardEuropeanCorporate,
+		"StandardEuropeanFinancialCorporate" then StandardEuropeanFinancialCorporate,
+		"StandardEuropeanSeniorNonPreferredFinancialCorporate" then StandardEuropeanSeniorNonPreferredFinancialCorporate,
+		"StandardJapanCorporate" then StandardJapanCorporate,
+		"StandardJapanFinancialCorporate" then StandardJapanFinancialCorporate,
+		"StandardJapanSovereign" then StandardJapanSovereign,
+		"StandardLatinAmericaCorporateBond" then StandardLatinAmericaCorporateBond,
+		"StandardLatinAmericaCorporateBondOrLoan" then StandardLatinAmericaCorporateBondOrLoan,
+		"StandardLatinAmericaFinancialCorporateBond" then StandardLatinAmericaFinancialCorporateBond,
+		"StandardLatinAmericaFinancialCorporateBondOrLoan" then StandardLatinAmericaFinancialCorporateBondOrLoan,
+		"StandardLatinAmericaSovereign" then StandardLatinAmericaSovereign,
+		"StandardNewZealandCorporate" then StandardNewZealandCorporate,
+		"StandardNewZealandFinancialCorporate" then StandardNewZealandFinancialCorporate,
+		"StandardNewZealandSovereign" then StandardNewZealandSovereign,
+		"StandardNorthAmericanCorporate" then StandardNorthAmericanCorporate,
+		"StandardNorthAmericanFinancialCorporate" then StandardNorthAmericanFinancialCorporate,
+		"StandardSingaporeCorporate" then StandardSingaporeCorporate,
+		"StandardSingaporeFinancialCorporate" then StandardSingaporeFinancialCorporate,
+		"StandardSingaporeSovereign" then StandardSingaporeSovereign,
+		"StandardSubordinatedEuropeanInsuranceCorporate" then StandardSubordinatedEuropeanInsuranceCorporate,
+		"StandardSukukFinancialCorporate" then StandardSukukFinancialCorporate,
+		"StandardUSMunicipalFullFaithAndCredit" then StandardUSMunicipalFullFaithAndCredit,
+		"StandardUSMunicipalGeneralFund" then StandardUSMunicipalGeneralFund,
+		"StandardUSMunicipalRevenue" then StandardUSMunicipalRevenue,
+		"StandardWesternEuropeanSovereign" then StandardWesternEuropeanSovereign,
+		"SubordinatedEuropeanInsuranceCorporate" then SubordinatedEuropeanInsuranceCorporate,
+		"SukukCorporate" then SukukCorporate,
+		"SukukFinancialCorporate" then SukukFinancialCorporate,
+		"SukukSovereign" then SukukSovereign,
+		"USMunicipalFullFaithAndCredit" then USMunicipalFullFaithAndCredit,
+		"USMunicipalGeneralFund" then USMunicipalGeneralFund,
+		"USMunicipalRevenue" then USMunicipalRevenue,
+		"WesternEuropeanSovereign" then WesternEuropeanSovereign,
+		default empty
+
+func MapMatrixTypeEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result MatrixTypeEnum (0..1)
+	set result: value switch
+		"CreditDerivativesPhysicalSettlementMatrix" then CreditDerivativesPhysicalSettlementMatrix,
+		"EquityDerivativesMatrix" then EquityDerivativesMatrix,
+		"SettlementMatrix" then SettlementMatrix,
+		default empty
+
+func MapNationalizationOrInsolvencyOrDelistingEventEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result NationalizationOrInsolvencyOrDelistingEventEnum (0..1)
+	set result: value switch
+		"NegotiatedCloseout" then NegotiatedCloseout,
+		"CancellationAndPayment" then CancellationAndPayment,
+		default empty
+
+func MapNaturalPersonRoleEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result NaturalPersonRoleEnum (0..1)
+	set result: value switch
+		"Broker" then Broker,
+		"Buyer" then Buyer,
+		"DecisionMaker" then DecisionMaker,
+		"ExecutionWithinFirm" then ExecutionWithinFirm,
+		"InvestmentDecisionMaker" then InvestmentDecisionMaker,
+		"Seller" then Seller,
+		"Trader" then Trader,
+		default empty
+
+func MapNegativeInterestRateTreatmentEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result NegativeInterestRateTreatmentEnum (0..1)
+	set result: value switch
+		"NegativeInterestRateMethod" then NegativeInterestRateMethod,
+		"ZeroInterestRateMethod" then ZeroInterestRateMethod,
+		"ZeroInterestRateMethodExcludingSpread" then ZeroInterestRateExcludingSpreadMethod,
+		default empty
+
+func MapNonCashDividendTreatmentEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result NonCashDividendTreatmentEnum (0..1)
+	set result: value switch
+		"PotentialAdjustmentEvent" then PotentialAdjustmentEvent,
+		"CashEquivalent" then CashEquivalent,
+		default empty
+
+func MapNotionalAdjustmentEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result NotionalAdjustmentEnum (0..1)
+	set result: value switch
+		"Execution" then Execution,
+		"PortfolioRebalancing" then PortfolioRebalancing,
+		"Standard" then Standard,
+		default empty
+
+func MapObligationCategoryEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result ObligationCategoryEnum (0..1)
+	set result: value switch
+		"Payment" then Payment,
+		"BorrowedMoney" then BorrowedMoney,
+		"ReferenceObligationsOnly" then ReferenceObligationsOnly,
+		"Bond" then Bond,
+		"Loan" then Loan,
+		"BondOrLoan" then BondOrLoan,
+		default empty
+
+func MapObservationPeriodDatesEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result ObservationPeriodDatesEnum (0..1)
+	set result: value switch
+		"Standard" then Standard,
+		"SetInAdvance" then SetInAdvance,
+		"FixingDate" then FixingDate,
+		default empty
+
+func MapOptionTypeEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result OptionTypeEnum (0..1)
+	set result: value switch
+		"Payer" then Payer,
+		"Receiver" then Receiver,
+		"Straddle" then Straddle,
+		default empty
+
+func MapPartyDeterminationEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result PartyDeterminationEnum (0..1)
+	set result: value switch
+		"ExercisingParty" then ExercisingParty,
+		"NonExercisingParty" then NonExercisingParty,
+		"AsSpecifiedInMasterAgreement" then AsSpecifiedInMasterAgreement,
+		"AsSpecifiedInStandardTermsSupplement" then AsSpecifiedInStandardTermsSupplement,
+		"Both" then Both,
+		default empty
+
 func MapPartyIdentifierTypeEnum:
 	inputs:
 		value string (0..1)
@@ -2091,19 +2280,398 @@ func MapPartyIdentifierTypeEnum:
 		"http://www.fpml.org/coding-scheme/external/iso10383" then MIC,
 		default empty
 
-func MapFeeTypeEnum:
+func MapPartyRoleEnum:
 	inputs:
 		value string (0..1)
 	output:
-		result FeeTypeEnum (0..1)
+		result PartyRoleEnum (0..1)
 	set result: value switch
-		"AmendmentFee" then Renegotiation,
-		"AssignmentFee" then Assignment,
-		"IncreaseFee" then Increase,
-		"PartialTerminationFee" then PartialTermination,
-		"TerminationFee" then Termination,
-		"UPFRONT_FEE" then Upfront,
-		"Upfront fee" then Upfront,
+		"Accountant" then Accountant,
+		"AllocationAgent" then AllocationAgent,
+		"ArrangingBroker" then ArrangingBroker,
+		"Beneficiary" then Beneficiary,
+		"BookingParty" then BookingParty,
+		"Buyer" then Buyer,
+		"BuyerDecisionMaker" then BuyerDecisionMaker,
+		"ClearingClient" then ClearingClient,
+		"ClearingExceptionParty" then ClearingExceptionParty,
+		"ClearingFirm" then ClearingFirm,
+		"ClearingOrganization" then ClearingOrganization,
+		"Client" then Client,
+		"ClientDecisionMaker" then ClientDecisionMaker,
+		"ConfirmationPlatform" then ConfirmationPlatform,
+		"ConfirmationService" then ConfirmationPlatform,
+		"ContractualParty" then ContractualParty,
+		"CounterPartyAffiliate" then CounterPartyAffiliate,
+		"CounterPartyUltimateParent" then CounterPartyUltimateParent,
+		"Counterparty" then Counterparty,
+		"CreditSupportProvider" then CreditSupportProvider,
+		"Custodian" then Custodian,
+		"DataSubmitter" then DataSubmitter,
+		"DisputingParty" then DisputingParty,
+		"DocumentRepository" then DocumentRepository,
+		"ExecutingBroker" then ExecutingBroker,
+		"ExecutingEntity" then ExecutingEntity,
+		"ExecutionAgent" then ExecutionAgent,
+		"ExecutionFacility" then ExecutionFacility,
+		"Guarantor" then Guarantor,
+		"OrderTransmitter" then OrderTransmitter,
+		"PrimeBroker" then PrimeBroker,
+		"PriorTradeRepository" then PriorTradeRepository,
+		"PTRRCompressionProvider" then PTRRServiceProvider,
+		"PTRRRebalancingProvider" then PTRRServiceProvider,
+		"PublicationVenue" then PublicationVenue,
+		"ReportingParty" then ReportingParty,
+		"ReportingPartyAffiliate" then ReportingPartyAffiliate,
+		"ReportingPartyUltimateParent" then ReportingPartyUltimateParent,
+		"Seller" then Seller,
+		"SellerDecisionMaker" then SellerDecisionMaker,
+		"SettlementAgent" then SettlementAgent,
+		"TradeRepository" then TradeRepository,
+		"TradeSource" then TradeSource,
+		"TradingManager" then TradingManager,
+		"TradingPartner" then TradingPartner,
+		default empty
+
+func MapPayRelativeToEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result PayRelativeToEnum (0..1)
+	set result: value switch
+		"CalculationPeriodStartDate" then CalculationPeriodStartDate,
+		"CalculationPeriodEndDate" then CalculationPeriodEndDate,
+		"LastPricingDate" then LastPricingDate,
+		"ResetDate" then ResetDate,
+		"ValuationDate" then ValuationDate,
+		default empty
+
+func MapPayerReceiverEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result PayerReceiverEnum (0..1)
+	set result: value switch
+		"Payer" then Payer,
+		"Receiver" then Receiver,
+		default empty
+
+func MapPeriodEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result PeriodEnum (0..1)
+	set result: value switch
+		"D" then D,
+		"PerCalendarDay" then D,
+		"W" then W,
+		"NearbyWeek" then W,
+		"M" then M,
+		"NearbyMonth" then M,
+		"Y" then Y,
+		default empty
+
+func MapPeriodExtendedEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result PeriodExtendedEnum (0..1)
+	set result: value switch
+		"D" then D,
+		"PerCalendarDay" then D,
+		"W" then W,
+		"M" then M,
+		"PerMonth" then M,
+		"Y" then Y,
+		"T" then T,
+		"Term" then T,
+		"PerCalculationPeriod" then C,
+		default empty
+
+func MapPeriodTimeEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result PeriodTimeEnum (0..1)
+	set result: value switch
+		"Hour" then Hour,
+		"Minute" then Minute,
+		"Second" then Second,
+		default empty
+
+func MapPremiumTypeEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result PremiumTypeEnum (0..1)
+	set result: value switch
+		"PrePaid" then PrePaid,
+		"PostPaid" then PostPaid,
+		"Variable" then Variable,
+		"Fixed" then Fixed,
+		default empty
+
+func MapPriceExpressionEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result PriceExpressionEnum (0..1)
+	set result: value switch
+		"AbsoluteTerms" then AbsoluteTerms,
+		"PercentageOfNotional" then PercentageOfNotional,
+		default empty
+
+func MapPutCallEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result PutCallEnum (0..1)
+	set result: value switch
+		"Put" then Put,
+		"CallCurrencyPerPutCurrency" then Put,
+		"Call" then Call,
+		"PutCurrencyPerCallCurrency" then Call,
+		default empty
+
+func MapQuantifierEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result QuantifierEnum (0..1)
+	set result: value switch
+		"All" then All,
+		"Any" then Any,
+		default empty
+
+func MapQuotationRateTypeEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result QuotationRateTypeEnum (0..1)
+	set result: value switch
+		"Bid" then Bid,
+		"Ask" then Ask,
+		"Mid" then Mid,
+		"ExercisingPartyPays" then ExercisingPartyPays,
+		default empty
+
+func MapQuotationSideEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result QuotationSideEnum (0..1)
+	set result: value switch
+		"Afternoon" then Afternoon,
+		"Ask" then Ask,
+		"Bid" then Bid,
+		"Closing" then Closing,
+		"High" then High,
+		"Index" then Index,
+		"MeanOfBidAndAsk" then MeanOfBidAndAsk,
+		"LocationalMarginal" then LocationalMarginal,
+		"Low" then Low,
+		"MarginalHourly" then MarginalHourly,
+		"MarketClearing" then MarketClearing,
+		"MeanOfHighAndLow" then MeanOfHighAndLow,
+		"Morning" then Morning,
+		"Official" then Official,
+		"Opening" then Opening,
+		"OSP" then OSP,
+		"Settlement" then Settlement,
+		"Spot" then Spot,
+		"Mid" then Mid,
+		"Midpoint" then Mid,
+		"Settlement" then Settlement,
+		"NationalSingle" then NationalSingle,
+		"WeightedAverage" then WeightedAverage,
+		"UnWeightedAverage" then UnWeightedAverage,
+		default empty
+
+func MapQuotationStyleEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result QuotationStyleEnum (0..1)
+	set result: value switch
+		"PointsUpFront" then PointsUpFront,
+		"TradedSpread" then TradedSpread,
+		"Price" then Price,
+		default empty
+
+func MapQuoteBasisEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result QuoteBasisEnum (0..1)
+	set result: value switch
+		"Currency1PerCurrency2" then Currency1PerCurrency2,
+		"PutCurrencyPerCallCurrency" then Currency1PerCurrency2,
+		"Currency2PerCurrency1" then Currency2PerCurrency1,
+		"CallCurrencyPerPutCurrency" then Currency2PerCurrency1,
+		default empty
+
+func MapRateTreatmentEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result RateTreatmentEnum (0..1)
+	set result: value switch
+		"BondEquivalentYield" then BondEquivalentYield,
+		"MoneyMarketYield" then MoneyMarketYield,
+		default empty
+
+func MapRealisedVarianceMethodEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result RealisedVarianceMethodEnum (0..1)
+	set result: value switch
+		"Previous" then Previous,
+		"Last" then Last,
+		"Both" then Both,
+		default empty
+
+func MapRepoDurationEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result RepoDurationEnum (0..1)
+	set result: value switch
+		"Overnight" then Overnight,
+		"Term" then Term,
+		default empty
+
+func MapResetRelativeToEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result ResetRelativeToEnum (0..1)
+	set result: value switch
+		"CalculationPeriodStartDate" then CalculationPeriodStartDate,
+		"CalculationPeriodEndDate" then CalculationPeriodEndDate,
+		default empty
+
+func MapResourceTypeEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result ResourceTypeEnum (0..1)
+	set result: value switch
+		"Confirmation" then Confirmation,
+		"SupplementalMaterialEconomicTerms" then SupplementalMaterialEconomicTerms,
+		"TermSheet" then TermSheet,
+		default empty
+
+func MapRestructuringEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result RestructuringEnum (0..1)
+	set result: value switch
+		"ModModR" then ModModR,
+		"ModR" then ModR,
+		"R" then R,
+		default empty
+
+func MapReturnTypeEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result ReturnTypeEnum (0..1)
+	set result: value switch
+		"Price" then Price,
+		"Total" then Total,
+		default empty
+
+func MapRollConventionEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result RollConventionEnum (0..1)
+	set result: value switch
+		"EOM" then EOM,
+		"FRN" then FRN,
+		"IMM" then IMM,
+		"IMMCAD" then IMMCAD,
+		"IMMAUD" then IMMAUD,
+		"IMMNZD" then IMMNZD,
+		"SFE" then SFE,
+		"NONE" then NONE,
+		"TBILL" then TBILL,
+		"1" then _1,
+		"2" then _2,
+		"3" then _3,
+		"4" then _4,
+		"5" then _5,
+		"6" then _6,
+		"7" then _7,
+		"8" then _8,
+		"9" then _9,
+		"10" then _10,
+		"11" then _11,
+		"12" then _12,
+		"13" then _13,
+		"14" then _14,
+		"15" then _15,
+		"16" then _16,
+		"17" then _17,
+		"18" then _18,
+		"19" then _19,
+		"20" then _20,
+		"21" then _21,
+		"22" then _22,
+		"23" then _23,
+		"24" then _24,
+		"25" then _25,
+		"26" then _26,
+		"27" then _27,
+		"28" then _28,
+		"29" then _29,
+		"30" then _30,
+		"MON" then MON,
+		"TUE" then TUE,
+		"WED" then WED,
+		"THU" then THU,
+		"FRI" then FRI,
+		"SAT" then SAT,
+		"SUN" then SUN,
+		default empty
+
+func MapRoundingDirectionEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result RoundingDirectionEnum (0..1)
+	set result: value switch
+		"Up" then Up,
+		"Down" then Down,
+		"Nearest" then Nearest,
+		default empty
+
+func MapScheduledTransferEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result ScheduledTransferEnum (0..1)
+	set result: value switch
+		"Coupon" then Coupon,
+		"CreditEvent" then CreditEvent,
+		"DividendReturn" then DividendReturn,
+		"ExerciseFee" then Exercise,
+		"InterestReturn" then InterestReturn,
+		"PriceReturn" then Performance,
+		"PrincipleExchange" then PrincipalPayment,
+		default empty
+
+func MapSettledEntityMatrixSourceEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result SettledEntityMatrixSourceEnum (0..1)
+	set result: value switch
+		"ConfirmationAnnex" then ConfirmationAnnex,
+		"NotApplicable" then NotApplicable,
+		"Publisher" then Publisher,
 		default empty
 
 func MapSettlementRateOptionEnum:
@@ -2300,103 +2868,16 @@ func MapSettlementRateOptionEnum:
 		"VND03" then VND_SFEMC_INDICATIVE_SURVEY_RATE_VND03,
 		default empty
 
-func MapQuotationRateTypeEnum:
+func MapSettlementTypeEnum:
 	inputs:
 		value string (0..1)
 	output:
-		result QuotationRateTypeEnum (0..1)
+		result SettlementTypeEnum (0..1)
 	set result: value switch
-		"Bid" then Bid,
-		"Ask" then Ask,
-		"Mid" then Mid,
-		"ExercisingPartyPays" then ExercisingPartyPays,
-		default empty
-
-func MapQuantifierEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result QuantifierEnum (0..1)
-	set result: value switch
-		"All" then All,
-		"Any" then Any,
-		default empty
-
-func MapQuoteBasisEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result QuoteBasisEnum (0..1)
-	set result: value switch
-		"Currency1PerCurrency2" then Currency1PerCurrency2,
-		"PutCurrencyPerCallCurrency" then Currency1PerCurrency2,
-		"Currency2PerCurrency1" then Currency2PerCurrency1,
-		"CallCurrencyPerPutCurrency" then Currency2PerCurrency1,
-		default empty
-
-func MapQuotationSideEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result QuotationSideEnum (0..1)
-	set result: value switch
-		"Afternoon" then Afternoon,
-		"Ask" then Ask,
-		"Bid" then Bid,
-		"Closing" then Closing,
-		"High" then High,
-		"Index" then Index,
-		"MeanOfBidAndAsk" then MeanOfBidAndAsk,
-		"LocationalMarginal" then LocationalMarginal,
-		"Low" then Low,
-		"MarginalHourly" then MarginalHourly,
-		"MarketClearing" then MarketClearing,
-		"MeanOfHighAndLow" then MeanOfHighAndLow,
-		"Morning" then Morning,
-		"Official" then Official,
-		"Opening" then Opening,
-		"OSP" then OSP,
-		"Settlement" then Settlement,
-		"Spot" then Spot,
-		"Mid" then Mid,
-		"Midpoint" then Mid,
-		"Settlement" then Settlement,
-		"NationalSingle" then NationalSingle,
-		"WeightedAverage" then WeightedAverage,
-		"UnWeightedAverage" then UnWeightedAverage,
-		default empty
-
-func MapPeriodTimeEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result PeriodTimeEnum (0..1)
-	set result: value switch
-		"Hour" then Hour,
-		"Minute" then Minute,
-		"Second" then Second,
-		default empty
-
-func MapRestructuringEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result RestructuringEnum (0..1)
-	set result: value switch
-		"ModModR" then ModModR,
-		"ModR" then ModR,
-		"R" then R,
-		default empty
-
-func MapRealisedVarianceMethodEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result RealisedVarianceMethodEnum (0..1)
-	set result: value switch
-		"Previous" then Previous,
-		"Last" then Last,
-		"Both" then Both,
+		"Cash" then Cash,
+		"Physical" then Physical,
+		"Election" then Election,
+		"CashOrPhysical" then CashOrPhysical,
 		default empty
 
 func MapShareExtraordinaryEventEnum:
@@ -2414,577 +2895,76 @@ func MapShareExtraordinaryEventEnum:
 		"Component" then Component,
 		default empty
 
-func MapAveragingCalculationMethodEnum:
+func MapSpreadScheduleTypeEnum:
 	inputs:
 		value string (0..1)
 	output:
-		result AveragingCalculationMethodEnum (0..1)
+		result SpreadScheduleTypeEnum (0..1)
 	set result: value switch
-		"Unweighted" then Arithmetic,
-		"Weighted" then Arithmetic,
-		"Arithmetic" then Arithmetic,
-		"Geometric" then Geometric,
-		"Harmonic" then Harmonic,
+		"Long" then Long,
+		"Short" then Short,
 		default empty
 
-func MapScheduledTransferEnum:
+func MapStubPeriodTypeEnum:
 	inputs:
 		value string (0..1)
 	output:
-		result ScheduledTransferEnum (0..1)
+		result StubPeriodTypeEnum (0..1)
 	set result: value switch
-		"Coupon" then Coupon,
-		"CreditEvent" then CreditEvent,
-		"DividendReturn" then DividendReturn,
-		"ExerciseFee" then Exercise,
-		"InterestReturn" then InterestReturn,
-		"PriceReturn" then Performance,
-		"PrincipleExchange" then PrincipalPayment,
+		"ShortInitial" then ShortInitial,
+		"ShortFinal" then ShortFinal,
+		"LongInitial" then LongInitial,
+		"LongFinal" then LongFinal,
 		default empty
 
-func MapWeatherUnitEnum:
+func MapTelephoneTypeEnum:
 	inputs:
 		value string (0..1)
 	output:
-		result WeatherUnitEnum (0..1)
+		result TelephoneTypeEnum (0..1)
 	set result: value switch
-		"CDD" then CDD,
-		"CPD" then CPD,
-		"HDD" then HDD,
+		"Work" then Work,
+		"Mobile" then Mobile,
+		"Fax" then Fax,
+		"Personal" then Personal,
 		default empty
 
-func MapReturnTypeEnum:
+func MapTimeTypeEnum:
 	inputs:
 		value string (0..1)
 	output:
-		result ReturnTypeEnum (0..1)
+		result TimeTypeEnum (0..1)
 	set result: value switch
-		"Price" then Price,
-		"Total" then Total,
+		"Close" then Close,
+		"Open" then Open,
+		"OSP" then OSP,
+		"SpecificTime" then SpecificTime,
+		"XETRA" then XETRA,
+		"DerivativesClose" then DerivativesClose,
+		"AsSpecifiedInMasterConfirmation" then AsSpecifiedInMasterConfirmation,
 		default empty
 
-func MapRateTreatmentEnum:
+func MapTriggerTimeTypeEnum:
 	inputs:
 		value string (0..1)
 	output:
-		result RateTreatmentEnum (0..1)
+		result TriggerTimeTypeEnum (0..1)
 	set result: value switch
-		"BondEquivalentYield" then BondEquivalentYield,
-		"MoneyMarketYield" then MoneyMarketYield,
+		"Closing" then Closing,
+		"Anytime" then Anytime,
 		default empty
 
-func MapBusinessDayConventionEnum:
+func MapTriggerTypeEnum:
 	inputs:
 		value string (0..1)
 	output:
-		result BusinessDayConventionEnum (0..1)
+		result TriggerTypeEnum (0..1)
 	set result: value switch
-		"FOLLOWING" then FOLLOWING,
-		"FRN" then FRN,
-		"MODFOLLOWING" then MODFOLLOWING,
-		"PRECEDING" then PRECEDING,
-		"MODPRECEDING" then MODPRECEDING,
-		"NEAREST" then NEAREST,
-		"NONE" then NONE,
-		"NotApplicable" then NotApplicable,
-		default empty
-
-func MapDayOfWeekEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result DayOfWeekEnum (0..1)
-	set result: value switch
-		"MON" then MON,
-		"TUE" then TUE,
-		"WED" then WED,
-		"THU" then THU,
-		"FRI" then FRI,
-		"SAT" then SAT,
-		"SUN" then SUN,
-		default empty
-
-func MapCalculationMethodEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result CalculationMethodEnum (0..1)
-	set result: value switch
-		"Averaging" then Averaging,
-		"Compounding" then Compounding,
-		"CompoundedIndex" then CompoundedIndex,
-		default empty
-
-func MapAveragingWeightingMethodEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result AveragingWeightingMethodEnum (0..1)
-	set result: value switch
-		"Unweighted" then Unweighted,
-		"Arithmetic" then Unweighted,
-		"Geometric" then Unweighted,
-		"Harmonic" then Unweighted,
-		"Weighted" then Weighted,
-		default empty
-
-func MapInflationRateIndexEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result InflationRateIndexEnum (0..1)
-	set result: value switch
-		"AUD-CPI" then AUD_CPI,
-		"AUS-CPI" then AUS_CPI,
-		"AUS-HICP" then AUS_HICP,
-		"BLG-CPI-GI" then BLG_CPI_GI,
-		"BLG-CPI-HI" then BLG_CPI_HI,
-		"BLG-HICP" then BLG_HICP,
-		"BRL-IGPM" then BRL_IGPM,
-		"BRL-IPCA" then BRL_IPCA,
-		"CAD-CPI" then CAD_CPI,
-		"CLP-CPI" then CLP_CPI,
-		"CNY-CPI" then CNY_CPI,
-		"CZK-CPI" then CZK_CPI,
-		"DEK-CPI" then DEK_CPI,
-		"DEK-HICP" then DEK_HICP,
-		"DEM-CPI" then DEM_CPI,
-		"DEM-CPI-NRW" then DEM_CPI_NRW,
-		"DEM-HICP" then DEM_HICP,
-		"ESP-CPI" then ESP_CPI,
-		"ESP-HICP" then ESP_HICP,
-		"ESP-R-CPI" then ESP_R_CPI,
-		"ESP-R-HICP" then ESP_R_HICP,
-		"EUR-AI-CPI" then EUR_AI_CPI,
-		"EUR-AI-R-CPI" then EUR_AI_R_CPI,
-		"EUR-EXT-CPI" then EUR_EXT_CPI,
-		"EUR-EXT-R-CPI" then EUR_EXT_R_CPI,
-		"FIN-CPI" then FIN_CPI,
-		"FIN-HICP" then FIN_HICP,
-		"FRC-EXT-CPI" then FRC_EXT_CPI,
-		"FRC-HICP" then FRC_HICP,
-		"GRD-CPI" then GRD_CPI,
-		"GRD-HICP" then GRD_HICP,
-		"HKD-CPI" then HKD_CPI,
-		"HUF-CPI" then HUF_CPI,
-		"IDR-CPI" then IDR_CPI,
-		"ILS-CPI" then ILS_CPI,
-		"IRL-CPI" then IRL_CPI,
-		"IRL-HICP" then IRL_HICP,
-		"ISK-CPI" then ISK_CPI,
-		"ISK-HICP" then ISK_HICP,
-		"ITL-BC-EXT-CPI" then ITL_BC_EXT_CPI,
-		"ITL-BC-INT-CPI" then ITL_BC_INT_CPI,
-		"ITL-HICP" then ITL_HICP,
-		"ITL-WC-EXT-CPI" then ITL_WC_EXT_CPI,
-		"ITL-WC-INT-CPI" then ITL_WC_INT_CPI,
-		"JPY-CPI-EXF" then JPY_CPI_EXF,
-		"KRW-CPI" then KRW_CPI,
-		"LUX-CPI" then LUX_CPI,
-		"LUX-HICP" then LUX_HICP,
-		"MXN-CPI" then MXN_CPI,
-		"MXN-UDI" then MXN_UDI,
-		"MYR-CPI" then MYR_CPI,
-		"NLG-CPI" then NLG_CPI,
-		"NLG-HICP" then NLG_HICP,
-		"NOK-CPI" then NOK_CPI,
-		"NZD-CPI" then NZD_CPI,
-		"PER-CPI" then PER_CPI,
-		"PLN-CPI" then PLN_CPI,
-		"POR-CPI" then POR_CPI,
-		"POR-HICP" then POR_HICP,
-		"RUB-CPI" then RUB_CPI,
-		"SEK-CPI" then SEK_CPI,
-		"SGD-CPI" then SGD_CPI,
-		"SWF-CPI" then SWF_CPI,
-		"TRY-CPI" then TRY_CPI,
-		"TWD-CPI" then TWD_CPI,
-		"UK-HICP" then UK_HICP,
-		"UK-RPI" then UK_RPI,
-		"UK-RPIX" then UK_RPIX,
-		"USA-CPI-U" then USA_CPI_U,
-		"ZAR-CPI" then ZAR_CPI,
-		"ZAR-CPIX" then ZAR_CPIX,
-		default empty
-
-func MapCallingPartyEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result CallingPartyEnum (0..1)
-	set result: value switch
-		"InitialBuyer" then InitialBuyer,
-		"InitialSeller" then InitialSeller,
-		"Either" then Either,
-		"AsDefinedInMasterAgreement" then AsDefinedInMasterAgreement,
-		default empty
-
-func MapResetRelativeToEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result ResetRelativeToEnum (0..1)
-	set result: value switch
-		"CalculationPeriodStartDate" then CalculationPeriodStartDate,
-		"CalculationPeriodEndDate" then CalculationPeriodEndDate,
-		default empty
-
-func MapDayTypeEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result DayTypeEnum (0..1)
-	set result: value switch
-		"Business" then Business,
-		"CommodityBusiness" then Business,
-		"Calendar" then Calendar,
-		"CurrencyBusiness" then CurrencyBusiness,
-		"ExchangeBusiness" then ExchangeBusiness,
-		"ScheduledTradingDay" then ScheduledTradingDay,
-		default empty
-
-func MapGoverningLawEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result GoverningLawEnum (0..1)
-	set result: value switch
-		"AsSpecifiedInMasterAgreement" then AsSpecifiedInMasterAgreement,
-		"CAAB" then CAAB,
-		"CABC" then CABC,
-		"CAMN" then CAMN,
-		"CAON" then CAON,
-		"CAQC" then CAQC,
-		"DE" then DE,
-		"FR" then FR,
-		"GBEN" then GBEN,
-		"GBGY" then GBGY,
-		"GBIM" then GBIM,
-		"GBJY" then GBJY,
-		"GBSC" then GBSC,
-		"JP" then JP,
-		"USCA" then USCA,
-		"USDE" then USDE,
-		"USIL" then USIL,
-		"USNY" then USNY,
-		default empty
-
-func MapWeeklyRollConventionEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result WeeklyRollConventionEnum (0..1)
-	set result: value switch
-		"TBILL" then TBILL,
-		default empty
-
-func MapBusinessCenterEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result BusinessCenterEnum (0..1)
-	set result: value switch
-		"AEAB" then AEAB,
-		"AEAD" then AEAD,
-		"AEDU" then AEDU,
-		"AMYE" then AMYE,
-		"AOLU" then AOLU,
-		"ARBA" then ARBA,
-		"ATVI" then ATVI,
-		"AUAD" then AUAD,
-		"AUBR" then AUBR,
-		"AUCA" then AUCA,
-		"AUDA" then AUDA,
-		"AUME" then AUME,
-		"AUPE" then AUPE,
-		"AUSY" then AUSY,
-		"BBBR" then BBBR,
-		"BDDH" then BDDH,
-		"BEBR" then BEBR,
-		"BGSO" then BGSO,
-		"BHMA" then BHMA,
-		"BMHA" then BMHA,
-		"BNBS" then BNBS,
-		"BOLP" then BOLP,
-		"BRBD" then BRBD,
-		"BRBR" then BRBR,
-		"BRRJ" then BRRJ,
-		"BRSP" then BRSP,
-		"BSNA" then BSNA,
-		"BWGA" then BWGA,
-		"BYMI" then BYMI,
-		"CACL" then CACL,
-		"CAMO" then CAMO,
-		"CAOT" then CAOT,
-		"CATO" then CATO,
-		"CAVA" then CAVA,
-		"CAWI" then CAWI,
-		"CHBA" then CHBA,
-		"CHGE" then CHGE,
-		"CHZU" then CHZU,
-		"CIAB" then CIAB,
-		"CLSA" then CLSA,
-		"CMYA" then CMYA,
-		"CNBE" then CNBE,
-		"CNSH" then CNSH,
-		"COBO" then COBO,
-		"CRSJ" then CRSJ,
-		"CWWI" then CWWI,
-		"CYNI" then CYNI,
-		"CZPR" then CZPR,
-		"DECO" then DECO,
-		"DEDU" then DEDU,
-		"DEFR" then DEFR,
-		"DEHH" then DEHH,
-		"DELE" then DELE,
-		"DEMA" then DEMA,
-		"DEMU" then DEMU,
-		"DEST" then DEST,
-		"DKCO" then DKCO,
-		"DOSD" then DOSD,
-		"DZAL" then DZAL,
-		"ECGU" then ECGU,
-		"EETA" then EETA,
-		"EGCA" then EGCA,
-		"ESAS" then ESAS,
-		"ESBA" then ESBA,
-		"ESMA" then ESMA,
-		"ESSS" then ESSS,
-		"ETAA" then ETAA,
-		"EUR-ICESWAP" then EUR_ICESWAP,
-		"EUTA" then EUTA,
-		"FIHE" then FIHE,
-		"FRPA" then FRPA,
-		"GBED" then GBED,
-		"GBLO" then GBLO,
-		"GBP-ICESWAP" then GBP_ICESWAP,
-		"GETB" then GETB,
-		"GGSP" then GGSP,
-		"GHAC" then GHAC,
-		"GIGI" then GIGI,
-		"GMBA" then GMBA,
-		"GNCO" then GNCO,
-		"GRAT" then GRAT,
-		"GTGC" then GTGC,
-		"HKHK" then HKHK,
-		"HNTE" then HNTE,
-		"HRZA" then HRZA,
-		"HUBU" then HUBU,
-		"IDJA" then IDJA,
-		"IEDU" then IEDU,
-		"ILJE" then ILJE,
-		"ILS-TELBOR" then ILS_TELBOR,
-		"ILTA" then ILTA,
-		"INAH" then INAH,
-		"INBA" then INBA,
-		"INCH" then INCH,
-		"INHY" then INHY,
-		"INKO" then INKO,
-		"INMU" then INMU,
-		"INND" then INND,
-		"IQBA" then IQBA,
-		"IRTE" then IRTE,
-		"ISRE" then ISRE,
-		"ITMI" then ITMI,
-		"ITRO" then ITRO,
-		"ITTU" then ITTU,
-		"JESH" then JESH,
-		"JMKI" then JMKI,
-		"JOAM" then JOAM,
-		"JPTO" then JPTO,
-		"KENA" then KENA,
-		"KRSE" then KRSE,
-		"KWKC" then KWKC,
-		"KYGE" then KYGE,
-		"KZAL" then KZAL,
-		"LAVI" then LAVI,
-		"LBBE" then LBBE,
-		"LKCO" then LKCO,
-		"LULU" then LULU,
-		"LVRI" then LVRI,
-		"MACA" then MACA,
-		"MARA" then MARA,
-		"MCMO" then MCMO,
-		"MNUB" then MNUB,
-		"MOMA" then MOMA,
-		"MTVA" then MTVA,
-		"MUPL" then MUPL,
-		"MVMA" then MVMA,
-		"MWLI" then MWLI,
-		"MXMC" then MXMC,
-		"MYKL" then MYKL,
-		"MYLA" then MYLA,
-		"MZMA" then MZMA,
-		"NAWI" then NAWI,
-		"NGAB" then NGAB,
-		"NGLA" then NGLA,
-		"NLAM" then NLAM,
-		"NLRO" then NLRO,
-		"NOOS" then NOOS,
-		"NPKA" then NPKA,
-		"NYFD" then NYFD,
-		"NYSE" then NYSE,
-		"NZAU" then NZAU,
-		"NZWE" then NZWE,
-		"OMMU" then OMMU,
-		"PAPC" then PAPC,
-		"PELI" then PELI,
-		"PHMA" then PHMA,
-		"PHMK" then PHMK,
-		"PKKA" then PKKA,
-		"PLWA" then PLWA,
-		"PRSJ" then PRSJ,
-		"PTLI" then PTLI,
-		"QADO" then QADO,
-		"ROBU" then ROBU,
-		"RSBE" then RSBE,
-		"RUMO" then RUMO,
-		"SAAB" then SAAB,
-		"SAJE" then SAJE,
-		"SARI" then SARI,
-		"SEST" then SEST,
-		"SGSI" then SGSI,
-		"SILJ" then SILJ,
-		"SKBR" then SKBR,
-		"SLFR" then SLFR,
-		"SNDA" then SNDA,
-		"SVSS" then SVSS,
-		"THBA" then THBA,
-		"TNTU" then TNTU,
-		"TRAN" then TRAN,
-		"TRIS" then TRIS,
-		"TTPS" then TTPS,
-		"TWTA" then TWTA,
-		"TZDA" then TZDA,
-		"TZDO" then TZDO,
-		"UAKI" then UAKI,
-		"UGKA" then UGKA,
-		"USBO" then USBO,
-		"USCH" then USCH,
-		"USCR" then USCR,
-		"USD-ICESWAP" then USD_ICESWAP,
-		"USD-MUNI" then USD_MUNI,
-		"USDC" then USDC,
-		"USDN" then USDN,
-		"USDT" then USDT,
-		"USGS" then USGS,
-		"USHL" then USHL,
-		"USHO" then USHO,
-		"USLA" then USLA,
-		"USMB" then USMB,
-		"USMN" then USMN,
-		"USNY" then USNY,
-		"USPO" then USPO,
-		"USSA" then USSA,
-		"USSE" then USSE,
-		"USSF" then USSF,
-		"USWT" then USWT,
-		"UYMO" then UYMO,
-		"UZTA" then UZTA,
-		"VECA" then VECA,
-		"VGRT" then VGRT,
-		"VNHA" then VNHA,
-		"VNHC" then VNHC,
-		"YEAD" then YEAD,
-		"ZAJO" then ZAJO,
-		"ZMLU" then ZMLU,
-		"ZWHA" then ZWHA,
-		default empty
-
-func MapMatrixTermEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result MatrixTermEnum (0..1)
-	set result: value switch
-		"AsiaCorporate" then AsiaCorporate,
-		"AsiaFinancialCorporate" then AsiaFinancialCorporate,
-		"AsiaSovereign" then AsiaSovereign,
-		"AustraliaCorporate" then AustraliaCorporate,
-		"AustraliaFinancialCorporate" then AustraliaFinancialCorporate,
-		"AustraliaSovereign" then AustraliaSovereign,
-		"EmergingEuropeanAndMiddleEasternSovereign" then EmergingEuropeanAndMiddleEasternSovereign,
-		"EmergingEuropeanCorporate" then EmergingEuropeanCorporate,
-		"EmergingEuropeanCorporateLPN" then EmergingEuropeanCorporateLPN,
-		"EmergingEuropeanFinancialCorporate" then EmergingEuropeanFinancialCorporate,
-		"EmergingEuropeanFinancialCorporateLPN" then EmergingEuropeanFinancialCorporateLPN,
-		"EuropeanCoCoFinancialCorporate" then EuropeanCoCoFinancialCorporate,
-		"EuropeanCorporate" then EuropeanCorporate,
-		"EuropeanFinancialCorporate" then EuropeanFinancialCorporate,
-		"EuropeanSeniorNonPreferredFinancialCorporate" then EuropeanSeniorNonPreferredFinancialCorporate,
-		"IVS1OpenMarkets" then IVS1OpenMarkets,
-		"JapanCorporate" then JapanCorporate,
-		"JapanFinancialCorporate" then JapanFinancialCorporate,
-		"JapanSovereign" then JapanSovereign,
-		"LatinAmericaCorporate" then LatinAmericaCorporate,
-		"LatinAmericaCorporateBond" then LatinAmericaCorporateBond,
-		"LatinAmericaCorporateBondOrLoan" then LatinAmericaCorporateBondOrLoan,
-		"LatinAmericaFinancialCorporateBond" then LatinAmericaFinancialCorporateBond,
-		"LatinAmericaFinancialCorporateBondOrLoan" then LatinAmericaFinancialCorporateBondOrLoan,
-		"LatinAmericaSovereign" then LatinAmericaSovereign,
-		"NewZealandCorporate" then NewZealandCorporate,
-		"NewZealandFinancialCorporate" then NewZealandFinancialCorporate,
-		"NewZealandSovereign" then NewZealandSovereign,
-		"NorthAmericanCorporate" then NorthAmericanCorporate,
-		"NorthAmericanFinancialCorporate" then NorthAmericanFinancialCorporate,
-		"SingaporeCorporate" then SingaporeCorporate,
-		"SingaporeFinancialCorporate" then SingaporeFinancialCorporate,
-		"SingaporeSovereign" then SingaporeSovereign,
-		"StandardAsiaCorporate" then StandardAsiaCorporate,
-		"StandardAsiaFinancialCorporate" then StandardAsiaFinancialCorporate,
-		"StandardAsiaSovereign" then StandardAsiaSovereign,
-		"StandardAustraliaCorporate" then StandardAustraliaCorporate,
-		"StandardAustraliaFinancialCorporate" then StandardAustraliaFinancialCorporate,
-		"StandardAustraliaSovereign" then StandardAustraliaSovereign,
-		"StandardEmergingEuropeanAndMiddleEasternSovereign" then StandardEmergingEuropeanAndMiddleEasternSovereign,
-		"StandardEmergingEuropeanCorporate" then StandardEmergingEuropeanCorporate,
-		"StandardEmergingEuropeanCorporateLPN" then StandardEmergingEuropeanCorporateLPN,
-		"StandardEmergingEuropeanFinancialCorporate" then StandardEmergingEuropeanFinancialCorporate,
-		"StandardEmergingEuropeanFinancialCorporateLPN" then StandardEmergingEuropeanFinancialCorporateLPN,
-		"StandardEuropeanCoCoFinancialCorporate" then StandardEuropeanCoCoFinancialCorporate,
-		"StandardEuropeanCorporate" then StandardEuropeanCorporate,
-		"StandardEuropeanFinancialCorporate" then StandardEuropeanFinancialCorporate,
-		"StandardEuropeanSeniorNonPreferredFinancialCorporate" then StandardEuropeanSeniorNonPreferredFinancialCorporate,
-		"StandardJapanCorporate" then StandardJapanCorporate,
-		"StandardJapanFinancialCorporate" then StandardJapanFinancialCorporate,
-		"StandardJapanSovereign" then StandardJapanSovereign,
-		"StandardLatinAmericaCorporateBond" then StandardLatinAmericaCorporateBond,
-		"StandardLatinAmericaCorporateBondOrLoan" then StandardLatinAmericaCorporateBondOrLoan,
-		"StandardLatinAmericaFinancialCorporateBond" then StandardLatinAmericaFinancialCorporateBond,
-		"StandardLatinAmericaFinancialCorporateBondOrLoan" then StandardLatinAmericaFinancialCorporateBondOrLoan,
-		"StandardLatinAmericaSovereign" then StandardLatinAmericaSovereign,
-		"StandardNewZealandCorporate" then StandardNewZealandCorporate,
-		"StandardNewZealandFinancialCorporate" then StandardNewZealandFinancialCorporate,
-		"StandardNewZealandSovereign" then StandardNewZealandSovereign,
-		"StandardNorthAmericanCorporate" then StandardNorthAmericanCorporate,
-		"StandardNorthAmericanFinancialCorporate" then StandardNorthAmericanFinancialCorporate,
-		"StandardSingaporeCorporate" then StandardSingaporeCorporate,
-		"StandardSingaporeFinancialCorporate" then StandardSingaporeFinancialCorporate,
-		"StandardSingaporeSovereign" then StandardSingaporeSovereign,
-		"StandardSubordinatedEuropeanInsuranceCorporate" then StandardSubordinatedEuropeanInsuranceCorporate,
-		"StandardSukukFinancialCorporate" then StandardSukukFinancialCorporate,
-		"StandardUSMunicipalFullFaithAndCredit" then StandardUSMunicipalFullFaithAndCredit,
-		"StandardUSMunicipalGeneralFund" then StandardUSMunicipalGeneralFund,
-		"StandardUSMunicipalRevenue" then StandardUSMunicipalRevenue,
-		"StandardWesternEuropeanSovereign" then StandardWesternEuropeanSovereign,
-		"SubordinatedEuropeanInsuranceCorporate" then SubordinatedEuropeanInsuranceCorporate,
-		"SukukCorporate" then SukukCorporate,
-		"SukukFinancialCorporate" then SukukFinancialCorporate,
-		"SukukSovereign" then SukukSovereign,
-		"USMunicipalFullFaithAndCredit" then USMunicipalFullFaithAndCredit,
-		"USMunicipalGeneralFund" then USMunicipalGeneralFund,
-		"USMunicipalRevenue" then USMunicipalRevenue,
-		"WesternEuropeanSovereign" then WesternEuropeanSovereign,
-		default empty
-
-func MapNonCashDividendTreatmentEnum:
-	inputs:
-		value string (0..1)
-	output:
-		result NonCashDividendTreatmentEnum (0..1)
-	set result: value switch
-		"PotentialAdjustmentEvent" then PotentialAdjustmentEvent,
-		"CashEquivalent" then CashEquivalent,
+		"EqualOrLess" then EqualOrLess,
+		"EqualOrGreater" then EqualOrGreater,
+		"Equal" then Equal,
+		"Less" then Less,
+		"Greater" then Greater,
 		default empty
 
 func MapValuationMethodEnum:
@@ -3001,5 +2981,25 @@ func MapValuationMethodEnum:
 		"BlendedHighest" then BlendedHighest,
 		"AverageBlendedMarket" then AverageBlendedMarket,
 		"AverageBlendedHighest" then AverageBlendedHighest,
+		default empty
+
+func MapWeatherUnitEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result WeatherUnitEnum (0..1)
+	set result: value switch
+		"CDD" then CDD,
+		"CPD" then CPD,
+		"HDD" then HDD,
+		default empty
+
+func MapWeeklyRollConventionEnum:
+	inputs:
+		value string (0..1)
+	output:
+		result WeeklyRollConventionEnum (0..1)
+	set result: value switch
+		"TBILL" then TBILL,
 		default empty
 
