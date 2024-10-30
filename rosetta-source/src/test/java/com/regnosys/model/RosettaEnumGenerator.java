@@ -40,7 +40,7 @@ public class RosettaEnumGenerator {
                     SynonymEnumValuePair synonymEnumValuePair = new SynonymEnumValuePair(s, enumValue);
                     if (!synonymEnumValuePairs.contains(synonymEnumValuePair)) {
                         sb.append("\t\t\"%s\" then %s,\n".formatted(s, enumValue));
-//                        synonymEnumValuePairs.add(synonymEnumValuePair);
+                        synonymEnumValuePairs.add(synonymEnumValuePair);
                     }
                 });
             });
