@@ -1,9 +1,11 @@
 package com.regnosys.model;
 
-import com.regnosys.rosetta.RosettaEcoreUtil;
 import com.regnosys.rosetta.rosetta.*;
 import com.regnosys.rosetta.rosetta.simple.Attribute;
 import com.regnosys.rosetta.rosetta.simple.Data;
+import com.regnosys.rosetta.types.RAttribute;
+import com.regnosys.rosetta.types.RDataType;
+import com.regnosys.rosetta.types.RObjectFactory;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.inject.Inject;
@@ -17,7 +19,7 @@ import java.util.*;
 
 public class RosettaMappingFunctionGenerator {
     @Inject
-    private RosettaEcoreUtil rosettaEcoreUtil;
+    private RObjectFactory rObjectFactory;
     private Queue<FunctionToGenerate> functionsToGenerateQueue;
     private Set<String> imports;
     private Set<FunctionToGenerate> queuedForGeneration;
@@ -65,7 +67,7 @@ public class RosettaMappingFunctionGenerator {
 
         generateFunctionHeader(sb, functionToGenerate, generateDataMappingFunctionName(functionToGenerate), true);
 
-        for (Attribute attribute : rosettaEcoreUtil.getAllAttributes(cdmType)) {
+        for (Attribute attribute : getAllAttributes(cdmType)) {
             List<String> metas = getMetas(attribute);
             RosettaType type = attribute.getTypeCall().getType();
             if (type instanceof RosettaBasicType || type instanceof RosettaEnumeration || type instanceof RosettaRecordType || type instanceof RosettaTypeAlias) {
@@ -162,6 +164,11 @@ public class RosettaMappingFunctionGenerator {
             functionsToGenerateQueue.add(newFunctionToGenerate);
             queuedForGeneration.add(newFunctionToGenerate);
         }
+    }
+
+    private List<Attribute> getAllAttributes(Data cdmType) {
+        RDataType rDataType = rObjectFactory.buildRDataType(cdmType);
+        return rDataType.getAllNonOverridenAttributes().stream().map(RAttribute::getEObject).toList();
     }
 
     private void addImport(FunctionToGenerate function) {
