@@ -1,0 +1,6834 @@
+namespace fpml.ingest.typesfixed : < "fpml types mappings" >
+version "${project.version}"
+
+
+import cdm.observable.event.*
+import cdm.base.staticdata.identifier.*
+import cdm.legaldocumentation.contract.*
+import cdm.base.staticdata.asset.credit.*
+import cdm.base.math.*
+import cdm.observable.asset.calculatedrate.*
+import cdm.legaldocumentation.master.*
+import cdm.base.staticdata.asset.common.*
+import cdm.base.datetime.*
+import com.rosetta.model.*
+import cdm.legaldocumentation.common.*
+import cdm.observable.asset.*
+import cdm.product.asset.*
+import cdm.base.staticdata.asset.rates.*
+import cdm.legaldocumentation.csa.*
+import cdm.base.staticdata.party.*
+import cdm.base.datetime.daycount.*
+import cdm.product.common.settlement.*
+import cdm.product.collateral.*
+import cdm.product.template.*
+import cdm.product.common.schedule.*
+import cdm.event.common.*
+import fpml.confirmation.* as fpml
+
+func MapTradeState:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		tradeState TradeState (0..1)
+	set tradeState:
+		TradeState {
+			trade: MapTrade(fpmlDataDocument),
+			state: MapState(fpmlDataDocument),
+			resetHistory: MapResetList(fpmlDataDocument),
+			transferHistory: MapTransferStateList(fpmlDataDocument),
+			observationHistory: MapObservationEventList(fpmlDataDocument),
+			valuationHistory: MapValuationList(fpmlDataDocument),
+		}
+
+
+func MapTrade:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		trade Trade (0..1)
+	set trade:
+		Trade {
+			product: MapNonTransferableProduct(fpmlDataDocument),
+			tradeLot: MapTradeLotList(fpmlDataDocument),
+			counterparty: MapCounterpartyList(fpmlDataDocument),
+			ancillaryParty: MapAncillaryPartyList(fpmlDataDocument),
+			adjustment: empty,
+			tradeIdentifier: MapTradeIdentifierList(fpmlDataDocument),
+			tradeDate: fpmlDataDocument -> trade only-element -> tradeHeader -> tradeDate -> value,
+			tradeTime: MapTimeZone(fpmlDataDocument),
+			party: MapPartyList(fpmlDataDocument -> partiesAndAccountsModel -> party),
+			partyRole: MapPartyRoleList(fpmlDataDocument),
+			executionDetails: MapExecutionDetails(fpmlDataDocument),
+			contractDetails: MapContractDetails(fpmlDataDocument -> trade only-element),
+			clearedDate: empty,
+			collateral: MapCollateral(fpmlDataDocument),
+			account: MapAccountList(fpmlDataDocument -> partiesAndAccountsModel -> account),
+		}
+
+
+func MapState:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		state State (0..1)
+	set state:
+		State {
+			closedState: MapClosedState(fpmlDataDocument),
+			positionState: empty,
+		}
+
+
+func MapResetList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		resetList Reset (0..*)
+	add resetList:
+		[
+			Reset {
+				resetValue: MapPrice(fpmlDataDocument),
+				resetDate: empty,
+				rateRecordDate: empty,
+				observations: MapObservationList(fpmlDataDocument),
+				averagingMethodology: MapAveragingCalculation(fpmlDataDocument),
+			}
+		]
+
+
+func MapTransferStateList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		transferStateList TransferState (0..*)
+	add transferStateList:
+		[
+			TransferState {
+				transfer: MapTransfer(fpmlDataDocument),
+				transferStatus: empty,
+			}
+		]
+
+
+func MapObservationEventList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		observationEventList ObservationEvent (0..*)
+	add observationEventList:
+		[
+			ObservationEvent {
+				creditEvent: MapCreditEvent(fpmlDataDocument),
+				corporateAction: MapCorporateAction(fpmlDataDocument),
+			}
+		]
+
+
+func MapValuationList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		valuationList Valuation (0..*)
+	add valuationList:
+		[
+			Valuation {
+				amount: MapMoney(fpmlDataDocument),
+				timestamp: empty,
+				method: empty,
+				source: empty,
+				delta: empty,
+				valuationTiming: empty,
+				priceComponent: MapPrice(fpmlDataDocument),
+			}
+		]
+
+
+func MapNonTransferableProduct:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		nonTransferableProduct NonTransferableProduct (0..1)
+	set nonTransferableProduct:
+		NonTransferableProduct {
+			identifier: MapProductIdentifierList(fpmlDataDocument),
+			taxonomy: MapProductTaxonomyList(fpmlDataDocument),
+			economicTerms: MapEconomicTerms(fpmlDataDocument),
+		}
+
+
+func MapTradeLotList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		tradeLotList TradeLot (0..*)
+	add tradeLotList:
+		[
+			TradeLot {
+				lotIdentifier: MapIdentifierList(fpmlDataDocument),
+				priceQuantity: MapPriceQuantityList(fpmlDataDocument),
+			}
+		]
+
+
+func MapCounterpartyList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		counterpartyList Counterparty (0..*)
+	add counterpartyList:
+		[
+			Counterparty {
+				role: empty,
+				partyReference: MapParty(empty),
+			}
+		]
+
+
+func MapAncillaryPartyList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		ancillaryPartyList AncillaryParty (0..*)
+	add ancillaryPartyList:
+		[
+			AncillaryParty {
+				role: empty,
+				partyReference: MapPartyList(empty),
+				onBehalfOf: empty,
+			}
+		]
+
+
+func MapTradeIdentifierList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		tradeIdentifierList TradeIdentifier (0..*)
+	add tradeIdentifierList:
+		[
+			TradeIdentifier {
+				issuerReference: MapParty(empty),
+				issuer: MapIssuerWithScheme(fpmlDataDocument),
+				assignedIdentifier: MapAssignedIdentifierList(fpmlDataDocument),
+				identifierType: empty,
+			}
+		]
+
+
+func MapTimeZone:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		timeZone TimeZone (0..1)
+	set timeZone:
+		TimeZone {
+			time: empty,
+			location: MapLocationWithScheme(fpmlDataDocument),
+		}
+
+
+func MapPartyList:
+	inputs:
+		fpmlParties fpml.Party (0..*)
+	output:
+		partyList Party (0..*)
+	add partyList:
+        fpmlParties
+		extract MapParty
+
+
+func MapPartyRoleList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		partyRoleList PartyRole (0..*)
+	add partyRoleList:
+		[
+			PartyRole {
+				partyReference: MapParty(empty),
+				role: empty,
+				ownershipPartyReference: MapParty(empty),
+			}
+		]
+
+
+func MapExecutionDetails:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		executionDetails ExecutionDetails (0..1)
+	set executionDetails:
+		ExecutionDetails {
+			executionType: empty,
+			executionVenue: MapLegalEntity(fpmlDataDocument),
+			packageReference: MapIdentifiedList(fpmlDataDocument),
+		}
+
+
+func MapContractDetails:
+	inputs:
+		fpmlTrade fpml.Trade (0..1)
+	output:
+		contractDetails ContractDetails (0..1)
+	set contractDetails:
+		ContractDetails {
+			documentation: MapLegalAgreementList(fpmlTrade -> documentation),
+			governingLaw: MapGoverningLawWithScheme(empty),
+		}
+
+
+func MapCollateral:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		collateral Collateral (0..1)
+	set collateral:
+		Collateral {
+			independentAmount: MapIndependentAmount(fpmlDataDocument),
+			portfolioIdentifier: MapIdentifierList(fpmlDataDocument),
+			collateralPortfolio: MapCollateralPortfolioList(fpmlDataDocument),
+			collateralProvisions: MapCollateralProvisions(fpmlDataDocument),
+		}
+
+
+func MapAccountList:
+	inputs:
+		fpmlAccounts fpml.Account (0..*)
+	output:
+		accountList Account (0..*)
+	add accountList:
+		fpmlAccounts extract MapAccount
+
+
+func MapClosedState:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		closedState ClosedState (0..1)
+	set closedState:
+		ClosedState {
+			state: empty,
+			activityDate: empty,
+			effectiveDate: empty,
+			lastPaymentDate: empty,
+		}
+
+
+func MapPrice:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		price Price (0..1)
+	set price:
+		Price {
+			value: empty,
+			unit: MapUnitType(fpmlDataDocument),
+			datedValue: MapDatedValueList(fpmlDataDocument),
+			perUnitOf: MapUnitType(fpmlDataDocument),
+			priceType: empty,
+			priceExpression: empty,
+			composite: MapPriceComposite(fpmlDataDocument),
+			arithmeticOperator: empty,
+			cashPrice: MapCashPrice(fpmlDataDocument),
+		}
+
+
+func MapObservationList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		observationList Observation (0..*)
+	add observationList:
+		[
+			Observation {
+				observedValue: MapPrice(fpmlDataDocument),
+				observationIdentifier: MapObservationIdentifier(fpmlDataDocument),
+			}
+		]
+
+
+func MapAveragingCalculation:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		averagingCalculation AveragingCalculation (0..1)
+	set averagingCalculation:
+		AveragingCalculation {
+			averagingMethod: MapAveragingCalculationMethod(fpmlDataDocument),
+			precision: MapRounding(fpmlDataDocument),
+		}
+
+
+func MapTransfer:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		transfer Transfer (0..1)
+	set transfer:
+		Transfer {
+			identifier: MapIdentifierWithSchemeList(fpmlDataDocument),
+			quantity: MapNonNegativeQuantity(fpmlDataDocument),
+			asset: MapAsset(fpmlDataDocument),
+			payerReceiver: MapPartyReferencePayerReceiver(fpmlDataDocument),
+			settlementDate: MapAdjustableOrAdjustedOrRelativeDate(fpmlDataDocument),
+			settlementOrigin: MapSettlementOrigin(fpmlDataDocument),
+			resetOrigin: MapReset(fpmlDataDocument),
+			transferExpression: MapTransferExpression(fpmlDataDocument),
+		}
+
+
+func MapCreditEvent:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		creditEvent CreditEvent (0..1)
+	set creditEvent:
+		CreditEvent {
+			creditEventType: empty,
+			eventDeterminationDate: empty,
+			auctionDate: empty,
+			finalPrice: MapPrice(fpmlDataDocument),
+			recoveryPercent: empty,
+			publiclyAvailableInformation: MapResourceList(fpmlDataDocument),
+			referenceInformation: MapReferenceInformation(fpmlDataDocument),
+		}
+
+
+func MapCorporateAction:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		corporateAction CorporateAction (0..1)
+	set corporateAction:
+		CorporateAction {
+			corporateActionType: empty,
+			exDate: empty,
+			payDate: empty,
+			underlier: MapInstrument(fpmlDataDocument),
+		}
+
+
+func MapMoney:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		money Money (0..1)
+	set money:
+		Money {
+			value: empty,
+			unit: MapUnitType(fpmlDataDocument),
+			datedValue: MapDatedValueList(fpmlDataDocument),
+			multiplier: MapMeasure(fpmlDataDocument),
+			frequency: MapFrequency(fpmlDataDocument),
+		}
+
+
+func MapProductIdentifierList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		productIdentifierList ProductIdentifier (0..*)
+	add productIdentifierList:
+		[
+			ProductIdentifier {
+				identifier: MapIdentifierWithScheme(empty, empty),
+				source: empty,
+			}
+		]
+
+
+func MapProductTaxonomyList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		productTaxonomyList ProductTaxonomy (0..*)
+	add productTaxonomyList:
+		[
+			ProductTaxonomy {
+				source: empty,
+				value: MapTaxonomyValue(fpmlDataDocument),
+				primaryAssetClass: MapPrimaryAssetClassWithScheme(fpmlDataDocument),
+				secondaryAssetClass: MapSecondaryAssetClassWithSchemeList(fpmlDataDocument),
+				productQualifier: empty,
+			}
+		]
+
+
+func MapEconomicTerms:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		economicTerms EconomicTerms (0..1)
+	set economicTerms:
+		EconomicTerms {
+			effectiveDate: MapAdjustableOrRelativeDate(fpmlDataDocument),
+			terminationDate: MapAdjustableOrRelativeDate(fpmlDataDocument),
+			dateAdjustments: MapBusinessDayAdjustments(fpmlDataDocument),
+			payout: MapPayout(fpmlDataDocument),
+			terminationProvision: MapTerminationProvision(fpmlDataDocument),
+			calculationAgent: MapCalculationAgent(fpmlDataDocument),
+			nonStandardisedTerms: empty,
+			collateral: MapCollateral(fpmlDataDocument),
+		}
+
+
+func MapIdentifierList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		identifierList Identifier (0..*)
+	add identifierList:
+		[
+			Identifier {
+				issuerReference: MapParty(empty),
+				issuer: MapIssuerWithScheme(fpmlDataDocument),
+				assignedIdentifier: MapAssignedIdentifierList(fpmlDataDocument),
+			}
+		]
+
+
+func MapPriceQuantityList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		priceQuantityList PriceQuantity (0..*)
+	add priceQuantityList:
+		[
+			PriceQuantity {
+				price: MapPriceScheduleList(fpmlDataDocument),
+				quantity: MapNonNegativeQuantityScheduleList(fpmlDataDocument),
+				observable: MapObservable(fpmlDataDocument),
+				effectiveDate: MapAdjustableOrRelativeDate(fpmlDataDocument),
+			}
+		]
+
+
+func MapParty:
+	inputs:
+		fpmlParty fpml.Party (0..1)
+	output:
+		party Party (0..1)
+	set party:
+        Party {
+            partyId: MapPartyIdentifierList(fpmlParty -> partyModel -> partyId),
+            name: MapNameWithScheme(empty),
+            businessUnit: MapBusinessUnitList(empty),
+            person: MapNaturalPersonList(empty),
+            personRole: MapNaturalPersonRoleList(empty),
+            account: MapAccount(empty),
+            contactInformation: MapContactInformation(empty),
+        }
+
+
+func MapIssuerWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		string string (0..1)
+		// [metadata scheme]
+	set string: empty
+
+func MapAssignedIdentifierList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		assignedIdentifierList AssignedIdentifier (0..*)
+	add assignedIdentifierList:
+		[
+			AssignedIdentifier {
+				identifier: MapIdentifierWithScheme(empty, empty),
+				version: empty,
+			}
+		]
+
+
+func MapLocationWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		string string (0..1)
+		// [metadata scheme]
+	set string: empty
+
+func MapPartyIdentifierList:
+	inputs:
+		fpmlPartyIdentifiers fpml.PartyId (0..*)
+	output:
+		partyIdentifierList PartyIdentifier (0..*)
+	add partyIdentifierList:
+        fpmlPartyIdentifiers
+            extract
+			PartyIdentifier {
+				identifier: MapIdentifierWithScheme(item -> value, item -> partyIdScheme),
+				identifierType: empty,
+			}
+
+
+
+
+func MapNameWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		string string (0..1)
+		// [metadata scheme]
+	set string: empty
+
+func MapBusinessUnitList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		businessUnitList BusinessUnit (0..*)
+	add businessUnitList:
+		[
+			BusinessUnit {
+				name: empty,
+				identifier: MapIdentifier(fpmlDataDocument),
+				contactInformation: MapContactInformation(fpmlDataDocument),
+			}
+		]
+
+
+func MapNaturalPersonList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		naturalPersonList NaturalPerson (0..*)
+	add naturalPersonList:
+		[
+			NaturalPerson {
+				personId: MapPersonIdentifierWithSchemeList(fpmlDataDocument),
+				honorific: empty,
+				firstName: empty,
+				middleName: [empty],
+				initial: [empty],
+				surname: empty,
+				suffix: empty,
+				dateOfBirth: empty,
+				contactInformation: MapContactInformation(fpmlDataDocument),
+			}
+		]
+
+
+func MapNaturalPersonRoleList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		naturalPersonRoleList NaturalPersonRole (0..*)
+	add naturalPersonRoleList:
+		[
+			NaturalPersonRole {
+				personReference: MapNaturalPerson(fpmlDataDocument),
+				role: MapRoleWithSchemeList(fpmlDataDocument),
+			}
+		]
+
+
+func MapAccount:
+	inputs:
+		fpmlAccount fpml.Account (0..1)
+	output:
+		account Account (0..1)
+	set account:
+		Account {
+			partyReference: MapParty(empty),
+			accountNumber: MapAccountNumberWithScheme(fpmlAccount -> accountId only-element -> value, fpmlAccount -> accountId only-element -> accountIdScheme),
+			accountName: MapAccountNameWithScheme(fpmlAccount -> accountName -> value, fpmlAccount -> accountName -> accountNameScheme),
+			accountType: MapAccountTypeWithScheme(empty),
+			accountBeneficiary: MapParty(empty),
+			servicingParty: MapParty(empty), //TODO: need to handle metadata references so we can map this passing `fpmlAccount -> servicingParty`
+		}
+
+
+func MapContactInformation:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		contactInformation ContactInformation (0..1)
+	set contactInformation:
+		ContactInformation {
+			telephone: MapTelephoneNumberList(fpmlDataDocument),
+			address: MapAddressList(fpmlDataDocument),
+			email: [empty],
+			webPage: [empty],
+		}
+
+
+func MapLegalEntity:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		legalEntity LegalEntity (0..1)
+	set legalEntity:
+		LegalEntity {
+			entityId: MapEntityIdWithSchemeList(fpmlDataDocument),
+			name: MapNameWithScheme(fpmlDataDocument),
+		}
+
+
+func MapIdentifiedList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		identifiedList IdentifiedList (0..1)
+	set identifiedList:
+		IdentifiedList {
+			listId: MapIdentifier(fpmlDataDocument),
+			componentId: MapIdentifierList(fpmlDataDocument),
+			price: MapPrice(fpmlDataDocument),
+		}
+
+
+func MapLegalAgreementList:
+	inputs:
+		fpmlDocumentation fpml.Documentation (0..1)
+	output:
+		legalAgreementList LegalAgreement (0..*)
+	add legalAgreementList:
+		[
+			LegalAgreement {
+				agreementDate: empty,
+				effectiveDate: empty,
+				identifier: MapIdentifierList(empty),
+				legalAgreementIdentification: MapLegalAgreementIdentification(empty),
+				contractualParty: MapPartyList(empty),
+				otherParty: MapPartyRoleList(empty),
+				attachment: MapResourceList(empty),
+				agreementTerms: MapAgreementTerms(empty),
+				relatedAgreements: MapLegalAgreementList(empty),
+				umbrellaAgreement: MapUmbrellaAgreement(empty),
+			}
+		]
+
+
+func MapGoverningLawWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		governingLawEnum GoverningLawEnum (0..1)
+		// [metadata scheme]
+	set governingLawEnum: empty
+
+func MapIndependentAmount:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		independentAmount IndependentAmount (0..1)
+	set independentAmount:
+		IndependentAmount {
+			payerPartyReference: MapParty(empty),
+			payerAccountReference: MapAccount(empty),
+			receiverPartyReference: MapParty(empty),
+			receiverAccountReference: MapAccount(empty),
+			paymentDetail: MapPaymentDetailList(fpmlDataDocument),
+		}
+
+
+func MapCollateralPortfolioList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		collateralPortfolioList CollateralPortfolio (0..*)
+	add collateralPortfolioList:
+		[
+			CollateralPortfolio {
+				portfolioIdentifier: MapIdentifier(fpmlDataDocument),
+				collateralPosition: MapCollateralPositionList(fpmlDataDocument),
+				collateralBalance: MapCollateralBalanceList(fpmlDataDocument),
+				legalAgreement: MapLegalAgreement(fpmlDataDocument),
+			}
+		]
+
+
+func MapCollateralProvisions:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		collateralProvisions CollateralProvisions (0..1)
+	set collateralProvisions:
+		CollateralProvisions {
+			collateralType: empty,
+			eligibleCollateral: MapEligibleCollateralCriteriaList(fpmlDataDocument),
+			substitutionProvisions: MapSubstitutionProvisions(fpmlDataDocument),
+		}
+
+
+func MapAccountNumberWithScheme:
+	inputs:
+		accountNumber string (0..1)
+        scheme string (0..1)
+	output:
+		string string (0..1)
+		// [metadata scheme]
+	set string: accountNumber
+
+func MapAccountNameWithScheme:
+	inputs:
+		accountName string (0..1)
+        scheme string (0..1)
+	output:
+		result string (0..1)
+		// [metadata scheme]
+	set result: scheme
+
+func MapAccountTypeWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		accountTypeEnum AccountTypeEnum (0..1)
+		// [metadata scheme]
+	set accountTypeEnum: empty
+
+func MapUnitType:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		unitType UnitType (0..1)
+	set unitType:
+		UnitType {
+			capacityUnit: empty,
+			weatherUnit: empty,
+			financialUnit: empty,
+			currency: MapCurrencyWithScheme(fpmlDataDocument),
+		}
+
+
+func MapDatedValueList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		datedValueList DatedValue (0..*)
+	add datedValueList:
+		[
+			DatedValue {
+				date: empty,
+				value: empty,
+			}
+		]
+
+
+func MapPriceComposite:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		priceComposite PriceComposite (0..1)
+	set priceComposite:
+		PriceComposite {
+			baseValue: empty,
+			operand: empty,
+			arithmeticOperator: empty,
+			operandType: empty,
+		}
+
+
+func MapCashPrice:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		cashPrice CashPrice (0..1)
+	set cashPrice:
+		CashPrice {
+			cashPriceType: empty,
+			premiumExpression: MapPremiumExpression(fpmlDataDocument),
+			feeType: empty,
+		}
+
+
+func MapObservationIdentifier:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		observationIdentifier ObservationIdentifier (0..1)
+	set observationIdentifier:
+		ObservationIdentifier {
+			observable: MapObservable(fpmlDataDocument),
+			observationDate: empty,
+			observationTime: MapTimeZone(fpmlDataDocument),
+			informationSource: MapInformationSource(fpmlDataDocument),
+			determinationMethodology: MapDeterminationMethodology(fpmlDataDocument),
+		}
+
+
+func MapAveragingCalculationMethod:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		averagingCalculationMethod AveragingCalculationMethod (0..1)
+	set averagingCalculationMethod:
+		AveragingCalculationMethod {
+			isWeighted: empty,
+			calculationMethod: empty,
+		}
+
+
+func MapRounding:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		rounding Rounding (0..1)
+	set rounding:
+		Rounding {
+			roundingDirection: empty,
+			precision: empty,
+		}
+
+
+func MapIdentifierWithSchemeList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		identifierList Identifier (0..*)
+		// [metadata scheme]
+	add identifierList:
+		[
+			Identifier {
+				issuerReference: MapParty(empty),
+				issuer: MapIssuerWithScheme(fpmlDataDocument),
+				assignedIdentifier: MapAssignedIdentifierList(fpmlDataDocument),
+			}
+		]
+
+
+func MapNonNegativeQuantity:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		nonNegativeQuantity NonNegativeQuantity (0..1)
+	set nonNegativeQuantity:
+		NonNegativeQuantity {
+			value: empty,
+			unit: MapUnitType(fpmlDataDocument),
+			datedValue: MapDatedValueList(fpmlDataDocument),
+			multiplier: MapMeasure(fpmlDataDocument),
+			frequency: MapFrequency(fpmlDataDocument),
+		}
+
+
+func MapAsset:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		asset Asset (0..1)
+	set asset:
+		Asset {
+			Cash: MapCash(fpmlDataDocument),
+			Commodity: MapCommodity(fpmlDataDocument),
+			DigitalAsset: MapDigitalAsset(fpmlDataDocument),
+			Instrument: MapInstrument(fpmlDataDocument),
+		}
+
+
+func MapPartyReferencePayerReceiver:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		partyReferencePayerReceiver PartyReferencePayerReceiver (0..1)
+	set partyReferencePayerReceiver:
+		PartyReferencePayerReceiver {
+			payerPartyReference: MapParty(empty),
+			payerAccountReference: MapAccount(empty),
+			receiverPartyReference: MapParty(empty),
+			receiverAccountReference: MapAccount(empty),
+		}
+
+
+func MapAdjustableOrAdjustedOrRelativeDate:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		adjustableOrAdjustedOrRelativeDate AdjustableOrAdjustedOrRelativeDate (0..1)
+	set adjustableOrAdjustedOrRelativeDate:
+		AdjustableOrAdjustedOrRelativeDate {
+			unadjustedDate: empty,
+			dateAdjustments: MapBusinessDayAdjustments(fpmlDataDocument),
+			adjustedDate: empty,
+			relativeDate: MapRelativeDateOffset(fpmlDataDocument),
+		}
+
+
+func MapSettlementOrigin:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		settlementOrigin SettlementOrigin (0..1)
+	set settlementOrigin:
+		SettlementOrigin {
+			commodityPayout: MapCommodityPayout(fpmlDataDocument),
+			creditDefaultPayout: MapCreditDefaultPayout(fpmlDataDocument),
+			settlementPayout: MapSettlementPayout(fpmlDataDocument),
+			interestRatePayout: MapInterestRatePayout(fpmlDataDocument),
+			optionPayout: MapOptionPayout(fpmlDataDocument),
+			assetPayout: MapAssetPayout(fpmlDataDocument),
+			settlementTerms: MapSettlementTerms(fpmlDataDocument),
+			performancePayout: MapPerformancePayout(fpmlDataDocument),
+			fixedPricePayout: MapFixedPricePayout(fpmlDataDocument),
+		}
+
+
+func MapReset:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		reset Reset (0..1)
+	set reset:
+		Reset {
+			resetValue: MapPrice(fpmlDataDocument),
+			resetDate: empty,
+			rateRecordDate: empty,
+			observations: MapObservationList(fpmlDataDocument),
+			averagingMethodology: MapAveragingCalculation(fpmlDataDocument),
+		}
+
+
+func MapTransferExpression:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		transferExpression TransferExpression (0..1)
+	set transferExpression:
+		TransferExpression {
+			priceTransfer: empty,
+			scheduledTransfer: MapScheduledTransfer(fpmlDataDocument),
+		}
+
+
+func MapResourceList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		resourceList Resource (0..*)
+	add resourceList:
+		[
+			Resource {
+				resourceId: MapResourceIdWithScheme(fpmlDataDocument),
+				resourceType: MapResourceTypeWithScheme(fpmlDataDocument),
+				language: MapLanguageWithScheme(fpmlDataDocument),
+				sizeInBytes: empty,
+				length: MapResourceLength(fpmlDataDocument),
+				mimeType: MapMimeTypeWithScheme(fpmlDataDocument),
+				name: empty,
+				comments: empty,
+				string: empty,
+				url: empty,
+			}
+		]
+
+
+func MapReferenceInformation:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		referenceInformation ReferenceInformation (0..1)
+	set referenceInformation:
+		ReferenceInformation {
+			referenceEntity: MapLegalEntity(fpmlDataDocument),
+			referenceObligation: MapReferenceObligationList(fpmlDataDocument),
+			noReferenceObligation: empty,
+			unknownReferenceObligation: empty,
+			allGuarantees: empty,
+			referencePrice: MapPrice(fpmlDataDocument),
+			referencePolicy: empty,
+			securedList: empty,
+		}
+
+
+func MapInstrument:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		instrument Instrument (0..1)
+	set instrument:
+		Instrument {
+			ListedDerivative: MapListedDerivative(fpmlDataDocument),
+			Loan: MapLoan(fpmlDataDocument),
+			Security: MapSecurity(fpmlDataDocument),
+		}
+
+
+func MapMeasure:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		measure Measure (0..1)
+	set measure:
+		Measure {
+			value: empty,
+			unit: MapUnitType(fpmlDataDocument),
+		}
+
+
+func MapFrequency:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		frequency Frequency (0..1)
+	set frequency:
+		Frequency {
+			periodMultiplier: empty,
+			period: empty,
+		}
+
+
+func MapIdentifierWithScheme:
+	inputs:
+		identifier string (0..1)
+        scheme string (0..1)
+	output:
+		result string (0..1)
+		// [metadata scheme]
+	set result: identifier
+
+func MapTaxonomyValue:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		taxonomyValue TaxonomyValue (0..1)
+	set taxonomyValue:
+		TaxonomyValue {
+			name: MapNameWithScheme(fpmlDataDocument),
+			classification: MapTaxonomyClassificationList(fpmlDataDocument),
+		}
+
+
+func MapPrimaryAssetClassWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		assetClassEnum AssetClassEnum (0..1)
+		// [metadata scheme]
+	set assetClassEnum: empty
+
+func MapSecondaryAssetClassWithSchemeList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		assetClassEnumList AssetClassEnum (0..*)
+		// [metadata scheme]
+	add assetClassEnumList:
+		[ empty		]
+
+
+func MapAdjustableOrRelativeDate:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		adjustableOrRelativeDate AdjustableOrRelativeDate (0..1)
+	set adjustableOrRelativeDate:
+		AdjustableOrRelativeDate {
+			adjustableDate: MapAdjustableDate(fpmlDataDocument),
+			relativeDate: MapAdjustedRelativeDateOffset(fpmlDataDocument),
+		}
+
+
+func MapBusinessDayAdjustments:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		businessDayAdjustments BusinessDayAdjustments (0..1)
+	set businessDayAdjustments:
+		BusinessDayAdjustments {
+			businessDayConvention: empty,
+			businessCenters: MapBusinessCenters(fpmlDataDocument),
+		}
+
+
+func MapPayout:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		payout Payout (0..1)
+	set payout:
+		Payout {
+			interestRatePayout: MapInterestRatePayoutList(fpmlDataDocument),
+			creditDefaultPayout: MapCreditDefaultPayout(fpmlDataDocument),
+			optionPayout: MapOptionPayoutList(fpmlDataDocument),
+			commodityPayout: MapCommodityPayoutList(fpmlDataDocument),
+			settlementPayout: MapSettlementPayoutList(fpmlDataDocument),
+			fixedPricePayout: MapFixedPricePayoutList(fpmlDataDocument),
+			cashflow: MapCashflowList(fpmlDataDocument),
+			performancePayout: MapPerformancePayoutList(fpmlDataDocument),
+			assetPayout: MapAssetPayoutList(fpmlDataDocument),
+		}
+
+
+func MapTerminationProvision:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		terminationProvision TerminationProvision (0..1)
+	set terminationProvision:
+		TerminationProvision {
+			cancelableProvision: MapCancelableProvision(fpmlDataDocument),
+			earlyTerminationProvision: MapEarlyTerminationProvision(fpmlDataDocument),
+			evergreenProvision: MapEvergreenProvision(fpmlDataDocument),
+			extendibleProvision: MapExtendibleProvision(fpmlDataDocument),
+		}
+
+
+func MapCalculationAgent:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		calculationAgent CalculationAgent (0..1)
+	set calculationAgent:
+		CalculationAgent {
+			calculationAgentParty: empty,
+			calculationAgentPartyEnum: empty,
+			calculationAgentBusinessCenter: MapCalculationAgentBusinessCenterWithScheme(fpmlDataDocument),
+		}
+
+
+func MapPriceScheduleList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		priceScheduleList PriceSchedule (0..*)
+	add priceScheduleList:
+		[
+			PriceSchedule {
+				value: empty,
+				unit: MapUnitType(fpmlDataDocument),
+				datedValue: MapDatedValueList(fpmlDataDocument),
+				perUnitOf: MapUnitType(fpmlDataDocument),
+				priceType: empty,
+				priceExpression: empty,
+				composite: MapPriceComposite(fpmlDataDocument),
+				arithmeticOperator: empty,
+				cashPrice: MapCashPrice(fpmlDataDocument),
+			}
+		]
+
+
+func MapNonNegativeQuantityScheduleList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		nonNegativeQuantityScheduleList NonNegativeQuantitySchedule (0..*)
+	add nonNegativeQuantityScheduleList:
+		[
+			NonNegativeQuantitySchedule {
+				value: empty,
+				unit: MapUnitType(fpmlDataDocument),
+				datedValue: MapDatedValueList(fpmlDataDocument),
+				multiplier: MapMeasure(fpmlDataDocument),
+				frequency: MapFrequency(fpmlDataDocument),
+			}
+		]
+
+
+func MapObservable:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		observable Observable (0..1)
+	set observable:
+		Observable {
+			Asset: MapAsset(fpmlDataDocument),
+			Basket: MapBasket(fpmlDataDocument),
+			Index: MapIndex(fpmlDataDocument),
+		}
+
+
+func MapIdentifier:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		identifier Identifier (0..1)
+	set identifier:
+		Identifier {
+			issuerReference: MapParty(empty),
+			issuer: MapIssuerWithScheme(fpmlDataDocument),
+			assignedIdentifier: MapAssignedIdentifierList(fpmlDataDocument),
+		}
+
+
+func MapPersonIdentifierWithSchemeList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		personIdentifierList PersonIdentifier (0..*)
+		// [metadata scheme]
+	add personIdentifierList:
+		[
+			PersonIdentifier {
+				identifier: MapIdentifierWithScheme(empty, empty),
+				identifierType: empty,
+				country: MapCountryWithScheme(fpmlDataDocument),
+			}
+		]
+
+
+func MapNaturalPerson:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		naturalPerson NaturalPerson (0..1)
+	set naturalPerson:
+		NaturalPerson {
+			personId: MapPersonIdentifierWithSchemeList(fpmlDataDocument),
+			honorific: empty,
+			firstName: empty,
+			middleName: [empty],
+			initial: [empty],
+			surname: empty,
+			suffix: empty,
+			dateOfBirth: empty,
+			contactInformation: MapContactInformation(fpmlDataDocument),
+		}
+
+
+func MapRoleWithSchemeList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		naturalPersonRoleEnumList NaturalPersonRoleEnum (0..*)
+		// [metadata scheme]
+	add naturalPersonRoleEnumList:
+		[ empty		]
+
+
+func MapTelephoneNumberList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		telephoneNumberList TelephoneNumber (0..*)
+	add telephoneNumberList:
+		[
+			TelephoneNumber {
+				telephoneNumberType: empty,
+				number: empty,
+			}
+		]
+
+
+func MapAddressList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		addressList Address (0..*)
+	add addressList:
+		[
+			Address {
+				street: [empty],
+				city: empty,
+				state: empty,
+				country: MapCountryWithScheme(fpmlDataDocument),
+				postalCode: empty,
+			}
+		]
+
+
+func MapEntityIdWithSchemeList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		stringList string (0..*)
+		// [metadata scheme]
+	add stringList:
+		[ empty		]
+
+
+func MapLegalAgreementIdentification:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		legalAgreementIdentification LegalAgreementIdentification (0..1)
+	set legalAgreementIdentification:
+		LegalAgreementIdentification {
+			governingLaw: empty,
+			agreementName: MapAgreementName(fpmlDataDocument),
+			publisher: empty,
+			vintage: empty,
+		}
+
+
+func MapAgreementTerms:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		agreementTerms AgreementTerms (0..1)
+	set agreementTerms:
+		AgreementTerms {
+			agreement: MapAgreement(fpmlDataDocument),
+			clauseLibrary: empty,
+			counterparty: MapCounterpartyList(fpmlDataDocument),
+		}
+
+
+func MapUmbrellaAgreement:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		umbrellaAgreement UmbrellaAgreement (0..1)
+	set umbrellaAgreement:
+		UmbrellaAgreement {
+			isApplicable: empty,
+			language: empty,
+			parties: MapUmbrellaAgreementEntityList(fpmlDataDocument),
+		}
+
+
+func MapPaymentDetailList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		paymentDetailList PaymentDetail (0..*)
+	add paymentDetailList:
+		[
+			PaymentDetail {
+				paymentDate: MapAdjustableOrRelativeDate(fpmlDataDocument),
+				paymentRule: MapPaymentRule(fpmlDataDocument),
+				paymentAmount: MapMoney(fpmlDataDocument),
+			}
+		]
+
+
+func MapCollateralPositionList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		collateralPositionList CollateralPosition (0..*)
+	add collateralPositionList:
+		[
+			CollateralPosition {
+				priceQuantity: MapPriceQuantityList(fpmlDataDocument),
+				product: MapProduct(fpmlDataDocument),
+				cashBalance: MapMoney(fpmlDataDocument),
+				tradeReference: MapTradeState(fpmlDataDocument),
+				treatment: MapCollateralTreatment(fpmlDataDocument),
+				collateralPositionStatus: empty,
+			}
+		]
+
+
+func MapCollateralBalanceList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		collateralBalanceList CollateralBalance (0..*)
+	add collateralBalanceList:
+		[
+			CollateralBalance {
+				collateralBalanceStatus: empty,
+				haircutIndicator: empty,
+				amountBaseCurrency: MapMoney(fpmlDataDocument),
+				payerReceiver: MapPartyReferencePayerReceiver(fpmlDataDocument),
+			}
+		]
+
+
+func MapLegalAgreement:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		legalAgreement LegalAgreement (0..1)
+	set legalAgreement:
+		LegalAgreement {
+			agreementDate: empty,
+			effectiveDate: empty,
+			identifier: MapIdentifierList(fpmlDataDocument),
+			legalAgreementIdentification: MapLegalAgreementIdentification(fpmlDataDocument),
+			contractualParty: MapPartyList(empty),
+			otherParty: MapPartyRoleList(fpmlDataDocument),
+			attachment: MapResourceList(fpmlDataDocument),
+			agreementTerms: MapAgreementTerms(fpmlDataDocument),
+			relatedAgreements: MapLegalAgreementList(empty),
+			umbrellaAgreement: MapUmbrellaAgreement(fpmlDataDocument),
+		}
+
+
+func MapEligibleCollateralCriteriaList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		eligibleCollateralCriteriaList EligibleCollateralCriteria (0..*)
+	add eligibleCollateralCriteriaList:
+		[
+			EligibleCollateralCriteria {
+				issuer: MapIssuerCriteriaList(fpmlDataDocument),
+				asset: MapAssetCriteriaList(fpmlDataDocument),
+				appliesTo: [empty],
+				restrictTo: empty,
+				ratingPriorityResolution: empty,
+				treatment: MapCollateralTreatment(fpmlDataDocument),
+			}
+		]
+
+
+func MapSubstitutionProvisions:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		substitutionProvisions SubstitutionProvisions (0..1)
+	set substitutionProvisions:
+		SubstitutionProvisions {
+			numberOfSubstitutionsAllowed: empty,
+			noticeDeadlinePeriod: MapPeriod(fpmlDataDocument),
+			noticeDeadlineDateTime: empty,
+		}
+
+
+func MapCurrencyWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		string string (0..1)
+		// [metadata scheme]
+	set string: empty
+
+func MapPremiumExpression:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		premiumExpression PremiumExpression (0..1)
+	set premiumExpression:
+		PremiumExpression {
+			premiumType: empty,
+			pricePerOption: MapMoney(fpmlDataDocument),
+			percentageOfNotional: empty,
+		}
+
+
+func MapInformationSource:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		informationSource InformationSource (0..1)
+	set informationSource:
+		InformationSource {
+			sourceProvider: MapSourceProviderWithScheme(fpmlDataDocument),
+			sourcePage: MapSourcePageWithScheme(fpmlDataDocument),
+			sourcePageHeading: empty,
+		}
+
+
+func MapDeterminationMethodology:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		determinationMethodology DeterminationMethodology (0..1)
+	set determinationMethodology:
+		DeterminationMethodology {
+			determinationMethod: empty,
+			averagingMethod: empty,
+		}
+
+
+func MapCash:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		cash Cash (0..1)
+	set cash:
+		Cash {
+			identifier: MapAssetIdentifierList(fpmlDataDocument),
+			taxonomy: MapTaxonomyList(fpmlDataDocument),
+			isExchangeListed: empty,
+			exchange: MapLegalEntity(fpmlDataDocument),
+			relatedExchange: MapLegalEntityList(fpmlDataDocument),
+		}
+
+
+func MapCommodity:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		commodity Commodity (0..1)
+	set commodity:
+		Commodity {
+			identifier: MapAssetIdentifierList(fpmlDataDocument),
+			taxonomy: MapTaxonomyList(fpmlDataDocument),
+			isExchangeListed: empty,
+			exchange: MapLegalEntity(fpmlDataDocument),
+			relatedExchange: MapLegalEntityList(fpmlDataDocument),
+			commodityProductDefinition: MapCommodityProductDefinition(fpmlDataDocument),
+			priceQuoteType: empty,
+			deliveryDateReference: MapDeliveryDateParameters(fpmlDataDocument),
+			description: empty,
+		}
+
+
+func MapDigitalAsset:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		digitalAsset DigitalAsset (0..1)
+	set digitalAsset:
+		DigitalAsset {
+			identifier: MapAssetIdentifierList(fpmlDataDocument),
+			taxonomy: MapTaxonomyList(fpmlDataDocument),
+			isExchangeListed: empty,
+			exchange: MapLegalEntity(fpmlDataDocument),
+			relatedExchange: MapLegalEntityList(fpmlDataDocument),
+		}
+
+
+func MapRelativeDateOffset:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		relativeDateOffset RelativeDateOffset (0..1)
+	set relativeDateOffset:
+		RelativeDateOffset {
+			periodMultiplier: empty,
+			period: empty,
+			dayType: empty,
+			businessDayConvention: empty,
+			businessCenters: MapBusinessCenters(fpmlDataDocument),
+			businessCentersReference: MapBusinessCenters(fpmlDataDocument),
+			dateRelativeTo: empty,
+			adjustedDate: empty,
+		}
+
+
+func MapCommodityPayout:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		commodityPayout CommodityPayout (0..1)
+	set commodityPayout:
+		CommodityPayout {
+			payerReceiver: MapPayerReceiver(fpmlDataDocument),
+			priceQuantity: MapResolvablePriceQuantity(fpmlDataDocument),
+			principalPayment: MapPrincipalPayments(fpmlDataDocument),
+			settlementTerms: MapSettlementTerms(fpmlDataDocument),
+			averagingFeature: MapAveragingCalculation(fpmlDataDocument),
+			commodityPriceReturnTerms: MapCommodityPriceReturnTerms(fpmlDataDocument),
+			pricingDates: MapPricingDates(fpmlDataDocument),
+			schedule: MapCalculationSchedule(fpmlDataDocument),
+			calculationPeriodDates: MapCalculationPeriodDates(fpmlDataDocument),
+			paymentDates: MapPaymentDates(fpmlDataDocument),
+			underlier: MapCommodity(fpmlDataDocument),
+			fxFeature: MapFxFeature(fpmlDataDocument),
+			delivery: MapAssetDeliveryInformation(fpmlDataDocument),
+		}
+
+
+func MapCreditDefaultPayout:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		creditDefaultPayout CreditDefaultPayout (0..1)
+	set creditDefaultPayout:
+		CreditDefaultPayout {
+			payerReceiver: MapPayerReceiver(fpmlDataDocument),
+			priceQuantity: MapResolvablePriceQuantity(fpmlDataDocument),
+			principalPayment: MapPrincipalPayments(fpmlDataDocument),
+			settlementTerms: MapSettlementTerms(fpmlDataDocument),
+			generalTerms: MapGeneralTerms(fpmlDataDocument),
+			protectionTerms: MapProtectionTermsList(fpmlDataDocument),
+			transactedPrice: MapTransactedPrice(fpmlDataDocument),
+		}
+
+
+func MapSettlementPayout:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		settlementPayout SettlementPayout (0..1)
+	set settlementPayout:
+		SettlementPayout {
+			payerReceiver: MapPayerReceiver(fpmlDataDocument),
+			priceQuantity: MapResolvablePriceQuantity(fpmlDataDocument),
+			principalPayment: MapPrincipalPayments(fpmlDataDocument),
+			settlementTerms: MapSettlementTerms(fpmlDataDocument),
+			underlier: MapUnderlier(fpmlDataDocument),
+			deliveryTerm: empty,
+			delivery: MapAssetDeliveryInformation(fpmlDataDocument),
+			schedule: MapCalculationSchedule(fpmlDataDocument),
+		}
+
+
+func MapInterestRatePayout:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		interestRatePayout InterestRatePayout (0..1)
+	set interestRatePayout:
+		InterestRatePayout {
+			payerReceiver: MapPayerReceiver(fpmlDataDocument),
+			priceQuantity: MapResolvablePriceQuantity(fpmlDataDocument),
+			principalPayment: MapPrincipalPayments(fpmlDataDocument),
+			settlementTerms: MapSettlementTerms(fpmlDataDocument),
+			rateSpecification: MapRateSpecification(fpmlDataDocument),
+			dayCountFraction: MapDayCountFractionWithScheme(fpmlDataDocument),
+			calculationPeriodDates: MapCalculationPeriodDates(fpmlDataDocument),
+			paymentDates: MapPaymentDates(fpmlDataDocument),
+			paymentDate: MapAdjustableDate(fpmlDataDocument),
+			paymentDelay: empty,
+			resetDates: MapResetDates(fpmlDataDocument),
+			discountingMethod: MapDiscountingMethod(fpmlDataDocument),
+			compoundingMethod: empty,
+			cashflowRepresentation: MapCashflowRepresentation(fpmlDataDocument),
+			stubPeriod: MapStubPeriod(fpmlDataDocument),
+			bondReference: MapBondReference(fpmlDataDocument),
+			fixedAmount: empty,
+			floatingAmount: empty,
+			spreadCalculationMethod: empty,
+		}
+
+
+func MapOptionPayout:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		optionPayout OptionPayout (0..1)
+	set optionPayout:
+		OptionPayout {
+			payerReceiver: MapPayerReceiver(fpmlDataDocument),
+			priceQuantity: MapResolvablePriceQuantity(fpmlDataDocument),
+			principalPayment: MapPrincipalPayments(fpmlDataDocument),
+			settlementTerms: MapSettlementTerms(fpmlDataDocument),
+			buyerSeller: MapBuyerSeller(fpmlDataDocument),
+			feature: MapOptionFeature(fpmlDataDocument),
+			observationTerms: MapObservationTerms(fpmlDataDocument),
+			schedule: MapCalculationSchedule(fpmlDataDocument),
+			delivery: MapAssetDeliveryInformation(fpmlDataDocument),
+			underlier: MapUnderlier(fpmlDataDocument),
+			optionType: empty,
+			exerciseTerms: MapExerciseTerms(fpmlDataDocument),
+			strike: MapOptionStrike(fpmlDataDocument),
+		}
+
+
+func MapAssetPayout:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		assetPayout AssetPayout (0..1)
+	set assetPayout:
+		AssetPayout {
+			payerReceiver: MapPayerReceiver(fpmlDataDocument),
+			priceQuantity: MapResolvablePriceQuantity(fpmlDataDocument),
+			principalPayment: MapPrincipalPayments(fpmlDataDocument),
+			settlementTerms: MapSettlementTerms(fpmlDataDocument),
+			assetLeg: MapAssetLegList(fpmlDataDocument),
+			underlier: MapAsset(fpmlDataDocument),
+			minimumFee: MapMoney(fpmlDataDocument),
+			dividendTerms: MapDividendTerms(fpmlDataDocument),
+			repoType: empty,
+		}
+
+
+func MapSettlementTerms:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		settlementTerms SettlementTerms (0..1)
+	set settlementTerms:
+		SettlementTerms {
+			settlementType: empty,
+			transferSettlementType: empty,
+			settlementCurrency: MapSettlementCurrencyWithScheme(fpmlDataDocument),
+			settlementDate: MapSettlementDate(fpmlDataDocument),
+			settlementCentre: empty,
+			settlementProvision: MapSettlementProvision(fpmlDataDocument),
+			standardSettlementStyle: empty,
+			cashSettlementTerms: MapCashSettlementTermsList(fpmlDataDocument),
+			physicalSettlementTerms: MapPhysicalSettlementTerms(fpmlDataDocument),
+		}
+
+
+func MapPerformancePayout:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		performancePayout PerformancePayout (0..1)
+	set performancePayout:
+		PerformancePayout {
+			payerReceiver: MapPayerReceiver(fpmlDataDocument),
+			priceQuantity: MapResolvablePriceQuantity(fpmlDataDocument),
+			principalPayment: MapPrincipalPayments(fpmlDataDocument),
+			settlementTerms: MapSettlementTerms(fpmlDataDocument),
+			observationTerms: MapObservationTerms(fpmlDataDocument),
+			valuationDates: MapValuationDates(fpmlDataDocument),
+			paymentDates: MapPaymentDates(fpmlDataDocument),
+			underlier: MapUnderlier(fpmlDataDocument),
+			fxFeature: MapFxFeatureList(fpmlDataDocument),
+			returnTerms: MapReturnTerms(fpmlDataDocument),
+			portfolioReturnTerms: MapPortfolioReturnTermsList(fpmlDataDocument),
+			initialValuationPrice: MapPriceScheduleList(fpmlDataDocument),
+			interimValuationPrice: MapPriceScheduleList(fpmlDataDocument),
+			finalValuationPrice: MapPriceScheduleList(fpmlDataDocument),
+		}
+
+
+func MapFixedPricePayout:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		fixedPricePayout FixedPricePayout (0..1)
+	set fixedPricePayout:
+		FixedPricePayout {
+			payerReceiver: MapPayerReceiver(fpmlDataDocument),
+			priceQuantity: MapResolvablePriceQuantity(fpmlDataDocument),
+			principalPayment: MapPrincipalPayments(fpmlDataDocument),
+			settlementTerms: MapSettlementTerms(fpmlDataDocument),
+			paymentDates: MapPaymentDates(fpmlDataDocument),
+			fixedPrice: MapFixedPrice(fpmlDataDocument),
+			schedule: MapCalculationSchedule(fpmlDataDocument),
+		}
+
+
+func MapScheduledTransfer:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		scheduledTransfer ScheduledTransfer (0..1)
+	set scheduledTransfer:
+		ScheduledTransfer {
+			transferType: empty,
+			corporateActionTransferType: empty,
+		}
+
+
+func MapResourceIdWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		string string (0..1)
+		// [metadata scheme]
+	set string: empty
+
+func MapResourceTypeWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		resourceTypeEnum ResourceTypeEnum (0..1)
+		// [metadata scheme]
+	set resourceTypeEnum: empty
+
+func MapLanguageWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		string string (0..1)
+		// [metadata scheme]
+	set string: empty
+
+func MapResourceLength:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		resourceLength ResourceLength (0..1)
+	set resourceLength:
+		ResourceLength {
+			lengthUnit: empty,
+			lengthValue: empty,
+		}
+
+
+func MapMimeTypeWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		string string (0..1)
+		// [metadata scheme]
+	set string: empty
+
+func MapReferenceObligationList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		referenceObligationList ReferenceObligation (0..*)
+	add referenceObligationList:
+		[
+			ReferenceObligation {
+				security: MapSecurity(fpmlDataDocument),
+				loan: MapLoan(fpmlDataDocument),
+				primaryObligor: MapLegalEntity(fpmlDataDocument),
+				primaryObligorReference: MapLegalEntity(fpmlDataDocument),
+				guarantor: MapLegalEntity(fpmlDataDocument),
+				guarantorReference: empty,
+				standardReferenceObligation: empty,
+			}
+		]
+
+
+func MapListedDerivative:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		listedDerivative ListedDerivative (0..1)
+	set listedDerivative:
+		ListedDerivative {
+			identifier: MapAssetIdentifierList(fpmlDataDocument),
+			taxonomy: MapTaxonomyList(fpmlDataDocument),
+			isExchangeListed: empty,
+			exchange: MapLegalEntity(fpmlDataDocument),
+			relatedExchange: MapLegalEntityList(fpmlDataDocument),
+			deliveryTerm: empty,
+			optionType: empty,
+			strike: empty,
+		}
+
+
+func MapLoan:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		loan Loan (0..1)
+	set loan:
+		Loan {
+			identifier: MapAssetIdentifierList(fpmlDataDocument),
+			taxonomy: MapTaxonomyList(fpmlDataDocument),
+			isExchangeListed: empty,
+			exchange: MapLegalEntity(fpmlDataDocument),
+			relatedExchange: MapLegalEntityList(fpmlDataDocument),
+			borrower: MapLegalEntityList(fpmlDataDocument),
+			lien: MapLienWithScheme(fpmlDataDocument),
+			facilityType: MapFacilityTypeWithScheme(fpmlDataDocument),
+			creditAgreementDate: empty,
+			tranche: MapTrancheWithScheme(fpmlDataDocument),
+		}
+
+
+func MapSecurity:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		security Security (0..1)
+	set security:
+		Security {
+			identifier: MapAssetIdentifierList(fpmlDataDocument),
+			taxonomy: MapTaxonomyList(fpmlDataDocument),
+			isExchangeListed: empty,
+			exchange: MapLegalEntity(fpmlDataDocument),
+			relatedExchange: MapLegalEntityList(fpmlDataDocument),
+			securityType: empty,
+			debtType: MapDebtType(fpmlDataDocument),
+			equityType: empty,
+			fundType: empty,
+		}
+
+
+func MapTaxonomyClassificationList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		taxonomyClassificationList TaxonomyClassification (0..*)
+	add taxonomyClassificationList:
+		[
+			TaxonomyClassification {
+				className: empty,
+				value: empty,
+				description: empty,
+				ordinal: empty,
+			}
+		]
+
+
+func MapAdjustableDate:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		adjustableDate AdjustableDate (0..1)
+	set adjustableDate:
+		AdjustableDate {
+			unadjustedDate: empty,
+			dateAdjustments: MapBusinessDayAdjustments(fpmlDataDocument),
+			dateAdjustmentsReference: MapBusinessDayAdjustments(fpmlDataDocument),
+			adjustedDate: empty,
+		}
+
+
+func MapAdjustedRelativeDateOffset:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		adjustedRelativeDateOffset AdjustedRelativeDateOffset (0..1)
+	set adjustedRelativeDateOffset:
+		AdjustedRelativeDateOffset {
+			periodMultiplier: empty,
+			period: empty,
+			dayType: empty,
+			businessDayConvention: empty,
+			businessCenters: MapBusinessCenters(fpmlDataDocument),
+			businessCentersReference: MapBusinessCenters(fpmlDataDocument),
+			dateRelativeTo: empty,
+			adjustedDate: empty,
+			relativeDateAdjustments: MapBusinessDayAdjustments(fpmlDataDocument),
+		}
+
+
+func MapBusinessCenters:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		businessCenters BusinessCenters (0..1)
+	set businessCenters:
+		BusinessCenters {
+			businessCenter: MapBusinessCenterWithSchemeList(fpmlDataDocument),
+			commodityBusinessCalendar: MapCommodityBusinessCalendarWithSchemeList(fpmlDataDocument),
+			businessCentersReference: MapBusinessCenters(fpmlDataDocument),
+		}
+
+
+func MapInterestRatePayoutList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		interestRatePayoutList InterestRatePayout (0..*)
+	add interestRatePayoutList:
+		[
+			InterestRatePayout {
+				payerReceiver: MapPayerReceiver(fpmlDataDocument),
+				priceQuantity: MapResolvablePriceQuantity(fpmlDataDocument),
+				principalPayment: MapPrincipalPayments(fpmlDataDocument),
+				settlementTerms: MapSettlementTerms(fpmlDataDocument),
+				rateSpecification: MapRateSpecification(fpmlDataDocument),
+				dayCountFraction: MapDayCountFractionWithScheme(fpmlDataDocument),
+				calculationPeriodDates: MapCalculationPeriodDates(fpmlDataDocument),
+				paymentDates: MapPaymentDates(fpmlDataDocument),
+				paymentDate: MapAdjustableDate(fpmlDataDocument),
+				paymentDelay: empty,
+				resetDates: MapResetDates(fpmlDataDocument),
+				discountingMethod: MapDiscountingMethod(fpmlDataDocument),
+				compoundingMethod: empty,
+				cashflowRepresentation: MapCashflowRepresentation(fpmlDataDocument),
+				stubPeriod: MapStubPeriod(fpmlDataDocument),
+				bondReference: MapBondReference(fpmlDataDocument),
+				fixedAmount: empty,
+				floatingAmount: empty,
+				spreadCalculationMethod: empty,
+			}
+		]
+
+
+func MapOptionPayoutList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		optionPayoutList OptionPayout (0..*)
+	add optionPayoutList:
+		[
+			OptionPayout {
+				payerReceiver: MapPayerReceiver(fpmlDataDocument),
+				priceQuantity: MapResolvablePriceQuantity(fpmlDataDocument),
+				principalPayment: MapPrincipalPayments(fpmlDataDocument),
+				settlementTerms: MapSettlementTerms(fpmlDataDocument),
+				buyerSeller: MapBuyerSeller(fpmlDataDocument),
+				feature: MapOptionFeature(fpmlDataDocument),
+				observationTerms: MapObservationTerms(fpmlDataDocument),
+				schedule: MapCalculationSchedule(fpmlDataDocument),
+				delivery: MapAssetDeliveryInformation(fpmlDataDocument),
+				underlier: MapUnderlier(fpmlDataDocument),
+				optionType: empty,
+				exerciseTerms: MapExerciseTerms(fpmlDataDocument),
+				strike: MapOptionStrike(fpmlDataDocument),
+			}
+		]
+
+
+func MapCommodityPayoutList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		commodityPayoutList CommodityPayout (0..*)
+	add commodityPayoutList:
+		[
+			CommodityPayout {
+				payerReceiver: MapPayerReceiver(fpmlDataDocument),
+				priceQuantity: MapResolvablePriceQuantity(fpmlDataDocument),
+				principalPayment: MapPrincipalPayments(fpmlDataDocument),
+				settlementTerms: MapSettlementTerms(fpmlDataDocument),
+				averagingFeature: MapAveragingCalculation(fpmlDataDocument),
+				commodityPriceReturnTerms: MapCommodityPriceReturnTerms(fpmlDataDocument),
+				pricingDates: MapPricingDates(fpmlDataDocument),
+				schedule: MapCalculationSchedule(fpmlDataDocument),
+				calculationPeriodDates: MapCalculationPeriodDates(fpmlDataDocument),
+				paymentDates: MapPaymentDates(fpmlDataDocument),
+				underlier: MapCommodity(fpmlDataDocument),
+				fxFeature: MapFxFeature(fpmlDataDocument),
+				delivery: MapAssetDeliveryInformation(fpmlDataDocument),
+			}
+		]
+
+
+func MapSettlementPayoutList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		settlementPayoutList SettlementPayout (0..*)
+	add settlementPayoutList:
+		[
+			SettlementPayout {
+				payerReceiver: MapPayerReceiver(fpmlDataDocument),
+				priceQuantity: MapResolvablePriceQuantity(fpmlDataDocument),
+				principalPayment: MapPrincipalPayments(fpmlDataDocument),
+				settlementTerms: MapSettlementTerms(fpmlDataDocument),
+				underlier: MapUnderlier(fpmlDataDocument),
+				deliveryTerm: empty,
+				delivery: MapAssetDeliveryInformation(fpmlDataDocument),
+				schedule: MapCalculationSchedule(fpmlDataDocument),
+			}
+		]
+
+
+func MapFixedPricePayoutList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		fixedPricePayoutList FixedPricePayout (0..*)
+	add fixedPricePayoutList:
+		[
+			FixedPricePayout {
+				payerReceiver: MapPayerReceiver(fpmlDataDocument),
+				priceQuantity: MapResolvablePriceQuantity(fpmlDataDocument),
+				principalPayment: MapPrincipalPayments(fpmlDataDocument),
+				settlementTerms: MapSettlementTerms(fpmlDataDocument),
+				paymentDates: MapPaymentDates(fpmlDataDocument),
+				fixedPrice: MapFixedPrice(fpmlDataDocument),
+				schedule: MapCalculationSchedule(fpmlDataDocument),
+			}
+		]
+
+
+func MapCashflowList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		cashflowList Cashflow (0..*)
+	add cashflowList:
+		[
+			Cashflow {
+				payerReceiver: MapPayerReceiver(fpmlDataDocument),
+				priceQuantity: MapResolvablePriceQuantity(fpmlDataDocument),
+				principalPayment: MapPrincipalPayments(fpmlDataDocument),
+				settlementTerms: MapSettlementTerms(fpmlDataDocument),
+				cashflowType: MapCashflowType(fpmlDataDocument),
+				paymentDiscounting: MapPaymentDiscounting(fpmlDataDocument),
+			}
+		]
+
+
+func MapPerformancePayoutList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		performancePayoutList PerformancePayout (0..*)
+	add performancePayoutList:
+		[
+			PerformancePayout {
+				payerReceiver: MapPayerReceiver(fpmlDataDocument),
+				priceQuantity: MapResolvablePriceQuantity(fpmlDataDocument),
+				principalPayment: MapPrincipalPayments(fpmlDataDocument),
+				settlementTerms: MapSettlementTerms(fpmlDataDocument),
+				observationTerms: MapObservationTerms(fpmlDataDocument),
+				valuationDates: MapValuationDates(fpmlDataDocument),
+				paymentDates: MapPaymentDates(fpmlDataDocument),
+				underlier: MapUnderlier(fpmlDataDocument),
+				fxFeature: MapFxFeatureList(fpmlDataDocument),
+				returnTerms: MapReturnTerms(fpmlDataDocument),
+				portfolioReturnTerms: MapPortfolioReturnTermsList(fpmlDataDocument),
+				initialValuationPrice: MapPriceScheduleList(fpmlDataDocument),
+				interimValuationPrice: MapPriceScheduleList(fpmlDataDocument),
+				finalValuationPrice: MapPriceScheduleList(fpmlDataDocument),
+			}
+		]
+
+
+func MapAssetPayoutList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		assetPayoutList AssetPayout (0..*)
+	add assetPayoutList:
+		[
+			AssetPayout {
+				payerReceiver: MapPayerReceiver(fpmlDataDocument),
+				priceQuantity: MapResolvablePriceQuantity(fpmlDataDocument),
+				principalPayment: MapPrincipalPayments(fpmlDataDocument),
+				settlementTerms: MapSettlementTerms(fpmlDataDocument),
+				assetLeg: MapAssetLegList(fpmlDataDocument),
+				underlier: MapAsset(fpmlDataDocument),
+				minimumFee: MapMoney(fpmlDataDocument),
+				dividendTerms: MapDividendTerms(fpmlDataDocument),
+				repoType: empty,
+			}
+		]
+
+
+func MapCancelableProvision:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		cancelableProvision CancelableProvision (0..1)
+	set cancelableProvision:
+		CancelableProvision {
+			buyer: empty,
+			seller: empty,
+			exerciseNotice: MapExerciseNotice(fpmlDataDocument),
+			followUpConfirmation: empty,
+			cancelableProvisionAdjustedDates: MapCancelableProvisionAdjustedDates(fpmlDataDocument),
+			finalCalculationPeriodDateAdjustment: MapFinalCalculationPeriodDateAdjustmentList(fpmlDataDocument),
+			initialFee: MapTransfer(fpmlDataDocument),
+			callingParty: empty,
+			earliestDate: MapAdjustableOrRelativeDate(fpmlDataDocument),
+			expirationDate: MapAdjustableOrRelativeDate(fpmlDataDocument),
+			effectiveDate: MapAdjustableOrRelativeDates(fpmlDataDocument),
+			effectivePeriod: MapPeriod(fpmlDataDocument),
+			earliestCancellationTime: MapBusinessCenterTime(fpmlDataDocument),
+			latestCancelationTime: MapBusinessCenterTime(fpmlDataDocument),
+			exerciseTerms: MapExerciseTerms(fpmlDataDocument),
+		}
+
+
+func MapEarlyTerminationProvision:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		earlyTerminationProvision EarlyTerminationProvision (0..1)
+	set earlyTerminationProvision:
+		EarlyTerminationProvision {
+			mandatoryEarlyTermination: MapMandatoryEarlyTermination(fpmlDataDocument),
+			mandatoryEarlyTerminationDateTenor: MapPeriod(fpmlDataDocument),
+			optionalEarlyTermination: MapOptionalEarlyTermination(fpmlDataDocument),
+			optionalEarlyTerminationParameters: MapExercisePeriod(fpmlDataDocument),
+		}
+
+
+func MapEvergreenProvision:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		evergreenProvision EvergreenProvision (0..1)
+	set evergreenProvision:
+		EvergreenProvision {
+			singlePartyOption: MapPartyRole(fpmlDataDocument),
+			noticePeriod: MapRelativeDateOffset(fpmlDataDocument),
+			noticeDeadlinePeriod: MapRelativeDateOffset(fpmlDataDocument),
+			noticeDeadlineDateTime: empty,
+			extensionFrequency: MapAdjustableRelativeOrPeriodicDates(fpmlDataDocument),
+			finalPeriodFeeAdjustment: MapPrice(fpmlDataDocument),
+		}
+
+
+func MapExtendibleProvision:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		extendibleProvision ExtendibleProvision (0..1)
+	set extendibleProvision:
+		ExtendibleProvision {
+			buyer: empty,
+			seller: empty,
+			exerciseNotice: MapExerciseNotice(fpmlDataDocument),
+			followUpConfirmation: empty,
+			extendibleProvisionAdjustedDates: MapExtendibleProvisionAdjustedDates(fpmlDataDocument),
+			callingParty: empty,
+			singlePartyOption: MapPartyRole(fpmlDataDocument),
+			noticeDeadlinePeriod: MapRelativeDateOffset(fpmlDataDocument),
+			noticeDeadlineDateTime: empty,
+			extensionTerm: MapRelativeDateOffset(fpmlDataDocument),
+			extensionPeriod: MapAdjustableRelativeOrPeriodicDates(fpmlDataDocument),
+			exerciseTerms: MapExerciseTerms(fpmlDataDocument),
+		}
+
+
+func MapCalculationAgentBusinessCenterWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		businessCenterEnum BusinessCenterEnum (0..1)
+		// [metadata scheme]
+	set businessCenterEnum: empty
+
+func MapBasket:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		basket Basket (0..1)
+	set basket:
+		Basket {
+			identifier: MapAssetIdentifierList(fpmlDataDocument),
+			taxonomy: MapTaxonomyList(fpmlDataDocument),
+			isExchangeListed: empty,
+			exchange: MapLegalEntity(fpmlDataDocument),
+			relatedExchange: MapLegalEntityList(fpmlDataDocument),
+			basketConstituent: MapBasketConstituentList(fpmlDataDocument),
+		}
+
+
+func MapIndex:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		index Index (0..1)
+	set index:
+		Index {
+			CreditIndex: MapCreditIndex(fpmlDataDocument),
+			EquityIndex: MapEquityIndex(fpmlDataDocument),
+			FloatingRateIndex: MapFloatingRateIndex(fpmlDataDocument),
+			ForeignExchangeRateIndex: MapForeignExchangeRateIndex(fpmlDataDocument),
+			OtherIndex: MapOtherIndex(fpmlDataDocument),
+		}
+
+
+func MapCountryWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		string string (0..1)
+		// [metadata scheme]
+	set string: empty
+
+func MapAgreementName:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		agreementName AgreementName (0..1)
+	set agreementName:
+		AgreementName {
+			agreementType: empty,
+			creditSupportAgreementType: MapCreditSupportAgreementTypeWithScheme(fpmlDataDocument),
+			creditSupportAgreementMarginType: empty,
+			contractualDefinitionsType: MapContractualDefinitionsTypeWithSchemeList(fpmlDataDocument),
+			contractualTermsSupplement: MapContractualTermsSupplementList(fpmlDataDocument),
+			contractualMatrix: MapContractualMatrixList(fpmlDataDocument),
+			masterAgreementType: MapMasterAgreementTypeWithScheme(fpmlDataDocument),
+			masterConfirmationType: MapMasterConfirmationTypeWithScheme(fpmlDataDocument),
+			masterConfirmationAnnexType: MapMasterConfirmationAnnexTypeWithScheme(fpmlDataDocument),
+			otherAgreement: empty,
+		}
+
+
+func MapAgreement:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		agreement Agreement (0..1)
+	set agreement:
+		Agreement {
+			creditSupportAgreementElections: MapCreditSupportAgreementElections(fpmlDataDocument),
+			collateralTransferAgreementElections: MapCollateralTransferAgreementElections(fpmlDataDocument),
+			securityAgreementElections: MapSecurityAgreementElections(fpmlDataDocument),
+			masterAgreementSchedule: MapMasterAgreementSchedule(fpmlDataDocument),
+			transactionAdditionalTerms: MapTransactionAdditionalTerms(fpmlDataDocument),
+		}
+
+
+func MapUmbrellaAgreementEntityList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		umbrellaAgreementEntityList UmbrellaAgreementEntity (0..*)
+	add umbrellaAgreementEntityList:
+		[
+			UmbrellaAgreementEntity {
+				entityId: MapEntityIdWithSchemeList(fpmlDataDocument),
+				name: MapNameWithScheme(fpmlDataDocument),
+				terms: empty,
+			}
+		]
+
+
+func MapPaymentRule:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		paymentRule PaymentRule (0..1)
+	set paymentRule:
+		PaymentRule {
+			percentageRule: MapPercentageRule(fpmlDataDocument),
+		}
+
+
+func MapProduct:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		product Product (0..1)
+	set product:
+		Product {
+			TransferableProduct: MapTransferableProduct(fpmlDataDocument),
+			NonTransferableProduct: MapNonTransferableProduct(fpmlDataDocument),
+		}
+
+
+func MapCollateralTreatment:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		collateralTreatment CollateralTreatment (0..1)
+	set collateralTreatment:
+		CollateralTreatment {
+			valuationTreatment: MapCollateralValuationTreatment(fpmlDataDocument),
+			concentrationLimit: MapConcentrationLimitList(fpmlDataDocument),
+			isIncluded: empty,
+		}
+
+
+func MapIssuerCriteriaList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		issuerCriteriaList IssuerCriteria (0..*)
+	add issuerCriteriaList:
+		[
+			IssuerCriteria {
+				issuerType: MapCollateralIssuerTypeList(fpmlDataDocument),
+				issuerCountryOfOrigin: [empty],
+				issuerName: MapLegalEntityList(fpmlDataDocument),
+				issuerAgencyRating: MapAgencyRatingCriteriaList(fpmlDataDocument),
+				sovereignAgencyRating: MapAgencyRatingCriteriaList(fpmlDataDocument),
+				counterpartyOwnIssuePermitted: empty,
+			}
+		]
+
+
+func MapAssetCriteriaList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		assetCriteriaList AssetCriteria (0..*)
+	add assetCriteriaList:
+		[
+			AssetCriteria {
+				collateralAssetType: MapAssetTypeList(fpmlDataDocument),
+				assetCountryOfOrigin: [empty],
+				denominatedCurrency: [empty],
+				agencyRating: MapAgencyRatingCriteriaList(fpmlDataDocument),
+				maturityType: empty,
+				maturityRange: MapPeriodRange(fpmlDataDocument),
+				assetIdentifier: MapAssetIdentifierList(fpmlDataDocument),
+				collateralTaxonomy: MapCollateralTaxonomyList(fpmlDataDocument),
+				domesticCurrencyIssued: empty,
+				listing: MapListingType(fpmlDataDocument),
+			}
+		]
+
+
+func MapPeriod:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		period Period (0..1)
+	set period:
+		Period {
+			periodMultiplier: empty,
+			period: empty,
+		}
+
+
+func MapSourceProviderWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		informationProviderEnum InformationProviderEnum (0..1)
+		// [metadata scheme]
+	set informationProviderEnum: empty
+
+func MapSourcePageWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		string string (0..1)
+		// [metadata scheme]
+	set string: empty
+
+func MapAssetIdentifierList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		assetIdentifierList AssetIdentifier (0..*)
+	add assetIdentifierList:
+		[
+			AssetIdentifier {
+				identifier: MapIdentifierWithScheme(empty, empty),
+				identifierType: empty,
+			}
+		]
+
+
+func MapTaxonomyList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		taxonomyList Taxonomy (0..*)
+	add taxonomyList:
+		[
+			Taxonomy {
+				source: empty,
+				value: MapTaxonomyValue(fpmlDataDocument),
+			}
+		]
+
+
+func MapLegalEntityList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		legalEntityList LegalEntity (0..*)
+	add legalEntityList:
+		[
+			LegalEntity {
+				entityId: MapEntityIdWithSchemeList(fpmlDataDocument),
+				name: MapNameWithScheme(fpmlDataDocument),
+			}
+		]
+
+
+func MapCommodityProductDefinition:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		commodityProductDefinition CommodityProductDefinition (0..1)
+	set commodityProductDefinition:
+		CommodityProductDefinition {
+			referenceFramework: MapCommodityReferenceFramework(fpmlDataDocument),
+			priceSource: MapPriceSource(fpmlDataDocument),
+			commodityInfoPublisher: empty,
+			exchangeId: MapExchangeIdWithScheme(fpmlDataDocument),
+		}
+
+
+func MapDeliveryDateParameters:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		deliveryDateParameters DeliveryDateParameters (0..1)
+	set deliveryDateParameters:
+		DeliveryDateParameters {
+			deliveryNearby: MapOffset(fpmlDataDocument),
+			deliveryDate: MapAdjustableDate(fpmlDataDocument),
+			deliveryDateRollConvention: MapOffset(fpmlDataDocument),
+			deliveryDateExpirationConvention: MapOffset(fpmlDataDocument),
+		}
+
+
+func MapPayerReceiver:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		payerReceiver PayerReceiver (0..1)
+	set payerReceiver:
+		PayerReceiver {
+			payer: empty,
+			receiver: empty,
+		}
+
+
+func MapResolvablePriceQuantity:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		resolvablePriceQuantity ResolvablePriceQuantity (0..1)
+	set resolvablePriceQuantity:
+		ResolvablePriceQuantity {
+			resolvedQuantity: MapQuantity(fpmlDataDocument),
+			quantitySchedule: MapNonNegativeQuantitySchedule(fpmlDataDocument),
+			quantityReference: MapResolvablePriceQuantity(fpmlDataDocument),
+			quantityMultiplier: MapQuantityMultiplier(fpmlDataDocument),
+			reset: empty,
+			futureValueNotional: MapFutureValueAmount(fpmlDataDocument),
+			priceSchedule: MapPriceScheduleList(fpmlDataDocument),
+		}
+
+
+func MapPrincipalPayments:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		principalPayments PrincipalPayments (0..1)
+	set principalPayments:
+		PrincipalPayments {
+			initialPayment: empty,
+			finalPayment: empty,
+			intermediatePayment: empty,
+			varyingLegNotionalCurrency: [empty],
+			principalPaymentSchedule: MapPrincipalPaymentSchedule(fpmlDataDocument),
+		}
+
+
+func MapCommodityPriceReturnTerms:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		commodityPriceReturnTerms CommodityPriceReturnTerms (0..1)
+	set commodityPriceReturnTerms:
+		CommodityPriceReturnTerms {
+			rounding: MapRounding(fpmlDataDocument),
+			spread: MapSpreadSchedule(fpmlDataDocument),
+			rollFeature: MapRollFeature(fpmlDataDocument),
+			conversionFactor: empty,
+		}
+
+
+func MapPricingDates:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		pricingDates PricingDates (0..1)
+	set pricingDates:
+		PricingDates {
+			specifiedDates: MapAdjustableDatesList(fpmlDataDocument),
+			parametricDates: MapParametricDates(fpmlDataDocument),
+		}
+
+
+func MapCalculationSchedule:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		calculationSchedule CalculationSchedule (0..1)
+	set calculationSchedule:
+		CalculationSchedule {
+			schedulePeriod: MapSchedulePeriodList(fpmlDataDocument),
+		}
+
+
+func MapCalculationPeriodDates:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		calculationPeriodDates CalculationPeriodDates (0..1)
+	set calculationPeriodDates:
+		CalculationPeriodDates {
+			effectiveDate: MapAdjustableOrRelativeDate(fpmlDataDocument),
+			terminationDate: MapAdjustableOrRelativeDate(fpmlDataDocument),
+			calculationPeriodDatesAdjustments: MapBusinessDayAdjustments(fpmlDataDocument),
+			firstPeriodStartDate: MapAdjustableOrRelativeDate(fpmlDataDocument),
+			firstRegularPeriodStartDate: empty,
+			firstCompoundingPeriodEndDate: empty,
+			lastRegularPeriodEndDate: empty,
+			stubPeriodType: empty,
+			calculationPeriodFrequency: MapCalculationPeriodFrequency(fpmlDataDocument),
+		}
+
+
+func MapPaymentDates:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		paymentDates PaymentDates (0..1)
+	set paymentDates:
+		PaymentDates {
+			paymentFrequency: MapFrequency(fpmlDataDocument),
+			firstPaymentDate: empty,
+			lastRegularPaymentDate: empty,
+			paymentDateSchedule: MapPaymentDateSchedule(fpmlDataDocument),
+			payRelativeTo: empty,
+			paymentDaysOffset: MapOffset(fpmlDataDocument),
+			paymentDatesAdjustments: MapBusinessDayAdjustments(fpmlDataDocument),
+		}
+
+
+func MapFxFeature:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		fxFeature FxFeature (0..1)
+	set fxFeature:
+		FxFeature {
+			referenceCurrency: MapReferenceCurrencyWithScheme(fpmlDataDocument),
+			composite: MapComposite(fpmlDataDocument),
+			quanto: MapQuanto(fpmlDataDocument),
+			crossCurrency: MapComposite(fpmlDataDocument),
+		}
+
+
+func MapAssetDeliveryInformation:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		assetDeliveryInformation AssetDeliveryInformation (0..1)
+	set assetDeliveryInformation:
+		AssetDeliveryInformation {
+			periods: MapAssetDeliveryPeriods(fpmlDataDocument),
+			location: MapLocationIdentifierList(fpmlDataDocument),
+			deliveryCapacity: MapQuantity(fpmlDataDocument),
+		}
+
+
+func MapGeneralTerms:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		generalTerms GeneralTerms (0..1)
+	set generalTerms:
+		GeneralTerms {
+			referenceInformation: MapReferenceInformation(fpmlDataDocument),
+			indexReferenceInformation: MapCreditIndex(fpmlDataDocument),
+			basketReferenceInformation: MapBasketReferenceInformation(fpmlDataDocument),
+			additionalTerm: MapAdditionalTermWithSchemeList(fpmlDataDocument),
+			substitution: empty,
+			modifiedEquityDelivery: empty,
+		}
+
+
+func MapProtectionTermsList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		protectionTermsList ProtectionTerms (0..*)
+	add protectionTermsList:
+		[
+			ProtectionTerms {
+				creditEvents: MapCreditEvents(fpmlDataDocument),
+				obligations: MapObligations(fpmlDataDocument),
+				floatingAmountEvents: MapFloatingAmountEvents(fpmlDataDocument),
+			}
+		]
+
+
+func MapTransactedPrice:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		transactedPrice TransactedPrice (0..1)
+	set transactedPrice:
+		TransactedPrice {
+			marketFixedRate: empty,
+			initialPoints: empty,
+			marketPrice: empty,
+			quotationStyle: empty,
+		}
+
+
+func MapUnderlier:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		underlier Underlier (0..1)
+	set underlier:
+		Underlier {
+			Observable: MapObservable(fpmlDataDocument),
+			Product: MapProduct(fpmlDataDocument),
+		}
+
+
+func MapRateSpecification:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		rateSpecification RateSpecification (0..1)
+	set rateSpecification:
+		RateSpecification {
+			FixedRateSpecification: MapFixedRateSpecification(fpmlDataDocument),
+			FloatingRateSpecification: MapFloatingRateSpecification(fpmlDataDocument),
+			InflationRateSpecification: MapInflationRateSpecification(fpmlDataDocument),
+		}
+
+
+func MapDayCountFractionWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		dayCountFractionEnum DayCountFractionEnum (0..1)
+		// [metadata scheme]
+	set dayCountFractionEnum: empty
+
+func MapResetDates:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		resetDates ResetDates (0..1)
+	set resetDates:
+		ResetDates {
+			calculationPeriodDatesReference: MapCalculationPeriodDates(fpmlDataDocument),
+			resetRelativeTo: empty,
+			initialFixingDate: MapInitialFixingDate(fpmlDataDocument),
+			fixingDates: MapRelativeDateOffset(fpmlDataDocument),
+			finalFixingDate: MapAdjustableDate(fpmlDataDocument),
+			rateCutOffDaysOffset: MapOffset(fpmlDataDocument),
+			resetFrequency: MapResetFrequency(fpmlDataDocument),
+			resetDatesAdjustments: MapBusinessDayAdjustments(fpmlDataDocument),
+		}
+
+
+func MapDiscountingMethod:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		discountingMethod DiscountingMethod (0..1)
+	set discountingMethod:
+		DiscountingMethod {
+			discountingType: empty,
+			discountRate: empty,
+			discountRateDayCountFraction: MapDiscountRateDayCountFractionWithScheme(fpmlDataDocument),
+		}
+
+
+func MapCashflowRepresentation:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		cashflowRepresentation CashflowRepresentation (0..1)
+	set cashflowRepresentation:
+		CashflowRepresentation {
+			cashflowsMatchParameters: empty,
+			paymentCalculationPeriod: MapPaymentCalculationPeriodList(fpmlDataDocument),
+		}
+
+
+func MapStubPeriod:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		stubPeriod StubPeriod (0..1)
+	set stubPeriod:
+		StubPeriod {
+			calculationPeriodDatesReference: MapCalculationPeriodDates(fpmlDataDocument),
+			initialStub: MapStubValue(fpmlDataDocument),
+			finalStub: MapStubValue(fpmlDataDocument),
+		}
+
+
+func MapBondReference:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		bondReference BondReference (0..1)
+	set bondReference:
+		BondReference {
+			bond: MapSecurity(fpmlDataDocument),
+			conditionPrecedentBond: empty,
+			discrepancyClause: empty,
+			couponRate: MapFixedRateSpecification(fpmlDataDocument),
+		}
+
+
+func MapBuyerSeller:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		buyerSeller BuyerSeller (0..1)
+	set buyerSeller:
+		BuyerSeller {
+			buyer: empty,
+			seller: empty,
+		}
+
+
+func MapOptionFeature:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		optionFeature OptionFeature (0..1)
+	set optionFeature:
+		OptionFeature {
+			fxFeature: MapFxFeatureList(fpmlDataDocument),
+			strategyFeature: MapStrategyFeature(fpmlDataDocument),
+			averagingFeature: MapAveragingCalculation(fpmlDataDocument),
+			barrier: MapBarrier(fpmlDataDocument),
+			knock: MapKnock(fpmlDataDocument),
+			passThrough: MapPassThrough(fpmlDataDocument),
+		}
+
+
+func MapObservationTerms:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		observationTerms ObservationTerms (0..1)
+	set observationTerms:
+		ObservationTerms {
+			observationTime: MapBusinessCenterTime(fpmlDataDocument),
+			observationTimeType: empty,
+			informationSource: MapFxSpotRateSource(fpmlDataDocument),
+			precision: MapRounding(fpmlDataDocument),
+			calculationPeriodDates: MapCalculationPeriodDates(fpmlDataDocument),
+			observationDates: MapObservationDates(fpmlDataDocument),
+			numberOfObservationDates: empty,
+		}
+
+
+func MapExerciseTerms:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		exerciseTerms ExerciseTerms (0..1)
+	set exerciseTerms:
+		ExerciseTerms {
+			style: empty,
+			commencementDate: MapAdjustableOrRelativeDate(fpmlDataDocument),
+			exerciseDates: MapAdjustableOrRelativeDates(fpmlDataDocument),
+			expirationDate: MapAdjustableOrRelativeDateList(fpmlDataDocument),
+			relevantUnderlyingDate: MapAdjustableOrRelativeDates(fpmlDataDocument),
+			earliestExerciseTime: MapBusinessCenterTime(fpmlDataDocument),
+			latestExerciseTime: MapBusinessCenterTime(fpmlDataDocument),
+			expirationTime: MapBusinessCenterTime(fpmlDataDocument),
+			expirationTimeType: empty,
+			multipleExercise: MapMultipleExercise(fpmlDataDocument),
+			exerciseFeeSchedule: MapExerciseFeeSchedule(fpmlDataDocument),
+			exerciseProcedure: MapExerciseProcedure(fpmlDataDocument),
+			exerciseFee: MapExerciseFee(fpmlDataDocument),
+			partialExercise: MapPartialExercise(fpmlDataDocument),
+		}
+
+
+func MapOptionStrike:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		optionStrike OptionStrike (0..1)
+	set optionStrike:
+		OptionStrike {
+			strikePrice: MapPrice(fpmlDataDocument),
+			strikeReference: MapFixedRateSpecification(fpmlDataDocument),
+			referenceSwapCurve: MapReferenceSwapCurve(fpmlDataDocument),
+			averagingStrikeFeature: MapAveragingStrikeFeature(fpmlDataDocument),
+		}
+
+
+func MapAssetLegList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		assetLegList AssetLeg (0..*)
+	add assetLegList:
+		[
+			AssetLeg {
+				settlementDate: MapAdjustableOrRelativeDate(fpmlDataDocument),
+				deliveryMethod: empty,
+			}
+		]
+
+
+func MapDividendTerms:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		dividendTerms DividendTerms (0..1)
+	set dividendTerms:
+		DividendTerms {
+			manufacturedIncomeRequirement: MapDividendPayoutRatio(fpmlDataDocument),
+			dividendEntitlement: empty,
+			minimumBillingAmount: MapMoney(fpmlDataDocument),
+		}
+
+
+func MapSettlementCurrencyWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		string string (0..1)
+		// [metadata scheme]
+	set string: empty
+
+func MapSettlementDate:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		settlementDate SettlementDate (0..1)
+	set settlementDate:
+		SettlementDate {
+			adjustableOrRelativeDate: MapAdjustableOrAdjustedOrRelativeDate(fpmlDataDocument),
+			valueDate: empty,
+			adjustableDates: MapAdjustableDates(fpmlDataDocument),
+			businessDateRange: MapBusinessDateRange(fpmlDataDocument),
+			cashSettlementBusinessDays: empty,
+			paymentDelay: empty,
+		}
+
+
+func MapSettlementProvision:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		settlementProvision SettlementProvision (0..1)
+	set settlementProvision:
+		SettlementProvision {
+			shapingProvisions: MapShapingProvision(fpmlDataDocument),
+		}
+
+
+func MapCashSettlementTermsList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		cashSettlementTermsList CashSettlementTerms (0..*)
+	add cashSettlementTermsList:
+		[
+			CashSettlementTerms {
+				cashSettlementMethod: empty,
+				valuationMethod: MapValuationMethod(fpmlDataDocument),
+				valuationDate: MapValuationDate(fpmlDataDocument),
+				valuationTime: MapBusinessCenterTime(fpmlDataDocument),
+				cashSettlementAmount: MapMoney(fpmlDataDocument),
+				recoveryFactor: empty,
+				fixedSettlement: empty,
+				accruedInterest: empty,
+			}
+		]
+
+
+func MapPhysicalSettlementTerms:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		physicalSettlementTerms PhysicalSettlementTerms (0..1)
+	set physicalSettlementTerms:
+		PhysicalSettlementTerms {
+			clearedPhysicalSettlement: empty,
+			predeterminedClearingOrganizationParty: empty,
+			physicalSettlementPeriod: MapPhysicalSettlementPeriod(fpmlDataDocument),
+			deliverableObligations: MapDeliverableObligations(fpmlDataDocument),
+			escrow: empty,
+			sixtyBusinessDaySettlementCap: empty,
+		}
+
+
+func MapValuationDates:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		valuationDates ValuationDates (0..1)
+	set valuationDates:
+		ValuationDates {
+			initialValuationDate: MapPerformanceValuationDates(fpmlDataDocument),
+			interimValuationDate: MapPerformanceValuationDates(fpmlDataDocument),
+			finalValuationDate: MapPerformanceValuationDates(fpmlDataDocument),
+		}
+
+
+func MapFxFeatureList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		fxFeatureList FxFeature (0..*)
+	add fxFeatureList:
+		[
+			FxFeature {
+				referenceCurrency: MapReferenceCurrencyWithScheme(fpmlDataDocument),
+				composite: MapComposite(fpmlDataDocument),
+				quanto: MapQuanto(fpmlDataDocument),
+				crossCurrency: MapComposite(fpmlDataDocument),
+			}
+		]
+
+
+func MapReturnTerms:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		returnTerms ReturnTerms (0..1)
+	set returnTerms:
+		ReturnTerms {
+			priceReturnTerms: MapPriceReturnTerms(fpmlDataDocument),
+			dividendReturnTerms: MapDividendReturnTerms(fpmlDataDocument),
+			varianceReturnTerms: MapVarianceReturnTerms(fpmlDataDocument),
+			volatilityReturnTerms: MapVolatilityReturnTerms(fpmlDataDocument),
+			correlationReturnTerms: MapCorrelationReturnTerms(fpmlDataDocument),
+		}
+
+
+func MapPortfolioReturnTermsList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		portfolioReturnTermsList PortfolioReturnTerms (0..*)
+	add portfolioReturnTermsList:
+		[
+			PortfolioReturnTerms {
+				priceReturnTerms: MapPriceReturnTerms(fpmlDataDocument),
+				dividendReturnTerms: MapDividendReturnTerms(fpmlDataDocument),
+				varianceReturnTerms: MapVarianceReturnTerms(fpmlDataDocument),
+				volatilityReturnTerms: MapVolatilityReturnTerms(fpmlDataDocument),
+				correlationReturnTerms: MapCorrelationReturnTerms(fpmlDataDocument),
+				payerReceiver: MapPayerReceiver(fpmlDataDocument),
+				underlier: MapObservable(fpmlDataDocument),
+				quantity: MapNonNegativeQuantitySchedule(fpmlDataDocument),
+				initialValuationPrice: MapPriceScheduleList(fpmlDataDocument),
+				interimValuationPrice: MapPriceScheduleList(fpmlDataDocument),
+				finalValuationPrice: MapPriceScheduleList(fpmlDataDocument),
+			}
+		]
+
+
+func MapFixedPrice:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		fixedPrice FixedPrice (0..1)
+	set fixedPrice:
+		FixedPrice {
+			price: MapPriceSchedule(fpmlDataDocument),
+		}
+
+
+func MapLienWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		string string (0..1)
+		// [metadata scheme]
+	set string: empty
+
+func MapFacilityTypeWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		string string (0..1)
+		// [metadata scheme]
+	set string: empty
+
+func MapTrancheWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		string string (0..1)
+		// [metadata scheme]
+	set string: empty
+
+func MapDebtType:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		debtType DebtType (0..1)
+	set debtType:
+		DebtType {
+			debtClass: empty,
+			debtEconomics: MapDebtEconomicsList(fpmlDataDocument),
+		}
+
+
+func MapBusinessCenterWithSchemeList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		businessCenterEnumList BusinessCenterEnum (0..*)
+		// [metadata scheme]
+	add businessCenterEnumList:
+		[ empty		]
+
+
+func MapCommodityBusinessCalendarWithSchemeList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		commodityBusinessCalendarEnumList CommodityBusinessCalendarEnum (0..*)
+		// [metadata scheme]
+	add commodityBusinessCalendarEnumList:
+		[ empty		]
+
+
+func MapCashflowType:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		cashflowType CashflowType (0..1)
+	set cashflowType:
+		CashflowType {
+			cashflowType: empty,
+			cashPrice: MapCashPrice(fpmlDataDocument),
+			priceExpression: empty,
+		}
+
+
+func MapPaymentDiscounting:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		paymentDiscounting PaymentDiscounting (0..1)
+	set paymentDiscounting:
+		PaymentDiscounting {
+			discountFactor: empty,
+			presentValueAmount: MapMoney(fpmlDataDocument),
+		}
+
+
+func MapExerciseNotice:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		exerciseNotice ExerciseNotice (0..1)
+	set exerciseNotice:
+		ExerciseNotice {
+			exerciseNoticeGiver: empty,
+			exerciseNoticeReceiver: empty,
+			businessCenter: MapBusinessCenterWithScheme(fpmlDataDocument),
+		}
+
+
+func MapCancelableProvisionAdjustedDates:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		cancelableProvisionAdjustedDates CancelableProvisionAdjustedDates (0..1)
+	set cancelableProvisionAdjustedDates:
+		CancelableProvisionAdjustedDates {
+			cancellationEvent: MapCancellationEventList(fpmlDataDocument),
+		}
+
+
+func MapFinalCalculationPeriodDateAdjustmentList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		finalCalculationPeriodDateAdjustmentList FinalCalculationPeriodDateAdjustment (0..*)
+	add finalCalculationPeriodDateAdjustmentList:
+		[
+			FinalCalculationPeriodDateAdjustment {
+				relevantUnderlyingDateReference: MapAdjustableOrRelativeDates(fpmlDataDocument),
+				swapStreamReference: MapInterestRatePayout(fpmlDataDocument),
+				businessDayConvention: empty,
+			}
+		]
+
+
+func MapAdjustableOrRelativeDates:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		adjustableOrRelativeDates AdjustableOrRelativeDates (0..1)
+	set adjustableOrRelativeDates:
+		AdjustableOrRelativeDates {
+			adjustableDates: MapAdjustableDates(fpmlDataDocument),
+			relativeDates: MapRelativeDates(fpmlDataDocument),
+		}
+
+
+func MapBusinessCenterTime:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		businessCenterTime BusinessCenterTime (0..1)
+	set businessCenterTime:
+		BusinessCenterTime {
+			hourMinuteTime: empty,
+			businessCenter: MapBusinessCenterWithScheme(fpmlDataDocument),
+		}
+
+
+func MapMandatoryEarlyTermination:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		mandatoryEarlyTermination MandatoryEarlyTermination (0..1)
+	set mandatoryEarlyTermination:
+		MandatoryEarlyTermination {
+			mandatoryEarlyTerminationDate: MapAdjustableDate(fpmlDataDocument),
+			calculationAgent: MapCalculationAgent(fpmlDataDocument),
+			cashSettlement: MapSettlementTerms(fpmlDataDocument),
+			mandatoryEarlyTerminationAdjustedDates: MapMandatoryEarlyTerminationAdjustedDates(fpmlDataDocument),
+		}
+
+
+func MapOptionalEarlyTermination:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		optionalEarlyTermination OptionalEarlyTermination (0..1)
+	set optionalEarlyTermination:
+		OptionalEarlyTermination {
+			singlePartyOption: MapBuyerSeller(fpmlDataDocument),
+			mutualEarlyTermination: empty,
+			exerciseNotice: MapExerciseNoticeList(fpmlDataDocument),
+			followUpConfirmation: empty,
+			calculationAgent: MapCalculationAgent(fpmlDataDocument),
+			cashSettlement: MapSettlementTerms(fpmlDataDocument),
+			optionalEarlyTerminationAdjustedDates: MapOptionalEarlyTerminationAdjustedDates(fpmlDataDocument),
+			exerciseTerms: MapExerciseTerms(fpmlDataDocument),
+		}
+
+
+func MapExercisePeriod:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		exercisePeriod ExercisePeriod (0..1)
+	set exercisePeriod:
+		ExercisePeriod {
+			earliestExerciseDateTenor: MapPeriod(fpmlDataDocument),
+			exerciseFrequency: MapPeriod(fpmlDataDocument),
+		}
+
+
+func MapPartyRole:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		partyRole PartyRole (0..1)
+	set partyRole:
+		PartyRole {
+			partyReference: MapParty(empty),
+			role: empty,
+			ownershipPartyReference: MapParty(empty),
+		}
+
+
+func MapAdjustableRelativeOrPeriodicDates:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		adjustableRelativeOrPeriodicDates AdjustableRelativeOrPeriodicDates (0..1)
+	set adjustableRelativeOrPeriodicDates:
+		AdjustableRelativeOrPeriodicDates {
+			adjustableDates: MapAdjustableDates(fpmlDataDocument),
+			relativeDates: MapRelativeDates(fpmlDataDocument),
+			periodicDates: MapPeriodicDates(fpmlDataDocument),
+		}
+
+
+func MapExtendibleProvisionAdjustedDates:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		extendibleProvisionAdjustedDates ExtendibleProvisionAdjustedDates (0..1)
+	set extendibleProvisionAdjustedDates:
+		ExtendibleProvisionAdjustedDates {
+			extensionEvent: MapExtensionEventList(fpmlDataDocument),
+		}
+
+
+func MapBasketConstituentList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		basketConstituentList BasketConstituent (0..*)
+	add basketConstituentList:
+		[
+			BasketConstituent {
+				Asset: MapAsset(fpmlDataDocument),
+				Basket: MapBasket(fpmlDataDocument),
+				Index: MapIndex(fpmlDataDocument),
+				quantity: MapNonNegativeQuantityScheduleList(fpmlDataDocument),
+				initialValuationPrice: MapPriceScheduleList(fpmlDataDocument),
+				interimValuationPrice: MapPriceScheduleList(fpmlDataDocument),
+				finalValuationPrice: MapPriceScheduleList(fpmlDataDocument),
+			}
+		]
+
+
+func MapCreditIndex:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		creditIndex CreditIndex (0..1)
+	set creditIndex:
+		CreditIndex {
+			identifier: MapAssetIdentifierList(fpmlDataDocument),
+			taxonomy: MapTaxonomyList(fpmlDataDocument),
+			isExchangeListed: empty,
+			exchange: MapLegalEntity(fpmlDataDocument),
+			relatedExchange: MapLegalEntityList(fpmlDataDocument),
+			name: MapNameWithScheme(fpmlDataDocument),
+			provider: MapLegalEntity(fpmlDataDocument),
+			assetClass: empty,
+			indexSeries: empty,
+			indexAnnexVersion: empty,
+			indexAnnexDate: empty,
+			indexAnnexSource: MapIndexAnnexSourceWithScheme(fpmlDataDocument),
+			excludedReferenceEntity: MapReferenceInformationList(fpmlDataDocument),
+			tranche: MapTranche(fpmlDataDocument),
+			settledEntityMatrix: MapSettledEntityMatrix(fpmlDataDocument),
+			indexFactor: empty,
+			seniority: empty,
+		}
+
+
+func MapEquityIndex:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		equityIndex EquityIndex (0..1)
+	set equityIndex:
+		EquityIndex {
+			identifier: MapAssetIdentifierList(fpmlDataDocument),
+			taxonomy: MapTaxonomyList(fpmlDataDocument),
+			isExchangeListed: empty,
+			exchange: MapLegalEntity(fpmlDataDocument),
+			relatedExchange: MapLegalEntityList(fpmlDataDocument),
+			name: MapNameWithScheme(fpmlDataDocument),
+			provider: MapLegalEntity(fpmlDataDocument),
+			assetClass: empty,
+		}
+
+
+func MapFloatingRateIndex:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		floatingRateIndex FloatingRateIndex (0..1)
+	set floatingRateIndex:
+		FloatingRateIndex {
+			InterestRateIndex: MapInterestRateIndex(fpmlDataDocument),
+			InflationIndex: MapInflationIndex(fpmlDataDocument),
+		}
+
+
+func MapForeignExchangeRateIndex:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		foreignExchangeRateIndex ForeignExchangeRateIndex (0..1)
+	set foreignExchangeRateIndex:
+		ForeignExchangeRateIndex {
+			identifier: MapAssetIdentifierList(fpmlDataDocument),
+			taxonomy: MapTaxonomyList(fpmlDataDocument),
+			isExchangeListed: empty,
+			exchange: MapLegalEntity(fpmlDataDocument),
+			relatedExchange: MapLegalEntityList(fpmlDataDocument),
+			name: MapNameWithScheme(fpmlDataDocument),
+			provider: MapLegalEntity(fpmlDataDocument),
+			assetClass: empty,
+			quotedCurrencyPair: MapQuotedCurrencyPair(fpmlDataDocument),
+			primaryFxSpotRateSource: MapInformationSource(fpmlDataDocument),
+			secondaryFxSpotRateSource: MapInformationSource(fpmlDataDocument),
+		}
+
+
+func MapOtherIndex:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		otherIndex OtherIndex (0..1)
+	set otherIndex:
+		OtherIndex {
+			identifier: MapAssetIdentifierList(fpmlDataDocument),
+			taxonomy: MapTaxonomyList(fpmlDataDocument),
+			isExchangeListed: empty,
+			exchange: MapLegalEntity(fpmlDataDocument),
+			relatedExchange: MapLegalEntityList(fpmlDataDocument),
+			name: MapNameWithScheme(fpmlDataDocument),
+			provider: MapLegalEntity(fpmlDataDocument),
+			assetClass: empty,
+			description: empty,
+		}
+
+
+func MapCreditSupportAgreementTypeWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		creditSupportAgreementTypeEnum CreditSupportAgreementTypeEnum (0..1)
+		// [metadata scheme]
+	set creditSupportAgreementTypeEnum: empty
+
+func MapContractualDefinitionsTypeWithSchemeList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		contractualDefinitionsEnumList ContractualDefinitionsEnum (0..*)
+		// [metadata scheme]
+	add contractualDefinitionsEnumList:
+		[ empty		]
+
+
+func MapContractualTermsSupplementList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		contractualTermsSupplementList ContractualTermsSupplement (0..*)
+	add contractualTermsSupplementList:
+		[
+			ContractualTermsSupplement {
+				contractualTermsSupplementType: MapContractualTermsSupplementTypeWithScheme(fpmlDataDocument),
+				publicationDate: empty,
+			}
+		]
+
+
+func MapContractualMatrixList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		contractualMatrixList ContractualMatrix (0..*)
+	add contractualMatrixList:
+		[
+			ContractualMatrix {
+				matrixType: MapMatrixTypeWithScheme(fpmlDataDocument),
+				matrixTerm: MapMatrixTermWithScheme(fpmlDataDocument),
+			}
+		]
+
+
+func MapMasterAgreementTypeWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		masterAgreementTypeEnum MasterAgreementTypeEnum (0..1)
+		// [metadata scheme]
+	set masterAgreementTypeEnum: empty
+
+func MapMasterConfirmationTypeWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		masterConfirmationTypeEnum MasterConfirmationTypeEnum (0..1)
+		// [metadata scheme]
+	set masterConfirmationTypeEnum: empty
+
+func MapMasterConfirmationAnnexTypeWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		masterConfirmationAnnexTypeEnum MasterConfirmationAnnexTypeEnum (0..1)
+		// [metadata scheme]
+	set masterConfirmationAnnexTypeEnum: empty
+
+func MapCreditSupportAgreementElections:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		creditSupportAgreementElections CreditSupportAgreementElections (0..1)
+	set creditSupportAgreementElections:
+		CreditSupportAgreementElections {
+		}
+
+
+func MapCollateralTransferAgreementElections:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		collateralTransferAgreementElections CollateralTransferAgreementElections (0..1)
+	set collateralTransferAgreementElections:
+		CollateralTransferAgreementElections {
+		}
+
+
+func MapSecurityAgreementElections:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		securityAgreementElections SecurityAgreementElections (0..1)
+	set securityAgreementElections:
+		SecurityAgreementElections {
+		}
+
+
+func MapMasterAgreementSchedule:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		masterAgreementSchedule MasterAgreementSchedule (0..1)
+	set masterAgreementSchedule:
+		MasterAgreementSchedule {
+			clause: MapMasterAgreementClauseList(fpmlDataDocument),
+		}
+
+
+func MapTransactionAdditionalTerms:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		transactionAdditionalTerms TransactionAdditionalTerms (0..1)
+	set transactionAdditionalTerms:
+		TransactionAdditionalTerms {
+			equityAdditionalTerms: MapEquityAdditionalTerms(fpmlDataDocument),
+			foreignExchangeAdditionalTerms: MapFxAdditionalTerms(fpmlDataDocument),
+			commoditiesAdditionalTerms: empty,
+			creditAdditionalTerms: empty,
+			interestRateAdditionalTerms: empty,
+			digitalAssetAdditionalTerms: empty,
+		}
+
+
+func MapPercentageRule:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		percentageRule PercentageRule (0..1)
+	set percentageRule:
+		PercentageRule {
+			paymentPercent: empty,
+			notionalAmountReference: MapMoney(fpmlDataDocument),
+		}
+
+
+func MapTransferableProduct:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		transferableProduct TransferableProduct (0..1)
+	set transferableProduct:
+		TransferableProduct {
+			Cash: MapCash(fpmlDataDocument),
+			Commodity: MapCommodity(fpmlDataDocument),
+			DigitalAsset: MapDigitalAsset(fpmlDataDocument),
+			Instrument: MapInstrument(fpmlDataDocument),
+			economicTerms: MapEconomicTerms(fpmlDataDocument),
+		}
+
+
+func MapCollateralValuationTreatment:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		collateralValuationTreatment CollateralValuationTreatment (0..1)
+	set collateralValuationTreatment:
+		CollateralValuationTreatment {
+			haircutPercentage: empty,
+			marginPercentage: empty,
+			fxHaircutPercentage: empty,
+			additionalHaircutPercentage: empty,
+		}
+
+
+func MapConcentrationLimitList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		concentrationLimitList ConcentrationLimit (0..*)
+	add concentrationLimitList:
+		[
+			ConcentrationLimit {
+				concentrationLimitCriteria: MapConcentrationLimitCriteriaList(fpmlDataDocument),
+				valueLimit: MapMoneyRange(fpmlDataDocument),
+				percentageLimit: MapNumberRange(fpmlDataDocument),
+			}
+		]
+
+
+func MapCollateralIssuerTypeList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		collateralIssuerTypeList CollateralIssuerType (0..*)
+	add collateralIssuerTypeList:
+		[
+			CollateralIssuerType {
+				issuerType: empty,
+				supraNationalType: empty,
+				quasiGovernmentType: MapQuasiGovernmentIssuerType(fpmlDataDocument),
+				regionalGovernmentType: MapRegionalGovernmentIssuerType(fpmlDataDocument),
+				specialPurposeVehicleType: MapSpecialPurposeVehicleIssuerType(fpmlDataDocument),
+			}
+		]
+
+
+func MapAgencyRatingCriteriaList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		agencyRatingCriteriaList AgencyRatingCriteria (0..*)
+	add agencyRatingCriteriaList:
+		[
+			AgencyRatingCriteria {
+				qualifier: empty,
+				creditNotation: MapCreditNotationList(fpmlDataDocument),
+				mismatchResolution: empty,
+				referenceAgency: empty,
+				boundary: empty,
+			}
+		]
+
+
+func MapAssetTypeList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		assetTypeList AssetType (0..*)
+	add assetTypeList:
+		[
+			AssetType {
+				assetType: empty,
+				securityType: empty,
+				debtType: MapDebtType(fpmlDataDocument),
+				equityType: empty,
+				fundType: empty,
+				otherAssetType: [empty],
+			}
+		]
+
+
+func MapPeriodRange:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		periodRange PeriodRange (0..1)
+	set periodRange:
+		PeriodRange {
+			lowerBound: MapPeriodBound(fpmlDataDocument),
+			upperBound: MapPeriodBound(fpmlDataDocument),
+		}
+
+
+func MapCollateralTaxonomyList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		collateralTaxonomyList CollateralTaxonomy (0..*)
+	add collateralTaxonomyList:
+		[
+			CollateralTaxonomy {
+				taxonomyValue: MapCollateralTaxonomyValue(fpmlDataDocument),
+				taxonomySource: empty,
+			}
+		]
+
+
+func MapListingType:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		listingType ListingType (0..1)
+	set listingType:
+		ListingType {
+			exchange: MapExchangeWithScheme(fpmlDataDocument),
+			sector: MapSectorWithScheme(fpmlDataDocument),
+			index: MapIndex(fpmlDataDocument),
+		}
+
+
+func MapCommodityReferenceFramework:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		commodityReferenceFramework CommodityReferenceFramework (0..1)
+	set commodityReferenceFramework:
+		CommodityReferenceFramework {
+			commodityName: empty,
+			capacityUnit: empty,
+			weatherUnit: empty,
+			currency: MapCurrencyWithScheme(fpmlDataDocument),
+		}
+
+
+func MapPriceSource:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		priceSource PriceSource (0..1)
+	set priceSource:
+		PriceSource {
+			pricePublisher: MapPricePublisherWithScheme(fpmlDataDocument),
+			priceSourceLocation: empty,
+			priceSourceHeading: empty,
+			priceSourceTime: empty,
+		}
+
+
+func MapExchangeIdWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		string string (0..1)
+		// [metadata scheme]
+	set string: empty
+
+func MapOffset:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		offset Offset (0..1)
+	set offset:
+		Offset {
+			periodMultiplier: empty,
+			period: empty,
+			dayType: empty,
+		}
+
+
+func MapQuantity:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		quantity Quantity (0..1)
+	set quantity:
+		Quantity {
+			value: empty,
+			unit: MapUnitType(fpmlDataDocument),
+			datedValue: MapDatedValueList(fpmlDataDocument),
+			multiplier: MapMeasure(fpmlDataDocument),
+			frequency: MapFrequency(fpmlDataDocument),
+		}
+
+
+func MapNonNegativeQuantitySchedule:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		nonNegativeQuantitySchedule NonNegativeQuantitySchedule (0..1)
+	set nonNegativeQuantitySchedule:
+		NonNegativeQuantitySchedule {
+			value: empty,
+			unit: MapUnitType(fpmlDataDocument),
+			datedValue: MapDatedValueList(fpmlDataDocument),
+			multiplier: MapMeasure(fpmlDataDocument),
+			frequency: MapFrequency(fpmlDataDocument),
+		}
+
+
+func MapQuantityMultiplier:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		quantityMultiplier QuantityMultiplier (0..1)
+	set quantityMultiplier:
+		QuantityMultiplier {
+			fxLinkedNotionalSchedule: MapFxLinkedNotionalSchedule(fpmlDataDocument),
+			multiplierValue: empty,
+		}
+
+
+func MapFutureValueAmount:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		futureValueAmount FutureValueAmount (0..1)
+	set futureValueAmount:
+		FutureValueAmount {
+			quantity: MapNonNegativeQuantitySchedule(fpmlDataDocument),
+			currency: MapCurrencyWithScheme(fpmlDataDocument),
+			calculationPeriodNumberOfDays: empty,
+			valueDate: empty,
+		}
+
+
+func MapPrincipalPaymentSchedule:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		principalPaymentSchedule PrincipalPaymentSchedule (0..1)
+	set principalPaymentSchedule:
+		PrincipalPaymentSchedule {
+			initialPrincipalPayment: MapPrincipalPayment(fpmlDataDocument),
+			intermediatePrincipalPayment: MapAdjustableRelativeOrPeriodicDates(fpmlDataDocument),
+			finalPrincipalPayment: MapPrincipalPayment(fpmlDataDocument),
+		}
+
+
+func MapSpreadSchedule:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		spreadSchedule SpreadSchedule (0..1)
+	set spreadSchedule:
+		SpreadSchedule {
+			price: MapPriceSchedule(fpmlDataDocument),
+			spreadScheduleType: MapSpreadScheduleTypeWithScheme(fpmlDataDocument),
+		}
+
+
+func MapRollFeature:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		rollFeature RollFeature (0..1)
+	set rollFeature:
+		RollFeature {
+			rollSourceCalendar: empty,
+			deliveryDateRollConvention: MapOffset(fpmlDataDocument),
+		}
+
+
+func MapAdjustableDatesList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		adjustableDatesList AdjustableDates (0..*)
+	add adjustableDatesList:
+		[
+			AdjustableDates {
+				unadjustedDate: [empty],
+				dateAdjustments: MapBusinessDayAdjustments(fpmlDataDocument),
+				adjustedDate: [empty],
+			}
+		]
+
+
+func MapParametricDates:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		parametricDates ParametricDates (0..1)
+	set parametricDates:
+		ParametricDates {
+			dayType: empty,
+			dayDistribution: empty,
+			dayOfWeek: [empty],
+			dayFrequency: empty,
+			lag: MapLag(fpmlDataDocument),
+			businessCenters: MapBusinessCenters(fpmlDataDocument),
+		}
+
+
+func MapSchedulePeriodList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		schedulePeriodList SchedulePeriod (0..*)
+	add schedulePeriodList:
+		[
+			SchedulePeriod {
+				calculationPeriod: MapDateRange(fpmlDataDocument),
+				paymentDate: empty,
+				fixingPeriod: MapDateRange(fpmlDataDocument),
+				deliveryPeriod: MapCalculationScheduleDeliveryPeriods(fpmlDataDocument),
+			}
+		]
+
+
+func MapCalculationPeriodFrequency:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		calculationPeriodFrequency CalculationPeriodFrequency (0..1)
+	set calculationPeriodFrequency:
+		CalculationPeriodFrequency {
+			periodMultiplier: empty,
+			period: empty,
+			rollConvention: empty,
+			balanceOfFirstPeriod: empty,
+		}
+
+
+func MapPaymentDateSchedule:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		paymentDateSchedule PaymentDateSchedule (0..1)
+	set paymentDateSchedule:
+		PaymentDateSchedule {
+			interimPaymentDates: MapAdjustableRelativeOrPeriodicDatesList(fpmlDataDocument),
+			finalPaymentDate: MapAdjustableOrRelativeDate(fpmlDataDocument),
+		}
+
+
+func MapReferenceCurrencyWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		string string (0..1)
+		// [metadata scheme]
+	set string: empty
+
+func MapComposite:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		composite Composite (0..1)
+	set composite:
+		Composite {
+			determinationMethod: empty,
+			relativeDate: MapRelativeDateOffset(fpmlDataDocument),
+			fxSpotRateSource: MapFxSpotRateSource(fpmlDataDocument),
+			fixingTime: MapBusinessCenterTime(fpmlDataDocument),
+		}
+
+
+func MapQuanto:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		quanto Quanto (0..1)
+	set quanto:
+		Quanto {
+			fxRate: MapFxRateList(fpmlDataDocument),
+			fxSpotRateSource: MapFxSpotRateSource(fpmlDataDocument),
+			fixingTime: MapBusinessCenterTime(fpmlDataDocument),
+		}
+
+
+func MapAssetDeliveryPeriods:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		assetDeliveryPeriods AssetDeliveryPeriods (0..1)
+	set assetDeliveryPeriods:
+		AssetDeliveryPeriods {
+			profile: MapAssetDeliveryProfileList(fpmlDataDocument),
+			startDate: empty,
+			endDate: empty,
+		}
+
+
+func MapLocationIdentifierList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		locationIdentifierList LocationIdentifier (0..*)
+	add locationIdentifierList:
+		[
+			LocationIdentifier {
+				issuerReference: MapParty(empty),
+				issuer: MapIssuerWithScheme(fpmlDataDocument),
+				assignedIdentifier: MapAssignedIdentifierList(fpmlDataDocument),
+				locationIdentifierType: empty,
+			}
+		]
+
+
+func MapBasketReferenceInformation:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		basketReferenceInformation BasketReferenceInformation (0..1)
+	set basketReferenceInformation:
+		BasketReferenceInformation {
+			basketName: MapBasketNameWithScheme(fpmlDataDocument),
+			basketId: MapBasketIdWithSchemeList(fpmlDataDocument),
+			referencePool: MapReferencePool(fpmlDataDocument),
+			nthToDefault: empty,
+			mthToDefault: empty,
+			tranche: MapTranche(fpmlDataDocument),
+		}
+
+
+func MapAdditionalTermWithSchemeList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		stringList string (0..*)
+		// [metadata scheme]
+	add stringList:
+		[ empty		]
+
+
+func MapCreditEvents:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		creditEvents CreditEvents (0..1)
+	set creditEvents:
+		CreditEvents {
+			bankruptcy: empty,
+			failureToPay: MapFailureToPay(fpmlDataDocument),
+			failureToPayPrincipal: empty,
+			failureToPayInterest: empty,
+			obligationDefault: empty,
+			obligationAcceleration: empty,
+			repudiationMoratorium: empty,
+			restructuring: MapRestructuring(fpmlDataDocument),
+			governmentalIntervention: empty,
+			distressedRatingsDowngrade: empty,
+			maturityExtension: empty,
+			writedown: empty,
+			impliedWritedown: empty,
+			defaultRequirement: MapMoney(fpmlDataDocument),
+			creditEventNotice: MapCreditEventNotice(fpmlDataDocument),
+		}
+
+
+func MapObligations:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		obligations Obligations (0..1)
+	set obligations:
+		Obligations {
+			category: empty,
+			notSubordinated: empty,
+			specifiedCurrency: MapSpecifiedCurrency(fpmlDataDocument),
+			notSovereignLender: empty,
+			notDomesticCurrency: MapNotDomesticCurrency(fpmlDataDocument),
+			notDomesticLaw: empty,
+			listed: empty,
+			notDomesticIssuance: empty,
+			fullFaithAndCreditObLiability: empty,
+			generalFundObligationLiability: empty,
+			revenueObligationLiability: empty,
+			notContingent: empty,
+			excluded: empty,
+			othReferenceEntityObligations: empty,
+			designatedPriority: MapDesignatedPriorityWithScheme(fpmlDataDocument),
+			cashSettlementOnly: empty,
+			deliveryOfCommitments: empty,
+			continuity: empty,
+		}
+
+
+func MapFloatingAmountEvents:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		floatingAmountEvents FloatingAmountEvents (0..1)
+	set floatingAmountEvents:
+		FloatingAmountEvents {
+			failureToPayPrincipal: empty,
+			interestShortfall: MapInterestShortFall(fpmlDataDocument),
+			writedown: empty,
+			impliedWritedown: empty,
+			floatingAmountProvisions: MapFloatingAmountProvisions(fpmlDataDocument),
+			additionalFixedPayments: MapAdditionalFixedPayments(fpmlDataDocument),
+		}
+
+
+func MapFixedRateSpecification:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		fixedRateSpecification FixedRateSpecification (0..1)
+	set fixedRateSpecification:
+		FixedRateSpecification {
+			rateSchedule: MapRateSchedule(fpmlDataDocument),
+		}
+
+
+func MapFloatingRateSpecification:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		floatingRateSpecification FloatingRateSpecification (0..1)
+	set floatingRateSpecification:
+		FloatingRateSpecification {
+			rateOption: MapFloatingRateIndex(fpmlDataDocument),
+			spreadSchedule: MapSpreadSchedule(fpmlDataDocument),
+			capRateSchedule: MapStrikeSchedule(fpmlDataDocument),
+			floorRateSchedule: MapStrikeSchedule(fpmlDataDocument),
+			floatingRateMultiplierSchedule: MapRateSchedule(fpmlDataDocument),
+			rateTreatment: empty,
+			calculationParameters: MapFloatingRateCalculationParameters(fpmlDataDocument),
+			fallbackRate: MapFallbackRateParameters(fpmlDataDocument),
+			initialRate: MapPrice(fpmlDataDocument),
+			finalRateRounding: MapRounding(fpmlDataDocument),
+			averagingMethod: empty,
+			negativeInterestRateTreatment: empty,
+		}
+
+
+func MapInflationRateSpecification:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		inflationRateSpecification InflationRateSpecification (0..1)
+	set inflationRateSpecification:
+		InflationRateSpecification {
+			rateOption: MapFloatingRateIndex(fpmlDataDocument),
+			spreadSchedule: MapSpreadSchedule(fpmlDataDocument),
+			capRateSchedule: MapStrikeSchedule(fpmlDataDocument),
+			floorRateSchedule: MapStrikeSchedule(fpmlDataDocument),
+			floatingRateMultiplierSchedule: MapRateSchedule(fpmlDataDocument),
+			rateTreatment: empty,
+			calculationParameters: MapFloatingRateCalculationParameters(fpmlDataDocument),
+			fallbackRate: MapFallbackRateParameters(fpmlDataDocument),
+			initialRate: MapPrice(fpmlDataDocument),
+			finalRateRounding: MapRounding(fpmlDataDocument),
+			averagingMethod: empty,
+			negativeInterestRateTreatment: empty,
+			inflationLag: MapOffset(fpmlDataDocument),
+			indexSource: MapIndexSourceWithScheme(fpmlDataDocument),
+			mainPublication: MapMainPublicationWithScheme(fpmlDataDocument),
+			interpolationMethod: MapInterpolationMethodWithScheme(fpmlDataDocument),
+			initialIndexLevel: empty,
+			fallbackBondApplicable: empty,
+			calculationMethod: empty,
+			calculationStyle: empty,
+			finalPrincipalExchangeCalculation: empty,
+		}
+
+
+func MapInitialFixingDate:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		initialFixingDate InitialFixingDate (0..1)
+	set initialFixingDate:
+		InitialFixingDate {
+			relativeDateOffset: MapRelativeDateOffset(fpmlDataDocument),
+			initialFixingDate: empty,
+		}
+
+
+func MapResetFrequency:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		resetFrequency ResetFrequency (0..1)
+	set resetFrequency:
+		ResetFrequency {
+			periodMultiplier: empty,
+			period: empty,
+			weeklyRollConvention: empty,
+		}
+
+
+func MapDiscountRateDayCountFractionWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		dayCountFractionEnum DayCountFractionEnum (0..1)
+		// [metadata scheme]
+	set dayCountFractionEnum: empty
+
+func MapPaymentCalculationPeriodList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		paymentCalculationPeriodList PaymentCalculationPeriod (0..*)
+	add paymentCalculationPeriodList:
+		[
+			PaymentCalculationPeriod {
+				unadjustedPaymentDate: empty,
+				adjustedPaymentDate: empty,
+				calculationPeriod: MapCalculationPeriodList(fpmlDataDocument),
+				fixedPaymentAmount: MapMoney(fpmlDataDocument),
+				discountFactor: empty,
+				forecastPaymentAmount: MapMoney(fpmlDataDocument),
+				presentValueAmount: MapMoney(fpmlDataDocument),
+			}
+		]
+
+
+func MapStubValue:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		stubValue StubValue (0..1)
+	set stubValue:
+		StubValue {
+			floatingRate: MapStubFloatingRateList(fpmlDataDocument),
+			stubRate: empty,
+			stubAmount: MapMoney(fpmlDataDocument),
+		}
+
+
+func MapStrategyFeature:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		strategyFeature StrategyFeature (0..1)
+	set strategyFeature:
+		StrategyFeature {
+			strikeSpread: MapStrikeSpread(fpmlDataDocument),
+			calendarSpread: MapCalendarSpread(fpmlDataDocument),
+		}
+
+
+func MapBarrier:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		barrier Barrier (0..1)
+	set barrier:
+		Barrier {
+			barrierCap: MapTriggerEvent(fpmlDataDocument),
+			barrierFloor: MapTriggerEvent(fpmlDataDocument),
+		}
+
+
+func MapKnock:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		knock Knock (0..1)
+	set knock:
+		Knock {
+			knockIn: MapTriggerEvent(fpmlDataDocument),
+			knockOut: MapTriggerEvent(fpmlDataDocument),
+		}
+
+
+func MapPassThrough:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		passThrough PassThrough (0..1)
+	set passThrough:
+		PassThrough {
+			passThroughItem: MapPassThroughItemList(fpmlDataDocument),
+		}
+
+
+func MapFxSpotRateSource:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		fxSpotRateSource FxSpotRateSource (0..1)
+	set fxSpotRateSource:
+		FxSpotRateSource {
+			primarySource: MapInformationSource(fpmlDataDocument),
+			secondarySource: MapInformationSource(fpmlDataDocument),
+		}
+
+
+func MapObservationDates:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		observationDates ObservationDates (0..1)
+	set observationDates:
+		ObservationDates {
+			observationSchedule: MapObservationSchedule(fpmlDataDocument),
+			periodicSchedule: MapPeriodicDates(fpmlDataDocument),
+			parametricDates: MapParametricDates(fpmlDataDocument),
+		}
+
+
+func MapAdjustableOrRelativeDateList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		adjustableOrRelativeDateList AdjustableOrRelativeDate (0..*)
+	add adjustableOrRelativeDateList:
+		[
+			AdjustableOrRelativeDate {
+				adjustableDate: MapAdjustableDate(fpmlDataDocument),
+				relativeDate: MapAdjustedRelativeDateOffset(fpmlDataDocument),
+			}
+		]
+
+
+func MapMultipleExercise:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		multipleExercise MultipleExercise (0..1)
+	set multipleExercise:
+		MultipleExercise {
+			notionaReference: MapMoney(fpmlDataDocument),
+			integralMultipleAmount: empty,
+			minimumNotionalAmount: empty,
+			minimumNumberOfOptions: empty,
+			maximumNotionalAmount: empty,
+			maximumNumberOfOptions: empty,
+		}
+
+
+func MapExerciseFeeSchedule:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		exerciseFeeSchedule ExerciseFeeSchedule (0..1)
+	set exerciseFeeSchedule:
+		ExerciseFeeSchedule {
+			payer: empty,
+			receiver: empty,
+			notionalReference: MapMoney(fpmlDataDocument),
+			feeAmountSchedule: MapAmountSchedule(fpmlDataDocument),
+			feeRateSchedule: MapSchedule(fpmlDataDocument),
+			feePaymentDate: MapRelativeDateOffset(fpmlDataDocument),
+		}
+
+
+func MapExerciseProcedure:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		exerciseProcedure ExerciseProcedure (0..1)
+	set exerciseProcedure:
+		ExerciseProcedure {
+			manualExercise: MapManualExercise(fpmlDataDocument),
+			automaticExercise: MapAutomaticExercise(fpmlDataDocument),
+			followUpConfirmation: empty,
+			limitedRightToConfirm: empty,
+			splitTicket: empty,
+		}
+
+
+func MapExerciseFee:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		exerciseFee ExerciseFee (0..1)
+	set exerciseFee:
+		ExerciseFee {
+			payer: empty,
+			receiver: empty,
+			notionalReference: MapMoney(fpmlDataDocument),
+			feeAmount: empty,
+			feeRate: empty,
+			feePaymentDate: MapRelativeDateOffset(fpmlDataDocument),
+		}
+
+
+func MapPartialExercise:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		partialExercise PartialExercise (0..1)
+	set partialExercise:
+		PartialExercise {
+			notionaReference: MapMoney(fpmlDataDocument),
+			integralMultipleAmount: empty,
+			minimumNotionalAmount: empty,
+			minimumNumberOfOptions: empty,
+		}
+
+
+func MapReferenceSwapCurve:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		referenceSwapCurve ReferenceSwapCurve (0..1)
+	set referenceSwapCurve:
+		ReferenceSwapCurve {
+			swapUnwindValue: MapSwapCurveValuation(fpmlDataDocument),
+			makeWholeAmount: MapMakeWholeAmount(fpmlDataDocument),
+		}
+
+
+func MapAveragingStrikeFeature:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		averagingStrikeFeature AveragingStrikeFeature (0..1)
+	set averagingStrikeFeature:
+		AveragingStrikeFeature {
+			averagingCalculation: MapAveragingCalculation(fpmlDataDocument),
+			observationTerms: MapObservationTerms(fpmlDataDocument),
+		}
+
+
+func MapDividendPayoutRatio:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		dividendPayoutRatio DividendPayoutRatio (0..1)
+	set dividendPayoutRatio:
+		DividendPayoutRatio {
+			totalRatio: empty,
+			cashRatio: empty,
+			nonCashRatio: empty,
+			basketConstituent: MapBasketConstituent(fpmlDataDocument),
+		}
+
+
+func MapAdjustableDates:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		adjustableDates AdjustableDates (0..1)
+	set adjustableDates:
+		AdjustableDates {
+			unadjustedDate: [empty],
+			dateAdjustments: MapBusinessDayAdjustments(fpmlDataDocument),
+			adjustedDate: [empty],
+		}
+
+
+func MapBusinessDateRange:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		businessDateRange BusinessDateRange (0..1)
+	set businessDateRange:
+		BusinessDateRange {
+			startDate: empty,
+			endDate: empty,
+			businessDayConvention: empty,
+			businessCenters: MapBusinessCenters(fpmlDataDocument),
+		}
+
+
+func MapShapingProvision:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		shapingProvision ShapingProvision (0..1)
+	set shapingProvision:
+		ShapingProvision {
+			shapeSchedule: MapMoneyList(fpmlDataDocument),
+		}
+
+
+func MapValuationMethod:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		valuationMethod ValuationMethod (0..1)
+	set valuationMethod:
+		ValuationMethod {
+			valuationSource: MapValuationSource(fpmlDataDocument),
+			quotationMethod: empty,
+			valuationMethod: empty,
+			quotationAmount: MapMoney(fpmlDataDocument),
+			minimumQuotationAmount: MapMoney(fpmlDataDocument),
+			cashCollateralValuationMethod: MapCashCollateralValuationMethod(fpmlDataDocument),
+		}
+
+
+func MapValuationDate:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		valuationDate ValuationDate (0..1)
+	set valuationDate:
+		ValuationDate {
+			singleValuationDate: MapSingleValuationDate(fpmlDataDocument),
+			multipleValuationDates: MapMultipleValuationDates(fpmlDataDocument),
+			valuationDate: MapRelativeDateOffset(fpmlDataDocument),
+			fxFixingDate: MapFxFixingDate(fpmlDataDocument),
+			fxFixingSchedule: MapAdjustableDates(fpmlDataDocument),
+		}
+
+
+func MapPhysicalSettlementPeriod:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		physicalSettlementPeriod PhysicalSettlementPeriod (0..1)
+	set physicalSettlementPeriod:
+		PhysicalSettlementPeriod {
+			businessDaysNotSpecified: empty,
+			businessDays: empty,
+			maximumBusinessDays: empty,
+		}
+
+
+func MapDeliverableObligations:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		deliverableObligations DeliverableObligations (0..1)
+	set deliverableObligations:
+		DeliverableObligations {
+			accruedInterest: empty,
+			category: empty,
+			notSubordinated: empty,
+			specifiedCurrency: MapSpecifiedCurrency(fpmlDataDocument),
+			notSovereignLender: empty,
+			notDomesticCurrency: MapNotDomesticCurrency(fpmlDataDocument),
+			notDomesticLaw: empty,
+			listed: empty,
+			notContingent: empty,
+			notDomesticIssuance: empty,
+			assignableLoan: MapPCDeliverableObligationCharac(fpmlDataDocument),
+			consentRequiredLoan: MapPCDeliverableObligationCharac(fpmlDataDocument),
+			directLoanParticipation: MapLoanParticipation(fpmlDataDocument),
+			transferable: empty,
+			maximumMaturity: MapPeriod(fpmlDataDocument),
+			acceleratedOrMatured: empty,
+			notBearer: empty,
+			fullFaithAndCreditObLiability: empty,
+			generalFundObligationLiability: empty,
+			revenueObligationLiability: empty,
+			indirectLoanParticipation: MapLoanParticipation(fpmlDataDocument),
+			excluded: empty,
+			othReferenceEntityObligations: empty,
+		}
+
+
+func MapPerformanceValuationDates:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		performanceValuationDates PerformanceValuationDates (0..1)
+	set performanceValuationDates:
+		PerformanceValuationDates {
+			determinationMethod: empty,
+			valuationDates: MapAdjustableRelativeOrPeriodicDates(fpmlDataDocument),
+			valuationDate: MapAdjustableOrRelativeDate(fpmlDataDocument),
+			valuationTime: MapBusinessCenterTime(fpmlDataDocument),
+			valuationTimeType: empty,
+		}
+
+
+func MapPriceReturnTerms:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		priceReturnTerms PriceReturnTerms (0..1)
+	set priceReturnTerms:
+		PriceReturnTerms {
+			returnType: empty,
+			conversionFactor: empty,
+			performance: empty,
+		}
+
+
+func MapDividendReturnTerms:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		dividendReturnTerms DividendReturnTerms (0..1)
+	set dividendReturnTerms:
+		DividendReturnTerms {
+			dividendPayoutRatio: MapDividendPayoutRatioList(fpmlDataDocument),
+			dividendReinvestment: empty,
+			dividendEntitlement: empty,
+			dividendAmountType: empty,
+			performance: empty,
+			firstOrSecondPeriod: empty,
+			extraordinaryDividendsParty: empty,
+			excessDividendAmount: empty,
+			dividendCurrency: MapDividendCurrency(fpmlDataDocument),
+			nonCashDividendTreatment: empty,
+			dividendComposition: empty,
+			specialDividends: empty,
+			materialDividend: empty,
+			dividendPeriod: MapDividendPeriodList(fpmlDataDocument),
+		}
+
+
+func MapVarianceReturnTerms:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		varianceReturnTerms VarianceReturnTerms (0..1)
+	set varianceReturnTerms:
+		VarianceReturnTerms {
+			valuationTerms: MapValuationTerms(fpmlDataDocument),
+			annualizationFactor: empty,
+			dividendApplicability: MapDividendApplicability(fpmlDataDocument),
+			equityUnderlierProvisions: MapEquityUnderlierProvisions(fpmlDataDocument),
+			sharePriceDividendAdjustment: empty,
+			expectedN: empty,
+			initialLevel: empty,
+			initialLevelSource: empty,
+			meanAdjustment: empty,
+			performance: empty,
+			varianceStrikePrice: MapPrice(fpmlDataDocument),
+			volatilityStrikePrice: MapPrice(fpmlDataDocument),
+			varianceCapFloor: MapVarianceCapFloor(fpmlDataDocument),
+			volatilityCapFloor: MapVolatilityCapFloor(fpmlDataDocument),
+			vegaNotionalAmount: MapNonNegativeQuantitySchedule(fpmlDataDocument),
+			exchangeTradedContractNearest: MapObservable(fpmlDataDocument),
+		}
+
+
+func MapVolatilityReturnTerms:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		volatilityReturnTerms VolatilityReturnTerms (0..1)
+	set volatilityReturnTerms:
+		VolatilityReturnTerms {
+			valuationTerms: MapValuationTerms(fpmlDataDocument),
+			annualizationFactor: empty,
+			dividendApplicability: MapDividendApplicability(fpmlDataDocument),
+			equityUnderlierProvisions: MapEquityUnderlierProvisions(fpmlDataDocument),
+			sharePriceDividendAdjustment: empty,
+			expectedN: empty,
+			initialLevel: empty,
+			initialLevelSource: empty,
+			meanAdjustment: empty,
+			performance: empty,
+			volatilityStrikePrice: MapPrice(fpmlDataDocument),
+			volatilityCapFloor: MapVolatilityCapFloor(fpmlDataDocument),
+			exchangeTradedContractNearest: MapListedDerivative(fpmlDataDocument),
+		}
+
+
+func MapCorrelationReturnTerms:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		correlationReturnTerms CorrelationReturnTerms (0..1)
+	set correlationReturnTerms:
+		CorrelationReturnTerms {
+			valuationTerms: MapValuationTerms(fpmlDataDocument),
+			annualizationFactor: empty,
+			dividendApplicability: MapDividendApplicability(fpmlDataDocument),
+			equityUnderlierProvisions: MapEquityUnderlierProvisions(fpmlDataDocument),
+			sharePriceDividendAdjustment: empty,
+			expectedN: empty,
+			initialLevel: empty,
+			initialLevelSource: empty,
+			meanAdjustment: empty,
+			performance: empty,
+			correlationStrikePrice: MapPrice(fpmlDataDocument),
+			boundedCorrelation: MapNumberRange(fpmlDataDocument),
+			numberOfDataSeries: empty,
+		}
+
+
+func MapPriceSchedule:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		priceSchedule PriceSchedule (0..1)
+	set priceSchedule:
+		PriceSchedule {
+			value: empty,
+			unit: MapUnitType(fpmlDataDocument),
+			datedValue: MapDatedValueList(fpmlDataDocument),
+			perUnitOf: MapUnitType(fpmlDataDocument),
+			priceType: empty,
+			priceExpression: empty,
+			composite: MapPriceComposite(fpmlDataDocument),
+			arithmeticOperator: empty,
+			cashPrice: MapCashPrice(fpmlDataDocument),
+		}
+
+
+func MapDebtEconomicsList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		debtEconomicsList DebtEconomics (0..*)
+	add debtEconomicsList:
+		[
+			DebtEconomics {
+				debtSeniority: empty,
+				debtInterest: empty,
+				debtPrincipal: empty,
+			}
+		]
+
+
+func MapBusinessCenterWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		businessCenterEnum BusinessCenterEnum (0..1)
+		// [metadata scheme]
+	set businessCenterEnum: empty
+
+func MapCancellationEventList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		cancellationEventList CancellationEvent (0..*)
+	add cancellationEventList:
+		[
+			CancellationEvent {
+				adjustedExerciseDate: empty,
+				adjustedEarlyTerminationDate: empty,
+			}
+		]
+
+
+func MapRelativeDates:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		relativeDates RelativeDates (0..1)
+	set relativeDates:
+		RelativeDates {
+			periodMultiplier: empty,
+			period: empty,
+			dayType: empty,
+			businessDayConvention: empty,
+			businessCenters: MapBusinessCenters(fpmlDataDocument),
+			businessCentersReference: MapBusinessCenters(fpmlDataDocument),
+			dateRelativeTo: empty,
+			adjustedDate: empty,
+			periodSkip: empty,
+			scheduleBounds: MapDateRange(fpmlDataDocument),
+		}
+
+
+func MapMandatoryEarlyTerminationAdjustedDates:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		mandatoryEarlyTerminationAdjustedDates MandatoryEarlyTerminationAdjustedDates (0..1)
+	set mandatoryEarlyTerminationAdjustedDates:
+		MandatoryEarlyTerminationAdjustedDates {
+			adjustedEarlyTerminationDate: empty,
+			adjustedCashSettlementValuationDate: empty,
+			adjustedCashSettlementPaymentDate: empty,
+		}
+
+
+func MapExerciseNoticeList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		exerciseNoticeList ExerciseNotice (0..*)
+	add exerciseNoticeList:
+		[
+			ExerciseNotice {
+				exerciseNoticeGiver: empty,
+				exerciseNoticeReceiver: empty,
+				businessCenter: MapBusinessCenterWithScheme(fpmlDataDocument),
+			}
+		]
+
+
+func MapOptionalEarlyTerminationAdjustedDates:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		optionalEarlyTerminationAdjustedDates OptionalEarlyTerminationAdjustedDates (0..1)
+	set optionalEarlyTerminationAdjustedDates:
+		OptionalEarlyTerminationAdjustedDates {
+			earlyTerminationEvent: MapEarlyTerminationEventList(fpmlDataDocument),
+		}
+
+
+func MapPeriodicDates:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		periodicDates PeriodicDates (0..1)
+	set periodicDates:
+		PeriodicDates {
+			startDate: MapAdjustableOrRelativeDate(fpmlDataDocument),
+			endDate: MapAdjustableOrRelativeDate(fpmlDataDocument),
+			periodFrequency: MapCalculationPeriodFrequency(fpmlDataDocument),
+			periodDatesAdjustments: MapBusinessDayAdjustments(fpmlDataDocument),
+			dayType: empty,
+		}
+
+
+func MapExtensionEventList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		extensionEventList ExtensionEvent (0..*)
+	add extensionEventList:
+		[
+			ExtensionEvent {
+				adjustedExerciseDate: empty,
+				adjustedExtendedTerminationDate: empty,
+			}
+		]
+
+
+func MapIndexAnnexSourceWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		indexAnnexSourceEnum IndexAnnexSourceEnum (0..1)
+		// [metadata scheme]
+	set indexAnnexSourceEnum: empty
+
+func MapReferenceInformationList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		referenceInformationList ReferenceInformation (0..*)
+	add referenceInformationList:
+		[
+			ReferenceInformation {
+				referenceEntity: MapLegalEntity(fpmlDataDocument),
+				referenceObligation: MapReferenceObligationList(fpmlDataDocument),
+				noReferenceObligation: empty,
+				unknownReferenceObligation: empty,
+				allGuarantees: empty,
+				referencePrice: MapPrice(fpmlDataDocument),
+				referencePolicy: empty,
+				securedList: empty,
+			}
+		]
+
+
+func MapTranche:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		tranche Tranche (0..1)
+	set tranche:
+		Tranche {
+			attachmentPoint: empty,
+			exhaustionPoint: empty,
+			incurredRecoveryApplicable: empty,
+		}
+
+
+func MapSettledEntityMatrix:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		settledEntityMatrix SettledEntityMatrix (0..1)
+	set settledEntityMatrix:
+		SettledEntityMatrix {
+			matrixSource: MapMatrixSourceWithScheme(fpmlDataDocument),
+			publicationDate: empty,
+		}
+
+
+func MapInterestRateIndex:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		interestRateIndex InterestRateIndex (0..1)
+	set interestRateIndex:
+		InterestRateIndex {
+			identifier: MapAssetIdentifierList(fpmlDataDocument),
+			taxonomy: MapTaxonomyList(fpmlDataDocument),
+			isExchangeListed: empty,
+			exchange: MapLegalEntity(fpmlDataDocument),
+			relatedExchange: MapLegalEntityList(fpmlDataDocument),
+			name: MapNameWithScheme(fpmlDataDocument),
+			provider: MapLegalEntity(fpmlDataDocument),
+			assetClass: empty,
+			floatingRateIndex: MapFloatingRateIndexWithScheme(fpmlDataDocument),
+			indexTenor: MapPeriod(fpmlDataDocument),
+		}
+
+
+func MapInflationIndex:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		inflationIndex InflationIndex (0..1)
+	set inflationIndex:
+		InflationIndex {
+			identifier: MapAssetIdentifierList(fpmlDataDocument),
+			taxonomy: MapTaxonomyList(fpmlDataDocument),
+			isExchangeListed: empty,
+			exchange: MapLegalEntity(fpmlDataDocument),
+			relatedExchange: MapLegalEntityList(fpmlDataDocument),
+			name: MapNameWithScheme(fpmlDataDocument),
+			provider: MapLegalEntity(fpmlDataDocument),
+			assetClass: empty,
+			inflationRateIndex: MapInflationRateIndexWithScheme(fpmlDataDocument),
+			indexTenor: MapPeriod(fpmlDataDocument),
+		}
+
+
+func MapQuotedCurrencyPair:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		quotedCurrencyPair QuotedCurrencyPair (0..1)
+	set quotedCurrencyPair:
+		QuotedCurrencyPair {
+			currency1: MapCurrency1WithScheme(fpmlDataDocument),
+			currency2: MapCurrency2WithScheme(fpmlDataDocument),
+			quoteBasis: empty,
+		}
+
+
+func MapContractualTermsSupplementTypeWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		contractualSupplementTypeEnum ContractualSupplementTypeEnum (0..1)
+		// [metadata scheme]
+	set contractualSupplementTypeEnum: empty
+
+func MapMatrixTypeWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		matrixTypeEnum MatrixTypeEnum (0..1)
+		// [metadata scheme]
+	set matrixTypeEnum: empty
+
+func MapMatrixTermWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		matrixTermEnum MatrixTermEnum (0..1)
+		// [metadata scheme]
+	set matrixTermEnum: empty
+
+func MapMasterAgreementClauseList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		masterAgreementClauseList MasterAgreementClause (0..*)
+	add masterAgreementClauseList:
+		[
+			MasterAgreementClause {
+				identifer: empty,
+				name: empty,
+				counterparty: [empty],
+				otherParty: [empty],
+				variant: MapMasterAgreementClauseVariantList(fpmlDataDocument),
+			}
+		]
+
+
+func MapEquityAdditionalTerms:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		equityAdditionalTerms EquityAdditionalTerms (0..1)
+	set equityAdditionalTerms:
+		EquityAdditionalTerms {
+			extraordinaryEvents: MapExtraordinaryEvents(fpmlDataDocument),
+			determinationTerms: MapDeterminationRolesAndTermsList(fpmlDataDocument),
+			substitutionProvision: MapUnderlierSubstitutionProvision(fpmlDataDocument),
+		}
+
+
+func MapFxAdditionalTerms:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		fxAdditionalTerms FxAdditionalTerms (0..1)
+	set fxAdditionalTerms:
+		FxAdditionalTerms {
+		}
+
+
+func MapConcentrationLimitCriteriaList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		concentrationLimitCriteriaList ConcentrationLimitCriteria (0..*)
+	add concentrationLimitCriteriaList:
+		[
+			ConcentrationLimitCriteria {
+				issuer: MapIssuerCriteriaList(fpmlDataDocument),
+				asset: MapAssetCriteriaList(fpmlDataDocument),
+				appliesTo: [empty],
+				restrictTo: empty,
+				ratingPriorityResolution: empty,
+				concentrationLimitType: empty,
+				averageTradingVolume: MapAverageTradingVolume(fpmlDataDocument),
+			}
+		]
+
+
+func MapMoneyRange:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		moneyRange MoneyRange (0..1)
+	set moneyRange:
+		MoneyRange {
+			lowerBound: MapMoneyBound(fpmlDataDocument),
+			upperBound: MapMoneyBound(fpmlDataDocument),
+		}
+
+
+func MapNumberRange:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		numberRange NumberRange (0..1)
+	set numberRange:
+		NumberRange {
+			lowerBound: MapNumberBound(fpmlDataDocument),
+			upperBound: MapNumberBound(fpmlDataDocument),
+		}
+
+
+func MapQuasiGovernmentIssuerType:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		quasiGovernmentIssuerType QuasiGovernmentIssuerType (0..1)
+	set quasiGovernmentIssuerType:
+		QuasiGovernmentIssuerType {
+			sovereignEntity: empty,
+			sovereignRecourse: empty,
+		}
+
+
+func MapRegionalGovernmentIssuerType:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		regionalGovernmentIssuerType RegionalGovernmentIssuerType (0..1)
+	set regionalGovernmentIssuerType:
+		RegionalGovernmentIssuerType {
+			sovereignRecourse: empty,
+		}
+
+
+func MapSpecialPurposeVehicleIssuerType:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		specialPurposeVehicleIssuerType SpecialPurposeVehicleIssuerType (0..1)
+	set specialPurposeVehicleIssuerType:
+		SpecialPurposeVehicleIssuerType {
+			creditRisk: empty,
+		}
+
+
+func MapCreditNotationList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		creditNotationList CreditNotation (0..*)
+	add creditNotationList:
+		[
+			CreditNotation {
+				agency: empty,
+				notation: MapNotationWithScheme(fpmlDataDocument),
+				scale: MapScaleWithScheme(fpmlDataDocument),
+				debt: MapCreditRatingDebt(fpmlDataDocument),
+				outlook: empty,
+				creditWatch: empty,
+			}
+		]
+
+
+func MapPeriodBound:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		periodBound PeriodBound (0..1)
+	set periodBound:
+		PeriodBound {
+			period: MapPeriod(fpmlDataDocument),
+			inclusive: empty,
+		}
+
+
+func MapCollateralTaxonomyValue:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		collateralTaxonomyValue CollateralTaxonomyValue (0..1)
+	set collateralTaxonomyValue:
+		CollateralTaxonomyValue {
+			eu_EMIR_EligibleCollateral: [empty],
+			uk_EMIR_EligibleCollateral: [empty],
+			us_CFTC_PR_EligibleCollateral: [empty],
+			nonEnumeratedTaxonomyValue: MapNonEnumeratedTaxonomyValueWithSchemeList(fpmlDataDocument),
+		}
+
+
+func MapExchangeWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		string string (0..1)
+		// [metadata scheme]
+	set string: empty
+
+func MapSectorWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		string string (0..1)
+		// [metadata scheme]
+	set string: empty
+
+func MapPricePublisherWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		string string (0..1)
+		// [metadata scheme]
+	set string: empty
+
+func MapFxLinkedNotionalSchedule:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		fxLinkedNotionalSchedule FxLinkedNotionalSchedule (0..1)
+	set fxLinkedNotionalSchedule:
+		FxLinkedNotionalSchedule {
+			varyingNotionalCurrency: MapVaryingNotionalCurrencyWithScheme(fpmlDataDocument),
+			varyingNotionalFixingDates: MapRelativeDateOffset(fpmlDataDocument),
+			fxSpotRateSource: MapFxSpotRateSource(fpmlDataDocument),
+			fixingTime: MapBusinessCenterTime(fpmlDataDocument),
+			varyingNotionalInterimExchangePaymentDates: MapRelativeDateOffset(fpmlDataDocument),
+		}
+
+
+func MapPrincipalPayment:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		principalPayment PrincipalPayment (0..1)
+	set principalPayment:
+		PrincipalPayment {
+			principalPaymentDate: MapAdjustableDate(fpmlDataDocument),
+			payerReceiver: MapPayerReceiver(fpmlDataDocument),
+			principalAmount: MapMoney(fpmlDataDocument),
+			discountFactor: empty,
+			presentValuePrincipalAmount: MapMoney(fpmlDataDocument),
+		}
+
+
+func MapSpreadScheduleTypeWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		spreadScheduleTypeEnum SpreadScheduleTypeEnum (0..1)
+		// [metadata scheme]
+	set spreadScheduleTypeEnum: empty
+
+func MapLag:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		lag Lag (0..1)
+	set lag:
+		Lag {
+			lagDuration: MapOffset(fpmlDataDocument),
+			firstObservationDateOffset: MapOffset(fpmlDataDocument),
+		}
+
+
+func MapDateRange:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		dateRange DateRange (0..1)
+	set dateRange:
+		DateRange {
+			startDate: empty,
+			endDate: empty,
+		}
+
+
+func MapCalculationScheduleDeliveryPeriods:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		calculationScheduleDeliveryPeriods CalculationScheduleDeliveryPeriods (0..1)
+	set calculationScheduleDeliveryPeriods:
+		CalculationScheduleDeliveryPeriods {
+			profile: MapAssetDeliveryProfileList(fpmlDataDocument),
+			startDate: empty,
+			endDate: empty,
+			deliveryCapacity: MapQuantity(fpmlDataDocument),
+			priceTimeIntervalQuantity: MapPrice(fpmlDataDocument),
+		}
+
+
+func MapAdjustableRelativeOrPeriodicDatesList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		adjustableRelativeOrPeriodicDatesList AdjustableRelativeOrPeriodicDates (0..*)
+	add adjustableRelativeOrPeriodicDatesList:
+		[
+			AdjustableRelativeOrPeriodicDates {
+				adjustableDates: MapAdjustableDates(fpmlDataDocument),
+				relativeDates: MapRelativeDates(fpmlDataDocument),
+				periodicDates: MapPeriodicDates(fpmlDataDocument),
+			}
+		]
+
+
+func MapFxRateList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		fxRateList FxRate (0..*)
+	add fxRateList:
+		[
+			FxRate {
+				quotedCurrencyPair: MapQuotedCurrencyPair(fpmlDataDocument),
+				rate: empty,
+			}
+		]
+
+
+func MapAssetDeliveryProfileList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		assetDeliveryProfileList AssetDeliveryProfile (0..*)
+	add assetDeliveryProfileList:
+		[
+			AssetDeliveryProfile {
+				loadType: empty,
+				block: MapAssetDeliveryProfileBlockList(fpmlDataDocument),
+				bankHolidaysTreatment: empty,
+			}
+		]
+
+
+func MapBasketNameWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		string string (0..1)
+		// [metadata scheme]
+	set string: empty
+
+func MapBasketIdWithSchemeList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		stringList string (0..*)
+		// [metadata scheme]
+	add stringList:
+		[ empty		]
+
+
+func MapReferencePool:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		referencePool ReferencePool (0..1)
+	set referencePool:
+		ReferencePool {
+			referencePoolItem: MapReferencePoolItemList(fpmlDataDocument),
+		}
+
+
+func MapFailureToPay:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		failureToPay FailureToPay (0..1)
+	set failureToPay:
+		FailureToPay {
+			applicable: empty,
+			gracePeriodExtension: MapGracePeriodExtension(fpmlDataDocument),
+			paymentRequirement: MapMoney(fpmlDataDocument),
+		}
+
+
+func MapRestructuring:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		restructuring Restructuring (0..1)
+	set restructuring:
+		Restructuring {
+			applicable: empty,
+			restructuringType: MapRestructuringTypeWithScheme(fpmlDataDocument),
+			multipleHolderObligation: empty,
+			multipleCreditEventNotices: empty,
+		}
+
+
+func MapCreditEventNotice:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		creditEventNotice CreditEventNotice (0..1)
+	set creditEventNotice:
+		CreditEventNotice {
+			notifyingParty: [empty],
+			businessCenter: empty,
+			publiclyAvailableInformation: MapPubliclyAvailableInformation(fpmlDataDocument),
+		}
+
+
+func MapSpecifiedCurrency:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		specifiedCurrency SpecifiedCurrency (0..1)
+	set specifiedCurrency:
+		SpecifiedCurrency {
+			applicable: empty,
+			currency: MapCurrencyWithScheme(fpmlDataDocument),
+		}
+
+
+func MapNotDomesticCurrency:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		notDomesticCurrency NotDomesticCurrency (0..1)
+	set notDomesticCurrency:
+		NotDomesticCurrency {
+			applicable: empty,
+			currency: MapCurrencyWithScheme(fpmlDataDocument),
+		}
+
+
+func MapDesignatedPriorityWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		string string (0..1)
+		// [metadata scheme]
+	set string: empty
+
+func MapInterestShortFall:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		interestShortFall InterestShortFall (0..1)
+	set interestShortFall:
+		InterestShortFall {
+			interestShortfallCap: empty,
+			compounding: empty,
+			rateSource: MapRateSourceWithScheme(fpmlDataDocument),
+		}
+
+
+func MapFloatingAmountProvisions:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		floatingAmountProvisions FloatingAmountProvisions (0..1)
+	set floatingAmountProvisions:
+		FloatingAmountProvisions {
+			wacCapInterestProvision: empty,
+			stepUpProvision: empty,
+		}
+
+
+func MapAdditionalFixedPayments:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		additionalFixedPayments AdditionalFixedPayments (0..1)
+	set additionalFixedPayments:
+		AdditionalFixedPayments {
+			interestShortfallReimbursement: empty,
+			principalShortfallReimbursement: empty,
+			writedownReimbursement: empty,
+		}
+
+
+func MapRateSchedule:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		rateSchedule RateSchedule (0..1)
+	set rateSchedule:
+		RateSchedule {
+			price: MapPriceSchedule(fpmlDataDocument),
+		}
+
+
+func MapStrikeSchedule:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		strikeSchedule StrikeSchedule (0..1)
+	set strikeSchedule:
+		StrikeSchedule {
+			price: MapPriceSchedule(fpmlDataDocument),
+			buyer: empty,
+			seller: empty,
+		}
+
+
+func MapFloatingRateCalculationParameters:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		floatingRateCalculationParameters FloatingRateCalculationParameters (0..1)
+	set floatingRateCalculationParameters:
+		FloatingRateCalculationParameters {
+			calculationMethod: empty,
+			observationShiftCalculation: MapObservationShiftCalculation(fpmlDataDocument),
+			lookbackCalculation: MapOffsetCalculation(fpmlDataDocument),
+			lockoutCalculation: MapOffsetCalculation(fpmlDataDocument),
+			applicableBusinessDays: MapBusinessCenters(fpmlDataDocument),
+			observationParameters: MapObservationParameters(fpmlDataDocument),
+		}
+
+
+func MapFallbackRateParameters:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		fallbackRateParameters FallbackRateParameters (0..1)
+	set fallbackRateParameters:
+		FallbackRateParameters {
+			floatingRateIndex: empty,
+			effectiveDate: empty,
+			calculationParameters: MapFloatingRateCalculationParameters(fpmlDataDocument),
+			spreadAdjustment: empty,
+		}
+
+
+func MapIndexSourceWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		string string (0..1)
+		// [metadata scheme]
+	set string: empty
+
+func MapMainPublicationWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		string string (0..1)
+		// [metadata scheme]
+	set string: empty
+
+func MapInterpolationMethodWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		interpolationMethodEnum InterpolationMethodEnum (0..1)
+		// [metadata scheme]
+	set interpolationMethodEnum: empty
+
+func MapCalculationPeriodList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		calculationPeriodList CalculationPeriod (0..*)
+	add calculationPeriodList:
+		[
+			CalculationPeriod {
+				adjustedStartDate: empty,
+				adjustedEndDate: empty,
+				unadjustedStartDate: empty,
+				unadjustedEndDate: empty,
+				calculationPeriodNumberOfDays: empty,
+				notionalAmount: empty,
+				fxLinkedNotionalAmount: MapFxLinkedNotionalAmount(fpmlDataDocument),
+				floatingRateDefinition: MapFloatingRateDefinition(fpmlDataDocument),
+				fixedRate: empty,
+				dayCountYearFraction: empty,
+				forecastAmount: MapMoney(fpmlDataDocument),
+				forecastRate: empty,
+			}
+		]
+
+
+func MapStubFloatingRateList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		stubFloatingRateList StubFloatingRate (0..*)
+	add stubFloatingRateList:
+		[
+			StubFloatingRate {
+				floatingRateIndex: empty,
+				indexTenor: MapPeriod(fpmlDataDocument),
+				floatingRateMultiplierSchedule: MapSchedule(fpmlDataDocument),
+				spreadSchedule: MapSpreadScheduleList(fpmlDataDocument),
+				rateTreatment: empty,
+				capRateSchedule: MapStrikeScheduleList(fpmlDataDocument),
+				floorRateSchedule: MapStrikeScheduleList(fpmlDataDocument),
+			}
+		]
+
+
+func MapStrikeSpread:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		strikeSpread StrikeSpread (0..1)
+	set strikeSpread:
+		StrikeSpread {
+			upperStrike: MapOptionStrike(fpmlDataDocument),
+			upperStrikeNumberOfOptions: empty,
+		}
+
+
+func MapCalendarSpread:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		calendarSpread CalendarSpread (0..1)
+	set calendarSpread:
+		CalendarSpread {
+			expirationDateTwo: MapAdjustableOrRelativeDate(fpmlDataDocument),
+		}
+
+
+func MapTriggerEvent:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		triggerEvent TriggerEvent (0..1)
+	set triggerEvent:
+		TriggerEvent {
+			schedule: MapAveragingScheduleList(fpmlDataDocument),
+			triggerDates: MapDateList(fpmlDataDocument),
+			trigger: MapTrigger(fpmlDataDocument),
+			featurePayment: MapFeaturePayment(fpmlDataDocument),
+		}
+
+
+func MapPassThroughItemList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		passThroughItemList PassThroughItem (0..*)
+	add passThroughItemList:
+		[
+			PassThroughItem {
+				payerReceiver: MapPayerReceiver(fpmlDataDocument),
+				passThroughPercentage: empty,
+			}
+		]
+
+
+func MapObservationSchedule:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		observationSchedule ObservationSchedule (0..1)
+	set observationSchedule:
+		ObservationSchedule {
+			observationDate: MapObservationDateList(fpmlDataDocument),
+			dateAdjustments: MapBusinessDayAdjustments(fpmlDataDocument),
+		}
+
+
+func MapAmountSchedule:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		amountSchedule AmountSchedule (0..1)
+	set amountSchedule:
+		AmountSchedule {
+			value: empty,
+			datedValue: MapDatedValueList(fpmlDataDocument),
+			currency: MapCurrencyWithSchemeList(fpmlDataDocument),
+		}
+
+
+func MapSchedule:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		schedule Schedule (0..1)
+	set schedule:
+		Schedule {
+			value: empty,
+			datedValue: MapDatedValueList(fpmlDataDocument),
+		}
+
+
+func MapManualExercise:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		manualExercise ManualExercise (0..1)
+	set manualExercise:
+		ManualExercise {
+			exerciseNotice: MapExerciseNotice(fpmlDataDocument),
+			fallbackExercise: empty,
+		}
+
+
+func MapAutomaticExercise:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		automaticExercise AutomaticExercise (0..1)
+	set automaticExercise:
+		AutomaticExercise {
+			thresholdRate: empty,
+			isApplicable: empty,
+		}
+
+
+func MapSwapCurveValuation:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		swapCurveValuation SwapCurveValuation (0..1)
+	set swapCurveValuation:
+		SwapCurveValuation {
+			floatingRateIndex: empty,
+			indexTenor: MapPeriod(fpmlDataDocument),
+			spread: empty,
+			side: empty,
+		}
+
+
+func MapMakeWholeAmount:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		makeWholeAmount MakeWholeAmount (0..1)
+	set makeWholeAmount:
+		MakeWholeAmount {
+			floatingRateIndex: empty,
+			indexTenor: MapPeriod(fpmlDataDocument),
+			spread: empty,
+			side: empty,
+			interpolationMethod: empty,
+			earlyCallDate: empty,
+		}
+
+
+func MapBasketConstituent:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		basketConstituent BasketConstituent (0..1)
+	set basketConstituent:
+		BasketConstituent {
+			Asset: MapAsset(fpmlDataDocument),
+			Basket: MapBasket(fpmlDataDocument),
+			Index: MapIndex(fpmlDataDocument),
+			quantity: MapNonNegativeQuantityScheduleList(fpmlDataDocument),
+			initialValuationPrice: MapPriceScheduleList(fpmlDataDocument),
+			interimValuationPrice: MapPriceScheduleList(fpmlDataDocument),
+			finalValuationPrice: MapPriceScheduleList(fpmlDataDocument),
+		}
+
+
+func MapMoneyList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		moneyList Money (0..*)
+	add moneyList:
+		[
+			Money {
+				value: empty,
+				unit: MapUnitType(fpmlDataDocument),
+				datedValue: MapDatedValueList(fpmlDataDocument),
+				multiplier: MapMeasure(fpmlDataDocument),
+				frequency: MapFrequency(fpmlDataDocument),
+			}
+		]
+
+
+func MapValuationSource:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		valuationSource ValuationSource (0..1)
+	set valuationSource:
+		ValuationSource {
+			quotedCurrencyPair: MapQuotedCurrencyPair(fpmlDataDocument),
+			informationSource: MapFxSpotRateSource(fpmlDataDocument),
+			settlementRateOption: MapSettlementRateOption(fpmlDataDocument),
+			referenceBanks: MapReferenceBanks(fpmlDataDocument),
+			dealerOrCCP: MapAncillaryEntity(fpmlDataDocument),
+		}
+
+
+func MapCashCollateralValuationMethod:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		cashCollateralValuationMethod CashCollateralValuationMethod (0..1)
+	set cashCollateralValuationMethod:
+		CashCollateralValuationMethod {
+			applicableCsa: empty,
+			cashCollateralCurrency: empty,
+			cashCollateralInterestRate: MapCashCollateralInterestRateWithScheme(fpmlDataDocument),
+			agreedDiscountRate: MapAgreedDiscountRateWithScheme(fpmlDataDocument),
+			protectedParty: [empty],
+			prescribedDocumentationAdjustment: empty,
+		}
+
+
+func MapSingleValuationDate:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		singleValuationDate SingleValuationDate (0..1)
+	set singleValuationDate:
+		SingleValuationDate {
+			businessDays: empty,
+		}
+
+
+func MapMultipleValuationDates:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		multipleValuationDates MultipleValuationDates (0..1)
+	set multipleValuationDates:
+		MultipleValuationDates {
+			businessDays: empty,
+			businessDaysThereafter: empty,
+			numberValuationDates: empty,
+		}
+
+
+func MapFxFixingDate:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		fxFixingDate FxFixingDate (0..1)
+	set fxFixingDate:
+		FxFixingDate {
+			periodMultiplier: empty,
+			period: empty,
+			dayType: empty,
+			businessDayConvention: empty,
+			businessCenters: MapBusinessCenters(fpmlDataDocument),
+			businessCentersReference: MapBusinessCenters(fpmlDataDocument),
+			dateRelativeToPaymentDates: MapDateRelativeToPaymentDates(fpmlDataDocument),
+			dateRelativeToCalculationPeriodDates: MapDateRelativeToCalculationPeriodDates(fpmlDataDocument),
+			dateRelativeToValuationDates: MapDateRelativeToValuationDates(fpmlDataDocument),
+			fxFixingDate: MapAdjustableOrRelativeDate(fpmlDataDocument),
+		}
+
+
+func MapPCDeliverableObligationCharac:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		pCDeliverableObligationCharac PCDeliverableObligationCharac (0..1)
+	set pCDeliverableObligationCharac:
+		PCDeliverableObligationCharac {
+			applicable: empty,
+			partialCashSettlement: empty,
+		}
+
+
+func MapLoanParticipation:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		loanParticipation LoanParticipation (0..1)
+	set loanParticipation:
+		LoanParticipation {
+			applicable: empty,
+			partialCashSettlement: empty,
+			qualifyingParticipationSeller: empty,
+		}
+
+
+func MapDividendPayoutRatioList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		dividendPayoutRatioList DividendPayoutRatio (0..*)
+	add dividendPayoutRatioList:
+		[
+			DividendPayoutRatio {
+				totalRatio: empty,
+				cashRatio: empty,
+				nonCashRatio: empty,
+				basketConstituent: MapBasketConstituent(fpmlDataDocument),
+			}
+		]
+
+
+func MapDividendCurrency:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		dividendCurrency DividendCurrency (0..1)
+	set dividendCurrency:
+		DividendCurrency {
+			currency: MapCurrencyWithScheme(fpmlDataDocument),
+			determinationMethod: empty,
+			currencyReference: empty,
+		}
+
+
+func MapDividendPeriodList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		dividendPeriodList DividendPeriod (0..*)
+	add dividendPeriodList:
+		[
+			DividendPeriod {
+				startDate: MapDividendPaymentDate(fpmlDataDocument),
+				endDate: MapDividendPaymentDate(fpmlDataDocument),
+				dateAdjustments: MapBusinessDayAdjustments(fpmlDataDocument),
+				basketConstituent: MapBasketConstituent(fpmlDataDocument),
+				dividendPaymentDate: MapDividendPaymentDate(fpmlDataDocument),
+				dividendValuationDate: MapAdjustableOrRelativeDate(fpmlDataDocument),
+			}
+		]
+
+
+func MapValuationTerms:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		valuationTerms ValuationTerms (0..1)
+	set valuationTerms:
+		ValuationTerms {
+			futuresPriceValuation: empty,
+			optionsPriceValuation: empty,
+			numberOfValuationDates: empty,
+			dividendValuationDates: MapAdjustableRelativeOrPeriodicDates(fpmlDataDocument),
+			fPVFinalPriceElectionFallback: empty,
+			multipleExchangeIndexAnnexFallback: empty,
+			componentSecurityIndexAnnexFallback: empty,
+		}
+
+
+func MapDividendApplicability:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		dividendApplicability DividendApplicability (0..1)
+	set dividendApplicability:
+		DividendApplicability {
+			optionsExchangeDividends: empty,
+			additionalDividends: empty,
+			allDividends: empty,
+		}
+
+
+func MapEquityUnderlierProvisions:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		equityUnderlierProvisions EquityUnderlierProvisions (0..1)
+	set equityUnderlierProvisions:
+		EquityUnderlierProvisions {
+			multipleExchangeIndexAnnexFallback: empty,
+			componentSecurityIndexAnnexFallback: empty,
+			localJurisdiction: MapLocalJurisdictionWithScheme(fpmlDataDocument),
+			relevantJurisdiction: MapRelevantJurisdictionWithScheme(fpmlDataDocument),
+		}
+
+
+func MapVarianceCapFloor:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		varianceCapFloor VarianceCapFloor (0..1)
+	set varianceCapFloor:
+		VarianceCapFloor {
+			varianceCap: empty,
+			unadjustedVarianceCap: empty,
+			boundedVariance: MapBoundedVariance(fpmlDataDocument),
+		}
+
+
+func MapVolatilityCapFloor:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		volatilityCapFloor VolatilityCapFloor (0..1)
+	set volatilityCapFloor:
+		VolatilityCapFloor {
+			applicable: empty,
+			totalVolatilityCap: empty,
+			volatilityCapFactor: empty,
+		}
+
+
+func MapEarlyTerminationEventList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		earlyTerminationEventList EarlyTerminationEvent (0..*)
+	add earlyTerminationEventList:
+		[
+			EarlyTerminationEvent {
+				adjustedExerciseDate: empty,
+				adjustedEarlyTerminationDate: empty,
+				adjustedCashSettlementValuationDate: empty,
+				adjustedCashSettlementPaymentDate: empty,
+				adjustedExerciseFeePaymentDate: empty,
+			}
+		]
+
+
+func MapMatrixSourceWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		settledEntityMatrixSourceEnum SettledEntityMatrixSourceEnum (0..1)
+		// [metadata scheme]
+	set settledEntityMatrixSourceEnum: empty
+
+func MapFloatingRateIndexWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		floatingRateIndexEnum FloatingRateIndexEnum (0..1)
+		// [metadata scheme]
+	set floatingRateIndexEnum: empty
+
+func MapInflationRateIndexWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		inflationRateIndexEnum InflationRateIndexEnum (0..1)
+		// [metadata scheme]
+	set inflationRateIndexEnum: empty
+
+func MapCurrency1WithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		string string (0..1)
+		// [metadata scheme]
+	set string: empty
+
+func MapCurrency2WithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		string string (0..1)
+		// [metadata scheme]
+	set string: empty
+
+func MapMasterAgreementClauseVariantList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		masterAgreementClauseVariantList MasterAgreementClauseVariant (0..*)
+	add masterAgreementClauseVariantList:
+		[
+			MasterAgreementClauseVariant {
+				identifier: empty,
+				name: empty,
+				counterparty: [empty],
+				otherParty: [empty],
+				variableSet: MapMasterAgreementVariableSetList(fpmlDataDocument),
+			}
+		]
+
+
+func MapExtraordinaryEvents:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		extraordinaryEvents ExtraordinaryEvents (0..1)
+	set extraordinaryEvents:
+		ExtraordinaryEvents {
+			additionalBespokeTerms: MapClauseList(fpmlDataDocument),
+			mergerEvents: MapEquityCorporateEvents(fpmlDataDocument),
+			tenderOfferEvents: MapEquityCorporateEvents(fpmlDataDocument),
+			compositionOfCombinedConsideration: empty,
+			indexAdjustmentEvents: MapIndexAdjustmentEvents(fpmlDataDocument),
+			additionalDisruptionEvents: MapAdditionalDisruptionEvents(fpmlDataDocument),
+			failureToDeliver: empty,
+			representations: MapRepresentations(fpmlDataDocument),
+			nationalizationOrInsolvency: empty,
+			delisting: empty,
+		}
+
+
+func MapDeterminationRolesAndTermsList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		determinationRolesAndTermsList DeterminationRolesAndTerms (0..*)
+	add determinationRolesAndTermsList:
+		[
+			DeterminationRolesAndTerms {
+			}
+		]
+
+
+func MapUnderlierSubstitutionProvision:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		underlierSubstitutionProvision UnderlierSubstitutionProvision (0..1)
+	set underlierSubstitutionProvision:
+		UnderlierSubstitutionProvision {
+			whoMaySubstitute: [empty],
+			substitutionBeSpokeTerms: MapClauseList(fpmlDataDocument),
+			substitutionTriggerEvents: MapExtraordinaryEventsList(fpmlDataDocument),
+			disputingParty: empty,
+		}
+
+
+func MapAverageTradingVolume:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		averageTradingVolume AverageTradingVolume (0..1)
+	set averageTradingVolume:
+		AverageTradingVolume {
+			period: MapPeriod(fpmlDataDocument),
+			methodology: empty,
+		}
+
+
+func MapMoneyBound:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		moneyBound MoneyBound (0..1)
+	set moneyBound:
+		MoneyBound {
+			money: MapMoney(fpmlDataDocument),
+			inclusive: empty,
+		}
+
+
+func MapNumberBound:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		numberBound NumberBound (0..1)
+	set numberBound:
+		NumberBound {
+			number: empty,
+			inclusive: empty,
+		}
+
+
+func MapNotationWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		string string (0..1)
+		// [metadata scheme]
+	set string: empty
+
+func MapScaleWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		string string (0..1)
+		// [metadata scheme]
+	set string: empty
+
+func MapCreditRatingDebt:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		creditRatingDebt CreditRatingDebt (0..1)
+	set creditRatingDebt:
+		CreditRatingDebt {
+			debtType: MapDebtTypeWithScheme(fpmlDataDocument),
+			debtTypes: MapMultipleDebtTypes(fpmlDataDocument),
+		}
+
+
+func MapNonEnumeratedTaxonomyValueWithSchemeList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		stringList string (0..*)
+		// [metadata scheme]
+	add stringList:
+		[ empty		]
+
+
+func MapVaryingNotionalCurrencyWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		string string (0..1)
+		// [metadata scheme]
+	set string: empty
+
+func MapAssetDeliveryProfileBlockList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		assetDeliveryProfileBlockList AssetDeliveryProfileBlock (0..*)
+	add assetDeliveryProfileBlockList:
+		[
+			AssetDeliveryProfileBlock {
+				startTime: empty,
+				endTime: empty,
+				dayOfWeek: [empty],
+				deliveryCapacity: MapQuantity(fpmlDataDocument),
+				priceTimeIntervalQuantity: MapPrice(fpmlDataDocument),
+			}
+		]
+
+
+func MapReferencePoolItemList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		referencePoolItemList ReferencePoolItem (0..*)
+	add referencePoolItemList:
+		[
+			ReferencePoolItem {
+				constituentWeight: MapConstituentWeight(fpmlDataDocument),
+				referencePair: MapReferencePair(fpmlDataDocument),
+				protectionTermsReference: MapProtectionTerms(fpmlDataDocument),
+				cashSettlementTermsReference: MapCashSettlementTerms(fpmlDataDocument),
+				physicalSettlementTermsReference: MapPhysicalSettlementTerms(fpmlDataDocument),
+			}
+		]
+
+
+func MapGracePeriodExtension:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		gracePeriodExtension GracePeriodExtension (0..1)
+	set gracePeriodExtension:
+		GracePeriodExtension {
+			applicable: empty,
+			gracePeriod: MapOffset(fpmlDataDocument),
+		}
+
+
+func MapRestructuringTypeWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		restructuringEnum RestructuringEnum (0..1)
+		// [metadata scheme]
+	set restructuringEnum: empty
+
+func MapPubliclyAvailableInformation:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		publiclyAvailableInformation PubliclyAvailableInformation (0..1)
+	set publiclyAvailableInformation:
+		PubliclyAvailableInformation {
+			standardPublicSources: empty,
+			publicSource: [empty],
+			specifiedNumber: empty,
+		}
+
+
+func MapRateSourceWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		floatingRateIndexEnum FloatingRateIndexEnum (0..1)
+		// [metadata scheme]
+	set floatingRateIndexEnum: empty
+
+func MapObservationShiftCalculation:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		observationShiftCalculation ObservationShiftCalculation (0..1)
+	set observationShiftCalculation:
+		ObservationShiftCalculation {
+			offsetDays: empty,
+			calculationBase: empty,
+			additionalBusinessDays: MapBusinessCenters(fpmlDataDocument),
+		}
+
+
+func MapOffsetCalculation:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		offsetCalculation OffsetCalculation (0..1)
+	set offsetCalculation:
+		OffsetCalculation {
+			offsetDays: empty,
+		}
+
+
+func MapObservationParameters:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		observationParameters ObservationParameters (0..1)
+	set observationParameters:
+		ObservationParameters {
+			observationCapRate: empty,
+			observationFloorRate: empty,
+		}
+
+
+func MapFxLinkedNotionalAmount:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		fxLinkedNotionalAmount FxLinkedNotionalAmount (0..1)
+	set fxLinkedNotionalAmount:
+		FxLinkedNotionalAmount {
+			resetDate: empty,
+			adjustedFxSpotFixingDate: empty,
+			observedFxSpotRate: empty,
+			notionalAmount: empty,
+		}
+
+
+func MapFloatingRateDefinition:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		floatingRateDefinition FloatingRateDefinition (0..1)
+	set floatingRateDefinition:
+		FloatingRateDefinition {
+			calculatedRate: empty,
+			rateObservation: MapRateObservationList(fpmlDataDocument),
+			floatingRateMultiplier: empty,
+			spread: empty,
+			capRate: MapStrikeList(fpmlDataDocument),
+			floorRate: MapStrikeList(fpmlDataDocument),
+		}
+
+
+func MapSpreadScheduleList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		spreadScheduleList SpreadSchedule (0..*)
+	add spreadScheduleList:
+		[
+			SpreadSchedule {
+				price: MapPriceSchedule(fpmlDataDocument),
+				spreadScheduleType: MapSpreadScheduleTypeWithScheme(fpmlDataDocument),
+			}
+		]
+
+
+func MapStrikeScheduleList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		strikeScheduleList StrikeSchedule (0..*)
+	add strikeScheduleList:
+		[
+			StrikeSchedule {
+				price: MapPriceSchedule(fpmlDataDocument),
+				buyer: empty,
+				seller: empty,
+			}
+		]
+
+
+func MapAveragingScheduleList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		averagingScheduleList AveragingSchedule (0..*)
+	add averagingScheduleList:
+		[
+			AveragingSchedule {
+				startDate: empty,
+				endDate: empty,
+				averagingPeriodFrequency: MapCalculationPeriodFrequency(fpmlDataDocument),
+			}
+		]
+
+
+func MapDateList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		dateList DateList (0..1)
+	set dateList:
+		DateList {
+			date: [empty],
+		}
+
+
+func MapTrigger:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		trigger Trigger (0..1)
+	set trigger:
+		Trigger {
+			level: MapPriceScheduleList(fpmlDataDocument),
+			creditEvents: MapCreditEvents(fpmlDataDocument),
+			creditEventsReference: MapCreditEvents(fpmlDataDocument),
+			triggerType: empty,
+			triggerTimeType: empty,
+		}
+
+
+func MapFeaturePayment:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		featurePayment FeaturePayment (0..1)
+	set featurePayment:
+		FeaturePayment {
+			payerReceiver: MapPartyReferencePayerReceiver(fpmlDataDocument),
+			levelPercentage: empty,
+			amount: empty,
+			time: empty,
+			currency: MapCurrencyWithScheme(fpmlDataDocument),
+			paymentDate: MapAdjustableOrRelativeDate(fpmlDataDocument),
+		}
+
+
+func MapObservationDateList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		observationDateList ObservationDate (0..*)
+	add observationDateList:
+		[
+			ObservationDate {
+				unadjustedDate: empty,
+				adjustedDate: empty,
+				weight: empty,
+				observationReference: empty,
+			}
+		]
+
+
+func MapCurrencyWithSchemeList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		stringList string (0..*)
+		// [metadata scheme]
+	add stringList:
+		[ empty		]
+
+
+func MapSettlementRateOption:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		settlementRateOption SettlementRateOption (0..1)
+	set settlementRateOption:
+		SettlementRateOption {
+			settlementRateOption: MapSettlementRateOptionWithScheme(fpmlDataDocument),
+			priceSourceDisruption: MapPriceSourceDisruption(fpmlDataDocument),
+		}
+
+
+func MapReferenceBanks:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		referenceBanks ReferenceBanks (0..1)
+	set referenceBanks:
+		ReferenceBanks {
+			referenceBank: MapReferenceBankList(fpmlDataDocument),
+		}
+
+
+func MapAncillaryEntity:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		ancillaryEntity AncillaryEntity (0..1)
+	set ancillaryEntity:
+		AncillaryEntity {
+			ancillaryParty: empty,
+			legalEntity: MapLegalEntity(fpmlDataDocument),
+		}
+
+
+func MapCashCollateralInterestRateWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		string string (0..1)
+		// [metadata scheme]
+	set string: empty
+
+func MapAgreedDiscountRateWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		string string (0..1)
+		// [metadata scheme]
+	set string: empty
+
+func MapDateRelativeToPaymentDates:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		dateRelativeToPaymentDates DateRelativeToPaymentDates (0..1)
+	set dateRelativeToPaymentDates:
+		DateRelativeToPaymentDates {
+			paymentDatesReference: MapPaymentDatesList(fpmlDataDocument),
+		}
+
+
+func MapDateRelativeToCalculationPeriodDates:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		dateRelativeToCalculationPeriodDates DateRelativeToCalculationPeriodDates (0..1)
+	set dateRelativeToCalculationPeriodDates:
+		DateRelativeToCalculationPeriodDates {
+			calculationPeriodDatesReference: MapCalculationPeriodDatesList(fpmlDataDocument),
+		}
+
+
+func MapDateRelativeToValuationDates:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		dateRelativeToValuationDates DateRelativeToValuationDates (0..1)
+	set dateRelativeToValuationDates:
+		DateRelativeToValuationDates {
+			valuationDatesReference: MapPerformanceValuationDatesList(fpmlDataDocument),
+		}
+
+
+func MapDividendPaymentDate:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		dividendPaymentDate DividendPaymentDate (0..1)
+	set dividendPaymentDate:
+		DividendPaymentDate {
+			dividendDateReference: MapDividendDateReference(fpmlDataDocument),
+			dividendDate: MapAdjustableOrRelativeDate(fpmlDataDocument),
+		}
+
+
+func MapLocalJurisdictionWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		string string (0..1)
+		// [metadata scheme]
+	set string: empty
+
+func MapRelevantJurisdictionWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		string string (0..1)
+		// [metadata scheme]
+	set string: empty
+
+func MapBoundedVariance:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		boundedVariance BoundedVariance (0..1)
+	set boundedVariance:
+		BoundedVariance {
+			realisedVarianceMethod: empty,
+			daysInRangeAdjustment: empty,
+			upperBarrier: empty,
+			lowerBarrier: empty,
+		}
+
+
+func MapMasterAgreementVariableSetList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		masterAgreementVariableSetList MasterAgreementVariableSet (0..*)
+	add masterAgreementVariableSetList:
+		[
+			MasterAgreementVariableSet {
+				variableSet: MapMasterAgreementVariableSetList(fpmlDataDocument),
+				name: empty,
+				value: empty,
+			}
+		]
+
+
+func MapClauseList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		clauseList Clause (0..*)
+	add clauseList:
+		[
+			Clause {
+				identifier: empty,
+				terms: empty,
+				subcomponents: MapClauseList(fpmlDataDocument),
+			}
+		]
+
+
+func MapEquityCorporateEvents:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		equityCorporateEvents EquityCorporateEvents (0..1)
+	set equityCorporateEvents:
+		EquityCorporateEvents {
+		}
+
+
+func MapIndexAdjustmentEvents:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		indexAdjustmentEvents IndexAdjustmentEvents (0..1)
+	set indexAdjustmentEvents:
+		IndexAdjustmentEvents {
+		}
+
+
+func MapAdditionalDisruptionEvents:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		additionalDisruptionEvents AdditionalDisruptionEvents (0..1)
+	set additionalDisruptionEvents:
+		AdditionalDisruptionEvents {
+			changeInLaw: empty,
+			failureToDeliver: empty,
+			insolvencyFiling: empty,
+			hedgingDisruption: empty,
+			increasedCostOfHedging: empty,
+			foreignOwnershipEvent: empty,
+			lossOfStockBorrow: empty,
+			maximumStockLoanRate: empty,
+			increasedCostOfStockBorrow: empty,
+			initialStockLoanRate: empty,
+			determiningParty: empty,
+			additionalBespokeTerms: MapClauseList(fpmlDataDocument),
+		}
+
+
+func MapRepresentations:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		representations Representations (0..1)
+	set representations:
+		Representations {
+		}
+
+
+func MapExtraordinaryEventsList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		extraordinaryEventsList ExtraordinaryEvents (0..*)
+	add extraordinaryEventsList:
+		[
+			ExtraordinaryEvents {
+				additionalBespokeTerms: MapClauseList(fpmlDataDocument),
+				mergerEvents: MapEquityCorporateEvents(fpmlDataDocument),
+				tenderOfferEvents: MapEquityCorporateEvents(fpmlDataDocument),
+				compositionOfCombinedConsideration: empty,
+				indexAdjustmentEvents: MapIndexAdjustmentEvents(fpmlDataDocument),
+				additionalDisruptionEvents: MapAdditionalDisruptionEvents(fpmlDataDocument),
+				failureToDeliver: empty,
+				representations: MapRepresentations(fpmlDataDocument),
+				nationalizationOrInsolvency: empty,
+				delisting: empty,
+			}
+		]
+
+
+func MapDebtTypeWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		string string (0..1)
+		// [metadata scheme]
+	set string: empty
+
+func MapMultipleDebtTypes:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		multipleDebtTypes MultipleDebtTypes (0..1)
+	set multipleDebtTypes:
+		MultipleDebtTypes {
+			condition: empty,
+			debtType: MapDebtTypeWithSchemeList(fpmlDataDocument),
+		}
+
+
+func MapConstituentWeight:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		constituentWeight ConstituentWeight (0..1)
+	set constituentWeight:
+		ConstituentWeight {
+			openUnits: empty,
+			basketPercentage: empty,
+		}
+
+
+func MapReferencePair:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		referencePair ReferencePair (0..1)
+	set referencePair:
+		ReferencePair {
+			referenceEntity: MapLegalEntity(fpmlDataDocument),
+			referenceObligation: MapReferenceObligation(fpmlDataDocument),
+			noReferenceObligation: empty,
+			entityType: MapEntityTypeWithScheme(fpmlDataDocument),
+		}
+
+
+func MapProtectionTerms:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		protectionTerms ProtectionTerms (0..1)
+	set protectionTerms:
+		ProtectionTerms {
+			creditEvents: MapCreditEvents(fpmlDataDocument),
+			obligations: MapObligations(fpmlDataDocument),
+			floatingAmountEvents: MapFloatingAmountEvents(fpmlDataDocument),
+		}
+
+
+func MapCashSettlementTerms:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		cashSettlementTerms CashSettlementTerms (0..1)
+	set cashSettlementTerms:
+		CashSettlementTerms {
+			cashSettlementMethod: empty,
+			valuationMethod: MapValuationMethod(fpmlDataDocument),
+			valuationDate: MapValuationDate(fpmlDataDocument),
+			valuationTime: MapBusinessCenterTime(fpmlDataDocument),
+			cashSettlementAmount: MapMoney(fpmlDataDocument),
+			recoveryFactor: empty,
+			fixedSettlement: empty,
+			accruedInterest: empty,
+		}
+
+
+func MapRateObservationList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		rateObservationList RateObservation (0..*)
+	add rateObservationList:
+		[
+			RateObservation {
+				resetDate: empty,
+				adjustedFixingDate: empty,
+				observedRate: empty,
+				treatedRate: empty,
+				observationWeight: empty,
+				rateReference: MapRateObservation(fpmlDataDocument),
+				forecastRate: empty,
+				treatedForecastRate: empty,
+			}
+		]
+
+
+func MapStrikeList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		strikeList Strike (0..*)
+	add strikeList:
+		[
+			Strike {
+				strikeRate: empty,
+				buyer: empty,
+				seller: empty,
+			}
+		]
+
+
+func MapSettlementRateOptionWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		settlementRateOptionEnum SettlementRateOptionEnum (0..1)
+		// [metadata scheme]
+	set settlementRateOptionEnum: empty
+
+func MapPriceSourceDisruption:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		priceSourceDisruption PriceSourceDisruption (0..1)
+	set priceSourceDisruption:
+		PriceSourceDisruption {
+			fallbackReferencePrice: MapFallbackReferencePrice(fpmlDataDocument),
+		}
+
+
+func MapReferenceBankList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		referenceBankList ReferenceBank (0..*)
+	add referenceBankList:
+		[
+			ReferenceBank {
+				referenceBankId: MapReferenceBankIdWithScheme(fpmlDataDocument),
+				referenceBankName: empty,
+			}
+		]
+
+
+func MapPaymentDatesList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		paymentDatesList PaymentDates (0..*)
+	add paymentDatesList:
+		[
+			PaymentDates {
+				paymentFrequency: MapFrequency(fpmlDataDocument),
+				firstPaymentDate: empty,
+				lastRegularPaymentDate: empty,
+				paymentDateSchedule: MapPaymentDateSchedule(fpmlDataDocument),
+				payRelativeTo: empty,
+				paymentDaysOffset: MapOffset(fpmlDataDocument),
+				paymentDatesAdjustments: MapBusinessDayAdjustments(fpmlDataDocument),
+			}
+		]
+
+
+func MapCalculationPeriodDatesList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		calculationPeriodDatesList CalculationPeriodDates (0..*)
+	add calculationPeriodDatesList:
+		[
+			CalculationPeriodDates {
+				effectiveDate: MapAdjustableOrRelativeDate(fpmlDataDocument),
+				terminationDate: MapAdjustableOrRelativeDate(fpmlDataDocument),
+				calculationPeriodDatesAdjustments: MapBusinessDayAdjustments(fpmlDataDocument),
+				firstPeriodStartDate: MapAdjustableOrRelativeDate(fpmlDataDocument),
+				firstRegularPeriodStartDate: empty,
+				firstCompoundingPeriodEndDate: empty,
+				lastRegularPeriodEndDate: empty,
+				stubPeriodType: empty,
+				calculationPeriodFrequency: MapCalculationPeriodFrequency(fpmlDataDocument),
+			}
+		]
+
+
+func MapPerformanceValuationDatesList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		performanceValuationDatesList PerformanceValuationDates (0..*)
+	add performanceValuationDatesList:
+		[
+			PerformanceValuationDates {
+				determinationMethod: empty,
+				valuationDates: MapAdjustableRelativeOrPeriodicDates(fpmlDataDocument),
+				valuationDate: MapAdjustableOrRelativeDate(fpmlDataDocument),
+				valuationTime: MapBusinessCenterTime(fpmlDataDocument),
+				valuationTimeType: empty,
+			}
+		]
+
+
+func MapDividendDateReference:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		dividendDateReference DividendDateReference (0..1)
+	set dividendDateReference:
+		DividendDateReference {
+			dateReference: empty,
+			paymentDateOffset: MapOffset(fpmlDataDocument),
+		}
+
+
+func MapDebtTypeWithSchemeList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		stringList string (0..*)
+		// [metadata scheme]
+	add stringList:
+		[ empty		]
+
+
+func MapReferenceObligation:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		referenceObligation ReferenceObligation (0..1)
+	set referenceObligation:
+		ReferenceObligation {
+			security: MapSecurity(fpmlDataDocument),
+			loan: MapLoan(fpmlDataDocument),
+			primaryObligor: MapLegalEntity(fpmlDataDocument),
+			primaryObligorReference: MapLegalEntity(fpmlDataDocument),
+			guarantor: MapLegalEntity(fpmlDataDocument),
+			guarantorReference: empty,
+			standardReferenceObligation: empty,
+		}
+
+
+func MapEntityTypeWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		entityTypeEnum EntityTypeEnum (0..1)
+		// [metadata scheme]
+	set entityTypeEnum: empty
+
+func MapRateObservation:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		rateObservation RateObservation (0..1)
+	set rateObservation:
+		RateObservation {
+			resetDate: empty,
+			adjustedFixingDate: empty,
+			observedRate: empty,
+			treatedRate: empty,
+			observationWeight: empty,
+			rateReference: MapRateObservation(fpmlDataDocument),
+			forecastRate: empty,
+			treatedForecastRate: empty,
+		}
+
+
+func MapFallbackReferencePrice:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		fallbackReferencePrice FallbackReferencePrice (0..1)
+	set fallbackReferencePrice:
+		FallbackReferencePrice {
+			valuationPostponement: MapValuationPostponement(fpmlDataDocument),
+			fallBackSettlementRateOption: MapFallBackSettlementRateOptionWithSchemeList(fpmlDataDocument),
+			fallbackSurveyValuationPostponement: empty,
+			calculationAgentDetermination: MapCalculationAgent(fpmlDataDocument),
+		}
+
+
+func MapReferenceBankIdWithScheme:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		string string (0..1)
+		// [metadata scheme]
+	set string: empty
+
+func MapValuationPostponement:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		valuationPostponement ValuationPostponement (0..1)
+	set valuationPostponement:
+		ValuationPostponement {
+			maximumDaysOfPostponement: empty,
+		}
+
+
+func MapFallBackSettlementRateOptionWithSchemeList:
+	inputs:
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		settlementRateOptionEnumList SettlementRateOptionEnum (0..*)
+		// [metadata scheme]
+	add settlementRateOptionEnumList:
+		[ empty		]

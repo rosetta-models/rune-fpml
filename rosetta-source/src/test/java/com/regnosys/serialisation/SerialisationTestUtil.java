@@ -1,10 +1,14 @@
 package com.regnosys.serialisation;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.dataformat.xml.ser.ToXmlGenerator;
 import com.google.common.io.Resources;
+import org.junit.jupiter.api.Assertions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
 
 import javax.xml.XMLConstants;
@@ -20,11 +24,15 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import static com.regnosys.TestUtil.getXmlMapper;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static com.regnosys.TestUtil.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.xmlunit.matchers.CompareMatcher.isSimilarTo;
 
 public class SerialisationTestUtil<T> {
+
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(SerialisationTestUtil.class);
 
     private final Class<T> rootType;
     private final Validator xsdValidator;
@@ -57,29 +65,37 @@ public class SerialisationTestUtil<T> {
         String inputXml = Files.readString(samplePath);
 
         // Sanity check: input follows the XSD schema
-        assertDoesNotThrow(() -> isValidAgainstSchema(inputXml));
+        assertTrue(isValidAgainstSchema(inputXml));
 
         T document = xmlMapper.readValue(inputXml, rootType);
 
-        // Check serialised document is similar to the original XML
+        // Check serialised document against expectations
         String actualXml = xmlWriter.writeValueAsString(document);
-
-        Path expectedSamplePath = getExpectedSamplePath(samplePath);
-        String expectedXml = Files.readString(expectedSamplePath);
-
-        assertEquals(expectedXml, actualXml);
-
-//        assertThat(
-//                actualXml, isSimilarTo(expectedXml)
-//                        .ignoreWhitespace()
-//                        .ignoreComments()
-//        );
+        Path expectedXmlSamplePath = getExpectedXmlSamplePath(samplePath);
+        String expectedXml = Files.readString(expectedXmlSamplePath);
+        assertEquals(expectedXml, actualXml, expectedXmlSamplePath);
 
         // Check actual XML also follows the XSD schema
-//        assertDoesNotThrow(() -> isValidAgainstSchema(actualXml));
+//        assertTrue(isValidAgainstSchema(actualXml));
+
+        // Check serialised document is similar to the original XML
+//        assertAgainstInputXml(actualXml, inputXml, document);
 
         // Check deserialisation results again in the same Document
-//        assertEquals(document, xmlMapper.readValue(actualXml, rootType));
+//        assertAgainstInputObject(actualXml, document);
+    }
+
+    private void assertAgainstInputObject(String actualXml, T inputDocument) throws JsonProcessingException {
+        T actualDocument = xmlMapper.readValue(actualXml, rootType);
+        
+        Assertions.assertEquals(inputDocument, actualDocument);
+    }
+
+    private void assertAgainstInputXml(String actualXml, String inputXml) {
+        assertThat(
+                actualXml, isSimilarTo(inputXml)
+                        .ignoreWhitespace()
+                        .ignoreComments());
     }
 
     private Boolean isValidAgainstSchema(String xml) {
@@ -90,15 +106,10 @@ public class SerialisationTestUtil<T> {
             xsdValidator.validate(new StreamSource(inputStream));
             return true;
         } catch (SAXException e) {
-            //LOGGER.error("Schema validation failed: {}", e.getMessage());
+            LOGGER.error("Schema validation failed: {}", e.getMessage());
             return false;
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
-    }
-
-    public static Path getExpectedSamplePath(Path samplePath) {
-        return Path.of(samplePath.toString()
-                .replace("classes/sample-files", "test-classes/expected-sample-files"));
     }
 }

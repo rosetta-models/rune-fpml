@@ -157,18 +157,53 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>${maven-dependency-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>copy-cdm-rosetta</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/parent-dependency</outputDirectory>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.finos.cdm</groupId>
+                                    <artifactId>cdm-java</artifactId>
+                                    <version>${finos.cdm.version}</version>
+                                    <includes>cdm/rosetta/*.rosetta</includes>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <includeScope>runtime</includeScope>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>${maven-resources-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>default-cli</id>
-                        <phase>validate</phase>
+                        <phase>initialize</phase>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
                             <outputDirectory>${basedir}/target/classes/fpml/rosetta</outputDirectory>
                             <resources>
+                                <resource>
+                                    <directory>${project.build.directory}/parent-dependency/cdm/rosetta</directory>
+                                    <includes>
+                                        <include>*.rosetta</include>
+                                    </includes>
+                                    <filtering>true</filtering>
+                                </resource>
                                 <resource>
                                     <directory>src/main/rosetta</directory>
                                     <includes>
@@ -194,7 +229,7 @@
                         <configuration>
                             <addOutputDirectoriesToCompileSourceRoots>false</addOutputDirectoriesToCompileSourceRoots>
                             <sourceRoots>
-                                <sourceRoot>${project.basedir}/src/main/rosetta</sourceRoot>
+                                <sourceRoot>${project.build.directory}/classes/fpml/rosetta</sourceRoot>
                             </sourceRoots>
                             <classPathLookupFilter>.*com\.regnosys\.rosetta.*</classPathLookupFilter>
                             <languages>
@@ -203,7 +238,7 @@
                                     <outputConfigurations>
                                         <!-- Default output folder -->
                                         <outputConfiguration>
-                                            <outputDirectory>src/main/java</outputDirectory>
+                                            <outputDirectory>src/generated/java/</outputDirectory>
                                         </outputConfiguration>
                                     </outputConfigurations>
                                 </language>
@@ -250,26 +285,14 @@
                 <version>${build-helper-maven-plugin.version}</version>
                 <executions>
                     <execution>
-                        <id>add-generated-sources</id>
-                        <phase>process-sources</phase>
+                        <phase>generate-sources</phase>
                         <goals>
                             <goal>add-source</goal>
                         </goals>
                         <configuration>
                             <sources>
-                                <source>${project.build.outputDirectory}/generated/java</source>
-                            </sources>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>add-generated-test-sources</id>
-                        <phase>process-test-sources</phase>
-                        <goals>
-                            <goal>add-test-source</goal>
-                        </goals>
-                        <configuration>
-                            <sources>
-                                <source>${project.basedir}/src/test/generated/java</source>
+                                <source>src/generated/java/</source>
+                                <source>src/main/rosetta</source>
                             </sources>
                         </configuration>
                     </execution>
