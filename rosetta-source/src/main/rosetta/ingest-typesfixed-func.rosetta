@@ -1,7 +1,6 @@
 namespace fpml.ingest.typesfixed : < "fpml types mappings" >
 version "${project.version}"
 
-
 import cdm.observable.event.*
 import cdm.base.staticdata.identifier.*
 import cdm.legaldocumentation.contract.*
@@ -26,7 +25,6 @@ import cdm.product.common.schedule.*
 import cdm.event.common.*
 import fpml.confirmation.* as fpml
 import fpml.ingest.enumerations.*
-
 
 func MapTradeState:
 	inputs:
@@ -433,7 +431,7 @@ func MapProductIdentifierList:
 	add productIdentifierList:
 		[
 			ProductIdentifier {
-				identifier: MapIdentifierWithScheme(empty, empty),
+				identifier: MapIdentifierWithScheme(fpmlDataDocument),
 				source: empty,
 			}
 		]
@@ -538,7 +536,7 @@ func MapAssignedIdentifierList:
 	add assignedIdentifierList:
 		[
 			AssignedIdentifier {
-				identifier: MapIdentifierWithScheme(empty, empty),
+				identifier: MapIdentifierWithScheme(fpmlDataDocument),
 				version: empty,
 			}
 		]
@@ -561,7 +559,7 @@ func MapPartyIdentifierList:
         fpmlPartyIdentifiers
             extract
 			PartyIdentifier {
-				identifier: MapIdentifierWithScheme(item -> value, item -> partyIdScheme),
+				identifier: item -> value, //MapIdentifierWithScheme(fpmlDataDocument),
 				identifierType: MapPartyIdentifierTypeEnum(item -> partyIdScheme),
 			}
 
@@ -634,8 +632,8 @@ func MapAccount:
 	set account:
 		Account {
 			partyReference: empty, //MapParty(empty),
-			accountNumber: MapAccountNumberWithScheme(fpmlAccount -> accountId only-element -> value, fpmlAccount -> accountId only-element -> accountIdScheme),
-			accountName: MapAccountNameWithScheme(fpmlAccount -> accountName -> value, fpmlAccount -> accountName -> accountNameScheme),
+			accountNumber: fpmlAccount -> accountId only-element -> value, //MapAccountNumberWithScheme(),
+			accountName: fpmlAccount -> accountName -> value, //MapAccountNameWithScheme(),
 			accountType: empty, //MapAccountTypeWithScheme(empty),
 			accountBeneficiary: empty, //MapParty(empty),
 			servicingParty: empty, //MapParty(empty), //TODO: need to handle metadata references so we can map this passing `fpmlAccount -> servicingParty`
@@ -757,21 +755,19 @@ func MapCollateralProvisions:
 
 func MapAccountNumberWithScheme:
 	inputs:
-		accountNumber string (0..1)
-        scheme string (0..1)
+		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		string string (0..1)
 		// [metadata scheme]
-	set string: accountNumber
+	set string: empty
 
 func MapAccountNameWithScheme:
 	inputs:
-		accountName string (0..1)
-        scheme string (0..1)
+		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
-		result string (0..1)
+		string string (0..1)
 		// [metadata scheme]
-	set result: scheme
+	set string: empty
 
 func MapAccountTypeWithScheme:
 	inputs:
@@ -1073,12 +1069,11 @@ func MapFrequency:
 
 func MapIdentifierWithScheme:
 	inputs:
-		identifier string (0..1)
-        scheme string (0..1)
+		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
-		result string (0..1)
+		string string (0..1)
 		// [metadata scheme]
-	set result: identifier
+	set string: empty
 
 func MapTaxonomyValue:
 	inputs:
@@ -1253,7 +1248,7 @@ func MapPersonIdentifierWithSchemeList:
 	add personIdentifierList:
 		[
 			PersonIdentifier {
-				identifier: MapIdentifierWithScheme(empty, empty),
+				identifier: MapIdentifierWithScheme(fpmlDataDocument),
 				identifierType: empty,
 				country: MapCountryWithScheme(fpmlDataDocument),
 			}
@@ -2437,7 +2432,7 @@ func MapAssetIdentifierList:
 	add assetIdentifierList:
 		[
 			AssetIdentifier {
-				identifier: MapIdentifierWithScheme(empty, empty),
+				identifier: MapIdentifierWithScheme(fpmlDataDocument),
 				identifierType: empty,
 			}
 		]
