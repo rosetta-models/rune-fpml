@@ -40,7 +40,7 @@ public class FpmlConfirmationToTradeStateIngestionService implements IngestionSe
 
     @Override
     public <T extends RosettaModelObject> Report<T> ingestAndPostProcess(fpml.confirmation.DataDocument fpmlDataDocument) {
-        return rosettaTradeStateReport(fpmlDataDocument);
+        return javaTradeStateReport(fpmlDataDocument);
     }
 
     @SuppressWarnings("unchecked")
