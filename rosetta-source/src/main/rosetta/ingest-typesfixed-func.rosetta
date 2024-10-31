@@ -427,7 +427,7 @@ func MapProductIdentifierList:
 	add productIdentifierList:
 		[
 			ProductIdentifier {
-				identifier: MapIdentifierWithScheme(fpmlDataDocument),
+				identifier: empty, //MapIdentifierWithScheme(fpmlDataDocument),
 				source: empty,
 			}
 		]
@@ -507,14 +507,13 @@ func MapParty:
 	set party:
         Party {
             partyId: MapPartyIdentifierList(fpmlParty -> partyModel -> partyId),
-            name: fpmlParty -> partyModel -> partyName -> value, //MapNameWithScheme(empty),
+            name: MapNameWithScheme(fpmlParty -> partyModel -> partyName -> value, fpmlParty -> partyModel -> partyName -> partyNameScheme),
             businessUnit: empty, //MapBusinessUnitList(empty),
             person: empty, //MapNaturalPersonList(empty),
             personRole: empty, //MapNaturalPersonRoleList(empty),
             account: empty, //MapAccount(empty),
             contactInformation: empty, //MapContactInformation(empty),
         }
-
 
 func MapIssuerWithScheme:
 	inputs:
@@ -532,7 +531,7 @@ func MapAssignedIdentifierList:
 	add assignedIdentifierList:
 		[
 			AssignedIdentifier {
-				identifier: MapIdentifierWithScheme(fpmlDataDocument),
+				identifier: empty, //MapIdentifierWithScheme(fpmlDataDocument),
 				version: empty,
 			}
 		]
@@ -555,7 +554,7 @@ func MapPartyIdentifierList:
         fpmlPartyIdentifiers
             extract
 			PartyIdentifier {
-				identifier: item -> value, //MapIdentifierWithScheme(fpmlDataDocument),
+				identifier: MapIdentifierWithScheme(item -> value, item -> partyIdScheme),
 				identifierType: MapPartyIdentifierTypeEnum(item -> partyIdScheme),
 			}
 
@@ -564,11 +563,11 @@ func MapPartyIdentifierList:
 
 func MapNameWithScheme:
 	inputs:
-		fpmlDataDocument fpml.DataDocument (0..1)
+		name string (0..1)
+        scheme string (0..1)
 	output:
 		string string (0..1)
-		// [metadata scheme]
-	set string: empty
+		[metadata scheme]
 
 func MapBusinessUnitList:
 	inputs:
@@ -628,8 +627,8 @@ func MapAccount:
 	set account:
 		Account {
 			partyReference: empty, //MapParty(empty),
-			accountNumber: fpmlAccount -> accountId only-element -> value, //MapAccountNumberWithScheme(),
-			accountName: fpmlAccount -> accountName -> value, //MapAccountNameWithScheme(),
+			accountNumber: MapAccountNumberWithScheme(fpmlAccount -> accountId only-element -> value, fpmlAccount -> accountId only-element -> accountIdScheme),
+			accountName: MapAccountNameWithScheme(fpmlAccount -> accountName -> value, fpmlAccount -> accountName -> accountNameScheme),
 			accountType: empty, //MapAccountTypeWithScheme(empty),
 			accountBeneficiary: empty, //MapParty(empty),
 			servicingParty: empty, //MapParty(empty), //TODO: need to handle metadata references so we can map this passing `fpmlAccount -> servicingParty`
@@ -658,7 +657,7 @@ func MapLegalEntity:
 	set legalEntity:
 		LegalEntity {
 			entityId: MapEntityIdWithSchemeList(fpmlDataDocument),
-			name: MapNameWithScheme(fpmlDataDocument),
+			name: empty, //MapNameWithScheme(fpmlDataDocument),
 		}
 
 
@@ -751,19 +750,20 @@ func MapCollateralProvisions:
 
 func MapAccountNumberWithScheme:
 	inputs:
-		fpmlDataDocument fpml.DataDocument (0..1)
+		accountNumber string (0..1)
+        scheme string (0..1)
 	output:
 		string string (0..1)
-		// [metadata scheme]
-	set string: empty
+		[metadata scheme]
 
 func MapAccountNameWithScheme:
 	inputs:
-		fpmlDataDocument fpml.DataDocument (0..1)
+		accountName string (0..1)
+        scheme string (0..1)
 	output:
 		string string (0..1)
-		// [metadata scheme]
-	set string: empty
+		[metadata scheme]
+	set string: accountName
 
 func MapAccountTypeWithScheme:
 	inputs:
@@ -1065,11 +1065,11 @@ func MapFrequency:
 
 func MapIdentifierWithScheme:
 	inputs:
-		fpmlDataDocument fpml.DataDocument (0..1)
+		identifier string (0..1)
+        scheme string (0..1)
 	output:
 		string string (0..1)
-		// [metadata scheme]
-	set string: empty
+		[metadata scheme]
 
 func MapTaxonomyValue:
 	inputs:
@@ -1078,7 +1078,7 @@ func MapTaxonomyValue:
 		taxonomyValue TaxonomyValue (0..1)
 	set taxonomyValue:
 		TaxonomyValue {
-			name: MapNameWithScheme(fpmlDataDocument),
+			name: empty, //MapNameWithScheme(fpmlDataDocument),
 			classification: MapTaxonomyClassificationList(fpmlDataDocument),
 		}
 
@@ -1244,7 +1244,7 @@ func MapPersonIdentifierWithSchemeList:
 	add personIdentifierList:
 		[
 			PersonIdentifier {
-				identifier: MapIdentifierWithScheme(fpmlDataDocument),
+				identifier: empty, //MapIdentifierWithScheme(fpmlDataDocument),
 				identifierType: empty,
 				country: MapCountryWithScheme(fpmlDataDocument),
 			}
@@ -2310,7 +2310,7 @@ func MapUmbrellaAgreementEntityList:
 		[
 			UmbrellaAgreementEntity {
 				entityId: MapEntityIdWithSchemeList(fpmlDataDocument),
-				name: MapNameWithScheme(fpmlDataDocument),
+				name: empty, //MapNameWithScheme(fpmlDataDocument),
 				terms: empty,
 			}
 		]
@@ -2428,7 +2428,7 @@ func MapAssetIdentifierList:
 	add assetIdentifierList:
 		[
 			AssetIdentifier {
-				identifier: MapIdentifierWithScheme(fpmlDataDocument),
+				identifier: empty, //MapIdentifierWithScheme(fpmlDataDocument),
 				identifierType: empty,
 			}
 		]
@@ -2457,7 +2457,7 @@ func MapLegalEntityList:
 		[
 			LegalEntity {
 				entityId: MapEntityIdWithSchemeList(fpmlDataDocument),
-				name: MapNameWithScheme(fpmlDataDocument),
+				name: empty, //MapNameWithScheme(fpmlDataDocument),
 			}
 		]
 
@@ -3297,7 +3297,7 @@ func MapCreditIndex:
 			isExchangeListed: empty,
 			exchange: MapLegalEntity(fpmlDataDocument),
 			relatedExchange: MapLegalEntityList(fpmlDataDocument),
-			name: MapNameWithScheme(fpmlDataDocument),
+			name: empty, //MapNameWithScheme(fpmlDataDocument),
 			provider: MapLegalEntity(fpmlDataDocument),
 			assetClass: empty,
 			indexSeries: empty,
@@ -3324,7 +3324,7 @@ func MapEquityIndex:
 			isExchangeListed: empty,
 			exchange: MapLegalEntity(fpmlDataDocument),
 			relatedExchange: MapLegalEntityList(fpmlDataDocument),
-			name: MapNameWithScheme(fpmlDataDocument),
+			name: empty, //MapNameWithScheme(fpmlDataDocument),
 			provider: MapLegalEntity(fpmlDataDocument),
 			assetClass: empty,
 		}
@@ -3354,7 +3354,7 @@ func MapForeignExchangeRateIndex:
 			isExchangeListed: empty,
 			exchange: MapLegalEntity(fpmlDataDocument),
 			relatedExchange: MapLegalEntityList(fpmlDataDocument),
-			name: MapNameWithScheme(fpmlDataDocument),
+			name: empty, //MapNameWithScheme(fpmlDataDocument),
 			provider: MapLegalEntity(fpmlDataDocument),
 			assetClass: empty,
 			quotedCurrencyPair: MapQuotedCurrencyPair(fpmlDataDocument),
@@ -3375,7 +3375,7 @@ func MapOtherIndex:
 			isExchangeListed: empty,
 			exchange: MapLegalEntity(fpmlDataDocument),
 			relatedExchange: MapLegalEntityList(fpmlDataDocument),
-			name: MapNameWithScheme(fpmlDataDocument),
+			name: empty, //MapNameWithScheme(fpmlDataDocument),
 			provider: MapLegalEntity(fpmlDataDocument),
 			assetClass: empty,
 			description: empty,
@@ -4808,7 +4808,7 @@ func MapInterestRateIndex:
 			isExchangeListed: empty,
 			exchange: MapLegalEntity(fpmlDataDocument),
 			relatedExchange: MapLegalEntityList(fpmlDataDocument),
-			name: MapNameWithScheme(fpmlDataDocument),
+			name: empty, //MapNameWithScheme(fpmlDataDocument),
 			provider: MapLegalEntity(fpmlDataDocument),
 			assetClass: empty,
 			floatingRateIndex: MapFloatingRateIndexWithScheme(fpmlDataDocument),
@@ -4828,7 +4828,7 @@ func MapInflationIndex:
 			isExchangeListed: empty,
 			exchange: MapLegalEntity(fpmlDataDocument),
 			relatedExchange: MapLegalEntityList(fpmlDataDocument),
-			name: MapNameWithScheme(fpmlDataDocument),
+			name: empty, //MapNameWithScheme(fpmlDataDocument),
 			provider: MapLegalEntity(fpmlDataDocument),
 			assetClass: empty,
 			inflationRateIndex: MapInflationRateIndexWithScheme(fpmlDataDocument),
