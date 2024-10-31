@@ -9,9 +9,15 @@ import cdm.event.common.ContractDetails;
 import cdm.event.common.Trade;
 import cdm.event.common.TradeState;
 import cdm.legaldocumentation.common.*;
+import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
+import com.google.inject.util.Modules;
+import com.regnosys.fpml.ingest.typesfixed.functions.MapAccountNameWithSchemeImpl;
+import com.regnosys.fpml.ingest.typesfixed.functions.MapAccountNumberWithSchemeImpl;
+import com.regnosys.fpml.ingest.typesfixed.functions.MapIdentifierWithSchemeImpl;
+import com.regnosys.fpml.ingest.typesfixed.functions.MapNameWithSchemeImpl;
 import com.regnosys.ingest.IngestionService;
 import com.regnosys.rosetta.common.util.Report;
 import com.rosetta.model.lib.RosettaModelObject;
@@ -19,7 +25,7 @@ import com.rosetta.model.lib.RosettaModelObjectBuilder;
 import com.rosetta.model.metafields.FieldWithMetaDate;
 import com.rosetta.model.metafields.FieldWithMetaString;
 import fpml.confirmation.*;
-import fpml.ingest.typesfixed.functions.MapTradeState;
+import fpml.ingest.typesfixed.functions.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -54,7 +60,17 @@ public class FpmlConfirmationToTradeStateIngestionService implements IngestionSe
 
     @SuppressWarnings("unchecked")
     private <T extends RosettaModelObject> Report<T> rosettaTradeStateReport(DataDocument fpmlDataDocument) {
-        Injector injector = Guice.createInjector(runtimeModule);
+        Module overrideModule = Modules.override(runtimeModule).with(new AbstractModule() {
+            @Override
+            protected void configure() {
+                bind(MapAccountNameWithScheme.class).to(MapAccountNameWithSchemeImpl.class);
+                bind(MapAccountNumberWithScheme.class).to(MapAccountNumberWithSchemeImpl.class);
+                bind(MapIdentifierWithScheme.class).to(MapIdentifierWithSchemeImpl.class);
+                bind(MapNameWithScheme.class).to(MapNameWithSchemeImpl.class);
+            }
+        });
+
+        Injector injector = Guice.createInjector(overrideModule);
         MapTradeState tradeState = injector.getInstance(MapTradeState.class);
         return (Report<T>) new Report<>(tradeState.evaluate(fpmlDataDocument));
     }
