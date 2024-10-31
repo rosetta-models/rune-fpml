@@ -679,21 +679,99 @@ func MapLegalAgreementList:
 		fpmlDocumentation fpml.Documentation (0..1)
 	output:
 		legalAgreementList LegalAgreement (0..*)
+
 	add legalAgreementList:
-		[
-			LegalAgreement {
-				agreementDate: empty,
-				effectiveDate: empty,
-				identifier: MapIdentifierList(empty),
-				legalAgreementIdentification: MapLegalAgreementIdentification(empty),
-				contractualParty: MapPartyList(empty),
-				otherParty: MapPartyRoleList(empty),
-				attachment: MapResourceList(empty),
-				agreementTerms: MapAgreementTerms(empty),
-				relatedAgreements: MapLegalAgreementList(empty),
-				umbrellaAgreement: MapUmbrellaAgreement(empty),
-			}
-		]
+        if fpmlDocumentation -> masterAgreement exists
+        then MapMasterAgreement(fpmlDocumentation -> masterAgreement)
+    add legalAgreementList:
+        if fpmlDocumentation -> masterConfirmation exists
+        then MapMasterConfirmation(fpmlDocumentation -> masterConfirmation)
+    add legalAgreementList:
+        if fpmlDocumentation -> creditSupportAgreement exists
+        then MapCreditSupportAgreement(fpmlDocumentation -> creditSupportAgreement)
+    add legalAgreementList: MapConfirmationLegalAgreement(fpmlDocumentation)
+    add legalAgreementList:
+        if fpmlDocumentation -> otherAgreement exists
+        then fpmlDocumentation -> otherAgreement extract MapOtherAgreements
+
+
+func MapMasterAgreement:
+    inputs:
+        fpmlMasterAgreement fpml.MasterAgreement (0..1)
+	output:
+		legalAgreement LegalAgreement (0..1)
+
+    alias fpmlMasterAgreementType: fpmlMasterAgreement -> masterAgreementType
+
+    set legalAgreement -> legalAgreementIdentification -> agreementName -> masterAgreementType:
+        MapMasterAgreementTypeEnum(fpmlMasterAgreementType -> value)
+    set legalAgreement -> legalAgreementIdentification -> agreementName -> agreementType: MasterAgreement
+
+func MapMasterConfirmation:
+    inputs:
+        fpmlMasterConfirmation fpml.MasterConfirmation (0..1)
+    output:
+		legalAgreement LegalAgreement (0..1)
+
+    alias fpmlMasterConfirmationType: fpmlMasterConfirmation -> masterConfirmationType
+    alias fpmlMasterConfirmationAnnexType: fpmlMasterConfirmation -> masterConfirmationAnnexType
+
+    set legalAgreement -> legalAgreementIdentification -> agreementName -> masterConfirmationType:
+        MapMasterConfirmationTypeEnum(fpmlMasterConfirmationType -> value)
+    set legalAgreement -> legalAgreementIdentification -> agreementName -> masterConfirmationAnnexType:
+        MapMasterConfirmationAnnexTypeEnum(fpmlMasterConfirmationAnnexType -> value)
+    set legalAgreement -> legalAgreementIdentification -> agreementName -> agreementType: MasterConfirmation
+
+func MapCreditSupportAgreement:
+    inputs:
+        fpmlCreditSupportAgreement fpml.CreditSupportAgreement (0..1)
+    output:
+		legalAgreement LegalAgreement (0..1)
+
+    alias fpmlCreditSupportAgreementType: fpmlCreditSupportAgreement -> _type
+    set legalAgreement -> legalAgreementIdentification -> agreementName -> creditSupportAgreementType:
+        MapCreditSupportAgreementTypeEnum(fpmlCreditSupportAgreementType -> value)
+    set legalAgreement -> legalAgreementIdentification -> agreementName -> agreementType: CreditSupportAgreement
+
+func MapConfirmationLegalAgreement:
+	inputs:
+		fpmlDocumentation fpml.Documentation (0..1)
+	output:
+		legalAgreement LegalAgreement (0..1)
+
+    alias fpmlContractualDefinitions: fpmlDocumentation -> contractualDefinitions
+    alias fpmlContractualMatrix: fpmlDocumentation -> contractualMatrix
+    alias fpmlContractualTermsSupplement: fpmlDocumentation -> contractualTermsSupplement
+
+    add legalAgreement -> legalAgreementIdentification -> agreementName -> contractualDefinitionsType:
+        fpmlContractualDefinitions extract MapContractualDefinitionsEnum(item -> value)
+
+    add legalAgreement -> legalAgreementIdentification -> agreementName -> contractualMatrix:
+        fpmlContractualMatrix
+            extract ContractualMatrix {
+                matrixType: MapMatrixTypeEnum(item -> matrixType -> value),
+                matrixTerm: MapMatrixTermEnum(item -> matrixTerm -> value)
+            }
+
+    add legalAgreement -> legalAgreementIdentification -> agreementName -> contractualTermsSupplement:
+        fpmlContractualTermsSupplement
+            extract ContractualTermsSupplement {
+                contractualTermsSupplementType: MapContractualSupplementTypeEnum(item -> _type -> value),
+                publicationDate: item -> publicationDate
+            }
+
+    set legalAgreement -> legalAgreementIdentification -> agreementName -> agreementType: Confirmation
+
+func MapOtherAgreements:
+    inputs:
+        fpmlOtherAgreement fpml.OtherAgreement (0..1)
+	output:
+		legalAgreement LegalAgreement (0..1)
+    set legalAgreement -> legalAgreementIdentification -> agreementName -> otherAgreement: fpmlOtherAgreement -> _type -> value
+    set legalAgreement -> legalAgreementIdentification -> vintage: fpmlOtherAgreement -> version -> value to-int
+    set legalAgreement -> agreementDate: fpmlOtherAgreement -> date
+    set legalAgreement -> legalAgreementIdentification -> agreementName -> agreementType: Other
+
 
 
 func MapGoverningLawWithScheme:
