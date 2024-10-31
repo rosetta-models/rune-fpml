@@ -16,7 +16,6 @@ import com.regnosys.ingest.IngestionService;
 import com.regnosys.rosetta.common.util.Report;
 import com.rosetta.model.lib.RosettaModelObject;
 import com.rosetta.model.lib.RosettaModelObjectBuilder;
-import com.rosetta.model.lib.meta.Reference;
 import com.rosetta.model.metafields.FieldWithMetaDate;
 import com.rosetta.model.metafields.FieldWithMetaString;
 import fpml.confirmation.*;
@@ -41,7 +40,7 @@ public class FpmlConfirmationToTradeStateIngestionService implements IngestionSe
 
     @Override
     public <T extends RosettaModelObject> Report<T> ingestAndPostProcess(fpml.confirmation.DataDocument fpmlDataDocument) {
-        return javaTradeStateReport(fpmlDataDocument);
+        return rosettaTradeStateReport(fpmlDataDocument);
     }
 
     @SuppressWarnings("unchecked")

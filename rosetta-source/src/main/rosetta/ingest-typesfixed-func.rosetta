@@ -58,7 +58,7 @@ func MapTrade:
 			tradeDate: fpmlDataDocument -> trade only-element -> tradeHeader -> tradeDate -> value,
 			tradeTime: empty, //MapTimeZone(fpmlDataDocument),
 			party: MapPartyList(fpmlDataDocument -> partiesAndAccountsModel -> party),
-			partyRole: empty, //MapPartyRoleList(fpmlDataDocument),
+			partyRole: MapPartyRoleList(fpmlDataDocument -> trade only-element -> tradeHeader -> partyTradeInformation),
 			executionDetails: empty, //MapExecutionDetails(fpmlDataDocument),
 			contractDetails: MapContractDetails(fpmlDataDocument -> trade only-element),
 			clearedDate: empty,
@@ -239,17 +239,13 @@ func MapPartyList:
 
 func MapPartyRoleList:
 	inputs:
-		fpmlDataDocument fpml.DataDocument (0..1)
+		fpmlPartyTradeInformation fpml.PartyTradeInformation (0..*)
 	output:
 		partyRoleList PartyRole (0..*)
 	add partyRoleList:
-		[
-			PartyRole {
-				partyReference: MapParty(empty),
-				role: empty,
-				ownershipPartyReference: MapParty(empty),
-			}
-		]
+		fpmlPartyTradeInformation -> relatedParty
+        extract MapPartyRole
+
 
 
 func MapExecutionDetails:
@@ -1426,7 +1422,7 @@ func MapLegalAgreement:
 			identifier: MapIdentifierList(fpmlDataDocument),
 			legalAgreementIdentification: MapLegalAgreementIdentification(fpmlDataDocument),
 			contractualParty: MapPartyList(empty),
-			otherParty: MapPartyRoleList(fpmlDataDocument),
+			otherParty: empty, //MapPartyRoleList(fpmlDataDocument),
 			attachment: MapResourceList(fpmlDataDocument),
 			agreementTerms: MapAgreementTerms(fpmlDataDocument),
 			relatedAgreements: MapLegalAgreementList(empty),
@@ -2192,7 +2188,7 @@ func MapEvergreenProvision:
 		evergreenProvision EvergreenProvision (0..1)
 	set evergreenProvision:
 		EvergreenProvision {
-			singlePartyOption: MapPartyRole(fpmlDataDocument),
+			singlePartyOption: empty, //MapPartyRole(fpmlDataDocument),
 			noticePeriod: MapRelativeDateOffset(fpmlDataDocument),
 			noticeDeadlinePeriod: MapRelativeDateOffset(fpmlDataDocument),
 			noticeDeadlineDateTime: empty,
@@ -2214,7 +2210,7 @@ func MapExtendibleProvision:
 			followUpConfirmation: empty,
 			extendibleProvisionAdjustedDates: MapExtendibleProvisionAdjustedDates(fpmlDataDocument),
 			callingParty: empty,
-			singlePartyOption: MapPartyRole(fpmlDataDocument),
+			singlePartyOption: empty, //MapPartyRole(fpmlDataDocument),
 			noticeDeadlinePeriod: MapRelativeDateOffset(fpmlDataDocument),
 			noticeDeadlineDateTime: empty,
 			extensionTerm: MapRelativeDateOffset(fpmlDataDocument),
@@ -3235,14 +3231,14 @@ func MapExercisePeriod:
 
 func MapPartyRole:
 	inputs:
-		fpmlDataDocument fpml.DataDocument (0..1)
+		fpmlRelatedParty fpml.RelatedParty (0..1)
 	output:
 		partyRole PartyRole (0..1)
 	set partyRole:
 		PartyRole {
-			partyReference: MapParty(empty),
-			role: empty,
-			ownershipPartyReference: MapParty(empty),
+			partyReference: empty, //MapParty(empty), TODO: set references
+			role: MapPartyRoleEnum(fpmlRelatedParty -> role -> value),
+			ownershipPartyReference: empty, //MapParty(empty), TODO: set references
 		}
 
 
