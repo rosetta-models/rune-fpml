@@ -268,7 +268,7 @@ func MapContractDetails:
 		contractDetails ContractDetails (0..1)
 	set contractDetails:
 		ContractDetails {
-			documentation: empty, //MapLegalAgreementList(fpmlTrade -> documentation),
+			documentation: MapLegalAgreementList(fpmlTrade -> documentation),
 			governingLaw: empty, //MapGoverningLawWithScheme(empty),
 		}
 
@@ -720,6 +720,7 @@ func MapMasterConfirmation:
         MapMasterConfirmationTypeEnum(fpmlMasterConfirmationType -> value)
     set legalAgreement -> legalAgreementIdentification -> agreementName -> masterConfirmationAnnexType:
         MapMasterConfirmationAnnexTypeEnum(fpmlMasterConfirmationAnnexType -> value)
+    set legalAgreement -> agreementDate: fpmlMasterConfirmation -> masterConfirmationDate
     set legalAgreement -> legalAgreementIdentification -> agreementName -> agreementType: MasterConfirmation
 
 func MapCreditSupportAgreement:
@@ -760,7 +761,11 @@ func MapConfirmationLegalAgreement:
                 publicationDate: item -> publicationDate
             }
 
-    set legalAgreement -> legalAgreementIdentification -> agreementName -> agreementType: Confirmation
+    set legalAgreement -> legalAgreementIdentification -> agreementName -> agreementType:
+        if (legalAgreement -> legalAgreementIdentification -> agreementName -> contractualDefinitionsType exists
+            or legalAgreement -> legalAgreementIdentification -> agreementName -> contractualMatrix exists
+            or legalAgreement -> legalAgreementIdentification -> agreementName -> contractualTermsSupplement exists)
+        then Confirmation
 
 func MapOtherAgreements:
     inputs:
