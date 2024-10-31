@@ -25,6 +25,8 @@ import cdm.product.template.*
 import cdm.product.common.schedule.*
 import cdm.event.common.*
 import fpml.confirmation.* as fpml
+import fpml.ingest.enumerations.*
+
 
 func MapTradeState:
 	inputs:
@@ -34,11 +36,11 @@ func MapTradeState:
 	set tradeState:
 		TradeState {
 			trade: MapTrade(fpmlDataDocument),
-			state: MapState(fpmlDataDocument),
-			resetHistory: MapResetList(fpmlDataDocument),
-			transferHistory: MapTransferStateList(fpmlDataDocument),
-			observationHistory: MapObservationEventList(fpmlDataDocument),
-			valuationHistory: MapValuationList(fpmlDataDocument),
+			state: empty, // MapState(fpmlDataDocument),
+			resetHistory: empty, //MapResetList(fpmlDataDocument),
+			transferHistory: empty, //MapTransferStateList(fpmlDataDocument),
+			observationHistory: empty, //MapObservationEventList(fpmlDataDocument),
+			valuationHistory: empty, //MapValuationList(fpmlDataDocument),
 		}
 
 
@@ -49,20 +51,20 @@ func MapTrade:
 		trade Trade (0..1)
 	set trade:
 		Trade {
-			product: MapNonTransferableProduct(fpmlDataDocument),
-			tradeLot: MapTradeLotList(fpmlDataDocument),
-			counterparty: MapCounterpartyList(fpmlDataDocument),
-			ancillaryParty: MapAncillaryPartyList(fpmlDataDocument),
+			product: empty, //MapNonTransferableProduct(fpmlDataDocument),
+			tradeLot: empty, //MapTradeLotList(fpmlDataDocument),
+			counterparty: empty, //MapCounterpartyList(fpmlDataDocument),
+			ancillaryParty: empty, //MapAncillaryPartyList(fpmlDataDocument),
 			adjustment: empty,
-			tradeIdentifier: MapTradeIdentifierList(fpmlDataDocument),
+			tradeIdentifier: empty, //MapTradeIdentifierList(fpmlDataDocument),
 			tradeDate: fpmlDataDocument -> trade only-element -> tradeHeader -> tradeDate -> value,
-			tradeTime: MapTimeZone(fpmlDataDocument),
+			tradeTime: empty, //MapTimeZone(fpmlDataDocument),
 			party: MapPartyList(fpmlDataDocument -> partiesAndAccountsModel -> party),
-			partyRole: MapPartyRoleList(fpmlDataDocument),
-			executionDetails: MapExecutionDetails(fpmlDataDocument),
+			partyRole: empty, //MapPartyRoleList(fpmlDataDocument),
+			executionDetails: empty, //MapExecutionDetails(fpmlDataDocument),
 			contractDetails: MapContractDetails(fpmlDataDocument -> trade only-element),
 			clearedDate: empty,
-			collateral: MapCollateral(fpmlDataDocument),
+			collateral: empty, //MapCollateral(fpmlDataDocument),
 			account: MapAccountList(fpmlDataDocument -> partiesAndAccountsModel -> account),
 		}
 
@@ -272,8 +274,8 @@ func MapContractDetails:
 		contractDetails ContractDetails (0..1)
 	set contractDetails:
 		ContractDetails {
-			documentation: MapLegalAgreementList(fpmlTrade -> documentation),
-			governingLaw: MapGoverningLawWithScheme(empty),
+			documentation: empty, //MapLegalAgreementList(fpmlTrade -> documentation),
+			governingLaw: empty, //MapGoverningLawWithScheme(empty),
 		}
 
 
@@ -511,12 +513,12 @@ func MapParty:
 	set party:
         Party {
             partyId: MapPartyIdentifierList(fpmlParty -> partyModel -> partyId),
-            name: MapNameWithScheme(empty),
-            businessUnit: MapBusinessUnitList(empty),
-            person: MapNaturalPersonList(empty),
-            personRole: MapNaturalPersonRoleList(empty),
-            account: MapAccount(empty),
-            contactInformation: MapContactInformation(empty),
+            name: empty, //MapNameWithScheme(empty),
+            businessUnit: empty, //MapBusinessUnitList(empty),
+            person: empty, //MapNaturalPersonList(empty),
+            personRole: empty, //MapNaturalPersonRoleList(empty),
+            account: empty, //MapAccount(empty),
+            contactInformation: empty, //MapContactInformation(empty),
         }
 
 
@@ -560,7 +562,7 @@ func MapPartyIdentifierList:
             extract
 			PartyIdentifier {
 				identifier: MapIdentifierWithScheme(item -> value, item -> partyIdScheme),
-				identifierType: empty,
+				identifierType: MapPartyIdentifierTypeEnum(item -> partyIdScheme),
 			}
 
 
@@ -631,12 +633,12 @@ func MapAccount:
 		account Account (0..1)
 	set account:
 		Account {
-			partyReference: MapParty(empty),
+			partyReference: empty, //MapParty(empty),
 			accountNumber: MapAccountNumberWithScheme(fpmlAccount -> accountId only-element -> value, fpmlAccount -> accountId only-element -> accountIdScheme),
 			accountName: MapAccountNameWithScheme(fpmlAccount -> accountName -> value, fpmlAccount -> accountName -> accountNameScheme),
-			accountType: MapAccountTypeWithScheme(empty),
-			accountBeneficiary: MapParty(empty),
-			servicingParty: MapParty(empty), //TODO: need to handle metadata references so we can map this passing `fpmlAccount -> servicingParty`
+			accountType: empty, //MapAccountTypeWithScheme(empty),
+			accountBeneficiary: empty, //MapParty(empty),
+			servicingParty: empty, //MapParty(empty), //TODO: need to handle metadata references so we can map this passing `fpmlAccount -> servicingParty`
 		}
 
 
