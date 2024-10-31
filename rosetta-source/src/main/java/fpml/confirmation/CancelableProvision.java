@@ -365,6 +365,7 @@ public interface CancelableProvision extends RosettaModelObject {
 			return finalCalculationPeriodDateAdjustment;
 		}
 		
+		@Override
 		public FinalCalculationPeriodDateAdjustment.FinalCalculationPeriodDateAdjustmentBuilder getOrCreateFinalCalculationPeriodDateAdjustment(int _index) {
 		
 			if (finalCalculationPeriodDateAdjustment==null) {
@@ -427,6 +428,7 @@ public interface CancelableProvision extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("finalCalculationPeriodDateAdjustment")
 		public CancelableProvision.CancelableProvisionBuilder addFinalCalculationPeriodDateAdjustment(FinalCalculationPeriodDateAdjustment finalCalculationPeriodDateAdjustment) {
 			if (finalCalculationPeriodDateAdjustment!=null) this.finalCalculationPeriodDateAdjustment.add(finalCalculationPeriodDateAdjustment.toBuilder());
 			return this;
@@ -448,7 +450,6 @@ public interface CancelableProvision extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("finalCalculationPeriodDateAdjustment")
 		public CancelableProvision.CancelableProvisionBuilder setFinalCalculationPeriodDateAdjustment(List<? extends FinalCalculationPeriodDateAdjustment> finalCalculationPeriodDateAdjustments) {
 			if (finalCalculationPeriodDateAdjustments == null)  {
 				this.finalCalculationPeriodDateAdjustment = new ArrayList<>();

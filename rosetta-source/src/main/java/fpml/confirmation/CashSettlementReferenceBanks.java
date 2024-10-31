@@ -171,6 +171,7 @@ public interface CashSettlementReferenceBanks extends RosettaModelObject {
 			return referenceBank;
 		}
 		
+		@Override
 		public ReferenceBank.ReferenceBankBuilder getOrCreateReferenceBank(int _index) {
 		
 			if (referenceBank==null) {
@@ -190,6 +191,7 @@ public interface CashSettlementReferenceBanks extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("referenceBank")
 		public CashSettlementReferenceBanks.CashSettlementReferenceBanksBuilder addReferenceBank(ReferenceBank referenceBank) {
 			if (referenceBank!=null) this.referenceBank.add(referenceBank.toBuilder());
 			return this;
@@ -211,7 +213,6 @@ public interface CashSettlementReferenceBanks extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("referenceBank")
 		public CashSettlementReferenceBanks.CashSettlementReferenceBanksBuilder setReferenceBank(List<? extends ReferenceBank> referenceBanks) {
 			if (referenceBanks == null)  {
 				this.referenceBank = new ArrayList<>();

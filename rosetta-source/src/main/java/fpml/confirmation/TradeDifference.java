@@ -434,6 +434,7 @@ public interface TradeDifference extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("missingElement")
 		public TradeDifference.TradeDifferenceBuilder addMissingElement(String missingElement) {
 			if (missingElement!=null) this.missingElement.add(missingElement);
 			return this;
@@ -455,7 +456,6 @@ public interface TradeDifference extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("missingElement")
 		public TradeDifference.TradeDifferenceBuilder setMissingElement(List<String> missingElements) {
 			if (missingElements == null)  {
 				this.missingElement = new ArrayList<>();
@@ -468,6 +468,7 @@ public interface TradeDifference extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("extraElement")
 		public TradeDifference.TradeDifferenceBuilder addExtraElement(String extraElement) {
 			if (extraElement!=null) this.extraElement.add(extraElement);
 			return this;
@@ -489,7 +490,6 @@ public interface TradeDifference extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("extraElement")
 		public TradeDifference.TradeDifferenceBuilder setExtraElement(List<String> extraElements) {
 			if (extraElements == null)  {
 				this.extraElement = new ArrayList<>();

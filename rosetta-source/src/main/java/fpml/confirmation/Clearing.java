@@ -195,6 +195,7 @@ public interface Clearing extends RosettaModelObject {
 			return cleared;
 		}
 		
+		@Override
 		public TradeWrapper.TradeWrapperBuilder getOrCreateCleared(int _index) {
 		
 			if (cleared==null) {
@@ -214,6 +215,7 @@ public interface Clearing extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("cleared")
 		public Clearing.ClearingBuilder addCleared(TradeWrapper cleared) {
 			if (cleared!=null) this.cleared.add(cleared.toBuilder());
 			return this;
@@ -235,7 +237,6 @@ public interface Clearing extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("cleared")
 		public Clearing.ClearingBuilder setCleared(List<? extends TradeWrapper> cleareds) {
 			if (cleareds == null)  {
 				this.cleared = new ArrayList<>();

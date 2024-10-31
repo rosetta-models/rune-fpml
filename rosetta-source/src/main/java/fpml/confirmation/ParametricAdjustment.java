@@ -222,6 +222,7 @@ public interface ParametricAdjustment extends RosettaModelObject {
 			return datapoint;
 		}
 		
+		@Override
 		public ParametricAdjustmentPoint.ParametricAdjustmentPointBuilder getOrCreateDatapoint(int _index) {
 		
 			if (datapoint==null) {
@@ -247,6 +248,7 @@ public interface ParametricAdjustment extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("datapoint")
 		public ParametricAdjustment.ParametricAdjustmentBuilder addDatapoint(ParametricAdjustmentPoint datapoint) {
 			if (datapoint!=null) this.datapoint.add(datapoint.toBuilder());
 			return this;
@@ -268,7 +270,6 @@ public interface ParametricAdjustment extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("datapoint")
 		public ParametricAdjustment.ParametricAdjustmentBuilder setDatapoint(List<? extends ParametricAdjustmentPoint> datapoints) {
 			if (datapoints == null)  {
 				this.datapoint = new ArrayList<>();

@@ -195,6 +195,7 @@ public interface FxDigitalOptionSequence1 extends RosettaModelObject {
 			return trigger;
 		}
 		
+		@Override
 		public FxTrigger.FxTriggerBuilder getOrCreateTrigger(int _index) {
 		
 			if (trigger==null) {
@@ -214,6 +215,7 @@ public interface FxDigitalOptionSequence1 extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("trigger")
 		public FxDigitalOptionSequence1.FxDigitalOptionSequence1Builder addTrigger(FxTrigger trigger) {
 			if (trigger!=null) this.trigger.add(trigger.toBuilder());
 			return this;
@@ -235,7 +237,6 @@ public interface FxDigitalOptionSequence1 extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("trigger")
 		public FxDigitalOptionSequence1.FxDigitalOptionSequence1Builder setTrigger(List<? extends FxTrigger> triggers) {
 			if (triggers == null)  {
 				this.trigger = new ArrayList<>();

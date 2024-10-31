@@ -154,6 +154,7 @@ public interface DateRelativeToCalculationPeriodDates extends RosettaModelObject
 			return calculationPeriodDatesReference;
 		}
 		
+		@Override
 		public CalculationPeriodDatesReference.CalculationPeriodDatesReferenceBuilder getOrCreateCalculationPeriodDatesReference(int _index) {
 		
 			if (calculationPeriodDatesReference==null) {
@@ -167,6 +168,7 @@ public interface DateRelativeToCalculationPeriodDates extends RosettaModelObject
 		}
 		
 		@Override
+		@RosettaAttribute("calculationPeriodDatesReference")
 		public DateRelativeToCalculationPeriodDates.DateRelativeToCalculationPeriodDatesBuilder addCalculationPeriodDatesReference(CalculationPeriodDatesReference calculationPeriodDatesReference) {
 			if (calculationPeriodDatesReference!=null) this.calculationPeriodDatesReference.add(calculationPeriodDatesReference.toBuilder());
 			return this;
@@ -188,7 +190,6 @@ public interface DateRelativeToCalculationPeriodDates extends RosettaModelObject
 		}
 		
 		@Override 
-		@RosettaAttribute("calculationPeriodDatesReference")
 		public DateRelativeToCalculationPeriodDates.DateRelativeToCalculationPeriodDatesBuilder setCalculationPeriodDatesReference(List<? extends CalculationPeriodDatesReference> calculationPeriodDatesReferences) {
 			if (calculationPeriodDatesReferences == null)  {
 				this.calculationPeriodDatesReference = new ArrayList<>();

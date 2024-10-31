@@ -177,6 +177,7 @@ public interface StrategyComponentIdentification extends RosettaModelObject {
 			return tradeIdentifierReference;
 		}
 		
+		@Override
 		public PartyTradeIdentifierReference.PartyTradeIdentifierReferenceBuilder getOrCreateTradeIdentifierReference(int _index) {
 		
 			if (tradeIdentifierReference==null) {
@@ -209,6 +210,7 @@ public interface StrategyComponentIdentification extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("tradeIdentifierReference")
 		public StrategyComponentIdentification.StrategyComponentIdentificationBuilder addTradeIdentifierReference(PartyTradeIdentifierReference tradeIdentifierReference) {
 			if (tradeIdentifierReference!=null) this.tradeIdentifierReference.add(tradeIdentifierReference.toBuilder());
 			return this;
@@ -230,7 +232,6 @@ public interface StrategyComponentIdentification extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("tradeIdentifierReference")
 		public StrategyComponentIdentification.StrategyComponentIdentificationBuilder setTradeIdentifierReference(List<? extends PartyTradeIdentifierReference> tradeIdentifierReferences) {
 			if (tradeIdentifierReferences == null)  {
 				this.tradeIdentifierReference = new ArrayList<>();

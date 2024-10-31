@@ -193,6 +193,7 @@ public interface Quotation extends RosettaModelObject {
 			return sensitivitySet;
 		}
 		
+		@Override
 		public SensitivitySet.SensitivitySetBuilder getOrCreateSensitivitySet(int _index) {
 		
 			if (sensitivitySet==null) {
@@ -212,6 +213,7 @@ public interface Quotation extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("sensitivitySet")
 		public Quotation.QuotationBuilder addSensitivitySet(SensitivitySet sensitivitySet) {
 			if (sensitivitySet!=null) this.sensitivitySet.add(sensitivitySet.toBuilder());
 			return this;
@@ -233,7 +235,6 @@ public interface Quotation extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("sensitivitySet")
 		public Quotation.QuotationBuilder setSensitivitySet(List<? extends SensitivitySet> sensitivitySets) {
 			if (sensitivitySets == null)  {
 				this.sensitivitySet = new ArrayList<>();

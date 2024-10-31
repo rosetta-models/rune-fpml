@@ -295,6 +295,7 @@ public interface EquitySwapTransactionSupplement extends ReturnSwapBase {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("returnSwapLeg")
 		public EquitySwapTransactionSupplement.EquitySwapTransactionSupplementBuilder addReturnSwapLeg(DirectionalLeg returnSwapLeg) {
 			if (returnSwapLeg!=null) this.returnSwapLeg.add(returnSwapLeg.toBuilder());
 			return this;
@@ -316,7 +317,6 @@ public interface EquitySwapTransactionSupplement extends ReturnSwapBase {
 		}
 		
 		@Override 
-		@RosettaAttribute("returnSwapLeg")
 		public EquitySwapTransactionSupplement.EquitySwapTransactionSupplementBuilder setReturnSwapLeg(List<? extends DirectionalLeg> returnSwapLegs) {
 			if (returnSwapLegs == null)  {
 				this.returnSwapLeg = new ArrayList<>();
@@ -336,6 +336,7 @@ public interface EquitySwapTransactionSupplement extends ReturnSwapBase {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("additionalPayment")
 		public EquitySwapTransactionSupplement.EquitySwapTransactionSupplementBuilder addAdditionalPayment(ReturnSwapAdditionalPayment additionalPayment) {
 			if (additionalPayment!=null) this.additionalPayment.add(additionalPayment.toBuilder());
 			return this;
@@ -357,7 +358,6 @@ public interface EquitySwapTransactionSupplement extends ReturnSwapBase {
 		}
 		
 		@Override 
-		@RosettaAttribute("additionalPayment")
 		public EquitySwapTransactionSupplement.EquitySwapTransactionSupplementBuilder setAdditionalPayment(List<? extends ReturnSwapAdditionalPayment> additionalPayments) {
 			if (additionalPayments == null)  {
 				this.additionalPayment = new ArrayList<>();

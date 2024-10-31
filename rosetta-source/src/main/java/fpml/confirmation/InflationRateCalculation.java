@@ -417,6 +417,7 @@ public interface InflationRateCalculation extends FloatingRateCalculation {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("spreadSchedule")
 		public InflationRateCalculation.InflationRateCalculationBuilder addSpreadSchedule(SpreadSchedule spreadSchedule) {
 			if (spreadSchedule!=null) this.spreadSchedule.add(spreadSchedule.toBuilder());
 			return this;
@@ -438,7 +439,6 @@ public interface InflationRateCalculation extends FloatingRateCalculation {
 		}
 		
 		@Override 
-		@RosettaAttribute("spreadSchedule")
 		public InflationRateCalculation.InflationRateCalculationBuilder setSpreadSchedule(List<? extends SpreadSchedule> spreadSchedules) {
 			if (spreadSchedules == null)  {
 				this.spreadSchedule = new ArrayList<>();
@@ -458,6 +458,7 @@ public interface InflationRateCalculation extends FloatingRateCalculation {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("capRateSchedule")
 		public InflationRateCalculation.InflationRateCalculationBuilder addCapRateSchedule(StrikeSchedule capRateSchedule) {
 			if (capRateSchedule!=null) this.capRateSchedule.add(capRateSchedule.toBuilder());
 			return this;
@@ -479,7 +480,6 @@ public interface InflationRateCalculation extends FloatingRateCalculation {
 		}
 		
 		@Override 
-		@RosettaAttribute("capRateSchedule")
 		public InflationRateCalculation.InflationRateCalculationBuilder setCapRateSchedule(List<? extends StrikeSchedule> capRateSchedules) {
 			if (capRateSchedules == null)  {
 				this.capRateSchedule = new ArrayList<>();
@@ -493,6 +493,7 @@ public interface InflationRateCalculation extends FloatingRateCalculation {
 		}
 		
 		@Override
+		@RosettaAttribute("floorRateSchedule")
 		public InflationRateCalculation.InflationRateCalculationBuilder addFloorRateSchedule(StrikeSchedule floorRateSchedule) {
 			if (floorRateSchedule!=null) this.floorRateSchedule.add(floorRateSchedule.toBuilder());
 			return this;
@@ -514,7 +515,6 @@ public interface InflationRateCalculation extends FloatingRateCalculation {
 		}
 		
 		@Override 
-		@RosettaAttribute("floorRateSchedule")
 		public InflationRateCalculation.InflationRateCalculationBuilder setFloorRateSchedule(List<? extends StrikeSchedule> floorRateSchedules) {
 			if (floorRateSchedules == null)  {
 				this.floorRateSchedule = new ArrayList<>();

@@ -546,6 +546,7 @@ public interface CashSettlementTerms extends SettlementTerms {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("dealer")
 		public CashSettlementTerms.CashSettlementTermsBuilder addDealer(String dealer) {
 			if (dealer!=null) this.dealer.add(dealer);
 			return this;
@@ -567,7 +568,6 @@ public interface CashSettlementTerms extends SettlementTerms {
 		}
 		
 		@Override 
-		@RosettaAttribute("dealer")
 		public CashSettlementTerms.CashSettlementTermsBuilder setDealer(List<String> dealers) {
 			if (dealers == null)  {
 				this.dealer = new ArrayList<>();

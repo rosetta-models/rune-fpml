@@ -221,6 +221,7 @@ public interface MasterAgreement extends RosettaModelObject {
 			return masterAgreementId;
 		}
 		
+		@Override
 		public MasterAgreementId.MasterAgreementIdBuilder getOrCreateMasterAgreementId(int _index) {
 		
 			if (masterAgreementId==null) {
@@ -278,6 +279,7 @@ public interface MasterAgreement extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("masterAgreementId")
 		public MasterAgreement.MasterAgreementBuilder addMasterAgreementId(MasterAgreementId masterAgreementId) {
 			if (masterAgreementId!=null) this.masterAgreementId.add(masterAgreementId.toBuilder());
 			return this;
@@ -299,7 +301,6 @@ public interface MasterAgreement extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("masterAgreementId")
 		public MasterAgreement.MasterAgreementBuilder setMasterAgreementId(List<? extends MasterAgreementId> masterAgreementIds) {
 			if (masterAgreementIds == null)  {
 				this.masterAgreementId = new ArrayList<>();

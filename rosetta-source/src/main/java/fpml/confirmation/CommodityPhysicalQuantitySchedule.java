@@ -191,6 +191,7 @@ public interface CommodityPhysicalQuantitySchedule extends RosettaModelObject {
 			return quantityStep;
 		}
 		
+		@Override
 		public CommodityNotionalQuantity.CommodityNotionalQuantityBuilder getOrCreateQuantityStep(int _index) {
 		
 			if (quantityStep==null) {
@@ -229,6 +230,7 @@ public interface CommodityPhysicalQuantitySchedule extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("quantityStep")
 		public CommodityPhysicalQuantitySchedule.CommodityPhysicalQuantityScheduleBuilder addQuantityStep(CommodityNotionalQuantity quantityStep) {
 			if (quantityStep!=null) this.quantityStep.add(quantityStep.toBuilder());
 			return this;
@@ -250,7 +252,6 @@ public interface CommodityPhysicalQuantitySchedule extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("quantityStep")
 		public CommodityPhysicalQuantitySchedule.CommodityPhysicalQuantityScheduleBuilder setQuantityStep(List<? extends CommodityNotionalQuantity> quantitySteps) {
 			if (quantitySteps == null)  {
 				this.quantityStep = new ArrayList<>();

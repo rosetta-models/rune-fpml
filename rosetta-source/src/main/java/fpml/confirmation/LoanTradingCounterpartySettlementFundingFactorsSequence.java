@@ -231,6 +231,7 @@ public interface LoanTradingCounterpartySettlementFundingFactorsSequence extends
 			return economicBenefit;
 		}
 		
+		@Override
 		public LoanTradingEconomicBenefit.LoanTradingEconomicBenefitBuilder getOrCreateEconomicBenefit(int _index) {
 		
 			if (economicBenefit==null) {
@@ -256,6 +257,7 @@ public interface LoanTradingCounterpartySettlementFundingFactorsSequence extends
 			return this;
 		}
 		@Override
+		@RosettaAttribute("economicBenefit")
 		public LoanTradingCounterpartySettlementFundingFactorsSequence.LoanTradingCounterpartySettlementFundingFactorsSequenceBuilder addEconomicBenefit(LoanTradingEconomicBenefit economicBenefit) {
 			if (economicBenefit!=null) this.economicBenefit.add(economicBenefit.toBuilder());
 			return this;
@@ -277,7 +279,6 @@ public interface LoanTradingCounterpartySettlementFundingFactorsSequence extends
 		}
 		
 		@Override 
-		@RosettaAttribute("economicBenefit")
 		public LoanTradingCounterpartySettlementFundingFactorsSequence.LoanTradingCounterpartySettlementFundingFactorsSequenceBuilder setEconomicBenefit(List<? extends LoanTradingEconomicBenefit> economicBenefits) {
 			if (economicBenefits == null)  {
 				this.economicBenefit = new ArrayList<>();

@@ -150,6 +150,7 @@ public interface AffectedTransactions extends RosettaModelObject {
 			return tradeOrTradeReferenceModel;
 		}
 		
+		@Override
 		public TradeOrTradeReferenceModel.TradeOrTradeReferenceModelBuilder getOrCreateTradeOrTradeReferenceModel(int _index) {
 		
 			if (tradeOrTradeReferenceModel==null) {
@@ -163,6 +164,7 @@ public interface AffectedTransactions extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("tradeOrTradeReferenceModel")
 		public AffectedTransactions.AffectedTransactionsBuilder addTradeOrTradeReferenceModel(TradeOrTradeReferenceModel tradeOrTradeReferenceModel) {
 			if (tradeOrTradeReferenceModel!=null) this.tradeOrTradeReferenceModel.add(tradeOrTradeReferenceModel.toBuilder());
 			return this;
@@ -184,7 +186,6 @@ public interface AffectedTransactions extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("tradeOrTradeReferenceModel")
 		public AffectedTransactions.AffectedTransactionsBuilder setTradeOrTradeReferenceModel(List<? extends TradeOrTradeReferenceModel> tradeOrTradeReferenceModels) {
 			if (tradeOrTradeReferenceModels == null)  {
 				this.tradeOrTradeReferenceModel = new ArrayList<>();

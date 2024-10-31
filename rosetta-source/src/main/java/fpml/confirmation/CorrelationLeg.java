@@ -213,6 +213,7 @@ public interface CorrelationLeg extends DirectionalLegUnderlyerValuation {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("legIdentifier")
 		public CorrelationLeg.CorrelationLegBuilder addLegIdentifier(LegIdentifier legIdentifier) {
 			if (legIdentifier!=null) this.legIdentifier.add(legIdentifier.toBuilder());
 			return this;
@@ -234,7 +235,6 @@ public interface CorrelationLeg extends DirectionalLegUnderlyerValuation {
 		}
 		
 		@Override 
-		@RosettaAttribute("legIdentifier")
 		public CorrelationLeg.CorrelationLegBuilder setLegIdentifier(List<? extends LegIdentifier> legIdentifiers) {
 			if (legIdentifiers == null)  {
 				this.legIdentifier = new ArrayList<>();

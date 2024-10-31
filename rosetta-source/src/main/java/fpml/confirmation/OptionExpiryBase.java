@@ -187,6 +187,7 @@ public interface OptionExpiryBase extends RosettaModelObject {
 			return tradeIdentifier;
 		}
 		
+		@Override
 		public PartyTradeIdentifier.PartyTradeIdentifierBuilder getOrCreateTradeIdentifier(int _index) {
 		
 			if (tradeIdentifier==null) {
@@ -212,6 +213,7 @@ public interface OptionExpiryBase extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("tradeIdentifier")
 		public OptionExpiryBase.OptionExpiryBaseBuilder addTradeIdentifier(PartyTradeIdentifier tradeIdentifier) {
 			if (tradeIdentifier!=null) this.tradeIdentifier.add(tradeIdentifier.toBuilder());
 			return this;
@@ -233,7 +235,6 @@ public interface OptionExpiryBase extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("tradeIdentifier")
 		public OptionExpiryBase.OptionExpiryBaseBuilder setTradeIdentifier(List<? extends PartyTradeIdentifier> tradeIdentifiers) {
 			if (tradeIdentifiers == null)  {
 				this.tradeIdentifier = new ArrayList<>();

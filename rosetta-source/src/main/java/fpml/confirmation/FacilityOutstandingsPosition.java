@@ -169,6 +169,7 @@ public interface FacilityOutstandingsPosition extends FacilityPosition {
 			return outstandingsPosition;
 		}
 		
+		@Override
 		public OutstandingsPosition.OutstandingsPositionBuilder getOrCreateOutstandingsPosition(int _index) {
 		
 			if (outstandingsPosition==null) {
@@ -194,6 +195,7 @@ public interface FacilityOutstandingsPosition extends FacilityPosition {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("outstandingsPosition")
 		public FacilityOutstandingsPosition.FacilityOutstandingsPositionBuilder addOutstandingsPosition(OutstandingsPosition outstandingsPosition) {
 			if (outstandingsPosition!=null) this.outstandingsPosition.add(outstandingsPosition.toBuilder());
 			return this;
@@ -215,7 +217,6 @@ public interface FacilityOutstandingsPosition extends FacilityPosition {
 		}
 		
 		@Override 
-		@RosettaAttribute("outstandingsPosition")
 		public FacilityOutstandingsPosition.FacilityOutstandingsPositionBuilder setOutstandingsPosition(List<? extends OutstandingsPosition> outstandingsPositions) {
 			if (outstandingsPositions == null)  {
 				this.outstandingsPosition = new ArrayList<>();

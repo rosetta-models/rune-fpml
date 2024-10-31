@@ -176,6 +176,7 @@ public interface ComputedDerivativeModel extends RosettaModelObject {
 			return partialDerivative;
 		}
 		
+		@Override
 		public PricingParameterDerivative.PricingParameterDerivativeBuilder getOrCreatePartialDerivative(int _index) {
 		
 			if (partialDerivative==null) {
@@ -208,6 +209,7 @@ public interface ComputedDerivativeModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("partialDerivative")
 		public ComputedDerivativeModel.ComputedDerivativeModelBuilder addPartialDerivative(PricingParameterDerivative partialDerivative) {
 			if (partialDerivative!=null) this.partialDerivative.add(partialDerivative.toBuilder());
 			return this;
@@ -229,7 +231,6 @@ public interface ComputedDerivativeModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("partialDerivative")
 		public ComputedDerivativeModel.ComputedDerivativeModelBuilder setPartialDerivative(List<? extends PricingParameterDerivative> partialDerivatives) {
 			if (partialDerivatives == null)  {
 				this.partialDerivative = new ArrayList<>();

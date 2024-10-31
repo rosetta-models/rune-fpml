@@ -270,6 +270,7 @@ public interface LoanTransferSettlementNotification extends AbstractLoanTradingN
 			return settlement;
 		}
 		
+		@Override
 		public LoanTransferSettlementEvent.LoanTransferSettlementEventBuilder getOrCreateSettlement(int _index) {
 		
 			if (settlement==null) {
@@ -288,6 +289,7 @@ public interface LoanTransferSettlementNotification extends AbstractLoanTradingN
 			return loanTradeAllocationDetailsModel;
 		}
 		
+		@Override
 		public LoanTradeAllocationDetailsModel.LoanTradeAllocationDetailsModelBuilder getOrCreateLoanTradeAllocationDetailsModel(int _index) {
 		
 			if (loanTradeAllocationDetailsModel==null) {
@@ -306,6 +308,7 @@ public interface LoanTransferSettlementNotification extends AbstractLoanTradingN
 			return facilityLoanContractDetailsModel;
 		}
 		
+		@Override
 		public FacilityLoanContractDetailsModel.FacilityLoanContractDetailsModelBuilder getOrCreateFacilityLoanContractDetailsModel(int _index) {
 		
 			if (facilityLoanContractDetailsModel==null) {
@@ -324,6 +327,7 @@ public interface LoanTransferSettlementNotification extends AbstractLoanTradingN
 			return party;
 		}
 		
+		@Override
 		public Party.PartyBuilder getOrCreateParty(int _index) {
 		
 			if (party==null) {
@@ -397,6 +401,7 @@ public interface LoanTransferSettlementNotification extends AbstractLoanTradingN
 			return this;
 		}
 		@Override
+		@RosettaAttribute("settlement")
 		public LoanTransferSettlementNotification.LoanTransferSettlementNotificationBuilder addSettlement(LoanTransferSettlementEvent settlement) {
 			if (settlement!=null) this.settlement.add(settlement.toBuilder());
 			return this;
@@ -418,7 +423,6 @@ public interface LoanTransferSettlementNotification extends AbstractLoanTradingN
 		}
 		
 		@Override 
-		@RosettaAttribute("settlement")
 		public LoanTransferSettlementNotification.LoanTransferSettlementNotificationBuilder setSettlement(List<? extends LoanTransferSettlementEvent> settlements) {
 			if (settlements == null)  {
 				this.settlement = new ArrayList<>();
@@ -432,6 +436,7 @@ public interface LoanTransferSettlementNotification extends AbstractLoanTradingN
 		}
 		
 		@Override
+		@RosettaAttribute("loanTradeAllocationDetailsModel")
 		public LoanTransferSettlementNotification.LoanTransferSettlementNotificationBuilder addLoanTradeAllocationDetailsModel(LoanTradeAllocationDetailsModel loanTradeAllocationDetailsModel) {
 			if (loanTradeAllocationDetailsModel!=null) this.loanTradeAllocationDetailsModel.add(loanTradeAllocationDetailsModel.toBuilder());
 			return this;
@@ -453,7 +458,6 @@ public interface LoanTransferSettlementNotification extends AbstractLoanTradingN
 		}
 		
 		@Override 
-		@RosettaAttribute("loanTradeAllocationDetailsModel")
 		public LoanTransferSettlementNotification.LoanTransferSettlementNotificationBuilder setLoanTradeAllocationDetailsModel(List<? extends LoanTradeAllocationDetailsModel> loanTradeAllocationDetailsModels) {
 			if (loanTradeAllocationDetailsModels == null)  {
 				this.loanTradeAllocationDetailsModel = new ArrayList<>();
@@ -467,6 +471,7 @@ public interface LoanTransferSettlementNotification extends AbstractLoanTradingN
 		}
 		
 		@Override
+		@RosettaAttribute("facilityLoanContractDetailsModel")
 		public LoanTransferSettlementNotification.LoanTransferSettlementNotificationBuilder addFacilityLoanContractDetailsModel(FacilityLoanContractDetailsModel facilityLoanContractDetailsModel) {
 			if (facilityLoanContractDetailsModel!=null) this.facilityLoanContractDetailsModel.add(facilityLoanContractDetailsModel.toBuilder());
 			return this;
@@ -488,7 +493,6 @@ public interface LoanTransferSettlementNotification extends AbstractLoanTradingN
 		}
 		
 		@Override 
-		@RosettaAttribute("facilityLoanContractDetailsModel")
 		public LoanTransferSettlementNotification.LoanTransferSettlementNotificationBuilder setFacilityLoanContractDetailsModel(List<? extends FacilityLoanContractDetailsModel> facilityLoanContractDetailsModels) {
 			if (facilityLoanContractDetailsModels == null)  {
 				this.facilityLoanContractDetailsModel = new ArrayList<>();
@@ -502,6 +506,7 @@ public interface LoanTransferSettlementNotification extends AbstractLoanTradingN
 		}
 		
 		@Override
+		@RosettaAttribute("party")
 		public LoanTransferSettlementNotification.LoanTransferSettlementNotificationBuilder addParty(Party party) {
 			if (party!=null) this.party.add(party.toBuilder());
 			return this;
@@ -523,7 +528,6 @@ public interface LoanTransferSettlementNotification extends AbstractLoanTradingN
 		}
 		
 		@Override 
-		@RosettaAttribute("party")
 		public LoanTransferSettlementNotification.LoanTransferSettlementNotificationBuilder setParty(List<? extends Party> partys) {
 			if (partys == null)  {
 				this.party = new ArrayList<>();

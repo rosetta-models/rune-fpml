@@ -177,6 +177,7 @@ public interface Quanto extends RosettaModelObject {
 			return fxRate;
 		}
 		
+		@Override
 		public FxRate.FxRateBuilder getOrCreateFxRate(int _index) {
 		
 			if (fxRate==null) {
@@ -209,6 +210,7 @@ public interface Quanto extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("fxRate")
 		public Quanto.QuantoBuilder addFxRate(FxRate fxRate) {
 			if (fxRate!=null) this.fxRate.add(fxRate.toBuilder());
 			return this;
@@ -230,7 +232,6 @@ public interface Quanto extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("fxRate")
 		public Quanto.QuantoBuilder setFxRate(List<? extends FxRate> fxRates) {
 			if (fxRates == null)  {
 				this.fxRate = new ArrayList<>();

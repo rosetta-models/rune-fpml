@@ -212,6 +212,7 @@ public interface LcRenewal extends AbstractLcEvent {
 		}
 		
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public LcRenewal.LcRenewalBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -233,7 +234,6 @@ public interface LcRenewal extends AbstractLcEvent {
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public LcRenewal.LcRenewalBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();

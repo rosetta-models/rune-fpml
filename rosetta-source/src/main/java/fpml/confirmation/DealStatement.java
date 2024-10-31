@@ -235,6 +235,7 @@ public interface DealStatement extends AbstractLoanStatement {
 			return party;
 		}
 		
+		@Override
 		public Party.PartyBuilder getOrCreateParty(int _index) {
 		
 			if (party==null) {
@@ -308,6 +309,7 @@ public interface DealStatement extends AbstractLoanStatement {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("party")
 		public DealStatement.DealStatementBuilder addParty(Party party) {
 			if (party!=null) this.party.add(party.toBuilder());
 			return this;
@@ -329,7 +331,6 @@ public interface DealStatement extends AbstractLoanStatement {
 		}
 		
 		@Override 
-		@RosettaAttribute("party")
 		public DealStatement.DealStatementBuilder setParty(List<? extends Party> partys) {
 			if (partys == null)  {
 				this.party = new ArrayList<>();

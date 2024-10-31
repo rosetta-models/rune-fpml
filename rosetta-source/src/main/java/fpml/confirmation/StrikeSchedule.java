@@ -231,6 +231,7 @@ public interface StrikeSchedule extends Schedule {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("step")
 		public StrikeSchedule.StrikeScheduleBuilder addStep(Step step) {
 			if (step!=null) this.step.add(step.toBuilder());
 			return this;
@@ -252,7 +253,6 @@ public interface StrikeSchedule extends Schedule {
 		}
 		
 		@Override 
-		@RosettaAttribute("step")
 		public StrikeSchedule.StrikeScheduleBuilder setStep(List<? extends Step> steps) {
 			if (steps == null)  {
 				this.step = new ArrayList<>();

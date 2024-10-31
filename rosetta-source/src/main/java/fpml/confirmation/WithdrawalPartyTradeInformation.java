@@ -219,6 +219,7 @@ public interface WithdrawalPartyTradeInformation extends RosettaModelObject {
 			return relatedParty;
 		}
 		
+		@Override
 		public RelatedParty.RelatedPartyBuilder getOrCreateRelatedParty(int _index) {
 		
 			if (relatedParty==null) {
@@ -237,6 +238,7 @@ public interface WithdrawalPartyTradeInformation extends RosettaModelObject {
 			return reportingRegime;
 		}
 		
+		@Override
 		public ReportingRegimeIdentifier.ReportingRegimeIdentifierBuilder getOrCreateReportingRegime(int _index) {
 		
 			if (reportingRegime==null) {
@@ -256,6 +258,7 @@ public interface WithdrawalPartyTradeInformation extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("relatedParty")
 		public WithdrawalPartyTradeInformation.WithdrawalPartyTradeInformationBuilder addRelatedParty(RelatedParty relatedParty) {
 			if (relatedParty!=null) this.relatedParty.add(relatedParty.toBuilder());
 			return this;
@@ -277,7 +280,6 @@ public interface WithdrawalPartyTradeInformation extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("relatedParty")
 		public WithdrawalPartyTradeInformation.WithdrawalPartyTradeInformationBuilder setRelatedParty(List<? extends RelatedParty> relatedPartys) {
 			if (relatedPartys == null)  {
 				this.relatedParty = new ArrayList<>();
@@ -291,6 +293,7 @@ public interface WithdrawalPartyTradeInformation extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("reportingRegime")
 		public WithdrawalPartyTradeInformation.WithdrawalPartyTradeInformationBuilder addReportingRegime(ReportingRegimeIdentifier reportingRegime) {
 			if (reportingRegime!=null) this.reportingRegime.add(reportingRegime.toBuilder());
 			return this;
@@ -312,7 +315,6 @@ public interface WithdrawalPartyTradeInformation extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("reportingRegime")
 		public WithdrawalPartyTradeInformation.WithdrawalPartyTradeInformationBuilder setReportingRegime(List<? extends ReportingRegimeIdentifier> reportingRegimes) {
 			if (reportingRegimes == null)  {
 				this.reportingRegime = new ArrayList<>();

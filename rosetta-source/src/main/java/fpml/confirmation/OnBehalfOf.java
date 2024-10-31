@@ -195,6 +195,7 @@ public interface OnBehalfOf extends RosettaModelObject {
 			return accountReference;
 		}
 		
+		@Override
 		public AccountReference.AccountReferenceBuilder getOrCreateAccountReference(int _index) {
 		
 			if (accountReference==null) {
@@ -214,6 +215,7 @@ public interface OnBehalfOf extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("accountReference")
 		public OnBehalfOf.OnBehalfOfBuilder addAccountReference(AccountReference accountReference) {
 			if (accountReference!=null) this.accountReference.add(accountReference.toBuilder());
 			return this;
@@ -235,7 +237,6 @@ public interface OnBehalfOf extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("accountReference")
 		public OnBehalfOf.OnBehalfOfBuilder setAccountReference(List<? extends AccountReference> accountReferences) {
 			if (accountReferences == null)  {
 				this.accountReference = new ArrayList<>();

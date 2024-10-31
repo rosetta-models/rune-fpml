@@ -478,6 +478,7 @@ public interface FxAccrualForward extends Product {
 			return linearPayoffRegion;
 		}
 		
+		@Override
 		public FxAccrualLinearPayoffRegion.FxAccrualLinearPayoffRegionBuilder getOrCreateLinearPayoffRegion(int _index) {
 		
 			if (linearPayoffRegion==null) {
@@ -515,6 +516,7 @@ public interface FxAccrualForward extends Product {
 			return barrier;
 		}
 		
+		@Override
 		public FxAccrualBarrier.FxAccrualBarrierBuilder getOrCreateBarrier(int _index) {
 		
 			if (barrier==null) {
@@ -533,6 +535,7 @@ public interface FxAccrualForward extends Product {
 			return additionalPayment;
 		}
 		
+		@Override
 		public SimplePayment.SimplePaymentBuilder getOrCreateAdditionalPayment(int _index) {
 		
 			if (additionalPayment==null) {
@@ -626,6 +629,7 @@ public interface FxAccrualForward extends Product {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("linearPayoffRegion")
 		public FxAccrualForward.FxAccrualForwardBuilder addLinearPayoffRegion(FxAccrualLinearPayoffRegion linearPayoffRegion) {
 			if (linearPayoffRegion!=null) this.linearPayoffRegion.add(linearPayoffRegion.toBuilder());
 			return this;
@@ -647,7 +651,6 @@ public interface FxAccrualForward extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("linearPayoffRegion")
 		public FxAccrualForward.FxAccrualForwardBuilder setLinearPayoffRegion(List<? extends FxAccrualLinearPayoffRegion> linearPayoffRegions) {
 			if (linearPayoffRegions == null)  {
 				this.linearPayoffRegion = new ArrayList<>();
@@ -667,6 +670,7 @@ public interface FxAccrualForward extends Product {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("barrier")
 		public FxAccrualForward.FxAccrualForwardBuilder addBarrier(FxAccrualBarrier barrier) {
 			if (barrier!=null) this.barrier.add(barrier.toBuilder());
 			return this;
@@ -688,7 +692,6 @@ public interface FxAccrualForward extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("barrier")
 		public FxAccrualForward.FxAccrualForwardBuilder setBarrier(List<? extends FxAccrualBarrier> barriers) {
 			if (barriers == null)  {
 				this.barrier = new ArrayList<>();
@@ -702,6 +705,7 @@ public interface FxAccrualForward extends Product {
 		}
 		
 		@Override
+		@RosettaAttribute("additionalPayment")
 		public FxAccrualForward.FxAccrualForwardBuilder addAdditionalPayment(SimplePayment additionalPayment) {
 			if (additionalPayment!=null) this.additionalPayment.add(additionalPayment.toBuilder());
 			return this;
@@ -723,7 +727,6 @@ public interface FxAccrualForward extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("additionalPayment")
 		public FxAccrualForward.FxAccrualForwardBuilder setAdditionalPayment(List<? extends SimplePayment> additionalPayments) {
 			if (additionalPayments == null)  {
 				this.additionalPayment = new ArrayList<>();

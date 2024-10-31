@@ -171,6 +171,7 @@ public interface CalculationAmount extends Money {
 			return step;
 		}
 		
+		@Override
 		public Step.StepBuilder getOrCreateStep(int _index) {
 		
 			if (step==null) {
@@ -202,6 +203,7 @@ public interface CalculationAmount extends Money {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("step")
 		public CalculationAmount.CalculationAmountBuilder addStep(Step step) {
 			if (step!=null) this.step.add(step.toBuilder());
 			return this;
@@ -223,7 +225,6 @@ public interface CalculationAmount extends Money {
 		}
 		
 		@Override 
-		@RosettaAttribute("step")
 		public CalculationAmount.CalculationAmountBuilder setStep(List<? extends Step> steps) {
 			if (steps == null)  {
 				this.step = new ArrayList<>();

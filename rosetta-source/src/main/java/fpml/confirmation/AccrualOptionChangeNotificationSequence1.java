@@ -189,6 +189,7 @@ public interface AccrualOptionChangeNotificationSequence1 extends RosettaModelOb
 			return letterOfCredit;
 		}
 		
+		@Override
 		public LetterOfCredit.LetterOfCreditBuilder getOrCreateLetterOfCredit(int _index) {
 		
 			if (letterOfCredit==null) {
@@ -208,6 +209,7 @@ public interface AccrualOptionChangeNotificationSequence1 extends RosettaModelOb
 			return this;
 		}
 		@Override
+		@RosettaAttribute("letterOfCredit")
 		public AccrualOptionChangeNotificationSequence1.AccrualOptionChangeNotificationSequence1Builder addLetterOfCredit(LetterOfCredit letterOfCredit) {
 			if (letterOfCredit!=null) this.letterOfCredit.add(letterOfCredit.toBuilder());
 			return this;
@@ -229,7 +231,6 @@ public interface AccrualOptionChangeNotificationSequence1 extends RosettaModelOb
 		}
 		
 		@Override 
-		@RosettaAttribute("letterOfCredit")
 		public AccrualOptionChangeNotificationSequence1.AccrualOptionChangeNotificationSequence1Builder setLetterOfCredit(List<? extends LetterOfCredit> letterOfCredits) {
 			if (letterOfCredits == null)  {
 				this.letterOfCredit = new ArrayList<>();

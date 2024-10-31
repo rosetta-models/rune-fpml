@@ -206,6 +206,7 @@ public interface NonRecurringFeePayment extends AbstractFacilityContractEvent {
 		}
 		
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public NonRecurringFeePayment.NonRecurringFeePaymentBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -227,7 +228,6 @@ public interface NonRecurringFeePayment extends AbstractFacilityContractEvent {
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public NonRecurringFeePayment.NonRecurringFeePaymentBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();
@@ -283,6 +283,7 @@ public interface NonRecurringFeePayment extends AbstractFacilityContractEvent {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("loanContractReference")
 		public NonRecurringFeePayment.NonRecurringFeePaymentBuilder addLoanContractReference(LoanContractReference loanContractReference) {
 			if (loanContractReference!=null) this.loanContractReference.add(loanContractReference.toBuilder());
 			return this;
@@ -304,7 +305,6 @@ public interface NonRecurringFeePayment extends AbstractFacilityContractEvent {
 		}
 		
 		@Override 
-		@RosettaAttribute("loanContractReference")
 		public NonRecurringFeePayment.NonRecurringFeePaymentBuilder setLoanContractReference(List<? extends LoanContractReference> loanContractReferences) {
 			if (loanContractReferences == null)  {
 				this.loanContractReference = new ArrayList<>();

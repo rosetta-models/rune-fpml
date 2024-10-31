@@ -190,6 +190,7 @@ public interface MultiDimensionalPricingData extends RosettaModelObject {
 			return point;
 		}
 		
+		@Override
 		public PricingStructurePoint.PricingStructurePointBuilder getOrCreatePoint(int _index) {
 		
 			if (point==null) {
@@ -209,6 +210,7 @@ public interface MultiDimensionalPricingData extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("point")
 		public MultiDimensionalPricingData.MultiDimensionalPricingDataBuilder addPoint(PricingStructurePoint point) {
 			if (point!=null) this.point.add(point.toBuilder());
 			return this;
@@ -230,7 +232,6 @@ public interface MultiDimensionalPricingData extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("point")
 		public MultiDimensionalPricingData.MultiDimensionalPricingDataBuilder setPoint(List<? extends PricingStructurePoint> points) {
 			if (points == null)  {
 				this.point = new ArrayList<>();

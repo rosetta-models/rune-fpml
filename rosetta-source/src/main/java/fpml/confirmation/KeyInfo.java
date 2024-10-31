@@ -134,6 +134,7 @@ public interface KeyInfo extends KeyInfoType {
 		}
 	
 		@Override
+		@RosettaAttribute("keyInfoTypeChoice")
 		public KeyInfo.KeyInfoBuilder addKeyInfoTypeChoice(KeyInfoTypeChoice keyInfoTypeChoice) {
 			if (keyInfoTypeChoice!=null) this.keyInfoTypeChoice.add(keyInfoTypeChoice.toBuilder());
 			return this;
@@ -155,7 +156,6 @@ public interface KeyInfo extends KeyInfoType {
 		}
 		
 		@Override 
-		@RosettaAttribute("keyInfoTypeChoice")
 		public KeyInfo.KeyInfoBuilder setKeyInfoTypeChoice(List<? extends KeyInfoTypeChoice> keyInfoTypeChoices) {
 			if (keyInfoTypeChoices == null)  {
 				this.keyInfoTypeChoice = new ArrayList<>();

@@ -262,6 +262,7 @@ public interface ExchangeTradedContract extends ExchangeTraded {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("instrumentId")
 		public ExchangeTradedContract.ExchangeTradedContractBuilder addInstrumentId(InstrumentId instrumentId) {
 			if (instrumentId!=null) this.instrumentId.add(instrumentId.toBuilder());
 			return this;
@@ -283,7 +284,6 @@ public interface ExchangeTradedContract extends ExchangeTraded {
 		}
 		
 		@Override 
-		@RosettaAttribute("instrumentId")
 		public ExchangeTradedContract.ExchangeTradedContractBuilder setInstrumentId(List<? extends InstrumentId> instrumentIds) {
 			if (instrumentIds == null)  {
 				this.instrumentId = new ArrayList<>();

@@ -200,6 +200,7 @@ public interface CorrelationSwap extends NettedSwapBase {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("additionalPayment")
 		public CorrelationSwap.CorrelationSwapBuilder addAdditionalPayment(ClassifiablePayment additionalPayment) {
 			if (additionalPayment!=null) this.additionalPayment.add(additionalPayment.toBuilder());
 			return this;
@@ -221,7 +222,6 @@ public interface CorrelationSwap extends NettedSwapBase {
 		}
 		
 		@Override 
-		@RosettaAttribute("additionalPayment")
 		public CorrelationSwap.CorrelationSwapBuilder setAdditionalPayment(List<? extends ClassifiablePayment> additionalPayments) {
 			if (additionalPayments == null)  {
 				this.additionalPayment = new ArrayList<>();

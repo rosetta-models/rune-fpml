@@ -427,6 +427,7 @@ public interface ConsentRefused extends ResponseMessage {
 			return creditLimitInformation;
 		}
 		
+		@Override
 		public CreditLimitInformation.CreditLimitInformationBuilder getOrCreateCreditLimitInformation(int _index) {
 		
 			if (creditLimitInformation==null) {
@@ -464,6 +465,7 @@ public interface ConsentRefused extends ResponseMessage {
 			return reason;
 		}
 		
+		@Override
 		public Reason.ReasonBuilder getOrCreateReason(int _index) {
 		
 			if (reason==null) {
@@ -543,6 +545,7 @@ public interface ConsentRefused extends ResponseMessage {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("creditLimitInformation")
 		public ConsentRefused.ConsentRefusedBuilder addCreditLimitInformation(CreditLimitInformation creditLimitInformation) {
 			if (creditLimitInformation!=null) this.creditLimitInformation.add(creditLimitInformation.toBuilder());
 			return this;
@@ -564,7 +567,6 @@ public interface ConsentRefused extends ResponseMessage {
 		}
 		
 		@Override 
-		@RosettaAttribute("creditLimitInformation")
 		public ConsentRefused.ConsentRefusedBuilder setCreditLimitInformation(List<? extends CreditLimitInformation> creditLimitInformations) {
 			if (creditLimitInformations == null)  {
 				this.creditLimitInformation = new ArrayList<>();
@@ -584,6 +586,7 @@ public interface ConsentRefused extends ResponseMessage {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("reason")
 		public ConsentRefused.ConsentRefusedBuilder addReason(Reason reason) {
 			if (reason!=null) this.reason.add(reason.toBuilder());
 			return this;
@@ -605,7 +608,6 @@ public interface ConsentRefused extends ResponseMessage {
 		}
 		
 		@Override 
-		@RosettaAttribute("reason")
 		public ConsentRefused.ConsentRefusedBuilder setReason(List<? extends Reason> reasons) {
 			if (reasons == null)  {
 				this.reason = new ArrayList<>();

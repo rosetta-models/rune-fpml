@@ -208,6 +208,7 @@ public interface PricingStructurePoint extends RosettaModelObject {
 			return pricingCoordinateOrReferenceModel;
 		}
 		
+		@Override
 		public PricingCoordinateOrReferenceModel.PricingCoordinateOrReferenceModelBuilder getOrCreatePricingCoordinateOrReferenceModel(int _index) {
 		
 			if (pricingCoordinateOrReferenceModel==null) {
@@ -265,6 +266,7 @@ public interface PricingStructurePoint extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("pricingCoordinateOrReferenceModel")
 		public PricingStructurePoint.PricingStructurePointBuilder addPricingCoordinateOrReferenceModel(PricingCoordinateOrReferenceModel pricingCoordinateOrReferenceModel) {
 			if (pricingCoordinateOrReferenceModel!=null) this.pricingCoordinateOrReferenceModel.add(pricingCoordinateOrReferenceModel.toBuilder());
 			return this;
@@ -286,7 +288,6 @@ public interface PricingStructurePoint extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("pricingCoordinateOrReferenceModel")
 		public PricingStructurePoint.PricingStructurePointBuilder setPricingCoordinateOrReferenceModel(List<? extends PricingCoordinateOrReferenceModel> pricingCoordinateOrReferenceModels) {
 			if (pricingCoordinateOrReferenceModels == null)  {
 				this.pricingCoordinateOrReferenceModel = new ArrayList<>();

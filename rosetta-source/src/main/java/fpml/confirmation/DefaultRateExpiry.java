@@ -164,6 +164,7 @@ public interface DefaultRateExpiry extends AbstractFacilityContractEvent {
 		}
 	
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public DefaultRateExpiry.DefaultRateExpiryBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -185,7 +186,6 @@ public interface DefaultRateExpiry extends AbstractFacilityContractEvent {
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public DefaultRateExpiry.DefaultRateExpiryBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();
@@ -241,6 +241,7 @@ public interface DefaultRateExpiry extends AbstractFacilityContractEvent {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("loanContractReference")
 		public DefaultRateExpiry.DefaultRateExpiryBuilder addLoanContractReference(LoanContractReference loanContractReference) {
 			if (loanContractReference!=null) this.loanContractReference.add(loanContractReference.toBuilder());
 			return this;
@@ -262,7 +263,6 @@ public interface DefaultRateExpiry extends AbstractFacilityContractEvent {
 		}
 		
 		@Override 
-		@RosettaAttribute("loanContractReference")
 		public DefaultRateExpiry.DefaultRateExpiryBuilder setLoanContractReference(List<? extends LoanContractReference> loanContractReferences) {
 			if (loanContractReferences == null)  {
 				this.loanContractReference = new ArrayList<>();

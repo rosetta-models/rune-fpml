@@ -217,6 +217,7 @@ public interface CommodityNotionalQuantitySchedule extends RosettaModelObject {
 			return notionalStep;
 		}
 		
+		@Override
 		public CommodityNotionalQuantity.CommodityNotionalQuantityBuilder getOrCreateNotionalStep(int _index) {
 		
 			if (notionalStep==null) {
@@ -235,6 +236,7 @@ public interface CommodityNotionalQuantitySchedule extends RosettaModelObject {
 			return settlementPeriodsNotionalQuantitySchedule;
 		}
 		
+		@Override
 		public CommoditySettlementPeriodsNotionalQuantitySchedule.CommoditySettlementPeriodsNotionalQuantityScheduleBuilder getOrCreateSettlementPeriodsNotionalQuantitySchedule(int _index) {
 		
 			if (settlementPeriodsNotionalQuantitySchedule==null) {
@@ -273,6 +275,7 @@ public interface CommodityNotionalQuantitySchedule extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("notionalStep")
 		public CommodityNotionalQuantitySchedule.CommodityNotionalQuantityScheduleBuilder addNotionalStep(CommodityNotionalQuantity notionalStep) {
 			if (notionalStep!=null) this.notionalStep.add(notionalStep.toBuilder());
 			return this;
@@ -294,7 +297,6 @@ public interface CommodityNotionalQuantitySchedule extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("notionalStep")
 		public CommodityNotionalQuantitySchedule.CommodityNotionalQuantityScheduleBuilder setNotionalStep(List<? extends CommodityNotionalQuantity> notionalSteps) {
 			if (notionalSteps == null)  {
 				this.notionalStep = new ArrayList<>();
@@ -308,6 +310,7 @@ public interface CommodityNotionalQuantitySchedule extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("settlementPeriodsNotionalQuantitySchedule")
 		public CommodityNotionalQuantitySchedule.CommodityNotionalQuantityScheduleBuilder addSettlementPeriodsNotionalQuantitySchedule(CommoditySettlementPeriodsNotionalQuantitySchedule settlementPeriodsNotionalQuantitySchedule) {
 			if (settlementPeriodsNotionalQuantitySchedule!=null) this.settlementPeriodsNotionalQuantitySchedule.add(settlementPeriodsNotionalQuantitySchedule.toBuilder());
 			return this;
@@ -329,7 +332,6 @@ public interface CommodityNotionalQuantitySchedule extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("settlementPeriodsNotionalQuantitySchedule")
 		public CommodityNotionalQuantitySchedule.CommodityNotionalQuantityScheduleBuilder setSettlementPeriodsNotionalQuantitySchedule(List<? extends CommoditySettlementPeriodsNotionalQuantitySchedule> settlementPeriodsNotionalQuantitySchedules) {
 			if (settlementPeriodsNotionalQuantitySchedules == null)  {
 				this.settlementPeriodsNotionalQuantitySchedule = new ArrayList<>();

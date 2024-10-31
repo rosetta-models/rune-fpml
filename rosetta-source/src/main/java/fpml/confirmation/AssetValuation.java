@@ -201,6 +201,7 @@ public interface AssetValuation extends Valuation {
 			return quote;
 		}
 		
+		@Override
 		public Quotation.QuotationBuilder getOrCreateQuote(int _index) {
 		
 			if (quote==null) {
@@ -219,6 +220,7 @@ public interface AssetValuation extends Valuation {
 			return fxRate;
 		}
 		
+		@Override
 		public FxRate.FxRateBuilder getOrCreateFxRate(int _index) {
 		
 			if (fxRate==null) {
@@ -256,6 +258,7 @@ public interface AssetValuation extends Valuation {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("quote")
 		public AssetValuation.AssetValuationBuilder addQuote(Quotation quote) {
 			if (quote!=null) this.quote.add(quote.toBuilder());
 			return this;
@@ -277,7 +280,6 @@ public interface AssetValuation extends Valuation {
 		}
 		
 		@Override 
-		@RosettaAttribute("quote")
 		public AssetValuation.AssetValuationBuilder setQuote(List<? extends Quotation> quotes) {
 			if (quotes == null)  {
 				this.quote = new ArrayList<>();
@@ -291,6 +293,7 @@ public interface AssetValuation extends Valuation {
 		}
 		
 		@Override
+		@RosettaAttribute("fxRate")
 		public AssetValuation.AssetValuationBuilder addFxRate(FxRate fxRate) {
 			if (fxRate!=null) this.fxRate.add(fxRate.toBuilder());
 			return this;
@@ -312,7 +315,6 @@ public interface AssetValuation extends Valuation {
 		}
 		
 		@Override 
-		@RosettaAttribute("fxRate")
 		public AssetValuation.AssetValuationBuilder setFxRate(List<? extends FxRate> fxRates) {
 			if (fxRates == null)  {
 				this.fxRate = new ArrayList<>();

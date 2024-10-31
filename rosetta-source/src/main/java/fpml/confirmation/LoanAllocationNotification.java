@@ -309,6 +309,7 @@ public interface LoanAllocationNotification extends AbstractLoanTradingNotificat
 			return allocation;
 		}
 		
+		@Override
 		public LoanAllocation.LoanAllocationBuilder getOrCreateAllocation(int _index) {
 		
 			if (allocation==null) {
@@ -365,6 +366,7 @@ public interface LoanAllocationNotification extends AbstractLoanTradingNotificat
 			return party;
 		}
 		
+		@Override
 		public Party.PartyBuilder getOrCreateParty(int _index) {
 		
 			if (party==null) {
@@ -444,6 +446,7 @@ public interface LoanAllocationNotification extends AbstractLoanTradingNotificat
 			return this;
 		}
 		@Override
+		@RosettaAttribute("allocation")
 		public LoanAllocationNotification.LoanAllocationNotificationBuilder addAllocation(LoanAllocation allocation) {
 			if (allocation!=null) this.allocation.add(allocation.toBuilder());
 			return this;
@@ -465,7 +468,6 @@ public interface LoanAllocationNotification extends AbstractLoanTradingNotificat
 		}
 		
 		@Override 
-		@RosettaAttribute("allocation")
 		public LoanAllocationNotification.LoanAllocationNotificationBuilder setAllocation(List<? extends LoanAllocation> allocations) {
 			if (allocations == null)  {
 				this.allocation = new ArrayList<>();
@@ -491,6 +493,7 @@ public interface LoanAllocationNotification extends AbstractLoanTradingNotificat
 			return this;
 		}
 		@Override
+		@RosettaAttribute("party")
 		public LoanAllocationNotification.LoanAllocationNotificationBuilder addParty(Party party) {
 			if (party!=null) this.party.add(party.toBuilder());
 			return this;
@@ -512,7 +515,6 @@ public interface LoanAllocationNotification extends AbstractLoanTradingNotificat
 		}
 		
 		@Override 
-		@RosettaAttribute("party")
 		public LoanAllocationNotification.LoanAllocationNotificationBuilder setParty(List<? extends Party> partys) {
 			if (partys == null)  {
 				this.party = new ArrayList<>();

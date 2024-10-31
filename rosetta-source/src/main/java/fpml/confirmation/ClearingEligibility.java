@@ -342,6 +342,7 @@ public interface ClearingEligibility extends ResponseMessage {
 			return clearingRequirements;
 		}
 		
+		@Override
 		public ClearingRequirements.ClearingRequirementsBuilder getOrCreateClearingRequirements(int _index) {
 		
 			if (clearingRequirements==null) {
@@ -434,6 +435,7 @@ public interface ClearingEligibility extends ResponseMessage {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("clearingRequirements")
 		public ClearingEligibility.ClearingEligibilityBuilder addClearingRequirements(ClearingRequirements clearingRequirements) {
 			if (clearingRequirements!=null) this.clearingRequirements.add(clearingRequirements.toBuilder());
 			return this;
@@ -455,7 +457,6 @@ public interface ClearingEligibility extends ResponseMessage {
 		}
 		
 		@Override 
-		@RosettaAttribute("clearingRequirements")
 		public ClearingEligibility.ClearingEligibilityBuilder setClearingRequirements(List<? extends ClearingRequirements> clearingRequirementss) {
 			if (clearingRequirementss == null)  {
 				this.clearingRequirements = new ArrayList<>();

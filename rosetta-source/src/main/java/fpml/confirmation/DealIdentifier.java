@@ -144,6 +144,7 @@ public interface DealIdentifier extends IdentifiedAsset {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("instrumentId")
 		public DealIdentifier.DealIdentifierBuilder addInstrumentId(InstrumentId instrumentId) {
 			if (instrumentId!=null) this.instrumentId.add(instrumentId.toBuilder());
 			return this;
@@ -165,7 +166,6 @@ public interface DealIdentifier extends IdentifiedAsset {
 		}
 		
 		@Override 
-		@RosettaAttribute("instrumentId")
 		public DealIdentifier.DealIdentifierBuilder setInstrumentId(List<? extends InstrumentId> instrumentIds) {
 			if (instrumentIds == null)  {
 				this.instrumentId = new ArrayList<>();

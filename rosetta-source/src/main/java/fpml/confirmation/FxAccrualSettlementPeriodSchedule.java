@@ -153,6 +153,7 @@ public interface FxAccrualSettlementPeriodSchedule extends RosettaModelObject {
 			return settlementPeriod;
 		}
 		
+		@Override
 		public FxAccrualSettlementPeriod.FxAccrualSettlementPeriodBuilder getOrCreateSettlementPeriod(int _index) {
 		
 			if (settlementPeriod==null) {
@@ -166,6 +167,7 @@ public interface FxAccrualSettlementPeriodSchedule extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("settlementPeriod")
 		public FxAccrualSettlementPeriodSchedule.FxAccrualSettlementPeriodScheduleBuilder addSettlementPeriod(FxAccrualSettlementPeriod settlementPeriod) {
 			if (settlementPeriod!=null) this.settlementPeriod.add(settlementPeriod.toBuilder());
 			return this;
@@ -187,7 +189,6 @@ public interface FxAccrualSettlementPeriodSchedule extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("settlementPeriod")
 		public FxAccrualSettlementPeriodSchedule.FxAccrualSettlementPeriodScheduleBuilder setSettlementPeriod(List<? extends FxAccrualSettlementPeriod> settlementPeriods) {
 			if (settlementPeriods == null)  {
 				this.settlementPeriod = new ArrayList<>();

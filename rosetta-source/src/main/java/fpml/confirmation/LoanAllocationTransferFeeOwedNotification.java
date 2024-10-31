@@ -270,6 +270,7 @@ public interface LoanAllocationTransferFeeOwedNotification extends AbstractLoanT
 			return feeOwed;
 		}
 		
+		@Override
 		public LoanAllocationTransferFeeOwedEvent.LoanAllocationTransferFeeOwedEventBuilder getOrCreateFeeOwed(int _index) {
 		
 			if (feeOwed==null) {
@@ -288,6 +289,7 @@ public interface LoanAllocationTransferFeeOwedNotification extends AbstractLoanT
 			return loanTradeAllocationDetailsModel;
 		}
 		
+		@Override
 		public LoanTradeAllocationDetailsModel.LoanTradeAllocationDetailsModelBuilder getOrCreateLoanTradeAllocationDetailsModel(int _index) {
 		
 			if (loanTradeAllocationDetailsModel==null) {
@@ -306,6 +308,7 @@ public interface LoanAllocationTransferFeeOwedNotification extends AbstractLoanT
 			return facilityDetailsModel;
 		}
 		
+		@Override
 		public FacilityDetailsModel.FacilityDetailsModelBuilder getOrCreateFacilityDetailsModel(int _index) {
 		
 			if (facilityDetailsModel==null) {
@@ -324,6 +327,7 @@ public interface LoanAllocationTransferFeeOwedNotification extends AbstractLoanT
 			return party;
 		}
 		
+		@Override
 		public Party.PartyBuilder getOrCreateParty(int _index) {
 		
 			if (party==null) {
@@ -397,6 +401,7 @@ public interface LoanAllocationTransferFeeOwedNotification extends AbstractLoanT
 			return this;
 		}
 		@Override
+		@RosettaAttribute("feeOwed")
 		public LoanAllocationTransferFeeOwedNotification.LoanAllocationTransferFeeOwedNotificationBuilder addFeeOwed(LoanAllocationTransferFeeOwedEvent feeOwed) {
 			if (feeOwed!=null) this.feeOwed.add(feeOwed.toBuilder());
 			return this;
@@ -418,7 +423,6 @@ public interface LoanAllocationTransferFeeOwedNotification extends AbstractLoanT
 		}
 		
 		@Override 
-		@RosettaAttribute("feeOwed")
 		public LoanAllocationTransferFeeOwedNotification.LoanAllocationTransferFeeOwedNotificationBuilder setFeeOwed(List<? extends LoanAllocationTransferFeeOwedEvent> feeOweds) {
 			if (feeOweds == null)  {
 				this.feeOwed = new ArrayList<>();
@@ -432,6 +436,7 @@ public interface LoanAllocationTransferFeeOwedNotification extends AbstractLoanT
 		}
 		
 		@Override
+		@RosettaAttribute("loanTradeAllocationDetailsModel")
 		public LoanAllocationTransferFeeOwedNotification.LoanAllocationTransferFeeOwedNotificationBuilder addLoanTradeAllocationDetailsModel(LoanTradeAllocationDetailsModel loanTradeAllocationDetailsModel) {
 			if (loanTradeAllocationDetailsModel!=null) this.loanTradeAllocationDetailsModel.add(loanTradeAllocationDetailsModel.toBuilder());
 			return this;
@@ -453,7 +458,6 @@ public interface LoanAllocationTransferFeeOwedNotification extends AbstractLoanT
 		}
 		
 		@Override 
-		@RosettaAttribute("loanTradeAllocationDetailsModel")
 		public LoanAllocationTransferFeeOwedNotification.LoanAllocationTransferFeeOwedNotificationBuilder setLoanTradeAllocationDetailsModel(List<? extends LoanTradeAllocationDetailsModel> loanTradeAllocationDetailsModels) {
 			if (loanTradeAllocationDetailsModels == null)  {
 				this.loanTradeAllocationDetailsModel = new ArrayList<>();
@@ -467,6 +471,7 @@ public interface LoanAllocationTransferFeeOwedNotification extends AbstractLoanT
 		}
 		
 		@Override
+		@RosettaAttribute("facilityDetailsModel")
 		public LoanAllocationTransferFeeOwedNotification.LoanAllocationTransferFeeOwedNotificationBuilder addFacilityDetailsModel(FacilityDetailsModel facilityDetailsModel) {
 			if (facilityDetailsModel!=null) this.facilityDetailsModel.add(facilityDetailsModel.toBuilder());
 			return this;
@@ -488,7 +493,6 @@ public interface LoanAllocationTransferFeeOwedNotification extends AbstractLoanT
 		}
 		
 		@Override 
-		@RosettaAttribute("facilityDetailsModel")
 		public LoanAllocationTransferFeeOwedNotification.LoanAllocationTransferFeeOwedNotificationBuilder setFacilityDetailsModel(List<? extends FacilityDetailsModel> facilityDetailsModels) {
 			if (facilityDetailsModels == null)  {
 				this.facilityDetailsModel = new ArrayList<>();
@@ -502,6 +506,7 @@ public interface LoanAllocationTransferFeeOwedNotification extends AbstractLoanT
 		}
 		
 		@Override
+		@RosettaAttribute("party")
 		public LoanAllocationTransferFeeOwedNotification.LoanAllocationTransferFeeOwedNotificationBuilder addParty(Party party) {
 			if (party!=null) this.party.add(party.toBuilder());
 			return this;
@@ -523,7 +528,6 @@ public interface LoanAllocationTransferFeeOwedNotification extends AbstractLoanT
 		}
 		
 		@Override 
-		@RosettaAttribute("party")
 		public LoanAllocationTransferFeeOwedNotification.LoanAllocationTransferFeeOwedNotificationBuilder setParty(List<? extends Party> partys) {
 			if (partys == null)  {
 				this.party = new ArrayList<>();

@@ -232,6 +232,7 @@ public interface ReportingNotionalChangeModel extends RosettaModelObject {
 			return changeInNotional;
 		}
 		
+		@Override
 		public MoneyRef.MoneyRefBuilder getOrCreateChangeInNotional(int _index) {
 		
 			if (changeInNotional==null) {
@@ -250,6 +251,7 @@ public interface ReportingNotionalChangeModel extends RosettaModelObject {
 			return changeInNumberOfOptions;
 		}
 		
+		@Override
 		public AmountRef.AmountRefBuilder getOrCreateChangeInNumberOfOptions(int _index) {
 		
 			if (changeInNumberOfOptions==null) {
@@ -268,6 +270,7 @@ public interface ReportingNotionalChangeModel extends RosettaModelObject {
 			return changeInQuantity;
 		}
 		
+		@Override
 		public UnitQuantityRef.UnitQuantityRefBuilder getOrCreateChangeInQuantity(int _index) {
 		
 			if (changeInQuantity==null) {
@@ -287,6 +290,7 @@ public interface ReportingNotionalChangeModel extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("changeInNotional")
 		public ReportingNotionalChangeModel.ReportingNotionalChangeModelBuilder addChangeInNotional(MoneyRef changeInNotional) {
 			if (changeInNotional!=null) this.changeInNotional.add(changeInNotional.toBuilder());
 			return this;
@@ -308,7 +312,6 @@ public interface ReportingNotionalChangeModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("changeInNotional")
 		public ReportingNotionalChangeModel.ReportingNotionalChangeModelBuilder setChangeInNotional(List<? extends MoneyRef> changeInNotionals) {
 			if (changeInNotionals == null)  {
 				this.changeInNotional = new ArrayList<>();
@@ -322,6 +325,7 @@ public interface ReportingNotionalChangeModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("changeInNumberOfOptions")
 		public ReportingNotionalChangeModel.ReportingNotionalChangeModelBuilder addChangeInNumberOfOptions(AmountRef changeInNumberOfOptions) {
 			if (changeInNumberOfOptions!=null) this.changeInNumberOfOptions.add(changeInNumberOfOptions.toBuilder());
 			return this;
@@ -343,7 +347,6 @@ public interface ReportingNotionalChangeModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("changeInNumberOfOptions")
 		public ReportingNotionalChangeModel.ReportingNotionalChangeModelBuilder setChangeInNumberOfOptions(List<? extends AmountRef> changeInNumberOfOptionss) {
 			if (changeInNumberOfOptionss == null)  {
 				this.changeInNumberOfOptions = new ArrayList<>();
@@ -357,6 +360,7 @@ public interface ReportingNotionalChangeModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("changeInQuantity")
 		public ReportingNotionalChangeModel.ReportingNotionalChangeModelBuilder addChangeInQuantity(UnitQuantityRef changeInQuantity) {
 			if (changeInQuantity!=null) this.changeInQuantity.add(changeInQuantity.toBuilder());
 			return this;
@@ -378,7 +382,6 @@ public interface ReportingNotionalChangeModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("changeInQuantity")
 		public ReportingNotionalChangeModel.ReportingNotionalChangeModelBuilder setChangeInQuantity(List<? extends UnitQuantityRef> changeInQuantitys) {
 			if (changeInQuantitys == null)  {
 				this.changeInQuantity = new ArrayList<>();

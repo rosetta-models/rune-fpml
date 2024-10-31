@@ -154,6 +154,7 @@ public interface SwaptionAdjustedDates extends RosettaModelObject {
 			return exerciseEvent;
 		}
 		
+		@Override
 		public ExerciseEvent.ExerciseEventBuilder getOrCreateExerciseEvent(int _index) {
 		
 			if (exerciseEvent==null) {
@@ -167,6 +168,7 @@ public interface SwaptionAdjustedDates extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("exerciseEvent")
 		public SwaptionAdjustedDates.SwaptionAdjustedDatesBuilder addExerciseEvent(ExerciseEvent exerciseEvent) {
 			if (exerciseEvent!=null) this.exerciseEvent.add(exerciseEvent.toBuilder());
 			return this;
@@ -188,7 +190,6 @@ public interface SwaptionAdjustedDates extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("exerciseEvent")
 		public SwaptionAdjustedDates.SwaptionAdjustedDatesBuilder setExerciseEvent(List<? extends ExerciseEvent> exerciseEvents) {
 			if (exerciseEvents == null)  {
 				this.exerciseEvent = new ArrayList<>();

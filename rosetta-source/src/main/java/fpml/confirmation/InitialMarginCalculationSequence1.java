@@ -185,6 +185,7 @@ public interface InitialMarginCalculationSequence1 extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("haircutThreshold")
 		public InitialMarginCalculationSequence1.InitialMarginCalculationSequence1Builder addHaircutThreshold(BigDecimal haircutThreshold) {
 			if (haircutThreshold!=null) this.haircutThreshold.add(haircutThreshold);
 			return this;
@@ -206,7 +207,6 @@ public interface InitialMarginCalculationSequence1 extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("haircutThreshold")
 		public InitialMarginCalculationSequence1.InitialMarginCalculationSequence1Builder setHaircutThreshold(List<BigDecimal> haircutThresholds) {
 			if (haircutThresholds == null)  {
 				this.haircutThreshold = new ArrayList<>();

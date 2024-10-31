@@ -278,6 +278,7 @@ public interface CoalProduct extends RosettaModelObject {
 			return source;
 		}
 		
+		@Override
 		public CoalProductSource.CoalProductSourceBuilder getOrCreateSource(int _index) {
 		
 			if (source==null) {
@@ -328,6 +329,7 @@ public interface CoalProduct extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("source")
 		public CoalProduct.CoalProductBuilder addSource(CoalProductSource source) {
 			if (source!=null) this.source.add(source.toBuilder());
 			return this;
@@ -349,7 +351,6 @@ public interface CoalProduct extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("source")
 		public CoalProduct.CoalProductBuilder setSource(List<? extends CoalProductSource> sources) {
 			if (sources == null)  {
 				this.source = new ArrayList<>();

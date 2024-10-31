@@ -272,6 +272,7 @@ public interface FloatingRateDefinition extends RosettaModelObject {
 			return rateObservation;
 		}
 		
+		@Override
 		public RateObservation.RateObservationBuilder getOrCreateRateObservation(int _index) {
 		
 			if (rateObservation==null) {
@@ -302,6 +303,7 @@ public interface FloatingRateDefinition extends RosettaModelObject {
 			return capRate;
 		}
 		
+		@Override
 		public Strike.StrikeBuilder getOrCreateCapRate(int _index) {
 		
 			if (capRate==null) {
@@ -320,6 +322,7 @@ public interface FloatingRateDefinition extends RosettaModelObject {
 			return floorRate;
 		}
 		
+		@Override
 		public Strike.StrikeBuilder getOrCreateFloorRate(int _index) {
 		
 			if (floorRate==null) {
@@ -339,6 +342,7 @@ public interface FloatingRateDefinition extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("rateObservation")
 		public FloatingRateDefinition.FloatingRateDefinitionBuilder addRateObservation(RateObservation rateObservation) {
 			if (rateObservation!=null) this.rateObservation.add(rateObservation.toBuilder());
 			return this;
@@ -360,7 +364,6 @@ public interface FloatingRateDefinition extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("rateObservation")
 		public FloatingRateDefinition.FloatingRateDefinitionBuilder setRateObservation(List<? extends RateObservation> rateObservations) {
 			if (rateObservations == null)  {
 				this.rateObservation = new ArrayList<>();
@@ -386,6 +389,7 @@ public interface FloatingRateDefinition extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("capRate")
 		public FloatingRateDefinition.FloatingRateDefinitionBuilder addCapRate(Strike capRate) {
 			if (capRate!=null) this.capRate.add(capRate.toBuilder());
 			return this;
@@ -407,7 +411,6 @@ public interface FloatingRateDefinition extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("capRate")
 		public FloatingRateDefinition.FloatingRateDefinitionBuilder setCapRate(List<? extends Strike> capRates) {
 			if (capRates == null)  {
 				this.capRate = new ArrayList<>();
@@ -421,6 +424,7 @@ public interface FloatingRateDefinition extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("floorRate")
 		public FloatingRateDefinition.FloatingRateDefinitionBuilder addFloorRate(Strike floorRate) {
 			if (floorRate!=null) this.floorRate.add(floorRate.toBuilder());
 			return this;
@@ -442,7 +446,6 @@ public interface FloatingRateDefinition extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("floorRate")
 		public FloatingRateDefinition.FloatingRateDefinitionBuilder setFloorRate(List<? extends Strike> floorRates) {
 			if (floorRates == null)  {
 				this.floorRate = new ArrayList<>();

@@ -186,6 +186,7 @@ public interface LcTermination extends AbstractLcEvent {
 		}
 		
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public LcTermination.LcTerminationBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -207,7 +208,6 @@ public interface LcTermination extends AbstractLcEvent {
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public LcTermination.LcTerminationBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();

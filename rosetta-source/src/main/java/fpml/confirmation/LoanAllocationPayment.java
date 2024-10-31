@@ -192,6 +192,7 @@ public interface LoanAllocationPayment extends Payment {
 			return loanAllocationPaymentSequence;
 		}
 		
+		@Override
 		public LoanAllocationPaymentSequence.LoanAllocationPaymentSequenceBuilder getOrCreateLoanAllocationPaymentSequence(int _index) {
 		
 			if (loanAllocationPaymentSequence==null) {
@@ -259,6 +260,7 @@ public interface LoanAllocationPayment extends Payment {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("loanAllocationPaymentSequence")
 		public LoanAllocationPayment.LoanAllocationPaymentBuilder addLoanAllocationPaymentSequence(LoanAllocationPaymentSequence loanAllocationPaymentSequence) {
 			if (loanAllocationPaymentSequence!=null) this.loanAllocationPaymentSequence.add(loanAllocationPaymentSequence.toBuilder());
 			return this;
@@ -280,7 +282,6 @@ public interface LoanAllocationPayment extends Payment {
 		}
 		
 		@Override 
-		@RosettaAttribute("loanAllocationPaymentSequence")
 		public LoanAllocationPayment.LoanAllocationPaymentBuilder setLoanAllocationPaymentSequence(List<? extends LoanAllocationPaymentSequence> loanAllocationPaymentSequences) {
 			if (loanAllocationPaymentSequences == null)  {
 				this.loanAllocationPaymentSequence = new ArrayList<>();

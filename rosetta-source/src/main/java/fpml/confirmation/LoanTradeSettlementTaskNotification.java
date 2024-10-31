@@ -273,6 +273,7 @@ public interface LoanTradeSettlementTaskNotification extends AbstractLoanTrading
 			return task;
 		}
 		
+		@Override
 		public LoanTradeSettlementTask.LoanTradeSettlementTaskBuilder getOrCreateTask(int _index) {
 		
 			if (task==null) {
@@ -291,6 +292,7 @@ public interface LoanTradeSettlementTaskNotification extends AbstractLoanTrading
 			return tradeSummary;
 		}
 		
+		@Override
 		public LoanTradeSummary.LoanTradeSummaryBuilder getOrCreateTradeSummary(int _index) {
 		
 			if (tradeSummary==null) {
@@ -309,6 +311,7 @@ public interface LoanTradeSettlementTaskNotification extends AbstractLoanTrading
 			return facilityDetailsModel;
 		}
 		
+		@Override
 		public FacilityDetailsModel.FacilityDetailsModelBuilder getOrCreateFacilityDetailsModel(int _index) {
 		
 			if (facilityDetailsModel==null) {
@@ -327,6 +330,7 @@ public interface LoanTradeSettlementTaskNotification extends AbstractLoanTrading
 			return party;
 		}
 		
+		@Override
 		public Party.PartyBuilder getOrCreateParty(int _index) {
 		
 			if (party==null) {
@@ -400,6 +404,7 @@ public interface LoanTradeSettlementTaskNotification extends AbstractLoanTrading
 			return this;
 		}
 		@Override
+		@RosettaAttribute("task")
 		public LoanTradeSettlementTaskNotification.LoanTradeSettlementTaskNotificationBuilder addTask(LoanTradeSettlementTask task) {
 			if (task!=null) this.task.add(task.toBuilder());
 			return this;
@@ -421,7 +426,6 @@ public interface LoanTradeSettlementTaskNotification extends AbstractLoanTrading
 		}
 		
 		@Override 
-		@RosettaAttribute("task")
 		public LoanTradeSettlementTaskNotification.LoanTradeSettlementTaskNotificationBuilder setTask(List<? extends LoanTradeSettlementTask> tasks) {
 			if (tasks == null)  {
 				this.task = new ArrayList<>();
@@ -435,6 +439,7 @@ public interface LoanTradeSettlementTaskNotification extends AbstractLoanTrading
 		}
 		
 		@Override
+		@RosettaAttribute("tradeSummary")
 		public LoanTradeSettlementTaskNotification.LoanTradeSettlementTaskNotificationBuilder addTradeSummary(LoanTradeSummary tradeSummary) {
 			if (tradeSummary!=null) this.tradeSummary.add(tradeSummary.toBuilder());
 			return this;
@@ -456,7 +461,6 @@ public interface LoanTradeSettlementTaskNotification extends AbstractLoanTrading
 		}
 		
 		@Override 
-		@RosettaAttribute("tradeSummary")
 		public LoanTradeSettlementTaskNotification.LoanTradeSettlementTaskNotificationBuilder setTradeSummary(List<? extends LoanTradeSummary> tradeSummarys) {
 			if (tradeSummarys == null)  {
 				this.tradeSummary = new ArrayList<>();
@@ -470,6 +474,7 @@ public interface LoanTradeSettlementTaskNotification extends AbstractLoanTrading
 		}
 		
 		@Override
+		@RosettaAttribute("facilityDetailsModel")
 		public LoanTradeSettlementTaskNotification.LoanTradeSettlementTaskNotificationBuilder addFacilityDetailsModel(FacilityDetailsModel facilityDetailsModel) {
 			if (facilityDetailsModel!=null) this.facilityDetailsModel.add(facilityDetailsModel.toBuilder());
 			return this;
@@ -491,7 +496,6 @@ public interface LoanTradeSettlementTaskNotification extends AbstractLoanTrading
 		}
 		
 		@Override 
-		@RosettaAttribute("facilityDetailsModel")
 		public LoanTradeSettlementTaskNotification.LoanTradeSettlementTaskNotificationBuilder setFacilityDetailsModel(List<? extends FacilityDetailsModel> facilityDetailsModels) {
 			if (facilityDetailsModels == null)  {
 				this.facilityDetailsModel = new ArrayList<>();
@@ -505,6 +509,7 @@ public interface LoanTradeSettlementTaskNotification extends AbstractLoanTrading
 		}
 		
 		@Override
+		@RosettaAttribute("party")
 		public LoanTradeSettlementTaskNotification.LoanTradeSettlementTaskNotificationBuilder addParty(Party party) {
 			if (party!=null) this.party.add(party.toBuilder());
 			return this;
@@ -526,7 +531,6 @@ public interface LoanTradeSettlementTaskNotification extends AbstractLoanTrading
 		}
 		
 		@Override 
-		@RosettaAttribute("party")
 		public LoanTradeSettlementTaskNotification.LoanTradeSettlementTaskNotificationBuilder setParty(List<? extends Party> partys) {
 			if (partys == null)  {
 				this.party = new ArrayList<>();

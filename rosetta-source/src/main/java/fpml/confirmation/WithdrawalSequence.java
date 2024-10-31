@@ -179,6 +179,7 @@ public interface WithdrawalSequence extends RosettaModelObject {
 			return partyTradeIdentifier;
 		}
 		
+		@Override
 		public PartyTradeIdentifier.PartyTradeIdentifierBuilder getOrCreatePartyTradeIdentifier(int _index) {
 		
 			if (partyTradeIdentifier==null) {
@@ -197,6 +198,7 @@ public interface WithdrawalSequence extends RosettaModelObject {
 			return partyTradeInformation;
 		}
 		
+		@Override
 		public WithdrawalPartyTradeInformation.WithdrawalPartyTradeInformationBuilder getOrCreatePartyTradeInformation(int _index) {
 		
 			if (partyTradeInformation==null) {
@@ -210,6 +212,7 @@ public interface WithdrawalSequence extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("partyTradeIdentifier")
 		public WithdrawalSequence.WithdrawalSequenceBuilder addPartyTradeIdentifier(PartyTradeIdentifier partyTradeIdentifier) {
 			if (partyTradeIdentifier!=null) this.partyTradeIdentifier.add(partyTradeIdentifier.toBuilder());
 			return this;
@@ -231,7 +234,6 @@ public interface WithdrawalSequence extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("partyTradeIdentifier")
 		public WithdrawalSequence.WithdrawalSequenceBuilder setPartyTradeIdentifier(List<? extends PartyTradeIdentifier> partyTradeIdentifiers) {
 			if (partyTradeIdentifiers == null)  {
 				this.partyTradeIdentifier = new ArrayList<>();
@@ -245,6 +247,7 @@ public interface WithdrawalSequence extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("partyTradeInformation")
 		public WithdrawalSequence.WithdrawalSequenceBuilder addPartyTradeInformation(WithdrawalPartyTradeInformation partyTradeInformation) {
 			if (partyTradeInformation!=null) this.partyTradeInformation.add(partyTradeInformation.toBuilder());
 			return this;
@@ -266,7 +269,6 @@ public interface WithdrawalSequence extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("partyTradeInformation")
 		public WithdrawalSequence.WithdrawalSequenceBuilder setPartyTradeInformation(List<? extends WithdrawalPartyTradeInformation> partyTradeInformations) {
 			if (partyTradeInformations == null)  {
 				this.partyTradeInformation = new ArrayList<>();

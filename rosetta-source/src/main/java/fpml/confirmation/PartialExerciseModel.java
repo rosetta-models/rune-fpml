@@ -214,6 +214,7 @@ public interface PartialExerciseModel extends RosettaModelObject {
 			return notionalReference;
 		}
 		
+		@Override
 		public NotionalReference.NotionalReferenceBuilder getOrCreateNotionalReference(int _index) {
 		
 			if (notionalReference==null) {
@@ -245,6 +246,7 @@ public interface PartialExerciseModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("notionalReference")
 		public PartialExerciseModel.PartialExerciseModelBuilder addNotionalReference(NotionalReference notionalReference) {
 			if (notionalReference!=null) this.notionalReference.add(notionalReference.toBuilder());
 			return this;
@@ -266,7 +268,6 @@ public interface PartialExerciseModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("notionalReference")
 		public PartialExerciseModel.PartialExerciseModelBuilder setNotionalReference(List<? extends NotionalReference> notionalReferences) {
 			if (notionalReferences == null)  {
 				this.notionalReference = new ArrayList<>();

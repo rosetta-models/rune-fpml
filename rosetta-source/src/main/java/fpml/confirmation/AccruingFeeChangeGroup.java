@@ -157,6 +157,7 @@ public interface AccruingFeeChangeGroup extends AbstractFacilityEvent {
 		}
 	
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public AccruingFeeChangeGroup.AccruingFeeChangeGroupBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -178,7 +179,6 @@ public interface AccruingFeeChangeGroup extends AbstractFacilityEvent {
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public AccruingFeeChangeGroup.AccruingFeeChangeGroupBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();

@@ -219,6 +219,7 @@ public interface AdjustableDates extends RosettaModelObject {
 			return unadjustedDate;
 		}
 		
+		@Override
 		public IdentifiedDate.IdentifiedDateBuilder getOrCreateUnadjustedDate(int _index) {
 		
 			if (unadjustedDate==null) {
@@ -256,6 +257,7 @@ public interface AdjustableDates extends RosettaModelObject {
 			return adjustedDate;
 		}
 		
+		@Override
 		public IdentifiedDate.IdentifiedDateBuilder getOrCreateAdjustedDate(int _index) {
 		
 			if (adjustedDate==null) {
@@ -275,6 +277,7 @@ public interface AdjustableDates extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("unadjustedDate")
 		public AdjustableDates.AdjustableDatesBuilder addUnadjustedDate(IdentifiedDate unadjustedDate) {
 			if (unadjustedDate!=null) this.unadjustedDate.add(unadjustedDate.toBuilder());
 			return this;
@@ -296,7 +299,6 @@ public interface AdjustableDates extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("unadjustedDate")
 		public AdjustableDates.AdjustableDatesBuilder setUnadjustedDate(List<? extends IdentifiedDate> unadjustedDates) {
 			if (unadjustedDates == null)  {
 				this.unadjustedDate = new ArrayList<>();
@@ -316,6 +318,7 @@ public interface AdjustableDates extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("adjustedDate")
 		public AdjustableDates.AdjustableDatesBuilder addAdjustedDate(IdentifiedDate adjustedDate) {
 			if (adjustedDate!=null) this.adjustedDate.add(adjustedDate.toBuilder());
 			return this;
@@ -337,7 +340,6 @@ public interface AdjustableDates extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("adjustedDate")
 		public AdjustableDates.AdjustableDatesBuilder setAdjustedDate(List<? extends IdentifiedDate> adjustedDates) {
 			if (adjustedDates == null)  {
 				this.adjustedDate = new ArrayList<>();

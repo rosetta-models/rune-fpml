@@ -213,6 +213,7 @@ public interface ReturnSwap extends ReturnSwapBase {
 			return earlyTermination;
 		}
 		
+		@Override
 		public ReturnSwapEarlyTermination.ReturnSwapEarlyTerminationBuilder getOrCreateEarlyTermination(int _index) {
 		
 			if (earlyTermination==null) {
@@ -263,6 +264,7 @@ public interface ReturnSwap extends ReturnSwapBase {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("returnSwapLeg")
 		public ReturnSwap.ReturnSwapBuilder addReturnSwapLeg(DirectionalLeg returnSwapLeg) {
 			if (returnSwapLeg!=null) this.returnSwapLeg.add(returnSwapLeg.toBuilder());
 			return this;
@@ -284,7 +286,6 @@ public interface ReturnSwap extends ReturnSwapBase {
 		}
 		
 		@Override 
-		@RosettaAttribute("returnSwapLeg")
 		public ReturnSwap.ReturnSwapBuilder setReturnSwapLeg(List<? extends DirectionalLeg> returnSwapLegs) {
 			if (returnSwapLegs == null)  {
 				this.returnSwapLeg = new ArrayList<>();
@@ -304,6 +305,7 @@ public interface ReturnSwap extends ReturnSwapBase {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("additionalPayment")
 		public ReturnSwap.ReturnSwapBuilder addAdditionalPayment(ReturnSwapAdditionalPayment additionalPayment) {
 			if (additionalPayment!=null) this.additionalPayment.add(additionalPayment.toBuilder());
 			return this;
@@ -325,7 +327,6 @@ public interface ReturnSwap extends ReturnSwapBase {
 		}
 		
 		@Override 
-		@RosettaAttribute("additionalPayment")
 		public ReturnSwap.ReturnSwapBuilder setAdditionalPayment(List<? extends ReturnSwapAdditionalPayment> additionalPayments) {
 			if (additionalPayments == null)  {
 				this.additionalPayment = new ArrayList<>();
@@ -339,6 +340,7 @@ public interface ReturnSwap extends ReturnSwapBase {
 		}
 		
 		@Override
+		@RosettaAttribute("earlyTermination")
 		public ReturnSwap.ReturnSwapBuilder addEarlyTermination(ReturnSwapEarlyTermination earlyTermination) {
 			if (earlyTermination!=null) this.earlyTermination.add(earlyTermination.toBuilder());
 			return this;
@@ -360,7 +362,6 @@ public interface ReturnSwap extends ReturnSwapBase {
 		}
 		
 		@Override 
-		@RosettaAttribute("earlyTermination")
 		public ReturnSwap.ReturnSwapBuilder setEarlyTermination(List<? extends ReturnSwapEarlyTermination> earlyTerminations) {
 			if (earlyTerminations == null)  {
 				this.earlyTermination = new ArrayList<>();

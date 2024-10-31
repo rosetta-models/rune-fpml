@@ -318,6 +318,7 @@ public interface EnvironmentalProduct extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("vintage")
 		public EnvironmentalProduct.EnvironmentalProductBuilder addVintage(Integer vintage) {
 			if (vintage!=null) this.vintage.add(vintage);
 			return this;
@@ -339,7 +340,6 @@ public interface EnvironmentalProduct extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("vintage")
 		public EnvironmentalProduct.EnvironmentalProductBuilder setVintage(List<Integer> vintages) {
 			if (vintages == null)  {
 				this.vintage = new ArrayList<>();

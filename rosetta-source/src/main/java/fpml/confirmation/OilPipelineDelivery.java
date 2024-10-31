@@ -347,6 +347,7 @@ public interface OilPipelineDelivery extends RosettaModelObject {
 			return cycle;
 		}
 		
+		@Override
 		public CommodityPipelineCycle.CommodityPipelineCycleBuilder getOrCreateCycle(int _index) {
 		
 			if (cycle==null) {
@@ -390,6 +391,7 @@ public interface OilPipelineDelivery extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("cycle")
 		public OilPipelineDelivery.OilPipelineDeliveryBuilder addCycle(CommodityPipelineCycle cycle) {
 			if (cycle!=null) this.cycle.add(cycle.toBuilder());
 			return this;
@@ -411,7 +413,6 @@ public interface OilPipelineDelivery extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("cycle")
 		public OilPipelineDelivery.OilPipelineDeliveryBuilder setCycle(List<? extends CommodityPipelineCycle> cycles) {
 			if (cycles == null)  {
 				this.cycle = new ArrayList<>();

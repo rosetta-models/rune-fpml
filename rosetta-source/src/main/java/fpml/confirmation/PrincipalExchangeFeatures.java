@@ -196,6 +196,7 @@ public interface PrincipalExchangeFeatures extends RosettaModelObject {
 			return principalExchangeDescriptions;
 		}
 		
+		@Override
 		public PrincipalExchangeDescriptions.PrincipalExchangeDescriptionsBuilder getOrCreatePrincipalExchangeDescriptions(int _index) {
 		
 			if (principalExchangeDescriptions==null) {
@@ -215,6 +216,7 @@ public interface PrincipalExchangeFeatures extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("principalExchangeDescriptions")
 		public PrincipalExchangeFeatures.PrincipalExchangeFeaturesBuilder addPrincipalExchangeDescriptions(PrincipalExchangeDescriptions principalExchangeDescriptions) {
 			if (principalExchangeDescriptions!=null) this.principalExchangeDescriptions.add(principalExchangeDescriptions.toBuilder());
 			return this;
@@ -236,7 +238,6 @@ public interface PrincipalExchangeFeatures extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("principalExchangeDescriptions")
 		public PrincipalExchangeFeatures.PrincipalExchangeFeaturesBuilder setPrincipalExchangeDescriptions(List<? extends PrincipalExchangeDescriptions> principalExchangeDescriptionss) {
 			if (principalExchangeDescriptionss == null)  {
 				this.principalExchangeDescriptions = new ArrayList<>();

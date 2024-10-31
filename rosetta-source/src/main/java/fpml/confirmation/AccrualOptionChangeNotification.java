@@ -409,6 +409,7 @@ public interface AccrualOptionChangeNotification extends AbstractContractNotific
 			return loanContractDetailsModel;
 		}
 		
+		@Override
 		public LoanContractDetailsModel.LoanContractDetailsModelBuilder getOrCreateLoanContractDetailsModel(int _index) {
 		
 			if (loanContractDetailsModel==null) {
@@ -427,6 +428,7 @@ public interface AccrualOptionChangeNotification extends AbstractContractNotific
 			return letterOfCreditDetailsModel;
 		}
 		
+		@Override
 		public LetterOfCreditDetailsModel.LetterOfCreditDetailsModelBuilder getOrCreateLetterOfCreditDetailsModel(int _index) {
 		
 			if (letterOfCreditDetailsModel==null) {
@@ -445,6 +447,7 @@ public interface AccrualOptionChangeNotification extends AbstractContractNotific
 			return party;
 		}
 		
+		@Override
 		public Party.PartyBuilder getOrCreateParty(int _index) {
 		
 			if (party==null) {
@@ -512,6 +515,7 @@ public interface AccrualOptionChangeNotification extends AbstractContractNotific
 			return this;
 		}
 		@Override
+		@RosettaAttribute("eventPayment")
 		public AccrualOptionChangeNotification.AccrualOptionChangeNotificationBuilder addEventPayment(EventPayment eventPayment) {
 			if (eventPayment!=null) this.eventPayment.add(eventPayment.toBuilder());
 			return this;
@@ -533,7 +537,6 @@ public interface AccrualOptionChangeNotification extends AbstractContractNotific
 		}
 		
 		@Override 
-		@RosettaAttribute("eventPayment")
 		public AccrualOptionChangeNotification.AccrualOptionChangeNotificationBuilder setEventPayment(List<? extends EventPayment> eventPayments) {
 			if (eventPayments == null)  {
 				this.eventPayment = new ArrayList<>();
@@ -547,6 +550,7 @@ public interface AccrualOptionChangeNotification extends AbstractContractNotific
 		}
 		
 		@Override
+		@RosettaAttribute("facilityOutstandingsPosition")
 		public AccrualOptionChangeNotification.AccrualOptionChangeNotificationBuilder addFacilityOutstandingsPosition(FacilityOutstandingsPosition facilityOutstandingsPosition) {
 			if (facilityOutstandingsPosition!=null) this.facilityOutstandingsPosition.add(facilityOutstandingsPosition.toBuilder());
 			return this;
@@ -568,7 +572,6 @@ public interface AccrualOptionChangeNotification extends AbstractContractNotific
 		}
 		
 		@Override 
-		@RosettaAttribute("facilityOutstandingsPosition")
 		public AccrualOptionChangeNotification.AccrualOptionChangeNotificationBuilder setFacilityOutstandingsPosition(List<? extends FacilityOutstandingsPosition> facilityOutstandingsPositions) {
 			if (facilityOutstandingsPositions == null)  {
 				this.facilityOutstandingsPosition = new ArrayList<>();
@@ -606,6 +609,7 @@ public interface AccrualOptionChangeNotification extends AbstractContractNotific
 			return this;
 		}
 		@Override
+		@RosettaAttribute("loanContractDetailsModel")
 		public AccrualOptionChangeNotification.AccrualOptionChangeNotificationBuilder addLoanContractDetailsModel(LoanContractDetailsModel loanContractDetailsModel) {
 			if (loanContractDetailsModel!=null) this.loanContractDetailsModel.add(loanContractDetailsModel.toBuilder());
 			return this;
@@ -627,7 +631,6 @@ public interface AccrualOptionChangeNotification extends AbstractContractNotific
 		}
 		
 		@Override 
-		@RosettaAttribute("loanContractDetailsModel")
 		public AccrualOptionChangeNotification.AccrualOptionChangeNotificationBuilder setLoanContractDetailsModel(List<? extends LoanContractDetailsModel> loanContractDetailsModels) {
 			if (loanContractDetailsModels == null)  {
 				this.loanContractDetailsModel = new ArrayList<>();
@@ -641,6 +644,7 @@ public interface AccrualOptionChangeNotification extends AbstractContractNotific
 		}
 		
 		@Override
+		@RosettaAttribute("letterOfCreditDetailsModel")
 		public AccrualOptionChangeNotification.AccrualOptionChangeNotificationBuilder addLetterOfCreditDetailsModel(LetterOfCreditDetailsModel letterOfCreditDetailsModel) {
 			if (letterOfCreditDetailsModel!=null) this.letterOfCreditDetailsModel.add(letterOfCreditDetailsModel.toBuilder());
 			return this;
@@ -662,7 +666,6 @@ public interface AccrualOptionChangeNotification extends AbstractContractNotific
 		}
 		
 		@Override 
-		@RosettaAttribute("letterOfCreditDetailsModel")
 		public AccrualOptionChangeNotification.AccrualOptionChangeNotificationBuilder setLetterOfCreditDetailsModel(List<? extends LetterOfCreditDetailsModel> letterOfCreditDetailsModels) {
 			if (letterOfCreditDetailsModels == null)  {
 				this.letterOfCreditDetailsModel = new ArrayList<>();
@@ -676,6 +679,7 @@ public interface AccrualOptionChangeNotification extends AbstractContractNotific
 		}
 		
 		@Override
+		@RosettaAttribute("party")
 		public AccrualOptionChangeNotification.AccrualOptionChangeNotificationBuilder addParty(Party party) {
 			if (party!=null) this.party.add(party.toBuilder());
 			return this;
@@ -697,7 +701,6 @@ public interface AccrualOptionChangeNotification extends AbstractContractNotific
 		}
 		
 		@Override 
-		@RosettaAttribute("party")
 		public AccrualOptionChangeNotification.AccrualOptionChangeNotificationBuilder setParty(List<? extends Party> partys) {
 			if (partys == null)  {
 				this.party = new ArrayList<>();

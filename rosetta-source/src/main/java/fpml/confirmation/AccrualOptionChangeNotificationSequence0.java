@@ -228,6 +228,7 @@ public interface AccrualOptionChangeNotificationSequence0 extends RosettaModelOb
 			return contract;
 		}
 		
+		@Override
 		public LoanContract.LoanContractBuilder getOrCreateContract(int _index) {
 		
 			if (contract==null) {
@@ -253,6 +254,7 @@ public interface AccrualOptionChangeNotificationSequence0 extends RosettaModelOb
 			return this;
 		}
 		@Override
+		@RosettaAttribute("contract")
 		public AccrualOptionChangeNotificationSequence0.AccrualOptionChangeNotificationSequence0Builder addContract(LoanContract contract) {
 			if (contract!=null) this.contract.add(contract.toBuilder());
 			return this;
@@ -274,7 +276,6 @@ public interface AccrualOptionChangeNotificationSequence0 extends RosettaModelOb
 		}
 		
 		@Override 
-		@RosettaAttribute("contract")
 		public AccrualOptionChangeNotificationSequence0.AccrualOptionChangeNotificationSequence0Builder setContract(List<? extends LoanContract> contracts) {
 			if (contracts == null)  {
 				this.contract = new ArrayList<>();

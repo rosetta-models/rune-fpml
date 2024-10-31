@@ -219,6 +219,7 @@ public interface PaymentDetails extends RosettaModelObject {
 			return grossCashflow;
 		}
 		
+		@Override
 		public GrossCashflow.GrossCashflowBuilder getOrCreateGrossCashflow(int _index) {
 		
 			if (grossCashflow==null) {
@@ -257,6 +258,7 @@ public interface PaymentDetails extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("grossCashflow")
 		public PaymentDetails.PaymentDetailsBuilder addGrossCashflow(GrossCashflow grossCashflow) {
 			if (grossCashflow!=null) this.grossCashflow.add(grossCashflow.toBuilder());
 			return this;
@@ -278,7 +280,6 @@ public interface PaymentDetails extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("grossCashflow")
 		public PaymentDetails.PaymentDetailsBuilder setGrossCashflow(List<? extends GrossCashflow> grossCashflows) {
 			if (grossCashflows == null)  {
 				this.grossCashflow = new ArrayList<>();

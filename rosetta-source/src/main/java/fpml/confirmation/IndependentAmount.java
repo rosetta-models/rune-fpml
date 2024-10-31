@@ -192,6 +192,7 @@ public interface IndependentAmount extends RosettaModelObject {
 			return paymentDetail;
 		}
 		
+		@Override
 		public PaymentDetail.PaymentDetailBuilder getOrCreatePaymentDetail(int _index) {
 		
 			if (paymentDetail==null) {
@@ -211,6 +212,7 @@ public interface IndependentAmount extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("paymentDetail")
 		public IndependentAmount.IndependentAmountBuilder addPaymentDetail(PaymentDetail paymentDetail) {
 			if (paymentDetail!=null) this.paymentDetail.add(paymentDetail.toBuilder());
 			return this;
@@ -232,7 +234,6 @@ public interface IndependentAmount extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("paymentDetail")
 		public IndependentAmount.IndependentAmountBuilder setPaymentDetail(List<? extends PaymentDetail> paymentDetails) {
 			if (paymentDetails == null)  {
 				this.paymentDetail = new ArrayList<>();

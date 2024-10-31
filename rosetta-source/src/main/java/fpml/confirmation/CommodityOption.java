@@ -371,6 +371,7 @@ public interface CommodityOption extends Product {
 			return premium;
 		}
 		
+		@Override
 		public CommodityPremium.CommodityPremiumBuilder getOrCreatePremium(int _index) {
 		
 			if (premium==null) {
@@ -445,6 +446,7 @@ public interface CommodityOption extends Product {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("premium")
 		public CommodityOption.CommodityOptionBuilder addPremium(CommodityPremium premium) {
 			if (premium!=null) this.premium.add(premium.toBuilder());
 			return this;
@@ -466,7 +468,6 @@ public interface CommodityOption extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("premium")
 		public CommodityOption.CommodityOptionBuilder setPremium(List<? extends CommodityPremium> premiums) {
 			if (premiums == null)  {
 				this.premium = new ArrayList<>();

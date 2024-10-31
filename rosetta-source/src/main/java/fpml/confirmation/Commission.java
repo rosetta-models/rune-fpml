@@ -276,6 +276,7 @@ public interface Commission extends RosettaModelObject {
 			return fxRate;
 		}
 		
+		@Override
 		public FxRate.FxRateBuilder getOrCreateFxRate(int _index) {
 		
 			if (fxRate==null) {
@@ -313,6 +314,7 @@ public interface Commission extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("fxRate")
 		public Commission.CommissionBuilder addFxRate(FxRate fxRate) {
 			if (fxRate!=null) this.fxRate.add(fxRate.toBuilder());
 			return this;
@@ -334,7 +336,6 @@ public interface Commission extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("fxRate")
 		public Commission.CommissionBuilder setFxRate(List<? extends FxRate> fxRates) {
 			if (fxRates == null)  {
 				this.fxRate = new ArrayList<>();

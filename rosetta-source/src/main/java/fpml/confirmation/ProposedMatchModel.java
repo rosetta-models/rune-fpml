@@ -217,6 +217,7 @@ public interface ProposedMatchModel extends RosettaModelObject {
 			return difference;
 		}
 		
+		@Override
 		public TradeDifference.TradeDifferenceBuilder getOrCreateDifference(int _index) {
 		
 			if (difference==null) {
@@ -242,6 +243,7 @@ public interface ProposedMatchModel extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("difference")
 		public ProposedMatchModel.ProposedMatchModelBuilder addDifference(TradeDifference difference) {
 			if (difference!=null) this.difference.add(difference.toBuilder());
 			return this;
@@ -263,7 +265,6 @@ public interface ProposedMatchModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("difference")
 		public ProposedMatchModel.ProposedMatchModelBuilder setDifference(List<? extends TradeDifference> differences) {
 			if (differences == null)  {
 				this.difference = new ArrayList<>();

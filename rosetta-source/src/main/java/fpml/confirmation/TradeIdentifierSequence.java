@@ -189,6 +189,7 @@ public interface TradeIdentifierSequence extends RosettaModelObject {
 			return tradeIdentifierSequenceChoice;
 		}
 		
+		@Override
 		public TradeIdentifierSequenceChoice.TradeIdentifierSequenceChoiceBuilder getOrCreateTradeIdentifierSequenceChoice(int _index) {
 		
 			if (tradeIdentifierSequenceChoice==null) {
@@ -208,6 +209,7 @@ public interface TradeIdentifierSequence extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("tradeIdentifierSequenceChoice")
 		public TradeIdentifierSequence.TradeIdentifierSequenceBuilder addTradeIdentifierSequenceChoice(TradeIdentifierSequenceChoice tradeIdentifierSequenceChoice) {
 			if (tradeIdentifierSequenceChoice!=null) this.tradeIdentifierSequenceChoice.add(tradeIdentifierSequenceChoice.toBuilder());
 			return this;
@@ -229,7 +231,6 @@ public interface TradeIdentifierSequence extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("tradeIdentifierSequenceChoice")
 		public TradeIdentifierSequence.TradeIdentifierSequenceBuilder setTradeIdentifierSequenceChoice(List<? extends TradeIdentifierSequenceChoice> tradeIdentifierSequenceChoices) {
 			if (tradeIdentifierSequenceChoices == null)  {
 				this.tradeIdentifierSequenceChoice = new ArrayList<>();

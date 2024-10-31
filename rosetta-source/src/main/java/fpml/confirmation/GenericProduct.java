@@ -548,6 +548,7 @@ public interface GenericProduct extends Product {
 			return counterpartyReference;
 		}
 		
+		@Override
 		public PartyReference.PartyReferenceBuilder getOrCreateCounterpartyReference(int _index) {
 		
 			if (counterpartyReference==null) {
@@ -642,6 +643,7 @@ public interface GenericProduct extends Product {
 			return underlyer;
 		}
 		
+		@Override
 		public TradeUnderlyer2.TradeUnderlyer2Builder getOrCreateUnderlyer(int _index) {
 		
 			if (underlyer==null) {
@@ -660,6 +662,7 @@ public interface GenericProduct extends Product {
 			return notional;
 		}
 		
+		@Override
 		public CashflowNotional.CashflowNotionalBuilder getOrCreateNotional(int _index) {
 		
 			if (notional==null) {
@@ -735,6 +738,7 @@ public interface GenericProduct extends Product {
 			return paymentFrequency;
 		}
 		
+		@Override
 		public GenericFrequency.GenericFrequencyBuilder getOrCreatePaymentFrequency(int _index) {
 		
 			if (paymentFrequency==null) {
@@ -753,6 +757,7 @@ public interface GenericProduct extends Product {
 			return resetFrequency;
 		}
 		
+		@Override
 		public GenericResetFrequency.GenericResetFrequencyBuilder getOrCreateResetFrequency(int _index) {
 		
 			if (resetFrequency==null) {
@@ -771,6 +776,7 @@ public interface GenericProduct extends Product {
 			return settlementCurrency;
 		}
 		
+		@Override
 		public IdentifiedCurrency.IdentifiedCurrencyBuilder getOrCreateSettlementCurrency(int _index) {
 		
 			if (settlementCurrency==null) {
@@ -795,6 +801,7 @@ public interface GenericProduct extends Product {
 			return additionalPayment;
 		}
 		
+		@Override
 		public Payment.PaymentBuilder getOrCreateAdditionalPayment(int _index) {
 		
 			if (additionalPayment==null) {
@@ -832,6 +839,7 @@ public interface GenericProduct extends Product {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("counterpartyReference")
 		public GenericProduct.GenericProductBuilder addCounterpartyReference(PartyReference counterpartyReference) {
 			if (counterpartyReference!=null) this.counterpartyReference.add(counterpartyReference.toBuilder());
 			return this;
@@ -853,7 +861,6 @@ public interface GenericProduct extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("counterpartyReference")
 		public GenericProduct.GenericProductBuilder setCounterpartyReference(List<? extends PartyReference> counterpartyReferences) {
 			if (counterpartyReferences == null)  {
 				this.counterpartyReference = new ArrayList<>();
@@ -891,6 +898,7 @@ public interface GenericProduct extends Product {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("underlyer")
 		public GenericProduct.GenericProductBuilder addUnderlyer(TradeUnderlyer2 underlyer) {
 			if (underlyer!=null) this.underlyer.add(underlyer.toBuilder());
 			return this;
@@ -912,7 +920,6 @@ public interface GenericProduct extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("underlyer")
 		public GenericProduct.GenericProductBuilder setUnderlyer(List<? extends TradeUnderlyer2> underlyers) {
 			if (underlyers == null)  {
 				this.underlyer = new ArrayList<>();
@@ -926,6 +933,7 @@ public interface GenericProduct extends Product {
 		}
 		
 		@Override
+		@RosettaAttribute("notional")
 		public GenericProduct.GenericProductBuilder addNotional(CashflowNotional notional) {
 			if (notional!=null) this.notional.add(notional.toBuilder());
 			return this;
@@ -947,7 +955,6 @@ public interface GenericProduct extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("notional")
 		public GenericProduct.GenericProductBuilder setNotional(List<? extends CashflowNotional> notionals) {
 			if (notionals == null)  {
 				this.notional = new ArrayList<>();
@@ -979,6 +986,7 @@ public interface GenericProduct extends Product {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("paymentFrequency")
 		public GenericProduct.GenericProductBuilder addPaymentFrequency(GenericFrequency paymentFrequency) {
 			if (paymentFrequency!=null) this.paymentFrequency.add(paymentFrequency.toBuilder());
 			return this;
@@ -1000,7 +1008,6 @@ public interface GenericProduct extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("paymentFrequency")
 		public GenericProduct.GenericProductBuilder setPaymentFrequency(List<? extends GenericFrequency> paymentFrequencys) {
 			if (paymentFrequencys == null)  {
 				this.paymentFrequency = new ArrayList<>();
@@ -1014,6 +1021,7 @@ public interface GenericProduct extends Product {
 		}
 		
 		@Override
+		@RosettaAttribute("resetFrequency")
 		public GenericProduct.GenericProductBuilder addResetFrequency(GenericResetFrequency resetFrequency) {
 			if (resetFrequency!=null) this.resetFrequency.add(resetFrequency.toBuilder());
 			return this;
@@ -1035,7 +1043,6 @@ public interface GenericProduct extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("resetFrequency")
 		public GenericProduct.GenericProductBuilder setResetFrequency(List<? extends GenericResetFrequency> resetFrequencys) {
 			if (resetFrequencys == null)  {
 				this.resetFrequency = new ArrayList<>();
@@ -1049,6 +1056,7 @@ public interface GenericProduct extends Product {
 		}
 		
 		@Override
+		@RosettaAttribute("settlementCurrency")
 		public GenericProduct.GenericProductBuilder addSettlementCurrency(IdentifiedCurrency settlementCurrency) {
 			if (settlementCurrency!=null) this.settlementCurrency.add(settlementCurrency.toBuilder());
 			return this;
@@ -1070,7 +1078,6 @@ public interface GenericProduct extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("settlementCurrency")
 		public GenericProduct.GenericProductBuilder setSettlementCurrency(List<? extends IdentifiedCurrency> settlementCurrencys) {
 			if (settlementCurrencys == null)  {
 				this.settlementCurrency = new ArrayList<>();
@@ -1090,6 +1097,7 @@ public interface GenericProduct extends Product {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("additionalPayment")
 		public GenericProduct.GenericProductBuilder addAdditionalPayment(Payment additionalPayment) {
 			if (additionalPayment!=null) this.additionalPayment.add(additionalPayment.toBuilder());
 			return this;
@@ -1111,7 +1119,6 @@ public interface GenericProduct extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("additionalPayment")
 		public GenericProduct.GenericProductBuilder setAdditionalPayment(List<? extends Payment> additionalPayments) {
 			if (additionalPayments == null)  {
 				this.additionalPayment = new ArrayList<>();

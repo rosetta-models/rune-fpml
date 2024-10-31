@@ -479,6 +479,7 @@ public interface ExecutionAdvice extends CorrectableRequestMessage {
 			return paymentDetails;
 		}
 		
+		@Override
 		public PaymentDetails.PaymentDetailsBuilder getOrCreatePaymentDetails(int _index) {
 		
 			if (paymentDetails==null) {
@@ -595,6 +596,7 @@ public interface ExecutionAdvice extends CorrectableRequestMessage {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("paymentDetails")
 		public ExecutionAdvice.ExecutionAdviceBuilder addPaymentDetails(PaymentDetails paymentDetails) {
 			if (paymentDetails!=null) this.paymentDetails.add(paymentDetails.toBuilder());
 			return this;
@@ -616,7 +618,6 @@ public interface ExecutionAdvice extends CorrectableRequestMessage {
 		}
 		
 		@Override 
-		@RosettaAttribute("paymentDetails")
 		public ExecutionAdvice.ExecutionAdviceBuilder setPaymentDetails(List<? extends PaymentDetails> paymentDetailss) {
 			if (paymentDetailss == null)  {
 				this.paymentDetails = new ArrayList<>();

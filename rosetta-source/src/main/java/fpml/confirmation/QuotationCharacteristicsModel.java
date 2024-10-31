@@ -538,6 +538,7 @@ public interface QuotationCharacteristicsModel extends RosettaModelObject {
 			return informationSource;
 		}
 		
+		@Override
 		public InformationSource.InformationSourceBuilder getOrCreateInformationSource(int _index) {
 		
 			if (informationSource==null) {
@@ -649,6 +650,7 @@ public interface QuotationCharacteristicsModel extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("informationSource")
 		public QuotationCharacteristicsModel.QuotationCharacteristicsModelBuilder addInformationSource(InformationSource informationSource) {
 			if (informationSource!=null) this.informationSource.add(informationSource.toBuilder());
 			return this;
@@ -670,7 +672,6 @@ public interface QuotationCharacteristicsModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("informationSource")
 		public QuotationCharacteristicsModel.QuotationCharacteristicsModelBuilder setInformationSource(List<? extends InformationSource> informationSources) {
 			if (informationSources == null)  {
 				this.informationSource = new ArrayList<>();

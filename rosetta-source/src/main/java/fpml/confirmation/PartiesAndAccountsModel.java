@@ -180,6 +180,7 @@ public interface PartiesAndAccountsModel extends RosettaModelObject {
 			return party;
 		}
 		
+		@Override
 		public Party.PartyBuilder getOrCreateParty(int _index) {
 		
 			if (party==null) {
@@ -198,6 +199,7 @@ public interface PartiesAndAccountsModel extends RosettaModelObject {
 			return account;
 		}
 		
+		@Override
 		public Account.AccountBuilder getOrCreateAccount(int _index) {
 		
 			if (account==null) {
@@ -211,6 +213,7 @@ public interface PartiesAndAccountsModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("party")
 		public PartiesAndAccountsModel.PartiesAndAccountsModelBuilder addParty(Party party) {
 			if (party!=null) this.party.add(party.toBuilder());
 			return this;
@@ -232,7 +235,6 @@ public interface PartiesAndAccountsModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("party")
 		public PartiesAndAccountsModel.PartiesAndAccountsModelBuilder setParty(List<? extends Party> partys) {
 			if (partys == null)  {
 				this.party = new ArrayList<>();
@@ -246,6 +248,7 @@ public interface PartiesAndAccountsModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("account")
 		public PartiesAndAccountsModel.PartiesAndAccountsModelBuilder addAccount(Account account) {
 			if (account!=null) this.account.add(account.toBuilder());
 			return this;
@@ -267,7 +270,6 @@ public interface PartiesAndAccountsModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("account")
 		public PartiesAndAccountsModel.PartiesAndAccountsModelBuilder setAccount(List<? extends Account> accounts) {
 			if (accounts == null)  {
 				this.account = new ArrayList<>();

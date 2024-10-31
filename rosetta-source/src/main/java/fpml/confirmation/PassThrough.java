@@ -154,6 +154,7 @@ public interface PassThrough extends RosettaModelObject {
 			return passThroughItem;
 		}
 		
+		@Override
 		public PassThroughItem.PassThroughItemBuilder getOrCreatePassThroughItem(int _index) {
 		
 			if (passThroughItem==null) {
@@ -167,6 +168,7 @@ public interface PassThrough extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("passThroughItem")
 		public PassThrough.PassThroughBuilder addPassThroughItem(PassThroughItem passThroughItem) {
 			if (passThroughItem!=null) this.passThroughItem.add(passThroughItem.toBuilder());
 			return this;
@@ -188,7 +190,6 @@ public interface PassThrough extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("passThroughItem")
 		public PassThrough.PassThroughBuilder setPassThroughItem(List<? extends PassThroughItem> passThroughItems) {
 			if (passThroughItems == null)  {
 				this.passThroughItem = new ArrayList<>();

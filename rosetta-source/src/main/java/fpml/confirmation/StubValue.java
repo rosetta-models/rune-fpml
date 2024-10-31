@@ -198,6 +198,7 @@ public interface StubValue extends RosettaModelObject {
 			return floatingRate;
 		}
 		
+		@Override
 		public StubFloatingRate.StubFloatingRateBuilder getOrCreateFloatingRate(int _index) {
 		
 			if (floatingRate==null) {
@@ -236,6 +237,7 @@ public interface StubValue extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("floatingRate")
 		public StubValue.StubValueBuilder addFloatingRate(StubFloatingRate floatingRate) {
 			if (floatingRate!=null) this.floatingRate.add(floatingRate.toBuilder());
 			return this;
@@ -257,7 +259,6 @@ public interface StubValue extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("floatingRate")
 		public StubValue.StubValueBuilder setFloatingRate(List<? extends StubFloatingRate> floatingRates) {
 			if (floatingRates == null)  {
 				this.floatingRate = new ArrayList<>();

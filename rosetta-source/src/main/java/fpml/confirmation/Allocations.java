@@ -193,6 +193,7 @@ public interface Allocations extends RosettaModelObject {
 			return allocation;
 		}
 		
+		@Override
 		public Allocation.AllocationBuilder getOrCreateAllocation(int _index) {
 		
 			if (allocation==null) {
@@ -212,6 +213,7 @@ public interface Allocations extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("allocation")
 		public Allocations.AllocationsBuilder addAllocation(Allocation allocation) {
 			if (allocation!=null) this.allocation.add(allocation.toBuilder());
 			return this;
@@ -233,7 +235,6 @@ public interface Allocations extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("allocation")
 		public Allocations.AllocationsBuilder setAllocation(List<? extends Allocation> allocations) {
 			if (allocations == null)  {
 				this.allocation = new ArrayList<>();

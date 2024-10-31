@@ -210,6 +210,7 @@ public interface PartyPortfolioName extends RosettaModelObject {
 			return portfolioName;
 		}
 		
+		@Override
 		public PortfolioName.PortfolioNameBuilder getOrCreatePortfolioName(int _index) {
 		
 			if (portfolioName==null) {
@@ -235,6 +236,7 @@ public interface PartyPortfolioName extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("portfolioName")
 		public PartyPortfolioName.PartyPortfolioNameBuilder addPortfolioName(PortfolioName portfolioName) {
 			if (portfolioName!=null) this.portfolioName.add(portfolioName.toBuilder());
 			return this;
@@ -256,7 +258,6 @@ public interface PartyPortfolioName extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("portfolioName")
 		public PartyPortfolioName.PartyPortfolioNameBuilder setPortfolioName(List<? extends PortfolioName> portfolioNames) {
 			if (portfolioNames == null)  {
 				this.portfolioName = new ArrayList<>();

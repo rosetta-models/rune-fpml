@@ -154,6 +154,7 @@ public interface DateRelativeToPaymentDates extends RosettaModelObject {
 			return paymentDatesReference;
 		}
 		
+		@Override
 		public PaymentDatesReference.PaymentDatesReferenceBuilder getOrCreatePaymentDatesReference(int _index) {
 		
 			if (paymentDatesReference==null) {
@@ -167,6 +168,7 @@ public interface DateRelativeToPaymentDates extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("paymentDatesReference")
 		public DateRelativeToPaymentDates.DateRelativeToPaymentDatesBuilder addPaymentDatesReference(PaymentDatesReference paymentDatesReference) {
 			if (paymentDatesReference!=null) this.paymentDatesReference.add(paymentDatesReference.toBuilder());
 			return this;
@@ -188,7 +190,6 @@ public interface DateRelativeToPaymentDates extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("paymentDatesReference")
 		public DateRelativeToPaymentDates.DateRelativeToPaymentDatesBuilder setPaymentDatesReference(List<? extends PaymentDatesReference> paymentDatesReferences) {
 			if (paymentDatesReferences == null)  {
 				this.paymentDatesReference = new ArrayList<>();

@@ -189,6 +189,7 @@ public interface NovationAmountsModel extends RosettaModelObject {
 			return novationAmount;
 		}
 		
+		@Override
 		public TradeLegSizeChange.TradeLegSizeChangeBuilder getOrCreateNovationAmount(int _index) {
 		
 			if (novationAmount==null) {
@@ -208,6 +209,7 @@ public interface NovationAmountsModel extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("novationAmount")
 		public NovationAmountsModel.NovationAmountsModelBuilder addNovationAmount(TradeLegSizeChange novationAmount) {
 			if (novationAmount!=null) this.novationAmount.add(novationAmount.toBuilder());
 			return this;
@@ -229,7 +231,6 @@ public interface NovationAmountsModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("novationAmount")
 		public NovationAmountsModel.NovationAmountsModelBuilder setNovationAmount(List<? extends TradeLegSizeChange> novationAmounts) {
 			if (novationAmounts == null)  {
 				this.novationAmount = new ArrayList<>();

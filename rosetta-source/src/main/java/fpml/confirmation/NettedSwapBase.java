@@ -191,6 +191,7 @@ public interface NettedSwapBase extends Product {
 			return additionalPayment;
 		}
 		
+		@Override
 		public ClassifiablePayment.ClassifiablePaymentBuilder getOrCreateAdditionalPayment(int _index) {
 		
 			if (additionalPayment==null) {
@@ -235,6 +236,7 @@ public interface NettedSwapBase extends Product {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("additionalPayment")
 		public NettedSwapBase.NettedSwapBaseBuilder addAdditionalPayment(ClassifiablePayment additionalPayment) {
 			if (additionalPayment!=null) this.additionalPayment.add(additionalPayment.toBuilder());
 			return this;
@@ -256,7 +258,6 @@ public interface NettedSwapBase extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("additionalPayment")
 		public NettedSwapBase.NettedSwapBaseBuilder setAdditionalPayment(List<? extends ClassifiablePayment> additionalPayments) {
 			if (additionalPayments == null)  {
 				this.additionalPayment = new ArrayList<>();

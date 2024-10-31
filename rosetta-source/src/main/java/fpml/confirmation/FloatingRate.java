@@ -317,6 +317,7 @@ public interface FloatingRate extends Rate {
 			return spreadSchedule;
 		}
 		
+		@Override
 		public SpreadSchedule.SpreadScheduleBuilder getOrCreateSpreadSchedule(int _index) {
 		
 			if (spreadSchedule==null) {
@@ -341,6 +342,7 @@ public interface FloatingRate extends Rate {
 			return capRateSchedule;
 		}
 		
+		@Override
 		public StrikeSchedule.StrikeScheduleBuilder getOrCreateCapRateSchedule(int _index) {
 		
 			if (capRateSchedule==null) {
@@ -359,6 +361,7 @@ public interface FloatingRate extends Rate {
 			return floorRateSchedule;
 		}
 		
+		@Override
 		public StrikeSchedule.StrikeScheduleBuilder getOrCreateFloorRateSchedule(int _index) {
 		
 			if (floorRateSchedule==null) {
@@ -390,6 +393,7 @@ public interface FloatingRate extends Rate {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("spreadSchedule")
 		public FloatingRate.FloatingRateBuilder addSpreadSchedule(SpreadSchedule spreadSchedule) {
 			if (spreadSchedule!=null) this.spreadSchedule.add(spreadSchedule.toBuilder());
 			return this;
@@ -411,7 +415,6 @@ public interface FloatingRate extends Rate {
 		}
 		
 		@Override 
-		@RosettaAttribute("spreadSchedule")
 		public FloatingRate.FloatingRateBuilder setSpreadSchedule(List<? extends SpreadSchedule> spreadSchedules) {
 			if (spreadSchedules == null)  {
 				this.spreadSchedule = new ArrayList<>();
@@ -431,6 +434,7 @@ public interface FloatingRate extends Rate {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("capRateSchedule")
 		public FloatingRate.FloatingRateBuilder addCapRateSchedule(StrikeSchedule capRateSchedule) {
 			if (capRateSchedule!=null) this.capRateSchedule.add(capRateSchedule.toBuilder());
 			return this;
@@ -452,7 +456,6 @@ public interface FloatingRate extends Rate {
 		}
 		
 		@Override 
-		@RosettaAttribute("capRateSchedule")
 		public FloatingRate.FloatingRateBuilder setCapRateSchedule(List<? extends StrikeSchedule> capRateSchedules) {
 			if (capRateSchedules == null)  {
 				this.capRateSchedule = new ArrayList<>();
@@ -466,6 +469,7 @@ public interface FloatingRate extends Rate {
 		}
 		
 		@Override
+		@RosettaAttribute("floorRateSchedule")
 		public FloatingRate.FloatingRateBuilder addFloorRateSchedule(StrikeSchedule floorRateSchedule) {
 			if (floorRateSchedule!=null) this.floorRateSchedule.add(floorRateSchedule.toBuilder());
 			return this;
@@ -487,7 +491,6 @@ public interface FloatingRate extends Rate {
 		}
 		
 		@Override 
-		@RosettaAttribute("floorRateSchedule")
 		public FloatingRate.FloatingRateBuilder setFloorRateSchedule(List<? extends StrikeSchedule> floorRateSchedules) {
 			if (floorRateSchedules == null)  {
 				this.floorRateSchedule = new ArrayList<>();

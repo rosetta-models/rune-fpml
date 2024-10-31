@@ -219,6 +219,7 @@ public interface DividendPayout extends RosettaModelObject {
 			return dividendPayment;
 		}
 		
+		@Override
 		public PendingPayment.PendingPaymentBuilder getOrCreateDividendPayment(int _index) {
 		
 			if (dividendPayment==null) {
@@ -244,6 +245,7 @@ public interface DividendPayout extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("dividendPayment")
 		public DividendPayout.DividendPayoutBuilder addDividendPayment(PendingPayment dividendPayment) {
 			if (dividendPayment!=null) this.dividendPayment.add(dividendPayment.toBuilder());
 			return this;
@@ -265,7 +267,6 @@ public interface DividendPayout extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("dividendPayment")
 		public DividendPayout.DividendPayoutBuilder setDividendPayment(List<? extends PendingPayment> dividendPayments) {
 			if (dividendPayments == null)  {
 				this.dividendPayment = new ArrayList<>();

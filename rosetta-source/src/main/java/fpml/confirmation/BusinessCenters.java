@@ -168,6 +168,7 @@ public interface BusinessCenters extends RosettaModelObject {
 			return businessCenter;
 		}
 		
+		@Override
 		public BusinessCenter.BusinessCenterBuilder getOrCreateBusinessCenter(int _index) {
 		
 			if (businessCenter==null) {
@@ -187,6 +188,7 @@ public interface BusinessCenters extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("businessCenter")
 		public BusinessCenters.BusinessCentersBuilder addBusinessCenter(BusinessCenter businessCenter) {
 			if (businessCenter!=null) this.businessCenter.add(businessCenter.toBuilder());
 			return this;
@@ -208,7 +210,6 @@ public interface BusinessCenters extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("businessCenter")
 		public BusinessCenters.BusinessCentersBuilder setBusinessCenter(List<? extends BusinessCenter> businessCenters) {
 			if (businessCenters == null)  {
 				this.businessCenter = new ArrayList<>();

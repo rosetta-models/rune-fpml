@@ -145,6 +145,7 @@ public interface FxLevel extends Schedule {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("step")
 		public FxLevel.FxLevelBuilder addStep(Step step) {
 			if (step!=null) this.step.add(step.toBuilder());
 			return this;
@@ -166,7 +167,6 @@ public interface FxLevel extends Schedule {
 		}
 		
 		@Override 
-		@RosettaAttribute("step")
 		public FxLevel.FxLevelBuilder setStep(List<? extends Step> steps) {
 			if (steps == null)  {
 				this.step = new ArrayList<>();

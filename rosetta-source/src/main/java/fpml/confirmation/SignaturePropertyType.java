@@ -184,6 +184,7 @@ public interface SignaturePropertyType extends RosettaModelObject {
 			return signaturePropertyTypeChoice;
 		}
 		
+		@Override
 		public SignaturePropertyTypeChoice.SignaturePropertyTypeChoiceBuilder getOrCreateSignaturePropertyTypeChoice(int _index) {
 		
 			if (signaturePropertyTypeChoice==null) {
@@ -209,6 +210,7 @@ public interface SignaturePropertyType extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("signaturePropertyTypeChoice")
 		public SignaturePropertyType.SignaturePropertyTypeBuilder addSignaturePropertyTypeChoice(SignaturePropertyTypeChoice signaturePropertyTypeChoice) {
 			if (signaturePropertyTypeChoice!=null) this.signaturePropertyTypeChoice.add(signaturePropertyTypeChoice.toBuilder());
 			return this;
@@ -230,7 +232,6 @@ public interface SignaturePropertyType extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("signaturePropertyTypeChoice")
 		public SignaturePropertyType.SignaturePropertyTypeBuilder setSignaturePropertyTypeChoice(List<? extends SignaturePropertyTypeChoice> signaturePropertyTypeChoices) {
 			if (signaturePropertyTypeChoices == null)  {
 				this.signaturePropertyTypeChoice = new ArrayList<>();

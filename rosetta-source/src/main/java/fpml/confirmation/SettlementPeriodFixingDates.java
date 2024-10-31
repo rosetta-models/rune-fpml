@@ -218,6 +218,7 @@ public interface SettlementPeriodFixingDates extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("fixingDate")
 		public SettlementPeriodFixingDates.SettlementPeriodFixingDatesBuilder addFixingDate(Date fixingDate) {
 			if (fixingDate!=null) this.fixingDate.add(fixingDate);
 			return this;
@@ -239,7 +240,6 @@ public interface SettlementPeriodFixingDates extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("fixingDate")
 		public SettlementPeriodFixingDates.SettlementPeriodFixingDatesBuilder setFixingDate(List<Date> fixingDates) {
 			if (fixingDates == null)  {
 				this.fixingDate = new ArrayList<>();

@@ -240,6 +240,7 @@ public interface LoanContractSummary extends RosettaModelObject {
 			return identifier;
 		}
 		
+		@Override
 		public FacilityContractIdentifier.FacilityContractIdentifierBuilder getOrCreateIdentifier(int _index) {
 		
 			if (identifier==null) {
@@ -316,6 +317,7 @@ public interface LoanContractSummary extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("identifier")
 		public LoanContractSummary.LoanContractSummaryBuilder addIdentifier(FacilityContractIdentifier identifier) {
 			if (identifier!=null) this.identifier.add(identifier.toBuilder());
 			return this;
@@ -337,7 +339,6 @@ public interface LoanContractSummary extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("identifier")
 		public LoanContractSummary.LoanContractSummaryBuilder setIdentifier(List<? extends FacilityContractIdentifier> identifiers) {
 			if (identifiers == null)  {
 				this.identifier = new ArrayList<>();

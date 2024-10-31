@@ -136,6 +136,7 @@ public interface CorporateAction extends CorporateActionEvent {
 		}
 	
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public CorporateAction.CorporateActionBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -157,7 +158,6 @@ public interface CorporateAction extends CorporateActionEvent {
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public CorporateAction.CorporateActionBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();

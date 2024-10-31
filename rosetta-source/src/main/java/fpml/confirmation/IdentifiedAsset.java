@@ -184,6 +184,7 @@ public interface IdentifiedAsset extends Asset {
 			return instrumentId;
 		}
 		
+		@Override
 		public InstrumentId.InstrumentIdBuilder getOrCreateInstrumentId(int _index) {
 		
 			if (instrumentId==null) {
@@ -209,6 +210,7 @@ public interface IdentifiedAsset extends Asset {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("instrumentId")
 		public IdentifiedAsset.IdentifiedAssetBuilder addInstrumentId(InstrumentId instrumentId) {
 			if (instrumentId!=null) this.instrumentId.add(instrumentId.toBuilder());
 			return this;
@@ -230,7 +232,6 @@ public interface IdentifiedAsset extends Asset {
 		}
 		
 		@Override 
-		@RosettaAttribute("instrumentId")
 		public IdentifiedAsset.IdentifiedAssetBuilder setInstrumentId(List<? extends InstrumentId> instrumentIds) {
 			if (instrumentIds == null)  {
 				this.instrumentId = new ArrayList<>();

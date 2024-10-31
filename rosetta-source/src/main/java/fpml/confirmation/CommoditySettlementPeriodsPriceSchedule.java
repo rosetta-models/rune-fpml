@@ -180,6 +180,7 @@ public interface CommoditySettlementPeriodsPriceSchedule extends RosettaModelObj
 			return settlementPeriodsPriceStep;
 		}
 		
+		@Override
 		public FixedPrice.FixedPriceBuilder getOrCreateSettlementPeriodsPriceStep(int _index) {
 		
 			if (settlementPeriodsPriceStep==null) {
@@ -198,6 +199,7 @@ public interface CommoditySettlementPeriodsPriceSchedule extends RosettaModelObj
 			return settlementPeriodsReference;
 		}
 		
+		@Override
 		public SettlementPeriodsReference.SettlementPeriodsReferenceBuilder getOrCreateSettlementPeriodsReference(int _index) {
 		
 			if (settlementPeriodsReference==null) {
@@ -211,6 +213,7 @@ public interface CommoditySettlementPeriodsPriceSchedule extends RosettaModelObj
 		}
 		
 		@Override
+		@RosettaAttribute("settlementPeriodsPriceStep")
 		public CommoditySettlementPeriodsPriceSchedule.CommoditySettlementPeriodsPriceScheduleBuilder addSettlementPeriodsPriceStep(FixedPrice settlementPeriodsPriceStep) {
 			if (settlementPeriodsPriceStep!=null) this.settlementPeriodsPriceStep.add(settlementPeriodsPriceStep.toBuilder());
 			return this;
@@ -232,7 +235,6 @@ public interface CommoditySettlementPeriodsPriceSchedule extends RosettaModelObj
 		}
 		
 		@Override 
-		@RosettaAttribute("settlementPeriodsPriceStep")
 		public CommoditySettlementPeriodsPriceSchedule.CommoditySettlementPeriodsPriceScheduleBuilder setSettlementPeriodsPriceStep(List<? extends FixedPrice> settlementPeriodsPriceSteps) {
 			if (settlementPeriodsPriceSteps == null)  {
 				this.settlementPeriodsPriceStep = new ArrayList<>();
@@ -246,6 +248,7 @@ public interface CommoditySettlementPeriodsPriceSchedule extends RosettaModelObj
 		}
 		
 		@Override
+		@RosettaAttribute("settlementPeriodsReference")
 		public CommoditySettlementPeriodsPriceSchedule.CommoditySettlementPeriodsPriceScheduleBuilder addSettlementPeriodsReference(SettlementPeriodsReference settlementPeriodsReference) {
 			if (settlementPeriodsReference!=null) this.settlementPeriodsReference.add(settlementPeriodsReference.toBuilder());
 			return this;
@@ -267,7 +270,6 @@ public interface CommoditySettlementPeriodsPriceSchedule extends RosettaModelObj
 		}
 		
 		@Override 
-		@RosettaAttribute("settlementPeriodsReference")
 		public CommoditySettlementPeriodsPriceSchedule.CommoditySettlementPeriodsPriceScheduleBuilder setSettlementPeriodsReference(List<? extends SettlementPeriodsReference> settlementPeriodsReferences) {
 			if (settlementPeriodsReferences == null)  {
 				this.settlementPeriodsReference = new ArrayList<>();

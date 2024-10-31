@@ -495,6 +495,7 @@ public interface CommodityBasketOption extends Option {
 			return premium;
 		}
 		
+		@Override
 		public CommodityPremium.CommodityPremiumBuilder getOrCreatePremium(int _index) {
 		
 			if (premium==null) {
@@ -593,6 +594,7 @@ public interface CommodityBasketOption extends Option {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("premium")
 		public CommodityBasketOption.CommodityBasketOptionBuilder addPremium(CommodityPremium premium) {
 			if (premium!=null) this.premium.add(premium.toBuilder());
 			return this;
@@ -614,7 +616,6 @@ public interface CommodityBasketOption extends Option {
 		}
 		
 		@Override 
-		@RosettaAttribute("premium")
 		public CommodityBasketOption.CommodityBasketOptionBuilder setPremium(List<? extends CommodityPremium> premiums) {
 			if (premiums == null)  {
 				this.premium = new ArrayList<>();

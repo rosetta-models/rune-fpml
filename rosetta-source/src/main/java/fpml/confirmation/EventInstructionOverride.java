@@ -235,6 +235,7 @@ public interface EventInstructionOverride extends RosettaModelObject {
 			return settlementDetails;
 		}
 		
+		@Override
 		public SettlementDetails.SettlementDetailsBuilder getOrCreateSettlementDetails(int _index) {
 		
 			if (settlementDetails==null) {
@@ -260,6 +261,7 @@ public interface EventInstructionOverride extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("settlementDetails")
 		public EventInstructionOverride.EventInstructionOverrideBuilder addSettlementDetails(SettlementDetails settlementDetails) {
 			if (settlementDetails!=null) this.settlementDetails.add(settlementDetails.toBuilder());
 			return this;
@@ -281,7 +283,6 @@ public interface EventInstructionOverride extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("settlementDetails")
 		public EventInstructionOverride.EventInstructionOverrideBuilder setSettlementDetails(List<? extends SettlementDetails> settlementDetailss) {
 			if (settlementDetailss == null)  {
 				this.settlementDetails = new ArrayList<>();

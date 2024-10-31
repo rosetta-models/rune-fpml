@@ -209,6 +209,7 @@ public interface UnderlyerInterestLeg extends DirectionalLeg {
 			return spreadSchedule;
 		}
 		
+		@Override
 		public SpreadSchedule.SpreadScheduleBuilder getOrCreateSpreadSchedule(int _index) {
 		
 			if (spreadSchedule==null) {
@@ -228,6 +229,7 @@ public interface UnderlyerInterestLeg extends DirectionalLeg {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("legIdentifier")
 		public UnderlyerInterestLeg.UnderlyerInterestLegBuilder addLegIdentifier(LegIdentifier legIdentifier) {
 			if (legIdentifier!=null) this.legIdentifier.add(legIdentifier.toBuilder());
 			return this;
@@ -249,7 +251,6 @@ public interface UnderlyerInterestLeg extends DirectionalLeg {
 		}
 		
 		@Override 
-		@RosettaAttribute("legIdentifier")
 		public UnderlyerInterestLeg.UnderlyerInterestLegBuilder setLegIdentifier(List<? extends LegIdentifier> legIdentifiers) {
 			if (legIdentifiers == null)  {
 				this.legIdentifier = new ArrayList<>();
@@ -287,6 +288,7 @@ public interface UnderlyerInterestLeg extends DirectionalLeg {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("spreadSchedule")
 		public UnderlyerInterestLeg.UnderlyerInterestLegBuilder addSpreadSchedule(SpreadSchedule spreadSchedule) {
 			if (spreadSchedule!=null) this.spreadSchedule.add(spreadSchedule.toBuilder());
 			return this;
@@ -308,7 +310,6 @@ public interface UnderlyerInterestLeg extends DirectionalLeg {
 		}
 		
 		@Override 
-		@RosettaAttribute("spreadSchedule")
 		public UnderlyerInterestLeg.UnderlyerInterestLegBuilder setSpreadSchedule(List<? extends SpreadSchedule> spreadSchedules) {
 			if (spreadSchedules == null)  {
 				this.spreadSchedule = new ArrayList<>();

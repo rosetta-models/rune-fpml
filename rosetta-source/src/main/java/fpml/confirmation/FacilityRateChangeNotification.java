@@ -305,6 +305,7 @@ public interface FacilityRateChangeNotification extends AbstractFacilityNotifica
 			return loanContractDetailsModel;
 		}
 		
+		@Override
 		public LoanContractDetailsModel.LoanContractDetailsModelBuilder getOrCreateLoanContractDetailsModel(int _index) {
 		
 			if (loanContractDetailsModel==null) {
@@ -323,6 +324,7 @@ public interface FacilityRateChangeNotification extends AbstractFacilityNotifica
 			return party;
 		}
 		
+		@Override
 		public Party.PartyBuilder getOrCreateParty(int _index) {
 		
 			if (party==null) {
@@ -390,6 +392,7 @@ public interface FacilityRateChangeNotification extends AbstractFacilityNotifica
 			return this;
 		}
 		@Override
+		@RosettaAttribute("eventPayment")
 		public FacilityRateChangeNotification.FacilityRateChangeNotificationBuilder addEventPayment(EventPayment eventPayment) {
 			if (eventPayment!=null) this.eventPayment.add(eventPayment.toBuilder());
 			return this;
@@ -411,7 +414,6 @@ public interface FacilityRateChangeNotification extends AbstractFacilityNotifica
 		}
 		
 		@Override 
-		@RosettaAttribute("eventPayment")
 		public FacilityRateChangeNotification.FacilityRateChangeNotificationBuilder setEventPayment(List<? extends EventPayment> eventPayments) {
 			if (eventPayments == null)  {
 				this.eventPayment = new ArrayList<>();
@@ -443,6 +445,7 @@ public interface FacilityRateChangeNotification extends AbstractFacilityNotifica
 			return this;
 		}
 		@Override
+		@RosettaAttribute("loanContractDetailsModel")
 		public FacilityRateChangeNotification.FacilityRateChangeNotificationBuilder addLoanContractDetailsModel(LoanContractDetailsModel loanContractDetailsModel) {
 			if (loanContractDetailsModel!=null) this.loanContractDetailsModel.add(loanContractDetailsModel.toBuilder());
 			return this;
@@ -464,7 +467,6 @@ public interface FacilityRateChangeNotification extends AbstractFacilityNotifica
 		}
 		
 		@Override 
-		@RosettaAttribute("loanContractDetailsModel")
 		public FacilityRateChangeNotification.FacilityRateChangeNotificationBuilder setLoanContractDetailsModel(List<? extends LoanContractDetailsModel> loanContractDetailsModels) {
 			if (loanContractDetailsModels == null)  {
 				this.loanContractDetailsModel = new ArrayList<>();
@@ -478,6 +480,7 @@ public interface FacilityRateChangeNotification extends AbstractFacilityNotifica
 		}
 		
 		@Override
+		@RosettaAttribute("party")
 		public FacilityRateChangeNotification.FacilityRateChangeNotificationBuilder addParty(Party party) {
 			if (party!=null) this.party.add(party.toBuilder());
 			return this;
@@ -499,7 +502,6 @@ public interface FacilityRateChangeNotification extends AbstractFacilityNotifica
 		}
 		
 		@Override 
-		@RosettaAttribute("party")
 		public FacilityRateChangeNotification.FacilityRateChangeNotificationBuilder setParty(List<? extends Party> partys) {
 			if (partys == null)  {
 				this.party = new ArrayList<>();

@@ -179,6 +179,7 @@ public interface SpecifiedCurrency extends RosettaModelObject {
 			return currency;
 		}
 		
+		@Override
 		public Currency.CurrencyBuilder getOrCreateCurrency(int _index) {
 		
 			if (currency==null) {
@@ -198,6 +199,7 @@ public interface SpecifiedCurrency extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("currency")
 		public SpecifiedCurrency.SpecifiedCurrencyBuilder addCurrency(Currency currency) {
 			if (currency!=null) this.currency.add(currency.toBuilder());
 			return this;
@@ -219,7 +221,6 @@ public interface SpecifiedCurrency extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("currency")
 		public SpecifiedCurrency.SpecifiedCurrencyBuilder setCurrency(List<? extends Currency> currencys) {
 			if (currencys == null)  {
 				this.currency = new ArrayList<>();

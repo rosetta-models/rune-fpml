@@ -179,6 +179,7 @@ public interface VarianceSwap extends NettedSwapBase {
 			return varianceLeg;
 		}
 		
+		@Override
 		public VarianceLeg.VarianceLegBuilder getOrCreateVarianceLeg(int _index) {
 		
 			if (varianceLeg==null) {
@@ -204,6 +205,7 @@ public interface VarianceSwap extends NettedSwapBase {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("additionalPayment")
 		public VarianceSwap.VarianceSwapBuilder addAdditionalPayment(ClassifiablePayment additionalPayment) {
 			if (additionalPayment!=null) this.additionalPayment.add(additionalPayment.toBuilder());
 			return this;
@@ -225,7 +227,6 @@ public interface VarianceSwap extends NettedSwapBase {
 		}
 		
 		@Override 
-		@RosettaAttribute("additionalPayment")
 		public VarianceSwap.VarianceSwapBuilder setAdditionalPayment(List<? extends ClassifiablePayment> additionalPayments) {
 			if (additionalPayments == null)  {
 				this.additionalPayment = new ArrayList<>();
@@ -245,6 +246,7 @@ public interface VarianceSwap extends NettedSwapBase {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("varianceLeg")
 		public VarianceSwap.VarianceSwapBuilder addVarianceLeg(VarianceLeg varianceLeg) {
 			if (varianceLeg!=null) this.varianceLeg.add(varianceLeg.toBuilder());
 			return this;
@@ -266,7 +268,6 @@ public interface VarianceSwap extends NettedSwapBase {
 		}
 		
 		@Override 
-		@RosettaAttribute("varianceLeg")
 		public VarianceSwap.VarianceSwapBuilder setVarianceLeg(List<? extends VarianceLeg> varianceLegs) {
 			if (varianceLegs == null)  {
 				this.varianceLeg = new ArrayList<>();

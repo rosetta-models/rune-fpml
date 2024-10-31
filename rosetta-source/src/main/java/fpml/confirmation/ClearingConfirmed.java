@@ -356,6 +356,7 @@ public interface ClearingConfirmed extends NotificationMessage {
 			return creditLimitInformation;
 		}
 		
+		@Override
 		public CreditLimitInformation.CreditLimitInformationBuilder getOrCreateCreditLimitInformation(int _index) {
 		
 			if (creditLimitInformation==null) {
@@ -448,6 +449,7 @@ public interface ClearingConfirmed extends NotificationMessage {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("creditLimitInformation")
 		public ClearingConfirmed.ClearingConfirmedBuilder addCreditLimitInformation(CreditLimitInformation creditLimitInformation) {
 			if (creditLimitInformation!=null) this.creditLimitInformation.add(creditLimitInformation.toBuilder());
 			return this;
@@ -469,7 +471,6 @@ public interface ClearingConfirmed extends NotificationMessage {
 		}
 		
 		@Override 
-		@RosettaAttribute("creditLimitInformation")
 		public ClearingConfirmed.ClearingConfirmedBuilder setCreditLimitInformation(List<? extends CreditLimitInformation> creditLimitInformations) {
 			if (creditLimitInformations == null)  {
 				this.creditLimitInformation = new ArrayList<>();

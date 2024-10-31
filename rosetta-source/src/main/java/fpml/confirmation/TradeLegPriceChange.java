@@ -228,6 +228,7 @@ public interface TradeLegPriceChange extends RosettaModelObject {
 			return instrumentId;
 		}
 		
+		@Override
 		public InstrumentId.InstrumentIdBuilder getOrCreateInstrumentId(int _index) {
 		
 			if (instrumentId==null) {
@@ -259,6 +260,7 @@ public interface TradeLegPriceChange extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("instrumentId")
 		public TradeLegPriceChange.TradeLegPriceChangeBuilder addInstrumentId(InstrumentId instrumentId) {
 			if (instrumentId!=null) this.instrumentId.add(instrumentId.toBuilder());
 			return this;
@@ -280,7 +282,6 @@ public interface TradeLegPriceChange extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("instrumentId")
 		public TradeLegPriceChange.TradeLegPriceChangeBuilder setInstrumentId(List<? extends InstrumentId> instrumentIds) {
 			if (instrumentIds == null)  {
 				this.instrumentId = new ArrayList<>();

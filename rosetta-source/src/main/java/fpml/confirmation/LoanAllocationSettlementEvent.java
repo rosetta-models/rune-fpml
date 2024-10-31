@@ -282,6 +282,7 @@ public interface LoanAllocationSettlementEvent extends AbstractLoanAllocationSet
 		}
 		
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public LoanAllocationSettlementEvent.LoanAllocationSettlementEventBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -303,7 +304,6 @@ public interface LoanAllocationSettlementEvent extends AbstractLoanAllocationSet
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public LoanAllocationSettlementEvent.LoanAllocationSettlementEventBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();

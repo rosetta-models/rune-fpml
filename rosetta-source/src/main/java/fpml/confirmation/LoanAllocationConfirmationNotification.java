@@ -306,6 +306,7 @@ public interface LoanAllocationConfirmationNotification extends AbstractLoanTrad
 			return allocationIdentifier;
 		}
 		
+		@Override
 		public LoanAllocationIdentifier.LoanAllocationIdentifierBuilder getOrCreateAllocationIdentifier(int _index) {
 		
 			if (allocationIdentifier==null) {
@@ -362,6 +363,7 @@ public interface LoanAllocationConfirmationNotification extends AbstractLoanTrad
 			return party;
 		}
 		
+		@Override
 		public Party.PartyBuilder getOrCreateParty(int _index) {
 		
 			if (party==null) {
@@ -441,6 +443,7 @@ public interface LoanAllocationConfirmationNotification extends AbstractLoanTrad
 			return this;
 		}
 		@Override
+		@RosettaAttribute("allocationIdentifier")
 		public LoanAllocationConfirmationNotification.LoanAllocationConfirmationNotificationBuilder addAllocationIdentifier(LoanAllocationIdentifier allocationIdentifier) {
 			if (allocationIdentifier!=null) this.allocationIdentifier.add(allocationIdentifier.toBuilder());
 			return this;
@@ -462,7 +465,6 @@ public interface LoanAllocationConfirmationNotification extends AbstractLoanTrad
 		}
 		
 		@Override 
-		@RosettaAttribute("allocationIdentifier")
 		public LoanAllocationConfirmationNotification.LoanAllocationConfirmationNotificationBuilder setAllocationIdentifier(List<? extends LoanAllocationIdentifier> allocationIdentifiers) {
 			if (allocationIdentifiers == null)  {
 				this.allocationIdentifier = new ArrayList<>();
@@ -488,6 +490,7 @@ public interface LoanAllocationConfirmationNotification extends AbstractLoanTrad
 			return this;
 		}
 		@Override
+		@RosettaAttribute("party")
 		public LoanAllocationConfirmationNotification.LoanAllocationConfirmationNotificationBuilder addParty(Party party) {
 			if (party!=null) this.party.add(party.toBuilder());
 			return this;
@@ -509,7 +512,6 @@ public interface LoanAllocationConfirmationNotification extends AbstractLoanTrad
 		}
 		
 		@Override 
-		@RosettaAttribute("party")
 		public LoanAllocationConfirmationNotification.LoanAllocationConfirmationNotificationBuilder setParty(List<? extends Party> partys) {
 			if (partys == null)  {
 				this.party = new ArrayList<>();

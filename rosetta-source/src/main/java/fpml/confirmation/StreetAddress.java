@@ -152,6 +152,7 @@ public interface StreetAddress extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("streetLine")
 		public StreetAddress.StreetAddressBuilder addStreetLine(String streetLine) {
 			if (streetLine!=null) this.streetLine.add(streetLine);
 			return this;
@@ -173,7 +174,6 @@ public interface StreetAddress extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("streetLine")
 		public StreetAddress.StreetAddressBuilder setStreetLine(List<String> streetLines) {
 			if (streetLines == null)  {
 				this.streetLine = new ArrayList<>();

@@ -241,6 +241,7 @@ public interface LetterOfCreditSummary extends RosettaModelObject {
 			return identifier;
 		}
 		
+		@Override
 		public FacilityContractIdentifier.FacilityContractIdentifierBuilder getOrCreateIdentifier(int _index) {
 		
 			if (identifier==null) {
@@ -317,6 +318,7 @@ public interface LetterOfCreditSummary extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("identifier")
 		public LetterOfCreditSummary.LetterOfCreditSummaryBuilder addIdentifier(FacilityContractIdentifier identifier) {
 			if (identifier!=null) this.identifier.add(identifier.toBuilder());
 			return this;
@@ -338,7 +340,6 @@ public interface LetterOfCreditSummary extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("identifier")
 		public LetterOfCreditSummary.LetterOfCreditSummaryBuilder setIdentifier(List<? extends FacilityContractIdentifier> identifiers) {
 			if (identifiers == null)  {
 				this.identifier = new ArrayList<>();

@@ -183,6 +183,7 @@ public interface CommodityBasketByPercentage extends CommodityBasketBase {
 			return underlying;
 		}
 		
+		@Override
 		public CommodityBasketUnderlyingByPercentage.CommodityBasketUnderlyingByPercentageBuilder getOrCreateUnderlying(int _index) {
 		
 			if (underlying==null) {
@@ -221,6 +222,7 @@ public interface CommodityBasketByPercentage extends CommodityBasketBase {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("underlying")
 		public CommodityBasketByPercentage.CommodityBasketByPercentageBuilder addUnderlying(CommodityBasketUnderlyingByPercentage underlying) {
 			if (underlying!=null) this.underlying.add(underlying.toBuilder());
 			return this;
@@ -242,7 +244,6 @@ public interface CommodityBasketByPercentage extends CommodityBasketBase {
 		}
 		
 		@Override 
-		@RosettaAttribute("underlying")
 		public CommodityBasketByPercentage.CommodityBasketByPercentageBuilder setUnderlying(List<? extends CommodityBasketUnderlyingByPercentage> underlyings) {
 			if (underlyings == null)  {
 				this.underlying = new ArrayList<>();

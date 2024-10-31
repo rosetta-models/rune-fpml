@@ -201,6 +201,7 @@ public interface ObjectType extends RosettaModelObject {
 			return objectTypeSequence;
 		}
 		
+		@Override
 		public ObjectTypeSequence.ObjectTypeSequenceBuilder getOrCreateObjectTypeSequence(int _index) {
 		
 			if (objectTypeSequence==null) {
@@ -232,6 +233,7 @@ public interface ObjectType extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("objectTypeSequence")
 		public ObjectType.ObjectTypeBuilder addObjectTypeSequence(ObjectTypeSequence objectTypeSequence) {
 			if (objectTypeSequence!=null) this.objectTypeSequence.add(objectTypeSequence.toBuilder());
 			return this;
@@ -253,7 +255,6 @@ public interface ObjectType extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("objectTypeSequence")
 		public ObjectType.ObjectTypeBuilder setObjectTypeSequence(List<? extends ObjectTypeSequence> objectTypeSequences) {
 			if (objectTypeSequences == null)  {
 				this.objectTypeSequence = new ArrayList<>();

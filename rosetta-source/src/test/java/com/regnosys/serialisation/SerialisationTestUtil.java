@@ -2,6 +2,8 @@ package com.regnosys.serialisation;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.fasterxml.jackson.dataformat.xml.ser.ToXmlGenerator;
 import com.google.common.io.Resources;
 import org.xml.sax.SAXException;
 
@@ -33,6 +35,7 @@ public class SerialisationTestUtil<T> {
         this.rootType = rootType;
         this.xsdValidator = getXmlValidator(xsdSchemaPath);
         this.xmlMapper = getXmlMapper(xmlConfigPath);
+        ((XmlMapper)xmlMapper).configure(ToXmlGenerator.Feature.WRITE_XML_DECLARATION, true);
         this.xmlWriter = xmlMapper
                 .writerWithDefaultPrettyPrinter()
                 .withAttribute("schemaLocation", expectedSchemaLocationAttribute);

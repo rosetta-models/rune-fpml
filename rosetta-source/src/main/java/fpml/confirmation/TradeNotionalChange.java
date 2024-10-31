@@ -249,6 +249,7 @@ public interface TradeNotionalChange extends TradeChangeBase {
 			return sizeChange;
 		}
 		
+		@Override
 		public TradeLegSizeChange.TradeLegSizeChangeBuilder getOrCreateSizeChange(int _index) {
 		
 			if (sizeChange==null) {
@@ -267,6 +268,7 @@ public interface TradeNotionalChange extends TradeChangeBase {
 			return priceChange;
 		}
 		
+		@Override
 		public TradeLegPriceChange.TradeLegPriceChangeBuilder getOrCreatePriceChange(int _index) {
 		
 			if (priceChange==null) {
@@ -280,6 +282,7 @@ public interface TradeNotionalChange extends TradeChangeBase {
 		}
 		
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public TradeNotionalChange.TradeNotionalChangeBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -301,7 +304,6 @@ public interface TradeNotionalChange extends TradeChangeBase {
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public TradeNotionalChange.TradeNotionalChangeBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();
@@ -315,6 +317,7 @@ public interface TradeNotionalChange extends TradeChangeBase {
 		}
 		
 		@Override
+		@RosettaAttribute("tradeIdentifier")
 		public TradeNotionalChange.TradeNotionalChangeBuilder addTradeIdentifier(PartyTradeIdentifier tradeIdentifier) {
 			if (tradeIdentifier!=null) this.tradeIdentifier.add(tradeIdentifier.toBuilder());
 			return this;
@@ -336,7 +339,6 @@ public interface TradeNotionalChange extends TradeChangeBase {
 		}
 		
 		@Override 
-		@RosettaAttribute("tradeIdentifier")
 		public TradeNotionalChange.TradeNotionalChangeBuilder setTradeIdentifier(List<? extends PartyTradeIdentifier> tradeIdentifiers) {
 			if (tradeIdentifiers == null)  {
 				this.tradeIdentifier = new ArrayList<>();
@@ -380,6 +382,7 @@ public interface TradeNotionalChange extends TradeChangeBase {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("sizeChange")
 		public TradeNotionalChange.TradeNotionalChangeBuilder addSizeChange(TradeLegSizeChange sizeChange) {
 			if (sizeChange!=null) this.sizeChange.add(sizeChange.toBuilder());
 			return this;
@@ -401,7 +404,6 @@ public interface TradeNotionalChange extends TradeChangeBase {
 		}
 		
 		@Override 
-		@RosettaAttribute("sizeChange")
 		public TradeNotionalChange.TradeNotionalChangeBuilder setSizeChange(List<? extends TradeLegSizeChange> sizeChanges) {
 			if (sizeChanges == null)  {
 				this.sizeChange = new ArrayList<>();
@@ -415,6 +417,7 @@ public interface TradeNotionalChange extends TradeChangeBase {
 		}
 		
 		@Override
+		@RosettaAttribute("priceChange")
 		public TradeNotionalChange.TradeNotionalChangeBuilder addPriceChange(TradeLegPriceChange priceChange) {
 			if (priceChange!=null) this.priceChange.add(priceChange.toBuilder());
 			return this;
@@ -436,7 +439,6 @@ public interface TradeNotionalChange extends TradeChangeBase {
 		}
 		
 		@Override 
-		@RosettaAttribute("priceChange")
 		public TradeNotionalChange.TradeNotionalChangeBuilder setPriceChange(List<? extends TradeLegPriceChange> priceChanges) {
 			if (priceChanges == null)  {
 				this.priceChange = new ArrayList<>();

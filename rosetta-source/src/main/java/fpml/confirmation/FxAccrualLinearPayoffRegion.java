@@ -365,6 +365,7 @@ public interface FxAccrualLinearPayoffRegion extends FxAccrualPayoffRegion {
 			return payoffCap;
 		}
 		
+		@Override
 		public FxPayoffCap.FxPayoffCapBuilder getOrCreatePayoffCap(int _index) {
 		
 			if (payoffCap==null) {
@@ -414,6 +415,7 @@ public interface FxAccrualLinearPayoffRegion extends FxAccrualPayoffRegion {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("payoffCap")
 		public FxAccrualLinearPayoffRegion.FxAccrualLinearPayoffRegionBuilder addPayoffCap(FxPayoffCap payoffCap) {
 			if (payoffCap!=null) this.payoffCap.add(payoffCap.toBuilder());
 			return this;
@@ -435,7 +437,6 @@ public interface FxAccrualLinearPayoffRegion extends FxAccrualPayoffRegion {
 		}
 		
 		@Override 
-		@RosettaAttribute("payoffCap")
 		public FxAccrualLinearPayoffRegion.FxAccrualLinearPayoffRegionBuilder setPayoffCap(List<? extends FxPayoffCap> payoffCaps) {
 			if (payoffCaps == null)  {
 				this.payoffCap = new ArrayList<>();

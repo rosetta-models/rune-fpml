@@ -253,6 +253,7 @@ public interface ReturnSwapBase extends Product {
 			return returnSwapLeg;
 		}
 		
+		@Override
 		public DirectionalLeg.DirectionalLegBuilder getOrCreateReturnSwapLeg(int _index) {
 		
 			if (returnSwapLeg==null) {
@@ -290,6 +291,7 @@ public interface ReturnSwapBase extends Product {
 			return additionalPayment;
 		}
 		
+		@Override
 		public ReturnSwapAdditionalPayment.ReturnSwapAdditionalPaymentBuilder getOrCreateAdditionalPayment(int _index) {
 		
 			if (additionalPayment==null) {
@@ -321,6 +323,7 @@ public interface ReturnSwapBase extends Product {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("returnSwapLeg")
 		public ReturnSwapBase.ReturnSwapBaseBuilder addReturnSwapLeg(DirectionalLeg returnSwapLeg) {
 			if (returnSwapLeg!=null) this.returnSwapLeg.add(returnSwapLeg.toBuilder());
 			return this;
@@ -342,7 +345,6 @@ public interface ReturnSwapBase extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("returnSwapLeg")
 		public ReturnSwapBase.ReturnSwapBaseBuilder setReturnSwapLeg(List<? extends DirectionalLeg> returnSwapLegs) {
 			if (returnSwapLegs == null)  {
 				this.returnSwapLeg = new ArrayList<>();
@@ -362,6 +364,7 @@ public interface ReturnSwapBase extends Product {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("additionalPayment")
 		public ReturnSwapBase.ReturnSwapBaseBuilder addAdditionalPayment(ReturnSwapAdditionalPayment additionalPayment) {
 			if (additionalPayment!=null) this.additionalPayment.add(additionalPayment.toBuilder());
 			return this;
@@ -383,7 +386,6 @@ public interface ReturnSwapBase extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("additionalPayment")
 		public ReturnSwapBase.ReturnSwapBaseBuilder setAdditionalPayment(List<? extends ReturnSwapAdditionalPayment> additionalPayments) {
 			if (additionalPayments == null)  {
 				this.additionalPayment = new ArrayList<>();

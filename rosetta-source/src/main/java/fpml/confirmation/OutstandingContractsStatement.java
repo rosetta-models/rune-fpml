@@ -258,6 +258,7 @@ public interface OutstandingContractsStatement extends AbstractLoanStatement {
 			return outstandingContractsStatementChoice;
 		}
 		
+		@Override
 		public OutstandingContractsStatementChoice.OutstandingContractsStatementChoiceBuilder getOrCreateOutstandingContractsStatementChoice(int _index) {
 		
 			if (outstandingContractsStatementChoice==null) {
@@ -276,6 +277,7 @@ public interface OutstandingContractsStatement extends AbstractLoanStatement {
 			return party;
 		}
 		
+		@Override
 		public Party.PartyBuilder getOrCreateParty(int _index) {
 		
 			if (party==null) {
@@ -349,6 +351,7 @@ public interface OutstandingContractsStatement extends AbstractLoanStatement {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("outstandingContractsStatementChoice")
 		public OutstandingContractsStatement.OutstandingContractsStatementBuilder addOutstandingContractsStatementChoice(OutstandingContractsStatementChoice outstandingContractsStatementChoice) {
 			if (outstandingContractsStatementChoice!=null) this.outstandingContractsStatementChoice.add(outstandingContractsStatementChoice.toBuilder());
 			return this;
@@ -370,7 +373,6 @@ public interface OutstandingContractsStatement extends AbstractLoanStatement {
 		}
 		
 		@Override 
-		@RosettaAttribute("outstandingContractsStatementChoice")
 		public OutstandingContractsStatement.OutstandingContractsStatementBuilder setOutstandingContractsStatementChoice(List<? extends OutstandingContractsStatementChoice> outstandingContractsStatementChoices) {
 			if (outstandingContractsStatementChoices == null)  {
 				this.outstandingContractsStatementChoice = new ArrayList<>();
@@ -384,6 +386,7 @@ public interface OutstandingContractsStatement extends AbstractLoanStatement {
 		}
 		
 		@Override
+		@RosettaAttribute("party")
 		public OutstandingContractsStatement.OutstandingContractsStatementBuilder addParty(Party party) {
 			if (party!=null) this.party.add(party.toBuilder());
 			return this;
@@ -405,7 +408,6 @@ public interface OutstandingContractsStatement extends AbstractLoanStatement {
 		}
 		
 		@Override 
-		@RosettaAttribute("party")
 		public OutstandingContractsStatement.OutstandingContractsStatementBuilder setParty(List<? extends Party> partys) {
 			if (partys == null)  {
 				this.party = new ArrayList<>();

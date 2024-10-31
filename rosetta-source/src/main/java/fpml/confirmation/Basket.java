@@ -274,6 +274,7 @@ public interface Basket extends Asset {
 			return basketConstituent;
 		}
 		
+		@Override
 		public BasketConstituent.BasketConstituentBuilder getOrCreateBasketConstituent(int _index) {
 		
 			if (basketConstituent==null) {
@@ -349,6 +350,7 @@ public interface Basket extends Asset {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("basketConstituent")
 		public Basket.BasketBuilder addBasketConstituent(BasketConstituent basketConstituent) {
 			if (basketConstituent!=null) this.basketConstituent.add(basketConstituent.toBuilder());
 			return this;
@@ -370,7 +372,6 @@ public interface Basket extends Asset {
 		}
 		
 		@Override 
-		@RosettaAttribute("basketConstituent")
 		public Basket.BasketBuilder setBasketConstituent(List<? extends BasketConstituent> basketConstituents) {
 			if (basketConstituents == null)  {
 				this.basketConstituent = new ArrayList<>();

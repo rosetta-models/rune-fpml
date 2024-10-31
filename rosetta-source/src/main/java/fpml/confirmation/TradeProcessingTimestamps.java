@@ -597,6 +597,7 @@ public interface TradeProcessingTimestamps extends RosettaModelObject {
 			return timestamp;
 		}
 		
+		@Override
 		public TradeTimestamp.TradeTimestampBuilder getOrCreateTimestamp(int _index) {
 		
 			if (timestamp==null) {
@@ -712,6 +713,7 @@ public interface TradeProcessingTimestamps extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("timestamp")
 		public TradeProcessingTimestamps.TradeProcessingTimestampsBuilder addTimestamp(TradeTimestamp timestamp) {
 			if (timestamp!=null) this.timestamp.add(timestamp.toBuilder());
 			return this;
@@ -733,7 +735,6 @@ public interface TradeProcessingTimestamps extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("timestamp")
 		public TradeProcessingTimestamps.TradeProcessingTimestampsBuilder setTimestamp(List<? extends TradeTimestamp> timestamps) {
 			if (timestamps == null)  {
 				this.timestamp = new ArrayList<>();

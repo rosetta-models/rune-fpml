@@ -321,6 +321,7 @@ public interface Withdrawal extends RosettaModelObject {
 			return reason;
 		}
 		
+		@Override
 		public WithdrawalReason.WithdrawalReasonBuilder getOrCreateReason(int _index) {
 		
 			if (reason==null) {
@@ -339,6 +340,7 @@ public interface Withdrawal extends RosettaModelObject {
 			return reportingRegime;
 		}
 		
+		@Override
 		public ReportingRegimeIdentifier.ReportingRegimeIdentifierBuilder getOrCreateReportingRegime(int _index) {
 		
 			if (reportingRegime==null) {
@@ -376,6 +378,7 @@ public interface Withdrawal extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("reason")
 		public Withdrawal.WithdrawalBuilder addReason(WithdrawalReason reason) {
 			if (reason!=null) this.reason.add(reason.toBuilder());
 			return this;
@@ -397,7 +400,6 @@ public interface Withdrawal extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("reason")
 		public Withdrawal.WithdrawalBuilder setReason(List<? extends WithdrawalReason> reasons) {
 			if (reasons == null)  {
 				this.reason = new ArrayList<>();
@@ -411,6 +413,7 @@ public interface Withdrawal extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("reportingRegime")
 		public Withdrawal.WithdrawalBuilder addReportingRegime(ReportingRegimeIdentifier reportingRegime) {
 			if (reportingRegime!=null) this.reportingRegime.add(reportingRegime.toBuilder());
 			return this;
@@ -432,7 +435,6 @@ public interface Withdrawal extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("reportingRegime")
 		public Withdrawal.WithdrawalBuilder setReportingRegime(List<? extends ReportingRegimeIdentifier> reportingRegimes) {
 			if (reportingRegimes == null)  {
 				this.reportingRegime = new ArrayList<>();

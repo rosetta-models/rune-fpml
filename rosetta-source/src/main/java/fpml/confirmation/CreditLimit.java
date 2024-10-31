@@ -192,6 +192,7 @@ public interface CreditLimit extends CreditLimitBase {
 			return limitApplicable;
 		}
 		
+		@Override
 		public LimitApplicable.LimitApplicableBuilder getOrCreateLimitApplicable(int _index) {
 		
 			if (limitApplicable==null) {
@@ -235,6 +236,7 @@ public interface CreditLimit extends CreditLimitBase {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("limitApplicable")
 		public CreditLimit.CreditLimitBuilder addLimitApplicable(LimitApplicable limitApplicable) {
 			if (limitApplicable!=null) this.limitApplicable.add(limitApplicable.toBuilder());
 			return this;
@@ -256,7 +258,6 @@ public interface CreditLimit extends CreditLimitBase {
 		}
 		
 		@Override 
-		@RosettaAttribute("limitApplicable")
 		public CreditLimit.CreditLimitBuilder setLimitApplicable(List<? extends LimitApplicable> limitApplicables) {
 			if (limitApplicables == null)  {
 				this.limitApplicable = new ArrayList<>();

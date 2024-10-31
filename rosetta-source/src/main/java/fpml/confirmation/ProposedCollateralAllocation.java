@@ -190,6 +190,7 @@ public interface ProposedCollateralAllocation extends RosettaModelObject {
 			return proposedCollateralAllocationChoice;
 		}
 		
+		@Override
 		public ProposedCollateralAllocationChoice.ProposedCollateralAllocationChoiceBuilder getOrCreateProposedCollateralAllocationChoice(int _index) {
 		
 			if (proposedCollateralAllocationChoice==null) {
@@ -209,6 +210,7 @@ public interface ProposedCollateralAllocation extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("proposedCollateralAllocationChoice")
 		public ProposedCollateralAllocation.ProposedCollateralAllocationBuilder addProposedCollateralAllocationChoice(ProposedCollateralAllocationChoice proposedCollateralAllocationChoice) {
 			if (proposedCollateralAllocationChoice!=null) this.proposedCollateralAllocationChoice.add(proposedCollateralAllocationChoice.toBuilder());
 			return this;
@@ -230,7 +232,6 @@ public interface ProposedCollateralAllocation extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("proposedCollateralAllocationChoice")
 		public ProposedCollateralAllocation.ProposedCollateralAllocationBuilder setProposedCollateralAllocationChoice(List<? extends ProposedCollateralAllocationChoice> proposedCollateralAllocationChoices) {
 			if (proposedCollateralAllocationChoices == null)  {
 				this.proposedCollateralAllocationChoice = new ArrayList<>();

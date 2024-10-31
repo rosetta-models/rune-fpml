@@ -242,6 +242,7 @@ public interface Rollover extends AbstractFacilityEvent {
 			return rolloverChoice;
 		}
 		
+		@Override
 		public RolloverChoice.RolloverChoiceBuilder getOrCreateRolloverChoice(int _index) {
 		
 			if (rolloverChoice==null) {
@@ -255,6 +256,7 @@ public interface Rollover extends AbstractFacilityEvent {
 		}
 		
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public Rollover.RolloverBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -276,7 +278,6 @@ public interface Rollover extends AbstractFacilityEvent {
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public Rollover.RolloverBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();
@@ -344,6 +345,7 @@ public interface Rollover extends AbstractFacilityEvent {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("rolloverChoice")
 		public Rollover.RolloverBuilder addRolloverChoice(RolloverChoice rolloverChoice) {
 			if (rolloverChoice!=null) this.rolloverChoice.add(rolloverChoice.toBuilder());
 			return this;
@@ -365,7 +367,6 @@ public interface Rollover extends AbstractFacilityEvent {
 		}
 		
 		@Override 
-		@RosettaAttribute("rolloverChoice")
 		public Rollover.RolloverBuilder setRolloverChoice(List<? extends RolloverChoice> rolloverChoices) {
 			if (rolloverChoices == null)  {
 				this.rolloverChoice = new ArrayList<>();

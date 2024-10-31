@@ -259,6 +259,7 @@ public interface TradePackage extends RosettaModelObject {
 			return trade;
 		}
 		
+		@Override
 		public Trade.TradeBuilder getOrCreateTrade(int _index) {
 		
 			if (trade==null) {
@@ -277,6 +278,7 @@ public interface TradePackage extends RosettaModelObject {
 			return tradeReferenceInformationModel;
 		}
 		
+		@Override
 		public TradeReferenceInformationModel.TradeReferenceInformationModelBuilder getOrCreateTradeReferenceInformationModel(int _index) {
 		
 			if (tradeReferenceInformationModel==null) {
@@ -295,6 +297,7 @@ public interface TradePackage extends RosettaModelObject {
 			return tradeIdentifier;
 		}
 		
+		@Override
 		public TradeIdentifier.TradeIdentifierBuilder getOrCreateTradeIdentifier(int _index) {
 		
 			if (tradeIdentifier==null) {
@@ -333,6 +336,7 @@ public interface TradePackage extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("trade")
 		public TradePackage.TradePackageBuilder addTrade(Trade trade) {
 			if (trade!=null) this.trade.add(trade.toBuilder());
 			return this;
@@ -354,7 +358,6 @@ public interface TradePackage extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("trade")
 		public TradePackage.TradePackageBuilder setTrade(List<? extends Trade> trades) {
 			if (trades == null)  {
 				this.trade = new ArrayList<>();
@@ -368,6 +371,7 @@ public interface TradePackage extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("tradeReferenceInformationModel")
 		public TradePackage.TradePackageBuilder addTradeReferenceInformationModel(TradeReferenceInformationModel tradeReferenceInformationModel) {
 			if (tradeReferenceInformationModel!=null) this.tradeReferenceInformationModel.add(tradeReferenceInformationModel.toBuilder());
 			return this;
@@ -389,7 +393,6 @@ public interface TradePackage extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("tradeReferenceInformationModel")
 		public TradePackage.TradePackageBuilder setTradeReferenceInformationModel(List<? extends TradeReferenceInformationModel> tradeReferenceInformationModels) {
 			if (tradeReferenceInformationModels == null)  {
 				this.tradeReferenceInformationModel = new ArrayList<>();
@@ -403,6 +406,7 @@ public interface TradePackage extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("tradeIdentifier")
 		public TradePackage.TradePackageBuilder addTradeIdentifier(TradeIdentifier tradeIdentifier) {
 			if (tradeIdentifier!=null) this.tradeIdentifier.add(tradeIdentifier.toBuilder());
 			return this;
@@ -424,7 +428,6 @@ public interface TradePackage extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("tradeIdentifier")
 		public TradePackage.TradePackageBuilder setTradeIdentifier(List<? extends TradeIdentifier> tradeIdentifiers) {
 			if (tradeIdentifiers == null)  {
 				this.tradeIdentifier = new ArrayList<>();

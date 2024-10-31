@@ -224,6 +224,7 @@ public interface LoanAllocationTransferFeeDueEvent extends AbstractLoanAllocatio
 		}
 		
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public LoanAllocationTransferFeeDueEvent.LoanAllocationTransferFeeDueEventBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -245,7 +246,6 @@ public interface LoanAllocationTransferFeeDueEvent extends AbstractLoanAllocatio
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public LoanAllocationTransferFeeDueEvent.LoanAllocationTransferFeeDueEventBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();
@@ -283,6 +283,7 @@ public interface LoanAllocationTransferFeeDueEvent extends AbstractLoanAllocatio
 			return this;
 		}
 		@Override
+		@RosettaAttribute("allocationReference")
 		public LoanAllocationTransferFeeDueEvent.LoanAllocationTransferFeeDueEventBuilder addAllocationReference(LoanAllocationReference allocationReference) {
 			if (allocationReference!=null) this.allocationReference.add(allocationReference.toBuilder());
 			return this;
@@ -304,7 +305,6 @@ public interface LoanAllocationTransferFeeDueEvent extends AbstractLoanAllocatio
 		}
 		
 		@Override 
-		@RosettaAttribute("allocationReference")
 		public LoanAllocationTransferFeeDueEvent.LoanAllocationTransferFeeDueEventBuilder setAllocationReference(List<? extends LoanAllocationReference> allocationReferences) {
 			if (allocationReferences == null)  {
 				this.allocationReference = new ArrayList<>();

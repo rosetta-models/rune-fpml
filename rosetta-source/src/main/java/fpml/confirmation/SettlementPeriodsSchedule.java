@@ -174,6 +174,7 @@ public interface SettlementPeriodsSchedule extends RosettaModelObject {
 			return settlementPeriodsStep;
 		}
 		
+		@Override
 		public SettlementPeriodsStep.SettlementPeriodsStepBuilder getOrCreateSettlementPeriodsStep(int _index) {
 		
 			if (settlementPeriodsStep==null) {
@@ -206,6 +207,7 @@ public interface SettlementPeriodsSchedule extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("settlementPeriodsStep")
 		public SettlementPeriodsSchedule.SettlementPeriodsScheduleBuilder addSettlementPeriodsStep(SettlementPeriodsStep settlementPeriodsStep) {
 			if (settlementPeriodsStep!=null) this.settlementPeriodsStep.add(settlementPeriodsStep.toBuilder());
 			return this;
@@ -227,7 +229,6 @@ public interface SettlementPeriodsSchedule extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("settlementPeriodsStep")
 		public SettlementPeriodsSchedule.SettlementPeriodsScheduleBuilder setSettlementPeriodsStep(List<? extends SettlementPeriodsStep> settlementPeriodsSteps) {
 			if (settlementPeriodsSteps == null)  {
 				this.settlementPeriodsStep = new ArrayList<>();

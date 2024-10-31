@@ -175,6 +175,7 @@ public interface BasicAssetValuation extends Valuation {
 			return quote;
 		}
 		
+		@Override
 		public BasicQuotation.BasicQuotationBuilder getOrCreateQuote(int _index) {
 		
 			if (quote==null) {
@@ -212,6 +213,7 @@ public interface BasicAssetValuation extends Valuation {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("quote")
 		public BasicAssetValuation.BasicAssetValuationBuilder addQuote(BasicQuotation quote) {
 			if (quote!=null) this.quote.add(quote.toBuilder());
 			return this;
@@ -233,7 +235,6 @@ public interface BasicAssetValuation extends Valuation {
 		}
 		
 		@Override 
-		@RosettaAttribute("quote")
 		public BasicAssetValuation.BasicAssetValuationBuilder setQuote(List<? extends BasicQuotation> quotes) {
 			if (quotes == null)  {
 				this.quote = new ArrayList<>();

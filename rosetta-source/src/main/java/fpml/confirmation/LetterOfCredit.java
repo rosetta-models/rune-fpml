@@ -368,6 +368,7 @@ public interface LetterOfCredit extends LetterOfCreditSummary {
 		}
 		
 		@Override
+		@RosettaAttribute("identifier")
 		public LetterOfCredit.LetterOfCreditBuilder addIdentifier(FacilityContractIdentifier identifier) {
 			if (identifier!=null) this.identifier.add(identifier.toBuilder());
 			return this;
@@ -389,7 +390,6 @@ public interface LetterOfCredit extends LetterOfCreditSummary {
 		}
 		
 		@Override 
-		@RosettaAttribute("identifier")
 		public LetterOfCredit.LetterOfCreditBuilder setIdentifier(List<? extends FacilityContractIdentifier> identifiers) {
 			if (identifiers == null)  {
 				this.identifier = new ArrayList<>();

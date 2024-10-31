@@ -239,6 +239,7 @@ public interface ContractIdentifier extends RosettaModelObject {
 			return contractId;
 		}
 		
+		@Override
 		public ContractId.ContractIdBuilder getOrCreateContractId(int _index) {
 		
 			if (contractId==null) {
@@ -257,6 +258,7 @@ public interface ContractIdentifier extends RosettaModelObject {
 			return versionedContractId;
 		}
 		
+		@Override
 		public VersionedContractId.VersionedContractIdBuilder getOrCreateVersionedContractId(int _index) {
 		
 			if (versionedContractId==null) {
@@ -282,6 +284,7 @@ public interface ContractIdentifier extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("contractId")
 		public ContractIdentifier.ContractIdentifierBuilder addContractId(ContractId contractId) {
 			if (contractId!=null) this.contractId.add(contractId.toBuilder());
 			return this;
@@ -303,7 +306,6 @@ public interface ContractIdentifier extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("contractId")
 		public ContractIdentifier.ContractIdentifierBuilder setContractId(List<? extends ContractId> contractIds) {
 			if (contractIds == null)  {
 				this.contractId = new ArrayList<>();
@@ -317,6 +319,7 @@ public interface ContractIdentifier extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("versionedContractId")
 		public ContractIdentifier.ContractIdentifierBuilder addVersionedContractId(VersionedContractId versionedContractId) {
 			if (versionedContractId!=null) this.versionedContractId.add(versionedContractId.toBuilder());
 			return this;
@@ -338,7 +341,6 @@ public interface ContractIdentifier extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("versionedContractId")
 		public ContractIdentifier.ContractIdentifierBuilder setVersionedContractId(List<? extends VersionedContractId> versionedContractIds) {
 			if (versionedContractIds == null)  {
 				this.versionedContractId = new ArrayList<>();

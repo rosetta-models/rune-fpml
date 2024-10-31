@@ -195,6 +195,7 @@ public interface BasketIdentifierModelSequence extends RosettaModelObject {
 			return basketId;
 		}
 		
+		@Override
 		public BasketId.BasketIdBuilder getOrCreateBasketId(int _index) {
 		
 			if (basketId==null) {
@@ -214,6 +215,7 @@ public interface BasketIdentifierModelSequence extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("basketId")
 		public BasketIdentifierModelSequence.BasketIdentifierModelSequenceBuilder addBasketId(BasketId basketId) {
 			if (basketId!=null) this.basketId.add(basketId.toBuilder());
 			return this;
@@ -235,7 +237,6 @@ public interface BasketIdentifierModelSequence extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("basketId")
 		public BasketIdentifierModelSequence.BasketIdentifierModelSequenceBuilder setBasketId(List<? extends BasketId> basketIds) {
 			if (basketIds == null)  {
 				this.basketId = new ArrayList<>();

@@ -150,6 +150,7 @@ public interface DateList extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("date")
 		public DateList.DateListBuilder addDate(Date date) {
 			if (date!=null) this.date.add(date);
 			return this;
@@ -171,7 +172,6 @@ public interface DateList extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("date")
 		public DateList.DateListBuilder setDate(List<Date> dates) {
 			if (dates == null)  {
 				this.date = new ArrayList<>();

@@ -532,6 +532,7 @@ public interface FxTargetKnockoutForward extends Product {
 			return target;
 		}
 		
+		@Override
 		public FxTarget.FxTargetBuilder getOrCreateTarget(int _index) {
 		
 			if (target==null) {
@@ -632,6 +633,7 @@ public interface FxTargetKnockoutForward extends Product {
 			return constantPayoffRegion;
 		}
 		
+		@Override
 		public FxTargetConstantPayoffRegion.FxTargetConstantPayoffRegionBuilder getOrCreateConstantPayoffRegion(int _index) {
 		
 			if (constantPayoffRegion==null) {
@@ -669,6 +671,7 @@ public interface FxTargetKnockoutForward extends Product {
 			return fxTargetKnockoutForwardChoice;
 		}
 		
+		@Override
 		public FxTargetKnockoutForwardChoice.FxTargetKnockoutForwardChoiceBuilder getOrCreateFxTargetKnockoutForwardChoice(int _index) {
 		
 			if (fxTargetKnockoutForwardChoice==null) {
@@ -687,6 +690,7 @@ public interface FxTargetKnockoutForward extends Product {
 			return barrier;
 		}
 		
+		@Override
 		public FxTargetBarrier.FxTargetBarrierBuilder getOrCreateBarrier(int _index) {
 		
 			if (barrier==null) {
@@ -705,6 +709,7 @@ public interface FxTargetKnockoutForward extends Product {
 			return additionalPayment;
 		}
 		
+		@Override
 		public SimplePayment.SimplePaymentBuilder getOrCreateAdditionalPayment(int _index) {
 		
 			if (additionalPayment==null) {
@@ -780,6 +785,7 @@ public interface FxTargetKnockoutForward extends Product {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("target")
 		public FxTargetKnockoutForward.FxTargetKnockoutForwardBuilder addTarget(FxTarget target) {
 			if (target!=null) this.target.add(target.toBuilder());
 			return this;
@@ -801,7 +807,6 @@ public interface FxTargetKnockoutForward extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("target")
 		public FxTargetKnockoutForward.FxTargetKnockoutForwardBuilder setTarget(List<? extends FxTarget> targets) {
 			if (targets == null)  {
 				this.target = new ArrayList<>();
@@ -845,6 +850,7 @@ public interface FxTargetKnockoutForward extends Product {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("constantPayoffRegion")
 		public FxTargetKnockoutForward.FxTargetKnockoutForwardBuilder addConstantPayoffRegion(FxTargetConstantPayoffRegion constantPayoffRegion) {
 			if (constantPayoffRegion!=null) this.constantPayoffRegion.add(constantPayoffRegion.toBuilder());
 			return this;
@@ -866,7 +872,6 @@ public interface FxTargetKnockoutForward extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("constantPayoffRegion")
 		public FxTargetKnockoutForward.FxTargetKnockoutForwardBuilder setConstantPayoffRegion(List<? extends FxTargetConstantPayoffRegion> constantPayoffRegions) {
 			if (constantPayoffRegions == null)  {
 				this.constantPayoffRegion = new ArrayList<>();
@@ -886,6 +891,7 @@ public interface FxTargetKnockoutForward extends Product {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("fxTargetKnockoutForwardChoice")
 		public FxTargetKnockoutForward.FxTargetKnockoutForwardBuilder addFxTargetKnockoutForwardChoice(FxTargetKnockoutForwardChoice fxTargetKnockoutForwardChoice) {
 			if (fxTargetKnockoutForwardChoice!=null) this.fxTargetKnockoutForwardChoice.add(fxTargetKnockoutForwardChoice.toBuilder());
 			return this;
@@ -907,7 +913,6 @@ public interface FxTargetKnockoutForward extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("fxTargetKnockoutForwardChoice")
 		public FxTargetKnockoutForward.FxTargetKnockoutForwardBuilder setFxTargetKnockoutForwardChoice(List<? extends FxTargetKnockoutForwardChoice> fxTargetKnockoutForwardChoices) {
 			if (fxTargetKnockoutForwardChoices == null)  {
 				this.fxTargetKnockoutForwardChoice = new ArrayList<>();
@@ -921,6 +926,7 @@ public interface FxTargetKnockoutForward extends Product {
 		}
 		
 		@Override
+		@RosettaAttribute("barrier")
 		public FxTargetKnockoutForward.FxTargetKnockoutForwardBuilder addBarrier(FxTargetBarrier barrier) {
 			if (barrier!=null) this.barrier.add(barrier.toBuilder());
 			return this;
@@ -942,7 +948,6 @@ public interface FxTargetKnockoutForward extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("barrier")
 		public FxTargetKnockoutForward.FxTargetKnockoutForwardBuilder setBarrier(List<? extends FxTargetBarrier> barriers) {
 			if (barriers == null)  {
 				this.barrier = new ArrayList<>();
@@ -956,6 +961,7 @@ public interface FxTargetKnockoutForward extends Product {
 		}
 		
 		@Override
+		@RosettaAttribute("additionalPayment")
 		public FxTargetKnockoutForward.FxTargetKnockoutForwardBuilder addAdditionalPayment(SimplePayment additionalPayment) {
 			if (additionalPayment!=null) this.additionalPayment.add(additionalPayment.toBuilder());
 			return this;
@@ -977,7 +983,6 @@ public interface FxTargetKnockoutForward extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("additionalPayment")
 		public FxTargetKnockoutForward.FxTargetKnockoutForwardBuilder setAdditionalPayment(List<? extends SimplePayment> additionalPayments) {
 			if (additionalPayments == null)  {
 				this.additionalPayment = new ArrayList<>();

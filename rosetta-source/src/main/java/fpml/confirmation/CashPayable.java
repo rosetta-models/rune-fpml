@@ -235,6 +235,7 @@ public interface CashPayable extends RosettaModelObject {
 			return taxWithholding;
 		}
 		
+		@Override
 		public TaxWithholding.TaxWithholdingBuilder getOrCreateTaxWithholding(int _index) {
 		
 			if (taxWithholding==null) {
@@ -260,6 +261,7 @@ public interface CashPayable extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("taxWithholding")
 		public CashPayable.CashPayableBuilder addTaxWithholding(TaxWithholding taxWithholding) {
 			if (taxWithholding!=null) this.taxWithholding.add(taxWithholding.toBuilder());
 			return this;
@@ -281,7 +283,6 @@ public interface CashPayable extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("taxWithholding")
 		public CashPayable.CashPayableBuilder setTaxWithholding(List<? extends TaxWithholding> taxWithholdings) {
 			if (taxWithholdings == null)  {
 				this.taxWithholding = new ArrayList<>();

@@ -483,6 +483,7 @@ public interface GeneralTerms extends RosettaModelObject {
 			return additionalTerm;
 		}
 		
+		@Override
 		public AdditionalTerm.AdditionalTermBuilder getOrCreateAdditionalTerm(int _index) {
 		
 			if (additionalTerm==null) {
@@ -550,6 +551,7 @@ public interface GeneralTerms extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("additionalTerm")
 		public GeneralTerms.GeneralTermsBuilder addAdditionalTerm(AdditionalTerm additionalTerm) {
 			if (additionalTerm!=null) this.additionalTerm.add(additionalTerm.toBuilder());
 			return this;
@@ -571,7 +573,6 @@ public interface GeneralTerms extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("additionalTerm")
 		public GeneralTerms.GeneralTermsBuilder setAdditionalTerm(List<? extends AdditionalTerm> additionalTerms) {
 			if (additionalTerms == null)  {
 				this.additionalTerm = new ArrayList<>();

@@ -327,6 +327,7 @@ public interface PaymentCalculationPeriod extends RosettaModelObject {
 			return calculationPeriod;
 		}
 		
+		@Override
 		public CalculationPeriod.CalculationPeriodBuilder getOrCreateCalculationPeriod(int _index) {
 		
 			if (calculationPeriod==null) {
@@ -414,6 +415,7 @@ public interface PaymentCalculationPeriod extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("calculationPeriod")
 		public PaymentCalculationPeriod.PaymentCalculationPeriodBuilder addCalculationPeriod(CalculationPeriod calculationPeriod) {
 			if (calculationPeriod!=null) this.calculationPeriod.add(calculationPeriod.toBuilder());
 			return this;
@@ -435,7 +437,6 @@ public interface PaymentCalculationPeriod extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("calculationPeriod")
 		public PaymentCalculationPeriod.PaymentCalculationPeriodBuilder setCalculationPeriod(List<? extends CalculationPeriod> calculationPeriods) {
 			if (calculationPeriods == null)  {
 				this.calculationPeriod = new ArrayList<>();

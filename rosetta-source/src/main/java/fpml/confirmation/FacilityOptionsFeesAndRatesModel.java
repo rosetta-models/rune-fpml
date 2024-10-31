@@ -220,6 +220,7 @@ public interface FacilityOptionsFeesAndRatesModel extends RosettaModelObject {
 			return facilityOptionsFeesAndRatesModelChoice;
 		}
 		
+		@Override
 		public FacilityOptionsFeesAndRatesModelChoice.FacilityOptionsFeesAndRatesModelChoiceBuilder getOrCreateFacilityOptionsFeesAndRatesModelChoice(int _index) {
 		
 			if (facilityOptionsFeesAndRatesModelChoice==null) {
@@ -257,6 +258,7 @@ public interface FacilityOptionsFeesAndRatesModel extends RosettaModelObject {
 			return accruingFeeOption;
 		}
 		
+		@Override
 		public AccruingFeeOption.AccruingFeeOptionBuilder getOrCreateAccruingFeeOption(int _index) {
 		
 			if (accruingFeeOption==null) {
@@ -289,6 +291,7 @@ public interface FacilityOptionsFeesAndRatesModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("facilityOptionsFeesAndRatesModelChoice")
 		public FacilityOptionsFeesAndRatesModel.FacilityOptionsFeesAndRatesModelBuilder addFacilityOptionsFeesAndRatesModelChoice(FacilityOptionsFeesAndRatesModelChoice facilityOptionsFeesAndRatesModelChoice) {
 			if (facilityOptionsFeesAndRatesModelChoice!=null) this.facilityOptionsFeesAndRatesModelChoice.add(facilityOptionsFeesAndRatesModelChoice.toBuilder());
 			return this;
@@ -310,7 +313,6 @@ public interface FacilityOptionsFeesAndRatesModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("facilityOptionsFeesAndRatesModelChoice")
 		public FacilityOptionsFeesAndRatesModel.FacilityOptionsFeesAndRatesModelBuilder setFacilityOptionsFeesAndRatesModelChoice(List<? extends FacilityOptionsFeesAndRatesModelChoice> facilityOptionsFeesAndRatesModelChoices) {
 			if (facilityOptionsFeesAndRatesModelChoices == null)  {
 				this.facilityOptionsFeesAndRatesModelChoice = new ArrayList<>();
@@ -330,6 +332,7 @@ public interface FacilityOptionsFeesAndRatesModel extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("accruingFeeOption")
 		public FacilityOptionsFeesAndRatesModel.FacilityOptionsFeesAndRatesModelBuilder addAccruingFeeOption(AccruingFeeOption accruingFeeOption) {
 			if (accruingFeeOption!=null) this.accruingFeeOption.add(accruingFeeOption.toBuilder());
 			return this;
@@ -351,7 +354,6 @@ public interface FacilityOptionsFeesAndRatesModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("accruingFeeOption")
 		public FacilityOptionsFeesAndRatesModel.FacilityOptionsFeesAndRatesModelBuilder setAccruingFeeOption(List<? extends AccruingFeeOption> accruingFeeOptions) {
 			if (accruingFeeOptions == null)  {
 				this.accruingFeeOption = new ArrayList<>();

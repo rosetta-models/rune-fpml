@@ -150,6 +150,7 @@ public interface TransformsType extends RosettaModelObject {
 			return transform;
 		}
 		
+		@Override
 		public TransformType.TransformTypeBuilder getOrCreateTransform(int _index) {
 		
 			if (transform==null) {
@@ -163,6 +164,7 @@ public interface TransformsType extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("transform")
 		public TransformsType.TransformsTypeBuilder addTransform(TransformType transform) {
 			if (transform!=null) this.transform.add(transform.toBuilder());
 			return this;
@@ -184,7 +186,6 @@ public interface TransformsType extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("transform")
 		public TransformsType.TransformsTypeBuilder setTransform(List<? extends TransformType> transforms) {
 			if (transforms == null)  {
 				this.transform = new ArrayList<>();

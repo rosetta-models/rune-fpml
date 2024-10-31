@@ -213,6 +213,7 @@ public interface RelativeDateSequence extends RosettaModelObject {
 			return dateOffset;
 		}
 		
+		@Override
 		public DateOffset.DateOffsetBuilder getOrCreateDateOffset(int _index) {
 		
 			if (dateOffset==null) {
@@ -251,6 +252,7 @@ public interface RelativeDateSequence extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("dateOffset")
 		public RelativeDateSequence.RelativeDateSequenceBuilder addDateOffset(DateOffset dateOffset) {
 			if (dateOffset!=null) this.dateOffset.add(dateOffset.toBuilder());
 			return this;
@@ -272,7 +274,6 @@ public interface RelativeDateSequence extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("dateOffset")
 		public RelativeDateSequence.RelativeDateSequenceBuilder setDateOffset(List<? extends DateOffset> dateOffsets) {
 			if (dateOffsets == null)  {
 				this.dateOffset = new ArrayList<>();

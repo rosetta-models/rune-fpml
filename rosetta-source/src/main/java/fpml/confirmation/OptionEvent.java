@@ -304,6 +304,7 @@ public interface OptionEvent extends AbstractEvent {
 			return tradeIdentifier;
 		}
 		
+		@Override
 		public PartyTradeIdentifier.PartyTradeIdentifierBuilder getOrCreateTradeIdentifier(int _index) {
 		
 			if (tradeIdentifier==null) {
@@ -360,6 +361,7 @@ public interface OptionEvent extends AbstractEvent {
 			return touch;
 		}
 		
+		@Override
 		public TouchRateObservation.TouchRateObservationBuilder getOrCreateTouch(int _index) {
 		
 			if (touch==null) {
@@ -392,6 +394,7 @@ public interface OptionEvent extends AbstractEvent {
 		}
 		
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public OptionEvent.OptionEventBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -413,7 +416,6 @@ public interface OptionEvent extends AbstractEvent {
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public OptionEvent.OptionEventBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();
@@ -433,6 +435,7 @@ public interface OptionEvent extends AbstractEvent {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("tradeIdentifier")
 		public OptionEvent.OptionEventBuilder addTradeIdentifier(PartyTradeIdentifier tradeIdentifier) {
 			if (tradeIdentifier!=null) this.tradeIdentifier.add(tradeIdentifier.toBuilder());
 			return this;
@@ -454,7 +457,6 @@ public interface OptionEvent extends AbstractEvent {
 		}
 		
 		@Override 
-		@RosettaAttribute("tradeIdentifier")
 		public OptionEvent.OptionEventBuilder setTradeIdentifier(List<? extends PartyTradeIdentifier> tradeIdentifiers) {
 			if (tradeIdentifiers == null)  {
 				this.tradeIdentifier = new ArrayList<>();
@@ -480,6 +482,7 @@ public interface OptionEvent extends AbstractEvent {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("touch")
 		public OptionEvent.OptionEventBuilder addTouch(TouchRateObservation touch) {
 			if (touch!=null) this.touch.add(touch.toBuilder());
 			return this;
@@ -501,7 +504,6 @@ public interface OptionEvent extends AbstractEvent {
 		}
 		
 		@Override 
-		@RosettaAttribute("touch")
 		public OptionEvent.OptionEventBuilder setTouch(List<? extends TouchRateObservation> touchs) {
 			if (touchs == null)  {
 				this.touch = new ArrayList<>();

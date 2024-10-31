@@ -212,6 +212,7 @@ public interface InstrumentTradePricing extends RosettaModelObject {
 			return quote;
 		}
 		
+		@Override
 		public BasicQuotation.BasicQuotationBuilder getOrCreateQuote(int _index) {
 		
 			if (quote==null) {
@@ -243,6 +244,7 @@ public interface InstrumentTradePricing extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("quote")
 		public InstrumentTradePricing.InstrumentTradePricingBuilder addQuote(BasicQuotation quote) {
 			if (quote!=null) this.quote.add(quote.toBuilder());
 			return this;
@@ -264,7 +266,6 @@ public interface InstrumentTradePricing extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("quote")
 		public InstrumentTradePricing.InstrumentTradePricingBuilder setQuote(List<? extends BasicQuotation> quotes) {
 			if (quotes == null)  {
 				this.quote = new ArrayList<>();

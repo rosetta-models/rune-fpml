@@ -306,6 +306,7 @@ public interface Reason extends RosettaModelObject {
 			return additionalData;
 		}
 		
+		@Override
 		public AdditionalData.AdditionalDataBuilder getOrCreateAdditionalData(int _index) {
 		
 			if (additionalData==null) {
@@ -343,6 +344,7 @@ public interface Reason extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("additionalData")
 		public Reason.ReasonBuilder addAdditionalData(AdditionalData additionalData) {
 			if (additionalData!=null) this.additionalData.add(additionalData.toBuilder());
 			return this;
@@ -364,7 +366,6 @@ public interface Reason extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("additionalData")
 		public Reason.ReasonBuilder setAdditionalData(List<? extends AdditionalData> additionalDatas) {
 			if (additionalDatas == null)  {
 				this.additionalData = new ArrayList<>();

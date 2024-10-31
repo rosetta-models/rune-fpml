@@ -190,6 +190,7 @@ public interface NonNegativeAmountSchedule extends NonNegativeSchedule {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("step")
 		public NonNegativeAmountSchedule.NonNegativeAmountScheduleBuilder addStep(NonNegativeStep step) {
 			if (step!=null) this.step.add(step.toBuilder());
 			return this;
@@ -211,7 +212,6 @@ public interface NonNegativeAmountSchedule extends NonNegativeSchedule {
 		}
 		
 		@Override 
-		@RosettaAttribute("step")
 		public NonNegativeAmountSchedule.NonNegativeAmountScheduleBuilder setStep(List<? extends NonNegativeStep> steps) {
 			if (steps == null)  {
 				this.step = new ArrayList<>();

@@ -228,6 +228,7 @@ public interface AbstractFacilityContractEvent extends AbstractLoanServicingEven
 			return loanContractReference;
 		}
 		
+		@Override
 		public LoanContractReference.LoanContractReferenceBuilder getOrCreateLoanContractReference(int _index) {
 		
 			if (loanContractReference==null) {
@@ -241,6 +242,7 @@ public interface AbstractFacilityContractEvent extends AbstractLoanServicingEven
 		}
 		
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public AbstractFacilityContractEvent.AbstractFacilityContractEventBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -262,7 +264,6 @@ public interface AbstractFacilityContractEvent extends AbstractLoanServicingEven
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public AbstractFacilityContractEvent.AbstractFacilityContractEventBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();
@@ -318,6 +319,7 @@ public interface AbstractFacilityContractEvent extends AbstractLoanServicingEven
 			return this;
 		}
 		@Override
+		@RosettaAttribute("loanContractReference")
 		public AbstractFacilityContractEvent.AbstractFacilityContractEventBuilder addLoanContractReference(LoanContractReference loanContractReference) {
 			if (loanContractReference!=null) this.loanContractReference.add(loanContractReference.toBuilder());
 			return this;
@@ -339,7 +341,6 @@ public interface AbstractFacilityContractEvent extends AbstractLoanServicingEven
 		}
 		
 		@Override 
-		@RosettaAttribute("loanContractReference")
 		public AbstractFacilityContractEvent.AbstractFacilityContractEventBuilder setLoanContractReference(List<? extends LoanContractReference> loanContractReferences) {
 			if (loanContractReferences == null)  {
 				this.loanContractReference = new ArrayList<>();

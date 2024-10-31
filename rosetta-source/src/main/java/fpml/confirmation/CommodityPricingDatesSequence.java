@@ -260,6 +260,7 @@ public interface CommodityPricingDatesSequence extends RosettaModelObject {
 			return settlementPeriods;
 		}
 		
+		@Override
 		public SettlementPeriods.SettlementPeriodsBuilder getOrCreateSettlementPeriods(int _index) {
 		
 			if (settlementPeriods==null) {
@@ -278,6 +279,7 @@ public interface CommodityPricingDatesSequence extends RosettaModelObject {
 			return settlementPeriodsReference;
 		}
 		
+		@Override
 		public SettlementPeriodsReference.SettlementPeriodsReferenceBuilder getOrCreateSettlementPeriodsReference(int _index) {
 		
 			if (settlementPeriodsReference==null) {
@@ -303,6 +305,7 @@ public interface CommodityPricingDatesSequence extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("settlementPeriods")
 		public CommodityPricingDatesSequence.CommodityPricingDatesSequenceBuilder addSettlementPeriods(SettlementPeriods settlementPeriods) {
 			if (settlementPeriods!=null) this.settlementPeriods.add(settlementPeriods.toBuilder());
 			return this;
@@ -324,7 +327,6 @@ public interface CommodityPricingDatesSequence extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("settlementPeriods")
 		public CommodityPricingDatesSequence.CommodityPricingDatesSequenceBuilder setSettlementPeriods(List<? extends SettlementPeriods> settlementPeriodss) {
 			if (settlementPeriodss == null)  {
 				this.settlementPeriods = new ArrayList<>();
@@ -338,6 +340,7 @@ public interface CommodityPricingDatesSequence extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("settlementPeriodsReference")
 		public CommodityPricingDatesSequence.CommodityPricingDatesSequenceBuilder addSettlementPeriodsReference(SettlementPeriodsReference settlementPeriodsReference) {
 			if (settlementPeriodsReference!=null) this.settlementPeriodsReference.add(settlementPeriodsReference.toBuilder());
 			return this;
@@ -359,7 +362,6 @@ public interface CommodityPricingDatesSequence extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("settlementPeriodsReference")
 		public CommodityPricingDatesSequence.CommodityPricingDatesSequenceBuilder setSettlementPeriodsReference(List<? extends SettlementPeriodsReference> settlementPeriodsReferences) {
 			if (settlementPeriodsReferences == null)  {
 				this.settlementPeriodsReference = new ArrayList<>();

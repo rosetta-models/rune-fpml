@@ -153,6 +153,7 @@ public interface IndexReferenceInformationSequence1 extends RosettaModelObject {
 			return indexId;
 		}
 		
+		@Override
 		public IndexId.IndexIdBuilder getOrCreateIndexId(int _index) {
 		
 			if (indexId==null) {
@@ -166,6 +167,7 @@ public interface IndexReferenceInformationSequence1 extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("indexId")
 		public IndexReferenceInformationSequence1.IndexReferenceInformationSequence1Builder addIndexId(IndexId indexId) {
 			if (indexId!=null) this.indexId.add(indexId.toBuilder());
 			return this;
@@ -187,7 +189,6 @@ public interface IndexReferenceInformationSequence1 extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("indexId")
 		public IndexReferenceInformationSequence1.IndexReferenceInformationSequence1Builder setIndexId(List<? extends IndexId> indexIds) {
 			if (indexIds == null)  {
 				this.indexId = new ArrayList<>();

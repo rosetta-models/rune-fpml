@@ -324,6 +324,7 @@ public interface OptionalEarlyTermination extends RosettaModelObject {
 			return exerciseNotice;
 		}
 		
+		@Override
 		public ExerciseNotice.ExerciseNoticeBuilder getOrCreateExerciseNotice(int _index) {
 		
 			if (exerciseNotice==null) {
@@ -412,6 +413,7 @@ public interface OptionalEarlyTermination extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("exerciseNotice")
 		public OptionalEarlyTermination.OptionalEarlyTerminationBuilder addExerciseNotice(ExerciseNotice exerciseNotice) {
 			if (exerciseNotice!=null) this.exerciseNotice.add(exerciseNotice.toBuilder());
 			return this;
@@ -433,7 +435,6 @@ public interface OptionalEarlyTermination extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("exerciseNotice")
 		public OptionalEarlyTermination.OptionalEarlyTerminationBuilder setExerciseNotice(List<? extends ExerciseNotice> exerciseNotices) {
 			if (exerciseNotices == null)  {
 				this.exerciseNotice = new ArrayList<>();

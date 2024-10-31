@@ -304,6 +304,7 @@ public interface FloatingRateCalculation extends FloatingRate {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("spreadSchedule")
 		public FloatingRateCalculation.FloatingRateCalculationBuilder addSpreadSchedule(SpreadSchedule spreadSchedule) {
 			if (spreadSchedule!=null) this.spreadSchedule.add(spreadSchedule.toBuilder());
 			return this;
@@ -325,7 +326,6 @@ public interface FloatingRateCalculation extends FloatingRate {
 		}
 		
 		@Override 
-		@RosettaAttribute("spreadSchedule")
 		public FloatingRateCalculation.FloatingRateCalculationBuilder setSpreadSchedule(List<? extends SpreadSchedule> spreadSchedules) {
 			if (spreadSchedules == null)  {
 				this.spreadSchedule = new ArrayList<>();
@@ -345,6 +345,7 @@ public interface FloatingRateCalculation extends FloatingRate {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("capRateSchedule")
 		public FloatingRateCalculation.FloatingRateCalculationBuilder addCapRateSchedule(StrikeSchedule capRateSchedule) {
 			if (capRateSchedule!=null) this.capRateSchedule.add(capRateSchedule.toBuilder());
 			return this;
@@ -366,7 +367,6 @@ public interface FloatingRateCalculation extends FloatingRate {
 		}
 		
 		@Override 
-		@RosettaAttribute("capRateSchedule")
 		public FloatingRateCalculation.FloatingRateCalculationBuilder setCapRateSchedule(List<? extends StrikeSchedule> capRateSchedules) {
 			if (capRateSchedules == null)  {
 				this.capRateSchedule = new ArrayList<>();
@@ -380,6 +380,7 @@ public interface FloatingRateCalculation extends FloatingRate {
 		}
 		
 		@Override
+		@RosettaAttribute("floorRateSchedule")
 		public FloatingRateCalculation.FloatingRateCalculationBuilder addFloorRateSchedule(StrikeSchedule floorRateSchedule) {
 			if (floorRateSchedule!=null) this.floorRateSchedule.add(floorRateSchedule.toBuilder());
 			return this;
@@ -401,7 +402,6 @@ public interface FloatingRateCalculation extends FloatingRate {
 		}
 		
 		@Override 
-		@RosettaAttribute("floorRateSchedule")
 		public FloatingRateCalculation.FloatingRateCalculationBuilder setFloorRateSchedule(List<? extends StrikeSchedule> floorRateSchedules) {
 			if (floorRateSchedules == null)  {
 				this.floorRateSchedule = new ArrayList<>();

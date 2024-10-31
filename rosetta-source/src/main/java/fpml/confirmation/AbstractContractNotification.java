@@ -197,6 +197,7 @@ public interface AbstractContractNotification extends AbstractServicingNotificat
 			return facilityOutstandingsPosition;
 		}
 		
+		@Override
 		public FacilityOutstandingsPosition.FacilityOutstandingsPositionBuilder getOrCreateFacilityOutstandingsPosition(int _index) {
 		
 			if (facilityOutstandingsPosition==null) {
@@ -264,6 +265,7 @@ public interface AbstractContractNotification extends AbstractServicingNotificat
 			return this;
 		}
 		@Override
+		@RosettaAttribute("eventPayment")
 		public AbstractContractNotification.AbstractContractNotificationBuilder addEventPayment(EventPayment eventPayment) {
 			if (eventPayment!=null) this.eventPayment.add(eventPayment.toBuilder());
 			return this;
@@ -285,7 +287,6 @@ public interface AbstractContractNotification extends AbstractServicingNotificat
 		}
 		
 		@Override 
-		@RosettaAttribute("eventPayment")
 		public AbstractContractNotification.AbstractContractNotificationBuilder setEventPayment(List<? extends EventPayment> eventPayments) {
 			if (eventPayments == null)  {
 				this.eventPayment = new ArrayList<>();
@@ -299,6 +300,7 @@ public interface AbstractContractNotification extends AbstractServicingNotificat
 		}
 		
 		@Override
+		@RosettaAttribute("facilityOutstandingsPosition")
 		public AbstractContractNotification.AbstractContractNotificationBuilder addFacilityOutstandingsPosition(FacilityOutstandingsPosition facilityOutstandingsPosition) {
 			if (facilityOutstandingsPosition!=null) this.facilityOutstandingsPosition.add(facilityOutstandingsPosition.toBuilder());
 			return this;
@@ -320,7 +322,6 @@ public interface AbstractContractNotification extends AbstractServicingNotificat
 		}
 		
 		@Override 
-		@RosettaAttribute("facilityOutstandingsPosition")
 		public AbstractContractNotification.AbstractContractNotificationBuilder setFacilityOutstandingsPosition(List<? extends FacilityOutstandingsPosition> facilityOutstandingsPositions) {
 			if (facilityOutstandingsPositions == null)  {
 				this.facilityOutstandingsPosition = new ArrayList<>();

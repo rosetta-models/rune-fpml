@@ -206,6 +206,7 @@ public interface Cashflows extends RosettaModelObject {
 			return principalExchange;
 		}
 		
+		@Override
 		public PrincipalExchange.PrincipalExchangeBuilder getOrCreatePrincipalExchange(int _index) {
 		
 			if (principalExchange==null) {
@@ -224,6 +225,7 @@ public interface Cashflows extends RosettaModelObject {
 			return paymentCalculationPeriod;
 		}
 		
+		@Override
 		public PaymentCalculationPeriod.PaymentCalculationPeriodBuilder getOrCreatePaymentCalculationPeriod(int _index) {
 		
 			if (paymentCalculationPeriod==null) {
@@ -243,6 +245,7 @@ public interface Cashflows extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("principalExchange")
 		public Cashflows.CashflowsBuilder addPrincipalExchange(PrincipalExchange principalExchange) {
 			if (principalExchange!=null) this.principalExchange.add(principalExchange.toBuilder());
 			return this;
@@ -264,7 +267,6 @@ public interface Cashflows extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("principalExchange")
 		public Cashflows.CashflowsBuilder setPrincipalExchange(List<? extends PrincipalExchange> principalExchanges) {
 			if (principalExchanges == null)  {
 				this.principalExchange = new ArrayList<>();
@@ -278,6 +280,7 @@ public interface Cashflows extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("paymentCalculationPeriod")
 		public Cashflows.CashflowsBuilder addPaymentCalculationPeriod(PaymentCalculationPeriod paymentCalculationPeriod) {
 			if (paymentCalculationPeriod!=null) this.paymentCalculationPeriod.add(paymentCalculationPeriod.toBuilder());
 			return this;
@@ -299,7 +302,6 @@ public interface Cashflows extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("paymentCalculationPeriod")
 		public Cashflows.CashflowsBuilder setPaymentCalculationPeriod(List<? extends PaymentCalculationPeriod> paymentCalculationPeriods) {
 			if (paymentCalculationPeriods == null)  {
 				this.paymentCalculationPeriod = new ArrayList<>();

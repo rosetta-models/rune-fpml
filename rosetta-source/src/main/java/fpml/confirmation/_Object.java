@@ -140,6 +140,7 @@ public interface _Object extends ObjectType {
 		}
 	
 		@Override
+		@RosettaAttribute("objectTypeSequence")
 		public _Object._ObjectBuilder addObjectTypeSequence(ObjectTypeSequence objectTypeSequence) {
 			if (objectTypeSequence!=null) this.objectTypeSequence.add(objectTypeSequence.toBuilder());
 			return this;
@@ -161,7 +162,6 @@ public interface _Object extends ObjectType {
 		}
 		
 		@Override 
-		@RosettaAttribute("objectTypeSequence")
 		public _Object._ObjectBuilder setObjectTypeSequence(List<? extends ObjectTypeSequence> objectTypeSequences) {
 			if (objectTypeSequences == null)  {
 				this.objectTypeSequence = new ArrayList<>();

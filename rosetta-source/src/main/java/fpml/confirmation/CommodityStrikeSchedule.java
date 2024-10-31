@@ -174,6 +174,7 @@ public interface CommodityStrikeSchedule extends RosettaModelObject {
 			return strikePricePerUnitStep;
 		}
 		
+		@Override
 		public NonNegativeMoney.NonNegativeMoneyBuilder getOrCreateStrikePricePerUnitStep(int _index) {
 		
 			if (strikePricePerUnitStep==null) {
@@ -206,6 +207,7 @@ public interface CommodityStrikeSchedule extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("strikePricePerUnitStep")
 		public CommodityStrikeSchedule.CommodityStrikeScheduleBuilder addStrikePricePerUnitStep(NonNegativeMoney strikePricePerUnitStep) {
 			if (strikePricePerUnitStep!=null) this.strikePricePerUnitStep.add(strikePricePerUnitStep.toBuilder());
 			return this;
@@ -227,7 +229,6 @@ public interface CommodityStrikeSchedule extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("strikePricePerUnitStep")
 		public CommodityStrikeSchedule.CommodityStrikeScheduleBuilder setStrikePricePerUnitStep(List<? extends NonNegativeMoney> strikePricePerUnitSteps) {
 			if (strikePricePerUnitSteps == null)  {
 				this.strikePricePerUnitStep = new ArrayList<>();

@@ -10,13 +10,12 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.stream.Stream;
 
-import static com.regnosys.TestUtil.SAMPLE_FILE_DIRECTORY;
-import static com.regnosys.TestUtil.XML_CONFIG_NAME;
+import static com.regnosys.TestUtil.*;
 
 public class FpmlConfirmationSerialisationTest {
     
     private static final String XSD_SCHEMA_NAME = "schemas/fpml-5-10/confirmation/fpml-main-5-10.xsd";
-    private static final String EXPECTED_SCHEMA_LOCATION = "urn:iso:std:iso:20022:tech:xsd:auth.030.001.03 ../../../main/resources/" + XSD_SCHEMA_NAME;
+    private static final String EXPECTED_SCHEMA_LOCATION = "http://www.fpml.org/FpML-5/confirmation ../../../../schemas/fpml-5-10/confirmation/" + XSD_SCHEMA_NAME;
 
     private final SerialisationTestUtil<DataDocument> serialisationTestUtil;
 

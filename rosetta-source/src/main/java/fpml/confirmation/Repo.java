@@ -503,6 +503,7 @@ public interface Repo extends Product {
 			return bondEquityModel;
 		}
 		
+		@Override
 		public BondEquityModel.BondEquityModelBuilder getOrCreateBondEquityModel(int _index) {
 		
 			if (bondEquityModel==null) {
@@ -595,6 +596,7 @@ public interface Repo extends Product {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("bondEquityModel")
 		public Repo.RepoBuilder addBondEquityModel(BondEquityModel bondEquityModel) {
 			if (bondEquityModel!=null) this.bondEquityModel.add(bondEquityModel.toBuilder());
 			return this;
@@ -616,7 +618,6 @@ public interface Repo extends Product {
 		}
 		
 		@Override 
-		@RosettaAttribute("bondEquityModel")
 		public Repo.RepoBuilder setBondEquityModel(List<? extends BondEquityModel> bondEquityModels) {
 			if (bondEquityModels == null)  {
 				this.bondEquityModel = new ArrayList<>();

@@ -193,6 +193,7 @@ public interface FxCounterCurrencyAmount extends NonNegativeAmountSchedule {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("step")
 		public FxCounterCurrencyAmount.FxCounterCurrencyAmountBuilder addStep(NonNegativeStep step) {
 			if (step!=null) this.step.add(step.toBuilder());
 			return this;
@@ -214,7 +215,6 @@ public interface FxCounterCurrencyAmount extends NonNegativeAmountSchedule {
 		}
 		
 		@Override 
-		@RosettaAttribute("step")
 		public FxCounterCurrencyAmount.FxCounterCurrencyAmountBuilder setStep(List<? extends NonNegativeStep> steps) {
 			if (steps == null)  {
 				this.step = new ArrayList<>();

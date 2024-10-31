@@ -342,6 +342,7 @@ public interface Future extends ExchangeTraded {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("instrumentId")
 		public Future.FutureBuilder addInstrumentId(InstrumentId instrumentId) {
 			if (instrumentId!=null) this.instrumentId.add(instrumentId.toBuilder());
 			return this;
@@ -363,7 +364,6 @@ public interface Future extends ExchangeTraded {
 		}
 		
 		@Override 
-		@RosettaAttribute("instrumentId")
 		public Future.FutureBuilder setInstrumentId(List<? extends InstrumentId> instrumentIds) {
 			if (instrumentIds == null)  {
 				this.instrumentId = new ArrayList<>();

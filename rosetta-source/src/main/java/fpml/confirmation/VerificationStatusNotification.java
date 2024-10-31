@@ -261,6 +261,7 @@ public interface VerificationStatusNotification extends NonCorrectableRequestMes
 			return reason;
 		}
 		
+		@Override
 		public Reason.ReasonBuilder getOrCreateReason(int _index) {
 		
 			if (reason==null) {
@@ -354,6 +355,7 @@ public interface VerificationStatusNotification extends NonCorrectableRequestMes
 			return this;
 		}
 		@Override
+		@RosettaAttribute("reason")
 		public VerificationStatusNotification.VerificationStatusNotificationBuilder addReason(Reason reason) {
 			if (reason!=null) this.reason.add(reason.toBuilder());
 			return this;
@@ -375,7 +377,6 @@ public interface VerificationStatusNotification extends NonCorrectableRequestMes
 		}
 		
 		@Override 
-		@RosettaAttribute("reason")
 		public VerificationStatusNotification.VerificationStatusNotificationBuilder setReason(List<? extends Reason> reasons) {
 			if (reasons == null)  {
 				this.reason = new ArrayList<>();

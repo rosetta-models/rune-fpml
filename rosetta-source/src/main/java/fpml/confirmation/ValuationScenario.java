@@ -307,6 +307,7 @@ public interface ValuationScenario extends RosettaModelObject {
 			return shift;
 		}
 		
+		@Override
 		public PricingParameterShift.PricingParameterShiftBuilder getOrCreateShift(int _index) {
 		
 			if (shift==null) {
@@ -325,6 +326,7 @@ public interface ValuationScenario extends RosettaModelObject {
 			return replacement;
 		}
 		
+		@Override
 		public PricingInputReplacement.PricingInputReplacementBuilder getOrCreateReplacement(int _index) {
 		
 			if (replacement==null) {
@@ -362,6 +364,7 @@ public interface ValuationScenario extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("shift")
 		public ValuationScenario.ValuationScenarioBuilder addShift(PricingParameterShift shift) {
 			if (shift!=null) this.shift.add(shift.toBuilder());
 			return this;
@@ -383,7 +386,6 @@ public interface ValuationScenario extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("shift")
 		public ValuationScenario.ValuationScenarioBuilder setShift(List<? extends PricingParameterShift> shifts) {
 			if (shifts == null)  {
 				this.shift = new ArrayList<>();
@@ -397,6 +399,7 @@ public interface ValuationScenario extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("replacement")
 		public ValuationScenario.ValuationScenarioBuilder addReplacement(PricingInputReplacement replacement) {
 			if (replacement!=null) this.replacement.add(replacement.toBuilder());
 			return this;
@@ -418,7 +421,6 @@ public interface ValuationScenario extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("replacement")
 		public ValuationScenario.ValuationScenarioBuilder setReplacement(List<? extends PricingInputReplacement> replacements) {
 			if (replacements == null)  {
 				this.replacement = new ArrayList<>();

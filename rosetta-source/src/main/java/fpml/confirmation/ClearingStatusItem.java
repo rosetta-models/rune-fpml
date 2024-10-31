@@ -313,6 +313,7 @@ public interface ClearingStatusItem extends RosettaModelObject {
 			return tradeIdentifier;
 		}
 		
+		@Override
 		public TradeIdentifier.TradeIdentifierBuilder getOrCreateTradeIdentifier(int _index) {
 		
 			if (tradeIdentifier==null) {
@@ -413,6 +414,7 @@ public interface ClearingStatusItem extends RosettaModelObject {
 			return reason;
 		}
 		
+		@Override
 		public Reason.ReasonBuilder getOrCreateReason(int _index) {
 		
 			if (reason==null) {
@@ -431,6 +433,7 @@ public interface ClearingStatusItem extends RosettaModelObject {
 			return statusAppliesTo;
 		}
 		
+		@Override
 		public PartyReference.PartyReferenceBuilder getOrCreateStatusAppliesTo(int _index) {
 		
 			if (statusAppliesTo==null) {
@@ -444,6 +447,7 @@ public interface ClearingStatusItem extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("tradeIdentifier")
 		public ClearingStatusItem.ClearingStatusItemBuilder addTradeIdentifier(TradeIdentifier tradeIdentifier) {
 			if (tradeIdentifier!=null) this.tradeIdentifier.add(tradeIdentifier.toBuilder());
 			return this;
@@ -465,7 +469,6 @@ public interface ClearingStatusItem extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("tradeIdentifier")
 		public ClearingStatusItem.ClearingStatusItemBuilder setTradeIdentifier(List<? extends TradeIdentifier> tradeIdentifiers) {
 			if (tradeIdentifiers == null)  {
 				this.tradeIdentifier = new ArrayList<>();
@@ -509,6 +512,7 @@ public interface ClearingStatusItem extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("reason")
 		public ClearingStatusItem.ClearingStatusItemBuilder addReason(Reason reason) {
 			if (reason!=null) this.reason.add(reason.toBuilder());
 			return this;
@@ -530,7 +534,6 @@ public interface ClearingStatusItem extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("reason")
 		public ClearingStatusItem.ClearingStatusItemBuilder setReason(List<? extends Reason> reasons) {
 			if (reasons == null)  {
 				this.reason = new ArrayList<>();
@@ -544,6 +547,7 @@ public interface ClearingStatusItem extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("statusAppliesTo")
 		public ClearingStatusItem.ClearingStatusItemBuilder addStatusAppliesTo(PartyReference statusAppliesTo) {
 			if (statusAppliesTo!=null) this.statusAppliesTo.add(statusAppliesTo.toBuilder());
 			return this;
@@ -565,7 +569,6 @@ public interface ClearingStatusItem extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("statusAppliesTo")
 		public ClearingStatusItem.ClearingStatusItemBuilder setStatusAppliesTo(List<? extends PartyReference> statusAppliesTos) {
 			if (statusAppliesTos == null)  {
 				this.statusAppliesTo = new ArrayList<>();

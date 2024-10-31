@@ -185,6 +185,7 @@ public interface InitialMarginCalculationSequence0 extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("marginRatioThreshold")
 		public InitialMarginCalculationSequence0.InitialMarginCalculationSequence0Builder addMarginRatioThreshold(BigDecimal marginRatioThreshold) {
 			if (marginRatioThreshold!=null) this.marginRatioThreshold.add(marginRatioThreshold);
 			return this;
@@ -206,7 +207,6 @@ public interface InitialMarginCalculationSequence0 extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("marginRatioThreshold")
 		public InitialMarginCalculationSequence0.InitialMarginCalculationSequence0Builder setMarginRatioThreshold(List<BigDecimal> marginRatioThresholds) {
 			if (marginRatioThresholds == null)  {
 				this.marginRatioThreshold = new ArrayList<>();

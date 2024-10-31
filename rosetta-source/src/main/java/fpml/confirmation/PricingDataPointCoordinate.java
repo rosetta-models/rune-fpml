@@ -168,6 +168,7 @@ public interface PricingDataPointCoordinate extends RosettaModelObject {
 			return pricingStructureIndexModel;
 		}
 		
+		@Override
 		public PricingStructureIndexModel.PricingStructureIndexModelBuilder getOrCreatePricingStructureIndexModel(int _index) {
 		
 			if (pricingStructureIndexModel==null) {
@@ -187,6 +188,7 @@ public interface PricingDataPointCoordinate extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("pricingStructureIndexModel")
 		public PricingDataPointCoordinate.PricingDataPointCoordinateBuilder addPricingStructureIndexModel(PricingStructureIndexModel pricingStructureIndexModel) {
 			if (pricingStructureIndexModel!=null) this.pricingStructureIndexModel.add(pricingStructureIndexModel.toBuilder());
 			return this;
@@ -208,7 +210,6 @@ public interface PricingDataPointCoordinate extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("pricingStructureIndexModel")
 		public PricingDataPointCoordinate.PricingDataPointCoordinateBuilder setPricingStructureIndexModel(List<? extends PricingStructureIndexModel> pricingStructureIndexModels) {
 			if (pricingStructureIndexModels == null)  {
 				this.pricingStructureIndexModel = new ArrayList<>();

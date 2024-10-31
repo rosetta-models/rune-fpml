@@ -237,6 +237,7 @@ public interface DealRolesModel extends RosettaModelObject {
 			return guarantorPartyReference;
 		}
 		
+		@Override
 		public PartyReference.PartyReferenceBuilder getOrCreateGuarantorPartyReference(int _index) {
 		
 			if (guarantorPartyReference==null) {
@@ -294,6 +295,7 @@ public interface DealRolesModel extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("guarantorPartyReference")
 		public DealRolesModel.DealRolesModelBuilder addGuarantorPartyReference(PartyReference guarantorPartyReference) {
 			if (guarantorPartyReference!=null) this.guarantorPartyReference.add(guarantorPartyReference.toBuilder());
 			return this;
@@ -315,7 +317,6 @@ public interface DealRolesModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("guarantorPartyReference")
 		public DealRolesModel.DealRolesModelBuilder setGuarantorPartyReference(List<? extends PartyReference> guarantorPartyReferences) {
 			if (guarantorPartyReferences == null)  {
 				this.guarantorPartyReference = new ArrayList<>();

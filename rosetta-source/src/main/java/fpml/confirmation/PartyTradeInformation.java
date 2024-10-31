@@ -877,6 +877,7 @@ public interface PartyTradeInformation extends RosettaModelObject {
 			return relatedParty;
 		}
 		
+		@Override
 		public RelatedParty.RelatedPartyBuilder getOrCreateRelatedParty(int _index) {
 		
 			if (relatedParty==null) {
@@ -914,6 +915,7 @@ public interface PartyTradeInformation extends RosettaModelObject {
 			return unit;
 		}
 		
+		@Override
 		public Unit.UnitBuilder getOrCreateUnit(int _index) {
 		
 			if (unit==null) {
@@ -932,6 +934,7 @@ public interface PartyTradeInformation extends RosettaModelObject {
 			return relatedBusinessUnit;
 		}
 		
+		@Override
 		public RelatedBusinessUnit.RelatedBusinessUnitBuilder getOrCreateRelatedBusinessUnit(int _index) {
 		
 			if (relatedBusinessUnit==null) {
@@ -950,6 +953,7 @@ public interface PartyTradeInformation extends RosettaModelObject {
 			return relatedPerson;
 		}
 		
+		@Override
 		public RelatedPerson.RelatedPersonBuilder getOrCreateRelatedPerson(int _index) {
 		
 			if (relatedPerson==null) {
@@ -968,6 +972,7 @@ public interface PartyTradeInformation extends RosettaModelObject {
 			return algorithm;
 		}
 		
+		@Override
 		public Algorithm.AlgorithmBuilder getOrCreateAlgorithm(int _index) {
 		
 			if (algorithm==null) {
@@ -992,6 +997,7 @@ public interface PartyTradeInformation extends RosettaModelObject {
 			return category;
 		}
 		
+		@Override
 		public TradeCategory.TradeCategoryBuilder getOrCreateCategory(int _index) {
 		
 			if (category==null) {
@@ -1010,6 +1016,7 @@ public interface PartyTradeInformation extends RosettaModelObject {
 			return trader;
 		}
 		
+		@Override
 		public Trader.TraderBuilder getOrCreateTrader(int _index) {
 		
 			if (trader==null) {
@@ -1154,6 +1161,7 @@ public interface PartyTradeInformation extends RosettaModelObject {
 			return reportingRegime;
 		}
 		
+		@Override
 		public ReportingRegime.ReportingRegimeBuilder getOrCreateReportingRegime(int _index) {
 		
 			if (reportingRegime==null) {
@@ -1222,6 +1230,7 @@ public interface PartyTradeInformation extends RosettaModelObject {
 			return pricingContext;
 		}
 		
+		@Override
 		public PricingContext.PricingContextBuilder getOrCreatePricingContext(int _index) {
 		
 			if (pricingContext==null) {
@@ -1354,6 +1363,7 @@ public interface PartyTradeInformation extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("relatedParty")
 		public PartyTradeInformation.PartyTradeInformationBuilder addRelatedParty(RelatedParty relatedParty) {
 			if (relatedParty!=null) this.relatedParty.add(relatedParty.toBuilder());
 			return this;
@@ -1375,7 +1385,6 @@ public interface PartyTradeInformation extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("relatedParty")
 		public PartyTradeInformation.PartyTradeInformationBuilder setRelatedParty(List<? extends RelatedParty> relatedPartys) {
 			if (relatedPartys == null)  {
 				this.relatedParty = new ArrayList<>();
@@ -1395,6 +1404,7 @@ public interface PartyTradeInformation extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("unit")
 		public PartyTradeInformation.PartyTradeInformationBuilder addUnit(Unit unit) {
 			if (unit!=null) this.unit.add(unit.toBuilder());
 			return this;
@@ -1416,7 +1426,6 @@ public interface PartyTradeInformation extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("unit")
 		public PartyTradeInformation.PartyTradeInformationBuilder setUnit(List<? extends Unit> units) {
 			if (units == null)  {
 				this.unit = new ArrayList<>();
@@ -1430,6 +1439,7 @@ public interface PartyTradeInformation extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("relatedBusinessUnit")
 		public PartyTradeInformation.PartyTradeInformationBuilder addRelatedBusinessUnit(RelatedBusinessUnit relatedBusinessUnit) {
 			if (relatedBusinessUnit!=null) this.relatedBusinessUnit.add(relatedBusinessUnit.toBuilder());
 			return this;
@@ -1451,7 +1461,6 @@ public interface PartyTradeInformation extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("relatedBusinessUnit")
 		public PartyTradeInformation.PartyTradeInformationBuilder setRelatedBusinessUnit(List<? extends RelatedBusinessUnit> relatedBusinessUnits) {
 			if (relatedBusinessUnits == null)  {
 				this.relatedBusinessUnit = new ArrayList<>();
@@ -1465,6 +1474,7 @@ public interface PartyTradeInformation extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("relatedPerson")
 		public PartyTradeInformation.PartyTradeInformationBuilder addRelatedPerson(RelatedPerson relatedPerson) {
 			if (relatedPerson!=null) this.relatedPerson.add(relatedPerson.toBuilder());
 			return this;
@@ -1486,7 +1496,6 @@ public interface PartyTradeInformation extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("relatedPerson")
 		public PartyTradeInformation.PartyTradeInformationBuilder setRelatedPerson(List<? extends RelatedPerson> relatedPersons) {
 			if (relatedPersons == null)  {
 				this.relatedPerson = new ArrayList<>();
@@ -1500,6 +1509,7 @@ public interface PartyTradeInformation extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("algorithm")
 		public PartyTradeInformation.PartyTradeInformationBuilder addAlgorithm(Algorithm algorithm) {
 			if (algorithm!=null) this.algorithm.add(algorithm.toBuilder());
 			return this;
@@ -1521,7 +1531,6 @@ public interface PartyTradeInformation extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("algorithm")
 		public PartyTradeInformation.PartyTradeInformationBuilder setAlgorithm(List<? extends Algorithm> algorithms) {
 			if (algorithms == null)  {
 				this.algorithm = new ArrayList<>();
@@ -1541,6 +1550,7 @@ public interface PartyTradeInformation extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("category")
 		public PartyTradeInformation.PartyTradeInformationBuilder addCategory(TradeCategory category) {
 			if (category!=null) this.category.add(category.toBuilder());
 			return this;
@@ -1562,7 +1572,6 @@ public interface PartyTradeInformation extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("category")
 		public PartyTradeInformation.PartyTradeInformationBuilder setCategory(List<? extends TradeCategory> categorys) {
 			if (categorys == null)  {
 				this.category = new ArrayList<>();
@@ -1576,6 +1585,7 @@ public interface PartyTradeInformation extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("trader")
 		public PartyTradeInformation.PartyTradeInformationBuilder addTrader(Trader trader) {
 			if (trader!=null) this.trader.add(trader.toBuilder());
 			return this;
@@ -1597,7 +1607,6 @@ public interface PartyTradeInformation extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("trader")
 		public PartyTradeInformation.PartyTradeInformationBuilder setTrader(List<? extends Trader> traders) {
 			if (traders == null)  {
 				this.trader = new ArrayList<>();
@@ -1659,6 +1668,7 @@ public interface PartyTradeInformation extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("reportingRegime")
 		public PartyTradeInformation.PartyTradeInformationBuilder addReportingRegime(ReportingRegime reportingRegime) {
 			if (reportingRegime!=null) this.reportingRegime.add(reportingRegime.toBuilder());
 			return this;
@@ -1680,7 +1690,6 @@ public interface PartyTradeInformation extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("reportingRegime")
 		public PartyTradeInformation.PartyTradeInformationBuilder setReportingRegime(List<? extends ReportingRegime> reportingRegimes) {
 			if (reportingRegimes == null)  {
 				this.reportingRegime = new ArrayList<>();
@@ -1718,6 +1727,7 @@ public interface PartyTradeInformation extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("pricingContext")
 		public PartyTradeInformation.PartyTradeInformationBuilder addPricingContext(PricingContext pricingContext) {
 			if (pricingContext!=null) this.pricingContext.add(pricingContext.toBuilder());
 			return this;
@@ -1739,7 +1749,6 @@ public interface PartyTradeInformation extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("pricingContext")
 		public PartyTradeInformation.PartyTradeInformationBuilder setPricingContext(List<? extends PricingContext> pricingContexts) {
 			if (pricingContexts == null)  {
 				this.pricingContext = new ArrayList<>();

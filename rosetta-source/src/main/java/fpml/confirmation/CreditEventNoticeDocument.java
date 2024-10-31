@@ -348,6 +348,7 @@ public interface CreditEventNoticeDocument extends RosettaModelObject {
 			return publiclyAvailableInformation;
 		}
 		
+		@Override
 		public Resource.ResourceBuilder getOrCreatePubliclyAvailableInformation(int _index) {
 		
 			if (publiclyAvailableInformation==null) {
@@ -429,6 +430,7 @@ public interface CreditEventNoticeDocument extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("publiclyAvailableInformation")
 		public CreditEventNoticeDocument.CreditEventNoticeDocumentBuilder addPubliclyAvailableInformation(Resource publiclyAvailableInformation) {
 			if (publiclyAvailableInformation!=null) this.publiclyAvailableInformation.add(publiclyAvailableInformation.toBuilder());
 			return this;
@@ -450,7 +452,6 @@ public interface CreditEventNoticeDocument extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("publiclyAvailableInformation")
 		public CreditEventNoticeDocument.CreditEventNoticeDocumentBuilder setPubliclyAvailableInformation(List<? extends Resource> publiclyAvailableInformations) {
 			if (publiclyAvailableInformations == null)  {
 				this.publiclyAvailableInformation = new ArrayList<>();

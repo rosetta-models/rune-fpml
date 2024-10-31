@@ -164,6 +164,7 @@ public interface Equity extends EquityAsset {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("instrumentId")
 		public Equity.EquityBuilder addInstrumentId(InstrumentId instrumentId) {
 			if (instrumentId!=null) this.instrumentId.add(instrumentId.toBuilder());
 			return this;
@@ -185,7 +186,6 @@ public interface Equity extends EquityAsset {
 		}
 		
 		@Override 
-		@RosettaAttribute("instrumentId")
 		public Equity.EquityBuilder setInstrumentId(List<? extends InstrumentId> instrumentIds) {
 			if (instrumentIds == null)  {
 				this.instrumentId = new ArrayList<>();

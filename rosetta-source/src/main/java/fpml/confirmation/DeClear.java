@@ -189,6 +189,7 @@ public interface DeClear extends RosettaModelObject {
 			return tradeIdentifier;
 		}
 		
+		@Override
 		public PartyTradeIdentifier.PartyTradeIdentifierBuilder getOrCreateTradeIdentifier(int _index) {
 		
 			if (tradeIdentifier==null) {
@@ -227,6 +228,7 @@ public interface DeClear extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("tradeIdentifier")
 		public DeClear.DeClearBuilder addTradeIdentifier(PartyTradeIdentifier tradeIdentifier) {
 			if (tradeIdentifier!=null) this.tradeIdentifier.add(tradeIdentifier.toBuilder());
 			return this;
@@ -248,7 +250,6 @@ public interface DeClear extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("tradeIdentifier")
 		public DeClear.DeClearBuilder setTradeIdentifier(List<? extends PartyTradeIdentifier> tradeIdentifiers) {
 			if (tradeIdentifiers == null)  {
 				this.tradeIdentifier = new ArrayList<>();

@@ -321,6 +321,7 @@ public interface CommoditySwapDetailsModel extends RosettaModelObject {
 			return commoditySwapLeg;
 		}
 		
+		@Override
 		public CommoditySwapLeg.CommoditySwapLegBuilder getOrCreateCommoditySwapLeg(int _index) {
 		
 			if (commoditySwapLeg==null) {
@@ -339,6 +340,7 @@ public interface CommoditySwapDetailsModel extends RosettaModelObject {
 			return weatherLeg;
 		}
 		
+		@Override
 		public WeatherLeg.WeatherLegBuilder getOrCreateWeatherLeg(int _index) {
 		
 			if (weatherLeg==null) {
@@ -389,6 +391,7 @@ public interface CommoditySwapDetailsModel extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("commoditySwapLeg")
 		public CommoditySwapDetailsModel.CommoditySwapDetailsModelBuilder addCommoditySwapLeg(CommoditySwapLeg commoditySwapLeg) {
 			if (commoditySwapLeg!=null) this.commoditySwapLeg.add(commoditySwapLeg.toBuilder());
 			return this;
@@ -410,7 +413,6 @@ public interface CommoditySwapDetailsModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("commoditySwapLeg")
 		public CommoditySwapDetailsModel.CommoditySwapDetailsModelBuilder setCommoditySwapLeg(List<? extends CommoditySwapLeg> commoditySwapLegs) {
 			if (commoditySwapLegs == null)  {
 				this.commoditySwapLeg = new ArrayList<>();
@@ -424,6 +426,7 @@ public interface CommoditySwapDetailsModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("weatherLeg")
 		public CommoditySwapDetailsModel.CommoditySwapDetailsModelBuilder addWeatherLeg(WeatherLeg weatherLeg) {
 			if (weatherLeg!=null) this.weatherLeg.add(weatherLeg.toBuilder());
 			return this;
@@ -445,7 +448,6 @@ public interface CommoditySwapDetailsModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("weatherLeg")
 		public CommoditySwapDetailsModel.CommoditySwapDetailsModelBuilder setWeatherLeg(List<? extends WeatherLeg> weatherLegs) {
 			if (weatherLegs == null)  {
 				this.weatherLeg = new ArrayList<>();

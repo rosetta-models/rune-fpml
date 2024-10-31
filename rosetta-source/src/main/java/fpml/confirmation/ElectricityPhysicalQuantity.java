@@ -213,6 +213,7 @@ public interface ElectricityPhysicalQuantity extends CommodityPhysicalQuantityBa
 			return physicalQuantity;
 		}
 		
+		@Override
 		public ElectricityPhysicalDeliveryQuantity.ElectricityPhysicalDeliveryQuantityBuilder getOrCreatePhysicalQuantity(int _index) {
 		
 			if (physicalQuantity==null) {
@@ -231,6 +232,7 @@ public interface ElectricityPhysicalQuantity extends CommodityPhysicalQuantityBa
 			return physicalQuantitySchedule;
 		}
 		
+		@Override
 		public ElectricityPhysicalDeliveryQuantitySchedule.ElectricityPhysicalDeliveryQuantityScheduleBuilder getOrCreatePhysicalQuantitySchedule(int _index) {
 		
 			if (physicalQuantitySchedule==null) {
@@ -269,6 +271,7 @@ public interface ElectricityPhysicalQuantity extends CommodityPhysicalQuantityBa
 			return this;
 		}
 		@Override
+		@RosettaAttribute("physicalQuantity")
 		public ElectricityPhysicalQuantity.ElectricityPhysicalQuantityBuilder addPhysicalQuantity(ElectricityPhysicalDeliveryQuantity physicalQuantity) {
 			if (physicalQuantity!=null) this.physicalQuantity.add(physicalQuantity.toBuilder());
 			return this;
@@ -290,7 +293,6 @@ public interface ElectricityPhysicalQuantity extends CommodityPhysicalQuantityBa
 		}
 		
 		@Override 
-		@RosettaAttribute("physicalQuantity")
 		public ElectricityPhysicalQuantity.ElectricityPhysicalQuantityBuilder setPhysicalQuantity(List<? extends ElectricityPhysicalDeliveryQuantity> physicalQuantitys) {
 			if (physicalQuantitys == null)  {
 				this.physicalQuantity = new ArrayList<>();
@@ -304,6 +306,7 @@ public interface ElectricityPhysicalQuantity extends CommodityPhysicalQuantityBa
 		}
 		
 		@Override
+		@RosettaAttribute("physicalQuantitySchedule")
 		public ElectricityPhysicalQuantity.ElectricityPhysicalQuantityBuilder addPhysicalQuantitySchedule(ElectricityPhysicalDeliveryQuantitySchedule physicalQuantitySchedule) {
 			if (physicalQuantitySchedule!=null) this.physicalQuantitySchedule.add(physicalQuantitySchedule.toBuilder());
 			return this;
@@ -325,7 +328,6 @@ public interface ElectricityPhysicalQuantity extends CommodityPhysicalQuantityBa
 		}
 		
 		@Override 
-		@RosettaAttribute("physicalQuantitySchedule")
 		public ElectricityPhysicalQuantity.ElectricityPhysicalQuantityBuilder setPhysicalQuantitySchedule(List<? extends ElectricityPhysicalDeliveryQuantitySchedule> physicalQuantitySchedules) {
 			if (physicalQuantitySchedules == null)  {
 				this.physicalQuantitySchedule = new ArrayList<>();

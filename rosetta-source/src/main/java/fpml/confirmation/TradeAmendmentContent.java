@@ -294,6 +294,7 @@ public interface TradeAmendmentContent extends AbstractEvent {
 		}
 		
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public TradeAmendmentContent.TradeAmendmentContentBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -315,7 +316,6 @@ public interface TradeAmendmentContent extends AbstractEvent {
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public TradeAmendmentContent.TradeAmendmentContentBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();

@@ -271,6 +271,7 @@ public interface ProductModel extends RosettaModelObject {
 			return secondaryAssetClass;
 		}
 		
+		@Override
 		public AssetClass.AssetClassBuilder getOrCreateSecondaryAssetClass(int _index) {
 		
 			if (secondaryAssetClass==null) {
@@ -289,6 +290,7 @@ public interface ProductModel extends RosettaModelObject {
 			return productType;
 		}
 		
+		@Override
 		public ProductType.ProductTypeBuilder getOrCreateProductType(int _index) {
 		
 			if (productType==null) {
@@ -307,6 +309,7 @@ public interface ProductModel extends RosettaModelObject {
 			return productId;
 		}
 		
+		@Override
 		public ProductId.ProductIdBuilder getOrCreateProductId(int _index) {
 		
 			if (productId==null) {
@@ -325,6 +328,7 @@ public interface ProductModel extends RosettaModelObject {
 			return assetClass;
 		}
 		
+		@Override
 		public AssetClass.AssetClassBuilder getOrCreateAssetClass(int _index) {
 		
 			if (assetClass==null) {
@@ -344,6 +348,7 @@ public interface ProductModel extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("secondaryAssetClass")
 		public ProductModel.ProductModelBuilder addSecondaryAssetClass(AssetClass secondaryAssetClass) {
 			if (secondaryAssetClass!=null) this.secondaryAssetClass.add(secondaryAssetClass.toBuilder());
 			return this;
@@ -365,7 +370,6 @@ public interface ProductModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("secondaryAssetClass")
 		public ProductModel.ProductModelBuilder setSecondaryAssetClass(List<? extends AssetClass> secondaryAssetClasss) {
 			if (secondaryAssetClasss == null)  {
 				this.secondaryAssetClass = new ArrayList<>();
@@ -379,6 +383,7 @@ public interface ProductModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("productType")
 		public ProductModel.ProductModelBuilder addProductType(ProductType productType) {
 			if (productType!=null) this.productType.add(productType.toBuilder());
 			return this;
@@ -400,7 +405,6 @@ public interface ProductModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("productType")
 		public ProductModel.ProductModelBuilder setProductType(List<? extends ProductType> productTypes) {
 			if (productTypes == null)  {
 				this.productType = new ArrayList<>();
@@ -414,6 +418,7 @@ public interface ProductModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("productId")
 		public ProductModel.ProductModelBuilder addProductId(ProductId productId) {
 			if (productId!=null) this.productId.add(productId.toBuilder());
 			return this;
@@ -435,7 +440,6 @@ public interface ProductModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("productId")
 		public ProductModel.ProductModelBuilder setProductId(List<? extends ProductId> productIds) {
 			if (productIds == null)  {
 				this.productId = new ArrayList<>();
@@ -449,6 +453,7 @@ public interface ProductModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("assetClass")
 		public ProductModel.ProductModelBuilder addAssetClass(AssetClass assetClass) {
 			if (assetClass!=null) this.assetClass.add(assetClass.toBuilder());
 			return this;
@@ -470,7 +475,6 @@ public interface ProductModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("assetClass")
 		public ProductModel.ProductModelBuilder setAssetClass(List<? extends AssetClass> assetClasss) {
 			if (assetClasss == null)  {
 				this.assetClass = new ArrayList<>();

@@ -194,6 +194,7 @@ public interface DealRolesModelSequence extends RosettaModelObject {
 			return syndicationCoLeadPartyReference;
 		}
 		
+		@Override
 		public PartyReference.PartyReferenceBuilder getOrCreateSyndicationCoLeadPartyReference(int _index) {
 		
 			if (syndicationCoLeadPartyReference==null) {
@@ -213,6 +214,7 @@ public interface DealRolesModelSequence extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("syndicationCoLeadPartyReference")
 		public DealRolesModelSequence.DealRolesModelSequenceBuilder addSyndicationCoLeadPartyReference(PartyReference syndicationCoLeadPartyReference) {
 			if (syndicationCoLeadPartyReference!=null) this.syndicationCoLeadPartyReference.add(syndicationCoLeadPartyReference.toBuilder());
 			return this;
@@ -234,7 +236,6 @@ public interface DealRolesModelSequence extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("syndicationCoLeadPartyReference")
 		public DealRolesModelSequence.DealRolesModelSequenceBuilder setSyndicationCoLeadPartyReference(List<? extends PartyReference> syndicationCoLeadPartyReferences) {
 			if (syndicationCoLeadPartyReferences == null)  {
 				this.syndicationCoLeadPartyReference = new ArrayList<>();

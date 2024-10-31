@@ -272,6 +272,7 @@ public interface PartyModel extends RosettaModelObject {
 			return partyId;
 		}
 		
+		@Override
 		public PartyId.PartyIdBuilder getOrCreatePartyId(int _index) {
 		
 			if (partyId==null) {
@@ -347,6 +348,7 @@ public interface PartyModel extends RosettaModelObject {
 			return businessUnit;
 		}
 		
+		@Override
 		public BusinessUnit.BusinessUnitBuilder getOrCreateBusinessUnit(int _index) {
 		
 			if (businessUnit==null) {
@@ -365,6 +367,7 @@ public interface PartyModel extends RosettaModelObject {
 			return person;
 		}
 		
+		@Override
 		public Person.PersonBuilder getOrCreatePerson(int _index) {
 		
 			if (person==null) {
@@ -378,6 +381,7 @@ public interface PartyModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("partyId")
 		public PartyModel.PartyModelBuilder addPartyId(PartyId partyId) {
 			if (partyId!=null) this.partyId.add(partyId.toBuilder());
 			return this;
@@ -399,7 +403,6 @@ public interface PartyModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("partyId")
 		public PartyModel.PartyModelBuilder setPartyId(List<? extends PartyId> partyIds) {
 			if (partyIds == null)  {
 				this.partyId = new ArrayList<>();
@@ -431,6 +434,7 @@ public interface PartyModel extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("businessUnit")
 		public PartyModel.PartyModelBuilder addBusinessUnit(BusinessUnit businessUnit) {
 			if (businessUnit!=null) this.businessUnit.add(businessUnit.toBuilder());
 			return this;
@@ -452,7 +456,6 @@ public interface PartyModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("businessUnit")
 		public PartyModel.PartyModelBuilder setBusinessUnit(List<? extends BusinessUnit> businessUnits) {
 			if (businessUnits == null)  {
 				this.businessUnit = new ArrayList<>();
@@ -466,6 +469,7 @@ public interface PartyModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("person")
 		public PartyModel.PartyModelBuilder addPerson(Person person) {
 			if (person!=null) this.person.add(person.toBuilder());
 			return this;
@@ -487,7 +491,6 @@ public interface PartyModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("person")
 		public PartyModel.PartyModelBuilder setPerson(List<? extends Person> persons) {
 			if (persons == null)  {
 				this.person = new ArrayList<>();

@@ -285,6 +285,7 @@ public interface Market extends RosettaModelObject {
 			return pricingStructure;
 		}
 		
+		@Override
 		public PricingStructure.PricingStructureBuilder getOrCreatePricingStructure(int _index) {
 		
 			if (pricingStructure==null) {
@@ -303,6 +304,7 @@ public interface Market extends RosettaModelObject {
 			return pricingStructureValuation;
 		}
 		
+		@Override
 		public PricingStructureValuation.PricingStructureValuationBuilder getOrCreatePricingStructureValuation(int _index) {
 		
 			if (pricingStructureValuation==null) {
@@ -321,6 +323,7 @@ public interface Market extends RosettaModelObject {
 			return benchmarkPricingMethod;
 		}
 		
+		@Override
 		public PricingMethod.PricingMethodBuilder getOrCreateBenchmarkPricingMethod(int _index) {
 		
 			if (benchmarkPricingMethod==null) {
@@ -352,6 +355,7 @@ public interface Market extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("pricingStructure")
 		public Market.MarketBuilder addPricingStructure(PricingStructure pricingStructure) {
 			if (pricingStructure!=null) this.pricingStructure.add(pricingStructure.toBuilder());
 			return this;
@@ -373,7 +377,6 @@ public interface Market extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("pricingStructure")
 		public Market.MarketBuilder setPricingStructure(List<? extends PricingStructure> pricingStructures) {
 			if (pricingStructures == null)  {
 				this.pricingStructure = new ArrayList<>();
@@ -387,6 +390,7 @@ public interface Market extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("pricingStructureValuation")
 		public Market.MarketBuilder addPricingStructureValuation(PricingStructureValuation pricingStructureValuation) {
 			if (pricingStructureValuation!=null) this.pricingStructureValuation.add(pricingStructureValuation.toBuilder());
 			return this;
@@ -408,7 +412,6 @@ public interface Market extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("pricingStructureValuation")
 		public Market.MarketBuilder setPricingStructureValuation(List<? extends PricingStructureValuation> pricingStructureValuations) {
 			if (pricingStructureValuations == null)  {
 				this.pricingStructureValuation = new ArrayList<>();
@@ -422,6 +425,7 @@ public interface Market extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("benchmarkPricingMethod")
 		public Market.MarketBuilder addBenchmarkPricingMethod(PricingMethod benchmarkPricingMethod) {
 			if (benchmarkPricingMethod!=null) this.benchmarkPricingMethod.add(benchmarkPricingMethod.toBuilder());
 			return this;
@@ -443,7 +447,6 @@ public interface Market extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("benchmarkPricingMethod")
 		public Market.MarketBuilder setBenchmarkPricingMethod(List<? extends PricingMethod> benchmarkPricingMethods) {
 			if (benchmarkPricingMethods == null)  {
 				this.benchmarkPricingMethod = new ArrayList<>();

@@ -264,6 +264,7 @@ public interface RoutingExplicitDetailsModel extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("routingReferenceText")
 		public RoutingExplicitDetailsModel.RoutingExplicitDetailsModelBuilder addRoutingReferenceText(String routingReferenceText) {
 			if (routingReferenceText!=null) this.routingReferenceText.add(routingReferenceText);
 			return this;
@@ -285,7 +286,6 @@ public interface RoutingExplicitDetailsModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("routingReferenceText")
 		public RoutingExplicitDetailsModel.RoutingExplicitDetailsModelBuilder setRoutingReferenceText(List<String> routingReferenceTexts) {
 			if (routingReferenceTexts == null)  {
 				this.routingReferenceText = new ArrayList<>();

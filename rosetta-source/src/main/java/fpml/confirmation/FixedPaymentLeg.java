@@ -182,6 +182,7 @@ public interface FixedPaymentLeg extends DirectionalLeg {
 			return fixedPayment;
 		}
 		
+		@Override
 		public FixedPaymentAmount.FixedPaymentAmountBuilder getOrCreateFixedPayment(int _index) {
 		
 			if (fixedPayment==null) {
@@ -201,6 +202,7 @@ public interface FixedPaymentLeg extends DirectionalLeg {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("legIdentifier")
 		public FixedPaymentLeg.FixedPaymentLegBuilder addLegIdentifier(LegIdentifier legIdentifier) {
 			if (legIdentifier!=null) this.legIdentifier.add(legIdentifier.toBuilder());
 			return this;
@@ -222,7 +224,6 @@ public interface FixedPaymentLeg extends DirectionalLeg {
 		}
 		
 		@Override 
-		@RosettaAttribute("legIdentifier")
 		public FixedPaymentLeg.FixedPaymentLegBuilder setLegIdentifier(List<? extends LegIdentifier> legIdentifiers) {
 			if (legIdentifiers == null)  {
 				this.legIdentifier = new ArrayList<>();
@@ -254,6 +255,7 @@ public interface FixedPaymentLeg extends DirectionalLeg {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("fixedPayment")
 		public FixedPaymentLeg.FixedPaymentLegBuilder addFixedPayment(FixedPaymentAmount fixedPayment) {
 			if (fixedPayment!=null) this.fixedPayment.add(fixedPayment.toBuilder());
 			return this;
@@ -275,7 +277,6 @@ public interface FixedPaymentLeg extends DirectionalLeg {
 		}
 		
 		@Override 
-		@RosettaAttribute("fixedPayment")
 		public FixedPaymentLeg.FixedPaymentLegBuilder setFixedPayment(List<? extends FixedPaymentAmount> fixedPayments) {
 			if (fixedPayments == null)  {
 				this.fixedPayment = new ArrayList<>();

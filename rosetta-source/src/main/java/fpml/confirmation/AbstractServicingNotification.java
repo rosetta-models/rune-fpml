@@ -239,6 +239,7 @@ public interface AbstractServicingNotification extends CorrectableRequestMessage
 			return eventPayment;
 		}
 		
+		@Override
 		public EventPayment.EventPaymentBuilder getOrCreateEventPayment(int _index) {
 		
 			if (eventPayment==null) {
@@ -306,6 +307,7 @@ public interface AbstractServicingNotification extends CorrectableRequestMessage
 			return this;
 		}
 		@Override
+		@RosettaAttribute("eventPayment")
 		public AbstractServicingNotification.AbstractServicingNotificationBuilder addEventPayment(EventPayment eventPayment) {
 			if (eventPayment!=null) this.eventPayment.add(eventPayment.toBuilder());
 			return this;
@@ -327,7 +329,6 @@ public interface AbstractServicingNotification extends CorrectableRequestMessage
 		}
 		
 		@Override 
-		@RosettaAttribute("eventPayment")
 		public AbstractServicingNotification.AbstractServicingNotificationBuilder setEventPayment(List<? extends EventPayment> eventPayments) {
 			if (eventPayments == null)  {
 				this.eventPayment = new ArrayList<>();

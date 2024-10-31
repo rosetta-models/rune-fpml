@@ -316,6 +316,7 @@ public interface FacilityPositionStatement extends AbstractLoanStatement {
 			return party;
 		}
 		
+		@Override
 		public Party.PartyBuilder getOrCreateParty(int _index) {
 		
 			if (party==null) {
@@ -401,6 +402,7 @@ public interface FacilityPositionStatement extends AbstractLoanStatement {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("party")
 		public FacilityPositionStatement.FacilityPositionStatementBuilder addParty(Party party) {
 			if (party!=null) this.party.add(party.toBuilder());
 			return this;
@@ -422,7 +424,6 @@ public interface FacilityPositionStatement extends AbstractLoanStatement {
 		}
 		
 		@Override 
-		@RosettaAttribute("party")
 		public FacilityPositionStatement.FacilityPositionStatementBuilder setParty(List<? extends Party> partys) {
 			if (partys == null)  {
 				this.party = new ArrayList<>();

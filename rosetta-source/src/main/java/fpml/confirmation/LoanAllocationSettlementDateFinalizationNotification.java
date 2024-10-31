@@ -270,6 +270,7 @@ public interface LoanAllocationSettlementDateFinalizationNotification extends Ab
 			return settlementDateFinalization;
 		}
 		
+		@Override
 		public LoanSettlementDateFinalizationEvent.LoanSettlementDateFinalizationEventBuilder getOrCreateSettlementDateFinalization(int _index) {
 		
 			if (settlementDateFinalization==null) {
@@ -288,6 +289,7 @@ public interface LoanAllocationSettlementDateFinalizationNotification extends Ab
 			return loanTradeAllocationDetailsModel;
 		}
 		
+		@Override
 		public LoanTradeAllocationDetailsModel.LoanTradeAllocationDetailsModelBuilder getOrCreateLoanTradeAllocationDetailsModel(int _index) {
 		
 			if (loanTradeAllocationDetailsModel==null) {
@@ -306,6 +308,7 @@ public interface LoanAllocationSettlementDateFinalizationNotification extends Ab
 			return facilityDetailsModel;
 		}
 		
+		@Override
 		public FacilityDetailsModel.FacilityDetailsModelBuilder getOrCreateFacilityDetailsModel(int _index) {
 		
 			if (facilityDetailsModel==null) {
@@ -324,6 +327,7 @@ public interface LoanAllocationSettlementDateFinalizationNotification extends Ab
 			return party;
 		}
 		
+		@Override
 		public Party.PartyBuilder getOrCreateParty(int _index) {
 		
 			if (party==null) {
@@ -397,6 +401,7 @@ public interface LoanAllocationSettlementDateFinalizationNotification extends Ab
 			return this;
 		}
 		@Override
+		@RosettaAttribute("settlementDateFinalization")
 		public LoanAllocationSettlementDateFinalizationNotification.LoanAllocationSettlementDateFinalizationNotificationBuilder addSettlementDateFinalization(LoanSettlementDateFinalizationEvent settlementDateFinalization) {
 			if (settlementDateFinalization!=null) this.settlementDateFinalization.add(settlementDateFinalization.toBuilder());
 			return this;
@@ -418,7 +423,6 @@ public interface LoanAllocationSettlementDateFinalizationNotification extends Ab
 		}
 		
 		@Override 
-		@RosettaAttribute("settlementDateFinalization")
 		public LoanAllocationSettlementDateFinalizationNotification.LoanAllocationSettlementDateFinalizationNotificationBuilder setSettlementDateFinalization(List<? extends LoanSettlementDateFinalizationEvent> settlementDateFinalizations) {
 			if (settlementDateFinalizations == null)  {
 				this.settlementDateFinalization = new ArrayList<>();
@@ -432,6 +436,7 @@ public interface LoanAllocationSettlementDateFinalizationNotification extends Ab
 		}
 		
 		@Override
+		@RosettaAttribute("loanTradeAllocationDetailsModel")
 		public LoanAllocationSettlementDateFinalizationNotification.LoanAllocationSettlementDateFinalizationNotificationBuilder addLoanTradeAllocationDetailsModel(LoanTradeAllocationDetailsModel loanTradeAllocationDetailsModel) {
 			if (loanTradeAllocationDetailsModel!=null) this.loanTradeAllocationDetailsModel.add(loanTradeAllocationDetailsModel.toBuilder());
 			return this;
@@ -453,7 +458,6 @@ public interface LoanAllocationSettlementDateFinalizationNotification extends Ab
 		}
 		
 		@Override 
-		@RosettaAttribute("loanTradeAllocationDetailsModel")
 		public LoanAllocationSettlementDateFinalizationNotification.LoanAllocationSettlementDateFinalizationNotificationBuilder setLoanTradeAllocationDetailsModel(List<? extends LoanTradeAllocationDetailsModel> loanTradeAllocationDetailsModels) {
 			if (loanTradeAllocationDetailsModels == null)  {
 				this.loanTradeAllocationDetailsModel = new ArrayList<>();
@@ -467,6 +471,7 @@ public interface LoanAllocationSettlementDateFinalizationNotification extends Ab
 		}
 		
 		@Override
+		@RosettaAttribute("facilityDetailsModel")
 		public LoanAllocationSettlementDateFinalizationNotification.LoanAllocationSettlementDateFinalizationNotificationBuilder addFacilityDetailsModel(FacilityDetailsModel facilityDetailsModel) {
 			if (facilityDetailsModel!=null) this.facilityDetailsModel.add(facilityDetailsModel.toBuilder());
 			return this;
@@ -488,7 +493,6 @@ public interface LoanAllocationSettlementDateFinalizationNotification extends Ab
 		}
 		
 		@Override 
-		@RosettaAttribute("facilityDetailsModel")
 		public LoanAllocationSettlementDateFinalizationNotification.LoanAllocationSettlementDateFinalizationNotificationBuilder setFacilityDetailsModel(List<? extends FacilityDetailsModel> facilityDetailsModels) {
 			if (facilityDetailsModels == null)  {
 				this.facilityDetailsModel = new ArrayList<>();
@@ -502,6 +506,7 @@ public interface LoanAllocationSettlementDateFinalizationNotification extends Ab
 		}
 		
 		@Override
+		@RosettaAttribute("party")
 		public LoanAllocationSettlementDateFinalizationNotification.LoanAllocationSettlementDateFinalizationNotificationBuilder addParty(Party party) {
 			if (party!=null) this.party.add(party.toBuilder());
 			return this;
@@ -523,7 +528,6 @@ public interface LoanAllocationSettlementDateFinalizationNotification extends Ab
 		}
 		
 		@Override 
-		@RosettaAttribute("party")
 		public LoanAllocationSettlementDateFinalizationNotification.LoanAllocationSettlementDateFinalizationNotificationBuilder setParty(List<? extends Party> partys) {
 			if (partys == null)  {
 				this.party = new ArrayList<>();

@@ -206,6 +206,7 @@ public interface ApplicableAssets extends RosettaModelObject {
 			return dealIdentifier;
 		}
 		
+		@Override
 		public DealIdentifier.DealIdentifierBuilder getOrCreateDealIdentifier(int _index) {
 		
 			if (dealIdentifier==null) {
@@ -224,6 +225,7 @@ public interface ApplicableAssets extends RosettaModelObject {
 			return facilityIdentifier;
 		}
 		
+		@Override
 		public FacilityIdentifier.FacilityIdentifierBuilder getOrCreateFacilityIdentifier(int _index) {
 		
 			if (facilityIdentifier==null) {
@@ -242,6 +244,7 @@ public interface ApplicableAssets extends RosettaModelObject {
 			return facilityType;
 		}
 		
+		@Override
 		public FacilityType.FacilityTypeBuilder getOrCreateFacilityType(int _index) {
 		
 			if (facilityType==null) {
@@ -255,6 +258,7 @@ public interface ApplicableAssets extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("dealIdentifier")
 		public ApplicableAssets.ApplicableAssetsBuilder addDealIdentifier(DealIdentifier dealIdentifier) {
 			if (dealIdentifier!=null) this.dealIdentifier.add(dealIdentifier.toBuilder());
 			return this;
@@ -276,7 +280,6 @@ public interface ApplicableAssets extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("dealIdentifier")
 		public ApplicableAssets.ApplicableAssetsBuilder setDealIdentifier(List<? extends DealIdentifier> dealIdentifiers) {
 			if (dealIdentifiers == null)  {
 				this.dealIdentifier = new ArrayList<>();
@@ -290,6 +293,7 @@ public interface ApplicableAssets extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("facilityIdentifier")
 		public ApplicableAssets.ApplicableAssetsBuilder addFacilityIdentifier(FacilityIdentifier facilityIdentifier) {
 			if (facilityIdentifier!=null) this.facilityIdentifier.add(facilityIdentifier.toBuilder());
 			return this;
@@ -311,7 +315,6 @@ public interface ApplicableAssets extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("facilityIdentifier")
 		public ApplicableAssets.ApplicableAssetsBuilder setFacilityIdentifier(List<? extends FacilityIdentifier> facilityIdentifiers) {
 			if (facilityIdentifiers == null)  {
 				this.facilityIdentifier = new ArrayList<>();
@@ -325,6 +328,7 @@ public interface ApplicableAssets extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("facilityType")
 		public ApplicableAssets.ApplicableAssetsBuilder addFacilityType(FacilityType facilityType) {
 			if (facilityType!=null) this.facilityType.add(facilityType.toBuilder());
 			return this;
@@ -346,7 +350,6 @@ public interface ApplicableAssets extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("facilityType")
 		public ApplicableAssets.ApplicableAssetsBuilder setFacilityType(List<? extends FacilityType> facilityTypes) {
 			if (facilityTypes == null)  {
 				this.facilityType = new ArrayList<>();

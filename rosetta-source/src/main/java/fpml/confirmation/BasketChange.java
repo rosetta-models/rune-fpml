@@ -132,6 +132,7 @@ public interface BasketChange extends BasketChangeEvent {
 		}
 	
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public BasketChange.BasketChangeBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -153,7 +154,6 @@ public interface BasketChange extends BasketChangeEvent {
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public BasketChange.BasketChangeBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();

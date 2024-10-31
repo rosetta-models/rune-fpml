@@ -196,6 +196,7 @@ public interface CommodityFxSequence extends RosettaModelObject {
 			return fxObservationDates;
 		}
 		
+		@Override
 		public AdjustableDates.AdjustableDatesBuilder getOrCreateFxObservationDates(int _index) {
 		
 			if (fxObservationDates==null) {
@@ -247,6 +248,7 @@ public interface CommodityFxSequence extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("fxObservationDates")
 		public CommodityFxSequence.CommodityFxSequenceBuilder addFxObservationDates(AdjustableDates fxObservationDates) {
 			if (fxObservationDates!=null) this.fxObservationDates.add(fxObservationDates.toBuilder());
 			return this;
@@ -268,7 +270,6 @@ public interface CommodityFxSequence extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("fxObservationDates")
 		public CommodityFxSequence.CommodityFxSequenceBuilder setFxObservationDates(List<? extends AdjustableDates> fxObservationDatess) {
 			if (fxObservationDatess == null)  {
 				this.fxObservationDates = new ArrayList<>();

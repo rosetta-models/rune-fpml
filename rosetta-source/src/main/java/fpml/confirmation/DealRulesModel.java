@@ -196,6 +196,7 @@ public interface DealRulesModel extends RosettaModelObject {
 			return proRataFacilities;
 		}
 		
+		@Override
 		public ProRataFacilities.ProRataFacilitiesBuilder getOrCreateProRataFacilities(int _index) {
 		
 			if (proRataFacilities==null) {
@@ -215,6 +216,7 @@ public interface DealRulesModel extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("proRataFacilities")
 		public DealRulesModel.DealRulesModelBuilder addProRataFacilities(ProRataFacilities proRataFacilities) {
 			if (proRataFacilities!=null) this.proRataFacilities.add(proRataFacilities.toBuilder());
 			return this;
@@ -236,7 +238,6 @@ public interface DealRulesModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("proRataFacilities")
 		public DealRulesModel.DealRulesModelBuilder setProRataFacilities(List<? extends ProRataFacilities> proRataFacilitiess) {
 			if (proRataFacilitiess == null)  {
 				this.proRataFacilities = new ArrayList<>();

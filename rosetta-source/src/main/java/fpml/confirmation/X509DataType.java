@@ -150,6 +150,7 @@ public interface X509DataType extends RosettaModelObject {
 			return x509DataTypeSequence;
 		}
 		
+		@Override
 		public X509DataTypeSequence.X509DataTypeSequenceBuilder getOrCreateX509DataTypeSequence(int _index) {
 		
 			if (x509DataTypeSequence==null) {
@@ -163,6 +164,7 @@ public interface X509DataType extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("x509DataTypeSequence")
 		public X509DataType.X509DataTypeBuilder addX509DataTypeSequence(X509DataTypeSequence x509DataTypeSequence) {
 			if (x509DataTypeSequence!=null) this.x509DataTypeSequence.add(x509DataTypeSequence.toBuilder());
 			return this;
@@ -184,7 +186,6 @@ public interface X509DataType extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("x509DataTypeSequence")
 		public X509DataType.X509DataTypeBuilder setX509DataTypeSequence(List<? extends X509DataTypeSequence> x509DataTypeSequences) {
 			if (x509DataTypeSequences == null)  {
 				this.x509DataTypeSequence = new ArrayList<>();

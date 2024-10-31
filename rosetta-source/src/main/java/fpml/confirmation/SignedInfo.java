@@ -154,6 +154,7 @@ public interface SignedInfo extends SignedInfoType {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("reference")
 		public SignedInfo.SignedInfoBuilder addReference(ReferenceType reference) {
 			if (reference!=null) this.reference.add(reference.toBuilder());
 			return this;
@@ -175,7 +176,6 @@ public interface SignedInfo extends SignedInfoType {
 		}
 		
 		@Override 
-		@RosettaAttribute("reference")
 		public SignedInfo.SignedInfoBuilder setReference(List<? extends ReferenceType> references) {
 			if (references == null)  {
 				this.reference = new ArrayList<>();

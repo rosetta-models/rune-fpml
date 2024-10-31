@@ -200,6 +200,7 @@ public interface FacilityFeaturesModel extends RosettaModelObject {
 			return feature;
 		}
 		
+		@Override
 		public FacilityFeature.FacilityFeatureBuilder getOrCreateFeature(int _index) {
 		
 			if (feature==null) {
@@ -251,6 +252,7 @@ public interface FacilityFeaturesModel extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("feature")
 		public FacilityFeaturesModel.FacilityFeaturesModelBuilder addFeature(FacilityFeature feature) {
 			if (feature!=null) this.feature.add(feature.toBuilder());
 			return this;
@@ -272,7 +274,6 @@ public interface FacilityFeaturesModel extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("feature")
 		public FacilityFeaturesModel.FacilityFeaturesModelBuilder setFeature(List<? extends FacilityFeature> features) {
 			if (features == null)  {
 				this.feature = new ArrayList<>();

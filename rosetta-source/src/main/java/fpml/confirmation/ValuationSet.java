@@ -347,6 +347,7 @@ public interface ValuationSet extends RosettaModelObject {
 			return valuationScenario;
 		}
 		
+		@Override
 		public ValuationScenario.ValuationScenarioBuilder getOrCreateValuationScenario(int _index) {
 		
 			if (valuationScenario==null) {
@@ -365,6 +366,7 @@ public interface ValuationSet extends RosettaModelObject {
 			return valuationScenarioReference;
 		}
 		
+		@Override
 		public ValuationScenarioReference.ValuationScenarioReferenceBuilder getOrCreateValuationScenarioReference(int _index) {
 		
 			if (valuationScenarioReference==null) {
@@ -402,6 +404,7 @@ public interface ValuationSet extends RosettaModelObject {
 			return quotationCharacteristics;
 		}
 		
+		@Override
 		public QuotationCharacteristics.QuotationCharacteristicsBuilder getOrCreateQuotationCharacteristics(int _index) {
 		
 			if (quotationCharacteristics==null) {
@@ -420,6 +423,7 @@ public interface ValuationSet extends RosettaModelObject {
 			return sensitivitySetDefinition;
 		}
 		
+		@Override
 		public SensitivitySetDefinition.SensitivitySetDefinitionBuilder getOrCreateSensitivitySetDefinition(int _index) {
 		
 			if (sensitivitySetDefinition==null) {
@@ -457,6 +461,7 @@ public interface ValuationSet extends RosettaModelObject {
 			return assetValuation;
 		}
 		
+		@Override
 		public AssetValuation.AssetValuationBuilder getOrCreateAssetValuation(int _index) {
 		
 			if (assetValuation==null) {
@@ -482,6 +487,7 @@ public interface ValuationSet extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("valuationScenario")
 		public ValuationSet.ValuationSetBuilder addValuationScenario(ValuationScenario valuationScenario) {
 			if (valuationScenario!=null) this.valuationScenario.add(valuationScenario.toBuilder());
 			return this;
@@ -503,7 +509,6 @@ public interface ValuationSet extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("valuationScenario")
 		public ValuationSet.ValuationSetBuilder setValuationScenario(List<? extends ValuationScenario> valuationScenarios) {
 			if (valuationScenarios == null)  {
 				this.valuationScenario = new ArrayList<>();
@@ -517,6 +522,7 @@ public interface ValuationSet extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("valuationScenarioReference")
 		public ValuationSet.ValuationSetBuilder addValuationScenarioReference(ValuationScenarioReference valuationScenarioReference) {
 			if (valuationScenarioReference!=null) this.valuationScenarioReference.add(valuationScenarioReference.toBuilder());
 			return this;
@@ -538,7 +544,6 @@ public interface ValuationSet extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("valuationScenarioReference")
 		public ValuationSet.ValuationSetBuilder setValuationScenarioReference(List<? extends ValuationScenarioReference> valuationScenarioReferences) {
 			if (valuationScenarioReferences == null)  {
 				this.valuationScenarioReference = new ArrayList<>();
@@ -558,6 +563,7 @@ public interface ValuationSet extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("quotationCharacteristics")
 		public ValuationSet.ValuationSetBuilder addQuotationCharacteristics(QuotationCharacteristics quotationCharacteristics) {
 			if (quotationCharacteristics!=null) this.quotationCharacteristics.add(quotationCharacteristics.toBuilder());
 			return this;
@@ -579,7 +585,6 @@ public interface ValuationSet extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("quotationCharacteristics")
 		public ValuationSet.ValuationSetBuilder setQuotationCharacteristics(List<? extends QuotationCharacteristics> quotationCharacteristicss) {
 			if (quotationCharacteristicss == null)  {
 				this.quotationCharacteristics = new ArrayList<>();
@@ -593,6 +598,7 @@ public interface ValuationSet extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("sensitivitySetDefinition")
 		public ValuationSet.ValuationSetBuilder addSensitivitySetDefinition(SensitivitySetDefinition sensitivitySetDefinition) {
 			if (sensitivitySetDefinition!=null) this.sensitivitySetDefinition.add(sensitivitySetDefinition.toBuilder());
 			return this;
@@ -614,7 +620,6 @@ public interface ValuationSet extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("sensitivitySetDefinition")
 		public ValuationSet.ValuationSetBuilder setSensitivitySetDefinition(List<? extends SensitivitySetDefinition> sensitivitySetDefinitions) {
 			if (sensitivitySetDefinitions == null)  {
 				this.sensitivitySetDefinition = new ArrayList<>();
@@ -634,6 +639,7 @@ public interface ValuationSet extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("assetValuation")
 		public ValuationSet.ValuationSetBuilder addAssetValuation(AssetValuation assetValuation) {
 			if (assetValuation!=null) this.assetValuation.add(assetValuation.toBuilder());
 			return this;
@@ -655,7 +661,6 @@ public interface ValuationSet extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("assetValuation")
 		public ValuationSet.ValuationSetBuilder setAssetValuation(List<? extends AssetValuation> assetValuations) {
 			if (assetValuations == null)  {
 				this.assetValuation = new ArrayList<>();

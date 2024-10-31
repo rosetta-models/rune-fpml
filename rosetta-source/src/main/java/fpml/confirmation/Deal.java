@@ -226,6 +226,7 @@ public interface Deal extends DealSummary {
 			return facilityGroup;
 		}
 		
+		@Override
 		public AbstractFacility.AbstractFacilityBuilder getOrCreateFacilityGroup(int _index) {
 		
 			if (facilityGroup==null) {
@@ -245,6 +246,7 @@ public interface Deal extends DealSummary {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("instrumentId")
 		public Deal.DealBuilder addInstrumentId(InstrumentId instrumentId) {
 			if (instrumentId!=null) this.instrumentId.add(instrumentId.toBuilder());
 			return this;
@@ -266,7 +268,6 @@ public interface Deal extends DealSummary {
 		}
 		
 		@Override 
-		@RosettaAttribute("instrumentId")
 		public Deal.DealBuilder setInstrumentId(List<? extends InstrumentId> instrumentIds) {
 			if (instrumentIds == null)  {
 				this.instrumentId = new ArrayList<>();
@@ -316,6 +317,7 @@ public interface Deal extends DealSummary {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("facilityGroup")
 		public Deal.DealBuilder addFacilityGroup(AbstractFacility facilityGroup) {
 			if (facilityGroup!=null) this.facilityGroup.add(facilityGroup.toBuilder());
 			return this;
@@ -337,7 +339,6 @@ public interface Deal extends DealSummary {
 		}
 		
 		@Override 
-		@RosettaAttribute("facilityGroup")
 		public Deal.DealBuilder setFacilityGroup(List<? extends AbstractFacility> facilityGroups) {
 			if (facilityGroups == null)  {
 				this.facilityGroup = new ArrayList<>();

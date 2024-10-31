@@ -131,6 +131,7 @@ public interface X509Data extends X509DataType {
 		}
 	
 		@Override
+		@RosettaAttribute("x509DataTypeSequence")
 		public X509Data.X509DataBuilder addX509DataTypeSequence(X509DataTypeSequence x509DataTypeSequence) {
 			if (x509DataTypeSequence!=null) this.x509DataTypeSequence.add(x509DataTypeSequence.toBuilder());
 			return this;
@@ -152,7 +153,6 @@ public interface X509Data extends X509DataType {
 		}
 		
 		@Override 
-		@RosettaAttribute("x509DataTypeSequence")
 		public X509Data.X509DataBuilder setX509DataTypeSequence(List<? extends X509DataTypeSequence> x509DataTypeSequences) {
 			if (x509DataTypeSequences == null)  {
 				this.x509DataTypeSequence = new ArrayList<>();

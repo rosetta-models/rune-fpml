@@ -179,6 +179,7 @@ public interface DaysModelSequence1 extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("dayOfWeek")
 		public DaysModelSequence1.DaysModelSequence1Builder addDayOfWeek(DayOfWeekEnum dayOfWeek) {
 			if (dayOfWeek!=null) this.dayOfWeek.add(dayOfWeek);
 			return this;
@@ -200,7 +201,6 @@ public interface DaysModelSequence1 extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("dayOfWeek")
 		public DaysModelSequence1.DaysModelSequence1Builder setDayOfWeek(List<DayOfWeekEnum> dayOfWeeks) {
 			if (dayOfWeeks == null)  {
 				this.dayOfWeek = new ArrayList<>();

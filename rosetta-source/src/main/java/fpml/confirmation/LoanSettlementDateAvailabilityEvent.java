@@ -298,6 +298,7 @@ public interface LoanSettlementDateAvailabilityEvent extends AbstractLoanAllocat
 			return amount;
 		}
 		
+		@Override
 		public Money.MoneyBuilder getOrCreateAmount(int _index) {
 		
 			if (amount==null) {
@@ -379,6 +380,7 @@ public interface LoanSettlementDateAvailabilityEvent extends AbstractLoanAllocat
 			return noSettlePeriod;
 		}
 		
+		@Override
 		public LoanAllocationNoSettlePeriod.LoanAllocationNoSettlePeriodBuilder getOrCreateNoSettlePeriod(int _index) {
 		
 			if (noSettlePeriod==null) {
@@ -392,6 +394,7 @@ public interface LoanSettlementDateAvailabilityEvent extends AbstractLoanAllocat
 		}
 		
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public LoanSettlementDateAvailabilityEvent.LoanSettlementDateAvailabilityEventBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -413,7 +416,6 @@ public interface LoanSettlementDateAvailabilityEvent extends AbstractLoanAllocat
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public LoanSettlementDateAvailabilityEvent.LoanSettlementDateAvailabilityEventBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();
@@ -451,6 +453,7 @@ public interface LoanSettlementDateAvailabilityEvent extends AbstractLoanAllocat
 			return this;
 		}
 		@Override
+		@RosettaAttribute("allocationReference")
 		public LoanSettlementDateAvailabilityEvent.LoanSettlementDateAvailabilityEventBuilder addAllocationReference(LoanAllocationReference allocationReference) {
 			if (allocationReference!=null) this.allocationReference.add(allocationReference.toBuilder());
 			return this;
@@ -472,7 +475,6 @@ public interface LoanSettlementDateAvailabilityEvent extends AbstractLoanAllocat
 		}
 		
 		@Override 
-		@RosettaAttribute("allocationReference")
 		public LoanSettlementDateAvailabilityEvent.LoanSettlementDateAvailabilityEventBuilder setAllocationReference(List<? extends LoanAllocationReference> allocationReferences) {
 			if (allocationReferences == null)  {
 				this.allocationReference = new ArrayList<>();
@@ -486,6 +488,7 @@ public interface LoanSettlementDateAvailabilityEvent extends AbstractLoanAllocat
 		}
 		
 		@Override
+		@RosettaAttribute("amount")
 		public LoanSettlementDateAvailabilityEvent.LoanSettlementDateAvailabilityEventBuilder addAmount(Money amount) {
 			if (amount!=null) this.amount.add(amount.toBuilder());
 			return this;
@@ -507,7 +510,6 @@ public interface LoanSettlementDateAvailabilityEvent extends AbstractLoanAllocat
 		}
 		
 		@Override 
-		@RosettaAttribute("amount")
 		public LoanSettlementDateAvailabilityEvent.LoanSettlementDateAvailabilityEventBuilder setAmount(List<? extends Money> amounts) {
 			if (amounts == null)  {
 				this.amount = new ArrayList<>();
@@ -545,6 +547,7 @@ public interface LoanSettlementDateAvailabilityEvent extends AbstractLoanAllocat
 			return this;
 		}
 		@Override
+		@RosettaAttribute("noSettlePeriod")
 		public LoanSettlementDateAvailabilityEvent.LoanSettlementDateAvailabilityEventBuilder addNoSettlePeriod(LoanAllocationNoSettlePeriod noSettlePeriod) {
 			if (noSettlePeriod!=null) this.noSettlePeriod.add(noSettlePeriod.toBuilder());
 			return this;
@@ -566,7 +569,6 @@ public interface LoanSettlementDateAvailabilityEvent extends AbstractLoanAllocat
 		}
 		
 		@Override 
-		@RosettaAttribute("noSettlePeriod")
 		public LoanSettlementDateAvailabilityEvent.LoanSettlementDateAvailabilityEventBuilder setNoSettlePeriod(List<? extends LoanAllocationNoSettlePeriod> noSettlePeriods) {
 			if (noSettlePeriods == null)  {
 				this.noSettlePeriod = new ArrayList<>();

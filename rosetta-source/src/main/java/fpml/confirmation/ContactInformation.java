@@ -201,6 +201,7 @@ public interface ContactInformation extends RosettaModelObject {
 			return telephone;
 		}
 		
+		@Override
 		public TelephoneNumber.TelephoneNumberBuilder getOrCreateTelephone(int _index) {
 		
 			if (telephone==null) {
@@ -239,6 +240,7 @@ public interface ContactInformation extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("telephone")
 		public ContactInformation.ContactInformationBuilder addTelephone(TelephoneNumber telephone) {
 			if (telephone!=null) this.telephone.add(telephone.toBuilder());
 			return this;
@@ -260,7 +262,6 @@ public interface ContactInformation extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("telephone")
 		public ContactInformation.ContactInformationBuilder setTelephone(List<? extends TelephoneNumber> telephones) {
 			if (telephones == null)  {
 				this.telephone = new ArrayList<>();
@@ -274,6 +275,7 @@ public interface ContactInformation extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("email")
 		public ContactInformation.ContactInformationBuilder addEmail(String email) {
 			if (email!=null) this.email.add(email);
 			return this;
@@ -295,7 +297,6 @@ public interface ContactInformation extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("email")
 		public ContactInformation.ContactInformationBuilder setEmail(List<String> emails) {
 			if (emails == null)  {
 				this.email = new ArrayList<>();

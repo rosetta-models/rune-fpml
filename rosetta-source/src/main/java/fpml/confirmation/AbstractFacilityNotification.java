@@ -260,6 +260,7 @@ public interface AbstractFacilityNotification extends AbstractServicingNotificat
 			return this;
 		}
 		@Override
+		@RosettaAttribute("eventPayment")
 		public AbstractFacilityNotification.AbstractFacilityNotificationBuilder addEventPayment(EventPayment eventPayment) {
 			if (eventPayment!=null) this.eventPayment.add(eventPayment.toBuilder());
 			return this;
@@ -281,7 +282,6 @@ public interface AbstractFacilityNotification extends AbstractServicingNotificat
 		}
 		
 		@Override 
-		@RosettaAttribute("eventPayment")
 		public AbstractFacilityNotification.AbstractFacilityNotificationBuilder setEventPayment(List<? extends EventPayment> eventPayments) {
 			if (eventPayments == null)  {
 				this.eventPayment = new ArrayList<>();

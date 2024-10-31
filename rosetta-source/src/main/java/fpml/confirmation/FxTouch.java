@@ -349,6 +349,7 @@ public interface FxTouch extends RosettaModelObject {
 			return informationSource;
 		}
 		
+		@Override
 		public InformationSource.InformationSourceBuilder getOrCreateInformationSource(int _index) {
 		
 			if (informationSource==null) {
@@ -386,6 +387,7 @@ public interface FxTouch extends RosettaModelObject {
 			return observationPoint;
 		}
 		
+		@Override
 		public FxBusinessCenterDateTime.FxBusinessCenterDateTimeBuilder getOrCreateObservationPoint(int _index) {
 		
 			if (observationPoint==null) {
@@ -429,6 +431,7 @@ public interface FxTouch extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("informationSource")
 		public FxTouch.FxTouchBuilder addInformationSource(InformationSource informationSource) {
 			if (informationSource!=null) this.informationSource.add(informationSource.toBuilder());
 			return this;
@@ -450,7 +453,6 @@ public interface FxTouch extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("informationSource")
 		public FxTouch.FxTouchBuilder setInformationSource(List<? extends InformationSource> informationSources) {
 			if (informationSources == null)  {
 				this.informationSource = new ArrayList<>();
@@ -470,6 +472,7 @@ public interface FxTouch extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("observationPoint")
 		public FxTouch.FxTouchBuilder addObservationPoint(FxBusinessCenterDateTime observationPoint) {
 			if (observationPoint!=null) this.observationPoint.add(observationPoint.toBuilder());
 			return this;
@@ -491,7 +494,6 @@ public interface FxTouch extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("observationPoint")
 		public FxTouch.FxTouchBuilder setObservationPoint(List<? extends FxBusinessCenterDateTime> observationPoints) {
 			if (observationPoints == null)  {
 				this.observationPoint = new ArrayList<>();

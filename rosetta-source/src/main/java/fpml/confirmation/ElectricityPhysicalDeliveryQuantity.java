@@ -176,6 +176,7 @@ public interface ElectricityPhysicalDeliveryQuantity extends CommodityNotionalQu
 			return settlementPeriodsReference;
 		}
 		
+		@Override
 		public SettlementPeriodsReference.SettlementPeriodsReferenceBuilder getOrCreateSettlementPeriodsReference(int _index) {
 		
 			if (settlementPeriodsReference==null) {
@@ -213,6 +214,7 @@ public interface ElectricityPhysicalDeliveryQuantity extends CommodityNotionalQu
 			return this;
 		}
 		@Override
+		@RosettaAttribute("settlementPeriodsReference")
 		public ElectricityPhysicalDeliveryQuantity.ElectricityPhysicalDeliveryQuantityBuilder addSettlementPeriodsReference(SettlementPeriodsReference settlementPeriodsReference) {
 			if (settlementPeriodsReference!=null) this.settlementPeriodsReference.add(settlementPeriodsReference.toBuilder());
 			return this;
@@ -234,7 +236,6 @@ public interface ElectricityPhysicalDeliveryQuantity extends CommodityNotionalQu
 		}
 		
 		@Override 
-		@RosettaAttribute("settlementPeriodsReference")
 		public ElectricityPhysicalDeliveryQuantity.ElectricityPhysicalDeliveryQuantityBuilder setSettlementPeriodsReference(List<? extends SettlementPeriodsReference> settlementPeriodsReferences) {
 			if (settlementPeriodsReferences == null)  {
 				this.settlementPeriodsReference = new ArrayList<>();

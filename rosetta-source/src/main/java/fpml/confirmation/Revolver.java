@@ -172,6 +172,7 @@ public interface Revolver extends AbstractFacility {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("instrumentId")
 		public Revolver.RevolverBuilder addInstrumentId(InstrumentId instrumentId) {
 			if (instrumentId!=null) this.instrumentId.add(instrumentId.toBuilder());
 			return this;
@@ -193,7 +194,6 @@ public interface Revolver extends AbstractFacility {
 		}
 		
 		@Override 
-		@RosettaAttribute("instrumentId")
 		public Revolver.RevolverBuilder setInstrumentId(List<? extends InstrumentId> instrumentIds) {
 			if (instrumentIds == null)  {
 				this.instrumentId = new ArrayList<>();

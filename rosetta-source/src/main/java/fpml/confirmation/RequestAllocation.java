@@ -246,6 +246,7 @@ public interface RequestAllocation extends CorrectableRequestMessage {
 			return relatedParty;
 		}
 		
+		@Override
 		public RelatedParty.RelatedPartyBuilder getOrCreateRelatedParty(int _index) {
 		
 			if (relatedParty==null) {
@@ -358,6 +359,7 @@ public interface RequestAllocation extends CorrectableRequestMessage {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("relatedParty")
 		public RequestAllocation.RequestAllocationBuilder addRelatedParty(RelatedParty relatedParty) {
 			if (relatedParty!=null) this.relatedParty.add(relatedParty.toBuilder());
 			return this;
@@ -379,7 +381,6 @@ public interface RequestAllocation extends CorrectableRequestMessage {
 		}
 		
 		@Override 
-		@RosettaAttribute("relatedParty")
 		public RequestAllocation.RequestAllocationBuilder setRelatedParty(List<? extends RelatedParty> relatedPartys) {
 			if (relatedPartys == null)  {
 				this.relatedParty = new ArrayList<>();

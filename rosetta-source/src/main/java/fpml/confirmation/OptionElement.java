@@ -195,6 +195,7 @@ public interface OptionElement extends ExchangeTradedOption {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("instrumentId")
 		public OptionElement.OptionElementBuilder addInstrumentId(InstrumentId instrumentId) {
 			if (instrumentId!=null) this.instrumentId.add(instrumentId.toBuilder());
 			return this;
@@ -216,7 +217,6 @@ public interface OptionElement extends ExchangeTradedOption {
 		}
 		
 		@Override 
-		@RosettaAttribute("instrumentId")
 		public OptionElement.OptionElementBuilder setInstrumentId(List<? extends InstrumentId> instrumentIds) {
 			if (instrumentIds == null)  {
 				this.instrumentId = new ArrayList<>();

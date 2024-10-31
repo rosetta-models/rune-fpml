@@ -488,6 +488,7 @@ public interface Trade extends RosettaModelObject {
 			return otherPartyPayment;
 		}
 		
+		@Override
 		public Payment.PaymentBuilder getOrCreateOtherPartyPayment(int _index) {
 		
 			if (otherPartyPayment==null) {
@@ -506,6 +507,7 @@ public interface Trade extends RosettaModelObject {
 			return brokerPartyReference;
 		}
 		
+		@Override
 		public PartyReference.PartyReferenceBuilder getOrCreateBrokerPartyReference(int _index) {
 		
 			if (brokerPartyReference==null) {
@@ -543,6 +545,7 @@ public interface Trade extends RosettaModelObject {
 			return determiningParty;
 		}
 		
+		@Override
 		public PartyReference.PartyReferenceBuilder getOrCreateDeterminingParty(int _index) {
 		
 			if (determiningParty==null) {
@@ -580,6 +583,7 @@ public interface Trade extends RosettaModelObject {
 			return hedgingParty;
 		}
 		
+		@Override
 		public PartyReference.PartyReferenceBuilder getOrCreateHedgingParty(int _index) {
 		
 			if (hedgingParty==null) {
@@ -655,6 +659,7 @@ public interface Trade extends RosettaModelObject {
 			return allocations;
 		}
 		
+		@Override
 		public Allocations.AllocationsBuilder getOrCreateAllocations(int _index) {
 		
 			if (allocations==null) {
@@ -705,6 +710,7 @@ public interface Trade extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("otherPartyPayment")
 		public Trade.TradeBuilder addOtherPartyPayment(Payment otherPartyPayment) {
 			if (otherPartyPayment!=null) this.otherPartyPayment.add(otherPartyPayment.toBuilder());
 			return this;
@@ -726,7 +732,6 @@ public interface Trade extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("otherPartyPayment")
 		public Trade.TradeBuilder setOtherPartyPayment(List<? extends Payment> otherPartyPayments) {
 			if (otherPartyPayments == null)  {
 				this.otherPartyPayment = new ArrayList<>();
@@ -740,6 +745,7 @@ public interface Trade extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("brokerPartyReference")
 		public Trade.TradeBuilder addBrokerPartyReference(PartyReference brokerPartyReference) {
 			if (brokerPartyReference!=null) this.brokerPartyReference.add(brokerPartyReference.toBuilder());
 			return this;
@@ -761,7 +767,6 @@ public interface Trade extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("brokerPartyReference")
 		public Trade.TradeBuilder setBrokerPartyReference(List<? extends PartyReference> brokerPartyReferences) {
 			if (brokerPartyReferences == null)  {
 				this.brokerPartyReference = new ArrayList<>();
@@ -781,6 +786,7 @@ public interface Trade extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("determiningParty")
 		public Trade.TradeBuilder addDeterminingParty(PartyReference determiningParty) {
 			if (determiningParty!=null) this.determiningParty.add(determiningParty.toBuilder());
 			return this;
@@ -802,7 +808,6 @@ public interface Trade extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("determiningParty")
 		public Trade.TradeBuilder setDeterminingParty(List<? extends PartyReference> determiningPartys) {
 			if (determiningPartys == null)  {
 				this.determiningParty = new ArrayList<>();
@@ -822,6 +827,7 @@ public interface Trade extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("hedgingParty")
 		public Trade.TradeBuilder addHedgingParty(PartyReference hedgingParty) {
 			if (hedgingParty!=null) this.hedgingParty.add(hedgingParty.toBuilder());
 			return this;
@@ -843,7 +849,6 @@ public interface Trade extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("hedgingParty")
 		public Trade.TradeBuilder setHedgingParty(List<? extends PartyReference> hedgingPartys) {
 			if (hedgingPartys == null)  {
 				this.hedgingParty = new ArrayList<>();
@@ -875,6 +880,7 @@ public interface Trade extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("allocations")
 		public Trade.TradeBuilder addAllocations(Allocations allocations) {
 			if (allocations!=null) this.allocations.add(allocations.toBuilder());
 			return this;
@@ -896,7 +902,6 @@ public interface Trade extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("allocations")
 		public Trade.TradeBuilder setAllocations(List<? extends Allocations> allocationss) {
 			if (allocationss == null)  {
 				this.allocations = new ArrayList<>();

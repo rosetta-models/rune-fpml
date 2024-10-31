@@ -333,6 +333,7 @@ public interface DataDocument extends Document {
 			return trade;
 		}
 		
+		@Override
 		public Trade.TradeBuilder getOrCreateTrade(int _index) {
 		
 			if (trade==null) {
@@ -351,6 +352,7 @@ public interface DataDocument extends Document {
 			return portfolio;
 		}
 		
+		@Override
 		public Portfolio.PortfolioBuilder getOrCreatePortfolio(int _index) {
 		
 			if (portfolio==null) {
@@ -413,6 +415,7 @@ public interface DataDocument extends Document {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("trade")
 		public DataDocument.DataDocumentBuilder addTrade(Trade trade) {
 			if (trade!=null) this.trade.add(trade.toBuilder());
 			return this;
@@ -434,7 +437,6 @@ public interface DataDocument extends Document {
 		}
 		
 		@Override 
-		@RosettaAttribute("trade")
 		public DataDocument.DataDocumentBuilder setTrade(List<? extends Trade> trades) {
 			if (trades == null)  {
 				this.trade = new ArrayList<>();
@@ -448,6 +450,7 @@ public interface DataDocument extends Document {
 		}
 		
 		@Override
+		@RosettaAttribute("portfolio")
 		public DataDocument.DataDocumentBuilder addPortfolio(Portfolio portfolio) {
 			if (portfolio!=null) this.portfolio.add(portfolio.toBuilder());
 			return this;
@@ -469,7 +472,6 @@ public interface DataDocument extends Document {
 		}
 		
 		@Override 
-		@RosettaAttribute("portfolio")
 		public DataDocument.DataDocumentBuilder setPortfolio(List<? extends Portfolio> portfolios) {
 			if (portfolios == null)  {
 				this.portfolio = new ArrayList<>();

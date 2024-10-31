@@ -240,6 +240,7 @@ public interface Allocation extends RosettaModelObject {
 			return allocationTradeId;
 		}
 		
+		@Override
 		public TradeIdentifier.TradeIdentifierBuilder getOrCreateAllocationTradeId(int _index) {
 		
 			if (allocationTradeId==null) {
@@ -283,6 +284,7 @@ public interface Allocation extends RosettaModelObject {
 			return allocatedNotional;
 		}
 		
+		@Override
 		public Money.MoneyBuilder getOrCreateAllocatedNotional(int _index) {
 		
 			if (allocatedNotional==null) {
@@ -315,6 +317,7 @@ public interface Allocation extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("allocationTradeId")
 		public Allocation.AllocationBuilder addAllocationTradeId(TradeIdentifier allocationTradeId) {
 			if (allocationTradeId!=null) this.allocationTradeId.add(allocationTradeId.toBuilder());
 			return this;
@@ -336,7 +339,6 @@ public interface Allocation extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("allocationTradeId")
 		public Allocation.AllocationBuilder setAllocationTradeId(List<? extends TradeIdentifier> allocationTradeIds) {
 			if (allocationTradeIds == null)  {
 				this.allocationTradeId = new ArrayList<>();
@@ -362,6 +364,7 @@ public interface Allocation extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("allocatedNotional")
 		public Allocation.AllocationBuilder addAllocatedNotional(Money allocatedNotional) {
 			if (allocatedNotional!=null) this.allocatedNotional.add(allocatedNotional.toBuilder());
 			return this;
@@ -383,7 +386,6 @@ public interface Allocation extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("allocatedNotional")
 		public Allocation.AllocationBuilder setAllocatedNotional(List<? extends Money> allocatedNotionals) {
 			if (allocatedNotionals == null)  {
 				this.allocatedNotional = new ArrayList<>();

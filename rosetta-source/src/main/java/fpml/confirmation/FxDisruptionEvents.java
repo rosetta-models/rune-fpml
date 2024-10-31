@@ -151,6 +151,7 @@ public interface FxDisruptionEvents extends RosettaModelObject {
 			return fxDisruptionEvent;
 		}
 		
+		@Override
 		public FxDisruptionEvent.FxDisruptionEventBuilder getOrCreateFxDisruptionEvent(int _index) {
 		
 			if (fxDisruptionEvent==null) {
@@ -164,6 +165,7 @@ public interface FxDisruptionEvents extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("fxDisruptionEvent")
 		public FxDisruptionEvents.FxDisruptionEventsBuilder addFxDisruptionEvent(FxDisruptionEvent fxDisruptionEvent) {
 			if (fxDisruptionEvent!=null) this.fxDisruptionEvent.add(fxDisruptionEvent.toBuilder());
 			return this;
@@ -185,7 +187,6 @@ public interface FxDisruptionEvents extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("fxDisruptionEvent")
 		public FxDisruptionEvents.FxDisruptionEventsBuilder setFxDisruptionEvent(List<? extends FxDisruptionEvent> fxDisruptionEvents) {
 			if (fxDisruptionEvents == null)  {
 				this.fxDisruptionEvent = new ArrayList<>();

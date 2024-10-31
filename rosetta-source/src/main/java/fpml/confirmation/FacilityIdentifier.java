@@ -144,6 +144,7 @@ public interface FacilityIdentifier extends IdentifiedAsset {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("instrumentId")
 		public FacilityIdentifier.FacilityIdentifierBuilder addInstrumentId(InstrumentId instrumentId) {
 			if (instrumentId!=null) this.instrumentId.add(instrumentId.toBuilder());
 			return this;
@@ -165,7 +166,6 @@ public interface FacilityIdentifier extends IdentifiedAsset {
 		}
 		
 		@Override 
-		@RosettaAttribute("instrumentId")
 		public FacilityIdentifier.FacilityIdentifierBuilder setInstrumentId(List<? extends InstrumentId> instrumentIds) {
 			if (instrumentIds == null)  {
 				this.instrumentId = new ArrayList<>();

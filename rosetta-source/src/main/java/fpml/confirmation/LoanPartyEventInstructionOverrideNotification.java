@@ -228,6 +228,7 @@ public interface LoanPartyEventInstructionOverrideNotification extends AbstractL
 			return party;
 		}
 		
+		@Override
 		public Party.PartyBuilder getOrCreateParty(int _index) {
 		
 			if (party==null) {
@@ -295,6 +296,7 @@ public interface LoanPartyEventInstructionOverrideNotification extends AbstractL
 			return this;
 		}
 		@Override
+		@RosettaAttribute("party")
 		public LoanPartyEventInstructionOverrideNotification.LoanPartyEventInstructionOverrideNotificationBuilder addParty(Party party) {
 			if (party!=null) this.party.add(party.toBuilder());
 			return this;
@@ -316,7 +318,6 @@ public interface LoanPartyEventInstructionOverrideNotification extends AbstractL
 		}
 		
 		@Override 
-		@RosettaAttribute("party")
 		public LoanPartyEventInstructionOverrideNotification.LoanPartyEventInstructionOverrideNotificationBuilder setParty(List<? extends Party> partys) {
 			if (partys == null)  {
 				this.party = new ArrayList<>();

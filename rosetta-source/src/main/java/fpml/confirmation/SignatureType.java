@@ -284,6 +284,7 @@ public interface SignatureType extends RosettaModelObject {
 			return object;
 		}
 		
+		@Override
 		public ObjectType.ObjectTypeBuilder getOrCreateObject(int _index) {
 		
 			if (object==null) {
@@ -321,6 +322,7 @@ public interface SignatureType extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("object")
 		public SignatureType.SignatureTypeBuilder addObject(ObjectType object) {
 			if (object!=null) this.object.add(object.toBuilder());
 			return this;
@@ -342,7 +344,6 @@ public interface SignatureType extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("object")
 		public SignatureType.SignatureTypeBuilder setObject(List<? extends ObjectType> objects) {
 			if (objects == null)  {
 				this.object = new ArrayList<>();

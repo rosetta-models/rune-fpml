@@ -196,6 +196,7 @@ public interface QuotedAssetSet extends RosettaModelObject {
 			return assetQuote;
 		}
 		
+		@Override
 		public BasicAssetValuation.BasicAssetValuationBuilder getOrCreateAssetQuote(int _index) {
 		
 			if (assetQuote==null) {
@@ -215,6 +216,7 @@ public interface QuotedAssetSet extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("assetQuote")
 		public QuotedAssetSet.QuotedAssetSetBuilder addAssetQuote(BasicAssetValuation assetQuote) {
 			if (assetQuote!=null) this.assetQuote.add(assetQuote.toBuilder());
 			return this;
@@ -236,7 +238,6 @@ public interface QuotedAssetSet extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("assetQuote")
 		public QuotedAssetSet.QuotedAssetSetBuilder setAssetQuote(List<? extends BasicAssetValuation> assetQuotes) {
 			if (assetQuotes == null)  {
 				this.assetQuote = new ArrayList<>();

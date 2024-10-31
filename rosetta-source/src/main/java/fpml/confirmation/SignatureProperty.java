@@ -137,6 +137,7 @@ public interface SignatureProperty extends SignaturePropertyType {
 		}
 	
 		@Override
+		@RosettaAttribute("signaturePropertyTypeChoice")
 		public SignatureProperty.SignaturePropertyBuilder addSignaturePropertyTypeChoice(SignaturePropertyTypeChoice signaturePropertyTypeChoice) {
 			if (signaturePropertyTypeChoice!=null) this.signaturePropertyTypeChoice.add(signaturePropertyTypeChoice.toBuilder());
 			return this;
@@ -158,7 +159,6 @@ public interface SignatureProperty extends SignaturePropertyType {
 		}
 		
 		@Override 
-		@RosettaAttribute("signaturePropertyTypeChoice")
 		public SignatureProperty.SignaturePropertyBuilder setSignaturePropertyTypeChoice(List<? extends SignaturePropertyTypeChoice> signaturePropertyTypeChoices) {
 			if (signaturePropertyTypeChoices == null)  {
 				this.signaturePropertyTypeChoice = new ArrayList<>();

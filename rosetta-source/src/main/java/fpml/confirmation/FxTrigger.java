@@ -176,6 +176,7 @@ public interface FxTrigger extends FxTriggerBase {
 			return informationSource;
 		}
 		
+		@Override
 		public InformationSource.InformationSourceBuilder getOrCreateInformationSource(int _index) {
 		
 			if (informationSource==null) {
@@ -213,6 +214,7 @@ public interface FxTrigger extends FxTriggerBase {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("informationSource")
 		public FxTrigger.FxTriggerBuilder addInformationSource(InformationSource informationSource) {
 			if (informationSource!=null) this.informationSource.add(informationSource.toBuilder());
 			return this;
@@ -234,7 +236,6 @@ public interface FxTrigger extends FxTriggerBase {
 		}
 		
 		@Override 
-		@RosettaAttribute("informationSource")
 		public FxTrigger.FxTriggerBuilder setInformationSource(List<? extends InformationSource> informationSources) {
 			if (informationSources == null)  {
 				this.informationSource = new ArrayList<>();

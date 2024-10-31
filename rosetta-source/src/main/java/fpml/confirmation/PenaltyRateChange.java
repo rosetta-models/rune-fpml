@@ -168,6 +168,7 @@ public interface PenaltyRateChange extends FacilityRateChangeEvent {
 		}
 	
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public PenaltyRateChange.PenaltyRateChangeBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -189,7 +190,6 @@ public interface PenaltyRateChange extends FacilityRateChangeEvent {
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public PenaltyRateChange.PenaltyRateChangeBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();
@@ -245,6 +245,7 @@ public interface PenaltyRateChange extends FacilityRateChangeEvent {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("loanContractReference")
 		public PenaltyRateChange.PenaltyRateChangeBuilder addLoanContractReference(LoanContractReference loanContractReference) {
 			if (loanContractReference!=null) this.loanContractReference.add(loanContractReference.toBuilder());
 			return this;
@@ -266,7 +267,6 @@ public interface PenaltyRateChange extends FacilityRateChangeEvent {
 		}
 		
 		@Override 
-		@RosettaAttribute("loanContractReference")
 		public PenaltyRateChange.PenaltyRateChangeBuilder setLoanContractReference(List<? extends LoanContractReference> loanContractReferences) {
 			if (loanContractReferences == null)  {
 				this.loanContractReference = new ArrayList<>();

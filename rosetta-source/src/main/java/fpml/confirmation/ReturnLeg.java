@@ -445,6 +445,7 @@ public interface ReturnLeg extends ReturnSwapLegUnderlyer {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("legIdentifier")
 		public ReturnLeg.ReturnLegBuilder addLegIdentifier(LegIdentifier legIdentifier) {
 			if (legIdentifier!=null) this.legIdentifier.add(legIdentifier.toBuilder());
 			return this;
@@ -466,7 +467,6 @@ public interface ReturnLeg extends ReturnSwapLegUnderlyer {
 		}
 		
 		@Override 
-		@RosettaAttribute("legIdentifier")
 		public ReturnLeg.ReturnLegBuilder setLegIdentifier(List<? extends LegIdentifier> legIdentifiers) {
 			if (legIdentifiers == null)  {
 				this.legIdentifier = new ArrayList<>();

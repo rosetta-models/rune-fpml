@@ -212,6 +212,7 @@ public interface VolatilityLeg extends DirectionalLegUnderlyerValuation {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("legIdentifier")
 		public VolatilityLeg.VolatilityLegBuilder addLegIdentifier(LegIdentifier legIdentifier) {
 			if (legIdentifier!=null) this.legIdentifier.add(legIdentifier.toBuilder());
 			return this;
@@ -233,7 +234,6 @@ public interface VolatilityLeg extends DirectionalLegUnderlyerValuation {
 		}
 		
 		@Override 
-		@RosettaAttribute("legIdentifier")
 		public VolatilityLeg.VolatilityLegBuilder setLegIdentifier(List<? extends LegIdentifier> legIdentifiers) {
 			if (legIdentifiers == null)  {
 				this.legIdentifier = new ArrayList<>();

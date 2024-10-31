@@ -154,6 +154,7 @@ public interface CommitmentSchedule extends RosettaModelObject {
 			return commitmentChange;
 		}
 		
+		@Override
 		public CommitmentChange.CommitmentChangeBuilder getOrCreateCommitmentChange(int _index) {
 		
 			if (commitmentChange==null) {
@@ -167,6 +168,7 @@ public interface CommitmentSchedule extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("commitmentChange")
 		public CommitmentSchedule.CommitmentScheduleBuilder addCommitmentChange(CommitmentChange commitmentChange) {
 			if (commitmentChange!=null) this.commitmentChange.add(commitmentChange.toBuilder());
 			return this;
@@ -188,7 +190,6 @@ public interface CommitmentSchedule extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("commitmentChange")
 		public CommitmentSchedule.CommitmentScheduleBuilder setCommitmentChange(List<? extends CommitmentChange> commitmentChanges) {
 			if (commitmentChanges == null)  {
 				this.commitmentChange = new ArrayList<>();

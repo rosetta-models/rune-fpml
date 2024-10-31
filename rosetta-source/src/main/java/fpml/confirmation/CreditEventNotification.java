@@ -222,6 +222,7 @@ public interface CreditEventNotification extends CorrectableRequestMessage {
 			return party;
 		}
 		
+		@Override
 		public Party.PartyBuilder getOrCreateParty(int _index) {
 		
 			if (party==null) {
@@ -283,6 +284,7 @@ public interface CreditEventNotification extends CorrectableRequestMessage {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("party")
 		public CreditEventNotification.CreditEventNotificationBuilder addParty(Party party) {
 			if (party!=null) this.party.add(party.toBuilder());
 			return this;
@@ -304,7 +306,6 @@ public interface CreditEventNotification extends CorrectableRequestMessage {
 		}
 		
 		@Override 
-		@RosettaAttribute("party")
 		public CreditEventNotification.CreditEventNotificationBuilder setParty(List<? extends Party> partys) {
 			if (partys == null)  {
 				this.party = new ArrayList<>();

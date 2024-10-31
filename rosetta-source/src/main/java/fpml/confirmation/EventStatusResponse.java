@@ -200,6 +200,7 @@ public interface EventStatusResponse extends ResponseMessage {
 			return statusItem;
 		}
 		
+		@Override
 		public EventStatusItem.EventStatusItemBuilder getOrCreateStatusItem(int _index) {
 		
 			if (statusItem==null) {
@@ -268,6 +269,7 @@ public interface EventStatusResponse extends ResponseMessage {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("statusItem")
 		public EventStatusResponse.EventStatusResponseBuilder addStatusItem(EventStatusItem statusItem) {
 			if (statusItem!=null) this.statusItem.add(statusItem.toBuilder());
 			return this;
@@ -289,7 +291,6 @@ public interface EventStatusResponse extends ResponseMessage {
 		}
 		
 		@Override 
-		@RosettaAttribute("statusItem")
 		public EventStatusResponse.EventStatusResponseBuilder setStatusItem(List<? extends EventStatusItem> statusItems) {
 			if (statusItems == null)  {
 				this.statusItem = new ArrayList<>();

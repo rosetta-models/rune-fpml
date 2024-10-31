@@ -193,6 +193,7 @@ public interface ExchangeTradedCalculatedPrice extends ExchangeTraded {
 			return constituentExchangeId;
 		}
 		
+		@Override
 		public ExchangeId.ExchangeIdBuilder getOrCreateConstituentExchangeId(int _index) {
 		
 			if (constituentExchangeId==null) {
@@ -212,6 +213,7 @@ public interface ExchangeTradedCalculatedPrice extends ExchangeTraded {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("instrumentId")
 		public ExchangeTradedCalculatedPrice.ExchangeTradedCalculatedPriceBuilder addInstrumentId(InstrumentId instrumentId) {
 			if (instrumentId!=null) this.instrumentId.add(instrumentId.toBuilder());
 			return this;
@@ -233,7 +235,6 @@ public interface ExchangeTradedCalculatedPrice extends ExchangeTraded {
 		}
 		
 		@Override 
-		@RosettaAttribute("instrumentId")
 		public ExchangeTradedCalculatedPrice.ExchangeTradedCalculatedPriceBuilder setInstrumentId(List<? extends InstrumentId> instrumentIds) {
 			if (instrumentIds == null)  {
 				this.instrumentId = new ArrayList<>();
@@ -283,6 +284,7 @@ public interface ExchangeTradedCalculatedPrice extends ExchangeTraded {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("constituentExchangeId")
 		public ExchangeTradedCalculatedPrice.ExchangeTradedCalculatedPriceBuilder addConstituentExchangeId(ExchangeId constituentExchangeId) {
 			if (constituentExchangeId!=null) this.constituentExchangeId.add(constituentExchangeId.toBuilder());
 			return this;
@@ -304,7 +306,6 @@ public interface ExchangeTradedCalculatedPrice extends ExchangeTraded {
 		}
 		
 		@Override 
-		@RosettaAttribute("constituentExchangeId")
 		public ExchangeTradedCalculatedPrice.ExchangeTradedCalculatedPriceBuilder setConstituentExchangeId(List<? extends ExchangeId> constituentExchangeIds) {
 			if (constituentExchangeIds == null)  {
 				this.constituentExchangeId = new ArrayList<>();

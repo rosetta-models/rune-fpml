@@ -313,6 +313,7 @@ public interface LcIssuanceFeePayment extends AbstractLcEvent {
 			return accrualSchedule;
 		}
 		
+		@Override
 		public AccrualPeriod.AccrualPeriodBuilder getOrCreateAccrualSchedule(int _index) {
 		
 			if (accrualSchedule==null) {
@@ -326,6 +327,7 @@ public interface LcIssuanceFeePayment extends AbstractLcEvent {
 		}
 		
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public LcIssuanceFeePayment.LcIssuanceFeePaymentBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -347,7 +349,6 @@ public interface LcIssuanceFeePayment extends AbstractLcEvent {
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public LcIssuanceFeePayment.LcIssuanceFeePaymentBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();
@@ -421,6 +422,7 @@ public interface LcIssuanceFeePayment extends AbstractLcEvent {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("accrualSchedule")
 		public LcIssuanceFeePayment.LcIssuanceFeePaymentBuilder addAccrualSchedule(AccrualPeriod accrualSchedule) {
 			if (accrualSchedule!=null) this.accrualSchedule.add(accrualSchedule.toBuilder());
 			return this;
@@ -442,7 +444,6 @@ public interface LcIssuanceFeePayment extends AbstractLcEvent {
 		}
 		
 		@Override 
-		@RosettaAttribute("accrualSchedule")
 		public LcIssuanceFeePayment.LcIssuanceFeePaymentBuilder setAccrualSchedule(List<? extends AccrualPeriod> accrualSchedules) {
 			if (accrualSchedules == null)  {
 				this.accrualSchedule = new ArrayList<>();

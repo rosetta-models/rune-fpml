@@ -213,6 +213,7 @@ public interface TermCurve extends RosettaModelObject {
 			return point;
 		}
 		
+		@Override
 		public TermPoint.TermPointBuilder getOrCreatePoint(int _index) {
 		
 			if (point==null) {
@@ -238,6 +239,7 @@ public interface TermCurve extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("point")
 		public TermCurve.TermCurveBuilder addPoint(TermPoint point) {
 			if (point!=null) this.point.add(point.toBuilder());
 			return this;
@@ -259,7 +261,6 @@ public interface TermCurve extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("point")
 		public TermCurve.TermCurveBuilder setPoint(List<? extends TermPoint> points) {
 			if (points == null)  {
 				this.point = new ArrayList<>();

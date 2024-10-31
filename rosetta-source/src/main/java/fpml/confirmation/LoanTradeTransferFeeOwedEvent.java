@@ -191,6 +191,7 @@ public interface LoanTradeTransferFeeOwedEvent extends AbstractLoanTradeEvent {
 		}
 		
 		@Override
+		@RosettaAttribute("eventIdentifier")
 		public LoanTradeTransferFeeOwedEvent.LoanTradeTransferFeeOwedEventBuilder addEventIdentifier(BusinessEventIdentifier eventIdentifier) {
 			if (eventIdentifier!=null) this.eventIdentifier.add(eventIdentifier.toBuilder());
 			return this;
@@ -212,7 +213,6 @@ public interface LoanTradeTransferFeeOwedEvent extends AbstractLoanTradeEvent {
 		}
 		
 		@Override 
-		@RosettaAttribute("eventIdentifier")
 		public LoanTradeTransferFeeOwedEvent.LoanTradeTransferFeeOwedEventBuilder setEventIdentifier(List<? extends BusinessEventIdentifier> eventIdentifiers) {
 			if (eventIdentifiers == null)  {
 				this.eventIdentifier = new ArrayList<>();

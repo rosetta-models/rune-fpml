@@ -150,6 +150,7 @@ public interface Approvals extends RosettaModelObject {
 			return approval;
 		}
 		
+		@Override
 		public Approval.ApprovalBuilder getOrCreateApproval(int _index) {
 		
 			if (approval==null) {
@@ -163,6 +164,7 @@ public interface Approvals extends RosettaModelObject {
 		}
 		
 		@Override
+		@RosettaAttribute("approval")
 		public Approvals.ApprovalsBuilder addApproval(Approval approval) {
 			if (approval!=null) this.approval.add(approval.toBuilder());
 			return this;
@@ -184,7 +186,6 @@ public interface Approvals extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("approval")
 		public Approvals.ApprovalsBuilder setApproval(List<? extends Approval> approvals) {
 			if (approvals == null)  {
 				this.approval = new ArrayList<>();

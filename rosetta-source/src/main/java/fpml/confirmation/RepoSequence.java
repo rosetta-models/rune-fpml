@@ -264,6 +264,7 @@ public interface RepoSequence extends RosettaModelObject {
 			return partyNoticePeriod;
 		}
 		
+		@Override
 		public PartyNoticePeriod.PartyNoticePeriodBuilder getOrCreatePartyNoticePeriod(int _index) {
 		
 			if (partyNoticePeriod==null) {
@@ -295,6 +296,7 @@ public interface RepoSequence extends RosettaModelObject {
 			return this;
 		}
 		@Override
+		@RosettaAttribute("partyNoticePeriod")
 		public RepoSequence.RepoSequenceBuilder addPartyNoticePeriod(PartyNoticePeriod partyNoticePeriod) {
 			if (partyNoticePeriod!=null) this.partyNoticePeriod.add(partyNoticePeriod.toBuilder());
 			return this;
@@ -316,7 +318,6 @@ public interface RepoSequence extends RosettaModelObject {
 		}
 		
 		@Override 
-		@RosettaAttribute("partyNoticePeriod")
 		public RepoSequence.RepoSequenceBuilder setPartyNoticePeriod(List<? extends PartyNoticePeriod> partyNoticePeriods) {
 			if (partyNoticePeriods == null)  {
 				this.partyNoticePeriod = new ArrayList<>();
