@@ -1,12 +1,106 @@
-<dataDocument xmlns="http://www.fpml.org/FpML-5/confirmation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:iso:std:iso:20022:tech:xsd:auth.030.001.03 ../../../main/resources/schemas/fpml-5-10/confirmation/fpml-main-5-10.xsd">
+<?xml version='1.0' encoding='UTF-8'?>
+<dataDocument xmlns="http://www.fpml.org/FpML-5/confirmation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/FpML-5/confirmation ../../../../schemas/fpml-5-10/confirmation/schemas/fpml-5-10/confirmation/fpml-main-5-10.xsd">
   <trade>
     <tradeHeader>
-      <partyTradeIdentifier/>
-      <partyTradeIdentifier/>
+      <partyTradeIdentifier>
+        <tradeId tradeIdScheme="http://www.partyA.com/eqs-trade-id">1734</tradeId>
+        <tradeId tradeIdScheme="http://www.partyA.com/eqs-trade-id">1734</tradeId>
+        <partyReference href="kom722"/>
+      </partyTradeIdentifier>
+      <partyTradeIdentifier>
+        <tradeId tradeIdScheme="http://www.partyB.com/eqs-trade-id">5648</tradeId>
+        <tradeId tradeIdScheme="http://www.partyB.com/eqs-trade-id">5648</tradeId>
+        <partyReference href="kow029"/>
+      </partyTradeIdentifier>
       <tradeDate id="TradeDate">2002-07-19</tradeDate>
     </tradeHeader>
+    <dividendSwapTransactionSupplement>
+      <dividendLeg>
+        <payerPartyReference href="kom722"/>
+        <receiverPartyReference href="kow029"/>
+        <underlyer>
+          <singleUnderlyer>
+            <openUnits>1000</openUnits>
+          </singleUnderlyer>
+        </underlyer>
+        <settlementType>Cash</settlementType>
+        <settlementCurrency>USD</settlementCurrency>
+        <declaredCashDividendPercentage>1.0</declaredCashDividendPercentage>
+        <declaredCashEquivalentDividendPercentage>1.0</declaredCashEquivalentDividendPercentage>
+        <dividendPeriod id="d1">
+          <unadjustedStartDate id="s1">2010-12-20</unadjustedStartDate>
+          <unadjustedEndDate id="e1">2011-12-19</unadjustedEndDate>
+          <dateAdjustments>
+            <businessDayConvention>FOLLOWING</businessDayConvention>
+            <businessCenters>
+              <businessCenter>EUTA</businessCenter>
+            </businessCenters>
+          </dateAdjustments>
+          <fixedStrike>0.045</fixedStrike>
+          <paymentDate id="p1">
+            <relativeDate>
+              <periodMultiplier>3</periodMultiplier>
+              <period>D</period>
+              <dayType>Calendar</dayType>
+              <businessDayConvention>FOLLOWING</businessDayConvention>
+              <dateRelativeTo href="e1"/>
+            </relativeDate>
+          </paymentDate>
+        </dividendPeriod>
+        <dividendPeriod id="d2">
+          <unadjustedStartDate id="s2">2011-12-20</unadjustedStartDate>
+          <unadjustedEndDate id="e2">2012-12-19</unadjustedEndDate>
+          <dateAdjustments>
+            <businessDayConvention>FOLLOWING</businessDayConvention>
+            <businessCenters>
+              <businessCenter>EUTA</businessCenter>
+            </businessCenters>
+          </dateAdjustments>
+          <fixedStrike>0.045</fixedStrike>
+          <paymentDate id="p2">
+            <relativeDate>
+              <periodMultiplier>3</periodMultiplier>
+              <period>D</period>
+              <dayType>Calendar</dayType>
+              <businessDayConvention>FOLLOWING</businessDayConvention>
+              <dateRelativeTo href="e2"/>
+            </relativeDate>
+          </paymentDate>
+        </dividendPeriod>
+      </dividendLeg>
+      <fixedLeg>
+        <payerPartyReference href="kow029"/>
+        <receiverPartyReference href="kom722"/>
+        <fixedPayment>
+          <paymentAmount>
+            <currency>USD</currency>
+            <amount>50000</amount>
+          </paymentAmount>
+          <paymentDate>
+            <periodMultiplier>0</periodMultiplier>
+            <period>D</period>
+            <businessDayConvention>NONE</businessDayConvention>
+            <dateRelativeTo href="p1"/>
+          </paymentDate>
+        </fixedPayment>
+        <fixedPayment>
+          <paymentAmount>
+            <currency>USD</currency>
+            <amount>56000</amount>
+          </paymentAmount>
+          <paymentDate>
+            <periodMultiplier>0</periodMultiplier>
+            <period>D</period>
+            <businessDayConvention>NONE</businessDayConvention>
+            <dateRelativeTo href="p1"/>
+          </paymentDate>
+        </fixedPayment>
+      </fixedLeg>
+    </dividendSwapTransactionSupplement>
     <collateral>
       <independentAmount>
+        <payerPartyReference href="kow029"/>
+        <receiverPartyReference href="kom722"/>
         <paymentDetail>
           <paymentDate>
             <relativeDate>

@@ -1,10 +1,55 @@
-<dataDocument xmlns="http://www.fpml.org/FpML-5/confirmation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:iso:std:iso:20022:tech:xsd:auth.030.001.03 ../../../main/resources/schemas/fpml-5-10/confirmation/fpml-main-5-10.xsd">
+<?xml version='1.0' encoding='UTF-8'?>
+<dataDocument xmlns="http://www.fpml.org/FpML-5/confirmation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/FpML-5/confirmation ../../../../schemas/fpml-5-10/confirmation/schemas/fpml-5-10/confirmation/fpml-main-5-10.xsd">
   <trade>
     <tradeHeader>
-      <partyTradeIdentifier/>
-      <partyTradeIdentifier/>
+      <partyTradeIdentifier>
+        <tradeId tradeIdScheme="http://www.abn-amro.com/fx/trade-id">ABN1234</tradeId>
+        <tradeId tradeIdScheme="http://www.abn-amro.com/fx/trade-id">ABN1234</tradeId>
+        <partyReference href="party1"/>
+      </partyTradeIdentifier>
+      <partyTradeIdentifier>
+        <tradeId tradeIdScheme="http://www.db.com/fx/trade-id">DB5678</tradeId>
+        <tradeId tradeIdScheme="http://www.db.com/fx/trade-id">DB5678</tradeId>
+        <partyReference href="party2"/>
+      </partyTradeIdentifier>
       <tradeDate>2001-11-19</tradeDate>
     </tradeHeader>
+    <fxSingleLeg>
+      <exchangedCurrency1>
+        <payerPartyReference href="party2"/>
+        <receiverPartyReference href="party1"/>
+        <paymentAmount>
+          <currency>EUR</currency>
+          <amount>10000000</amount>
+        </paymentAmount>
+        <settlementInformation>
+          <standardSettlementStyle>Standard</standardSettlementStyle>
+        </settlementInformation>
+      </exchangedCurrency1>
+      <exchangedCurrency2>
+        <payerPartyReference href="party1"/>
+        <receiverPartyReference href="party2"/>
+        <paymentAmount>
+          <currency>USD</currency>
+          <amount>9175000</amount>
+        </paymentAmount>
+        <settlementInformation>
+          <standardSettlementStyle>Standard</standardSettlementStyle>
+        </settlementInformation>
+      </exchangedCurrency2>
+      <valueDate>2001-12-21</valueDate>
+      <exchangeRate>
+        <quotedCurrencyPair>
+          <currency1>EUR</currency1>
+          <currency2>USD</currency2>
+          <quoteBasis>Currency2PerCurrency1</quoteBasis>
+        </quotedCurrencyPair>
+        <rate>0.9175</rate>
+        <spotRate>0.9130</spotRate>
+        <forwardPoints>0.0045</forwardPoints>
+        <pointValue>0.0001</pointValue>
+      </exchangeRate>
+    </fxSingleLeg>
   </trade>
   <party id="party1">
     <partyId partyIdScheme="http://www.fpml.org/coding-scheme/external/iso17442">BFXS5XCH7N0Y05NIXW11</partyId>

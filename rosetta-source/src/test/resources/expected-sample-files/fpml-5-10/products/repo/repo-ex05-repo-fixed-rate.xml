@@ -1,10 +1,88 @@
-<dataDocument xmlns="http://www.fpml.org/FpML-5/confirmation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:iso:std:iso:20022:tech:xsd:auth.030.001.03 ../../../main/resources/schemas/fpml-5-10/confirmation/fpml-main-5-10.xsd">
+<?xml version='1.0' encoding='UTF-8'?>
+<dataDocument xmlns="http://www.fpml.org/FpML-5/confirmation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/FpML-5/confirmation ../../../../schemas/fpml-5-10/confirmation/schemas/fpml-5-10/confirmation/fpml-main-5-10.xsd">
   <trade>
     <tradeHeader>
-      <partyTradeIdentifier/>
-      <partyTradeIdentifier/>
+      <partyTradeIdentifier>
+        <tradeId tradeIdScheme="http://www.party1.com/swaps/trade-id">Party19235</tradeId>
+        <tradeId tradeIdScheme="http://www.party1.com/swaps/trade-id">Party19235</tradeId>
+        <partyReference href="Party1"/>
+      </partyTradeIdentifier>
+      <partyTradeIdentifier>
+        <tradeId tradeIdScheme="http://www.party2.com/swaps/trade-id">Party22000</tradeId>
+        <tradeId tradeIdScheme="http://www.party2.com/swaps/trade-id">Party22000</tradeId>
+        <partyReference href="Party2"/>
+      </partyTradeIdentifier>
       <tradeDate>2014-11-20</tradeDate>
     </tradeHeader>
+    <repo>
+      <bond id="XYZ">
+        <instrumentId instrumentIdScheme="http://www.fpml.org/coding-scheme/external/instrument-id-ISIN-1-0">CH</instrumentId>
+        <description>PLC</description>
+        <currency>CHF</currency>
+        <maturity>2015-08-05</maturity>
+      </bond>
+      <fixedRateSchedule>
+        <initialValue>0.1105</initialValue>
+      </fixedRateSchedule>
+      <dayCountFraction>ACT/ACT.ICMA</dayCountFraction>
+      <duration>Term</duration>
+      <initialMargin>
+        <marginType>Cash</marginType>
+        <margin>
+          <haircut>0.12</haircut>
+        </margin>
+      </initialMargin>
+      <nearLeg>
+        <buyerPartyReference href="Party1"/>
+        <sellerPartyReference href="Party2"/>
+        <settlementDate>
+          <adjustableDate>
+            <unadjustedDate>2014-11-20</unadjustedDate>
+            <dateAdjustments>
+              <businessDayConvention>NONE</businessDayConvention>
+            </dateAdjustments>
+          </adjustableDate>
+        </settlementDate>
+        <settlementAmount>
+          <currency>RUB</currency>
+          <amount>444176424.53</amount>
+        </settlementAmount>
+        <deliveryMethod>DeliveryVersusPayment</deliveryMethod>
+        <collateral>
+          <nominalAmount>
+            <currency>CHF</currency>
+            <amount>10500000</amount>
+          </nominalAmount>
+          <cleanPrice>97.22</cleanPrice>
+          <assetReference href="XYZ"/>
+        </collateral>
+      </nearLeg>
+      <farLeg id="forwardLeg">
+        <buyerPartyReference href="Party2"/>
+        <sellerPartyReference href="Party1"/>
+        <settlementDate>
+          <adjustableDate>
+            <unadjustedDate>2014-11-27</unadjustedDate>
+            <dateAdjustments>
+              <businessDayConvention>NONE</businessDayConvention>
+            </dateAdjustments>
+          </adjustableDate>
+        </settlementDate>
+        <settlementAmount>
+          <currency>RUB</currency>
+          <amount>445117713.45</amount>
+        </settlementAmount>
+        <deliveryMethod>DeliveryVersusPayment</deliveryMethod>
+        <collateral>
+          <nominalAmount>
+            <currency>CHF</currency>
+            <amount>10500000</amount>
+          </nominalAmount>
+          <cleanPrice>97.22</cleanPrice>
+          <assetReference href="XYZ"/>
+        </collateral>
+      </farLeg>
+    </repo>
   </trade>
   <party id="Party1">
     <partyId partyIdScheme="http://www.fpml.org/coding-scheme/dummy-party-id">Party 1</partyId>

@@ -1,12 +1,20 @@
-<dataDocument xmlns="http://www.fpml.org/FpML-5/confirmation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:iso:std:iso:20022:tech:xsd:auth.030.001.03 ../../../main/resources/schemas/fpml-5-10/confirmation/fpml-main-5-10.xsd">
+<?xml version='1.0' encoding='UTF-8'?>
+<dataDocument xmlns="http://www.fpml.org/FpML-5/confirmation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/FpML-5/confirmation ../../../../schemas/fpml-5-10/confirmation/schemas/fpml-5-10/confirmation/fpml-main-5-10.xsd">
   <onBehalfOf>
     <partyReference href="partyA"/>
   </onBehalfOf>
   <originatingEvent>Trade</originatingEvent>
   <trade>
     <tradeHeader>
-      <partyTradeIdentifier/>
       <partyTradeIdentifier>
+        <issuer issuerIdScheme="http://www.fpml.org/coding-scheme/external/issuer-identifier">1070247694</issuer>
+        <tradeId tradeIdScheme="http://www.fpml.org/coding-scheme/external/unique-transaction-identifier">FI-BANKXX-585125839</tradeId>
+        <tradeId tradeIdScheme="http://www.fpml.org/coding-scheme/external/unique-transaction-identifier">FI-BANKXX-585125839</tradeId>
+      </partyTradeIdentifier>
+      <partyTradeIdentifier>
+        <tradeId tradeIdScheme="http://www.dtcc.com/internal-reference-id">FI-BANKXX-585125839</tradeId>
+        <tradeId tradeIdScheme="http://www.dtcc.com/internal-reference-id">FI-BANKXX-585125839</tradeId>
+        <partyReference href="partyA"/>
         <linkId linkIdScheme="http://www.bankx.com/trd-no">566035542</linkId>
       </partyTradeIdentifier>
       <partyTradeInformation>
@@ -61,10 +69,54 @@
       </partyTradeInformation>
       <tradeDate>2023-11-15</tradeDate>
     </tradeHeader>
+    <genericProduct>
+      <primaryAssetClass>InterestRate</primaryAssetClass>
+      <productType productTypeScheme="http://www.fpml.org/coding-scheme/external/product-classification/iso10962">JRMXFP</productType>
+      <productType productTypeScheme="http://www.dtcc.com/coding-scheme/external/product-classification/emir-contract-type">FW</productType>
+      <productType productTypeScheme="http://www.dtcc.com/coding-scheme/external/product-classification/emir-mandatory-clearable-product">X</productType>
+      <productType productTypeScheme="http://www.fpml.org/coding-scheme/product-taxonomy">InterestRate:Forward:Debt</productType>
+      <productId productIdScheme="http://www.dtcc.com/coding-scheme/external/product-id/ISIN">JP1700161P53</productId>
+      <buyerPartyReference href="partyA"/>
+      <sellerPartyReference href="partyB"/>
+      <effectiveDate>
+        <unadjustedDate>2023-11-15</unadjustedDate>
+        <dateAdjustments>
+          <businessDayConvention>NONE</businessDayConvention>
+        </dateAdjustments>
+      </effectiveDate>
+      <terminationDate>
+        <unadjustedDate>2029-11-15</unadjustedDate>
+        <dateAdjustments>
+          <businessDayConvention>NONE</businessDayConvention>
+        </dateAdjustments>
+      </terminationDate>
+      <underlyer id="underlyer.fixed">
+        <fixedRate>
+          <initialValue>0.00</initialValue>
+        </fixedRate>
+        <payerPartyReference href="partyA"/>
+        <receiverPartyReference href="partyA"/>
+        <dayCountFraction>30/360</dayCountFraction>
+      </underlyer>
+      <underlyer/>
+      <notional>
+        <currency>JPY</currency>
+        <amount>8600000</amount>
+      </notional>
+      <paymentFrequency>
+        <periodMultiplier>6</periodMultiplier>
+        <period>M</period>
+        <underlyerReference/>
+      </paymentFrequency>
+      <settlementType>Physical</settlementType>
+    </genericProduct>
   </trade>
   <party id="partyA">
     <partyId partyIdScheme="http://www.fpml.org/coding-scheme/external/iso17442">2ae25</partyId>
     <partyName>Party A</partyName>
+    <classification industryClassificationScheme="http://www.fpml.org/coding-scheme/regulatory-corporate-sector">CreditInstitution</classification>
+    <region>EEA</region>
+    <organizationType>SD</organizationType>
     <contactInfo>
       <address>
         <country>GB</country>
@@ -74,6 +126,8 @@
   <party id="partyB">
     <partyId partyIdScheme="http://www.fpml.org/coding-scheme/external/iso17442">88c95</partyId>
     <partyName>Party B</partyName>
+    <region>nonEEA</region>
+    <organizationType>non-SD/MSP</organizationType>
     <contactInfo>
       <address>
         <country>BM</country>

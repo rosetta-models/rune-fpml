@@ -1,10 +1,86 @@
-<dataDocument xmlns="http://www.fpml.org/FpML-5/confirmation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:iso:std:iso:20022:tech:xsd:auth.030.001.03 ../../../main/resources/schemas/fpml-5-10/confirmation/fpml-main-5-10.xsd">
+<?xml version='1.0' encoding='UTF-8'?>
+<dataDocument xmlns="http://www.fpml.org/FpML-5/confirmation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/FpML-5/confirmation ../../../../schemas/fpml-5-10/confirmation/schemas/fpml-5-10/confirmation/fpml-main-5-10.xsd">
   <trade>
     <tradeHeader>
-      <partyTradeIdentifier/>
-      <partyTradeIdentifier/>
+      <partyTradeIdentifier>
+        <tradeId tradeIdScheme="http://www.party1.com/swaps/trade-id">Party19235</tradeId>
+        <tradeId tradeIdScheme="http://www.party1.com/swaps/trade-id">Party19235</tradeId>
+        <partyReference href="Party1"/>
+      </partyTradeIdentifier>
+      <partyTradeIdentifier>
+        <tradeId tradeIdScheme="http://www.party2.com/swaps/trade-id">Party22000</tradeId>
+        <tradeId tradeIdScheme="http://www.party2.com/swaps/trade-id">Party22000</tradeId>
+        <partyReference href="Party2"/>
+      </partyTradeIdentifier>
       <tradeDate>2013-11-03</tradeDate>
     </tradeHeader>
+    <repo>
+      <bond id="OPQ">
+        <instrumentId instrumentIdScheme="http://www.fpml.org/coding-scheme/external/instrument-id-ISIN-1-0">OPQ</instrumentId>
+        <description>OPQ Corp Bond</description>
+        <currency>USD</currency>
+      </bond>
+      <fixedRateSchedule>
+        <initialValue>0.80</initialValue>
+      </fixedRateSchedule>
+      <dayCountFraction>ACT/365.FIXED</dayCountFraction>
+      <duration>Term</duration>
+      <initialMargin>
+        <marginType>Cash</marginType>
+        <margin>
+          <marginRatio>1.176471</marginRatio>
+        </margin>
+      </initialMargin>
+      <nearLeg>
+        <buyerPartyReference href="Party1"/>
+        <sellerPartyReference href="Party2"/>
+        <settlementDate>
+          <adjustableDate>
+            <unadjustedDate>2013-11-03</unadjustedDate>
+            <dateAdjustments>
+              <businessDayConvention>NONE</businessDayConvention>
+            </dateAdjustments>
+          </adjustableDate>
+        </settlementDate>
+        <settlementAmount>
+          <currency>USD</currency>
+          <amount>8336850.21</amount>
+        </settlementAmount>
+        <deliveryMethod>DeliveryVersusPayment</deliveryMethod>
+        <collateral>
+          <nominalAmount>
+            <currency>USD</currency>
+            <amount>9000000</amount>
+          </nominalAmount>
+          <cleanPrice>108.9784722</cleanPrice>
+          <accruals>5.375000</accruals>
+          <assetReference href="OPQ"/>
+        </collateral>
+      </nearLeg>
+      <farLeg id="forwardLeg">
+        <buyerPartyReference href="Party2"/>
+        <sellerPartyReference href="Party1"/>
+        <settlementDate>
+          <adjustableDate>
+            <unadjustedDate>2013-11-10</unadjustedDate>
+            <dateAdjustments>
+              <businessDayConvention>NONE</businessDayConvention>
+            </dateAdjustments>
+          </adjustableDate>
+        </settlementDate>
+        <settlementCurrency>USD</settlementCurrency>
+        <deliveryMethod>DeliveryVersusPayment</deliveryMethod>
+        <collateral>
+          <nominalAmount>
+            <currency>USD</currency>
+            <amount>9000000</amount>
+          </nominalAmount>
+          <cleanPrice>108.9784722</cleanPrice>
+          <accruals>5.375000</accruals>
+          <assetReference href="OPQ"/>
+        </collateral>
+      </farLeg>
+    </repo>
   </trade>
   <party id="Party1">
     <partyId partyIdScheme="http://www.fpml.org/coding-scheme/dummy-party-id">Party 1</partyId>
