@@ -1,6 +1,8 @@
 package com.regnosys;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.fasterxml.jackson.dataformat.xml.ser.ToXmlGenerator;
 import com.regnosys.rosetta.common.serialisation.RosettaObjectMapperCreator;
 import com.regnosys.rosetta.common.util.UrlUtils;
 import org.junit.jupiter.api.Assertions;
@@ -106,8 +108,10 @@ public class TestUtil {
 
     public static ObjectMapper getXmlMapper(String xmlConfigPath) {
         try {
-            return RosettaObjectMapperCreator.forXML(
+            ObjectMapper mapper = RosettaObjectMapperCreator.forXML(
                     TestUtil.class.getResource("/" + xmlConfigPath).openStream()).create();
+            ((XmlMapper)mapper).configure(ToXmlGenerator.Feature.WRITE_XML_DECLARATION, true);
+            return mapper;
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }

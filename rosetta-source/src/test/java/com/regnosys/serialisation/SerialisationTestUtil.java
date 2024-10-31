@@ -43,7 +43,6 @@ public class SerialisationTestUtil<T> {
         this.rootType = rootType;
         this.xsdValidator = getXmlValidator(xsdSchemaPath);
         this.xmlMapper = getXmlMapper(xmlConfigPath);
-        ((XmlMapper)xmlMapper).configure(ToXmlGenerator.Feature.WRITE_XML_DECLARATION, true);
         this.xmlWriter = xmlMapper
                 .writerWithDefaultPrettyPrinter()
                 .withAttribute("schemaLocation", expectedSchemaLocationAttribute);
