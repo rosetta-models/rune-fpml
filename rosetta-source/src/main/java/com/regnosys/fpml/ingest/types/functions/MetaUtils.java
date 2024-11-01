@@ -1,4 +1,4 @@
-package com.regnosys.fpml.ingest.typesfixed.functions;
+package com.regnosys.fpml.ingest.types.functions;
 
 import com.rosetta.model.metafields.FieldWithMetaString;
 

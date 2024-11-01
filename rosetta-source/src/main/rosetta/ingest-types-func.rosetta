@@ -24,6 +24,7 @@ import cdm.product.template.*
 import cdm.product.common.schedule.*
 import cdm.event.common.*
 import fpml.confirmation.* as fpml
+import fpml.ingest.enumerations.*
 
 func MapTradeState:
 	inputs:
@@ -33,11 +34,11 @@ func MapTradeState:
 	set tradeState:
 		TradeState {
 			trade: MapTrade(fpmlDataDocument),
-			state: MapState(fpmlDataDocument),
-			resetHistory: MapResetList(fpmlDataDocument),
-			transferHistory: MapTransferStateList(fpmlDataDocument),
-			observationHistory: MapObservationEventList(fpmlDataDocument),
-			valuationHistory: MapValuationList(fpmlDataDocument),
+			state: empty, // MapState(fpmlDataDocument),
+			resetHistory: empty, //MapResetList(fpmlDataDocument),
+			transferHistory: empty, //MapTransferStateList(fpmlDataDocument),
+			observationHistory: empty, //MapObservationEventList(fpmlDataDocument),
+			valuationHistory: empty, //MapValuationList(fpmlDataDocument),
 		}
 
 
@@ -48,23 +49,22 @@ func MapTrade:
 		trade Trade (0..1)
 	set trade:
 		Trade {
-			product: MapNonTransferableProduct(fpmlDataDocument),
-			tradeLot: MapTradeLotList(fpmlDataDocument),
-			counterparty: MapCounterpartyList(fpmlDataDocument),
-			ancillaryParty: MapAncillaryPartyList(fpmlDataDocument),
+			product: empty, //MapNonTransferableProduct(fpmlDataDocument),
+			tradeLot: empty, //MapTradeLotList(fpmlDataDocument),
+			counterparty: empty, //MapCounterpartyList(fpmlDataDocument),
+			ancillaryParty: empty, //MapAncillaryPartyList(fpmlDataDocument),
 			adjustment: empty,
-			tradeIdentifier: MapTradeIdentifierList(fpmlDataDocument),
-			tradeDate: empty,
-			tradeTime: MapTimeZone(fpmlDataDocument),
-			party: MapPartyList(fpmlDataDocument),
-			partyRole: MapPartyRoleList(fpmlDataDocument),
-			executionDetails: MapExecutionDetails(fpmlDataDocument),
-			contractDetails: MapContractDetails(fpmlDataDocument),
+			tradeIdentifier: empty, //MapTradeIdentifierList(fpmlDataDocument),
+			tradeDate: fpmlDataDocument -> trade only-element -> tradeHeader -> tradeDate -> value,
+			tradeTime: empty, //MapTimeZone(fpmlDataDocument),
+			party: MapPartyList(fpmlDataDocument -> partiesAndAccountsModel -> party),
+			partyRole: MapPartyRoleList(fpmlDataDocument -> trade only-element -> tradeHeader -> partyTradeInformation),
+			executionDetails: empty, //MapExecutionDetails(fpmlDataDocument),
+			contractDetails: MapContractDetails(fpmlDataDocument -> trade only-element),
 			clearedDate: empty,
-			collateral: MapCollateral(fpmlDataDocument),
-			account: MapAccountList(fpmlDataDocument),
+			collateral: empty, //MapCollateral(fpmlDataDocument),
+			account: MapAccountList(fpmlDataDocument -> partiesAndAccountsModel -> account),
 		}
-
 
 func MapState:
 	inputs:
@@ -178,7 +178,7 @@ func MapCounterpartyList:
 		[
 			Counterparty {
 				role: empty,
-				partyReference: MapParty(fpmlDataDocument),
+				partyReference: MapParty(empty),
 			}
 		]
 
@@ -192,7 +192,7 @@ func MapAncillaryPartyList:
 		[
 			AncillaryParty {
 				role: empty,
-				partyReference: MapPartyList(fpmlDataDocument),
+				partyReference: MapPartyList(empty),
 				onBehalfOf: empty,
 			}
 		]
@@ -206,7 +206,7 @@ func MapTradeIdentifierList:
 	add tradeIdentifierList:
 		[
 			TradeIdentifier {
-				issuerReference: MapParty(fpmlDataDocument),
+				issuerReference: MapParty(empty),
 				issuer: MapIssuerWithScheme(fpmlDataDocument),
 				assignedIdentifier: MapAssignedIdentifierList(fpmlDataDocument),
 				identifierType: empty,
@@ -228,36 +228,23 @@ func MapTimeZone:
 
 func MapPartyList:
 	inputs:
-		fpmlDataDocument fpml.DataDocument (0..1)
+		fpmlParties fpml.Party (0..*)
 	output:
 		partyList Party (0..*)
 	add partyList:
-		[
-			Party {
-				partyId: MapPartyIdentifierList(fpmlDataDocument),
-				name: MapNameWithScheme(fpmlDataDocument),
-				businessUnit: MapBusinessUnitList(fpmlDataDocument),
-				person: MapNaturalPersonList(fpmlDataDocument),
-				personRole: MapNaturalPersonRoleList(fpmlDataDocument),
-				account: MapAccount(fpmlDataDocument),
-				contactInformation: MapContactInformation(fpmlDataDocument),
-			}
-		]
+        fpmlParties
+		extract MapParty
 
 
 func MapPartyRoleList:
 	inputs:
-		fpmlDataDocument fpml.DataDocument (0..1)
+		fpmlPartyTradeInformation fpml.PartyTradeInformation (0..*)
 	output:
 		partyRoleList PartyRole (0..*)
 	add partyRoleList:
-		[
-			PartyRole {
-				partyReference: MapParty(fpmlDataDocument),
-				role: empty,
-				ownershipPartyReference: MapParty(fpmlDataDocument),
-			}
-		]
+		fpmlPartyTradeInformation -> relatedParty
+        extract MapPartyRole
+
 
 
 func MapExecutionDetails:
@@ -275,13 +262,13 @@ func MapExecutionDetails:
 
 func MapContractDetails:
 	inputs:
-		fpmlDataDocument fpml.DataDocument (0..1)
+		fpmlTrade fpml.Trade (0..1)
 	output:
 		contractDetails ContractDetails (0..1)
 	set contractDetails:
 		ContractDetails {
-			documentation: MapLegalAgreementList(fpmlDataDocument),
-			governingLaw: MapGoverningLawWithScheme(fpmlDataDocument),
+			documentation: MapLegalAgreementList(fpmlTrade -> documentation),
+			governingLaw: empty, //MapGoverningLawWithScheme(empty),
 		}
 
 
@@ -301,20 +288,11 @@ func MapCollateral:
 
 func MapAccountList:
 	inputs:
-		fpmlDataDocument fpml.DataDocument (0..1)
+		fpmlAccounts fpml.Account (0..*)
 	output:
 		accountList Account (0..*)
 	add accountList:
-		[
-			Account {
-				partyReference: MapParty(fpmlDataDocument),
-				accountNumber: MapAccountNumberWithScheme(fpmlDataDocument),
-				accountName: MapAccountNameWithScheme(fpmlDataDocument),
-				accountType: MapAccountTypeWithScheme(fpmlDataDocument),
-				accountBeneficiary: MapParty(fpmlDataDocument),
-				servicingParty: MapParty(fpmlDataDocument),
-			}
-		]
+		fpmlAccounts extract MapAccount
 
 
 func MapClosedState:
@@ -388,7 +366,7 @@ func MapTransfer:
 			asset: MapAsset(fpmlDataDocument),
 			payerReceiver: MapPartyReferencePayerReceiver(fpmlDataDocument),
 			settlementDate: MapAdjustableOrAdjustedOrRelativeDate(fpmlDataDocument),
-			settlementOrigin: MapSettlementOrigin(fpmlDataDocument),
+			settlementOrigin: empty, //MapSettlementOrigin(fpmlDataDocument),
 			resetOrigin: MapReset(fpmlDataDocument),
 			transferExpression: MapTransferExpression(fpmlDataDocument),
 		}
@@ -421,7 +399,7 @@ func MapCorporateAction:
 			corporateActionType: empty,
 			exDate: empty,
 			payDate: empty,
-			underlier: MapInstrument(fpmlDataDocument),
+			underlier: empty, //MapInstrument(fpmlDataDocument),
 		}
 
 
@@ -448,7 +426,7 @@ func MapProductIdentifierList:
 	add productIdentifierList:
 		[
 			ProductIdentifier {
-				identifier: MapIdentifierWithScheme(fpmlDataDocument),
+				identifier: empty, //MapIdentifierWithScheme(fpmlDataDocument),
 				source: empty,
 			}
 		]
@@ -497,7 +475,7 @@ func MapIdentifierList:
 	add identifierList:
 		[
 			Identifier {
-				issuerReference: MapParty(fpmlDataDocument),
+				issuerReference: MapParty(empty),
 				issuer: MapIssuerWithScheme(fpmlDataDocument),
 				assignedIdentifier: MapAssignedIdentifierList(fpmlDataDocument),
 			}
@@ -522,20 +500,29 @@ func MapPriceQuantityList:
 
 func MapParty:
 	inputs:
-		fpmlDataDocument fpml.DataDocument (0..1)
+		fpmlParty fpml.Party (0..1)
 	output:
 		party Party (0..1)
 	set party:
-		Party {
-			partyId: MapPartyIdentifierList(fpmlDataDocument),
-			name: MapNameWithScheme(fpmlDataDocument),
-			businessUnit: MapBusinessUnitList(fpmlDataDocument),
-			person: MapNaturalPersonList(fpmlDataDocument),
-			personRole: MapNaturalPersonRoleList(fpmlDataDocument),
-			account: MapAccount(fpmlDataDocument),
-			contactInformation: MapContactInformation(fpmlDataDocument),
-		}
+        EnrichPartyWithExternalKey(
+            Party {
+                partyId: MapPartyIdentifierList(fpmlParty -> partyModel -> partyId),
+                name: MapNameWithScheme(fpmlParty -> partyModel -> partyName -> value, fpmlParty -> partyModel -> partyName -> partyNameScheme),
+                businessUnit: empty, //MapBusinessUnitList(empty),
+                person: empty, //MapNaturalPersonList(empty),
+                personRole: empty, //MapNaturalPersonRoleList(empty),
+                account: empty, //MapAccount(empty),
+                contactInformation: empty, //MapContactInformation(empty),
+            },
+            fpmlParty -> id
+        )
 
+func EnrichPartyWithExternalKey:
+    inputs:
+        party Party (0..1)
+        externalKey string (0..1)
+    output:
+        enrichedParty Party (0..1)
 
 func MapIssuerWithScheme:
 	inputs:
@@ -553,7 +540,7 @@ func MapAssignedIdentifierList:
 	add assignedIdentifierList:
 		[
 			AssignedIdentifier {
-				identifier: MapIdentifierWithScheme(fpmlDataDocument),
+				identifier: empty, //MapIdentifierWithScheme(fpmlDataDocument),
 				version: empty,
 			}
 		]
@@ -569,25 +556,27 @@ func MapLocationWithScheme:
 
 func MapPartyIdentifierList:
 	inputs:
-		fpmlDataDocument fpml.DataDocument (0..1)
+		fpmlPartyIdentifiers fpml.PartyId (0..*)
 	output:
 		partyIdentifierList PartyIdentifier (0..*)
 	add partyIdentifierList:
-		[
+        fpmlPartyIdentifiers
+            extract
 			PartyIdentifier {
-				identifier: MapIdentifierWithScheme(fpmlDataDocument),
-				identifierType: empty,
+				identifier: MapIdentifierWithScheme(item -> value, item -> partyIdScheme),
+				identifierType: MapPartyIdentifierTypeEnum(item -> partyIdScheme),
 			}
-		]
+
+
 
 
 func MapNameWithScheme:
 	inputs:
-		fpmlDataDocument fpml.DataDocument (0..1)
+		name string (0..1)
+        scheme string (0..1)
 	output:
 		string string (0..1)
-		// [metadata scheme]
-	set string: empty
+		[metadata scheme]
 
 func MapBusinessUnitList:
 	inputs:
@@ -641,17 +630,17 @@ func MapNaturalPersonRoleList:
 
 func MapAccount:
 	inputs:
-		fpmlDataDocument fpml.DataDocument (0..1)
+		fpmlAccount fpml.Account (0..1)
 	output:
 		account Account (0..1)
 	set account:
 		Account {
-			partyReference: MapParty(fpmlDataDocument),
-			accountNumber: MapAccountNumberWithScheme(fpmlDataDocument),
-			accountName: MapAccountNameWithScheme(fpmlDataDocument),
-			accountType: MapAccountTypeWithScheme(fpmlDataDocument),
-			accountBeneficiary: MapParty(fpmlDataDocument),
-			servicingParty: MapParty(fpmlDataDocument),
+			partyReference: empty, //MapParty(empty),
+			accountNumber: MapAccountNumberWithScheme(fpmlAccount -> accountId only-element -> value, fpmlAccount -> accountId only-element -> accountIdScheme),
+			accountName: MapAccountNameWithScheme(fpmlAccount -> accountName -> value, fpmlAccount -> accountName -> accountNameScheme),
+			accountType: empty, //MapAccountTypeWithScheme(empty),
+			accountBeneficiary: empty, //MapParty(empty),
+			servicingParty: empty, //MapParty(empty), //TODO: need to handle metadata references so we can map this passing `fpmlAccount -> servicingParty`
 		}
 
 
@@ -677,7 +666,7 @@ func MapLegalEntity:
 	set legalEntity:
 		LegalEntity {
 			entityId: MapEntityIdWithSchemeList(fpmlDataDocument),
-			name: MapNameWithScheme(fpmlDataDocument),
+			name: empty, //MapNameWithScheme(fpmlDataDocument),
 		}
 
 
@@ -696,24 +685,107 @@ func MapIdentifiedList:
 
 func MapLegalAgreementList:
 	inputs:
-		fpmlDataDocument fpml.DataDocument (0..1)
+		fpmlDocumentation fpml.Documentation (0..1)
 	output:
 		legalAgreementList LegalAgreement (0..*)
+
 	add legalAgreementList:
-		[
-			LegalAgreement {
-				agreementDate: empty,
-				effectiveDate: empty,
-				identifier: MapIdentifierList(fpmlDataDocument),
-				legalAgreementIdentification: MapLegalAgreementIdentification(fpmlDataDocument),
-				contractualParty: MapPartyList(fpmlDataDocument),
-				otherParty: MapPartyRoleList(fpmlDataDocument),
-				attachment: MapResourceList(fpmlDataDocument),
-				agreementTerms: MapAgreementTerms(fpmlDataDocument),
-				relatedAgreements: MapLegalAgreementList(fpmlDataDocument),
-				umbrellaAgreement: MapUmbrellaAgreement(fpmlDataDocument),
-			}
-		]
+        if fpmlDocumentation -> masterAgreement exists
+        then MapMasterAgreement(fpmlDocumentation -> masterAgreement)
+    add legalAgreementList:
+        if fpmlDocumentation -> masterConfirmation exists
+        then MapMasterConfirmation(fpmlDocumentation -> masterConfirmation)
+    add legalAgreementList:
+        if fpmlDocumentation -> creditSupportAgreement exists
+        then MapCreditSupportAgreement(fpmlDocumentation -> creditSupportAgreement)
+    add legalAgreementList: MapConfirmationLegalAgreement(fpmlDocumentation)
+    add legalAgreementList:
+        if fpmlDocumentation -> otherAgreement exists
+        then fpmlDocumentation -> otherAgreement extract MapOtherAgreements
+
+
+func MapMasterAgreement:
+    inputs:
+        fpmlMasterAgreement fpml.MasterAgreement (0..1)
+	output:
+		legalAgreement LegalAgreement (0..1)
+
+    alias fpmlMasterAgreementType: fpmlMasterAgreement -> masterAgreementType
+
+    set legalAgreement -> legalAgreementIdentification -> agreementName -> masterAgreementType:
+        MapMasterAgreementTypeEnum(fpmlMasterAgreementType -> value)
+    set legalAgreement -> legalAgreementIdentification -> agreementName -> agreementType: MasterAgreement
+
+func MapMasterConfirmation:
+    inputs:
+        fpmlMasterConfirmation fpml.MasterConfirmation (0..1)
+    output:
+		legalAgreement LegalAgreement (0..1)
+
+    alias fpmlMasterConfirmationType: fpmlMasterConfirmation -> masterConfirmationType
+    alias fpmlMasterConfirmationAnnexType: fpmlMasterConfirmation -> masterConfirmationAnnexType
+
+    set legalAgreement -> legalAgreementIdentification -> agreementName -> masterConfirmationType:
+        MapMasterConfirmationTypeEnum(fpmlMasterConfirmationType -> value)
+    set legalAgreement -> legalAgreementIdentification -> agreementName -> masterConfirmationAnnexType:
+        MapMasterConfirmationAnnexTypeEnum(fpmlMasterConfirmationAnnexType -> value)
+    set legalAgreement -> agreementDate: fpmlMasterConfirmation -> masterConfirmationDate
+    set legalAgreement -> legalAgreementIdentification -> agreementName -> agreementType: MasterConfirmation
+
+func MapCreditSupportAgreement:
+    inputs:
+        fpmlCreditSupportAgreement fpml.CreditSupportAgreement (0..1)
+    output:
+		legalAgreement LegalAgreement (0..1)
+
+    alias fpmlCreditSupportAgreementType: fpmlCreditSupportAgreement -> _type
+    set legalAgreement -> legalAgreementIdentification -> agreementName -> creditSupportAgreementType:
+        MapCreditSupportAgreementTypeEnum(fpmlCreditSupportAgreementType -> value)
+    set legalAgreement -> legalAgreementIdentification -> agreementName -> agreementType: CreditSupportAgreement
+
+func MapConfirmationLegalAgreement:
+	inputs:
+		fpmlDocumentation fpml.Documentation (0..1)
+	output:
+		legalAgreement LegalAgreement (0..1)
+
+    alias fpmlContractualDefinitions: fpmlDocumentation -> contractualDefinitions
+    alias fpmlContractualMatrix: fpmlDocumentation -> contractualMatrix
+    alias fpmlContractualTermsSupplement: fpmlDocumentation -> contractualTermsSupplement
+
+    add legalAgreement -> legalAgreementIdentification -> agreementName -> contractualDefinitionsType:
+        fpmlContractualDefinitions extract MapContractualDefinitionsEnum(item -> value)
+
+    add legalAgreement -> legalAgreementIdentification -> agreementName -> contractualMatrix:
+        fpmlContractualMatrix
+            extract ContractualMatrix {
+                matrixType: MapMatrixTypeEnum(item -> matrixType -> value),
+                matrixTerm: MapMatrixTermEnum(item -> matrixTerm -> value)
+            }
+
+    add legalAgreement -> legalAgreementIdentification -> agreementName -> contractualTermsSupplement:
+        fpmlContractualTermsSupplement
+            extract ContractualTermsSupplement {
+                contractualTermsSupplementType: MapContractualSupplementTypeEnum(item -> _type -> value),
+                publicationDate: item -> publicationDate
+            }
+
+    set legalAgreement -> legalAgreementIdentification -> agreementName -> agreementType:
+        if (legalAgreement -> legalAgreementIdentification -> agreementName -> contractualDefinitionsType exists
+            or legalAgreement -> legalAgreementIdentification -> agreementName -> contractualMatrix exists
+            or legalAgreement -> legalAgreementIdentification -> agreementName -> contractualTermsSupplement exists)
+        then Confirmation
+
+func MapOtherAgreements:
+    inputs:
+        fpmlOtherAgreement fpml.OtherAgreement (0..1)
+	output:
+		legalAgreement LegalAgreement (0..1)
+    set legalAgreement -> legalAgreementIdentification -> agreementName -> otherAgreement: fpmlOtherAgreement -> _type -> value
+    set legalAgreement -> legalAgreementIdentification -> vintage: fpmlOtherAgreement -> version -> value to-int
+    set legalAgreement -> agreementDate: fpmlOtherAgreement -> date
+    set legalAgreement -> legalAgreementIdentification -> agreementName -> agreementType: Other
+
 
 
 func MapGoverningLawWithScheme:
@@ -731,10 +803,10 @@ func MapIndependentAmount:
 		independentAmount IndependentAmount (0..1)
 	set independentAmount:
 		IndependentAmount {
-			payerPartyReference: MapParty(fpmlDataDocument),
-			payerAccountReference: MapAccount(fpmlDataDocument),
-			receiverPartyReference: MapParty(fpmlDataDocument),
-			receiverAccountReference: MapAccount(fpmlDataDocument),
+			payerPartyReference: MapParty(empty),
+			payerAccountReference: MapAccount(empty),
+			receiverPartyReference: MapParty(empty),
+			receiverAccountReference: MapAccount(empty),
 			paymentDetail: MapPaymentDetailList(fpmlDataDocument),
 		}
 
@@ -770,19 +842,20 @@ func MapCollateralProvisions:
 
 func MapAccountNumberWithScheme:
 	inputs:
-		fpmlDataDocument fpml.DataDocument (0..1)
+		accountNumber string (0..1)
+        scheme string (0..1)
 	output:
 		string string (0..1)
-		// [metadata scheme]
-	set string: empty
+		[metadata scheme]
 
 func MapAccountNameWithScheme:
 	inputs:
-		fpmlDataDocument fpml.DataDocument (0..1)
+		accountName string (0..1)
+        scheme string (0..1)
 	output:
 		string string (0..1)
-		// [metadata scheme]
-	set string: empty
+		[metadata scheme]
+	set string: accountName
 
 func MapAccountTypeWithScheme:
 	inputs:
@@ -895,7 +968,7 @@ func MapIdentifierWithSchemeList:
 	add identifierList:
 		[
 			Identifier {
-				issuerReference: MapParty(fpmlDataDocument),
+				issuerReference: MapParty(empty),
 				issuer: MapIssuerWithScheme(fpmlDataDocument),
 				assignedIdentifier: MapAssignedIdentifierList(fpmlDataDocument),
 			}
@@ -938,10 +1011,10 @@ func MapPartyReferencePayerReceiver:
 		partyReferencePayerReceiver PartyReferencePayerReceiver (0..1)
 	set partyReferencePayerReceiver:
 		PartyReferencePayerReceiver {
-			payerPartyReference: MapParty(fpmlDataDocument),
-			payerAccountReference: MapAccount(fpmlDataDocument),
-			receiverPartyReference: MapParty(fpmlDataDocument),
-			receiverAccountReference: MapAccount(fpmlDataDocument),
+			payerPartyReference: MapParty(empty),
+			payerAccountReference: MapAccount(empty),
+			receiverPartyReference: MapParty(empty),
+			receiverAccountReference: MapAccount(empty),
 		}
 
 
@@ -959,23 +1032,23 @@ func MapAdjustableOrAdjustedOrRelativeDate:
 		}
 
 
-func MapSettlementOrigin:
-	inputs:
-		fpmlDataDocument fpml.DataDocument (0..1)
-	output:
-		settlementOrigin SettlementOrigin (0..1)
-	set settlementOrigin:
-		SettlementOrigin {
-			commodityPayout: MapCommodityPayout(fpmlDataDocument),
-			creditDefaultPayout: MapCreditDefaultPayout(fpmlDataDocument),
-			settlementPayout: MapSettlementPayout(fpmlDataDocument),
-			interestRatePayout: MapInterestRatePayout(fpmlDataDocument),
-			optionPayout: MapOptionPayout(fpmlDataDocument),
-			assetPayout: MapAssetPayout(fpmlDataDocument),
-			settlementTerms: MapSettlementTerms(fpmlDataDocument),
-			performancePayout: MapPerformancePayout(fpmlDataDocument),
-			fixedPricePayout: MapFixedPricePayout(fpmlDataDocument),
-		}
+// func MapSettlementOrigin:
+// 	inputs:
+// 		fpmlDataDocument fpml.DataDocument (0..1)
+// 	output:
+// 		settlementOrigin SettlementOrigin (0..1)
+// 	set settlementOrigin:
+// 		SettlementOrigin {
+// 			commodityPayout: MapCommodityPayout(fpmlDataDocument),
+// 			creditDefaultPayout: MapCreditDefaultPayout(fpmlDataDocument),
+// 			settlementPayout: MapSettlementPayout(fpmlDataDocument),
+// 			interestRatePayout: MapInterestRatePayout(fpmlDataDocument),
+// 			optionPayout: MapOptionPayout(fpmlDataDocument),
+// 			assetPayout: MapAssetPayout(fpmlDataDocument),
+// 			settlementTerms: MapSettlementTerms(fpmlDataDocument),
+// 			performancePayout: MapPerformancePayout(fpmlDataDocument),
+// 			fixedPricePayout: MapFixedPricePayout(fpmlDataDocument),
+// 		}
 
 
 func MapReset:
@@ -1084,11 +1157,11 @@ func MapFrequency:
 
 func MapIdentifierWithScheme:
 	inputs:
-		fpmlDataDocument fpml.DataDocument (0..1)
+		identifier string (0..1)
+        scheme string (0..1)
 	output:
 		string string (0..1)
-		// [metadata scheme]
-	set string: empty
+		[metadata scheme]
 
 func MapTaxonomyValue:
 	inputs:
@@ -1097,7 +1170,7 @@ func MapTaxonomyValue:
 		taxonomyValue TaxonomyValue (0..1)
 	set taxonomyValue:
 		TaxonomyValue {
-			name: MapNameWithScheme(fpmlDataDocument),
+			name: empty, //MapNameWithScheme(fpmlDataDocument),
 			classification: MapTaxonomyClassificationList(fpmlDataDocument),
 		}
 
@@ -1149,18 +1222,18 @@ func MapPayout:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		payout Payout (0..1)
-	set payout:
-		Payout {
-			interestRatePayout: MapInterestRatePayoutList(fpmlDataDocument),
-			creditDefaultPayout: MapCreditDefaultPayout(fpmlDataDocument),
-			optionPayout: MapOptionPayoutList(fpmlDataDocument),
-			commodityPayout: MapCommodityPayoutList(fpmlDataDocument),
-			settlementPayout: MapSettlementPayoutList(fpmlDataDocument),
-			fixedPricePayout: MapFixedPricePayoutList(fpmlDataDocument),
-			cashflow: MapCashflowList(fpmlDataDocument),
-			performancePayout: MapPerformancePayoutList(fpmlDataDocument),
-			assetPayout: MapAssetPayoutList(fpmlDataDocument),
-		}
+	// set payout:
+	// 	Payout {
+	// 		interestRatePayout: MapInterestRatePayoutList(fpmlDataDocument),
+	// 		creditDefaultPayout: MapCreditDefaultPayout(fpmlDataDocument),
+	// 		optionPayout: MapOptionPayoutList(fpmlDataDocument),
+	// 		commodityPayout: MapCommodityPayoutList(fpmlDataDocument),
+	// 		settlementPayout: MapSettlementPayoutList(fpmlDataDocument),
+	// 		fixedPricePayout: MapFixedPricePayoutList(fpmlDataDocument),
+	// 		cashflow: MapCashflowList(fpmlDataDocument),
+	// 		performancePayout: MapPerformancePayoutList(fpmlDataDocument),
+	// 		assetPayout: MapAssetPayoutList(fpmlDataDocument),
+	// 	}
 
 
 func MapTerminationProvision:
@@ -1248,7 +1321,7 @@ func MapIdentifier:
 		identifier Identifier (0..1)
 	set identifier:
 		Identifier {
-			issuerReference: MapParty(fpmlDataDocument),
+			issuerReference: MapParty(empty),
 			issuer: MapIssuerWithScheme(fpmlDataDocument),
 			assignedIdentifier: MapAssignedIdentifierList(fpmlDataDocument),
 		}
@@ -1263,7 +1336,7 @@ func MapPersonIdentifierWithSchemeList:
 	add personIdentifierList:
 		[
 			PersonIdentifier {
-				identifier: MapIdentifierWithScheme(fpmlDataDocument),
+				identifier: empty, //MapIdentifierWithScheme(fpmlDataDocument),
 				identifierType: empty,
 				country: MapCountryWithScheme(fpmlDataDocument),
 			}
@@ -1440,11 +1513,11 @@ func MapLegalAgreement:
 			effectiveDate: empty,
 			identifier: MapIdentifierList(fpmlDataDocument),
 			legalAgreementIdentification: MapLegalAgreementIdentification(fpmlDataDocument),
-			contractualParty: MapPartyList(fpmlDataDocument),
-			otherParty: MapPartyRoleList(fpmlDataDocument),
+			contractualParty: MapPartyList(empty),
+			otherParty: empty, //MapPartyRoleList(fpmlDataDocument),
 			attachment: MapResourceList(fpmlDataDocument),
 			agreementTerms: MapAgreementTerms(fpmlDataDocument),
-			relatedAgreements: MapLegalAgreementList(fpmlDataDocument),
+			relatedAgreements: MapLegalAgreementList(empty),
 			umbrellaAgreement: MapUmbrellaAgreement(fpmlDataDocument),
 		}
 
@@ -1638,17 +1711,17 @@ func MapSettlementPayout:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		settlementPayout SettlementPayout (0..1)
-	set settlementPayout:
-		SettlementPayout {
-			payerReceiver: MapPayerReceiver(fpmlDataDocument),
-			priceQuantity: MapResolvablePriceQuantity(fpmlDataDocument),
-			principalPayment: MapPrincipalPayments(fpmlDataDocument),
-			settlementTerms: MapSettlementTerms(fpmlDataDocument),
-			underlier: MapUnderlier(fpmlDataDocument),
-			deliveryTerm: empty,
-			delivery: MapAssetDeliveryInformation(fpmlDataDocument),
-			schedule: MapCalculationSchedule(fpmlDataDocument),
-		}
+	// set settlementPayout:
+	// 	SettlementPayout {
+	// 		payerReceiver: MapPayerReceiver(fpmlDataDocument),
+	// 		priceQuantity: MapResolvablePriceQuantity(fpmlDataDocument),
+	// 		principalPayment: MapPrincipalPayments(fpmlDataDocument),
+	// 		settlementTerms: MapSettlementTerms(fpmlDataDocument),
+	// 		underlier: MapUnderlier(fpmlDataDocument),
+	// 		deliveryTerm: empty,
+	// 		delivery: MapAssetDeliveryInformation(fpmlDataDocument),
+	// 		schedule: MapCalculationSchedule(fpmlDataDocument),
+	// 	}
 
 
 func MapInterestRatePayout:
@@ -1685,22 +1758,22 @@ func MapOptionPayout:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		optionPayout OptionPayout (0..1)
-	set optionPayout:
-		OptionPayout {
-			payerReceiver: MapPayerReceiver(fpmlDataDocument),
-			priceQuantity: MapResolvablePriceQuantity(fpmlDataDocument),
-			principalPayment: MapPrincipalPayments(fpmlDataDocument),
-			settlementTerms: MapSettlementTerms(fpmlDataDocument),
-			buyerSeller: MapBuyerSeller(fpmlDataDocument),
-			feature: MapOptionFeature(fpmlDataDocument),
-			observationTerms: MapObservationTerms(fpmlDataDocument),
-			schedule: MapCalculationSchedule(fpmlDataDocument),
-			delivery: MapAssetDeliveryInformation(fpmlDataDocument),
-			underlier: MapUnderlier(fpmlDataDocument),
-			optionType: empty,
-			exerciseTerms: MapExerciseTerms(fpmlDataDocument),
-			strike: MapOptionStrike(fpmlDataDocument),
-		}
+	// set optionPayout:
+	// 	OptionPayout {
+	// 		payerReceiver: MapPayerReceiver(fpmlDataDocument),
+	// 		priceQuantity: MapResolvablePriceQuantity(fpmlDataDocument),
+	// 		principalPayment: MapPrincipalPayments(fpmlDataDocument),
+	// 		settlementTerms: MapSettlementTerms(fpmlDataDocument),
+	// 		buyerSeller: MapBuyerSeller(fpmlDataDocument),
+	// 		feature: MapOptionFeature(fpmlDataDocument),
+	// 		observationTerms: MapObservationTerms(fpmlDataDocument),
+	// 		schedule: MapCalculationSchedule(fpmlDataDocument),
+	// 		delivery: MapAssetDeliveryInformation(fpmlDataDocument),
+	// 		underlier: MapUnderlier(fpmlDataDocument),
+	// 		optionType: empty,
+	// 		exerciseTerms: MapExerciseTerms(fpmlDataDocument),
+	// 		strike: MapOptionStrike(fpmlDataDocument),
+	// 	}
 
 
 func MapAssetPayout:
@@ -1862,17 +1935,17 @@ func MapListedDerivative:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		listedDerivative ListedDerivative (0..1)
-	set listedDerivative:
-		ListedDerivative {
-			identifier: MapAssetIdentifierList(fpmlDataDocument),
-			taxonomy: MapTaxonomyList(fpmlDataDocument),
-			isExchangeListed: empty,
-			exchange: MapLegalEntity(fpmlDataDocument),
-			relatedExchange: MapLegalEntityList(fpmlDataDocument),
-			deliveryTerm: empty,
-			optionType: empty,
-			strike: empty,
-		}
+	// set listedDerivative:
+	// 	ListedDerivative {
+	// 		identifier: MapAssetIdentifierList(fpmlDataDocument),
+	// 		taxonomy: MapTaxonomyList(fpmlDataDocument),
+	// 		isExchangeListed: empty,
+	// 		exchange: MapLegalEntity(fpmlDataDocument),
+	// 		relatedExchange: MapLegalEntityList(fpmlDataDocument),
+	// 		deliveryTerm: empty,
+	// 		optionType: empty,
+	// 		strike: empty,
+	// 	}
 
 
 func MapLoan:
@@ -1880,19 +1953,19 @@ func MapLoan:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		loan Loan (0..1)
-	set loan:
-		Loan {
-			identifier: MapAssetIdentifierList(fpmlDataDocument),
-			taxonomy: MapTaxonomyList(fpmlDataDocument),
-			isExchangeListed: empty,
-			exchange: MapLegalEntity(fpmlDataDocument),
-			relatedExchange: MapLegalEntityList(fpmlDataDocument),
-			borrower: MapLegalEntityList(fpmlDataDocument),
-			lien: MapLienWithScheme(fpmlDataDocument),
-			facilityType: MapFacilityTypeWithScheme(fpmlDataDocument),
-			creditAgreementDate: empty,
-			tranche: MapTrancheWithScheme(fpmlDataDocument),
-		}
+	// set loan:
+	// 	Loan {
+	// 		identifier: MapAssetIdentifierList(fpmlDataDocument),
+	// 		taxonomy: MapTaxonomyList(fpmlDataDocument),
+	// 		isExchangeListed: empty,
+	// 		exchange: MapLegalEntity(fpmlDataDocument),
+	// 		relatedExchange: MapLegalEntityList(fpmlDataDocument),
+	// 		borrower: MapLegalEntityList(fpmlDataDocument),
+	// 		lien: MapLienWithScheme(fpmlDataDocument),
+	// 		facilityType: MapFacilityTypeWithScheme(fpmlDataDocument),
+	// 		creditAgreementDate: empty,
+	// 		tranche: MapTrancheWithScheme(fpmlDataDocument),
+	// 	}
 
 
 func MapSecurity:
@@ -1900,18 +1973,18 @@ func MapSecurity:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		security Security (0..1)
-	set security:
-		Security {
-			identifier: MapAssetIdentifierList(fpmlDataDocument),
-			taxonomy: MapTaxonomyList(fpmlDataDocument),
-			isExchangeListed: empty,
-			exchange: MapLegalEntity(fpmlDataDocument),
-			relatedExchange: MapLegalEntityList(fpmlDataDocument),
-			securityType: empty,
-			debtType: MapDebtType(fpmlDataDocument),
-			equityType: empty,
-			fundType: empty,
-		}
+	// set security:
+	// 	Security {
+	// 		identifier: MapAssetIdentifierList(fpmlDataDocument),
+	// 		taxonomy: MapTaxonomyList(fpmlDataDocument),
+	// 		isExchangeListed: empty,
+	// 		exchange: MapLegalEntity(fpmlDataDocument),
+	// 		relatedExchange: MapLegalEntityList(fpmlDataDocument),
+	// 		securityType: empty,
+	// 		debtType: MapDebtType(fpmlDataDocument),
+	// 		equityType: empty,
+	// 		fundType: empty,
+	// 	}
 
 
 func MapTaxonomyClassificationList:
@@ -2012,24 +2085,24 @@ func MapOptionPayoutList:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		optionPayoutList OptionPayout (0..*)
-	add optionPayoutList:
-		[
-			OptionPayout {
-				payerReceiver: MapPayerReceiver(fpmlDataDocument),
-				priceQuantity: MapResolvablePriceQuantity(fpmlDataDocument),
-				principalPayment: MapPrincipalPayments(fpmlDataDocument),
-				settlementTerms: MapSettlementTerms(fpmlDataDocument),
-				buyerSeller: MapBuyerSeller(fpmlDataDocument),
-				feature: MapOptionFeature(fpmlDataDocument),
-				observationTerms: MapObservationTerms(fpmlDataDocument),
-				schedule: MapCalculationSchedule(fpmlDataDocument),
-				delivery: MapAssetDeliveryInformation(fpmlDataDocument),
-				underlier: MapUnderlier(fpmlDataDocument),
-				optionType: empty,
-				exerciseTerms: MapExerciseTerms(fpmlDataDocument),
-				strike: MapOptionStrike(fpmlDataDocument),
-			}
-		]
+	// add optionPayoutList:
+	// 	[
+	// 		OptionPayout {
+	// 			payerReceiver: MapPayerReceiver(fpmlDataDocument),
+	// 			priceQuantity: MapResolvablePriceQuantity(fpmlDataDocument),
+	// 			principalPayment: MapPrincipalPayments(fpmlDataDocument),
+	// 			settlementTerms: MapSettlementTerms(fpmlDataDocument),
+	// 			buyerSeller: MapBuyerSeller(fpmlDataDocument),
+	// 			feature: MapOptionFeature(fpmlDataDocument),
+	// 			observationTerms: MapObservationTerms(fpmlDataDocument),
+	// 			schedule: MapCalculationSchedule(fpmlDataDocument),
+	// 			delivery: MapAssetDeliveryInformation(fpmlDataDocument),
+	// 			underlier: MapUnderlier(fpmlDataDocument),
+	// 			optionType: empty,
+	// 			exerciseTerms: MapExerciseTerms(fpmlDataDocument),
+	// 			strike: MapOptionStrike(fpmlDataDocument),
+	// 		}
+	// 	]
 
 
 func MapCommodityPayoutList:
@@ -2062,19 +2135,19 @@ func MapSettlementPayoutList:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		settlementPayoutList SettlementPayout (0..*)
-	add settlementPayoutList:
-		[
-			SettlementPayout {
-				payerReceiver: MapPayerReceiver(fpmlDataDocument),
-				priceQuantity: MapResolvablePriceQuantity(fpmlDataDocument),
-				principalPayment: MapPrincipalPayments(fpmlDataDocument),
-				settlementTerms: MapSettlementTerms(fpmlDataDocument),
-				underlier: MapUnderlier(fpmlDataDocument),
-				deliveryTerm: empty,
-				delivery: MapAssetDeliveryInformation(fpmlDataDocument),
-				schedule: MapCalculationSchedule(fpmlDataDocument),
-			}
-		]
+	// add settlementPayoutList:
+	// 	[
+	// 		SettlementPayout {
+	// 			payerReceiver: MapPayerReceiver(fpmlDataDocument),
+	// 			priceQuantity: MapResolvablePriceQuantity(fpmlDataDocument),
+	// 			principalPayment: MapPrincipalPayments(fpmlDataDocument),
+	// 			settlementTerms: MapSettlementTerms(fpmlDataDocument),
+	// 			underlier: MapUnderlier(fpmlDataDocument),
+	// 			deliveryTerm: empty,
+	// 			delivery: MapAssetDeliveryInformation(fpmlDataDocument),
+	// 			schedule: MapCalculationSchedule(fpmlDataDocument),
+	// 		}
+	// 	]
 
 
 func MapFixedPricePayoutList:
@@ -2207,7 +2280,7 @@ func MapEvergreenProvision:
 		evergreenProvision EvergreenProvision (0..1)
 	set evergreenProvision:
 		EvergreenProvision {
-			singlePartyOption: MapPartyRole(fpmlDataDocument),
+			singlePartyOption: empty, //MapPartyRole(fpmlDataDocument),
 			noticePeriod: MapRelativeDateOffset(fpmlDataDocument),
 			noticeDeadlinePeriod: MapRelativeDateOffset(fpmlDataDocument),
 			noticeDeadlineDateTime: empty,
@@ -2229,7 +2302,7 @@ func MapExtendibleProvision:
 			followUpConfirmation: empty,
 			extendibleProvisionAdjustedDates: MapExtendibleProvisionAdjustedDates(fpmlDataDocument),
 			callingParty: empty,
-			singlePartyOption: MapPartyRole(fpmlDataDocument),
+			singlePartyOption: empty, //MapPartyRole(fpmlDataDocument),
 			noticeDeadlinePeriod: MapRelativeDateOffset(fpmlDataDocument),
 			noticeDeadlineDateTime: empty,
 			extensionTerm: MapRelativeDateOffset(fpmlDataDocument),
@@ -2329,7 +2402,7 @@ func MapUmbrellaAgreementEntityList:
 		[
 			UmbrellaAgreementEntity {
 				entityId: MapEntityIdWithSchemeList(fpmlDataDocument),
-				name: MapNameWithScheme(fpmlDataDocument),
+				name: empty, //MapNameWithScheme(fpmlDataDocument),
 				terms: empty,
 			}
 		]
@@ -2447,7 +2520,7 @@ func MapAssetIdentifierList:
 	add assetIdentifierList:
 		[
 			AssetIdentifier {
-				identifier: MapIdentifierWithScheme(fpmlDataDocument),
+				identifier: empty, //MapIdentifierWithScheme(fpmlDataDocument),
 				identifierType: empty,
 			}
 		]
@@ -2476,7 +2549,7 @@ func MapLegalEntityList:
 		[
 			LegalEntity {
 				entityId: MapEntityIdWithSchemeList(fpmlDataDocument),
-				name: MapNameWithScheme(fpmlDataDocument),
+				name: empty, //MapNameWithScheme(fpmlDataDocument),
 			}
 		]
 
@@ -3250,14 +3323,14 @@ func MapExercisePeriod:
 
 func MapPartyRole:
 	inputs:
-		fpmlDataDocument fpml.DataDocument (0..1)
+		fpmlRelatedParty fpml.RelatedParty (0..1)
 	output:
 		partyRole PartyRole (0..1)
 	set partyRole:
 		PartyRole {
-			partyReference: MapParty(fpmlDataDocument),
-			role: empty,
-			ownershipPartyReference: MapParty(fpmlDataDocument),
+			partyReference: empty, //MapParty(empty), TODO: set references
+			role: MapPartyRoleEnum(fpmlRelatedParty -> role -> value),
+			ownershipPartyReference: empty, //MapParty(empty), TODO: set references
 		}
 
 
@@ -3316,7 +3389,7 @@ func MapCreditIndex:
 			isExchangeListed: empty,
 			exchange: MapLegalEntity(fpmlDataDocument),
 			relatedExchange: MapLegalEntityList(fpmlDataDocument),
-			name: MapNameWithScheme(fpmlDataDocument),
+			name: empty, //MapNameWithScheme(fpmlDataDocument),
 			provider: MapLegalEntity(fpmlDataDocument),
 			assetClass: empty,
 			indexSeries: empty,
@@ -3343,7 +3416,7 @@ func MapEquityIndex:
 			isExchangeListed: empty,
 			exchange: MapLegalEntity(fpmlDataDocument),
 			relatedExchange: MapLegalEntityList(fpmlDataDocument),
-			name: MapNameWithScheme(fpmlDataDocument),
+			name: empty, //MapNameWithScheme(fpmlDataDocument),
 			provider: MapLegalEntity(fpmlDataDocument),
 			assetClass: empty,
 		}
@@ -3373,7 +3446,7 @@ func MapForeignExchangeRateIndex:
 			isExchangeListed: empty,
 			exchange: MapLegalEntity(fpmlDataDocument),
 			relatedExchange: MapLegalEntityList(fpmlDataDocument),
-			name: MapNameWithScheme(fpmlDataDocument),
+			name: empty, //MapNameWithScheme(fpmlDataDocument),
 			provider: MapLegalEntity(fpmlDataDocument),
 			assetClass: empty,
 			quotedCurrencyPair: MapQuotedCurrencyPair(fpmlDataDocument),
@@ -3394,7 +3467,7 @@ func MapOtherIndex:
 			isExchangeListed: empty,
 			exchange: MapLegalEntity(fpmlDataDocument),
 			relatedExchange: MapLegalEntityList(fpmlDataDocument),
-			name: MapNameWithScheme(fpmlDataDocument),
+			name: empty, //MapNameWithScheme(fpmlDataDocument),
 			provider: MapLegalEntity(fpmlDataDocument),
 			assetClass: empty,
 			description: empty,
@@ -3946,7 +4019,7 @@ func MapLocationIdentifierList:
 	add locationIdentifierList:
 		[
 			LocationIdentifier {
-				issuerReference: MapParty(fpmlDataDocument),
+				issuerReference: MapParty(empty),
 				issuer: MapIssuerWithScheme(fpmlDataDocument),
 				assignedIdentifier: MapAssignedIdentifierList(fpmlDataDocument),
 				locationIdentifierType: empty,
@@ -4827,7 +4900,7 @@ func MapInterestRateIndex:
 			isExchangeListed: empty,
 			exchange: MapLegalEntity(fpmlDataDocument),
 			relatedExchange: MapLegalEntityList(fpmlDataDocument),
-			name: MapNameWithScheme(fpmlDataDocument),
+			name: empty, //MapNameWithScheme(fpmlDataDocument),
 			provider: MapLegalEntity(fpmlDataDocument),
 			assetClass: empty,
 			floatingRateIndex: MapFloatingRateIndexWithScheme(fpmlDataDocument),
@@ -4847,7 +4920,7 @@ func MapInflationIndex:
 			isExchangeListed: empty,
 			exchange: MapLegalEntity(fpmlDataDocument),
 			relatedExchange: MapLegalEntityList(fpmlDataDocument),
-			name: MapNameWithScheme(fpmlDataDocument),
+			name: empty, //MapNameWithScheme(fpmlDataDocument),
 			provider: MapLegalEntity(fpmlDataDocument),
 			assetClass: empty,
 			inflationRateIndex: MapInflationRateIndexWithScheme(fpmlDataDocument),
@@ -6844,5 +6917,3 @@ func MapFallBackSettlementRateOptionWithSchemeList:
 		// [metadata scheme]
 	add settlementRateOptionEnumList:
 		[ empty		]
-
-

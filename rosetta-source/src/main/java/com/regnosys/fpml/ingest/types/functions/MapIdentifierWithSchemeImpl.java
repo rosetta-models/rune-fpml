@@ -1,9 +1,9 @@
-package com.regnosys.fpml.ingest.typesfixed.functions;
+package com.regnosys.fpml.ingest.types.functions;
 
 import com.rosetta.model.metafields.FieldWithMetaString;
-import fpml.ingest.typesfixed.functions.MapIdentifierWithScheme;
+import fpml.ingest.types.functions.MapIdentifierWithScheme;
 
-import static com.regnosys.fpml.ingest.typesfixed.functions.MetaUtils.createStringWithMetaScheme;
+import static com.regnosys.fpml.ingest.types.functions.MetaUtils.createStringWithMetaScheme;
 
 public class MapIdentifierWithSchemeImpl extends MapIdentifierWithScheme {
     @Override

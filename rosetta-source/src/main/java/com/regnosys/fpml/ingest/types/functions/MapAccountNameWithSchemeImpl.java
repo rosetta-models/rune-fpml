@@ -1,9 +1,9 @@
-package com.regnosys.fpml.ingest.typesfixed.functions;
+package com.regnosys.fpml.ingest.types.functions;
 
 import com.rosetta.model.metafields.FieldWithMetaString;
-import fpml.ingest.typesfixed.functions.MapAccountNameWithScheme;
+import fpml.ingest.types.functions.MapAccountNameWithScheme;
 
-import static com.regnosys.fpml.ingest.typesfixed.functions.MetaUtils.createStringWithMetaScheme;
+import static com.regnosys.fpml.ingest.types.functions.MetaUtils.createStringWithMetaScheme;
 
 public class MapAccountNameWithSchemeImpl extends MapAccountNameWithScheme {
     @Override

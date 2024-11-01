@@ -14,7 +14,7 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
 import com.google.inject.util.Modules;
-import com.regnosys.fpml.ingest.typesfixed.functions.*;
+import com.regnosys.fpml.ingest.types.functions.*;
 import com.regnosys.ingest.IngestionService;
 import com.regnosys.rosetta.common.util.Report;
 import com.rosetta.model.lib.RosettaModelObject;
@@ -22,7 +22,7 @@ import com.rosetta.model.lib.RosettaModelObjectBuilder;
 import com.rosetta.model.metafields.FieldWithMetaDate;
 import com.rosetta.model.metafields.FieldWithMetaString;
 import fpml.confirmation.*;
-import fpml.ingest.typesfixed.functions.*;
+import fpml.ingest.types.functions.*;
 
 import java.util.ArrayList;
 import java.util.Collections;

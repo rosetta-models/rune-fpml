@@ -1,7 +1,7 @@
-package com.regnosys.fpml.ingest.typesfixed.functions;
+package com.regnosys.fpml.ingest.types.functions;
 
 import cdm.base.staticdata.party.Party;
-import fpml.ingest.typesfixed.functions.EnrichPartyWithExternalKey;
+import fpml.ingest.types.functions.EnrichPartyWithExternalKey;
 
 import java.util.Optional;
 

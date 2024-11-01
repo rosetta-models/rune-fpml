@@ -44,7 +44,7 @@ public class RosettaMappingFunctionGenerator {
 
         Path tempImports = Files.createTempFile("mappingFnImports", null);
         BufferedWriter importsWriter = new BufferedWriter(new FileWriter(tempImports.toFile()));
-        importsWriter.append("namespace fpml.ingest.types : < \"fpml types mappings\" >\n");
+        importsWriter.append("namespace fpml.ingest.generated.types : < \"fpml types mappings\" >\n");
         importsWriter.append("version \"${project.version}\"\n\n");
         for (String i : imports) {
             importsWriter.append(i).append("\n");
@@ -52,7 +52,7 @@ public class RosettaMappingFunctionGenerator {
         importsWriter.append("import fpml.confirmation.* as fpml\n\n");
         importsWriter.close();
 
-        Path outputPath = Path.of("./rosetta-source/src/main/rosetta/ingest-types-func.rosetta");
+        Path outputPath = Path.of("./rosetta-source/src/main/rosetta/ingest-generated-types-func.rosetta");
         try(OutputStream output = Files.newOutputStream(outputPath)) {
             Files.copy(tempImports, output);
             Files.copy(tempContents, output);
