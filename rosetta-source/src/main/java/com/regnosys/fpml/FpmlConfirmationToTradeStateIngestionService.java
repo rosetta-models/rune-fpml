@@ -173,16 +173,26 @@ public class FpmlConfirmationToTradeStateIngestionService implements IngestionSe
     }
 
     public List<Party.PartyBuilder> getParties(List<? extends fpml.confirmation.Party> fpmlParties) {
-        return emptyIfNull(fpmlParties)
-                .stream()
-                .map(fpml.confirmation.Party::getPartyModel)
-                .map(pm -> {
+        return emptyIfNull(fpmlParties).stream()
+                .map(fpmlParty -> {
                     Party.PartyBuilder partyBuilder = Party.builder();
-                    getFieldWithMetaString(pm.getPartyName()).ifPresent(partyBuilder::setName);
-                    partyBuilder.setPartyId(getPartyIds(pm.getPartyId()));
+                    Optional<PartyModel> fpmlPartyPartyModel = Optional.ofNullable(fpmlParty.getPartyModel());
+
+                    fpmlPartyPartyModel
+                            .map(PartyModel::getPartyName)
+                            .flatMap(this::getFieldWithMetaString)
+                            .ifPresent(partyBuilder::setName);
+
+                    fpmlPartyPartyModel
+                            .map(PartyModel::getPartyId)
+                            .map(this::getPartyIds)
+                            .ifPresent(partyBuilder::setPartyId);
+
+                    Optional.ofNullable(fpmlParty.getId())
+                            .ifPresent(partyBuilder.getOrCreateMeta()::setExternalKey);
+
                     return partyBuilder;
-                })
-                .toList();
+                }).toList();
     }
 
     public Optional<FieldWithMetaString.FieldWithMetaStringBuilder> getFieldWithMetaString(fpml.confirmation.PartyName fpmlPartyName) {
