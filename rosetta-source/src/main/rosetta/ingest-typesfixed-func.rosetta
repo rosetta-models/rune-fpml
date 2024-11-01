@@ -66,7 +66,6 @@ func MapTrade:
 			account: MapAccountList(fpmlDataDocument -> partiesAndAccountsModel -> account),
 		}
 
-
 func MapState:
 	inputs:
 		fpmlDataDocument fpml.DataDocument (0..1)
@@ -505,15 +504,25 @@ func MapParty:
 	output:
 		party Party (0..1)
 	set party:
-        Party {
-            partyId: MapPartyIdentifierList(fpmlParty -> partyModel -> partyId),
-            name: MapNameWithScheme(fpmlParty -> partyModel -> partyName -> value, fpmlParty -> partyModel -> partyName -> partyNameScheme),
-            businessUnit: empty, //MapBusinessUnitList(empty),
-            person: empty, //MapNaturalPersonList(empty),
-            personRole: empty, //MapNaturalPersonRoleList(empty),
-            account: empty, //MapAccount(empty),
-            contactInformation: empty, //MapContactInformation(empty),
-        }
+        EnrichPartyWithExternalKey(
+            Party {
+                partyId: MapPartyIdentifierList(fpmlParty -> partyModel -> partyId),
+                name: MapNameWithScheme(fpmlParty -> partyModel -> partyName -> value, fpmlParty -> partyModel -> partyName -> partyNameScheme),
+                businessUnit: empty, //MapBusinessUnitList(empty),
+                person: empty, //MapNaturalPersonList(empty),
+                personRole: empty, //MapNaturalPersonRoleList(empty),
+                account: empty, //MapAccount(empty),
+                contactInformation: empty, //MapContactInformation(empty),
+            },
+            fpmlParty -> id
+        )
+
+func EnrichPartyWithExternalKey:
+    inputs:
+        party Party (0..1)
+        externalKey string (0..1)
+    output:
+        enrichedParty Party (0..1)
 
 func MapIssuerWithScheme:
 	inputs:

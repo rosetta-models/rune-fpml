@@ -14,10 +14,7 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
 import com.google.inject.util.Modules;
-import com.regnosys.fpml.ingest.typesfixed.functions.MapAccountNameWithSchemeImpl;
-import com.regnosys.fpml.ingest.typesfixed.functions.MapAccountNumberWithSchemeImpl;
-import com.regnosys.fpml.ingest.typesfixed.functions.MapIdentifierWithSchemeImpl;
-import com.regnosys.fpml.ingest.typesfixed.functions.MapNameWithSchemeImpl;
+import com.regnosys.fpml.ingest.typesfixed.functions.*;
 import com.regnosys.ingest.IngestionService;
 import com.regnosys.rosetta.common.util.Report;
 import com.rosetta.model.lib.RosettaModelObject;
@@ -67,6 +64,7 @@ public class FpmlConfirmationToTradeStateIngestionService implements IngestionSe
                 bind(MapAccountNumberWithScheme.class).to(MapAccountNumberWithSchemeImpl.class);
                 bind(MapIdentifierWithScheme.class).to(MapIdentifierWithSchemeImpl.class);
                 bind(MapNameWithScheme.class).to(MapNameWithSchemeImpl.class);
+                bind(EnrichPartyWithExternalKey.class).to(EnrichPartyWithExternalKeyImpl.class);
             }
         });
 
