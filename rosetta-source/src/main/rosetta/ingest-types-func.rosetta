@@ -509,11 +509,20 @@ func MapSwapPriceQuantity:
 
     set priceQuantity:
         PriceQuantity {
-            price: empty, //MapPriceScheduleList(fpmlDataDocument),
+            price: empty,// MapSwapPrices(fpmlSwapStream -> calculationPeriodAmount), //MapPriceScheduleList(fpmlDataDocument),
             quantity: MapSwapQuantities(fpmlSwapStream -> calculationPeriodAmount -> calculation), //MapNonNegativeQuantityScheduleList(fpmlDataDocument)
             observable: empty, //MapObservable(fpmlDataDocument),
             effectiveDate: empty, //MapAdjustableOrRelativeDate(fpmlDataDocument),
         }
+
+func MapSwapPrices:
+    inputs:
+        fpmlCalculationPeriodAmount fpml.CalculationPeriodAmount (0..1)
+    output:
+        priceSchedules PriceSchedule (0..*)
+
+    alias fixedRateSchedule: fpmlCalculationPeriodAmount -> calculation -> calculationSequence -> fixedRateSchedule
+
 
 func MapSwapQuantities:
     inputs:
@@ -523,8 +532,8 @@ func MapSwapQuantities:
 
     alias fpmlNotionalStepSchedule: fpmlCalculation -> notionalSchedule -> notionalStepSchedule
     alias fxLinkedNotionalSchedule: fpmlCalculation -> fxLinkedNotionalSchedule
-    // Was also going to map this synonyn: [value "futureValueNotional" path "calculationPeriodAmount->calculation"]
-    // but there is no futureValueNotional on calculation
+    alias futureValueNotional: fpmlCalculation -> calculationSequence -> futureValueNotional
+    //couldn't find [value "notionalAmount"] on SwapStream to map that
 
     add nonNegativeQuantitySchedule:
         if fpmlNotionalStepSchedule exists
@@ -556,7 +565,20 @@ func MapSwapQuantities:
             frequency: empty
         }
 
-
+    add nonNegativeQuantitySchedule:
+        if futureValueNotional exists
+        then NonNegativeQuantitySchedule {
+            value: futureValueNotional -> amount,
+            unit: UnitType {
+                capacityUnit: empty,
+                weatherUnit: empty,
+                financialUnit: empty,
+                currency: futureValueNotional -> currency -> value
+            },
+            datedValue: empty,
+            multiplier: empty,
+            frequency: empty
+        }
 
 func MapPriceQuantityList:
 	inputs:
