@@ -509,7 +509,7 @@ func MapSwapPriceQuantity:
 
     set priceQuantity:
         PriceQuantity {
-            price: empty, //MapSwapPrices(fpmlSwapStream -> calculationPeriodAmount), //MapPriceScheduleList(fpmlDataDocument),
+            price: MapSwapPrices(fpmlSwapStream -> calculationPeriodAmount), //MapPriceScheduleList(fpmlDataDocument),
             quantity: MapSwapQuantities(fpmlSwapStream -> calculationPeriodAmount -> calculation), //MapNonNegativeQuantityScheduleList(fpmlDataDocument)
             observable: empty, //MapObservable(fpmlDataDocument),
             effectiveDate: empty, //MapAdjustableOrRelativeDate(fpmlDataDocument),
@@ -521,7 +521,41 @@ func MapSwapPrices:
     output:
         priceSchedules PriceSchedule (0..*)
 
-    alias fixedRateSchedule: fpmlCalculationPeriodAmount -> calculation -> calculationSequence -> fixedRateSchedule
+    alias fpmlFixedRateSchedule: fpmlCalculationPeriodAmount -> calculation -> calculationSequence -> fixedRateSchedule
+    alias fpmlNotionalStepSchedule: fpmlCalculationPeriodAmount -> calculation -> notionalSchedule -> notionalStepSchedule
+    alias fpmlKnownAmountSchedule: fpmlCalculationPeriodAmount -> knownAmountSchedule
+
+    add priceSchedules:
+        if fpmlFixedRateSchedule exists and fpmlNotionalStepSchedule exists
+        then PriceSchedule {
+            value: fpmlFixedRateSchedule -> initialValue,
+            unit: UnitType {
+                currency: fpmlNotionalStepSchedule -> currency -> value,
+                ...
+            },
+            perUnitOf: UnitType {
+                currency: fpmlNotionalStepSchedule -> currency -> value,
+                ...
+            },
+            priceType: InterestRate,
+            ...
+        }
+
+    add priceSchedules:
+        if fpmlFixedRateSchedule exists and fpmlKnownAmountSchedule exists
+        then PriceSchedule {
+            value: fpmlFixedRateSchedule -> initialValue,
+            unit: UnitType {
+                currency: fpmlKnownAmountSchedule -> currency -> value,
+                ...
+            },
+            perUnitOf: UnitType {
+                currency: fpmlKnownAmountSchedule -> currency -> value,
+                ...
+            },
+            priceType: InterestRate,
+            ...
+        }
 
 func MapSwapQuantities:
     inputs:
@@ -530,8 +564,8 @@ func MapSwapQuantities:
         nonNegativeQuantitySchedules NonNegativeQuantitySchedule (0..*)
 
     alias fpmlNotionalStepSchedule: fpmlCalculation -> notionalSchedule -> notionalStepSchedule
-    alias fxLinkedNotionalSchedule: fpmlCalculation -> fxLinkedNotionalSchedule
-    alias futureValueNotional: fpmlCalculation -> calculationSequence -> futureValueNotional
+    alias fpmlFxLinkedNotionalSchedule: fpmlCalculation -> fxLinkedNotionalSchedule
+    alias fpmlFutureValueNotional: fpmlCalculation -> calculationSequence -> futureValueNotional
     //couldn't find [value "notionalAmount"] on SwapStream to map that
 
     add nonNegativeQuantitySchedules:
@@ -539,10 +573,8 @@ func MapSwapQuantities:
         then NonNegativeQuantitySchedule {
             value: fpmlNotionalStepSchedule -> initialValue,
             unit: UnitType {
-                capacityUnit: empty,
-                weatherUnit: empty,
-                financialUnit: empty,
-                currency: fpmlNotionalStepSchedule -> currency -> value
+                currency: fpmlNotionalStepSchedule -> currency -> value,
+                ...
             },
             datedValue: empty,
             multiplier: empty,
@@ -550,33 +582,27 @@ func MapSwapQuantities:
         }
 
     add nonNegativeQuantitySchedules:
-        if fxLinkedNotionalSchedule exists
+        if fpmlFxLinkedNotionalSchedule exists
         then NonNegativeQuantitySchedule {
-            value: fxLinkedNotionalSchedule -> initialValue,
+            value: fpmlFxLinkedNotionalSchedule -> initialValue,
             unit: UnitType {
-                capacityUnit: empty,
-                weatherUnit: empty,
-                financialUnit: empty,
-                currency: fxLinkedNotionalSchedule -> varyingNotionalCurrency -> value
+                currency: fpmlFxLinkedNotionalSchedule -> varyingNotionalCurrency -> value,
+                ...
             },
-            datedValue: empty,
-            multiplier: empty,
-            frequency: empty
+            ...
         }
 
     add nonNegativeQuantitySchedules:
-        if futureValueNotional exists
+        if fpmlFutureValueNotional exists
         then NonNegativeQuantitySchedule {
-            value: futureValueNotional -> amount,
+            value: fpmlFutureValueNotional -> amount,
             unit: UnitType {
                 capacityUnit: empty,
                 weatherUnit: empty,
                 financialUnit: empty,
-                currency: futureValueNotional -> currency -> value
+                currency: fpmlFutureValueNotional -> currency -> value
             },
-            datedValue: empty,
-            multiplier: empty,
-            frequency: empty
+            ...
         }
 
 func MapPriceQuantityList:
