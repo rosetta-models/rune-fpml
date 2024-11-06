@@ -50,7 +50,7 @@ func MapTrade:
 	set trade:
 		Trade {
 			product: empty, //MapNonTransferableProduct(fpmlDataDocument),
-			tradeLot: empty, //MapTradeLotList(fpmlDataDocument),
+			tradeLot: MapTradeLotList(fpmlDataDocument), //swap only 1 ever mapped
 			counterparty: empty, //MapCounterpartyList(fpmlDataDocument),
 			ancillaryParty: empty, //MapAncillaryPartyList(fpmlDataDocument),
 			adjustment: empty,
@@ -160,14 +160,21 @@ func MapTradeLotList:
 		fpmlDataDocument fpml.DataDocument (0..1)
 	output:
 		tradeLotList TradeLot (0..*)
+    alias fpmlSwap: CastProductToSwap(fpmlDataDocument -> trade only-element -> product
+                    filter productModel -> productType only-element -> value = 'InterestRate:IRSwap:FixedFloat')
 	add tradeLotList:
-		[
+        if fpmlSwap exists
+            then
 			TradeLot {
-				lotIdentifier: MapIdentifierList(fpmlDataDocument),
-				priceQuantity: MapPriceQuantityList(fpmlDataDocument),
+				lotIdentifier: empty, //MapIdentifierList(fpmlDataDocument),
+				priceQuantity: MapSwapPriceQuantityList(fpmlSwap, fpmlDataDocument),  //swapStream (0..*)
 			}
-		]
 
+func CastProductToSwap:
+    inputs:
+        fpmlProduct fpml.Product (0..1)
+    output:
+        fpmlSwap fpml.Swap (0..1)
 
 func MapCounterpartyList:
 	inputs:
@@ -480,6 +487,57 @@ func MapIdentifierList:
 				assignedIdentifier: MapAssignedIdentifierList(fpmlDataDocument),
 			}
 		]
+
+func MapSwapPriceQuantityList:
+	inputs:
+        fpmlSwap fpml.Swap (0..1)
+		fpmlDataDocument fpml.DataDocument (0..1)
+	output:
+		priceQuantityList PriceQuantity (0..*)
+
+	add priceQuantityList:
+        fpmlSwap -> swapStream
+        extract MapSwapPriceQuantity(item, fpmlDataDocument)
+
+func MapSwapPriceQuantity:
+    inputs:
+        fpmlSwapStream fpml.InterestRateStream (0..1)
+        fpmlDataDocument fpml.DataDocument (0..1)
+    output:
+        priceQuantity PriceQuantity (0..1)
+    alias fpmlNotionalStepSchedule: fpmlSwapStream -> calculationPeriodAmount -> calculation -> notionalSchedule
+
+    set priceQuantity:
+        PriceQuantity {
+            price: empty, //MapPriceScheduleList(fpmlDataDocument),
+            quantity: MapSwapQuantities(fpmlSwapStream -> calculationPeriodAmount -> calculation), //MapNonNegativeQuantityScheduleList(fpmlDataDocument)
+            observable: empty, //MapObservable(fpmlDataDocument),
+            effectiveDate: empty, //MapAdjustableOrRelativeDate(fpmlDataDocument),
+        }
+
+func MapSwapQuantities:
+    inputs:
+        fpmlCalculation fpml.Calculation (0..1)
+    output:
+        nonNegativeQuantitySchedule NonNegativeQuantitySchedule (0..*)
+
+    alias fpmlNotionalStepSchedule: fpmlCalculation -> notionalSchedule -> notionalStepSchedule
+
+    add nonNegativeQuantitySchedule:
+        if fpmlNotionalStepSchedule exists
+        then NonNegativeQuantitySchedule {
+            value: fpmlNotionalStepSchedule -> initialValue,
+            unit: UnitType {
+                capacityUnit: empty,
+                weatherUnit: empty,
+                financialUnit: empty,
+                currency: fpmlNotionalStepSchedule -> currency -> value
+            },
+            datedValue: empty,
+            multiplier: empty,
+            frequency: empty
+        }
+
 
 
 func MapPriceQuantityList:
@@ -6754,4 +6812,3 @@ func MapFallBackSettlementRateOptionWithSchemeList:
 		// [metadata scheme]
 	add settlementRateOptionEnumList:
 		[ empty		]
-

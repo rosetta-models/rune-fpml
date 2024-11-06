@@ -65,6 +65,7 @@ public class FpmlConfirmationToTradeStateIngestionService implements IngestionSe
                 bind(MapIdentifierWithScheme.class).to(MapIdentifierWithSchemeImpl.class);
                 bind(MapNameWithScheme.class).to(MapNameWithSchemeImpl.class);
                 bind(EnrichPartyWithExternalKey.class).to(EnrichPartyWithExternalKeyImpl.class);
+                bind(CastProductToSwap.class).to(CastProductToSwapImpl.class);
             }
         });
 
