@@ -522,6 +522,9 @@ func MapSwapQuantities:
         nonNegativeQuantitySchedule NonNegativeQuantitySchedule (0..*)
 
     alias fpmlNotionalStepSchedule: fpmlCalculation -> notionalSchedule -> notionalStepSchedule
+    alias fxLinkedNotionalSchedule: fpmlCalculation -> fxLinkedNotionalSchedule
+    // Was also going to map this synonyn: [value "futureValueNotional" path "calculationPeriodAmount->calculation"]
+    // but there is no futureValueNotional on calculation
 
     add nonNegativeQuantitySchedule:
         if fpmlNotionalStepSchedule exists
@@ -532,6 +535,21 @@ func MapSwapQuantities:
                 weatherUnit: empty,
                 financialUnit: empty,
                 currency: fpmlNotionalStepSchedule -> currency -> value
+            },
+            datedValue: empty,
+            multiplier: empty,
+            frequency: empty
+        }
+
+    add nonNegativeQuantitySchedule:
+        if fxLinkedNotionalSchedule exists
+        then NonNegativeQuantitySchedule {
+            value: fxLinkedNotionalSchedule -> initialValue,
+            unit: UnitType {
+                capacityUnit: empty,
+                weatherUnit: empty,
+                financialUnit: empty,
+                currency: fxLinkedNotionalSchedule -> varyingNotionalCurrency -> value
             },
             datedValue: empty,
             multiplier: empty,
