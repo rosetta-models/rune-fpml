@@ -509,7 +509,7 @@ func MapSwapPriceQuantity:
 
     set priceQuantity:
         PriceQuantity {
-            price: empty,// MapSwapPrices(fpmlSwapStream -> calculationPeriodAmount), //MapPriceScheduleList(fpmlDataDocument),
+            price: empty, //MapSwapPrices(fpmlSwapStream -> calculationPeriodAmount), //MapPriceScheduleList(fpmlDataDocument),
             quantity: MapSwapQuantities(fpmlSwapStream -> calculationPeriodAmount -> calculation), //MapNonNegativeQuantityScheduleList(fpmlDataDocument)
             observable: empty, //MapObservable(fpmlDataDocument),
             effectiveDate: empty, //MapAdjustableOrRelativeDate(fpmlDataDocument),
@@ -523,19 +523,18 @@ func MapSwapPrices:
 
     alias fixedRateSchedule: fpmlCalculationPeriodAmount -> calculation -> calculationSequence -> fixedRateSchedule
 
-
 func MapSwapQuantities:
     inputs:
         fpmlCalculation fpml.Calculation (0..1)
     output:
-        nonNegativeQuantitySchedule NonNegativeQuantitySchedule (0..*)
+        nonNegativeQuantitySchedules NonNegativeQuantitySchedule (0..*)
 
     alias fpmlNotionalStepSchedule: fpmlCalculation -> notionalSchedule -> notionalStepSchedule
     alias fxLinkedNotionalSchedule: fpmlCalculation -> fxLinkedNotionalSchedule
     alias futureValueNotional: fpmlCalculation -> calculationSequence -> futureValueNotional
     //couldn't find [value "notionalAmount"] on SwapStream to map that
 
-    add nonNegativeQuantitySchedule:
+    add nonNegativeQuantitySchedules:
         if fpmlNotionalStepSchedule exists
         then NonNegativeQuantitySchedule {
             value: fpmlNotionalStepSchedule -> initialValue,
@@ -550,7 +549,7 @@ func MapSwapQuantities:
             frequency: empty
         }
 
-    add nonNegativeQuantitySchedule:
+    add nonNegativeQuantitySchedules:
         if fxLinkedNotionalSchedule exists
         then NonNegativeQuantitySchedule {
             value: fxLinkedNotionalSchedule -> initialValue,
@@ -565,7 +564,7 @@ func MapSwapQuantities:
             frequency: empty
         }
 
-    add nonNegativeQuantitySchedule:
+    add nonNegativeQuantitySchedules:
         if futureValueNotional exists
         then NonNegativeQuantitySchedule {
             value: futureValueNotional -> amount,
