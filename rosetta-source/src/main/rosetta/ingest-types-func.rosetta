@@ -154,10 +154,20 @@ func MapNonTransferableProduct:
 	set nonTransferableProduct:
         if fpmlSwap exists
         then NonTransferableProduct {
-			identifier: empty, //MapProductIdentifierList(fpmlDataDocument),
+			identifier: fpmlSwap -> productModel ->  productId extract MapProductIdentifier,
 			taxonomy: empty, //MapProductTaxonomyList(fpmlDataDocument),
 			economicTerms: MapSwapEconomicTerms(fpmlSwap),
 		}
+
+func MapProductIdentifier:
+    inputs:
+        fpmlProductId fpml.ProductId (0..1)
+    output:
+        productIdentifier ProductIdentifier (0..1)
+    set productIdentifier: ProductIdentifier {
+        identifier: fpmlProductId -> value,
+        source: empty //TODO: need to be able to check if fpmlProductId -> productIdScheme contains strings to do this
+    }
 
 
 func MapTradeLotList:
