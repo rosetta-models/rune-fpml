@@ -517,7 +517,7 @@ func MapSwapResetDates:
     output:
         resetDates ResetDates (0..1)
     set resetDates: ResetDates {
-        calculationPeriodDatesReference: empty, //TODO: needs reference mapping
+        calculationPeriodDatesReference: EnrichEmptyCalculationPeriodDatesWithExternalKey(fpmlResetDates -> calculationPeriodDatesReference -> href) as-key,
         resetRelativeTo: MapResetRelativeToEnum(fpmlResetDates -> resetRelativeTo to-string),
         fixingDates: MapRelativeDateOffset(fpmlResetDates -> fixingDates),
         resetFrequency: MapResetFrequency(fpmlResetDates -> resetFrequency),
@@ -525,6 +525,11 @@ func MapSwapResetDates:
         ...
     }
 
+func EnrichEmptyCalculationPeriodDatesWithExternalKey:
+    inputs:
+        href string (0..1)
+    output:
+        calculationPeriodDates CalculationPeriodDates (0..1)
 
 func MapSwapPaymentDates:
     inputs:

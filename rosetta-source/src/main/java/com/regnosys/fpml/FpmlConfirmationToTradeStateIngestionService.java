@@ -67,6 +67,7 @@ public class FpmlConfirmationToTradeStateIngestionService implements IngestionSe
                 bind(EnrichPartyWithExternalKey.class).to(EnrichPartyWithExternalKeyImpl.class);
                 bind(CastProductToSwap.class).to(CastProductToSwapImpl.class);
                 bind(CastRateToFloatingRateCalculation.class).to(CastRateToFloatingRateCalculationImpl.class);
+                bind(EnrichEmptyCalculationPeriodDatesWithExternalKey.class).to(EnrichEmptyCalculationPeriodDatesWithExternalKeyImpl.class);
             }
         });
 
