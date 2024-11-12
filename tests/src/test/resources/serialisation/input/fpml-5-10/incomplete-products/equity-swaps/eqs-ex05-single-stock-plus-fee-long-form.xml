@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataDocument fpmlVersion="5-10" xmlns="http://www.fpml.org/FpML-5/confirmation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/FpML-5/confirmation ../../../../schemas/fpml-5-13/confirmation/schemas/fpml-5-13/confirmation/fpml-main-5-13.xsd">
+  <trade>
+    <tradeHeader>
+      <partyTradeIdentifier>
+        <tradeId tradeIdScheme="http://www.partyA.com/eqs-trade-id">1934</tradeId>
+        <tradeId tradeIdScheme="http://www.partyA.com/eqs-trade-id">1934</tradeId>
+        <partyReference href="party1"/>
+      </partyTradeIdentifier>
+      <partyTradeIdentifier>
+        <tradeId tradeIdScheme="http://www.partyB.com/eqs-trade-id">5978</tradeId>
+        <tradeId tradeIdScheme="http://www.partyB.com/eqs-trade-id">5978</tradeId>
+        <partyReference href="party2"/>
+      </partyTradeIdentifier>
+      <tradeDate id="TradeDate">2002-09-10</tradeDate>
+    </tradeHeader>
+    <returnSwap>
+      <productType>Equity:Swap:PriceReturnBasicPerformance:SingleName</productType>
+      <additionalPayment>
+        <payerPartyReference href="party1"/>
+        <receiverPartyReference href="party2"/>
+        <additionalPaymentAmount>
+          <formula>
+            <formulaDescription>18388000 * Reference Price * [6.5% (the upfront Fee) + 0.63% (taxes)]</formulaDescription>
+            <math/>
+            <formulaComponent name="ReferencePrice">
+              <componentDescription>Volume-weighted average price per share of underlying security on Trade Date</componentDescription>
+            </formulaComponent>
+          </formula>
+        </additionalPaymentAmount>
+        <additionalPaymentDate>
+          <relativeDate>
+            <periodMultiplier>0</periodMultiplier>
+            <period>D</period>
+            <businessDayConvention>NotApplicable</businessDayConvention>
+            <dateRelativeTo href="EffectiveDate"/>
+          </relativeDate>
+        </additionalPaymentDate>
+        <paymentType>Upfront fee</paymentType>
+      </additionalPayment>
+      <earlyTermination>
+        <partyReference href="party2"/>
+        <startingDate>
+          <dateRelativeTo href="TradeDate"/>
+        </startingDate>
+      </earlyTermination>
+      <extraordinaryEvents>
+        <mergerEvents>
+          <shareForShare>ModifiedCalculationAgent</shareForShare>
+          <shareForOther>ModifiedCalculationAgent</shareForOther>
+          <shareForCombined>ModifiedCalculationAgent</shareForCombined>
+        </mergerEvents>
+        <tenderOffer>true</tenderOffer>
+        <tenderOfferEvents>
+          <shareForShare>ModifiedCalculationAgent</shareForShare>
+          <shareForOther>ModifiedCalculationAgent</shareForOther>
+          <shareForCombined>ModifiedCalculationAgent</shareForCombined>
+        </tenderOfferEvents>
+        <compositionOfCombinedConsideration>true</compositionOfCombinedConsideration>
+        <additionalDisruptionEvents>
+          <changeInLaw>true</changeInLaw>
+          <failureToDeliver>true</failureToDeliver>
+          <insolvencyFiling>false</insolvencyFiling>
+          <hedgingDisruption>true</hedgingDisruption>
+          <lossOfStockBorrow>true</lossOfStockBorrow>
+          <increasedCostOfStockBorrow>false</increasedCostOfStockBorrow>
+          <increasedCostOfHedging>false</increasedCostOfHedging>
+          <determiningPartyReference href="party1"/>
+        </additionalDisruptionEvents>
+        <representations>
+          <nonReliance>true</nonReliance>
+          <agreementsRegardingHedging>true</agreementsRegardingHedging>
+          <additionalAcknowledgements>true</additionalAcknowledgements>
+        </representations>
+        <nationalisationOrInsolvency>CancellationAndPayment</nationalisationOrInsolvency>
+      </extraordinaryEvents>
+    </returnSwap>
+    <otherPartyPayment>
+      <payerPartyReference href="party1"/>
+      <receiverPartyReference href="party3"/>
+      <paymentAmount>
+        <currency>USD</currency>
+        <amount>1000</amount>
+      </paymentAmount>
+      <paymentDate>
+        <unadjustedDate id="BrokerageFeePaymentDate">2002-09-30</unadjustedDate>
+        <dateAdjustments>
+          <businessDayConvention>NotApplicable</businessDayConvention>
+        </dateAdjustments>
+      </paymentDate>
+      <paymentType>BrokerageFee</paymentType>
+    </otherPartyPayment>
+    <calculationAgent>
+      <calculationAgentPartyReference href="party1"/>
+    </calculationAgent>
+    <documentation>
+      <masterAgreement>
+        <masterAgreementType>ISDA</masterAgreementType>
+        <masterAgreementVersion>2002</masterAgreementVersion>
+      </masterAgreement>
+      <contractualDefinitions>ISDA2000</contractualDefinitions>
+      <contractualDefinitions>ISDA2002Equity</contractualDefinitions>
+    </documentation>
+    <governingLaw>GBEN</governingLaw>
+  </trade>
+  <party id="party1">
+    <partyId partyIdScheme="http://www.fpml.org/coding-scheme/dummy-party-id">Party A</partyId>
+  </party>
+  <party id="party2">
+    <partyId partyIdScheme="http://www.fpml.org/coding-scheme/dummy-party-id">Party B</partyId>
+  </party>
+  <party id="party3">
+    <partyId partyIdScheme="http://www.fpml.org/coding-scheme/dummy-party-id">Party C</partyId>
+  </party>
+</dataDocument>

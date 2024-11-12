@@ -1,6 +1,11 @@
 namespace fpml.confirmation : < "fpml.confirmation definition" >
 version "${project.version}"
 
+enum AccountingStandardEnum:
+
+	GAAP
+	IFRS
+
 enum AccrualReferenceAmountTypeEnum:
 
 	COMMITMENT
@@ -66,6 +71,12 @@ enum CalculationAgentPartyEnum:
 	AS_SPECIFIED_IN_MASTER_AGREEMENT
 	AS_SPECIFIED_IN_STANDARD_TERMS_SUPPLEMENT
 	BOTH
+
+enum CalculationMethodEnum:
+
+	AVERAGING
+	COMPOUNDING
+	COMPOUNDED_INDEX
 
 enum CalendarSourceEnum:
 
@@ -155,6 +166,12 @@ enum ConditionsPrecedentMetEnum:
 	NO
 	WAIVED
 	YES
+
+enum CsaTypeEnum: <"The type of CSA (credit support agreement/annex), e.g. for cash settlement purposes.">
+
+	NO_CSA
+	EXISTING_CSA
+	REFERENCE_VMCSA
 
 enum DayOfWeekEnum: <"A day of the seven-day week.">
 
@@ -461,6 +478,11 @@ enum ExerciseTimingEnum:
 	IMMEDIATE
 	ON_EXPIRATION
 
+enum ExtensionStyleEnum: <"Specifies a Repo or Security Lending arangement: Everdeen or Extendible.">
+
+	EVERGREEN <"Evergreen is a Repo or Security Lending arangement to close the Evergreen. This takes place by negotiation.">
+	EXTENDABLE <"Extendable ia a Repo or Security Lending arangement to extend the Extendable. This takes place by negotiation.">
+
 enum FeeElectionEnum: <"Defines the fee type.">
 
 	FLAT_FEE
@@ -506,7 +528,7 @@ enum FxBarrierScopeEnum:
 	GLOBAL
 	PER_EXPIRY
 
-enum FxBarrierStyleEnum: <"Defines the barrier observation style i.e. continuous (American) or discrete (Euriopean).">
+enum FxBarrierStyleEnum: <"Defines the barrier observation style i.e. continuous (American) or discrete (European).">
 
 	AMERICAN <"The barrier is observed continuously through the observation period.">
 	EUROPEAN <"The barrier is observed on a discrete expiry date, or (in the case of a multi-phase product) series of expiry dates.">
@@ -589,6 +611,17 @@ enum IndexEventConsequenceEnum:
 	CANCELLATION_AND_PAYMENT
 	RELATED_EXCHANGE
 
+enum InflationCalculationMethodEnum: <"Code values for different ways of using inflation indexes in formulas">
+
+	RATIO <"(Inflation Index Final / Inflation Index Base). Inflation Index Final is inflation index for Reference Month that is the Lag number of months prior to Payment Date (subject to interpolation). Inflation Index Base subject to the Calculation Style. Used in inflation asset swaps to calculate the inflation coupons and principal exchange.">
+	RETURN <"(Inflation Index Final / Inflation Index Base -1). Inflation Index Final is the inflation index for Reference Month that is the Lag number of months prior to Payment Date (subject to interp). Inflation Index Base subject to the Calculation Style. Used in market standard ZC Inflation swaps.">
+	SPREAD <"Inflation Index Final - Inflation Index Base). Inflation Index Final is Index for Ref month the Lag months prior to Payment Date (subject to interp). Inflation Index Base subject to the Calculation Style. Typically used for fixing locks.">
+
+enum InflationCalculationStyleEnum: <"Code values for different styles of ways of calculation methods.">
+
+	YEAR_ON_YEAR <"YearOnYear means Inflation Index Base is the inflation index for Reference Month that is 12 months prior to Inflation Index Final (subject to interpolation). Inflation Index Base is cashflow dependent.">
+	ZERO_COUPON <"ZeroCoupon means Inflation Index Base used in the CalculationMethod is the inflation index for the Reference Month that is the lag number of months prior to Effective Date in the case of a swap, or Bond Interest Accrual Date in the case of an Asset Swap (subject to interpolation). Inflation Index Base has the same value for each inflation cashflow and Principal Exchange calculation within the trade.">
+
 enum InterestCalculationMethodEnum: <"Defines whether the agent bank is making an interest payment based on the lender pro-rata share at the end of the period (snapshot) or based on the lender position throughout the period.">
 
 	CONTRACT_POSITION_THRU_PERIOD <"Agent bank is making an interest payment based on the lender\'s contract position throughout the interest payment period.">
@@ -605,6 +638,12 @@ enum InterpolationPeriodEnum: <"Defines applicable periods for interpolation.">
 	INITIAL_AND_FINAL <"Interpolation is applicable to the initial and final periods only.">
 	FINAL <"Interpolation is applicable to the final period only.">
 	ANY_PERIOD <"Interpolation is applicable to any non-standard period.">
+
+enum InventoryAccountingMethodEnum:
+
+	FIFO
+	LIFO
+	WEIGHTED_AVERAGE
 
 enum LcAutoAdjustEnum:
 
@@ -633,6 +672,20 @@ enum LoadTypeEnum:
 	BLOCK_HOURS <"Block Hours">
 	CUSTOM <"Anything that does not fall under the predefined standard categories">
 
+enum LoanAllAssetsEnum: <"A list with a single \'all\' value to explicitly indicate all assets are applicable.">
+
+	ALL <"Trade is part of a syndication.">
+
+enum LoanAllTransactionsEnum: <"A list with a single \'all\' value to explicitly indicate all transactions are applicable.">
+
+	ALL <"Trade is part of a syndication.">
+
+enum LoanCovenantObligationMetricValueTypeEnum:
+
+	MAXIMUM
+	MINIMUM
+	PRECISE
+
 enum LoanTradingAccrualSettlementEnum: <"A list that defines how the interest accrued during the settlement period is calculated and paid.">
 
 	FLAT <"Trades flat.">
@@ -657,7 +710,12 @@ enum LoanTradingDocTypeEnum: <"A list describing the type of documentation used 
 	DISTRESSED <"Distressed loan trade documentation.">
 	PAR <"Par loan trade documentation.">
 
-enum LoanTradingFormOfPurchaseEnum: <"A list describing forms of purchase.">
+enum LoanTradingLetterOfCreditFeeTypeEnum:
+
+	LETTER_OF_CREDIT_FRONTING
+	LETTER_OF_CREDIT_ISSUANCE
+
+enum LoanTradingFormOfPurchaseEnum:
 
 	ASSIGNMENT
 	ASSIGNMENT_ONLY
@@ -670,40 +728,34 @@ enum LoanTradingFormOfPurchaseEnum: <"A list describing forms of purchase.">
 	LMATRANSFER_CERTIFICATE
 	PARTICIPATION
 
-enum LoanTradingNonRecurringFeeTypeEnum: <"A list of accruing fee types associated with a facility.">
+enum LoanTradingNonAccruingFeeTypeEnum:
 
-	AMENDMENT <"Calculated as a percentage of the global commitment amount of a facility.">
-	CONSENT
-	FACILITY <"Calculated as a percentage of the unutilized portion of the facility.">
-	FACILITY_EXENSION <"An on-going (accrual) fee paid to the Issuing Bank for a Letter of Credit. This is separate from the basic Letter of Credit Fee paid to the lender group.">
-	UPFRONT <"Calculated as a percentage of the utilized portion of the facility. This fee type is subject to banding rules – different portions of the utilization amount may be subject to different percentages.">
+	AMENDMENT
+	CONSENT <"A consent fee.">
+	FACILITY
+	FACILITY_EXENSION
+	UPFRONT
 	WAIVER
 
-enum LoanTradingSettlementTaskStatusEnum: <"A list that defines the status of a settlement task.">
+enum LoanTradingTypeEnum:
 
-	ACTIVE <"Loan Market Association (UK).">
-	CLEARED <"The Loan Syndications and Trading Association (US).">
-	CANCELLED
+	PRIMARY
+	SECONDARY
 
-enum LoanTradingTypeEnum: <"A list that specifies whether a trade was executed during the syndication period or in the post-syndication market.">
+enum LoanTradingVotingRightsEnum:
 
-	PRIMARY <"Trade is part of a syndication.">
-	SECONDARY <"Trade was performed in the secondary (non-syndication) market.">
+	PASSED_ON_TO_BUYER
+	RETAINED_BY_SELLER
 
-enum LoanTradingVotingRightsEnum: <"A list that specifies type of voting rights process, i.e. whether voting rights are passed along to buyer or retained by seller.">
+enum LoanTransferFeePaidByEnum:
 
-	PASSED_ON_TO_BUYER <"Voting rights passed to the buyer">
-	RETAINED_BY_SELLER <"Voting rights retained by the seller">
-
-enum LoanTransferFeePaidByEnum: <"A list of standard market rules for the treatment of split of assignment fees between counterparties.">
-
-	BUYER_SPLIT_ONE_HALF <"Buyer is responsible for one half of one allocation\'s assignment fee (regardless of the number of allocations).">
-	ONE_FEE_PAID_BY_BUYER <"Buyer is responsible for one allocation\'s assignment fee (regardless of the number of allocations).">
-	ONE_FEE_PAID_BY_SELLER <"Seller is responsible for one allocation\'s assignment fee (regardless of the number of allocations).">
-	PAID_BY_BUYER <"Fee is paid by buyer.">
-	PAID_BY_SELLER <"Fee is paid by seller.">
-	SELLER_SPLIT_ONE_HALF <"Seller is responsible for one half of one allocation\'s assignment fee (regardless of the number of allocations).">
-	SPLIT_FULL <"Ticket owner is responsible for one allocation\'s assignment fee (regardless of the number of allocations).">
+	BUYER_SPLIT_ONE_HALF
+	ONE_FEE_PAID_BY_BUYER
+	ONE_FEE_PAID_BY_SELLER
+	PAID_BY_BUYER
+	PAID_BY_SELLER
+	SELLER_SPLIT_ONE_HALF
+	SPLIT_FULL
 
 enum MarginTypeEnum: <"This indicator defines which type of assets (cash or securities) is specified to apply as margin to the repo transaction.">
 
@@ -736,6 +788,7 @@ enum NegativeInterestRateTreatmentEnum: <"The method of calculating payment obli
 
 	NEGATIVE_INTEREST_RATE_METHOD
 	ZERO_INTEREST_RATE_METHOD
+	ZERO_INTEREST_RATE_METHOD_EXCLUDING_SPREAD
 
 enum NonCashDividendTreatmentEnum:
 
@@ -762,6 +815,12 @@ enum ObligationCategoryEnum:
 	LOAN
 	BOND_OR_LOAN
 
+enum ObservationPeriodDatesEnum: <"The specification of whether calculated rates are set relative to the beginning or end of a calculation period, or another date.">
+
+	SET_IN_ADVANCE
+	STANDARD
+	FIXING_DATE
+
 enum OptionTypeEnum:
 
 	PUT
@@ -769,6 +828,11 @@ enum OptionTypeEnum:
 	PAYER
 	RECEIVER
 	STRADDLE
+
+enum PartyDeterminationEnum:
+
+	NON_EXERCISING_PARTY
+	BOTH
 
 enum PayerReceiverEnum:
 
@@ -838,6 +902,16 @@ enum PutCallEnum:
 	PUT
 	CALL
 
+enum ReportingFrequencyTypeEnum: <"Defines the frequency by which reporting recurs.">
+
+	ANNUALLY
+	BIWEEKLY
+	DAILY
+	MONTHLY
+	QUARTERLY
+	SEMIANNUALLY
+	WEEKLY
+
 enum QuotationRateTypeEnum:
 
 	BID
@@ -873,10 +947,11 @@ enum RealisedVarianceMethodEnum:
 	LAST
 	BOTH
 
-enum RepoDurationEnum: <"A duration code for a Repo (or Securities Lending) transaction. There are many business and market rules that are derived from the duration of the transaction.">
+enum RepoDurationEnum: <"A duration code for a Repo or Securities Lending transaction. There are many business and market rules that are derived from the duration of the transaction.">
 
+	OPEN
+	TERM
 	OVERNIGHT <"Indicates that a contract is classified as overnight, meaning that there is one business day difference between the start and end date of the contract. Business rule: When the repo is overnight, the number of business days between the spot and forward value dates must be one. Forward leg must be specified.">
-	TERM <"Indicates that a contract is a regular term contract, with a start date and an end date. Business rule: When the repo is \'Term\', both spot and forward legs must be specified.">
 
 enum ResetRelativeToEnum: <"The specification of whether resets occur relative to the first or last day of a calculation period.">
 
@@ -944,6 +1019,18 @@ enum RoundingDirectionEnum: <"The method of rounding a fractional number.">
 	DOWN
 	NEAREST
 
+enum SecLendCallingPartyEnum: <"Party in a security lending arrangement who can demand closure (temrination) of the agreement">
+
+	BORROWER
+	LENDER
+	EITHER
+	AS_DEFINED_IN_MASTER_AGREEMENT
+
+enum SecurityLendingDurationEnum: <"The duration of Security Lending transaction can be only Term or Open. There are many business and market rules that are derived from the duration of the transaction.">
+
+	OPEN <"Indicates that the contract is an open arrangement, which remains in effect unless or until terminated at the option of one or both parties. Repo business rule: When the repo is \'Open\', the forward leg MUST NOT be specified. SBL business rule: When a security lending arrangement is \'Open\', the termination block (\'termination/settlementDate\') MUST NOT be specified.">
+	TERM <"Indicates that a contract is a regular term contract, with a start date and an end date. Repo business rule: When the repo is \'Term\', both spot and forward legs MUST be specified. SBL business rule: When a security lending arrangement is \'Term\', both the initiation block (\'initiation/settlementDate\') and the termination block (\'termination/settlementDate\') MUST be specified.">
+
 enum SettlementPeriodDurationEnum: <"Defines the Settlement Period Duration for an Electricity Transaction.">
 
 	_2_HOURS <"Two-hourly duration applies.">
@@ -993,6 +1080,11 @@ enum SpecifiedPriceEnum:
 	WEIGHTED_AVERAGE <"The Specified Price shall be the Volume Weighted Average of prices effective on the Pricing Date reported in or by the relevant Price Source as specified in the relevant Confirmation.">
 	UN_WEIGHTED_AVERAGE <"The Specified Price shall be the Non-volume Weighted Average of prices effective on the Pricing Date reported in or by the relevant Price Source as specified in the relevant Confirmation.">
 
+enum SpreadCalculationMethodEnum: <"Specifies the method by which asset swap spread is calculated, par-par or proceeds.">
+
+	PAR_PAR
+	PROCEEDS
+
 enum StandardSettlementStyleEnum:
 
 	STANDARD
@@ -1015,6 +1107,12 @@ enum StrikeQuoteBasisEnum:
 
 	PUT_CURRENCY_PER_CALL_CURRENCY
 	CALL_CURRENCY_PER_PUT_CURRENCY
+
+enum TaskStatusEnum: <"A list that defines the status of a task.">
+
+	ACTIVE
+	CLEARED
+	CANCELLED
 
 enum TelephoneTypeEnum:
 
@@ -1069,10 +1167,12 @@ enum ValuationMethodEnum:
 	AVERAGE_BLENDED_MARKET
 	AVERAGE_BLENDED_HIGHEST
 
-enum ValuationTypeEnum:
+enum VoteDecisionEnum:
 
-	MODEL
-	MARKET
+	ABSTAIN
+	AGAINST
+	FOR
+	PENDING
 
 enum WeatherSettlementLevelEnum:
 
@@ -1091,3 +1191,8 @@ enum WeeklyRollConventionEnum: <"The specification of a weekly roll day.">
 	SAT
 	SUN
 	TBILL
+
+enum CashOrPhysicalSettlementEnum:
+
+	CASH
+	PHYSICAL

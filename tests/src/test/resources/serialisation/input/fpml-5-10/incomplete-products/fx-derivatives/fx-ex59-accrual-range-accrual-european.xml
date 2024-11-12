@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataDocument fpmlVersion="5-10" xmlns="http://www.fpml.org/FpML-5/confirmation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/FpML-5/confirmation ../../../../schemas/fpml-5-13/confirmation/schemas/fpml-5-13/confirmation/fpml-main-5-13.xsd">
+  <trade>
+    <tradeHeader>
+      <partyTradeIdentifier>
+        <tradeId tradeIdScheme="#partyA">12345</tradeId>
+        <tradeId tradeIdScheme="#partyA">12345</tradeId>
+        <partyReference href="partyA"/>
+      </partyTradeIdentifier>
+      <tradeDate>2012-12-08</tradeDate>
+    </tradeHeader>
+    <fxRangeAccrual>
+      <productType productTypeScheme="http://www.fpml.org/coding-scheme/product-type-simple">FxRangeAccrual</productType>
+      <payerPartyReference href="partyB"/>
+      <receiverPartyReference href="partyA"/>
+      <notionalAmount>
+        <initialValue>420000.00</initialValue>
+        <currency>EUR</currency>
+      </notionalAmount>
+      <accrual>
+        <observable id="ob1">
+          <quotedCurrencyPair>
+            <currency1>EUR</currency1>
+            <currency2>USD</currency2>
+            <quoteBasis>Currency2PerCurrency1</quoteBasis>
+          </quotedCurrencyPair>
+          <informationSource>
+            <rateSource>Reuters</rateSource>
+            <rateSourcePage>ECB37</rateSourcePage>
+            <fixingTime>
+              <hourMinuteTime>14:15:00Z</hourMinuteTime>
+              <businessCenter>EUTA</businessCenter>
+            </fixingTime>
+          </informationSource>
+        </observable>
+        <accrualRegion>
+          <observableReference href="ob1"/>
+          <upperBound>
+            <condition>AtOrBelow</condition>
+            <level>
+              <initialValue>1.35</initialValue>
+            </level>
+          </upperBound>
+          <lowerBound>
+            <condition>AtOrAbove</condition>
+            <level>
+              <initialValue>1.30</initialValue>
+            </level>
+          </lowerBound>
+        </accrualRegion>
+        <fixingSchedule>
+          <startDate>2012-12-08</startDate>
+          <endDate>2013-01-07</endDate>
+          <dayType>Business</dayType>
+          <businessCenters>
+            <businessCenter>EUTA</businessCenter>
+          </businessCenters>
+          <numberOfFixings>21</numberOfFixings>
+        </fixingSchedule>
+      </accrual>
+      <expiryDate>
+        <adjustedDate>2013-01-07</adjustedDate>
+        <expiryTime>
+          <hourMinuteTime>10:00:00Z</hourMinuteTime>
+          <businessCenter>USNY</businessCenter>
+        </expiryTime>
+      </expiryDate>
+      <settlementDate>
+        <dateAdjustments>
+          <businessDayConvention>FOLLOWING</businessDayConvention>
+          <businessCenters>
+            <businessCenter>EUTA</businessCenter>
+          </businessCenters>
+        </dateAdjustments>
+        <adjustedDate>2013-01-09</adjustedDate>
+      </settlementDate>
+      <premium>
+        <payerPartyReference href="partyB"/>
+        <receiverPartyReference href="partyA"/>
+        <paymentDate>
+          <adjustableDate>
+            <unadjustedDate>2012-12-10</unadjustedDate>
+            <dateAdjustments>
+              <businessDayConvention>NONE</businessDayConvention>
+            </dateAdjustments>
+          </adjustableDate>
+        </paymentDate>
+        <paymentAmount>
+          <currency>EUR</currency>
+          <amount>50000.00</amount>
+        </paymentAmount>
+      </premium>
+    </fxRangeAccrual>
+    <calculationAgent>
+      <calculationAgentPartyReference href="partyA"/>
+    </calculationAgent>
+  </trade>
+  <party id="partyA">
+    <partyId partyIdScheme="http://www.fpml.org/coding-scheme/external/iso17442">549300SRLRVTR996F086</partyId>
+  </party>
+  <party id="partyB">
+    <partyId partyIdScheme="http://www.fpml.org/coding-scheme/external/iso17442">549300RE0FSXJE8G1L65</partyId>
+  </party>
+</dataDocument>
