@@ -1,16 +1,22 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<dataDocument fpmlVersion="5-10" xmlns="http://www.fpml.org/FpML-5/confirmation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/FpML-5/confirmation ../../../../schemas/fpml-5-13/confirmation/schemas/fpml-5-13/confirmation/fpml-main-5-13.xsd">
+<?xml version="1.0" encoding="utf-8"?>
+<!--View is confirmation-->
+<!--Version is 5-10-->
+<!--NS is http://www.fpml.org/FpML-5/confirmation-->
+<!--
+        == Copyright (c) 2014-2018 All rights reserved.
+        == Financial Products Markup Language is subject to the FpML public license.
+        == A copy of this license is available at http://www.fpml.org/license/license.html
+-->
+<dataDocument xmlns="http://www.fpml.org/FpML-5/confirmation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" fpmlVersion="5-10" xsi:schemaLocation="http://www.fpml.org/FpML-5/confirmation /schemas/fpml-5-10/confirmation/fpml-main-5-10.xsd http://www.w3.org/2000/09/xmldsig# ../../xmldsig-core-schema.xsd">
   <trade>
     <tradeHeader>
       <partyTradeIdentifier>
+        <partyReference href="partyA" />
         <tradeId tradeIdScheme="http://www.techco.com/com-trade-id">TechCo1234</tradeId>
-        <tradeId tradeIdScheme="http://www.techco.com/com-trade-id">TechCo1234</tradeId>
-        <partyReference href="partyA"/>
       </partyTradeIdentifier>
       <partyTradeIdentifier>
+        <partyReference href="partyB" />
         <tradeId tradeIdScheme="http://www.banka.com/com-trade-id">BankA5678</tradeId>
-        <tradeId tradeIdScheme="http://www.banka.com/com-trade-id">BankA5678</tradeId>
-        <partyReference href="partyB"/>
       </partyTradeIdentifier>
       <tradeDate>2012-03-16</tradeDate>
     </tradeHeader>
@@ -24,8 +30,8 @@
         </adjustableDate>
       </valueDate>
       <averagePriceLeg>
-        <payerPartyReference href="partyB"/>
-        <receiverPartyReference href="partyA"/>
+        <payerPartyReference href="partyB" />
+        <receiverPartyReference href="partyA" />
         <calculationPeriodsSchedule id="calculationPeriodSchedule">
           <periodMultiplier>1</periodMultiplier>
           <period>M</period>
@@ -35,7 +41,8 @@
           <instrumentId instrumentIdScheme="http://www.techco.com/coding-scheme/commodity-reference-price-2-0">GOLD-A.M. FIX</instrumentId>
           <specifiedPrice>Settlement</specifiedPrice>
         </commodity>
-        <quantityReference href="deliveryQuantity"/>
+        <quantityReference href="deliveryQuantity" />
+<!--Added support of averagePriceLeg/pricingStartDate -->
         <pricingStartDate>
           <unadjustedDate>2012-09-01</unadjustedDate>
           <dateAdjustments>
@@ -44,7 +51,7 @@
         </pricingStartDate>
         <calculation>
           <pricingDates>
-            <calculationPeriodsScheduleReference href="calculationPeriodSchedule"/>
+            <calculationPeriodsScheduleReference href="calculationPeriodSchedule" />
             <dayType>CommodityBusiness</dayType>
             <dayDistribution>All</dayDistribution>
             <businessCalendar>LONDON-BULLION-MARKET</businessCalendar>
@@ -57,10 +64,30 @@
             <periodMultiplier>0</periodMultiplier>
             <period>D</period>
             <businessDayConvention>NotApplicable</businessDayConvention>
-            <dateRelativeTo href="valueDate"/>
+            <dateRelativeTo href="valueDate" />
           </relativeDate>
         </paymentDates>
       </averagePriceLeg>
+      <bullionPhysicalLeg id="bullionLeg">
+        <payerPartyReference href="partyB" />
+        <receiverPartyReference href="partyA" />
+        <bullionType>Platinum</bullionType>
+<!-- Attention: Updated the coding scheme location -->
+        <deliveryLocation bullionDeliveryLocationScheme="http://www.fpml.org/coding-scheme/external/tzdatabase">Europe/Zurich</deliveryLocation>
+        <physicalQuantity id="deliveryQuantity">
+          <quantityUnit>ozt</quantityUnit>
+          <quantityFrequency>Term</quantityFrequency>
+          <quantity>1000.0</quantity>
+        </physicalQuantity>
+        <settlementDate>
+          <relativeDate>
+            <periodMultiplier>0</periodMultiplier>
+            <period>D</period>
+            <businessDayConvention>NotApplicable</businessDayConvention>
+            <dateRelativeTo href="valueDate" />
+          </relativeDate>
+        </settlementDate>
+      </bullionPhysicalLeg>
       <settlementDisruption>Negotiation</settlementDisruption>
     </commodityForward>
     <documentation>
@@ -80,3 +107,4 @@
     <partyName>Bank B</partyName>
   </party>
 </dataDocument>
+

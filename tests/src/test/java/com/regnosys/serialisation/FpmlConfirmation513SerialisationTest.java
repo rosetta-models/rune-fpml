@@ -16,7 +16,7 @@ import static com.regnosys.TestUtil.*;
 public class FpmlConfirmation513SerialisationTest {
 
     private static final String XSD_SCHEMA_NAME = "schemas/fpml-5-13/confirmation/fpml-main-5-13.xsd";
-    private static final String EXPECTED_SCHEMA_LOCATION = "http://www.fpml.org/FpML-5/confirmation ../../../../schemas/fpml-5-13/confirmation/" + XSD_SCHEMA_NAME;
+    private static final String EXPECTED_SCHEMA_LOCATION = "http://www.fpml.org/FpML-5/confirmation /schemas/fpml-5-13/confirmation/" + XSD_SCHEMA_NAME;
 
     private static SerialisationTestUtil<DataDocument> serialisationTestUtil;
 

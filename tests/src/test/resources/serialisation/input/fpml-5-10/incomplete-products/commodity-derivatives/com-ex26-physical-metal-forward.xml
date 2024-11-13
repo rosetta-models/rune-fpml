@@ -1,32 +1,38 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<dataDocument fpmlVersion="5-10" xmlns="http://www.fpml.org/FpML-5/confirmation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/FpML-5/confirmation ../../../../schemas/fpml-5-13/confirmation/schemas/fpml-5-13/confirmation/fpml-main-5-13.xsd">
+<?xml version="1.0" encoding="utf-8"?>
+<!--View is confirmation-->
+<!--Version is 5-10-->
+<!--NS is http://www.fpml.org/FpML-5/confirmation-->
+<!--
+        == Copyright (c) 2014-2018 All rights reserved.
+        == Financial Products Markup Language is subject to the FpML public license.
+        == A copy of this license is available at http://www.fpml.org/license/license.html
+-->
+<dataDocument xmlns="http://www.fpml.org/FpML-5/confirmation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" fpmlVersion="5-10" xsi:schemaLocation="http://www.fpml.org/FpML-5/confirmation /schemas/fpml-5-10/confirmation/fpml-main-5-10.xsd http://www.w3.org/2000/09/xmldsig# ../../xmldsig-core-schema.xsd">
   <trade>
     <tradeHeader>
       <partyTradeIdentifier>
+        <partyReference href="partyA" />
         <tradeId tradeIdScheme="http://www.BankA.com/com-trade-id">1234</tradeId>
-        <tradeId tradeIdScheme="http://www.BankA.com/com-trade-id">1234</tradeId>
-        <partyReference href="partyA"/>
       </partyTradeIdentifier>
       <partyTradeIdentifier>
+        <partyReference href="partyB" />
         <tradeId tradeIdScheme="http://www.BankB.com/com-trade-id">2345</tradeId>
-        <tradeId tradeIdScheme="http://www.BankB.com/com-trade-id">2345</tradeId>
-        <partyReference href="partyB"/>
       </partyTradeIdentifier>
       <tradeDate id="TradeDate">2013-03-05</tradeDate>
     </tradeHeader>
     <commodityForward>
       <fixedLeg>
-        <payerPartyReference href="partyA"/>
-        <receiverPartyReference href="partyB"/>
+        <payerPartyReference href="partyA" />
+        <receiverPartyReference href="partyB" />
         <fixedPrice>
           <price>1.2226</price>
           <priceCurrency>USD</priceCurrency>
           <priceUnit>LB</priceUnit>
         </fixedPrice>
-        <quantityReference href="deliveryQuantity"/>
+        <quantityReference href="deliveryQuantity" />
         <relativePaymentDates>
           <payRelativeToEvent>BillOfLading</payRelativeToEvent>
-          <calculationPeriodsDatesReference href="deliveryPeriods"/>
+          <calculationPeriodsDatesReference href="deliveryPeriods" />
           <paymentDaysOffset>
             <periodMultiplier>5</periodMultiplier>
             <period>D</period>
@@ -34,6 +40,47 @@
           </paymentDaysOffset>
         </relativePaymentDates>
       </fixedLeg>
+      <metalPhysicalLeg>
+        <payerPartyReference href="partyB" />
+        <receiverPartyReference href="partyA" />
+        <metal>
+          <material>Aluminum-Primary</material>
+          <shape>Ingots</shape>
+          <shape>Sows</shape>
+          <shape>T-bars</shape>
+          <brand>
+            <name>Any-LME-registered</name>
+          </brand>
+          <grade>P1020</grade>
+        </metal>
+        <deliveryPeriods id="deliveryPeriods">
+          <periods>
+            <unadjustedDate>2013-05-01</unadjustedDate>
+            <unadjustedDate>2013-06-01</unadjustedDate>
+            <unadjustedDate>2013-07-01</unadjustedDate>
+            <unadjustedDate>2013-08-01</unadjustedDate>
+            <dateAdjustments>
+              <businessDayConvention>NotApplicable</businessDayConvention>
+              <businessCenters>
+                <businessCenter>CHZU</businessCenter>
+              </businessCenters>
+            </dateAdjustments>
+          </periods>
+        </deliveryPeriods>
+        <deliveryConditions>
+          <deliveryLocation>Illinois, USA</deliveryLocation>
+          <risk>CPT</risk>
+          <totalQuantityTolerance>0.500</totalQuantityTolerance>
+          <periodQuantityTolerance>0.500</periodQuantityTolerance>
+          <title>TransfersWithRiskOfLoss</title>
+        </deliveryConditions>
+        <physicalQuantity id="deliveryQuantity">
+          <quantityUnit>MT</quantityUnit>
+          <quantityFrequency>PerSettlementPeriod</quantityFrequency>
+          <quantity>2.5</quantity>
+        </physicalQuantity>
+        <conversionFactor>2204.62</conversionFactor>
+      </metalPhysicalLeg>
     </commodityForward>
     <documentation>
       <masterAgreement>
@@ -52,3 +99,4 @@
     <partyName>Bank B</partyName>
   </party>
 </dataDocument>
+

@@ -30,7 +30,7 @@ public class TestUtil {
     public static final String XML_CONFIG_NAME = "xml-config/confirmation-v5_13-rosetta-xml-config.json";
 
     public static final String INPUT_ROOT_PATH = "serialisation/input";
-    public static final String EXPECTED_INPUT_ROOT_PATH = "serialisation/input";
+    public static final String EXPECTED_INPUT_ROOT_PATH = "serialisation/output";
 
     public static Set<String> EXCLUDED_FILES = Set.of(
             "com-ex09-oil-put-option-american.xml",

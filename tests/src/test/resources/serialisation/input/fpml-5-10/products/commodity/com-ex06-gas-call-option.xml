@@ -1,27 +1,35 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<dataDocument fpmlVersion="5-10" xmlns="http://www.fpml.org/FpML-5/confirmation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/FpML-5/confirmation ../../../../schemas/fpml-5-13/confirmation/schemas/fpml-5-13/confirmation/fpml-main-5-13.xsd">
+<?xml version="1.0" encoding="utf-8"?>
+<!--View is confirmation-->
+<!--Version is 5-10-->
+<!--NS is http://www.fpml.org/FpML-5/confirmation-->
+<!--
+   == Copyright (c) 2014-2018 All rights reserved.
+   == Financial Products Markup Language is subject to the FpML public license.
+   == A copy of this license is available at http://www.fpml.org/license/license.html
+-->
+<dataDocument xmlns="http://www.fpml.org/FpML-5/confirmation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" fpmlVersion="5-10" xsi:schemaLocation="http://www.fpml.org/FpML-5/confirmation /schemas/fpml-5-10/confirmation/fpml-main-5-10.xsd http://www.w3.org/2000/09/xmldsig# ../../xmldsig-core-schema.xsd">
   <trade>
     <tradeHeader>
       <partyTradeIdentifier>
+        <partyReference href="partyA" />
         <tradeId tradeIdScheme="http://www.swapswire.com/spec/2001/trade-id-1-0">1234</tradeId>
-        <tradeId tradeIdScheme="http://www.swapswire.com/spec/2001/trade-id-1-0">1234</tradeId>
-        <partyReference href="partyA"/>
       </partyTradeIdentifier>
       <partyTradeIdentifier>
+        <partyReference href="partyB" />
         <tradeId tradeIdScheme="http://www.swapswire.com/spec/2001/trade-id-1-0">2345</tradeId>
-        <tradeId tradeIdScheme="http://www.swapswire.com/spec/2001/trade-id-1-0">2345</tradeId>
-        <partyReference href="partyB"/>
       </partyTradeIdentifier>
       <tradeDate>2004-05-17</tradeDate>
     </tradeHeader>
     <commodityOption>
-      <buyerPartyReference href="partyA"/>
-      <sellerPartyReference href="partyB"/>
+      <buyerPartyReference href="partyA" />
+      <sellerPartyReference href="partyB" />
       <optionType>Call</optionType>
       <commodity>
         <instrumentId instrumentIdScheme="http://www.partyA.com/instrumentId/commodity-reference-price">NATURAL GAS-HENRY HUB-NYMEX</instrumentId>
         <specifiedPrice>Settlement</specifiedPrice>
         <deliveryDates>FirstNearby</deliveryDates>
+<!-- Attention: There should be a delivery date roll convention specified -->
+<!-- PCS:  I disagree.  I believe there is contractual default of last day fo the contract and one is not specified in the confirmation-->
       </commodity>
       <effectiveDate>
         <adjustableDate>
@@ -37,7 +45,7 @@
         <balanceOfFirstPeriod>false</balanceOfFirstPeriod>
       </calculationPeriodsSchedule>
       <pricingDates>
-        <calculationPeriodsReference href="CalculationPeriods"/>
+        <calculationPeriodsReference href="CalculationPeriods" />
         <dayType>ScheduledTradingDay</dayType>
         <dayDistribution>Penultimate</dayDistribution>
         <businessCalendar>NYMEX-NATURAL-GAS</businessCalendar>
@@ -64,7 +72,7 @@
         <settlementCurrency>USD</settlementCurrency>
         <relativePaymentDates>
           <payRelativeTo>CalculationPeriodEndDate</payRelativeTo>
-          <calculationPeriodsScheduleReference href="CalculationPeriods"/>
+          <calculationPeriodsScheduleReference href="CalculationPeriods" />
           <paymentDaysOffset>
             <periodMultiplier>5</periodMultiplier>
             <period>D</period>
@@ -77,42 +85,9 @@
         <currency>USD</currency>
         <amount>2.7</amount>
       </strikePricePerUnit>
-      <effectiveDate>
-        <adjustableDate>
-          <unadjustedDate>2004-07-01</unadjustedDate>
-          <dateAdjustments>
-            <businessDayConvention>NotApplicable</businessDayConvention>
-          </dateAdjustments>
-        </adjustableDate>
-      </effectiveDate>
-      <exercise>
-        <europeanExercise>
-          <expirationDate>
-            <adjustableDate>
-              <unadjustedDate>2004-07-31</unadjustedDate>
-              <dateAdjustments>
-                <businessDayConvention>NotApplicable</businessDayConvention>
-              </dateAdjustments>
-            </adjustableDate>
-          </expirationDate>
-        </europeanExercise>
-        <automaticExercise>true</automaticExercise>
-        <writtenConfirmation>false</writtenConfirmation>
-        <settlementCurrency>USD</settlementCurrency>
-        <relativePaymentDates>
-          <payRelativeTo>CalculationPeriodEndDate</payRelativeTo>
-          <calculationPeriodsScheduleReference href="CalculationPeriods"/>
-          <paymentDaysOffset>
-            <periodMultiplier>5</periodMultiplier>
-            <period>D</period>
-            <dayType>Business</dayType>
-            <businessDayConvention>NONE</businessDayConvention>
-          </paymentDaysOffset>
-        </relativePaymentDates>
-      </exercise>
       <premium>
-        <payerPartyReference href="partyA"/>
-        <receiverPartyReference href="partyB"/>
+        <payerPartyReference href="partyA" />
+        <receiverPartyReference href="partyB" />
         <paymentDate>
           <adjustableDate>
             <unadjustedDate>2004-05-19</unadjustedDate>
@@ -151,3 +126,4 @@
     <partyName>Energy Co.</partyName>
   </party>
 </dataDocument>
+

@@ -1,20 +1,19 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<dataDocument fpmlVersion="5-10" xmlns="http://www.fpml.org/FpML-5/confirmation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/FpML-5/confirmation ../../../../schemas/fpml-5-13/confirmation/schemas/fpml-5-13/confirmation/fpml-main-5-13.xsd">
+<?xml version="1.0" encoding="utf-8"?>
+<dataDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.fpml.org/FpML-5/confirmation ../../../schemas/fpml-5-10/confirmation/fpml-main-5-10.xsd"
+  xmlns="http://www.fpml.org/FpML-5/confirmation" fpmlVersion="5-10">
   <trade>
     <tradeHeader>
       <partyTradeIdentifier>
+        <partyReference href="party2"/>
         <versionedTradeId>
-          <tradeId tradeIdScheme="http://www.barclaysglobal.com/partners/schema/v1-1/schemes/tradeID" id="tid1">DJITRAXXUSDMS5Y</tradeId>
+          <tradeId id="tid1" tradeIdScheme="http://www.barclaysglobal.com/partners/schema/v1-1/schemes/tradeID">DJITRAXXUSDMS5Y</tradeId>
           <version>1</version>
         </versionedTradeId>
-        <partyReference href="party2"/>
       </partyTradeIdentifier>
       <tradeDate>2004-01-24</tradeDate>
     </tradeHeader>
     <creditDefaultSwap>
-      <cashSettlementTerms id="settlementTermsTwo">
-        <settlementCurrency>EUR</settlementCurrency>
-      </cashSettlementTerms>
       <generalTerms>
         <effectiveDate>
           <unadjustedDate>2004-03-23</unadjustedDate>
@@ -56,6 +55,8 @@
             </referencePoolItem>
             <referencePoolItem>
               <constituentWeight>
+                <!-- Violates FpML_cd_44 as referencePoolItem instances have distinct child elements 
+                openUnits here -->
                 <openUnits>20</openUnits>
               </constituentWeight>
               <referencePair>
@@ -75,6 +76,7 @@
               <settlementTermsReference href="settlementTermsOne"/>
             </referencePoolItem>
             <referencePoolItem>
+              <!-- basketPercentage here -->
               <constituentWeight>
                 <basketPercentage>0.30</basketPercentage>
               </constituentWeight>
@@ -183,6 +185,12 @@
           <category>BondOrLoan</category>
         </obligations>
       </protectionTerms>
+      <cashSettlementTerms id="settlementTermsOne">
+        <settlementCurrency>USD</settlementCurrency>
+      </cashSettlementTerms>
+      <cashSettlementTerms id="settlementTermsTwo">
+        <settlementCurrency>EUR</settlementCurrency>
+      </cashSettlementTerms>
     </creditDefaultSwap>
     <documentation>
       <contractualDefinitions>ISDA2003Credit</contractualDefinitions>

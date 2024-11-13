@@ -1,15 +1,21 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<dataDocument fpmlVersion="5-10" xmlns="http://www.fpml.org/FpML-5/confirmation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/FpML-5/confirmation ../../../../schemas/fpml-5-13/confirmation/schemas/fpml-5-13/confirmation/fpml-main-5-13.xsd">
+<?xml version="1.0" encoding="utf-8"?>
+<dataDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.fpml.org/FpML-5/confirmation ../../../../schemas/fpml-5-10/confirmation/fpml-main-5-10.xsd"
+  xmlns="http://www.fpml.org/FpML-5/confirmation" fpmlVersion="5-10">
   <trade>
     <tradeHeader>
+      <!-- In the below example, the contract has both a CFTC USI and a UTI.
+        The USI issuer is identified through its NSA identifier (with the 103 prefix as the CFTC
+        identifier), while the UTI issuer is identifier through its LEI identifier.
+        One limitation is that version# cannot be associated with this construct. As a result this
+        sample fails the CDM data rule that requires a contract version.
+         -->
       <partyTradeIdentifier>
         <issuer issuerIdScheme="http://www.fpml.org/coding-scheme/external/iso17442">54930084UKLVMY22DS16</issuer>
-        <tradeId tradeIdScheme="http://www.fpml.org/coding-scheme/external/uti">DRTY123456</tradeId>
         <tradeId tradeIdScheme="http://www.fpml.org/coding-scheme/external/uti">DRTY123456</tradeId>
       </partyTradeIdentifier>
       <partyTradeIdentifier>
         <issuer issuerIdScheme="http://www.fpml.org/coding-scheme/external/nsa/cftc">1031234567</issuer>
-        <tradeId tradeIdScheme="http://www.fpml.org/coding-scheme/external/usi">UITD7895394</tradeId>
         <tradeId tradeIdScheme="http://www.fpml.org/coding-scheme/external/usi">UITD7895394</tradeId>
       </partyTradeIdentifier>
       <tradeDate id="tradeDate">2018-03-19</tradeDate>
@@ -54,6 +60,8 @@
               <businessCenter>EUTA</businessCenter>
             </businessCenters>
           </calculationPeriodDatesAdjustments>
+          <!-- The example provided included a firstPeriodStartDate = effectiveDate.  This element
+            has been removed because not valid. -->
           <calculationPeriodFrequency>
             <periodMultiplier>3</periodMultiplier>
             <period>M</period>
@@ -124,7 +132,7 @@
                   <rateSourcePageHeading>USD/EUR</rateSourcePageHeading>
                 </primaryRateSource>
                 <fixingTime>
-                  <hourMinuteTime>11:00:00Z</hourMinuteTime>
+                  <hourMinuteTime>11:00:00</hourMinuteTime>
                   <businessCenter>GBLO</businessCenter>
                 </fixingTime>
               </fxSpotRateSource>
@@ -139,6 +147,17 @@
                 <dateRelativeTo href="tradeDate"/>
               </varyingNotionalInterimExchangePaymentDates>
             </fxLinkedNotionalSchedule>
+            <floatingRateCalculation>
+              <floatingRateIndex floatingRateIndexScheme="http://www.fpml.org/coding-scheme/floating-rate-index">USD-LIBOR-BBA</floatingRateIndex>
+              <indexTenor>
+                <periodMultiplier>3</periodMultiplier>
+                <period>M</period>
+              </indexTenor>
+              <spreadSchedule>
+                <initialValue>0.0</initialValue>
+              </spreadSchedule>
+            </floatingRateCalculation>
+            <!-- The CDF was missing from the provided example and has been added. -->
             <dayCountFraction>ACT/360</dayCountFraction>
             <compoundingMethod>None</compoundingMethod>
           </calculation>
@@ -190,6 +209,8 @@
               <businessCenter>EUTA</businessCenter>
             </businessCenters>
           </calculationPeriodDatesAdjustments>
+          <!-- The example provided included a firstPeriodStartDate = effectiveDate.  This element
+            has been removed because not valid. -->
           <calculationPeriodFrequency>
             <periodMultiplier>3</periodMultiplier>
             <period>M</period>
@@ -245,6 +266,17 @@
                 <currency>EUR</currency>
               </notionalStepSchedule>
             </notionalSchedule>
+            <floatingRateCalculation>
+              <floatingRateIndex floatingRateIndexScheme="http://www.fpml.org/coding-scheme/floating-rate-index">EUR-EURIBOR-Telerate</floatingRateIndex>
+              <indexTenor>
+                <periodMultiplier>3</periodMultiplier>
+                <period>M</period>
+              </indexTenor>
+              <spreadSchedule>
+                <initialValue>-0.0045</initialValue>
+              </spreadSchedule>
+            </floatingRateCalculation>
+            <!-- The CDF was missing from the provided example and has been added. -->
             <dayCountFraction>ACT/360</dayCountFraction>
             <compoundingMethod>None</compoundingMethod>
           </calculation>

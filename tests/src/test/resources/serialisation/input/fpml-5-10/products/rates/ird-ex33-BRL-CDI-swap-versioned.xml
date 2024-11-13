@@ -1,20 +1,27 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<dataDocument fpmlVersion="5-10" xmlns="http://www.fpml.org/FpML-5/confirmation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/FpML-5/confirmation ../../../../schemas/fpml-5-13/confirmation/schemas/fpml-5-13/confirmation/fpml-main-5-13.xsd">
+<?xml version="1.0" encoding="utf-8"?>
+<dataDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.fpml.org/FpML-5/confirmation ../../../../schemas/fpml-5-10/confirmation/fpml-main-5-10.xsd"
+  xmlns="http://www.fpml.org/FpML-5/confirmation" fpmlVersion="5-10">
   <trade>
     <tradeHeader>
       <partyTradeIdentifier>
+        <partyReference href="partyA" />
         <versionedTradeId>
           <tradeId tradeIdScheme="http://www.partyA.com/swaps/trade-id">987654321-0</tradeId>
           <version>1</version>
         </versionedTradeId>
-        <partyReference href="partyA"/>
       </partyTradeIdentifier>
       <tradeDate>2012-06-29</tradeDate>
     </tradeHeader>
+    <!-- Two adjustments have been made to this FpML sample document for the purpose of validating
+      CDM data rules:
+      1- Removed the compoundingMethod element
+      2- Added the adjusted date to the termination date, for the purpose of matching the future
+     value notional date-->
     <swap>
       <swapStream id="fixedLeg">
-        <payerPartyReference href="partyA"/>
-        <receiverPartyReference href="partyB"/>
+        <payerPartyReference href="partyA" />
+        <receiverPartyReference href="partyB" />
         <calculationPeriodDates id="fixedLegCalcPeriodDates">
           <effectiveDate>
             <unadjustedDate>2012-09-26</unadjustedDate>
@@ -42,7 +49,7 @@
           </calculationPeriodFrequency>
         </calculationPeriodDates>
         <paymentDates>
-          <valuationDatesReference href="fixedLegFxFixingDates"/>
+          <valuationDatesReference href="fixedLegFxFixingDates" />
           <paymentFrequency>
             <periodMultiplier>1</periodMultiplier>
             <period>T</period>
@@ -94,7 +101,7 @@
                 <businessCenter>USNY</businessCenter>
               </businessCenters>
               <dateRelativeToCalculationPeriodDates>
-                <calculationPeriodDatesReference href="fixedLegTerminationDate"/>
+                <calculationPeriodDatesReference href="fixedLegTerminationDate" />
               </dateRelativeToCalculationPeriodDates>
             </fxFixingDate>
             <settlementRateOption>BRL.PTAX/BRL09</settlementRateOption>
@@ -102,8 +109,8 @@
         </settlementProvision>
       </swapStream>
       <swapStream id="floatingLeg">
-        <payerPartyReference href="partyB"/>
-        <receiverPartyReference href="partyA"/>
+        <payerPartyReference href="partyB" />
+        <receiverPartyReference href="partyA" />
         <calculationPeriodDates id="floatingLegCalcPeriodDates">
           <effectiveDate>
             <unadjustedDate>2012-09-26</unadjustedDate>
@@ -133,7 +140,7 @@
           </calculationPeriodFrequency>
         </calculationPeriodDates>
         <paymentDates>
-          <valuationDatesReference href="floatingLegFxFixingDates"/>
+          <valuationDatesReference href="floatingLegFxFixingDates" />
           <paymentFrequency>
             <periodMultiplier>1</periodMultiplier>
             <period>T</period>
@@ -152,7 +159,7 @@
           </paymentDatesAdjustments>
         </paymentDates>
         <resetDates id="floatingLegResetDates">
-          <calculationPeriodDatesReference href="floatingLegCalcPeriodDates"/>
+          <calculationPeriodDatesReference href="floatingLegCalcPeriodDates" />
           <fixingDates>
             <periodMultiplier>-1</periodMultiplier>
             <period>D</period>
@@ -161,7 +168,7 @@
             <businessCenters>
               <businessCenter>BRBD</businessCenter>
             </businessCenters>
-            <dateRelativeTo href="floatingLegResetDates"/>
+            <dateRelativeTo href="floatingLegResetDates" />
           </fixingDates>
           <resetFrequency>
             <periodMultiplier>1</periodMultiplier>
@@ -182,6 +189,10 @@
                 <currency>BRL</currency>
               </notionalStepSchedule>
             </notionalSchedule>
+            <floatingRateCalculation>
+              <floatingRateIndex>BRL-CDI</floatingRateIndex>
+              <initialRate>0.10432</initialRate>
+            </floatingRateCalculation>
             <dayCountFraction>BUS/252</dayCountFraction>
           </calculation>
         </calculationPeriodAmount>
@@ -199,7 +210,7 @@
                 <businessCenter>USNY</businessCenter>
               </businessCenters>
               <dateRelativeToCalculationPeriodDates>
-                <calculationPeriodDatesReference href="floatingLegTerminationDate"/>
+                <calculationPeriodDatesReference href="floatingLegTerminationDate" />
               </dateRelativeToCalculationPeriodDates>
             </fxFixingDate>
             <settlementRateOption>BRL.PTAX/BRL09</settlementRateOption>
@@ -208,7 +219,7 @@
       </swapStream>
     </swap>
     <calculationAgent>
-      <calculationAgentPartyReference href="partyA"/>
+      <calculationAgentPartyReference href="partyA" />
     </calculationAgent>
     <calculationAgentBusinessCenter>USNY</calculationAgentBusinessCenter>
   </trade>
@@ -221,3 +232,4 @@
     <partyName>Metro Bank Ltd</partyName>
   </party>
 </dataDocument>
+

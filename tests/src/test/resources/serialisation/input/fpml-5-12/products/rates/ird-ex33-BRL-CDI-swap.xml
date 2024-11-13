@@ -1,18 +1,25 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<dataDocument fpmlVersion="5-12" xmlns="http://www.fpml.org/FpML-5/confirmation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/FpML-5/confirmation ../../../../schemas/fpml-5-13/confirmation/schemas/fpml-5-13/confirmation/fpml-main-5-13.xsd">
+<?xml version="1.0" encoding="utf-8"?>
+<!--View is confirmation-->
+<!--Version is 5-12-->
+<!--NS is http://www.fpml.org/FpML-5/confirmation-->
+<!--
+        == Copyright (c) 2021 All rights reserved.
+        == Financial Products Markup Language is subject to the FpML public license.
+        == A copy of this license is available at http://www.fpml.org/license/license.html
+-->
+<dataDocument xmlns="http://www.fpml.org/FpML-5/confirmation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" fpmlVersion="5-12" xsi:schemaLocation="http://www.fpml.org/FpML-5/confirmation ../../../../schemas/fpml-5-12/confirmation/fpml-main-5-12.xsd">
   <trade>
     <tradeHeader>
       <partyTradeIdentifier>
+        <partyReference href="partyA" />
         <tradeId tradeIdScheme="http://www.partyA.com/swaps/trade-id">987654321-0</tradeId>
-        <tradeId tradeIdScheme="http://www.partyA.com/swaps/trade-id">987654321-0</tradeId>
-        <partyReference href="partyA"/>
       </partyTradeIdentifier>
       <tradeDate>2012-06-29</tradeDate>
     </tradeHeader>
     <swap>
       <swapStream id="fixedLeg">
-        <payerPartyReference href="partyA"/>
-        <receiverPartyReference href="partyB"/>
+        <payerPartyReference href="partyA" />
+        <receiverPartyReference href="partyB" />
         <calculationPeriodDates id="fixedLegCalcPeriodDates">
           <effectiveDate>
             <unadjustedDate>2012-09-26</unadjustedDate>
@@ -25,6 +32,7 @@
             <dateAdjustments>
               <businessDayConvention>FOLLOWING</businessDayConvention>
               <businessCenters>
+<!--Replaced business center collection (BRBR, BRRJ, BRSP) with single value BRDB (Brazil Business Days; adopted at business-center-6-7, May 2009)-->
                 <businessCenter>BRBD</businessCenter>
               </businessCenters>
             </dateAdjustments>
@@ -39,7 +47,7 @@
           </calculationPeriodFrequency>
         </calculationPeriodDates>
         <paymentDates>
-          <valuationDatesReference href="fixedLegFxFixingDates"/>
+          <valuationDatesReference href="fixedLegFxFixingDates" />
           <paymentFrequency>
             <periodMultiplier>1</periodMultiplier>
             <period>T</period>
@@ -66,11 +74,15 @@
               </notionalStepSchedule>
             </notionalSchedule>
             <fixedRateSchedule>
+<!--Historically plausible values used for fixed rate & floating leg initial rate -->
               <initialValue>0.0876</initialValue>
             </fixedRateSchedule>
+<!--Added 'futureValueNotional' block as per ISDA/EMTA best practice, with explanatory comments-->
             <futureValueNotional>
               <currency>BRL</currency>
+<!-- future value notional amount calculated as: notional * [(1 + 0.0876) ^ (122/252)] -->
               <amount>104149148.42</amount>
+<!--  number of Brazil business days between adjusted effective & termination dates -->
               <calculationPeriodNumberOfDays>122</calculationPeriodNumberOfDays>
               <valueDate>2013-03-26</valueDate>
             </futureValueNotional>
@@ -82,16 +94,19 @@
           <nonDeliverableSettlement>
             <referenceCurrency>BRL</referenceCurrency>
             <fxFixingDate id="fixedLegFxFixingDates">
+<!--Corrected fx fixing date period to “-2D”, instead of “-1”. The period is the FX fixing offset for non-deliverable settlement in USD. -->
               <periodMultiplier>-2</periodMultiplier>
               <period>D</period>
+<!--Changed from 'Preceding' to 'Business' -->
               <dayType>Business</dayType>
               <businessDayConvention>NONE</businessDayConvention>
               <businessCenters>
+<!--Replaced business center collection (BRBR, BRRJ, BRSP) with single value BRDB (Brazil Business Days; adopted at business-center-6-7, May 2009)-->
                 <businessCenter>BRBD</businessCenter>
                 <businessCenter>USNY</businessCenter>
               </businessCenters>
               <dateRelativeToCalculationPeriodDates>
-                <calculationPeriodDatesReference href="fixedLegTerminationDate"/>
+                <calculationPeriodDatesReference href="fixedLegTerminationDate" />
               </dateRelativeToCalculationPeriodDates>
             </fxFixingDate>
             <settlementRateOption>BRL.PTAX/BRL09</settlementRateOption>
@@ -99,8 +114,8 @@
         </settlementProvision>
       </swapStream>
       <swapStream id="floatingLeg">
-        <payerPartyReference href="partyB"/>
-        <receiverPartyReference href="partyA"/>
+        <payerPartyReference href="partyB" />
+        <receiverPartyReference href="partyA" />
         <calculationPeriodDates id="floatingLegCalcPeriodDates">
           <effectiveDate>
             <unadjustedDate>2012-09-26</unadjustedDate>
@@ -113,6 +128,7 @@
             <dateAdjustments>
               <businessDayConvention>FOLLOWING</businessDayConvention>
               <businessCenters>
+<!--Replaced business center collection (BRBR, BRRJ, BRSP) with single value BRDB (Brazil Business Days; adopted at business-center-6-7, May 2009)-->
                 <businessCenter>BRBD</businessCenter>
               </businessCenters>
             </dateAdjustments>
@@ -120,9 +136,15 @@
           <calculationPeriodDatesAdjustments>
             <businessDayConvention>FOLLOWING</businessDayConvention>
             <businessCenters>
+<!--Replaced business center collection (BRBR, BRRJ, BRSP) with single value BRDB (Brazil Business Days; adopted at business-center-6-7, May 2009)-->
               <businessCenter>BRBD</businessCenter>
             </businessCenters>
           </calculationPeriodDatesAdjustments>
+<!--
+                    •   In the sample, the floating stream calculationPeriodFrequency and resetFrequency are both expressed as “1D” (daily reset & accrual). 
+                    •   I note that MarkitWire produces calculationPeriod = “1T”, resetFrequency = “1D” on BRL-CDI floating legs. 
+                    •   Would it be appropriate to specify these frequencies as “1T” instead, as per the convention used with OIS indices (which also reset in arrears based on implicit daily rate observations)?
+                    -->
           <calculationPeriodFrequency>
             <periodMultiplier>1</periodMultiplier>
             <period>T</period>
@@ -130,7 +152,7 @@
           </calculationPeriodFrequency>
         </calculationPeriodDates>
         <paymentDates>
-          <valuationDatesReference href="floatingLegFxFixingDates"/>
+          <valuationDatesReference href="floatingLegFxFixingDates" />
           <paymentFrequency>
             <periodMultiplier>1</periodMultiplier>
             <period>T</period>
@@ -149,17 +171,24 @@
           </paymentDatesAdjustments>
         </paymentDates>
         <resetDates id="floatingLegResetDates">
-          <calculationPeriodDatesReference href="floatingLegCalcPeriodDates"/>
+          <calculationPeriodDatesReference href="floatingLegCalcPeriodDates" />
           <fixingDates>
+<!--Corrected fixing days offset to “-1”, instead of “(+)1”-->
             <periodMultiplier>-1</periodMultiplier>
             <period>D</period>
             <dayType>Business</dayType>
             <businessDayConvention>NONE</businessDayConvention>
             <businessCenters>
+<!--Replaced business center collection (BRBR, BRRJ, BRSP) with single value BRDB (Brazil Business Days; adopted at business-center-6-7, May 2009)-->
               <businessCenter>BRBD</businessCenter>
             </businessCenters>
-            <dateRelativeTo href="floatingLegResetDates"/>
+            <dateRelativeTo href="floatingLegResetDates" />
           </fixingDates>
+<!--
+                    - In the sample, the floating stream calculationPeriodFrequency and resetFrequency are both expressed as “1D” (daily reset & accrual). 
+                    - MarkitWire produces calculationPeriod = “1T”, resetFrequency = “1D” on BRL-CDI floating legs. 
+                    - It be appropriate to specify these frequencies as “1T” instead, as per the convention used with OIS indices (which also reset in arrears based on implicit daily rate observations).
+                    -->
           <resetFrequency>
             <periodMultiplier>1</periodMultiplier>
             <period>T</period>
@@ -167,6 +196,7 @@
           <resetDatesAdjustments>
             <businessDayConvention>FOLLOWING</businessDayConvention>
             <businessCenters>
+<!--Replaced business center collection (BRBR, BRRJ, BRSP) with single value BRDB (Brazil Business Days; adopted at business-center-6-7, May 2009)-->
               <businessCenter>BRBD</businessCenter>
             </businessCenters>
           </resetDatesAdjustments>
@@ -179,6 +209,11 @@
                 <currency>BRL</currency>
               </notionalStepSchedule>
             </notionalSchedule>
+            <floatingRateCalculation>
+              <floatingRateIndex>BRL-CDI</floatingRateIndex>
+<!--Historically plausible values used for fixed rate  & floating leg initial rate -->
+              <initialRate>0.10432</initialRate>
+            </floatingRateCalculation>
             <dayCountFraction>BUS/252</dayCountFraction>
             <compoundingMethod>Flat</compoundingMethod>
           </calculation>
@@ -193,11 +228,12 @@
               <dayType>Business</dayType>
               <businessDayConvention>NONE</businessDayConvention>
               <businessCenters>
+<!--Replaced business center collection (BRBR, BRRJ, BRSP) with single value BRDB (Brazil Business Days; adopted at business-center-6-7, May 2009)-->
                 <businessCenter>BRBD</businessCenter>
                 <businessCenter>USNY</businessCenter>
               </businessCenters>
               <dateRelativeToCalculationPeriodDates>
-                <calculationPeriodDatesReference href="floatingLegTerminationDate"/>
+                <calculationPeriodDatesReference href="floatingLegTerminationDate" />
               </dateRelativeToCalculationPeriodDates>
             </fxFixingDate>
             <settlementRateOption>BRL.PTAX/BRL09</settlementRateOption>
@@ -206,7 +242,7 @@
       </swapStream>
     </swap>
     <calculationAgent>
-      <calculationAgentPartyReference href="partyA"/>
+      <calculationAgentPartyReference href="partyA" />
     </calculationAgent>
     <calculationAgentBusinessCenter>USNY</calculationAgentBusinessCenter>
   </trade>
@@ -219,3 +255,4 @@
     <partyName>Metro Bank Ltd</partyName>
   </party>
 </dataDocument>
+

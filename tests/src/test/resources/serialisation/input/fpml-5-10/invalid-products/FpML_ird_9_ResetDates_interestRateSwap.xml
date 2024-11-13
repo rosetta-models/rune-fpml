@@ -1,13 +1,15 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<dataDocument fpmlVersion="5-10" xmlns="http://www.fpml.org/FpML-5/confirmation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/FpML-5/confirmation ../../../../schemas/fpml-5-13/confirmation/schemas/fpml-5-13/confirmation/fpml-main-5-13.xsd">
+<?xml version="1.0" encoding="utf-8"?>
+<dataDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.fpml.org/FpML-5/confirmation ../../../schemas/fpml-5-10/confirmation/fpml-main-5-10.xsd"
+  xmlns="http://www.fpml.org/FpML-5/confirmation" fpmlVersion="5-10">
   <trade>
     <tradeHeader>
       <partyTradeIdentifier>
+        <partyReference href="party1"/>
         <versionedTradeId>
           <tradeId tradeIdScheme="http://www.partyA.com/swaps/trade-id">56323</tradeId>
           <version>1</version>
         </versionedTradeId>
-        <partyReference href="party1"/>
       </partyTradeIdentifier>
       <tradeDate>2000-04-25</tradeDate>
     </tradeHeader>
@@ -59,6 +61,37 @@
             <businessCentersReference href="primaryBusinessCenters"/>
           </paymentDatesAdjustments>
         </paymentDates>
+        <!-- Violates FpML_ird_9 as compoundingMethod exists while the reset dates don't
+        IThis use case also violates ResetDates_interestRateSwap as reset dates is absent while 2
+        swap streams -->
+        <!--
+        <resetDates
+         id="resetDates">
+          <calculationPeriodDatesReference
+           href="floatingCalcPeriodDates" />
+          <resetRelativeTo>CalculationPeriodStartDate</resetRelativeTo>
+          <fixingDates>
+            <periodMultiplier>-2</periodMultiplier>
+            <period>D</period>
+            <dayType>Business</dayType>
+            <businessDayConvention>NONE</businessDayConvention>
+            <businessCenters>
+              <businessCenter>GBLO</businessCenter>
+            </businessCenters>
+            <dateRelativeTo
+             href="resetDates"></dateRelativeTo>
+          </fixingDates>
+          <resetFrequency>
+            <periodMultiplier>3</periodMultiplier>
+            <period>M</period>
+          </resetFrequency>
+          <resetDatesAdjustments>
+            <businessDayConvention>MODFOLLOWING</businessDayConvention>
+            <businessCentersReference
+             href="primaryBusinessCenters" />
+          </resetDatesAdjustments>
+        </resetDates>
+-->
         <calculationPeriodAmount>
           <calculation>
             <notionalSchedule>
@@ -67,6 +100,17 @@
                 <currency>USD</currency>
               </notionalStepSchedule>
             </notionalSchedule>
+            <floatingRateCalculation>
+              <floatingRateIndex>USD-LIBOR-BBA</floatingRateIndex>
+              <indexTenor>
+                <periodMultiplier>3</periodMultiplier>
+                <period>M</period>
+              </indexTenor>
+              <finalRateRounding>
+                <roundingDirection>Nearest</roundingDirection>
+                <precision>7</precision>
+              </finalRateRounding>
+            </floatingRateCalculation>
             <dayCountFraction>ACT/360</dayCountFraction>
             <compoundingMethod>Flat</compoundingMethod>
           </calculation>

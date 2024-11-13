@@ -1,20 +1,46 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<dataDocument fpmlVersion="5-10" xmlns="http://www.fpml.org/FpML-5/confirmation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/FpML-5/confirmation ../../../../schemas/fpml-5-13/confirmation/schemas/fpml-5-13/confirmation/fpml-main-5-13.xsd">
+<?xml version="1.0" encoding="utf-8"?>
+<!--View is confirmation-->
+<!--Version is 5-10-->
+<!--NS is http://www.fpml.org/FpML-5/confirmation-->
+<!--
+        == Copyright (c) 2014-2018 All rights reserved.
+        == Financial Products Markup Language is subject to the FpML public license.
+        == A copy of this license is available at http://www.fpml.org/documents/license
+-->
+<requestConfirmation xmlns="http://www.fpml.org/FpML-5/confirmation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" fpmlVersion="5-10" xsi:schemaLocation="http://www.fpml.org/FpML-5/confirmation /schemas/fpml-5-10/confirmation/fpml-main-5-10.xsd http://www.w3.org/2000/09/xmldsig# ../../xmldsig-core-schema.xsd">
+  <header>
+    <messageId messageIdScheme="http://www.msdw.com/messageId/OTC">EquityShareOption456a789b</messageId>
+    <sentBy messageAddressScheme="http://www.MsgParty.com/partyId">msdw</sentBy>
+    <creationTimestamp>2006-08-13T08:57:00-00:00</creationTimestamp>
+  </header>
+<!--5.0 Messaging: added
+                <isCorrection>
+                <correlationId>
+                <sequenceNumber>
+        -->
+  <isCorrection>false</isCorrection>
+  <correlationId correlationIdScheme="http://www.example.com/conversationId">CW/2000/08/13/456a789b</correlationId>
+  <sequenceNumber>1</sequenceNumber>
   <trade>
     <tradeHeader>
       <partyTradeIdentifier>
+        <partyReference href="jb2890" />
         <tradeId tradeIdScheme="http://www.PartyA.com/eqd-trade-id">1234</tradeId>
-        <tradeId tradeIdScheme="http://www.PartyA.com/eqd-trade-id">1234</tradeId>
-        <partyReference href="jb2890"/>
       </partyTradeIdentifier>
       <tradeDate id="TradeDate">2006-08-14</tradeDate>
     </tradeHeader>
     <equityOption>
-      <buyerPartyReference href="PartyB"/>
-      <sellerPartyReference href="jb2890"/>
+      <buyerPartyReference href="PartyB" />
+      <sellerPartyReference href="jb2890" />
       <optionType>Call</optionType>
       <underlyer>
-        <singleUnderlyer/>
+        <singleUnderlyer>
+          <equity id="ud892">
+            <instrumentId instrumentIdScheme="http://www.fpml.org/schemes/4.1/instrumentId">STM-FP</instrumentId>
+            <description>STMicroelectronics N.V. ordinary shares</description>
+            <exchangeId exchangeIdScheme="http://www.fpml.org/schemes/4.1/exchangeId">XNSE</exchangeId>
+          </equity>
+        </singleUnderlyer>
       </underlyer>
       <equityExercise>
         <equityAmericanExercise>
@@ -35,7 +61,7 @@
             </adjustableDate>
           </expirationDate>
           <latestExerciseTime>
-            <hourMinuteTime>17:15:00Z</hourMinuteTime>
+            <hourMinuteTime>17:15:00</hourMinuteTime>
             <businessCenter>GBLO</businessCenter>
           </latestExerciseTime>
           <latestExerciseTimeType>SpecificTime</latestExerciseTimeType>
@@ -61,7 +87,7 @@
             </dateAdjustments>
           </adjustableDate>
         </settlementMethodElectionDate>
-        <settlementMethodElectingPartyReference href="jb2890"/>
+        <settlementMethodElectingPartyReference href="jb2890" />
       </equityExercise>
       <feature>
         <dividendAdjustment>
@@ -71,7 +97,7 @@
             <dateAdjustments>
               <businessDayConvention>NONE</businessDayConvention>
             </dateAdjustments>
-            <underlyerReference href="ud892"/>
+            <underlyerReference href="ud892" />
             <dividend>
               <currency>EUR</currency>
               <amount>1.80</amount>
@@ -84,7 +110,7 @@
             <dateAdjustments>
               <businessDayConvention>NONE</businessDayConvention>
             </dateAdjustments>
-            <underlyerReference href="ud892"/>
+            <underlyerReference href="ud892" />
             <dividend>
               <currency>EUR</currency>
               <amount>1.90</amount>
@@ -115,7 +141,7 @@
           <lossOfStockBorrow>true</lossOfStockBorrow>
           <increasedCostOfStockBorrow>false</increasedCostOfStockBorrow>
           <increasedCostOfHedging>false</increasedCostOfHedging>
-          <determiningPartyReference href="jb2890"/>
+          <determiningPartyReference href="jb2890" />
         </additionalDisruptionEvents>
         <representations>
           <nonReliance>true</nonReliance>
@@ -130,8 +156,8 @@
       <numberOfOptions>150000</numberOfOptions>
       <optionEntitlement>1.00</optionEntitlement>
       <equityPremium>
-        <payerPartyReference href="PartyB"/>
-        <receiverPartyReference href="jb2890"/>
+        <payerPartyReference href="PartyB" />
+        <receiverPartyReference href="jb2890" />
         <paymentAmount>
           <currency>EUR</currency>
           <amount>405000</amount>
@@ -149,7 +175,7 @@
       </equityPremium>
     </equityOption>
     <calculationAgent>
-      <calculationAgentPartyReference href="jb2890"/>
+      <calculationAgentPartyReference href="jb2890" />
     </calculationAgent>
     <documentation>
       <masterAgreement>
@@ -166,4 +192,5 @@
   <party id="PartyB">
     <partyId partyIdScheme="http://www.fpml.org/coding-scheme/dummy-party-id">Party B</partyId>
   </party>
-</dataDocument>
+</requestConfirmation>
+

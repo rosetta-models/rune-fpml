@@ -1,31 +1,71 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<dataDocument fpmlVersion="5-10" xmlns="http://www.fpml.org/FpML-5/confirmation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/FpML-5/confirmation ../../../../schemas/fpml-5-13/confirmation/schemas/fpml-5-13/confirmation/fpml-main-5-13.xsd">
+<?xml version="1.0" encoding="utf-8"?>
+<!--View is confirmation-->
+<!--Version is 5-10-->
+<!--NS is http://www.fpml.org/FpML-5/confirmation-->
+<!--
+        == Copyright (c) 2014-2018 All rights reserved.
+        == Financial Products Markup Language is subject to the FpML public license.
+        == A copy of this license is available at http://www.fpml.org/documents/license
+-->
+<requestConfirmation xmlns="http://www.fpml.org/FpML-5/confirmation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" fpmlVersion="5-10" xsi:schemaLocation="http://www.fpml.org/FpML-5/confirmation /schemas/fpml-5-10/confirmation/fpml-main-5-10.xsd http://www.w3.org/2000/09/xmldsig# ../../xmldsig-core-schema.xsd">
+  <header>
+    <messageId messageIdScheme="http://www.partyA.com/coding-scheme/message-id">2342340029</messageId>
+    <sentBy messageAddressScheme="http://www.partyA.com/coding-scheme/party-id">PARTYAC0902</sentBy>
+    <creationTimestamp>2000-08-01T08:57:00Z</creationTimestamp>
+  </header>
+<!--5.0 Messaging: added
+                <isCorrection>
+                <correlationId>
+                <sequenceNumber>
+        -->
+  <isCorrection>false</isCorrection>
+  <correlationId correlationIdScheme="http://www.example.com/conversationId">CW/2000/08/01/2342340029</correlationId>
+  <sequenceNumber>1</sequenceNumber>
   <trade>
     <tradeHeader>
       <partyTradeIdentifier>
+        <partyReference href="party1" />
         <tradeId tradeIdScheme="http://www.partyA.com/coding-scheme/trade-id">1234</tradeId>
-        <tradeId tradeIdScheme="http://www.partyA.com/coding-scheme/trade-id">1234</tradeId>
-        <partyReference href="party1"/>
       </partyTradeIdentifier>
       <tradeDate id="TradeDate">2001-07-13</tradeDate>
     </tradeHeader>
     <equityOption>
-      <buyerPartyReference href="party2"/>
-      <sellerPartyReference href="party1"/>
+      <buyerPartyReference href="party2" />
+      <sellerPartyReference href="party1" />
       <optionType>Call</optionType>
+<!-- Illustrate flat basket weights -->
       <underlyer>
         <basket>
           <basketConstituent>
+            <index>
+              <instrumentId instrumentIdScheme="http://www.ftse.com/coding-scheme/instrument-id">FXI</instrumentId>
+              <description>FTSE/Xinhua China 25 Index</description>
+            </index>
+<!-- 50% china equity index -->
             <constituentWeight>
               <basketPercentage>0.50</basketPercentage>
             </constituentWeight>
           </basketConstituent>
           <basketConstituent>
+            <equity>
+              <instrumentId instrumentIdScheme="http://www.kse.or.kr/coding-scheme/instrument-id">005440.KS</instrumentId>
+              <description>HYUNDAI MOTOR COMPANY</description>
+              <currency>KRW</currency>
+              <exchangeId>XKHA</exchangeId>
+            </equity>
+<!-- 25% hyundai -->
             <constituentWeight>
               <basketPercentage>0.25</basketPercentage>
             </constituentWeight>
           </basketConstituent>
           <basketConstituent>
+            <equity>
+              <instrumentId instrumentIdScheme="http://www.kse.or.kr/coding-scheme/instrument-id">000270.KS</instrumentId>
+              <description>KIA MOTORS CORPORATION</description>
+              <currency>KRW</currency>
+              <exchangeId>XKHA</exchangeId>
+            </equity>
+<!-- 25% kia -->
             <constituentWeight>
               <basketPercentage>0.25</basketPercentage>
             </constituentWeight>
@@ -51,7 +91,7 @@
             </adjustableDate>
           </expirationDate>
           <latestExerciseTime>
-            <hourMinuteTime>17:15:00Z</hourMinuteTime>
+            <hourMinuteTime>17:15:00</hourMinuteTime>
             <businessCenter>GBLO</businessCenter>
           </latestExerciseTime>
           <latestExerciseTimeType>SpecificTime</latestExerciseTimeType>
@@ -77,7 +117,7 @@
             </dateAdjustments>
           </adjustableDate>
         </settlementMethodElectionDate>
-        <settlementMethodElectingPartyReference href="party1"/>
+        <settlementMethodElectingPartyReference href="party1" />
       </equityExercise>
       <methodOfAdjustment>CalculationAgent</methodOfAdjustment>
       <extraordinaryEvents>
@@ -101,7 +141,7 @@
           <lossOfStockBorrow>true</lossOfStockBorrow>
           <increasedCostOfStockBorrow>false</increasedCostOfStockBorrow>
           <increasedCostOfHedging>false</increasedCostOfHedging>
-          <determiningPartyReference href="party1"/>
+          <determiningPartyReference href="party1" />
         </additionalDisruptionEvents>
         <representations>
           <nonReliance>true</nonReliance>
@@ -110,14 +150,15 @@
         </representations>
         <nationalisationOrInsolvency>CancellationAndPayment</nationalisationOrInsolvency>
       </extraordinaryEvents>
+<!-- start of distinct -->
       <strike>
         <strikePrice>32.00</strikePrice>
       </strike>
       <numberOfOptions>150000</numberOfOptions>
       <optionEntitlement>1.00</optionEntitlement>
       <equityPremium>
-        <payerPartyReference href="party2"/>
-        <receiverPartyReference href="party1"/>
+        <payerPartyReference href="party2" />
+        <receiverPartyReference href="party1" />
         <paymentAmount>
           <currency>EUR</currency>
           <amount>405000</amount>
@@ -135,7 +176,7 @@
       </equityPremium>
     </equityOption>
     <calculationAgent>
-      <calculationAgentPartyReference href="party1"/>
+      <calculationAgentPartyReference href="party1" />
     </calculationAgent>
     <documentation>
       <masterAgreement>
@@ -152,4 +193,5 @@
   <party id="party2">
     <partyId partyIdScheme="http://www.fpml.org/coding-scheme/dummy-party-id">Party B</partyId>
   </party>
-</dataDocument>
+</requestConfirmation>
+

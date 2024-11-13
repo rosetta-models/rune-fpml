@@ -1,22 +1,28 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<dataDocument fpmlVersion="5-10" xmlns="http://www.fpml.org/FpML-5/confirmation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/FpML-5/confirmation ../../../../schemas/fpml-5-13/confirmation/schemas/fpml-5-13/confirmation/fpml-main-5-13.xsd">
+<?xml version="1.0" encoding="utf-8"?>
+<!--View is confirmation-->
+<!--Version is 5-10-->
+<!--NS is http://www.fpml.org/FpML-5/confirmation-->
+<!--
+   == Copyright (c) 2014-2018 All rights reserved.
+   == Financial Products Markup Language is subject to the FpML public license.
+   == A copy of this license is available at http://www.fpml.org/license/license.html
+-->
+<dataDocument xmlns="http://www.fpml.org/FpML-5/confirmation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" fpmlVersion="5-10" xsi:schemaLocation="http://www.fpml.org/FpML-5/confirmation /schemas/fpml-5-10/confirmation/fpml-main-5-10.xsd http://www.w3.org/2000/09/xmldsig# ../../xmldsig-core-schema.xsd">
   <trade>
     <tradeHeader>
       <partyTradeIdentifier>
+        <partyReference href="partyA" />
         <tradeId tradeIdScheme="http://www.companyA.com/spec/2012/trade-id-1-0">COA24680</tradeId>
-        <tradeId tradeIdScheme="http://www.companyA.com/spec/2012/trade-id-1-0">COA24680</tradeId>
-        <partyReference href="partyA"/>
       </partyTradeIdentifier>
       <partyTradeIdentifier>
+        <partyReference href="partyB" />
         <tradeId tradeIdScheme="http://www.companyB.com/spec/2012/trade-id-1-0">COB13579</tradeId>
-        <tradeId tradeIdScheme="http://www.companyB.com/spec/2012/trade-id-1-0">COB13579</tradeId>
-        <partyReference href="partyB"/>
       </partyTradeIdentifier>
       <tradeDate>2012-06-06</tradeDate>
     </tradeHeader>
     <commodityOption>
-      <buyerPartyReference href="partyA"/>
-      <sellerPartyReference href="partyB"/>
+      <buyerPartyReference href="partyA" />
+      <sellerPartyReference href="partyB" />
       <optionType>Call</optionType>
       <commodity>
         <instrumentId instrumentIdScheme="http://www.companyB.com/coding-scheme/commodity-reference-price">NATURAL GAS-NYMEX</instrumentId>
@@ -43,13 +49,15 @@
           </dateAdjustments>
         </adjustableDate>
       </terminationDate>
+<!--A Calculation Period which applies to the floating price see the confirm with the description of the "Calculation Period(s) in the confirmation document right after "Termination Date".  
+            Rather than averaging a set of Pricing Dates within the Calculation Period the contract picks a single pricing date, the penultimate Commodity Business Day and uses this as the floating price.-->
       <calculationPeriodsSchedule id="calculationPeriodsSchedule">
         <periodMultiplier>1</periodMultiplier>
         <period>T</period>
         <balanceOfFirstPeriod>true</balanceOfFirstPeriod>
       </calculationPeriodsSchedule>
       <pricingDates>
-        <calculationPeriodsScheduleReference href="calculationPeriodsSchedule"/>
+        <calculationPeriodsScheduleReference href="calculationPeriodsSchedule" />
         <dayType>CommodityBusiness</dayType>
         <dayDistribution>First</dayDistribution>
       </pricingDates>
@@ -66,7 +74,7 @@
               <periodMultiplier>5</periodMultiplier>
               <period>D</period>
               <businessDayConvention>MODFOLLOWING</businessDayConvention>
-              <dateRelativeTo href="calculationPeriodsSchedule"/>
+              <dateRelativeTo href="calculationPeriodsSchedule" />
             </relativeDate>
           </expirationDate>
         </europeanExercise>
@@ -74,7 +82,7 @@
         <settlementCurrency>USD</settlementCurrency>
         <relativePaymentDates>
           <payRelativeTo>CalculationPeriodMonthEnd</payRelativeTo>
-          <calculationPeriodsScheduleReference href="calculationPeriodsSchedule"/>
+          <calculationPeriodsScheduleReference href="calculationPeriodsSchedule" />
           <paymentDaysOffset>
             <periodMultiplier>5</periodMultiplier>
             <period>D</period>
@@ -85,7 +93,7 @@
       </exercise>
       <floatingStrikePricePerUnit>
         <pricingDates id="pricingDates">
-          <calculationPeriodsScheduleReference href="calculationPeriodsSchedule"/>
+          <calculationPeriodsScheduleReference href="calculationPeriodsSchedule" />
           <dayType>CommodityBusiness</dayType>
           <dayDistribution>First</dayDistribution>
         </pricingDates>
@@ -103,41 +111,12 @@
           </deliveryDateRollConvention>
         </commodity>
       </floatingStrikePricePerUnit>
-      <effectiveDate>
-        <adjustableDate>
-          <unadjustedDate>2012-09-01</unadjustedDate>
-          <dateAdjustments>
-            <businessDayConvention>NONE</businessDayConvention>
-          </dateAdjustments>
-        </adjustableDate>
-      </effectiveDate>
-      <exercise>
-        <europeanExercise id="exerciseDate">
-          <expirationDate>
-            <relativeDate>
-              <periodMultiplier>5</periodMultiplier>
-              <period>D</period>
-              <businessDayConvention>MODFOLLOWING</businessDayConvention>
-              <dateRelativeTo href="calculationPeriodsSchedule"/>
-            </relativeDate>
-          </expirationDate>
-        </europeanExercise>
-        <automaticExercise>true</automaticExercise>
-        <settlementCurrency>USD</settlementCurrency>
-        <relativePaymentDates>
-          <payRelativeTo>CalculationPeriodMonthEnd</payRelativeTo>
-          <calculationPeriodsScheduleReference href="calculationPeriodsSchedule"/>
-          <paymentDaysOffset>
-            <periodMultiplier>5</periodMultiplier>
-            <period>D</period>
-            <dayType>Business</dayType>
-            <businessDayConvention>MODFOLLOWING</businessDayConvention>
-          </paymentDaysOffset>
-        </relativePaymentDates>
-      </exercise>
+<!-- Note that in the confirmation document the premium is negative.  Only positive amounts are allowed for paymentAmount          -->
+<!-- and premiumPerUnit.  To achieve the correct direction of payment the payerPartyReference on the premium element is            -->
+<!-- set equal to the Option Buyer (partyB).  If the premium were positive the Option Buyer would be receiving the premium payment -->
       <premium>
-        <payerPartyReference href="partyB"/>
-        <receiverPartyReference href="partyA"/>
+        <payerPartyReference href="partyB" />
+        <receiverPartyReference href="partyA" />
         <paymentDate>
           <adjustableDate>
             <unadjustedDate>2012-06-06</unadjustedDate>
@@ -146,10 +125,12 @@
             </dateAdjustments>
           </adjustableDate>
         </paymentDate>
+<!-- Note that value of Total Premium in the confirmation document has a negative sign -->
         <paymentAmount>
           <currency>USD</currency>
           <amount>130100.00</amount>
         </paymentAmount>
+<!-- Note that the value of Premium Per Unit in the confirmation document has a negative sign -->
         <premiumPerUnit>
           <currency>USD</currency>
           <amount>0.1301</amount>
@@ -165,7 +146,7 @@
       </rounding>
     </commodityOption>
     <calculationAgent>
-      <calculationAgentPartyReference href="partyB"/>
+      <calculationAgentPartyReference href="partyB" />
     </calculationAgent>
     <documentation>
       <masterAgreement>
@@ -183,3 +164,4 @@
     <partyName>Company B Inc.</partyName>
   </party>
 </dataDocument>
+
