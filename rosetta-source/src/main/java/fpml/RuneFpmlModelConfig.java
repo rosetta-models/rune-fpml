@@ -3,7 +3,7 @@ package fpml;
 import com.google.common.collect.ImmutableMap;
 import fpml.confirmation.*;
 
-public class FpmlModelConfig {
+public class RuneFpmlModelConfig {
 
     public static String SCHEMA_PATH = "schemas/fpml-5-13/confirmation/fpml-main-5-13.xsd";
     public static final String XML_CONFIG_PATH = "xml-config/confirmation-v5_13-rosetta-xml-config.json";
