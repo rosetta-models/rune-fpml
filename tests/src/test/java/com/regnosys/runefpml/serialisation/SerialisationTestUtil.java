@@ -1,10 +1,8 @@
-package com.regnosys.serialisation;
+package com.regnosys.runefpml.serialisation;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.google.common.io.Resources;
-import com.regnosys.TestUtil;
 import com.regnosys.rosetta.common.util.UrlUtils;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Assertions;
@@ -34,7 +32,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static com.regnosys.TestUtil.*;
+import static com.regnosys.runefpml.TestUtil.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

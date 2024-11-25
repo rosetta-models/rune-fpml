@@ -1,4 +1,4 @@
-package fpml;
+package com.regnosys.runefpml;
 
 import com.google.common.collect.ImmutableMap;
 import fpml.confirmation.*;

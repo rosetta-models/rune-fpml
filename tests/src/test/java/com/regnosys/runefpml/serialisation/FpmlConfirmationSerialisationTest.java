@@ -1,4 +1,4 @@
-package com.regnosys.serialisation;
+package com.regnosys.runefpml.serialisation;
 
 import fpml.confirmation.DataDocument;
 import org.junit.jupiter.api.BeforeAll;
@@ -11,7 +11,7 @@ import java.nio.file.Path;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import static com.regnosys.serialisation.SerialisationTestUtil.INPUT_ROOT_PATH;
+import static com.regnosys.runefpml.serialisation.SerialisationTestUtil.INPUT_ROOT_PATH;
 
 public class FpmlConfirmationSerialisationTest {
 

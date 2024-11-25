@@ -1,4 +1,4 @@
-package com.regnosys;
+package com.regnosys.runefpml;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
