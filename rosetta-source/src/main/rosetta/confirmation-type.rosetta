@@ -1189,9 +1189,6 @@ type AccrualOptionChange extends AbstractFacilityEvent: <"An event describing a 
 	accruingPikOption AccruingPikOption (0..1) <"A structure that represents the accruing PIK option associated within a facility.">
 	accrualOptionChangeSequence1 AccrualOptionChangeSequence1 (0..1)
 
-	condition Choice:
-		one-of
-
 type AccruingFeeChange extends AbstractFacilityEvent: <"An event describing a future change to an accruing fee associated with a specific facility.">
 
 	accruingFeeOption AccruingFeeOption (1..1) <"Defines new rate and the date on which the rate is no longer valid.">
@@ -1251,9 +1248,6 @@ type MiscFeePayment extends AbstractFacilityPaymentEvent: <"An event describing 
 
 	_type MiscFeeType (0..1) <"The misc fee type, based on a scheme.">
 	description NonEmptyNormalizedString (0..1) <"A description of the misc fee.">
-
-	condition Choice:
-		one-of
 
 type PenaltyRateChange extends AbstractFacilityRateChangeEvent: <"An event representing a change in the penalty rate applicable to outstanding loans.">
 
@@ -7028,9 +7022,6 @@ type LoanCovenantObligation extends AbstractLoanCovenantObligation: <"A syndicat
 	deemedCovenantReference LoanCovenantObligationReference (0..1) <"Defines a referenced covenant from another deal or facility, in the event that a covenant from another deal or facility is deemed applicable.">
 	loanCovenantObligationSequence LoanCovenantObligationSequence (0..1)
 
-	condition Choice:
-		one-of
-
 type LoanCovenantObligationSequence:
 
 	category LoanCovenantObligationCategoryType (1..1) <"A structure used to uniquely identify a loan covenant obligation category, based on a scheme.">
@@ -7119,9 +7110,6 @@ type LoanCovenantObligationSummary extends CovenantObligationSummary: <"A syndic
 
 	dealReference DealReference (0..1)
 	facilityReference FacilityReference (0..*)
-
-	condition Choice:
-		one-of
 
 type LoanCovenantObligationTriggerCriteriaDetails: <"A structure to describe the trigger criteria of a covenant obligation.">
 
@@ -10181,9 +10169,6 @@ type TouchRateObservation extends TriggerRateObservation:
 	touchRateObservationSequence TouchRateObservationSequence (0..1)
 	isExercisable boolean (0..1) <"If the touch or no touch event hasn\'t generated an exercise, then we specify whether the option is exercisable or not.">
 
-	condition Choice:
-		one-of
-
 type TouchRateObservationSequence:
 
 	exerciseSide ExerciseSideEnum (0..1)
@@ -12067,9 +12052,6 @@ type UnderlyerInterestLeg extends DirectionalLeg: <"A type describing interest p
 
 	fixedRate number (0..1) <"The calculation period fixed rate. A per annum rate, expressed as a decimal. A fixed rate of 5% would be represented as 0.05.">
 	spreadSchedule SpreadSchedule (0..*) <"The ISDA Spread or a Spread schedule expressed as explicit spreads and dates. In the case of a schedule, the step dates may be subject to adjustment in accordance with any adjustments specified in calculationPeriodDatesAdjustments. The spread is a per annum rate, expressed as a decimal. For purposes of determining a calculation period amount, if positive the spread will be added to the floating rate and if negative the spread will be subtracted from the floating rate. A positive 10 basis point (0.1%) spread would be represented as 0.001.">
-
-	condition Choice:
-		one-of
 
 type Unit: <"A type used to record information about a unit, subdivision, desk, or other similar business entity.">
 
