@@ -9,6 +9,8 @@ public class ToProductChoiceImpl extends ToProductChoice {
         ProductChoice.ProductChoiceBuilder builder = ProductChoice.builder();
         if (product instanceof BondOption) {
             return builder.setBondOption(((BondOption) product));
+        } else if (product instanceof BrokerEquityOption) {
+            return builder.setBrokerEquityOption(((BrokerEquityOption) product));
         } else if (product instanceof BulletPayment) {
             return builder.setBulletPayment(((BulletPayment) product));
         } else if (product instanceof CapFloor) {
@@ -37,10 +39,12 @@ public class ToProductChoiceImpl extends ToProductChoice {
             return builder.setDividendSwapOptionTransactionSupplement(((DividendSwapOptionTransactionSupplement) product));
         } else if (product instanceof DividendSwapTransactionSupplement) {
             return builder.setDividendSwapTransactionSupplement(((DividendSwapTransactionSupplement) product));
-        } else if (product instanceof EquityDerivativeLongFormBase) {
-            return builder.setEquityDerivativeLongFormBase(((EquityDerivativeLongFormBase) product));
-        } else if (product instanceof EquityDerivativeShortFormBase) {
-            return builder.setEquityDerivativeShortFormBase(((EquityDerivativeShortFormBase) product));
+        } else if (product instanceof EquityForward) {
+            return builder.setEquityForward(((EquityForward) product));
+        } else if (product instanceof EquityOption) {
+            return builder.setEquityOption(((EquityOption) product));
+        } else if (product instanceof EquityOptionTransactionSupplement) {
+            return builder.setEquityOptionTransactionSupplement(((EquityOptionTransactionSupplement) product));
         } else if (product instanceof EquitySwapTransactionSupplement) {
             return builder.setEquitySwapTransactionSupplement(((EquitySwapTransactionSupplement) product));
         } else if (product instanceof Fra) {
