@@ -1,0 +1,231 @@
+{
+  "fpmlVersion" : "5-10",
+  "validationModel" : { },
+  "trade" : [ {
+    "tradeHeader" : {
+      "tradeIdentifiersModel" : {
+        "tradeIdentifiersModelSequence" : {
+          "globalTradeIdentifiersModel" : {
+            "globalTradeIdentifiersModelSequence" : { }
+          }
+        },
+        "partyTradeIdentifier" : [ {
+          "issuerTradeIdModel" : {
+            "tradeId" : {
+              "value" : "12345",
+              "tradeIdScheme" : "#partyA"
+            }
+          },
+          "tradeIdentifierSequence" : {
+            "partyAndAccountReferencesModel" : {
+              "partyReference" : {
+                "href" : "partyA"
+              }
+            },
+            "tradeIdentifierSequenceChoice" : [ {
+              "tradeId" : {
+                "value" : "12345",
+                "tradeIdScheme" : "#partyA"
+              }
+            } ]
+          }
+        } ]
+      },
+      "tradeDate" : {
+        "value" : "2014-06-24"
+      }
+    },
+    "product" : {
+      "productModel" : {
+        "productType" : [ {
+          "value" : "FxAccrualDigitalOption",
+          "productTypeScheme" : "http://www.fpml.org/coding-scheme/product-type-simple"
+        } ]
+      },
+      "buyerSellerModel" : {
+        "buyerPartyReference" : {
+          "href" : "partyB"
+        },
+        "sellerPartyReference" : {
+          "href" : "partyA"
+        }
+      },
+      "notionalAmount" : {
+        "initialValue" : 100000.00,
+        "currency" : {
+          "value" : "HKD"
+        }
+      },
+      "accrual" : {
+        "observable" : [ {
+          "quotedCurrencyPair" : {
+            "currency1" : {
+              "value" : "EUR"
+            },
+            "currency2" : {
+              "value" : "HKD"
+            },
+            "quoteBasis" : "CURRENCY2_PER_CURRENCY1"
+          },
+          "informationSource" : {
+            "rateSource" : {
+              "value" : "Reuters"
+            },
+            "rateSourcePage" : {
+              "value" : "ECB37"
+            },
+            "fixingTime" : {
+              "hourMinuteTime" : "14:15:00",
+              "businessCenter" : {
+                "value" : "DEFR"
+              }
+            }
+          },
+          "id" : "ob1"
+        } ],
+        "accrualRegion" : [ {
+          "observableReference" : {
+            "href" : "ob1"
+          },
+          "fxAccrualRegionBoundModel" : {
+            "fxAccrualRegionBoundModelSequence" : {
+              "lowerBound" : {
+                "condition" : "ABOVE",
+                "fxAccrualConditionLevelModel" : {
+                  "fxAccrualConditionLevelModelSequence" : {
+                    "level" : {
+                      "initialValue" : 10.7500
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "fxAccrualRegionSequence0" : { },
+          "fxAccrualRegionSequence1" : { }
+        } ],
+        "fixingSchedule" : {
+          "fxFixingScheduleSequence0" : { },
+          "fxFixingScheduleSequence1" : {
+            "parametricScheduleModel" : {
+              "parametricScheduleModelSequence0" : {
+                "startDate" : "2014-06-25"
+              },
+              "endDate" : "2014-09-30",
+              "parametricScheduleModelSequence1" : { },
+              "parametricScheduleModelSequence2" : {
+                "dayType" : "BUSINESS",
+                "businessCentersOrReferenceModel" : {
+                  "businessCenters" : {
+                    "businessCenter" : [ {
+                      "value" : "EUTA"
+                    }, {
+                      "value" : "HKHK"
+                    } ]
+                  }
+                }
+              }
+            },
+            "numberOfFixings" : 70
+          }
+        }
+      },
+      "fxExpiryDateOrScheduleModel" : {
+        "expiryDate" : {
+          "dateAdjustments" : {
+            "businessDayConvention" : "FOLLOWING",
+            "businessCentersOrReferenceModel" : {
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "EUTA"
+                }, {
+                  "value" : "HKHK"
+                } ]
+              }
+            }
+          },
+          "adjustedDate" : "2014-09-30",
+          "expiryTime" : {
+            "hourMinuteTime" : "10:00:00",
+            "businessCenter" : {
+              "value" : "USNY"
+            }
+          }
+        }
+      },
+      "fxSettlementDateOrScheduleModel" : {
+        "settlementDate" : {
+          "dateAdjustments" : {
+            "businessDayConvention" : "FOLLOWING",
+            "businessCentersOrReferenceModel" : {
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "EUTA"
+                }, {
+                  "value" : "HKHK"
+                } ]
+              }
+            }
+          },
+          "adjustedDate" : "2014-10-06"
+        }
+      },
+      "trigger" : {
+        "triggerCondition" : "AT_OR_ABOVE",
+        "quotedCurrencyPair" : {
+          "currency1" : {
+            "value" : "EUR"
+          },
+          "currency2" : {
+            "value" : "HKD"
+          },
+          "quoteBasis" : "CURRENCY2_PER_CURRENCY1"
+        },
+        "triggerRate" : 10.7000
+      },
+      "barrier" : [ {
+        "barrierType" : "KNOCKOUT",
+        "style" : "AMERICAN",
+        "scope" : "GLOBAL",
+        "condition" : "AT_OR_ABOVE",
+        "triggerRate" : {
+          "initialValue" : 10.7700
+        },
+        "fxComplexBarrierBaseSequence0" : { },
+        "fxComplexBarrierBaseSequence1" : { },
+        "accrualRetention" : "KEEP",
+        "fxAccrualBarrierSequence" : { }
+      } ]
+    },
+    "calculationAgentModel" : {
+      "calculationAgent" : {
+        "calculationAgentPartyReference" : [ {
+          "href" : "partyA"
+        } ]
+      }
+    }
+  } ],
+  "partiesAndAccountsModel" : {
+    "party" : [ {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "549300SRLRVTR996F086",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+        } ],
+        "partyInformationModel" : { }
+      },
+      "partySequence" : { },
+      "id" : "partyA"
+    }, {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "549300RE0FSXJE8G1L65",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+        } ],
+        "partyInformationModel" : { }
+      },
+      "partySequence" : { },
+      "id" : "partyB"
+    } ]
+  }
+}

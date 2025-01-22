@@ -1,0 +1,315 @@
+{
+  "fpmlVersion" : "5-10",
+  "validationModel" : { },
+  "trade" : [ {
+    "tradeHeader" : {
+      "tradeIdentifiersModel" : {
+        "tradeIdentifiersModelSequence" : {
+          "globalTradeIdentifiersModel" : {
+            "globalTradeIdentifiersModelSequence" : { }
+          }
+        },
+        "partyTradeIdentifier" : [ {
+          "issuerTradeIdModel" : {
+            "tradeId" : {
+              "value" : "12345",
+              "tradeIdScheme" : "#partyA"
+            }
+          },
+          "tradeIdentifierSequence" : {
+            "partyAndAccountReferencesModel" : {
+              "partyReference" : {
+                "href" : "partyA"
+              }
+            },
+            "tradeIdentifierSequenceChoice" : [ {
+              "tradeId" : {
+                "value" : "12345",
+                "tradeIdScheme" : "#partyA"
+              }
+            } ]
+          }
+        } ]
+      },
+      "tradeDate" : {
+        "value" : "2005-10-03"
+      }
+    },
+    "product" : {
+      "productModel" : {
+        "productType" : [ {
+          "value" : "FxAccrualOption",
+          "productTypeScheme" : "http://www.fpml.org/coding-scheme/product-type-simple"
+        } ]
+      },
+      "buyerSellerModel" : {
+        "buyerPartyReference" : {
+          "href" : "partyB"
+        },
+        "sellerPartyReference" : {
+          "href" : "partyA"
+        }
+      },
+      "putCallCurrencyModel" : {
+        "putCurrency" : {
+          "value" : "JPY"
+        },
+        "callCurrency" : {
+          "value" : "GBP"
+        }
+      },
+      "notionalAmount" : {
+        "initialValue" : 4000000.00,
+        "currency" : {
+          "value" : "GBP"
+        }
+      },
+      "accrual" : {
+        "observable" : [ {
+          "quotedCurrencyPair" : {
+            "currency1" : {
+              "value" : "USD"
+            },
+            "currency2" : {
+              "value" : "JPY"
+            },
+            "quoteBasis" : "CURRENCY2_PER_CURRENCY1"
+          },
+          "informationSource" : {
+            "rateSource" : {
+              "value" : "Reuters"
+            },
+            "rateSourcePage" : {
+              "value" : "BTMFIX"
+            },
+            "fixingTime" : {
+              "hourMinuteTime" : "15:00:00",
+              "businessCenter" : {
+                "value" : "JPTO"
+              }
+            }
+          },
+          "id" : "ob1"
+        } ],
+        "accrualRegion" : [ {
+          "observableReference" : {
+            "href" : "ob1"
+          },
+          "fxAccrualRegionBoundModel" : {
+            "upperBound" : {
+              "condition" : "BELOW",
+              "fxAccrualConditionLevelModel" : {
+                "fxAccrualConditionLevelModelSequence" : { },
+                "averageStrikeReference" : {
+                  "href" : "averageStrike"
+                }
+              }
+            },
+            "fxAccrualRegionBoundModelSequence" : { }
+          },
+          "fxAccrualRegionSequence0" : { },
+          "accrualFactor" : {
+            "initialValue" : 2
+          },
+          "fxAccrualRegionSequence1" : { }
+        }, {
+          "observableReference" : {
+            "href" : "ob1"
+          },
+          "fxAccrualRegionBoundModel" : {
+            "upperBound" : {
+              "condition" : "BELOW",
+              "fxAccrualConditionLevelModel" : {
+                "fxAccrualConditionLevelModelSequence" : {
+                  "level" : {
+                    "initialValue" : 120.00
+                  }
+                }
+              }
+            },
+            "fxAccrualRegionBoundModelSequence" : {
+              "lowerBound" : {
+                "condition" : "AT_OR_ABOVE",
+                "fxAccrualConditionLevelModel" : {
+                  "fxAccrualConditionLevelModelSequence" : { },
+                  "averageStrikeReference" : {
+                    "href" : "averageStrike"
+                  }
+                }
+              }
+            }
+          },
+          "fxAccrualRegionSequence0" : { },
+          "fxAccrualRegionSequence1" : { }
+        } ],
+        "fixingSchedule" : {
+          "fxFixingScheduleSequence0" : { },
+          "fxFixingScheduleSequence1" : {
+            "parametricScheduleModel" : {
+              "parametricScheduleModelSequence0" : {
+                "startDate" : "2005-10-03"
+              },
+              "endDate" : "2005-10-31",
+              "parametricScheduleModelSequence1" : { },
+              "parametricScheduleModelSequence2" : {
+                "dayType" : "BUSINESS",
+                "businessCentersOrReferenceModel" : {
+                  "businessCenters" : {
+                    "businessCenter" : [ {
+                      "value" : "JPTO"
+                    } ]
+                  }
+                }
+              }
+            },
+            "numberOfFixings" : 20
+          }
+        }
+      },
+      "fxExpiryDateOrScheduleModel" : {
+        "expiryDate" : {
+          "adjustedDate" : "2005-10-31",
+          "expiryTime" : {
+            "hourMinuteTime" : "15:00:00",
+            "businessCenter" : {
+              "value" : "JPTO"
+            }
+          }
+        }
+      },
+      "fxSettlementDateOrScheduleModel" : {
+        "settlementDate" : {
+          "dateAdjustments" : {
+            "businessDayConvention" : "FOLLOWING",
+            "businessCentersOrReferenceModel" : {
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "JPTO"
+                }, {
+                  "value" : "GBLO"
+                } ]
+              }
+            }
+          },
+          "adjustedDate" : "2005-11-02"
+        }
+      },
+      "fxAccrualOptionSequence" : { },
+      "averageStrike" : {
+        "quotedCurrencyPair" : {
+          "currency1" : {
+            "value" : "USD"
+          },
+          "currency2" : {
+            "value" : "JPY"
+          },
+          "quoteBasis" : "CURRENCY2_PER_CURRENCY1"
+        },
+        "informationSource" : {
+          "rateSource" : {
+            "value" : "Reuters"
+          },
+          "rateSourcePage" : {
+            "value" : "BTMFIX"
+          },
+          "fixingTime" : {
+            "hourMinuteTime" : "15:00:00",
+            "businessCenter" : {
+              "value" : "JPTO"
+            }
+          }
+        },
+        "id" : "averageStrike",
+        "fixingSchedule" : {
+          "fxWeightedFixingScheduleSequence0" : { },
+          "fxWeightedFixingScheduleSequence1" : {
+            "parametricScheduleModel" : {
+              "parametricScheduleModelSequence0" : {
+                "startDate" : "2005-10-03"
+              },
+              "endDate" : "2005-10-31",
+              "parametricScheduleModelSequence1" : { },
+              "parametricScheduleModelSequence2" : {
+                "dayType" : "BUSINESS",
+                "businessCentersOrReferenceModel" : {
+                  "businessCenters" : {
+                    "businessCenter" : [ {
+                      "value" : "JPTO"
+                    } ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "averagingMethod" : "ARITHMETIC",
+        "precision" : 4,
+        "strikeAdjustment" : -0.44
+      },
+      "premium" : [ {
+        "payerReceiverModel" : {
+          "payerModel" : {
+            "payerPartyReference" : {
+              "href" : "partyB"
+            }
+          },
+          "receiverModel" : {
+            "receiverPartyReference" : {
+              "href" : "partyA"
+            }
+          }
+        },
+        "paymentDate" : {
+          "adjustableDate" : {
+            "unadjustedDate" : {
+              "value" : "2005-10-05"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "NONE",
+              "businessCentersOrReferenceModel" : { }
+            }
+          }
+        },
+        "paymentAmount" : {
+          "currency" : {
+            "value" : "JPY"
+          },
+          "amount" : 40000000
+        }
+      } ]
+    },
+    "calculationAgentModel" : {
+      "calculationAgent" : {
+        "calculationAgentPartyReference" : [ {
+          "href" : "partyA"
+        } ]
+      }
+    },
+    "governingLaw" : {
+      "value" : "GBEN"
+    }
+  } ],
+  "partiesAndAccountsModel" : {
+    "party" : [ {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "549300SRLRVTR996F086",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+        } ],
+        "partyInformationModel" : { }
+      },
+      "partySequence" : { },
+      "id" : "partyA"
+    }, {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "549300RE0FSXJE8G1L65",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+        } ],
+        "partyInformationModel" : { }
+      },
+      "partySequence" : { },
+      "id" : "partyB"
+    } ]
+  }
+}

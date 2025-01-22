@@ -1,0 +1,383 @@
+{
+  "fpmlVersion" : "5-10",
+  "validationModel" : { },
+  "trade" : [ {
+    "tradeHeader" : {
+      "tradeIdentifiersModel" : {
+        "tradeIdentifiersModelSequence" : {
+          "globalTradeIdentifiersModel" : {
+            "globalTradeIdentifiersModelSequence" : { }
+          }
+        },
+        "partyTradeIdentifier" : [ {
+          "issuerTradeIdModel" : {
+            "tradeId" : {
+              "value" : "163476",
+              "tradeIdScheme" : "http://www.companyA.com/spec/2001/trade-id-1-0"
+            }
+          },
+          "tradeIdentifierSequence" : {
+            "partyAndAccountReferencesModel" : {
+              "partyReference" : {
+                "href" : "partyA"
+              }
+            },
+            "tradeIdentifierSequenceChoice" : [ {
+              "tradeId" : {
+                "value" : "163476",
+                "tradeIdScheme" : "http://www.companyA.com/spec/2001/trade-id-1-0"
+              }
+            } ]
+          }
+        }, {
+          "issuerTradeIdModel" : {
+            "tradeId" : {
+              "value" : "163476",
+              "tradeIdScheme" : "http://www.companyB.com/spec/2001/trade-id-1-0"
+            }
+          },
+          "tradeIdentifierSequence" : {
+            "partyAndAccountReferencesModel" : {
+              "partyReference" : {
+                "href" : "partyB"
+              }
+            },
+            "tradeIdentifierSequenceChoice" : [ {
+              "tradeId" : {
+                "value" : "163476",
+                "tradeIdScheme" : "http://www.companyB.com/spec/2001/trade-id-1-0"
+              }
+            } ]
+          }
+        } ]
+      },
+      "tradeDate" : {
+        "value" : "2012-04-10"
+      }
+    },
+    "product" : {
+      "productModel" : { },
+      "buyerSellerModel" : {
+        "buyerPartyReference" : {
+          "href" : "partyA"
+        },
+        "sellerPartyReference" : {
+          "href" : "partyB"
+        }
+      },
+      "optionType" : "CALL",
+      "commodityFinancialOptionModel" : {
+        "commodity" : {
+          "instrumentId" : [ {
+            "value" : "ELECTRICITY-CAISO-SP 15 GEN HUB-DAY AHEAD",
+            "instrumentIdScheme" : "http://www.companyA.com/coding-scheme/commodity-reference-price"
+          } ],
+          "commodityProductModel" : {
+            "commodityReferencePriceFrameworkModel" : {
+              "commodityReferencePriceFrameworkModelSequence" : { }
+            },
+            "specifiedPrice" : "LOCATIONAL_MARGINAL",
+            "commodityProductModelSequence" : {
+              "commodityProductModelSequenceChoice" : { }
+            },
+            "multiplier" : 11
+          }
+        },
+        "commodityOptionFeaturesModel" : {
+          "effectiveDate" : {
+            "adjustableDate" : {
+              "unadjustedDate" : {
+                "value" : "2012-07-01"
+              },
+              "dateAdjustments" : {
+                "businessDayConvention" : "NONE",
+                "businessCentersOrReferenceModel" : { }
+              }
+            }
+          },
+          "terminationDate" : {
+            "adjustableDate" : {
+              "unadjustedDate" : {
+                "value" : "2012-09-30"
+              },
+              "dateAdjustments" : {
+                "businessDayConvention" : "NONE",
+                "businessCentersOrReferenceModel" : { }
+              }
+            }
+          },
+          "commodityOptionFeaturesModelSequence" : {
+            "commodityAsianModel" : {
+              "calculationPeriodsSchedule" : {
+                "periodMultiplier" : 1,
+                "period" : "D",
+                "id" : "calculationPeriodsSchedule",
+                "balanceOfFirstPeriod" : true
+              },
+              "pricingDates" : {
+                "commodityCalculationPeriodsPointerModel" : {
+                  "calculationPeriodsScheduleReference" : {
+                    "href" : "calculationPeriodsSchedule"
+                  }
+                },
+                "commodityPricingDatesSequence" : {
+                  "commodityPricingDatesSequenceSequence" : {
+                    "daysModel" : {
+                      "daysModelSequence0" : { },
+                      "daysModelSequence1" : { }
+                    }
+                  },
+                  "settlementPeriods" : [ {
+                    "duration" : "_1_HOUR",
+                    "applicableDay" : [ "MON", "TUE", "WED", "THU", "FRI", "SAT" ],
+                    "startTime" : {
+                      "time" : {
+                        "hourMinuteTime" : "07:00:00",
+                        "location" : {
+                          "value" : "PPT"
+                        }
+                      }
+                    },
+                    "endTime" : {
+                      "time" : {
+                        "hourMinuteTime" : "22:00:00",
+                        "location" : {
+                          "value" : "PPT"
+                        }
+                      }
+                    },
+                    "excludeHolidays" : {
+                      "value" : "NERC"
+                    },
+                    "id" : "settlementPeriods"
+                  } ]
+                }
+              }
+            }
+          }
+        },
+        "commodityNotionalQuantityModel" : {
+          "commodityNotionalQuantityModelSequence" : {
+            "notionalQuantity" : {
+              "quantityUnit" : {
+                "value" : "MW"
+              },
+              "quantityFrequency" : {
+                "value" : "PerCalendarDay"
+              },
+              "quantity" : 25.00
+            },
+            "totalNotionalQuantity" : 2300
+          }
+        },
+        "exercise" : {
+          "europeanExercise" : {
+            "id" : "exerciseDate",
+            "expirationDate" : {
+              "relativeDate" : {
+                "periodMultiplier" : 0,
+                "period" : "D",
+                "dayType" : "BUSINESS",
+                "businessDayConvention" : "NONE",
+                "businessCentersOrReferenceModel" : { },
+                "dateRelativeTo" : {
+                  "href" : "pricingDates"
+                }
+              }
+            },
+            "commodityEuropeanExerciseSequence" : { }
+          },
+          "automaticExercise" : true,
+          "settlementCurrency" : {
+            "value" : "USD"
+          },
+          "commodityPaymentDatesModel" : {
+            "relativePaymentDates" : {
+              "payRelativeTo" : "CALCULATION_PERIOD_MONTH_END",
+              "commodityCalculationPeriodsPointerModel" : {
+                "calculationPeriodsScheduleReference" : {
+                  "href" : "calculationPeriodsSchedule"
+                }
+              },
+              "paymentDaysOffset" : {
+                "periodMultiplier" : 10,
+                "period" : "D",
+                "dayType" : "BUSINESS",
+                "businessDayConvention" : "NONE"
+              },
+              "businessCentersOrReferenceModel" : { }
+            },
+            "commodityNonPeriodicPaymentDatesModel" : { }
+          }
+        },
+        "commodityStrikePriceModel" : { },
+        "commodityFloatingStrikePriceModel" : {
+          "floatingStrikePricePerUnit" : {
+            "pricingDates" : {
+              "commodityCalculationPeriodsPointerModel" : {
+                "calculationPeriodsScheduleReference" : {
+                  "href" : "calculationPeriodsSchedule"
+                }
+              },
+              "commodityPricingDatesSequence" : {
+                "commodityPricingDatesSequenceSequence" : {
+                  "daysModel" : {
+                    "daysModelSequence0" : { },
+                    "daysModelSequence1" : { }
+                  }
+                },
+                "settlementPeriodsReference" : [ {
+                  "href" : "settlementPeriods"
+                } ]
+              },
+              "id" : "pricingDates"
+            },
+            "commodity" : {
+              "instrumentId" : [ {
+                "value" : "NATURAL GAS-SOCAL-GAS DAILY",
+                "instrumentIdScheme" : "http://www.companyA.com/coding-scheme/commodity-reference-price-1-0"
+              } ],
+              "commodityProductModel" : {
+                "commodityReferencePriceFrameworkModel" : {
+                  "commodityReferencePriceFrameworkModelSequence" : { }
+                },
+                "specifiedPrice" : "MIDPOINT",
+                "commodityProductModelSequence" : {
+                  "commodityProductModelSequenceChoice" : { }
+                }
+              }
+            }
+          }
+        }
+      },
+      "commodityPhysicalOptionModel" : { },
+      "commodityWeatherOptionModel" : {
+        "effectiveDate" : {
+          "adjustableDate" : {
+            "unadjustedDate" : {
+              "value" : "2012-07-01"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "NONE",
+              "businessCentersOrReferenceModel" : { }
+            }
+          }
+        },
+        "weatherCalculationPeriodModel" : { },
+        "exercise" : {
+          "europeanExercise" : {
+            "id" : "exerciseDate",
+            "expirationDate" : {
+              "relativeDate" : {
+                "periodMultiplier" : 0,
+                "period" : "D",
+                "dayType" : "BUSINESS",
+                "businessDayConvention" : "NONE",
+                "businessCentersOrReferenceModel" : { },
+                "dateRelativeTo" : {
+                  "href" : "pricingDates"
+                }
+              }
+            },
+            "commodityEuropeanExerciseSequence" : { }
+          },
+          "automaticExercise" : true,
+          "settlementCurrency" : {
+            "value" : "USD"
+          },
+          "commodityPaymentDatesModel" : {
+            "relativePaymentDates" : {
+              "payRelativeTo" : "CALCULATION_PERIOD_MONTH_END",
+              "commodityCalculationPeriodsPointerModel" : {
+                "calculationPeriodsScheduleReference" : {
+                  "href" : "calculationPeriodsSchedule"
+                }
+              },
+              "paymentDaysOffset" : {
+                "periodMultiplier" : 10,
+                "period" : "D",
+                "dayType" : "BUSINESS",
+                "businessDayConvention" : "NONE"
+              },
+              "businessCentersOrReferenceModel" : { }
+            },
+            "commodityNonPeriodicPaymentDatesModel" : { }
+          }
+        }
+      },
+      "premium" : [ {
+        "payerReceiverModel" : {
+          "payerModel" : {
+            "payerPartyReference" : {
+              "href" : "partyA"
+            }
+          },
+          "receiverModel" : {
+            "receiverPartyReference" : {
+              "href" : "partyB"
+            }
+          }
+        },
+        "paymentDate" : {
+          "adjustableDate" : {
+            "unadjustedDate" : {
+              "value" : "2012-04-05"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "FOLLOWING",
+              "businessCentersOrReferenceModel" : { }
+            }
+          }
+        },
+        "paymentAmount" : {
+          "currency" : {
+            "value" : "USD"
+          },
+          "amount" : 342000.00
+        }
+      } ],
+      "commodityContentModel" : { }
+    },
+    "calculationAgentModel" : { },
+    "documentation" : {
+      "masterAgreement" : {
+        "masterAgreementType" : {
+          "value" : "ISDA"
+        },
+        "masterAgreementDate" : "2007-07-05"
+      },
+      "contractualDefinitions" : [ {
+        "value" : "ISDA2005Commodity"
+      } ]
+    }
+  } ],
+  "partiesAndAccountsModel" : {
+    "party" : [ {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "549300U2FJ850G1P3962",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+        } ],
+        "partyName" : {
+          "value" : "Company A Inc."
+        },
+        "partyInformationModel" : { }
+      },
+      "partySequence" : { },
+      "id" : "partyA"
+    }, {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "549300B23HNTO1OHFU87",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+        } ],
+        "partyName" : {
+          "value" : "Company B Inc."
+        },
+        "partyInformationModel" : { }
+      },
+      "partySequence" : { },
+      "id" : "partyB"
+    } ]
+  }
+}

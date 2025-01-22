@@ -1,0 +1,227 @@
+{
+  "fpmlVersion" : "5-10",
+  "validationModel" : { },
+  "trade" : [ {
+    "tradeHeader" : {
+      "tradeIdentifiersModel" : {
+        "tradeIdentifiersModelSequence" : {
+          "globalTradeIdentifiersModel" : {
+            "globalTradeIdentifiersModelSequence" : { }
+          }
+        },
+        "partyTradeIdentifier" : [ {
+          "issuerTradeIdModel" : {
+            "tradeId" : {
+              "value" : "1234",
+              "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
+            }
+          },
+          "tradeIdentifierSequence" : {
+            "partyAndAccountReferencesModel" : {
+              "partyReference" : {
+                "href" : "partyA"
+              }
+            },
+            "tradeIdentifierSequenceChoice" : [ {
+              "tradeId" : {
+                "value" : "1234",
+                "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
+              }
+            } ]
+          }
+        }, {
+          "issuerTradeIdModel" : {
+            "tradeId" : {
+              "value" : "2345",
+              "tradeIdScheme" : "http://www.PartyB.com/com-trade-id"
+            }
+          },
+          "tradeIdentifierSequence" : {
+            "partyAndAccountReferencesModel" : {
+              "partyReference" : {
+                "href" : "partyB"
+              }
+            },
+            "tradeIdentifierSequenceChoice" : [ {
+              "tradeId" : {
+                "value" : "2345",
+                "tradeIdScheme" : "http://www.PartyB.com/com-trade-id"
+              }
+            } ]
+          }
+        } ]
+      },
+      "tradeDate" : {
+        "value" : "2009-04-22"
+      }
+    },
+    "product" : {
+      "productModel" : { },
+      "buyerSellerModel" : {
+        "buyerPartyReference" : {
+          "href" : "partyA"
+        },
+        "sellerPartyReference" : {
+          "href" : "partyB"
+        }
+      },
+      "optionType" : "CALL",
+      "commoditySwap" : {
+        "commoditySwapDetailsModel" : {
+          "effectiveDate" : {
+            "adjustableDate" : {
+              "unadjustedDate" : {
+                "value" : "2010-01-01"
+              },
+              "dateAdjustments" : {
+                "businessDayConvention" : "NONE",
+                "businessCentersOrReferenceModel" : { }
+              }
+            },
+            "id" : "physicalEffectiveDate"
+          },
+          "terminationDate" : {
+            "adjustableDate" : {
+              "unadjustedDate" : {
+                "value" : "2010-12-31"
+              },
+              "dateAdjustments" : {
+                "businessDayConvention" : "NONE",
+                "businessCentersOrReferenceModel" : { }
+              }
+            },
+            "id" : "physicalTerminationDate"
+          },
+          "settlementCurrency" : {
+            "value" : "USD"
+          },
+          "commodityContentModel" : { }
+        }
+      },
+      "physicalExercise" : {
+        "europeanExercise" : {
+          "expirationDates" : {
+            "periodicDates" : {
+              "calculationStartDate" : {
+                "relativeDate" : {
+                  "periodMultiplier" : -5,
+                  "period" : "D",
+                  "dayType" : "CURRENCY_BUSINESS",
+                  "businessDayConvention" : "NONE",
+                  "businessCentersOrReferenceModel" : { },
+                  "dateRelativeTo" : {
+                    "href" : "physicalEffectiveDate"
+                  }
+                }
+              },
+              "calculationEndDate" : {
+                "relativeDate" : {
+                  "periodMultiplier" : -5,
+                  "period" : "D",
+                  "dayType" : "CURRENCY_BUSINESS",
+                  "businessDayConvention" : "NONE",
+                  "businessCentersOrReferenceModel" : { },
+                  "dateRelativeTo" : {
+                    "href" : "physicalTerminationDate"
+                  }
+                }
+              },
+              "calculationPeriodFrequency" : {
+                "periodMultiplier" : 1,
+                "period" : "M",
+                "rollConvention" : "NONE"
+              },
+              "calculationPeriodDatesAdjustments" : {
+                "businessDayConvention" : "MODFOLLOWING",
+                "businessCentersOrReferenceModel" : {
+                  "businessCenters" : {
+                    "businessCenter" : [ {
+                      "value" : "USNY"
+                    }, {
+                      "value" : "GBLO"
+                    } ],
+                    "id" : "bc1"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "automaticExercise" : false,
+        "writtenConfirmation" : false
+      },
+      "premium" : {
+        "payerReceiverModel" : {
+          "payerModel" : {
+            "payerPartyReference" : {
+              "href" : "partyA"
+            }
+          },
+          "receiverModel" : {
+            "receiverPartyReference" : {
+              "href" : "partyB"
+            }
+          }
+        },
+        "paymentDate" : {
+          "adjustableDate" : {
+            "unadjustedDate" : {
+              "value" : "2009-04-24"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "FOLLOWING",
+              "businessCentersOrReferenceModel" : {
+                "businessCentersReference" : {
+                  "href" : "bc1"
+                }
+              }
+            }
+          }
+        },
+        "paymentAmount" : {
+          "currency" : {
+            "value" : "USD"
+          },
+          "amount" : 36500.0
+        },
+        "premiumPerUnit" : {
+          "currency" : {
+            "value" : "USD"
+          },
+          "amount" : 1.0
+        }
+      },
+      "commodityContentModel" : { }
+    },
+    "calculationAgentModel" : { }
+  } ],
+  "partiesAndAccountsModel" : {
+    "party" : [ {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "549300KFSLY4U7N3LL12",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+        } ],
+        "partyName" : {
+          "value" : "Bank"
+        },
+        "partyInformationModel" : { }
+      },
+      "partySequence" : { },
+      "id" : "partyA"
+    }, {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "549300AJRHKBLY9GM262",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+        } ],
+        "partyName" : {
+          "value" : "Energy Co."
+        },
+        "partyInformationModel" : { }
+      },
+      "partySequence" : { },
+      "id" : "partyB"
+    } ]
+  }
+}

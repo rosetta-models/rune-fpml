@@ -1,0 +1,241 @@
+{
+  "fpmlVersion" : "5-10",
+  "validationModel" : { },
+  "trade" : [ {
+    "tradeHeader" : {
+      "tradeIdentifiersModel" : {
+        "tradeIdentifiersModelSequence" : {
+          "globalTradeIdentifiersModel" : {
+            "globalTradeIdentifiersModelSequence" : { }
+          }
+        },
+        "partyTradeIdentifier" : [ {
+          "issuerTradeIdModel" : {
+            "tradeId" : {
+              "value" : "Trade234",
+              "tradeIdScheme" : "http://www.PartyA.com/coding-scheme/trade-id"
+            }
+          },
+          "tradeIdentifierSequence" : {
+            "partyAndAccountReferencesModel" : {
+              "partyReference" : {
+                "href" : "Party1"
+              }
+            },
+            "tradeIdentifierSequenceChoice" : [ {
+              "tradeId" : {
+                "value" : "Trade234",
+                "tradeIdScheme" : "http://www.PartyA.com/coding-scheme/trade-id"
+              }
+            } ]
+          }
+        } ]
+      },
+      "tradeDate" : {
+        "value" : "2006-01-16",
+        "id" : "TRADEDATE"
+      }
+    },
+    "product" : {
+      "productModel" : { },
+      "buyerSellerModel" : {
+        "buyerPartyReference" : {
+          "href" : "Party2"
+        },
+        "sellerPartyReference" : {
+          "href" : "Party1"
+        }
+      },
+      "optionType" : "CALL",
+      "exercise" : {
+        "id" : "EXERCISE",
+        "commencementDate" : {
+          "adjustableDate" : {
+            "unadjustedDate" : {
+              "value" : "2006-01-19"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "FOLLOWING",
+              "businessCentersOrReferenceModel" : {
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "GBLO"
+                  }, {
+                    "value" : "CHZU"
+                  } ]
+                }
+              }
+            }
+          }
+        },
+        "expirationDate" : {
+          "adjustableDate" : {
+            "unadjustedDate" : {
+              "value" : "2010-08-05"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "FOLLOWING",
+              "businessCentersOrReferenceModel" : {
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "GBLO"
+                  }, {
+                    "value" : "CHZU"
+                  } ]
+                }
+              }
+            }
+          }
+        },
+        "earliestExerciseTime" : {
+          "hourMinuteTime" : "09:00:00",
+          "businessCenter" : {
+            "value" : "GBLO"
+          }
+        },
+        "expirationTime" : {
+          "hourMinuteTime" : "16:00:00",
+          "businessCenter" : {
+            "value" : "GBLO"
+          }
+        }
+      },
+      "exerciseProcedure" : {
+        "manualExercise" : {
+          "exerciseNotice" : {
+            "partyReference" : {
+              "href" : "Party1"
+            },
+            "businessCenter" : {
+              "value" : "GBLO"
+            }
+          }
+        },
+        "followUpConfirmation" : true,
+        "limitedRightToConfirm" : false,
+        "splitTicket" : true
+      },
+      "optionDenominationModel" : {
+        "optionEntitlement" : 1100000,
+        "entitlementCurrency" : {
+          "value" : "CHF"
+        },
+        "numberOfOptions" : 1
+      },
+      "optionSettlementModel" : {
+        "settlementType" : "PHYSICAL",
+        "settlementDate" : {
+          "relativeDate" : {
+            "periodMultiplier" : 8,
+            "period" : "D",
+            "dayType" : "BUSINESS",
+            "businessDayConvention" : "NONE",
+            "businessCentersOrReferenceModel" : {
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "GBLO"
+                }, {
+                  "value" : "CHZU"
+                } ]
+              }
+            },
+            "dateRelativeTo" : {
+              "href" : "EXERCISE"
+            }
+          }
+        },
+        "settlementAmountOrCurrencyModel" : { }
+      },
+      "strike" : {
+        "referenceSwapCurve" : {
+          "swapUnwindValue" : {
+            "floatingRateIndexModel" : {
+              "floatingRateIndex" : {
+                "value" : "EUR-LIBOR-BBA"
+              },
+              "indexTenor" : {
+                "periodMultiplier" : 6,
+                "period" : "M"
+              }
+            },
+            "spread" : 85,
+            "side" : "BID"
+          },
+          "makeWholeAmount" : {
+            "floatingRateIndexModel" : {
+              "floatingRateIndex" : {
+                "value" : "EUR-LIBOR-BBA"
+              }
+            },
+            "spread" : 85,
+            "side" : "BID",
+            "interpolationMethod" : {
+              "value" : "LinearZeroYield"
+            },
+            "earlyCallDate" : {
+              "value" : "2006-07-19"
+            }
+          }
+        }
+      },
+      "bondChoiceModel" : {
+        "convertibleBond" : {
+          "instrumentId" : [ {
+            "value" : "ExampleISIN1",
+            "instrumentIdScheme" : "ISIN"
+          } ],
+          "currency" : {
+            "value" : "CHF"
+          },
+          "clearanceSystem" : {
+            "value" : "Euroclear"
+          },
+          "fixedIncomeSecurityContentModel" : {
+            "issuerName" : "ABC Finance",
+            "couponRate" : 0.0,
+            "maturity" : "2013-08-26"
+          },
+          "parValue" : 1100000,
+          "faceAmount" : 1100000,
+          "bondCalculationModel" : {
+            "paymentFrequency" : {
+              "periodMultiplier" : 6,
+              "period" : "M"
+            }
+          },
+          "redemptionDate" : "2010-08-26"
+        }
+      }
+    },
+    "calculationAgentModel" : {
+      "calculationAgent" : {
+        "calculationAgentPartyReference" : [ {
+          "href" : "Party1"
+        } ]
+      }
+    }
+  } ],
+  "partiesAndAccountsModel" : {
+    "party" : [ {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "Party A",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
+        } ],
+        "partyInformationModel" : { }
+      },
+      "partySequence" : { },
+      "id" : "Party1"
+    }, {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "Party B",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
+        } ],
+        "partyInformationModel" : { }
+      },
+      "partySequence" : { },
+      "id" : "Party2"
+    } ]
+  }
+}

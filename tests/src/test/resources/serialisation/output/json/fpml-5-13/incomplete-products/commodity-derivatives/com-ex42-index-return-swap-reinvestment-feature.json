@@ -1,0 +1,303 @@
+{
+  "fpmlVersion" : "5-13",
+  "validationModel" : { },
+  "trade" : [ {
+    "tradeHeader" : {
+      "tradeIdentifiersModel" : {
+        "tradeIdentifiersModelSequence" : {
+          "globalTradeIdentifiersModel" : {
+            "globalTradeIdentifiersModelSequence" : { }
+          }
+        },
+        "partyTradeIdentifier" : [ {
+          "issuerTradeIdModel" : {
+            "tradeId" : {
+              "value" : "SUSNUMERIS",
+              "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
+            }
+          },
+          "tradeIdentifierSequence" : {
+            "partyAndAccountReferencesModel" : {
+              "partyReference" : {
+                "href" : "PartyA"
+              }
+            },
+            "tradeIdentifierSequenceChoice" : [ {
+              "tradeId" : {
+                "value" : "SUSNUMERIS",
+                "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
+              }
+            } ]
+          }
+        } ]
+      },
+      "tradeDate" : {
+        "value" : "2014-01-15",
+        "id" : "TradeDate"
+      }
+    },
+    "product" : {
+      "productModel" : {
+        "primaryAssetClass" : {
+          "value" : "Commodity"
+        },
+        "productType" : [ {
+          "value" : "Commodity:Energy:Index:Swap:Cash"
+        } ]
+      },
+      "effectiveDate" : {
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2014-03-01"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NONE",
+            "businessCentersOrReferenceModel" : { }
+          }
+        }
+      },
+      "terminationDate" : {
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2014-07-31"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "FOLLOWING",
+            "businessCentersOrReferenceModel" : { }
+          }
+        },
+        "id" : "TerminationDate"
+      },
+      "settlementCurrency" : {
+        "value" : "USD"
+      },
+      "commodityPerformanceSwapLeg" : [ {
+        "payerReceiverModel" : {
+          "payerModel" : {
+            "payerPartyReference" : {
+              "href" : "PartyB"
+            }
+          },
+          "receiverModel" : {
+            "receiverPartyReference" : {
+              "href" : "PartyA"
+            }
+          }
+        },
+        "commodityCalculationPeriodsModel" : {
+          "calculationPeriodsSchedule" : {
+            "periodMultiplier" : 1,
+            "period" : "M",
+            "id" : "interestLegCalculationPeriodsSchedule",
+            "balanceOfFirstPeriod" : false
+          },
+          "commodityCalculationPeriodsPointerModel" : { }
+        },
+        "commodityPaymentDatesModel" : {
+          "relativePaymentDates" : {
+            "payRelativeTo" : "CALCULATION_PERIOD_END_DATE",
+            "commodityCalculationPeriodsPointerModel" : {
+              "calculationPeriodsScheduleReference" : {
+                "href" : "interestLegCalculationPeriodsSchedule"
+              }
+            },
+            "paymentDaysOffset" : {
+              "periodMultiplier" : 2,
+              "period" : "D",
+              "dayType" : "BUSINESS",
+              "businessDayConvention" : "FOLLOWING"
+            },
+            "businessCentersOrReferenceModel" : {
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "USNY"
+                } ]
+              }
+            }
+          },
+          "commodityNonPeriodicPaymentDatesModel" : { }
+        },
+        "notionalAmountReference" : {
+          "href" : "returnLegNotionalAmount"
+        },
+        "commodityFixedInterestCalculation" : {
+          "fixedRate" : {
+            "value" : 0.0321
+          },
+          "dayCountFraction" : {
+            "value" : "ACT/365.FIXED"
+          }
+        }
+      }, {
+        "payerReceiverModel" : {
+          "payerModel" : {
+            "payerPartyReference" : {
+              "href" : "PartyA"
+            }
+          },
+          "receiverModel" : {
+            "receiverPartyReference" : {
+              "href" : "PartyB"
+            }
+          }
+        },
+        "commodityCalculationPeriodsModel" : {
+          "commodityCalculationPeriodsPointerModel" : {
+            "calculationPeriodsScheduleReference" : {
+              "href" : "interestLegCalculationPeriodsSchedule"
+            }
+          }
+        },
+        "commodityPaymentDatesModel" : {
+          "relativePaymentDates" : {
+            "payRelativeTo" : "CALCULATION_PERIOD_END_DATE",
+            "commodityCalculationPeriodsPointerModel" : {
+              "calculationPeriodsScheduleReference" : {
+                "href" : "interestLegCalculationPeriodsSchedule"
+              }
+            },
+            "paymentDaysOffset" : {
+              "periodMultiplier" : 2,
+              "period" : "D",
+              "dayType" : "BUSINESS",
+              "businessDayConvention" : "FOLLOWING"
+            },
+            "businessCentersOrReferenceModel" : {
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "USNY"
+                } ]
+              }
+            }
+          },
+          "commodityNonPeriodicPaymentDatesModel" : { }
+        },
+        "commodityUnderlyerChoiceModel" : {
+          "commodity" : {
+            "instrumentId" : [ {
+              "value" : "S+P GSCI™ Lean Hogs Index Total Return",
+              "instrumentIdScheme" : "http://www.fpml.org/coding-scheme/commodity-reference-price-3-0"
+            } ],
+            "commodityProductModel" : {
+              "commodityReferencePriceFrameworkModel" : {
+                "commodityReferencePriceFrameworkModelSequence" : { }
+              },
+              "specifiedPrice" : "CLOSING",
+              "commodityProductModelSequence" : {
+                "commodityProductModelSequenceChoice" : { }
+              }
+            }
+          }
+        },
+        "notionalAmount" : {
+          "currency" : {
+            "value" : "USD"
+          },
+          "id" : "returnLegNotionalAmount",
+          "amount" : 1000000.00,
+          "reinvestmentFeature" : true
+        },
+        "commodityReturnCalculation" : {
+          "formula" : "SIMPLE_FORMULA",
+          "pricingDates" : {
+            "commodityCalculationPeriodsPointerModel" : {
+              "calculationPeriodsScheduleReference" : {
+                "href" : "interestLegCalculationPeriodsSchedule"
+              }
+            },
+            "commodityPricingDatesSequence" : {
+              "commodityPricingDatesSequenceSequence" : {
+                "daysModel" : {
+                  "dayType" : "COMMODITY_BUSINESS",
+                  "daysModelSequence0" : {
+                    "dayDistribution" : {
+                      "value" : "All"
+                    }
+                  },
+                  "daysModelSequence1" : { }
+                }
+              }
+            }
+          },
+          "valuationDates" : {
+            "commodityCalculationPeriodsPointerModel" : {
+              "calculationPeriodsScheduleReference" : {
+                "href" : "interestLegCalculationPeriodsSchedule"
+              }
+            },
+            "commodityValuationDatesSequence" : {
+              "commodityValuationDatesSequenceSequence" : {
+                "daysModel" : {
+                  "dayType" : "COMMODITY_BUSINESS",
+                  "daysModelSequence0" : {
+                    "dayDistribution" : {
+                      "value" : "Last"
+                    }
+                  },
+                  "daysModelSequence1" : { }
+                }
+              }
+            }
+          }
+        }
+      } ],
+      "commodityContentModel" : {
+        "marketDisruption" : {
+          "commodityMarketDisruptionSequence" : { },
+          "marketDisruptionEvent" : [ {
+            "value" : "AsSpecifiedInConfirmation"
+          } ],
+          "disruptionFallbacks" : "AS_SPECIFIED_IN_CONFIRMATION"
+        }
+      }
+    },
+    "calculationAgentModel" : { },
+    "documentation" : {
+      "masterAgreement" : {
+        "masterAgreementType" : {
+          "value" : "ISDA"
+        },
+        "masterAgreementDate" : "2011-10-04"
+      },
+      "contractualDefinitions" : [ {
+        "value" : "ISDA2006"
+      }, {
+        "value" : "ISDA2005Commodity"
+      } ]
+    }
+  } ],
+  "partiesAndAccountsModel" : {
+    "party" : [ {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "95980020140005196564",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+        } ],
+        "partyInformationModel" : {
+          "country" : {
+            "value" : "US"
+          },
+          "organizationType" : [ {
+            "value" : "SD"
+          } ]
+        }
+      },
+      "partySequence" : { },
+      "id" : "PartyA"
+    }, {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "549300XQFX97CITUR430",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+        } ],
+        "partyInformationModel" : {
+          "organizationType" : [ {
+            "value" : "non-SD/MSP"
+          } ]
+        }
+      },
+      "partySequence" : { },
+      "id" : "PartyB"
+    } ]
+  }
+}

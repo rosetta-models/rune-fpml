@@ -3,6 +3,7 @@ package com.regnosys.runefpml.serialisation;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.regnosys.rosetta.common.serialisation.RosettaObjectMapper;
 import com.regnosys.rosetta.common.util.UrlUtils;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Assertions;
@@ -32,29 +33,34 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static com.regnosys.runefpml.TestUtil.*;
+import static com.regnosys.runefpml.TestUtil.assertEquals;
+import static com.regnosys.runefpml.TestUtil.getXmlMapper;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SerialisationTestUtil<T> {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(SerialisationTestUtil.class);
-
     public static final String INPUT_ROOT_PATH = "serialisation/input";
-    public static final String EXPECTED_INPUT_ROOT_PATH = "serialisation/output";
-
+    public static final String EXPECTED_JSON_OUTPUT_ROOT_PATH = "serialisation/output/json";
+    public static final String EXPECTED_XML_OUTPUT_ROOT_PATH = "serialisation/output/xml";
+    private static final Logger LOGGER = LoggerFactory.getLogger(SerialisationTestUtil.class);
     private final Class<T> rootType;
     private final Validator xsdValidator;
     private final ObjectMapper xmlMapper;
     private final ObjectWriter xmlWriter;
+    private final ObjectWriter jsonWriter;
 
-    public SerialisationTestUtil(Class<T> rootType, String xsdSchemaPath, String xmlConfigPath, String expectedSchemaLocationAttribute) {
+    public SerialisationTestUtil(Class<T> rootType,
+                                 String xsdSchemaPath,
+                                 String xmlConfigPath,
+                                 String expectedSchemaLocationAttribute) {
         this.rootType = rootType;
         this.xsdValidator = getXmlValidator(xsdSchemaPath);
         this.xmlMapper = getXmlMapper(xmlConfigPath);
         this.xmlWriter = xmlMapper
                 .writerWithDefaultPrettyPrinter()
                 .withAttribute("schemaLocation", expectedSchemaLocationAttribute);
+        this.jsonWriter = RosettaObjectMapper.getNewRosettaObjectMapper().writerWithDefaultPrettyPrinter();
     }
 
     private static Validator getXmlValidator(String xsdSchemaPath) {
@@ -66,59 +72,6 @@ public class SerialisationTestUtil<T> {
             return schema.newValidator();
         } catch (SAXException e) {
             throw new RuntimeException(e);
-        }
-    }
-
-    public void assertXmlRoundTrip(Path samplePath) throws IOException {
-        String inputXml = Files.readString(samplePath);
-
-        // Sanity check: input follows the XSD schema
-        Boolean validAgainstSchema = isValidAgainstSchema(inputXml);
-        assertNotNull(validAgainstSchema);
-        assertTrue(validAgainstSchema);
-
-        T document = xmlMapper.readValue(inputXml, rootType);
-
-        // Check serialised document against expectations
-        String actualXml = xmlWriter.writeValueAsString(document);
-        Path expectedXmlSamplePath = getExpectedXmlSamplePath(samplePath);
-        assertEquals(expectedXmlSamplePath, actualXml);
-
-        // Check actual XML also follows the XSD schema
-//        assertTrue(isValidAgainstSchema(actualXml));
-
-        // Check serialised document is similar to the original XML
-//        assertAgainstInputXml(actualXml, inputXml, document);
-
-        // Check deserialisation results again in the same Document
-//        assertAgainstInputObject(actualXml, document);
-    }
-
-    private void assertAgainstInputObject(String actualXml, T inputDocument) throws JsonProcessingException {
-        T actualDocument = xmlMapper.readValue(actualXml, rootType);
-        
-        Assertions.assertEquals(inputDocument, actualDocument);
-    }
-
-    private void assertAgainstInputXml(String actualXml, String inputXml) {
-        MatcherAssert.assertThat(
-                actualXml, CompareMatcher.isSimilarTo(inputXml)
-                        .ignoreWhitespace()
-                        .ignoreComments());
-    }
-
-    private Boolean isValidAgainstSchema(String xml) {
-        if (xsdValidator == null) {
-            return null;
-        }
-        try (ByteArrayInputStream inputStream = new ByteArrayInputStream(xml.getBytes(StandardCharsets.UTF_8))) {
-            xsdValidator.validate(new StreamSource(inputStream));
-            return true;
-        } catch (SAXException e) {
-            LOGGER.error("Schema validation failed: {}", e.getMessage());
-            return false;
-        } catch (IOException e) {
-            throw new UncheckedIOException(e);
         }
     }
 
@@ -148,7 +101,74 @@ public class SerialisationTestUtil<T> {
         String samplePathStr = samplePath.toString();
         return Path.of("src/test/resources/" + samplePathStr
                         .substring(samplePathStr.indexOf(INPUT_ROOT_PATH))
-                        .replace(INPUT_ROOT_PATH, EXPECTED_INPUT_ROOT_PATH))
+                        .replace(INPUT_ROOT_PATH, EXPECTED_XML_OUTPUT_ROOT_PATH))
                 .toAbsolutePath();
+    }
+
+    private static Path getExpectedJsonSamplePath(Path samplePath) {
+        String samplePathStr = samplePath.toString();
+        return Path.of("src/test/resources/" + samplePathStr
+                        .substring(samplePathStr.indexOf(INPUT_ROOT_PATH))
+                        .replace(INPUT_ROOT_PATH, EXPECTED_JSON_OUTPUT_ROOT_PATH)
+                        .replace(".xml", ".json"))
+                .toAbsolutePath();
+    }
+
+    public void assertXmlRoundTrip(Path samplePath) throws IOException {
+        String inputXml = Files.readString(samplePath);
+
+        // Sanity check: input follows the XSD schema
+        Boolean validAgainstSchema = isValidAgainstSchema(inputXml);
+        assertNotNull(validAgainstSchema);
+        assertTrue(validAgainstSchema);
+
+        T document = xmlMapper.readValue(inputXml, rootType);
+
+        // Check json serialised document against expectations
+        String actualJson = jsonWriter.writeValueAsString(document);
+        Path expectedJsonSamplePath = getExpectedJsonSamplePath(samplePath);
+        assertEquals(expectedJsonSamplePath, actualJson);
+
+        // Check xml serialised document against expectations
+        String actualXml = xmlWriter.writeValueAsString(document);
+        Path expectedXmlSamplePath = getExpectedXmlSamplePath(samplePath);
+        assertEquals(expectedXmlSamplePath, actualXml);
+
+        // Check actual XML also follows the XSD schema
+//        assertTrue(isValidAgainstSchema(actualXml));
+
+        // Check serialised document is similar to the original XML
+//        assertAgainstInputXml(actualXml, inputXml, document);
+
+        // Check deserialisation results again in the same Document
+//        assertAgainstInputObject(actualXml, document);
+    }
+
+    private void assertAgainstInputObject(String actualXml, T inputDocument) throws JsonProcessingException {
+        T actualDocument = xmlMapper.readValue(actualXml, rootType);
+
+        Assertions.assertEquals(inputDocument, actualDocument);
+    }
+
+    private void assertAgainstInputXml(String actualXml, String inputXml) {
+        MatcherAssert.assertThat(
+                actualXml, CompareMatcher.isSimilarTo(inputXml)
+                        .ignoreWhitespace()
+                        .ignoreComments());
+    }
+
+    private Boolean isValidAgainstSchema(String xml) {
+        if (xsdValidator == null) {
+            return null;
+        }
+        try (ByteArrayInputStream inputStream = new ByteArrayInputStream(xml.getBytes(StandardCharsets.UTF_8))) {
+            xsdValidator.validate(new StreamSource(inputStream));
+            return true;
+        } catch (SAXException e) {
+            LOGGER.error("Schema validation failed: {}", e.getMessage());
+            return false;
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
     }
 }

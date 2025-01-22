@@ -1,0 +1,389 @@
+{
+  "fpmlVersion" : "5-13",
+  "validationModel" : { },
+  "trade" : [ {
+    "tradeHeader" : {
+      "tradeIdentifiersModel" : {
+        "tradeIdentifiersModelSequence" : {
+          "globalTradeIdentifiersModel" : {
+            "globalTradeIdentifiersModelSequence" : { }
+          }
+        },
+        "partyTradeIdentifier" : [ {
+          "issuerTradeIdModel" : {
+            "tradeId" : {
+              "value" : "987654321-0",
+              "tradeIdScheme" : "http://www.partyA.com/swaps/trade-id"
+            }
+          },
+          "tradeIdentifierSequence" : {
+            "partyAndAccountReferencesModel" : {
+              "partyReference" : {
+                "href" : "partyA"
+              }
+            },
+            "tradeIdentifierSequenceChoice" : [ {
+              "tradeId" : {
+                "value" : "987654321-0",
+                "tradeIdScheme" : "http://www.partyA.com/swaps/trade-id"
+              }
+            } ]
+          }
+        } ]
+      },
+      "tradeDate" : {
+        "value" : "2012-06-29"
+      }
+    },
+    "product" : {
+      "productModel" : { },
+      "swapStream" : [ {
+        "id" : "fixedLeg",
+        "payerReceiverModel" : {
+          "payerModel" : {
+            "payerPartyReference" : {
+              "href" : "partyA"
+            }
+          },
+          "receiverModel" : {
+            "receiverPartyReference" : {
+              "href" : "partyB"
+            }
+          }
+        },
+        "calculationPeriodDates" : {
+          "effectiveDate" : {
+            "unadjustedDate" : {
+              "value" : "2012-09-26"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "NONE",
+              "businessCentersOrReferenceModel" : { }
+            }
+          },
+          "terminationDate" : {
+            "unadjustedDate" : {
+              "value" : "2013-03-26"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "FOLLOWING",
+              "businessCentersOrReferenceModel" : {
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "BRBD"
+                  } ]
+                }
+              }
+            },
+            "id" : "fixedLegTerminationDate"
+          },
+          "calculationPeriodDatesAdjustments" : {
+            "businessDayConvention" : "NONE",
+            "businessCentersOrReferenceModel" : { }
+          },
+          "calculationPeriodFrequency" : {
+            "periodMultiplier" : 1,
+            "period" : "T",
+            "rollConvention" : "NONE"
+          },
+          "id" : "fixedLegCalcPeriodDates"
+        },
+        "paymentDates" : {
+          "valuationDatesReference" : {
+            "href" : "fixedLegFxFixingDates"
+          },
+          "paymentFrequency" : {
+            "periodMultiplier" : 1,
+            "period" : "T"
+          },
+          "payRelativeTo" : "VALUATION_DATE",
+          "paymentDaysOffset" : {
+            "periodMultiplier" : 1,
+            "period" : "D",
+            "dayType" : "BUSINESS"
+          },
+          "paymentDatesAdjustments" : {
+            "businessDayConvention" : "FOLLOWING",
+            "businessCentersOrReferenceModel" : {
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "USNY"
+                } ]
+              }
+            }
+          }
+        },
+        "calculationPeriodAmount" : {
+          "calculation" : {
+            "notionalSchedule" : {
+              "notionalStepSchedule" : {
+                "initialValue" : 100000000.0,
+                "currency" : {
+                  "value" : "BRL"
+                }
+              }
+            },
+            "calculationSequence" : {
+              "fixedRateSchedule" : {
+                "initialValue" : 0.0876
+              },
+              "futureValueNotional" : {
+                "currency" : {
+                  "value" : "BRL"
+                },
+                "amount" : 104149148.42,
+                "calculationPeriodNumberOfDays" : 122,
+                "valueDate" : "2013-03-26"
+              }
+            },
+            "dayCountFraction" : {
+              "value" : "BUS/252"
+            }
+          }
+        },
+        "settlementProvision" : {
+          "settlementCurrency" : {
+            "value" : "USD"
+          },
+          "nonDeliverableSettlement" : {
+            "referenceCurrency" : {
+              "value" : "BRL"
+            },
+            "fxFixingDate" : {
+              "periodMultiplier" : -2,
+              "period" : "D",
+              "id" : "fixedLegFxFixingDates",
+              "dayType" : "BUSINESS",
+              "businessDayConvention" : "NONE",
+              "businessCentersOrReferenceModel" : {
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "BRBD"
+                  }, {
+                    "value" : "USNY"
+                  } ]
+                }
+              },
+              "dateRelativeToCalculationPeriodDates" : {
+                "calculationPeriodDatesReference" : [ {
+                  "href" : "fixedLegTerminationDate"
+                } ]
+              }
+            },
+            "settlementRateOption" : {
+              "value" : "BRL.PTAX/BRL09"
+            }
+          }
+        }
+      }, {
+        "id" : "floatingLeg",
+        "payerReceiverModel" : {
+          "payerModel" : {
+            "payerPartyReference" : {
+              "href" : "partyB"
+            }
+          },
+          "receiverModel" : {
+            "receiverPartyReference" : {
+              "href" : "partyA"
+            }
+          }
+        },
+        "calculationPeriodDates" : {
+          "effectiveDate" : {
+            "unadjustedDate" : {
+              "value" : "2012-09-26"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "NONE",
+              "businessCentersOrReferenceModel" : { }
+            }
+          },
+          "terminationDate" : {
+            "unadjustedDate" : {
+              "value" : "2013-03-26"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "FOLLOWING",
+              "businessCentersOrReferenceModel" : {
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "BRBD"
+                  } ]
+                }
+              }
+            },
+            "id" : "floatingLegTerminationDate"
+          },
+          "calculationPeriodDatesAdjustments" : {
+            "businessDayConvention" : "FOLLOWING",
+            "businessCentersOrReferenceModel" : {
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "BRBD"
+                } ]
+              }
+            }
+          },
+          "calculationPeriodFrequency" : {
+            "periodMultiplier" : 1,
+            "period" : "T",
+            "rollConvention" : "NONE"
+          },
+          "id" : "floatingLegCalcPeriodDates"
+        },
+        "paymentDates" : {
+          "valuationDatesReference" : {
+            "href" : "floatingLegFxFixingDates"
+          },
+          "paymentFrequency" : {
+            "periodMultiplier" : 1,
+            "period" : "T"
+          },
+          "payRelativeTo" : "VALUATION_DATE",
+          "paymentDaysOffset" : {
+            "periodMultiplier" : 1,
+            "period" : "D",
+            "dayType" : "BUSINESS"
+          },
+          "paymentDatesAdjustments" : {
+            "businessDayConvention" : "FOLLOWING",
+            "businessCentersOrReferenceModel" : {
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "USNY"
+                } ]
+              }
+            }
+          }
+        },
+        "resetDates" : {
+          "calculationPeriodDatesReference" : {
+            "href" : "floatingLegCalcPeriodDates"
+          },
+          "fixingDates" : {
+            "periodMultiplier" : -1,
+            "period" : "D",
+            "dayType" : "BUSINESS",
+            "businessDayConvention" : "NONE",
+            "businessCentersOrReferenceModel" : {
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "BRBD"
+                } ]
+              }
+            },
+            "dateRelativeTo" : {
+              "href" : "floatingLegResetDates"
+            }
+          },
+          "resetFrequency" : {
+            "periodMultiplier" : 1,
+            "period" : "T"
+          },
+          "resetDatesAdjustments" : {
+            "businessDayConvention" : "FOLLOWING",
+            "businessCentersOrReferenceModel" : {
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "BRBD"
+                } ]
+              }
+            }
+          },
+          "id" : "floatingLegResetDates"
+        },
+        "calculationPeriodAmount" : {
+          "calculation" : {
+            "notionalSchedule" : {
+              "notionalStepSchedule" : {
+                "initialValue" : 100000000.0,
+                "currency" : {
+                  "value" : "BRL"
+                }
+              }
+            },
+            "calculationSequence" : { },
+            "dayCountFraction" : {
+              "value" : "BUS/252"
+            },
+            "compoundingMethod" : "FLAT"
+          }
+        },
+        "settlementProvision" : {
+          "settlementCurrency" : {
+            "value" : "USD"
+          },
+          "nonDeliverableSettlement" : {
+            "referenceCurrency" : {
+              "value" : "BRL"
+            },
+            "fxFixingDate" : {
+              "periodMultiplier" : -2,
+              "period" : "D",
+              "id" : "floatingLegFxFixingDates",
+              "dayType" : "BUSINESS",
+              "businessDayConvention" : "NONE",
+              "businessCentersOrReferenceModel" : {
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "BRBD"
+                  }, {
+                    "value" : "USNY"
+                  } ]
+                }
+              },
+              "dateRelativeToCalculationPeriodDates" : {
+                "calculationPeriodDatesReference" : [ {
+                  "href" : "floatingLegTerminationDate"
+                } ]
+              }
+            },
+            "settlementRateOption" : {
+              "value" : "BRL.PTAX/BRL09"
+            }
+          }
+        }
+      } ]
+    },
+    "calculationAgentModel" : {
+      "calculationAgent" : {
+        "calculationAgentPartyReference" : [ {
+          "href" : "partyA"
+        } ]
+      },
+      "calculationAgentBusinessCenter" : {
+        "value" : "USNY"
+      }
+    }
+  } ],
+  "partiesAndAccountsModel" : {
+    "party" : [ {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "DELTA123",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
+        } ],
+        "partyName" : {
+          "value" : "Delta Bank Ltd"
+        },
+        "partyInformationModel" : { }
+      },
+      "partySequence" : { },
+      "id" : "partyA"
+    }, {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "METRO123",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
+        } ],
+        "partyName" : {
+          "value" : "Metro Bank Ltd"
+        },
+        "partyInformationModel" : { }
+      },
+      "partySequence" : { },
+      "id" : "partyB"
+    } ]
+  }
+}

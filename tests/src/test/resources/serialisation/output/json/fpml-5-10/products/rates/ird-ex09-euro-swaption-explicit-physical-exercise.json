@@ -1,0 +1,392 @@
+{
+  "fpmlVersion" : "5-10",
+  "validationModel" : { },
+  "trade" : [ {
+    "tradeHeader" : {
+      "tradeIdentifiersModel" : {
+        "tradeIdentifiersModelSequence" : {
+          "globalTradeIdentifiersModel" : {
+            "globalTradeIdentifiersModelSequence" : { }
+          }
+        },
+        "partyTradeIdentifier" : [ {
+          "issuerTradeIdModel" : { },
+          "tradeIdentifierSequence" : {
+            "partyAndAccountReferencesModel" : {
+              "partyReference" : {
+                "href" : "party1"
+              }
+            },
+            "tradeIdentifierSequenceChoice" : [ {
+              "versionedTradeId" : {
+                "tradeId" : {
+                  "value" : "123",
+                  "tradeIdScheme" : "http://www.partyA.com/trade-id"
+                },
+                "versionHistoryModel" : {
+                  "version" : 1
+                }
+              }
+            } ]
+          }
+        } ]
+      },
+      "tradeDate" : {
+        "value" : "2000-08-30"
+      }
+    },
+    "product" : {
+      "productModel" : { },
+      "buyerSellerModel" : {
+        "buyerPartyReference" : {
+          "href" : "party1"
+        },
+        "sellerPartyReference" : {
+          "href" : "party2"
+        }
+      },
+      "premium" : [ {
+        "payerReceiverModel" : {
+          "payerModel" : {
+            "payerPartyReference" : {
+              "href" : "party1"
+            }
+          },
+          "receiverModel" : {
+            "receiverPartyReference" : {
+              "href" : "party2"
+            }
+          }
+        },
+        "paymentAmount" : {
+          "currency" : {
+            "value" : "EUR"
+          },
+          "amount" : 100000
+        },
+        "paymentDate" : {
+          "adjustableDateModel" : {
+            "unadjustedDate" : {
+              "value" : "2000-08-30"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "FOLLOWING",
+              "businessCentersOrReferenceModel" : {
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "EUTA"
+                  } ]
+                }
+              }
+            }
+          }
+        }
+      } ],
+      "exercise" : {
+        "expirationDate" : {
+          "adjustableDate" : {
+            "unadjustedDate" : {
+              "value" : "2001-08-28"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "FOLLOWING",
+              "businessCentersOrReferenceModel" : {
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "EUTA"
+                  }, {
+                    "value" : "GBLO"
+                  } ]
+                }
+              }
+            }
+          }
+        },
+        "earliestExerciseTime" : {
+          "hourMinuteTime" : "09:00:00",
+          "businessCenter" : {
+            "value" : "BEBR"
+          }
+        },
+        "expirationTime" : {
+          "hourMinuteTime" : "11:00:00",
+          "businessCenter" : {
+            "value" : "BEBR"
+          }
+        }
+      },
+      "exerciseProcedure" : {
+        "manualExercise" : {
+          "exerciseNotice" : {
+            "partyReference" : {
+              "href" : "party2"
+            },
+            "businessCenter" : {
+              "value" : "GBLO"
+            }
+          }
+        },
+        "followUpConfirmation" : true
+      },
+      "calculationAgent" : {
+        "calculationAgentPartyReference" : [ {
+          "href" : "party2"
+        } ]
+      },
+      "physicalSettlement" : {
+        "clearedPhysicalSettlement" : true
+      },
+      "swaptionStraddle" : false,
+      "swap" : {
+        "productModel" : { },
+        "swapStream" : [ {
+          "payerReceiverModel" : {
+            "payerModel" : {
+              "payerPartyReference" : {
+                "href" : "party1"
+              }
+            },
+            "receiverModel" : {
+              "receiverPartyReference" : {
+                "href" : "party2"
+              }
+            }
+          },
+          "calculationPeriodDates" : {
+            "effectiveDate" : {
+              "unadjustedDate" : {
+                "value" : "2001-08-30"
+              },
+              "dateAdjustments" : {
+                "businessDayConvention" : "NONE",
+                "businessCentersOrReferenceModel" : { }
+              }
+            },
+            "terminationDate" : {
+              "unadjustedDate" : {
+                "value" : "2006-08-30"
+              },
+              "dateAdjustments" : {
+                "businessDayConvention" : "MODFOLLOWING",
+                "businessCentersOrReferenceModel" : {
+                  "businessCenters" : {
+                    "businessCenter" : [ {
+                      "value" : "EUTA"
+                    } ],
+                    "id" : "accrualBusinessCenters0"
+                  }
+                }
+              }
+            },
+            "calculationPeriodDatesAdjustments" : {
+              "businessDayConvention" : "MODFOLLOWING",
+              "businessCentersOrReferenceModel" : {
+                "businessCentersReference" : {
+                  "href" : "accrualBusinessCenters0"
+                }
+              }
+            },
+            "calculationPeriodFrequency" : {
+              "periodMultiplier" : 1,
+              "period" : "Y",
+              "rollConvention" : "_30"
+            },
+            "id" : "CalcPeriodDates0"
+          },
+          "paymentDates" : {
+            "calculationPeriodDatesReference" : {
+              "href" : "CalcPeriodDates0"
+            },
+            "paymentFrequency" : {
+              "periodMultiplier" : 1,
+              "period" : "Y"
+            },
+            "payRelativeTo" : "CALCULATION_PERIOD_END_DATE",
+            "paymentDatesAdjustments" : {
+              "businessDayConvention" : "MODFOLLOWING",
+              "businessCentersOrReferenceModel" : {
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "EUTA"
+                  } ],
+                  "id" : "paymentBusinessCenters0"
+                }
+              }
+            }
+          },
+          "calculationPeriodAmount" : {
+            "calculation" : {
+              "notionalSchedule" : {
+                "notionalStepSchedule" : {
+                  "initialValue" : 100000000,
+                  "currency" : {
+                    "value" : "EUR"
+                  }
+                }
+              },
+              "calculationSequence" : {
+                "fixedRateSchedule" : {
+                  "initialValue" : 0.05
+                }
+              },
+              "dayCountFraction" : {
+                "value" : "30/360"
+              }
+            }
+          }
+        }, {
+          "payerReceiverModel" : {
+            "payerModel" : {
+              "payerPartyReference" : {
+                "href" : "party2"
+              }
+            },
+            "receiverModel" : {
+              "receiverPartyReference" : {
+                "href" : "party1"
+              }
+            }
+          },
+          "calculationPeriodDates" : {
+            "effectiveDate" : {
+              "unadjustedDate" : {
+                "value" : "2001-08-30"
+              },
+              "dateAdjustments" : {
+                "businessDayConvention" : "NONE",
+                "businessCentersOrReferenceModel" : { }
+              }
+            },
+            "terminationDate" : {
+              "unadjustedDate" : {
+                "value" : "2006-08-30"
+              },
+              "dateAdjustments" : {
+                "businessDayConvention" : "MODFOLLOWING",
+                "businessCentersOrReferenceModel" : {
+                  "businessCenters" : {
+                    "businessCenter" : [ {
+                      "value" : "EUTA"
+                    } ],
+                    "id" : "accrualBusinessCenters1"
+                  }
+                }
+              }
+            },
+            "calculationPeriodDatesAdjustments" : {
+              "businessDayConvention" : "MODFOLLOWING",
+              "businessCentersOrReferenceModel" : {
+                "businessCentersReference" : {
+                  "href" : "accrualBusinessCenters1"
+                }
+              }
+            },
+            "calculationPeriodFrequency" : {
+              "periodMultiplier" : 6,
+              "period" : "M",
+              "rollConvention" : "_30"
+            },
+            "id" : "CalcPeriodDates1"
+          },
+          "paymentDates" : {
+            "calculationPeriodDatesReference" : {
+              "href" : "CalcPeriodDates1"
+            },
+            "paymentFrequency" : {
+              "periodMultiplier" : 6,
+              "period" : "M"
+            },
+            "payRelativeTo" : "CALCULATION_PERIOD_END_DATE",
+            "paymentDatesAdjustments" : {
+              "businessDayConvention" : "MODFOLLOWING",
+              "businessCentersOrReferenceModel" : {
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "EUTA"
+                  } ],
+                  "id" : "paymentBusinessCenters1"
+                }
+              }
+            }
+          },
+          "resetDates" : {
+            "calculationPeriodDatesReference" : {
+              "href" : "CalcPeriodDates1"
+            },
+            "resetRelativeTo" : "CALCULATION_PERIOD_START_DATE",
+            "fixingDates" : {
+              "periodMultiplier" : -2,
+              "period" : "D",
+              "dayType" : "BUSINESS",
+              "businessDayConvention" : "NONE",
+              "businessCentersOrReferenceModel" : {
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "EUTA"
+                  } ],
+                  "id" : "fixingBusinessCenters0"
+                }
+              },
+              "dateRelativeTo" : {
+                "href" : "resetDates0"
+              }
+            },
+            "resetFrequency" : {
+              "periodMultiplier" : 6,
+              "period" : "M"
+            },
+            "resetDatesAdjustments" : {
+              "businessDayConvention" : "MODFOLLOWING",
+              "businessCentersOrReferenceModel" : {
+                "businessCentersReference" : {
+                  "href" : "paymentBusinessCenters1"
+                }
+              }
+            },
+            "id" : "resetDates0"
+          },
+          "calculationPeriodAmount" : {
+            "calculation" : {
+              "notionalSchedule" : {
+                "notionalStepSchedule" : {
+                  "initialValue" : 100000000,
+                  "currency" : {
+                    "value" : "EUR"
+                  }
+                }
+              },
+              "calculationSequence" : { },
+              "dayCountFraction" : {
+                "value" : "ACT/360"
+              }
+            }
+          }
+        } ]
+      }
+    },
+    "calculationAgentModel" : { }
+  } ],
+  "partiesAndAccountsModel" : {
+    "party" : [ {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "party A",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso9362"
+        } ],
+        "partyInformationModel" : { }
+      },
+      "partySequence" : { },
+      "id" : "party1"
+    }, {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "party B",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso9362"
+        } ],
+        "partyInformationModel" : { }
+      },
+      "partySequence" : { },
+      "id" : "party2"
+    } ]
+  }
+}

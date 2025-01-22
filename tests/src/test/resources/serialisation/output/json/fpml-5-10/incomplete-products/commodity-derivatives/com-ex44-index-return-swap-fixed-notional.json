@@ -1,0 +1,270 @@
+{
+  "fpmlVersion" : "5-10",
+  "validationModel" : { },
+  "trade" : [ {
+    "tradeHeader" : {
+      "tradeIdentifiersModel" : {
+        "tradeIdentifiersModelSequence" : {
+          "globalTradeIdentifiersModel" : {
+            "globalTradeIdentifiersModelSequence" : { }
+          }
+        },
+        "partyTradeIdentifier" : [ {
+          "issuerTradeIdModel" : {
+            "tradeId" : {
+              "value" : "ACIRST1234567",
+              "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
+            }
+          },
+          "tradeIdentifierSequence" : {
+            "partyAndAccountReferencesModel" : {
+              "partyReference" : {
+                "href" : "PartyA"
+              }
+            },
+            "tradeIdentifierSequenceChoice" : [ {
+              "tradeId" : {
+                "value" : "ACIRST1234567",
+                "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
+              }
+            } ]
+          }
+        } ]
+      },
+      "tradeDate" : {
+        "value" : "2014-04-08",
+        "id" : "TradeDate"
+      }
+    },
+    "product" : {
+      "productModel" : {
+        "primaryAssetClass" : {
+          "value" : "Commodity"
+        },
+        "productType" : [ {
+          "value" : "Commodity:Energy:Index:Swap:Cash"
+        } ]
+      },
+      "effectiveDate" : {
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2014-04-01"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NONE",
+            "businessCentersOrReferenceModel" : { }
+          }
+        }
+      },
+      "terminationDate" : {
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2014-10-31"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NONE",
+            "businessCentersOrReferenceModel" : { }
+          }
+        },
+        "id" : "TerminationDate"
+      },
+      "commodityPerformanceSwapLeg" : [ {
+        "payerReceiverModel" : {
+          "payerModel" : {
+            "payerPartyReference" : {
+              "href" : "PartyA"
+            }
+          },
+          "receiverModel" : {
+            "receiverPartyReference" : {
+              "href" : "PartyB"
+            }
+          }
+        },
+        "commodityCalculationPeriodsModel" : {
+          "calculationPeriodsSchedule" : {
+            "periodMultiplier" : 1,
+            "period" : "M",
+            "id" : "returnLegCalculationPeriodSchedule",
+            "balanceOfFirstPeriod" : false
+          },
+          "commodityCalculationPeriodsPointerModel" : { }
+        },
+        "commodityPaymentDatesModel" : {
+          "relativePaymentDates" : {
+            "payRelativeTo" : "CALCULATION_PERIOD_END_DATE",
+            "commodityCalculationPeriodsPointerModel" : {
+              "calculationPeriodsScheduleReference" : {
+                "href" : "returnLegCalculationPeriodSchedule"
+              }
+            },
+            "paymentDaysOffset" : {
+              "periodMultiplier" : 2,
+              "period" : "D",
+              "dayType" : "BUSINESS",
+              "businessDayConvention" : "NONE"
+            },
+            "businessCentersOrReferenceModel" : { }
+          },
+          "commodityNonPeriodicPaymentDatesModel" : { }
+        },
+        "commodityUnderlyerChoiceModel" : {
+          "commodity" : {
+            "instrumentId" : [ {
+              "value" : "DJUBS ComTSM",
+              "instrumentIdScheme" : "http://www.fpml.org/coding-scheme/commodity-reference-price-3-0"
+            } ],
+            "commodityProductModel" : {
+              "commodityReferencePriceFrameworkModel" : {
+                "commodityReferencePriceFrameworkModelSequence" : { }
+              },
+              "specifiedPrice" : "SETTLEMENT",
+              "commodityProductModelSequence" : {
+                "commodityProductModelSequenceChoice" : { }
+              }
+            }
+          }
+        },
+        "notionalAmount" : {
+          "currency" : {
+            "value" : "USD"
+          },
+          "id" : "returnLegNotionalAmount",
+          "amount" : 1000000.00,
+          "reinvestmentFeature" : false
+        },
+        "commodityReturnCalculation" : {
+          "formula" : "SIMPLE_FORMULA",
+          "valuationDates" : {
+            "commodityCalculationPeriodsPointerModel" : {
+              "calculationPeriodsScheduleReference" : {
+                "href" : "returnLegCalculationPeriodSchedule"
+              }
+            },
+            "commodityValuationDatesSequence" : {
+              "commodityValuationDatesSequenceSequence" : {
+                "daysModel" : {
+                  "dayType" : "CALENDAR",
+                  "daysModelSequence0" : {
+                    "dayDistribution" : {
+                      "value" : "Last"
+                    }
+                  },
+                  "daysModelSequence1" : { }
+                }
+              }
+            }
+          },
+          "initialPrice" : 274.81
+        }
+      }, {
+        "payerReceiverModel" : {
+          "payerModel" : {
+            "payerPartyReference" : {
+              "href" : "PartyB"
+            }
+          },
+          "receiverModel" : {
+            "receiverPartyReference" : {
+              "href" : "PartyA"
+            }
+          }
+        },
+        "commodityCalculationPeriodsModel" : {
+          "commodityCalculationPeriodsPointerModel" : {
+            "calculationPeriodsScheduleReference" : {
+              "href" : "returnLegCalculationPeriodSchedule"
+            }
+          }
+        },
+        "commodityPaymentDatesModel" : {
+          "relativePaymentDates" : {
+            "payRelativeTo" : "CALCULATION_PERIOD_END_DATE",
+            "commodityCalculationPeriodsPointerModel" : {
+              "calculationPeriodsScheduleReference" : {
+                "href" : "returnLegCalculationPeriodSchedule"
+              }
+            },
+            "paymentDaysOffset" : {
+              "periodMultiplier" : 2,
+              "period" : "D",
+              "dayType" : "BUSINESS",
+              "businessDayConvention" : "NONE"
+            },
+            "businessCentersOrReferenceModel" : { }
+          },
+          "commodityNonPeriodicPaymentDatesModel" : { }
+        },
+        "notionalAmountReference" : {
+          "href" : "returnLegNotionalAmount"
+        },
+        "commodityFixedInterestCalculation" : {
+          "fixedRate" : {
+            "value" : 0.032100
+          },
+          "dayCountFraction" : {
+            "value" : "ACT/365.FIXED"
+          }
+        }
+      } ],
+      "commodityContentModel" : {
+        "marketDisruption" : {
+          "commodityMarketDisruptionSequence" : { },
+          "marketDisruptionEvent" : [ {
+            "value" : "AsSpecifiedInMasterAgreement"
+          } ],
+          "disruptionFallbacks" : "AS_SPECIFIED_IN_MASTER_AGREEMENT"
+        }
+      }
+    },
+    "calculationAgentModel" : { },
+    "documentation" : {
+      "masterAgreement" : {
+        "masterAgreementType" : {
+          "value" : "ISDA"
+        },
+        "masterAgreementVersion" : {
+          "value" : "2002"
+        },
+        "masterAgreementDate" : "2010-03-23"
+      },
+      "contractualDefinitions" : [ {
+        "value" : "ISDA2006"
+      } ]
+    }
+  } ],
+  "partiesAndAccountsModel" : {
+    "party" : [ {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "95980020140005196564",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+        } ],
+        "partyInformationModel" : {
+          "country" : {
+            "value" : "US"
+          },
+          "organizationType" : [ {
+            "value" : "SwapDealer"
+          } ]
+        }
+      },
+      "partySequence" : { },
+      "id" : "PartyA"
+    }, {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "549300XQFX97CITUR430",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+        } ],
+        "partyInformationModel" : {
+          "organizationType" : [ {
+            "value" : "Non-SD_Non-MSP"
+          } ]
+        }
+      },
+      "partySequence" : { },
+      "id" : "PartyB"
+    } ]
+  }
+}

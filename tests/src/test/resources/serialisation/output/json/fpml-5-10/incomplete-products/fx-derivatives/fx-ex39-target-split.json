@@ -1,0 +1,238 @@
+{
+  "fpmlVersion" : "5-10",
+  "validationModel" : { },
+  "trade" : [ {
+    "tradeHeader" : {
+      "tradeIdentifiersModel" : {
+        "tradeIdentifiersModelSequence" : {
+          "globalTradeIdentifiersModel" : {
+            "globalTradeIdentifiersModelSequence" : { }
+          }
+        },
+        "partyTradeIdentifier" : [ {
+          "issuerTradeIdModel" : {
+            "tradeId" : {
+              "value" : "12345",
+              "tradeIdScheme" : "http://www.partyA.com/fx/trade-id"
+            }
+          },
+          "tradeIdentifierSequence" : {
+            "partyAndAccountReferencesModel" : {
+              "partyReference" : {
+                "href" : "ptyA"
+              }
+            },
+            "tradeIdentifierSequenceChoice" : [ {
+              "tradeId" : {
+                "value" : "12345",
+                "tradeIdScheme" : "http://www.partyA.com/fx/trade-id"
+              }
+            } ]
+          }
+        } ]
+      },
+      "tradeDate" : {
+        "value" : "2014-12-21"
+      }
+    },
+    "product" : {
+      "productModel" : { },
+      "quotedCurrencyPair" : {
+        "currency1" : {
+          "value" : "USD"
+        },
+        "currency2" : {
+          "value" : "CAD"
+        },
+        "quoteBasis" : "CURRENCY2_PER_CURRENCY1"
+      },
+      "notionalAmount" : {
+        "initialValue" : 2000000.00,
+        "currency" : {
+          "value" : "USD"
+        }
+      },
+      "target" : [ {
+        "accumulationRegion" : [ {
+          "fxTargetRegionBoundModel" : {
+            "fxTargetRegionBoundModelSequence" : {
+              "lowerBound" : {
+                "condition" : "AT_OR_ABOVE",
+                "fxTargetConditionLevelModel" : {
+                  "level" : {
+                    "initialValue" : 1.1000
+                  }
+                }
+              }
+            }
+          }
+        } ],
+        "knockoutCount" : {
+          "conditionalFixings" : 4,
+          "settlementAtKnockout" : true
+        }
+      } ],
+      "expirySchedule" : {
+        "fxScheduleSequence0" : {
+          "adjustedDate" : [ "2014-12-23", "2015-01-27", "2015-02-25", "2015-03-26" ]
+        },
+        "fxScheduleSequence1" : {
+          "parametricScheduleModel" : {
+            "parametricScheduleModelSequence0" : { },
+            "parametricScheduleModelSequence1" : { },
+            "parametricScheduleModelSequence2" : {
+              "businessCentersOrReferenceModel" : { }
+            }
+          },
+          "adjustedDate" : [ "2014-12-23", "2015-01-27", "2015-02-25", "2015-03-26" ]
+        }
+      },
+      "settlementSchedule" : {
+        "fxScheduleSequence0" : {
+          "dateAdjustments" : {
+            "businessDayConvention" : "FOLLOWING",
+            "businessCentersOrReferenceModel" : {
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "CATO"
+                }, {
+                  "value" : "USNY"
+                } ]
+              }
+            }
+          },
+          "adjustedDate" : [ "2014-12-24", "2015-01-28", "2015-02-26", "2015-03-27" ]
+        },
+        "fxScheduleSequence1" : {
+          "parametricScheduleModel" : {
+            "parametricScheduleModelSequence0" : { },
+            "parametricScheduleModelSequence1" : {
+              "dateAdjustments" : {
+                "businessDayConvention" : "FOLLOWING",
+                "businessCentersOrReferenceModel" : {
+                  "businessCenters" : {
+                    "businessCenter" : [ {
+                      "value" : "CATO"
+                    }, {
+                      "value" : "USNY"
+                    } ]
+                  }
+                }
+              }
+            },
+            "parametricScheduleModelSequence2" : {
+              "businessCentersOrReferenceModel" : { }
+            }
+          },
+          "adjustedDate" : [ "2014-12-24", "2015-01-28", "2015-02-26", "2015-03-27" ]
+        }
+      },
+      "fixingInformationSource" : {
+        "rateSource" : {
+          "value" : "Reuters"
+        },
+        "rateSourcePage" : {
+          "value" : "WMRSPOT09"
+        },
+        "fixingTime" : {
+          "hourMinuteTime" : "10:00:00",
+          "businessCenter" : {
+            "value" : "USNY"
+          }
+        }
+      },
+      "fxTargetKnockoutForwardSequence" : { },
+      "linearPayoffRegion" : {
+        "fxExchangedCurrencyModel" : {
+          "exchangedCurrency1" : {
+            "payerReceiverModel" : {
+              "payerModel" : {
+                "payerPartyReference" : {
+                  "href" : "ptyA"
+                }
+              },
+              "receiverModel" : {
+                "receiverPartyReference" : {
+                  "href" : "ptyB"
+                }
+              }
+            },
+            "currency" : {
+              "value" : "USD"
+            }
+          },
+          "exchangedCurrency2" : {
+            "payerReceiverModel" : {
+              "payerModel" : {
+                "payerPartyReference" : {
+                  "href" : "ptyB"
+                }
+              },
+              "receiverModel" : {
+                "receiverPartyReference" : {
+                  "href" : "ptyA"
+                }
+              }
+            },
+            "currency" : {
+              "value" : "CAD"
+            }
+          }
+        },
+        "strike" : {
+          "initialValue" : 1.0450,
+          "id" : "s1"
+        },
+        "counterCurrencyAmount" : {
+          "initialValue" : 2090000.00,
+          "currency" : {
+            "value" : "CAD"
+          }
+        },
+        "leverage" : {
+          "condition" : "BELOW",
+          "fxTargetConditionLevelModel" : {
+            "strikeReference" : {
+              "href" : "s1"
+            }
+          },
+          "ratio" : {
+            "initialValue" : 2
+          },
+          "fxTargetLeverageSequence" : { }
+        }
+      },
+      "fxTargetKnockoutForwardChoice" : [ { } ]
+    },
+    "calculationAgentModel" : {
+      "calculationAgent" : {
+        "calculationAgentPartyReference" : [ {
+          "href" : "ptyA"
+        } ]
+      }
+    }
+  } ],
+  "partiesAndAccountsModel" : {
+    "party" : [ {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "Party A",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
+        } ],
+        "partyInformationModel" : { }
+      },
+      "partySequence" : { },
+      "id" : "ptyA"
+    }, {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "Party B",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
+        } ],
+        "partyInformationModel" : { }
+      },
+      "partySequence" : { },
+      "id" : "ptyB"
+    } ]
+  }
+}

@@ -1,0 +1,292 @@
+{
+  "fpmlVersion" : "5-10",
+  "validationModel" : { },
+  "trade" : [ {
+    "tradeHeader" : {
+      "tradeIdentifiersModel" : {
+        "tradeIdentifiersModelSequence" : {
+          "globalTradeIdentifiersModel" : {
+            "globalTradeIdentifiersModelSequence" : { }
+          }
+        },
+        "partyTradeIdentifier" : [ {
+          "issuerTradeIdModel" : {
+            "tradeId" : {
+              "value" : "123456789",
+              "tradeIdScheme" : "http://www.markets.Reuters.com/rss/spec/2001/trade-id-3-0"
+            }
+          },
+          "tradeIdentifierSequence" : {
+            "partyAndAccountReferencesModel" : {
+              "partyReference" : {
+                "href" : "partyA"
+              }
+            },
+            "tradeIdentifierSequenceChoice" : [ {
+              "tradeId" : {
+                "value" : "123456789",
+                "tradeIdScheme" : "http://www.markets.Reuters.com/rss/spec/2001/trade-id-3-0"
+              }
+            } ]
+          }
+        }, {
+          "issuerTradeIdModel" : {
+            "tradeId" : {
+              "value" : "123456789",
+              "tradeIdScheme" : "http://www.markets.Reuters.com/rss/spec/2001/trade-id-3-0"
+            }
+          },
+          "tradeIdentifierSequence" : {
+            "partyAndAccountReferencesModel" : {
+              "partyReference" : {
+                "href" : "partyB"
+              }
+            },
+            "tradeIdentifierSequenceChoice" : [ {
+              "tradeId" : {
+                "value" : "123456789",
+                "tradeIdScheme" : "http://www.markets.Reuters.com/rss/spec/2001/trade-id-3-0"
+              }
+            } ]
+          }
+        } ]
+      },
+      "tradeDate" : {
+        "value" : "2014-10-01"
+      }
+    },
+    "product" : {
+      "productModel" : {
+        "productType" : [ {
+          "value" : "FadingForwardStrategy",
+          "productTypeScheme" : "http://www.sample.com/coding-scheme/product-type-simple"
+        } ]
+      },
+      "product" : [ {
+        "productModel" : {
+          "productType" : [ {
+            "value" : "Delta-Put-FX-Option",
+            "productTypeScheme" : "http://www.markets.Reuters.com/rss/spec/2001/product-type-1-0"
+          } ]
+        },
+        "buyerSellerModel" : {
+          "buyerPartyReference" : {
+            "href" : "partyB"
+          },
+          "sellerPartyReference" : {
+            "href" : "partyA"
+          }
+        },
+        "europeanExercise" : {
+          "expiryDate" : "2014-10-31",
+          "expiryTime" : {
+            "hourMinuteTime" : "10:00:00",
+            "businessCenter" : {
+              "value" : "USNY"
+            }
+          },
+          "valueDate" : "2014-11-03"
+        },
+        "putCurrencyAmount" : {
+          "currency" : {
+            "value" : "CAD"
+          },
+          "amount" : 10825000.00
+        },
+        "callCurrencyAmount" : {
+          "currency" : {
+            "value" : "USD"
+          },
+          "amount" : 10000000.00
+        },
+        "strike" : {
+          "rate" : 1.0825,
+          "strikeQuoteBasis" : "CALL_CURRENCY_PER_PUT_CURRENCY"
+        }
+      }, {
+        "productModel" : {
+          "productType" : [ {
+            "value" : "FxAccrualOption",
+            "productTypeScheme" : "http://www.fpml.org/coding-scheme/product-type-simple"
+          } ]
+        },
+        "buyerSellerModel" : {
+          "buyerPartyReference" : {
+            "href" : "partyA"
+          },
+          "sellerPartyReference" : {
+            "href" : "partyB"
+          }
+        },
+        "putCallCurrencyModel" : {
+          "putCurrency" : {
+            "value" : "USD"
+          },
+          "callCurrency" : {
+            "value" : "CAD"
+          }
+        },
+        "notionalAmount" : {
+          "initialValue" : 10000000.00,
+          "currency" : {
+            "value" : "USD"
+          }
+        },
+        "accrual" : {
+          "observable" : [ {
+            "quotedCurrencyPair" : {
+              "currency1" : {
+                "value" : "CAD"
+              },
+              "currency2" : {
+                "value" : "USD"
+              },
+              "quoteBasis" : "CURRENCY2_PER_CURRENCY1"
+            },
+            "informationSource" : {
+              "rateSource" : {
+                "value" : "Reuters"
+              },
+              "rateSourcePage" : {
+                "value" : "BOFC"
+              },
+              "fixingTime" : {
+                "hourMinuteTime" : "12:00:00",
+                "businessCenter" : {
+                  "value" : "CATO"
+                }
+              }
+            },
+            "id" : "ob1"
+          } ],
+          "accrualRegion" : [ {
+            "observableReference" : {
+              "href" : "ob1"
+            },
+            "fxAccrualRegionBoundModel" : {
+              "upperBound" : {
+                "condition" : "BELOW",
+                "fxAccrualConditionLevelModel" : {
+                  "fxAccrualConditionLevelModelSequence" : {
+                    "level" : {
+                      "initialValue" : 1.0700
+                    }
+                  }
+                }
+              },
+              "fxAccrualRegionBoundModelSequence" : { }
+            },
+            "fxAccrualRegionSequence0" : { },
+            "fxAccrualRegionSequence1" : { }
+          } ],
+          "fixingSchedule" : {
+            "fxFixingScheduleSequence0" : { },
+            "fxFixingScheduleSequence1" : {
+              "parametricScheduleModel" : {
+                "parametricScheduleModelSequence0" : {
+                  "startDate" : "2014-10-01"
+                },
+                "endDate" : "2014-10-31",
+                "parametricScheduleModelSequence1" : { },
+                "parametricScheduleModelSequence2" : {
+                  "dayType" : "BUSINESS",
+                  "businessCentersOrReferenceModel" : {
+                    "businessCenters" : {
+                      "businessCenter" : [ {
+                        "value" : "CATO"
+                      } ]
+                    }
+                  }
+                }
+              },
+              "numberOfFixings" : 22
+            }
+          }
+        },
+        "fxExpiryDateOrScheduleModel" : {
+          "expiryDate" : {
+            "adjustedDate" : "2014-10-31",
+            "expiryTime" : {
+              "hourMinuteTime" : "10:00:00",
+              "businessCenter" : {
+                "value" : "USNY"
+              }
+            }
+          }
+        },
+        "fxSettlementDateOrScheduleModel" : {
+          "settlementDate" : {
+            "dateAdjustments" : {
+              "businessDayConvention" : "FOLLOWING",
+              "businessCentersOrReferenceModel" : {
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "USNY"
+                  }, {
+                    "value" : "CATO"
+                  } ]
+                }
+              }
+            },
+            "adjustedDate" : "2014-11-03"
+          }
+        },
+        "fxAccrualOptionSequence" : {
+          "strike" : {
+            "initialValue" : 1.0825,
+            "strikeQuoteBasis" : "PUT_CURRENCY_PER_CALL_CURRENCY"
+          },
+          "counterCurrencyAmount" : {
+            "initialValue" : 10825000.00,
+            "currency" : {
+              "value" : "CAD"
+            }
+          }
+        },
+        "barrier" : [ {
+          "barrierType" : "KNOCKOUT",
+          "style" : "EUROPEAN",
+          "scope" : "GLOBAL",
+          "condition" : "AT_OR_ABOVE",
+          "triggerRate" : {
+            "initialValue" : 1.0825
+          },
+          "fxComplexBarrierBaseSequence0" : { },
+          "fxComplexBarrierBaseSequence1" : { },
+          "accrualRetention" : "LOSE",
+          "fxAccrualBarrierSequence" : { }
+        } ]
+      } ]
+    },
+    "calculationAgentModel" : {
+      "calculationAgent" : {
+        "calculationAgentPartyReference" : [ {
+          "href" : "partyA"
+        } ]
+      }
+    }
+  } ],
+  "partiesAndAccountsModel" : {
+    "party" : [ {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "549300SRLRVTR996F086",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+        } ],
+        "partyInformationModel" : { }
+      },
+      "partySequence" : { },
+      "id" : "partyA"
+    }, {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "549300RE0FSXJE8G1L65",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+        } ],
+        "partyInformationModel" : { }
+      },
+      "partySequence" : { },
+      "id" : "partyB"
+    } ]
+  }
+}

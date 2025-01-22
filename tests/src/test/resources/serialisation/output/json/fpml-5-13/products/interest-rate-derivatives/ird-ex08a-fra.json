@@ -1,0 +1,152 @@
+{
+  "fpmlVersion" : "5-13",
+  "validationModel" : { },
+  "trade" : [ {
+    "tradeHeader" : {
+      "tradeIdentifiersModel" : {
+        "tradeIdentifiersModelSequence" : {
+          "globalTradeIdentifiersModel" : {
+            "globalTradeIdentifiersModelSequence" : { }
+          }
+        },
+        "partyTradeIdentifier" : [ {
+          "issuerTradeIdModel" : {
+            "tradeId" : {
+              "value" : "FpML-test-8",
+              "tradeIdScheme" : "http://www.partyA.com/swaps/trade-id"
+            }
+          },
+          "tradeIdentifierSequence" : {
+            "partyAndAccountReferencesModel" : {
+              "partyReference" : {
+                "href" : "partyA"
+              }
+            },
+            "tradeIdentifierSequenceChoice" : [ {
+              "tradeId" : {
+                "value" : "FpML-test-8",
+                "tradeIdScheme" : "http://www.partyA.com/swaps/trade-id"
+              }
+            } ]
+          }
+        } ]
+      },
+      "tradeDate" : {
+        "value" : "2019-01-14"
+      }
+    },
+    "product" : {
+      "productModel" : {
+        "productType" : [ {
+          "value" : "InterestRate:FRA"
+        } ],
+        "productId" : [ {
+          "value" : "64209469"
+        } ]
+      },
+      "buyerSellerModel" : {
+        "buyerPartyReference" : {
+          "href" : "partyB"
+        },
+        "sellerPartyReference" : {
+          "href" : "partyA"
+        }
+      },
+      "adjustedEffectiveDate" : {
+        "value" : "2019-01-14",
+        "id" : "resetDate"
+      },
+      "adjustedTerminationDate" : "2019-06-13",
+      "paymentDate" : {
+        "unadjustedDate" : {
+          "value" : "2019-01-14"
+        },
+        "dateAdjustments" : {
+          "businessDayConvention" : "MODFOLLOWING",
+          "businessCentersOrReferenceModel" : {
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "GBLO"
+              }, {
+                "value" : "USNY"
+              } ]
+            }
+          }
+        }
+      },
+      "fixingDateOffset" : {
+        "periodMultiplier" : -2,
+        "period" : "D",
+        "dayType" : "BUSINESS",
+        "businessDayConvention" : "NONE",
+        "businessCentersOrReferenceModel" : {
+          "businessCenters" : {
+            "businessCenter" : [ {
+              "value" : "GBLO"
+            } ]
+          }
+        },
+        "dateRelativeTo" : {
+          "href" : "resetDate"
+        }
+      },
+      "dayCountFraction" : {
+        "value" : "ACT/360"
+      },
+      "calculationPeriodNumberOfDays" : 150,
+      "notional" : {
+        "currency" : {
+          "value" : "USD"
+        },
+        "amount" : 50000000
+      },
+      "fixedRate" : {
+        "value" : 0.005
+      },
+      "floatingRateIndex" : {
+        "value" : "USD-LIBOR-BBA"
+      },
+      "indexTenor" : [ {
+        "periodMultiplier" : 5,
+        "period" : "M"
+      } ],
+      "fraDiscounting" : "ISDA"
+    },
+    "calculationAgentModel" : {
+      "calculationAgent" : {
+        "calculationAgentPartyReference" : [ {
+          "href" : "partyA"
+        } ]
+      }
+    }
+  } ],
+  "partiesAndAccountsModel" : {
+    "party" : [ {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "549300ABANKV6BYQOWM67",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+        } ],
+        "partyName" : {
+          "value" : "A BANK(\"ABANK\")"
+        },
+        "partyInformationModel" : { }
+      },
+      "partySequence" : { },
+      "id" : "partyA"
+    }, {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "529900CPTY57S5UCBB52",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+        } ],
+        "partyName" : {
+          "value" : "SELL SECURITIES CO LTD (\"Counterparty\")"
+        },
+        "partyInformationModel" : { }
+      },
+      "partySequence" : { },
+      "id" : "partyB"
+    } ]
+  }
+}

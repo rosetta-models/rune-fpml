@@ -1,0 +1,153 @@
+{
+  "fpmlVersion" : "5-13",
+  "validationModel" : { },
+  "trade" : [ {
+    "tradeHeader" : {
+      "tradeIdentifiersModel" : {
+        "tradeIdentifiersModelSequence" : {
+          "globalTradeIdentifiersModel" : {
+            "globalTradeIdentifiersModelSequence" : { }
+          }
+        },
+        "partyTradeIdentifier" : [ {
+          "issuerTradeIdModel" : {
+            "tradeId" : {
+              "value" : "1234",
+              "tradeIdScheme" : "http://www.BankA.com/com-trade-id"
+            }
+          },
+          "tradeIdentifierSequence" : {
+            "partyAndAccountReferencesModel" : {
+              "partyReference" : {
+                "href" : "partyA"
+              }
+            },
+            "tradeIdentifierSequenceChoice" : [ {
+              "tradeId" : {
+                "value" : "1234",
+                "tradeIdScheme" : "http://www.BankA.com/com-trade-id"
+              }
+            } ]
+          }
+        }, {
+          "issuerTradeIdModel" : {
+            "tradeId" : {
+              "value" : "2345",
+              "tradeIdScheme" : "http://www.BankB.com/com-trade-id"
+            }
+          },
+          "tradeIdentifierSequence" : {
+            "partyAndAccountReferencesModel" : {
+              "partyReference" : {
+                "href" : "partyB"
+              }
+            },
+            "tradeIdentifierSequenceChoice" : [ {
+              "tradeId" : {
+                "value" : "2345",
+                "tradeIdScheme" : "http://www.BankB.com/com-trade-id"
+              }
+            } ]
+          }
+        } ]
+      },
+      "tradeDate" : {
+        "value" : "2013-03-05",
+        "id" : "TradeDate"
+      }
+    },
+    "product" : {
+      "productModel" : { },
+      "fixedLeg" : {
+        "payerReceiverModel" : {
+          "payerModel" : {
+            "payerPartyReference" : {
+              "href" : "partyA"
+            }
+          },
+          "receiverModel" : {
+            "receiverPartyReference" : {
+              "href" : "partyB"
+            }
+          }
+        },
+        "fixedPrice" : {
+          "price" : 1.2226,
+          "commodityPriceModel" : {
+            "priceCurrency" : {
+              "value" : "USD"
+            },
+            "priceUnit" : {
+              "value" : "LB"
+            }
+          }
+        },
+        "quantityReference" : {
+          "href" : "deliveryQuantity"
+        },
+        "commodityPaymentDatesModel" : {
+          "relativePaymentDates" : {
+            "payRelativeToEvent" : {
+              "value" : "BillOfLading"
+            },
+            "commodityCalculationPeriodsPointerModel" : {
+              "calculationPeriodsDatesReference" : {
+                "href" : "deliveryPeriods"
+              }
+            },
+            "paymentDaysOffset" : {
+              "periodMultiplier" : 5,
+              "period" : "D",
+              "businessDayConvention" : "NONE"
+            },
+            "businessCentersOrReferenceModel" : { }
+          },
+          "commodityNonPeriodicPaymentDatesModel" : { }
+        }
+      },
+      "commodityContentModel" : { }
+    },
+    "calculationAgentModel" : { },
+    "documentation" : {
+      "masterAgreement" : {
+        "masterAgreementType" : {
+          "value" : "ISDA"
+        }
+      },
+      "contractualDefinitions" : [ {
+        "value" : "ISDA2006"
+      }, {
+        "value" : "ISDA2005Commodity"
+      } ]
+    }
+  } ],
+  "partiesAndAccountsModel" : {
+    "party" : [ {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "BuyerPartyLEI",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
+        } ],
+        "partyName" : {
+          "value" : "Bank A"
+        },
+        "partyInformationModel" : { }
+      },
+      "partySequence" : { },
+      "id" : "partyA"
+    }, {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "SellerPartyLEI",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
+        } ],
+        "partyName" : {
+          "value" : "Bank B"
+        },
+        "partyInformationModel" : { }
+      },
+      "partySequence" : { },
+      "id" : "partyB"
+    } ]
+  }
+}

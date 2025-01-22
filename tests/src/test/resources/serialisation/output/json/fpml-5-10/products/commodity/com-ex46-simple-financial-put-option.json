@@ -1,0 +1,327 @@
+{
+  "fpmlVersion" : "5-10",
+  "validationModel" : { },
+  "trade" : [ {
+    "tradeHeader" : {
+      "tradeIdentifiersModel" : {
+        "tradeIdentifiersModelSequence" : {
+          "globalTradeIdentifiersModel" : {
+            "globalTradeIdentifiersModelSequence" : { }
+          }
+        },
+        "partyTradeIdentifier" : [ {
+          "issuerTradeIdModel" : {
+            "tradeId" : {
+              "value" : "GHJK0987",
+              "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
+            }
+          },
+          "tradeIdentifierSequence" : {
+            "partyAndAccountReferencesModel" : {
+              "partyReference" : {
+                "href" : "partyA"
+              }
+            },
+            "tradeIdentifierSequenceChoice" : [ {
+              "tradeId" : {
+                "value" : "GHJK0987",
+                "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
+              }
+            } ]
+          }
+        } ]
+      },
+      "tradeDate" : {
+        "value" : "2012-04-10"
+      }
+    },
+    "product" : {
+      "productModel" : { },
+      "buyerSellerModel" : {
+        "buyerPartyReference" : {
+          "href" : "partyB"
+        },
+        "sellerPartyReference" : {
+          "href" : "partyA"
+        }
+      },
+      "optionType" : "PUT",
+      "commodityFinancialOptionModel" : {
+        "commodity" : {
+          "instrumentId" : [ {
+            "value" : "NATURAL GAS-LOUISIANA (HENRY HUB)-GAS DAILY",
+            "instrumentIdScheme" : "http://www.partyA.com/instrumentId/commodity-reference-price"
+          } ],
+          "commodityProductModel" : {
+            "commodityReferencePriceFrameworkModel" : {
+              "commodityReferencePriceFrameworkModelSequence" : { }
+            },
+            "specifiedPrice" : "MIDPOINT",
+            "commodityProductModelSequence" : {
+              "commodityProductModelSequenceChoice" : { }
+            }
+          }
+        },
+        "commodityOptionFeaturesModel" : {
+          "effectiveDate" : {
+            "adjustableDate" : {
+              "unadjustedDate" : {
+                "value" : "2012-09-01"
+              },
+              "dateAdjustments" : {
+                "businessDayConvention" : "NOT_APPLICABLE",
+                "businessCentersOrReferenceModel" : { }
+              }
+            }
+          },
+          "terminationDate" : {
+            "adjustableDate" : {
+              "unadjustedDate" : {
+                "value" : "2012-09-30"
+              },
+              "dateAdjustments" : {
+                "businessDayConvention" : "NOT_APPLICABLE",
+                "businessCentersOrReferenceModel" : { }
+              }
+            }
+          },
+          "commodityOptionFeaturesModelSequence" : {
+            "commodityAsianModel" : {
+              "calculationPeriodsSchedule" : {
+                "periodMultiplier" : 1,
+                "period" : "M",
+                "id" : "CalculationPeriods",
+                "balanceOfFirstPeriod" : false
+              },
+              "pricingDates" : {
+                "commodityCalculationPeriodsPointerModel" : {
+                  "calculationPeriodsReference" : {
+                    "href" : "CalculationPeriods"
+                  }
+                },
+                "commodityPricingDatesSequence" : {
+                  "commodityPricingDatesSequenceSequence" : {
+                    "daysModel" : {
+                      "dayType" : "COMMODITY_BUSINESS",
+                      "daysModelSequence0" : {
+                        "dayDistribution" : {
+                          "value" : "Last"
+                        }
+                      },
+                      "daysModelSequence1" : { }
+                    },
+                    "businessCalendar" : {
+                      "value" : "GAS-DAILY-PRICE-GUIDE"
+                    }
+                  }
+                },
+                "id" : "PricingDate"
+              }
+            }
+          }
+        },
+        "commodityNotionalQuantityModel" : {
+          "commodityNotionalQuantityModelSequence" : {
+            "notionalQuantity" : {
+              "quantityUnit" : {
+                "value" : "USMMBTU"
+              },
+              "quantityFrequency" : {
+                "value" : "PerCalendarDay"
+              },
+              "quantity" : 10000
+            },
+            "totalNotionalQuantity" : 300000
+          }
+        },
+        "exercise" : {
+          "europeanExercise" : {
+            "expirationDate" : {
+              "relativeDate" : {
+                "periodMultiplier" : 0,
+                "period" : "D",
+                "businessDayConvention" : "NOT_APPLICABLE",
+                "businessCentersOrReferenceModel" : { },
+                "dateRelativeTo" : {
+                  "href" : "PricingDate"
+                }
+              }
+            },
+            "commodityEuropeanExerciseSequence" : { }
+          },
+          "automaticExercise" : true,
+          "settlementCurrency" : {
+            "value" : "USD"
+          },
+          "commodityPaymentDatesModel" : {
+            "relativePaymentDates" : {
+              "payRelativeTo" : "LAST_PRICING_DATE",
+              "commodityCalculationPeriodsPointerModel" : {
+                "calculationPeriodsReference" : {
+                  "href" : "CalculationPeriods"
+                }
+              },
+              "paymentDaysOffset" : {
+                "periodMultiplier" : 5,
+                "period" : "D",
+                "dayType" : "BUSINESS",
+                "businessDayConvention" : "MODFOLLOWING"
+              },
+              "businessCentersOrReferenceModel" : { }
+            },
+            "commodityNonPeriodicPaymentDatesModel" : { }
+          }
+        },
+        "commodityStrikePriceModel" : {
+          "strikePricePerUnit" : {
+            "currency" : {
+              "value" : "USD"
+            },
+            "amount" : 1.9500
+          }
+        },
+        "commodityFloatingStrikePriceModel" : { }
+      },
+      "commodityPhysicalOptionModel" : { },
+      "commodityWeatherOptionModel" : {
+        "effectiveDate" : {
+          "adjustableDate" : {
+            "unadjustedDate" : {
+              "value" : "2012-09-01"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "NOT_APPLICABLE",
+              "businessCentersOrReferenceModel" : { }
+            }
+          }
+        },
+        "weatherCalculationPeriodModel" : { },
+        "exercise" : {
+          "europeanExercise" : {
+            "expirationDate" : {
+              "relativeDate" : {
+                "periodMultiplier" : 0,
+                "period" : "D",
+                "businessDayConvention" : "NOT_APPLICABLE",
+                "businessCentersOrReferenceModel" : { },
+                "dateRelativeTo" : {
+                  "href" : "PricingDate"
+                }
+              }
+            },
+            "commodityEuropeanExerciseSequence" : { }
+          },
+          "automaticExercise" : true,
+          "settlementCurrency" : {
+            "value" : "USD"
+          },
+          "commodityPaymentDatesModel" : {
+            "relativePaymentDates" : {
+              "payRelativeTo" : "LAST_PRICING_DATE",
+              "commodityCalculationPeriodsPointerModel" : {
+                "calculationPeriodsReference" : {
+                  "href" : "CalculationPeriods"
+                }
+              },
+              "paymentDaysOffset" : {
+                "periodMultiplier" : 5,
+                "period" : "D",
+                "dayType" : "BUSINESS",
+                "businessDayConvention" : "MODFOLLOWING"
+              },
+              "businessCentersOrReferenceModel" : { }
+            },
+            "commodityNonPeriodicPaymentDatesModel" : { }
+          }
+        }
+      },
+      "premium" : [ {
+        "payerReceiverModel" : {
+          "payerModel" : {
+            "payerPartyReference" : {
+              "href" : "partyB"
+            }
+          },
+          "receiverModel" : {
+            "receiverPartyReference" : {
+              "href" : "partyA"
+            }
+          }
+        },
+        "paymentDate" : {
+          "adjustableDate" : {
+            "unadjustedDate" : {
+              "value" : "2012-04-12"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "FOLLOWING",
+              "businessCentersOrReferenceModel" : { }
+            }
+          }
+        },
+        "paymentAmount" : {
+          "currency" : {
+            "value" : "USD"
+          },
+          "amount" : 40500.00
+        },
+        "premiumPerUnit" : {
+          "currency" : {
+            "value" : "USD"
+          },
+          "amount" : 0.135
+        }
+      } ],
+      "commodityContentModel" : { }
+    },
+    "calculationAgentModel" : {
+      "calculationAgent" : {
+        "calculationAgentPartyReference" : [ {
+          "href" : "partyA"
+        } ]
+      }
+    },
+    "documentation" : {
+      "masterAgreement" : {
+        "masterAgreementType" : {
+          "value" : "ISDA"
+        },
+        "masterAgreementDate" : "2010-11-10"
+      },
+      "contractualDefinitions" : [ {
+        "value" : "ISDA2000"
+      }, {
+        "value" : "ISDA2005Commodity"
+      } ]
+    }
+  } ],
+  "partiesAndAccountsModel" : {
+    "party" : [ {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "5299000NIGT14YW8ZD26",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+        } ],
+        "partyName" : {
+          "value" : "Bank A"
+        },
+        "partyInformationModel" : { }
+      },
+      "partySequence" : { },
+      "id" : "partyA"
+    }, {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "969500QCC36R89FI3U25",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+        } ],
+        "partyName" : {
+          "value" : "Energy Co."
+        },
+        "partyInformationModel" : { }
+      },
+      "partySequence" : { },
+      "id" : "partyB"
+    } ]
+  }
+}

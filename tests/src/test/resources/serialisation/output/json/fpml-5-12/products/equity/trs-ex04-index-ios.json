@@ -1,0 +1,163 @@
+{
+  "fpmlVersion" : "5-12",
+  "validationModel" : { },
+  "trade" : [ {
+    "tradeHeader" : {
+      "tradeIdentifiersModel" : {
+        "tradeIdentifiersModelSequence" : {
+          "globalTradeIdentifiersModel" : {
+            "globalTradeIdentifiersModelSequence" : { }
+          }
+        },
+        "partyTradeIdentifier" : [ {
+          "issuerTradeIdModel" : {
+            "tradeId" : {
+              "value" : "TRS-01",
+              "tradeIdScheme" : "http://www.abc.com/swaps/trade-id"
+            }
+          },
+          "tradeIdentifierSequence" : {
+            "partyAndAccountReferencesModel" : {
+              "partyReference" : {
+                "href" : "party1"
+              }
+            },
+            "tradeIdentifierSequenceChoice" : [ {
+              "tradeId" : {
+                "value" : "TRS-01",
+                "tradeIdScheme" : "http://www.abc.com/swaps/trade-id"
+              }
+            } ]
+          }
+        }, {
+          "issuerTradeIdModel" : {
+            "tradeId" : {
+              "value" : "total-ret-swap-01",
+              "tradeIdScheme" : "http://www.hedgeco.com/swaps/trade-id"
+            }
+          },
+          "tradeIdentifierSequence" : {
+            "partyAndAccountReferencesModel" : {
+              "partyReference" : {
+                "href" : "party2"
+              }
+            },
+            "tradeIdentifierSequenceChoice" : [ {
+              "tradeId" : {
+                "value" : "total-ret-swap-01",
+                "tradeIdScheme" : "http://www.hedgeco.com/swaps/trade-id"
+              }
+            } ]
+          }
+        } ]
+      },
+      "tradeDate" : {
+        "value" : "2011-03-23"
+      }
+    },
+    "product" : {
+      "productModel" : {
+        "productType" : [ {
+          "value" : "Equity:Swap:PriceReturnBasicPerformance:SingleIndex"
+        } ]
+      },
+      "buyerSellerModel" : {
+        "buyerPartyReference" : {
+          "href" : "party1"
+        },
+        "sellerPartyReference" : {
+          "href" : "party2"
+        }
+      },
+      "additionalPayment" : [ {
+        "payerReceiverModel" : {
+          "payerModel" : {
+            "payerPartyReference" : {
+              "href" : "party1"
+            }
+          },
+          "receiverModel" : {
+            "receiverPartyReference" : {
+              "href" : "party2"
+            }
+          }
+        },
+        "additionalPaymentAmount" : {
+          "paymentAmount" : {
+            "currency" : {
+              "value" : "USD"
+            },
+            "amount" : 26800.62
+          },
+          "formula" : {
+            "formulaDescription" : "Upfront Price * Commencing Factor * Notional",
+            "formulaComponent" : [ {
+              "componentDescription" : "(Coupon * Day Count (30/360)) - (LIBOR * Commencing Index Price * Day Count (ACT/360)) + (Traded Price - Commencing Index Price)",
+              "formula" : {
+                "formulaDescription" : "0.00259535084"
+              },
+              "name" : "UpfrontPrice"
+            }, {
+              "componentDescription" : "Index Factor at start of period",
+              "formula" : {
+                "formulaDescription" : "0.333109517"
+              },
+              "name" : "CommencingFactor"
+            }, {
+              "componentDescription" : "Notional",
+              "formula" : {
+                "formulaDescription" : "31000000.00"
+              },
+              "name" : "Notional"
+            } ]
+          }
+        },
+        "additionalPaymentDate" : {
+          "adjustableDate" : {
+            "unadjustedDate" : {
+              "value" : "2011-03-28"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "NOT_APPLICABLE",
+              "businessCentersOrReferenceModel" : { }
+            }
+          }
+        },
+        "paymentType" : {
+          "value" : "UPFRONT_FEE"
+        }
+      } ]
+    },
+    "calculationAgentModel" : { },
+    "id" : "trs-ex4-trade"
+  } ],
+  "partiesAndAccountsModel" : {
+    "party" : [ {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "QGPGHQ1ENZOOLJRFTH41",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+        } ],
+        "partyName" : {
+          "value" : "ABCD Fund"
+        },
+        "partyInformationModel" : { }
+      },
+      "partySequence" : { },
+      "id" : "party1"
+    }, {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "J6W9XJWVE853A9CVRQ85",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+        } ],
+        "partyName" : {
+          "value" : "HedgeCo Capital L.L.C."
+        },
+        "partyInformationModel" : { }
+      },
+      "partySequence" : { },
+      "id" : "party2"
+    } ]
+  }
+}

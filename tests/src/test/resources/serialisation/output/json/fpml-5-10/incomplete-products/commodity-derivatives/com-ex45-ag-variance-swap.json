@@ -1,0 +1,227 @@
+{
+  "fpmlVersion" : "5-10",
+  "validationModel" : { },
+  "trade" : [ {
+    "tradeHeader" : {
+      "tradeIdentifiersModel" : {
+        "tradeIdentifiersModelSequence" : {
+          "globalTradeIdentifiersModel" : {
+            "globalTradeIdentifiersModelSequence" : { }
+          }
+        },
+        "partyTradeIdentifier" : [ {
+          "issuerTradeIdModel" : {
+            "tradeId" : {
+              "value" : "ACAVS1234567",
+              "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
+            }
+          },
+          "tradeIdentifierSequence" : {
+            "partyAndAccountReferencesModel" : {
+              "partyReference" : {
+                "href" : "PartyA"
+              }
+            },
+            "tradeIdentifierSequenceChoice" : [ {
+              "tradeId" : {
+                "value" : "ACAVS1234567",
+                "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
+              }
+            } ]
+          }
+        } ]
+      },
+      "tradeDate" : {
+        "value" : "2014-04-08",
+        "id" : "TradeDate"
+      }
+    },
+    "product" : {
+      "productModel" : {
+        "primaryAssetClass" : {
+          "value" : "Commodity"
+        },
+        "productType" : [ {
+          "value" : "Commodity:Energy:Index:Swap:Cash"
+        } ]
+      },
+      "effectiveDate" : {
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2014-04-01"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NONE",
+            "businessCentersOrReferenceModel" : { }
+          }
+        }
+      },
+      "terminationDate" : {
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2014-10-31"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NONE",
+            "businessCentersOrReferenceModel" : { }
+          }
+        },
+        "id" : "TerminationDate"
+      },
+      "commodityPerformanceSwapLeg" : [ {
+        "payerReceiverModel" : {
+          "payerModel" : {
+            "payerPartyReference" : {
+              "href" : "PartyA"
+            }
+          },
+          "receiverModel" : {
+            "receiverPartyReference" : {
+              "href" : "PartyB"
+            }
+          }
+        },
+        "commodityCalculationPeriodsModel" : {
+          "calculationPeriodsSchedule" : {
+            "periodMultiplier" : 1,
+            "period" : "T",
+            "id" : "varianceLegCalculationPeriodSchedule",
+            "balanceOfFirstPeriod" : false
+          },
+          "commodityCalculationPeriodsPointerModel" : { }
+        },
+        "commodityPaymentDatesModel" : {
+          "commodityNonPeriodicPaymentDatesModel" : {
+            "paymentDates" : {
+              "adjustableDates" : {
+                "unadjustedDate" : [ {
+                  "value" : "2014-11-05"
+                } ],
+                "dateAdjustments" : {
+                  "businessDayConvention" : "FOLLOWING",
+                  "businessCentersOrReferenceModel" : {
+                    "businessCenters" : {
+                      "businessCenter" : [ {
+                        "value" : "USNY"
+                      } ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "commodityUnderlyerChoiceModel" : {
+          "commodity" : {
+            "instrumentId" : [ {
+              "value" : "MOP-CFR BRAZIL-FMB",
+              "instrumentIdScheme" : "http://www.fpml.org/coding-scheme/commodity-reference-price-3-0"
+            } ],
+            "commodityProductModel" : {
+              "commodityReferencePriceFrameworkModel" : {
+                "commodityReferencePriceFrameworkModelSequence" : { }
+              },
+              "specifiedPrice" : "SPOT",
+              "commodityProductModelSequence" : {
+                "commodityProductModelSequenceChoice" : { }
+              }
+            }
+          }
+        },
+        "notionalAmount" : {
+          "currency" : {
+            "value" : "USD"
+          },
+          "id" : "varianceLegNotionalAmount",
+          "amount" : 1000000.00,
+          "reinvestmentFeature" : false
+        },
+        "varianceStrikePrice" : 0.09000,
+        "varianceCalculation" : {
+          "valuationDates" : {
+            "commodityCalculationPeriodsPointerModel" : {
+              "calculationPeriodsScheduleReference" : {
+                "href" : "varianceLegCalculationPeriodSchedule"
+              }
+            },
+            "commodityValuationDatesSequence" : {
+              "commodityValuationDatesSequenceSequence" : {
+                "daysModel" : {
+                  "dayType" : "COMMODITY_BUSINESS",
+                  "daysModelSequence0" : {
+                    "dayDistribution" : {
+                      "value" : "All"
+                    }
+                  },
+                  "daysModelSequence1" : { }
+                }
+              }
+            }
+          },
+          "annualizationFactor" : 252,
+          "nAdjustment" : false
+        }
+      } ],
+      "commodityContentModel" : {
+        "marketDisruption" : {
+          "commodityMarketDisruptionSequence" : { },
+          "marketDisruptionEvent" : [ {
+            "value" : "AsSpecifiedInMasterAgreement"
+          } ],
+          "disruptionFallbacks" : "AS_SPECIFIED_IN_MASTER_AGREEMENT"
+        }
+      }
+    },
+    "calculationAgentModel" : { },
+    "documentation" : {
+      "masterAgreement" : {
+        "masterAgreementType" : {
+          "value" : "ISDA"
+        },
+        "masterAgreementVersion" : {
+          "value" : "2002"
+        },
+        "masterAgreementDate" : "2010-03-23"
+      },
+      "contractualDefinitions" : [ {
+        "value" : "ISDA2006"
+      }, {
+        "value" : "ISDA2005Commodity"
+      } ]
+    }
+  } ],
+  "partiesAndAccountsModel" : {
+    "party" : [ {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "95980020140005196564",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+        } ],
+        "partyInformationModel" : {
+          "country" : {
+            "value" : "US"
+          },
+          "organizationType" : [ {
+            "value" : "SwapDealer"
+          } ]
+        }
+      },
+      "partySequence" : { },
+      "id" : "PartyA"
+    }, {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "549300XQFX97CITUR430",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+        } ],
+        "partyInformationModel" : {
+          "organizationType" : [ {
+            "value" : "Non-SD_Non-MSP"
+          } ]
+        }
+      },
+      "partySequence" : { },
+      "id" : "PartyB"
+    } ]
+  }
+}

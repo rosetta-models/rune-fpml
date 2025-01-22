@@ -1,0 +1,295 @@
+{
+  "fpmlVersion" : "5-10",
+  "validationModel" : { },
+  "trade" : [ {
+    "tradeHeader" : {
+      "tradeIdentifiersModel" : {
+        "tradeIdentifiersModelSequence" : {
+          "globalTradeIdentifiersModel" : {
+            "globalTradeIdentifiersModelSequence" : { }
+          }
+        },
+        "partyTradeIdentifier" : [ {
+          "issuerTradeIdModel" : { },
+          "tradeIdentifierSequence" : {
+            "partyAndAccountReferencesModel" : {
+              "partyReference" : {
+                "href" : "party1"
+              }
+            },
+            "tradeIdentifierSequenceChoice" : [ {
+              "versionedTradeId" : {
+                "tradeId" : {
+                  "value" : "37205",
+                  "tradeIdScheme" : "http://www.swapswire.com/spec/2001/trade-id-1-0"
+                },
+                "versionHistoryModel" : {
+                  "version" : 1
+                }
+              }
+            } ]
+          }
+        } ]
+      },
+      "tradeDate" : {
+        "value" : "2002-12-02"
+      }
+    },
+    "product" : {
+      "productModel" : { },
+      "generalTerms" : {
+        "effectiveDate" : {
+          "unadjustedDate" : {
+            "value" : "2002-12-03"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NONE",
+            "businessCentersOrReferenceModel" : { }
+          }
+        },
+        "scheduledTerminationDate" : {
+          "unadjustedDate" : {
+            "value" : "2007-12-03"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "MODFOLLOWING",
+            "businessCentersOrReferenceModel" : {
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "GBLO"
+                }, {
+                  "value" : "USNY"
+                } ]
+              }
+            }
+          }
+        },
+        "buyerSellerModel" : {
+          "buyerPartyReference" : {
+            "href" : "party2"
+          },
+          "sellerPartyReference" : {
+            "href" : "party1"
+          }
+        },
+        "dateAdjustments" : {
+          "businessDayConvention" : "MODFOLLOWING",
+          "businessCentersOrReferenceModel" : {
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "GBLO"
+              }, {
+                "value" : "USNY"
+              } ]
+            }
+          }
+        },
+        "referenceInformation" : {
+          "referenceEntity" : {
+            "legalEntitySequence" : {
+              "entityName" : {
+                "value" : "Kingdom of Thailand"
+              }
+            },
+            "entityId" : [ {
+              "value" : "8GB54M",
+              "entityIdScheme" : "http://www.fpml.org/spec/2003/entity-id-RED-1-0"
+            } ],
+            "id" : "referenceEntity"
+          },
+          "referenceObligation" : [ {
+            "bond" : {
+              "instrumentId" : [ {
+                "value" : "US88322KAC53",
+                "instrumentIdScheme" : "http://www.fpml.org/spec/2002/instrument-id-ISIN-1-0"
+              } ],
+              "fixedIncomeSecurityContentModel" : { },
+              "bondCalculationModel" : { }
+            },
+            "primaryObligorReference" : {
+              "href" : "referenceEntity"
+            },
+            "referenceObligationChoice" : [ { } ]
+          } ],
+          "referencePrice" : 1
+        }
+      },
+      "feeLeg" : {
+        "feeLegSequence" : { },
+        "periodicPayment" : {
+          "paymentFrequency" : {
+            "periodMultiplier" : 3,
+            "period" : "M"
+          },
+          "firstPaymentDate" : "2003-03-03",
+          "lastRegularPaymentDate" : "2007-12-03",
+          "rollConvention" : "_3",
+          "fixedAmountCalculation" : {
+            "calculationAmount" : {
+              "currency" : {
+                "value" : "USD"
+              },
+              "amount" : 20000000
+            },
+            "fixedRate" : {
+              "value" : 0.012
+            },
+            "dayCountFraction" : {
+              "value" : "ACT/360"
+            }
+          }
+        }
+      },
+      "protectionTerms" : [ {
+        "calculationAmount" : {
+          "currency" : {
+            "value" : "USD"
+          },
+          "amount" : 20000000
+        },
+        "creditEvents" : {
+          "failureToPay" : {
+            "applicable" : true,
+            "paymentRequirement" : {
+              "currency" : {
+                "value" : "USD"
+              },
+              "amount" : 1000000
+            }
+          },
+          "obligationAcceleration" : true,
+          "repudiationMoratorium" : true,
+          "restructuring" : {
+            "applicable" : true,
+            "restructuringType" : {
+              "value" : "R"
+            }
+          },
+          "defaultRequirement" : {
+            "currency" : {
+              "value" : "USD"
+            },
+            "amount" : 10000000
+          },
+          "creditEventNotice" : {
+            "notifyingParty" : {
+              "buyerPartyReference" : {
+                "href" : "party2"
+              },
+              "sellerPartyReference" : {
+                "href" : "party1"
+              }
+            },
+            "publiclyAvailableInformation" : {
+              "standardPublicSources" : true,
+              "specifiedNumber" : 2
+            }
+          }
+        },
+        "obligations" : {
+          "category" : "BOND_OR_LOAN",
+          "notSovereignLender" : true,
+          "notDomesticCurrency" : {
+            "applicable" : true
+          },
+          "notDomesticLaw" : true,
+          "notDomesticIssuance" : true
+        }
+      } ],
+      "creditDefaultSwapChoice" : [ {
+        "physicalSettlementTerms" : {
+          "settlementCurrency" : {
+            "value" : "USD"
+          },
+          "physicalSettlementPeriod" : {
+            "businessDays" : 30
+          },
+          "deliverableObligations" : {
+            "accruedInterest" : false,
+            "category" : "BOND_OR_LOAN",
+            "notSubordinated" : true,
+            "specifiedCurrency" : {
+              "applicable" : true
+            },
+            "notSovereignLender" : true,
+            "notDomesticLaw" : true,
+            "notContingent" : true,
+            "notDomesticIssuance" : true,
+            "assignableLoan" : {
+              "applicable" : true
+            },
+            "transferable" : true,
+            "maximumMaturity" : {
+              "periodMultiplier" : 30,
+              "period" : "Y"
+            },
+            "notBearer" : true
+          },
+          "escrow" : true
+        }
+      } ]
+    },
+    "calculationAgentModel" : {
+      "calculationAgent" : {
+        "calculationAgentPartyReference" : [ {
+          "href" : "party1"
+        } ]
+      },
+      "calculationAgentBusinessCenter" : {
+        "value" : "GBLO"
+      }
+    },
+    "documentation" : {
+      "masterAgreement" : {
+        "masterAgreementType" : {
+          "value" : "ISDA"
+        },
+        "masterAgreementVersion" : {
+          "value" : "1992"
+        }
+      },
+      "contractualDefinitions" : [ {
+        "value" : "ISDA1999Credit"
+      } ],
+      "contractualTermsSupplement" : [ {
+        "_type" : {
+          "value" : "ISDA1999CreditConvertibleExchangeableAccretingObligations"
+        }
+      } ],
+      "contractualMatrix" : [ {
+        "matrixType" : {
+          "value" : "CreditDerivativesPhysicalSettlementMatrix"
+        }
+      } ]
+    }
+  } ],
+  "partiesAndAccountsModel" : {
+    "party" : [ {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "254900BIAQJIUV6DLE92",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+        } ],
+        "partyName" : {
+          "value" : "XYZ Bank"
+        },
+        "partyInformationModel" : { }
+      },
+      "partySequence" : { },
+      "id" : "party1"
+    }, {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "549300VBWWV6BYQOWM67",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+        } ],
+        "partyName" : {
+          "value" : "ABC Bank"
+        },
+        "partyInformationModel" : { }
+      },
+      "partySequence" : { },
+      "id" : "party2"
+    } ]
+  }
+}

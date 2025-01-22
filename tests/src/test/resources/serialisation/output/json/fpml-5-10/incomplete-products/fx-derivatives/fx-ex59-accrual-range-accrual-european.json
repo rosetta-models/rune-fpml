@@ -1,0 +1,234 @@
+{
+  "fpmlVersion" : "5-10",
+  "validationModel" : { },
+  "trade" : [ {
+    "tradeHeader" : {
+      "tradeIdentifiersModel" : {
+        "tradeIdentifiersModelSequence" : {
+          "globalTradeIdentifiersModel" : {
+            "globalTradeIdentifiersModelSequence" : { }
+          }
+        },
+        "partyTradeIdentifier" : [ {
+          "issuerTradeIdModel" : {
+            "tradeId" : {
+              "value" : "12345",
+              "tradeIdScheme" : "#partyA"
+            }
+          },
+          "tradeIdentifierSequence" : {
+            "partyAndAccountReferencesModel" : {
+              "partyReference" : {
+                "href" : "partyA"
+              }
+            },
+            "tradeIdentifierSequenceChoice" : [ {
+              "tradeId" : {
+                "value" : "12345",
+                "tradeIdScheme" : "#partyA"
+              }
+            } ]
+          }
+        } ]
+      },
+      "tradeDate" : {
+        "value" : "2012-12-08"
+      }
+    },
+    "product" : {
+      "productModel" : {
+        "productType" : [ {
+          "value" : "FxRangeAccrual",
+          "productTypeScheme" : "http://www.fpml.org/coding-scheme/product-type-simple"
+        } ]
+      },
+      "payerReceiverModel" : {
+        "payerModel" : {
+          "payerPartyReference" : {
+            "href" : "partyB"
+          }
+        },
+        "receiverModel" : {
+          "receiverPartyReference" : {
+            "href" : "partyA"
+          }
+        }
+      },
+      "notionalAmount" : {
+        "initialValue" : 420000.00,
+        "currency" : {
+          "value" : "EUR"
+        }
+      },
+      "accrual" : {
+        "observable" : [ {
+          "quotedCurrencyPair" : {
+            "currency1" : {
+              "value" : "EUR"
+            },
+            "currency2" : {
+              "value" : "USD"
+            },
+            "quoteBasis" : "CURRENCY2_PER_CURRENCY1"
+          },
+          "informationSource" : {
+            "rateSource" : {
+              "value" : "Reuters"
+            },
+            "rateSourcePage" : {
+              "value" : "ECB37"
+            },
+            "fixingTime" : {
+              "hourMinuteTime" : "14:15:00",
+              "businessCenter" : {
+                "value" : "EUTA"
+              }
+            }
+          },
+          "id" : "ob1"
+        } ],
+        "accrualRegion" : [ {
+          "observableReference" : {
+            "href" : "ob1"
+          },
+          "fxAccrualRegionBoundModel" : {
+            "upperBound" : {
+              "condition" : "AT_OR_BELOW",
+              "fxAccrualConditionLevelModel" : {
+                "fxAccrualConditionLevelModelSequence" : {
+                  "level" : {
+                    "initialValue" : 1.35
+                  }
+                }
+              }
+            },
+            "fxAccrualRegionBoundModelSequence" : {
+              "lowerBound" : {
+                "condition" : "AT_OR_ABOVE",
+                "fxAccrualConditionLevelModel" : {
+                  "fxAccrualConditionLevelModelSequence" : {
+                    "level" : {
+                      "initialValue" : 1.30
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "fxAccrualRegionSequence0" : { },
+          "fxAccrualRegionSequence1" : { }
+        } ],
+        "fixingSchedule" : {
+          "fxFixingScheduleSequence0" : { },
+          "fxFixingScheduleSequence1" : {
+            "parametricScheduleModel" : {
+              "parametricScheduleModelSequence0" : {
+                "startDate" : "2012-12-08"
+              },
+              "endDate" : "2013-01-07",
+              "parametricScheduleModelSequence1" : { },
+              "parametricScheduleModelSequence2" : {
+                "dayType" : "BUSINESS",
+                "businessCentersOrReferenceModel" : {
+                  "businessCenters" : {
+                    "businessCenter" : [ {
+                      "value" : "EUTA"
+                    } ]
+                  }
+                }
+              }
+            },
+            "numberOfFixings" : 21
+          }
+        }
+      },
+      "fxExpiryDateOrScheduleModel" : {
+        "expiryDate" : {
+          "adjustedDate" : "2013-01-07",
+          "expiryTime" : {
+            "hourMinuteTime" : "10:00:00",
+            "businessCenter" : {
+              "value" : "USNY"
+            }
+          }
+        }
+      },
+      "fxSettlementDateOrScheduleModel" : {
+        "settlementDate" : {
+          "dateAdjustments" : {
+            "businessDayConvention" : "FOLLOWING",
+            "businessCentersOrReferenceModel" : {
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "EUTA"
+                } ]
+              }
+            }
+          },
+          "adjustedDate" : "2013-01-09"
+        }
+      },
+      "premium" : [ {
+        "payerReceiverModel" : {
+          "payerModel" : {
+            "payerPartyReference" : {
+              "href" : "partyB"
+            }
+          },
+          "receiverModel" : {
+            "receiverPartyReference" : {
+              "href" : "partyA"
+            }
+          }
+        },
+        "paymentDate" : {
+          "adjustableDate" : {
+            "unadjustedDate" : {
+              "value" : "2012-12-10"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "NONE",
+              "businessCentersOrReferenceModel" : { }
+            }
+          }
+        },
+        "paymentAmount" : {
+          "currency" : {
+            "value" : "EUR"
+          },
+          "amount" : 50000.00
+        }
+      } ]
+    },
+    "calculationAgentModel" : {
+      "calculationAgent" : {
+        "calculationAgentPartyReference" : [ {
+          "href" : "partyA"
+        } ]
+      }
+    }
+  } ],
+  "partiesAndAccountsModel" : {
+    "party" : [ {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "549300SRLRVTR996F086",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+        } ],
+        "partyInformationModel" : { }
+      },
+      "partySequence" : { },
+      "id" : "partyA"
+    }, {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "549300RE0FSXJE8G1L65",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+        } ],
+        "partyInformationModel" : { }
+      },
+      "partySequence" : { },
+      "id" : "partyB"
+    } ]
+  }
+}

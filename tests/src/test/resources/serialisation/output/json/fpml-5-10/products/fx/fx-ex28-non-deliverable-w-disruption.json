@@ -1,0 +1,213 @@
+{
+  "fpmlVersion" : "5-10",
+  "validationModel" : { },
+  "trade" : [ {
+    "tradeHeader" : {
+      "tradeIdentifiersModel" : {
+        "tradeIdentifiersModelSequence" : {
+          "globalTradeIdentifiersModel" : {
+            "globalTradeIdentifiersModelSequence" : { }
+          }
+        },
+        "partyTradeIdentifier" : [ {
+          "issuerTradeIdModel" : {
+            "tradeId" : {
+              "value" : "12345678",
+              "tradeIdScheme" : "urn:hsbc:trade-id"
+            }
+          },
+          "tradeIdentifierSequence" : {
+            "partyAndAccountReferencesModel" : {
+              "partyReference" : {
+                "href" : "party1"
+              }
+            },
+            "tradeIdentifierSequenceChoice" : [ {
+              "tradeId" : {
+                "value" : "12345678",
+                "tradeIdScheme" : "urn:hsbc:trade-id"
+              }
+            } ]
+          }
+        }, {
+          "issuerTradeIdModel" : {
+            "tradeId" : {
+              "value" : "AZ5678901",
+              "tradeIdScheme" : "run:bnpp/trade-id"
+            }
+          },
+          "tradeIdentifierSequence" : {
+            "partyAndAccountReferencesModel" : {
+              "partyReference" : {
+                "href" : "party2"
+              }
+            },
+            "tradeIdentifierSequenceChoice" : [ {
+              "tradeId" : {
+                "value" : "AZ5678901",
+                "tradeIdScheme" : "run:bnpp/trade-id"
+              }
+            } ]
+          }
+        } ]
+      },
+      "tradeDate" : {
+        "value" : "2013-04-01"
+      }
+    },
+    "product" : {
+      "productModel" : { },
+      "fxCoreDetailsModel" : {
+        "exchangedCurrency1" : {
+          "payerReceiverModel" : {
+            "payerModel" : {
+              "payerPartyReference" : {
+                "href" : "party2"
+              }
+            },
+            "receiverModel" : {
+              "receiverPartyReference" : {
+                "href" : "party1"
+              }
+            }
+          },
+          "paymentAmount" : {
+            "currency" : {
+              "value" : "BRL"
+            },
+            "amount" : 3000000
+          }
+        },
+        "exchangedCurrency2" : {
+          "payerReceiverModel" : {
+            "payerModel" : {
+              "payerPartyReference" : {
+                "href" : "party1"
+              }
+            },
+            "receiverModel" : {
+              "receiverPartyReference" : {
+                "href" : "party2"
+              }
+            }
+          },
+          "paymentAmount" : {
+            "currency" : {
+              "value" : "USD"
+            },
+            "amount" : 2307000
+          }
+        },
+        "fxTenorModel" : {
+          "tenorPeriod" : {
+            "periodMultiplier" : 6,
+            "period" : "M"
+          }
+        },
+        "valueDate" : "2013-10-01",
+        "fxCoreDetailsModelSequence" : { },
+        "exchangeRate" : {
+          "quotedCurrencyPair" : {
+            "currency1" : {
+              "value" : "BRL"
+            },
+            "currency2" : {
+              "value" : "USD"
+            },
+            "quoteBasis" : "CURRENCY2_PER_CURRENCY1"
+          },
+          "rate" : 0.7690,
+          "exchangeRateSequence" : {
+            "spotRate" : 0.7645,
+            "exchangeRateSequenceSequence" : {
+              "forwardPoints" : 0.0045
+            }
+          }
+        },
+        "nonDeliverableSettlement" : {
+          "settlementCurrency" : {
+            "value" : "USD"
+          },
+          "rateSourceFixing" : [ {
+            "settlementRateSource" : {
+              "settlementRateOption" : {
+                "value" : "BRL09"
+              }
+            },
+            "fixingDate" : {
+              "unadjustedDate" : {
+                "value" : "2013-09-29"
+              },
+              "dateAdjustments" : {
+                "businessDayConvention" : "NONE",
+                "businessCentersOrReferenceModel" : { }
+              }
+            }
+          } ]
+        },
+        "disruption" : [ {
+          "baseCurrency" : {
+            "value" : "USD"
+          },
+          "referenceCurrency" : {
+            "value" : "BRL"
+          },
+          "provisions" : [ {
+            "events" : {
+              "fxDisruptionEvent" : [ { }, {
+                "prioritizedRateSourceModel" : {
+                  "primaryRateSource" : {
+                    "value" : "BRL09"
+                  },
+                  "secondaryRateSource" : [ {
+                    "value" : "BRL12"
+                  } ]
+                },
+                "percentage" : 0.03
+              } ]
+            },
+            "fallbacks" : {
+              "fxDisruptionFallback" : [ {
+                "prioritizedRateSourceModel" : {
+                  "primaryRateSource" : {
+                    "value" : "BRL09"
+                  },
+                  "secondaryRateSource" : [ {
+                    "value" : "BRL12"
+                  } ]
+                }
+              }, { }, { } ]
+            },
+            "applicableTerms" : {
+              "value" : "EMTA"
+            }
+          } ]
+        } ]
+      }
+    },
+    "calculationAgentModel" : { }
+  } ],
+  "partiesAndAccountsModel" : {
+    "party" : [ {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "HSBCGB01",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
+        } ],
+        "partyInformationModel" : { }
+      },
+      "partySequence" : { },
+      "id" : "party1"
+    }, {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "BNPPGB01",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
+        } ],
+        "partyInformationModel" : { }
+      },
+      "partySequence" : { },
+      "id" : "party2"
+    } ]
+  }
+}

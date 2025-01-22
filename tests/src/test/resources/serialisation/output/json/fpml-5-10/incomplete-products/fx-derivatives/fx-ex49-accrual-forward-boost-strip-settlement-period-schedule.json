@@ -1,0 +1,399 @@
+{
+  "fpmlVersion" : "5-10",
+  "validationModel" : { },
+  "trade" : [ {
+    "tradeHeader" : {
+      "tradeIdentifiersModel" : {
+        "tradeIdentifiersModelSequence" : {
+          "globalTradeIdentifiersModel" : {
+            "globalTradeIdentifiersModelSequence" : { }
+          }
+        },
+        "partyTradeIdentifier" : [ {
+          "issuerTradeIdModel" : {
+            "tradeId" : {
+              "value" : "12345",
+              "tradeIdScheme" : "#partyA"
+            }
+          },
+          "tradeIdentifierSequence" : {
+            "partyAndAccountReferencesModel" : {
+              "partyReference" : {
+                "href" : "partyA"
+              }
+            },
+            "tradeIdentifierSequenceChoice" : [ {
+              "tradeId" : {
+                "value" : "12345",
+                "tradeIdScheme" : "#partyA"
+              }
+            } ]
+          }
+        } ]
+      },
+      "tradeDate" : {
+        "value" : "2010-10-15"
+      }
+    },
+    "product" : {
+      "productModel" : { },
+      "notionalAmount" : {
+        "initialValue" : 440000.00,
+        "step" : [ {
+          "stepDate" : "2010-12-16",
+          "stepValue" : 460000.00
+        }, {
+          "stepDate" : "2011-01-18",
+          "stepValue" : 420000.00
+        } ],
+        "currency" : {
+          "value" : "USD"
+        }
+      },
+      "accrual" : {
+        "observable" : [ {
+          "quotedCurrencyPair" : {
+            "currency1" : {
+              "value" : "USD"
+            },
+            "currency2" : {
+              "value" : "JPY"
+            },
+            "quoteBasis" : "CURRENCY2_PER_CURRENCY1"
+          },
+          "informationSource" : {
+            "rateSource" : {
+              "value" : "WM Company"
+            },
+            "rateSourcePage" : {
+              "value" : "JPY1"
+            },
+            "fixingTime" : {
+              "hourMinuteTime" : "10:00:00",
+              "businessCenter" : {
+                "value" : "USNY"
+              }
+            }
+          },
+          "id" : "ob1"
+        } ],
+        "accrualRegion" : [ {
+          "observableReference" : {
+            "href" : "ob1"
+          },
+          "fxAccrualRegionBoundModel" : {
+            "upperBound" : {
+              "condition" : "BELOW",
+              "fxAccrualConditionLevelModel" : {
+                "fxAccrualConditionLevelModelSequence" : {
+                  "level" : {
+                    "initialValue" : 112.00
+                  }
+                }
+              }
+            },
+            "fxAccrualRegionBoundModelSequence" : { }
+          },
+          "fxAccrualRegionSequence0" : { },
+          "accrualFactor" : {
+            "initialValue" : 2
+          },
+          "fxAccrualRegionSequence1" : { }
+        }, {
+          "observableReference" : {
+            "href" : "ob1"
+          },
+          "fxAccrualRegionBoundModel" : {
+            "upperBound" : {
+              "condition" : "BELOW",
+              "fxAccrualConditionLevelModel" : {
+                "fxAccrualConditionLevelModelSequence" : {
+                  "level" : {
+                    "initialValue" : 120.00
+                  }
+                }
+              }
+            },
+            "fxAccrualRegionBoundModelSequence" : {
+              "lowerBound" : {
+                "condition" : "AT_OR_ABOVE",
+                "fxAccrualConditionLevelModel" : {
+                  "fxAccrualConditionLevelModelSequence" : {
+                    "level" : {
+                      "initialValue" : 112.00
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "fxAccrualRegionSequence0" : { },
+          "fxAccrualRegionSequence1" : { }
+        } ],
+        "fixingSchedule" : {
+          "fxFixingScheduleSequence0" : { },
+          "fxFixingScheduleSequence1" : {
+            "parametricScheduleModel" : {
+              "parametricScheduleModelSequence0" : {
+                "startDate" : "2010-10-15"
+              },
+              "endDate" : "2011-02-15",
+              "parametricScheduleModelSequence1" : { },
+              "parametricScheduleModelSequence2" : {
+                "dayType" : "BUSINESS",
+                "businessCentersOrReferenceModel" : { }
+              }
+            }
+          }
+        }
+      },
+      "fxExpiryDateOrScheduleModel" : {
+        "expirySchedule" : {
+          "fxScheduleSequence0" : {
+            "adjustedDate" : [ "2010-11-15", "2010-12-15", "2011-01-17", "2011-02-15" ]
+          },
+          "fxScheduleSequence1" : {
+            "parametricScheduleModel" : {
+              "parametricScheduleModelSequence0" : { },
+              "parametricScheduleModelSequence1" : { },
+              "parametricScheduleModelSequence2" : {
+                "businessCentersOrReferenceModel" : { }
+              }
+            },
+            "adjustedDate" : [ "2010-11-15", "2010-12-15", "2011-01-17", "2011-02-15" ]
+          },
+          "finalExpiryDate" : "2011-02-15"
+        }
+      },
+      "fxSettlementDateOrScheduleModel" : {
+        "settlementSchedule" : {
+          "fxScheduleSequence0" : {
+            "dateAdjustments" : {
+              "businessDayConvention" : "FOLLOWING",
+              "businessCentersOrReferenceModel" : {
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "USNY"
+                  }, {
+                    "value" : "JPTO"
+                  } ]
+                }
+              }
+            },
+            "adjustedDate" : [ "2010-11-17", "2010-12-17", "2011-01-19", "2011-02-17" ]
+          },
+          "fxScheduleSequence1" : {
+            "parametricScheduleModel" : {
+              "parametricScheduleModelSequence0" : { },
+              "parametricScheduleModelSequence1" : {
+                "dateAdjustments" : {
+                  "businessDayConvention" : "FOLLOWING",
+                  "businessCentersOrReferenceModel" : {
+                    "businessCenters" : {
+                      "businessCenter" : [ {
+                        "value" : "USNY"
+                      }, {
+                        "value" : "JPTO"
+                      } ]
+                    }
+                  }
+                }
+              },
+              "parametricScheduleModelSequence2" : {
+                "businessCentersOrReferenceModel" : { }
+              }
+            },
+            "adjustedDate" : [ "2010-11-17", "2010-12-17", "2011-01-19", "2011-02-17" ]
+          },
+          "finalSettlementDate" : "2011-02-17"
+        }
+      },
+      "linearPayoffRegion" : [ {
+        "fxExchangedCurrencyModel" : {
+          "exchangedCurrency1" : {
+            "payerReceiverModel" : {
+              "payerModel" : {
+                "payerPartyReference" : {
+                  "href" : "partyB"
+                }
+              },
+              "receiverModel" : {
+                "receiverPartyReference" : {
+                  "href" : "partyA"
+                }
+              }
+            },
+            "currency" : {
+              "value" : "USD"
+            }
+          },
+          "exchangedCurrency2" : {
+            "payerReceiverModel" : {
+              "payerModel" : {
+                "payerPartyReference" : {
+                  "href" : "partyA"
+                }
+              },
+              "receiverModel" : {
+                "receiverPartyReference" : {
+                  "href" : "partyB"
+                }
+              }
+            },
+            "currency" : {
+              "value" : "JPY"
+            }
+          }
+        },
+        "fxAccrualLinearPayoffRegionSequence" : {
+          "strike" : {
+            "initialValue" : 112,
+            "quoteBasis" : "CURRENCY2_PER_CURRENCY1"
+          },
+          "counterCurrencyAmount" : {
+            "initialValue" : 49280000.00,
+            "step" : [ {
+              "stepDate" : "2010-12-16",
+              "stepValue" : 51520000.00
+            }, {
+              "stepDate" : "2011-01-18",
+              "stepValue" : 47040000
+            } ],
+            "currency" : {
+              "value" : "JPY"
+            }
+          }
+        },
+        "fxAccrualRegionBoundModel" : {
+          "fxAccrualRegionBoundModelSequence" : { }
+        }
+      } ],
+      "additionalPayment" : [ {
+        "payerReceiverModel" : {
+          "payerModel" : {
+            "payerPartyReference" : {
+              "href" : "partyB"
+            }
+          },
+          "receiverModel" : {
+            "receiverPartyReference" : {
+              "href" : "partyA"
+            }
+          }
+        },
+        "paymentAmount" : {
+          "currency" : {
+            "value" : "USD"
+          },
+          "amount" : 10000.00
+        },
+        "paymentDate" : {
+          "adjustableDate" : {
+            "unadjustedDate" : {
+              "value" : "2012-12-10"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "FOLLOWING",
+              "businessCentersOrReferenceModel" : {
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "USNY"
+                  } ]
+                }
+              }
+            }
+          }
+        }
+      } ],
+      "settlementPeriodSchedule" : {
+        "settlementPeriod" : [ {
+          "expiryDate" : "2010-11-15",
+          "settlementDate" : "2010-11-17",
+          "notionalAmount" : 440000.00,
+          "payoff" : [ {
+            "fxAccrualSettlementPeriodPayoffSequence" : {
+              "strike" : 112,
+              "counterCurrencyAmount" : 49280000.00
+            }
+          } ],
+          "accrualFixingDates" : {
+            "fixingDate" : [ "2010-10-15", "2010-10-18", "2010-10-19", "2010-10-20", "2010-10-21", "2010-10-22", "2010-10-25", "2010-10-26", "2010-10-27", "2010-10-28", "2010-10-29", "2010-11-01", "2010-11-02", "2010-11-03", "2010-11-04", "2010-11-05", "2010-11-08", "2010-11-09", "2010-11-10", "2010-11-11", "2010-11-12", "2010-11-15" ],
+            "settlementPeriodFixingDatesSequence" : { }
+          }
+        }, {
+          "expiryDate" : "2010-12-15",
+          "settlementDate" : "2010-12-17",
+          "notionalAmount" : 440000.00,
+          "payoff" : [ {
+            "fxAccrualSettlementPeriodPayoffSequence" : {
+              "strike" : 112,
+              "counterCurrencyAmount" : 49280000.00
+            }
+          } ],
+          "accrualFixingDates" : {
+            "fixingDate" : [ "2010-11-16", "2010-11-17", "2010-11-18", "2010-11-19", "2010-11-22", "2010-11-23", "2010-11-24", "2010-11-25", "2010-11-26", "2010-11-29", "2010-11-30", "2010-12-01", "2010-12-02", "2010-12-03", "2010-12-06", "2010-12-07", "2010-12-08", "2010-12-09", "2010-12-10", "2010-12-13", "2010-12-14", "2010-12-15" ],
+            "settlementPeriodFixingDatesSequence" : { }
+          }
+        }, {
+          "expiryDate" : "2011-01-17",
+          "settlementDate" : "2011-01-19",
+          "notionalAmount" : 460000.00,
+          "payoff" : [ {
+            "fxAccrualSettlementPeriodPayoffSequence" : {
+              "strike" : 112,
+              "counterCurrencyAmount" : 51520000
+            }
+          } ],
+          "accrualFixingDates" : {
+            "fixingDate" : [ "2010-12-16", "2010-12-17", "2010-12-20", "2010-12-21", "2010-12-22", "2010-12-23", "2010-12-24", "2010-12-27", "2010-12-28", "2010-12-29", "2010-12-30", "2010-12-31", "2011-01-03", "2011-01-04", "2011-01-05", "2011-01-06", "2011-01-07", "2011-01-10", "2011-01-11", "2011-01-12", "2011-01-13", "2011-01-14", "2011-01-17" ],
+            "settlementPeriodFixingDatesSequence" : { }
+          }
+        }, {
+          "expiryDate" : "2011-02-15",
+          "settlementDate" : "2011-02-17",
+          "notionalAmount" : 420000.00,
+          "payoff" : [ {
+            "fxAccrualSettlementPeriodPayoffSequence" : {
+              "strike" : 112,
+              "counterCurrencyAmount" : 47040000.00
+            }
+          } ],
+          "accrualFixingDates" : {
+            "fixingDate" : [ "2011-01-18", "2011-01-19", "2011-01-20", "2011-01-21", "2011-01-24", "2011-01-25", "2011-01-26", "2011-01-27", "2011-01-28", "2011-01-31", "2011-02-01", "2011-02-02", "2011-02-03", "2011-02-04", "2011-02-07", "2011-02-08", "2011-02-09", "2011-02-10", "2011-02-11", "2011-02-14", "2011-02-15" ],
+            "settlementPeriodFixingDatesSequence" : { }
+          }
+        } ]
+      }
+    },
+    "calculationAgentModel" : {
+      "calculationAgent" : {
+        "calculationAgentPartyReference" : [ {
+          "href" : "partyA"
+        } ]
+      }
+    }
+  } ],
+  "partiesAndAccountsModel" : {
+    "party" : [ {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "549300SRLRVTR996F086",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+        } ],
+        "partyInformationModel" : { }
+      },
+      "partySequence" : { },
+      "id" : "partyA"
+    }, {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "549300RE0FSXJE8G1L65",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+        } ],
+        "partyInformationModel" : { }
+      },
+      "partySequence" : { },
+      "id" : "partyB"
+    } ]
+  }
+}

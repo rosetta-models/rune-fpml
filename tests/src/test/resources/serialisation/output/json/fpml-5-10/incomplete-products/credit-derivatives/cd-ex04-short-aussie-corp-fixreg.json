@@ -1,0 +1,192 @@
+{
+  "fpmlVersion" : "5-10",
+  "validationModel" : { },
+  "trade" : [ {
+    "tradeHeader" : {
+      "tradeIdentifiersModel" : {
+        "tradeIdentifiersModelSequence" : {
+          "globalTradeIdentifiersModel" : {
+            "globalTradeIdentifiersModelSequence" : { }
+          }
+        },
+        "partyTradeIdentifier" : [ {
+          "issuerTradeIdModel" : {
+            "tradeId" : {
+              "value" : "xyz1234",
+              "tradeIdScheme" : "http://www.xyzbank.com/cd-trade-id"
+            }
+          },
+          "tradeIdentifierSequence" : {
+            "partyAndAccountReferencesModel" : {
+              "partyReference" : {
+                "href" : "party1"
+              }
+            },
+            "tradeIdentifierSequenceChoice" : [ {
+              "tradeId" : {
+                "value" : "xyz1234",
+                "tradeIdScheme" : "http://www.xyzbank.com/cd-trade-id"
+              }
+            } ]
+          }
+        }, {
+          "issuerTradeIdModel" : {
+            "tradeId" : {
+              "value" : "abc1234",
+              "tradeIdScheme" : "http://www.abcbank.com/cd-trade-id"
+            }
+          },
+          "tradeIdentifierSequence" : {
+            "partyAndAccountReferencesModel" : {
+              "partyReference" : {
+                "href" : "party2"
+              }
+            },
+            "tradeIdentifierSequenceChoice" : [ {
+              "tradeId" : {
+                "value" : "abc1234",
+                "tradeIdScheme" : "http://www.abcbank.com/cd-trade-id"
+              }
+            } ]
+          }
+        } ]
+      },
+      "tradeDate" : {
+        "value" : "2002-12-03"
+      }
+    },
+    "product" : {
+      "productModel" : { },
+      "generalTerms" : {
+        "effectiveDate" : {
+          "unadjustedDate" : {
+            "value" : "2002-12-04"
+          }
+        },
+        "scheduledTerminationDate" : {
+          "unadjustedDate" : {
+            "value" : "2007-12-04"
+          }
+        },
+        "buyerSellerModel" : {
+          "buyerPartyReference" : {
+            "href" : "party1"
+          },
+          "sellerPartyReference" : {
+            "href" : "party2"
+          }
+        },
+        "referenceInformation" : {
+          "referenceEntity" : {
+            "legalEntitySequence" : {
+              "entityName" : {
+                "value" : "Amcor Ltd"
+              }
+            },
+            "entityId" : [ {
+              "value" : "0C575S",
+              "entityIdScheme" : "http://www.fpml.org/spec/2003/entity-id-RED-1-0"
+            } ],
+            "id" : "referenceEntity"
+          },
+          "referenceObligation" : [ {
+            "bond" : {
+              "instrumentId" : [ {
+                "value" : "US867211AA21",
+                "instrumentIdScheme" : "http://www.fpml.org/spec/2002/instrument-id-ISIN-1-0"
+              } ],
+              "fixedIncomeSecurityContentModel" : {
+                "couponRate" : 0.0675,
+                "maturity" : "2003-06-15"
+              },
+              "bondCalculationModel" : { }
+            },
+            "primaryObligor" : {
+              "legalEntitySequence" : {
+                "entityName" : {
+                  "value" : "Sunclipse, Inc."
+                }
+              }
+            },
+            "referenceObligationChoice" : [ {
+              "guarantorReference" : {
+                "href" : "referenceEntity"
+              }
+            } ]
+          } ]
+        }
+      },
+      "feeLeg" : {
+        "feeLegSequence" : { },
+        "periodicPayment" : {
+          "paymentFrequency" : {
+            "periodMultiplier" : 3,
+            "period" : "M"
+          },
+          "firstPaymentDate" : "2003-03-04",
+          "rollConvention" : "_4",
+          "fixedAmountCalculation" : {
+            "fixedRate" : {
+              "value" : 0.0056
+            }
+          }
+        }
+      },
+      "protectionTerms" : [ {
+        "calculationAmount" : {
+          "currency" : {
+            "value" : "USD"
+          },
+          "amount" : 10000000
+        },
+        "creditEvents" : {
+          "restructuring" : {
+            "applicable" : true,
+            "restructuringType" : {
+              "value" : "ModR"
+            }
+          }
+        }
+      } ],
+      "creditDefaultSwapChoice" : [ { } ]
+    },
+    "calculationAgentModel" : { },
+    "documentation" : {
+      "masterConfirmation" : {
+        "masterConfirmationType" : {
+          "value" : "ISDA1999Credit"
+        },
+        "masterConfirmationDate" : "2001-01-03"
+      }
+    }
+  } ],
+  "partiesAndAccountsModel" : {
+    "party" : [ {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "254900BIAQJIUV6DLE92",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+        } ],
+        "partyName" : {
+          "value" : "XYZ Bank"
+        },
+        "partyInformationModel" : { }
+      },
+      "partySequence" : { },
+      "id" : "party1"
+    }, {
+      "partyModel" : {
+        "partyId" : [ {
+          "value" : "549300VBWWV6BYQOWM67",
+          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+        } ],
+        "partyName" : {
+          "value" : "ABC Bank"
+        },
+        "partyInformationModel" : { }
+      },
+      "partySequence" : { },
+      "id" : "party2"
+    } ]
+  }
+}
