@@ -16,6 +16,206 @@
     </tradeHeader>
     <equitySwapTransactionSupplement>
       <productType>Equity:Swap:PriceReturnBasicPerformance:SingleName</productType>
+      <returnLeg>
+        <payerPartyReference href="party1"/>
+        <receiverPartyReference href="party2"/>
+        <effectiveDate id="equityEffectiveDate">
+          <adjustableDate>
+            <unadjustedDate>2010-10-12</unadjustedDate>
+            <dateAdjustments>
+              <businessDayConvention>NONE</businessDayConvention>
+            </dateAdjustments>
+          </adjustableDate>
+        </effectiveDate>
+        <terminationDate>
+          <relativeDate>
+            <periodMultiplier>0</periodMultiplier>
+            <period>D</period>
+            <businessDayConvention>NONE</businessDayConvention>
+            <dateRelativeTo href="finalCashSettlementPaymentDate"/>
+          </relativeDate>
+        </terminationDate>
+        <underlyer>
+          <singleUnderlyer>
+            <equity>
+              <instrumentId instrumentIdScheme="http://www.example.com/instrument-id-Reuters-RIC-1-0">IBM.N</instrumentId>
+              <exchangeId exchangeIdScheme="http://www.example.com/exchange-id-REC-1-0">ALL</exchangeId>
+            </equity>
+            <openUnits>760400</openUnits>
+            <dividendPayout>
+              <dividendPayoutRatio>0.85</dividendPayoutRatio>
+            </dividendPayout>
+          </singleUnderlyer>
+        </underlyer>
+        <rateOfReturn>
+          <initialPrice>
+            <netPrice>
+              <amount>37.44</amount>
+              <priceExpression>AbsoluteTerms</priceExpression>
+            </netPrice>
+            <netPrice>
+              <amount>37.44</amount>
+              <priceExpression>AbsoluteTerms</priceExpression>
+            </netPrice>
+          </initialPrice>
+          <notionalReset>true</notionalReset>
+          <valuationPriceInterim>
+            <determinationMethod>ValuationTime</determinationMethod>
+            <valuationRules id="equityValuationDates">
+              <valuationDates>
+                <periodicDates>
+                  <calculationStartDate>
+                    <adjustableDate>
+                      <unadjustedDate>2010-10-12</unadjustedDate>
+                      <dateAdjustments>
+                        <businessDayConvention>NotApplicable</businessDayConvention>
+                      </dateAdjustments>
+                    </adjustableDate>
+                  </calculationStartDate>
+                  <calculationEndDate>
+                    <adjustableDate>
+                      <unadjustedDate>2011-08-12</unadjustedDate>
+                      <dateAdjustments>
+                        <businessDayConvention>NotApplicable</businessDayConvention>
+                      </dateAdjustments>
+                    </adjustableDate>
+                  </calculationEndDate>
+                  <calculationPeriodFrequency>
+                    <periodMultiplier>1</periodMultiplier>
+                    <period>M</period>
+                    <rollConvention>30</rollConvention>
+                  </calculationPeriodFrequency>
+                  <calculationPeriodDatesAdjustments>
+                    <businessDayConvention>PRECEDING</businessDayConvention>
+                    <businessCenters id="businessCenters">
+                      <businessCenter businessCenterScheme="http://www.fpml.org/coding-scheme/business-center">USNY</businessCenter>
+                      <businessCenter businessCenterScheme="http://www.fpml.org/coding-scheme/business-center">GBLO</businessCenter>
+                    </businessCenters>
+                  </calculationPeriodDatesAdjustments>
+                </periodicDates>
+              </valuationDates>
+            </valuationRules>
+          </valuationPriceInterim>
+          <valuationPriceFinal>
+            <determinationMethod>ValuationTime</determinationMethod>
+          </valuationPriceFinal>
+          <paymentDates id="CashSettlementPaymentDate">
+            <paymentDatesInterim>
+              <relativeDates>
+                <periodMultiplier>3</periodMultiplier>
+                <period>D</period>
+                <dayType>CurrencyBusiness</dayType>
+                <businessDayConvention>NONE</businessDayConvention>
+                <dateRelativeTo href="equityValuationDates"/>
+              </relativeDates>
+            </paymentDatesInterim>
+            <paymentDateFinal id="finalCashSettlementPaymentDate">
+              <relativeDate>
+                <periodMultiplier>3</periodMultiplier>
+                <period>D</period>
+                <dayType>CurrencyBusiness</dayType>
+                <businessDayConvention>NONE</businessDayConvention>
+                <dateRelativeTo href="equityValuationDates"/>
+              </relativeDate>
+            </paymentDateFinal>
+          </paymentDates>
+          <exchangeTradedContractNearest>
+            <instrumentId instrumentIdScheme="MonthYearId">1005</instrumentId>
+          </exchangeTradedContractNearest>
+        </rateOfReturn>
+        <notional id="equityNotionalAmount">
+          <notionalAmount>
+            <currency currencyScheme="http://www.fpml.org/coding-scheme/external/iso4217-2001-08-15">USD</currency>
+            <amount>28469376</amount>
+          </notionalAmount>
+        </notional>
+        <amount>
+          <currency currencyScheme="http://www.fpml.org/coding-scheme/external/iso4217-2001-08-15" id="settlementCurrency">USD</currency>
+          <referenceAmount>StandardISDA</referenceAmount>
+          <cashSettlement>true</cashSettlement>
+        </amount>
+        <notionalAdjustments>Standard</notionalAdjustments>
+        <return>
+          <returnType>Total</returnType>
+          <dividendConditions>
+            <dividendPaymentDate>
+              <dividendDateReference>ExDividendPaymentDate</dividendDateReference>
+              <paymentDateOffset>
+                <periodMultiplier>2</periodMultiplier>
+                <period>D</period>
+              </paymentDateOffset>
+            </dividendPaymentDate>
+            <determinationMethod>SettlementCurrency</determinationMethod>
+            <declaredCashDividendPercentage>2.5</declaredCashDividendPercentage>
+            <declaredCashEquivalentDividendPercentage>2.5</declaredCashEquivalentDividendPercentage>
+          </dividendConditions>
+        </return>
+      </returnLeg>
+      <interestLeg>
+        <payerPartyReference href="party2"/>
+        <receiverPartyReference href="party1"/>
+        <interestLegCalculationPeriodDates id="floatingCalculationPeriodDates">
+          <effectiveDate>
+            <relativeDate>
+              <periodMultiplier>0</periodMultiplier>
+              <period>D</period>
+              <businessDayConvention>NONE</businessDayConvention>
+              <dateRelativeTo href="equityEffectiveDate"/>
+            </relativeDate>
+          </effectiveDate>
+          <terminationDate>
+            <relativeDate>
+              <periodMultiplier>0</periodMultiplier>
+              <period>D</period>
+              <businessDayConvention>NONE</businessDayConvention>
+              <dateRelativeTo href="finalCashSettlementPaymentDate"/>
+            </relativeDate>
+          </terminationDate>
+          <interestLegResetDates>
+            <calculationPeriodDatesReference href="floatingCalculationPeriodDates"/>
+            <resetRelativeTo>CalculationPeriodStartDate</resetRelativeTo>
+          </interestLegResetDates>
+          <interestLegPaymentDates>
+            <adjustableDates>
+              <unadjustedDate>2010-10-12</unadjustedDate>
+              <unadjustedDate>2010-11-13</unadjustedDate>
+              <unadjustedDate>2010-12-12</unadjustedDate>
+              <unadjustedDate>2011-01-14</unadjustedDate>
+              <unadjustedDate>2011-02-12</unadjustedDate>
+              <unadjustedDate>2011-03-12</unadjustedDate>
+              <unadjustedDate>2011-04-12</unadjustedDate>
+              <unadjustedDate>2011-05-13</unadjustedDate>
+              <unadjustedDate>2011-06-02</unadjustedDate>
+              <unadjustedDate>2011-07-12</unadjustedDate>
+              <unadjustedDate>2011-08-12</unadjustedDate>
+              <dateAdjustments>
+                <businessDayConvention>NONE</businessDayConvention>
+              </dateAdjustments>
+            </adjustableDates>
+          </interestLegPaymentDates>
+        </interestLegCalculationPeriodDates>
+        <notional>
+          <relativeNotionalAmount href="equityNotionalAmount"/>
+        </notional>
+        <interestAmount>
+          <currencyReference href="settlementCurrency"/>
+          <referenceAmount>StandardISDA</referenceAmount>
+        </interestAmount>
+        <interestCalculation>
+          <floatingRateCalculation id="floatingRateCalculation">
+            <floatingRateIndex floatingRateIndexScheme="http://www.fpml.org/coding-scheme/floating-rate-index">USD-LIBOR-BBA</floatingRateIndex>
+            <indexTenor>
+              <periodMultiplier>6</periodMultiplier>
+              <period>M</period>
+            </indexTenor>
+            <spreadSchedule>
+              <initialValue>0.01</initialValue>
+            </spreadSchedule>
+          </floatingRateCalculation>
+          <dayCountFraction dayCountFractionScheme="http://www.fpml.org/coding-scheme/day-count-fraction">ACT/360</dayCountFraction>
+          <interpolationMethod interpolationMethodScheme="http://www.fpml.org/coding-scheme/interpolation-method">LinearZeroYield</interpolationMethod>
+        </interestCalculation>
+      </interestLeg>
       <mutualEarlyTermination>true</mutualEarlyTermination>
       <extraordinaryEvents>
         <additionalDisruptionEvents/>

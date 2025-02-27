@@ -8,9 +8,7 @@ public class ToRateChoiceImpl extends ToRateChoice {
     @Override
     protected RateChoice.RateChoiceBuilder doEvaluate(Rate rate) {
         RateChoice.RateChoiceBuilder builder = RateChoice.builder();
-        if (rate instanceof RateCalculation) {
-            return builder.setRateCalculation(((RateCalculation) rate));
-        } else if (rate instanceof InflationRateCalculation) {
+        if (rate instanceof InflationRateCalculation) {
             return builder.setInflationRateCalculation(((InflationRateCalculation) rate));
         } else if (rate instanceof LoanFloatingRate) {
             return builder.setLoanFloatingRate(((LoanFloatingRate) rate));

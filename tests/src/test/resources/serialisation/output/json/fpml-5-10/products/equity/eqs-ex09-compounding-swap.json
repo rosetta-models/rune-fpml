@@ -38,6 +38,273 @@
     "product" : {
       "productModel" : { },
       "buyerSellerModel" : { },
+      "returnSwapLeg" : [ {
+        "payerReceiverModel" : {
+          "payerModel" : {
+            "payerPartyReference" : {
+              "href" : "BankB"
+            }
+          },
+          "receiverModel" : {
+            "receiverPartyReference" : {
+              "href" : "BankA"
+            }
+          }
+        },
+        "effectiveDate" : {
+          "adjustableDate" : {
+            "unadjustedDate" : {
+              "value" : "2008-01-01"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "NONE",
+              "businessCentersOrReferenceModel" : { }
+            }
+          },
+          "id" : "equityEffectiveDate"
+        },
+        "terminationDate" : {
+          "relativeDate" : {
+            "periodMultiplier" : 0,
+            "period" : "D",
+            "businessDayConvention" : "NONE",
+            "businessCentersOrReferenceModel" : { },
+            "dateRelativeTo" : {
+              "href" : "finalCashSettlementPaymentDate"
+            }
+          }
+        },
+        "underlyer" : {
+          "singleUnderlyer" : {
+            "underlyingAsset" : {
+              "instrumentId" : [ {
+                "value" : ".SPX",
+                "instrumentIdScheme" : "http://www.abc.com/instrument-id-Reuters-RIC-1-0"
+              } ],
+              "exchangeId" : {
+                "value" : "N",
+                "exchangeIdScheme" : "http://www.abc.com/exchange-id-REC-1-0"
+              },
+              "exchangeIdentifierModel" : {
+                "relatedExchangeId" : [ {
+                  "value" : "ALL",
+                  "exchangeIdScheme" : "http://www.abc.com/exchange-id-REC-1-0"
+                } ]
+              }
+            }
+          }
+        },
+        "optionSettlementModel" : {
+          "settlementAmountOrCurrencyModel" : { }
+        },
+        "rateOfReturn" : {
+          "initialPrice" : {
+            "priceSequence" : {
+              "equityPriceModel" : {
+                "netPrice" : {
+                  "amount" : 100,
+                  "priceExpression" : "ABSOLUTE_TERMS"
+                }
+              }
+            },
+            "equityPriceModel" : {
+              "netPrice" : {
+                "amount" : 100,
+                "priceExpression" : "ABSOLUTE_TERMS"
+              }
+            }
+          },
+          "notionalReset" : true,
+          "valuationPriceInterim" : {
+            "priceSequence" : {
+              "determinationMethod" : {
+                "value" : "ValuationTime"
+              },
+              "equityPriceModel" : { }
+            },
+            "equityPriceModel" : { },
+            "valuationRules" : {
+              "valuationDates" : {
+                "adjustableDates" : {
+                  "unadjustedDate" : [ {
+                    "value" : "2009-01-01"
+                  } ],
+                  "dateAdjustments" : {
+                    "businessDayConvention" : "NOT_APPLICABLE",
+                    "businessCentersOrReferenceModel" : { }
+                  }
+                }
+              },
+              "id" : "equityValuationDates"
+            }
+          },
+          "valuationPriceFinal" : {
+            "priceSequence" : {
+              "determinationMethod" : {
+                "value" : "ValuationTime"
+              },
+              "equityPriceModel" : { }
+            },
+            "equityPriceModel" : { }
+          },
+          "paymentDates" : {
+            "paymentDatesInterim" : {
+              "relativeDates" : {
+                "periodMultiplier" : 3,
+                "period" : "D",
+                "dayType" : "CURRENCY_BUSINESS",
+                "businessDayConvention" : "NONE",
+                "businessCentersOrReferenceModel" : { },
+                "dateRelativeTo" : {
+                  "href" : "equityValuationDates"
+                }
+              }
+            },
+            "paymentDateFinal" : {
+              "relativeDate" : {
+                "periodMultiplier" : 3,
+                "period" : "D",
+                "dayType" : "CURRENCY_BUSINESS",
+                "businessDayConvention" : "NONE",
+                "businessCentersOrReferenceModel" : { },
+                "dateRelativeTo" : {
+                  "href" : "equityValuationDates"
+                }
+              },
+              "id" : "finalCashSettlementPaymentDate"
+            },
+            "id" : "CashSettlementPaymentDate"
+          }
+        },
+        "notional" : {
+          "notionalAmount" : {
+            "currency" : {
+              "value" : "USD"
+            },
+            "id" : "equityNotionalAmount",
+            "amount" : 1000000
+          }
+        },
+        "amount" : {
+          "currencyAndDeterminationMethodModel" : {
+            "currency" : {
+              "value" : "USD",
+              "id" : "settlementCurrency"
+            }
+          },
+          "referenceAmount" : {
+            "value" : "StandardISDA"
+          },
+          "cashSettlement" : true,
+          "dividendsModel" : { }
+        },
+        "notionalAdjustments" : "STANDARD",
+        "return" : {
+          "returnType" : "PRICE"
+        }
+      }, {
+        "payerReceiverModel" : {
+          "payerModel" : {
+            "payerPartyReference" : {
+              "href" : "BankA"
+            }
+          },
+          "receiverModel" : {
+            "receiverPartyReference" : {
+              "href" : "BankB"
+            }
+          }
+        },
+        "interestLegCalculationPeriodDates" : {
+          "effectiveDate" : {
+            "relativeDate" : {
+              "periodMultiplier" : 0,
+              "period" : "D",
+              "businessDayConvention" : "NONE",
+              "businessCentersOrReferenceModel" : { },
+              "dateRelativeTo" : {
+                "href" : "equityEffectiveDate"
+              }
+            }
+          },
+          "terminationDate" : {
+            "relativeDate" : {
+              "periodMultiplier" : 0,
+              "period" : "D",
+              "businessDayConvention" : "NONE",
+              "businessCentersOrReferenceModel" : { },
+              "dateRelativeTo" : {
+                "href" : "finalCashSettlementPaymentDate"
+              }
+            }
+          },
+          "interestLegResetDates" : {
+            "calculationPeriodDatesReference" : {
+              "href" : "floatingCalculationPeriodDates"
+            },
+            "resetRelativeTo" : "CALCULATION_PERIOD_START_DATE"
+          },
+          "interestLegPaymentDates" : {
+            "adjustableDates" : {
+              "unadjustedDate" : [ {
+                "value" : "2009-01-01"
+              } ],
+              "dateAdjustments" : {
+                "businessDayConvention" : "NOT_APPLICABLE",
+                "businessCentersOrReferenceModel" : { }
+              }
+            }
+          },
+          "id" : "floatingCalculationPeriodDates"
+        },
+        "notional" : {
+          "relativeNotionalAmount" : {
+            "href" : "equityNotionalAmount"
+          }
+        },
+        "interestAmount" : {
+          "currencyAndDeterminationMethodModel" : {
+            "currencyReference" : {
+              "href" : "settlementCurrency"
+            }
+          },
+          "referenceAmount" : {
+            "value" : "StandardISDA"
+          }
+        },
+        "interestCalculation" : {
+          "floatingRateCalculation" : {
+            "id" : "floatingRateCalculation",
+            "floatingRateIndexModel" : {
+              "floatingRateIndex" : {
+                "value" : "USD-LIBOR-BBA"
+              },
+              "indexTenor" : {
+                "periodMultiplier" : 1,
+                "period" : "M"
+              }
+            },
+            "floatingRateModel" : {
+              "spreadSchedule" : [ {
+                "initialValue" : 0.01
+              } ]
+            },
+            "floatingRateCalculationModel" : { }
+          },
+          "dayCountFraction" : {
+            "value" : "ACT/360"
+          },
+          "compounding" : {
+            "compoundingRate" : {
+              "interestLegRate" : {
+                "href" : "floatingRateCalculation"
+              }
+            },
+            "compoundingSpread" : 0.05
+          },
+          "interestCalculationSequence" : { }
+        }
+      } ],
       "mutualOrOptionalEarlyTerminationModel" : {
         "mutualEarlyTermination" : false,
         "mutualOrOptionalEarlyTerminationModelSequence" : {

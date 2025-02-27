@@ -16,6 +16,176 @@
     </tradeHeader>
     <returnSwap>
       <productType>Equity:Swap:PriceReturnBasicPerformance:SingleName</productType>
+      <returnLeg>
+        <payerPartyReference href="party1"/>
+        <receiverPartyReference href="party2"/>
+        <effectiveDate id="EffectiveDate">
+          <adjustableDate>
+            <unadjustedDate>2002-09-12</unadjustedDate>
+            <dateAdjustments>
+              <businessDayConvention>NotApplicable</businessDayConvention>
+            </dateAdjustments>
+          </adjustableDate>
+        </effectiveDate>
+        <terminationDate id="TerminationDate">
+          <relativeDate>
+            <periodMultiplier>0</periodMultiplier>
+            <period>D</period>
+            <businessDayConvention>NotApplicable</businessDayConvention>
+            <dateRelativeTo href="FinalEquityPaymentDate"/>
+          </relativeDate>
+        </terminationDate>
+        <underlyer>
+          <singleUnderlyer>
+            <equity>
+              <instrumentId instrumentIdScheme="http://www.abc.com/instrumentId">2881.TW</instrumentId>
+              <description>Fubon Financial Holdings Co., Ltd.</description>
+              <exchangeId exchangeIdScheme="http://www.abc.com/exchangeId">XTAI</exchangeId>
+            </equity>
+            <openUnits>18388000</openUnits>
+            <dividendPayout>
+              <dividendPayoutConditions>Dividend actually paid to and received by a non-resident of Taiwan holding</dividendPayoutConditions>
+            </dividendPayout>
+          </singleUnderlyer>
+        </underlyer>
+        <rateOfReturn>
+          <initialPrice>
+            <commission>
+              <commissionDenomination>BPS</commissionDenomination>
+              <commissionAmount>30</commissionAmount>
+            </commission>
+            <determinationMethod>CalculationAgent</determinationMethod>
+            <valuationRules>
+              <valuationDate id="InitialValuationDate">
+                <relativeDateSequence>
+                  <dateRelativeTo href="TradeDate"/>
+                  <dateOffset>
+                    <periodMultiplier>0</periodMultiplier>
+                    <period>D</period>
+                    <businessDayConvention>NotApplicable</businessDayConvention>
+                  </dateOffset>
+                </relativeDateSequence>
+              </valuationDate>
+            </valuationRules>
+          </initialPrice>
+          <notionalReset>false</notionalReset>
+          <valuationPriceFinal>
+            <commission>
+              <commissionDenomination>BPS</commissionDenomination>
+              <commissionAmount>30</commissionAmount>
+            </commission>
+            <determinationMethod>CalculationAgent</determinationMethod>
+            <valuationRules>
+              <valuationDate id="FinalValuationDate">
+                <adjustableDate>
+                  <unadjustedDate>2004-03-12</unadjustedDate>
+                  <dateAdjustments>
+                    <businessDayConvention>FOLLOWING</businessDayConvention>
+                    <businessCentersReference href="PrimaryBusinessCenter"/>
+                  </dateAdjustments>
+                </adjustableDate>
+              </valuationDate>
+            </valuationRules>
+          </valuationPriceFinal>
+          <paymentDates id="EquityPaymentDate">
+            <paymentDateFinal id="FinalEquityPaymentDate">
+              <relativeDate>
+                <periodMultiplier>2</periodMultiplier>
+                <period>D</period>
+                <dayType>CurrencyBusiness</dayType>
+                <businessDayConvention>FOLLOWING</businessDayConvention>
+                <businessCenters id="PrimaryBusinessCenter">
+                  <businessCenter>USNY</businessCenter>
+                  <businessCenter>TWTA</businessCenter>
+                </businessCenters>
+                <dateRelativeTo href="FinalValuationDate"/>
+              </relativeDate>
+            </paymentDateFinal>
+          </paymentDates>
+        </rateOfReturn>
+        <notional>
+          <determinationMethod id="EquityNotionalAmount">CalculationAgent</determinationMethod>
+        </notional>
+        <amount>
+          <currencyReference href="ReferenceCurrency"/>
+          <referenceAmount>ISDA Standard</referenceAmount>
+          <cashSettlement>true</cashSettlement>
+        </amount>
+        <notionalAdjustments>Standard</notionalAdjustments>
+        <fxFeature>
+          <referenceCurrency id="ReferenceCurrency">USD</referenceCurrency>
+          <composite>
+            <determinationMethod>CalculationAgent</determinationMethod>
+          </composite>
+        </fxFeature>
+        <return>
+          <returnType>Total</returnType>
+          <dividendConditions>
+            <dividendReinvestment>false</dividendReinvestment>
+            <dividendEntitlement>ExDate</dividendEntitlement>
+            <dividendPaymentDate>
+              <dividendDateReference>ExDate</dividendDateReference>
+            </dividendPaymentDate>
+            <dividendPeriodEffectiveDate href="TradeDate"/>
+            <dividendPeriodEndDate href="FinalValuationDate"/>
+            <excessDividendAmount>PaidAmount</excessDividendAmount>
+            <currencyReference href="ReferenceCurrency"/>
+          </dividendConditions>
+        </return>
+      </returnLeg>
+      <interestLeg>
+        <payerPartyReference href="party2"/>
+        <receiverPartyReference href="party1"/>
+        <interestLegCalculationPeriodDates id="InterestLegPeriodDates">
+          <effectiveDate>
+            <relativeDate>
+              <periodMultiplier>0</periodMultiplier>
+              <period>D</period>
+              <businessDayConvention>NotApplicable</businessDayConvention>
+              <dateRelativeTo href="EffectiveDate"/>
+            </relativeDate>
+          </effectiveDate>
+          <terminationDate>
+            <relativeDate>
+              <periodMultiplier>0</periodMultiplier>
+              <period>D</period>
+              <businessDayConvention>NotApplicable</businessDayConvention>
+              <dateRelativeTo href="FinalEquityPaymentDate"/>
+            </relativeDate>
+          </terminationDate>
+          <interestLegResetDates>
+            <calculationPeriodDatesReference href="InterestLegPeriodDates"/>
+            <resetRelativeTo>CalculationPeriodStartDate</resetRelativeTo>
+          </interestLegResetDates>
+          <interestLegPaymentDates>
+            <relativeDates>
+              <periodMultiplier>2</periodMultiplier>
+              <period>D</period>
+              <dayType>CurrencyBusiness</dayType>
+              <businessDayConvention>FOLLOWING</businessDayConvention>
+              <businessCentersReference href="PrimaryBusinessCenter"/>
+              <dateRelativeTo href="FinalValuationDate"/>
+            </relativeDates>
+          </interestLegPaymentDates>
+        </interestLegCalculationPeriodDates>
+        <notional>
+          <relativeDeterminationMethod href="EquityNotionalAmount"/>
+        </notional>
+        <interestAmount>
+          <currencyReference href="ReferenceCurrency"/>
+          <referenceAmount>Standard ISDA</referenceAmount>
+        </interestAmount>
+        <interestCalculation>
+          <floatingRateCalculation>
+            <floatingRateIndex>USD-LIBOR-BBA</floatingRateIndex>
+            <indexTenor>
+              <periodMultiplier>6</periodMultiplier>
+              <period>M</period>
+            </indexTenor>
+          </floatingRateCalculation>
+          <dayCountFraction>ACT/360</dayCountFraction>
+        </interestCalculation>
+      </interestLeg>
       <additionalPayment>
         <payerPartyReference href="party1"/>
         <receiverPartyReference href="party2"/>

@@ -83,6 +83,205 @@
         "settlementCurrency" : {
           "value" : "USD"
         },
+        "commoditySwapLeg" : [ {
+          "payerReceiverModel" : {
+            "payerModel" : {
+              "payerPartyReference" : {
+                "href" : "partyA"
+              }
+            },
+            "receiverModel" : {
+              "receiverPartyReference" : {
+                "href" : "partyB"
+              }
+            }
+          },
+          "commodityCalculationPeriodsModel" : {
+            "calculationPeriodsSchedule" : {
+              "periodMultiplier" : 1,
+              "period" : "M",
+              "id" : "floatingLeg1CalculationPeriods",
+              "balanceOfFirstPeriod" : false
+            },
+            "commodityCalculationPeriodsPointerModel" : { }
+          },
+          "commodity" : {
+            "instrumentId" : [ {
+              "value" : "NATURAL GAS-HENRY HUB-NYMEX",
+              "instrumentIdScheme" : "http://www.fpml.org/coding-scheme/commodity-reference-price"
+            } ],
+            "commodityProductModel" : {
+              "commodityReferencePriceFrameworkModel" : {
+                "commodityReferencePriceFrameworkModelSequence" : { }
+              },
+              "specifiedPrice" : "SETTLEMENT",
+              "commodityProductModelSequence" : {
+                "commodityProductModelSequenceChoice" : {
+                  "deliveryDates" : "FIRST_NEARBY"
+                }
+              }
+            }
+          },
+          "commodityNotionalQuantityModel" : {
+            "commodityNotionalQuantityModelSequence" : {
+              "notionalQuantity" : {
+                "quantityUnit" : {
+                  "value" : "USMMBTU"
+                },
+                "quantityFrequency" : {
+                  "value" : "PerCalendarDay"
+                },
+                "quantity" : 15000.0
+              },
+              "totalNotionalQuantity" : 465000.0
+            }
+          },
+          "calculation" : {
+            "pricingDates" : {
+              "commodityCalculationPeriodsPointerModel" : {
+                "calculationPeriodsScheduleReference" : {
+                  "href" : "floatingLeg1CalculationPeriods"
+                }
+              },
+              "commodityPricingDatesSequence" : {
+                "commodityPricingDatesSequenceSequence" : {
+                  "daysModel" : {
+                    "dayType" : "COMMODITY_BUSINESS",
+                    "daysModelSequence0" : {
+                      "dayDistribution" : {
+                        "value" : "Last"
+                      }
+                    },
+                    "daysModelSequence1" : { }
+                  },
+                  "businessCalendar" : {
+                    "value" : "NYMEX-NATURAL-GAS"
+                  }
+                }
+              }
+            },
+            "spread" : {
+              "currency" : {
+                "value" : "USD"
+              },
+              "amount" : -1.45
+            }
+          },
+          "commodityPaymentDatesModel" : {
+            "relativePaymentDates" : {
+              "payRelativeTo" : "CALCULATION_PERIOD_END_DATE",
+              "commodityCalculationPeriodsPointerModel" : {
+                "calculationPeriodsScheduleReference" : {
+                  "href" : "floatingLeg1CalculationPeriods"
+                }
+              },
+              "paymentDaysOffset" : {
+                "periodMultiplier" : 5,
+                "period" : "D",
+                "dayType" : "BUSINESS",
+                "businessDayConvention" : "NOT_APPLICABLE"
+              },
+              "businessCentersOrReferenceModel" : { }
+            },
+            "commodityNonPeriodicPaymentDatesModel" : { }
+          },
+          "commodityFreightFlatRateModel" : { }
+        }, {
+          "payerReceiverModel" : {
+            "payerModel" : {
+              "payerPartyReference" : {
+                "href" : "partyB"
+              }
+            },
+            "receiverModel" : {
+              "receiverPartyReference" : {
+                "href" : "partyA"
+              }
+            }
+          },
+          "commodityCalculationPeriodsModel" : {
+            "commodityCalculationPeriodsPointerModel" : {
+              "calculationPeriodsScheduleReference" : {
+                "href" : "floatingLeg1CalculationPeriods"
+              }
+            }
+          },
+          "commodity" : {
+            "instrumentId" : [ {
+              "value" : "ELECTRICITY-MID-COLUMBIA FIRM (ON-PEAK)-DOW JONES POWER",
+              "instrumentIdScheme" : "http://www.fpml.org/coding-scheme/commodity-reference-price-1-0"
+            } ],
+            "commodityProductModel" : {
+              "commodityReferencePriceFrameworkModel" : {
+                "commodityReferencePriceFrameworkModelSequence" : { }
+              },
+              "specifiedPrice" : "MEAN_OF_HIGH_AND_LOW",
+              "commodityProductModelSequence" : {
+                "commodityProductModelSequenceChoice" : { }
+              }
+            }
+          },
+          "commodityNotionalQuantityModel" : {
+            "commodityNotionalQuantityModelSequence" : {
+              "notionalQuantity" : {
+                "quantityUnit" : {
+                  "value" : "USMMBTU"
+                },
+                "quantityFrequency" : {
+                  "value" : "PerCalendarDay"
+                },
+                "quantity" : 15000.0
+              },
+              "totalNotionalQuantity" : 465000.0
+            }
+          },
+          "calculation" : {
+            "pricingDates" : {
+              "commodityCalculationPeriodsPointerModel" : {
+                "calculationPeriodsScheduleReference" : {
+                  "href" : "floatingLeg1CalculationPeriods"
+                }
+              },
+              "commodityPricingDatesSequence" : {
+                "commodityPricingDatesSequenceSequence" : {
+                  "daysModel" : {
+                    "dayType" : "CALENDAR",
+                    "daysModelSequence0" : {
+                      "dayDistribution" : {
+                        "value" : "All"
+                      }
+                    },
+                    "daysModelSequence1" : { }
+                  },
+                  "businessCalendar" : {
+                    "value" : "DowJonesPower"
+                  }
+                }
+              }
+            },
+            "averagingMethod" : "UNWEIGHTED",
+            "conversionFactor" : 0.4913
+          },
+          "commodityPaymentDatesModel" : {
+            "relativePaymentDates" : {
+              "payRelativeTo" : "CALCULATION_PERIOD_END_DATE",
+              "commodityCalculationPeriodsPointerModel" : {
+                "calculationPeriodsScheduleReference" : {
+                  "href" : "floatingLeg1CalculationPeriods"
+                }
+              },
+              "paymentDaysOffset" : {
+                "periodMultiplier" : 5,
+                "period" : "D",
+                "dayType" : "BUSINESS",
+                "businessDayConvention" : "NOT_APPLICABLE"
+              },
+              "businessCentersOrReferenceModel" : { }
+            },
+            "commodityNonPeriodicPaymentDatesModel" : { }
+          },
+          "commodityFreightFlatRateModel" : { }
+        } ],
         "commodityContentModel" : {
           "marketDisruption" : {
             "commodityMarketDisruptionSequence" : {

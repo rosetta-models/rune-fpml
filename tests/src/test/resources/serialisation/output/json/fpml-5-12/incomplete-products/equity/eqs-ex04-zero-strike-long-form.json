@@ -63,6 +63,204 @@
         } ]
       },
       "buyerSellerModel" : { },
+      "returnSwapLeg" : [ {
+        "payerReceiverModel" : {
+          "payerModel" : {
+            "payerPartyReference" : {
+              "href" : "party1"
+            }
+          },
+          "receiverModel" : {
+            "receiverPartyReference" : {
+              "href" : "party2"
+            }
+          }
+        },
+        "effectiveDate" : {
+          "adjustableDate" : {
+            "unadjustedDate" : {
+              "value" : "2002-10-24"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "NOT_APPLICABLE",
+              "businessCentersOrReferenceModel" : { }
+            }
+          },
+          "id" : "EffectiveDate"
+        },
+        "terminationDate" : {
+          "relativeDate" : {
+            "periodMultiplier" : 0,
+            "period" : "D",
+            "businessDayConvention" : "NOT_APPLICABLE",
+            "businessCentersOrReferenceModel" : { },
+            "dateRelativeTo" : {
+              "href" : "FinalEquityPaymentDate"
+            }
+          },
+          "id" : "TerminationDate"
+        },
+        "underlyer" : {
+          "singleUnderlyer" : {
+            "underlyingAsset" : {
+              "instrumentId" : [ {
+                "value" : "ZEE.NS",
+                "instrumentIdScheme" : "http://www.abc.com/instrumentId"
+              } ],
+              "description" : "ZEE",
+              "exchangeId" : {
+                "value" : "XNSE",
+                "exchangeIdScheme" : "http://www.abc.com/exchangeId"
+              },
+              "exchangeIdentifierModel" : { }
+            },
+            "openUnits" : 31000,
+            "dividendPayout" : {
+              "dividendPayoutSequence" : {
+                "dividendPayoutRatio" : 1
+              }
+            }
+          }
+        },
+        "optionSettlementModel" : {
+          "settlementAmountOrCurrencyModel" : { }
+        },
+        "rateOfReturn" : {
+          "initialPrice" : {
+            "priceSequence" : {
+              "equityPriceModel" : {
+                "netPrice" : {
+                  "currency" : {
+                    "value" : "USD"
+                  },
+                  "amount" : 1.8036,
+                  "priceExpression" : "ABSOLUTE_TERMS"
+                }
+              }
+            },
+            "equityPriceModel" : {
+              "netPrice" : {
+                "currency" : {
+                  "value" : "USD"
+                },
+                "amount" : 1.8036,
+                "priceExpression" : "ABSOLUTE_TERMS"
+              }
+            }
+          },
+          "notionalReset" : false,
+          "valuationPriceFinal" : {
+            "commission" : {
+              "commissionDenomination" : "BPS",
+              "commissionAmount" : 60
+            },
+            "priceSequence" : {
+              "determinationMethod" : {
+                "value" : "HedgeExecution"
+              },
+              "equityPriceModel" : { }
+            },
+            "equityPriceModel" : { },
+            "valuationRules" : {
+              "valuationDate" : {
+                "adjustableDate" : {
+                  "unadjustedDate" : {
+                    "value" : "2004-10-17"
+                  },
+                  "dateAdjustments" : {
+                    "businessDayConvention" : "NOT_APPLICABLE",
+                    "businessCentersOrReferenceModel" : { }
+                  }
+                },
+                "id" : "FinalValuationDate"
+              }
+            }
+          },
+          "paymentDates" : {
+            "paymentDateFinal" : {
+              "relativeDate" : {
+                "periodMultiplier" : 5,
+                "period" : "D",
+                "dayType" : "CURRENCY_BUSINESS",
+                "businessDayConvention" : "FOLLOWING",
+                "businessCentersOrReferenceModel" : {
+                  "businessCenters" : {
+                    "businessCenter" : [ {
+                      "value" : "USNY"
+                    } ],
+                    "id" : "PrimaryBusinessCenter"
+                  }
+                },
+                "dateRelativeTo" : {
+                  "href" : "FinalValuationDate"
+                }
+              },
+              "id" : "FinalEquityPaymentDate"
+            },
+            "id" : "EquityPaymentDate"
+          }
+        },
+        "notional" : {
+          "notionalAmount" : {
+            "currency" : {
+              "value" : "USD"
+            },
+            "amount" : 55911.60
+          }
+        },
+        "amount" : {
+          "currencyAndDeterminationMethodModel" : {
+            "currencyReference" : {
+              "href" : "ReferenceCurrency"
+            }
+          },
+          "formula" : {
+            "formulaDescription" : "Final Price * Number of Shares",
+            "math" : { }
+          },
+          "cashSettlement" : true,
+          "dividendsModel" : { }
+        },
+        "notionalAdjustments" : "STANDARD",
+        "fxFeature" : {
+          "referenceCurrency" : {
+            "value" : "USD",
+            "id" : "ReferenceCurrency"
+          },
+          "composite" : {
+            "determinationMethod" : {
+              "value" : "CalculationAgent"
+            }
+          }
+        },
+        "return" : {
+          "returnType" : "TOTAL",
+          "dividendConditions" : {
+            "dividendReinvestment" : false,
+            "dividendEntitlement" : "EX_DATE",
+            "dividendPaymentDate" : {
+              "dividendPaymentDateSequence" : {
+                "dividendDateReference" : "EQUITY_PAYMENT_DATE"
+              }
+            },
+            "dividendConditionsSequence" : {
+              "dividendPeriodEffectiveDate" : {
+                "href" : "TradeDate"
+              },
+              "dividendPeriodEndDate" : {
+                "href" : "FinalValuationDate"
+              }
+            },
+            "excessDividendAmount" : "PAID_AMOUNT",
+            "currencyAndDeterminationMethodModel" : {
+              "currencyReference" : {
+                "href" : "ReferenceCurrency"
+              }
+            },
+            "declaredCashAndCashEquivalentDividendPercentageModel" : { }
+          }
+        }
+      } ],
       "principalExchangeFeatures" : {
         "principalExchanges" : {
           "initialExchange" : true,

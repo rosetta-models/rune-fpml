@@ -32,6 +32,76 @@
         </adjustableDate>
       </terminationDate>
       <settlementCurrency>USD</settlementCurrency>
+      <fixedLeg>
+        <payerPartyReference href="partyA"/>
+        <receiverPartyReference href="partyB"/>
+        <calculationPeriodsScheduleReference href="floatingLegCalculationPeriods"/>
+        <fixedPrice>
+          <price>120.0</price>
+          <priceCurrency>USD</priceCurrency>
+          <priceUnit>MWh</priceUnit>
+        </fixedPrice>
+        <notionalQuantity>
+          <quantityUnit>MWh</quantityUnit>
+          <quantityFrequency>PerSettlementPeriod</quantityFrequency>
+          <quantity>17.0</quantity>
+        </notionalQuantity>
+        <totalNotionalQuantity>83776.0</totalNotionalQuantity>
+        <relativePaymentDates>
+          <payRelativeTo>CalculationPeriodEndDate</payRelativeTo>
+          <calculationPeriodsScheduleReference href="floatingLegCalculationPeriods"/>
+          <paymentDaysOffset>
+            <periodMultiplier>5</periodMultiplier>
+            <period>D</period>
+            <dayType>Business</dayType>
+            <businessDayConvention>NONE</businessDayConvention>
+          </paymentDaysOffset>
+          <businessCenters>
+            <businessCenter>USNY</businessCenter>
+          </businessCenters>
+        </relativePaymentDates>
+      </fixedLeg>
+      <floatingLeg>
+        <payerPartyReference href="partyB"/>
+        <receiverPartyReference href="partyA"/>
+        <calculationPeriodsSchedule id="floatingLegCalculationPeriods">
+          <periodMultiplier>1</periodMultiplier>
+          <period>M</period>
+          <balanceOfFirstPeriod>false</balanceOfFirstPeriod>
+        </calculationPeriodsSchedule>
+        <commodity>
+          <instrumentId instrumentIdScheme="http://www.partyA.com/instrumentId/commodity-reference-price">ELECTRICITY-MID-COLUMBIA FIRM (ON-PEAK)-DOW JONES POWER</instrumentId>
+          <specifiedPrice>Index</specifiedPrice>
+        </commodity>
+        <notionalQuantity>
+          <quantityUnit>MWh</quantityUnit>
+          <quantityFrequency>PerSettlementPeriod</quantityFrequency>
+          <quantity>17.0</quantity>
+        </notionalQuantity>
+        <totalNotionalQuantity>83776.0</totalNotionalQuantity>
+        <calculation>
+          <pricingDates>
+            <calculationPeriodsScheduleReference href="floatingLegCalculationPeriods"/>
+            <dayType>CommodityBusiness</dayType>
+            <dayDistribution>All</dayDistribution>
+            <businessCalendar>DowJonesPower</businessCalendar>
+          </pricingDates>
+          <averagingMethod>Weighted</averagingMethod>
+        </calculation>
+        <relativePaymentDates>
+          <payRelativeTo>CalculationPeriodEndDate</payRelativeTo>
+          <calculationPeriodsScheduleReference href="floatingLegCalculationPeriods"/>
+          <paymentDaysOffset>
+            <periodMultiplier>5</periodMultiplier>
+            <period>D</period>
+            <dayType>Business</dayType>
+            <businessDayConvention>NONE</businessDayConvention>
+          </paymentDaysOffset>
+          <businessCenters>
+            <businessCenter>USNY</businessCenter>
+          </businessCenters>
+        </relativePaymentDates>
+      </floatingLeg>
       <marketDisruption>
         <marketDisruptionEvents>AsSpecifiedInMasterAgreement</marketDisruptionEvents>
         <disruptionFallbacks>AsSpecifiedInMasterAgreement</disruptionFallbacks>

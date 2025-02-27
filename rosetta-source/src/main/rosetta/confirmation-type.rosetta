@@ -152,8 +152,6 @@ type InflationRateCalculation extends InflationRateCalculationBase: <"An inflati
 	calculationStyle InflationCalculationStyleEnum (0..1) <"Indicates the style of how the inflation index calculates the payment (e.g. YearOnYear, ZeroCoupon).">
 	finalPrincipalExchangeCalculation FinalPrincipalExchangeCalculation (0..1) <"To be specified only for inflation products that embed a redemption payment, e.g. inflation linked asset swap.">
 
-type RateCalculation extends Rate: <"The base element for the floating rate calculation definitions.">
-
 type Swap extends Product: <"A swap product definition. A type defining swap streams and additional payments between the principal parties involved in the swap.">
 
 	swapStream InterestRateStream (1..*) <"The swap streams.">
@@ -269,10 +267,6 @@ type DualExchangeRate extends FxDisruptionEvent: <"If present indicates that the
 type ExchangeRestrictions extends FxDisruptionEvent: <"If present indicates that the event is considered to have occured if the settlement in either currency is prohibited or materially restricted.">
 
 type FallbackReferencePrice extends FxFallbackReferencePrice: <"If present indicates alternative price sources">
-
-type FxDisruptionEvent: <"The abstract element used to create the extendible set of disruption events The base class for all disruption events">
-
-type FxDisruptionFallback: <"The abstract element used to create the extendible set of disruption fallbacks. The base class for all disruption fallbacks">
 
 type NoFaultTermination extends FxDisruptionFallback: <"Indicates that the event may cause the transaction to terminate if all applicable provisions have been met.">
 
@@ -501,10 +495,10 @@ type CommodityBasketOption extends Option: <"Defines a commodity basket option p
 	premium CommodityPremium (1..*) <"The option premium payable by the buyer to the seller.">
 	commodityContentModel CommodityContentModel (0..1)
 
-	condition Choice:
+	condition Choice0:
 		required choice strikePriceUnderlyingReference, strikePriceBasketReference
 
-	condition Choice:
+	condition Choice1:
 		required choice commodityStrikePriceModel, commodityFloatingStrikePriceModel
 
 type CommodityDigitalOption extends Option: <"Defines a commodity digital option product. Defines the digital commodity option product type. Digital options exercise when a barrier is breached and are financially settled. The \'commodityDigitalOption\' type is an extension of the \'commodityOption\' product.">
@@ -531,8 +525,6 @@ type CommodityForward extends Product: <"Defines a commodity forward product. Co
 
 	condition Choice:
 		required choice fixedLeg, averagePriceLeg
-
-type PhysicalCommodityForwardLeg extends PhysicalLegBase: <"Defines the substitutable commodity forward leg.">
 
 type CommodityInterestLeg extends CommodityPerformanceSwapLeg: <"Specifies the fixed payments of a commodity performance swap. Sometimes also referred to as the fee. A type describing the interest rate leg (a.k.a fee leg) of the commodity performance swap.">
 
@@ -562,10 +554,6 @@ type CommodityPerformanceSwap extends CommodityPerformanceSwapBase: <"A swap the
 
 	earlyTermination CommodityPerformanceSwapEarlyTermination (0..*) <"Specifies, for one or for both the parties to the trade, the date prior to the Termination Date from which the contract can be terminated.">
 
-type CommodityPerformanceSwapLeg extends Leg: <"A placeholder within \'commodityPerformanceSwap\' structure for the actual commodity swap legs (e.g. \'commodityReturnLeg\' and \'commodityInterestLeg\'). Abstract base class for all commodity performance swap legs.">
-
-	payerReceiverModel PayerReceiverModel (1..1)
-
 type CommodityReturnLeg extends CommodityPerformanceSwapLeg: <"Specifies the return payments of a commodity return swap. There can be one or two return legs. In simple return swaps there is a return leg and an interest (a.k.a. \'fee\') leg. In the case of a outperformance swap there are two return legs: the return performance of two commodity underlyers are swapped. In the case of a fully-funded return swap there is no financing component and, therefore, only a single return leg is specified. A type describing the return leg of a commodity return swap.">
 
 	commodityCalculationPeriodsModel CommodityCalculationPeriodsModel (1..1)
@@ -578,15 +566,9 @@ type CommodityReturnLeg extends CommodityPerformanceSwapLeg: <"Specifies the ret
 	condition Choice:
 		required choice notionalAmount, notionalAmountReference
 
-type CommodityPhysicalLeg extends PhysicalLegBase: <"Defines the substitutable physical leg">
-
-type PhysicalLeg extends PhysicalLegBase: <"Physical Commodity Leg.">
-
 type CommoditySwap extends Product: <"Defines a commodity swap product. The commodity swap product model is designed to support fixed-float swaps, float-float swaps, fixed vs. physical swaps, float vs. physical swaps as well as, weather specific swaps. Its design is fully compatible with other FpML products and the product reuses standard common types.">
 
 	commoditySwapDetailsModel CommoditySwapDetailsModel (1..1)
-
-type CommoditySwapLeg extends CommodityLeg: <"Defines the substitutable commodity swap leg">
 
 type CommoditySwaption extends Product: <"Defines a commodity swaption product Commodity Swaption.">
 
@@ -608,10 +590,10 @@ type CommodityVarianceLeg extends CommodityPerformanceSwapLeg: <"Specifies the v
 	volatilityStrikePrice number (0..1) <"Specifies the volatility strike price when this strike is expressed in standard deviation units. Payments on the variance leg are equal to the national amount multiplied by the realized volatility squared minus the volatility strike price squared. Notional amount * (realized volatility^2 - volatility strike^2). Squaring the volatility strike price converts the volatility strike price into a variance strike price. Squaring the realized volatility converts realized volatility to realized variance.">
 	varianceCalculation CommodityVarianceCalculation (1..1) <"Specifies, in relation to each Payment Date, the variance percentage which, when multiplied times the notional amount is the amount to which the Payment Date relates. For purposes of this representation the realized variance is: (annualizationFactor / N) * signma from i = 1 to N (ln (S sub (i+1)) / (S sub i)), where: ln is the natural logarithm, N is the number of pricing dates, S sub i is the relevant price on the observation date i. If nAdjustment is \'true\' then the denominator of the annualization factor is (N - 1) rather than N. If realized volatility is the performance metric in a variance swap rather than realized variance then the square root of the formula above will appear in the confirmation.">
 
-	condition Choice:
+	condition Choice0:
 		required choice notionalAmount, notionalAmountReference
 
-	condition Choice:
+	condition Choice1:
 		required choice varianceStrikePrice, volatilityStrikePrice
 
 type ElectricityPhysicalLeg extends PhysicalSwapLeg: <"Physically settled electricity leg. Physically settled leg of a physically settled electricity transaction.">
@@ -678,10 +660,10 @@ type Repo extends Product: <"Global element representing a Repo. A Repo, modeled
 	collateralArrangement CollateralArrangement (0..1) <"(SFTR related field) Method used to provide collateral - Indication whether the collateral is subject to a title transfer collateral arrangement, a securities financial collateral arrangement, or a securities financial with the right of use.">
 	eligibleForRehypothecation boolean (0..1) <"Indication, whether the collateral taker can reuse the securities provided as a collateral.">
 
-	condition Choice:
+	condition Choice0:
 		required choice repoSequence0, repoSequence1
 
-	condition Choice:
+	condition Choice1:
 		required choice bondEquityModel, security , triParty
 
 type SecurityLending extends Product: <"Global element representing a Security Lending transaction.">
@@ -699,10 +681,10 @@ type SecurityLending extends Product: <"Global element representing a Security L
 	dividendsAndPaymentModel DividendsAndPaymentModel (1..1)
 	collateralProvisions SecLendCollateralProvisions (1..1) <"Collateral provisions component derives collateral information from the Master Agreement documentation.">
 
-	condition Choice:
+	condition Choice0:
 		optional choice extensionPeriodModel, securityLendingSequence0
 
-	condition Choice:
+	condition Choice1:
 		required choice securityLendingSequence1, rebate
 
 type RequestClearingEligibility extends CorrectableRequestMessage:
@@ -1122,8 +1104,6 @@ type OptionExpirationNotification extends ExecutionNotification:
 
 type Bankruptcy extends BankruptcyEvent:
 
-type CreditEvent:
-
 type CreditEventNotice extends CreditEventNoticeDocument: <"A global element used to hold CENs.">
 	[rootType]
 
@@ -1168,8 +1148,6 @@ type ValuationSet: <"A set of valuation inputs and results. This structure can b
 	assetValuation AssetValuation (0..*) <"Valuations reported in this valuation set. These values can be values (NPVs, prices, etc.) or risks (DAR, etc.) and can include sensitivities.">
 	id string (0..1)
 
-type FacilityGroup extends AbstractFacility: <"Head of the substitution group for all facility types.">
-
 type DelayedDraw extends AbstractFacility: <"A revolver facility. A facility which can be drawn at any point during a pre-defined period after the initial deal closing date,">
 
 	delayedDraw boolean (1..1) <"A flag to determine whether the Term Loan has a delayed draw feature.">
@@ -1181,13 +1159,14 @@ type Revolver extends AbstractFacility: <"A revolver facility. A facility which 
 
 type TermLoan extends AbstractFacility: <"A term loan facility. A facility which is fully funded (utilized) at deal closing.">
 
-type FacilityEventGroup extends AbstractFacilityEvent: <"Head of the substitution group for all facility events.">
-
 type AccrualOptionChange extends AbstractFacilityEvent: <"An event describing a change to an accrual option associated with a specific facility.">
 
 	accrualOptionChangeSequence0 AccrualOptionChangeSequence0 (0..1)
 	accruingPikOption AccruingPikOption (0..1) <"A structure that represents the accruing PIK option associated within a facility.">
 	accrualOptionChangeSequence1 AccrualOptionChangeSequence1 (0..1)
+
+	condition Choice:
+		required choice accrualOptionChangeSequence0, accruingPikOption , accrualOptionChangeSequence1
 
 type AccruingFeeChange extends AbstractFacilityEvent: <"An event describing a future change to an accruing fee associated with a specific facility.">
 
@@ -1249,6 +1228,9 @@ type MiscFeePayment extends AbstractFacilityPaymentEvent: <"An event describing 
 	_type MiscFeeType (0..1) <"The misc fee type, based on a scheme.">
 	description NonEmptyNormalizedString (0..1) <"A description of the misc fee.">
 
+	condition Choice:
+		required choice _type, description
+
 type PenaltyRateChange extends AbstractFacilityRateChangeEvent: <"An event representing a change in the penalty rate applicable to outstanding loans.">
 
 type PenaltyRateExpiry extends AbstractFacilityContractEvent: <"An event representing expiration of the penalty rate.">
@@ -1256,8 +1238,6 @@ type PenaltyRateExpiry extends AbstractFacilityContractEvent: <"An event represe
 type UpfrontFeePayment extends AbstractFacilityPaymentEvent: <"A structure that represents a fee, also known as Participation Fee, Arrangement Fee etc. This fee represents compensation to the members of the lending syndicate (and sometimes to institutional investors as well) in return for their commitment of capital.">
 
 type WaiverFeePayment extends AbstractFacilityPaymentEvent: <"A fee structure that represents a payment made by the borrower to the syndicate lenders for processing and accepting a waiver request. The request is sent by the borrower to obtain approval from the syndicate lenders formally requesting waivers around particular terms of the credit agreement.">
-
-type LoanContractEventGroup extends AbstractLoanServicingEvent: <"Head of the substitution group for all loan contract events.">
 
 type LoanContractAdjustment extends AbstractLoanContractEvent: <"An event representing adjustment in the notional amount of a loan contract that has no cash flow effect. E.g. an amount adjustment due to a defaulted loan.">
 
@@ -1307,8 +1287,6 @@ type Rollover extends AbstractLoanServicingEvent: <"An event representing the pr
 	currentContracts LoanContractsReference (1..1) <"A list of references to all contracts whose rates are resetting or that are terminating as part of a rollover event.">
 	newContracts LoanContractList (1..1) <"A list of all contracts whose rates are resetting or that are initiating as part of the rollover event.">
 
-type LcEventGroup extends AbstractLcEvent: <"Head of the substitution group for all letter of credit events.">
-
 type LcAdjustment extends AbstractLcEvent: <"An event representing a change in the notional amount associated with an outstanding letter of credit.">
 
 	adjustment Adjustment (1..1) <"Defines the type of adjustment applied - increase or decrease.">
@@ -1344,8 +1322,6 @@ type LcTermination extends AbstractLcEvent: <"An event representing either the e
 
 	expiry boolean (1..1) <"Determines whether this event was created due to a natural expiration of the letter of credit or an unscheduled cancellation.">
 
-type LoanTradeEventGroup extends AbstractLoanTradeEvent: <"Head of the substitution group for all loan trade events.">
-
 type LoanTrade extends LoanTradeEvent:
 
 type LoanTradeConfirmation extends LoanTradeEvent:
@@ -1353,8 +1329,6 @@ type LoanTradeConfirmation extends LoanTradeEvent:
 type LoanTradeFeeDue extends LoanTradeTransferFeeDue:
 
 type LoanTradeFeeOwed extends LoanTradeTransferFeeOwed:
-
-type LoanAllocationEventGroup extends AbstractLoanAllocationEvent: <"Head of the substitution group for all loan trade allocation events.">
 
 type LoanAllocation extends LoanAllocationEvent:
 
@@ -1557,8 +1531,6 @@ type ReturnSwap extends ReturnSwapBase: <"Specifies the structure of a return ty
 	earlyTermination ReturnSwapEarlyTermination (0..*) <"Specifies, for one or for both the parties to the trade, the date from which it can early terminate it.">
 	extraordinaryEvents ExtraordinaryEvents (0..1) <"Where the underlying is shares, specifies events affecting the issuer of those shares that may require the terms of the transaction to be adjusted.">
 
-type ReturnSwapLeg extends DirectionalLeg: <"An placeholder for the actual Return Swap Leg definition.">
-
 type Basket extends Asset: <"Defines the underlying asset when it is a basket. A type describing the underlyer features of a basket swap. Each of the basket constituents are described through an embedded component, the basketConstituentsType.">
 
 	openUnits number (0..1) <"The number of units (index or securities) that constitute the underlyer of the swap. In the case of a basket swap, this element is used to reference both the number of basket units, and the number of each asset components of the basket when these are expressed in absolute terms.">
@@ -1568,7 +1540,7 @@ type Basket extends Asset: <"Defines the underlying asset when it is a basket. A
 	basketIdentifierModel BasketIdentifierModel (0..1)
 	basketCurrency Currency (0..1) <"Specifies the currency for this basket.">
 
-type Bond extends UnderlyingAssetType: <"Identifies the underlying asset when it is a series or a class of bonds. An exchange traded bond.">
+type Bond extends UnderlyingAsset: <"Identifies the underlying asset when it is a series or a class of bonds. An exchange traded bond.">
 
 	fixedIncomeSecurityContentModel FixedIncomeSecurityContentModel (1..1)
 	parValue number (0..1) <"Specifies the nominal amount of a fixed income security or convertible bond.">
@@ -1590,9 +1562,7 @@ type ConvertibleBond extends Bond: <"Identifies the underlying asset when it is 
 	underlyingEquity EquityAsset (0..1) <"Specifies the equity in which the convertible bond can be converted.">
 	redemptionDate date (0..1) <"Earlier date between the convertible bond put dates and its maturity date.">
 
-type CurveInstrument extends Asset: <"Defines the underlying asset when it is a curve instrument.">
-
-type Deposit extends UnderlyingAssetType: <"Identifies a simple underlying asset that is a term deposit.">
+type Deposit extends UnderlyingAsset: <"Identifies a simple underlying asset that is a term deposit.">
 
 	term Period (1..1) <"Specifies the term of the deposit, e.g. 5Y.">
 	paymentFrequency Period (0..1) <"Specifies the frequency at which the deposit pays, e.g. 6M.">
@@ -1622,7 +1592,7 @@ type Index extends ExchangeTradedCalculatedPrice: <"Identifies the underlying as
 
 	futureId FutureId (0..1) <"A short form unique identifier for the reference future contract in the case of an index underlyer.">
 
-type Loan extends UnderlyingAssetType: <"Identifies a simple underlying asset that is a loan. A type describing a loan underlying asset.">
+type Loan extends UnderlyingAsset: <"Identifies a simple underlying asset that is a loan. A type describing a loan underlying asset.">
 
 	loanChoice LoanChoice (0..*)
 	lien Lien (0..1) <"Specifies the seniority level of the lien.">
@@ -1632,7 +1602,7 @@ type Loan extends UnderlyingAssetType: <"Identifies a simple underlying asset th
 	tranche UnderlyingAssetTranche (0..1) <"The loan tranche that is subject to the derivative transaction. It will typically be referenced as the Bloomberg tranche number. ISDA Standards Terms Supplement term: Bloomberg Tranche Number.">
 	seniority CreditSeniority (0..1) <"The seniority. E.g. senior, senior secured etc.">
 
-type Mortgage extends UnderlyingAssetType: <"Identifies a mortgage backed security. A type describing a mortgage asset.">
+type Mortgage extends UnderlyingAsset: <"Identifies a mortgage backed security. A type describing a mortgage asset.">
 
 	insurer LegalEntity (0..1)
 	insurerReference LegalEntityReference (0..1)
@@ -1646,14 +1616,14 @@ type Mortgage extends UnderlyingAssetType: <"Identifies a mortgage backed securi
 	condition Choice:
 		optional choice insurer, insurerReference
 
-type MutualFund extends UnderlyingAssetType: <"Identifies the class of unit issued by a fund.">
+type MutualFund extends UnderlyingAsset: <"Identifies the class of unit issued by a fund.">
 
 	openEndedFund boolean (0..1) <"Boolean indicator to specify whether the mutual fund is an open-ended mutual fund.">
 	fundManager NonEmptyToken (0..1) <"Specifies the fund manager that is in charge of the fund.">
 
 type OptionElement extends ExchangeTradedOption: <"Identifies the underlying asset when it is a listed option contract.">
 
-type RateIndex extends UnderlyingAssetType: <"Identifies a simple underlying asset that is an interest rate index. Used for specifying benchmark assets in the market environment in the pricing and risk model.">
+type RateIndex extends UnderlyingAsset: <"Identifies a simple underlying asset that is an interest rate index. Used for specifying benchmark assets in the market environment in the pricing and risk model.">
 
 	floatingRateIndex FloatingRateIndex (1..1)
 	term Period (1..1) <"Specifies the term of the simple swap, e.g. 5Y.">
@@ -1662,25 +1632,23 @@ type RateIndex extends UnderlyingAssetType: <"Identifies a simple underlying ass
 
 type Security extends GenericSecurity: <"Identifies a security of implicit type (derivable from the security reference data).">
 
-type SimpleCreditDefaultSwap extends UnderlyingAssetType: <"Identifies a simple underlying asset that is a credit default swap.">
+type SimpleCreditDefaultSwap extends UnderlyingAsset: <"Identifies a simple underlying asset that is a credit default swap.">
 
 	creditEntityModel CreditEntityModel (1..1)
 	term Period (1..1) <"Specifies the term of the simple CD swap, e.g. 5Y.">
 	paymentFrequency Period (0..1) <"Specifies the frequency at which the swap pays, e.g. 6M.">
 
-type SimpleFra extends UnderlyingAssetType: <"Identifies a simple underlying asset that is a forward rate agreement.">
+type SimpleFra extends UnderlyingAsset: <"Identifies a simple underlying asset that is a forward rate agreement.">
 
 	startTerm Period (1..1) <"Specifies the start term of the simple fra, e.g. 3M.">
 	endTerm Period (1..1) <"Specifies the end term of the simple fra, e.g. 9M.">
 	dayCountFraction DayCountFraction (0..1) <"The day count basis for the FRA.">
 
-type SimpleIRSwap extends UnderlyingAssetType: <"Identifies a simple underlying asset that is a swap.">
+type SimpleIRSwap extends UnderlyingAsset: <"Identifies a simple underlying asset that is a swap.">
 
 	term Period (1..1) <"Specifies the term of the simple swap, e.g. 5Y.">
 	paymentFrequency Period (0..1) <"Specifies the frequency at which the swap pays, e.g. 6M.">
 	dayCountFraction DayCountFraction (0..1) <"The day count basis for the swap.">
-
-type UnderlyingAsset extends Asset: <"Define the underlying asset, either a listed security or other instrument.">
 
 type Warrant extends ExchangeTradedContract: <"Defines the underlying asset when it is a warrant.">
 
@@ -1767,7 +1735,7 @@ type VolatilityRepresentation extends PricingStructure: <"A representation of vo
 	yieldCurveReference YieldCurveReference (0..1) <"A reference to the yield curve whose volatility is modeled.">
 
 	condition Choice:
-		one-of
+		required choice asset, yieldCurveReference
 
 type YieldCurve extends PricingStructure: <"A generic yield curve object, which can be valued in a variety of ways.">
 
@@ -1779,8 +1747,6 @@ type YieldCurveValuation extends PricingStructureValuation: <"The values of a yi
 	zeroCurve ZeroRateCurve (0..1) <"A curve of zero rates.">
 	forwardCurve ForwardRateCurve (0..*) <"A curve of forward rates.">
 	discountFactorCurve TermCurve (0..1) <"A curve of discount factors.">
-
-type AdditionalEvent extends AbstractEvent: <"The additionalEvent element is an extension/substitution point to customize FpML and add additional events. Abstract base type for an extension/substitution point to customize FpML and add additional events.">
 
 type BasketChange extends BasketChangeEvent: <"Describes a change due to change in composition of basket underlyer">
 	[rootType]
@@ -1835,15 +1801,6 @@ type EuropeanExercise extends Exercise: <"The parameters for defining the exerci
 	expirationTime BusinessCenterTime (1..1) <"The latest time for exercise on expirationDate.">
 	partialExercise PartialExercise (0..1) <"As defined in the 2000 ISDA Definitions, Section 12.3. Partial Exercise, the buyer of the option has the right to exercise all or less than all the notional amount of the underlying swap on the expiration date, but may not exercise less than the minimum notional amount, and if an integral multiple amount is specified, the notional amount exercised must be equal to, or be an integral multiple of, the integral multiple amount.">
 	exerciseFee ExerciseFee (0..1) <"A fee to be paid on exercise. This could be represented as an amount or a rate and notional reference on which to apply the rate.">
-
-type Exercise: <"An placeholder for the actual option exercise definitions. The abstract base class for all types which define way in which options may be exercised.">
-
-	id string (0..1)
-
-type Product: <"An abstract element used as a place holder for the substituting product elements. The base type which all FpML products extend.">
-
-	productModel ProductModel (0..1)
-	id string (0..1)
 
 type Signature extends SignatureType:
 	[rootType]
@@ -1932,16 +1889,6 @@ type Market: <"This is a global element used for creating global types. It holds
 	pricingStructureValuation PricingStructureValuation (0..*)
 	benchmarkPricingMethod PricingMethod (0..*) <"The pricing structure used to quote a benchmark instrument.">
 	id string (0..1)
-
-type PricingStructure: <"An abstract pricing structure base type. Used as a base for structures such as yield curves and volatility matrices.">
-
-	name NormalizedString (0..1) <"The name of the structure, e.g \"USDLIBOR-3M EOD Curve\".">
-	currency Currency (0..1) <"The currency that the structure is expressed in (this is relevant mostly for the Interes Rates asset class).">
-	id string (0..1)
-
-type PricingStructureValuation extends Valuation: <"An abstract pricing structure valuation base type. Used as a base for values of pricing structures such as yield curves and volatility matrices. Derived from the \"Valuation\" type.">
-
-	pricingInputDatesModel PricingInputDatesModel (1..1)
 
 type InstrumentTradeDetails extends Product: <"A type to hold trades of multiply-traded instruments such as securities (e.g., stocks or bonds) or listed derivatives. Typically this will be used to represent the trade resulting from a physically-settled OTC product where the underlying is a security, for example the exercise of a physically-settled option. The economics of a trade of a multiply traded instrument.">
 
@@ -2784,9 +2731,13 @@ type FxDisruption: <"A structure describing how disruption for a specified curre
 	referenceCurrency Currency (1..1) <"The reference currency in the exchange rate being monitored for disruption events.">
 	provisions FxDisruptionProvisions (1..*) <"One or more provisions describiing disruption events and how they will be handled.">
 
+type FxDisruptionEvent: <"The base class for all disruption events">
+
 type FxDisruptionEvents: <"A container for the disruption event set">
 
 	fxDisruptionEvent FxDisruptionEvent (1..*)
+
+type FxDisruptionFallback: <"The base class for all disruption fallbacks">
 
 type FxDisruptionFallbacks: <"A container for the disruption fallback set">
 
@@ -4781,6 +4732,10 @@ type CommodityPerformanceSwapEarlyTermination:
 	partyReference PartyReference (0..1)
 	startingDate CommodityStartingDate (0..1)
 
+type CommodityPerformanceSwapLeg extends Leg: <"Abstract base class for all commodity performance swap legs.">
+
+	payerReceiverModel PayerReceiverModel (1..1)
+
 type CommodityPhysicalAmericanExercise extends Exercise: <"The parameters for defining the expiration date(s) and time(s) for an American style option.">
 
 	commodityPhysicalAmericanExerciseSequence0 CommodityPhysicalAmericanExerciseSequence0 (0..1)
@@ -5205,7 +5160,7 @@ type GasPhysicalQuantity extends CommodityPhysicalQuantityBase: <"The quantity o
 	gasPhysicalQuantitySequence GasPhysicalQuantitySequence (0..1)
 
 	condition Choice:
-		one-of
+		required choice commodityFixedPhysicalQuantityModel, gasPhysicalQuantitySequence
 
 type GasPhysicalQuantitySequence:
 
@@ -6149,6 +6104,8 @@ type AffectedTransactions:
 
 type BankruptcyEvent extends CreditEvent:
 
+type CreditEvent:
+
 type CreditEventNoticeDocument: <"An event type that records the occurrence of a credit event notice.">
 
 	affectedTransactions AffectedTransactions (0..1) <"Trades affected by this event.">
@@ -7022,6 +6979,9 @@ type LoanCovenantObligation extends AbstractLoanCovenantObligation: <"A syndicat
 	deemedCovenantReference LoanCovenantObligationReference (0..1) <"Defines a referenced covenant from another deal or facility, in the event that a covenant from another deal or facility is deemed applicable.">
 	loanCovenantObligationSequence LoanCovenantObligationSequence (0..1)
 
+	condition Choice:
+		required choice deemedCovenantReference, loanCovenantObligationSequence
+
 type LoanCovenantObligationSequence:
 
 	category LoanCovenantObligationCategoryType (1..1) <"A structure used to uniquely identify a loan covenant obligation category, based on a scheme.">
@@ -7110,6 +7070,9 @@ type LoanCovenantObligationSummary extends CovenantObligationSummary: <"A syndic
 
 	dealReference DealReference (0..1)
 	facilityReference FacilityReference (0..*)
+
+	condition Choice:
+		required choice dealReference, facilityReference
 
 type LoanCovenantObligationTriggerCriteriaDetails: <"A structure to describe the trigger criteria of a covenant obligation.">
 
@@ -8570,7 +8533,7 @@ type DividendPayoutSequence:
 
 type EquityAsset extends ExchangeTraded: <"An exchange traded equity asset.">
 
-type ExchangeTraded extends UnderlyingAssetType: <"An abstract base class for all exchange traded financial products.">
+type ExchangeTraded extends UnderlyingAsset: <"An abstract base class for all exchange traded financial products.">
 
 	exchangeIdentifierModel ExchangeIdentifierModel (1..1)
 
@@ -8625,7 +8588,7 @@ type FxConversion:
 	condition Choice:
 		one-of
 
-type FxRateAsset extends UnderlyingAssetType:
+type FxRateAsset extends UnderlyingAsset:
 
 	quotedCurrencyPair QuotedCurrencyPair (1..1) <"Defines the two currencies for an FX trade and the quotation relationship between the two currencies.">
 	rateSource FxSpotRateSource (0..1) <"Defines the source of the FX rate.">
@@ -8737,7 +8700,7 @@ type Underlyer: <"A type describing the whole set of possible underlyers: single
 	condition Choice:
 		one-of
 
-type UnderlyingAssetType extends IdentifiedAsset: <"Abstract base class for all underlying assets.">
+type UnderlyingAsset extends IdentifiedAsset: <"Abstract base class for all underlying assets.">
 
 	currency IdentifiedCurrency (0..1) <"Trading currency of the underlyer when transacted as a cash instrument.">
 	exchangeId ExchangeId (0..1) <"Identification of the exchange on which this asset is transacted for the purposes of calculating a contractural payoff. The term \"Exchange\" is assumed to have the meaning as defined in the ISDA 2002 Equity Derivatives Definitions.">
@@ -9593,6 +9556,8 @@ type ActionOnExpiration:
 
 	optionExerciseAmountModel OptionExerciseAmountModel (1..1)
 
+type AdditionalEvent extends AbstractEvent: <"Abstract base type for an extension/substitution point to customize FpML and add additional events.">
+
 type AmountRef: <"A type defining a nominal amount with a reference.">
 
 	amount PositiveDecimal (1..1)
@@ -10168,6 +10133,9 @@ type TouchRateObservation extends TriggerRateObservation:
 
 	touchRateObservationSequence TouchRateObservationSequence (0..1)
 	isExercisable boolean (0..1) <"If the touch or no touch event hasn\'t generated an exercise, then we specify whether the option is exercisable or not.">
+
+	condition Choice:
+		required choice touchRateObservationSequence, isExercisable
 
 type TouchRateObservationSequence:
 
@@ -10996,6 +10964,10 @@ type ExchangeId: <"A short form unique identifier for an exchange. If the elemen
 	value NonEmptyScheme (1..1)
 	exchangeIdScheme NonEmptyURI (0..1)
 
+type Exercise: <"The abstract base class for all types which define way in which options may be exercised.">
+
+	id string (0..1)
+
 type ExerciseFee: <"A type defining the fee payable on exercise of an option. This fee may be defined as an amount or a percentage of the notional exercised.">
 
 	payerReceiverModel PayerReceiverModel (1..1)
@@ -11666,6 +11638,12 @@ type PrevailingTime: <"A type for defining a time with respect to a geographic l
 	hourMinuteTime HourMinuteTime (1..1) <"A time specified in hh:mm:ss format where the second component must be \'00\', e.g. 11am would be represented as 11:00:00.">
 	location TimezoneLocation (1..1) <"The geographic location to which the hourMinuteTime applies. The time takes into account any current day light saving changes or other adjustments i.e. it is the prevaling time at the location.">
 
+type PricingStructure: <"An abstract pricing structure base type. Used as a base for structures such as yield curves and volatility matrices.">
+
+	name NormalizedString (0..1) <"The name of the structure, e.g \"USDLIBOR-3M EOD Curve\".">
+	currency Currency (0..1) <"The currency that the structure is expressed in (this is relevant mostly for the Interes Rates asset class).">
+	id string (0..1)
+
 type PricingStructureReference extends Reference: <"Reference to a pricing structure or any derived components (i.e. yield curve).">
 
 	href string (1..1)
@@ -11675,6 +11653,11 @@ type PrincipalExchanges: <"A type defining which principal exchanges occur for t
 	initialExchange boolean (1..1) <"A true/false flag to indicate whether there is an initial exchange of principal on the effective date.">
 	finalExchange boolean (1..1) <"A true/false flag to indicate whether there is a final exchange of principal on the termination date.">
 	intermediateExchange boolean (1..1) <"A true/false flag to indicate whether there are intermediate or interim exchanges of principal during the term of the swap.">
+	id string (0..1)
+
+type Product: <"The base type which all FpML products extend.">
+
+	productModel ProductModel (0..1)
 	id string (0..1)
 
 type ProductId:
@@ -12052,6 +12035,9 @@ type UnderlyerInterestLeg extends DirectionalLeg: <"A type describing interest p
 
 	fixedRate number (0..1) <"The calculation period fixed rate. A per annum rate, expressed as a decimal. A fixed rate of 5% would be represented as 0.05.">
 	spreadSchedule SpreadSchedule (0..*) <"The ISDA Spread or a Spread schedule expressed as explicit spreads and dates. In the case of a schedule, the step dates may be subject to adjustment in accordance with any adjustments specified in calculationPeriodDatesAdjustments. The spread is a per annum rate, expressed as a decimal. For purposes of determining a calculation period amount, if positive the spread will be added to the floating rate and if negative the spread will be subtracted from the floating rate. A positive 10 basis point (0.1%) spread would be represented as 0.001.">
+
+	condition Choice:
+		required choice fixedRate, spreadSchedule
 
 type Unit: <"A type used to record information about a unit, subdivision, desk, or other similar business entity.">
 
@@ -12538,6 +12524,10 @@ type PricingParameterShift: <"A definition of a shift with respect to a specific
 
 	condition Choice:
 		required choice parameterReference, assetReference , termPointReference , pricingStructureReference
+
+type PricingStructureValuation extends Valuation: <"An abstract pricing structure valuation base type. Used as a base for values of pricing structures such as yield curves and volatility matrices. Derived from the \"Valuation\" type.">
+
+	pricingInputDatesModel PricingInputDatesModel (1..1)
 
 type QuotedAssetSet: <"A collection of quoted assets.">
 
