@@ -10,6 +10,7 @@ public class RuneFpmlModelConfig {
 
     public static final ImmutableMap<Class<?>, String> TYPE_TO_SCHEMA_MAP =
             ImmutableMap.<Class<?>, String>builder()
+                    .put(Document.class, SCHEMA_PATH)
                     .put(DataDocument.class, SCHEMA_PATH)
                     .put(ClearingConfirmed.class, SCHEMA_PATH)
                     .put(ExecutionAdvice.class, SCHEMA_PATH)
@@ -21,6 +22,7 @@ public class RuneFpmlModelConfig {
 
     public static final ImmutableMap<Class<?>, String> TYPE_TO_XML_CONFIG_MAP =
             ImmutableMap.<Class<?>, String>builder()
+                    .put(Document.class, SCHEMA_PATH)
                     .put(DataDocument.class, XML_CONFIG_PATH)
                     .put(ClearingConfirmed.class, XML_CONFIG_PATH)
                     .put(ExecutionAdvice.class, XML_CONFIG_PATH)
