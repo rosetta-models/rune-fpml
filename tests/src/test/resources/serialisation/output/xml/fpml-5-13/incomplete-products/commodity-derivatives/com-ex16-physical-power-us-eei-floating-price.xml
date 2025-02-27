@@ -32,6 +32,33 @@
         </adjustableDate>
       </terminationDate>
       <settlementCurrency>USD</settlementCurrency>
+      <floatingLeg>
+        <payerPartyReference href="partyB"/>
+        <receiverPartyReference href="partyA"/>
+        <calculationPeriodsSchedule id="floatingLegCalculationPeriods">
+          <periodMultiplier>1</periodMultiplier>
+          <period>M</period>
+          <balanceOfFirstPeriod>false</balanceOfFirstPeriod>
+        </calculationPeriodsSchedule>
+        <commodity>
+          <instrumentId instrumentIdScheme="http://www.fpml.org/coding-scheme/commodity-reference-price-1-0">ELECTRICITY-ERCOT-NORTH PEAK-ICE/10X DAILY-POWER</instrumentId>
+          <specifiedPrice>MeanOfHighAndLow</specifiedPrice>
+        </commodity>
+        <quantityReference href="deliveryQuantity"/>
+        <calculation>
+          <pricingDates>
+            <calculationPeriodsScheduleReference href="floatingLegCalculationPeriods"/>
+            <dayType>CommodityBusiness</dayType>
+            <dayDistribution>All</dayDistribution>
+            <businessCalendar>ICE/10X-DAILY</businessCalendar>
+          </pricingDates>
+          <spread>
+            <currency>USD</currency>
+            <amount>3.0</amount>
+          </spread>
+        </calculation>
+        <masterAgreementPaymentDates>true</masterAgreementPaymentDates>
+      </floatingLeg>
     </commoditySwap>
   </trade>
   <party id="partyA">

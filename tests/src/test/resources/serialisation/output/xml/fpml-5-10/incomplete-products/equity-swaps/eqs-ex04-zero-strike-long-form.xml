@@ -16,6 +16,120 @@
     </tradeHeader>
     <returnSwap>
       <productType>Equity:Swap:PriceReturnBasicPerformance:SingleName</productType>
+      <returnLeg>
+        <payerPartyReference href="party1"/>
+        <receiverPartyReference href="party2"/>
+        <effectiveDate id="EffectiveDate">
+          <adjustableDate>
+            <unadjustedDate>2002-10-24</unadjustedDate>
+            <dateAdjustments>
+              <businessDayConvention>NotApplicable</businessDayConvention>
+            </dateAdjustments>
+          </adjustableDate>
+        </effectiveDate>
+        <terminationDate id="TerminationDate">
+          <relativeDate>
+            <periodMultiplier>0</periodMultiplier>
+            <period>D</period>
+            <businessDayConvention>NotApplicable</businessDayConvention>
+            <dateRelativeTo href="FinalEquityPaymentDate"/>
+          </relativeDate>
+        </terminationDate>
+        <underlyer>
+          <singleUnderlyer>
+            <equity>
+              <instrumentId instrumentIdScheme="http://www.abc.com/instrumentId">ZEE.NS</instrumentId>
+              <description>ZEE</description>
+              <exchangeId exchangeIdScheme="http://www.abc.com/exchangeId">XNSE</exchangeId>
+            </equity>
+            <openUnits>31000</openUnits>
+            <dividendPayout>
+              <dividendPayoutRatio>1</dividendPayoutRatio>
+            </dividendPayout>
+          </singleUnderlyer>
+        </underlyer>
+        <rateOfReturn>
+          <initialPrice>
+            <netPrice>
+              <currency>USD</currency>
+              <amount>1.8036</amount>
+              <priceExpression>AbsoluteTerms</priceExpression>
+            </netPrice>
+            <netPrice>
+              <currency>USD</currency>
+              <amount>1.8036</amount>
+              <priceExpression>AbsoluteTerms</priceExpression>
+            </netPrice>
+          </initialPrice>
+          <notionalReset>false</notionalReset>
+          <valuationPriceFinal>
+            <commission>
+              <commissionDenomination>BPS</commissionDenomination>
+              <commissionAmount>60</commissionAmount>
+            </commission>
+            <determinationMethod>HedgeExecution</determinationMethod>
+            <valuationRules>
+              <valuationDate id="FinalValuationDate">
+                <adjustableDate>
+                  <unadjustedDate>2004-10-17</unadjustedDate>
+                  <dateAdjustments>
+                    <businessDayConvention>NotApplicable</businessDayConvention>
+                  </dateAdjustments>
+                </adjustableDate>
+              </valuationDate>
+            </valuationRules>
+          </valuationPriceFinal>
+          <paymentDates id="EquityPaymentDate">
+            <paymentDateFinal id="FinalEquityPaymentDate">
+              <relativeDate>
+                <periodMultiplier>5</periodMultiplier>
+                <period>D</period>
+                <dayType>CurrencyBusiness</dayType>
+                <businessDayConvention>FOLLOWING</businessDayConvention>
+                <businessCenters id="PrimaryBusinessCenter">
+                  <businessCenter>USNY</businessCenter>
+                </businessCenters>
+                <dateRelativeTo href="FinalValuationDate"/>
+              </relativeDate>
+            </paymentDateFinal>
+          </paymentDates>
+        </rateOfReturn>
+        <notional>
+          <notionalAmount>
+            <currency>USD</currency>
+            <amount>55911.60</amount>
+          </notionalAmount>
+        </notional>
+        <amount>
+          <currencyReference href="ReferenceCurrency"/>
+          <formula>
+            <formulaDescription>Final Price * Number of Shares</formulaDescription>
+            <math/>
+          </formula>
+          <cashSettlement>true</cashSettlement>
+        </amount>
+        <notionalAdjustments>Standard</notionalAdjustments>
+        <fxFeature>
+          <referenceCurrency id="ReferenceCurrency">USD</referenceCurrency>
+          <composite>
+            <determinationMethod>CalculationAgent</determinationMethod>
+          </composite>
+        </fxFeature>
+        <return>
+          <returnType>Total</returnType>
+          <dividendConditions>
+            <dividendReinvestment>false</dividendReinvestment>
+            <dividendEntitlement>ExDate</dividendEntitlement>
+            <dividendPaymentDate>
+              <dividendDateReference>EquityPaymentDate</dividendDateReference>
+            </dividendPaymentDate>
+            <dividendPeriodEffectiveDate href="TradeDate"/>
+            <dividendPeriodEndDate href="FinalValuationDate"/>
+            <excessDividendAmount>PaidAmount</excessDividendAmount>
+            <currencyReference href="ReferenceCurrency"/>
+          </dividendConditions>
+        </return>
+      </returnLeg>
       <principalExchangeFeatures>
         <principalExchanges>
           <initialExchange>true</initialExchange>

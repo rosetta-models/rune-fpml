@@ -83,6 +83,179 @@
         "settlementCurrency" : {
           "value" : "USD"
         },
+        "commoditySwapLeg" : [ {
+          "payerReceiverModel" : {
+            "payerModel" : {
+              "payerPartyReference" : {
+                "href" : "partyA"
+              }
+            },
+            "receiverModel" : {
+              "receiverPartyReference" : {
+                "href" : "partyB"
+              }
+            }
+          },
+          "commodityCalculationPeriodsModel" : {
+            "commodityCalculationPeriodsPointerModel" : {
+              "calculationPeriodsScheduleReference" : {
+                "href" : "floatingLegCalculationPeriods"
+              }
+            }
+          },
+          "commodityFixedPriceModel" : {
+            "commodityFixedPriceModelChoice" : {
+              "fixedPrice" : {
+                "price" : 5.55,
+                "commodityPriceModel" : {
+                  "priceCurrency" : {
+                    "value" : "USD"
+                  },
+                  "priceUnit" : {
+                    "value" : "USMMBTU"
+                  }
+                }
+              }
+            }
+          },
+          "commodityNotionalQuantityModel" : {
+            "commodityNotionalQuantityModelSequence" : {
+              "notionalQuantity" : {
+                "quantityUnit" : {
+                  "value" : "USMMBTU"
+                },
+                "quantityFrequency" : {
+                  "value" : "PerCalculationPeriod"
+                },
+                "quantity" : 5000.0
+              },
+              "totalNotionalQuantity" : 5000.0
+            }
+          },
+          "commodityPaymentDatesModel" : {
+            "relativePaymentDates" : {
+              "payRelativeTo" : "CALCULATION_PERIOD_START_DATE",
+              "commodityCalculationPeriodsPointerModel" : {
+                "calculationPeriodsScheduleReference" : {
+                  "href" : "floatingLegCalculationPeriods"
+                }
+              },
+              "paymentDaysOffset" : {
+                "periodMultiplier" : 5,
+                "period" : "D",
+                "dayType" : "BUSINESS",
+                "businessDayConvention" : "NONE"
+              },
+              "businessCentersOrReferenceModel" : {
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "USNY"
+                  } ]
+                }
+              }
+            },
+            "commodityNonPeriodicPaymentDatesModel" : { }
+          },
+          "commodityFreightFlatRateModel" : { }
+        }, {
+          "payerReceiverModel" : {
+            "payerModel" : {
+              "payerPartyReference" : {
+                "href" : "partyB"
+              }
+            },
+            "receiverModel" : {
+              "receiverPartyReference" : {
+                "href" : "partyA"
+              }
+            }
+          },
+          "commodityCalculationPeriodsModel" : {
+            "calculationPeriodsSchedule" : {
+              "periodMultiplier" : 1,
+              "period" : "M",
+              "id" : "floatingLegCalculationPeriods",
+              "balanceOfFirstPeriod" : false
+            },
+            "commodityCalculationPeriodsPointerModel" : { }
+          },
+          "commodity" : {
+            "instrumentId" : [ {
+              "value" : "NATURAL GAS-AECO C/NIT (US$/USMMBTU)-CANADIAN GAS REPORTER",
+              "instrumentIdScheme" : "http://www.fpml.org/coding-scheme/commodity-reference-price-1-0"
+            } ],
+            "commodityProductModel" : {
+              "commodityReferencePriceFrameworkModel" : {
+                "commodityReferencePriceFrameworkModelSequence" : { }
+              },
+              "specifiedPrice" : "MEAN_OF_HIGH_AND_LOW",
+              "commodityProductModelSequence" : {
+                "commodityProductModelSequenceChoice" : { }
+              }
+            }
+          },
+          "commodityNotionalQuantityModel" : {
+            "commodityNotionalQuantityModelSequence" : {
+              "notionalQuantity" : {
+                "quantityUnit" : {
+                  "value" : "USMMBTU"
+                },
+                "quantityFrequency" : {
+                  "value" : "PerCalculationPeriod"
+                },
+                "quantity" : 5000.0
+              },
+              "totalNotionalQuantity" : 5000.0
+            }
+          },
+          "calculation" : {
+            "pricingDates" : {
+              "commodityCalculationPeriodsPointerModel" : {
+                "calculationPeriodsScheduleReference" : {
+                  "href" : "floatingLegCalculationPeriods"
+                }
+              },
+              "commodityPricingDatesSequence" : {
+                "commodityPricingDatesSequenceSequence" : {
+                  "daysModel" : {
+                    "dayType" : "COMMODITY_BUSINESS",
+                    "daysModelSequence0" : {
+                      "dayDistribution" : {
+                        "value" : "First"
+                      }
+                    },
+                    "daysModelSequence1" : { }
+                  }
+                }
+              }
+            }
+          },
+          "commodityPaymentDatesModel" : {
+            "relativePaymentDates" : {
+              "payRelativeTo" : "CALCULATION_PERIOD_START_DATE",
+              "commodityCalculationPeriodsPointerModel" : {
+                "calculationPeriodsScheduleReference" : {
+                  "href" : "floatingLegCalculationPeriods"
+                }
+              },
+              "paymentDaysOffset" : {
+                "periodMultiplier" : 5,
+                "period" : "D",
+                "dayType" : "BUSINESS",
+                "businessDayConvention" : "NONE"
+              },
+              "businessCentersOrReferenceModel" : {
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "USNY"
+                  } ]
+                }
+              }
+            },
+            "commodityNonPeriodicPaymentDatesModel" : { }
+          },
+          "commodityFreightFlatRateModel" : { }
+        } ],
         "commodityContentModel" : {
           "marketDisruption" : {
             "commodityMarketDisruptionSequence" : {

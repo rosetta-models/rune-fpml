@@ -14,7 +14,200 @@
       </partyTradeIdentifier>
       <tradeDate>2008-06-02</tradeDate>
     </tradeHeader>
-    <equitySwapTransactionSupplement/>
+    <equitySwapTransactionSupplement>
+      <interestLeg id="interestLeg">
+        <payerPartyReference href="party1"/>
+        <receiverPartyReference href="party2"/>
+        <interestLegCalculationPeriodDates id="interestCalcPeriodDates">
+          <effectiveDate>
+            <adjustableDate>
+              <unadjustedDate>2008-06-04</unadjustedDate>
+              <dateAdjustments>
+                <businessDayConvention>MODFOLLOWING</businessDayConvention>
+                <businessCenters>
+                  <businessCenter>EUTA</businessCenter>
+                </businessCenters>
+              </dateAdjustments>
+            </adjustableDate>
+          </effectiveDate>
+          <terminationDate>
+            <adjustableDate>
+              <unadjustedDate>2009-06-04</unadjustedDate>
+              <dateAdjustments>
+                <businessDayConvention>MODFOLLOWING</businessDayConvention>
+                <businessCenters>
+                  <businessCenter>EUTA</businessCenter>
+                </businessCenters>
+              </dateAdjustments>
+            </adjustableDate>
+          </terminationDate>
+          <interestLegResetDates>
+            <calculationPeriodDatesReference href="interestCalcPeriodDates"/>
+            <resetFrequency>
+              <periodMultiplier>1</periodMultiplier>
+              <period>M</period>
+            </resetFrequency>
+          </interestLegResetDates>
+          <interestLegPaymentDates id="interestLegPaymentDates">
+            <periodicDates>
+              <calculationStartDate>
+                <adjustableDate>
+                  <unadjustedDate>2008-06-04</unadjustedDate>
+                  <dateAdjustments>
+                    <businessDayConvention>MODFOLLOWING</businessDayConvention>
+                    <businessCenters>
+                      <businessCenter>EUTA</businessCenter>
+                    </businessCenters>
+                  </dateAdjustments>
+                </adjustableDate>
+              </calculationStartDate>
+              <calculationPeriodFrequency>
+                <periodMultiplier>1</periodMultiplier>
+                <period>M</period>
+                <rollConvention>4</rollConvention>
+              </calculationPeriodFrequency>
+              <calculationPeriodDatesAdjustments>
+                <businessDayConvention>MODFOLLOWING</businessDayConvention>
+                <businessCenters>
+                  <businessCenter>EUTA</businessCenter>
+                </businessCenters>
+              </calculationPeriodDatesAdjustments>
+            </periodicDates>
+          </interestLegPaymentDates>
+        </interestLegCalculationPeriodDates>
+        <notional>
+          <relativeNotionalAmount href="equityNotionalAmount"/>
+        </notional>
+        <interestAmount>
+          <currencyReference href="equityPaymentCurrency"/>
+          <referenceAmount>StandardISDA</referenceAmount>
+        </interestAmount>
+        <interestCalculation>
+          <floatingRateCalculation>
+            <floatingRateIndex>EUR-EURIBOR-Reuters</floatingRateIndex>
+            <indexTenor>
+              <periodMultiplier>1</periodMultiplier>
+              <period>M</period>
+            </indexTenor>
+          </floatingRateCalculation>
+          <dayCountFraction>ACT/360</dayCountFraction>
+        </interestCalculation>
+      </interestLeg>
+      <returnLeg>
+        <payerPartyReference href="party2"/>
+        <receiverPartyReference href="party1"/>
+        <effectiveDate>
+          <adjustableDate>
+            <unadjustedDate>2008-06-02</unadjustedDate>
+            <dateAdjustments>
+              <businessDayConvention>NotApplicable</businessDayConvention>
+            </dateAdjustments>
+          </adjustableDate>
+        </effectiveDate>
+        <terminationDate>
+          <adjustableDate>
+            <unadjustedDate>2008-06-04</unadjustedDate>
+            <dateAdjustments>
+              <businessDayConvention>NotApplicable</businessDayConvention>
+            </dateAdjustments>
+          </adjustableDate>
+        </terminationDate>
+        <underlyer>
+          <singleUnderlyer>
+            <equity>
+              <instrumentId instrumentIdScheme="http://www.abc.com/instrument-id-Reuters-RIC-1-0">PHGe.AS</instrumentId>
+              <instrumentId instrumentIdScheme="http://www.abc.com/instrument-id-ISIN-1-0">NL0000009322</instrumentId>
+              <description>PHILIPS BUY BACK ORD</description>
+              <exchangeId exchangeIdScheme="http://www.abc.com/exchangeId">XAMS</exchangeId>
+            </equity>
+          </singleUnderlyer>
+        </underlyer>
+        <rateOfReturn>
+          <initialPrice>
+            <netPrice>
+              <currency>EUR</currency>
+              <amount>10.0</amount>
+              <priceExpression>AbsoluteTerms</priceExpression>
+            </netPrice>
+            <netPrice>
+              <currency>EUR</currency>
+              <amount>10.0</amount>
+              <priceExpression>AbsoluteTerms</priceExpression>
+            </netPrice>
+          </initialPrice>
+          <notionalReset>true</notionalReset>
+          <valuationPriceInterim>
+            <determinationMethod>ValuationTime</determinationMethod>
+            <valuationRules>
+              <valuationDates id="interimValuationDate">
+                <relativeDateSequence>
+                  <dateRelativeTo href="interestLegPaymentDates"/>
+                  <dateOffset>
+                    <periodMultiplier>-2</periodMultiplier>
+                    <period>D</period>
+                    <businessDayConvention>PRECEDING</businessDayConvention>
+                  </dateOffset>
+                </relativeDateSequence>
+              </valuationDates>
+            </valuationRules>
+          </valuationPriceInterim>
+          <valuationPriceFinal>
+            <determinationMethod>HedgeExecution</determinationMethod>
+            <valuationRules>
+              <valuationDate id="finalValuationDate">
+                <adjustableDate>
+                  <unadjustedDate>2009-06-02</unadjustedDate>
+                  <dateAdjustments>
+                    <businessDayConvention>NotApplicable</businessDayConvention>
+                  </dateAdjustments>
+                </adjustableDate>
+              </valuationDate>
+            </valuationRules>
+          </valuationPriceFinal>
+          <paymentDates>
+            <paymentDatesInterim>
+              <relativeDates>
+                <periodMultiplier>2</periodMultiplier>
+                <period>D</period>
+                <dayType>CurrencyBusiness</dayType>
+                <businessDayConvention>FOLLOWING</businessDayConvention>
+                <businessCenters>
+                  <businessCenter>EUTA</businessCenter>
+                </businessCenters>
+                <dateRelativeTo href="interimValuationDate"/>
+              </relativeDates>
+            </paymentDatesInterim>
+            <paymentDateFinal>
+              <relativeDate>
+                <periodMultiplier>2</periodMultiplier>
+                <period>D</period>
+                <dayType>CurrencyBusiness</dayType>
+                <businessDayConvention>FOLLOWING</businessDayConvention>
+                <businessCenters>
+                  <businessCenter>EUTA</businessCenter>
+                </businessCenters>
+                <dateRelativeTo href="finalValuationDate"/>
+              </relativeDate>
+            </paymentDateFinal>
+          </paymentDates>
+        </rateOfReturn>
+        <notional>
+          <notionalAmount id="equityNotionalAmount">
+            <currency>EUR</currency>
+            <amount>300000.0</amount>
+          </notionalAmount>
+        </notional>
+        <amount>
+          <currency id="equityPaymentCurrency">EUR</currency>
+          <referenceAmount>StandardISDA</referenceAmount>
+          <cashSettlement>true</cashSettlement>
+        </amount>
+        <notionalAdjustments>Standard</notionalAdjustments>
+        <return>
+          <returnType>Price</returnType>
+        </return>
+      </returnLeg>
+    </equitySwapTransactionSupplement>
   </trade>
   <party id="party1">
     <partyId partyIdScheme="http://www.fpml.org/coding-scheme/dummy-party-id">ABC1</partyId>

@@ -63,6 +63,314 @@
         } ]
       },
       "buyerSellerModel" : { },
+      "returnSwapLeg" : [ {
+        "payerReceiverModel" : {
+          "payerModel" : {
+            "payerPartyReference" : {
+              "href" : "party1"
+            }
+          },
+          "receiverModel" : {
+            "receiverPartyReference" : {
+              "href" : "party2"
+            }
+          }
+        },
+        "effectiveDate" : {
+          "relativeDate" : {
+            "periodMultiplier" : 3,
+            "period" : "D",
+            "dayType" : "EXCHANGE_BUSINESS",
+            "businessDayConvention" : "NOT_APPLICABLE",
+            "businessCentersOrReferenceModel" : { },
+            "dateRelativeTo" : {
+              "href" : "TradeDate"
+            }
+          },
+          "id" : "EffectiveDate"
+        },
+        "terminationDate" : {
+          "relativeDate" : {
+            "periodMultiplier" : 0,
+            "period" : "D",
+            "businessDayConvention" : "NOT_APPLICABLE",
+            "businessCentersOrReferenceModel" : { },
+            "dateRelativeTo" : {
+              "href" : "FinalEquityPaymentDate"
+            }
+          },
+          "id" : "TerminationDate"
+        },
+        "underlyer" : {
+          "singleUnderlyer" : {
+            "underlyingAsset" : {
+              "instrumentId" : [ {
+                "value" : ".FCHI",
+                "instrumentIdScheme" : "http://www.example.com/instrumentId"
+              } ],
+              "description" : "France CAC 40 Index",
+              "currency" : {
+                "value" : "EUR"
+              },
+              "exchangeId" : {
+                "value" : "XPAR",
+                "exchangeIdScheme" : "http://www.example.com/exchange-id"
+              },
+              "exchangeIdentifierModel" : {
+                "relatedExchangeId" : [ {
+                  "value" : "XMAT",
+                  "exchangeIdScheme" : "http://www.example.com/exchange-id"
+                }, {
+                  "value" : "XMON",
+                  "exchangeIdScheme" : "http://www.example.com/exchange-id"
+                } ]
+              }
+            }
+          }
+        },
+        "optionSettlementModel" : {
+          "settlementType" : "CASH",
+          "settlementAmountOrCurrencyModel" : { }
+        },
+        "rateOfReturn" : {
+          "initialPrice" : {
+            "priceSequence" : {
+              "equityPriceModel" : {
+                "netPrice" : {
+                  "currency" : {
+                    "value" : "EUR"
+                  },
+                  "amount" : 5591987.41,
+                  "priceExpression" : "ABSOLUTE_TERMS"
+                }
+              }
+            },
+            "equityPriceModel" : {
+              "netPrice" : {
+                "currency" : {
+                  "value" : "EUR"
+                },
+                "amount" : 5591987.41,
+                "priceExpression" : "ABSOLUTE_TERMS"
+              }
+            }
+          },
+          "notionalReset" : true,
+          "valuationPriceInterim" : {
+            "priceSequence" : {
+              "determinationMethod" : {
+                "value" : "ValuationTime"
+              },
+              "equityPriceModel" : { }
+            },
+            "equityPriceModel" : { },
+            "valuationRules" : {
+              "valuationDates" : {
+                "adjustableDates" : {
+                  "unadjustedDate" : [ {
+                    "value" : "2002-10-21"
+                  }, {
+                    "value" : "2004-01-20"
+                  }, {
+                    "value" : "2004-04-22"
+                  } ],
+                  "dateAdjustments" : {
+                    "businessDayConvention" : "NOT_APPLICABLE",
+                    "businessCentersOrReferenceModel" : { }
+                  }
+                },
+                "id" : "InterimValuationDate"
+              },
+              "valuationTimeType" : "CLOSE"
+            }
+          },
+          "valuationPriceFinal" : {
+            "priceSequence" : {
+              "determinationMethod" : {
+                "value" : "HedgeExecution"
+              },
+              "equityPriceModel" : { }
+            },
+            "equityPriceModel" : { },
+            "valuationRules" : {
+              "valuationDate" : {
+                "adjustableDate" : {
+                  "unadjustedDate" : {
+                    "value" : "2004-07-21"
+                  },
+                  "dateAdjustments" : {
+                    "businessDayConvention" : "NOT_APPLICABLE",
+                    "businessCentersOrReferenceModel" : { }
+                  }
+                },
+                "id" : "FinalValuationDate"
+              }
+            }
+          },
+          "paymentDates" : {
+            "paymentDatesInterim" : {
+              "relativeDates" : {
+                "periodMultiplier" : 3,
+                "period" : "D",
+                "dayType" : "CURRENCY_BUSINESS",
+                "businessDayConvention" : "FOLLOWING",
+                "businessCentersOrReferenceModel" : {
+                  "businessCenters" : {
+                    "businessCenter" : [ {
+                      "value" : "EUTA"
+                    }, {
+                      "value" : "HKHK"
+                    } ],
+                    "id" : "PrimaryBusinessCenter"
+                  }
+                },
+                "dateRelativeTo" : {
+                  "href" : "InterimValuationDate"
+                }
+              },
+              "id" : "InterimEquityPaymentDate"
+            },
+            "paymentDateFinal" : {
+              "relativeDate" : {
+                "periodMultiplier" : 3,
+                "period" : "D",
+                "dayType" : "CURRENCY_BUSINESS",
+                "businessDayConvention" : "FOLLOWING",
+                "businessCentersOrReferenceModel" : {
+                  "businessCentersReference" : {
+                    "href" : "PrimaryBusinessCenter"
+                  }
+                },
+                "dateRelativeTo" : {
+                  "href" : "FinalValuationDate"
+                }
+              },
+              "id" : "FinalEquityPaymentDate"
+            },
+            "id" : "EquityPaymentDate"
+          }
+        },
+        "notional" : {
+          "notionalAmount" : {
+            "currency" : {
+              "value" : "USD"
+            },
+            "id" : "EquityNotionalAmount",
+            "amount" : 5591987.41
+          }
+        },
+        "amount" : {
+          "currencyAndDeterminationMethodModel" : {
+            "currency" : {
+              "value" : "EUR",
+              "id" : "EquityPaymentCurrency"
+            }
+          },
+          "referenceAmount" : {
+            "value" : "Standard ISDA"
+          },
+          "cashSettlement" : true,
+          "dividendsModel" : { }
+        },
+        "notionalAdjustments" : "STANDARD",
+        "return" : {
+          "returnType" : "PRICE"
+        }
+      }, {
+        "payerReceiverModel" : {
+          "payerModel" : {
+            "payerPartyReference" : {
+              "href" : "party2"
+            }
+          },
+          "receiverModel" : {
+            "receiverPartyReference" : {
+              "href" : "party1"
+            }
+          }
+        },
+        "interestLegCalculationPeriodDates" : {
+          "effectiveDate" : {
+            "relativeDate" : {
+              "periodMultiplier" : 3,
+              "period" : "D",
+              "dayType" : "EXCHANGE_BUSINESS",
+              "businessDayConvention" : "NOT_APPLICABLE",
+              "businessCentersOrReferenceModel" : { },
+              "dateRelativeTo" : {
+                "href" : "TradeDate"
+              }
+            }
+          },
+          "terminationDate" : {
+            "relativeDate" : {
+              "periodMultiplier" : 0,
+              "period" : "D",
+              "businessDayConvention" : "NOT_APPLICABLE",
+              "businessCentersOrReferenceModel" : { },
+              "dateRelativeTo" : {
+                "href" : "FinalEquityPaymentDate"
+              }
+            }
+          },
+          "interestLegResetDates" : {
+            "calculationPeriodDatesReference" : {
+              "href" : "InterestLegPeriodDates"
+            },
+            "resetRelativeTo" : "CALCULATION_PERIOD_START_DATE"
+          },
+          "interestLegPaymentDates" : {
+            "relativeDates" : {
+              "periodMultiplier" : 0,
+              "period" : "D",
+              "businessDayConvention" : "NOT_APPLICABLE",
+              "businessCentersOrReferenceModel" : { },
+              "dateRelativeTo" : {
+                "href" : "EquityPaymentDate"
+              }
+            }
+          },
+          "id" : "InterestLegPeriodDates"
+        },
+        "notional" : {
+          "relativeNotionalAmount" : {
+            "href" : "EquityNotionalAmount"
+          }
+        },
+        "interestAmount" : {
+          "currencyAndDeterminationMethodModel" : {
+            "currencyReference" : {
+              "href" : "EquityPaymentCurrency"
+            }
+          },
+          "referenceAmount" : {
+            "value" : "Standard ISDA"
+          }
+        },
+        "interestCalculation" : {
+          "floatingRateCalculation" : {
+            "floatingRateIndexModel" : {
+              "floatingRateIndex" : {
+                "value" : "EUR-EURIBOR-Telerate"
+              },
+              "indexTenor" : {
+                "periodMultiplier" : 3,
+                "period" : "M"
+              }
+            },
+            "floatingRateModel" : {
+              "spreadSchedule" : [ {
+                "initialValue" : 0.0050
+              } ]
+            },
+            "floatingRateCalculationModel" : { }
+          },
+          "dayCountFraction" : {
+            "value" : "ACT/360"
+          },
+          "interestCalculationSequence" : { }
+        }
+      } ],
       "extraordinaryEvents" : {
         "indexAdjustmentEvents" : {
           "indexModification" : "CALCULATION_AGENT_ADJUSTMENT",

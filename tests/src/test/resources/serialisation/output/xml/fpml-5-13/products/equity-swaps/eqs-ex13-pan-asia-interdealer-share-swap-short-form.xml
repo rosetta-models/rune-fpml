@@ -15,6 +15,281 @@
       <tradeDate>2009-09-01</tradeDate>
     </tradeHeader>
     <equitySwapTransactionSupplement>
+      <interestLeg id="interestLeg">
+        <payerPartyReference href="party2"/>
+        <receiverPartyReference href="party1"/>
+        <interestLegCalculationPeriodDates id="interestCalcPeriodDates">
+          <effectiveDate id="interestEffectiveDate">
+            <adjustableDate>
+              <unadjustedDate>2009-09-03</unadjustedDate>
+              <dateAdjustments>
+                <businessDayConvention>FOLLOWING</businessDayConvention>
+                <businessCenters>
+                  <businessCenter>USNY</businessCenter>
+                </businessCenters>
+              </dateAdjustments>
+            </adjustableDate>
+          </effectiveDate>
+          <terminationDate id="interestTerminationDate">
+            <adjustableDate>
+              <unadjustedDate>2010-03-04</unadjustedDate>
+              <dateAdjustments>
+                <businessDayConvention>FOLLOWING</businessDayConvention>
+                <businessCenters>
+                  <businessCenter>USNY</businessCenter>
+                </businessCenters>
+              </dateAdjustments>
+            </adjustableDate>
+          </terminationDate>
+          <interestLegResetDates>
+            <calculationPeriodDatesReference href="interestCalcPeriodDates"/>
+            <resetFrequency>
+              <periodMultiplier>1</periodMultiplier>
+              <period>M</period>
+            </resetFrequency>
+            <fixingDates>
+              <relativeDate>
+                <periodMultiplier>-2</periodMultiplier>
+                <period>D</period>
+                <dayType>CurrencyBusiness</dayType>
+                <businessDayConvention>PRECEDING</businessDayConvention>
+                <businessCenters>
+                  <businessCenter>GBLO</businessCenter>
+                </businessCenters>
+                <dateRelativeTo href="interestLegPaymentDates"/>
+              </relativeDate>
+            </fixingDates>
+          </interestLegResetDates>
+          <interestLegPaymentDates id="interestLegPaymentDates">
+            <periodicDates>
+              <calculationStartDate>
+                <relativeDate>
+                  <periodMultiplier>0</periodMultiplier>
+                  <period>D</period>
+                  <businessDayConvention>NotApplicable</businessDayConvention>
+                  <dateRelativeTo href="interestEffectiveDate"/>
+                </relativeDate>
+              </calculationStartDate>
+              <calculationEndDate>
+                <relativeDate>
+                  <periodMultiplier>0</periodMultiplier>
+                  <period>D</period>
+                  <businessDayConvention>NotApplicable</businessDayConvention>
+                  <dateRelativeTo href="interestTerminationDate"/>
+                </relativeDate>
+              </calculationEndDate>
+              <calculationPeriodFrequency>
+                <periodMultiplier>1</periodMultiplier>
+                <period>M</period>
+                <rollConvention>1</rollConvention>
+              </calculationPeriodFrequency>
+              <calculationPeriodDatesAdjustments>
+                <businessDayConvention>FOLLOWING</businessDayConvention>
+                <businessCenters>
+                  <businessCenter>USNY</businessCenter>
+                </businessCenters>
+              </calculationPeriodDatesAdjustments>
+            </periodicDates>
+          </interestLegPaymentDates>
+        </interestLegCalculationPeriodDates>
+        <notional>
+          <relativeNotionalAmount href="equityNotionalAmount"/>
+        </notional>
+        <interestAmount>
+          <currencyReference href="equityPaymentCurrency"/>
+          <referenceAmount>StandardISDA</referenceAmount>
+        </interestAmount>
+        <interestCalculation>
+          <floatingRateCalculation>
+            <floatingRateIndex>USD-LIBOR-BBA</floatingRateIndex>
+            <indexTenor>
+              <periodMultiplier>1</periodMultiplier>
+              <period>M</period>
+            </indexTenor>
+            <spreadSchedule>
+              <initialValue>0</initialValue>
+            </spreadSchedule>
+          </floatingRateCalculation>
+          <dayCountFraction>ACT/360</dayCountFraction>
+          <interpolationMethod>LinearZeroYield</interpolationMethod>
+        </interestCalculation>
+      </interestLeg>
+      <returnLeg id="returnLeg">
+        <payerPartyReference href="party1"/>
+        <receiverPartyReference href="party2"/>
+        <effectiveDate id="equityEffectiveDate">
+          <adjustableDate>
+            <unadjustedDate>2009-09-01</unadjustedDate>
+            <dateAdjustments>
+              <businessDayConvention>FOLLOWING</businessDayConvention>
+              <businessCenters>
+                <businessCenter>KRSE</businessCenter>
+              </businessCenters>
+            </dateAdjustments>
+          </adjustableDate>
+        </effectiveDate>
+        <terminationDate>
+          <adjustableDate>
+            <unadjustedDate>2010-03-02</unadjustedDate>
+            <dateAdjustments>
+              <businessDayConvention>FOLLOWING</businessDayConvention>
+              <businessCenters>
+                <businessCenter>KRSE</businessCenter>
+              </businessCenters>
+            </dateAdjustments>
+          </adjustableDate>
+        </terminationDate>
+        <underlyer>
+          <singleUnderlyer>
+            <equity>
+              <instrumentId instrumentIdScheme="http://www.example.com/instrument-id-Reuters-RIC-1-0">005430.KS</instrumentId>
+              <instrumentId instrumentIdScheme="http://www.example.com/instrument-id-ISIN-1-0">KR7005430004</instrumentId>
+              <description>KOREA AIR SVC ORDINARY</description>
+              <currency>KRW</currency>
+              <exchangeId exchangeIdScheme="http://www.example.com/exchangeId">XKRX</exchangeId>
+            </equity>
+            <openUnits>60000</openUnits>
+            <dividendPayout>
+              <dividendPayoutRatio>1</dividendPayoutRatio>
+            </dividendPayout>
+          </singleUnderlyer>
+        </underlyer>
+        <rateOfReturn>
+          <initialPrice>
+            <netPrice>
+              <currency>USD</currency>
+              <amount>5</amount>
+              <priceExpression>AbsoluteTerms</priceExpression>
+            </netPrice>
+            <netPrice>
+              <currency>USD</currency>
+              <amount>5</amount>
+              <priceExpression>AbsoluteTerms</priceExpression>
+            </netPrice>
+          </initialPrice>
+          <valuationPriceInterim>
+            <determinationMethod>AsSpecifiedInMasterConfirmation</determinationMethod>
+            <valuationRules>
+              <valuationDates id="interimValuationDate">
+                <periodicDates>
+                  <calculationStartDate>
+                    <relativeDate>
+                      <periodMultiplier>0</periodMultiplier>
+                      <period>D</period>
+                      <businessDayConvention>NotApplicable</businessDayConvention>
+                      <dateRelativeTo href="equityEffectiveDate"/>
+                    </relativeDate>
+                  </calculationStartDate>
+                  <calculationEndDate>
+                    <relativeDate>
+                      <periodMultiplier>0</periodMultiplier>
+                      <period>D</period>
+                      <businessDayConvention>NotApplicable</businessDayConvention>
+                      <dateRelativeTo href="finalValuationDate"/>
+                    </relativeDate>
+                  </calculationEndDate>
+                  <calculationPeriodFrequency>
+                    <periodMultiplier>1</periodMultiplier>
+                    <period>M</period>
+                    <rollConvention>1</rollConvention>
+                  </calculationPeriodFrequency>
+                  <calculationPeriodDatesAdjustments>
+                    <businessDayConvention>FOLLOWING</businessDayConvention>
+                    <businessCenters>
+                      <businessCenter>KRSE</businessCenter>
+                    </businessCenters>
+                  </calculationPeriodDatesAdjustments>
+                </periodicDates>
+              </valuationDates>
+              <valuationTimeType>AsSpecifiedInMasterConfirmation</valuationTimeType>
+            </valuationRules>
+          </valuationPriceInterim>
+          <valuationPriceFinal>
+            <determinationMethod>HedgeExecution</determinationMethod>
+            <valuationRules>
+              <valuationDate id="finalValuationDate">
+                <adjustableDate>
+                  <unadjustedDate>2010-03-02</unadjustedDate>
+                  <dateAdjustments>
+                    <businessDayConvention>FOLLOWING</businessDayConvention>
+                    <businessCenters>
+                      <businessCenter>KRSE</businessCenter>
+                    </businessCenters>
+                  </dateAdjustments>
+                </adjustableDate>
+              </valuationDate>
+              <valuationTimeType>AsSpecifiedInMasterConfirmation</valuationTimeType>
+            </valuationRules>
+          </valuationPriceFinal>
+          <paymentDates>
+            <paymentDatesInterim>
+              <relativeDates>
+                <periodMultiplier>2</periodMultiplier>
+                <period>D</period>
+                <dayType>CurrencyBusiness</dayType>
+                <businessDayConvention>FOLLOWING</businessDayConvention>
+                <businessCenters>
+                  <businessCenter>USNY</businessCenter>
+                </businessCenters>
+                <dateRelativeTo href="interimValuationDate"/>
+              </relativeDates>
+            </paymentDatesInterim>
+            <paymentDateFinal>
+              <relativeDate>
+                <periodMultiplier>2</periodMultiplier>
+                <period>D</period>
+                <dayType>CurrencyBusiness</dayType>
+                <businessDayConvention>FOLLOWING</businessDayConvention>
+                <businessCenters>
+                  <businessCenter>USNY</businessCenter>
+                </businessCenters>
+                <dateRelativeTo href="finalValuationDate"/>
+              </relativeDate>
+            </paymentDateFinal>
+          </paymentDates>
+        </rateOfReturn>
+        <notional id="equityNotionalAmount">
+          <notionalAmount>
+            <currency>USD</currency>
+            <amount>300000</amount>
+          </notionalAmount>
+        </notional>
+        <amount>
+          <currency id="equityPaymentCurrency">USD</currency>
+          <referenceAmount>StandardISDA</referenceAmount>
+          <cashSettlement>true</cashSettlement>
+        </amount>
+        <notionalAdjustments>Standard</notionalAdjustments>
+        <fxFeature>
+          <referenceCurrency>KRW</referenceCurrency>
+          <crossCurrency>
+            <fxSpotRateSource>
+              <primaryRateSource>
+                <rateSource>Reuters</rateSource>
+                <rateSourcePage rateSourcePageScheme="http://www.example.com/rate-source-page-1-0">KRW=</rateSourcePage>
+              </primaryRateSource>
+              <fixingTime>
+                <hourMinuteTime>14:45:00Z</hourMinuteTime>
+                <businessCenter>KRSE</businessCenter>
+              </fixingTime>
+            </fxSpotRateSource>
+          </crossCurrency>
+        </fxFeature>
+        <return>
+          <returnType>Total</returnType>
+          <dividendConditions>
+            <dividendPaymentDate>
+              <dividendDateReference>SharePayment</dividendDateReference>
+              <paymentDateOffset>
+                <periodMultiplier>2</periodMultiplier>
+                <period>D</period>
+                <dayType>CurrencyBusiness</dayType>
+              </paymentDateOffset>
+            </dividendPaymentDate>
+            <dividendPeriod>SecondPeriod</dividendPeriod>
+          </dividendConditions>
+        </return>
+      </returnLeg>
       <optionalEarlyTermination>true</optionalEarlyTermination>
       <breakFeeElection>FundingFee</breakFeeElection>
       <breakFeeRate>1.2</breakFeeRate>

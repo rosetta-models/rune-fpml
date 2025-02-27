@@ -91,6 +91,185 @@
         "settlementCurrency" : {
           "value" : "USD"
         },
+        "commoditySwapLeg" : [ {
+          "payerReceiverModel" : {
+            "payerModel" : {
+              "payerPartyReference" : {
+                "href" : "partyA"
+              }
+            },
+            "receiverModel" : {
+              "receiverPartyReference" : {
+                "href" : "partyB"
+              }
+            }
+          },
+          "commodityCalculationPeriodsModel" : {
+            "commodityCalculationPeriodsPointerModel" : {
+              "calculationPeriodsScheduleReference" : {
+                "href" : "floatingLegCalculationPeriods"
+              }
+            }
+          },
+          "commodityFixedPriceModel" : {
+            "commodityFixedPriceModelChoice" : {
+              "fixedPrice" : {
+                "price" : 6.295,
+                "commodityPriceModel" : {
+                  "priceCurrency" : {
+                    "value" : "USD"
+                  },
+                  "priceUnit" : {
+                    "value" : "USMMBTU"
+                  }
+                }
+              }
+            }
+          },
+          "commodityNotionalQuantityModel" : {
+            "commodityNotionalQuantityModelSequence" : {
+              "notionalQuantity" : {
+                "quantityUnit" : {
+                  "value" : "USMMBTU"
+                },
+                "quantityFrequency" : {
+                  "value" : "PerCalendarDay"
+                },
+                "quantity" : 2500.0
+              },
+              "totalNotionalQuantity" : 77500.0
+            }
+          },
+          "commodityPaymentDatesModel" : {
+            "relativePaymentDates" : {
+              "payRelativeTo" : "CALCULATION_PERIOD_END_DATE",
+              "commodityCalculationPeriodsPointerModel" : {
+                "calculationPeriodsScheduleReference" : {
+                  "href" : "floatingLegCalculationPeriods"
+                }
+              },
+              "paymentDaysOffset" : {
+                "periodMultiplier" : 5,
+                "period" : "D",
+                "dayType" : "BUSINESS",
+                "businessDayConvention" : "NONE"
+              },
+              "businessCentersOrReferenceModel" : {
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "USNY"
+                  } ]
+                }
+              }
+            },
+            "commodityNonPeriodicPaymentDatesModel" : { }
+          },
+          "commodityFreightFlatRateModel" : { }
+        }, {
+          "payerReceiverModel" : {
+            "payerModel" : {
+              "payerPartyReference" : {
+                "href" : "partyB"
+              }
+            },
+            "receiverModel" : {
+              "receiverPartyReference" : {
+                "href" : "partyA"
+              }
+            }
+          },
+          "commodityCalculationPeriodsModel" : {
+            "calculationPeriodsSchedule" : {
+              "periodMultiplier" : 1,
+              "period" : "M",
+              "id" : "floatingLegCalculationPeriods",
+              "balanceOfFirstPeriod" : false
+            },
+            "commodityCalculationPeriodsPointerModel" : { }
+          },
+          "commodity" : {
+            "instrumentId" : [ {
+              "value" : "NATURAL GAS-HENRY HUB-NYMEX",
+              "instrumentIdScheme" : "http://www.fpml.org/coding-scheme/commodity-reference-price-1-0"
+            } ],
+            "commodityProductModel" : {
+              "commodityReferencePriceFrameworkModel" : {
+                "commodityReferencePriceFrameworkModelSequence" : { }
+              },
+              "specifiedPrice" : "SETTLEMENT",
+              "commodityProductModelSequence" : {
+                "commodityProductModelSequenceChoice" : {
+                  "deliveryDates" : "FIRST_NEARBY"
+                }
+              }
+            }
+          },
+          "commodityNotionalQuantityModel" : {
+            "commodityNotionalQuantityModelSequence" : {
+              "notionalQuantity" : {
+                "quantityUnit" : {
+                  "value" : "USMMBTU"
+                },
+                "quantityFrequency" : {
+                  "value" : "PerCalendarDay"
+                },
+                "quantity" : 2500.0
+              },
+              "totalNotionalQuantity" : 77500.0
+            }
+          },
+          "calculation" : {
+            "pricingDates" : {
+              "commodityCalculationPeriodsPointerModel" : {
+                "calculationPeriodsScheduleReference" : {
+                  "href" : "floatingLegCalculationPeriods"
+                }
+              },
+              "commodityPricingDatesSequence" : {
+                "commodityPricingDatesSequenceSequence" : {
+                  "daysModel" : {
+                    "dayType" : "COMMODITY_BUSINESS",
+                    "daysModelSequence0" : {
+                      "dayDistribution" : {
+                        "value" : "Last"
+                      }
+                    },
+                    "daysModelSequence1" : { }
+                  },
+                  "businessCalendar" : {
+                    "value" : "NYMEX-NATURAL-GAS"
+                  },
+                  "calendarSource" : "LISTED_OPTION"
+                }
+              }
+            }
+          },
+          "commodityPaymentDatesModel" : {
+            "relativePaymentDates" : {
+              "payRelativeTo" : "CALCULATION_PERIOD_END_DATE",
+              "commodityCalculationPeriodsPointerModel" : {
+                "calculationPeriodsScheduleReference" : {
+                  "href" : "floatingLegCalculationPeriods"
+                }
+              },
+              "paymentDaysOffset" : {
+                "periodMultiplier" : 5,
+                "period" : "D",
+                "dayType" : "BUSINESS",
+                "businessDayConvention" : "NONE"
+              },
+              "businessCentersOrReferenceModel" : {
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "USNY"
+                  } ]
+                }
+              }
+            },
+            "commodityNonPeriodicPaymentDatesModel" : { }
+          },
+          "commodityFreightFlatRateModel" : { }
+        } ],
         "commodityContentModel" : {
           "marketDisruption" : {
             "commodityMarketDisruptionSequence" : {

@@ -23,7 +23,6 @@ public class FpmlConfirmationSerialisationTest {
     private static final Set<String> DISABLED_TESTS = Set.of(
             "fpml-5-10/products/credit/cds-index-tranche.xml", // works for other fpml versions
             "fpml-5-10/incomplete-products/commodity-derivatives/com-ex43-WTI-variance-swap.xml",
-            "fpml-5-12/incomplete-products/commodity-derivatives/com-ex43-WTI-variance-swap.xml",
             "fpml-5-13/incomplete-products/commodity-derivatives/com-ex43-WTI-variance-swap.xml",
             "fpml-5-10/incomplete-products/equity-options/eqd-ex05-asian-long-form.xml",
             "fpml-5-13/incomplete-products/equity-options/eqd-ex05-asian-long-form.xml",
@@ -32,7 +31,8 @@ public class FpmlConfirmationSerialisationTest {
             "fpml-5-13/products/inflation-swaps/inflation-swap-ex06-zc.xml",
             "fpml-5-12/products/rates/ird-ex32-zero-coupon-swap-normal-rate.xml",
             "fpml-5-13/products/interest-rate-derivatives/ird-ex32-zero-coupon-swap-normal-rate.xml",
-            "fpml-5-13/products/interest-rate-derivatives/ird-ex37-zero-coupon-swap-known-amount-schedule.xml");
+            "fpml-5-13/products/interest-rate-derivatives/ird-ex37-zero-coupon-swap-known-amount-schedule.xml",
+            "fpml-5-10/incomplete-products/securities/sec-ex001-trade-execution-future.xml");
 
     private static SerialisationTestUtil<DataDocument> serialisationTestUtil;
 

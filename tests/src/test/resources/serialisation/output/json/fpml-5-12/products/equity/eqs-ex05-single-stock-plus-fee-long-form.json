@@ -63,6 +63,307 @@
         } ]
       },
       "buyerSellerModel" : { },
+      "returnSwapLeg" : [ {
+        "payerReceiverModel" : {
+          "payerModel" : {
+            "payerPartyReference" : {
+              "href" : "party1"
+            }
+          },
+          "receiverModel" : {
+            "receiverPartyReference" : {
+              "href" : "party2"
+            }
+          }
+        },
+        "effectiveDate" : {
+          "adjustableDate" : {
+            "unadjustedDate" : {
+              "value" : "2002-09-12"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "NOT_APPLICABLE",
+              "businessCentersOrReferenceModel" : { }
+            }
+          },
+          "id" : "EffectiveDate"
+        },
+        "terminationDate" : {
+          "relativeDate" : {
+            "periodMultiplier" : 0,
+            "period" : "D",
+            "businessDayConvention" : "NOT_APPLICABLE",
+            "businessCentersOrReferenceModel" : { },
+            "dateRelativeTo" : {
+              "href" : "FinalEquityPaymentDate"
+            }
+          },
+          "id" : "TerminationDate"
+        },
+        "underlyer" : {
+          "singleUnderlyer" : {
+            "underlyingAsset" : {
+              "instrumentId" : [ {
+                "value" : "2881.TW",
+                "instrumentIdScheme" : "http://www.abc.com/instrumentId"
+              } ],
+              "description" : "Fubon Financial Holdings Co., Ltd.",
+              "exchangeId" : {
+                "value" : "XTAI",
+                "exchangeIdScheme" : "http://www.abc.com/exchangeId"
+              },
+              "exchangeIdentifierModel" : { }
+            },
+            "openUnits" : 18388000,
+            "dividendPayout" : {
+              "dividendPayoutSequence" : { },
+              "dividendPayoutConditions" : "Dividend actually paid to and received by a non-resident of Taiwan holding"
+            }
+          }
+        },
+        "optionSettlementModel" : {
+          "settlementAmountOrCurrencyModel" : { }
+        },
+        "rateOfReturn" : {
+          "initialPrice" : {
+            "commission" : {
+              "commissionDenomination" : "BPS",
+              "commissionAmount" : 30
+            },
+            "priceSequence" : {
+              "determinationMethod" : {
+                "value" : "CalculationAgent"
+              },
+              "equityPriceModel" : { }
+            },
+            "equityPriceModel" : { },
+            "valuationRules" : {
+              "valuationDate" : {
+                "relativeDateSequence" : {
+                  "dateRelativeTo" : {
+                    "href" : "TradeDate"
+                  },
+                  "dateOffset" : [ {
+                    "periodMultiplier" : 0,
+                    "period" : "D",
+                    "businessDayConvention" : "NOT_APPLICABLE"
+                  } ],
+                  "businessCentersOrReferenceModel" : { }
+                },
+                "id" : "InitialValuationDate"
+              }
+            }
+          },
+          "notionalReset" : false,
+          "valuationPriceFinal" : {
+            "commission" : {
+              "commissionDenomination" : "BPS",
+              "commissionAmount" : 30
+            },
+            "priceSequence" : {
+              "determinationMethod" : {
+                "value" : "CalculationAgent"
+              },
+              "equityPriceModel" : { }
+            },
+            "equityPriceModel" : { },
+            "valuationRules" : {
+              "valuationDate" : {
+                "adjustableDate" : {
+                  "unadjustedDate" : {
+                    "value" : "2004-03-12"
+                  },
+                  "dateAdjustments" : {
+                    "businessDayConvention" : "FOLLOWING",
+                    "businessCentersOrReferenceModel" : {
+                      "businessCentersReference" : {
+                        "href" : "PrimaryBusinessCenter"
+                      }
+                    }
+                  }
+                },
+                "id" : "FinalValuationDate"
+              }
+            }
+          },
+          "paymentDates" : {
+            "paymentDateFinal" : {
+              "relativeDate" : {
+                "periodMultiplier" : 2,
+                "period" : "D",
+                "dayType" : "CURRENCY_BUSINESS",
+                "businessDayConvention" : "FOLLOWING",
+                "businessCentersOrReferenceModel" : {
+                  "businessCenters" : {
+                    "businessCenter" : [ {
+                      "value" : "USNY"
+                    }, {
+                      "value" : "TWTA"
+                    } ],
+                    "id" : "PrimaryBusinessCenter"
+                  }
+                },
+                "dateRelativeTo" : {
+                  "href" : "FinalValuationDate"
+                }
+              },
+              "id" : "FinalEquityPaymentDate"
+            },
+            "id" : "EquityPaymentDate"
+          }
+        },
+        "notional" : {
+          "determinationMethod" : {
+            "value" : "CalculationAgent",
+            "id" : "EquityNotionalAmount"
+          }
+        },
+        "amount" : {
+          "currencyAndDeterminationMethodModel" : {
+            "currencyReference" : {
+              "href" : "ReferenceCurrency"
+            }
+          },
+          "referenceAmount" : {
+            "value" : "ISDA Standard"
+          },
+          "cashSettlement" : true,
+          "dividendsModel" : { }
+        },
+        "notionalAdjustments" : "STANDARD",
+        "fxFeature" : {
+          "referenceCurrency" : {
+            "value" : "USD",
+            "id" : "ReferenceCurrency"
+          },
+          "composite" : {
+            "determinationMethod" : {
+              "value" : "CalculationAgent"
+            }
+          }
+        },
+        "return" : {
+          "returnType" : "TOTAL",
+          "dividendConditions" : {
+            "dividendReinvestment" : false,
+            "dividendEntitlement" : "EX_DATE",
+            "dividendPaymentDate" : {
+              "dividendPaymentDateSequence" : {
+                "dividendDateReference" : "EX_DATE"
+              }
+            },
+            "dividendConditionsSequence" : {
+              "dividendPeriodEffectiveDate" : {
+                "href" : "TradeDate"
+              },
+              "dividendPeriodEndDate" : {
+                "href" : "FinalValuationDate"
+              }
+            },
+            "excessDividendAmount" : "PAID_AMOUNT",
+            "currencyAndDeterminationMethodModel" : {
+              "currencyReference" : {
+                "href" : "ReferenceCurrency"
+              }
+            },
+            "declaredCashAndCashEquivalentDividendPercentageModel" : { }
+          }
+        }
+      }, {
+        "payerReceiverModel" : {
+          "payerModel" : {
+            "payerPartyReference" : {
+              "href" : "party2"
+            }
+          },
+          "receiverModel" : {
+            "receiverPartyReference" : {
+              "href" : "party1"
+            }
+          }
+        },
+        "interestLegCalculationPeriodDates" : {
+          "effectiveDate" : {
+            "relativeDate" : {
+              "periodMultiplier" : 0,
+              "period" : "D",
+              "businessDayConvention" : "NOT_APPLICABLE",
+              "businessCentersOrReferenceModel" : { },
+              "dateRelativeTo" : {
+                "href" : "EffectiveDate"
+              }
+            }
+          },
+          "terminationDate" : {
+            "relativeDate" : {
+              "periodMultiplier" : 0,
+              "period" : "D",
+              "businessDayConvention" : "NOT_APPLICABLE",
+              "businessCentersOrReferenceModel" : { },
+              "dateRelativeTo" : {
+                "href" : "FinalEquityPaymentDate"
+              }
+            }
+          },
+          "interestLegResetDates" : {
+            "calculationPeriodDatesReference" : {
+              "href" : "InterestLegPeriodDates"
+            },
+            "resetRelativeTo" : "CALCULATION_PERIOD_START_DATE"
+          },
+          "interestLegPaymentDates" : {
+            "relativeDates" : {
+              "periodMultiplier" : 2,
+              "period" : "D",
+              "dayType" : "CURRENCY_BUSINESS",
+              "businessDayConvention" : "FOLLOWING",
+              "businessCentersOrReferenceModel" : {
+                "businessCentersReference" : {
+                  "href" : "PrimaryBusinessCenter"
+                }
+              },
+              "dateRelativeTo" : {
+                "href" : "FinalValuationDate"
+              }
+            }
+          },
+          "id" : "InterestLegPeriodDates"
+        },
+        "notional" : {
+          "relativeDeterminationMethod" : {
+            "href" : "EquityNotionalAmount"
+          }
+        },
+        "interestAmount" : {
+          "currencyAndDeterminationMethodModel" : {
+            "currencyReference" : {
+              "href" : "ReferenceCurrency"
+            }
+          },
+          "referenceAmount" : {
+            "value" : "Standard ISDA"
+          }
+        },
+        "interestCalculation" : {
+          "floatingRateCalculation" : {
+            "floatingRateIndexModel" : {
+              "floatingRateIndex" : {
+                "value" : "USD-LIBOR-BBA"
+              },
+              "indexTenor" : {
+                "periodMultiplier" : 6,
+                "period" : "M"
+              }
+            },
+            "floatingRateModel" : { },
+            "floatingRateCalculationModel" : { }
+          },
+          "dayCountFraction" : {
+            "value" : "ACT/360"
+          },
+          "interestCalculationSequence" : { }
+        }
+      } ],
       "additionalPayment" : [ {
         "payerReceiverModel" : {
           "payerModel" : {
