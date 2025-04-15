@@ -38,7 +38,7 @@ public class ChoiceTypeGenerator {
         List<RosettaModel> models = getModels("fpml/rosetta");
 
         Set<Data> dataTypes = getDataTypes(models);
-        Data leg = findDataType(dataTypes, "Leg");
+        Data leg = findDataType(dataTypes, "Product");
 
         Node parent = new Node(leg, null);
         findSubTypes(dataTypes, leg, parent);
