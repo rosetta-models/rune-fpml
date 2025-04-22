@@ -53,9 +53,9 @@ public class ToProductChoiceImpl extends ToProductChoice {
 //            return builder.setFxAccrualDigitalOption(((FxAccrualDigitalOption) product));
 //        } else if (product instanceof FxAccrualForward) {
 //            return builder.setFxAccrualForward(((FxAccrualForward) product));
-        } else if (product instanceof FxAccrualOption) {
+//        } else if (product instanceof FxAccrualOption) {
 //            return builder.setFxAccrualOption(((FxAccrualOption) product));
-//        } else if (product instanceof FxDigitalOption) {
+        } else if (product instanceof FxDigitalOption) {
             return builder.setFxDigitalOption(((FxDigitalOption) product));
 //        } else if (product instanceof FxFlexibleForward) {
 //            return builder.setFxFlexibleForward(((FxFlexibleForward) product));
