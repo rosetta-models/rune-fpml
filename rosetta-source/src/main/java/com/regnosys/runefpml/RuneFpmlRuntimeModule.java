@@ -19,6 +19,7 @@ public class RuneFpmlRuntimeModule extends AbstractModule {
         bind(ToRateChoice.class).to(ToRateChoiceImpl.class);
         bind(ToLegChoice.class).to(ToLegChoiceImpl.class);
         bind(ToExerciseChoice.class).to(ToExerciseChoiceImpl.class);
+        bind(ToAssetChoice.class).to(ToAssetChoiceImpl.class);
     }
 
     protected Class<? extends QualifyFunctionFactory> bindQualifyFunctionFactory() {

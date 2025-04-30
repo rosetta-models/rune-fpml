@@ -38,11 +38,12 @@ public class ChoiceTypeGenerator {
         List<RosettaModel> models = getModels("fpml/rosetta");
 
         Set<Data> dataTypes = getDataTypes(models);
-        Data leg = findDataType(dataTypes, "Exercise");
+        Data leg = findDataType(dataTypes, "Asset");
 
         Node parent = new Node(leg, null);
         findSubTypes(dataTypes, leg, parent);
-        printHierarchies(parent, "  ");
+        printChoiceType(parent, "  ");
+        printImpl(parent);
     }
 
 
@@ -88,7 +89,7 @@ public class ChoiceTypeGenerator {
                 });
     }
 
-    private void printHierarchies(Node node, String indent) {
+    private void printChoiceType(Node node, String indent) {
         StringBuilder hierarchy = new StringBuilder();
         Node current = node;
         while (current != null) {
@@ -107,7 +108,18 @@ public class ChoiceTypeGenerator {
         }
         
         for (Node child : node.children) {
-            printHierarchies(child, indent + "  ");
+            printChoiceType(child, indent + "  ");
+        }
+    }
+
+    private void printImpl(Node node) {
+        if (node.children.isEmpty()) {
+            String name = node.parent.getName();
+            System.out.printf("else if (asset instanceof %s) {return builder.set%s(((%s) asset)); }%n", name, name, name);
+        }
+
+        for (Node child : node.children) {
+            printImpl(child);
         }
     }
 
