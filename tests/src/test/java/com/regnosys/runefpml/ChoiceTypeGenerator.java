@@ -9,7 +9,7 @@ import com.regnosys.rosetta.transgest.ModelLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -38,7 +38,7 @@ public class ChoiceTypeGenerator {
         List<RosettaModel> models = getModels("fpml/rosetta");
 
         Set<Data> dataTypes = getDataTypes(models);
-        Data leg = findDataType(dataTypes, "Exercise");
+        Data leg = findDataType(dataTypes, "Asset");
 
         Node parent = new Node(leg, null);
         findSubTypes(dataTypes, leg, parent);
