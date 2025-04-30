@@ -9,7 +9,7 @@ import com.regnosys.rosetta.transgest.ModelLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
