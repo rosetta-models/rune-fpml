@@ -22,6 +22,8 @@ public class ToAssetChoiceImpl extends ToAssetChoice {
             return builder.setMutualFund(((MutualFund) asset));
         } else if (asset instanceof ConvertibleBond) {
             return builder.setConvertibleBond(((ConvertibleBond) asset));
+        } else if (asset instanceof Bond) {
+            return builder.setBond(((Bond) asset));
         } else if (asset instanceof Deposit) {
             return builder.setDeposit(((Deposit) asset));
         } else if (asset instanceof Fx) {
