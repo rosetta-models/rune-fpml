@@ -137,6 +137,100 @@
           "value" : "USD"
         },
         "commoditySwapLeg" : [ {
+          "commodityClassification" : [ {
+            "code" : [ {
+              "value" : "Energy",
+              "commodityClassificationScheme" : "http://www.fpml.org/coding-scheme/isda-layer-1-commodity-classification"
+            }, {
+              "value" : "Electricity",
+              "commodityClassificationScheme" : "http://www.fpml.org/coding-scheme/isda-layer-2-commodity-classification"
+            }, {
+              "value" : "BSLD",
+              "commodityClassificationScheme" : "http://www.fpml.org/coding-scheme/isda-layer-3-commodity-classification"
+            } ]
+          }, {
+            "code" : [ {
+              "value" : "NRGY",
+              "commodityClassificationScheme" : "http://www.fpml.org/coding-scheme/esma-emir-refit-layer-1-commodity-classification"
+            }, {
+              "value" : "ELEC",
+              "commodityClassificationScheme" : "http://www.fpml.org/coding-scheme/esma-emir-refit-layer-2-commodity-classification"
+            }, {
+              "value" : "BSLD",
+              "commodityClassificationScheme" : "http://www.fpml.org/coding-scheme/esma-emir-refit-layer-3-commodity-classification"
+            } ]
+          } ],
+          "payerReceiverModel" : {
+            "payerModel" : {
+              "payerPartyReference" : {
+                "href" : "partyA"
+              }
+            },
+            "receiverModel" : {
+              "receiverPartyReference" : {
+                "href" : "partyB"
+              }
+            }
+          },
+          "deliveryPeriods" : {
+            "periodsSchedule" : {
+              "periodMultiplier" : 1,
+              "period" : "T",
+              "id" : "deliveryPeriods",
+              "balanceOfFirstPeriod" : false
+            },
+            "commodityCalculationPeriodsPointerModel" : { }
+          },
+          "settlementPeriods" : [ {
+            "duration" : "_1Hour",
+            "startTime" : {
+              "time" : {
+                "hourMinuteTime" : "10:15:00",
+                "location" : {
+                  "value" : "Madrid"
+                }
+              }
+            },
+            "endTime" : {
+              "time" : {
+                "hourMinuteTime" : "11:15:00",
+                "location" : {
+                  "value" : "Madrid"
+                }
+              }
+            },
+            "id" : "settlementPeriodsRef"
+          } ],
+          "electricity" : {
+            "_type" : "Electricity"
+          },
+          "deliveryConditions" : {
+            "electricityDeliverySequence0" : {
+              "deliveryPoint" : {
+                "value" : "deliveryPoint1"
+              },
+              "interconnectionPoint" : {
+                "value" : "interconnectionPoint1"
+              }
+            },
+            "electricityDeliverySequence1" : { }
+          },
+          "deliveryQuantity" : {
+            "physicalQuantity" : [ {
+              "quantityUnit" : {
+                "value" : "GW"
+              },
+              "quantityFrequency" : {
+                "value" : "PerCalculationPeriod"
+              },
+              "quantity" : 10000.0,
+              "id" : "deliveryQuantity",
+              "settlementPeriodsReference" : [ {
+                "href" : "settlementPeriodsRef"
+              } ]
+            } ]
+          }
+        }, {
           "payerReceiverModel" : {
             "payerModel" : {
               "payerPartyReference" : {

@@ -57,6 +57,54 @@
           <quantityReference href="deliveryQuantity"/>
           <masterAgreementPaymentDates>true</masterAgreementPaymentDates>
         </fixedLeg>
+        <electricityPhysicalLeg id="electricityLeg">
+          <payerPartyReference href="partyA"/>
+          <receiverPartyReference href="partyB"/>
+          <deliveryPeriods id="deliveryPeriods">
+            <calculationPeriodsScheduleReference href="fixedLegCalculationPeriods"/>
+          </deliveryPeriods>
+          <settlementPeriods id="settlementPeriods1">
+            <duration>1Hour</duration>
+            <applicableDay>MON</applicableDay>
+            <applicableDay>TUE</applicableDay>
+            <applicableDay>WED</applicableDay>
+            <applicableDay>THU</applicableDay>
+            <applicableDay>FRI</applicableDay>
+            <applicableDay>SAT</applicableDay>
+            <applicableDay>SUN</applicableDay>
+            <startTime>
+              <time>
+                <hourMinuteTime>00:00:00Z</hourMinuteTime>
+                <location>Europe/Berlin</location>
+              </time>
+            </startTime>
+            <endTime>
+              <time>
+                <hourMinuteTime>00:00:00Z</hourMinuteTime>
+                <location>Europe/Berlin</location>
+              </time>
+            </endTime>
+          </settlementPeriods>
+          <electricity>
+            <type>Electricity</type>
+            <voltage>230</voltage>
+          </electricity>
+          <deliveryConditions>
+            <deliveryPoint>Germany</deliveryPoint>
+          </deliveryConditions>
+          <deliveryQuantity id="deliveryQuantity">
+            <physicalQuantity>
+              <quantityUnit>MW</quantityUnit>
+              <quantityFrequency>PerSettlementPeriod</quantityFrequency>
+              <quantity>130</quantity>
+              <settlementPeriodsReference href="settlementPeriods1"/>
+            </physicalQuantity>
+            <totalPhysicalQuantity>
+              <quantityUnit>MW</quantityUnit>
+              <quantity>1138800</quantity>
+            </totalPhysicalQuantity>
+          </deliveryQuantity>
+        </electricityPhysicalLeg>
       </commoditySwap>
       <physicalExercise>
         <europeanExercise>

@@ -32,6 +32,122 @@
         </adjustableDate>
       </terminationDate>
       <settlementCurrency>USD</settlementCurrency>
+      <electricityPhysicalLeg>
+        <payerPartyReference href="partyA"/>
+        <receiverPartyReference href="partyB"/>
+        <deliveryPeriods id="deliveryPeriods">
+          <calculationPeriodsScheduleReference href="calculationPeriods"/>
+        </deliveryPeriods>
+        <settlementPeriods id="peak">
+          <duration>1Hour</duration>
+          <applicableDay>MON</applicableDay>
+          <applicableDay>TUE</applicableDay>
+          <applicableDay>WED</applicableDay>
+          <applicableDay>THU</applicableDay>
+          <applicableDay>FRI</applicableDay>
+          <applicableDay>SAT</applicableDay>
+          <startTime>
+            <time>
+              <hourMinuteTime>07:00:00Z</hourMinuteTime>
+              <location>American/Los Angeles</location>
+            </time>
+          </startTime>
+          <endTime>
+            <time>
+              <hourMinuteTime>22:00:00Z</hourMinuteTime>
+              <location>American/Los Angeles</location>
+            </time>
+          </endTime>
+          <excludeHolidays>NERC</excludeHolidays>
+        </settlementPeriods>
+        <settlementPeriods id="off-peak-week">
+          <duration>1Hour</duration>
+          <applicableDay>MON</applicableDay>
+          <applicableDay>TUE</applicableDay>
+          <applicableDay>WED</applicableDay>
+          <applicableDay>THU</applicableDay>
+          <applicableDay>FRI</applicableDay>
+          <applicableDay>SAT</applicableDay>
+          <startTime>
+            <time>
+              <hourMinuteTime>01:00:00Z</hourMinuteTime>
+              <location>American/Los Angeles</location>
+            </time>
+          </startTime>
+          <endTime>
+            <time>
+              <hourMinuteTime>06:00:00Z</hourMinuteTime>
+              <location>American/Los Angeles</location>
+            </time>
+          </endTime>
+          <excludeHolidays>NERC</excludeHolidays>
+        </settlementPeriods>
+        <settlementPeriods id="off-peak-weekend">
+          <duration>1Hour</duration>
+          <applicableDay>SUN</applicableDay>
+          <startTime>
+            <time>
+              <hourMinuteTime>23:00:00Z</hourMinuteTime>
+              <location>American/Los Angeles</location>
+            </time>
+          </startTime>
+          <endTime>
+            <time>
+              <hourMinuteTime>00:00:00Z</hourMinuteTime>
+              <location>American/Los Angeles</location>
+            </time>
+          </endTime>
+          <includeHolidays>NERC</includeHolidays>
+        </settlementPeriods>
+        <electricity>
+          <type>Electricity</type>
+        </electricity>
+        <deliveryConditions>
+          <deliveryZone deliveryPointScheme="http://www.PartyA.com/delivery-point-scheme-power-1-0">NorthPath15</deliveryZone>
+          <electingPartyReference href="partyA"/>
+        </deliveryConditions>
+        <deliveryQuantity id="deliveryQuantity">
+          <physicalQuantitySchedule>
+            <quantityStep>
+              <quantityUnit>MW</quantityUnit>
+              <quantityFrequency>PerSettlementPeriod</quantityFrequency>
+              <quantity>200</quantity>
+            </quantityStep>
+            <quantityStep>
+              <quantityUnit>MW</quantityUnit>
+              <quantityFrequency>PerSettlementPeriod</quantityFrequency>
+              <quantity>50</quantity>
+            </quantityStep>
+            <quantityStep>
+              <quantityUnit>MW</quantityUnit>
+              <quantityFrequency>PerSettlementPeriod</quantityFrequency>
+              <quantity>650</quantity>
+            </quantityStep>
+            <deliveryPeriodsScheduleReference href="deliveryPeriods"/>
+            <settlementPeriodsReference href="peak"/>
+          </physicalQuantitySchedule>
+          <physicalQuantitySchedule>
+            <quantityStep>
+              <quantityUnit>MW</quantityUnit>
+              <quantityFrequency>PerSettlementPeriod</quantityFrequency>
+              <quantity>400</quantity>
+            </quantityStep>
+            <quantityStep>
+              <quantityUnit>MW</quantityUnit>
+              <quantityFrequency>PerSettlementPeriod</quantityFrequency>
+              <quantity>400</quantity>
+            </quantityStep>
+            <quantityStep>
+              <quantityUnit>MW</quantityUnit>
+              <quantityFrequency>PerSettlementPeriod</quantityFrequency>
+              <quantity>400</quantity>
+            </quantityStep>
+            <deliveryPeriodsScheduleReference href="deliveryPeriods"/>
+            <settlementPeriodsReference href="off-peak-week"/>
+            <settlementPeriodsReference href="off-peak-weekend"/>
+          </physicalQuantitySchedule>
+        </deliveryQuantity>
+      </electricityPhysicalLeg>
       <fixedLeg>
         <payerPartyReference href="partyB"/>
         <receiverPartyReference href="partyA"/>

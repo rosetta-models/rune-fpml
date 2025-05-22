@@ -154,6 +154,82 @@
               }
             },
             "commodityFreightFlatRateModel" : { }
+          }, {
+            "id" : "electricityLeg",
+            "payerReceiverModel" : {
+              "payerModel" : {
+                "payerPartyReference" : {
+                  "href" : "partyA"
+                }
+              },
+              "receiverModel" : {
+                "receiverPartyReference" : {
+                  "href" : "partyB"
+                }
+              }
+            },
+            "deliveryPeriods" : {
+              "commodityCalculationPeriodsPointerModel" : {
+                "calculationPeriodsScheduleReference" : {
+                  "href" : "fixedLegCalculationPeriods"
+                }
+              },
+              "id" : "deliveryPeriods"
+            },
+            "settlementPeriods" : [ {
+              "duration" : "_1Hour",
+              "applicableDay" : [ "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN" ],
+              "startTime" : {
+                "time" : {
+                  "hourMinuteTime" : "00:00:00",
+                  "location" : {
+                    "value" : "Europe/Berlin"
+                  }
+                }
+              },
+              "endTime" : {
+                "time" : {
+                  "hourMinuteTime" : "00:00:00",
+                  "location" : {
+                    "value" : "Europe/Berlin"
+                  }
+                }
+              },
+              "id" : "settlementPeriods1"
+            } ],
+            "electricity" : {
+              "_type" : "Electricity",
+              "voltage" : 230
+            },
+            "deliveryConditions" : {
+              "electricityDeliverySequence0" : {
+                "deliveryPoint" : {
+                  "value" : "Germany"
+                }
+              },
+              "electricityDeliverySequence1" : { }
+            },
+            "deliveryQuantity" : {
+              "id" : "deliveryQuantity",
+              "physicalQuantity" : [ {
+                "quantityUnit" : {
+                  "value" : "MW"
+                },
+                "quantityFrequency" : {
+                  "value" : "PerSettlementPeriod"
+                },
+                "quantity" : 130,
+                "settlementPeriodsReference" : [ {
+                  "href" : "settlementPeriods1"
+                } ]
+              } ],
+              "totalPhysicalQuantity" : {
+                "quantityUnit" : {
+                  "value" : "MW"
+                },
+                "quantity" : 1138800
+              }
+            }
           } ],
           "commodityContentModel" : { }
         }

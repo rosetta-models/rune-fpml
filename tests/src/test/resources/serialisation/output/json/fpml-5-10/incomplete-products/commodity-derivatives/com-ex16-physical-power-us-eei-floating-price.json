@@ -87,6 +87,84 @@
           "payerReceiverModel" : {
             "payerModel" : {
               "payerPartyReference" : {
+                "href" : "partyA"
+              }
+            },
+            "receiverModel" : {
+              "receiverPartyReference" : {
+                "href" : "partyB"
+              }
+            }
+          },
+          "deliveryPeriods" : {
+            "periodsSchedule" : {
+              "periodMultiplier" : 1,
+              "period" : "T",
+              "balanceOfFirstPeriod" : false
+            },
+            "commodityCalculationPeriodsPointerModel" : { }
+          },
+          "settlementPeriods" : [ {
+            "duration" : "_1Hour",
+            "applicableDay" : [ "MON", "TUE", "WED", "THU", "FRI" ],
+            "startTime" : {
+              "time" : {
+                "hourMinuteTime" : "07:00:00",
+                "location" : {
+                  "value" : "America/Chicago"
+                }
+              }
+            },
+            "endTime" : {
+              "time" : {
+                "hourMinuteTime" : "22:00:00",
+                "location" : {
+                  "value" : "America/Chicago"
+                }
+              }
+            },
+            "excludeHolidays" : {
+              "value" : "NERC"
+            },
+            "id" : "settlementPeriods"
+          } ],
+          "loadType" : "Peak",
+          "electricity" : {
+            "_type" : "Electricity"
+          },
+          "deliveryConditions" : {
+            "electricityDeliverySequence0" : {
+              "deliveryPoint" : {
+                "value" : "ErcotNorthCongestionZone",
+                "deliveryPointScheme" : "http://www.PartyA.com/delivery-point-scheme-power-1-0"
+              },
+              "deliveryType" : {
+                "firm" : {
+                  "forceMajeure" : true
+                }
+              }
+            },
+            "electricityDeliverySequence1" : { }
+          },
+          "deliveryQuantity" : {
+            "id" : "deliveryQuantity",
+            "physicalQuantity" : [ {
+              "quantityUnit" : {
+                "value" : "MWh"
+              },
+              "quantityFrequency" : {
+                "value" : "PerSettlementPeriod"
+              },
+              "quantity" : 200.0,
+              "settlementPeriodsReference" : [ {
+                "href" : "settlementPeriods"
+              } ]
+            } ]
+          }
+        }, {
+          "payerReceiverModel" : {
+            "payerModel" : {
+              "payerPartyReference" : {
                 "href" : "partyB"
               }
             },

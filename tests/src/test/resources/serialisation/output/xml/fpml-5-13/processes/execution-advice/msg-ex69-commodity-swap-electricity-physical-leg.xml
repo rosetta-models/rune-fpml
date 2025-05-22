@@ -49,6 +49,57 @@
         </adjustableDate>
       </terminationDate>
       <settlementCurrency>USD</settlementCurrency>
+      <electricityPhysicalLeg>
+        <commodityClassification>
+          <code commodityClassificationScheme="http://www.fpml.org/coding-scheme/isda-layer-1-commodity-classification">Energy</code>
+          <code commodityClassificationScheme="http://www.fpml.org/coding-scheme/isda-layer-2-commodity-classification">Electricity</code>
+          <code commodityClassificationScheme="http://www.fpml.org/coding-scheme/isda-layer-3-commodity-classification">BSLD</code>
+        </commodityClassification>
+        <commodityClassification>
+          <code commodityClassificationScheme="http://www.fpml.org/coding-scheme/esma-emir-refit-layer-1-commodity-classification">NRGY</code>
+          <code commodityClassificationScheme="http://www.fpml.org/coding-scheme/esma-emir-refit-layer-2-commodity-classification">ELEC</code>
+          <code commodityClassificationScheme="http://www.fpml.org/coding-scheme/esma-emir-refit-layer-3-commodity-classification">BSLD</code>
+        </commodityClassification>
+        <payerPartyReference href="partyA"/>
+        <receiverPartyReference href="partyB"/>
+        <deliveryPeriods>
+          <periodsSchedule id="deliveryPeriods">
+            <periodMultiplier>1</periodMultiplier>
+            <period>T</period>
+            <balanceOfFirstPeriod>false</balanceOfFirstPeriod>
+          </periodsSchedule>
+        </deliveryPeriods>
+        <settlementPeriods id="settlementPeriodsRef">
+          <duration>1Hour</duration>
+          <startTime>
+            <time>
+              <hourMinuteTime>10:15:00Z</hourMinuteTime>
+              <location>Madrid</location>
+            </time>
+          </startTime>
+          <endTime>
+            <time>
+              <hourMinuteTime>11:15:00Z</hourMinuteTime>
+              <location>Madrid</location>
+            </time>
+          </endTime>
+        </settlementPeriods>
+        <electricity>
+          <type>Electricity</type>
+        </electricity>
+        <deliveryConditions>
+          <deliveryPoint>deliveryPoint1</deliveryPoint>
+          <interconnectionPoint>interconnectionPoint1</interconnectionPoint>
+        </deliveryConditions>
+        <deliveryQuantity>
+          <physicalQuantity id="deliveryQuantity">
+            <quantityUnit>GW</quantityUnit>
+            <quantityFrequency>PerCalculationPeriod</quantityFrequency>
+            <quantity>10000.0</quantity>
+            <settlementPeriodsReference href="settlementPeriodsRef"/>
+          </physicalQuantity>
+        </deliveryQuantity>
+      </electricityPhysicalLeg>
       <floatingLeg>
         <payerPartyReference href="partyB"/>
         <receiverPartyReference href="partyA"/>
