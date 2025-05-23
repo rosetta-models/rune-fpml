@@ -87,6 +87,78 @@
           "payerReceiverModel" : {
             "payerModel" : {
               "payerPartyReference" : {
+                "href" : "partyA"
+              }
+            },
+            "receiverModel" : {
+              "receiverPartyReference" : {
+                "href" : "partyB"
+              }
+            }
+          },
+          "deliveryPeriods" : {
+            "commodityCalculationPeriodsPointerModel" : {
+              "calculationPeriodsScheduleReference" : {
+                "href" : "calculationPeriods"
+              }
+            },
+            "id" : "deliveryPeriods"
+          },
+          "settlementPeriods" : [ {
+            "duration" : "_30Minutes",
+            "applicableDay" : [ "MON", "TUE", "WED", "THU", "FRI" ],
+            "startTime" : {
+              "time" : {
+                "hourMinuteTime" : "07:00:00",
+                "location" : {
+                  "value" : "Europe/London"
+                }
+              }
+            },
+            "endTime" : {
+              "time" : {
+                "hourMinuteTime" : "19:00:00",
+                "location" : {
+                  "value" : "Europe/London"
+                }
+              }
+            },
+            "excludeHolidays" : {
+              "value" : "N2EX"
+            },
+            "id" : "settlementPeriods"
+          } ],
+          "electricity" : {
+            "_type" : "Electricity"
+          },
+          "deliveryConditions" : {
+            "electricityDeliverySequence0" : {
+              "deliveryPoint" : {
+                "value" : "10YGB----------A",
+                "deliveryPointScheme" : "http://www.etso-net.org/Activities/edi/eic/ars/area.htm"
+              }
+            },
+            "electricityDeliverySequence1" : { }
+          },
+          "deliveryQuantity" : {
+            "id" : "deliveryQuantity",
+            "physicalQuantity" : [ {
+              "quantityUnit" : {
+                "value" : "MWh"
+              },
+              "quantityFrequency" : {
+                "value" : "PerSettlementPeriod"
+              },
+              "quantity" : 200.0,
+              "settlementPeriodsReference" : [ {
+                "href" : "settlementPeriods"
+              } ]
+            } ]
+          }
+        }, {
+          "payerReceiverModel" : {
+            "payerModel" : {
+              "payerPartyReference" : {
                 "href" : "partyB"
               }
             },
