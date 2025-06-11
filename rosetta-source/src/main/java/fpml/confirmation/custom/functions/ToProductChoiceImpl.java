@@ -33,8 +33,8 @@ public class ToProductChoiceImpl extends ToProductChoice {
             return builder.setCorrelationSwap(((CorrelationSwap) product));
         } else if (product instanceof CreditDefaultSwap) {
             return builder.setCreditDefaultSwap(((CreditDefaultSwap) product));
-        } else if (product instanceof CreditDefaultSwapOption) {
-            return builder.setCreditDefaultSwapOption(((CreditDefaultSwapOption) product));
+//        } else if (product instanceof CreditDefaultSwapOption) {
+//            return builder.setCreditDefaultSwapOption(((CreditDefaultSwapOption) product));
         } else if (product instanceof DividendSwapOptionTransactionSupplement) {
             return builder.setDividendSwapOptionTransactionSupplement(((DividendSwapOptionTransactionSupplement) product));
         } else if (product instanceof DividendSwapTransactionSupplement) {

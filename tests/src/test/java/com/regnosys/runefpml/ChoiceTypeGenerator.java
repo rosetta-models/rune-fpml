@@ -35,10 +35,10 @@ public class ChoiceTypeGenerator {
     }
 
     public void findAllSubTypes() {
-        List<RosettaModel> models = getModels("fpml/rosetta");
+        List<RosettaModel> models = getModels(".");
 
         Set<Data> dataTypes = getDataTypes(models);
-        Data leg = findDataType(dataTypes, "Asset");
+        Data leg = findDataType(dataTypes, "Document");
 
         Node parent = new Node(leg, null);
         findSubTypes(dataTypes, leg, parent);
