@@ -1,253 +1,295 @@
 {
   "fpmlVersion" : "5-13",
-  "validationModel" : { },
-  "trade" : [ {
-    "tradeHeader" : {
-      "tradeIdentifiersModel" : {
-        "tradeIdentifiersModelSequence" : {
-          "globalTradeIdentifiersModel" : {
-            "globalTradeIdentifiersModelSequence" : { }
-          }
-        },
-        "partyTradeIdentifier" : [ {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "166555",
-              "tradeIdScheme" : "http://www.swapswire.com/spec/2001/trade-id-1-0"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "partyA"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "166555",
-                "tradeIdScheme" : "http://www.swapswire.com/spec/2001/trade-id-1-0"
-              }
-            } ]
-          }
-        }, {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "166555",
-              "tradeIdScheme" : "http://www.swapswire.com/spec/2001/trade-id-1-0"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "partyB"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "166555",
-                "tradeIdScheme" : "http://www.swapswire.com/spec/2001/trade-id-1-0"
-              }
-            } ]
-          }
-        } ]
+  "header" : {
+    "messageId" : {
+      "value" : "123",
+      "messageIdScheme" : "http://www.fpml.org/msg-id"
+    },
+    "messageHeaderModel" : {
+      "sentBy" : {
+        "value" : "BIC1"
       },
-      "tradeDate" : {
-        "value" : "2009-01-27T00:00:00Z"
+      "sendTo" : [ {
+        "value" : "BIC16C"
+      } ],
+      "creationTimestamp" : "2009-01-27T15:38:00Z"
+    }
+  },
+  "validationModel" : { },
+  "isCorrection" : false,
+  "correlationAndSequenceModel" : {
+    "correlationModel" : {
+      "correlationIdModel" : {
+        "correlationId" : {
+          "value" : "CW/2009/01/27/123",
+          "correlationIdScheme" : "http://www.example.com/conversationId"
+        }
       }
     },
-    "product" : {
-      "productModel" : { },
-      "buyerSellerModel" : {
-        "buyerPartyReference" : {
-          "href" : "partyA"
-        },
-        "sellerPartyReference" : {
-          "href" : "partyB"
-        }
-      },
-      "optionType" : "Call",
-      "equityPremium" : {
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "partyA"
-            }
-          },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "partyB"
-            }
-          }
-        },
-        "paymentAmount" : {
-          "currency" : {
-            "value" : "GBP"
-          },
-          "amount" : 1500000
-        },
-        "paymentDate" : {
-          "unadjustedDate" : {
-            "value" : "2009-01-29T00:00:00Z"
-          },
-          "dateAdjustments" : {
-            "businessDayConvention" : "NotApplicable",
-            "businessCentersOrReferenceModel" : { }
-          }
-        }
-      },
-      "equityExercise" : {
-        "equityEuropeanExercise" : {
-          "expirationDate" : {
-            "adjustableDate" : {
-              "unadjustedDate" : {
-                "value" : "2015-03-20T00:00:00Z"
+    "sequenceModel" : {
+      "sequenceNumber" : 1
+    }
+  },
+  "onBehalfOfModel" : { },
+  "tradingAndPostTradeEventsModel" : {
+    "tradingEventsBaseModel" : {
+      "tradingEventsBaseModelSequence" : {
+        "trade" : {
+          "tradeHeader" : {
+            "tradeIdentifiersModel" : {
+              "tradeIdentifiersModelSequence" : {
+                "globalTradeIdentifiersModel" : {
+                  "globalTradeIdentifiersModelSequence" : { }
+                }
               },
-              "dateAdjustments" : {
-                "businessDayConvention" : "NotApplicable",
-                "businessCentersOrReferenceModel" : { }
-              }
-            }
-          },
-          "equityExpirationModel" : {
-            "equityExpirationModelSequence" : {
-              "equityExpirationTimeType" : "OSP"
-            }
-          }
-        },
-        "equityExerciseValuationSettlementSequence" : {
-          "automaticExercise" : true
-        },
-        "equityValuation" : {
-          "futuresPriceValuation" : true,
-          "id" : "valuationDate"
-        },
-        "settlementCurrency" : {
-          "value" : "GBP"
-        },
-        "settlementType" : "Cash"
-      },
-      "varianceSwapTransactionSupplement" : {
-        "productModel" : { },
-        "varianceLeg" : [ {
-          "payerReceiverModel" : {
-            "payerModel" : {
-              "payerPartyReference" : {
-                "href" : "partyA"
-              }
-            },
-            "receiverModel" : {
-              "receiverPartyReference" : {
-                "href" : "partyB"
-              }
-            }
-          },
-          "underlyer" : {
-            "singleUnderlyer" : {
-              "underlyingAsset" : {
-                "instrumentId" : [ {
-                  "value" : ".FTSE",
-                  "instrumentIdScheme" : "http://www.fpml.org/coding-scheme/external/instrument-id-Reuters-RIC"
-                } ],
-                "description" : "FTSE 100 INDEX",
-                "exchangeId" : {
-                  "value" : "XLON",
-                  "exchangeIdScheme" : "http://www.fpml.org/spec/2002/exchangeId"
+              "partyTradeIdentifier" : [ {
+                "issuerTradeIdModel" : {
+                  "tradeId" : {
+                    "value" : "166555",
+                    "tradeIdScheme" : "http://www.swapswire.com/spec/2001/trade-id-1-0"
+                  }
                 },
-                "exchangeIdentifierModel" : {
-                  "relatedExchangeId" : [ {
-                    "value" : "XLIF",
-                    "exchangeIdScheme" : "http://www.fpml.org/spec/2002/exchangeId"
+                "tradeIdentifierSequence" : {
+                  "partyAndAccountReferencesModel" : {
+                    "partyReference" : {
+                      "href" : "partyA"
+                    }
+                  },
+                  "tradeIdentifierSequenceChoice" : [ {
+                    "tradeId" : {
+                      "value" : "166555",
+                      "tradeIdScheme" : "http://www.swapswire.com/spec/2001/trade-id-1-0"
+                    }
                   } ]
                 }
-              }
+              }, {
+                "issuerTradeIdModel" : {
+                  "tradeId" : {
+                    "value" : "166555",
+                    "tradeIdScheme" : "http://www.swapswire.com/spec/2001/trade-id-1-0"
+                  }
+                },
+                "tradeIdentifierSequence" : {
+                  "partyAndAccountReferencesModel" : {
+                    "partyReference" : {
+                      "href" : "partyB"
+                    }
+                  },
+                  "tradeIdentifierSequenceChoice" : [ {
+                    "tradeId" : {
+                      "value" : "166555",
+                      "tradeIdScheme" : "http://www.swapswire.com/spec/2001/trade-id-1-0"
+                    }
+                  } ]
+                }
+              } ]
+            },
+            "tradeDate" : {
+              "value" : "2009-01-27T00:00:00Z"
             }
           },
-          "optionSettlementModel" : {
-            "settlementType" : "Cash",
-            "settlementDate" : {
-              "relativeDate" : {
-                "periodMultiplier" : 2,
-                "period" : "D",
-                "dayType" : "CurrencyBusiness",
-                "businessDayConvention" : "NotApplicable",
-                "businessCentersOrReferenceModel" : { },
-                "dateRelativeTo" : {
-                  "href" : "valuationDate"
-                }
-              }
-            },
-            "settlementAmountOrCurrencyModel" : {
-              "settlementCurrency" : {
-                "value" : "GBP"
-              }
-            }
-          },
-          "valuation" : {
-            "valuationDate" : {
-              "adjustableDate" : {
-                "unadjustedDate" : {
-                  "value" : "2011-03-18T00:00:00Z"
-                },
-                "dateAdjustments" : {
-                  "businessDayConvention" : "NotApplicable",
-                  "businessCentersOrReferenceModel" : { }
-                }
-              }
-            },
-            "futuresPriceValuation" : true
-          },
-          "amount" : {
-            "observationStartDate" : {
-              "adjustableDate" : {
-                "unadjustedDate" : {
-                  "value" : "2009-01-27T00:00:00Z"
-                },
-                "dateAdjustments" : {
-                  "businessDayConvention" : "NotApplicable",
-                  "businessCentersOrReferenceModel" : { }
-                }
-              }
-            },
-            "dividendsModel" : { },
-            "variance" : {
-              "calculationFromObservationChoice" : {
-                "calculationFromObservationChoiceSequence" : { }
+          "product" : {
+            "productModel" : { },
+            "buyerSellerModel" : {
+              "buyerPartyReference" : {
+                "href" : "partyA"
               },
-              "closingLevel" : true,
-              "expectedN" : 542,
-              "varianceAmount" : {
+              "sellerPartyReference" : {
+                "href" : "partyB"
+              }
+            },
+            "optionType" : "Call",
+            "equityPremium" : {
+              "payerReceiverModel" : {
+                "payerModel" : {
+                  "payerPartyReference" : {
+                    "href" : "partyA"
+                  }
+                },
+                "receiverModel" : {
+                  "receiverPartyReference" : {
+                    "href" : "partyB"
+                  }
+                }
+              },
+              "paymentAmount" : {
                 "currency" : {
                   "value" : "GBP"
                 },
-                "amount" : 33333.33
+                "amount" : 1500000
               },
-              "varianceStrikePrice" : 225,
-              "varianceCap" : false,
-              "vegaNotionalAmount" : 1000000
+              "paymentDate" : {
+                "unadjustedDate" : {
+                  "value" : "2009-01-29T00:00:00Z"
+                },
+                "dateAdjustments" : {
+                  "businessDayConvention" : "NotApplicable",
+                  "businessCentersOrReferenceModel" : { }
+                }
+              }
+            },
+            "equityExercise" : {
+              "equityEuropeanExercise" : {
+                "expirationDate" : {
+                  "adjustableDate" : {
+                    "unadjustedDate" : {
+                      "value" : "2015-03-20T00:00:00Z"
+                    },
+                    "dateAdjustments" : {
+                      "businessDayConvention" : "NotApplicable",
+                      "businessCentersOrReferenceModel" : { }
+                    }
+                  }
+                },
+                "equityExpirationModel" : {
+                  "equityExpirationModelSequence" : {
+                    "equityExpirationTimeType" : "OSP"
+                  }
+                }
+              },
+              "equityExerciseValuationSettlementSequence" : {
+                "automaticExercise" : true
+              },
+              "equityValuation" : {
+                "futuresPriceValuation" : true,
+                "id" : "valuationDate"
+              },
+              "settlementCurrency" : {
+                "value" : "GBP"
+              },
+              "settlementType" : "Cash"
+            },
+            "varianceSwapTransactionSupplement" : {
+              "productModel" : { },
+              "varianceLeg" : [ {
+                "payerReceiverModel" : {
+                  "payerModel" : {
+                    "payerPartyReference" : {
+                      "href" : "partyA"
+                    }
+                  },
+                  "receiverModel" : {
+                    "receiverPartyReference" : {
+                      "href" : "partyB"
+                    }
+                  }
+                },
+                "underlyer" : {
+                  "singleUnderlyer" : {
+                    "underlyingAsset" : {
+                      "instrumentId" : [ {
+                        "value" : ".FTSE",
+                        "instrumentIdScheme" : "http://www.fpml.org/coding-scheme/external/instrument-id-Reuters-RIC"
+                      } ],
+                      "description" : "FTSE 100 INDEX",
+                      "exchangeId" : {
+                        "value" : "XLON",
+                        "exchangeIdScheme" : "http://www.fpml.org/spec/2002/exchangeId"
+                      },
+                      "exchangeIdentifierModel" : {
+                        "relatedExchangeId" : [ {
+                          "value" : "XLIF",
+                          "exchangeIdScheme" : "http://www.fpml.org/spec/2002/exchangeId"
+                        } ]
+                      }
+                    }
+                  }
+                },
+                "optionSettlementModel" : {
+                  "settlementType" : "Cash",
+                  "settlementDate" : {
+                    "relativeDate" : {
+                      "periodMultiplier" : 2,
+                      "period" : "D",
+                      "dayType" : "CurrencyBusiness",
+                      "businessDayConvention" : "NotApplicable",
+                      "businessCentersOrReferenceModel" : { },
+                      "dateRelativeTo" : {
+                        "href" : "valuationDate"
+                      }
+                    }
+                  },
+                  "settlementAmountOrCurrencyModel" : {
+                    "settlementCurrency" : {
+                      "value" : "GBP"
+                    }
+                  }
+                },
+                "valuation" : {
+                  "valuationDate" : {
+                    "adjustableDate" : {
+                      "unadjustedDate" : {
+                        "value" : "2011-03-18T00:00:00Z"
+                      },
+                      "dateAdjustments" : {
+                        "businessDayConvention" : "NotApplicable",
+                        "businessCentersOrReferenceModel" : { }
+                      }
+                    }
+                  },
+                  "futuresPriceValuation" : true
+                },
+                "amount" : {
+                  "observationStartDate" : {
+                    "adjustableDate" : {
+                      "unadjustedDate" : {
+                        "value" : "2009-01-27T00:00:00Z"
+                      },
+                      "dateAdjustments" : {
+                        "businessDayConvention" : "NotApplicable",
+                        "businessCentersOrReferenceModel" : { }
+                      }
+                    }
+                  },
+                  "dividendsModel" : { },
+                  "variance" : {
+                    "calculationFromObservationChoice" : {
+                      "calculationFromObservationChoiceSequence" : { }
+                    },
+                    "closingLevel" : true,
+                    "expectedN" : 542,
+                    "varianceAmount" : {
+                      "currency" : {
+                        "value" : "GBP"
+                      },
+                      "amount" : 33333.33
+                    },
+                    "varianceStrikePrice" : 225,
+                    "varianceCap" : false,
+                    "vegaNotionalAmount" : 1000000
+                  }
+                }
+              } ],
+              "equityUnderlyerProvisionsModel" : {
+                "indexAnnexFallbackModel" : {
+                  "multipleExchangeIndexAnnexFallback" : false
+                }
+              }
             }
-          }
-        } ],
-        "equityUnderlyerProvisionsModel" : {
-          "indexAnnexFallbackModel" : {
-            "multipleExchangeIndexAnnexFallback" : false
+          },
+          "calculationAgentModel" : { },
+          "documentation" : {
+            "masterConfirmation" : {
+              "masterConfirmationType" : {
+                "value" : "ISDA2007VarianceSwapEuropeanRev1"
+              },
+              "masterConfirmationDate" : "2009-01-07T00:00:00Z",
+              "masterConfirmationAnnexDate" : "2009-01-07T00:00:00Z",
+              "masterConfirmationAnnexType" : {
+                "value" : "ISDA2007VarianceOptionEuropean"
+              }
+            }
           }
         }
       }
     },
-    "calculationAgentModel" : { },
-    "documentation" : {
-      "masterConfirmation" : {
-        "masterConfirmationType" : {
-          "value" : "ISDA2007VarianceSwapEuropeanRev1"
-        },
-        "masterConfirmationDate" : "2009-01-07T00:00:00Z",
-        "masterConfirmationAnnexDate" : "2009-01-07T00:00:00Z",
-        "masterConfirmationAnnexType" : {
-          "value" : "ISDA2007VarianceOptionEuropean"
-        }
+    "postTradeEventsBaseModel" : {
+      "postTradeEventsBaseModelSequence" : { },
+      "postTradeEventsBaseModelChoice" : {
+        "postTradeEventsBaseModelChoiceSequence" : { }
       }
     }
-  } ],
+  },
   "partiesAndAccountsModel" : {
     "party" : [ {
       "partyModel" : {

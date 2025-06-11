@@ -1,339 +1,381 @@
 {
   "fpmlVersion" : "5-12",
+  "header" : {
+    "messageId" : {
+      "value" : "2342342",
+      "messageIdScheme" : "http://www.partyA.com/coding-scheme/message-id"
+    },
+    "messageHeaderModel" : {
+      "sentBy" : {
+        "value" : "PARTYABIC1"
+      },
+      "sendTo" : [ {
+        "value" : "ABC"
+      } ],
+      "creationTimestamp" : "2007-01-05T15:38:00Z"
+    }
+  },
   "validationModel" : { },
-  "trade" : [ {
-    "tradeHeader" : {
-      "tradeIdentifiersModel" : {
-        "tradeIdentifiersModelSequence" : {
-          "globalTradeIdentifiersModel" : {
-            "globalTradeIdentifiersModelSequence" : { }
-          }
-        },
-        "partyTradeIdentifier" : [ {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "Trade123",
-              "tradeIdScheme" : "http://www.PartyA.com/eqd-trade-id"
+  "isCorrection" : false,
+  "correlationAndSequenceModel" : {
+    "correlationModel" : {
+      "correlationIdModel" : {
+        "correlationId" : {
+          "value" : "CORR/2007/01/02/2342322",
+          "correlationIdScheme" : "http://www.example.com/correlationId"
+        }
+      }
+    },
+    "sequenceModel" : {
+      "sequenceNumber" : 1
+    }
+  },
+  "onBehalfOfModel" : { },
+  "tradingAndPostTradeEventsModel" : {
+    "tradingEventsBaseModel" : {
+      "tradingEventsBaseModelSequence" : {
+        "trade" : {
+          "tradeHeader" : {
+            "tradeIdentifiersModel" : {
+              "tradeIdentifiersModelSequence" : {
+                "globalTradeIdentifiersModel" : {
+                  "globalTradeIdentifiersModelSequence" : { }
+                }
+              },
+              "partyTradeIdentifier" : [ {
+                "issuerTradeIdModel" : {
+                  "tradeId" : {
+                    "value" : "Trade123",
+                    "tradeIdScheme" : "http://www.PartyA.com/eqd-trade-id"
+                  }
+                },
+                "tradeIdentifierSequence" : {
+                  "partyAndAccountReferencesModel" : {
+                    "partyReference" : {
+                      "href" : "Party1"
+                    }
+                  },
+                  "tradeIdentifierSequenceChoice" : [ {
+                    "tradeId" : {
+                      "value" : "Trade123",
+                      "tradeIdScheme" : "http://www.PartyA.com/eqd-trade-id"
+                    }
+                  } ]
+                }
+              } ]
+            },
+            "tradeDate" : {
+              "value" : "2006-12-05T00:00:00Z",
+              "id" : "TRADEDATE"
             }
           },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
+          "product" : {
+            "productModel" : { },
+            "buyerSellerModel" : {
+              "buyerPartyReference" : {
+                "href" : "Party2"
+              },
+              "sellerPartyReference" : {
                 "href" : "Party1"
               }
             },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "Trade123",
-                "tradeIdScheme" : "http://www.PartyA.com/eqd-trade-id"
+            "optionType" : "Call",
+            "premium" : {
+              "payerReceiverModel" : {
+                "payerModel" : {
+                  "payerPartyReference" : {
+                    "href" : "Party2"
+                  }
+                },
+                "receiverModel" : {
+                  "receiverPartyReference" : {
+                    "href" : "Party1"
+                  }
+                }
+              },
+              "paymentAmount" : {
+                "currency" : {
+                  "value" : "USD"
+                },
+                "amount" : 300000
+              },
+              "paymentDate" : {
+                "relativeDate" : {
+                  "periodMultiplier" : 3,
+                  "period" : "D",
+                  "dayType" : "Business",
+                  "businessDayConvention" : "NONE",
+                  "businessCentersOrReferenceModel" : {
+                    "businessCenters" : {
+                      "businessCenter" : [ {
+                        "value" : "USNY"
+                      }, {
+                        "value" : "GBLO"
+                      } ]
+                    }
+                  },
+                  "dateRelativeTo" : {
+                    "href" : "TRADEDATE"
+                  }
+                }
+              },
+              "premiumModel" : {
+                "premiumType" : "Fixed"
+              },
+              "paymentDiscountingModel" : { }
+            },
+            "exercise" : {
+              "expirationDate" : {
+                "adjustableDate" : {
+                  "unadjustedDate" : {
+                    "value" : "2007-03-05T00:00:00Z"
+                  },
+                  "dateAdjustments" : {
+                    "businessDayConvention" : "FOLLOWING",
+                    "businessCentersOrReferenceModel" : {
+                      "businessCenters" : {
+                        "businessCenter" : [ {
+                          "value" : "GBLO"
+                        }, {
+                          "value" : "USNY"
+                        } ]
+                      }
+                    }
+                  }
+                }
+              },
+              "earliestExerciseTime" : {
+                "hourMinuteTime" : "09:00:00",
+                "businessCenter" : {
+                  "value" : "GBLO"
+                }
+              },
+              "expirationTime" : {
+                "hourMinuteTime" : "16:00:00",
+                "businessCenter" : {
+                  "value" : "GBLO"
+                }
               }
+            },
+            "exerciseProcedure" : {
+              "manualExercise" : {
+                "fallbackExercise" : false
+              },
+              "followUpConfirmation" : true
+            },
+            "feature" : {
+              "optionBaseFeatureModel" : { },
+              "optionFeatureModel" : {
+                "knock" : {
+                  "knockSequence" : { },
+                  "knockOut" : {
+                    "trigger" : {
+                      "triggerChoice" : {
+                        "creditEventsReference" : {
+                          "href" : "CREDITEVENT"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "notionalReference" : {
+              "href" : "NOTIONAL"
+            },
+            "optionDenominationModel" : { },
+            "optionSettlementModel" : {
+              "settlementType" : "Physical",
+              "settlementAmountOrCurrencyModel" : { }
+            },
+            "strike" : {
+              "strikeReference" : {
+                "href" : "SPREAD"
+              }
+            },
+            "creditDefaultSwap" : {
+              "productModel" : { },
+              "generalTerms" : {
+                "effectiveDate" : {
+                  "unadjustedDate" : {
+                    "value" : "2006-03-06T00:00:00Z"
+                  },
+                  "dateAdjustments" : {
+                    "businessDayConvention" : "NONE",
+                    "businessCentersOrReferenceModel" : { }
+                  }
+                },
+                "scheduledTerminationDate" : {
+                  "unadjustedDate" : {
+                    "value" : "2012-03-21T00:00:00Z"
+                  },
+                  "dateAdjustments" : {
+                    "businessDayConvention" : "NONE",
+                    "businessCentersOrReferenceModel" : { }
+                  }
+                },
+                "buyerSellerModel" : {
+                  "buyerPartyReference" : {
+                    "href" : "Party2"
+                  },
+                  "sellerPartyReference" : {
+                    "href" : "Party1"
+                  }
+                },
+                "referenceInformation" : {
+                  "referenceEntity" : {
+                    "legalEntitySequence" : {
+                      "entityName" : {
+                        "value" : "Entity3"
+                      }
+                    }
+                  },
+                  "referenceObligation" : [ {
+                    "bond" : {
+                      "instrumentId" : [ {
+                        "value" : "ExampleCUSIP2",
+                        "instrumentIdScheme" : "CUSIP"
+                      } ],
+                      "fixedIncomeSecurityContentModel" : {
+                        "couponRate" : 0.11875,
+                        "maturity" : "2030-01-15T00:00:00Z"
+                      },
+                      "bondCalculationModel" : { }
+                    },
+                    "primaryObligor" : {
+                      "legalEntitySequence" : {
+                        "entityName" : {
+                          "value" : "Entity3"
+                        }
+                      }
+                    },
+                    "referenceObligationChoice" : [ { } ]
+                  } ],
+                  "allGuarantees" : true,
+                  "referencePrice" : 1.0000000000
+                }
+              },
+              "feeLeg" : {
+                "feeLegSequence" : { },
+                "periodicPayment" : {
+                  "paymentFrequency" : {
+                    "periodMultiplier" : 3,
+                    "period" : "M"
+                  },
+                  "firstPaymentDate" : "2007-03-20T00:00:00Z",
+                  "lastRegularPaymentDate" : "2012-03-20T00:00:00Z",
+                  "rollConvention" : "_20",
+                  "fixedAmountCalculation" : {
+                    "calculationAmount" : {
+                      "currency" : {
+                        "value" : "USD"
+                      },
+                      "amount" : 25000000
+                    },
+                    "fixedRate" : {
+                      "value" : 0.0186,
+                      "id" : "SPREAD"
+                    },
+                    "dayCountFraction" : {
+                      "value" : "ACT/360"
+                    }
+                  }
+                }
+              },
+              "protectionTerms" : [ {
+                "calculationAmount" : {
+                  "currency" : {
+                    "value" : "USD"
+                  },
+                  "id" : "NOTIONAL",
+                  "amount" : 25000000
+                },
+                "creditEvents" : {
+                  "failureToPay" : {
+                    "applicable" : true,
+                    "paymentRequirement" : {
+                      "currency" : {
+                        "value" : "USD"
+                      },
+                      "amount" : 1000000
+                    }
+                  },
+                  "restructuring" : {
+                    "applicable" : true
+                  },
+                  "defaultRequirement" : {
+                    "currency" : {
+                      "value" : "USD"
+                    },
+                    "amount" : 1000000
+                  },
+                  "creditEventNotice" : {
+                    "notifyingParty" : {
+                      "buyerPartyReference" : {
+                        "href" : "Party2"
+                      },
+                      "sellerPartyReference" : {
+                        "href" : "Party1"
+                      }
+                    },
+                    "publiclyAvailableInformation" : {
+                      "publicSource" : [ "Standard Public Sources" ],
+                      "specifiedNumber" : 2
+                    }
+                  },
+                  "id" : "CREDITEVENT"
+                },
+                "obligations" : {
+                  "category" : "Bond"
+                }
+              } ],
+              "creditDefaultSwapChoice" : [ {
+                "physicalSettlementTerms" : {
+                  "physicalSettlementPeriod" : {
+                    "maximumBusinessDays" : 30
+                  },
+                  "deliverableObligations" : {
+                    "accruedInterest" : false,
+                    "category" : "Bond"
+                  },
+                  "escrow" : true
+                }
+              } ]
+            }
+          },
+          "calculationAgentModel" : {
+            "calculationAgent" : {
+              "calculationAgentPartyReference" : [ {
+                "href" : "Party1"
+              } ]
+            }
+          },
+          "documentation" : {
+            "masterAgreement" : {
+              "masterAgreementType" : {
+                "value" : "ISDA"
+              },
+              "masterAgreementVersion" : {
+                "value" : "1992"
+              },
+              "masterAgreementDate" : "1997-11-05T00:00:00Z"
+            },
+            "contractualDefinitions" : [ {
+              "value" : "ISDA2000"
+            }, {
+              "value" : "ISDA2003Credit"
             } ]
           }
-        } ]
-      },
-      "tradeDate" : {
-        "value" : "2006-12-05T00:00:00Z",
-        "id" : "TRADEDATE"
+        }
       }
     },
-    "product" : {
-      "productModel" : { },
-      "buyerSellerModel" : {
-        "buyerPartyReference" : {
-          "href" : "Party2"
-        },
-        "sellerPartyReference" : {
-          "href" : "Party1"
-        }
-      },
-      "optionType" : "Call",
-      "premium" : {
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "Party2"
-            }
-          },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "Party1"
-            }
-          }
-        },
-        "paymentAmount" : {
-          "currency" : {
-            "value" : "USD"
-          },
-          "amount" : 300000
-        },
-        "paymentDate" : {
-          "relativeDate" : {
-            "periodMultiplier" : 3,
-            "period" : "D",
-            "dayType" : "Business",
-            "businessDayConvention" : "NONE",
-            "businessCentersOrReferenceModel" : {
-              "businessCenters" : {
-                "businessCenter" : [ {
-                  "value" : "USNY"
-                }, {
-                  "value" : "GBLO"
-                } ]
-              }
-            },
-            "dateRelativeTo" : {
-              "href" : "TRADEDATE"
-            }
-          }
-        },
-        "premiumModel" : {
-          "premiumType" : "Fixed"
-        },
-        "paymentDiscountingModel" : { }
-      },
-      "exercise" : {
-        "expirationDate" : {
-          "adjustableDate" : {
-            "unadjustedDate" : {
-              "value" : "2007-03-05T00:00:00Z"
-            },
-            "dateAdjustments" : {
-              "businessDayConvention" : "FOLLOWING",
-              "businessCentersOrReferenceModel" : {
-                "businessCenters" : {
-                  "businessCenter" : [ {
-                    "value" : "GBLO"
-                  }, {
-                    "value" : "USNY"
-                  } ]
-                }
-              }
-            }
-          }
-        },
-        "earliestExerciseTime" : {
-          "hourMinuteTime" : "09:00:00",
-          "businessCenter" : {
-            "value" : "GBLO"
-          }
-        },
-        "expirationTime" : {
-          "hourMinuteTime" : "16:00:00",
-          "businessCenter" : {
-            "value" : "GBLO"
-          }
-        }
-      },
-      "exerciseProcedure" : {
-        "manualExercise" : {
-          "fallbackExercise" : false
-        },
-        "followUpConfirmation" : true
-      },
-      "feature" : {
-        "optionBaseFeatureModel" : { },
-        "optionFeatureModel" : {
-          "knock" : {
-            "knockSequence" : { },
-            "knockOut" : {
-              "trigger" : {
-                "triggerChoice" : {
-                  "creditEventsReference" : {
-                    "href" : "CREDITEVENT"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "notionalReference" : {
-        "href" : "NOTIONAL"
-      },
-      "optionDenominationModel" : { },
-      "optionSettlementModel" : {
-        "settlementType" : "Physical",
-        "settlementAmountOrCurrencyModel" : { }
-      },
-      "strike" : {
-        "strikeReference" : {
-          "href" : "SPREAD"
-        }
-      },
-      "creditDefaultSwap" : {
-        "productModel" : { },
-        "generalTerms" : {
-          "effectiveDate" : {
-            "unadjustedDate" : {
-              "value" : "2006-03-06T00:00:00Z"
-            },
-            "dateAdjustments" : {
-              "businessDayConvention" : "NONE",
-              "businessCentersOrReferenceModel" : { }
-            }
-          },
-          "scheduledTerminationDate" : {
-            "unadjustedDate" : {
-              "value" : "2012-03-21T00:00:00Z"
-            },
-            "dateAdjustments" : {
-              "businessDayConvention" : "NONE",
-              "businessCentersOrReferenceModel" : { }
-            }
-          },
-          "buyerSellerModel" : {
-            "buyerPartyReference" : {
-              "href" : "Party2"
-            },
-            "sellerPartyReference" : {
-              "href" : "Party1"
-            }
-          },
-          "referenceInformation" : {
-            "referenceEntity" : {
-              "legalEntitySequence" : {
-                "entityName" : {
-                  "value" : "Entity3"
-                }
-              }
-            },
-            "referenceObligation" : [ {
-              "bond" : {
-                "instrumentId" : [ {
-                  "value" : "ExampleCUSIP2",
-                  "instrumentIdScheme" : "CUSIP"
-                } ],
-                "fixedIncomeSecurityContentModel" : {
-                  "couponRate" : 0.11875,
-                  "maturity" : "2030-01-15T00:00:00Z"
-                },
-                "bondCalculationModel" : { }
-              },
-              "primaryObligor" : {
-                "legalEntitySequence" : {
-                  "entityName" : {
-                    "value" : "Entity3"
-                  }
-                }
-              },
-              "referenceObligationChoice" : [ { } ]
-            } ],
-            "allGuarantees" : true,
-            "referencePrice" : 1.0000000000
-          }
-        },
-        "feeLeg" : {
-          "feeLegSequence" : { },
-          "periodicPayment" : {
-            "paymentFrequency" : {
-              "periodMultiplier" : 3,
-              "period" : "M"
-            },
-            "firstPaymentDate" : "2007-03-20T00:00:00Z",
-            "lastRegularPaymentDate" : "2012-03-20T00:00:00Z",
-            "rollConvention" : "_20",
-            "fixedAmountCalculation" : {
-              "calculationAmount" : {
-                "currency" : {
-                  "value" : "USD"
-                },
-                "amount" : 25000000
-              },
-              "fixedRate" : {
-                "value" : 0.0186,
-                "id" : "SPREAD"
-              },
-              "dayCountFraction" : {
-                "value" : "ACT/360"
-              }
-            }
-          }
-        },
-        "protectionTerms" : [ {
-          "calculationAmount" : {
-            "currency" : {
-              "value" : "USD"
-            },
-            "id" : "NOTIONAL",
-            "amount" : 25000000
-          },
-          "creditEvents" : {
-            "failureToPay" : {
-              "applicable" : true,
-              "paymentRequirement" : {
-                "currency" : {
-                  "value" : "USD"
-                },
-                "amount" : 1000000
-              }
-            },
-            "restructuring" : {
-              "applicable" : true
-            },
-            "defaultRequirement" : {
-              "currency" : {
-                "value" : "USD"
-              },
-              "amount" : 1000000
-            },
-            "creditEventNotice" : {
-              "notifyingParty" : {
-                "buyerPartyReference" : {
-                  "href" : "Party2"
-                },
-                "sellerPartyReference" : {
-                  "href" : "Party1"
-                }
-              },
-              "publiclyAvailableInformation" : {
-                "publicSource" : [ "Standard Public Sources" ],
-                "specifiedNumber" : 2
-              }
-            },
-            "id" : "CREDITEVENT"
-          },
-          "obligations" : {
-            "category" : "Bond"
-          }
-        } ],
-        "creditDefaultSwapChoice" : [ {
-          "physicalSettlementTerms" : {
-            "physicalSettlementPeriod" : {
-              "maximumBusinessDays" : 30
-            },
-            "deliverableObligations" : {
-              "accruedInterest" : false,
-              "category" : "Bond"
-            },
-            "escrow" : true
-          }
-        } ]
+    "postTradeEventsBaseModel" : {
+      "postTradeEventsBaseModelSequence" : { },
+      "postTradeEventsBaseModelChoice" : {
+        "postTradeEventsBaseModelChoiceSequence" : { }
       }
-    },
-    "calculationAgentModel" : {
-      "calculationAgent" : {
-        "calculationAgentPartyReference" : [ {
-          "href" : "Party1"
-        } ]
-      }
-    },
-    "documentation" : {
-      "masterAgreement" : {
-        "masterAgreementType" : {
-          "value" : "ISDA"
-        },
-        "masterAgreementVersion" : {
-          "value" : "1992"
-        },
-        "masterAgreementDate" : "1997-11-05T00:00:00Z"
-      },
-      "contractualDefinitions" : [ {
-        "value" : "ISDA2000"
-      }, {
-        "value" : "ISDA2003Credit"
-      } ]
     }
-  } ],
+  },
   "partiesAndAccountsModel" : {
     "party" : [ {
       "partyModel" : {

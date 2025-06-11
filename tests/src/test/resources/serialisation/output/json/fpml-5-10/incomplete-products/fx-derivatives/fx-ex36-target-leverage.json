@@ -1,101 +1,112 @@
 {
   "fpmlVersion" : "5-10",
+  "header" : {
+    "messageId" : {
+      "value" : "FX456a789b",
+      "messageIdScheme" : "http://www.executionnotificationservice.com/coding-scheme/messageId"
+    },
+    "messageHeaderModel" : {
+      "sentBy" : {
+        "value" : "EXECSRV",
+        "messageAddressScheme" : "http://www.executionnotificationservice.com/partyId"
+      },
+      "sendTo" : [ {
+        "value" : "PARTYA",
+        "messageAddressScheme" : "http://www.executionnotificationservice.com/partyId"
+      } ],
+      "creationTimestamp" : "2011-03-01T08:57:00Z"
+    }
+  },
   "validationModel" : { },
-  "trade" : [ {
-    "tradeHeader" : {
-      "tradeIdentifiersModel" : {
-        "tradeIdentifiersModelSequence" : {
-          "globalTradeIdentifiersModel" : {
-            "globalTradeIdentifiersModelSequence" : { }
-          }
-        },
-        "partyTradeIdentifier" : [ {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "12345",
-              "tradeIdScheme" : "http://www.partyA.com/fx/trade-id"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "ptyA"
+  "isCorrection" : false,
+  "correlationAndSequenceModel" : {
+    "correlationModel" : {
+      "correlationIdModel" : { }
+    },
+    "sequenceModel" : { }
+  },
+  "onBehalfOfModel" : { },
+  "tradingEventsBaseModel" : {
+    "tradingEventsBaseModelSequence" : {
+      "trade" : {
+        "tradeHeader" : {
+          "tradeIdentifiersModel" : {
+            "tradeIdentifiersModelSequence" : {
+              "globalTradeIdentifiersModel" : {
+                "globalTradeIdentifiersModelSequence" : { }
               }
             },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "12345",
-                "tradeIdScheme" : "http://www.partyA.com/fx/trade-id"
+            "partyTradeIdentifier" : [ {
+              "issuerTradeIdModel" : {
+                "tradeId" : {
+                  "value" : "12345",
+                  "tradeIdScheme" : "http://www.partyA.com/fx/trade-id"
+                }
+              },
+              "tradeIdentifierSequence" : {
+                "partyAndAccountReferencesModel" : {
+                  "partyReference" : {
+                    "href" : "ptyA"
+                  }
+                },
+                "tradeIdentifierSequenceChoice" : [ {
+                  "tradeId" : {
+                    "value" : "12345",
+                    "tradeIdScheme" : "http://www.partyA.com/fx/trade-id"
+                  }
+                } ]
               }
             } ]
+          },
+          "tradeDate" : {
+            "value" : "2010-11-07T00:00:00Z"
           }
-        } ]
-      },
-      "tradeDate" : {
-        "value" : "2010-11-07T00:00:00Z"
-      }
-    },
-    "product" : {
-      "productModel" : { },
-      "quotedCurrencyPair" : {
-        "currency1" : {
-          "value" : "USD"
         },
-        "currency2" : {
-          "value" : "CAD"
-        },
-        "quoteBasis" : "Currency2PerCurrency1"
-      },
-      "notionalAmount" : {
-        "initialValue" : 500000.00,
-        "currency" : {
-          "value" : "USD"
-        }
-      },
-      "target" : [ {
-        "accumulationRegion" : [ {
-          "fxTargetRegionBoundModel" : {
-            "fxTargetRegionBoundModelSequence" : {
-              "lowerBound" : {
-                "condition" : "Above",
-                "fxTargetConditionLevelModel" : {
-                  "strikeReference" : {
-                    "href" : "s1"
+        "product" : {
+          "productModel" : { },
+          "quotedCurrencyPair" : {
+            "currency1" : {
+              "value" : "USD"
+            },
+            "currency2" : {
+              "value" : "CAD"
+            },
+            "quoteBasis" : "Currency2PerCurrency1"
+          },
+          "notionalAmount" : {
+            "initialValue" : 500000.00,
+            "currency" : {
+              "value" : "USD"
+            }
+          },
+          "target" : [ {
+            "accumulationRegion" : [ {
+              "fxTargetRegionBoundModel" : {
+                "fxTargetRegionBoundModelSequence" : {
+                  "lowerBound" : {
+                    "condition" : "Above",
+                    "fxTargetConditionLevelModel" : {
+                      "strikeReference" : {
+                        "href" : "s1"
+                      }
+                    }
                   }
                 }
               }
+            } ],
+            "knockoutLevel" : {
+              "amount" : {
+                "currency" : {
+                  "value" : "CAD"
+                },
+                "amount" : 40000.00
+              },
+              "targetStyle" : "Exact",
+              "settlementAdjustmentStyle" : "VariedStrike"
             }
-          }
-        } ],
-        "knockoutLevel" : {
-          "amount" : {
-            "currency" : {
-              "value" : "CAD"
-            },
-            "amount" : 40000.00
-          },
-          "targetStyle" : "Exact",
-          "settlementAdjustmentStyle" : "VariedStrike"
-        }
-      } ],
-      "expirySchedule" : {
-        "fxScheduleSequence0" : {
-          "dateAdjustments" : {
-            "businessDayConvention" : "MODFOLLOWING",
-            "businessCentersOrReferenceModel" : {
-              "businessCenters" : {
-                "businessCenter" : [ {
-                  "value" : "USNY"
-                } ]
-              }
-            }
-          },
-          "adjustedDate" : [ "2014-11-20T00:00:00Z", "2014-12-04T00:00:00Z", "2014-12-18T00:00:00Z", "2015-01-02T00:00:00Z", "2015-01-15T00:00:00Z", "2015-01-29T00:00:00Z", "2015-02-12T00:00:00Z", "2015-02-26T00:00:00Z", "2015-03-12T00:00:00Z", "2015-03-26T00:00:00Z", "2015-04-09T00:00:00Z", "2015-04-23T00:00:00Z", "2015-05-07T00:00:00Z", "2015-05-21T00:00:00Z", "2015-06-04T00:00:00Z" ]
-        },
-        "fxScheduleSequence1" : {
-          "parametricScheduleModel" : {
-            "parametricScheduleModelSequence0" : { },
-            "parametricScheduleModelSequence1" : {
+          } ],
+          "expirySchedule" : {
+            "fxScheduleSequence0" : {
               "dateAdjustments" : {
                 "businessDayConvention" : "MODFOLLOWING",
                 "businessCentersOrReferenceModel" : {
@@ -105,36 +116,34 @@
                     } ]
                   }
                 }
-              }
+              },
+              "adjustedDate" : [ "2014-11-20T00:00:00Z", "2014-12-04T00:00:00Z", "2014-12-18T00:00:00Z", "2015-01-02T00:00:00Z", "2015-01-15T00:00:00Z", "2015-01-29T00:00:00Z", "2015-02-12T00:00:00Z", "2015-02-26T00:00:00Z", "2015-03-12T00:00:00Z", "2015-03-26T00:00:00Z", "2015-04-09T00:00:00Z", "2015-04-23T00:00:00Z", "2015-05-07T00:00:00Z", "2015-05-21T00:00:00Z", "2015-06-04T00:00:00Z" ]
             },
-            "parametricScheduleModelSequence2" : {
-              "businessCentersOrReferenceModel" : { }
-            }
+            "fxScheduleSequence1" : {
+              "parametricScheduleModel" : {
+                "parametricScheduleModelSequence0" : { },
+                "parametricScheduleModelSequence1" : {
+                  "dateAdjustments" : {
+                    "businessDayConvention" : "MODFOLLOWING",
+                    "businessCentersOrReferenceModel" : {
+                      "businessCenters" : {
+                        "businessCenter" : [ {
+                          "value" : "USNY"
+                        } ]
+                      }
+                    }
+                  }
+                },
+                "parametricScheduleModelSequence2" : {
+                  "businessCentersOrReferenceModel" : { }
+                }
+              },
+              "adjustedDate" : [ "2014-11-20T00:00:00Z", "2014-12-04T00:00:00Z", "2014-12-18T00:00:00Z", "2015-01-02T00:00:00Z", "2015-01-15T00:00:00Z", "2015-01-29T00:00:00Z", "2015-02-12T00:00:00Z", "2015-02-26T00:00:00Z", "2015-03-12T00:00:00Z", "2015-03-26T00:00:00Z", "2015-04-09T00:00:00Z", "2015-04-23T00:00:00Z", "2015-05-07T00:00:00Z", "2015-05-21T00:00:00Z", "2015-06-04T00:00:00Z" ]
+            },
+            "finalExpiryDate" : "2015-06-04T00:00:00Z"
           },
-          "adjustedDate" : [ "2014-11-20T00:00:00Z", "2014-12-04T00:00:00Z", "2014-12-18T00:00:00Z", "2015-01-02T00:00:00Z", "2015-01-15T00:00:00Z", "2015-01-29T00:00:00Z", "2015-02-12T00:00:00Z", "2015-02-26T00:00:00Z", "2015-03-12T00:00:00Z", "2015-03-26T00:00:00Z", "2015-04-09T00:00:00Z", "2015-04-23T00:00:00Z", "2015-05-07T00:00:00Z", "2015-05-21T00:00:00Z", "2015-06-04T00:00:00Z" ]
-        },
-        "finalExpiryDate" : "2015-06-04T00:00:00Z"
-      },
-      "settlementSchedule" : {
-        "fxScheduleSequence0" : {
-          "dateAdjustments" : {
-            "businessDayConvention" : "MODFOLLOWING",
-            "businessCentersOrReferenceModel" : {
-              "businessCenters" : {
-                "businessCenter" : [ {
-                  "value" : "CATO"
-                }, {
-                  "value" : "USNY"
-                } ]
-              }
-            }
-          },
-          "adjustedDate" : [ "2014-11-21T00:00:00Z", "2014-12-05T00:00:00Z", "2014-12-19T00:00:00Z", "2015-01-05T00:00:00Z", "2015-01-16T00:00:00Z", "2015-01-30T00:00:00Z", "2015-02-13T00:00:00Z", "2015-02-27T00:00:00Z", "2015-03-13T00:00:00Z", "2015-03-27T00:00:00Z", "2015-04-10T00:00:00Z", "2015-04-24T00:00:00Z", "2015-05-08T00:00:00Z", "2015-05-22T00:00:00Z", "2015-06-05T00:00:00Z" ]
-        },
-        "fxScheduleSequence1" : {
-          "parametricScheduleModel" : {
-            "parametricScheduleModelSequence0" : { },
-            "parametricScheduleModelSequence1" : {
+          "settlementSchedule" : {
+            "fxScheduleSequence0" : {
               "dateAdjustments" : {
                 "businessDayConvention" : "MODFOLLOWING",
                 "businessCentersOrReferenceModel" : {
@@ -146,131 +155,153 @@
                     } ]
                   }
                 }
-              }
+              },
+              "adjustedDate" : [ "2014-11-21T00:00:00Z", "2014-12-05T00:00:00Z", "2014-12-19T00:00:00Z", "2015-01-05T00:00:00Z", "2015-01-16T00:00:00Z", "2015-01-30T00:00:00Z", "2015-02-13T00:00:00Z", "2015-02-27T00:00:00Z", "2015-03-13T00:00:00Z", "2015-03-27T00:00:00Z", "2015-04-10T00:00:00Z", "2015-04-24T00:00:00Z", "2015-05-08T00:00:00Z", "2015-05-22T00:00:00Z", "2015-06-05T00:00:00Z" ]
             },
-            "parametricScheduleModelSequence2" : {
-              "businessCentersOrReferenceModel" : { }
-            }
-          },
-          "adjustedDate" : [ "2014-11-21T00:00:00Z", "2014-12-05T00:00:00Z", "2014-12-19T00:00:00Z", "2015-01-05T00:00:00Z", "2015-01-16T00:00:00Z", "2015-01-30T00:00:00Z", "2015-02-13T00:00:00Z", "2015-02-27T00:00:00Z", "2015-03-13T00:00:00Z", "2015-03-27T00:00:00Z", "2015-04-10T00:00:00Z", "2015-04-24T00:00:00Z", "2015-05-08T00:00:00Z", "2015-05-22T00:00:00Z", "2015-06-05T00:00:00Z" ]
-        },
-        "finalSettlementDate" : "2015-06-05T00:00:00Z"
-      },
-      "fixingInformationSource" : {
-        "rateSource" : {
-          "value" : "Reuters"
-        },
-        "rateSourcePage" : {
-          "value" : "WMRSPOT09"
-        },
-        "fixingTime" : {
-          "hourMinuteTime" : "10:00:00",
-          "businessCenter" : {
-            "value" : "USNY"
-          }
-        }
-      },
-      "fxTargetKnockoutForwardSequence" : { },
-      "linearPayoffRegion" : {
-        "fxExchangedCurrencyModel" : {
-          "exchangedCurrency1" : {
-            "payerReceiverModel" : {
-              "payerModel" : {
-                "payerPartyReference" : {
-                  "href" : "ptyA"
+            "fxScheduleSequence1" : {
+              "parametricScheduleModel" : {
+                "parametricScheduleModelSequence0" : { },
+                "parametricScheduleModelSequence1" : {
+                  "dateAdjustments" : {
+                    "businessDayConvention" : "MODFOLLOWING",
+                    "businessCentersOrReferenceModel" : {
+                      "businessCenters" : {
+                        "businessCenter" : [ {
+                          "value" : "CATO"
+                        }, {
+                          "value" : "USNY"
+                        } ]
+                      }
+                    }
+                  }
+                },
+                "parametricScheduleModelSequence2" : {
+                  "businessCentersOrReferenceModel" : { }
                 }
               },
-              "receiverModel" : {
-                "receiverPartyReference" : {
-                  "href" : "ptyB"
-                }
-              }
+              "adjustedDate" : [ "2014-11-21T00:00:00Z", "2014-12-05T00:00:00Z", "2014-12-19T00:00:00Z", "2015-01-05T00:00:00Z", "2015-01-16T00:00:00Z", "2015-01-30T00:00:00Z", "2015-02-13T00:00:00Z", "2015-02-27T00:00:00Z", "2015-03-13T00:00:00Z", "2015-03-27T00:00:00Z", "2015-04-10T00:00:00Z", "2015-04-24T00:00:00Z", "2015-05-08T00:00:00Z", "2015-05-22T00:00:00Z", "2015-06-05T00:00:00Z" ]
             },
-            "currency" : {
-              "value" : "USD"
+            "finalSettlementDate" : "2015-06-05T00:00:00Z"
+          },
+          "fixingInformationSource" : {
+            "rateSource" : {
+              "value" : "Reuters"
+            },
+            "rateSourcePage" : {
+              "value" : "WMRSPOT09"
+            },
+            "fixingTime" : {
+              "hourMinuteTime" : "10:00:00",
+              "businessCenter" : {
+                "value" : "USNY"
+              }
             }
           },
-          "exchangedCurrency2" : {
-            "payerReceiverModel" : {
-              "payerModel" : {
-                "payerPartyReference" : {
-                  "href" : "ptyB"
+          "fxTargetKnockoutForwardSequence" : { },
+          "linearPayoffRegion" : {
+            "fxExchangedCurrencyModel" : {
+              "exchangedCurrency1" : {
+                "payerReceiverModel" : {
+                  "payerModel" : {
+                    "payerPartyReference" : {
+                      "href" : "ptyA"
+                    }
+                  },
+                  "receiverModel" : {
+                    "receiverPartyReference" : {
+                      "href" : "ptyB"
+                    }
+                  }
+                },
+                "currency" : {
+                  "value" : "USD"
                 }
               },
-              "receiverModel" : {
-                "receiverPartyReference" : {
-                  "href" : "ptyA"
+              "exchangedCurrency2" : {
+                "payerReceiverModel" : {
+                  "payerModel" : {
+                    "payerPartyReference" : {
+                      "href" : "ptyB"
+                    }
+                  },
+                  "receiverModel" : {
+                    "receiverPartyReference" : {
+                      "href" : "ptyA"
+                    }
+                  }
+                },
+                "currency" : {
+                  "value" : "CAD"
                 }
               }
             },
-            "currency" : {
-              "value" : "CAD"
-            }
-          }
-        },
-        "strike" : {
-          "initialValue" : 1.0100,
-          "step" : [ {
-            "stepDate" : "2014-12-04T00:00:00Z",
-            "stepValue" : 1.0200
-          }, {
-            "stepDate" : "2015-01-02T00:00:00Z",
-            "stepValue" : 1.0400
-          }, {
-            "stepDate" : "2015-03-12T00:00:00Z",
-            "stepValue" : 1.0900
-          }, {
-            "stepDate" : "2015-05-07T00:00:00Z",
-            "stepValue" : 1.1400
-          } ],
-          "id" : "s1"
-        },
-        "counterCurrencyAmount" : {
-          "initialValue" : 505000.00,
-          "step" : [ {
-            "stepDate" : "2014-12-04T00:00:00Z",
-            "stepValue" : 510000.00
-          }, {
-            "stepDate" : "2015-01-02T00:00:00Z",
-            "stepValue" : 520000.00
-          } ],
-          "currency" : {
-            "value" : "CAD"
-          }
-        },
-        "leverage" : {
-          "condition" : "Below",
-          "fxTargetConditionLevelModel" : {
-            "strikeReference" : {
-              "href" : "s1"
+            "strike" : {
+              "initialValue" : 1.0100,
+              "step" : [ {
+                "stepDate" : "2014-12-04T00:00:00Z",
+                "stepValue" : 1.0200
+              }, {
+                "stepDate" : "2015-01-02T00:00:00Z",
+                "stepValue" : 1.0400
+              }, {
+                "stepDate" : "2015-03-12T00:00:00Z",
+                "stepValue" : 1.0900
+              }, {
+                "stepDate" : "2015-05-07T00:00:00Z",
+                "stepValue" : 1.1400
+              } ],
+              "id" : "s1"
+            },
+            "counterCurrencyAmount" : {
+              "initialValue" : 505000.00,
+              "step" : [ {
+                "stepDate" : "2014-12-04T00:00:00Z",
+                "stepValue" : 510000.00
+              }, {
+                "stepDate" : "2015-01-02T00:00:00Z",
+                "stepValue" : 520000.00
+              } ],
+              "currency" : {
+                "value" : "CAD"
+              }
+            },
+            "leverage" : {
+              "condition" : "Below",
+              "fxTargetConditionLevelModel" : {
+                "strikeReference" : {
+                  "href" : "s1"
+                }
+              },
+              "ratio" : {
+                "initialValue" : 2.5,
+                "step" : [ {
+                  "stepDate" : "2015-01-02T00:00:00Z",
+                  "stepValue" : 1.5
+                }, {
+                  "stepDate" : "2015-03-12T00:00:00Z",
+                  "stepValue" : 1.0
+                }, {
+                  "stepDate" : "2015-05-07T00:00:00Z",
+                  "stepValue" : 0.5
+                } ]
+              },
+              "fxTargetLeverageSequence" : { }
             }
           },
-          "ratio" : {
-            "initialValue" : 2.5,
-            "step" : [ {
-              "stepDate" : "2015-01-02T00:00:00Z",
-              "stepValue" : 1.5
-            }, {
-              "stepDate" : "2015-03-12T00:00:00Z",
-              "stepValue" : 1.0
-            }, {
-              "stepDate" : "2015-05-07T00:00:00Z",
-              "stepValue" : 0.5
+          "fxTargetKnockoutForwardChoice" : [ { } ]
+        },
+        "calculationAgentModel" : {
+          "calculationAgent" : {
+            "calculationAgentPartyReference" : [ {
+              "href" : "ptyA"
             } ]
-          },
-          "fxTargetLeverageSequence" : { }
+          }
         }
-      },
-      "fxTargetKnockoutForwardChoice" : [ { } ]
-    },
-    "calculationAgentModel" : {
-      "calculationAgent" : {
-        "calculationAgentPartyReference" : [ {
-          "href" : "ptyA"
-        } ]
       }
     }
-  } ],
+  },
+  "optionsEventsBaseModel" : { },
+  "eventValuationModel" : { },
   "partiesAndAccountsModel" : {
     "party" : [ {
       "partyModel" : {

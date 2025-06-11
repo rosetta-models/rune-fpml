@@ -1,6 +1,6 @@
 package com.regnosys.runefpml.serialisation;
 
-import fpml.confirmation.DataDocument;
+import fpml.confirmation.Document;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -22,12 +22,12 @@ public class FpmlConfirmationSerialisationTest {
 
     private static final Set<String> DISABLED_TESTS = Set.of();
 
-    private static SerialisationTestUtil<DataDocument> serialisationTestUtil;
+    private static SerialisationTestUtil<Document> serialisationTestUtil;
 
     @BeforeAll
     static void setup() {
         serialisationTestUtil = new SerialisationTestUtil<>(
-                DataDocument.class,
+                Document.class,
                 XSD_SCHEMA_NAME,
                 XML_CONFIG_NAME,
                 EXPECTED_SCHEMA_LOCATION
