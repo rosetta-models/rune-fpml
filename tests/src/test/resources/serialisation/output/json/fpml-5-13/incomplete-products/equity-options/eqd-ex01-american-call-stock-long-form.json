@@ -1,245 +1,285 @@
 {
   "fpmlVersion" : "5-13",
+  "header" : {
+    "messageId" : {
+      "value" : "EquityShareOption456a789b",
+      "messageIdScheme" : "http://www.msdw.com/messageId/OTC"
+    },
+    "messageHeaderModel" : {
+      "sentBy" : {
+        "value" : "msdw",
+        "messageAddressScheme" : "http://www.MsgParty.com/partyId"
+      },
+      "creationTimestamp" : "2000-08-01T08:57:00Z"
+    }
+  },
   "validationModel" : { },
-  "trade" : [ {
-    "tradeHeader" : {
-      "tradeIdentifiersModel" : {
-        "tradeIdentifiersModelSequence" : {
-          "globalTradeIdentifiersModel" : {
-            "globalTradeIdentifiersModelSequence" : { }
-          }
-        },
-        "partyTradeIdentifier" : [ {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "1234",
-              "tradeIdScheme" : "http://www.PartyA.com/eqd-trade-id"
+  "isCorrection" : false,
+  "correlationAndSequenceModel" : {
+    "correlationModel" : {
+      "correlationIdModel" : {
+        "correlationId" : {
+          "value" : "CS/2000/08/01/EquityShareOption456a789b",
+          "correlationIdScheme" : "http://www.example.com/conversationId"
+        }
+      }
+    },
+    "sequenceModel" : {
+      "sequenceNumber" : 1
+    }
+  },
+  "onBehalfOfModel" : { },
+  "tradingAndPostTradeEventsModel" : {
+    "tradingEventsBaseModel" : {
+      "tradingEventsBaseModelSequence" : {
+        "trade" : {
+          "tradeHeader" : {
+            "tradeIdentifiersModel" : {
+              "tradeIdentifiersModelSequence" : {
+                "globalTradeIdentifiersModel" : {
+                  "globalTradeIdentifiersModelSequence" : { }
+                }
+              },
+              "partyTradeIdentifier" : [ {
+                "issuerTradeIdModel" : {
+                  "tradeId" : {
+                    "value" : "1234",
+                    "tradeIdScheme" : "http://www.PartyA.com/eqd-trade-id"
+                  }
+                },
+                "tradeIdentifierSequence" : {
+                  "partyAndAccountReferencesModel" : {
+                    "partyReference" : {
+                      "href" : "party1"
+                    }
+                  },
+                  "tradeIdentifierSequenceChoice" : [ {
+                    "tradeId" : {
+                      "value" : "1234",
+                      "tradeIdScheme" : "http://www.PartyA.com/eqd-trade-id"
+                    }
+                  } ]
+                }
+              } ]
+            },
+            "tradeDate" : {
+              "value" : "2001-07-13T00:00:00Z",
+              "id" : "TradeDate"
             }
           },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
+          "product" : {
+            "productModel" : {
+              "productType" : [ {
+                "value" : "Equity:Option:PriceReturnBasicPerformance:SingleName"
+              } ]
+            },
+            "buyerSellerModel" : {
+              "buyerPartyReference" : {
+                "href" : "party2"
+              },
+              "sellerPartyReference" : {
                 "href" : "party1"
               }
             },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "1234",
-                "tradeIdScheme" : "http://www.PartyA.com/eqd-trade-id"
+            "optionType" : "Call",
+            "underlyer" : {
+              "singleUnderlyer" : {
+                "underlyingAsset" : {
+                  "instrumentId" : [ {
+                    "value" : "STM-FP",
+                    "instrumentIdScheme" : "http://www.fpml.org/schemes/4.1/instrumentId"
+                  } ],
+                  "description" : "STMicroelectronics N.V. ordinary shares",
+                  "exchangeId" : {
+                    "value" : "XNSE",
+                    "exchangeIdScheme" : "http://www.fpml.org/schemes/4.1/exchangeId"
+                  },
+                  "exchangeIdentifierModel" : { }
+                }
               }
+            },
+            "equityExercise" : {
+              "equityAmericanExercise" : {
+                "commencementDate" : {
+                  "adjustableDate" : {
+                    "unadjustedDate" : {
+                      "value" : "2001-07-13T00:00:00Z"
+                    },
+                    "dateAdjustments" : {
+                      "businessDayConvention" : "NONE",
+                      "businessCentersOrReferenceModel" : { }
+                    }
+                  }
+                },
+                "expirationDate" : {
+                  "adjustableDate" : {
+                    "unadjustedDate" : {
+                      "value" : "2005-09-27T00:00:00Z"
+                    },
+                    "dateAdjustments" : {
+                      "businessDayConvention" : "NONE",
+                      "businessCentersOrReferenceModel" : { }
+                    }
+                  }
+                },
+                "latestExerciseTime" : {
+                  "hourMinuteTime" : "17:15:00",
+                  "businessCenter" : {
+                    "value" : "GBLO"
+                  }
+                },
+                "latestExerciseTimeType" : "SpecificTime",
+                "equityExpirationModel" : {
+                  "equityExpirationModelSequence" : {
+                    "equityExpirationTimeType" : "Close"
+                  }
+                },
+                "equityMultipleExercise" : {
+                  "integralMultipleExercise" : 1,
+                  "minimumNumberOfOptions" : 1,
+                  "maximumNumberOfOptions" : 150000
+                }
+              },
+              "equityExerciseValuationSettlementSequence" : {
+                "automaticExercise" : true
+              },
+              "equityValuation" : {
+                "valuationTimeType" : "Close"
+              },
+              "settlementCurrency" : {
+                "value" : "EUR"
+              },
+              "settlementPriceSource" : {
+                "value" : "OfficialClose"
+              },
+              "settlementType" : "Election",
+              "settlementMethodElectionDate" : {
+                "adjustableDate" : {
+                  "unadjustedDate" : {
+                    "value" : "2004-09-27T00:00:00Z"
+                  },
+                  "dateAdjustments" : {
+                    "businessDayConvention" : "NONE",
+                    "businessCentersOrReferenceModel" : { }
+                  }
+                }
+              },
+              "settlementMethodElectingPartyReference" : {
+                "href" : "party1"
+              }
+            },
+            "featureModel" : { },
+            "methodOfAdjustment" : "CalculationAgent",
+            "extraordinaryEvents" : {
+              "mergerEvents" : {
+                "shareForShare" : "ModifiedCalculationAgent",
+                "shareForOther" : "ModifiedCalculationAgent",
+                "shareForCombined" : "ModifiedCalculationAgent"
+              },
+              "tenderOffer" : true,
+              "tenderOfferEvents" : {
+                "shareForShare" : "ModifiedCalculationAgent",
+                "shareForOther" : "ModifiedCalculationAgent",
+                "shareForCombined" : "ModifiedCalculationAgent"
+              },
+              "compositionOfCombinedConsideration" : true,
+              "additionalDisruptionEvents" : {
+                "changeInLaw" : true,
+                "failureToDeliver" : true,
+                "insolvencyFiling" : false,
+                "hedgingDisruption" : true,
+                "stockLoanModel" : {
+                  "lossOfStockBorrow" : true,
+                  "increasedCostOfStockBorrow" : false
+                },
+                "increasedCostOfHedging" : false,
+                "determiningPartyReference" : {
+                  "href" : "party1"
+                }
+              },
+              "representations" : {
+                "nonReliance" : true,
+                "agreementsRegardingHedging" : true,
+                "additionalAcknowledgements" : true
+              },
+              "nationalisationOrInsolvency" : "CancellationAndPayment",
+              "exchangeIdentifierModel" : { }
+            },
+            "strike" : {
+              "strikePrice" : 32.00,
+              "equityStrikeSequence" : { }
+            },
+            "numberOfOptions" : 150000,
+            "optionEntitlement" : 1.00,
+            "equityPremium" : {
+              "payerReceiverModel" : {
+                "payerModel" : {
+                  "payerPartyReference" : {
+                    "href" : "party2"
+                  }
+                },
+                "receiverModel" : {
+                  "receiverPartyReference" : {
+                    "href" : "party1"
+                  }
+                }
+              },
+              "paymentAmount" : {
+                "currency" : {
+                  "value" : "EUR"
+                },
+                "amount" : 405000
+              },
+              "paymentDate" : {
+                "unadjustedDate" : {
+                  "value" : "2001-07-17T00:00:00Z"
+                },
+                "dateAdjustments" : {
+                  "businessDayConvention" : "NONE",
+                  "businessCentersOrReferenceModel" : { }
+                }
+              },
+              "pricePerOption" : {
+                "currency" : {
+                  "value" : "EUR"
+                },
+                "amount" : 2.70
+              }
+            }
+          },
+          "calculationAgentModel" : {
+            "calculationAgent" : {
+              "calculationAgentPartyReference" : [ {
+                "href" : "party1"
+              } ]
+            }
+          },
+          "documentation" : {
+            "masterAgreement" : {
+              "masterAgreementType" : {
+                "value" : "ISDA"
+              },
+              "masterAgreementVersion" : {
+                "value" : "2002"
+              }
+            },
+            "contractualDefinitions" : [ {
+              "value" : "ISDA2002Equity"
             } ]
+          },
+          "governingLaw" : {
+            "value" : "GBEN"
           }
-        } ]
-      },
-      "tradeDate" : {
-        "value" : "2001-07-13T00:00:00Z",
-        "id" : "TradeDate"
-      }
-    },
-    "product" : {
-      "productModel" : {
-        "productType" : [ {
-          "value" : "Equity:Option:PriceReturnBasicPerformance:SingleName"
-        } ]
-      },
-      "buyerSellerModel" : {
-        "buyerPartyReference" : {
-          "href" : "party2"
-        },
-        "sellerPartyReference" : {
-          "href" : "party1"
-        }
-      },
-      "optionType" : "Call",
-      "underlyer" : {
-        "singleUnderlyer" : {
-          "underlyingAsset" : {
-            "instrumentId" : [ {
-              "value" : "STM-FP",
-              "instrumentIdScheme" : "http://www.fpml.org/schemes/4.1/instrumentId"
-            } ],
-            "description" : "STMicroelectronics N.V. ordinary shares",
-            "exchangeId" : {
-              "value" : "XNSE",
-              "exchangeIdScheme" : "http://www.fpml.org/schemes/4.1/exchangeId"
-            },
-            "exchangeIdentifierModel" : { }
-          }
-        }
-      },
-      "equityExercise" : {
-        "equityAmericanExercise" : {
-          "commencementDate" : {
-            "adjustableDate" : {
-              "unadjustedDate" : {
-                "value" : "2001-07-13T00:00:00Z"
-              },
-              "dateAdjustments" : {
-                "businessDayConvention" : "NONE",
-                "businessCentersOrReferenceModel" : { }
-              }
-            }
-          },
-          "expirationDate" : {
-            "adjustableDate" : {
-              "unadjustedDate" : {
-                "value" : "2005-09-27T00:00:00Z"
-              },
-              "dateAdjustments" : {
-                "businessDayConvention" : "NONE",
-                "businessCentersOrReferenceModel" : { }
-              }
-            }
-          },
-          "latestExerciseTime" : {
-            "hourMinuteTime" : "17:15:00",
-            "businessCenter" : {
-              "value" : "GBLO"
-            }
-          },
-          "latestExerciseTimeType" : "SpecificTime",
-          "equityExpirationModel" : {
-            "equityExpirationModelSequence" : {
-              "equityExpirationTimeType" : "Close"
-            }
-          },
-          "equityMultipleExercise" : {
-            "integralMultipleExercise" : 1,
-            "minimumNumberOfOptions" : 1,
-            "maximumNumberOfOptions" : 150000
-          }
-        },
-        "equityExerciseValuationSettlementSequence" : {
-          "automaticExercise" : true
-        },
-        "equityValuation" : {
-          "valuationTimeType" : "Close"
-        },
-        "settlementCurrency" : {
-          "value" : "EUR"
-        },
-        "settlementPriceSource" : {
-          "value" : "OfficialClose"
-        },
-        "settlementType" : "Election",
-        "settlementMethodElectionDate" : {
-          "adjustableDate" : {
-            "unadjustedDate" : {
-              "value" : "2004-09-27T00:00:00Z"
-            },
-            "dateAdjustments" : {
-              "businessDayConvention" : "NONE",
-              "businessCentersOrReferenceModel" : { }
-            }
-          }
-        },
-        "settlementMethodElectingPartyReference" : {
-          "href" : "party1"
-        }
-      },
-      "featureModel" : { },
-      "methodOfAdjustment" : "CalculationAgent",
-      "extraordinaryEvents" : {
-        "mergerEvents" : {
-          "shareForShare" : "ModifiedCalculationAgent",
-          "shareForOther" : "ModifiedCalculationAgent",
-          "shareForCombined" : "ModifiedCalculationAgent"
-        },
-        "tenderOffer" : true,
-        "tenderOfferEvents" : {
-          "shareForShare" : "ModifiedCalculationAgent",
-          "shareForOther" : "ModifiedCalculationAgent",
-          "shareForCombined" : "ModifiedCalculationAgent"
-        },
-        "compositionOfCombinedConsideration" : true,
-        "additionalDisruptionEvents" : {
-          "changeInLaw" : true,
-          "failureToDeliver" : true,
-          "insolvencyFiling" : false,
-          "hedgingDisruption" : true,
-          "stockLoanModel" : {
-            "lossOfStockBorrow" : true,
-            "increasedCostOfStockBorrow" : false
-          },
-          "increasedCostOfHedging" : false,
-          "determiningPartyReference" : {
-            "href" : "party1"
-          }
-        },
-        "representations" : {
-          "nonReliance" : true,
-          "agreementsRegardingHedging" : true,
-          "additionalAcknowledgements" : true
-        },
-        "nationalisationOrInsolvency" : "CancellationAndPayment",
-        "exchangeIdentifierModel" : { }
-      },
-      "strike" : {
-        "strikePrice" : 32.00,
-        "equityStrikeSequence" : { }
-      },
-      "numberOfOptions" : 150000,
-      "optionEntitlement" : 1.00,
-      "equityPremium" : {
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "party2"
-            }
-          },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "party1"
-            }
-          }
-        },
-        "paymentAmount" : {
-          "currency" : {
-            "value" : "EUR"
-          },
-          "amount" : 405000
-        },
-        "paymentDate" : {
-          "unadjustedDate" : {
-            "value" : "2001-07-17T00:00:00Z"
-          },
-          "dateAdjustments" : {
-            "businessDayConvention" : "NONE",
-            "businessCentersOrReferenceModel" : { }
-          }
-        },
-        "pricePerOption" : {
-          "currency" : {
-            "value" : "EUR"
-          },
-          "amount" : 2.70
         }
       }
     },
-    "calculationAgentModel" : {
-      "calculationAgent" : {
-        "calculationAgentPartyReference" : [ {
-          "href" : "party1"
-        } ]
+    "postTradeEventsBaseModel" : {
+      "postTradeEventsBaseModelSequence" : { },
+      "postTradeEventsBaseModelChoice" : {
+        "postTradeEventsBaseModelChoiceSequence" : { }
       }
-    },
-    "documentation" : {
-      "masterAgreement" : {
-        "masterAgreementType" : {
-          "value" : "ISDA"
-        },
-        "masterAgreementVersion" : {
-          "value" : "2002"
-        }
-      },
-      "contractualDefinitions" : [ {
-        "value" : "ISDA2002Equity"
-      } ]
-    },
-    "governingLaw" : {
-      "value" : "GBEN"
     }
-  } ],
+  },
   "partiesAndAccountsModel" : {
     "party" : [ {
       "partyModel" : {

@@ -1,6 +1,211 @@
 {
   "fpmlVersion" : "5-13",
+  "header" : {
+    "messageId" : {
+      "value" : "EQUITYTRSFPMLORGPTTRADEREF",
+      "messageIdScheme" : "http://www.xxx.com/coding-scheme/message-id"
+    },
+    "messageHeaderModel" : {
+      "sentBy" : {
+        "value" : "ORIGUS33XXX",
+        "messageAddressScheme" : "http://www.fpml.org/ext/iso9362"
+      },
+      "creationTimestamp" : "2013-04-03T12:01:00Z"
+    }
+  },
   "validationModel" : { },
+  "isCorrection" : false,
+  "correlationAndSequenceModel" : {
+    "correlationModel" : {
+      "correlationIdModel" : {
+        "correlationId" : {
+          "value" : "EQUITYTRSFPMLORGTRADEID",
+          "correlationIdScheme" : "http://www.xxx.com/coding-scheme/correlation-id"
+        }
+      }
+    },
+    "sequenceModel" : {
+      "sequenceNumber" : 2
+    }
+  },
+  "onBehalfOfModel" : { },
+  "tradingEventsBaseModel" : {
+    "tradingEventsBaseModelSequence" : { }
+  },
+  "postTradeEventsBaseModel" : {
+    "postTradeEventsBaseModelSequence" : {
+      "termination" : {
+        "tradeIdentifier" : [ {
+          "issuerTradeIdModel" : { },
+          "tradeIdentifierSequence" : {
+            "partyAndAccountReferencesModel" : {
+              "partyReference" : {
+                "href" : "Originator"
+              }
+            },
+            "tradeIdentifierSequenceChoice" : [ {
+              "versionedTradeId" : {
+                "tradeId" : {
+                  "value" : "EQUITYTRSFPMLORGTRADEID",
+                  "tradeIdScheme" : "http://www.xxx.com/coding-scheme/parent-trade-id"
+                },
+                "versionHistoryModel" : {
+                  "version" : 1
+                }
+              }
+            } ]
+          }
+        } ],
+        "agreementAndEffectiveDatesModel" : {
+          "agreementDate" : "2013-04-04T00:00:00Z",
+          "effectiveDate" : "2013-04-04T00:00:00Z"
+        },
+        "tradeAlterationPaymentModel" : {
+          "payment" : [ {
+            "id" : "TERMINATION_FEE",
+            "payerReceiverModel" : {
+              "payerModel" : {
+                "payerPartyReference" : {
+                  "href" : "Counterparty"
+                }
+              },
+              "receiverModel" : {
+                "receiverPartyReference" : {
+                  "href" : "Originator"
+                }
+              }
+            },
+            "paymentAmount" : {
+              "currency" : {
+                "value" : "GBP"
+              },
+              "amount" : 5000.00
+            },
+            "paymentDate" : {
+              "adjustableDateModel" : { },
+              "adjustedDate" : {
+                "value" : "2013-04-04T00:00:00Z"
+              }
+            },
+            "paymentType" : {
+              "value" : "Termination Fee"
+            }
+          } ]
+        },
+        "tradeNotionalChangeModel" : {
+          "tradeNotionalChangeModelSequence0" : { },
+          "tradeNotionalChangeModelSequence1" : { },
+          "tradeNotionalChangeModelSequence2" : {
+            "changeInNumberOfUnits" : 70000000.00,
+            "outstandingNumberOfUnits" : 30000000.00
+          }
+        },
+        "priceChange" : [ {
+          "priceChangeAmount" : 2.0000,
+          "newPrice" : 3.0000
+        } ]
+      }
+    },
+    "postTradeEventsBaseModelChoice" : {
+      "postTradeEventsBaseModelChoiceSequence" : { }
+    }
+  },
+  "changeEventsBaseModel" : { },
+  "optionsEventsBaseModel" : { },
+  "eventValuationModel" : { },
+  "paymentDetails" : [ {
+    "paymentReference" : {
+      "href" : "TERMINATION_FEE"
+    },
+    "grossCashflow" : [ {
+      "grossCashflowSequence" : {
+        "cashflowId" : {
+          "value" : "PrincipalExchange",
+          "cashflowIdScheme" : "http://www.xxx.com/schemes/cashflow-id"
+        },
+        "payerReceiverModel" : {
+          "payerModel" : {
+            "payerPartyReference" : {
+              "href" : "Originator"
+            }
+          },
+          "receiverModel" : {
+            "receiverPartyReference" : {
+              "href" : "Counterparty"
+            }
+          }
+        },
+        "cashflowAmount" : {
+          "currency" : {
+            "value" : "GBP"
+          },
+          "amount" : 7000
+        }
+      },
+      "cashflowType" : {
+        "value" : "PrincipalExchange",
+        "cashflowTypeScheme" : "http://www.fpml.org/coding-scheme/cashflow-type"
+      }
+    }, {
+      "grossCashflowSequence" : {
+        "cashflowId" : {
+          "value" : "Fee",
+          "cashflowIdScheme" : "http://www.xxx.com/schemes/cashflow-id"
+        },
+        "payerReceiverModel" : {
+          "payerModel" : {
+            "payerPartyReference" : {
+              "href" : "Originator"
+            }
+          },
+          "receiverModel" : {
+            "receiverPartyReference" : {
+              "href" : "Counterparty"
+            }
+          }
+        },
+        "cashflowAmount" : {
+          "currency" : {
+            "value" : "GBP"
+          },
+          "amount" : 1000
+        }
+      },
+      "cashflowType" : {
+        "value" : "Fee",
+        "cashflowTypeScheme" : "http://www.fpml.org/coding-scheme/cashflow-type"
+      }
+    }, {
+      "grossCashflowSequence" : {
+        "cashflowId" : {
+          "value" : "Coupon",
+          "cashflowIdScheme" : "http://www.xxx.com/schemes/cashflow-id"
+        },
+        "payerReceiverModel" : {
+          "payerModel" : {
+            "payerPartyReference" : {
+              "href" : "Counterparty"
+            }
+          },
+          "receiverModel" : {
+            "receiverPartyReference" : {
+              "href" : "Originator"
+            }
+          }
+        },
+        "cashflowAmount" : {
+          "currency" : {
+            "value" : "GBP"
+          },
+          "amount" : 3000
+        }
+      },
+      "cashflowType" : {
+        "value" : "Coupon",
+        "cashflowTypeScheme" : "http://www.fpml.org/coding-scheme/cashflow-type"
+      }
+    } ]
+  } ],
   "partiesAndAccountsModel" : {
     "party" : [ {
       "partyModel" : {

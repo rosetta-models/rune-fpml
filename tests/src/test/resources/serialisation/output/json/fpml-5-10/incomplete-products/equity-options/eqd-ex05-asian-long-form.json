@@ -1,220 +1,262 @@
 {
   "fpmlVersion" : "5-10",
+  "header" : {
+    "messageId" : {
+      "value" : "MS/2006/04/02/15-99",
+      "messageIdScheme" : "http://www.example.com/messageId"
+    },
+    "messageHeaderModel" : {
+      "sentBy" : {
+        "value" : "PARTYABICXXX"
+      },
+      "sendTo" : [ {
+        "value" : "PARTYBBICXXX"
+      } ],
+      "creationTimestamp" : "2006-04-02T15:38:00Z"
+    }
+  },
   "validationModel" : { },
-  "trade" : [ {
-    "tradeHeader" : {
-      "tradeIdentifiersModel" : {
-        "tradeIdentifiersModelSequence" : {
-          "globalTradeIdentifiersModel" : {
-            "globalTradeIdentifiersModelSequence" : { }
-          }
-        },
-        "partyTradeIdentifier" : [ {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "1234",
-              "tradeIdScheme" : "http://www.PartyA.com/eqd-trade-id"
+  "isCorrection" : false,
+  "correlationAndSequenceModel" : {
+    "correlationModel" : {
+      "correlationIdModel" : {
+        "correlationId" : {
+          "value" : "CS/2006/04/02/32-09",
+          "correlationIdScheme" : "http://www.example.com/conversationId"
+        }
+      }
+    },
+    "sequenceModel" : {
+      "sequenceNumber" : 9
+    }
+  },
+  "onBehalfOfModel" : { },
+  "tradingAndPostTradeEventsModel" : {
+    "tradingEventsBaseModel" : {
+      "tradingEventsBaseModelSequence" : {
+        "trade" : {
+          "tradeHeader" : {
+            "tradeIdentifiersModel" : {
+              "tradeIdentifiersModelSequence" : {
+                "globalTradeIdentifiersModel" : {
+                  "globalTradeIdentifiersModelSequence" : { }
+                }
+              },
+              "partyTradeIdentifier" : [ {
+                "issuerTradeIdModel" : {
+                  "tradeId" : {
+                    "value" : "1234",
+                    "tradeIdScheme" : "http://www.PartyA.com/eqd-trade-id"
+                  }
+                },
+                "tradeIdentifierSequence" : {
+                  "partyAndAccountReferencesModel" : {
+                    "partyReference" : {
+                      "href" : "party1"
+                    }
+                  },
+                  "tradeIdentifierSequenceChoice" : [ {
+                    "tradeId" : {
+                      "value" : "1234",
+                      "tradeIdScheme" : "http://www.PartyA.com/eqd-trade-id"
+                    }
+                  } ]
+                }
+              } ]
+            },
+            "tradeDate" : {
+              "value" : "2000-06-28T00:00:00Z"
             }
           },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
+          "product" : {
+            "productModel" : { },
+            "buyerSellerModel" : {
+              "buyerPartyReference" : {
+                "href" : "party2"
+              },
+              "sellerPartyReference" : {
                 "href" : "party1"
               }
             },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "1234",
-                "tradeIdScheme" : "http://www.PartyA.com/eqd-trade-id"
+            "optionType" : "Call",
+            "underlyer" : {
+              "singleUnderlyer" : {
+                "underlyingAsset" : {
+                  "instrumentId" : [ {
+                    "value" : ".N225",
+                    "instrumentIdScheme" : "http://www.fpml.org/schemes/4.1/instrumentId"
+                  } ],
+                  "description" : "NIKKEI 225 INDEX",
+                  "exchangeId" : {
+                    "value" : "XTKS",
+                    "exchangeIdScheme" : "http://www.fpml.org/schemes/4.1/exchangeId"
+                  },
+                  "exchangeIdentifierModel" : {
+                    "relatedExchangeId" : [ {
+                      "value" : "XOSE",
+                      "exchangeIdScheme" : "http://www.fpml.org/schemes/4.1/exchangeId"
+                    } ]
+                  }
+                }
               }
-            } ]
-          }
-        } ]
-      },
-      "tradeDate" : {
-        "value" : "2000-06-28T00:00:00Z"
-      }
-    },
-    "product" : {
-      "productModel" : { },
-      "buyerSellerModel" : {
-        "buyerPartyReference" : {
-          "href" : "party2"
-        },
-        "sellerPartyReference" : {
-          "href" : "party1"
-        }
-      },
-      "optionType" : "Call",
-      "underlyer" : {
-        "singleUnderlyer" : {
-          "underlyingAsset" : {
-            "instrumentId" : [ {
-              "value" : ".N225",
-              "instrumentIdScheme" : "http://www.fpml.org/schemes/4.1/instrumentId"
-            } ],
-            "description" : "NIKKEI 225 INDEX",
-            "exchangeId" : {
-              "value" : "XTKS",
-              "exchangeIdScheme" : "http://www.fpml.org/schemes/4.1/exchangeId"
             },
-            "exchangeIdentifierModel" : {
-              "relatedExchangeId" : [ {
-                "value" : "XOSE",
-                "exchangeIdScheme" : "http://www.fpml.org/schemes/4.1/exchangeId"
+            "equityExercise" : {
+              "equityEuropeanExercise" : {
+                "expirationDate" : {
+                  "adjustableDate" : {
+                    "unadjustedDate" : {
+                      "value" : "2002-07-01T00:00:00Z"
+                    },
+                    "dateAdjustments" : {
+                      "businessDayConvention" : "NONE",
+                      "businessCentersOrReferenceModel" : { }
+                    }
+                  }
+                },
+                "equityExpirationModel" : {
+                  "equityExpirationModelSequence" : {
+                    "equityExpirationTimeType" : "Close"
+                  }
+                }
+              },
+              "equityExerciseValuationSettlementSequence" : {
+                "automaticExercise" : true
+              },
+              "equityValuation" : {
+                "valuationTimeType" : "Close"
+              },
+              "settlementCurrency" : {
+                "value" : "EUR"
+              },
+              "settlementType" : "Cash"
+            },
+            "featureModel" : {
+              "feature" : {
+                "asian" : {
+                  "averagingInOut" : "Out",
+                  "averagingPeriodOut" : {
+                    "averagingDateTimes" : {
+                      "dateTime" : [ "2000-08-01T08:57:00Z", "2000-09-01T08:57:00Z", "2000-10-01T08:57:00Z", "2000-11-01T08:57:00Z", "2000-12-01T08:57:00Z", "2001-01-04T08:57:00Z", "2001-02-01T08:57:00Z", "2001-03-01T08:57:00Z" ]
+                    },
+                    "marketDisruption" : {
+                      "value" : "ModifiedPostponement"
+                    }
+                  }
+                }
+              },
+              "fxFeature" : {
+                "referenceCurrency" : {
+                  "value" : "JPY"
+                },
+                "composite" : { }
+              }
+            },
+            "methodOfAdjustment" : "CalculationAgent",
+            "extraordinaryEvents" : {
+              "indexAdjustmentEvents" : {
+                "indexModification" : "CalculationAgentAdjustment",
+                "indexCancellation" : "CancellationAndPayment",
+                "indexDisruption" : "CalculationAgentAdjustment"
+              },
+              "additionalDisruptionEvents" : {
+                "changeInLaw" : true,
+                "failureToDeliver" : true,
+                "insolvencyFiling" : false,
+                "hedgingDisruption" : true,
+                "stockLoanModel" : {
+                  "lossOfStockBorrow" : true,
+                  "increasedCostOfStockBorrow" : false
+                },
+                "increasedCostOfHedging" : false,
+                "determiningPartyReference" : {
+                  "href" : "party1"
+                }
+              },
+              "representations" : {
+                "nonReliance" : true,
+                "agreementsRegardingHedging" : true,
+                "indexDisclaimer" : true,
+                "additionalAcknowledgements" : true
+              },
+              "exchangeIdentifierModel" : { }
+            },
+            "strike" : {
+              "strikePrice" : 17475.90,
+              "equityStrikeSequence" : { }
+            },
+            "numberOfOptions" : 79.099093,
+            "optionEntitlement" : 1.00,
+            "equityPremium" : {
+              "payerReceiverModel" : {
+                "payerModel" : {
+                  "payerPartyReference" : {
+                    "href" : "party2"
+                  }
+                },
+                "receiverModel" : {
+                  "receiverPartyReference" : {
+                    "href" : "party1"
+                  }
+                }
+              },
+              "paymentAmount" : {
+                "currency" : {
+                  "value" : "EUR"
+                },
+                "amount" : 213.5675511
+              },
+              "paymentDate" : {
+                "unadjustedDate" : {
+                  "value" : "2000-07-03T00:00:00Z"
+                },
+                "dateAdjustments" : {
+                  "businessDayConvention" : "NONE",
+                  "businessCentersOrReferenceModel" : { }
+                }
+              },
+              "pricePerOption" : {
+                "currency" : {
+                  "value" : "EUR"
+                },
+                "amount" : 2.70
+              }
+            }
+          },
+          "calculationAgentModel" : {
+            "calculationAgent" : {
+              "calculationAgentPartyReference" : [ {
+                "href" : "party1"
               } ]
             }
-          }
-        }
-      },
-      "equityExercise" : {
-        "equityEuropeanExercise" : {
-          "expirationDate" : {
-            "adjustableDate" : {
-              "unadjustedDate" : {
-                "value" : "2002-07-01T00:00:00Z"
+          },
+          "documentation" : {
+            "masterAgreement" : {
+              "masterAgreementType" : {
+                "value" : "ISDA"
               },
-              "dateAdjustments" : {
-                "businessDayConvention" : "NONE",
-                "businessCentersOrReferenceModel" : { }
+              "masterAgreementVersion" : {
+                "value" : "2002"
               }
-            }
+            },
+            "contractualDefinitions" : [ {
+              "value" : "ISDA2000"
+            }, {
+              "value" : "ISDA2002Equity"
+            } ]
           },
-          "equityExpirationModel" : {
-            "equityExpirationModelSequence" : {
-              "equityExpirationTimeType" : "Close"
-            }
+          "governingLaw" : {
+            "value" : "GBEN"
           }
-        },
-        "equityExerciseValuationSettlementSequence" : {
-          "automaticExercise" : true
-        },
-        "equityValuation" : {
-          "valuationTimeType" : "Close"
-        },
-        "settlementCurrency" : {
-          "value" : "EUR"
-        },
-        "settlementType" : "Cash"
-      },
-      "featureModel" : {
-        "feature" : {
-          "asian" : {
-            "averagingInOut" : "Out",
-            "averagingPeriodOut" : {
-              "averagingDateTimes" : {
-                "dateTime" : [ "2000-08-01T08:57:00Z", "2000-09-01T08:57:00Z", "2000-10-01T08:57:00Z", "2000-11-01T08:57:00Z", "2000-12-01T08:57:00Z", "2001-01-04T08:57:00Z", "2001-02-01T08:57:00Z", "2001-03-01T08:57:00Z" ]
-              },
-              "marketDisruption" : {
-                "value" : "ModifiedPostponement"
-              }
-            }
-          }
-        },
-        "fxFeature" : {
-          "referenceCurrency" : {
-            "value" : "JPY"
-          },
-          "composite" : { }
-        }
-      },
-      "methodOfAdjustment" : "CalculationAgent",
-      "extraordinaryEvents" : {
-        "indexAdjustmentEvents" : {
-          "indexModification" : "CalculationAgentAdjustment",
-          "indexCancellation" : "CancellationAndPayment",
-          "indexDisruption" : "CalculationAgentAdjustment"
-        },
-        "additionalDisruptionEvents" : {
-          "changeInLaw" : true,
-          "failureToDeliver" : true,
-          "insolvencyFiling" : false,
-          "hedgingDisruption" : true,
-          "stockLoanModel" : {
-            "lossOfStockBorrow" : true,
-            "increasedCostOfStockBorrow" : false
-          },
-          "increasedCostOfHedging" : false,
-          "determiningPartyReference" : {
-            "href" : "party1"
-          }
-        },
-        "representations" : {
-          "nonReliance" : true,
-          "agreementsRegardingHedging" : true,
-          "indexDisclaimer" : true,
-          "additionalAcknowledgements" : true
-        },
-        "exchangeIdentifierModel" : { }
-      },
-      "strike" : {
-        "strikePrice" : 17475.90,
-        "equityStrikeSequence" : { }
-      },
-      "numberOfOptions" : 79.099093,
-      "optionEntitlement" : 1.00,
-      "equityPremium" : {
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "party2"
-            }
-          },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "party1"
-            }
-          }
-        },
-        "paymentAmount" : {
-          "currency" : {
-            "value" : "EUR"
-          },
-          "amount" : 213.5675511
-        },
-        "paymentDate" : {
-          "unadjustedDate" : {
-            "value" : "2000-07-03T00:00:00Z"
-          },
-          "dateAdjustments" : {
-            "businessDayConvention" : "NONE",
-            "businessCentersOrReferenceModel" : { }
-          }
-        },
-        "pricePerOption" : {
-          "currency" : {
-            "value" : "EUR"
-          },
-          "amount" : 2.70
         }
       }
     },
-    "calculationAgentModel" : {
-      "calculationAgent" : {
-        "calculationAgentPartyReference" : [ {
-          "href" : "party1"
-        } ]
+    "postTradeEventsBaseModel" : {
+      "postTradeEventsBaseModelSequence" : { },
+      "postTradeEventsBaseModelChoice" : {
+        "postTradeEventsBaseModelChoiceSequence" : { }
       }
-    },
-    "documentation" : {
-      "masterAgreement" : {
-        "masterAgreementType" : {
-          "value" : "ISDA"
-        },
-        "masterAgreementVersion" : {
-          "value" : "2002"
-        }
-      },
-      "contractualDefinitions" : [ {
-        "value" : "ISDA2000"
-      }, {
-        "value" : "ISDA2002Equity"
-      } ]
-    },
-    "governingLaw" : {
-      "value" : "GBEN"
     }
-  } ],
+  },
   "partiesAndAccountsModel" : {
     "party" : [ {
       "partyModel" : {

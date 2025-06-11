@@ -1,177 +1,208 @@
 {
   "fpmlVersion" : "5-10",
+  "header" : {
+    "messageId" : {
+      "value" : "FX456a789b",
+      "messageIdScheme" : "http://www.executionnotificationservice.com/coding-scheme/messageId"
+    },
+    "messageHeaderModel" : {
+      "sentBy" : {
+        "value" : "EXECSRV",
+        "messageAddressScheme" : "http://www.executionnotificationservice.com/partyId"
+      },
+      "sendTo" : [ {
+        "value" : "PARTYA",
+        "messageAddressScheme" : "http://www.executionnotificationservice.com/partyId"
+      } ],
+      "creationTimestamp" : "2011-03-01T08:57:00Z"
+    }
+  },
   "validationModel" : { },
-  "trade" : [ {
-    "tradeHeader" : {
-      "tradeIdentifiersModel" : {
-        "tradeIdentifiersModelSequence" : {
-          "globalTradeIdentifiersModel" : {
-            "globalTradeIdentifiersModelSequence" : { }
+  "isCorrection" : false,
+  "correlationAndSequenceModel" : {
+    "correlationModel" : {
+      "correlationIdModel" : { }
+    },
+    "sequenceModel" : { }
+  },
+  "onBehalfOfModel" : { },
+  "tradingEventsBaseModel" : {
+    "tradingEventsBaseModelSequence" : {
+      "trade" : {
+        "tradeHeader" : {
+          "tradeIdentifiersModel" : {
+            "tradeIdentifiersModelSequence" : {
+              "globalTradeIdentifiersModel" : {
+                "globalTradeIdentifiersModelSequence" : { }
+              }
+            },
+            "partyTradeIdentifier" : [ {
+              "issuerTradeIdModel" : {
+                "tradeId" : {
+                  "value" : "12345",
+                  "tradeIdScheme" : "http://www.citi.com/fx/trade-id"
+                }
+              },
+              "tradeIdentifierSequence" : {
+                "partyAndAccountReferencesModel" : {
+                  "partyReference" : {
+                    "href" : "partyA"
+                  }
+                },
+                "tradeIdentifierSequenceChoice" : [ {
+                  "tradeId" : {
+                    "value" : "12345",
+                    "tradeIdScheme" : "http://www.citi.com/fx/trade-id"
+                  }
+                } ]
+              }
+            } ]
+          },
+          "tradeDate" : {
+            "value" : "2011-03-01T00:00:00Z",
+            "id" : "TradeDate"
           }
         },
-        "partyTradeIdentifier" : [ {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "12345",
-              "tradeIdScheme" : "http://www.citi.com/fx/trade-id"
-            }
+        "product" : {
+          "productModel" : {
+            "productType" : [ {
+              "value" : "FxVarianceSwap",
+              "productTypeScheme" : "http://www.fpml.org/coding-scheme/product-type-simple"
+            } ]
           },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
+          "quotedCurrencyPair" : {
+            "currency1" : {
+              "value" : "EUR"
+            },
+            "currency2" : {
+              "value" : "USD"
+            },
+            "quoteBasis" : "Currency2PerCurrency1"
+          },
+          "vegaNotional" : {
+            "currency" : {
+              "value" : "USD"
+            },
+            "amount" : 100000.00
+          },
+          "notional" : {
+            "currency" : {
+              "value" : "USD"
+            },
+            "amount" : 33112582.78
+          },
+          "fixedLeg" : {
+            "payerModel" : {
+              "payerPartyReference" : {
                 "href" : "partyA"
               }
             },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "12345",
-                "tradeIdScheme" : "http://www.citi.com/fx/trade-id"
+            "receiverModel" : { },
+            "fixedRate" : 0.1510
+          },
+          "floatingLeg" : {
+            "payerModel" : {
+              "payerPartyReference" : {
+                "href" : "partyB"
               }
-            } ]
-          }
-        } ]
-      },
-      "tradeDate" : {
-        "value" : "2011-03-01T00:00:00Z",
-        "id" : "TradeDate"
-      }
-    },
-    "product" : {
-      "productModel" : {
-        "productType" : [ {
-          "value" : "FxVarianceSwap",
-          "productTypeScheme" : "http://www.fpml.org/coding-scheme/product-type-simple"
-        } ]
-      },
-      "quotedCurrencyPair" : {
-        "currency1" : {
-          "value" : "EUR"
-        },
-        "currency2" : {
-          "value" : "USD"
-        },
-        "quoteBasis" : "Currency2PerCurrency1"
-      },
-      "vegaNotional" : {
-        "currency" : {
-          "value" : "USD"
-        },
-        "amount" : 100000.00
-      },
-      "notional" : {
-        "currency" : {
-          "value" : "USD"
-        },
-        "amount" : 33112582.78
-      },
-      "fixedLeg" : {
-        "payerModel" : {
-          "payerPartyReference" : {
-            "href" : "partyA"
-          }
-        },
-        "receiverModel" : { },
-        "fixedRate" : 0.1510
-      },
-      "floatingLeg" : {
-        "payerModel" : {
-          "payerPartyReference" : {
-            "href" : "partyB"
-          }
-        },
-        "receiverModel" : { }
-      },
-      "fixingInformationSource" : {
-        "primaryRateSource" : {
-          "rateSource" : {
-            "value" : "WM Company"
+            },
+            "receiverModel" : { }
           },
-          "rateSourcePage" : {
-            "value" : "Sponsor Mid Page"
-          }
-        },
-        "fixingTime" : {
-          "hourMinuteTime" : "16:00:00",
-          "businessCenter" : {
-            "value" : "GBLO"
-          }
-        }
-      },
-      "fixingSchedule" : {
-        "fxFixingScheduleSimpleSequence" : {
-          "startDate" : "2011-03-01T00:00:00Z"
-        },
-        "endDate" : "2011-03-31T00:00:00Z",
-        "dayType" : "Business",
-        "businessCentersOrReferenceModel" : {
-          "businessCenters" : {
-            "businessCenter" : [ {
-              "value" : "USNY"
-            } ]
-          }
-        }
-      },
-      "valuationDateOffset" : {
-        "periodMultiplier" : 1,
-        "period" : "D",
-        "dayType" : "Business",
-        "businessCentersOrReferenceModel" : {
-          "businessCenters" : {
-            "businessCenter" : [ {
-              "value" : "USNY"
-            } ]
-          }
-        }
-      },
-      "settlementDate" : {
-        "adjustableDateModel" : { },
-        "adjustedDate" : {
-          "value" : "2011-04-04T00:00:00Z"
-        }
-      },
-      "annualizationFactor" : 252,
-      "meanAdjustment" : true,
-      "numberOfReturns" : 22,
-      "additionalPayment" : [ {
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "partyA"
+          "fixingInformationSource" : {
+            "primaryRateSource" : {
+              "rateSource" : {
+                "value" : "WM Company"
+              },
+              "rateSourcePage" : {
+                "value" : "Sponsor Mid Page"
+              }
+            },
+            "fixingTime" : {
+              "hourMinuteTime" : "16:00:00",
+              "businessCenter" : {
+                "value" : "GBLO"
+              }
             }
           },
-          "receiverModel" : {
-            "receiverPartyReference" : {
+          "fixingSchedule" : {
+            "fxFixingScheduleSimpleSequence" : {
+              "startDate" : "2011-03-01T00:00:00Z"
+            },
+            "endDate" : "2011-03-31T00:00:00Z",
+            "dayType" : "Business",
+            "businessCentersOrReferenceModel" : {
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "USNY"
+                } ]
+              }
+            }
+          },
+          "valuationDateOffset" : {
+            "periodMultiplier" : 1,
+            "period" : "D",
+            "dayType" : "Business",
+            "businessCentersOrReferenceModel" : {
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "USNY"
+                } ]
+              }
+            }
+          },
+          "settlementDate" : {
+            "adjustableDateModel" : { },
+            "adjustedDate" : {
+              "value" : "2011-04-04T00:00:00Z"
+            }
+          },
+          "annualizationFactor" : 252,
+          "meanAdjustment" : true,
+          "numberOfReturns" : 22,
+          "additionalPayment" : [ {
+            "payerReceiverModel" : {
+              "payerModel" : {
+                "payerPartyReference" : {
+                  "href" : "partyA"
+                }
+              },
+              "receiverModel" : {
+                "receiverPartyReference" : {
+                  "href" : "partyB"
+                }
+              }
+            },
+            "paymentAmount" : {
+              "currency" : {
+                "value" : "USD"
+              },
+              "amount" : 5000.00
+            },
+            "paymentDate" : {
+              "adjustableDateModel" : { },
+              "adjustedDate" : {
+                "value" : "2011-03-03T00:00:00Z"
+              }
+            }
+          } ],
+          "cashSettlement" : {
+            "settlementCurrency" : {
+              "value" : "USD"
+            }
+          }
+        },
+        "calculationAgentModel" : {
+          "calculationAgent" : {
+            "calculationAgentPartyReference" : [ {
               "href" : "partyB"
-            }
-          }
-        },
-        "paymentAmount" : {
-          "currency" : {
-            "value" : "USD"
-          },
-          "amount" : 5000.00
-        },
-        "paymentDate" : {
-          "adjustableDateModel" : { },
-          "adjustedDate" : {
-            "value" : "2011-03-03T00:00:00Z"
+            } ]
           }
         }
-      } ],
-      "cashSettlement" : {
-        "settlementCurrency" : {
-          "value" : "USD"
-        }
-      }
-    },
-    "calculationAgentModel" : {
-      "calculationAgent" : {
-        "calculationAgentPartyReference" : [ {
-          "href" : "partyB"
-        } ]
       }
     }
-  } ],
+  },
+  "optionsEventsBaseModel" : { },
+  "eventValuationModel" : { },
   "partiesAndAccountsModel" : {
     "party" : [ {
       "partyModel" : {
