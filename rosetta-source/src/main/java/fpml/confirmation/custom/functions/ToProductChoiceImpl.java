@@ -11,20 +11,20 @@ public class ToProductChoiceImpl extends ToProductChoice {
             return builder.setBondOption(((BondOption) product));
         } else if (product instanceof BrokerEquityOption) {
             return builder.setBrokerEquityOption(((BrokerEquityOption) product));
-//        } else if (product instanceof BulletPayment) {
-//            return builder.setBulletPayment(((BulletPayment) product));
+        } else if (product instanceof BulletPayment) {
+            return builder.setBulletPayment(((BulletPayment) product));
         } else if (product instanceof CapFloor) {
             return builder.setCapFloor(((CapFloor) product));
         } else if (product instanceof CommodityBasketOption) {
             return builder.setCommodityBasketOption(((CommodityBasketOption) product));
-//        } else if (product instanceof CommodityDigitalOption) {
-//            return builder.setCommodityDigitalOption(((CommodityDigitalOption) product));
+        } else if (product instanceof CommodityDigitalOption) {
+            return builder.setCommodityDigitalOption(((CommodityDigitalOption) product));
         } else if (product instanceof CommodityForward) {
             return builder.setCommodityForward(((CommodityForward) product));
         } else if (product instanceof CommodityOption) {
             return builder.setCommodityOption(((CommodityOption) product));
-//        } else if (product instanceof CommodityPerformanceSwap) {
-//            return builder.setCommodityPerformanceSwap(((CommodityPerformanceSwap) product));
+        } else if (product instanceof CommodityPerformanceSwap) {
+            return builder.setCommodityPerformanceSwap(((CommodityPerformanceSwap) product));
         } else if (product instanceof CommoditySwap) {
             return builder.setCommoditySwap(((CommoditySwap) product));
         } else if (product instanceof CommoditySwaption) {
@@ -33,8 +33,8 @@ public class ToProductChoiceImpl extends ToProductChoice {
             return builder.setCorrelationSwap(((CorrelationSwap) product));
         } else if (product instanceof CreditDefaultSwap) {
             return builder.setCreditDefaultSwap(((CreditDefaultSwap) product));
-//        } else if (product instanceof CreditDefaultSwapOption) {
-//            return builder.setCreditDefaultSwapOption(((CreditDefaultSwapOption) product));
+        } else if (product instanceof CreditDefaultSwapOption) {
+            return builder.setCreditDefaultSwapOption(((CreditDefaultSwapOption) product));
         } else if (product instanceof DividendSwapOptionTransactionSupplement) {
             return builder.setDividendSwapOptionTransactionSupplement(((DividendSwapOptionTransactionSupplement) product));
         } else if (product instanceof DividendSwapTransactionSupplement) {
@@ -59,8 +59,8 @@ public class ToProductChoiceImpl extends ToProductChoice {
             return builder.setFxDigitalOption(((FxDigitalOption) product));
 //        } else if (product instanceof FxFlexibleForward) {
 //            return builder.setFxFlexibleForward(((FxFlexibleForward) product));
-//        } else if (product instanceof FxForwardVolatilityAgreement) {
-//            return builder.setFxForwardVolatilityAgreement(((FxForwardVolatilityAgreement) product));
+        } else if (product instanceof FxForwardVolatilityAgreement) {
+            return builder.setFxForwardVolatilityAgreement(((FxForwardVolatilityAgreement) product));
         } else if (product instanceof FxOption) {
             return builder.setFxOption(((FxOption) product));
 //        } else if (product instanceof FxRangeAccrual) {
