@@ -4,7 +4,7 @@ stages:
   - finalise
 steps:
   main_clone:
-    stage: 'build'
+    stage: 'setup'
     title: Cloning main repository...
     type: git-clone
     git: rosetta-models
@@ -12,6 +12,7 @@ steps:
     revision: "${{CF_REVISION}}"
 
   BuildProperties:
+    stage: 'setup'
     title: Setup shared build properties
     image: alpine
     commands:
@@ -27,7 +28,7 @@ steps:
       - cf_export MVN_CLI_OPT="-Dmaven.repo.local=\"${{CF_VOLUME_PATH}}/${{CF_REPO_NAME}}_m2/repository\""
 
   TagReleaseName:
-    stage: 'build'
+    stage: 'setup'
     title: Setup RELEASE_NAME variable with tag
     image: alpine/git
     when:
@@ -38,7 +39,7 @@ steps:
       - cf_export RELEASE_NAME=${{TAG_NAME}}
 
   BranchReleaseName:
-    stage: 'build'
+    stage: 'setup'
     title: Setup RELEASE_NAME variable with branch name
     image: alpine/git
     when:
@@ -49,6 +50,7 @@ steps:
       - cf_export RELEASE_NAME=${{GLOBAL_RELEASE_VERSION}}.${{CF_BRANCH_TAG_NORMALIZED}}-SNAPSHOT
 
   ReleaseProperties:
+    stage: 'setup'
     title: Setup release build
     image: alpine/git
     when:
@@ -59,6 +61,7 @@ steps:
       - cf_export MVN_SET_VERSION="versions:set -DnewVersion=${{RELEASE_NAME}}"
 
   BranchProperties:
+    stage: 'setup'
     title: Setup branch build
     image: alpine/git
     when:
