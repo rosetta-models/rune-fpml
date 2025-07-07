@@ -1,10 +1,11 @@
 version: "1.0"
 stages:
+  - setup
   - build
   - finalise
 steps:
   main_clone:
-    stage: 'build'
+    stage: 'setup'
     title: Cloning main repository...
     type: git-clone
     git: rosetta-models
@@ -12,6 +13,7 @@ steps:
     revision: "${{CF_REVISION}}"
 
   BuildProperties:
+    stage: 'setup'
     title: Setup shared build properties
     image: alpine
     commands:
@@ -19,8 +21,15 @@ steps:
       - cf_export GOOGLE_APPLICATION_CREDENTIALS="${{CF_VOLUME_PATH}}"/sa
       - cf_export GPG_IMPORT_COMMAND="cat <(echo -e '${{GPG_PRIVATE_KEY}}') | gpg --batch --import" --mask
 
+  MvnSettings:
+    stage: 'setup'
+    title: Setup Maven settings
+    image: alpine/git
+    commands:
+      - cf_export MVN_CLI_OPT="-Dmaven.repo.local=\"${{CF_VOLUME_PATH}}/${{CF_REPO_NAME}}_m2/repository\""
+
   TagReleaseName:
-    stage: 'build'
+    stage: 'setup'
     title: Setup RELEASE_NAME variable with tag
     image: alpine/git
     when:
@@ -31,7 +40,7 @@ steps:
       - cf_export RELEASE_NAME=${{TAG_NAME}}
 
   BranchReleaseName:
-    stage: 'build'
+    stage: 'setup'
     title: Setup RELEASE_NAME variable with branch name
     image: alpine/git
     when:
@@ -42,6 +51,7 @@ steps:
       - cf_export RELEASE_NAME=${{GLOBAL_RELEASE_VERSION}}.${{CF_BRANCH_TAG_NORMALIZED}}-SNAPSHOT
 
   ReleaseProperties:
+    stage: 'setup'
     title: Setup release build
     image: alpine/git
     when:
@@ -52,6 +62,7 @@ steps:
       - cf_export MVN_SET_VERSION="versions:set -DnewVersion=${{RELEASE_NAME}}"
 
   BranchProperties:
+    stage: 'setup'
     title: Setup branch build
     image: alpine/git
     when:
@@ -64,7 +75,6 @@ steps:
   Build:
     stage: 'build'
     title: Maven build
-    fail_fast: false
     no_cache: true
     no_cf_cache: true
     image: maven:3.9.9-eclipse-temurin-21-alpine
@@ -76,40 +86,7 @@ steps:
       - export CI_DEPLOY_PASSWORD="${{CI_DEPLOY_PASSWORD}}"
       - export GPG_KEYNAME="${{GPG_KEYNAME}}"
       - export GPG_PASSPHRASE="${{GPG_PASSPHRASE}}"
-      - mvn -s settings.xml -U -B clean deploy -P gpg
-
-  NotifySlackOnFail:
-    stage: 'finalise'
-    title: Trigger Slack dev channel notification if master build failed
-    image: codefresh/cli
-    when:
-      branch:
-        only:
-          - master
-      condition:
-        any:
-          buildNormalFailed: steps.Build.result == 'error'
-    commands:
-      - export SAFE_COMMIT_AUTHOR='${{CF_COMMIT_AUTHOR}}'
-      - export COMMIT_AUTHOR=${SAFE_COMMIT_AUTHOR:-MissingAuthor}
-      - export SAFE_REPO_NAME='${{CF_REPO_NAME}}'
-      - export REPO_NAME=${SAFE_REPO_NAME:-NoRepo}
-      - export SAFE_COMMIT_MESSAGE='${{CF_COMMIT_MESSAGE}}'
-      - export COMMIT_MESSAGE=${SAFE_COMMIT_MESSAGE:-NoCommitMsg}
-      - echo Author is $SAFE_COMMIT_AUTHOR and commit msg is $SAFE_COMMIT_MESSAGE and repo is $SAFE_REPO_NAME
-      - echo After substitution author is $COMMIT_AUTHOR and commit msg is $COMMIT_MESSAGE and repo is $REPO_NAME
-      - codefresh run slack-notifier -v REPO_NAME="${REPO_NAME}" -v COMMIT_AUTHOR="${COMMIT_AUTHOR}" -v COMMIT_MESSAGE="${COMMIT_MESSAGE}"  --detach
-
-  FailPipeline:
-    stage: 'finalise'
-    title: Fail pipeline if the Maven build failed
-    image: codefresh/cli
-    when:
-      condition:
-        any:
-          normalBuildFailure: steps.Build.result == 'failure'
-    commands:
-      - exit 1
+      - mvn -s settings.xml -U -B ${{MVN_CLI_OPT}} install org.sonatype.central:central-publishing-maven-plugin:0.7.0:publish -P release
 
   TagRepo:
     stage: 'finalise'
