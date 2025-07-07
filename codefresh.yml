@@ -64,7 +64,6 @@ steps:
   Build:
     stage: 'build'
     title: Maven build
-    fail_fast: false
     no_cache: true
     no_cf_cache: true
     image: maven:3.9.9-eclipse-temurin-21-alpine
@@ -76,40 +75,7 @@ steps:
       - export CI_DEPLOY_PASSWORD="${{CI_DEPLOY_PASSWORD}}"
       - export GPG_KEYNAME="${{GPG_KEYNAME}}"
       - export GPG_PASSPHRASE="${{GPG_PASSPHRASE}}"
-      - mvn -s settings.xml -U -B clean deploy -P gpg
-
-  NotifySlackOnFail:
-    stage: 'finalise'
-    title: Trigger Slack dev channel notification if master build failed
-    image: codefresh/cli
-    when:
-      branch:
-        only:
-          - master
-      condition:
-        any:
-          buildNormalFailed: steps.Build.result == 'error'
-    commands:
-      - export SAFE_COMMIT_AUTHOR='${{CF_COMMIT_AUTHOR}}'
-      - export COMMIT_AUTHOR=${SAFE_COMMIT_AUTHOR:-MissingAuthor}
-      - export SAFE_REPO_NAME='${{CF_REPO_NAME}}'
-      - export REPO_NAME=${SAFE_REPO_NAME:-NoRepo}
-      - export SAFE_COMMIT_MESSAGE='${{CF_COMMIT_MESSAGE}}'
-      - export COMMIT_MESSAGE=${SAFE_COMMIT_MESSAGE:-NoCommitMsg}
-      - echo Author is $SAFE_COMMIT_AUTHOR and commit msg is $SAFE_COMMIT_MESSAGE and repo is $SAFE_REPO_NAME
-      - echo After substitution author is $COMMIT_AUTHOR and commit msg is $COMMIT_MESSAGE and repo is $REPO_NAME
-      - codefresh run slack-notifier -v REPO_NAME="${REPO_NAME}" -v COMMIT_AUTHOR="${COMMIT_AUTHOR}" -v COMMIT_MESSAGE="${COMMIT_MESSAGE}"  --detach
-
-  FailPipeline:
-    stage: 'finalise'
-    title: Fail pipeline if the Maven build failed
-    image: codefresh/cli
-    when:
-      condition:
-        any:
-          normalBuildFailure: steps.Build.result == 'failure'
-    commands:
-      - exit 1
+      - mvn -s settings.xml -U -B ${{MVN_CLI_OPT}} install org.sonatype.central:central-publishing-maven-plugin:0.7.0:publish -P release
 
   TagRepo:
     stage: 'finalise'
