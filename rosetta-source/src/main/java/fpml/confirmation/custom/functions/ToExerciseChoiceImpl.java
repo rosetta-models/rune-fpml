@@ -17,6 +17,8 @@ public class ToExerciseChoiceImpl extends ToExerciseChoice {
             builder.setCommodityAmericanExercise((CommodityAmericanExercise) exercise);
         } else if (exercise instanceof FxAmericanExercise) {
             builder.setFxAmericanExercise((FxAmericanExercise) exercise);
+        } else if (exercise instanceof FxDigitalAmericanExercise) {
+            builder.setFxDigitalAmericanExercise((FxDigitalAmericanExercise) exercise);
         } else if (exercise instanceof AmericanExercise) {
             builder.setAmericanExercise((AmericanExercise) exercise);
         } else if (exercise instanceof BermudaExercise) {

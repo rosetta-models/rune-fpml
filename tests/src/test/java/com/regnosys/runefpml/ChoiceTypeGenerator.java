@@ -38,7 +38,7 @@ public class ChoiceTypeGenerator {
         List<RosettaModel> models = getModels(".");
 
         Set<Data> dataTypes = getDataTypes(models);
-        Data leg = findDataType(dataTypes, "Document");
+        Data leg = findDataType(dataTypes, "Exercise");
 
         Node parent = new Node(leg, null);
         findSubTypes(dataTypes, leg, parent);
