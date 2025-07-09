@@ -38,6 +38,8 @@ public class ToAssetChoiceImpl extends ToAssetChoice {
             return builder.setOptionElement(((OptionElement) asset));
         } else if (asset instanceof Warrant) {
             return builder.setWarrant(((Warrant) asset));
+        } else if (asset instanceof ExchangeTradedContract) {
+            return builder.setExchangeTradedContract(((ExchangeTradedContract) asset));
         } else if (asset instanceof ExchangeTradedFund) {
             return builder.setExchangeTradedFund(((ExchangeTradedFund) asset));
         } else if (asset instanceof Index) {
