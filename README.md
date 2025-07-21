@@ -2,7 +2,7 @@
 
 # FpML as Rune
 
-This repository is a [Rune DSL](https://github.com/finos/rune-dsl) model that contains Rune representation of the FpML 5.13 schema, Confirmation view.  The model was created by the importing the FpML schema .xsd files, and translating each FpML schema complex type into a equivalent Rune data type, e.g., FpML `<dataDocument>` is imported into the Rune model as type `DataDocument`.
+This repository is a [Rune DSL](https://github.com/finos/rune-dsl) model that contains Rune representation of the FpML 5.13 schema, Confirmation view.  The model was created by the importing the FpML schema .xsd files, which translates each FpML schema complex type into a equivalent Rune data type, e.g., FpML `<dataDocument>` is imported into the Rune model as type `DataDocument`.
 
 ---
 
