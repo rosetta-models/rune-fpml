@@ -22,7 +22,7 @@ This repository is a [Rune DSL](https://github.com/finos/rune-dsl) model that co
 
 ## 📚 Further Reading
 
-* Learn more about how Rune DSL maps FpML into Rune model in the documentation ([Rosetta Documentation][6]).
+* Learn more about how Rune DSL maps FpML into Rune model in the [documentation](https://docs.rosetta-technology.io/rosetta/rune-dsl/).
 
 ---
 
