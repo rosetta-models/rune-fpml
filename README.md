@@ -28,4 +28,3 @@ This repository is a [Rune DSL](https://github.com/finos/rune-dsl) model that co
 - The FpML Specifications distributed under the License are distributed on an “AS IS” basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License for the specific language governing rights and limitations under the License.
 - The Licensor of the FpML Specifications is the International Swaps and Derivatives Association, Inc. All Rights Reserved.
 
----
