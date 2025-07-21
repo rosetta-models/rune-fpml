@@ -20,7 +20,7 @@ This repository is a [Rune DSL](https://github.com/finos/rune-dsl) model that co
 
 ## 📄 License
 
-Apache License 2.0
+[Apache License 2.0](https://apache.org/licenses/LICENSE-2.0)
 
 ### Exhibit A
 
