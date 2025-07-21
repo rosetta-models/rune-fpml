@@ -32,12 +32,6 @@ This repository contains:
 </dependency>
 ```
 
-Or with Gradle:
-
-```groovy
-implementation "com.regnosys.rune-fpml:rosetta-source:0.8.1"
-```
-
 ---
 
 ## 🚀 How It Works
@@ -69,18 +63,7 @@ implementation "com.regnosys.rune-fpml:rosetta-source:0.8.1"
 
 ## 📚 Further Reading
 
-* [Rosetta Models](https://github.com/rosetta-models) overview: home to CDM, Rune DSL, and model extensions ([GitHub][5]).
-* Learn more about how Rune maps FpML into Rosetta in the Rune Modelling component docs ([Rosetta Documentation][6]).
-
----
-
-## 🛠️ Contributing
-
-Contributions welcome! Please open issues or pull requests for:
-
-* Adding new FpML message types
-* Fixing / expanding mappings and annotations
-* Support for more FpML code lists or newer schema versions
+* Learn more about how Rune DSL maps FpML into Rune model in the documentation ([Rosetta Documentation][6]).
 
 ---
 
@@ -88,13 +71,8 @@ Contributions welcome! Please open issues or pull requests for:
 
 Apache License 2.0
 
+- The FpML Specifications of this document are subject to the FpML Public License (the “License”); you may not use the FpML Specifications except in compliance with the License. You may obtain a copy of the License at http://www.FpML.org.
+- The FpML Specifications distributed under the License are distributed on an “AS IS” basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License for the specific language governing rights and limitations under the License.
+- The Licensor of the FpML Specifications is the International Swaps and Derivatives Association, Inc. All Rights Reserved.
+
 ---
-
-Let me know if you'd like to expand on usage examples or integration steps!
-
-[1]: https://mvnrepository.com/artifact/com.regnosys.rune-fpml/rosetta-source/0.8.1?utm_source=chatgpt.com "rosetta-source » 0.8.1 - com.regnosys.rune-fpml - Maven Repository"
-[2]: https://github.com/finos/rune-dsl/issues/879?utm_source=chatgpt.com "Loading External Reference Data into CDM - FpML Coding Schemes"
-[3]: https://github.com/REGnosys/rosetta-dsl/releases?utm_source=chatgpt.com "Releases · finos/rune-dsl - GitHub"
-[4]: https://github.com/REGnosys/rosetta-code-generators?utm_source=chatgpt.com "Write code generators for any language, based on the rosetta DSL"
-[5]: https://github.com/rosetta-models?utm_source=chatgpt.com "rosetta-models - GitHub"
-[6]: https://docs.rosetta-technology.io/rosetta/rosetta-dsl/rune-modelling-component/?utm_source=chatgpt.com "Rune Modelling Components - Rosetta Documentation"
