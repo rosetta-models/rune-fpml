@@ -14,7 +14,7 @@ This repository is a [Rune DSL](https://github.com/finos/rune-dsl) model that co
 <dependency>
   <groupId>com.regnosys.rune-fpml</groupId>
   <artifactId>rosetta-source</artifactId>
-  <version>0.8.1</version>
+  <version>0.16.1</version>
 </dependency>
 ```
 
