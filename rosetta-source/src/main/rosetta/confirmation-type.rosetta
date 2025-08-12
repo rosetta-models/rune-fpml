@@ -867,7 +867,7 @@ type RequestConsent extends CorrectableRequestMessage: <"A message requesting th
     [rootType]
 
     requestedAction RequestedAction (0..1) <"The reason the consent was requested.">
-    ^type ApprovalType (0..1) <"The type of approval (e.g. \"pre-clearing credit\").">
+    _type ApprovalType (0..1) <"The type of approval (e.g. \"pre-clearing credit\").">
     approver PersonId (0..1) <"The full name or identifiying ID of the relevant approver.">
     approvingPartyReference PartyReference (0..1) <"A pointer style reference to a party defined elsewhere in the document. The party referenced needs to approve the specified item (e.g. trade or allocation).">
     portfolioReferenceModel PortfolioReferenceModel (0..1)
@@ -883,7 +883,7 @@ type RequestConsent extends CorrectableRequestMessage: <"A message requesting th
 type RequestConsentRetracted extends NonCorrectableRequestMessage: <"A message withdrawing a request that the sender be authorized by the recipient to peform an action.">
     [rootType]
 
-    ^type ApprovalType (0..1) <"The type of approval (e.g. \"pre-clearing credit\").">
+    _type ApprovalType (0..1) <"The type of approval (e.g. \"pre-clearing credit\").">
     approver PersonId (0..1) <"The full name or identifiying ID of the relevant approver.">
     approvingPartyReference PartyReference (0..1) <"A pointer style reference to a party defined elsewhere in the document. The party referenced needs to approve the specified item (e.g. trade or allocation).">
     tradingAndPostTradeEventsModel TradingAndPostTradeEventsModel (0..1)
@@ -902,7 +902,7 @@ type ConsentException extends Exception:
 type ConsentGranted extends ResponseMessage: <"A message indicating that the sender grants consent for the recipient to perform the requested action.">
     [rootType]
 
-    ^type ApprovalType (0..1) <"The type of approval (e.g. \"pre-clearing credit\").">
+    _type ApprovalType (0..1) <"The type of approval (e.g. \"pre-clearing credit\").">
     approver PersonId (0..1) <"The full name or identifiying ID of the relevant approver.">
     approvingPartyReference PartyReference (0..1) <"A pointer style reference to a party defined elsewhere in the document. The party referenced needs to approve the specified item (e.g. trade or allocation).">
     approvalId ApprovalId (0..1) <"An identifer for a specific appoval, to allow the approval to be identified and tracked.">
@@ -914,7 +914,7 @@ type ConsentGranted extends ResponseMessage: <"A message indicating that the sen
 type ConsentRefused extends ResponseMessage: <"A message indicating that the sender does not grant consent for the recipient to perform the requested action.">
     [rootType]
 
-    ^type ApprovalType (0..1) <"The type of approval (e.g. \"pre-clearing credit\").">
+    _type ApprovalType (0..1) <"The type of approval (e.g. \"pre-clearing credit\").">
     approver PersonId (0..1) <"The full name or identifiying ID of the relevant approver.">
     approvingPartyReference PartyReference (0..1) <"A pointer style reference to a party defined elsewhere in the document. The party referenced needs to approve the specified item (e.g. trade or allocation).">
     portfolioReferenceBaseModel PortfolioReferenceBaseModel (0..1)
@@ -1177,7 +1177,7 @@ type AccruingFeeChange extends AbstractFacilityEvent: <"An event describing a fu
 type AccruingFeeExpiry extends AbstractFacilityEvent: <"An event describing a future expiry of one of the accruing fees associated with a specific facility.">
 
     id AccrualTypeId (1..1) <"A unique id associated with the loan accrual type.">
-    ^type AccruingFeeType (1..1) <"The accruing fee type which is expiring.">
+    _type AccruingFeeType (1..1) <"The accruing fee type which is expiring.">
 
 type AccruingFeePayment extends AbstractFacilityEvent: <"An event describing an accruing fee payment made at the facility level.">
 
@@ -1227,11 +1227,11 @@ type MandatoryCostRateExpiry extends AbstractFacilityContractEvent: <"An event r
 
 type MiscFeePayment extends AbstractFacilityPaymentEvent: <"An event describing a misc (one-off) fee being paid at either the loan contract or facility level.">
 
-    ^type MiscFeeType (0..1) <"The misc fee type, based on a scheme.">
+    _type MiscFeeType (0..1) <"The misc fee type, based on a scheme.">
     description NonEmptyNormalizedString (0..1) <"A description of the misc fee.">
 
     condition Choice:
-        required choice ^type, description
+        required choice _type, description
 
 type PenaltyRateChange extends AbstractFacilityRateChangeEvent: <"An event representing a change in the penalty rate applicable to outstanding loans.">
 
@@ -4364,14 +4364,14 @@ type CoalDeliveryPoint: <"A scheme identifying the types of the Delivery Point f
 
 type CoalProduct: <"A type defining the characteristics of the coal being traded in a physically settled gas transaction.">
 
-    ^type CoalProductType (0..1) <"The type of coal product to be delivered by reference to a pre-defined specification. For contracts under SCoTA terms this is the quality specification code (e.g. \"DES ARA\")">
+    _type CoalProductType (0..1) <"The type of coal product to be delivered by reference to a pre-defined specification. For contracts under SCoTA terms this is the quality specification code (e.g. \"DES ARA\")">
     coalProductSpecifications CoalProductSpecifications (0..1) <"The type of coal product to be delivered specified in full.">
     source CoalProductSource (1..*) <"The SCoTA cargo origin, mining region, mine(s), mining complex(es), loadout(s) or river dock(s) or other point(s) of origin that Seller and Buyer agree are acceptable origins for the Coal Product. For International Coal transactions, this is the Origin of the Coal Product.">
     sCoTASpecifications boolean (0..1) <"Indicates whether type and source refer to globalCOAL SCoTA specifications.">
     commodityUSCoalProductModel CommodityUSCoalProductModel (0..1)
 
     condition Choice:
-        required choice ^type, coalProductSpecifications
+        required choice _type, coalProductSpecifications
 
 type CoalProductSource: <"A scheme identifying the sources of coal for a physically settled coal trade.">
 
@@ -5049,7 +5049,7 @@ type ElectricityPhysicalQuantity extends CommodityPhysicalQuantityBase: <"The qu
 
 type ElectricityProduct: <"The specification of the electricity to be delivered.">
 
-    ^type ElectricityProductTypeEnum (1..1) <"The type of electricity product to be delivered.">
+    _type ElectricityProductTypeEnum (1..1) <"The type of electricity product to be delivered.">
     voltage PositiveDecimal (0..1) <"The voltage, expressed as a number of volts, of the electricity to be delivered.">
 
 type ElectricityTransmissionContingency: <"A structure to specify the tranmission contingency and the party that bears the obligation.">
@@ -5172,7 +5172,7 @@ type GasPhysicalQuantitySequence:
 
 type GasProduct: <"A type defining the characteristics of the gas being traded in a physically settled gas transaction.">
 
-    ^type GasProductTypeEnum (1..1) <"The type of gas to be delivered.">
+    _type GasProductTypeEnum (1..1) <"The type of gas to be delivered.">
     calorificValue NonNegativeDecimal (0..1) <"The calorific value of the gas to be delivered, specified in megajoules per cubic meter (MJ/m3).">
     quality GasQuality (0..1) <"The quality of the gas to be delivered.">
 
@@ -5257,7 +5257,7 @@ type OilPipelineDelivery: <"The physical delivery conditions specific to an oil 
 
 type OilProduct: <"The specification of the oil product to be delivered.">
 
-    ^type OilProductType (1..1) <"The type of oil product to be delivered.">
+    _type OilProductType (1..1) <"The type of oil product to be delivered.">
     grade CommodityProductGrade (1..1) <"The grade of oil product to be delivered.">
 
 type OilProductType: <"The type of physical commodity product to be delivered.">
@@ -6373,7 +6373,7 @@ type AccrualTypeId: <"A structure used to uniquely identify a single accrual typ
 
 type AccruingFeeOption extends FeeRateOptionBase: <"A structure that represents the accruing fee option associated within a facility.">
 
-    ^type AccruingFeeType (1..1) <"The accruing fee type for which a rate is being provided.">
+    _type AccruingFeeType (1..1) <"The accruing fee type for which a rate is being provided.">
     periodOptionalEndModel PeriodOptionalEndModel (1..1)
     calculationDefinition NonEmptyNormalizedString (0..1) <"A freetext field which allows the sender to add further details around the business event.">
 
@@ -6636,7 +6636,7 @@ type FeeRateOptionBase extends AbstractAccrualOptionBase: <"An abstract type tha
 
 type FinancialMetric: <"A structure to describe a financial statement of balance sheet metric.">
 
-    ^type FinancialMetricType (1..1) <"A financial metric value type, based on a scheme.">
+    _type FinancialMetricType (1..1) <"A financial metric value type, based on a scheme.">
     description NonEmptyNormalizedString (0..1) <"An optional free form text field to further describe the financial metric.">
 
 type FinancialMetricType: <"A structure used to uniquely identify a financial metric type, described by a scheme.">
@@ -6704,7 +6704,7 @@ type LcFeeTypeId: <"A structure used to uniquely identify a single letter of cre
 type LcOption extends FeeRateOptionBase: <"A structure that represents the accruing L/C rate option associated within a facility.">
 
     periodModel PeriodModel (1..1)
-    ^type LcType (1..1) <"The letter of credit type for which a fee rate is being provided.">
+    _type LcType (1..1) <"The letter of credit type for which a fee rate is being provided.">
     minLcIssuanceFeeAmount MoneyWithParticipantShare (0..1) <"The letter of credit notional amount. The amount is represented at the global and (optionally) atthe lender-specific level.">
 
 type LcPurpose: <"A list of L/C purposes.">
@@ -6814,7 +6814,7 @@ type LetterOfCreditReference extends Reference: <"A reference to a letter of cre
 
 type LetterOfCreditSummary extends LoanContractIdentifier: <"A short form definition of a letter of credit.">
 
-    ^type LcType (1..1) <"The letter of credit type for which a fee rate is being provided.">
+    _type LcType (1..1) <"The letter of credit type for which a fee rate is being provided.">
     effectiveDate zonedDateTime (1..1) <"Effective date of the letter of credit.">
     letterOfCreditRolesModel LetterOfCreditRolesModel (1..1)
     amount MoneyWithParticipantShare (1..1) <"The letter of credit notional amount. The amount is represented at the global and (optionally) at the lender-specific level.">
@@ -6887,7 +6887,7 @@ type LoanAllocationSettlementDateAvailabilitySequence:
 type LoanAllocationSettlementTask extends AbstractTask: <"A structure that details tasks and their statuses, the completion of which are prerequisites to the settlement of a trade or allocation.">
 
     allocationReference LoanAllocationReference (1..*) <"Reference to a unique allocation id used to identify the allocation record.">
-    ^type LoanAllocationSettlementTaskType (1..1) <"The type of the settlement task.">
+    _type LoanAllocationSettlementTaskType (1..1) <"The type of the settlement task.">
 
 type LoanAllocationSettlementTaskType: <"A structure used to uniquely identify a settlement task type within a syndicated loan structure.">
 
@@ -6987,7 +6987,7 @@ type LoanCovenantObligation extends AbstractLoanCovenantObligation: <"A syndicat
 type LoanCovenantObligationSequence:
 
     category LoanCovenantObligationCategoryType (1..1) <"A structure used to uniquely identify a loan covenant obligation category, based on a scheme.">
-    ^type LoanCovenantObligationType (1..1) <"A structure used to uniquely identify a loan covenant obligation type, based on a scheme.">
+    _type LoanCovenantObligationType (1..1) <"A structure used to uniquely identify a loan covenant obligation type, based on a scheme.">
     loanCovenantObligationSequenceChoice LoanCovenantObligationSequenceChoice (0..*)
     loanCovenantObligationSequenceSequence LoanCovenantObligationSequenceSequence (0..1)
 
@@ -7051,7 +7051,7 @@ type LoanCovenantObligationMetricSequence:
 
 type LoanCovenantObligationMetricAdjustment: <"A structure to describe adjustments to a covenant obligation metric (e.g. previous quarter, previous month, etc.)">
 
-    ^type MetricAdjustmentType (1..1) <"A metric adjustment value type, based on a scheme (e.g. previous quarter(s), previous month(s), rolling month(s), etc.)">
+    _type MetricAdjustmentType (1..1) <"A metric adjustment value type, based on a scheme (e.g. previous quarter(s), previous month(s), rolling month(s), etc.)">
     amount int (0..1) <"An element to optionally detail the number of units described by the metric adjustment type (e.g. if metric adjustment type is previous quarter, this element describes number of quarters).">
 
 type LoanCovenantObligationMetricCalculationDetails: <"A structure to describe the detail of the calculation of the target criteria of a covenant obligation metric.">
@@ -7088,7 +7088,7 @@ type LoanCovenantObligationTriggerCriteriaDetails: <"A structure to describe the
 type LoanCovenantObligationTask extends AbstractTask: <"A structure to describe a covenant obligation task.">
 
     covenantReference LoanCovenantObligationReference (1..1) <"A reference to a loan covenant obligation.">
-    ^type LoanCovenantObligationTaskType (1..1) <"The type of the loan covenant obligation task.">
+    _type LoanCovenantObligationTaskType (1..1) <"The type of the loan covenant obligation task.">
     description NonEmptyNormalizedString (0..1)
 
 type LoanCovenantObligationTaskType: <"A structure used to uniquely identify a loan covenant obligation task type.">
@@ -7160,7 +7160,7 @@ type LoanLegalActionSequence:
 type LoanLegalActionApprovalStatus extends AbstractApproval: <"A structure that provides global level approval status on a legal action.">
 
     legalActionReference LoanLegalActionReference (1..1)
-    ^type LoanLegalActionApprovalStatusType (1..1) <"Approved status as of the effective date, based on a scheme.">
+    _type LoanLegalActionApprovalStatusType (1..1) <"Approved status as of the effective date, based on a scheme.">
     description NonEmptyNormalizedString (0..1) <"A free form text field to further describe the approval status.">
 
 type LoanLegalActionApprovalStatusType: <"A structure used to identify a legal action approval status type, based on a scheme.">
@@ -7215,7 +7215,7 @@ type LoanLegalActionStatus: <"A structure to describe the overall loan legal act
 
     effectiveDate zonedDateTime (0..1) <"The effective date of the loan legal action status details.">
     legalActionReference LoanLegalActionReference (1..1)
-    ^type LoanLegalActionStatusType (1..1) <"Loan legal action status as of the effective date, based on a scheme.">
+    _type LoanLegalActionStatusType (1..1) <"Loan legal action status as of the effective date, based on a scheme.">
     description NonEmptyNormalizedString (0..1) <"A free form field to provide additional description of the legal action status.">
     id string (0..1)
 
@@ -7236,7 +7236,7 @@ type LoanLegalActionSummary extends LegalActionIdentifier: <"A syndicated bank l
 type LoanLegalActionTask extends AbstractTask: <"A structure that details tasks and their statuses, the completion of which are prerequisites to a legal action.">
 
     legalActionReference LoanLegalActionReference (1..1) <"Reference to a legal action.">
-    ^type LoanLegalActionTaskType (1..1) <"The type of the legal action task.">
+    _type LoanLegalActionTaskType (1..1) <"The type of the legal action task.">
     description NonEmptyNormalizedString (0..1) <"A free form field to provide addition description of the legal action task.">
 
 type LoanLegalActionTaskType: <"A structure that uniquely identifies a task type within a legal action structure.">
@@ -7320,7 +7320,7 @@ type LoanTradeReference extends Reference: <"A reference to a loan trade.">
 type LoanTradeSettlementTask extends AbstractTask: <"A structure that details tasks and their statuses, the completion of which are prerequisites to the settlement of a trade or allocation.">
 
     loanTradeReference LoanTradeReference (1..1) <"Reference to the master trade.">
-    ^type LoanTradeSettlementTaskType (1..1) <"The type of the settlement task.">
+    _type LoanTradeSettlementTaskType (1..1) <"The type of the settlement task.">
 
 type LoanTradeSettlementTaskType: <"A structure that uniquely identifies a settlement task type within a syndicated loan structure.">
 
@@ -9650,7 +9650,7 @@ type CompressionType: <"A type that identifies the type of trade amalgamation, f
 
 type CorporateActionEvent extends ChangeEvent: <"A structure indicating that a trade has changed due to a corporate action">
 
-    ^type CorporateActionType (0..1)
+    _type CorporateActionType (0..1)
 
 type CorporateActionType: <"A type that describes what type of corporate action occurred.">
 
@@ -10820,7 +10820,7 @@ type CollateralizedExposureGrouping: <"A type containing a code representing the
 
 type CollateralValueAllocation:
 
-    ^type CollateralValueAllocationEnum (1..1) <"The type of allocation e.g. Full or ExcessOverMargin">
+    _type CollateralValueAllocationEnum (1..1) <"The type of allocation e.g. Full or ExcessOverMargin">
     value Money (1..*)
 
 type ContactInformation: <"A type that represents how to contact an individual or organization.">
@@ -10847,7 +10847,7 @@ type ContractualSupplement: <"A contractual supplement (such as those published 
 
 type ContractualTermsSupplement: <"A contractual supplement (such as those published by ISDA) and its publication date that will apply to the trade.">
 
-    ^type ContractualSupplement (1..1) <"Identifies the form of applicable contractual supplement.">
+    _type ContractualSupplement (1..1) <"Identifies the form of applicable contractual supplement.">
     publicationDate zonedDateTime (0..1) <"Specifies the publication date of the applicable version of the contractual supplement.">
 
 type CorrespondentInformation: <"A type that describes the information to identify a correspondent bank that will make delivery of the funds on the paying bank\'s behalf in the country where the payment is to be made.">
@@ -10867,7 +10867,7 @@ type CreditSeniority:
 
 type CreditSupportAgreement: <"The agreement executed between the parties and intended to govern collateral arrangement for all OTC derivatives transactions between those parties.">
 
-    ^type CreditSupportAgreementType (1..1) <"The type of ISDA Credit Support Agreement">
+    _type CreditSupportAgreementType (1..1) <"The type of ISDA Credit Support Agreement">
     date zonedDateTime (1..1) <"The date of the agreement executed between the parties and intended to govern collateral arrangements for all OTC derivatives transactions between those parties.">
     identifier CreditSupportAgreementIdentifier (0..1) <"An identifier used to uniquely identify the CSA">
 
@@ -11463,7 +11463,7 @@ type OriginatingEvent:
 type OtherAgreement: <"An entity for defining the an agreement executed between parties.">
 
     identifier OtherAgreementId (0..*) <"An identifier that has been created to identify the agreement.">
-    ^type OtherAgreementType (1..1) <"The agreement executed between the parties and intended to govern product-specific derivatives transactions between those parties.">
+    _type OtherAgreementType (1..1) <"The agreement executed between the parties and intended to govern product-specific derivatives transactions between those parties.">
     version OtherAgreementVersion (0..1) <"The version of the agreement.">
     date zonedDateTime (0..1) <"The date on which the agreement was signed.">
 
@@ -11750,7 +11750,7 @@ type RelatedParty:
 
     partyAndAccountReferencesModel PartyAndAccountReferencesModel (1..1)
     role PartyRole (1..1) <"The category of the relationship. The related party performs the role specified in this field for the base party. For example, if the role is \"Guarantor\", the related party acts as a guarantor for the base party.">
-    ^type PartyRoleType (0..1) <"Additional definition refining the type of relationship. For example, if the \"role\" is Guarantor, this element may be used to specify whether all positions are guaranteed, or only a subset of them.">
+    _type PartyRoleType (0..1) <"Additional definition refining the type of relationship. For example, if the \"role\" is Guarantor, this element may be used to specify whether all positions are guaranteed, or only a subset of them.">
 
 type RelatedPerson:
 
@@ -11938,7 +11938,7 @@ type SplitSettlement: <"A type that supports the division of a gross settlement 
 
 type SpreadSchedule extends Schedule: <"Adds an optional spread type element to the Schedule to identify a long or short spread value.">
 
-    ^type SpreadScheduleType (0..1)
+    _type SpreadScheduleType (0..1)
 
 type SpreadScheduleReference extends Reference: <"Provides a reference to a spread schedule.">
 
@@ -12016,7 +12016,7 @@ type SwaptionPhysicalSettlement:
 
 type TelephoneNumber: <"A type that represents a telephonic contact.">
 
-    ^type TelephoneTypeEnum (0..1) <"The type of telephone number (work, personal, mobile).">
+    _type TelephoneTypeEnum (0..1) <"The type of telephone number (work, personal, mobile).">
     number NonEmptyToken (1..1) <"A telephonic contact.">
 
 type TimeZone: <"Class TimeZone from CDM: The time alongside with the timezone location information. This class makes use of the FpML TimezoneLocation construct.">
@@ -12270,7 +12270,7 @@ type ReferenceType:
     digestValue DigestValueType (1..1)
     id string (0..1)
     uri string(pattern: "\\w+:(\\/?\\/?)[^\\s]+") (0..1)
-    ^type string(pattern: "\\w+:(\\/?\\/?)[^\\s]+") (0..1)
+    _type string(pattern: "\\w+:(\\/?\\/?)[^\\s]+") (0..1)
 
 type TransformsType:
 
@@ -12326,7 +12326,7 @@ type RetrievalMethodType:
 
     transforms TransformsType (0..1)
     uri string(pattern: "\\w+:(\\/?\\/?)[^\\s]+") (0..1)
-    ^type string(pattern: "\\w+:(\\/?\\/?)[^\\s]+") (0..1)
+    _type string(pattern: "\\w+:(\\/?\\/?)[^\\s]+") (0..1)
 
 type X509DataType:
 
@@ -12742,7 +12742,7 @@ type Allocations: <"The allocations for a single side of a trade.">
 
 type Approval: <"A specific approval state in the workflow.">
 
-    ^type ApprovalType (1..1) <"The type of approval (e.g. \"pre-clearing credit\").">
+    _type ApprovalType (1..1) <"The type of approval (e.g. \"pre-clearing credit\").">
     status NormalizedString (1..1) <"The current state of approval (.e.g preapproved, pending approval, etc.)">
     approver PersonId (0..1) <"The full name or identifiying ID of the relevant approver.">
     approvingPartyReference PartyReference (0..1) <"A pointer style reference to a party defined elsewhere in the document. The party referenced has approved the specified item (e.g. trade or allocation).">
@@ -13280,7 +13280,7 @@ type TradeSummary: <"Summary information about the trade.">
 
 type TradeTimestamp: <"A generic trade timestamp">
 
-    ^type TimestampTypeScheme (1..1)
+    _type TimestampTypeScheme (1..1)
     value zonedDateTime (1..1)
 
 type TradingWaiver: <"Indication as to whether the transaction was executed under a pre-trade waiver in accordance with Articles 4 and 9 of Regulation (EU) 600/2014.">
