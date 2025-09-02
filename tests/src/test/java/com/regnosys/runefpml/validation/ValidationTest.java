@@ -15,7 +15,7 @@ import static org.hamcrest.Matchers.hasSize;
 public class ValidationTest {
 
     @Inject
-    RosettaTypeValidator validateProcessor;
+    private RosettaTypeValidator validateProcessor;
 
     @BeforeEach
     void createInjectorAndInject() {
