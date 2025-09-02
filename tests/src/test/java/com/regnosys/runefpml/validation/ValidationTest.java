@@ -18,12 +18,12 @@ public class ValidationTest {
     RosettaTypeValidator validateProcessor;
 
     @BeforeEach
-    protected void createInjectorAndInject() {
+    void createInjectorAndInject() {
         Guice.createInjector(new RuneFpmlTestRuntimeModule()).injectMembers(this);
     }
     
     @Test
-    public void shouldValidateSample() throws RuntimeException {
+    void shouldValidateSample() throws RuntimeException {
         // Deserialise (and resolve references)
         String resourceName = "serialisation/input/fpml-5-10/products/credit/cd-ex01-long-asia-corp-fixreg-versioned.xml";
         DataDocument dataDocument = ResourcesUtils.getObjectAndResolveReferences(DataDocument.class, resourceName);
