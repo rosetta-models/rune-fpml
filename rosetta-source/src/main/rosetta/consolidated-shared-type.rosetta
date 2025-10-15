@@ -1126,7 +1126,7 @@ type BusinessCenterTime: [ docReference fpml.consolidated.ISDA fpml.consolidated
 
 type BusinessDateRange extends DateRange: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type defining a range of contiguous business days by defining an unadjusted first date, an unadjusted last date and a business day convention and business centers for adjusting the first and last dates if they would otherwise fall on a non business day in the specified business centers. The days between the first and last date must also be good business days in the specified centers to be counted in the range." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
 
-    businessDayConvention fpml.consolidated.enum_.BusinessDayConventionEnum (0..1)
+    businessDayConvention fpml.consolidated.fpmlenum.BusinessDayConventionEnum (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "The convention for adjusting a date if it would otherwise fall on a day that is not a business day."]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
@@ -1148,7 +1148,7 @@ type BusinessDateRange extends DateRange: [ docReference fpml.consolidated.ISDA 
 
 type BusinessDayAdjustments: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type defining the business day convention and financial business centers used for adjusting any relevant date if it would otherwise fall on a day that is not a business day in the specified business centers." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
 
-    businessDayConvention fpml.consolidated.enum_.BusinessDayConventionEnum (0..1)
+    businessDayConvention fpml.consolidated.fpmlenum.BusinessDayConventionEnum (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "The convention for adjusting a date if it would otherwise fall on a day that is not a business day."]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
@@ -1286,7 +1286,7 @@ type CalculationAgent: [ docReference fpml.consolidated.ISDA fpml.consolidated.F
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
-    calculationAgentParty fpml.consolidated.enum_.CalculationAgentPartyEnum (0..1)
+    calculationAgentParty fpml.consolidated.fpmlenum.CalculationAgentPartyEnum (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "The ISDA calculation agent responsible for performing duties as defined in the applicable product definitions. For example, the Calculation Agent may be defined as being the Non-exercising Party."]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
@@ -1302,7 +1302,7 @@ type CalculationAgent: [ docReference fpml.consolidated.ISDA fpml.consolidated.F
 
 type CalculationParameters: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type defining a rate that is calculated based on a number of observations of an underlying rate that are averaged or compounded using a specified method. These are sometimes called modular calculated rates. These are described in the 2021 ISDA Definitions in Section 7." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ]
 
-    calculationMethod fpml.consolidated.enum_.CalculationMethodEnum (0..1)
+    calculationMethod fpml.consolidated.fpmlenum.CalculationMethodEnum (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "Specifies the type of calculation, e.g. whether the calculation is a compounding or an averaging calculation. This element distinguishes between the applicable subsections of Section 7 (7.3, 7.4, and 7.7). If the calculationMethod is Componding or Averaging, this implies that a daily compounded calculation will be done, i.e. that the underlying rate will be observed eacy applicalbe business day during the observation period and then compounded or averaged. If it is CompoundedIndex, this means that the rate administrator is doing the compounding each day and publishing the resulting index value. In this case the calculation agent is responsible for observing the index and the start and at the end of the observation period, and then backing out the implied rate by following the formula in section 7.7. (This formula divides the index value at the end by the index value at the beginning, subtracts 1, and then scales the resulting value based on the year fraction to annualize the rate.) In other words, for CompoundedIndex the observation frequency is effectively 1T, where for Compounding and Averaging, it is 1D."]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
@@ -1343,7 +1343,7 @@ type CalculationParameters: [ docReference fpml.consolidated.ISDA fpml.consolida
 
 type CalculationPeriodFrequency extends Frequency: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type defining the frequency at which calculation period end dates occur within the regular part of the calculation period schedule and thier roll date convention. In case the calculation frequency is of value T (term), the period is defined by the swap\\swapStream\\calculationPerioDates\\effectiveDate and the swap\\swapStream\\calculationPerioDates\\terminationDate." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
 
-    rollConvention fpml.consolidated.enum_.RollConventionEnum (0..1)
+    rollConvention fpml.consolidated.fpmlenum.RollConventionEnum (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "Used in conjunction with a frequency and the regular period start date of a calculation period, determines each calculation period end date within the regular part of a calculation period schedule."]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
@@ -1844,7 +1844,7 @@ type DateList: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml
 
 type DateOffset extends Offset: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type defining an offset used in calculating a date when this date is defined in reference to another date through a date offset. The type includes the convention for adjusting the date and an optional sequence element to indicate the order in a sequence of multiple date offsets." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
 
-    businessDayConvention fpml.consolidated.enum_.BusinessDayConventionEnum (0..1)
+    businessDayConvention fpml.consolidated.fpmlenum.BusinessDayConventionEnum (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "The convention for adjusting a date if it would otherwise fall on a day that is not a business day."]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
@@ -2520,7 +2520,7 @@ type FloatingRate extends Rate: [ docReference fpml.consolidated.ISDA fpml.conso
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
-    rateTreatment fpml.consolidated.enum_.RateTreatmentEnum (0..1)
+    rateTreatment fpml.consolidated.fpmlenum.RateTreatmentEnum (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
@@ -2657,7 +2657,7 @@ type Frequency: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpm
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
-    period fpml.consolidated.enum_.PeriodExtendedEnum (0..1)
+    period fpml.consolidated.fpmlenum.PeriodExtendedEnum (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "A time period, e.g. a day, week, month, year or term of the stream."]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
@@ -3029,7 +3029,7 @@ type IdentifiedDate: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPM
 
 type IdentifiedPayerReceiver: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type extending the PayerReceiverEnum type wih an id attribute." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
 
-    value fpml.consolidated.enum_.PayerReceiverEnum (1..1)
+    value fpml.consolidated.fpmlenum.PayerReceiverEnum (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
@@ -3219,7 +3219,7 @@ type InterestAccrualsCompoundingMethod extends InterestAccrualsMethod: [ docRefe
 
 type InterestAccrualsCompoundingMethodSequence:
 
-    compoundingMethod fpml.consolidated.enum_.CompoundingMethodEnum (0..1)
+    compoundingMethod fpml.consolidated.fpmlenum.CompoundingMethodEnum (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "If more that one calculation period contributes to a single payment amount this element specifies whether compounding is applicable, and if so, what compounding method is to be used. This element must only be included when more that one calculation period contributes to a single payment amount."]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
@@ -4022,7 +4022,7 @@ type NumberOfUnitsReference extends Reference: [ docReference fpml.consolidated.
 
 type ObservationFrequency extends Period: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type defining the frequency at which calculation period end dates occur within the regular part of the calculation period schedule and thier roll date convention. In case the calculation frequency is of value T (term), the period is defined by the swap\\swapStream\\calculationPerioDates\\effectiveDate and the swap\\swapStream\\calculationPerioDates\\terminationDate." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
 
-    periodConvention fpml.consolidated.enum_.RollConventionEnum (0..1)
+    periodConvention fpml.consolidated.fpmlenum.RollConventionEnum (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "Used in conjunction with a frequency and the regular period start date of an observation period, determines each observation period end date within the regular part of a observation period schedule."]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
@@ -4044,7 +4044,7 @@ type ObservationOffset: [ docReference fpml.consolidated.ISDA fpml.consolidated.
 
 type ObservationShiftParameters extends ObservationOffset: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "Specifies parameters specific to the observation shift method of compounding/averaging." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ]
 
-    observationPeriodDates fpml.consolidated.enum_.ObservationPeriodDatesEnum (0..1)
+    observationPeriodDates fpml.consolidated.fpmlenum.ObservationPeriodDatesEnum (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "Specifies how the observation period is to be determined relative to the basic calculation period. Options include \"standard\" (observation period aligns with the calculation period except for any shifts/lookbacks/lockouts, i.e. it is set in arrears), \"InAdvance\" (observation period is based on the prior or deemed prior calculation period plus any shifts), or \"FixingDate\" (observation period is based on a fixing date defined the the FpML resetDates structure; this is used only for fallback rate definitions that reference existing resetDates structures.)."]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
@@ -4059,7 +4059,7 @@ type ObservationShiftParameters extends ObservationOffset: [ docReference fpml.c
 
 type Offset extends Period: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type defining an offset used in calculating a new date relative to a reference date. E.g. calendar days, business days, Commodity Business days, etc.." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
 
-    dayType fpml.consolidated.enum_.DayTypeEnum (0..1)
+    dayType fpml.consolidated.fpmlenum.DayTypeEnum (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "In the case of an offset specified as a number of days, this element defines whether consideration is given as to whether a day is a good business day or not. If a day type of business days is specified then non-business days are ignored when calculating the offset. The financial business centers to use for determination of business days are implied by the context in which this element is used. This element must only be included when the offset is specified as a number of days. If the offset is zero days then the dayType element should not be included."]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
@@ -4676,7 +4676,7 @@ type Period: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.c
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
-    period fpml.consolidated.enum_.PeriodEnum (1..1)
+    period fpml.consolidated.fpmlenum.PeriodEnum (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "A time period, e.g. a day, week, month or year of the stream. If the periodMultiplier value is 0 (zero) then period must contain the value D (day)."]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
@@ -5133,7 +5133,7 @@ type QuotedCurrencyPair: [ docReference fpml.consolidated.ISDA fpml.consolidated
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
-    quoteBasis fpml.consolidated.enum_.QuoteBasisEnum (0..1)
+    quoteBasis fpml.consolidated.fpmlenum.QuoteBasisEnum (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "The method by which the exchange rate is quoted."]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
@@ -5455,7 +5455,7 @@ type RelatedPerson:
 
 type RelativeDateOffset extends Offset: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type defining a date (referred to as the derived date) as a relative offset from another date (referred to as the anchor date). If the anchor date is itself an adjustable date then the offset is assumed to be calculated from the adjusted anchor date. A number of different scenarios can be supported, namely; 1) the derived date may simply be a number of calendar periods (days, weeks, months or years) preceding or following the anchor date; 2) the unadjusted derived date may be a number of calendar periods (days, weeks, months or years) preceding or following the anchor date with the resulting unadjusted derived date subject to adjustment in accordance with a specified business day convention, i.e. the derived date must fall on a good business day; 3) the derived date may be a number of business days preceding or following the anchor date. Note that the businessDayConvention specifies any required adjustment to the unadjusted derived date. A negative or positive value in the periodMultiplier indicates whether the unadjusted derived precedes or follows the anchor date. The businessDayConvention should contain a value NONE if the day type element contains a value of Business (since specifying a negative or positive business days offset would already guarantee that the derived date would fall on a good business day in the specified business centers)." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
 
-    businessDayConvention fpml.consolidated.enum_.BusinessDayConventionEnum (0..1)
+    businessDayConvention fpml.consolidated.fpmlenum.BusinessDayConventionEnum (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "The convention for adjusting a date if it would otherwise fall on a day that is not a business day."]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
@@ -5593,7 +5593,7 @@ type RequiredIdentifierDate: [ docReference fpml.consolidated.ISDA fpml.consolid
 
 type ResetFrequency extends Frequency: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type defining the reset frequency. In the case of a weekly reset, also specifies the day of the week that the reset occurs. If the reset frequency is greater than the calculation period frequency the this implies that more or more reset dates is established for each calculation period and some form of rate averaginhg is applicable. The specific averaging method of calculation is specified in FloatingRateCalculation. In case the reset frequency is of value T (term), the period is defined by the swap\\swapStream\\calculationPerioDates\\effectiveDate and the swap\\swapStream\\calculationPerioDates\\terminationDate." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
 
-    weeklyRollConvention fpml.consolidated.enum_.WeeklyRollConventionEnum (0..1)
+    weeklyRollConvention fpml.consolidated.fpmlenum.WeeklyRollConventionEnum (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "The day of the week on which a weekly reset date occurs. This element must be included if the reset frequency is defined as weekly and not otherwise."]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
@@ -5753,7 +5753,7 @@ type ResourceId: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fp
 
 type ResourceLength: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "The type that indicates the length of the resource." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
 
-    lengthUnit fpml.consolidated.enum_.LengthUnitEnum (0..1)
+    lengthUnit fpml.consolidated.fpmlenum.LengthUnitEnum (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "The length unit of the resource. For example, pages (pdf, text documents) or time (audio, video files)."]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
@@ -5809,7 +5809,7 @@ type ReturnSwapNotionalAmountReference extends Reference: [ docReference fpml.co
 
 type Rounding: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type defining a rounding direction and precision to be used in the rounding of a rate." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
 
-    roundingDirection fpml.consolidated.enum_.RoundingDirectionEnum (0..1)
+    roundingDirection fpml.consolidated.fpmlenum.RoundingDirectionEnum (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "Specifies the rounding direction."]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
@@ -5975,7 +5975,7 @@ type ScheduleReference extends Reference: [ docReference fpml.consolidated.ISDA 
 
 type SettlementInformation: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type that represents the choice of methods for settling a potential currency payment resulting from a trade: by means of a standard settlement instruction, by netting it out with other payments, or with an explicit settlement instruction." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
 
-    standardSettlementStyle fpml.consolidated.enum_.StandardSettlementStyleEnum (0..1)
+    standardSettlementStyle fpml.consolidated.fpmlenum.StandardSettlementStyleEnum (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "An optional element used to describe how a trade will settle. This defines a scheme and is used for identifying trades that are identified as settling standard and/or flagged for settlement netting."]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
@@ -6535,7 +6535,7 @@ type StubFloatingRate extends Rate: [ docReference fpml.consolidated.ISDA fpml.c
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
-    rateTreatment fpml.consolidated.enum_.RateTreatmentEnum (0..1)
+    rateTreatment fpml.consolidated.fpmlenum.RateTreatmentEnum (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
@@ -6622,7 +6622,7 @@ type SwaptionPhysicalSettlement:
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
-    quotationRateType fpml.consolidated.enum_.QuotationRateTypeEnum (0..1)
+    quotationRateType fpml.consolidated.fpmlenum.QuotationRateTypeEnum (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "Which rate quote is to be observed, either Bid, Mid, Offer or Exercising Party Pays. The meaning of Exercising Party Pays is defined in the 2000 ISDA Definitions, Section 17.2. Certain Definitions Relating to Cash Settlement, paragraph (j)"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
@@ -6634,7 +6634,7 @@ type SwaptionPhysicalSettlement:
 
 type TelephoneNumber: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type that represents a telephonic contact." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
 
-    ^type fpml.consolidated.enum_.TelephoneTypeEnum (0..1)
+    ^type fpml.consolidated.fpmlenum.TelephoneTypeEnum (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "The type of telephone number (work, personal, mobile)."]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
@@ -6900,7 +6900,7 @@ type FloatingRateModel: [ docReference fpml.consolidated.ISDA fpml.consolidated.
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
-    rateTreatment fpml.consolidated.enum_.RateTreatmentEnum (0..1)
+    rateTreatment fpml.consolidated.fpmlenum.RateTreatmentEnum (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "The specification of any rate conversion which needs to be applied to the observed rate before being used in any calculations. The two common conversions are for securities quoted on a bank discount basis which will need to be converted to either a Money Market Yield or Bond Equivalent Yield. See the Annex to the 2000 ISDA Definitions, Section 7.3. Certain General Definitions Relating to Floating Rate Options, paragraphs (g) and (h) for definitions of these terms."]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
@@ -6933,13 +6933,13 @@ type FloatingRateCalculationModel: [ docReference fpml.consolidated.ISDA fpml.co
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
-    averagingMethod fpml.consolidated.enum_.AveragingMethodEnum (0..1)
+    averagingMethod fpml.consolidated.fpmlenum.AveragingMethodEnum (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "If averaging is applicable, this component specifies whether a weighted or unweighted average method of calculation is to be used. The component must only be included when averaging applies."]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
-    negativeInterestRateTreatment fpml.consolidated.enum_.NegativeInterestRateTreatmentEnum (0..1)
+    negativeInterestRateTreatment fpml.consolidated.fpmlenum.NegativeInterestRateTreatmentEnum (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "The specification of any provisions for calculating payment obligations when a floating rate is negative (either due to a quoted negative floating rate or by operation of a spread that is subtracted from the floating rate)."]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
@@ -7327,7 +7327,7 @@ type PeriodModel:
 
 type PremiumModel: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A model group for representing the option premium when expressed in a way other than an amount." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
 
-    premiumType fpml.consolidated.enum_.PremiumTypeEnum (0..1)
+    premiumType fpml.consolidated.fpmlenum.PremiumTypeEnum (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "Forward start Premium type"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
@@ -7709,7 +7709,7 @@ type CashflowId: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fp
 
 type CollateralValueAllocation:
 
-    ^type fpml.consolidated.enum_.CollateralValueAllocationEnum (1..1)
+    ^type fpml.consolidated.fpmlenum.CollateralValueAllocationEnum (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]

@@ -15,7 +15,7 @@ import fpml.consolidated.eqd.EquityOptionTransactionSupplement;
 import fpml.consolidated.fx.*;
 import fpml.consolidated.generic.GenericProduct;
 import fpml.consolidated.ird.*;
-import fpml.consolidated.return_.swaps.EquitySwapTransactionSupplement;
+import fpml.consolidated.fpmlreturn.swaps.EquitySwapTransactionSupplement;
 import fpml.consolidated.sec.lending.SecurityLending;
 import fpml.consolidated.shared.Product;
 import fpml.consolidated.variance.swaps.VarianceOptionTransactionSupplement;
