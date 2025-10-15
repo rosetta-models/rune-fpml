@@ -1,7 +1,7 @@
 package com.regnosys.runefpml;
 
 import com.google.common.collect.ImmutableMap;
-import fpml.confirmation.*;
+import fpml.consolidated.doc.Document;
 
 public class RuneFpmlModelConfig {
 

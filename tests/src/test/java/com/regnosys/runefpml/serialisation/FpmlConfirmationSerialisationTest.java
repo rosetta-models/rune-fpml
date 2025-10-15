@@ -1,6 +1,6 @@
 package com.regnosys.runefpml.serialisation;
 
-import fpml.confirmation.Document;
+import fpml.consolidated.doc.Document;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;

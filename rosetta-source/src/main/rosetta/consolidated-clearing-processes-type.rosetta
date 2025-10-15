@@ -1,0 +1,80 @@
+namespace fpml.consolidated.clearing.processes : < "fpml definition" >
+version "${project.version}"
+
+type RequestClearingEligibility extends fpml.consolidated.msg.CorrectableRequestMessage:
+
+    requestingPartyReference fpml.consolidated.shared.PartyReference (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    tradingEventsModel fpml.consolidated.business.events.TradingEventsModel (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    deClear fpml.consolidated.business.events.DeClear (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type ClearingEligibility extends fpml.consolidated.msg.ResponseMessage:
+
+    tradingEventsModel fpml.consolidated.business.events.TradingEventsModel (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    deClear fpml.consolidated.business.events.DeClear (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    partyTradeIdentifier fpml.consolidated.doc.PartyTradeIdentifier (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    eligibleForClearing boolean (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    clearingRequirements ClearingRequirements (0..*)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type ClearingEligibilityException extends fpml.consolidated.msg.Exception:
+
+type ClearingEligibilityAcknowledgement extends fpml.consolidated.msg.Acknowledgement:
+
+type ClearingRequirements:
+
+    supervisoryBody fpml.consolidated.shared.SupervisoryBody (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    mandatorilyClearable boolean (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    reason fpml.consolidated.doc.Reason (0..*)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]

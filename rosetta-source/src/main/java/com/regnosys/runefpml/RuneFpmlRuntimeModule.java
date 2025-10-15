@@ -4,7 +4,7 @@ import com.google.inject.AbstractModule;
 import com.rosetta.model.lib.ModuleConfig;
 import com.rosetta.model.lib.qualify.QualifyFunctionFactory;
 import com.rosetta.model.lib.validation.ValidatorFactory;
-import fpml.confirmation.custom.functions.*;
+import fpml.custom.functions.*;
 
 @ModuleConfig(model = "RUNE-FPML", type = "Rosetta")
 public class RuneFpmlRuntimeModule extends AbstractModule {

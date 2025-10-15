@@ -1,0 +1,1361 @@
+namespace fpml.consolidated.msg : < "fpml definition" >
+version "${project.version}"
+
+type EventStatusResponse extends ResponseMessage:
+    [rootType] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type defining the content model for a message normally generated in response to a requestEventStatus request." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    statusItem EventStatusItem (0..*)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type EventStatusException extends Exception:
+    [rootType]
+
+type MessageRejected extends Exception:
+    [rootType] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "The root element used for rejected message exceptions" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+type ServiceNotification extends NotificationMessage:
+    [rootType] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type defining the content model for a message that allows a service to send a notification message to a user of the service." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    serviceName fpml.consolidated.shared.NormalizedString (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "The name of the service to which the message applies"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    status ServiceStatus (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "The current state of the service (e.g. Available, Unavailable)."]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    processingStatus ServiceProcessingStatus (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "A description of the stage of processing of the service, for example EndofDayProcessingCutoffOccurred, EndOfDayProcessingCompleted. [TBD: could be combined with advisory]"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    advisory ServiceAdvisory (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "A human-readable message providing information about the service.."]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+    condition Choice:
+        optional choice status, processingStatus , advisory
+
+type ServiceNotificationException extends Exception:
+    [rootType]
+
+type RequestEventStatus extends NonCorrectableRequestMessage:
+    [rootType] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type defining the content model for a message allowing one party to query the status of one event (trade or post-trade event) previously sent to another party." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    businessProcess BusinessProcess (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    eventIdentifier EventIdentifier (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type RequestRetransmission extends NonCorrectableRequestMessage:
+    [rootType] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A message to request that a message be retransmitted. The original message will typically be a component of a group of messages, such as a portfolio or a report in multiple parts." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    portfolioReferenceOrReportIdentificationModel PortfolioReferenceOrReportIdentificationModel (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type VerificationStatusNotification extends NonCorrectableRequestMessage:
+    [rootType]
+
+    status VerificationStatus (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    reason fpml.consolidated.doc.Reason (0..*)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "The reason for any dispute or change in verification status."]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    partyTradeIdentifier fpml.consolidated.doc.PartyTradeIdentifier (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type VerificationStatusException extends Exception:
+    [rootType]
+
+type VerificationStatusAcknowledgement extends Acknowledgement:
+    [rootType]
+
+type AddressedMessage extends Message: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type defining the basic content for a message sent to inform another system that some exception has been detected." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ]
+
+    header NotificationMessageHeader (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+
+type Acknowledgement extends ResponseMessage:
+
+    originalMessage fpml.consolidated.doc.UnprocessedElementWrapper (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type BusinessProcess: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type that can be used to identify the type of business process in a request. Examples include Allocation, Clearing, Confirmation, etc." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    value fpml.consolidated.shared.Scheme (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    businessProcessScheme fpml.consolidated.shared.NonEmptyURI (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type CorrectableRequestMessage extends RequestMessage: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type defining the content model for a request message that can be subsequently corrected or retracted." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    isCorrection boolean (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "Indicates if this message corrects an earlier request."]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    correlationAndSequenceModel CorrelationAndSequenceModel (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    onBehalfOfModel fpml.consolidated.shared.OnBehalfOfModel (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type CorrelationId: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type defining a correlation identifier and qualifying scheme" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    value fpml.consolidated.shared.NonEmptyScheme (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    correlationIdScheme fpml.consolidated.shared.NonEmptyURI (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type EventIdentifier: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "Identification of a business event, for example through its correlation id or a business identifier." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    eventIdentifierSequence EventIdentifierSequence (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    tradeIdentifier fpml.consolidated.doc.TradeIdentifier (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+    condition Choice:
+        one-of
+
+type EventIdentifierSequence:
+
+    correlationIdModel CorrelationIdModel (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    sequenceModel SequenceModel (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type EventStatus: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A coding scheme used to describe the matching/confirmation status of a trade, post-trade event, position, or cash flows." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    value fpml.consolidated.shared.Scheme (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    eventStatusScheme fpml.consolidated.shared.NonEmptyURI (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type EventStatusItem: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type used in event status enquiry messages which relates an event identifier to its current status value." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    eventIdentifier EventIdentifier (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "An instance of a unique event identifier."]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    status EventStatus (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "An event status value."]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type Exception extends Message: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type defining the basic content for a message sent to inform another system that some exception has been detected." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    header ExceptionMessageHeader (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    validationModel fpml.consolidated.doc.ValidationModel (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    correlationAndOptionalSequenceModel CorrelationAndOptionalSequenceModel (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    exceptionModel ExceptionModel (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type ExceptionMessageHeader extends MessageHeader: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type defining the content model for an exception message header." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    inReplyTo MessageId (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "A copy of the unique message identifier (within it own coding scheme) to which this message is responding."]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    messageHeaderModel MessageHeaderModel (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type Message extends fpml.consolidated.doc.Document: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type defining the basic structure of all FpML messages which is refined by its derived types." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+type MessageAddress: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "The data type used for identifying a message address." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    value fpml.consolidated.shared.Scheme (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    messageAddressScheme fpml.consolidated.shared.NonEmptyURI (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type MessageHeader: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type defining the content model for a generic message header that is refined by its derived classes." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    messageId MessageId (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "A unique identifier (within its coding scheme) assigned to the message by its creating party."]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type MessageId: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "The data type use for message identifiers." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    value fpml.consolidated.shared.NonEmptyScheme (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    messageIdScheme fpml.consolidated.shared.NonEmptyURI (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type NonCorrectableRequestMessage extends RequestMessage: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type defining the content model for a request message that cannot be subsequently corrected or retracted." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    correlationAndSequenceModel CorrelationAndSequenceModel (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    onBehalfOfModel fpml.consolidated.shared.OnBehalfOfModel (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type NotificationMessage extends Message: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type defining the basic content for a message sent to inform another system that some \'business event\' has occured. Notifications are not expected to be replied to." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    header NotificationMessageHeader (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    validationModel fpml.consolidated.doc.ValidationModel (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    correlationAndOptionalSequenceModel CorrelationAndOptionalSequenceModel (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    onBehalfOfModel fpml.consolidated.shared.OnBehalfOfModel (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type NotificationMessageHeader extends MessageHeader: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type that refines the generic message header to match the requirements of a NotificationMessage." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    inReplyTo MessageId (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "A copy of the unique message identifier (within it own coding scheme) to which this message is responding."]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    messageHeaderModel MessageHeaderModel (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type ImplementationSpecification: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A version of a specification document used by the message generator to format the document." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    name fpml.consolidated.shared.NormalizedString (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    version ImplementationSpecificationVersion (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    date date (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type ImplementationSpecificationVersion:
+
+    value fpml.consolidated.shared.Scheme (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    implementationSpecificationVersionScheme fpml.consolidated.shared.NonEmptyURI (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type PartyMessageInformation: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type defining additional information that may be recorded against a message." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    partyReference fpml.consolidated.shared.PartyReference (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "Identifies that party that has ownership of this information."]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type PortfolioConstituentReference extends PortfolioReferenceBase: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A structure used to group together individual messages that can be acted on at a group level." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    sequenceNumber int(min: 1) (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "A numeric, sequentially ascending (i.e. gapless) value (starting at 1) that can be used to identify and distinguish the individual constituents of a portfolio request. A recipient should ensure that all sequence numbers from 1 to the final sequence number (where submissionsComplete is true) have arrived before completing the portfolio request."]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type PortfolioReferenceBase: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A structure used to identify a portfolio in a message." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    portfolioName fpml.consolidated.doc.PortfolioName (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "An identifier that is unique for each portfolio-level request, and which can be used to group together the individual messages in the portfolio request."]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type RequestMessage extends Message: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type defining the basic content of a message that requests the receiver to perform some business operation determined by the message type and its content." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    header RequestMessageHeader (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    validationModel fpml.consolidated.doc.ValidationModel (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type RequestMessageHeader extends MessageHeader: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type refining the generic message header content to make it specific to request messages." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    messageHeaderModel MessageHeaderModel (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type ReportId: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type that can be used to hold an identifier for a report instance." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    value fpml.consolidated.shared.NonEmptyScheme (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    reportIdScheme fpml.consolidated.shared.NonEmptyURI (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type ReportIdentification extends ReportSectionIdentification: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type that allows the specific report and section to be identified." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ]
+
+    numberOfSections int(min: 1) (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "A numeric value, optionally supplied by the sender, that can be used to specify the number of sections constituting a report."]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+    submissionsComplete boolean (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "Indicates whether all sections have been sent for this report instance ID."]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+
+type ReportSectionIdentification: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type that allows the specific report and section to be identified." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    reportId ReportId (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "An identifier for the specific instance of this report."]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    sectionNumber int(min: 1) (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "A strictly ascending sequential (gapless) numeric value that can be used to identify the section of a report."]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type ResponseMessage extends Message: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type refining the generic message content model to make it specific to response messages." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    header ResponseMessageHeader (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    validationModel fpml.consolidated.doc.ValidationModel (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    correlationAndOptionalSequenceModel CorrelationAndOptionalSequenceModel (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    onBehalfOfModel fpml.consolidated.shared.OnBehalfOfModel (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type ResponseMessageHeader extends MessageHeader: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type refining the generic message header to make it specific to response messages." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    inReplyTo MessageId (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "A copy of the unique message identifier (within it own coding scheme) to which this message is responding."]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    messageHeaderModel MessageHeaderModel (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type ServiceAdvisory: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type defining the content model for a human-readable notification to the users of a service." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    category ServiceAdvisoryCategory (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "The category or type of the notification message, e.g. availability, product coverage, rules, etc."]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    description fpml.consolidated.shared.NonEmptyNormalizedString (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "A human-readable notification."]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    effectiveFrom zonedDateTime (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "The time at which the information supplied by the advisory becomes effective. For example, if the advisory advises of a newly planned service outage, it will be the time the service outage begins."]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    effectiveTo zonedDateTime (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "The time at which the information supplied by the advisory becomes no longer effective. For example, if the advisory advises of a newly planned service outage, it will be the time the service outage ends."]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type ServiceAdvisoryCategory: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type that can be used to describe the category of an advisory message, e.g.. Availability, Rules, Products, etc., etc.." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    value fpml.consolidated.shared.Scheme (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    serviceAdvisoryCategoryScheme fpml.consolidated.shared.NonEmptyURI (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type ServiceProcessingCycle: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type that can be used to describe the processing phase of a service. For example, EndOfDay, Intraday." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    value fpml.consolidated.shared.Scheme (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    serviceProcessingCycleScheme fpml.consolidated.shared.NonEmptyURI (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type ServiceProcessingEvent: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type that can be used to describe a stage or step in processing provided by a service, for example processing completed." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    value fpml.consolidated.shared.Scheme (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    serviceProcessingEventScheme fpml.consolidated.shared.NonEmptyURI (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type ServiceProcessingStatus: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type defining the content model for report on the status of the processing by a service. In the future we may wish to provide some kind of scope or other qualification for the event, e.g. the currencies, products, or books to which it applies." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    cycle ServiceProcessingCycle (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "The processing cycle or phase that this message describes. For example, EndOfDay or Intraday."]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    step ServiceProcessingStep (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "The stage within a processing cycle or phase that this message describes. For example, Netting or Valuation."]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    event ServiceProcessingEvent (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "The event that occurred within the cycle or step, for example \"Started\" or \"Completed\".."]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type ServiceProcessingStep: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type that can be used to describe what stage of processing a service is in. For example, Netting or Valuation." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    value fpml.consolidated.shared.Scheme (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    serviceProcessingStep fpml.consolidated.shared.NonEmptyURI (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type ServiceStatus: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A type that can be used to describe the availability or other state of a service, e.g. Available, Unavaialble." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    value fpml.consolidated.shared.Scheme (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    serviceStatusScheme fpml.consolidated.shared.NonEmptyURI (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type VerificationStatus: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "The verification status of the position as reported by the sender (Verified, Disputed)." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    value fpml.consolidated.shared.Scheme (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    verificationStatusScheme fpml.consolidated.shared.NonEmptyURI (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type CorrelationModel: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A model group defining the elements used for process correlation. The correlation ID is used to link followup corrections and retractions to the original request, and to help identify which replies link to which requests. The parent correlation ID is used to keep track of the parent process." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    parentCorrelationId CorrelationId (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "An optional identifier used to correlate between related processes"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    correlationIdModel CorrelationIdModel (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type CorrelationAndOptionalSequenceModel: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A model group defining the full messsage correlation mechanism, but with optional sequence. Please note that for reports in Reporting view, usage of the correlation and sequence model is not well defined in the standard an may be deprecated from future versions of the standard. Use the ReportReference structure to identify report instances and section numbers if a report must be divided into chunks." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    correlationModel CorrelationModel (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    sequenceModel SequenceModel (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type CorrelationAndSequenceModel: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A model group defining the full messsage correlation mechanism. The correlation ID is used to link followup corrections and retractions to the original request, and to help identify which replies link to which requests. (The \"inReplyTo\" element may also be used for this purpose, but it contains a message identifier rather than a business object identifier.) The sequence ID is used to establish an ordering between multiple messages related to the same business object (identified by the same correlation identifier). It contains a value the must ascend (possibly with gaps) messages on the same correlation ID." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    correlationModel CorrelationModel (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    sequenceModel SequenceModel (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type CorrelationIdModel: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A model group defining the element used for process correlation. The correlation ID is used to link followup corrections and retractions to the original request, and to help identify which replies link to which requests." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    correlationId CorrelationId (0..2)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "A qualified identifier used to correlate between messages"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type ExceptionModel: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A model group which has exception elements." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    reason fpml.consolidated.doc.Reason (0..*)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "An instance of the Reason type used to record the nature of any errors associated with a message."]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    additionalData fpml.consolidated.doc.AdditionalData (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "Any string of additional data that may help the message processor, for example in a rejection message this might contain a code value or the text of the original request (within a CDATA section)."]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type MessageHeaderModel: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "Defines the structure that contains routing and identification information, which allows processing and transfer of the message. It contains only messaging information that is applicable to all messages. If the information is not message related or is not applicable to all messages then it is not defined in the message header." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    sentBy MessageAddress (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "The unique identifier (within its coding scheme) for the originator of a message instance."]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    sendTo MessageAddress (0..*)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "A unique identifier (within its coding scheme) indicating an intended recipent of a message."]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    copyTo MessageAddress (0..*)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "A unique identifier (within the specified coding scheme) giving the details of some party to whom a copy of this message will be sent for reference."]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    creationTimestamp zonedDateTime (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "The date and time (on the source system) when this message instance was created."]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    expiryTimestamp zonedDateTime (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "The date and time (on the source system) when this message instance will be considered expired."]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    implementationSpecification ImplementationSpecification (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "The version(s) of specifications that the sender asserts the message was developed for."]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    partyMessageInformation PartyMessageInformation (0..*)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "Additional message information that may be provided by each involved party."]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    signature fpml.consolidated.SignatureType (0..*)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type PortfolioConstituentReferenceModel: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "Defines a model group that allows a constituent of a portfolio to be included in a request retransmission message." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    portfolioReference PortfolioConstituentReference (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type PortfolioReferenceBaseModel: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "Defines a model group that allows a portfolio to be identified in a response message." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    portfolioReference PortfolioReferenceBase (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type PortfolioReferenceOrReportIdentificationModel: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "Defines a model group that allows either details of a portoflio constituent or report constituent to be provided. Typically this will be used in a request retransmission message." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    portfolioConstituentReferenceModel PortfolioConstituentReferenceModel (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    reportSectionIdentificationModel ReportSectionIdentificationModel (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+    condition Choice:
+        one-of
+
+type ReportSectionIdentificationModel: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "Defines a model group that allows a chunck of a report to be included in a request retransmission message." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    reportIdentification ReportSectionIdentification (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type SequenceModel: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "A model group defining the element used for message sequencing" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    sequenceNumber int(min: 1) (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
+            provision "A numeric value that can be used to order messages with the same correlation identifier from the same sender."]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type UnprocessedElementWrapper: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    anyContents string (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type AdditionalData: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    mimeType fpml.consolidated.shared.MimeType (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    string fpml.consolidated.shared.String (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    hexadecimalBinary string (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    base64Binary string (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    originalMessage OriginalMessage (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type OriginalMessage:
+
+    anyContents string (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type ProblemLocation: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    value fpml.consolidated.shared.NormalizedString (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    locationType fpml.consolidated.shared.Token (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type Reason: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    reasonCode ReasonCode (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    location ProblemLocation (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    description fpml.consolidated.shared.String (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    validationRuleId fpml.consolidated.doc.Validation (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    additionalData AdditionalData (0..*)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type ReasonCode: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    value fpml.consolidated.shared.Scheme (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    reasonCodeScheme fpml.consolidated.shared.NonEmptyURI (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type PortfolioReference extends PortfolioReferenceBase: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    sequenceNumber int (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+    submissionsComplete boolean (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
+
+type PortfolioReferenceModel: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
+
+    portfolioReference PortfolioReference (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
