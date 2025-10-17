@@ -20,10 +20,10 @@
   "correlationAndSequenceModel" : {
     "correlationModel" : {
       "correlationIdModel" : {
-        "correlationId" : {
+        "correlationId" : [ {
           "value" : "TW19235-002",
           "correlationIdScheme" : "http://fpml.org/submitter_event_id"
-        }
+        } ]
       }
     },
     "sequenceModel" : {
@@ -31,11 +31,11 @@
     }
   },
   "onBehalfOfModel" : {
-    "onBehalfOf" : {
+    "onBehalfOf" : [ {
       "partyReference" : {
         "href" : "party1"
       }
-    }
+    } ]
   },
   "tradingEventsBaseModel" : {
     "tradingEventsBaseModelSequence" : { }
@@ -50,28 +50,7 @@
                 "globalTradeIdentifiersModel" : {
                   "globalTradeIdentifiersModelSequence" : { }
                 }
-              },
-              "partyTradeIdentifier" : [ {
-                "issuerTradeIdModel" : {
-                  "issuer" : {
-                    "value" : "1031234567",
-                    "issuerIdScheme" : "http://www.fpml.org/coding-scheme/external/cftc/issuer-identifier"
-                  },
-                  "tradeId" : {
-                    "value" : "712345678901234567890123456789012",
-                    "tradeIdScheme" : "http://www.fpml.org/coding-scheme/external/unique-transaction-identifier"
-                  }
-                },
-                "tradeIdentifierSequence" : {
-                  "partyAndAccountReferencesModel" : { },
-                  "tradeIdentifierSequenceChoice" : [ {
-                    "tradeId" : {
-                      "value" : "712345678901234567890123456789012",
-                      "tradeIdScheme" : "http://www.fpml.org/coding-scheme/external/unique-transaction-identifier"
-                    }
-                  } ]
-                }
-              } ]
+              }
             },
             "partyTradeInformation" : [ {
               "partyAndAccountReferencesModel" : {
@@ -123,9 +102,7 @@
               },
               "nonStandardTerms" : false,
               "offMarketPrice" : false,
-              "blockTradeModel" : {
-                "largeSizeTrade" : false
-              },
+              "blockTradeModel" : { },
               "executionType" : {
                 "value" : "Electronic"
               },
@@ -135,23 +112,45 @@
               "confirmationMethod" : {
                 "value" : "Electronic"
               },
-              "transactionClassificationModel" : { }
+              "transactionClassificationModel" : { },
+              "largeSizeTrade" : false
             } ],
             "tradeDate" : {
               "value" : "2011-02-12T00:00:00Z"
-            }
+            },
+            "partyTradeIdentifier" : [ {
+              "issuerTradeIdModel" : {
+                "issuer" : {
+                  "value" : "1031234567",
+                  "issuerIdScheme" : "http://www.fpml.org/coding-scheme/external/cftc/issuer-identifier"
+                },
+                "tradeId" : {
+                  "value" : "712345678901234567890123456789012",
+                  "tradeIdScheme" : "http://www.fpml.org/coding-scheme/external/unique-transaction-identifier"
+                }
+              },
+              "tradeIdentifierSequence" : {
+                "partyAndAccountReferencesModel" : { },
+                "tradeIdentifierSequenceChoice" : [ {
+                  "tradeId" : {
+                    "value" : "712345678901234567890123456789012",
+                    "tradeIdScheme" : "http://www.fpml.org/coding-scheme/external/unique-transaction-identifier"
+                  }
+                } ]
+              }
+            } ]
           },
           "product" : {
             "productModel" : {
               "primaryAssetClass" : {
                 "value" : "InterestRate"
               },
+              "productId" : [ {
+                "value" : "SWI-ST-USD-IRS"
+              } ],
               "productType" : [ {
                 "value" : "InterestRate:IRSwap:FixedFloat",
                 "productTypeScheme" : "http://www.fpml.org/coding-scheme/product-taxonomy"
-              } ],
-              "productId" : [ {
-                "value" : "SWI-ST-USD-IRS"
               } ]
             },
             "swapStream" : [ {
@@ -274,7 +273,6 @@
                       }
                     }
                   },
-                  "calculationSequence" : { },
                   "rateCalculation" : {
                     "floatingRateIndexModel" : {
                       "floatingRateIndex" : {
@@ -290,7 +288,8 @@
                   },
                   "dayCountFraction" : {
                     "value" : "ACT/360"
-                  }
+                  },
+                  "calculationSequence" : { }
                 }
               }
             }, {
@@ -373,13 +372,13 @@
                       }
                     }
                   },
+                  "dayCountFraction" : {
+                    "value" : "30E/360"
+                  },
                   "calculationSequence" : {
                     "fixedRateSchedule" : {
                       "initialValue" : 0.0253
                     }
-                  },
-                  "dayCountFraction" : {
-                    "value" : "30E/360"
                   }
                 }
               }

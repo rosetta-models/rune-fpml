@@ -25,11 +25,11 @@
     "sequenceModel" : { }
   },
   "onBehalfOfModel" : {
-    "onBehalfOf" : {
+    "onBehalfOf" : [ {
       "partyReference" : {
         "href" : "partyA"
       }
-    }
+    } ]
   },
   "tradingEventsBaseModel" : {
     "tradingEventsBaseModelSequence" : {
@@ -43,52 +43,7 @@
               "globalTradeIdentifiersModel" : {
                 "globalTradeIdentifiersModelSequence" : { }
               }
-            },
-            "partyTradeIdentifier" : [ {
-              "issuerTradeIdModel" : {
-                "issuer" : {
-                  "value" : "1070247694",
-                  "issuerIdScheme" : "http://www.fpml.org/coding-scheme/external/issuer-identifier"
-                },
-                "tradeId" : {
-                  "value" : "FI-BANKXX-585125839",
-                  "tradeIdScheme" : "http://www.fpml.org/coding-scheme/external/unique-transaction-identifier"
-                }
-              },
-              "tradeIdentifierSequence" : {
-                "partyAndAccountReferencesModel" : { },
-                "tradeIdentifierSequenceChoice" : [ {
-                  "tradeId" : {
-                    "value" : "FI-BANKXX-585125839",
-                    "tradeIdScheme" : "http://www.fpml.org/coding-scheme/external/unique-transaction-identifier"
-                  }
-                } ]
-              }
-            }, {
-              "issuerTradeIdModel" : {
-                "tradeId" : {
-                  "value" : "FI-BANKXX-585125839",
-                  "tradeIdScheme" : "http://www.dtcc.com/internal-reference-id"
-                }
-              },
-              "tradeIdentifierSequence" : {
-                "partyAndAccountReferencesModel" : {
-                  "partyReference" : {
-                    "href" : "partyA"
-                  }
-                },
-                "tradeIdentifierSequenceChoice" : [ {
-                  "tradeId" : {
-                    "value" : "FI-BANKXX-585125839",
-                    "tradeIdScheme" : "http://www.dtcc.com/internal-reference-id"
-                  }
-                } ]
-              },
-              "linkId" : [ {
-                "value" : "566035542",
-                "linkIdScheme" : "http://www.bankx.com/trd-no"
-              } ]
-            } ]
+            }
           },
           "partyTradeInformation" : [ {
             "partyAndAccountReferencesModel" : {
@@ -166,10 +121,10 @@
             },
             "timestamps" : {
               "timestamp" : [ {
-                "_type" : {
+                "value" : "2023-11-20T00:24:20Z",
+                "type" : {
                   "value" : "TradingDateTime.MiFIR"
-                },
-                "value" : "2023-11-20T00:24:20Z"
+                }
               } ]
             },
             "intentToAllocate" : false,
@@ -233,13 +188,62 @@
           } ],
           "tradeDate" : {
             "value" : "2023-11-15T00:00:00Z"
-          }
+          },
+          "partyTradeIdentifier" : [ {
+            "issuerTradeIdModel" : {
+              "issuer" : {
+                "value" : "1070247694",
+                "issuerIdScheme" : "http://www.fpml.org/coding-scheme/external/issuer-identifier"
+              },
+              "tradeId" : {
+                "value" : "FI-BANKXX-585125839",
+                "tradeIdScheme" : "http://www.fpml.org/coding-scheme/external/unique-transaction-identifier"
+              }
+            },
+            "tradeIdentifierSequence" : {
+              "partyAndAccountReferencesModel" : { },
+              "tradeIdentifierSequenceChoice" : [ {
+                "tradeId" : {
+                  "value" : "FI-BANKXX-585125839",
+                  "tradeIdScheme" : "http://www.fpml.org/coding-scheme/external/unique-transaction-identifier"
+                }
+              } ]
+            }
+          }, {
+            "issuerTradeIdModel" : {
+              "tradeId" : {
+                "value" : "FI-BANKXX-585125839",
+                "tradeIdScheme" : "http://www.dtcc.com/internal-reference-id"
+              }
+            },
+            "tradeIdentifierSequence" : {
+              "partyAndAccountReferencesModel" : {
+                "partyReference" : {
+                  "href" : "partyA"
+                }
+              },
+              "tradeIdentifierSequenceChoice" : [ {
+                "tradeId" : {
+                  "value" : "FI-BANKXX-585125839",
+                  "tradeIdScheme" : "http://www.dtcc.com/internal-reference-id"
+                }
+              } ]
+            },
+            "linkId" : [ {
+              "value" : "566035542",
+              "linkIdScheme" : "http://www.bankx.com/trd-no"
+            } ]
+          } ]
         },
         "product" : {
           "productModel" : {
             "primaryAssetClass" : {
               "value" : "InterestRate"
             },
+            "productId" : [ {
+              "value" : "JP1700161P53",
+              "productIdScheme" : "http://www.dtcc.com/coding-scheme/external/product-id/ISIN"
+            } ],
             "productType" : [ {
               "value" : "JRMXFP",
               "productTypeScheme" : "http://www.fpml.org/coding-scheme/external/product-classification/iso10962"
@@ -252,10 +256,6 @@
             }, {
               "value" : "InterestRate:Forward:Debt",
               "productTypeScheme" : "http://www.fpml.org/coding-scheme/product-taxonomy"
-            } ],
-            "productId" : [ {
-              "value" : "JP1700161P53",
-              "productIdScheme" : "http://www.dtcc.com/coding-scheme/external/product-id/ISIN"
             } ]
           },
           "buyerSellerModel" : {
@@ -300,11 +300,11 @@
                 }
               }
             },
-            "buyerSellerModel" : { },
             "dayCountFraction" : {
               "value" : "30/360"
             },
-            "id" : "underlyer.fixed"
+            "id" : "underlyer.fixed",
+            "buyerSellerModel" : { }
           }, {
             "underlyingAsset" : {
               "instrumentId" : [ {

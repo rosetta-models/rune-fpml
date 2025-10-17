@@ -22,10 +22,10 @@
   "correlationAndSequenceModel" : {
     "correlationModel" : {
       "correlationIdModel" : {
-        "correlationId" : {
+        "correlationId" : [ {
           "value" : "0123456",
           "correlationIdScheme" : "http://sef1.com/coding-scheme/correlation-id"
-        }
+        } ]
       }
     },
     "sequenceModel" : {
@@ -44,28 +44,7 @@
                 "globalTradeIdentifiersModel" : {
                   "globalTradeIdentifiersModelSequence" : { }
                 }
-              },
-              "partyTradeIdentifier" : [ {
-                "issuerTradeIdModel" : {
-                  "tradeId" : {
-                    "value" : "TR2",
-                    "tradeIdScheme" : "http://www.fpml.org/coding-scheme/trade-package-id"
-                  }
-                },
-                "tradeIdentifierSequence" : {
-                  "partyAndAccountReferencesModel" : {
-                    "partyReference" : {
-                      "href" : "tradeSource"
-                    }
-                  },
-                  "tradeIdentifierSequenceChoice" : [ {
-                    "tradeId" : {
-                      "value" : "TR2",
-                      "tradeIdScheme" : "http://www.fpml.org/coding-scheme/trade-package-id"
-                    }
-                  } ]
-                }
-              } ]
+              }
             },
             "partyTradeInformation" : [ {
               "partyAndAccountReferencesModel" : {
@@ -166,7 +145,28 @@
             } ],
             "tradeDate" : {
               "value" : "2018-09-14T00:00:00Z"
-            }
+            },
+            "partyTradeIdentifier" : [ {
+              "issuerTradeIdModel" : {
+                "tradeId" : {
+                  "value" : "TR2",
+                  "tradeIdScheme" : "http://www.fpml.org/coding-scheme/trade-package-id"
+                }
+              },
+              "tradeIdentifierSequence" : {
+                "partyAndAccountReferencesModel" : {
+                  "partyReference" : {
+                    "href" : "tradeSource"
+                  }
+                },
+                "tradeIdentifierSequenceChoice" : [ {
+                  "tradeId" : {
+                    "value" : "TR2",
+                    "tradeIdScheme" : "http://www.fpml.org/coding-scheme/trade-package-id"
+                  }
+                } ]
+              }
+            } ]
           },
           "product" : {
             "productModel" : {
@@ -256,7 +256,6 @@
                       }
                     }
                   },
-                  "calculationSequence" : { },
                   "rateCalculation" : {
                     "floatingRateIndexModel" : {
                       "floatingRateIndex" : {
@@ -285,7 +284,8 @@
                   },
                   "dayCountFraction" : {
                     "value" : "ACT/ACT.ISMA"
-                  }
+                  },
+                  "calculationSequence" : { }
                 }
               },
               "principalExchanges" : {
@@ -380,13 +380,13 @@
                       }
                     }
                   },
+                  "dayCountFraction" : {
+                    "value" : "ACT/360"
+                  },
                   "calculationSequence" : {
                     "fixedRateSchedule" : {
                       "initialValue" : 0.0
                     }
-                  },
-                  "dayCountFraction" : {
-                    "value" : "ACT/360"
                   }
                 }
               },
@@ -438,23 +438,23 @@
             } ],
             "additionalTerms" : {
               "swapAdditionalTermsSequence" : {
-                "bondReference" : {
-                  "bond" : {
-                    "instrumentId" : [ {
-                      "value" : "GB00BYZW3J87",
-                      "instrumentIdScheme" : "http://www.fpml.org/coding-scheme/external/instrument-id-ISIN"
-                    } ],
-                    "fixedIncomeSecurityContentModel" : {
-                      "couponRate" : 0.125
-                    },
-                    "bondCalculationModel" : { }
-                  },
-                  "conditionPrecedentBond" : false
-                },
                 "spreadCalculationMethod" : "ParPar",
                 "swapStreamReference" : {
                   "href" : "floatingLeg2"
                 }
+              },
+              "bondReference" : {
+                "bond" : {
+                  "instrumentId" : [ {
+                    "value" : "GB00BYZW3J87",
+                    "instrumentIdScheme" : "http://www.fpml.org/coding-scheme/external/instrument-id-ISIN"
+                  } ],
+                  "fixedIncomeSecurityContentModel" : {
+                    "couponRate" : 0.125
+                  },
+                  "bondCalculationModel" : { }
+                },
+                "conditionPrecedentBond" : false
               }
             }
           },
@@ -476,9 +476,6 @@
           },
           "approvals" : {
             "approval" : [ {
-              "_type" : {
-                "value" : "Clearing"
-              },
               "status" : "Approved",
               "approvingPartyReference" : {
                 "href" : "accountantA"
@@ -488,6 +485,9 @@
               },
               "approvalId" : {
                 "value" : "ABC"
+              },
+              "type" : {
+                "value" : "Clearing"
               }
             } ]
           }

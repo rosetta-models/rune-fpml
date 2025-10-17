@@ -11,11 +11,6 @@
   <sequenceNumber>1</sequenceNumber>
   <trade>
     <tradeHeader>
-      <partyTradeIdentifier>
-        <tradeId tradeIdScheme="http://www.fpml.org/coding-scheme/trade-package-id">TR2</tradeId>
-        <tradeId tradeIdScheme="http://www.fpml.org/coding-scheme/trade-package-id">TR2</tradeId>
-        <partyReference href="tradeSource"/>
-      </partyTradeIdentifier>
       <partyTradeInformation>
         <partyReference href="counterpartyA"/>
         <relatedParty>
@@ -51,6 +46,11 @@
         <executionVenueType>SEF</executionVenueType>
       </partyTradeInformation>
       <tradeDate>2018-09-14T00:00:00</tradeDate>
+      <partyTradeIdentifier>
+        <tradeId tradeIdScheme="http://www.fpml.org/coding-scheme/trade-package-id">TR2</tradeId>
+        <tradeId tradeIdScheme="http://www.fpml.org/coding-scheme/trade-package-id">TR2</tradeId>
+        <partyReference href="tradeSource"/>
+      </partyTradeIdentifier>
     </tradeHeader>
     <swap>
       <productType productTypeScheme="http://www.fpml.org/coding-scheme/product-taxonomy">InterestRate:IRSwap:Inflation</productType>
@@ -182,10 +182,10 @@
                 <currency>GBP</currency>
               </notionalStepSchedule>
             </notionalSchedule>
+            <dayCountFraction>ACT/360</dayCountFraction>
             <fixedRateSchedule>
               <initialValue>0.0</initialValue>
             </fixedRateSchedule>
-            <dayCountFraction>ACT/360</dayCountFraction>
           </calculation>
         </calculationPeriodAmount>
         <principalExchanges>
@@ -213,6 +213,8 @@
         <paymentType>UpfrontFee</paymentType>
       </additionalPayment>
       <additionalTerms>
+        <spreadCalculationMethod>ParPar</spreadCalculationMethod>
+        <swapStreamReference href="floatingLeg2"/>
         <bondReference>
           <bond>
             <instrumentId instrumentIdScheme="http://www.fpml.org/coding-scheme/external/instrument-id-ISIN">GB00BYZW3J87</instrumentId>
@@ -220,8 +222,6 @@
           </bond>
           <conditionPrecedentBond>false</conditionPrecedentBond>
         </bondReference>
-        <spreadCalculationMethod>ParPar</spreadCalculationMethod>
-        <swapStreamReference href="floatingLeg2"/>
       </additionalTerms>
     </swap>
     <documentation>
@@ -233,11 +233,11 @@
     </documentation>
     <approvals>
       <approval>
-        <type>Clearing</type>
         <status>Approved</status>
         <approvingPartyReference href="accountantA"/>
         <approvedPartyReference href="counterpartyA"/>
         <approvalId>ABC</approvalId>
+        <type>Clearing</type>
       </approval>
     </approvals>
   </trade>

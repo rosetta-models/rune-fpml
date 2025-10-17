@@ -8,52 +8,52 @@
           "globalTradeIdentifiersModel" : {
             "globalTradeIdentifiersModelSequence" : { }
           }
+        }
+      },
+      "tradeDate" : {
+        "value" : "2009-01-28T00:00:00Z"
+      },
+      "partyTradeIdentifier" : [ {
+        "issuerTradeIdModel" : {
+          "tradeId" : {
+            "value" : "1234",
+            "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
+          }
         },
-        "partyTradeIdentifier" : [ {
-          "issuerTradeIdModel" : {
+        "tradeIdentifierSequence" : {
+          "partyAndAccountReferencesModel" : {
+            "partyReference" : {
+              "href" : "partyA"
+            }
+          },
+          "tradeIdentifierSequenceChoice" : [ {
             "tradeId" : {
               "value" : "1234",
               "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
             }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "partyA"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "1234",
-                "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
-              }
-            } ]
+          } ]
+        }
+      }, {
+        "issuerTradeIdModel" : {
+          "tradeId" : {
+            "value" : "2345",
+            "tradeIdScheme" : "http://www.PartyB.com/com-trade-id"
           }
-        }, {
-          "issuerTradeIdModel" : {
+        },
+        "tradeIdentifierSequence" : {
+          "partyAndAccountReferencesModel" : {
+            "partyReference" : {
+              "href" : "partyB"
+            }
+          },
+          "tradeIdentifierSequenceChoice" : [ {
             "tradeId" : {
               "value" : "2345",
               "tradeIdScheme" : "http://www.PartyB.com/com-trade-id"
             }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "partyB"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "2345",
-                "tradeIdScheme" : "http://www.PartyB.com/com-trade-id"
-              }
-            } ]
-          }
-        } ]
-      },
-      "tradeDate" : {
-        "value" : "2009-01-28T00:00:00Z"
-      }
+          } ]
+        }
+      } ]
     },
     "product" : {
       "productModel" : { },
@@ -107,6 +107,10 @@
           "settlementPeriods" : [ {
             "duration" : "1Hour",
             "applicableDay" : [ "MON", "TUE", "WED", "THU", "FRI" ],
+            "excludeHolidays" : {
+              "value" : "NERC"
+            },
+            "id" : "settlementPeriods",
             "startTime" : {
               "time" : {
                 "hourMinuteTime" : "07:00:00",
@@ -122,15 +126,11 @@
                   "value" : "America/Chicago"
                 }
               }
-            },
-            "excludeHolidays" : {
-              "value" : "NERC"
-            },
-            "id" : "settlementPeriods"
+            }
           } ],
           "loadType" : "Peak",
           "electricity" : {
-            "_type" : "Electricity"
+            "type" : "Electricity"
           },
           "deliveryConditions" : {
             "electricityDeliverySequence0" : {

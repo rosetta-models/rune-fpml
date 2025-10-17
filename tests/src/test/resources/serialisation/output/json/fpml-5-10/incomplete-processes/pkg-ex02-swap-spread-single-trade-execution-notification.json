@@ -17,10 +17,10 @@
   "correlationAndSequenceModel" : {
     "correlationModel" : {
       "correlationIdModel" : {
-        "correlationId" : {
+        "correlationId" : [ {
           "value" : "234231132",
           "correlationIdScheme" : "http://www.sefco.com/correlation-id"
-        }
+        } ]
       }
     },
     "sequenceModel" : {
@@ -37,28 +37,7 @@
               "globalTradeIdentifiersModel" : {
                 "globalTradeIdentifiersModelSequence" : { }
               }
-            },
-            "partyTradeIdentifier" : [ {
-              "issuerTradeIdModel" : {
-                "tradeId" : {
-                  "value" : "1",
-                  "tradeIdScheme" : "http://www.sefco.com/swaps/trade-id"
-                }
-              },
-              "tradeIdentifierSequence" : {
-                "partyAndAccountReferencesModel" : {
-                  "partyReference" : {
-                    "href" : "sef"
-                  }
-                },
-                "tradeIdentifierSequenceChoice" : [ {
-                  "tradeId" : {
-                    "value" : "1",
-                    "tradeIdScheme" : "http://www.sefco.com/swaps/trade-id"
-                  }
-                } ]
-              }
-            } ]
+            }
           },
           "originatingPackage" : {
             "packageIdentifier" : {
@@ -80,7 +59,28 @@
           },
           "tradeDate" : {
             "value" : "2014-01-15T00:00:00Z"
-          }
+          },
+          "partyTradeIdentifier" : [ {
+            "issuerTradeIdModel" : {
+              "tradeId" : {
+                "value" : "1",
+                "tradeIdScheme" : "http://www.sefco.com/swaps/trade-id"
+              }
+            },
+            "tradeIdentifierSequence" : {
+              "partyAndAccountReferencesModel" : {
+                "partyReference" : {
+                  "href" : "sef"
+                }
+              },
+              "tradeIdentifierSequenceChoice" : [ {
+                "tradeId" : {
+                  "value" : "1",
+                  "tradeIdScheme" : "http://www.sefco.com/swaps/trade-id"
+                }
+              } ]
+            }
+          } ]
         },
         "product" : {
           "productModel" : { },
@@ -204,7 +204,6 @@
                     }
                   }
                 },
-                "calculationSequence" : { },
                 "rateCalculation" : {
                   "floatingRateIndexModel" : {
                     "floatingRateIndex" : {
@@ -220,7 +219,8 @@
                 },
                 "dayCountFraction" : {
                   "value" : "ACT/365.FIXED"
-                }
+                },
+                "calculationSequence" : { }
               }
             }
           }, {
@@ -303,13 +303,13 @@
                     }
                   }
                 },
+                "dayCountFraction" : {
+                  "value" : "30E/360"
+                },
                 "calculationSequence" : {
                   "fixedRateSchedule" : {
                     "initialValue" : 0.02232
                   }
-                },
-                "dayCountFraction" : {
-                  "value" : "30E/360"
                 }
               }
             }
@@ -318,9 +318,6 @@
         "calculationAgentModel" : { },
         "approvals" : {
           "approval" : [ {
-            "_type" : {
-              "value" : "PreClearingCredit"
-            },
             "status" : "Approved",
             "approvingPartyReference" : {
               "href" : "clearingbroker"
@@ -331,6 +328,9 @@
             "approvalId" : {
               "value" : "123",
               "approvalIdScheme" : "http://xyz.com/approvalid"
+            },
+            "type" : {
+              "value" : "PreClearingCredit"
             }
           } ]
         }
