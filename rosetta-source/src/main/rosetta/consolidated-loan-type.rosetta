@@ -8,7 +8,7 @@ type DelayedDraw extends AbstractFacility: [ docReference fpml.consolidated.ISDA
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
-    mustDrawByDate date (0..1)
+    mustDrawByDate zonedDateTime (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
@@ -206,7 +206,7 @@ type Borrowing extends AbstractLoanContractEvent: [ docReference fpml.consolidat
 
 type BreakageFeePayment extends AbstractLoanContractPaymentEvent: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
 
-    breakageFeeClaimDate date (0..1)
+    breakageFeeClaimDate zonedDateTime (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
@@ -369,12 +369,12 @@ type LcRateChange extends AbstractLcEvent: [ docReference fpml.consolidated.ISDA
 
 type LcRenewal extends AbstractLcEvent: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
 
-    finalExpiryDate date (1..1)
+    finalExpiryDate zonedDateTime (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
-    maturityDate date (0..1)
+    maturityDate zonedDateTime (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
@@ -438,7 +438,7 @@ type LoanAllocationSettlementDateAvailability extends AbstractLoanAllocationEven
     periodModel fpml.consolidated.shared.PeriodModel (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
-    onOrAfterDate date (0..1)
+    onOrAfterDate zonedDateTime (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
     loanAllocationSettlementDateAvailabilitySequence LoanAllocationSettlementDateAvailabilitySequence (0..1)
@@ -450,7 +450,7 @@ type LoanAllocationSettlementDateAvailability extends AbstractLoanAllocationEven
 
 type LoanAllocationSettlementDateFinalization extends AbstractLoanAllocationEvent: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ]
 
-    settlementDate date (1..1)
+    settlementDate zonedDateTime (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
 
@@ -834,13 +834,13 @@ type AbstractApplicablePartyProfileObjects: [ docReference fpml.consolidated.ISD
 
 type AbstractApproval: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ]
 
-    effectiveDate date (0..1)
+    effectiveDate zonedDateTime (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
     approvalVotes ApprovalVotes (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
-    finalApprovalDate date (0..1)
+    finalApprovalDate zonedDateTime (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
     id string (0..1)
@@ -965,7 +965,7 @@ type AbstractLoanAllocationEvent extends AbstractLoanEvent: [ docReference fpml.
 
 type AbstractLoanAllocationNotification extends fpml.consolidated.msg.CorrectableRequestMessage: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ]
 
-    noticeDate date (1..1)
+    noticeDate zonedDateTime (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
@@ -984,7 +984,7 @@ type AbstractLoanAllocationNotification extends fpml.consolidated.msg.Correctabl
 
 type AbstractLoanAllocationSettlementEvent extends AbstractLoanAllocationEvent: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
 
-    settlementDate date (1..1)
+    settlementDate zonedDateTime (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
@@ -1076,7 +1076,7 @@ type AbstractLoanServicingEvent extends AbstractLoanEvent: [ docReference fpml.c
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
-    effectiveDate date (1..1)
+    effectiveDate zonedDateTime (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
@@ -1087,7 +1087,7 @@ type AbstractLoanServicingEvent extends AbstractLoanEvent: [ docReference fpml.c
 
 type AbstractLoanStatement extends fpml.consolidated.msg.CorrectableRequestMessage: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
 
-    statementDate date (1..1)
+    statementDate zonedDateTime (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
@@ -1108,7 +1108,7 @@ type AbstractLoanTradeEvent extends AbstractLoanEvent: [ docReference fpml.conso
 
 type AbstractLoanTradeNotification extends fpml.consolidated.msg.CorrectableRequestMessage: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ]
 
-    noticeDate date (1..1)
+    noticeDate zonedDateTime (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
@@ -1127,7 +1127,7 @@ type AbstractLoanTradeNotification extends fpml.consolidated.msg.CorrectableRequ
 
 type AbstractPartyProfile extends AbstractPartyProfileId: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
 
-    effectiveDate date (1..1)
+    effectiveDate zonedDateTime (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
@@ -1158,7 +1158,7 @@ type AbstractPartyProfileId: [ docReference fpml.consolidated.ISDA fpml.consolid
 
 type AbstractServicingNotification extends fpml.consolidated.msg.CorrectableRequestMessage: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
 
-    noticeDate date (1..1)
+    noticeDate zonedDateTime (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
@@ -1381,7 +1381,7 @@ type ActionApproval: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPM
     approvalParties ApprovalParties (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
-    approvalDeadlineDate date (1..1)
+    approvalDeadlineDate zonedDateTime (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
 
@@ -1608,7 +1608,7 @@ type CashPayable: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML f
 
 type CommitmentChange: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
 
-    date date (1..1)
+    date zonedDateTime (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
@@ -1664,7 +1664,7 @@ type CovenantObligationIdentifier: [ docReference fpml.consolidated.ISDA fpml.co
 
 type CovenantObligationSummary extends CovenantObligationIdentifier: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ]
 
-    effectiveDate date (1..1)
+    effectiveDate zonedDateTime (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
     obligatedParty fpml.consolidated.shared.PartyReference (1..1)
@@ -1721,7 +1721,7 @@ type DealSummary extends DealIdentifier: [ docReference fpml.consolidated.ISDA f
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
-    creditAgreementDate date (1..1)
+    creditAgreementDate zonedDateTime (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
@@ -2153,7 +2153,7 @@ type LegacyFloatingRateAccrual extends AbstractLegacyFloatingRateOptionBase: [ d
 
 type LegacyFloatingRateAccrualSequence:
 
-    rateFixingDate date (1..1)
+    rateFixingDate zonedDateTime (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
     baseRate number (0..1)
@@ -2292,12 +2292,12 @@ type LenderClassification: [ docReference fpml.consolidated.ISDA fpml.consolidat
 
 type LetterOfCredit extends LetterOfCreditSummary: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
 
-    expiryDate date (1..1)
+    expiryDate zonedDateTime (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
-    finalExpiryDate date (0..1)
+    finalExpiryDate zonedDateTime (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
@@ -2338,7 +2338,7 @@ type LetterOfCreditSummary extends LoanContractIdentifier: [ docReference fpml.c
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
-    effectiveDate date (1..1)
+    effectiveDate zonedDateTime (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
@@ -2538,7 +2538,7 @@ type LoanAllocationTransferFeeDue extends AbstractLoanAllocationEvent: [ docRefe
     amount fpml.consolidated.shared.NonNegativeMoney (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
-    dueDate date (1..1)
+    dueDate zonedDateTime (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
 
@@ -2583,12 +2583,12 @@ type LoanBulkServicingNotificationSequenceChoice:
 
 type LoanContract extends LoanContractSummary: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
 
-    repricingDate date (0..1)
+    repricingDate zonedDateTime (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
-    maturityDate date (0..1)
+    maturityDate zonedDateTime (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
@@ -2614,7 +2614,7 @@ type LoanContract extends LoanContractSummary: [ docReference fpml.consolidated.
 
 type LoanContractBaseRateSet extends AbstractLoanContractEvent: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
 
-    fixingDate date (1..1)
+    fixingDate zonedDateTime (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
@@ -2641,12 +2641,12 @@ type LoanContractList: [ docReference fpml.consolidated.ISDA fpml.consolidated.F
 
 type LoanContractMaturityChange extends AbstractLoanContractEvent: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
 
-    currentMaturityDate date (1..1)
+    currentMaturityDate zonedDateTime (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
-    priorMaturityDate date (0..1)
+    priorMaturityDate zonedDateTime (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
@@ -2667,7 +2667,7 @@ type LoanContractsReference: [ docReference fpml.consolidated.ISDA fpml.consolid
 
 type LoanContractSummary extends LoanContractIdentifier: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
 
-    effectiveDate date (1..1)
+    effectiveDate zonedDateTime (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
@@ -2771,7 +2771,7 @@ type LoanCovenantObligationDateTriggerDetailsChoice:
 
 type LoanCovenantObligationDueDate: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ]
 
-    specificDate date (1..1)
+    specificDate zonedDateTime (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
     dateOffset fpml.consolidated.shared.DateOffset (0..1)
@@ -2918,7 +2918,7 @@ type LoanFloatingRateAccrual extends AbstractLoanFloatingRateOptionBase: [ docRe
 
 type LoanFloatingRateAccrualSequence:
 
-    rateEffectiveDate date (1..1)
+    rateEffectiveDate zonedDateTime (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
     baseRate number (0..1)
@@ -3112,7 +3112,7 @@ type LoanLegalActionStatementChoiceSequence:
 
 type LoanLegalActionStatus: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ]
 
-    effectiveDate date (0..1)
+    effectiveDate zonedDateTime (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
     legalActionReference LoanLegalActionReference (1..1)
@@ -3251,7 +3251,7 @@ type LoanSimplePayment extends fpml.consolidated.shared.PaymentBase: [ docRefere
 
 type LoanTradeType extends LoanTradeSummary: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ]
 
-    tradeDate date (1..1)
+    tradeDate zonedDateTime (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
@@ -3355,7 +3355,7 @@ type LoanTradeTransferFeeDue extends AbstractLoanTradeEvent: [ docReference fpml
     amount fpml.consolidated.shared.NonNegativeMoney (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
-    dueDate date (1..1)
+    dueDate zonedDateTime (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
 
@@ -3712,7 +3712,7 @@ type PartyApprovalVote: [ docReference fpml.consolidated.ISDA fpml.consolidated.
     vote ApprovalVoteDecision (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
-    voteDate date (1..1)
+    voteDate zonedDateTime (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
 
@@ -3783,7 +3783,7 @@ type PartyProfileIdentifier: [ docReference fpml.consolidated.ISDA fpml.consolid
 
 type PaymentProjection: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
 
-    nextPaymentDate date (1..1)
+    nextPaymentDate zonedDateTime (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
@@ -3873,13 +3873,13 @@ type RateAdjustment: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPM
 
 type TaskDates: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ]
 
-    raisedDate date (1..1)
+    raisedDate zonedDateTime (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
-    expectedDate date (0..1)
+    expectedDate zonedDateTime (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
-    clearedDate date (0..1)
+    clearedDate zonedDateTime (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
 
@@ -3929,7 +3929,7 @@ type TaxForm: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
-    taxFormExpiryDate date (0..1)
+    taxFormExpiryDate zonedDateTime (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
@@ -4202,17 +4202,17 @@ type FacilityCommitmentModel: [ docReference fpml.consolidated.ISDA fpml.consoli
 
 type FacilityDatesModel: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
 
-    startDate date (1..1)
+    startDate zonedDateTime (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
-    expiryDate date (0..1)
+    expiryDate zonedDateTime (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
-    maturityDate date (0..1)
+    maturityDate zonedDateTime (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
@@ -4609,12 +4609,12 @@ type LoanTradingTransferFeeDeterminationModel: [ docReference fpml.consolidated.
 
 type PeriodOptionalEndModel: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
 
-    startDate date (1..1)
+    startDate zonedDateTime (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
-    endDate date (0..1)
+    endDate zonedDateTime (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
@@ -4875,7 +4875,7 @@ type FloatingRateAccrual extends FloatingRateOptionBase: [ docReference fpml.con
 
 type FloatingRateAccrualSequence:
 
-    rateFixingDate date (0..1)
+    rateFixingDate zonedDateTime (0..1)
         [deprecated]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
@@ -4976,7 +4976,7 @@ type LoanAllocationSettlementDateAvailabilityEvent extends AbstractLoanAllocatio
     periodModel fpml.consolidated.shared.PeriodModel (0..1)
         [deprecated]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
-    onOrAfterDate date (0..1)
+    onOrAfterDate zonedDateTime (0..1)
         [deprecated]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
     loanAllocationSettlementDateAvailabilityEventSequence LoanAllocationSettlementDateAvailabilityEventSequence (0..1)
@@ -4997,7 +4997,7 @@ type LoanAllocationSettlementDateAvailabilityEventSequence:
 
 type LoanAllocationSettlementDateFinalizationEvent extends AbstractLoanAllocationEvent: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ]
 
-    settlementDate date (0..1)
+    settlementDate zonedDateTime (0..1)
         [deprecated]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
 
@@ -5028,7 +5028,7 @@ type LoanAllocationTransferFeeDueEvent extends AbstractLoanAllocationEvent: [ do
         [deprecated]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
-    dueDate date (0..1)
+    dueDate zonedDateTime (0..1)
         [deprecated]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
@@ -5079,7 +5079,7 @@ type LoanTradeTransferFeeDueEvent extends AbstractLoanTradeEvent: [ docReference
         [deprecated]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
-    dueDate date (0..1)
+    dueDate zonedDateTime (0..1)
         [deprecated]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
@@ -5093,13 +5093,13 @@ type LoanTradeTransferFeeOwedEvent extends AbstractLoanTradeEvent: [ docReferenc
 
 type LoanTaskDates: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ]
 
-    raisedDate date (0..1)
+    raisedDate zonedDateTime (0..1)
         [deprecated]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
-    expectedDate date (0..1)
+    expectedDate zonedDateTime (0..1)
         [deprecated]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
-    clearedDate date (0..1)
+    clearedDate zonedDateTime (0..1)
         [deprecated]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
 
@@ -5535,7 +5535,7 @@ type AbstractLoanTradePaymentNotification extends AbstractLoanTradingNotificatio
 
 type AbstractLoanTradingNotification extends fpml.consolidated.msg.CorrectableRequestMessage: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
 
-    noticeDate date (0..1)
+    noticeDate zonedDateTime (0..1)
         [deprecated]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
     partyReference fpml.consolidated.shared.PartyReference (0..1)
@@ -5547,7 +5547,7 @@ type AbstractLoanTradingNotification extends fpml.consolidated.msg.CorrectableRe
 
 type AbstractLoanTrade extends AbstractLoanTradeSummary: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
 
-    tradeDate date (0..1)
+    tradeDate zonedDateTime (0..1)
         [deprecated]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
     buyerSellerModel fpml.consolidated.shared.BuyerSellerModel (0..1)
@@ -5727,7 +5727,7 @@ type LoanSettlementDateAvailabilityEvent extends AbstractLoanAllocationEvent: [ 
     periodModel fpml.consolidated.shared.PeriodModel (0..1)
         [deprecated]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
-    onOrAfterDate date (0..1)
+    onOrAfterDate zonedDateTime (0..1)
         [deprecated]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
     loanSettlementDateAvailabilityEventSequence LoanSettlementDateAvailabilityEventSequence (0..1)
@@ -5751,7 +5751,7 @@ type LoanSettlementDateFinalizationEvent extends AbstractLoanAllocationEvent: [ 
     amount fpml.consolidated.shared.Money (0..1)
         [deprecated]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
-    settlementDate date (0..1)
+    settlementDate zonedDateTime (0..1)
         [deprecated]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
 
@@ -5793,13 +5793,13 @@ type LoanTradingOutstandingsAccrual extends AbstractTradingAccrual: [ docReferen
 
 type LoanTradingSettlementTaskDates: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
 
-    raisedDate date (0..1)
+    raisedDate zonedDateTime (0..1)
         [deprecated]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
-    expectedDate date (0..1)
+    expectedDate zonedDateTime (0..1)
         [deprecated]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
-    clearedDate date (0..1)
+    clearedDate zonedDateTime (0..1)
         [deprecated]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
 

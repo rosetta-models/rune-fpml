@@ -235,7 +235,7 @@ type FxComplexBarrierBase:
 
 type FxComplexBarrierBaseSequence0:
 
-    observationStartDate date (1..1)
+    observationStartDate zonedDateTime (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "The date on which the observation period for an american barrier starts. If the start date is not present, then the date and time of the start of the period is deemed to be the date and time the transaction was entered into."]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
@@ -258,7 +258,7 @@ type FxComplexBarrierBaseSequence0:
 
 type FxComplexBarrierBaseSequence1:
 
-    observationEndDate date (1..1)
+    observationEndDate zonedDateTime (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "The date on which the observation period for an american barrier ends. If the end date is not present, then the date and time of the end of the period is deemed to be the date and time of expiration."]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
@@ -360,7 +360,7 @@ type FxExchangedCurrency: [ docReference fpml.consolidated.ISDA fpml.consolidate
 
 type FxExpirySchedule extends FxSchedule: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13" provision "Defines the expiry/observation schedule of the target." ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.10" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11" ] [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10" ]
 
-    finalExpiryDate date (1..1)
+    finalExpiryDate zonedDateTime (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "The final expiry date facilitates informing the final date without having to process all expiry dates in the schedule."]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
@@ -579,7 +579,7 @@ type FxScheduleSequence0:
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
-    adjustedDate date (1..*)
+    adjustedDate zonedDateTime (1..*)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "List of schedule dates. These dates have been subject to adjustments based on the dateAdjustments structure."]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
@@ -611,7 +611,7 @@ type FxScheduleSequence1:
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
-    adjustedDate date (1..*)
+    adjustedDate zonedDateTime (1..*)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "List of schedule dates. These dates have been subject to adjustments based on the dateAdjustments structure."]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
@@ -662,7 +662,7 @@ type FxSettlementPeriodBarrier:
 
 type FxSettlementSchedule extends FxSchedule:
 
-    finalSettlementDate date (0..1)
+    finalSettlementDate zonedDateTime (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "The final settlement date facilitates informing the final date without having to process all settlement dates in the schedule."]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
@@ -1307,7 +1307,7 @@ type FxTargetReference extends fpml.consolidated.shared.Reference: [ docReferenc
 
 type SettlementPeriod:
 
-    expiryDate date (1..1)
+    expiryDate zonedDateTime (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "Expiry date for the settlement period."]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
@@ -1317,7 +1317,7 @@ type SettlementPeriod:
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
-    settlementDate date (1..1)
+    settlementDate zonedDateTime (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "Settlement date for the settlement period."]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
@@ -1340,7 +1340,7 @@ type SettlementPeriod:
 
 type SettlementPeriodFixingDates:
 
-    fixingDate date (0..*)
+    fixingDate zonedDateTime (0..*)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "Observation date in a fixing period."]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
@@ -1375,7 +1375,7 @@ type SettlementPeriodFixingDates:
 
 type SettlementPeriodFixingDatesSequence:
 
-    startDate date (1..1)
+    startDate zonedDateTime (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "Start date of the period."]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
@@ -1385,7 +1385,7 @@ type SettlementPeriodFixingDatesSequence:
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
-    endDate date (1..1)
+    endDate zonedDateTime (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "End date of the period."]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
@@ -1582,7 +1582,7 @@ type ParametricScheduleModel: [ docReference fpml.consolidated.ISDA fpml.consoli
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
-    endDate date (0..1)
+    endDate zonedDateTime (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "End of the schedule."]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
@@ -1619,7 +1619,7 @@ type ParametricScheduleModel: [ docReference fpml.consolidated.ISDA fpml.consoli
 
 type ParametricScheduleModelSequence0:
 
-    startDate date (1..1)
+    startDate zonedDateTime (1..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "Start of the schedule."]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
@@ -1629,7 +1629,7 @@ type ParametricScheduleModelSequence0:
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.12"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.11"]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.10"]
-    endDate date (0..1)
+    endDate zonedDateTime (0..1)
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.13"
             provision "End of the schedule."]
         [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "recordkeeping-5.12"]
