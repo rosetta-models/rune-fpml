@@ -19,10 +19,10 @@
   "correlationAndOptionalSequenceModel" : {
     "correlationModel" : {
       "correlationIdModel" : {
-        "correlationId" : {
+        "correlationId" : [ {
           "value" : "234231132",
           "correlationIdScheme" : "http://www.mw.com/correlation-id"
-        }
+        } ]
       }
     },
     "sequenceModel" : {
@@ -43,28 +43,7 @@
                   "globalTradeIdentifiersModel" : {
                     "globalTradeIdentifiersModelSequence" : { }
                   }
-                },
-                "partyTradeIdentifier" : [ {
-                  "issuerTradeIdModel" : {
-                    "tradeId" : {
-                      "value" : "1",
-                      "tradeIdScheme" : "http://www.sefco.com/swaps/trade-id"
-                    }
-                  },
-                  "tradeIdentifierSequence" : {
-                    "partyAndAccountReferencesModel" : {
-                      "partyReference" : {
-                        "href" : "sef"
-                      }
-                    },
-                    "tradeIdentifierSequenceChoice" : [ {
-                      "tradeId" : {
-                        "value" : "1",
-                        "tradeIdScheme" : "http://www.sefco.com/swaps/trade-id"
-                      }
-                    } ]
-                  }
-                } ]
+                }
               },
               "originatingPackage" : {
                 "packageIdentifier" : {
@@ -83,7 +62,28 @@
               },
               "tradeDate" : {
                 "value" : "2014-01-15T00:00:00Z"
-              }
+              },
+              "partyTradeIdentifier" : [ {
+                "issuerTradeIdModel" : {
+                  "tradeId" : {
+                    "value" : "1",
+                    "tradeIdScheme" : "http://www.sefco.com/swaps/trade-id"
+                  }
+                },
+                "tradeIdentifierSequence" : {
+                  "partyAndAccountReferencesModel" : {
+                    "partyReference" : {
+                      "href" : "sef"
+                    }
+                  },
+                  "tradeIdentifierSequenceChoice" : [ {
+                    "tradeId" : {
+                      "value" : "1",
+                      "tradeIdScheme" : "http://www.sefco.com/swaps/trade-id"
+                    }
+                  } ]
+                }
+              } ]
             },
             "product" : {
               "productModel" : { },
@@ -210,7 +210,6 @@
                         }
                       }
                     },
-                    "calculationSequence" : { },
                     "rateCalculation" : {
                       "floatingRateIndexModel" : {
                         "floatingRateIndex" : {
@@ -226,7 +225,8 @@
                     },
                     "dayCountFraction" : {
                       "value" : "ACT/365.FIXED"
-                    }
+                    },
+                    "calculationSequence" : { }
                   }
                 }
               }, {
@@ -312,13 +312,13 @@
                         }
                       }
                     },
+                    "dayCountFraction" : {
+                      "value" : "30E/360"
+                    },
                     "calculationSequence" : {
                       "fixedRateSchedule" : {
                         "initialValue" : 0.02232
                       }
-                    },
-                    "dayCountFraction" : {
-                      "value" : "30E/360"
                     }
                   }
                 }
@@ -327,15 +327,15 @@
             "calculationAgentModel" : { },
             "approvals" : {
               "approval" : [ {
-                "_type" : {
-                  "value" : "PreClearingCredit"
-                },
                 "status" : "Approved",
                 "approvingPartyReference" : {
                   "href" : "fcm1"
                 },
                 "approvalId" : {
                   "value" : "FCM1_123"
+                },
+                "type" : {
+                  "value" : "PreClearingCredit"
                 }
               } ]
             }
@@ -409,10 +409,10 @@
           "href" : "party1"
         }
       },
+      "id" : "party1acct",
       "servicingParty" : {
         "href" : "fcm1"
-      },
-      "id" : "party1acct"
+      }
     } ]
   }
 }

@@ -1,0 +1,84 @@
+namespace fpml.consolidated.accumulator : < "fpml definition" >
+version "${project.version}"
+
+type EquityAccumulator extends fpml.consolidated.shared.Product:
+
+    buyerSellerModel fpml.consolidated.shared.BuyerSellerModel (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+    notional fpml.consolidated.shared.NonNegativeMoney (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+    underlyer fpml.consolidated.asset.Underlyer (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+    forwardPrice fpml.consolidated.shared.NonNegativeMoney (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+    spotPrice fpml.consolidated.shared.NonNegativeMoney (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+    numberOfSharesPerDay fpml.consolidated.shared.NonNegativeDecimal (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+    maxNoOfTradingDays int (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+    gearing Gearing (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+    guaranteedPeriodEndDate zonedDateTime (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+    observationPeriod ObservationPeriod (1..*)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+    expiration EquityForwardExpiration (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+    prePayment fpml.consolidated.eqd.PrePayment (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+    settlementType fpml.consolidated.fpmlenum.SettlementTypeEnum (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+    settlementCurrency fpml.consolidated.shared.Currency (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+    settlementPriceSource fpml.consolidated.shared.SettlementPriceSource (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+    knockOut AccumulatorKnockOut (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+
+type EquityForwardExpiration extends fpml.consolidated.shared.Exercise: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ]
+
+    expirationDate fpml.consolidated.shared.AdjustableOrRelativeDate (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+    equityExpirationModel fpml.consolidated.eqd.EquityExpirationModel (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+
+type SharesPerDay:
+
+type Gearing: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ]
+
+    gearingFactor number (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+    leverageTriggerPrice number (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+
+type ObservationPeriod: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ]
+
+    observationPeriodStartDate zonedDateTime (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+    observationPeriodEndDate zonedDateTime (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+    observationPeriodSettlementDate zonedDateTime (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+    observationPeriodNoOfTradingDays int (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+    upFrontSettlement boolean (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+    noOfScheduledTradingDays int (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+
+type AccumulatorKnockOut: [ docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13" ]
+
+    accumulatorKnockOutSequence AccumulatorKnockOutSequence (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+    level number (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+    triggerTimeType fpml.consolidated.fpmlenum.TriggerTimeTypeEnum (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+
+type AccumulatorKnockOutSequence:
+
+    targetPerformance fpml.consolidated.shared.NonNegativeDecimal (1..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
+    level number (0..1)
+        [docReference fpml.consolidated.ISDA fpml.consolidated.FPML fpml.consolidated.version "confirmation-5.13"]
