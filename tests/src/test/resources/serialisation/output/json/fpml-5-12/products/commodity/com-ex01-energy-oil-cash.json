@@ -16,7 +16,32 @@
           "globalTradeIdentifiersModel" : {
             "globalTradeIdentifiersModelSequence" : { }
           }
-        }
+        },
+        "partyTradeIdentifier" : [ {
+          "issuerTradeIdModel" : {
+            "issuer" : {
+              "value" : "1020304050",
+              "issuerIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+            },
+            "tradeId" : {
+              "value" : "CFTC1001234567891012345678910001",
+              "tradeIdScheme" : "http://www.fpml.org/coding-scheme/external/unique-transaction-identifier"
+            }
+          },
+          "tradeIdentifierSequence" : {
+            "partyAndAccountReferencesModel" : { },
+            "tradeIdentifierSequenceChoice" : [ {
+              "tradeId" : {
+                "value" : "CFTC1001234567891012345678910001",
+                "tradeIdScheme" : "http://www.fpml.org/coding-scheme/external/unique-transaction-identifier"
+              }
+            } ]
+          },
+          "linkId" : [ {
+            "value" : "CFTC1001234567891012345678910000",
+            "linkIdScheme" : "Internal"
+          } ]
+        } ]
       },
       "partyTradeInformation" : [ {
         "partyAndAccountReferencesModel" : {
@@ -210,32 +235,7 @@
       } ],
       "tradeDate" : {
         "value" : "2021-12-03T00:00:00Z"
-      },
-      "partyTradeIdentifier" : [ {
-        "issuerTradeIdModel" : {
-          "issuer" : {
-            "value" : "1020304050",
-            "issuerIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-          },
-          "tradeId" : {
-            "value" : "CFTC1001234567891012345678910001",
-            "tradeIdScheme" : "http://www.fpml.org/coding-scheme/external/unique-transaction-identifier"
-          }
-        },
-        "tradeIdentifierSequence" : {
-          "partyAndAccountReferencesModel" : { },
-          "tradeIdentifierSequenceChoice" : [ {
-            "tradeId" : {
-              "value" : "CFTC1001234567891012345678910001",
-              "tradeIdScheme" : "http://www.fpml.org/coding-scheme/external/unique-transaction-identifier"
-            }
-          } ]
-        },
-        "linkId" : [ {
-          "value" : "CFTC1001234567891012345678910000",
-          "linkIdScheme" : "Internal"
-        } ]
-      } ]
+      }
     },
     "product" : {
       "productModel" : {
@@ -270,7 +270,14 @@
           } ],
           "commodityProductModel" : {
             "commodityReferencePriceFrameworkModel" : {
-              "commodityReferencePriceFrameworkModelSequence" : { },
+              "commodityReferencePriceFrameworkModelSequence" : {
+                "commodityBase" : {
+                  "value" : "Heating Oil"
+                },
+                "commodityDetails" : {
+                  "value" : "XXX"
+                }
+              },
               "unit" : {
                 "value" : "GAL"
               },
@@ -279,12 +286,6 @@
               },
               "exchangeId" : {
                 "value" : "EXCHANGEID"
-              },
-              "commodityBase" : {
-                "value" : "Heating Oil"
-              },
-              "commodityDetails" : {
-                "value" : "XXX"
               }
             },
             "specifiedPrice" : "Settlement",

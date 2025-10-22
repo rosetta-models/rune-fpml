@@ -17,7 +17,52 @@
           "globalTradeIdentifiersModel" : {
             "globalTradeIdentifiersModelSequence" : { }
           }
-        }
+        },
+        "partyTradeIdentifier" : [ {
+          "issuerTradeIdModel" : {
+            "issuer" : {
+              "value" : "9991234569",
+              "issuerIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+            },
+            "tradeId" : {
+              "value" : "001-229414-BR777123456789",
+              "tradeIdScheme" : "http://www.fpml.org/coding-scheme/external/unique-transaction-identifier"
+            }
+          },
+          "tradeIdentifierSequence" : {
+            "partyAndAccountReferencesModel" : { },
+            "tradeIdentifierSequenceChoice" : [ {
+              "tradeId" : {
+                "value" : "001-229414-BR777123456789",
+                "tradeIdScheme" : "http://www.fpml.org/coding-scheme/external/unique-transaction-identifier"
+              }
+            } ]
+          }
+        }, {
+          "issuerTradeIdModel" : {
+            "tradeId" : {
+              "value" : "55512345",
+              "tradeIdScheme" : "http://www.dtcc.com/internal_Referenceid"
+            }
+          },
+          "tradeIdentifierSequence" : {
+            "partyAndAccountReferencesModel" : {
+              "partyReference" : {
+                "href" : "Party1"
+              }
+            },
+            "tradeIdentifierSequenceChoice" : [ {
+              "tradeId" : {
+                "value" : "55512345",
+                "tradeIdScheme" : "http://www.dtcc.com/internal_Referenceid"
+              }
+            } ]
+          },
+          "linkId" : [ {
+            "value" : "ComposerID:'4307223'",
+            "linkIdScheme" : "ComposerID"
+          } ]
+        } ]
       },
       "partyTradeInformation" : [ {
         "partyAndAccountReferencesModel" : {
@@ -135,52 +180,7 @@
       } ],
       "tradeDate" : {
         "value" : "2022-03-17T00:00:00Z"
-      },
-      "partyTradeIdentifier" : [ {
-        "issuerTradeIdModel" : {
-          "issuer" : {
-            "value" : "9991234569",
-            "issuerIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-          },
-          "tradeId" : {
-            "value" : "001-229414-BR777123456789",
-            "tradeIdScheme" : "http://www.fpml.org/coding-scheme/external/unique-transaction-identifier"
-          }
-        },
-        "tradeIdentifierSequence" : {
-          "partyAndAccountReferencesModel" : { },
-          "tradeIdentifierSequenceChoice" : [ {
-            "tradeId" : {
-              "value" : "001-229414-BR777123456789",
-              "tradeIdScheme" : "http://www.fpml.org/coding-scheme/external/unique-transaction-identifier"
-            }
-          } ]
-        }
-      }, {
-        "issuerTradeIdModel" : {
-          "tradeId" : {
-            "value" : "55512345",
-            "tradeIdScheme" : "http://www.dtcc.com/internal_Referenceid"
-          }
-        },
-        "tradeIdentifierSequence" : {
-          "partyAndAccountReferencesModel" : {
-            "partyReference" : {
-              "href" : "Party1"
-            }
-          },
-          "tradeIdentifierSequenceChoice" : [ {
-            "tradeId" : {
-              "value" : "55512345",
-              "tradeIdScheme" : "http://www.dtcc.com/internal_Referenceid"
-            }
-          } ]
-        },
-        "linkId" : [ {
-          "value" : "ComposerID:'4307223'",
-          "linkIdScheme" : "ComposerID"
-        } ]
-      } ]
+      }
     },
     "product" : {
       "productModel" : {
@@ -259,7 +259,14 @@
               } ],
               "commodityProductModel" : {
                 "commodityReferencePriceFrameworkModel" : {
-                  "commodityReferencePriceFrameworkModelSequence" : { },
+                  "commodityReferencePriceFrameworkModelSequence" : {
+                    "commodityBase" : {
+                      "value" : "Natural Gas"
+                    },
+                    "commodityDetails" : {
+                      "value" : "XXX"
+                    }
+                  },
                   "unit" : {
                     "value" : "USMMBTU",
                     "quantityUnitScheme" : "http://www.fpml.org/coding-scheme/price-quote-units"
@@ -269,12 +276,6 @@
                   },
                   "exchangeId" : {
                     "value" : "EXCHANGEID"
-                  },
-                  "commodityBase" : {
-                    "value" : "Natural Gas"
-                  },
-                  "commodityDetails" : {
-                    "value" : "XXX"
                   }
                 },
                 "specifiedPrice" : "Settlement",
