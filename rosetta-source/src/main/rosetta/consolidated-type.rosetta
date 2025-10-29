@@ -38,8 +38,6 @@ type DigestValue:
     [rootType]
 
     value DigestValueType (1..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
 
 type KeyInfo extends KeyInfoType:
     [rootType]
@@ -48,15 +46,11 @@ type KeyName:
     [rootType]
 
     value string (1..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
 
 type MgmtData:
     [rootType]
 
     value string (1..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
 
 type KeyValue extends KeyValueType:
     [rootType]
@@ -94,163 +88,80 @@ type RSAKeyValue extends RSAKeyValueType:
 type SignatureType:
 
     signedInfo SignedInfoType (1..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     signatureValue SignatureValueType (1..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     keyInfo KeyInfoType (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     object ObjectType (0..*)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     id string (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
 
 type SignatureValueType:
 
     value string (1..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     id string (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
 
 type SignedInfoType:
 
     canonicalizationMethod CanonicalizationMethodType (1..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     signatureMethod SignatureMethodType (1..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     reference ReferenceType (1..*)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     id string (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
 
 type CanonicalizationMethodType:
 
-    anyContents string (0..*)
-        [docReference ISDA FPML version "recordkeeping-5.13"
-            provision "Placeholder for xsd:any: Min Occurs: 0; Max Occurs: unbounded; Namespace: ##any; Process Contents: strict."]
-        [docReference ISDA FPML version "confirmation-5.13"]
+    anyContents string (0..*) <"Placeholder for xsd:any: Min Occurs: 0; Max Occurs: unbounded; Namespace: ##any; Process Contents: strict.">
     algorithm string(pattern: "\\w+:(\\/?\\/?)[^\\s]+") (1..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
 
 type SignatureMethodType:
 
     hmacOutputLength HMACOutputLengthType (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
-    anyContents string (0..*)
-        [docReference ISDA FPML version "recordkeeping-5.13"
-            provision "Placeholder for xsd:any: Min Occurs: 0; Max Occurs: unbounded; Namespace: ##other; Process Contents: strict."]
-        [docReference ISDA FPML version "confirmation-5.13"]
+    anyContents string (0..*) <"Placeholder for xsd:any: Min Occurs: 0; Max Occurs: unbounded; Namespace: ##other; Process Contents: strict.">
     algorithm string(pattern: "\\w+:(\\/?\\/?)[^\\s]+") (1..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
 
 type ReferenceType:
 
     transforms TransformsType (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     digestMethod DigestMethodType (1..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     digestValue DigestValueType (1..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     id string (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     uri string(pattern: "\\w+:(\\/?\\/?)[^\\s]+") (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     ^type string(pattern: "\\w+:(\\/?\\/?)[^\\s]+") (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
 
 type TransformsType:
 
     transform TransformType (1..*)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
 
 type TransformType:
 
     transformTypeChoice TransformTypeChoice (0..*)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     algorithm string(pattern: "\\w+:(\\/?\\/?)[^\\s]+") (1..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
 
 type TransformTypeChoice:
 
-    anyContents string (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"
-            provision "Placeholder for xsd:any: Min Occurs: 1; Max Occurs: 1; Namespace: ##other; Process Contents: lax."]
-        [docReference ISDA FPML version "confirmation-5.13"]
+    anyContents string (0..1) <"Placeholder for xsd:any: Min Occurs: 1; Max Occurs: 1; Namespace: ##other; Process Contents: lax.">
     xPath string (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
 
     condition Choice:
         optional choice anyContents, xPath
 
 type DigestMethodType:
 
-    anyContents string (0..*)
-        [docReference ISDA FPML version "recordkeeping-5.13"
-            provision "Placeholder for xsd:any: Min Occurs: 0; Max Occurs: unbounded; Namespace: ##other; Process Contents: lax."]
-        [docReference ISDA FPML version "confirmation-5.13"]
+    anyContents string (0..*) <"Placeholder for xsd:any: Min Occurs: 0; Max Occurs: unbounded; Namespace: ##other; Process Contents: lax.">
     algorithm string(pattern: "\\w+:(\\/?\\/?)[^\\s]+") (1..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
 
 type KeyInfoType:
 
     keyInfoTypeChoice KeyInfoTypeChoice (1..*)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     id string (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
 
 type KeyInfoTypeChoice:
 
     keyName string (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     keyValue KeyValueType (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     retrievalMethod RetrievalMethodType (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     x509Data X509DataType (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     pgpData PGPDataType (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     spkiData SPKIDataType (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     mgmtData string (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
-    anyContents string (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"
-            provision "Placeholder for xsd:any: Min Occurs: 1; Max Occurs: 1; Namespace: ##other; Process Contents: lax."]
-        [docReference ISDA FPML version "confirmation-5.13"]
+    anyContents string (0..1) <"Placeholder for xsd:any: Min Occurs: 1; Max Occurs: 1; Namespace: ##other; Process Contents: lax.">
 
     condition Choice:
         one-of
@@ -258,15 +169,8 @@ type KeyInfoTypeChoice:
 type KeyValueType:
 
     dsaKeyValue DSAKeyValueType (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     rsaKeyValue RSAKeyValueType (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
-    anyContents string (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"
-            provision "Placeholder for xsd:any: Min Occurs: 1; Max Occurs: 1; Namespace: ##other; Process Contents: lax."]
-        [docReference ISDA FPML version "confirmation-5.13"]
+    anyContents string (0..1) <"Placeholder for xsd:any: Min Occurs: 1; Max Occurs: 1; Namespace: ##other; Process Contents: lax.">
 
     condition Choice:
         one-of
@@ -274,42 +178,21 @@ type KeyValueType:
 type RetrievalMethodType:
 
     transforms TransformsType (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     uri string(pattern: "\\w+:(\\/?\\/?)[^\\s]+") (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     ^type string(pattern: "\\w+:(\\/?\\/?)[^\\s]+") (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
 
 type X509DataType:
 
     x509DataTypeSequence X509DataTypeSequence (1..*)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
 
 type X509DataTypeSequence:
 
     x509IssuerSerial X509IssuerSerialType (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     x509SKI string (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     x509SubjectName string (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     x509Certificate string (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     x509CRL string (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
-    anyContents string (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"
-            provision "Placeholder for xsd:any: Min Occurs: 1; Max Occurs: 1; Namespace: ##other; Process Contents: lax."]
-        [docReference ISDA FPML version "confirmation-5.13"]
+    anyContents string (0..1) <"Placeholder for xsd:any: Min Occurs: 1; Max Occurs: 1; Namespace: ##other; Process Contents: lax.">
 
     condition Choice:
         one-of
@@ -317,20 +200,12 @@ type X509DataTypeSequence:
 type X509IssuerSerialType:
 
     x509IssuerName string (1..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     x509SerialNumber int (1..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
 
 type PGPDataType:
 
     pgpDataTypeSequence0 PGPDataTypeSequence0 (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     pgpDataTypeSequence1 PGPDataTypeSequence1 (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
 
     condition Choice:
         one-of
@@ -338,142 +213,73 @@ type PGPDataType:
 type PGPDataTypeSequence0:
 
     pgpKeyID string (1..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     pgpKeyPacket string (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
-    anyContents string (0..*)
-        [docReference ISDA FPML version "recordkeeping-5.13"
-            provision "Placeholder for xsd:any: Min Occurs: 0; Max Occurs: unbounded; Namespace: ##other; Process Contents: lax."]
-        [docReference ISDA FPML version "confirmation-5.13"]
+    anyContents string (0..*) <"Placeholder for xsd:any: Min Occurs: 0; Max Occurs: unbounded; Namespace: ##other; Process Contents: lax.">
 
 type PGPDataTypeSequence1:
 
     pgpKeyPacket string (1..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
-    anyContents string (0..*)
-        [docReference ISDA FPML version "recordkeeping-5.13"
-            provision "Placeholder for xsd:any: Min Occurs: 0; Max Occurs: unbounded; Namespace: ##other; Process Contents: lax."]
-        [docReference ISDA FPML version "confirmation-5.13"]
+    anyContents string (0..*) <"Placeholder for xsd:any: Min Occurs: 0; Max Occurs: unbounded; Namespace: ##other; Process Contents: lax.">
 
 type SPKIDataType:
 
     spkiDataTypeSequence SPKIDataTypeSequence (1..*)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
 
 type SPKIDataTypeSequence:
 
     spkiSexp string (1..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
-    anyContents string (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"
-            provision "Placeholder for xsd:any: Min Occurs: 0; Max Occurs: 1; Namespace: ##other; Process Contents: lax."]
-        [docReference ISDA FPML version "confirmation-5.13"]
+    anyContents string (0..1) <"Placeholder for xsd:any: Min Occurs: 0; Max Occurs: 1; Namespace: ##other; Process Contents: lax.">
 
 type ObjectType:
 
     objectTypeSequence ObjectTypeSequence (0..*)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     id string (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     mimeType string (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     encoding string(pattern: "\\w+:(\\/?\\/?)[^\\s]+") (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
 
 type ObjectTypeSequence:
 
-    anyContents string (1..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"
-            provision "Placeholder for xsd:any: Min Occurs: 1; Max Occurs: 1; Namespace: ##any; Process Contents: lax."]
-        [docReference ISDA FPML version "confirmation-5.13"]
+    anyContents string (1..1) <"Placeholder for xsd:any: Min Occurs: 1; Max Occurs: 1; Namespace: ##any; Process Contents: lax.">
 
 type ManifestType:
 
     reference ReferenceType (1..*)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     id string (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
 
 type SignaturePropertiesType:
 
     signatureProperty SignaturePropertyType (1..*)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     id string (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
 
 type SignaturePropertyType:
 
     signaturePropertyTypeChoice SignaturePropertyTypeChoice (1..*)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     target string(pattern: "\\w+:(\\/?\\/?)[^\\s]+") (1..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     id string (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
 
 type SignaturePropertyTypeChoice:
 
-    anyContents string (1..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"
-            provision "Placeholder for xsd:any: Min Occurs: 1; Max Occurs: 1; Namespace: ##other; Process Contents: lax."]
-        [docReference ISDA FPML version "confirmation-5.13"]
+    anyContents string (1..1) <"Placeholder for xsd:any: Min Occurs: 1; Max Occurs: 1; Namespace: ##other; Process Contents: lax.">
 
 type DSAKeyValueType:
 
     dsaKeyValueTypeSequence0 DSAKeyValueTypeSequence0 (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     g CryptoBinary (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     y CryptoBinary (1..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     j CryptoBinary (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     dsaKeyValueTypeSequence1 DSAKeyValueTypeSequence1 (0..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
 
 type DSAKeyValueTypeSequence0:
 
     p CryptoBinary (1..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     q CryptoBinary (1..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
 
 type DSAKeyValueTypeSequence1:
 
     seed CryptoBinary (1..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     pgenCounter CryptoBinary (1..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
 
 type RSAKeyValueType:
 
     modulus CryptoBinary (1..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
     exponent CryptoBinary (1..1)
-        [docReference ISDA FPML version "recordkeeping-5.13"]
-        [docReference ISDA FPML version "confirmation-5.13"]
