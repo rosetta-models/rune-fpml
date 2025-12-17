@@ -21,7 +21,7 @@ public class RuneFpmlModelConfig {
                     .put(Document.class, FPML_CONFIRMATION_XML_CONFIG_PATH)
                     .build();
     public static final ImmutableMap<Class<?>, Serialisation.Format> TYPE_TO_FORMAT_MAP =
-            ImmutableMap.<Class<?>, String>builder()
+            ImmutableMap.<Class<?>, Serialisation.Format>builder()
                     .put(Document.class, Serialisation.Format.XML)
                     .build();
 }
