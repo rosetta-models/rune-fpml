@@ -1,7 +1,10 @@
 package com.regnosys.runefpml;
 
 import com.google.common.collect.ImmutableMap;
+import com.regnosys.rosetta.common.transform.PipelineModel;
 import fpml.consolidated.doc.Document;
+
+import static com.regnosys.rosetta.common.transform.PipelineModel.*;
 
 public class RuneFpmlModelConfig {
 
@@ -13,9 +16,12 @@ public class RuneFpmlModelConfig {
             ImmutableMap.<Class<?>, String>builder()
                     .put(Document.class, FPML_CONFIRMATION_SCHEMA_PATH)
                     .build();
-
     public static final ImmutableMap<Class<?>, String> TYPE_TO_XML_CONFIG_MAP =
             ImmutableMap.<Class<?>, String>builder()
                     .put(Document.class, FPML_CONFIRMATION_XML_CONFIG_PATH)
+                    .build();
+    public static final ImmutableMap<Class<?>, Serialisation.Format> TYPE_TO_FORMAT_MAP =
+            ImmutableMap.<Class<?>, String>builder()
+                    .put(Document.class, Serialisation.Format.XML)
                     .build();
 }
