@@ -108,6 +108,25 @@ steps:
       - git tag ${{TAG_NAME}}
       - git push https://${{ROSETTA_MODELS_USER}}:${{ROSETTA_MODELS_PWD}}@github.com/${{CF_REPO_OWNER}}/${{CF_REPO_NAME}}.git ${{TAG_NAME}}
 
+  PauseForMavenPublish:
+    stage: finalise
+    title: "Pause For Maven Publish - https://repo1.maven.org/maven2/com/regnosys/rune-fpml/rosetta-source/"
+    type: freestyle
+    image: ellerbrock/alpine-bash-curl-ssl
+    shell: bash
+    when:
+      condition:
+        all:
+          buildPassed: steps.Build.result == 'success'
+          isRelease: "${{TAG_REPO}}"
+    commands:
+      - FMPL=$(curl -L -o /dev/null -s -w "%{http_code}\n"  https://repo1.maven.org/maven2/com/regnosys/rune-fpml/rosetta-source/${{TAG_NAME}}/rosetta-source-${{TAG_NAME}}.pom)
+      - if [[ $FMPL == 200 ]]; then exit 0; else exit 1; fi
+    retry:
+      maxAttempts: 20
+      delay: 180
+      exponentialFactor: 1
+
   CreateRelease:
     stage: finalise
     title: Create Release
@@ -117,6 +136,7 @@ steps:
         all:
           isRelease: "${{TAG_REPO}}"
           buildPassed: steps.TagRepo.result == 'success'
+          publish: steps.PauseForMavenPublish.result == 'success'
     commands:
       - echo CreateRelease
       - >-
