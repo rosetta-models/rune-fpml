@@ -120,7 +120,7 @@ steps:
           buildPassed: steps.Build.result == 'success'
           isRelease: "${{TAG_REPO}}"
     commands:
-      - FMPL=$(curl -L -o /dev/null -s -w "%{http_code}\n"  https://repo1.maven.org/maven2/com/regnosys/rune-fpml/rosetta-source/${{TAG_NAME}}/rosetta-source-${{TAG_NAME}}.pom)
+      - FMPL=$(curl -L -o /dev/null -s -w "%{http_code}\n"  https://repo1.maven.org/maven2/com/regnosys/rune-fpml/rosetta-source/${{RELEASE_NAME}}/rosetta-source-${{RELEASE_NAME}}.pom)
       - if [[ $FMPL == 200 ]]; then exit 0; else exit 1; fi
     retry:
       maxAttempts: 20
