@@ -2,6 +2,7 @@ namespace fpml.consolidated.clearing.processes : < "fpml definition" >
 version "${project.version}"
 
 type RequestClearingEligibility extends fpml.consolidated.msg.CorrectableRequestMessage:
+    [rootType]
 
     requestingPartyReference fpml.consolidated.shared.PartyReference (0..1)
     tradingEventsModel fpml.consolidated.business.events.TradingEventsModel (0..1)
@@ -9,6 +10,7 @@ type RequestClearingEligibility extends fpml.consolidated.msg.CorrectableRequest
     partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (1..1)
 
 type ClearingEligibility extends fpml.consolidated.msg.ResponseMessage:
+    [rootType]
 
     tradingEventsModel fpml.consolidated.business.events.TradingEventsModel (0..1)
     deClear fpml.consolidated.business.events.DeClear (0..1) <"A structure describing a declear event. The deClear event allows a firm to request that a trade be removed from clearing, or a clearing service to request consent for this, or to report that it has been done.">
@@ -18,8 +20,10 @@ type ClearingEligibility extends fpml.consolidated.msg.ResponseMessage:
     partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (1..1)
 
 type ClearingEligibilityException extends fpml.consolidated.msg.Exception:
+    [rootType]
 
 type ClearingEligibilityAcknowledgement extends fpml.consolidated.msg.Acknowledgement:
+    [rootType]
 
 type ClearingRequirements:
 

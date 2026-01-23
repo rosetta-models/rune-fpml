@@ -202,31 +202,37 @@ type LoanAllocationSettlementDateFinalization extends AbstractLoanAllocationEven
     settlementDate zonedDateTime (1..1) <"The settlement date associated with a single loan trade allocation.">
 
 type LoanBulkServicingNotification extends AbstractContractNotification: <"A loan servicing notification used to communicate multiple business events, within a single notification.">
+    [rootType]
 
     loanBulkServicingNotificationChoice LoanBulkServicingNotificationChoice (2..*)
     loanBulkServicingNotificationSequence LoanBulkServicingNotificationSequence (1..*)
     party fpml.consolidated.shared.Party (1..*) <"A legal entity or a subdivision of a legal entity.">
 
 type LoanNotificationAcknowledgement extends LoanAcknowledgement: <"A message used to acknowledge a loan notification.">
+    [rootType]
 
     loanIdentifiersModel LoanIdentifiersModel (1..1)
 
 type LoanNotificationException extends fpml.consolidated.msg.Exception: <"A message used to indicate an exception issue with a loan notification.">
+    [rootType]
 
     loanNotificationExceptionSequence LoanNotificationExceptionSequence (0..1)
 
 type LoanNotificationRetracted extends fpml.consolidated.msg.NonCorrectableRequestMessage: <"A message used to indicate a retraction of a loan notification.">
+    [rootType]
 
     loanIdentifiersModel LoanIdentifiersModel (1..1)
     party fpml.consolidated.shared.Party (1..1)
     originalMessage fpml.consolidated.doc.UnprocessedElementWrapper (0..1)
 
 type LoanPartyProfileStatement extends AbstractLoanPartyProfileStatement: <"A profile generated and communicated by parties containing their relevant contact and payment details. This is communicated by parties to anyone who wishes to initiate payments and/or communicate with them.">
+    [rootType]
 
     partyProfile PartyProfile (1..1)
     party fpml.consolidated.shared.Party (1..*)
 
 type LoanCovenantObligationNotification extends AbstractServicingNotification: <"A loan notification used to convey servicing details related to a covenant obligation.">
+    [rootType]
 
     covenantTask LoanCovenantObligationTask (1..*)
     dealDetailsModel DealDetailsModel (0..*)
@@ -235,6 +241,7 @@ type LoanCovenantObligationNotification extends AbstractServicingNotification: <
     party fpml.consolidated.shared.Party (1..*) <"A legal entity or a subdivision of a legal entity.">
 
 type FacilityNotification extends AbstractFacilityNotification: <"A loan servicing notification which can be used to communicate any facility-level business event.">
+    [rootType]
 
     facilityEventGroup AbstractFacilityEvent (1..1)
     dealDetailsModel DealDetailsModel (0..1)
@@ -244,6 +251,7 @@ type FacilityNotification extends AbstractFacilityNotification: <"A loan servici
     party fpml.consolidated.shared.Party (1..*) <"A legal entity or a subdivision of a legal entity.">
 
 type LcNotification extends AbstractContractNotification: <"A loan servicing notification used to communicate various letter of credit business events.">
+    [rootType]
 
     lcEventGroup AbstractLcEvent (1..1)
     dealDetailsModel DealDetailsModel (0..1)
@@ -252,6 +260,7 @@ type LcNotification extends AbstractContractNotification: <"A loan servicing not
     party fpml.consolidated.shared.Party (1..*) <"A legal entity or a subdivision of a legal entity.">
 
 type LoanContractNotification extends AbstractContractNotification: <"A loan servicing notification used to communicate various loan contract business events.">
+    [rootType]
 
     loanContractEventGroup AbstractLoanServicingEvent (1..1)
     dealDetailsModel DealDetailsModel (0..1)
@@ -260,6 +269,7 @@ type LoanContractNotification extends AbstractContractNotification: <"A loan ser
     party fpml.consolidated.shared.Party (1..*) <"A legal entity or a subdivision of a legal entity.">
 
 type LoanLegalActionNotification extends AbstractServicingNotification: <"A loan servicing notification which can be used to communicate any legal action-related servicing event.">
+    [rootType]
 
     loanLegalActionNotificationChoice0 LoanLegalActionNotificationChoice0 (1..*)
     legalActionIdentifier LegalActionIdentifier (0..1)
@@ -269,6 +279,7 @@ type LoanLegalActionNotification extends AbstractServicingNotification: <"A loan
     party fpml.consolidated.shared.Party (0..*) <"A legal entity or a subdivision of a legal entity.">
 
 type LoanAllocationNotification extends AbstractLoanAllocationNotification: <"A loan servicing notification used to communicate trade allocation details, from counterparty to counterparty, or counterparty to admin agent.">
+    [rootType]
 
     loanAllocationNotificationChoice0 LoanAllocationNotificationChoice0 (1..*)
     loanTradeAllocationDetailsModel LoanTradeAllocationDetailsModel (1..1)
@@ -278,6 +289,7 @@ type LoanAllocationNotification extends AbstractLoanAllocationNotification: <"A 
     party fpml.consolidated.shared.Party (1..*) <"A legal entity or a subdivision of a legal entity.">
 
 type LoanTradeNotification extends AbstractLoanTradeNotification: <"A loan servicing notification used to communicate details to establish a master trade, from counterparty to counterparty.">
+    [rootType]
 
     loanTradeEventGroup AbstractLoanTradeEvent (0..1)
     settlementTask LoanTradeSettlementTask (0..1)
@@ -287,6 +299,7 @@ type LoanTradeNotification extends AbstractLoanTradeNotification: <"A loan servi
     party fpml.consolidated.shared.Party (1..*) <"A legal entity or a subdivision of a legal entity.">
 
 type DealStatement extends AbstractLoanStatement: <"A full set of deal and facility definitions valid as of a specific date.">
+    [rootType]
 
     deal Deal (1..1) <"A complete deal structure.">
     dealDetailsModel DealDetailsModel (0..*)
@@ -295,12 +308,14 @@ type DealStatement extends AbstractLoanStatement: <"A full set of deal and facil
     party fpml.consolidated.shared.Party (1..*) <"A legal entity or a subdivision of a legal entity.">
 
 type FacilityStatement extends AbstractLoanStatement: <"A single facility definition stated as of a certain date.">
+    [rootType]
 
     facilityGroup AbstractFacility (1..1)
     dealDetailsModel DealDetailsModel (0..1)
     party fpml.consolidated.shared.Party (0..*) <"A legal entity or a subdivision of a legal entity.">
 
 type FacilityPositionStatement extends AbstractLoanStatement: <"A statement containing the commitment amounts for a single facility at the global and (optionally) the lender postion levels, on a specific date.">
+    [rootType]
 
     facilityPosition FacilityPosition (1..1) <"Commitment position details for a single facility. Positions can be stated at the global and (optionally) at the lender-specific level.">
     positionPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party for whom positions are being reported (if applicable position amounts are populated).">
@@ -310,6 +325,7 @@ type FacilityPositionStatement extends AbstractLoanStatement: <"A statement cont
     party fpml.consolidated.shared.Party (0..*) <"A legal entity or a subdivision of a legal entity.">
 
 type LoanLegalActionStatement extends AbstractLoanStatement: <"A loan legal action statement structure.">
+    [rootType]
 
     legalAction LoanLegalAction (1..1) <"A complete legal action structure.">
     dealDetailsModel DealDetailsModel (0..1)
@@ -320,6 +336,7 @@ type LoanLegalActionStatement extends AbstractLoanStatement: <"A loan legal acti
     party fpml.consolidated.shared.Party (0..*) <"A legal entity or a subdivision of a legal entity.">
 
 type OutstandingContractsStatement extends AbstractLoanStatement: <"A collection of outstanding loan contract and/or letter of credit structures belonging to a single facility.">
+    [rootType]
 
     dealDetailsModel DealDetailsModel (0..1)
     facilityIdentifier FacilityIdentifier (1..1) <"The facility to which the loan contracts and/or letter of credits belong.">
