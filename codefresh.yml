@@ -43,7 +43,7 @@ steps:
     image: maven:3.9.11-eclipse-temurin-21-alpine
     working_directory: ./
     commands:
-      - mvn ${{MVN_SET_VERSION}}
+      - mvn versions:set -DnewVersion=${{RELEASE_NAME}}
       - bash -c "${{GPG_IMPORT_COMMAND}}"
       - export CI_DEPLOY_USERNAME="${{CI_DEPLOY_USERNAME}}"
       - export CI_DEPLOY_PASSWORD="${{CI_DEPLOY_PASSWORD}}"
