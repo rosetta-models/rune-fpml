@@ -38,8 +38,6 @@ steps:
       - cf_export GPG_IMPORT_COMMAND="cat <(echo -e '${{GPG_PRIVATE_KEY}}') | gpg --batch --import" --mask
 
   Build:
-    stage: 'build'
-    title: Maven build
     no_cache: true
     no_cf_cache: true
     image: maven:3.9.11-eclipse-temurin-21-alpine
@@ -54,8 +52,6 @@ steps:
       - mvn -s settings.xml -U -B ${{MVN_CLI_OPT}} clean install org.sonatype.central:central-publishing-maven-plugin:0.7.0:publish -P release
 
   PauseForMavenPublish:
-    stage: finalise
-    title: "Pause For Maven Publish - https://repo1.maven.org/maven2/com/regnosys/rune-fpml/rosetta-source/"
     type: freestyle
     image: ellerbrock/alpine-bash-curl-ssl
     shell: bash
