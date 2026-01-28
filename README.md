@@ -456,7 +456,6 @@ ___________________________________________________________________________
 | RSAKeyValue |
 | Market |
 
-
 ## How to release a new version of the Rune-FpML Project
 
 1. Go to the [releases](https://github.com/rosetta-models/rune-fpml/releases) page.
