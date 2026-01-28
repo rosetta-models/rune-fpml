@@ -1,91 +1,49 @@
 version: "1.0"
-stages:
-  - setup
-  - build
-  - finalise
+
 steps:
   main_clone:
-    stage: 'setup'
-    title: Cloning main repository...
     type: git-clone
     git: rosetta-models
     repo: "${{CF_REPO_OWNER}}/${{CF_REPO_NAME}}"
     revision: "${{CF_REVISION}}"
 
-  BuildProperties:
-    stage: 'setup'
-    title: Setup shared build properties
+  IsTriggeredByGitHubRelease:
     image: alpine
     commands:
-      - echo "${{ARTIFACT_REGISTRY_SA_KEY}}"|base64 -d>"${{CF_VOLUME_PATH}}"/sa
-      - cf_export GOOGLE_APPLICATION_CREDENTIALS="${{CF_VOLUME_PATH}}"/sa
-      - cf_export GPG_IMPORT_COMMAND="cat <(echo -e '${{GPG_PRIVATE_KEY}}') | gpg --batch --import" --mask
-      - cf_export GH_TOKEN=${{REGNOSYS_OPS_TOKEN}}
-      - cf_export GITHUB_ISSUES_API="https://api.github.com/repos/${{CF_REPO_OWNER}}/${{CF_REPO_NAME}}/issues"
-      - cf_export GITHUB_RELEASE_API="https://api.github.com/repos/${{CF_REPO_OWNER}}/${{CF_REPO_NAME}}/releases"
-      - >-
-        cf_export GITHUB_API_CURL="curl -L  -X POST -H \"Accept: application/vnd.github+json\" -H \"Authorization: Bearer ${{REGNOSYS_OPS_TOKEN}}\""
+      - if [[ '${{CF_RELEASE_TAG}}' == *'CF_RELEASE_TAG'* ]]; then cf_export IS_RELEASE=false; else cf_export IS_RELEASE=true; fi
 
-  MvnSettings:
-    stage: 'setup'
-    title: Setup Maven settings
-    image: alpine/git
-    commands:
-      - cf_export MVN_CLI_OPT="-Dmaven.repo.local=\"${{CF_VOLUME_PATH}}/${{CF_REPO_NAME}}_m2/repository\""
-
-  TagReleaseName:
-    stage: 'setup'
-    title: Setup RELEASE_NAME variable with tag
+  ReleaseNameForBranch:
     image: alpine/git
     when:
       condition:
         all:
-          releaseNameNotDefined: "${{TAG_REPO}} == true"
-    commands:
-      - cf_export RELEASE_NAME=${{TAG_NAME}}
-
-  BranchReleaseName:
-    stage: 'setup'
-    title: Setup RELEASE_NAME variable with branch name
-    image: alpine/git
-    when:
-      condition:
-        all:
-          releaseNameNotDefined: "${{TAG_REPO}} == false"
+          releaseNameNotDefined: "${{IS_RELEASE}} == false"
     commands:
       - cf_export RELEASE_NAME=${{GLOBAL_RELEASE_VERSION}}.${{CF_BRANCH_TAG_NORMALIZED}}-SNAPSHOT
 
-  ReleaseProperties:
-    stage: 'setup'
-    title: Setup release build
+  ReleaseNameForTag:
     image: alpine/git
     when:
       condition:
         all:
-          releaseNameNotDefined: "${{TAG_REPO}} == true"
+          releaseNameNotDefined: "${{IS_RELEASE}} == true"
     commands:
-      - cf_export MVN_SET_VERSION="versions:set -DnewVersion=${{RELEASE_NAME}}"
+      - cf_export RELEASE_NAME=${{CF_RELEASE_TAG}}
 
-  BranchProperties:
-    stage: 'setup'
-    title: Setup branch build
+  MvnSettings:
     image: alpine/git
-    when:
-      condition:
-        all:
-          releaseNameNotDefined: "${{TAG_REPO}} == false"
     commands:
-      - cf_export MVN_SET_VERSION="versions:set -DnewVersion=${{RELEASE_NAME}}"
+      - cf_export MVN_CLI_OPT="-Dmaven.repo.local=\"${{CF_VOLUME_PATH}}/${{CF_REPO_NAME}}_m2/repository\""
+      - echo $MVN_CLI_OPT
+      - cf_export GPG_IMPORT_COMMAND="cat <(echo -e '${{GPG_PRIVATE_KEY}}') | gpg --batch --import" --mask
 
   Build:
-    stage: 'build'
-    title: Maven build
     no_cache: true
     no_cf_cache: true
     image: maven:3.9.11-eclipse-temurin-21-alpine
     working_directory: ./
     commands:
-      - mvn ${{MVN_SET_VERSION}}
+      - mvn versions:set -DnewVersion=${{RELEASE_NAME}}
       - bash -c "${{GPG_IMPORT_COMMAND}}"
       - export CI_DEPLOY_USERNAME="${{CI_DEPLOY_USERNAME}}"
       - export CI_DEPLOY_PASSWORD="${{CI_DEPLOY_PASSWORD}}"
@@ -93,24 +51,7 @@ steps:
       - export GPG_PASSPHRASE="${{GPG_PASSPHRASE}}"
       - mvn -s settings.xml -U -B ${{MVN_CLI_OPT}} clean install org.sonatype.central:central-publishing-maven-plugin:0.7.0:publish -P release
 
-  TagRepo:
-    stage: 'finalise'
-    title: Tag git repo with release name
-    image: alpine/git
-    when:
-      condition:
-        all:
-          buildPassed: steps.Build.result == 'success'
-          isRelease: "${{TAG_REPO}}"
-    commands:
-      - echo This is a release build, tag repos with release name [${{TAG_NAME}}]
-      - git fetch --prune https://${{ROSETTA_MODELS_USER}}:${{ROSETTA_MODELS_PWD}}@github.com/${{CF_REPO_OWNER}}/${{CF_REPO_NAME}}.git "+refs/tags/*:refs/tags/*"
-      - git tag ${{TAG_NAME}}
-      - git push https://${{ROSETTA_MODELS_USER}}:${{ROSETTA_MODELS_PWD}}@github.com/${{CF_REPO_OWNER}}/${{CF_REPO_NAME}}.git ${{TAG_NAME}}
-
   PauseForMavenPublish:
-    stage: finalise
-    title: "Pause For Maven Publish - https://repo1.maven.org/maven2/com/regnosys/rune-fpml/rosetta-source/"
     type: freestyle
     image: ellerbrock/alpine-bash-curl-ssl
     shell: bash
@@ -118,7 +59,7 @@ steps:
       condition:
         all:
           buildPassed: steps.Build.result == 'success'
-          isRelease: "${{TAG_REPO}}"
+          isRelease: "${{IS_RELEASE}}"
     commands:
       - FMPL=$(curl -L -o /dev/null -s -w "%{http_code}\n"  https://repo1.maven.org/maven2/com/regnosys/rune-fpml/rosetta-source/${{RELEASE_NAME}}/rosetta-source-${{RELEASE_NAME}}.pom)
       - if [[ $FMPL == 200 ]]; then exit 0; else exit 1; fi
@@ -126,22 +67,3 @@ steps:
       maxAttempts: 20
       delay: 180
       exponentialFactor: 1
-
-  CreateRelease:
-    stage: finalise
-    title: Create Release
-    image: curlimages/curl
-    when:
-      condition:
-        all:
-          isRelease: "${{TAG_REPO}}"
-          buildPassed: steps.TagRepo.result == 'success'
-          publish: steps.PauseForMavenPublish.result == 'success'
-    commands:
-      - echo CreateRelease
-      - >-
-        ${{GITHUB_API_CURL}} ${{GITHUB_RELEASE_API}}
-        -d '{
-          "tag_name": "${{RELEASE_NAME}}",
-          "generate_release_notes": true
-        }'
