@@ -4,7 +4,7 @@ import com.google.inject.Guice;
 import com.regnosys.rosetta.common.validation.RosettaTypeValidator;
 import com.regnosys.rosetta.common.validation.ValidationReport;
 import com.regnosys.runefpml.RuneFpmlTestRuntimeModule;
-import fpml.confirmation.DataDocument;
+import fpml.consolidated.main.DataDocument;
 import jakarta.inject.Inject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
