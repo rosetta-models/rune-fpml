@@ -17,7 +17,7 @@ import java.util.Objects;
 
 public class ResourcesUtils {
 
-    private static final ObjectMapper XML_OBJECT_MAPPER = getXmlMapper();
+    private static final ObjectMapper XML_OBJECT_MAPPER = getFpmlConfirmationXmlMapper();
 
     public static String getContent(String resourceName) {
         try {
@@ -49,9 +49,9 @@ public class ResourcesUtils {
         return (T) builder.build();
     }
 
-    private static ObjectMapper getXmlMapper() {
+    private static ObjectMapper getFpmlConfirmationXmlMapper() {
         ClassLoader classLoader = ResourcesUtils.class.getClassLoader();
-        URL resource = Objects.requireNonNull(classLoader.getResource(RuneFpmlModelConfig.XML_CONFIG_PATH));
+        URL resource = Objects.requireNonNull(classLoader.getResource(RuneFpmlModelConfig.FPML_CONFIRMATION_XML_CONFIG_PATH));
         try {
             return RosettaObjectMapperCreator.forXML(resource.openStream(), classLoader).create();
         } catch (IOException e) {
