@@ -25,13 +25,16 @@ public class TestUtil {
                     .orElse(false);
 
     public static void assertEquals(Path expectedPath, String actual) {
-        String expected = readFile(expectedPath);
-        if (!Objects.equals(expected, actual)) {
+        String expected = Objects.requireNonNull(readFile(expectedPath));
+        String normalizedExpected = normalizeNewlines(expected);
+        String normalizedActual = normalizeNewlines(actual);
+
+        if (!Objects.equals(normalizedExpected, actual)) {
             if (WRITE_EXPECTATIONS) {
                 writeFile(expectedPath, actual);
             }
         }
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(normalizedExpected, normalizedActual);
     }
 
     private static String readFile(Path path) {
@@ -62,5 +65,9 @@ public class TestUtil {
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
+    }
+
+    private static String normalizeNewlines(String s) {
+        return s.replace("\r\n", "\n").replace("\r", "\n");
     }
 }
