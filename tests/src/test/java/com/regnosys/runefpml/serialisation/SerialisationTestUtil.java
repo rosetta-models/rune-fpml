@@ -84,7 +84,7 @@ public class SerialisationTestUtil<T> {
                     .filter(Files::isRegularFile)
                     .filter(p -> xmlFileMatcher.matches(p.getFileName()))
                     .filter(Files::exists)
-                    .filter(p -> excludedFiles.stream().noneMatch(ep -> p.toString().endsWith(ep)))
+                    .filter(p -> excludedFiles.stream().noneMatch(ep -> UrlUtils.toPortableString(p).endsWith(ep)))
                     .collect(Collectors.toList());
             return sampleFilePaths.stream()
                     .map(path -> Arguments.of(getTestName(path), path));
@@ -94,11 +94,11 @@ public class SerialisationTestUtil<T> {
     }
 
     private static String getTestName(Path path) {
-        return path.toString().split(INPUT_ROOT_PATH)[1].substring(1);
+        return UrlUtils.toPortableString(path).split(INPUT_ROOT_PATH)[1].substring(1);
     }
 
     private static Path getExpectedXmlSamplePath(Path samplePath) {
-        String samplePathStr = samplePath.toString();
+        String samplePathStr = UrlUtils.toPortableString(samplePath);
         return Path.of("src/test/resources/" + samplePathStr
                         .substring(samplePathStr.indexOf(INPUT_ROOT_PATH))
                         .replace(INPUT_ROOT_PATH, EXPECTED_XML_OUTPUT_ROOT_PATH))
@@ -106,7 +106,7 @@ public class SerialisationTestUtil<T> {
     }
 
     private static Path getExpectedJsonSamplePath(Path samplePath) {
-        String samplePathStr = samplePath.toString();
+        String samplePathStr = UrlUtils.toPortableString(samplePath);
         return Path.of("src/test/resources/" + samplePathStr
                         .substring(samplePathStr.indexOf(INPUT_ROOT_PATH))
                         .replace(INPUT_ROOT_PATH, EXPECTED_JSON_OUTPUT_ROOT_PATH)
