@@ -6,19 +6,28 @@ type NonpublicExecutionReport extends fpml.consolidated.msg.CorrectableRequestMe
 
     asOfDate fpml.consolidated.shared.IdentifiedDate (0..1) <"The date for which this document reports positions and valuations.">
     asOfTime time (0..1) <"The time for which this report was generated (i.e., the cut-off time of the report).">
-    portfolioReferenceBaseModel fpml.consolidated.msg.PortfolioReferenceBaseModel (0..1)
-    nonpublicExecutionReportSequence NonpublicExecutionReportSequence (0..1)
-    postTradeEventsBaseModel fpml.consolidated.business.events.PostTradeEventsBaseModel (0..1)
-    changeEventsBaseModel fpml.consolidated.business.events.ChangeEventsBaseModel (0..1)
-    optionsEventsBaseModel fpml.consolidated.business.events.OptionsEventsBaseModel (0..1)
+    portfolioReference fpml.consolidated.msg.PortfolioReferenceBase (0..1)
+    originatingEvent fpml.consolidated.shared.OriginatingEvent (0..1)
+    trade fpml.consolidated.doc.Trade (0..1)
+    tradingEvent fpml.consolidated.business.events.TradingEventSummary (0..*) <"This is provided to support snapshot reporting that requires trading history. Some implementations are using the \"trade\" event to report the current snapshot of a contract. In these cases it may also be necessary to report the most recent trading event to support regulatory reporting mandates. For this reason the tradingEvent is provided to allow that event to be attached to the trade report.">
+    amendment fpml.consolidated.business.events.TradeAmendmentContent (0..1)
+    increase fpml.consolidated.business.events.TradeNotionalChange (0..1)
+    terminatingEvent fpml.consolidated.business.events.TerminatingEvent (0..1) <"This may be used to describe why a trade was terminated.">
+    termination fpml.consolidated.business.events.TradeNotionalChange (0..1)
+    novation fpml.consolidated.business.events.TradeNovationContent (0..1)
+    withdrawal fpml.consolidated.business.events.Withdrawal (0..1)
+    observation fpml.consolidated.business.events.ObservationEvent (0..*)
+    reset fpml.consolidated.business.events.ResetEvent (0..*)
+    change fpml.consolidated.business.events.TradeChangeContent (0..1)
+    optionExercise fpml.consolidated.business.events.OptionExercise (0..1) <"A structure describing an option exercise event. The optionExercise event supports partial exercise (specify the number of options or amount to exercise), full exercise (use fullExercise flag), as well as the option to request options not to be exercised.">
+    optionExpiry fpml.consolidated.business.events.OptionExpiry (0..*) <"A structure describing an option expiring event (i.e. passing its last exercise time and becoming worthless.)">
+    optionEvent fpml.consolidated.business.events.OptionEvent (0..1) <"A structure describing knock in, knock out, touch and no touch events.">
     additionalEvent fpml.consolidated.business.events.AdditionalEvent (0..1)
-    eventValuationModel fpml.consolidated.business.events.EventValuationModel (0..1)
+    quote fpml.consolidated.asset.BasicQuotation (0..*) <"Pricing information for the trade.">
     scheduledDate fpml.consolidated.shared.ScheduledDateBase (0..*) <"Upcoming important dates for the trade. Added to support CFTC Amendments to Part 43/45 (Published November 2020).">
     collateralization fpml.consolidated.reg.fpmlreporting.shared.RegulatoryReportingCollateralization (0..2)
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (1..1)
-
-    condition Choice:
-        optional choice nonpublicExecutionReportSequence, postTradeEventsBaseModel , changeEventsBaseModel , optionsEventsBaseModel , additionalEvent
+    party fpml.consolidated.shared.Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
 type NonpublicExecutionReportAcknowledgement extends fpml.consolidated.msg.Acknowledgement: <"Acknowledgement message for nonpublicExecutionReport.">
     [rootType]
@@ -29,12 +38,28 @@ type NonpublicExecutionReportException extends fpml.consolidated.msg.Exception: 
 type NonpublicExecutionReportRetracted extends fpml.consolidated.msg.NonCorrectableRequestMessage: <"Retraction message for nonpublicExecutionReport.">
     [rootType]
 
-    nonpublicExecutionReportRetractedChoice NonpublicExecutionReportRetractedChoice (0..1)
-    nonpublicExecutionReportRetractedSequence NonpublicExecutionReportRetractedSequence (0..1)
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
-
-    condition Choice:
-        optional choice nonpublicExecutionReportRetractedChoice, nonpublicExecutionReportRetractedSequence
+    originatingEvent fpml.consolidated.shared.OriginatingEvent (0..1)
+    trade fpml.consolidated.doc.Trade (0..1)
+    tradingEvent fpml.consolidated.business.events.TradingEventSummary (0..*) <"This is provided to support snapshot reporting that requires trading history. Some implementations are using the \"trade\" event to report the current snapshot of a contract. In these cases it may also be necessary to report the most recent trading event to support regulatory reporting mandates. For this reason the tradingEvent is provided to allow that event to be attached to the trade report.">
+    amendment fpml.consolidated.business.events.TradeAmendmentContent (0..1)
+    increase fpml.consolidated.business.events.TradeNotionalChange (0..1)
+    terminatingEvent fpml.consolidated.business.events.TerminatingEvent (0..1) <"This may be used to describe why a trade was terminated.">
+    termination fpml.consolidated.business.events.TradeNotionalChange (0..1)
+    novation fpml.consolidated.business.events.TradeNovationContent (0..1)
+    withdrawal fpml.consolidated.business.events.Withdrawal (0..1)
+    observation fpml.consolidated.business.events.ObservationEvent (0..*)
+    reset fpml.consolidated.business.events.ResetEvent (0..*)
+    change fpml.consolidated.business.events.TradeChangeContent (0..1)
+    optionExercise fpml.consolidated.business.events.OptionExercise (0..1) <"A structure describing an option exercise event. The optionExercise event supports partial exercise (specify the number of options or amount to exercise), full exercise (use fullExercise flag), as well as the option to request options not to be exercised.">
+    optionExpiry fpml.consolidated.business.events.OptionExpiry (0..*) <"A structure describing an option expiring event (i.e. passing its last exercise time and becoming worthless.)">
+    optionEvent fpml.consolidated.business.events.OptionEvent (0..1) <"A structure describing knock in, knock out, touch and no touch events.">
+    additionalEvent fpml.consolidated.business.events.AdditionalEvent (0..1)
+    primaryAssetClass fpml.consolidated.shared.AssetClass (0..1)
+    tradeIdentifier fpml.consolidated.doc.PartyTradeIdentifier (0..1)
+    eventIdentifier fpml.consolidated.business.events.BusinessEventIdentifier (0..2) <"Individual parties should only use a single event identifier to identify a retraction. Platforms providing services on behalf of both parties in a transaction may provide event identifiers for both parties; in this case it is up to the recipient (the trade repository) to validate that the event IDs refer to the same event.">
+    relatedParty fpml.consolidated.shared.RelatedParty (0..*) <"This may be used to identify one or more parties that perform a role within the transaction. If this is within a partyTradeInformation block, the related party performs the role with respect to the party identifie by the \"partyReference\" in the partyTradeInformation block.">
+    party fpml.consolidated.shared.Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
 type RegulatoryDisclosure extends fpml.consolidated.msg.AddressedMessage: <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Regulatory disclosure message used for reporting to trade repositories. DEPRECATED. Not in use (RPTWG decision 2024-12-12). A type that defines a message to be used for reporting non-public information to a regulator, typically via a trade repository or other reporting service. CAVEAT: This new regulatory reporting message set is supported by the FpML Standards Committee, and will be present in future versions of the standard. However, there is no absolute guarantee of backward compatibility with future versions of the standard, until such time as the Standards Committee deems that the message set has been extensively adopted in production. The Standards Committee will attempt to maintain full backward compatibility with this version while adjusting as required to take into account implementation experience with the message set. The Standards Committee advises that the areas where there is more likely to be change include the applicableRegulatiorns section, the regulatorionSpecificInformation section, and the regulatoryProductInformation [DEPRECATED] product, which is developed as part of this reporting framework. Feedback or questions can be addressed to ISDA at rptwgchair@fpml.org.">
     [rootType]
@@ -46,8 +71,12 @@ type RegulatoryDisclosure extends fpml.consolidated.msg.AddressedMessage: <"DEPR
     eventId fpml.consolidated.business.events.EventId (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). A unique event identifier.">
     eventType fpml.consolidated.business.events.EventTaxonomy (1..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). A structured code indicating the event type.">
     eventTimestamps EventTimestamps (1..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Various timestamps related to the event.">
-    reportingAndCounterPartyModel fpml.consolidated.reg.fpmlreporting.shared.ReportingAndCounterPartyModel (1..1)
-    reportingNotionalChangeModel fpml.consolidated.business.events.ReportingNotionalChangeModel (0..1)
+    reportingPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the reporting party.">
+    counterPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the reporting party.">
+    notionalChange fpml.consolidated.fpmlenum.NotionalChangeEnum (0..1) <"Indication as to whether the transaction is an increase or decrease of notional of a derivative contract. Only applies when there is change in notional for a derivative contract">
+    changeInNotional fpml.consolidated.business.events.MoneyRef (0..*) <"The change in notional amount for a prior report as a result of this event. The current notional will be reported in the trade itself. This corresponds to MiFIR Nominal or Monetary amount values; these can be distinguished by the esmaNotionalType indicator.">
+    changeInNumberOfOptions fpml.consolidated.business.events.AmountRef (0..*) <"The change in nominal amount from a prior report as a result of this event. The current number of options will be reported in the trade itself. This corresponds to the MiFIR \"units\" value.">
+    changeInQuantity fpml.consolidated.business.events.UnitQuantityRef (0..*) <"The change in quantity(s) from a prior report as a result of this event. The current quantity will be reported in the trade itself. This corresponds to the MiFIR \"units\" value.">
     payment fpml.consolidated.shared.NonNegativePayment (0..*) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Payments in settlement of the event">
     applicableRegulations fpml.consolidated.reg.fpmlreporting.shared.ApplicableRegulations (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). All the regulators to which this trade should be reported. Optional, can be infeerred from the list of regulations to which the trade is submitted.">
     regulationSpecificInformation RegulationDetails (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). All the regulations that this trade should be reported under.">
@@ -70,7 +99,8 @@ type RegulatoryReportingException extends fpml.consolidated.msg.Message: <"Used 
     [rootType]
 
     header fpml.consolidated.msg.ExceptionMessageHeader (0..1)
-    exceptionModel fpml.consolidated.msg.ExceptionModel (1..1)
+    reason fpml.consolidated.doc.Reason (0..*) <"An instance of the Reason type used to record the nature of any errors associated with a message.">
+    additionalData fpml.consolidated.doc.AdditionalData (0..1) <"Any string of additional data that may help the message processor, for example in a rejection message this might contain a code value or the text of the original request (within a CDATA section).">
 
 type RegulatoryWithdrawal extends fpml.consolidated.msg.AddressedMessage: <"Message used to request withdrawal from one or more jurisdictions. A type defining the message used to request withdrawal from one or more jurisdictions.">
     [rootType]
@@ -109,25 +139,11 @@ type ESMAIndexIdentification:
     code fpml.consolidated.fpmlenum.ESMABenchmarkIndexCode (0..1)
     name fpml.consolidated.fpmlenum.ESMAIndexName (0..1)
 
-    condition Choice:
-        one-of
-
 type ESMAProductUnderlyer:
-
-    esmaProductUnderlyerSequence ESMAProductUnderlyerSequence (0..1)
-    maturityDate zonedDateTime (0..1)
-
-    condition Choice:
-        one-of
-
-type ESMAProductUnderlyerSequence:
 
     instrumentId fpml.consolidated.shared.InstrumentId (0..*)
     index ESMAIndexIdentification (0..1)
     maturityDate zonedDateTime (0..1)
-
-    condition Choice:
-        required choice instrumentId, index
 
 type EventTimestamps: <" DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
 
@@ -138,51 +154,14 @@ type EventTimestamps: <" DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
 
 type InapplicableRegulation:
 
-    inapplicableRegulationSequence InapplicableRegulationSequence (0..1)
-    regulation fpml.consolidated.reg.fpmlreporting.shared.RegulationName (0..1)
-    withdrawalReasonCode fpml.consolidated.doc.ReasonCode (0..1)
-
-    condition Choice:
-        required choice inapplicableRegulationSequence, regulation
-
-type InapplicableRegulationSequence:
-
-    supervisoryBody string (1..1)
+    supervisoryBody string (0..1)
     regulation fpml.consolidated.reg.fpmlreporting.shared.RegulationName (0..*)
-
-type NonpublicExecutionReportSequence:
-
-    originatingEvent fpml.consolidated.shared.OriginatingEvent (0..1)
-    trade fpml.consolidated.doc.Trade (1..1)
-    tradingEvent fpml.consolidated.business.events.TradingEventSummary (0..*) <"This is provided to support snapshot reporting that requires trading history. Some implementations are using the \"trade\" event to report the current snapshot of a contract. In these cases it may also be necessary to report the most recent trading event to support regulatory reporting mandates. For this reason the tradingEvent is provided to allow that event to be attached to the trade report.">
-
-type NonpublicExecutionReportRetractedChoice:
-
-    nonpublicExecutionReportRetractedChoiceSequence NonpublicExecutionReportRetractedChoiceSequence (0..1)
-    postTradeEventsBaseModel fpml.consolidated.business.events.PostTradeEventsBaseModel (0..1)
-    changeEventsBaseModel fpml.consolidated.business.events.ChangeEventsBaseModel (0..1)
-    optionsEventsBaseModel fpml.consolidated.business.events.OptionsEventsBaseModel (0..1)
-    additionalEvent fpml.consolidated.business.events.AdditionalEvent (0..1)
-
-    condition Choice:
-        optional choice nonpublicExecutionReportRetractedChoiceSequence, postTradeEventsBaseModel , changeEventsBaseModel , optionsEventsBaseModel , additionalEvent
-
-type NonpublicExecutionReportRetractedChoiceSequence:
-
-    originatingEvent fpml.consolidated.shared.OriginatingEvent (0..1)
-    trade fpml.consolidated.doc.Trade (1..1)
-    tradingEvent fpml.consolidated.business.events.TradingEventSummary (0..*) <"This is provided to support snapshot reporting that requires trading history. Some implementations are using the \"trade\" event to report the current snapshot of a contract. In these cases it may also be necessary to report the most recent trading event to support regulatory reporting mandates. For this reason the tradingEvent is provided to allow that event to be attached to the trade report.">
-
-type NonpublicExecutionReportRetractedSequence:
-
-    primaryAssetClass fpml.consolidated.shared.AssetClass (0..1)
-    tradeIdentifier fpml.consolidated.doc.PartyTradeIdentifier (0..1)
-    eventIdentifier fpml.consolidated.business.events.BusinessEventIdentifier (0..2) <"Individual parties should only use a single event identifier to identify a retraction. Platforms providing services on behalf of both parties in a transaction may provide event identifiers for both parties; in this case it is up to the recipient (the trade repository) to validate that the event IDs refer to the same event.">
-    relatedParty fpml.consolidated.shared.RelatedParty (0..*) <"This may be used to identify one or more parties that perform a role within the transaction. If this is within a partyTradeInformation block, the related party performs the role with respect to the party identifie by the \"partyReference\" in the partyTradeInformation block.">
+    withdrawalReasonCode fpml.consolidated.doc.ReasonCode (0..1)
 
 type RegReportingCDE extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
 
-    regulatoryBuyerAndSellerModel fpml.consolidated.shared.RegulatoryBuyerAndSellerModel (0..1)
+    buyerPartyReference fpml.consolidated.shared.PartyReference (0..1) <"Indicates the party this regulator considers to be the buyer">
+    sellerPartyReference fpml.consolidated.shared.PartyReference (0..1) <"Indicates the party this regulator considers to be the seller.">
     finalContractualSettlementDate zonedDateTime (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Unadjusted date as per the contract, by which all transfer of cash or assets should take place and the counterparties should no longer have any outstanding obligations to each other under that contract. For products that may not have a final contractual settlement date (eg American options), this data element reflects the date by which the transfer of cash or asset would take place if termination were to occur on the expiration date.">
     earlyTerminationDate zonedDateTime (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Effective date of the early termination (expiry) of the reported transaction. This data element is applicable if the termination of the transaction occurs prior to its maturity due to an ex-interim decision of a counterparty (or counterparties). Examples of early terminations (expiry) are: negotiated early termination; early termination under an optional early termination provision (\"mutual put\"); novation; offsetting (netting) transaction; option exercise; compression; early termination clause specified in the original contract which is a callable swap (bought embedded option); mutual credit break.">
     clearingStatus fpml.consolidated.doc.ClearingStatusValue (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Indicator of whether the transaction has been cleared, or is intended to be cleared, by a central counterparty.">
@@ -216,7 +195,8 @@ type RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision 2024-12-
 type RegulatoryClassificationASIC_2013 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
 
     supervisoryBody string (0..*) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    reportingRoleAndPurposeModel ReportingRoleAndPurposeModel (0..1)
+    reportingRole fpml.consolidated.doc.ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for this regulator; roles could include ReportingParty and Voluntary reporting.">
+    reportingPurpose fpml.consolidated.doc.ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, PET, Confirmation, RealTimePublic.">
     interAffiliate boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
     actionType fpml.consolidated.shared.ActionType (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). A notation to indicate whether the report being made relates to : (a) a Reportable Transaction that is an entry into of an arrangement that is a Derivative, in which case the notation must be \"new\"; (b) a Reportable Transaction that is a modification of an arrangement that is a Derivative, in which case the notation must be \"modify\"; (c) a Reportable Transaction that is a termination of an arrangement that is a Derivative, in which case the notation must be \"cancel\"; or (d) a compression of a Derivative, in which case the notation must be \"compression\". For the purposes of subrule 2.2.2(1), a notation to indicate whether the change relates to: (a) a cancellation of a report previously made in error, in which case, the notation must be \"error\"; (b) a change or update to the information referred to in items 30-32 (mark-to-market, mark-to-model, or other valuation) or items 40-44 (collateral), in which case the notation must be \"valuation update\"; or (c) any other amendments to a report previously made, in which case the notation must be \"other\".">
     isAccountingHedge boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). If the Reporting Entity is not an Australian ADI, an AFS Licensee, a CS Facility Licensee, an Exempt Foreign Licensee or a Foreign ADI, an indication of whether the Derivative to which the Reportable Transaction relates is entered into by the Reporting Entity for the purpose of managing a financial risk that arises in the ordinary course of business.">
@@ -224,7 +204,8 @@ type RegulatoryClassificationASIC_2013 extends RegulatoryClassification: <"DEPRE
 type RegulatoryClassificationCSA_2016 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
 
     supervisoryBody string (0..*) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    reportingRoleAndPurposeModel ReportingRoleAndPurposeModel (0..1)
+    reportingRole fpml.consolidated.doc.ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for this regulator; roles could include ReportingParty and Voluntary reporting.">
+    reportingPurpose fpml.consolidated.doc.ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, PET, Confirmation, RealTimePublic.">
     interAffiliate boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
     actionType fpml.consolidated.shared.ActionType (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Describes the type of event to the transaction (e.g., new transaction, modification or cancellation of existing transaction, etc.). TBD: FpML doesn’t currently define a coding scheme for this value. We anticipate that one will be developed in a future release.">
     eventType string (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Indicate whether the transaction resulted from a post-transaction service (e.g. compression, reconciliation, etc.) or from a lifecycle event (e.g. novation, amendment, etc.). TBD: FpML doesn’t currently define a coding scheme for this value. We anticipate that one will be developed in a future release.">
@@ -232,8 +213,10 @@ type RegulatoryClassificationCSA_2016 extends RegulatoryClassification: <"DEPREC
 type RegulatoryClassificationEMIR_2015 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
 
     supervisoryBody fpml.consolidated.fpmlenum.EMIRSupervisoryBodyEnum (0..*) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). The regulator or other supervisory body the organization is registered with (e.g. ESMA).">
-    reportingRoleAndPurposeModel ReportingRoleAndPurposeModel (1..1)
-    regulatoryBuyerAndSellerModel fpml.consolidated.shared.RegulatoryBuyerAndSellerModel (0..1)
+    reportingRole fpml.consolidated.doc.ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for this regulator; roles could include ReportingParty and Voluntary reporting.">
+    reportingPurpose fpml.consolidated.doc.ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, PET, Confirmation, RealTimePublic.">
+    buyerPartyReference fpml.consolidated.shared.PartyReference (0..1) <"Indicates the party this regulator considers to be the buyer">
+    sellerPartyReference fpml.consolidated.shared.PartyReference (0..1) <"Indicates the party this regulator considers to be the seller.">
     tradePartyRelationshipType fpml.consolidated.doc.PartyRelationshipType (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Indicates how the parties to the trade (the counterparties) are related to each other with respect to this reporting regime, e.g. Affiliated, Intragroup, etc..">
     actionType fpml.consolidated.shared.ActionType (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Reports a regulator-specific code for the action associated with this submission. Used, for example, to report the ESMA action type.">
     mandatorilyClearable fpml.consolidated.shared.CanonicalBoolean (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
@@ -241,44 +224,67 @@ type RegulatoryClassificationEMIR_2015 extends RegulatoryClassification: <"DEPRE
     reportingPartyClassification fpml.consolidated.doc.EntityClassification (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Indicates the category or classification or business role of the organization referenced by the partyTradeInformation with respect to this reporting regime, for example Financial, NonFinancial etc.">
     counterPartyClassification fpml.consolidated.doc.EntityClassification (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Indicates the category or classification or business role of the organization referenced by the partyTradeInformation with respect to this reporting regime, for example Financial, NonFinancial etc.">
     counterPartyisEEA boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Indicates whether the counterparty is in the European Economic Area">
-    esmaLevel3Model ESMALevel3Model (0..1)
+    contractType ESMAContractType (0..1) <"ESMA prodcut classification">
+    deliveryType ESMADeliveryType (0..1) <"ESMA delivery type">
+    creditDetails ESMACreditDetails (0..1)
+    underlyer ESMAProductUnderlyer (0..1)
 
 type RegulatoryClassificationMAS_2013 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
 
     supervisoryBody string (0..*) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    reportingRoleAndPurposeModel ReportingRoleAndPurposeModel (0..1)
+    reportingRole fpml.consolidated.doc.ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for this regulator; roles could include ReportingParty and Voluntary reporting.">
+    reportingPurpose fpml.consolidated.doc.ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, PET, Confirmation, RealTimePublic.">
     interAffiliate boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
 
 type RegulatoryClassificationOther extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
 
     supervisoryBody fpml.consolidated.shared.SupervisoryBody (1..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). The regulator or other supervisory body the organization is registered with (e.g. SEC).">
-    reportingRoleAndPurposeModel ReportingRoleAndPurposeModel (1..1)
-    regulatoryBuyerAndSellerModel fpml.consolidated.shared.RegulatoryBuyerAndSellerModel (0..1)
+    reportingRole fpml.consolidated.doc.ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for this regulator; roles could include ReportingParty and Voluntary reporting.">
+    reportingPurpose fpml.consolidated.doc.ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, PET, Confirmation, RealTimePublic.">
+    buyerPartyReference fpml.consolidated.shared.PartyReference (0..1) <"Indicates the party this regulator considers to be the buyer">
+    sellerPartyReference fpml.consolidated.shared.PartyReference (0..1) <"Indicates the party this regulator considers to be the seller.">
 
 type RegulatoryClassificationMifirRTS6a_2015 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
 
     supervisoryBody string (0..*) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    reportingRoleAndPurposeModel ReportingRoleAndPurposeModel (1..1)
-    regulatoryBuyerAndSellerModel fpml.consolidated.shared.RegulatoryBuyerAndSellerModel (0..1)
-    relatedPartyAndPersonModel RelatedPartyAndPersonModel (1..1)
+    reportingRole fpml.consolidated.doc.ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for this regulator; roles could include ReportingParty and Voluntary reporting.">
+    reportingPurpose fpml.consolidated.doc.ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, PET, Confirmation, RealTimePublic.">
+    buyerPartyReference fpml.consolidated.shared.PartyReference (0..1) <"Indicates the party this regulator considers to be the buyer">
+    sellerPartyReference fpml.consolidated.shared.PartyReference (0..1) <"Indicates the party this regulator considers to be the seller.">
+    relatedParty fpml.consolidated.shared.RelatedParty (0..*) <"This may be used to identify one or more parties that perform a role within the transaction. If this is within a partyTradeInformation block, the related party performs the role with respect to the party identifie by the \"partyReference\" in the partyTradeInformation block.">
+    relatedPerson fpml.consolidated.shared.RelatedPerson (0..*) <"Provides information about a person that executed or supports this trade">
     tradingObligation RegulatoryTradingObligation (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    transactionClassificationModel fpml.consolidated.doc.TransactionClassificationModel (1..1)
+    isSecuritiesFinancing boolean (0..1) <"Whether the transaction falls within the scope of activity but is exempted from reporting under [Securities Financing Transactions Regulation]">
+    otcClassification fpml.consolidated.doc.OtcClassification (0..*) <"Classification of the OTC transaction. Note: Coding scheme definition to encapsulate: Articles 20(3)(a) and 21(5)(a) of Regulation (EU) 600/2014. e.g. default=\"http://www.fpml.org/coding-scheme/esma-mifir-otc-classification\"">
+    tradingWaiver fpml.consolidated.doc.TradingWaiver (0..*) <"Classification of the pre-trade waiver, if any, that the transaction was executed under. Note: Coding scheme to encapsulate: Articles 4 and 9 of Regulation (EU) 600/2014. e.g. default=\"http://www.fpml.org/coding-scheme/esma-mifir-trading-waiver\"">
+    shortSale fpml.consolidated.doc.ShortSale (0..1) <"Classification of the transaction as a short sale or not and, if short, of the type of transaction. Note: Coding scheme to encapsulate: Article 11 of Regulation (EU) 600/2014. e.g. default=\"http://www.fpml.org/coding-scheme/esma-mifir-short-sale\"">
+    isCommodityHedge boolean (0..1) <"Whether the transaction reduces risk in an objectively measurable way. Only applicable for commodity derivative transactions.">
 
 type RegulatoryClassificationMifirRTS6b_2015 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
 
     supervisoryBody string (0..*) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    reportingRoleAndPurposeModel ReportingRoleAndPurposeModel (1..1)
-    regulatoryBuyerAndSellerModel fpml.consolidated.shared.RegulatoryBuyerAndSellerModel (0..1)
-    relatedPartyAndPersonModel RelatedPartyAndPersonModel (1..1)
+    reportingRole fpml.consolidated.doc.ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for this regulator; roles could include ReportingParty and Voluntary reporting.">
+    reportingPurpose fpml.consolidated.doc.ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, PET, Confirmation, RealTimePublic.">
+    buyerPartyReference fpml.consolidated.shared.PartyReference (0..1) <"Indicates the party this regulator considers to be the buyer">
+    sellerPartyReference fpml.consolidated.shared.PartyReference (0..1) <"Indicates the party this regulator considers to be the seller.">
+    relatedParty fpml.consolidated.shared.RelatedParty (0..*) <"This may be used to identify one or more parties that perform a role within the transaction. If this is within a partyTradeInformation block, the related party performs the role with respect to the party identifie by the \"partyReference\" in the partyTradeInformation block.">
+    relatedPerson fpml.consolidated.shared.RelatedPerson (0..*) <"Provides information about a person that executed or supports this trade">
     tradingObligation RegulatoryTradingObligation (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    transactionClassificationModel fpml.consolidated.doc.TransactionClassificationModel (1..1)
+    isSecuritiesFinancing boolean (0..1) <"Whether the transaction falls within the scope of activity but is exempted from reporting under [Securities Financing Transactions Regulation]">
+    otcClassification fpml.consolidated.doc.OtcClassification (0..*) <"Classification of the OTC transaction. Note: Coding scheme definition to encapsulate: Articles 20(3)(a) and 21(5)(a) of Regulation (EU) 600/2014. e.g. default=\"http://www.fpml.org/coding-scheme/esma-mifir-otc-classification\"">
+    tradingWaiver fpml.consolidated.doc.TradingWaiver (0..*) <"Classification of the pre-trade waiver, if any, that the transaction was executed under. Note: Coding scheme to encapsulate: Articles 4 and 9 of Regulation (EU) 600/2014. e.g. default=\"http://www.fpml.org/coding-scheme/esma-mifir-trading-waiver\"">
+    shortSale fpml.consolidated.doc.ShortSale (0..1) <"Classification of the transaction as a short sale or not and, if short, of the type of transaction. Note: Coding scheme to encapsulate: Article 11 of Regulation (EU) 600/2014. e.g. default=\"http://www.fpml.org/coding-scheme/esma-mifir-short-sale\"">
+    isCommodityHedge boolean (0..1) <"Whether the transaction reduces risk in an objectively measurable way. Only applicable for commodity derivative transactions.">
 
 type RegulatoryClassificationMifirRTS22_2015 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
 
     supervisoryBody string (0..*) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    reportingRoleAndPurposeModel ReportingRoleAndPurposeModel (1..1)
-    regulatoryBuyerAndSellerModel fpml.consolidated.shared.RegulatoryBuyerAndSellerModel (0..1)
-    relatedPartyAndPersonModel RelatedPartyAndPersonModel (1..1)
+    reportingRole fpml.consolidated.doc.ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for this regulator; roles could include ReportingParty and Voluntary reporting.">
+    reportingPurpose fpml.consolidated.doc.ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, PET, Confirmation, RealTimePublic.">
+    buyerPartyReference fpml.consolidated.shared.PartyReference (0..1) <"Indicates the party this regulator considers to be the buyer">
+    sellerPartyReference fpml.consolidated.shared.PartyReference (0..1) <"Indicates the party this regulator considers to be the seller.">
+    relatedParty fpml.consolidated.shared.RelatedParty (0..*) <"This may be used to identify one or more parties that perform a role within the transaction. If this is within a partyTradeInformation block, the related party performs the role with respect to the party identifie by the \"partyReference\" in the partyTradeInformation block.">
+    relatedPerson fpml.consolidated.shared.RelatedPerson (0..*) <"Provides information about a person that executed or supports this trade">
     tradingObligation RegulatoryTradingObligation (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
     isSecuritiesFinancing boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Whether the transaction falls within the scope of activity but is exempted from reporting under [Securities Financing Transactions Regulation]">
     tradingWaiver fpml.consolidated.doc.TradingWaiver (0..*) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Classification of the pre-trade waiver, if any, that the transaction was executed under. Note: Coding scheme to encapsulate: Articles 4 and 9 of Regulation (EU) 600/2014. e.g. default=\"http://www.fpml.org/coding-scheme/esma-mifir-trading-waiver\"">
@@ -288,9 +294,12 @@ type RegulatoryClassificationMifirRTS22_2015 extends RegulatoryClassification: <
 type RegulatoryClassificationMifirRTS23_2015 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
 
     supervisoryBody string (0..*) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    reportingRoleAndPurposeModel ReportingRoleAndPurposeModel (1..1)
-    regulatoryBuyerAndSellerModel fpml.consolidated.shared.RegulatoryBuyerAndSellerModel (0..1)
-    relatedPartyAndPersonModel RelatedPartyAndPersonModel (1..1)
+    reportingRole fpml.consolidated.doc.ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for this regulator; roles could include ReportingParty and Voluntary reporting.">
+    reportingPurpose fpml.consolidated.doc.ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, PET, Confirmation, RealTimePublic.">
+    buyerPartyReference fpml.consolidated.shared.PartyReference (0..1) <"Indicates the party this regulator considers to be the buyer">
+    sellerPartyReference fpml.consolidated.shared.PartyReference (0..1) <"Indicates the party this regulator considers to be the seller.">
+    relatedParty fpml.consolidated.shared.RelatedParty (0..*) <"This may be used to identify one or more parties that perform a role within the transaction. If this is within a partyTradeInformation block, the related party performs the role with respect to the party identifie by the \"partyReference\" in the partyTradeInformation block.">
+    relatedPerson fpml.consolidated.shared.RelatedPerson (0..*) <"Provides information about a person that executed or supports this trade">
     tradingObligation RegulatoryTradingObligation (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
     isCommodityHedge boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Whether the transaction reduces risk in an objectively measurable way. Only applicable for commodity derivative transactions.">
     currencyPairClassification fpml.consolidated.doc.CurrencyPairClassification (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Reports a regulator-specific code classifying the currency pair in the trade into risk categories such as Major Currencies or Emerging Markets.">
@@ -301,16 +310,24 @@ type RegulatoryClassificationMifirRTS23_2015 extends RegulatoryClassification: <
 type RegulatoryClassificationMifirRTS24_2015 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
 
     supervisoryBody string (0..*) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    reportingRoleAndPurposeModel ReportingRoleAndPurposeModel (1..1)
-    regulatoryBuyerAndSellerModel fpml.consolidated.shared.RegulatoryBuyerAndSellerModel (0..1)
-    relatedPartyAndPersonModel RelatedPartyAndPersonModel (1..1)
+    reportingRole fpml.consolidated.doc.ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for this regulator; roles could include ReportingParty and Voluntary reporting.">
+    reportingPurpose fpml.consolidated.doc.ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, PET, Confirmation, RealTimePublic.">
+    buyerPartyReference fpml.consolidated.shared.PartyReference (0..1) <"Indicates the party this regulator considers to be the buyer">
+    sellerPartyReference fpml.consolidated.shared.PartyReference (0..1) <"Indicates the party this regulator considers to be the seller.">
+    relatedParty fpml.consolidated.shared.RelatedParty (0..*) <"This may be used to identify one or more parties that perform a role within the transaction. If this is within a partyTradeInformation block, the related party performs the role with respect to the party identifie by the \"partyReference\" in the partyTradeInformation block.">
+    relatedPerson fpml.consolidated.shared.RelatedPerson (0..*) <"Provides information about a person that executed or supports this trade">
     tradingObligation RegulatoryTradingObligation (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    transactionClassificationModel fpml.consolidated.doc.TransactionClassificationModel (1..1)
+    isSecuritiesFinancing boolean (0..1) <"Whether the transaction falls within the scope of activity but is exempted from reporting under [Securities Financing Transactions Regulation]">
+    otcClassification fpml.consolidated.doc.OtcClassification (0..*) <"Classification of the OTC transaction. Note: Coding scheme definition to encapsulate: Articles 20(3)(a) and 21(5)(a) of Regulation (EU) 600/2014. e.g. default=\"http://www.fpml.org/coding-scheme/esma-mifir-otc-classification\"">
+    tradingWaiver fpml.consolidated.doc.TradingWaiver (0..*) <"Classification of the pre-trade waiver, if any, that the transaction was executed under. Note: Coding scheme to encapsulate: Articles 4 and 9 of Regulation (EU) 600/2014. e.g. default=\"http://www.fpml.org/coding-scheme/esma-mifir-trading-waiver\"">
+    shortSale fpml.consolidated.doc.ShortSale (0..1) <"Classification of the transaction as a short sale or not and, if short, of the type of transaction. Note: Coding scheme to encapsulate: Article 11 of Regulation (EU) 600/2014. e.g. default=\"http://www.fpml.org/coding-scheme/esma-mifir-short-sale\"">
+    isCommodityHedge boolean (0..1) <"Whether the transaction reduces risk in an objectively measurable way. Only applicable for commodity derivative transactions.">
 
 type RegulatoryClassificationPart43_2012 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
 
     supervisoryBody string (0..*) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    reportingRoleAndPurposeModel ReportingRoleAndPurposeModel (1..1)
+    reportingRole fpml.consolidated.doc.ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for this regulator; roles could include ReportingParty and Voluntary reporting.">
+    reportingPurpose fpml.consolidated.doc.ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, PET, Confirmation, RealTimePublic.">
     cancellation boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
     cleared string (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
     executionVenueType fpml.consolidated.doc.ExecutionVenueType (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
@@ -321,7 +338,8 @@ type RegulatoryClassificationPart43_2012 extends RegulatoryClassification: <"DEP
 type RegulatoryClassificationPart43_2019 extends RegulatoryClassification: <" DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
 
     supervisoryBody string (0..*) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    reportingRoleAndPurposeModel ReportingRoleAndPurposeModel (1..1)
+    reportingRole fpml.consolidated.doc.ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for this regulator; roles could include ReportingParty and Voluntary reporting.">
+    reportingPurpose fpml.consolidated.doc.ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, PET, Confirmation, RealTimePublic.">
     cancellationOfPublicReporting boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
     cleared string (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
     endUserException boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
@@ -339,10 +357,13 @@ type RegulatoryClassificationPart43_2019 extends RegulatoryClassification: <" DE
 type RegulatoryClassificationPart45_2012 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
 
     supervisoryBody string (0..*) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    reportingRoleAndPurposeModel ReportingRoleAndPurposeModel (1..1)
-    regulatoryBuyerAndSellerModel fpml.consolidated.shared.RegulatoryBuyerAndSellerModel (0..1)
+    reportingRole fpml.consolidated.doc.ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for this regulator; roles could include ReportingParty and Voluntary reporting.">
+    reportingPurpose fpml.consolidated.doc.ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, PET, Confirmation, RealTimePublic.">
+    buyerPartyReference fpml.consolidated.shared.PartyReference (0..1) <"Indicates the party this regulator considers to be the buyer">
+    sellerPartyReference fpml.consolidated.shared.PartyReference (0..1) <"Indicates the party this regulator considers to be the seller.">
     mandatorilyClearable fpml.consolidated.doc.ReportingBoolean (0..1) <"Whether the particular trade type in question is required by this regulator to be cleared. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    regulatoryClassificationPart45_2012Sequence RegulatoryClassificationPart45_2012Sequence (0..1)
+    endUserException boolean (0..1) <"Specifies whether the trade is not obligated to be cleared via a derivative clearing organization, i.e. wehter there is an exemption from clearing. For historical reasons this is called \"end-user exception\", but this may be used to indication any exception from normal clearing mandates caused by the type of the partiees or their relationship, such as inter-affiliate trades. If a relatedParty block with a role of ClearingExceptionParty is present, that related party indicates which party is claiming the end user exception. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
+    endUserExceptionReason fpml.consolidated.doc.ClearingExceptionReason (0..*) <"Specifies a reason that the trade is exempted from a clearing requirement. This exemption may be an end-user exception, or another type such as in inter-affiliate trade. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
     endUserExceptionDeclaration fpml.consolidated.doc.EndUserExceptionDeclaration (0..1) <"Claims an end user exception and provides supporting evidence. If a relatedParty block with a role of ClearingExceptionParty is present, that related party indicates which party is claiming the end user exception. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
     largeSizeTrade boolean (0..1) <"Specifies whether the sender of this trade considers it to be a large notional trade or block trade for reporting purposes, and thus eligible for delayed public reporting. Normally this will only be applicable for off-facility trades. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
     executionType fpml.consolidated.doc.ExecutionType (0..1) <"Used to describe how the trade was executed, e.g. via voice or electronically. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
@@ -360,21 +381,16 @@ type RegulatoryClassificationPart45_2012 extends RegulatoryClassification: <"DEP
     mixedSwap boolean (0..1) <"Indicates whether the swap is a mixed swap as defined by CFTC Part 45 (i.e. subject to reporting to both CFTC and SEC). DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
     contractType fpml.consolidated.shared.ProductId (0..1) <"Indicatdes the CFTC Contract type. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
 
-    condition Choice:
-        optional choice regulatoryClassificationPart45_2012Sequence, endUserExceptionDeclaration
-
-type RegulatoryClassificationPart45_2012Sequence:
-
-    endUserException boolean (0..1) <"Specifies whether the trade is not obligated to be cleared via a derivative clearing organization, i.e. wehter there is an exemption from clearing. For historical reasons this is called \"end-user exception\", but this may be used to indication any exception from normal clearing mandates caused by the type of the partiees or their relationship, such as inter-affiliate trades. If a relatedParty block with a role of ClearingExceptionParty is present, that related party indicates which party is claiming the end user exception. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    endUserExceptionReason fpml.consolidated.doc.ClearingExceptionReason (0..*) <"Specifies a reason that the trade is exempted from a clearing requirement. This exemption may be an end-user exception, or another type such as in inter-affiliate trade. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-
 type RegulatoryClassificationPart45_2019 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
 
     supervisoryBody string (0..*) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    reportingRoleAndPurposeModel ReportingRoleAndPurposeModel (1..1)
-    regulatoryBuyerAndSellerModel fpml.consolidated.shared.RegulatoryBuyerAndSellerModel (0..1)
+    reportingRole fpml.consolidated.doc.ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for this regulator; roles could include ReportingParty and Voluntary reporting.">
+    reportingPurpose fpml.consolidated.doc.ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, PET, Confirmation, RealTimePublic.">
+    buyerPartyReference fpml.consolidated.shared.PartyReference (0..1) <"Indicates the party this regulator considers to be the buyer">
+    sellerPartyReference fpml.consolidated.shared.PartyReference (0..1) <"Indicates the party this regulator considers to be the seller.">
     mandatorilyClearable fpml.consolidated.doc.ReportingBoolean (0..1) <"Whether the particular trade type in question is required by this regulator to be cleared. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    regulatoryClassificationPart45_2019Sequence RegulatoryClassificationPart45_2019Sequence (0..1)
+    endUserException boolean (0..1) <"Specifies whether the trade is not obligated to be cleared via a derivative clearing organization, i.e. wehter there is an exemption from clearing. For historical reasons this is called \"end-user exception\", but this may be used to indication any exception from normal clearing mandates caused by the type of the partiees or their relationship, such as inter-affiliate trades. If a relatedParty block with a role of ClearingExceptionParty is present, that related party indicates which party is claiming the end user exception. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
+    endUserExceptionReason fpml.consolidated.doc.ClearingExceptionReason (0..*) <"Specifies a reason that the trade is exempted from a clearing requirement. This exemption may be an end-user exception, or another type such as in inter-affiliate trade. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
     endUserExceptionDeclaration fpml.consolidated.doc.EndUserExceptionDeclaration (0..1) <"Claims an end user exception and provides supporting evidence. If a relatedParty block with a role of ClearingExceptionParty is present, that related party indicates which party is claiming the end user exception. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
     largeSizeTrade boolean (0..1) <"Specifies whether the sender of this trade considers it to be a large notional trade or block trade for reporting purposes, and thus eligible for delayed public reporting. Normally this will only be applicable for off-facility trades. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
     executionType fpml.consolidated.doc.ExecutionType (0..1) <"Used to describe how the trade was executed, e.g. via voice or electronically. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
@@ -400,17 +416,10 @@ type RegulatoryClassificationPart45_2019 extends RegulatoryClassification: <"DEP
     lastFloatingReferenceResetDate zonedDateTime (0..1) <"The date of the most recent sampling of the floating reference for the purposes of determining cashflow. Ties to \"Last Floating Reference Value\" field. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
     nextFloatingReferenceResetDate zonedDateTime (0..1) <"The nearest date in the future that the floating reference resets on DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
 
-    condition Choice:
-        optional choice regulatoryClassificationPart45_2019Sequence, endUserExceptionDeclaration
-
-type RegulatoryClassificationPart45_2019Sequence:
-
-    endUserException boolean (0..1) <"Specifies whether the trade is not obligated to be cleared via a derivative clearing organization, i.e. wehter there is an exemption from clearing. For historical reasons this is called \"end-user exception\", but this may be used to indication any exception from normal clearing mandates caused by the type of the partiees or their relationship, such as inter-affiliate trades. If a relatedParty block with a role of ClearingExceptionParty is present, that related party indicates which party is claiming the end user exception. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    endUserExceptionReason fpml.consolidated.doc.ClearingExceptionReason (0..*) <"Specifies a reason that the trade is exempted from a clearing requirement. This exemption may be an end-user exception, or another type such as in inter-affiliate trade. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-
 type RegulatoryClassificationSFTR_2019 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
 
-    reportingRoleAndPurposeModel ReportingRoleAndPurposeModel (0..1)
+    reportingRole fpml.consolidated.doc.ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for this regulator; roles could include ReportingParty and Voluntary reporting.">
+    reportingPurpose fpml.consolidated.doc.ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, PET, Confirmation, RealTimePublic.">
     reportingLevel fpml.consolidated.doc.ReportingLevel (0..1) <"An indication whether the report is done at trade or position level. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
     actionType fpml.consolidated.shared.ActionType (0..1) <"SFTR notation to indicate whether the report is New, Modification, Valuation, Collateral update, Error, Correction, Termination / Early Termination or Position component DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
 
@@ -419,20 +428,3 @@ type RegulatoryTradingObligation:
     tradedOnVenue boolean (1..1) <"Whether the particular product must be executed on a SEF or DCM. See to Dodd-Frank section 723(a)(8).">
     exception boolean (0..1) <"Specifies whether the party invoked exception to not execute the trade on facility such as SEF and DCM even though the particular product is mandated to execute on a SEF.">
     exceptionDeclaration fpml.consolidated.doc.FacilityExecutionExceptionDeclaration (0..1) <"Provides supporting evidence when a party invoked exception to not execute the trade on facility such as SEF and DCM even though the particular product is mandated to execute on a SEF.">
-
-type ESMALevel3Model:
-
-    contractType ESMAContractType (0..1) <"ESMA prodcut classification">
-    deliveryType ESMADeliveryType (0..1) <"ESMA delivery type">
-    creditDetails ESMACreditDetails (0..1)
-    underlyer ESMAProductUnderlyer (0..1)
-
-type RelatedPartyAndPersonModel:
-
-    relatedParty fpml.consolidated.shared.RelatedParty (0..*) <"This may be used to identify one or more parties that perform a role within the transaction. If this is within a partyTradeInformation block, the related party performs the role with respect to the party identifie by the \"partyReference\" in the partyTradeInformation block.">
-    relatedPerson fpml.consolidated.shared.RelatedPerson (0..*) <"Provides information about a person that executed or supports this trade">
-
-type ReportingRoleAndPurposeModel:
-
-    reportingRole fpml.consolidated.doc.ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for this regulator; roles could include ReportingParty and Voluntary reporting.">
-    reportingPurpose fpml.consolidated.doc.ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, PET, Confirmation, RealTimePublic.">

@@ -23,38 +23,44 @@ type EquityOptionTransactionSupplement extends EquityDerivativeShortFormBase: <"
 
     exchangeLookAlike boolean (0..1) <"For a share option transaction, a flag used to indicate whether the transaction is to be treated as an \'exchange look-alike\'. This designation has significance for how share adjustments (arising from corporate actions) will be determined for the transaction. For an \'exchange look-alike\' transaction the relevant share adjustments will follow that for a corresponding designated contract listed on the related exchange (referred to as Options Exchange Adjustment (ISDA defined term), otherwise the share adjustments will be determined by the calculation agent (referred to as Calculation Agent Adjustment (ISDA defined term)).">
     exchangeTradedContractNearest boolean (0..1) <"For an index option transaction, a flag used in conjuction with Futures Price Valuation (ISDA defined term) to indicate whether the Nearest Index Contract provision is applicable. The Nearest Index Contract provision is a rule for determining the Exchange-traded Contract (ISDA defined term) without having to explicitly state the actual contract, delivery month and exchange on which it is traded.">
-    indexAnnexFallbackModel fpml.consolidated.eq.shared.IndexAnnexFallbackModel (0..1)
+    multipleExchangeIndexAnnexFallback boolean (0..1) <"For an index option transaction, a flag to indicate whether a relevant Multiple Exchange Index Annex is applicable to the transaction. This annex defines additional provisions which are applicable where an index is comprised of component securities that are traded on multiple exchanges.">
+    componentSecurityIndexAnnexFallback boolean (0..1) <"For an index option transaction, a flag to indicate whether a relevant Component Security Index Annex is applicable to the transaction.">
     methodOfAdjustment fpml.consolidated.fpmlenum.MethodOfAdjustmentEnum (0..1)
     localJurisdiction fpml.consolidated.shared.CountryCode (0..1) <"Local Jurisdiction is a term used in the AEJ Master Confirmation, which is used to determine local taxes, which shall mean taxes, duties, and similar charges imposed by the taxing authority of the Local Jurisdiction If this element is not present Local Jurisdiction is Not Applicable.">
     optionEntitlement fpml.consolidated.shared.PositiveDecimal (0..1) <"The number of shares per option comprised in the option transaction supplement.">
     multiplier fpml.consolidated.shared.PositiveDecimal (0..1) <"Specifies the contract multiplier that can be associated with an index option.">
     extraordinaryEvents fpml.consolidated.eq.shared.ExtraordinaryEvents (0..1) <"A component to contain elements that represent an extraordinary event.">
 
-    condition Choice:
-        optional choice optionEntitlement, multiplier
-
 type EquityAmericanExercise extends fpml.consolidated.shared.SharedAmericanExercise: <"A type for defining exercise procedures associated with an American style exercise of an equity option. This entity inherits from the type SharedAmericanExercise.">
 
     latestExerciseTimeType fpml.consolidated.fpmlenum.TimeTypeEnum (0..1) <"The latest time of day at which the equity option can be exercised, for example the official closing time of the exchange.">
-    equityExpirationModel EquityExpirationModel (1..1)
+    equityExpirationTimeType fpml.consolidated.fpmlenum.TimeTypeEnum (0..1) <"The time of day at which the equity option expires, for example the official closing time of the exchange.">
+    equityExpirationTime fpml.consolidated.shared.BusinessCenterTime (0..1) <"The specific time of day at which the equity option expires.">
+    expirationTimeDetermination fpml.consolidated.shared.DeterminationMethod (0..1) <"Expiration time determination method.">
     equityMultipleExercise EquityMultipleExercise (0..1) <"The presence of this element indicates that the option may be exercised on different days. It is not applicable to European options.">
 
 type EquityBermudaExercise extends fpml.consolidated.shared.SharedAmericanExercise: <"A type for defining exercise procedures associated with a Bermuda style exercise of an equity option. The term Bermuda is adopted in FpML for consistency with the ISDA Definitions.">
 
     bermudaExerciseDates fpml.consolidated.shared.DateList (0..1) <"List of Exercise Dates for a Bermuda option.">
     latestExerciseTimeType fpml.consolidated.fpmlenum.TimeTypeEnum (0..1) <"The latest time of day at which the equity option can be exercised, for example the official closing time of the exchange.">
-    equityExpirationModel EquityExpirationModel (1..1)
+    equityExpirationTimeType fpml.consolidated.fpmlenum.TimeTypeEnum (0..1) <"The time of day at which the equity option expires, for example the official closing time of the exchange.">
+    equityExpirationTime fpml.consolidated.shared.BusinessCenterTime (0..1) <"The specific time of day at which the equity option expires.">
+    expirationTimeDetermination fpml.consolidated.shared.DeterminationMethod (0..1) <"Expiration time determination method.">
     equityMultipleExercise EquityMultipleExercise (0..1) <"The presence of this element indicates that the option may be exercised on different days. It is not applicable to European options.">
 
 type EquityDerivativeBase extends fpml.consolidated.shared.Product: <"A type for defining the common features of equity derivatives.">
 
-    buyerSellerModel fpml.consolidated.shared.BuyerSellerModel (1..1)
+    buyerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party that buys this instrument, ie. pays for this instrument and receives the rights defined by it. See 2000 ISDA definitions Article 11.1 (b). In the case of FRAs this the fixed rate payer.">
+    buyerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that buys this instrument.">
+    sellerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party that sells (\"writes\") this instrument, i.e. that grants the rights defined by this instrument and in return receives a payment for it. See 2000 ISDA definitions Article 11.1 (a). In the case of FRAs this is the floating rate payer.">
+    sellerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that sells this instrument.">
     optionType fpml.consolidated.fpmlenum.EquityOptionTypeEnum (0..1) <"The type of option transaction.">
     equityEffectiveDate zonedDateTime (0..1) <"Effective date for a forward starting option.">
     underlyer fpml.consolidated.asset.Underlyer (1..1) <"Specifies the underlying component, which can be either one or many and consists in either equity, index or convertible bond component, or a combination of these.">
     notional fpml.consolidated.shared.NonNegativeMoney (0..1) <"The notional amount.">
     equityExercise EquityExerciseValuationSettlement (1..1) <"The parameters for defining how the equity option can be exercised, how it is valued and how it is settled.">
-    featureModel fpml.consolidated.eq.shared.FeatureModel (0..1)
+    feature fpml.consolidated.eq.shared.OptionFeatures (0..1) <"Asian, Barrier, Knock and Pass Through features.">
+    fxFeature fpml.consolidated.option.shared.FxFeature (0..1) <"Quanto, Composite, or Cross Currency FX features.">
     strategyFeature fpml.consolidated.option.shared.StrategyFeature (0..1) <"A equity option simple strategy feature.">
 
 type EquityDerivativeLongFormBase extends EquityDerivativeBase: <"type for defining the common features of equity derivatives.">
@@ -73,14 +79,17 @@ type EquityDerivativeShortFormBase extends EquityDerivativeBase: <"A type for de
 type EquityEuropeanExercise extends fpml.consolidated.shared.Exercise: <"A type for defining exercise procedures associated with a European style exercise of an equity option.">
 
     expirationDate fpml.consolidated.shared.AdjustableOrRelativeDate (1..1) <"The last day within an exercise period for an American style option. For a European style option it is the only day within the exercise period.">
-    equityExpirationModel EquityExpirationModel (1..1)
+    equityExpirationTimeType fpml.consolidated.fpmlenum.TimeTypeEnum (0..1) <"The time of day at which the equity option expires, for example the official closing time of the exchange.">
+    equityExpirationTime fpml.consolidated.shared.BusinessCenterTime (0..1) <"The specific time of day at which the equity option expires.">
+    expirationTimeDetermination fpml.consolidated.shared.DeterminationMethod (0..1) <"Expiration time determination method.">
 
 type EquityExerciseValuationSettlement: <"A type for defining exercise procedures for equity options.">
 
     equityEuropeanExercise EquityEuropeanExercise (0..1) <"The parameters for defining the expiration date and time for a European style equity option.">
     equityAmericanExercise EquityAmericanExercise (0..1) <"The parameters for defining the exercise period for an American style equity option together with the rules governing the quantity of the underlying that can be exercised on any given exercise date.">
     equityBermudaExercise EquityBermudaExercise (0..1) <"The parameters for defining the exercise period for an Bermuda style equity option together with the rules governing the quantity of the underlying that can be exercised on any given exercise date.">
-    equityExerciseValuationSettlementSequence EquityExerciseValuationSettlementSequence (0..1)
+    automaticExercise boolean (0..1) <"If true then each option not previously exercised will be deemed to be exercised at the expiration time on the expiration date without service of notice unless the buyer notifies the seller that it no longer wishes this to occur.">
+    makeWholeProvisions fpml.consolidated.eq.shared.MakeWholeProvisions (0..1) <"Provisions covering early exercise of option.">
     prePayment PrePayment (0..1) <"Prepayment features for Forward.">
     equityValuation fpml.consolidated.eq.shared.EquityValuation (0..1) <"The parameters for defining when valuation of the underlying takes place.">
     settlementDate fpml.consolidated.shared.AdjustableOrRelativeDate (0..1) <"The date when the option is to be settled relative to the valuation date. If the settlement date is not specified explicitly then settlement will take place on the valuation date.">
@@ -91,17 +100,6 @@ type EquityExerciseValuationSettlement: <"A type for defining exercise procedure
     settlementMethodElectingPartyReference fpml.consolidated.shared.PartyReference (0..1)
     settlementPriceDefaultElection fpml.consolidated.shared.SettlementPriceDefaultElection (0..1)
 
-    condition Choice0:
-        optional choice equityEuropeanExercise, equityAmericanExercise , equityBermudaExercise
-
-    condition Choice1:
-        optional choice equityExerciseValuationSettlementSequence, prePayment
-
-type EquityExerciseValuationSettlementSequence:
-
-    automaticExercise boolean (0..1) <"If true then each option not previously exercised will be deemed to be exercised at the expiration time on the expiration date without service of notice unless the buyer notifies the seller that it no longer wishes this to occur.">
-    makeWholeProvisions fpml.consolidated.eq.shared.MakeWholeProvisions (0..1) <"Provisions covering early exercise of option.">
-
 type EquityMultipleExercise: <"A type for defining the multiple exercise provisions of an American or Bermuda style equity option.">
 
     integralMultipleExercise fpml.consolidated.shared.PositiveDecimal (0..1) <"When multiple exercise is applicable and this element is present it specifies that the number of options that can be exercised on a given exercise date must either be equal to the value of this element or be an integral multiple of it.">
@@ -110,20 +108,10 @@ type EquityMultipleExercise: <"A type for defining the multiple exercise provisi
 
 type PrePayment extends fpml.consolidated.shared.PaymentBase: <"A type for defining PrePayment.">
 
-    payerReceiverModel fpml.consolidated.shared.PayerReceiverModel (1..1)
+    payerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party responsible for making the payments defined by this structure.">
+    payerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account responsible for making the payments defined by this structure.">
+    receiverPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A reference to the party that receives the payments corresponding to this structure.">
+    receiverAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that receives the payments corresponding to this structure.">
     prePayment boolean (0..1)
     prePaymentAmount fpml.consolidated.shared.NonNegativeMoney (0..1)
     prePaymentDate fpml.consolidated.shared.AdjustableDate (0..1)
-
-type EquityExpirationModel: <"Choice between expiration expressed as symbolic and optional literal time, or using a determination method.">
-
-    equityExpirationModelSequence EquityExpirationModelSequence (0..1)
-    expirationTimeDetermination fpml.consolidated.shared.DeterminationMethod (0..1) <"Expiration time determination method.">
-
-    condition Choice:
-        one-of
-
-type EquityExpirationModelSequence:
-
-    equityExpirationTimeType fpml.consolidated.fpmlenum.TimeTypeEnum (0..1) <"The time of day at which the equity option expires, for example the official closing time of the exchange.">
-    equityExpirationTime fpml.consolidated.shared.BusinessCenterTime (0..1) <"The specific time of day at which the equity option expires.">

@@ -14,9 +14,13 @@ type TermLoan extends AbstractFacility: <"A term loan facility. A facility which
 
 type AccrualOptionChange extends AbstractFacilityEvent: <"An event describing a change to an accrual option associated with a specific facility.">
 
-    accrualOptionChangeSequence0 AccrualOptionChangeSequence0 (0..1)
+    fixedRateOption FixedRateOption (0..1) <"A structure that represents the accruing fixed rate option associated within a facility.">
+    floatingRateOption LoanFloatingRateOption (0..1) <"A structure that represents the accruing floating rate option associated within a facility.">
+    legacyFloatingRateOption LegacyFloatingRateOption (0..1) <"A structure that represents a legacy (pre-IBOR replacement) accruing floating rate option associated within a facility.">
+    loanContractReference LoanContractReference (0..*) <"A loan contract reference structure.">
     accruingPikOption AccruingPikOption (0..1) <"A structure that represents the accruing PIK option associated within a facility.">
-    accrualOptionChangeSequence1 AccrualOptionChangeSequence1 (0..1)
+    lcOption LcOption (0..1) <"A structure that represents the accruing L/C rate option associated within a facility.">
+    letterOfCreditReference LetterOfCreditReference (0..*) <"A letter of credit reference structure">
 
 type AccruingFeeChange extends AbstractFacilityEvent: <"An event describing a future change to an accruing fee associated with a specific facility.">
 
@@ -30,13 +34,16 @@ type AccruingFeeExpiry extends AbstractFacilityEvent: <"An event describing a fu
 type AccruingFeePayment extends AbstractFacilityEvent: <"An event describing an accruing fee payment made at the facility level.">
 
     id AccrualTypeId (1..1) <"A unique id associated with the loan accrual type.">
-    periodModel fpml.consolidated.shared.PeriodModel (1..1)
+    startDate zonedDateTime (1..1) <"Date on which this period begins.">
+    endDate zonedDateTime (1..1) <"Date on which this period ends.">
     amount MoneyWithParticipantShare (1..1)
-    accruingFeePaymentSequence AccruingFeePaymentSequence (0..1)
+    accrualSchedule AccrualPeriod (0..*) <"A schedule that incorporates all sub-periods of an accrual calculation.">
+    projection PaymentProjection (0..1) <"Projected interest payment details.">
 
 type AccruingPikPayment extends AbstractFacilityEvent: <"An event representing a payment to facilitate capitalization of interest on all outstanding contracts against a particular facility.">
 
-    periodModel fpml.consolidated.shared.PeriodModel (1..1)
+    startDate zonedDateTime (1..1) <"Date on which this period begins.">
+    endDate zonedDateTime (1..1) <"Date on which this period ends.">
     amount MoneyWithParticipantShare (1..1)
     accrualSchedule AccrualPeriod (0..*) <"A schedule that incorporates all sub-periods of an accrual calculation.">
 
@@ -105,19 +112,23 @@ type BreakageFeePayment extends AbstractLoanContractPaymentEvent: <"A fee calcul
 
 type InterestCapitalization extends AbstractLoanContractEvent: <"An event representing the capitalization of interest amounts for a given accrual period against a single loan contract.">
 
-    periodModel fpml.consolidated.shared.PeriodModel (1..1)
+    startDate zonedDateTime (1..1) <"Date on which this period begins.">
+    endDate zonedDateTime (1..1) <"Date on which this period ends.">
     calculationMethod fpml.consolidated.fpmlenum.InterestCalculationMethodEnum (1..1) <"Defines the way in which the agent bank is allocating cash/PIK interest - can be (i) pro-rata at the time of the interest payment/PIK or (ii) based on the loan contract share throughout the interest period (which is the preferred method).">
     amount MoneyWithParticipantShare (1..1)
-    interestCapitalizationSequence InterestCapitalizationSequence (0..1)
+    accrualSchedule AccrualPeriod (0..*) <"A schedule that incorporates all sub-periods of an accrual calculation.">
+    projection PaymentProjection (0..1) <"Projected interest payment details.">
 
 type InterestPayment extends LoanInterestPayment:
 
 type LegacyInterestCapitalization extends AbstractLoanContractEvent: <"An event representing the legacy version (pre-IBOR replacement) of the capitalization of interest amounts for a given accrual period against a single loan contract.">
 
-    periodModel fpml.consolidated.shared.PeriodModel (1..1)
+    startDate zonedDateTime (1..1) <"Date on which this period begins.">
+    endDate zonedDateTime (1..1) <"Date on which this period ends.">
     calculationMethod fpml.consolidated.fpmlenum.InterestCalculationMethodEnum (1..1) <"Defines the way in which the agent bank is allocating cash/PIK interest - can be (i) pro-rata at the time of the interest payment/PIK or (ii) based on the loan contract share throughout the interest period (which is the preferred method).">
     amount MoneyWithParticipantShare (1..1)
-    legacyInterestCapitalizationSequence LegacyInterestCapitalizationSequence (0..1)
+    accrualSchedule LegacyAccrualPeriod (0..*) <"A schedule that incorporates all sub-periods of an accrual calculation.">
+    projection PaymentProjection (0..1) <"Projected interest payment details.">
 
 type LegacyInterestPayment extends LegacyLoanInterestPayment:
 
@@ -127,7 +138,9 @@ type Repayment extends AbstractLoanContractEvent: <"An event representing a prin
 
     amount MoneyWithParticipantShare (1..1)
     price fpml.consolidated.shared.NonNegativeDecimal (0..1) <"The price at which the repayment occurred. This is usually Par but there could be scenarios where a repayment was made at a discounted level.">
-    repaymentTypeModel RepaymentTypeModel (1..1)
+    refusalAllowed boolean (1..1) <"Defines whether the lender has an option to accept or deny the payment.">
+    borrowerMandatory boolean (0..1) <"Defines whether the repayment is mandatory from the borrower\'s perspective, based on the (amortization) schedule on the credit agreement.">
+    scheduledRepayment boolean (0..1) <"Defines whether the repayment is a scheduled repayment. This is normally the case when the repayment is defined on the amortization schedule associated with the facility (on the credit agreement).">
 
 type Rollover extends AbstractLoanServicingEvent: <"An event representing the prepayment structure associated within a facility.">
 
@@ -152,7 +165,8 @@ type LcIssuance extends AbstractLcEvent: <"An event representing the issuance of
 type LcIssuanceFeePayment extends AbstractLcEvent: <"An event representing a letter of credit issuance fee payment.">
 
     id AccrualTypeId (1..1) <"A unique id associated with the loan accrual type.">
-    periodModel fpml.consolidated.shared.PeriodModel (1..1)
+    startDate zonedDateTime (1..1) <"Date on which this period begins.">
+    endDate zonedDateTime (1..1) <"Date on which this period ends.">
     amount MoneyWithParticipantShare (1..1)
     accrualSchedule AccrualPeriod (0..*) <"A schedule that incorporates all sub-periods of an accrual calculation.">
 
@@ -183,7 +197,7 @@ type LoanAllocationConfirmation extends LoanAllocationEvent:
 
 type LoanAllocationSettlement extends AbstractLoanAllocationSettlementEvent: <"An event structure defining the counterparty-to-counterparty trade settlement details.">
 
-    loanAllocationSettlementSequence LoanAllocationSettlementSequence (0..1)
+    fundingFactors LoanTradingCounterpartySettlementFundingFactors (0..1) <"Factors impacting the setttlement cash flows.">
 
 type LoanAllocationFeeDue extends LoanAllocationTransferFeeDue:
 
@@ -192,9 +206,11 @@ type LoanAllocationFeeOwed extends LoanAllocationTransferFeeOwed:
 type LoanAllocationSettlementDateAvailability extends AbstractLoanAllocationEvent: <"An event structure defining information related to trade settlement date coordination.">
 
     specificDates fpml.consolidated.shared.DateList (0..1) <"Specific date or dates on which a trade may be settled.">
-    periodModel fpml.consolidated.shared.PeriodModel (0..1)
+    startDate zonedDateTime (0..1) <"Date on which this period begins.">
+    endDate zonedDateTime (0..1) <"Date on which this period ends.">
     onOrAfterDate zonedDateTime (0..1) <"Date on or after which a trade can be settled.">
-    loanAllocationSettlementDateAvailabilitySequence LoanAllocationSettlementDateAvailabilitySequence (0..1)
+    leadDays int (0..1) <"Number of days advance notification required to express the intent to settle a trade.">
+    cutOffTime time (0..1) <"Specific cutoff time to express the intent to settle a trade.">
     noSettlePeriod LoanAllocationNoSettlePeriod (0..*) <"A period during which no settlement of a trade can occur, other than non-business days.">
 
 type LoanAllocationSettlementDateFinalization extends AbstractLoanAllocationEvent: <"An event structure defining the trade settlement date.">
@@ -211,17 +227,21 @@ type LoanBulkServicingNotification extends AbstractContractNotification: <"A loa
 type LoanNotificationAcknowledgement extends LoanAcknowledgement: <"A message used to acknowledge a loan notification.">
     [rootType]
 
-    loanIdentifiersModel LoanIdentifiersModel (1..1)
+    eventIdentifier fpml.consolidated.business.events.BusinessEventIdentifier (0..1)
+    taskIdentifier TaskIdentifier (0..1)
 
 type LoanNotificationException extends fpml.consolidated.msg.Exception: <"A message used to indicate an exception issue with a loan notification.">
     [rootType]
 
-    loanNotificationExceptionSequence LoanNotificationExceptionSequence (0..1)
+    eventIdentifier fpml.consolidated.business.events.BusinessEventIdentifier (0..1)
+    taskIdentifier TaskIdentifier (0..1)
+    party fpml.consolidated.shared.Party (0..1)
 
 type LoanNotificationRetracted extends fpml.consolidated.msg.NonCorrectableRequestMessage: <"A message used to indicate a retraction of a loan notification.">
     [rootType]
 
-    loanIdentifiersModel LoanIdentifiersModel (1..1)
+    eventIdentifier fpml.consolidated.business.events.BusinessEventIdentifier (0..1)
+    taskIdentifier TaskIdentifier (0..1)
     party fpml.consolidated.shared.Party (1..1)
     originalMessage fpml.consolidated.doc.UnprocessedElementWrapper (0..1)
 
@@ -235,37 +255,45 @@ type LoanCovenantObligationNotification extends AbstractServicingNotification: <
     [rootType]
 
     covenantTask LoanCovenantObligationTask (1..*)
-    dealDetailsModel DealDetailsModel (0..*)
-    covenantObligationDetailsModel CovenantObligationDetailsModel (1..*)
-    facilityDetailsModel FacilityDetailsModel (0..*)
+    loanCovenantObligationNotificationChoice0 LoanCovenantObligationNotificationChoice0 (0..*)
+    loanCovenantObligationNotificationChoice1 LoanCovenantObligationNotificationChoice1 (1..*)
+    loanCovenantObligationNotificationChoice2 LoanCovenantObligationNotificationChoice2 (0..*)
     party fpml.consolidated.shared.Party (1..*) <"A legal entity or a subdivision of a legal entity.">
 
 type FacilityNotification extends AbstractFacilityNotification: <"A loan servicing notification which can be used to communicate any facility-level business event.">
     [rootType]
 
     facilityEventGroup AbstractFacilityEvent (1..1)
-    dealDetailsModel DealDetailsModel (0..1)
-    facilityDetailsModel FacilityDetailsModel (1..1)
-    loanContractDetailsModel LoanContractDetailsModel (0..*)
-    letterOfCreditDetailsModel LetterOfCreditDetailsModel (0..*)
+    dealIdentifier DealIdentifier (0..1) <"A deal identifier structure.">
+    dealSummary DealSummary (0..1) <"A deal summary structure.">
+    facilityIdentifier FacilityIdentifier (0..1) <"A facility identifier structure.">
+    facilitySummary FacilitySummary (0..1) <"A facility summary structure.">
+    facilityNotificationChoice0 FacilityNotificationChoice0 (0..*)
+    facilityNotificationChoice1 FacilityNotificationChoice1 (0..*)
     party fpml.consolidated.shared.Party (1..*) <"A legal entity or a subdivision of a legal entity.">
 
 type LcNotification extends AbstractContractNotification: <"A loan servicing notification used to communicate various letter of credit business events.">
     [rootType]
 
     lcEventGroup AbstractLcEvent (1..1)
-    dealDetailsModel DealDetailsModel (0..1)
-    facilityDetailsModel FacilityDetailsModel (1..1)
-    letterOfCreditDetailsModel LetterOfCreditDetailsModel (1..1)
+    dealIdentifier DealIdentifier (0..1) <"A deal identifier structure.">
+    dealSummary DealSummary (0..1) <"A deal summary structure.">
+    facilityIdentifier FacilityIdentifier (0..1) <"A facility identifier structure.">
+    facilitySummary FacilitySummary (0..1) <"A facility summary structure.">
+    letterOfCreditIdentifier LoanContractIdentifier (0..1) <"A letter of credit identifier structure.">
+    letterOfCreditSummary LetterOfCreditSummary (0..1) <"A letter of credit summary structure.">
+    letterOfCredit LetterOfCredit (0..1) <"A full letter of credit structure.">
     party fpml.consolidated.shared.Party (1..*) <"A legal entity or a subdivision of a legal entity.">
 
 type LoanContractNotification extends AbstractContractNotification: <"A loan servicing notification used to communicate various loan contract business events.">
     [rootType]
 
     loanContractEventGroup AbstractLoanServicingEvent (1..1)
-    dealDetailsModel DealDetailsModel (0..1)
-    facilityDetailsModel FacilityDetailsModel (1..1)
-    loanContractDetailsModel LoanContractDetailsModel (1..*)
+    dealIdentifier DealIdentifier (0..1) <"A deal identifier structure.">
+    dealSummary DealSummary (0..1) <"A deal summary structure.">
+    facilityIdentifier FacilityIdentifier (0..1) <"A facility identifier structure.">
+    facilitySummary FacilitySummary (0..1) <"A facility summary structure.">
+    loanContractNotificationChoice LoanContractNotificationChoice (1..*)
     party fpml.consolidated.shared.Party (1..*) <"A legal entity or a subdivision of a legal entity.">
 
 type LoanLegalActionNotification extends AbstractServicingNotification: <"A loan servicing notification which can be used to communicate any legal action-related servicing event.">
@@ -282,10 +310,14 @@ type LoanAllocationNotification extends AbstractLoanAllocationNotification: <"A 
     [rootType]
 
     loanAllocationNotificationChoice0 LoanAllocationNotificationChoice0 (1..*)
-    loanTradeAllocationDetailsModel LoanTradeAllocationDetailsModel (1..1)
-    dealDetailsModel DealDetailsModel (0..1)
-    facilityDetailsModel FacilityDetailsModel (1..1)
-    loanAllocationNotificationChoice1 LoanAllocationNotificationChoice1 (0..*)
+    loanAllocationNotificationChoice1 LoanAllocationNotificationChoice1 (1..*)
+    tradeIdentifier fpml.consolidated.doc.TradeIdentifier (0..1) <"Unique trade ids used to identify the trade record.">
+    tradeSummary LoanTradeSummary (0..1) <"A summary structure representing the loan trade.">
+    dealIdentifier DealIdentifier (0..1) <"A deal identifier structure.">
+    dealSummary DealSummary (0..1) <"A deal summary structure.">
+    facilityIdentifier FacilityIdentifier (0..1) <"A facility identifier structure.">
+    facilitySummary FacilitySummary (0..1) <"A facility summary structure.">
+    loanAllocationNotificationChoice2 LoanAllocationNotificationChoice2 (0..*)
     party fpml.consolidated.shared.Party (1..*) <"A legal entity or a subdivision of a legal entity.">
 
 type LoanTradeNotification extends AbstractLoanTradeNotification: <"A loan servicing notification used to communicate details to establish a master trade, from counterparty to counterparty.">
@@ -293,25 +325,30 @@ type LoanTradeNotification extends AbstractLoanTradeNotification: <"A loan servi
 
     loanTradeEventGroup AbstractLoanTradeEvent (0..1)
     settlementTask LoanTradeSettlementTask (0..1)
-    loanTradeDetailsModel LoanTradeDetailsModel (1..1)
-    dealDetailsModel DealDetailsModel (0..1)
-    facilityDetailsModel FacilityDetailsModel (1..1)
+    tradeIdentifier fpml.consolidated.doc.TradeIdentifier (0..1) <"Unique trade ids used to identify the trade record.">
+    tradeSummary LoanTradeSummary (0..1) <"A structure that defines all loan trade information i.e. this structure contains the main (e.g. fund manager/main counterparty) trade details.">
+    trade LoanTradeType (0..1) <"A structure that defines party-to-party loan trade information. This structure contains the main (e.g. fund manager/main counterparty) trade details.">
+    dealIdentifier DealIdentifier (0..1) <"A deal identifier structure.">
+    dealSummary DealSummary (0..1) <"A deal summary structure.">
+    facilityIdentifier FacilityIdentifier (0..1) <"A facility identifier structure.">
+    facilitySummary FacilitySummary (0..1) <"A facility summary structure.">
     party fpml.consolidated.shared.Party (1..*) <"A legal entity or a subdivision of a legal entity.">
 
 type DealStatement extends AbstractLoanStatement: <"A full set of deal and facility definitions valid as of a specific date.">
     [rootType]
 
     deal Deal (1..1) <"A complete deal structure.">
-    dealDetailsModel DealDetailsModel (0..*)
-    covenantObligationDetailsModel CovenantObligationDetailsModel (0..*)
-    facilityDetailsModel FacilityDetailsModel (0..*)
+    dealStatementChoice0 DealStatementChoice0 (0..*)
+    dealStatementChoice1 DealStatementChoice1 (0..*)
+    dealStatementChoice2 DealStatementChoice2 (0..*)
     party fpml.consolidated.shared.Party (1..*) <"A legal entity or a subdivision of a legal entity.">
 
 type FacilityStatement extends AbstractLoanStatement: <"A single facility definition stated as of a certain date.">
     [rootType]
 
     facilityGroup AbstractFacility (1..1)
-    dealDetailsModel DealDetailsModel (0..1)
+    dealIdentifier DealIdentifier (0..1) <"A deal identifier structure.">
+    dealSummary DealSummary (0..1) <"A deal summary structure.">
     party fpml.consolidated.shared.Party (0..*) <"A legal entity or a subdivision of a legal entity.">
 
 type FacilityPositionStatement extends AbstractLoanStatement: <"A statement containing the commitment amounts for a single facility at the global and (optionally) the lender postion levels, on a specific date.">
@@ -319,26 +356,30 @@ type FacilityPositionStatement extends AbstractLoanStatement: <"A statement cont
 
     facilityPosition FacilityPosition (1..1) <"Commitment position details for a single facility. Positions can be stated at the global and (optionally) at the lender-specific level.">
     positionPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party for whom positions are being reported (if applicable position amounts are populated).">
-    dealDetailsModel DealDetailsModel (0..1)
-    facilityDetailsModel FacilityDetailsModel (1..1)
-    loanContractDetailsModel LoanContractDetailsModel (0..*)
+    dealIdentifier DealIdentifier (0..1) <"A deal identifier structure.">
+    dealSummary DealSummary (0..1) <"A deal summary structure.">
+    facilityIdentifier FacilityIdentifier (0..1) <"A facility identifier structure.">
+    facilitySummary FacilitySummary (0..1) <"A facility summary structure.">
+    facilityPositionStatementChoice FacilityPositionStatementChoice (0..*)
     party fpml.consolidated.shared.Party (0..*) <"A legal entity or a subdivision of a legal entity.">
 
 type LoanLegalActionStatement extends AbstractLoanStatement: <"A loan legal action statement structure.">
     [rootType]
 
     legalAction LoanLegalAction (1..1) <"A complete legal action structure.">
-    dealDetailsModel DealDetailsModel (0..1)
+    dealIdentifier DealIdentifier (0..1) <"A deal identifier structure.">
+    dealSummary DealSummary (0..1) <"A deal summary structure.">
     deal Deal (0..1) <"A complete deal structure.">
-    loanLegalActionStatementChoice LoanLegalActionStatementChoice (0..*)
-    loanContractDetailsModel LoanContractDetailsModel (0..*)
-    letterOfCreditDetailsModel LetterOfCreditDetailsModel (0..*)
+    loanLegalActionStatementChoice0 LoanLegalActionStatementChoice0 (0..*)
+    loanLegalActionStatementChoice1 LoanLegalActionStatementChoice1 (0..*)
+    loanLegalActionStatementChoice2 LoanLegalActionStatementChoice2 (0..*)
     party fpml.consolidated.shared.Party (0..*) <"A legal entity or a subdivision of a legal entity.">
 
 type OutstandingContractsStatement extends AbstractLoanStatement: <"A collection of outstanding loan contract and/or letter of credit structures belonging to a single facility.">
     [rootType]
 
-    dealDetailsModel DealDetailsModel (0..1)
+    dealIdentifier DealIdentifier (0..1) <"A deal identifier structure.">
+    dealSummary DealSummary (0..1) <"A deal summary structure.">
     facilityIdentifier FacilityIdentifier (1..1) <"The facility to which the loan contracts and/or letter of credits belong.">
     outstandingContractsStatementChoice OutstandingContractsStatementChoice (1..*)
     party fpml.consolidated.shared.Party (0..*) <"A legal entity or a subdivision of a legal entity.">
@@ -351,10 +392,10 @@ type AbstractApplicablePartyProfileObjects: <"An abstract base type that combine
 
 type AbstractApproval: <"A abstract type to describe an approval.">
 
+    id string (0..1)
     effectiveDate zonedDateTime (0..1) <"The effective date of the approval status details.">
     approvalVotes ApprovalVotes (1..1) <"A structure to describe the approval votes, expressed as a percentage as well as a commitment with optional list of votes by voters.">
     finalApprovalDate zonedDateTime (0..1) <"A structure to describe the date on which the approval is finalized.">
-    id string (0..1)
 
 type AbstractContractNotification extends AbstractServicingNotification: <"An extension of the AbstractServicingNotification which includes a reference to the facility and the loan contract to which embedded loan events apply. This abtract type should be used to \'wrap\' contract-level business events.">
 
@@ -363,9 +404,23 @@ type AbstractContractNotification extends AbstractServicingNotification: <"An ex
 type AbstractFacility extends FacilitySummary: <"An abstract type defining a facility baseline structure.">
 
     governingLaw fpml.consolidated.shared.GoverningLaw (0..1) <"Defines the governing law (jurisdiction) under which the facility operates.">
-    facilityFeaturesModel FacilityFeaturesModel (1..1)
-    facilityOptionsFeesAndRatesModel FacilityOptionsFeesAndRatesModel (1..1)
+    feature FacilityFeature (0..*) <"Facility features which help define the instrument with greater granularity. E.g. bridge, acquisition etc.">
+    lien fpml.consolidated.asset.Lien (0..1) <"The lien level associated with the facility. E.g. 1st, 2nd, 3rd.">
+    seniority fpml.consolidated.shared.CreditSeniority (0..1) <"The seniority of the facility. E.g. senior, senior secured etc.">
+    abstractFacilityChoice AbstractFacilityChoice (1..*)
+    accruingPikOption AccruingPikOption (0..1) <"A loan contract PIK accrual option.">
+    accruingFeeOption AccruingFeeOption (0..*) <"A description of all the different types of accruing fees which apply to the facility.">
+    defaultRate PeriodRate (0..1) <"This represents a default rate that may apply in addition to a regular margin rate (on outstanding loan contracts). This rate is applied at the discretion of the agent bank, if the borrower is deemed to be in default.">
+    mandatoryCostRate PeriodRate (0..1) <"The mandatory cost rate currently applied to the interest rate period.">
+    penaltyRate PeriodRate (0..1) <"This represents a penalty rate that may apply in addition to the regular margin rate (on outstanding loan contracts). This rate is applied at the discretion of the agent bank, if the borrower has broken terms stated within the credit agreement.">
     multiCurrency MultiCurrency (0..1) <"A container to denote whether funds may be drawn in multiple currency denominations, in addition to the base (facility) currency. The current commitment amount defines the base currency associated with the facility.">
+
+type AbstractFacilityChoice:
+
+    fixedRateOption FixedRateOption (0..1) <"A structure that represents the accruing fixed rate option associated within a facility.">
+    floatingRateOption LoanFloatingRateOption (0..1) <"A structure that represents the accruing floating rate option associated within a facility.">
+    legacyFloatingRateOption LegacyFloatingRateOption (0..1) <"A structure that represents the legacy version (pre-IBOR replacement) of an accruing floating rate option associated within a facility.">
+    lcOption LcOption (0..1) <"A description of all the letter of credit fee types which apply to the facility.">
 
 type AbstractFacilityContractEvent extends AbstractFacilityEvent: <"An abstract base type for all facility and optionally contract-level business events.">
 
@@ -402,7 +457,8 @@ type AbstractLcEvent extends AbstractLoanServicingEvent: <"An abstract base type
 
 type AbstractLegacyFloatingRateOptionBase extends AbstractLegacyAccrualOptionBase: <"An abstract type that specifies an underlying floating rate cash accrual option.">
 
-    legacyFloatingRateIndexLoanModel LegacyFloatingRateIndexLoanModel (1..1)
+    legacyFloatingRateIndex LegacyFloatingRateIndexLoan (1..1)
+    indexTenor fpml.consolidated.shared.Period (0..1) <"The ISDA Designated Maturity, i.e. the tenor of the floating rate.">
     spread number (1..1)
     pikSpread number (0..1)
 
@@ -436,15 +492,12 @@ type AbstractLoanCovenantObligation extends LoanCovenantObligationSummary: <"An 
 type AbstractLoanEvent: <"An abstract base type defining common features of a syndicated loan business event.">
 
     eventIdentifier fpml.consolidated.business.events.BusinessEventIdentifier (1..*)
-    abstractLoanEventSequence AbstractLoanEventSequence (0..1)
-    lenderAndCashDetailsModel LenderAndCashDetailsModel (0..1)
-    comment fpml.consolidated.shared.NonEmptyString (0..1) <"A freetext field which allows the sender to add further details around the business event.">
-
-type AbstractLoanEventSequence:
-
     parentEventIdentifier ParentEventIdentifier (0..1) <"A structure used to relate child events to one another, with an overarching parent identifier. The parent identifier does not itself represent an event, but rather provides a mechanism to describe all related. The event described by this message should be included as a child event in this structure.">
     previousEventIdentifier fpml.consolidated.business.events.BusinessEventIdentifier (0..1) <"A structure used to relate a previous event (sequentially) to the event conveyed by the message. This identifier is NOT to be used for corrections to events.">
     correctedEventIdentifier fpml.consolidated.business.events.BusinessEventIdentifier (0..1) <"A unique id associated with a previous inaccurate event. Population of this identifier reflects the fact that the event being conveyed is a \'corrective measure\' to the event referenced by this identifier.">
+    lenderPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A reference to the lender associated with a specific business event.">
+    cashPayable CashPayable (0..1) <"Defines the overall net cash payable, as well as, the breakdown of individual cashflows.">
+    comment fpml.consolidated.shared.NonEmptyString (0..1) <"A freetext field which allows the sender to add further details around the business event.">
 
 type AbstractLoanLegalAction extends LoanLegalActionSummary: <"An abstract type syndicated bank loan legal action definition.">
 
@@ -454,7 +507,8 @@ type AbstractLoanPartyProfileStatement extends fpml.consolidated.msg.Correctable
 
 type AbstractLoanServicingEvent extends AbstractLoanEvent: <"An abstract base type defining common features of a syndicated loan servicing business event. Such events are originated by the borrower and are required to be communicated to the lender syndicate by agents.">
 
-    businessEventPartiesModel BusinessEventPartiesModel (1..1)
+    agentPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A reference to the agent bank for the associated deal.">
+    borrowerPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A reference to the main borrower associated with the specific business event.">
     effectiveDate zonedDateTime (1..1) <"The date on which the associated business event is effective.">
     legalActionReference LoanLegalActionReference (0..1) <"Reference to a legal action.">
 
@@ -519,33 +573,19 @@ type AbstractAccrualOptionBase: <"An abstract type used for defining accrual str
     dayCountFraction fpml.consolidated.shared.DayCountFraction (1..1) <"The day count basis for the accrual.">
     paymentFrequency fpml.consolidated.shared.Period (0..1)
 
-type AccrualOptionChangeSequence0:
-
-    fixedRateOption FixedRateOption (0..1) <"A structure that represents the accruing fixed rate option associated within a facility.">
-    floatingRateOption LoanFloatingRateOption (0..1) <"A structure that represents the accruing floating rate option associated within a facility.">
-    legacyFloatingRateOption LegacyFloatingRateOption (0..1) <"A structure that represents a legacy (pre-IBOR replacement) accruing floating rate option associated within a facility.">
-    loanContractReference LoanContractReference (0..*) <"A loan contract reference structure.">
-
-type AccrualOptionChangeSequence1:
-
-    lcOption LcOption (1..1) <"A structure that represents the accruing L/C rate option associated within a facility.">
-    letterOfCreditReference LetterOfCreditReference (0..*) <"A letter of credit reference structure">
-
 type AccrualPeriod: <"A structure that describes the details of the underlying elements that explain the calculation of an accrual against a reference balance.">
 
-    periodWithDaysModel PeriodWithDaysModel (1..1)
+    startDate zonedDateTime (1..1) <"Date on which this period begins.">
+    endDate zonedDateTime (1..1) <"Date on which this period ends.">
+    numberOfDays int (1..1) <"The actual number of days represented within the \'period\'. This takes into account counting the appropriate convention.">
     referenceAmount MoneyWithParticipantShare (1..1) <"Global and lender share amounts.">
     referenceAmountType fpml.consolidated.fpmlenum.AccrualReferenceAmountTypeEnum (0..1) <"The type of the amount referenced in the accrual schedule calculation, based on an enumeration.">
     rate number (1..1) <"The aggregate rate applied to the accrual period. E.g. for loans, this is the all-in rate and for letters of credit this is the LC accruing fee rate.">
-    accrualPeriodSequence AccrualPeriodSequence (0..1)
-    accrualAmount MoneyWithParticipantShare (1..1) <"The accrual amount over the defined period.">
-
-type AccrualPeriodSequence:
-
-    baseRate number (1..1) <"The base rate applied to this period. In the case of a loan accrual period, some examples of this rate include the prime rate, the risk-free rate, or a legacy index rate.">
+    baseRate number (0..1) <"The base rate applied to this period. In the case of a loan accrual period, some examples of this rate include the prime rate, the risk-free rate, or a legacy index rate.">
     compoundedRate number (0..1) <"The calculated compounded rate applied to this period. This element is utilized if a accrual compounding method type (from the AccrualCompoundingMethod) of \'CompoundingRate\' is selected.">
     spreadAdjustment number (0..1) <"An amount to be added to the calculated value before subsequent use, in order to more closely replicate the original term rate, by adjusting for the economic or credit spread between risk-free rates and risky term rates.">
-    rateAdjustment RateAdjustment (1..1) <"A structure representing additional adjustments to the base rate">
+    rateAdjustment RateAdjustment (0..1) <"A structure representing additional adjustments to the base rate">
+    accrualAmount MoneyWithParticipantShare (1..1) <"The accrual amount over the defined period.">
 
 type AccrualTypeId: <"A structure used to uniquely identify a single accrual type within a syndicated loan structure.">
 
@@ -555,13 +595,9 @@ type AccrualTypeId: <"A structure used to uniquely identify a single accrual typ
 type AccruingFeeOption extends FeeRateOptionBase: <"A structure that represents the accruing fee option associated within a facility.">
 
     ^type AccruingFeeType (1..1) <"The accruing fee type for which a rate is being provided.">
-    periodOptionalEndModel PeriodOptionalEndModel (1..1)
+    startDate zonedDateTime (1..1) <"Date on which this period begins.">
+    endDate zonedDateTime (0..1) <"Date on which this period ends.">
     calculationDefinition fpml.consolidated.shared.NonEmptyNormalizedString (0..1) <"A freetext field which allows the sender to add further details around the business event.">
-
-type AccruingFeePaymentSequence:
-
-    accrualSchedule AccrualPeriod (0..*) <"A schedule that incorporates all sub-periods of an accrual calculation.">
-    projection PaymentProjection (0..1) <"Projected interest payment details.">
 
 type AccruingFeeType: <"A list of all eligible accruing facility-level fee types.">
 
@@ -570,7 +606,8 @@ type AccruingFeeType: <"A list of all eligible accruing facility-level fee types
 
 type AccruingPikOption extends FeeRateOptionBase: <"A structure that represents the accruing PIK option associated within a facility.">
 
-    periodModel fpml.consolidated.shared.PeriodModel (1..1)
+    startDate zonedDateTime (1..1) <"Date on which this period begins.">
+    endDate zonedDateTime (1..1) <"Date on which this period ends.">
 
 type ActionApproval: <"A structure to describe the approval of the action (e.g. a legal action), including votes required for approval and approval deadline.">
 
@@ -585,14 +622,10 @@ type Adjustment: <"A structure used to describe an adjustment.">
 
 type ApplicableAssets: <"A structure that defines the assets (or type of assets) that a particular payment profile may be associated with.">
 
-    applicableAssetsChoice ApplicableAssetsChoice (0..1)
-    allAssets fpml.consolidated.fpmlenum.LoanAllAssetsEnum (0..1) <"A list with a single \'all\' value to explicitly indicate all transactions are applicable.">
-
-type ApplicableAssetsChoice:
-
     dealIdentifier DealIdentifier (0..*) <"The deals for which this default settlement instruction is valid.">
     facilityIdentifier FacilityIdentifier (0..*) <"The facilities for which this default settlement instruction is valid.">
     facilityType fpml.consolidated.asset.FacilityType (0..*) <"The facility type (i.e. term, delayed draw, TLB, etc.) for which this default settlement instruction is valid.">
+    allAssets fpml.consolidated.fpmlenum.LoanAllAssetsEnum (0..1) <"A list with a single \'all\' value to explicitly indicate all transactions are applicable.">
 
 type ApplicableTransactions: <"A structure that defines specific servicing transactions that a particular payment profile may be associated with.">
 
@@ -624,11 +657,7 @@ type ApprovalParties: <"A structure to describe the eligible and ineligible part
 type ApprovalPartiesChoice:
 
     eligibleParty fpml.consolidated.shared.PartyReference (0..1) <"A reference to a lender eligible to vote on the approval.">
-    approvalPartiesChoiceSequence ApprovalPartiesChoiceSequence (0..1)
-
-type ApprovalPartiesChoiceSequence:
-
-    ineligibleParty fpml.consolidated.shared.PartyReference (1..1) <"A reference to a lender ineligible to vote on the approval.">
+    ineligibleParty fpml.consolidated.shared.PartyReference (0..1) <"A reference to a lender ineligible to vote on the approval.">
     ineligibleReason IneligiblePartyReasonType (0..1) <"A structure to describe the reason a lender is ineligible to vote on the approval, based on a scheme.">
 
 type ApprovalVoteDecision: <"A structure to describe a party\'s approval vote decision.">
@@ -650,9 +679,9 @@ type AssociationToAssetId: <"A structure that defines an association identifier 
 
 type AssociationToAssetIdentifier: <"A type defining an association between party or settlement information with an asset or assets">
 
+    id string (0..1)
     partyReference fpml.consolidated.shared.PartyReference (1..1) <"Reference to a party.">
     associationId AssociationToAssetId (1..1) <"A unique association ID, based on a scheme.">
-    id string (0..1)
 
 type BuyerSellerAmounts: <"A structure that defines the buyer and seller amounts of a payable.">
 
@@ -661,7 +690,8 @@ type BuyerSellerAmounts: <"A structure that defines the buyer and seller amounts
 
 type CashPayable: <"A structure that represents payable cash, together with reference to any withholding tax being applied. This is used as a generic cash flow container across all loan business events (within the event header).">
 
-    simplePayerReceiverModel SimplePayerReceiverModel (1..1)
+    payerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party responsible for the allocation.">
+    receiverPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party that has been allocated to.">
     netAmount fpml.consolidated.shared.NonNegativeMoney (1..1) <"The cash amount payable, net of all tax withholding. This amount represents the funds to be wired from \'payer\' to \'receiver\' as a result of the underlying business event.">
     taxWithholding TaxWithholding (0..*) <"Details of the tax being withheld.">
 
@@ -683,11 +713,11 @@ type CovenantObligationId: <"A structure that defines a covenant obligation iden
 
 type CovenantObligationIdentifier: <"A type defining a covenant obligation identifier issued by the indicated party.">
 
+    id string (0..1)
     name fpml.consolidated.shared.NonEmptyToken (0..1) <"Long name of the underlying covenant obligation.">
     partyReference fpml.consolidated.shared.PartyReference (1..1) <"Reference to a party.">
     covenantObligationId CovenantObligationId (0..*) <"A structure that defines a covenant obligation identifier based on a qualifying scheme.">
     versionedCovenantObligationId VersionedCovenantObligationId (0..*)
-    id string (0..1)
 
 type CovenantObligationSummary extends CovenantObligationIdentifier: <"A covenant obligation definition.">
 
@@ -701,7 +731,8 @@ type DateAdjustmentType: <"A structure used to uniquely identify a date adjustme
 
 type Deal extends DealSummary: <"A syndicated bank loan deal (credit agreement) definition.">
 
-    dealRulesModel DealRulesModel (1..1)
+    transferFee TransferFeeDefinition (0..1) <"The transfer fee amount and rules. This applies to the commitment transfer of any facility within the deal structure.">
+    proRataFacilities ProRataFacilities (0..*) <"Groups of facilities which must be traded on a pro-rata basis. The ratio of facility trade amounts must be equal to the ratio of their corresponding global amounts.">
     covenant LoanCovenantObligation (0..*)
     dealSequence DealSequence (1..*)
 
@@ -715,16 +746,32 @@ type DealReference extends fpml.consolidated.shared.Reference: <"A reference to 
 
     href string (1..1)
 
+type DealStatementChoice0:
+
+    dealIdentifier DealIdentifier (0..1) <"A deal identifier structure.">
+    dealSummary DealSummary (0..1) <"A deal summary structure.">
+
+type DealStatementChoice1:
+
+    covenantIdentifier CovenantObligationIdentifier (0..1) <"A deal identifier structure.">
+    covenantSummary LoanCovenantObligationSummary (0..1)
+    covenant LoanCovenantObligation (0..1)
+
+type DealStatementChoice2:
+
+    facilityIdentifier FacilityIdentifier (0..1) <"A facility identifier structure.">
+    facilitySummary FacilitySummary (0..1) <"A facility summary structure.">
+
 type DealSummary extends DealIdentifier: <"A short form of a deal.">
 
-    dealRolesModel DealRolesModel (1..1)
+    issuerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A party reference to the (main) issuer of the deal.">
+    guarantorPartyReference fpml.consolidated.shared.PartyReference (0..*) <"Party references to the guarantors associated with the (main) issuer of the deal.">
+    agentPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A party reference to the agent bank associated with the deal.">
+    syndicationLeadPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A party reference to the lead syndication bank of the deal.">
+    syndicationCoLeadPartyReference fpml.consolidated.shared.PartyReference (0..*) <"Party references to the syndication co-lead banks of the deal.">
     creditAgreementDate zonedDateTime (1..1) <"The credit agreement date is also known as the \'closing date\' (the date on which the agreement was signed). Funding of the facilities occurs either on or after (in the case of a Delayed Draw) the Credit Agreement date.">
     currency fpml.consolidated.shared.Currency (0..1) <"Deal denomination currency.">
-    dealSummarySequence DealSummarySequence (0..1)
-
-type DealSummarySequence:
-
-    issuedAmount fpml.consolidated.shared.NonNegativeMoney (1..1) <"Original deal amount.">
+    issuedAmount fpml.consolidated.shared.NonNegativeMoney (0..1) <"Original deal amount.">
     currentDealAmount MoneyWithParticipantShare (0..1) <"Current deal amount.">
 
 type DocumentVoteDecisionType: <"A structure used to identify a documented vote decision type (e.g. a vote decision type based on legal documentation).">
@@ -755,12 +802,11 @@ type EvergreenOption: <"A struture that represents an evergreen option that is a
 type FacilityCommitment: <"A structure that represents the commitment amount against a facility or facility portion. Also shows the utilization levels against the total commitment amount (in facility currency).">
 
     totalCommitmentAmount MoneyWithParticipantShare (1..1) <"The total commitment level associated with the facility or facility portion (in facility currency).">
-    facilityCommitmentSequence FacilityCommitmentSequence (0..1)
-
-type FacilityCommitmentSequence:
-
-    utilizationModel UtilizationModel (1..1)
-    unavailableToUtilizeAmount MoneyWithParticipantShare (1..1) <"The portion of the commitment amount which is NOT available for the borrower to draw against.">
+    requiredFundedAmount MoneyWithParticipantShare (0..1) <"The amount of utilization which is funded.">
+    unfundedAmount MoneyWithParticipantShare (0..1) <"The amount of utilization which is unfunded.">
+    requiredUnfundedAmount MoneyWithParticipantShare (0..1) <"The amount of utilization which is unfunded.">
+    fundedAmount MoneyWithParticipantShare (0..1) <"The amount of utilization which is funded.">
+    unavailableToUtilizeAmount MoneyWithParticipantShare (0..1) <"The portion of the commitment amount which is NOT available for the borrower to draw against.">
 
 type FacilityFeature: <"A list of facility features.">
 
@@ -771,11 +817,30 @@ type FacilityIdentifier extends IdentifiedAssetWithParty: <"A unique identifier 
 
     dealReference DealReference (0..1)
 
+type FacilityNotificationChoice0:
+
+    contractIdentifier LoanContractIdentifier (0..1) <"A loan contract identifier structure.">
+    contractSummary LoanContractSummary (0..1) <"A loan contract summary structure.">
+    contract LoanContract (0..1) <"A full loan contract structure.">
+
+type FacilityNotificationChoice1:
+
+    letterOfCreditIdentifier LoanContractIdentifier (0..1) <"A letter of credit identifier structure.">
+    letterOfCreditSummary LetterOfCreditSummary (0..1) <"A letter of credit summary structure.">
+    letterOfCredit LetterOfCredit (0..1) <"A full letter of credit structure.">
+
 type FacilityPosition: <"A structure that represents current/prior facility commitment amounts on both the global and lender position levels.">
 
     facilityReference FacilityReference (1..1) <"A unique facility identifier.">
-    currentPriorCommitmentModel CurrentPriorCommitmentModel (1..1)
+    commitment FacilityCommitment (1..1) <"The global and share amount of principal commitment. This is after any referenced business events have taken place.">
+    priorCommitment FacilityCommitment (0..1) <"The global and share amount of principal commitment. This is prior to any referenced business events.">
     outstandingsPosition OutstandingsPosition (0..*) <"A structure used to define all positions held by the lender at the loan contract level. This structure is designed to hold either some or all loan contracts.">
+
+type FacilityPositionStatementChoice:
+
+    contractIdentifier LoanContractIdentifier (0..1) <"A loan contract identifier structure.">
+    contractSummary LoanContractSummary (0..1) <"A loan contract summary structure.">
+    contract LoanContract (0..1) <"A full loan contract structure.">
 
 type FacilityReference extends fpml.consolidated.shared.Reference: <"A reference to a facility.">
 
@@ -783,9 +848,18 @@ type FacilityReference extends fpml.consolidated.shared.Reference: <"A reference
 
 type FacilitySummary extends FacilityIdentifier: <"A short form of a facility.">
 
-    facilityRolesModel FacilityRolesModel (1..1)
-    facilityDatesModel FacilityDatesModel (1..1)
-    facilityCommitmentModel FacilityCommitmentModel (1..1)
+    borrowerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A party reference to the (main) borrower. This may be different to the issuer defined at the deal-level.">
+    coBorrowerPartyReference fpml.consolidated.shared.PartyReference (0..*) <"Party references to co-borrowers as listed on the credit agreement.">
+    agentPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A party reference to the agent bank. Each facility (within a single deal) can have specific/different agent banks, especially if there are jurisdictional boundaries being crossed.">
+    lcIssuingBankPartyReference fpml.consolidated.shared.PartyReference (0..*) <"Party references to any guarantors associated with the facility borrower.">
+    guarantorPartyReference fpml.consolidated.shared.PartyReference (0..*) <"Party references to any guarantors associated with the facility borrower.">
+    startDate zonedDateTime (1..1) <"The start date of the facility.">
+    expiryDate zonedDateTime (0..1) <"The latest date that a drawdown can be made effective against the facility.">
+    maturityDate zonedDateTime (0..1) <"The maturity date of the facility.">
+    currentCommitment FacilityCommitment (1..1) <"The current global/lender share commitment amount. This defines the current limit against which the borrower may draw funds.">
+    originalCommitment MoneyWithParticipantShare (0..1) <"The original global commitment amount. This defines the limit, as of the start date, against which the borrower may draw funds.">
+    commitmentSchedule CommitmentSchedule (0..1) <"The commitment schedule associated with the facility.">
+    dealFxRate FxTerms (0..1) <"Defines the exchange rate between the facility and deal denomination currencies (only required if the currencies are different).">
 
 type FeeRateOptionBase extends AbstractAccrualOptionBase: <"An abstract type that specifies an underlying fixed rate cash accrual option.">
 
@@ -803,20 +877,19 @@ type FinancialMetricType: <"A structure used to uniquely identify a financial me
 
 type FixedRateAccrual extends AbstractFixedRateOptionBase: <"A full definition of the fixed rate accrual characteristics of a loan contract. This structure defines both the underlying base rate as well as any additional margins and costs associated with the loan contract.">
 
-    periodWithDaysModel PeriodWithDaysModel (1..1)
-    fixedRateAccrualSequence FixedRateAccrualSequence (0..1)
-    paymentProjection PaymentProjection (0..1) <"Projected interest payment details.">
-
-type FixedRateAccrualSequence:
-
+    startDate zonedDateTime (1..1) <"Date on which this period begins.">
+    endDate zonedDateTime (1..1) <"Date on which this period ends.">
+    numberOfDays int (1..1) <"The actual number of days represented within the \'period\'. This takes into account counting the appropriate convention.">
     penaltySpread number (0..1) <"The penalty spread currently applied to the interest rate period.">
     defaultSpread number (0..1) <"The default spread currently applied to the interest rate period.">
     mandatoryCostRate number (0..1) <"The mandatory cost rate currently applied to the interest rate period.">
-    allInRate number (1..1) <"The actual percentage rate charged to the borrower. (Base Rate + Spread + Default Rate + Penalty Rate + Mandatory Cost Rate) = All In Rate. This rate NEVER includes PIK.">
+    allInRate number (0..1) <"The actual percentage rate charged to the borrower. (Base Rate + Spread + Default Rate + Penalty Rate + Mandatory Cost Rate) = All In Rate. This rate NEVER includes PIK.">
+    paymentProjection PaymentProjection (0..1) <"Projected interest payment details.">
 
 type FixedRateOption extends AbstractFixedRateOptionBase: <"A structure that represents the accruing fixed rate option associated within a facility.">
 
-    periodModel fpml.consolidated.shared.PeriodModel (1..1)
+    startDate zonedDateTime (1..1) <"Date on which this period begins.">
+    endDate zonedDateTime (1..1) <"Date on which this period ends.">
     currency fpml.consolidated.shared.Currency (1..1)
     allInRateLimits RateLimits (0..1)
     borrowerPartyReference fpml.consolidated.shared.PartyReference (0..*) <"A party reference to the borrower(s) permitted to exercise the cash accrual option.">
@@ -839,19 +912,10 @@ type IneligiblePartyReasonType: <"A structure used to uniquely identify a legal 
     value fpml.consolidated.shared.NonEmptyScheme (1..1)
     ineligiblePartyReasonTypeScheme fpml.consolidated.shared.NonEmptyURI (0..1)
 
-type InterestCapitalizationSequence:
-
-    accrualSchedule AccrualPeriod (0..*) <"A schedule that incorporates all sub-periods of an accrual calculation.">
-    projection PaymentProjection (0..1) <"Projected interest payment details.">
-
 type LcAccrual extends FeeRateOptionBase: <"A full definition of the accrual characteristics of a letter of credit. This structure defines both the underlying letter of credit issuance fee rate as well as any FX rates applied.">
 
-    lcAccrualSequence LcAccrualSequence (0..1)
-
-type LcAccrualSequence:
-
-    currency fpml.consolidated.shared.Currency (1..1) <"The currency in which the letter of credit accrual is denominated. This field should ONLY be populated when the accrual currency is different to the base letter of credit currency.">
-    lcFxRate FxTerms (1..1) <"Defines exchange rate between the letter of credit accrual and letter of credit currencies.">
+    currency fpml.consolidated.shared.Currency (0..1) <"The currency in which the letter of credit accrual is denominated. This field should ONLY be populated when the accrual currency is different to the base letter of credit currency.">
+    lcFxRate FxTerms (0..1) <"Defines exchange rate between the letter of credit accrual and letter of credit currencies.">
 
 type LcFeeTypeId: <"A structure used to uniquely identify a single letter of credit fee type within a syndicated loan structure.">
 
@@ -860,7 +924,8 @@ type LcFeeTypeId: <"A structure used to uniquely identify a single letter of cre
 
 type LcOption extends FeeRateOptionBase: <"A structure that represents the accruing L/C rate option associated within a facility.">
 
-    periodModel fpml.consolidated.shared.PeriodModel (1..1)
+    startDate zonedDateTime (1..1) <"Date on which this period begins.">
+    endDate zonedDateTime (1..1) <"Date on which this period ends.">
     ^type LcType (1..1) <"The letter of credit type for which a fee rate is being provided.">
     minLcIssuanceFeeAmount MoneyWithParticipantShare (0..1) <"The letter of credit notional amount. The amount is represented at the global and (optionally) atthe lender-specific level.">
 
@@ -876,7 +941,9 @@ type LcType: <"A list of L/C types.">
 
 type LegacyAccrualPeriod: <"A structure that describes the details of the legacy version (pre-IBOR replacement) of underlying elements that explain the calculation of an accrual against a reference balance.">
 
-    periodWithDaysModel PeriodWithDaysModel (1..1)
+    startDate zonedDateTime (1..1) <"Date on which this period begins.">
+    endDate zonedDateTime (1..1) <"Date on which this period ends.">
+    numberOfDays int (1..1) <"The actual number of days represented within the \'period\'. This takes into account counting the appropriate convention.">
     referenceAmount MoneyWithParticipantShare (1..1) <"Global and lender share amounts.">
     referenceAmountType fpml.consolidated.fpmlenum.AccrualReferenceAmountTypeEnum (0..1) <"The type of the amount referenced in the accrual schedule calculation, based on an enumeration.">
     rate number (1..1) <"The rate applied to this period.">
@@ -884,22 +951,16 @@ type LegacyAccrualPeriod: <"A structure that describes the details of the legacy
 
 type LegacyFloatingRateAccrual extends AbstractLegacyFloatingRateOptionBase: <"A full definition of the legacy version (pre-IBOR replacement) of accrual characteristics of a loan contract. This structure defines both the underlying base rate as well as any additional margins and costs associated with the loan contract.">
 
-    periodWithDaysModel PeriodWithDaysModel (1..1)
-    legacyFloatingRateAccrualSequence LegacyFloatingRateAccrualSequence (0..1)
-    paymentProjection PaymentProjection (0..1) <"Projected interest payment details.">
-
-type LegacyFloatingRateAccrualSequence:
-
-    rateFixingDate zonedDateTime (1..1) <"The date on which the underlying interest rate is fixed. It is an actual (adjusted) date. Note: This should default to the effective date of the loan contract in the case of a PRIME base rate.">
+    startDate zonedDateTime (1..1) <"Date on which this period begins.">
+    endDate zonedDateTime (1..1) <"Date on which this period ends.">
+    numberOfDays int (1..1) <"The actual number of days represented within the \'period\'. This takes into account counting the appropriate convention.">
+    rateFixingDate zonedDateTime (0..1) <"The date on which the underlying interest rate is fixed. It is an actual (adjusted) date. Note: This should default to the effective date of the loan contract in the case of a PRIME base rate.">
     baseRate number (0..1) <"The actual underlying base rate associated with the period, defined as a percentage.">
-    legacyFloatingRateAccrualSequenceSequence LegacyFloatingRateAccrualSequenceSequence (0..1)
-
-type LegacyFloatingRateAccrualSequenceSequence:
-
     penaltySpread number (0..1) <"The penalty spread currently applied to the interest rate period.">
     defaultSpread number (0..1) <"The default spread currently applied to the interest rate period.">
     mandatoryCostRate number (0..1) <"The mandatory cost rate currently applied to the interest rate period.">
-    allInRate number (1..1) <"The actual percentage rate charged to the borrower. (Base Rate + Spread + Default Rate + Penalty Rate + Mandatory Cost Rate) = All In Rate. This rate NEVER includes PIK.">
+    allInRate number (0..1) <"The actual percentage rate charged to the borrower. (Base Rate + Spread + Default Rate + Penalty Rate + Mandatory Cost Rate) = All In Rate. This rate NEVER includes PIK.">
+    paymentProjection PaymentProjection (0..1) <"Projected interest payment details.">
 
 type LegacyFloatingRateIndexLoan: <"A legacy subset of the ISDA Floating Rate Option scheme, i.e. the floating rate index. These are the pre-IBOR replacement indices used by the syndicated loan market.">
 
@@ -909,7 +970,8 @@ type LegacyFloatingRateIndexLoan: <"A legacy subset of the ISDA Floating Rate Op
 type LegacyFloatingRateOption extends AbstractLegacyFloatingRateOptionBase: <"A structure that represents the legacy version (pre-IBOR replacement) of an accruing floating rate option associated within a facility.">
 
     currency fpml.consolidated.shared.Currency (1..1)
-    periodModel fpml.consolidated.shared.PeriodModel (1..1)
+    startDate zonedDateTime (1..1) <"Date on which this period begins.">
+    endDate zonedDateTime (1..1) <"Date on which this period ends.">
     baseRateLimits RateLimits (0..1)
     allInRateLimits RateLimits (0..1)
     borrowerPartyReference fpml.consolidated.shared.PartyReference (0..*) <"A party reference to the borrower(s) permitted to exercise the cash accrual option.">
@@ -917,20 +979,12 @@ type LegacyFloatingRateOption extends AbstractLegacyFloatingRateOptionBase: <"A 
     fxRateSetNoticeDays int (0..1) <"The number of business days that a lender must be notified prior to an FX rate set event occurring.">
     rateSetNoticeDays int (0..1) <"The number of business days that a lender must be notified prior to a rate set event occurring.">
 
-type LegacyInterestCapitalizationSequence:
-
-    accrualSchedule LegacyAccrualPeriod (0..*) <"A schedule that incorporates all sub-periods of an accrual calculation.">
-    projection PaymentProjection (0..1) <"Projected interest payment details.">
-
 type LegacyLoanInterestPayment extends AbstractLoanContractEvent: <"An event representing the legacy version (pre-IBOR replacement) lender-specific payment of interest amounts for a given accrual period against a single loan contract.">
 
-    periodModel fpml.consolidated.shared.PeriodModel (1..1)
+    startDate zonedDateTime (1..1) <"Date on which this period begins.">
+    endDate zonedDateTime (1..1) <"Date on which this period ends.">
     calculationMethod fpml.consolidated.fpmlenum.InterestCalculationMethodEnum (1..1) <"Defines whether the agent bank is making an interest payment based on the lender pro-rata share at the end of the period (snapshot) or based on the lender position throughout the period (which is the default).">
     amount MoneyWithParticipantShare (1..1)
-    legacyLoanInterestPaymentSequence LegacyLoanInterestPaymentSequence (0..1)
-
-type LegacyLoanInterestPaymentSequence:
-
     accrualSchedule LegacyAccrualPeriod (0..*) <"A schedule that incorporates all sub-periods of an accrual calculation.">
     projection PaymentProjection (0..1) <"Projected interest payment details.">
 
@@ -942,11 +996,11 @@ type LegalActionId: <"A short form unique identifier for a loan legal action.">
 
 type LegalActionIdentifier: <"A structure to define a legal action identifier.">
 
+    id string (0..1)
     name fpml.consolidated.shared.NonEmptyNormalizedString (0..1) <"Long name of the underlying legal action.">
     partyReference fpml.consolidated.shared.PartyReference (1..1) <"Reference to a party.">
     legalActionId LegalActionId (0..*) <"Identification of the legal action.">
     versionedLegalActionId VersionedLegalActionId (0..*)
-    id string (0..1)
 
 type LenderClassification: <"A list of lender classifications. These are used to derive other rules associated with specific lender types.">
 
@@ -959,7 +1013,9 @@ type LetterOfCredit extends LetterOfCreditSummary: <"A definition of an unfunded
     finalExpiryDate zonedDateTime (0..1) <"Final expiry date of the letter of credit, once the evergreen option has been exercised.">
     lcAccrual LcAccrual (1..1) <"The letter of credit fee rate details.">
     purpose LcPurpose (0..1) <"Defines the purpose of a letter of credit.">
-    letterOfCreditFeaturesModel LetterOfCreditFeaturesModel (1..1)
+    evergreenOption EvergreenOption (0..1) <"An option allowing the borrower to extend the letter of credit tenor.">
+    lcAutoAdjust fpml.consolidated.fpmlenum.LcAutoAdjustEnum (0..1) <"Defines the manner by which a letter of credit may automatically adjust.">
+    minLcIssuanceFeeAmount MoneyWithParticipantShare (0..1) <"The letter of credit notional amount. The amount is represented at the global and (optionally) atthe lender-specific level.">
     facilityFxRate FxTerms (0..1) <"Defines exchange rate between the letter of credit and facility.">
 
 type LetterOfCreditReference extends fpml.consolidated.shared.Reference: <"A reference to a letter of credit.">
@@ -970,22 +1026,29 @@ type LetterOfCreditSummary extends LoanContractIdentifier: <"A short form defini
 
     ^type LcType (1..1) <"The letter of credit type for which a fee rate is being provided.">
     effectiveDate zonedDateTime (1..1) <"Effective date of the letter of credit.">
-    letterOfCreditRolesModel LetterOfCreditRolesModel (1..1)
+    borrowerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"Main borrower.">
+    issuingBankPartyReference fpml.consolidated.shared.PartyReference (1..1) <"Party references to any letter of credit issuers associated with the facility borrower.">
+    beneficiaryPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A party reference of the beneficiary.">
     amount MoneyWithParticipantShare (1..1) <"The letter of credit notional amount. The amount is represented at the global and (optionally) at the lender-specific level.">
 
 type LoanAcknowledgement extends fpml.consolidated.msg.Message: <"A base type to extend the FpML basic \'message\' type, similar in function to the \'response\' message, but specific to the needs of the loan asset class.">
 
     header fpml.consolidated.msg.ResponseMessageHeader (1..1)
-    validationModel fpml.consolidated.doc.ValidationModel (1..1)
-    correlationAndOptionalSequenceModel fpml.consolidated.msg.CorrelationAndOptionalSequenceModel (0..1)
-    onBehalfOfModel fpml.consolidated.shared.OnBehalfOfModel (0..1)
+    validation fpml.consolidated.doc.Validation (0..*) <"A list of validation sets the sender asserts the document is valid with respect to.">
+    parentCorrelationId fpml.consolidated.msg.CorrelationId (0..1) <"An optional identifier used to correlate between related processes">
+    correlationId fpml.consolidated.msg.CorrelationId (0..1) <"A qualified identifier used to correlate between messages">
+    sequenceNumber int (0..1) <"A numeric value that can be used to order messages with the same correlation identifier from the same sender.">
+    onBehalfOf fpml.consolidated.shared.OnBehalfOf (0..1) <"Indicates which party (or parties) (and accounts) a trade or event is being processed for. Normally there will only be a maximum of 2 parties, but in the case of a novation there could be a transferor, transferee, remaining party, and other remaining party. Also, in the context of a trade package there could be several parties for which limit check is requested, necessitating multiple onBehalfOf elements. Except for these cases, there should be no more than two onBehalfOf references in a message.">
     originalMessage fpml.consolidated.doc.UnprocessedElementWrapper (0..1)
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+    party fpml.consolidated.shared.Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
 type LoanAllocationType extends LoanAllocationSummary: <"A structure that defines party-to-party loan allocation information. This structure contains the allocated party details.">
 
-    loanAllocationPartiesModel LoanAllocationPartiesModel (1..1)
-    simpleBuyerSellerModel SimpleBuyerSellerModel (0..1)
+    originalPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party responsible for the allocation.">
+    allocatedPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party that has been allocated to.">
+    buyerPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A reference to the party that buys this instrument, ie. pays for this instrument and receives the rights defined by it. See 2000 ISDA definitions Article 11.1 (b). In the case of FRAs this the fixed rate payer.">
+    sellerPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A reference to the party that sells (\"writes\") this instrument, i.e. that grants the rights defined by this instrument and in return receives a payment for it. See 2000 ISDA definitions Article 11.1 (a). In the case of FRAs this is the floating rate payer.">
 
 type LoanAllocationEvent extends AbstractLoanAllocationEvent: <"An event structure defining information related to a loan trade allocation.">
 
@@ -995,7 +1058,8 @@ type LoanAllocationIdentifier extends fpml.consolidated.doc.TradeIdentifier: <"A
 
 type LoanAllocationNoSettlePeriod: <"A structure that describes a period during which settlement cannot occur.">
 
-    periodModel fpml.consolidated.shared.PeriodModel (1..1)
+    startDate zonedDateTime (1..1) <"Date on which this period begins.">
+    endDate zonedDateTime (1..1) <"Date on which this period ends.">
     periodType LoanAllocationNoSettlePeriodType (1..1) <"A list of allowable types of no-settle periods.">
 
 type LoanAllocationNoSettlePeriodType: <"A structure that defines no-settle period types based on a qualifying scheme.">
@@ -1010,8 +1074,18 @@ type LoanAllocationNotificationChoice0:
 
 type LoanAllocationNotificationChoice1:
 
-    letterOfCreditDetailsModel LetterOfCreditDetailsModel (0..1)
-    loanContractDetailsModel LoanContractDetailsModel (0..1)
+    allocationId LoanAllocationIdentifier (0..1) <"A party-specific allocation identifier.">
+    allocationSummary LoanAllocationSummary (0..1) <"A summary structure representing the loan trade allocation.">
+    allocation LoanAllocationType (0..1) <"A structure defining information related to a loan trade allocation.">
+
+type LoanAllocationNotificationChoice2:
+
+    letterOfCreditIdentifier LoanContractIdentifier (0..1) <"A letter of credit identifier structure.">
+    letterOfCreditSummary LetterOfCreditSummary (0..1) <"A letter of credit summary structure.">
+    letterOfCredit LetterOfCredit (0..1) <"A full letter of credit structure.">
+    contractIdentifier LoanContractIdentifier (0..1) <"A loan contract identifier structure.">
+    contractSummary LoanContractSummary (0..1) <"A loan contract summary structure.">
+    contract LoanContract (0..1) <"A full loan contract structure.">
 
 type LoanAllocationPayment extends LoanSimplePayment: <"A structure that represents a payment related to a loan allocation level of a trade.">
 
@@ -1027,11 +1101,6 @@ type LoanAllocationSummary extends LoanAllocationIdentifier: <"A structure defin
     amount fpml.consolidated.shared.NonNegativeMoney (1..1) <"Amount allocated.">
     comment fpml.consolidated.shared.NonEmptyString (0..1) <"A freetext field which allows the sender to add further details around the allocation event.">
 
-type LoanAllocationSettlementDateAvailabilitySequence:
-
-    leadDays int (1..1) <"Number of days advance notification required to express the intent to settle a trade.">
-    cutOffTime time (1..1) <"Specific cutoff time to express the intent to settle a trade.">
-
 type LoanAllocationSettlementTask extends AbstractTask: <"A structure that details tasks and their statuses, the completion of which are prerequisites to the settlement of a trade or allocation.">
 
     allocationReference LoanAllocationReference (1..*) <"Reference to a unique allocation id used to identify the allocation record.">
@@ -1042,10 +1111,6 @@ type LoanAllocationSettlementTaskType: <"A structure used to uniquely identify a
     value fpml.consolidated.shared.NonEmptyScheme (1..1)
     allocationSettlementTaskTypeScheme fpml.consolidated.shared.NonEmptyURI (0..1)
 
-type LoanAllocationSettlementSequence:
-
-    fundingFactors LoanTradingCounterpartySettlementFundingFactors (1..1) <"Factors impacting the setttlement cash flows.">
-
 type LoanAllocationTransferFeeDue extends AbstractLoanAllocationEvent: <"A structure that defines details related to the admin agent\'s determination of transfer fee(s) due on an allocation.">
 
     amount fpml.consolidated.shared.NonNegativeMoney (1..1) <"Amount of transfer fee due to the admin agent for the allocation.">
@@ -1053,7 +1118,9 @@ type LoanAllocationTransferFeeDue extends AbstractLoanAllocationEvent: <"A struc
 
 type LoanAllocationTransferFeeOwed extends AbstractLoanAllocationEvent: <"A structure that defines details related to the admin agent\'s determination of transfer fee(s) owed on an allocation.">
 
-    loanTradingTransferFeeDeterminationModel LoanTradingTransferFeeDeterminationModel (1..1)
+    waivedFlag boolean (1..1) <"A flag defining whether the transfer fee is to be waived for this allocation.">
+    creditAgreementAmount fpml.consolidated.shared.NonNegativeMoney (1..1) <"Amount of transfer fee owed to the admin agent for the allocation, per the credit agreement.">
+    agentAmount fpml.consolidated.shared.NonNegativeMoney (1..1) <"Amount of transfer fee owed to the admin agent for the allocation, as determined by the agent.">
 
 type LoanBulkServicingNotificationChoice:
 
@@ -1063,14 +1130,20 @@ type LoanBulkServicingNotificationChoice:
 
 type LoanBulkServicingNotificationSequence:
 
-    dealDetailsModel DealDetailsModel (0..1)
-    facilityDetailsModel FacilityDetailsModel (1..1)
+    dealIdentifier DealIdentifier (0..1) <"A deal identifier structure.">
+    dealSummary DealSummary (0..1) <"A deal summary structure.">
+    facilityIdentifier FacilityIdentifier (0..1) <"A facility identifier structure.">
+    facilitySummary FacilitySummary (0..1) <"A facility summary structure.">
     loanBulkServicingNotificationSequenceChoice LoanBulkServicingNotificationSequenceChoice (0..*)
 
 type LoanBulkServicingNotificationSequenceChoice:
 
-    letterOfCreditDetailsModel LetterOfCreditDetailsModel (0..1)
-    loanContractDetailsModel LoanContractDetailsModel (0..1)
+    letterOfCreditIdentifier LoanContractIdentifier (0..1) <"A letter of credit identifier structure.">
+    letterOfCreditSummary LetterOfCreditSummary (0..1) <"A letter of credit summary structure.">
+    letterOfCredit LetterOfCredit (0..1) <"A full letter of credit structure.">
+    contractIdentifier LoanContractIdentifier (0..1) <"A loan contract identifier structure.">
+    contractSummary LoanContractSummary (0..1) <"A loan contract summary structure.">
+    contract LoanContract (0..1) <"A full loan contract structure.">
 
 type LoanContract extends LoanContractSummary: <"A funded borrowing instrument which utilizes a portion of an available under a single facility (line of credit) within a bank deal (credit agreement).">
 
@@ -1100,6 +1173,12 @@ type LoanContractMaturityChange extends AbstractLoanContractEvent: <"An event re
     currentMaturityDate zonedDateTime (1..1) <"The new loan contract maturity date.">
     priorMaturityDate zonedDateTime (0..1) <"The previous loan contract maturity date.">
 
+type LoanContractNotificationChoice:
+
+    contractIdentifier LoanContractIdentifier (0..1) <"A loan contract identifier structure.">
+    contractSummary LoanContractSummary (0..1) <"A loan contract summary structure.">
+    contract LoanContract (0..1) <"A full loan contract structure.">
+
 type LoanContractReference extends fpml.consolidated.shared.Reference: <"A reference to a loan contract.">
 
     href string (1..1)
@@ -1118,24 +1197,16 @@ type LoanContractSummary extends LoanContractIdentifier: <"A short form of a loa
 type LoanCovenantObligation extends AbstractLoanCovenantObligation: <"A syndicated bank loan deal (credit agreement) covenant obligation definition.">
 
     deemedCovenantReference LoanCovenantObligationReference (0..1) <"Defines a referenced covenant from another deal or facility, in the event that a covenant from another deal or facility is deemed applicable.">
-    loanCovenantObligationSequence LoanCovenantObligationSequence (0..1)
+    category LoanCovenantObligationCategoryType (0..1) <"A structure used to uniquely identify a loan covenant obligation category, based on a scheme.">
+    ^type LoanCovenantObligationType (0..1) <"A structure used to uniquely identify a loan covenant obligation type, based on a scheme.">
+    loanCovenantObligationChoice LoanCovenantObligationChoice (0..*)
+    triggerCriteria LoanCovenantObligationTriggerCriteriaDetails (0..1) <"A structure to describe the trigger criteria of a covenant obligation.">
+    accountingDetails LoanCovenantObligationAccountingDetails (0..1) <"An open structure to describe miscellaneous or other characteristics of the covenant.">
 
-type LoanCovenantObligationSequence:
-
-    category LoanCovenantObligationCategoryType (1..1) <"A structure used to uniquely identify a loan covenant obligation category, based on a scheme.">
-    ^type LoanCovenantObligationType (1..1) <"A structure used to uniquely identify a loan covenant obligation type, based on a scheme.">
-    loanCovenantObligationSequenceChoice LoanCovenantObligationSequenceChoice (0..*)
-    loanCovenantObligationSequenceSequence LoanCovenantObligationSequenceSequence (0..1)
-
-type LoanCovenantObligationSequenceChoice:
+type LoanCovenantObligationChoice:
 
     description fpml.consolidated.shared.NonEmptyNormalizedString (0..1) <"An optional free form text field to further describe the covenant language. This field can be used to house the exact language as depicted in the credit agreement.">
     location fpml.consolidated.shared.NonEmptyNormalizedString (0..1) <"A structure to describe the location of the covenant language within the credit agreement (i.e. specific section, paragraph, subparagraph, etc.). Note: this structure is intended to be used for indicative purposes only.">
-
-type LoanCovenantObligationSequenceSequence:
-
-    triggerCriteria LoanCovenantObligationTriggerCriteriaDetails (1..1) <"A structure to describe the trigger criteria of a covenant obligation.">
-    accountingDetails LoanCovenantObligationAccountingDetails (0..1) <"An open structure to describe miscellaneous or other characteristics of the covenant.">
 
 type LoanCovenantObligationAccountingDetails: <"A structure to describe the accounting details of a covenant obligation.">
 
@@ -1194,6 +1265,22 @@ type LoanCovenantObligationMetricType: <"A structure used to uniquely identify a
     value fpml.consolidated.shared.NonEmptyScheme (1..1)
     loanCovenantObligationMetricTypeScheme fpml.consolidated.shared.NonEmptyURI (0..1)
 
+type LoanCovenantObligationNotificationChoice0:
+
+    dealIdentifier DealIdentifier (0..1) <"A deal identifier structure.">
+    dealSummary DealSummary (0..1) <"A deal summary structure.">
+
+type LoanCovenantObligationNotificationChoice1:
+
+    covenantIdentifier CovenantObligationIdentifier (0..1) <"A deal identifier structure.">
+    covenantSummary LoanCovenantObligationSummary (0..1)
+    covenant LoanCovenantObligation (0..1)
+
+type LoanCovenantObligationNotificationChoice2:
+
+    facilityIdentifier FacilityIdentifier (0..1) <"A facility identifier structure.">
+    facilitySummary FacilitySummary (0..1) <"A facility summary structure.">
+
 type LoanCovenantObligationReference extends fpml.consolidated.shared.Reference: <"A reference to a loan covenant obligation.">
 
     href string (1..1)
@@ -1233,27 +1320,22 @@ type LoanFloatingRate extends fpml.consolidated.shared.FloatingRate: <"An extens
 
 type LoanFloatingRateAccrual extends AbstractLoanFloatingRateOptionBase: <"A full definition of the accrual characteristics of a loan contract. This structure defines both the underlying base rate as well as any additional margins and costs associated with the loan contract.">
 
-    periodWithDaysModel PeriodWithDaysModel (1..1)
-    loanFloatingRateAccrualSequence LoanFloatingRateAccrualSequence (0..1)
-
-type LoanFloatingRateAccrualSequence:
-
-    rateEffectiveDate zonedDateTime (1..1) <"The date on which the underlying interest rate is set or repriced. It is an actual (adjusted) date.">
+    startDate zonedDateTime (1..1) <"Date on which this period begins.">
+    endDate zonedDateTime (1..1) <"Date on which this period ends.">
+    numberOfDays int (1..1) <"The actual number of days represented within the \'period\'. This takes into account counting the appropriate convention.">
+    rateEffectiveDate zonedDateTime (0..1) <"The date on which the underlying interest rate is set or repriced. It is an actual (adjusted) date.">
     baseRate number (0..1) <"The actual underlying base rate associated with the period, defined as a percentage.">
-    loanFloatingRateAccrualSequenceSequence LoanFloatingRateAccrualSequenceSequence (0..1)
-
-type LoanFloatingRateAccrualSequenceSequence:
-
     pikSpread number (0..1) <"Optionally defines a PIK spread.">
     fundingLossSpread number (0..1) <"The funding loss spread currently applied to the interest rate period.">
     defaultSpread number (0..1) <"The default spread currently applied to the interest rate period.">
     mandatoryCostRate number (0..1) <"The mandatory cost rate currently applied to the interest rate period.">
-    allInRate number (1..1) <"The actual percentage rate charged to the borrower. (Base Rate + Interest Spread Adjustment + Spread + Default Rate + Funding Loss Rate + Mandatory Cost Rate) = All In Rate. This rate NEVER includes PIK.">
+    allInRate number (0..1) <"The actual percentage rate charged to the borrower. (Base Rate + Interest Spread Adjustment + Spread + Default Rate + Funding Loss Rate + Mandatory Cost Rate) = All In Rate. This rate NEVER includes PIK.">
 
 type LoanFloatingRateOption extends AbstractLoanFloatingRateOptionBase: <"A structure that represents the accruing floating rate option associated within a facility.">
 
     currency fpml.consolidated.shared.Currency (1..1)
-    periodModel fpml.consolidated.shared.PeriodModel (0..1)
+    startDate zonedDateTime (0..1) <"Date on which this period begins.">
+    endDate zonedDateTime (0..1) <"Date on which this period ends.">
     borrowerPartyReference fpml.consolidated.shared.PartyReference (0..*) <"A party reference to the borrower(s) permitted to exercise the cash accrual option.">
     drawdownNoticeDays int (0..1) <"The number of business days that a lender must be notified prior to a drawdown event occurring.">
     fxRateSetNoticeDays int (0..1) <"The number of business days that a lender must be notified prior to an FX rate set event occurring.">
@@ -1261,25 +1343,18 @@ type LoanFloatingRateOption extends AbstractLoanFloatingRateOptionBase: <"A stru
 
 type LoanInterestPayment extends AbstractLoanContractEvent: <"An event representing the lender-specific payment of interest amounts for a given accrual period against a single loan contract.">
 
-    periodModel fpml.consolidated.shared.PeriodModel (1..1)
+    startDate zonedDateTime (1..1) <"Date on which this period begins.">
+    endDate zonedDateTime (1..1) <"Date on which this period ends.">
     lenderShareCalculationMethod fpml.consolidated.fpmlenum.InterestCalculationMethodEnum (1..1) <"Defines whether the agent bank is making an interest payment based on the lender pro-rata share at the end of the period (snapshot) or based on the lender position throughout the period (which is the default).">
     amount MoneyWithParticipantShare (1..1) <"Defines the total amount of the interest payment.">
-    loanInterestPaymentSequence LoanInterestPaymentSequence (0..1)
-
-type LoanInterestPaymentSequence:
-
     accrualSchedule AccrualPeriod (0..*) <"A schedule that incorporates all sub-periods of an accrual calculation.">
     projection PaymentProjection (0..1) <"Projected interest payment details.">
 
 type LoanLegalAction extends AbstractLoanLegalAction: <"A syndicated bank loan legal action definition.">
 
     approval ActionApproval (1..1) <"A structure to describe the approval of the legal action, including votes required for approval and the approval deadline date.">
-    loanLegalActionSequence LoanLegalActionSequence (0..1)
-
-type LoanLegalActionSequence:
-
-    before LoanLegalStructureBefore (1..1) <"Structure to describe the asset before the legal action.">
-    after LoanLegalStructureAfter (1..1) <"Structure to describe the asset after the legal action.">
+    before LoanLegalStructureBefore (0..1) <"Structure to describe the asset before the legal action.">
+    after LoanLegalStructureAfter (0..1) <"Structure to describe the asset after the legal action.">
 
 type LoanLegalActionApprovalStatus extends AbstractApproval: <"A structure that provides global level approval status on a legal action.">
 
@@ -1308,31 +1383,58 @@ type LoanLegalActionNotificationChoice0:
 
 type LoanLegalActionNotificationChoice1:
 
-    dealDetailsModel DealDetailsModel (0..1)
-    facilityDetailsModel FacilityDetailsModel (0..*)
-    loanContractDetailsModel LoanContractDetailsModel (0..*)
-    letterOfCreditDetailsModel LetterOfCreditDetailsModel (0..*)
+    dealIdentifier DealIdentifier (0..1) <"A deal identifier structure.">
+    dealSummary DealSummary (0..1) <"A deal summary structure.">
+    loanLegalActionNotificationChoiceChoice0 LoanLegalActionNotificationChoiceChoice0 (0..*)
+    loanLegalActionNotificationChoiceChoice1 LoanLegalActionNotificationChoiceChoice1 (0..*)
+    loanLegalActionNotificationChoiceChoice2 LoanLegalActionNotificationChoiceChoice2 (0..*)
+
+type LoanLegalActionNotificationChoiceChoice0:
+
+    facilityIdentifier FacilityIdentifier (0..1) <"A facility identifier structure.">
+    facilitySummary FacilitySummary (0..1) <"A facility summary structure.">
+
+type LoanLegalActionNotificationChoiceChoice1:
+
+    contractIdentifier LoanContractIdentifier (0..1) <"A loan contract identifier structure.">
+    contractSummary LoanContractSummary (0..1) <"A loan contract summary structure.">
+    contract LoanContract (0..1) <"A full loan contract structure.">
+
+type LoanLegalActionNotificationChoiceChoice2:
+
+    letterOfCreditIdentifier LoanContractIdentifier (0..1) <"A letter of credit identifier structure.">
+    letterOfCreditSummary LetterOfCreditSummary (0..1) <"A letter of credit summary structure.">
+    letterOfCredit LetterOfCredit (0..1) <"A full letter of credit structure.">
 
 type LoanLegalActionReference extends fpml.consolidated.shared.Reference: <"A reference to a legal action.">
 
     href string (1..1)
 
-type LoanLegalActionStatementChoice:
+type LoanLegalActionStatementChoice0:
 
-    facilityDetailsModel FacilityDetailsModel (0..1)
-    loanLegalActionStatementChoiceSequence LoanLegalActionStatementChoiceSequence (0..1)
+    facilityIdentifier FacilityIdentifier (0..1) <"A facility identifier structure.">
+    facilitySummary FacilitySummary (0..1) <"A facility summary structure.">
+    facilityGroup AbstractFacility (0..1)
 
-type LoanLegalActionStatementChoiceSequence:
+type LoanLegalActionStatementChoice1:
 
-    facilityGroup AbstractFacility (1..1)
+    contractIdentifier LoanContractIdentifier (0..1) <"A loan contract identifier structure.">
+    contractSummary LoanContractSummary (0..1) <"A loan contract summary structure.">
+    contract LoanContract (0..1) <"A full loan contract structure.">
+
+type LoanLegalActionStatementChoice2:
+
+    letterOfCreditIdentifier LoanContractIdentifier (0..1) <"A letter of credit identifier structure.">
+    letterOfCreditSummary LetterOfCreditSummary (0..1) <"A letter of credit summary structure.">
+    letterOfCredit LetterOfCredit (0..1) <"A full letter of credit structure.">
 
 type LoanLegalActionStatus: <"A structure to describe the overall loan legal action status.">
 
+    id string (0..1)
     effectiveDate zonedDateTime (0..1) <"The effective date of the loan legal action status details.">
     legalActionReference LoanLegalActionReference (1..1)
     ^type LoanLegalActionStatusType (1..1) <"Loan legal action status as of the effective date, based on a scheme.">
     description fpml.consolidated.shared.NonEmptyNormalizedString (0..1) <"A free form field to provide additional description of the legal action status.">
-    id string (0..1)
 
 type LoanLegalActionStatusType: <"A structure used to identify a loan legal action status type, based on a scheme.">
 
@@ -1383,33 +1485,33 @@ type LoanLegalStructureBeforeChoice:
     contractReference LoanContractReference (0..1) <"A loan contract reference.">
     letterOfCreditReference LetterOfCreditReference (0..1) <"A full letter of credit reference.">
 
-type LoanNotificationExceptionSequence:
-
-    loanIdentifiersModel LoanIdentifiersModel (1..1)
-    party fpml.consolidated.shared.Party (1..1)
-
 type LoanSimplePayment extends fpml.consolidated.shared.PaymentBase: <"A complex type to specified payments in a simpler fashion than the Payment type. This construct should be used from the version 4.3 onwards.">
 
-    simplePayerReceiverModel SimplePayerReceiverModel (1..1)
+    payerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party responsible for the allocation.">
+    receiverPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party that has been allocated to.">
     paymentAmount fpml.consolidated.shared.NonNegativeMoney (1..1)
     paymentDate fpml.consolidated.shared.AdjustableDate (1..1) <"The payment date. This date is subject to adjustment in accordance with any applicable business day convention.">
 
 type LoanTradeType extends LoanTradeSummary: <"A structure that defines party-to-party loan trade information. This structure contains the main (e.g. fund manager/main counterparty) trade details.">
 
     tradeDate zonedDateTime (1..1) <"The trade date associated with a specified trade record.">
-    buyerSellerModel fpml.consolidated.shared.BuyerSellerModel (1..1)
+    buyerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party that buys this instrument, ie. pays for this instrument and receives the rights defined by it. See 2000 ISDA definitions Article 11.1 (b). In the case of FRAs this the fixed rate payer.">
+    buyerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that buys this instrument.">
+    sellerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party that sells (\"writes\") this instrument, i.e. that grants the rights defined by this instrument and in return receives a payment for it. See 2000 ISDA definitions Article 11.1 (a). In the case of FRAs this is the floating rate payer.">
+    sellerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that sells this instrument.">
     marketType fpml.consolidated.fpmlenum.LoanTradingTypeEnum (1..1) <"Primary or Secondary.">
     whenIssuedFlag boolean (1..1) <"A flag to indicate the dependency of a secondary market loan trade upon the closing of a primary market loan structuring and syndication process.">
-    loanTradingSettlementTermsModel LoanTradingSettlementTermsModel (1..1)
+    tradingAssociation fpml.consolidated.fpmlenum.LoanTradingAssocEnum (1..1) <"Defines the trading association under which the loan trade documentation is governed.">
+    formOfPurchase fpml.consolidated.fpmlenum.LoanTradingFormOfPurchaseEnum (1..1) <"Defines whether the trade is being settled by assignment or participation (i.e. sub-participation).">
     remittedBy fpml.consolidated.fpmlenum.BuySellEnum (1..1) <"Party responsible for remitting the transfer fee to the admin agent (buyer or seller).">
-    loanTradeSequence LoanTradeSequence (0..1)
-
-type LoanTradeSequence:
-
-    price fpml.consolidated.shared.NonNegativeDecimal (1..1) <"The trade price, notated as a decimal, to be expressed as a percentage multiplied by the commitment amount.">
-    transferFee LoanTransferFee (1..1) <"Details of the transfer fee owed to the admin agent.">
-    loanTradingCounterpartyCashSettlementRulesModel LoanTradingCounterpartyCashSettlementRulesModel (1..1)
-    loanTradingParticipationSettlementTermsModel LoanTradingParticipationSettlementTermsModel (0..1)
+    price fpml.consolidated.shared.NonNegativeDecimal (0..1) <"The trade price, notated as a decimal, to be expressed as a percentage multiplied by the commitment amount.">
+    transferFee LoanTransferFee (0..1) <"Details of the transfer fee owed to the admin agent.">
+    documentationType fpml.consolidated.fpmlenum.LoanTradingDocTypeEnum (0..1) <"Defines whether the loan trade is being settled under par or distressed documentation.">
+    accrualSettlementType fpml.consolidated.fpmlenum.LoanTradingAccrualSettlementEnum (0..1) <"Defines the way in which interest (and accruing fees) will be handled between the buyer and seller of the loan.">
+    delayedCompensationFlag boolean (0..1) <"Defines whether delayed compensation is due at settlement of the loan trade.">
+    otherFeesBenefactor fpml.consolidated.fpmlenum.BuySellEnum (0..1) <"Defines the benefit of all amendment fees, consent, waiver, and other one-off fees occurring between trade date and settlement date.">
+    collateralRequiredFlag boolean (0..1) <"Identifies whether the buyer is to supply collateral in the case the trade involves a revolver and the trade settles as a participation.">
+    votingRights fpml.consolidated.fpmlenum.LoanTradingVotingRightsEnum (0..1) <"Identifies whether the buyer is to receive voting rights or be retained by the seller.">
 
 type LoanTradeEvent extends AbstractLoanTradeEvent: <"An event structure defining counterparty-to-counterparty loan trade information. This structure contains the main (e.g. fund manager/main counterparty) trade details.">
 
@@ -1440,7 +1542,9 @@ type LoanTradeTransferFeeDue extends AbstractLoanTradeEvent: <"A structure that 
 
 type LoanTradeTransferFeeOwed extends AbstractLoanTradeEvent: <"A structure that defines details related to the admin agent\'s determination of transfer fee(s) owed on a trade.">
 
-    loanTradingTransferFeeDeterminationModel LoanTradingTransferFeeDeterminationModel (1..1)
+    waivedFlag boolean (1..1) <"A flag defining whether the transfer fee is to be waived for this allocation.">
+    creditAgreementAmount fpml.consolidated.shared.NonNegativeMoney (1..1) <"Amount of transfer fee owed to the admin agent for the allocation, per the credit agreement.">
+    agentAmount fpml.consolidated.shared.NonNegativeMoney (1..1) <"Amount of transfer fee owed to the admin agent for the allocation, as determined by the agent.">
 
 type LoanTradingFacilityFeeAccrual extends AbstractTradingAccrual: <"A structure that details the underlying elements that affect the calculation of a fee accrual.">
 
@@ -1451,7 +1555,8 @@ type LoanTradingFacilityFeeAccrual extends AbstractTradingAccrual: <"A structure
 type LoanTradingCostOfCarry: <"A structure that incorporates elements of an accrual calculation, for the purpose of defining cost-of-carry.">
 
     amount fpml.consolidated.shared.NonNegativeMoney (1..1) <"The amount of cost of carry accrued for the given loan contract. Funded Amount * Price + (100-Price) * Unfunded - (100-Price) * Paydown - Non-Recurring Fees.">
-    simplePayerReceiverModel SimplePayerReceiverModel (0..1)
+    payerPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A reference to the party responsible for the allocation.">
+    receiverPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A reference to the party that has been allocated to.">
     accrual LoanTradingCostOfCarryAccrual (0..1) <"Details of the accrual schedule in support of the cost of carry amount: The commencement amount is the calculated \'value\' of the asset being purchased/sold, as of the end of the REGULAR settlement period (e.g. at T+7 for Par). This amount takes into account ALL potential adjustments, price and utilized/unutilized balances as of the regular settlement date. Hence, the reference amount will be the commencement amount and the rate will be the average LIBOR (between T+7 and actual settlement date). If however, the settlement amount at the END of the delay period has changed by more than 25 percent as compared to the commencement amount, then the (calculated) settlement amount for each applicable day within the delay period must be calculated and used to accrue the cost of carry. The average LIBOR will still be the applicable rate.">
 
 type LoanTradingCostOfCarryAccrual: <"A schedule that incorporates all sub-periods of an accrual calculation for the purposes of determining the cost of carry in the case of a trade with delayed settlement.">
@@ -1462,26 +1567,26 @@ type LoanTradingCostOfCarryAccrual: <"A schedule that incorporates all sub-perio
 
 type LoanTradingCounterpartySettlementFundingFactors: <"A structure that defines the factors that impact settlement cashflows.">
 
-    loanTradingCounterpartySettlementFundingFactorsSequence LoanTradingCounterpartySettlementFundingFactorsSequence (0..1)
-    transferFeeAmounts BuyerSellerAmounts (1..1) <"Counterparty shares of the transfer fee owed to the agent.">
-
-type LoanTradingCounterpartySettlementFundingFactorsSequence:
-
-    delayedCompensation LoanTradingDelayedCompensation (1..1)
-    costOfCarry LoanTradingCostOfCarry (1..1)
+    delayedCompensation LoanTradingDelayedCompensation (0..1)
+    costOfCarry LoanTradingCostOfCarry (0..1)
     economicBenefit LoanTradingEconomicBenefit (0..*) <"The total economic benefit, based on facility-level activity between trade and settlement date, payable to the buyer of the asset.">
+    transferFeeAmounts BuyerSellerAmounts (1..1) <"Counterparty shares of the transfer fee owed to the agent.">
 
 type LoanTradingDelayedCompensation: <"A structure that incorporates elements of interest and fee accruals, for the purpose of defining delayed compensation.">
 
     amount fpml.consolidated.shared.NonNegativeMoney (1..1) <"The total delayed compensation amount. This is the sum of all the loan contract, letter of credit and on-going fee accrual amounts.">
-    simplePayerReceiverModel SimplePayerReceiverModel (0..1)
-    loanTradingSettlementAccrualsModel LoanTradingSettlementAccrualsModel (1..1)
+    payerPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A reference to the party responsible for the allocation.">
+    receiverPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A reference to the party that has been allocated to.">
+    facilityAccrual LoanTradingFacilityFeeAccrual (0..*) <"Details of the amount of facility fees accrued by the traded portion of a facility commitment.">
+    loanContractInterestAccrual LoanTradingLoanContractAccrual (0..*) <"Details of the amount of loan contract interest accrued by the traded portion of a loan contract.">
+    letterOfCreditAccrual LoanTradingLetterOfCreditAccrual (0..*) <"Details of the amount of letter of credit fees accrued by the traded portion of a letter of credit.">
     nonAccruingFee LoanTradingNonAccruingFee (0..*) <"Details the amount of nonaccruing fees associated with the traded portion of a facility commitment, loan contract, or letter of credit.">
 
 type LoanTradingEconomicBenefit: <"A structure that combines a simple (money) amount with an optional event, for the purpose of defining economic benefit at settlement.">
 
     amount fpml.consolidated.shared.NonNegativeMoney (1..1) <"Economic benefit amount.">
-    simplePayerReceiverModel SimplePayerReceiverModel (0..1)
+    payerPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A reference to the party responsible for the allocation.">
+    receiverPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A reference to the party that has been allocated to.">
     eventIdentifier fpml.consolidated.business.events.BusinessEventIdentifier (0..1)
     commitmentAdjustment CommitmentAdjustment (0..1) <"Any commitment adjustments which have occurred during settlement of the trade. Represented by the business event structure.">
 
@@ -1517,13 +1622,9 @@ type LoanTradePayment extends LoanSimplePayment: <"A structure that represents a
 
 type LoanTransferFee: <"A structure that represents counterparty shares or alternatively the total amount of the assignment fee owed to the admin agent.">
 
-    loanTransferFeeSequence LoanTransferFeeSequence (0..1)
-    transferFeeAmounts BuyerSellerAmounts (0..1) <"Counterparty shares of the transfer fee owed to the agent.">
-
-type LoanTransferFeeSequence:
-
-    paidBy fpml.consolidated.fpmlenum.LoanTransferFeePaidByEnum (1..1) <"Rule enumeration for transfer fee split and paid by.">
+    paidBy fpml.consolidated.fpmlenum.LoanTransferFeePaidByEnum (0..1) <"Rule enumeration for transfer fee split and paid by.">
     totalAmount fpml.consolidated.shared.NonNegativeMoney (0..1) <"The amount payable to the agent for re-assigning a share in one of the underlying facilities within the deal.">
+    transferFeeAmounts BuyerSellerAmounts (0..1) <"Counterparty shares of the transfer fee owed to the agent.">
 
 type MetricAdjustmentType: <"A structure used to uniquely identify a metric adjustment type, described by a scheme.">
 
@@ -1597,9 +1698,9 @@ type PartyProfileId: <"A structure that defines a party profile identifier based
 
 type PartyProfileIdentifier: <"A type that identifies a party profile record.">
 
+    id string (0..1)
     partyReference fpml.consolidated.shared.PartyReference (1..1) <"Reference to a party.">
     partyProfileId PartyProfileId (1..1)
-    id string (0..1)
 
 type PaymentProjection: <"A structure that represents interest payment projections.">
 
@@ -1608,7 +1709,8 @@ type PaymentProjection: <"A structure that represents interest payment projectio
 
 type PeriodRate: <"A structure that represents a rate applicable against a well-defined or open-ended period.">
 
-    periodOptionalEndModel PeriodOptionalEndModel (1..1)
+    startDate zonedDateTime (1..1) <"Date on which this period begins.">
+    endDate zonedDateTime (0..1) <"Date on which this period ends.">
     rate number (1..1)
 
 type ProRataFacilities: <"A structure that defines a restriction pertaining to which facilities must be traded on a pro-rata basis.">
@@ -1651,10 +1753,10 @@ type TaskId: <"A structure that defines a task identifier based on a qualifying 
 
 type TaskIdentifier: <"A type defining a task identifier issued by the indicated party.">
 
+    id string (0..1)
     partyReference fpml.consolidated.shared.PartyReference (1..1) <"Reference to a party.">
     taskId TaskId (0..1) <"Identification of the task.">
     versionedTaskId VersionedTaskId (0..1)
-    id string (0..1)
 
 type TaxForm: <"A structure that defines a tax form registration.">
 
@@ -1690,23 +1792,28 @@ type UtilizationAmounts: <"A structure which defines the total utilization and a
 
 type UtilizationPeriod: <"A schedule that incorporates all sub-periods of an interest accrual calculation.">
 
-    periodWithDaysModel PeriodWithDaysModel (1..1)
+    startDate zonedDateTime (1..1) <"Date on which this period begins.">
+    endDate zonedDateTime (1..1) <"Date on which this period ends.">
+    numberOfDays int (1..1) <"The actual number of days represented within the \'period\'. This takes into account counting the appropriate convention.">
     utilizationAmounts UtilizationAmounts (1..1) <"The funded and unfunded utilization details.">
 
 type VersionedCovenantObligationId: <"Covenant Obligation ID with Version Support">
 
     covenantObligationId CovenantObligationId (1..1)
-    versionHistoryModel fpml.consolidated.shared.VersionHistoryModel (1..1)
+    version int (1..1) <"The version number">
+    effectiveDate fpml.consolidated.shared.IdentifiedDate (0..1) <"Optionally it is possible to specify a version effective date when a versionId is supplied.">
 
 type VersionedLegalActionId: <"Legal Action ID with Version Support">
 
     legalActionId LegalActionId (1..1)
-    versionHistoryModel fpml.consolidated.shared.VersionHistoryModel (1..1)
+    version int (1..1) <"The version number">
+    effectiveDate fpml.consolidated.shared.IdentifiedDate (0..1) <"Optionally it is possible to specify a version effective date when a versionId is supplied.">
 
 type VersionedTaskId: <"Task ID with Version Support">
 
     taskId TaskId (1..1)
-    versionHistoryModel fpml.consolidated.shared.VersionHistoryModel (1..1)
+    version int (1..1) <"The version number">
+    effectiveDate fpml.consolidated.shared.IdentifiedDate (0..1) <"Optionally it is possible to specify a version effective date when a versionId is supplied.">
 
 type VoteQuantity: <"A structure to describe a vote quantity as a percent and optionally as a commitment amount.">
 
@@ -1722,225 +1829,3 @@ type WithholdingTaxReason: <"A list of reasons for withholding tax being applied
 
     value fpml.consolidated.shared.NonEmptyScheme (1..1)
     withholdingTaxReasonScheme fpml.consolidated.shared.NonEmptyURI (0..1)
-
-type BusinessEventPartiesModel: <"A model that represents the main parties involved in any business event.">
-
-    agentPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A reference to the agent bank for the associated deal.">
-    borrowerPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A reference to the main borrower associated with the specific business event.">
-
-type CovenantObligationDetailsModel: <"A model used to reference a covenant by either identifier or summary, within various notifications.">
-
-    covenantIdentifier CovenantObligationIdentifier (0..1) <"A deal identifier structure.">
-    covenantSummary LoanCovenantObligationSummary (0..1)
-    covenant LoanCovenantObligation (0..1)
-
-type CurrentPriorCommitmentModel: <"A model that represents current and prior global commitment break-down. The model requires global amounts and can optionally represent lender-specific share amounts.">
-
-    commitment FacilityCommitment (1..1) <"The global and share amount of principal commitment. This is after any referenced business events have taken place.">
-    priorCommitment FacilityCommitment (0..1) <"The global and share amount of principal commitment. This is prior to any referenced business events.">
-
-type DealDetailsModel: <"A model used to reference a deal by either identifier or summary, within various notifications.">
-
-    dealIdentifier DealIdentifier (0..1) <"A deal identifier structure.">
-    dealSummary DealSummary (0..1) <"A deal summary structure.">
-
-type DealRolesModel: <"A model that defines all parties playing various roles within a given deal.">
-
-    issuerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A party reference to the (main) issuer of the deal.">
-    guarantorPartyReference fpml.consolidated.shared.PartyReference (0..*) <"Party references to the guarantors associated with the (main) issuer of the deal.">
-    agentPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A party reference to the agent bank associated with the deal.">
-    dealRolesModelSequence DealRolesModelSequence (0..1)
-
-type DealRolesModelSequence:
-
-    syndicationLeadPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A party reference to the lead syndication bank of the deal.">
-    syndicationCoLeadPartyReference fpml.consolidated.shared.PartyReference (0..*) <"Party references to the syndication co-lead banks of the deal.">
-
-type DealRulesModel: <"A model that defines deal-level rules.">
-
-    transferFee TransferFeeDefinition (0..1) <"The transfer fee amount and rules. This applies to the commitment transfer of any facility within the deal structure.">
-    proRataFacilities ProRataFacilities (0..*) <"Groups of facilities which must be traded on a pro-rata basis. The ratio of facility trade amounts must be equal to the ratio of their corresponding global amounts.">
-
-type FacilityCommitmentModel: <"A model that describes facility commitment information together with any schedule associated with the commitment.">
-
-    currentCommitment FacilityCommitment (1..1) <"The current global/lender share commitment amount. This defines the current limit against which the borrower may draw funds.">
-    originalCommitment MoneyWithParticipantShare (0..1) <"The original global commitment amount. This defines the limit, as of the start date, against which the borrower may draw funds.">
-    commitmentSchedule CommitmentSchedule (0..1) <"The commitment schedule associated with the facility.">
-    dealFxRate FxTerms (0..1) <"Defines the exchange rate between the facility and deal denomination currencies (only required if the currencies are different).">
-
-type FacilityDatesModel: <"A model that defines all relevant dates related to a specific facility.">
-
-    startDate zonedDateTime (1..1) <"The start date of the facility.">
-    expiryDate zonedDateTime (0..1) <"The latest date that a drawdown can be made effective against the facility.">
-    maturityDate zonedDateTime (0..1) <"The maturity date of the facility.">
-
-type FacilityDetailsModel: <"A model used to reference a facility by either identifier or summary, within various notifications.">
-
-    facilityIdentifier FacilityIdentifier (0..1) <"A facility identifier structure.">
-    facilitySummary FacilitySummary (0..1) <"A facility summary structure.">
-
-type FacilityFeaturesModel: <"A model that describes features/attributes associated with a given facility.">
-
-    feature FacilityFeature (0..*) <"Facility features which help define the instrument with greater granularity. E.g. bridge, acquisition etc.">
-    lien fpml.consolidated.asset.Lien (0..1) <"The lien level associated with the facility. E.g. 1st, 2nd, 3rd.">
-    seniority fpml.consolidated.shared.CreditSeniority (0..1) <"The seniority of the facility. E.g. senior, senior secured etc.">
-
-type FacilityOptionsFeesAndRatesModel: <"A model that describes additional (non-static) facility rate details. These are managed separate since they can change independently during the life of the facility.">
-
-    facilityOptionsFeesAndRatesModelChoice FacilityOptionsFeesAndRatesModelChoice (1..*)
-    accruingPikOption AccruingPikOption (0..1) <"A loan contract PIK accrual option.">
-    accruingFeeOption AccruingFeeOption (0..*) <"A description of all the different types of accruing fees which apply to the facility.">
-    facilityRatesModel FacilityRatesModel (1..1)
-
-type FacilityOptionsFeesAndRatesModelChoice:
-
-    fixedRateOption FixedRateOption (0..1) <"A structure that represents the accruing fixed rate option associated within a facility.">
-    floatingRateOption LoanFloatingRateOption (0..1) <"A structure that represents the accruing floating rate option associated within a facility.">
-    legacyFloatingRateOption LegacyFloatingRateOption (0..1) <"A structure that represents the legacy version (pre-IBOR replacement) of an accruing floating rate option associated within a facility.">
-    lcOption LcOption (0..1) <"A description of all the letter of credit fee types which apply to the facility.">
-
-type FacilityRatesModel: <"A model that describes various facility rate details.">
-
-    defaultRate PeriodRate (0..1) <"This represents a default rate that may apply in addition to a regular margin rate (on outstanding loan contracts). This rate is applied at the discretion of the agent bank, if the borrower is deemed to be in default.">
-    mandatoryCostRate PeriodRate (0..1) <"The mandatory cost rate currently applied to the interest rate period.">
-    penaltyRate PeriodRate (0..1) <"This represents a penalty rate that may apply in addition to the regular margin rate (on outstanding loan contracts). This rate is applied at the discretion of the agent bank, if the borrower has broken terms stated within the credit agreement.">
-
-type FacilityRolesModel: <"A model that describes the various roles played by parties within a given facility.">
-
-    borrowerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A party reference to the (main) borrower. This may be different to the issuer defined at the deal-level.">
-    coBorrowerPartyReference fpml.consolidated.shared.PartyReference (0..*) <"Party references to co-borrowers as listed on the credit agreement.">
-    agentPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A party reference to the agent bank. Each facility (within a single deal) can have specific/different agent banks, especially if there are jurisdictional boundaries being crossed.">
-    lcIssuingBankPartyReference fpml.consolidated.shared.PartyReference (0..*) <"Party references to any guarantors associated with the facility borrower.">
-    guarantorPartyReference fpml.consolidated.shared.PartyReference (0..*) <"Party references to any guarantors associated with the facility borrower.">
-
-type LegacyFloatingRateIndexLoanModel: <"A model which captures the index and tenor associated with the floating rate. We are referring to a loan-specific floating rate scheme.">
-
-    legacyFloatingRateIndex LegacyFloatingRateIndexLoan (1..1)
-    indexTenor fpml.consolidated.shared.Period (0..1) <"The ISDA Designated Maturity, i.e. the tenor of the floating rate.">
-
-type LenderAndCashDetailsModel: <"A model that describes lender and cash flow details (relative to the lender), represented within a business event.">
-
-    lenderPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the lender associated with a specific business event.">
-    cashPayable CashPayable (0..1) <"Defines the overall net cash payable, as well as, the breakdown of individual cashflows.">
-
-type LetterOfCreditDetailsModel: <"A model used to reference an L/C by either identifier, summary or full L/C details, within various notifications.">
-
-    letterOfCreditIdentifier LoanContractIdentifier (0..1) <"A letter of credit identifier structure.">
-    letterOfCreditSummary LetterOfCreditSummary (0..1) <"A letter of credit summary structure.">
-    letterOfCredit LetterOfCredit (0..1) <"A full letter of credit structure.">
-
-type LetterOfCreditFeaturesModel: <"A model that describes the additional features associated with a letter of credit.">
-
-    evergreenOption EvergreenOption (0..1) <"An option allowing the borrower to extend the letter of credit tenor.">
-    lcAutoAdjust fpml.consolidated.fpmlenum.LcAutoAdjustEnum (0..1) <"Defines the manner by which a letter of credit may automatically adjust.">
-    minLcIssuanceFeeAmount MoneyWithParticipantShare (0..1) <"The letter of credit notional amount. The amount is represented at the global and (optionally) atthe lender-specific level.">
-
-type LetterOfCreditRolesModel: <"A model that describes the various roles played by parties within a given letter of credit.">
-
-    borrowerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"Main borrower.">
-    issuingBankPartyReference fpml.consolidated.shared.PartyReference (1..1) <"Party references to any letter of credit issuers associated with the facility borrower.">
-    beneficiaryPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A party reference of the beneficiary.">
-
-type LoanAllocationPartiesModel: <"A model which contains the main parties involved in a loan allocation situation.">
-
-    originalPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party responsible for the allocation.">
-    allocatedPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party that has been allocated to.">
-
-type LoanContractDetailsModel: <"A model used to reference a loan contract by either identifier, summary or full contract details, within various notifications.">
-
-    contractIdentifier LoanContractIdentifier (0..1) <"A loan contract identifier structure.">
-    contractSummary LoanContractSummary (0..1) <"A loan contract summary structure.">
-    contract LoanContract (0..1) <"A full loan contract structure.">
-
-type LoanIdentifiersModel: <"A model which contains the identifiers used by loan structures.">
-
-    eventIdentifier fpml.consolidated.business.events.BusinessEventIdentifier (0..1)
-    taskIdentifier TaskIdentifier (0..1)
-
-type LoanTradeAllocationDetailsModel: <"A model used to reference a single loan trade together with all associated allocations.">
-
-    loanTradeAllocationDetailsModelChoice LoanTradeAllocationDetailsModelChoice (1..*)
-    tradeIdentifier fpml.consolidated.doc.TradeIdentifier (0..1) <"Unique trade ids used to identify the trade record.">
-    tradeSummary LoanTradeSummary (0..1) <"A summary structure representing the loan trade.">
-
-type LoanTradeAllocationDetailsModelChoice:
-
-    allocationId LoanAllocationIdentifier (0..1) <"A party-specific allocation identifier.">
-    allocationSummary LoanAllocationSummary (0..1) <"A summary structure representing the loan trade allocation.">
-    allocation LoanAllocationType (0..1) <"A structure defining information related to a loan trade allocation.">
-
-type LoanTradingCounterpartyCashSettlementRulesModel: <"A model which contains the master trade settlement terms.">
-
-    documentationType fpml.consolidated.fpmlenum.LoanTradingDocTypeEnum (1..1) <"Defines whether the loan trade is being settled under par or distressed documentation.">
-    accrualSettlementType fpml.consolidated.fpmlenum.LoanTradingAccrualSettlementEnum (1..1) <"Defines the way in which interest (and accruing fees) will be handled between the buyer and seller of the loan.">
-    delayedCompensationFlag boolean (1..1) <"Defines whether delayed compensation is due at settlement of the loan trade.">
-    otherFeesBenefactor fpml.consolidated.fpmlenum.BuySellEnum (1..1) <"Defines the benefit of all amendment fees, consent, waiver, and other one-off fees occurring between trade date and settlement date.">
-
-type LoanTradeDetailsModel: <"A model used to reference a single loan trade.">
-
-    tradeIdentifier fpml.consolidated.doc.TradeIdentifier (0..1) <"Unique trade ids used to identify the trade record.">
-    tradeSummary LoanTradeSummary (0..1) <"A structure that defines all loan trade information i.e. this structure contains the main (e.g. fund manager/main counterparty) trade details.">
-    trade LoanTradeType (0..1) <"A structure that defines party-to-party loan trade information. This structure contains the main (e.g. fund manager/main counterparty) trade details.">
-
-type LoanTradingParticipationSettlementTermsModel: <"A model which contains trade settlement terms for participations.">
-
-    collateralRequiredFlag boolean (1..1) <"Identifies whether the buyer is to supply collateral in the case the trade involves a revolver and the trade settles as a participation.">
-    votingRights fpml.consolidated.fpmlenum.LoanTradingVotingRightsEnum (1..1) <"Identifies whether the buyer is to receive voting rights or be retained by the seller.">
-
-type LoanTradingSettlementAccrualsModel: <"A model which contains all relevant amounts to settle a loan trade with accrued interest and fees.">
-
-    facilityAccrual LoanTradingFacilityFeeAccrual (0..*) <"Details of the amount of facility fees accrued by the traded portion of a facility commitment.">
-    loanContractInterestAccrual LoanTradingLoanContractAccrual (0..*) <"Details of the amount of loan contract interest accrued by the traded portion of a loan contract.">
-    letterOfCreditAccrual LoanTradingLetterOfCreditAccrual (0..*) <"Details of the amount of letter of credit fees accrued by the traded portion of a letter of credit.">
-
-type LoanTradingSettlementTermsModel: <"A model which contains settlement terms of a trade.">
-
-    tradingAssociation fpml.consolidated.fpmlenum.LoanTradingAssocEnum (1..1) <"Defines the trading association under which the loan trade documentation is governed.">
-    formOfPurchase fpml.consolidated.fpmlenum.LoanTradingFormOfPurchaseEnum (1..1) <"Defines whether the trade is being settled by assignment or participation (i.e. sub-participation).">
-
-type LoanTradingTransferFeeDeterminationModel: <"A model which contains factors associated with the payment of a transfer fee.">
-
-    waivedFlag boolean (1..1) <"A flag defining whether the transfer fee is to be waived for this allocation.">
-    creditAgreementAmount fpml.consolidated.shared.NonNegativeMoney (1..1) <"Amount of transfer fee owed to the admin agent for the allocation, per the credit agreement.">
-    agentAmount fpml.consolidated.shared.NonNegativeMoney (1..1) <"Amount of transfer fee owed to the admin agent for the allocation, as determined by the agent.">
-
-type PeriodOptionalEndModel: <"A model that describes a period, with an optional end date.">
-
-    startDate zonedDateTime (1..1) <"Date on which this period begins.">
-    endDate zonedDateTime (0..1) <"Date on which this period ends.">
-
-type PeriodWithDaysModel: <"A model that describes a period, with an element to define number of days within the period.">
-
-    periodModel fpml.consolidated.shared.PeriodModel (1..1)
-    numberOfDays int (1..1) <"The actual number of days represented within the \'period\'. This takes into account counting the appropriate convention.">
-
-type RepaymentTypeModel: <"A model that establishes the flags that determine the type of repayment that is occurring and the flexibility asociated with it (from the lender\'s perspective).">
-
-    refusalAllowed boolean (1..1) <"Defines whether the lender has an option to accept or deny the payment.">
-    borrowerMandatory boolean (0..1) <"Defines whether the repayment is mandatory from the borrower\'s perspective, based on the (amortization) schedule on the credit agreement.">
-    scheduledRepayment boolean (0..1) <"Defines whether the repayment is a scheduled repayment. This is normally the case when the repayment is defined on the amortization schedule associated with the facility (on the credit agreement).">
-
-type SimplePayerReceiverModel: <"A model which references the payer and receiver.">
-
-    payerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party responsible for the allocation.">
-    receiverPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party that has been allocated to.">
-
-type SimpleBuyerSellerModel: <"A model which references the buyer and seller.">
-
-    buyerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party that buys this instrument, ie. pays for this instrument and receives the rights defined by it. See 2000 ISDA definitions Article 11.1 (b). In the case of FRAs this the fixed rate payer.">
-    sellerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party that sells (\"writes\") this instrument, i.e. that grants the rights defined by this instrument and in return receives a payment for it. See 2000 ISDA definitions Article 11.1 (a). In the case of FRAs this is the floating rate payer.">
-
-type UtilizationModel: <"A model that describes the breakdown of the utilization profile against a single facility.">
-
-    utilizationModelSequence0 UtilizationModelSequence0 (0..1)
-    utilizationModelSequence1 UtilizationModelSequence1 (0..1)
-
-type UtilizationModelSequence0:
-
-    requiredFundedAmount MoneyWithParticipantShare (1..1) <"The amount of utilization which is funded.">
-    unfundedAmount MoneyWithParticipantShare (0..1) <"The amount of utilization which is unfunded.">
-
-type UtilizationModelSequence1:
-
-    requiredUnfundedAmount MoneyWithParticipantShare (1..1) <"The amount of utilization which is unfunded.">
-    fundedAmount MoneyWithParticipantShare (0..1) <"The amount of utilization which is funded.">

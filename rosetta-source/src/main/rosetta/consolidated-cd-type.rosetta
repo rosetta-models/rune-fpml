@@ -32,18 +32,12 @@ type AdjustedPaymentDates:
 
 type BasketReferenceInformation: <"CDS Basket Reference Information">
 
-    basketIdentifierModel fpml.consolidated.asset.BasketIdentifierModel (0..1)
+    basketName fpml.consolidated.asset.BasketName (0..1) <"The name of the basket expressed as a free format string. FpML does not define usage rules for this element.">
+    basketId fpml.consolidated.asset.BasketId (0..*) <"A basket identifier">
     referencePool ReferencePool (0..1) <"This element contains all the reference pool items to define the reference entity and reference obligation(s) in the basket">
-    basketReferenceInformationSequence BasketReferenceInformationSequence (0..1)
-    tranche Tranche (0..1) <"This element contains CDS tranche terms.">
-
-    condition Choice:
-        optional choice basketReferenceInformationSequence, tranche
-
-type BasketReferenceInformationSequence:
-
     nthToDefault int(min: 1) (0..1) <"N th reference obligation to default triggers payout.">
     mthToDefault int(min: 1) (0..1) <"M th reference obligation to default to allow representation of N th to M th defaults.">
+    tranche Tranche (0..1) <"This element contains CDS tranche terms.">
 
 type CalculationAmount extends fpml.consolidated.shared.Money:
 
@@ -58,7 +52,8 @@ type CashSettlementTerms extends fpml.consolidated.option.shared.SettlementTerms
     minimumQuotationAmount fpml.consolidated.shared.Money (0..1) <"In the determination of a cash settlement amount, if weighted average quotations are to be obtained, the minimum quotation amount specifies a minimum intended threshold amount of outstanding principal balance of the reference obligation for which the quote should be obtained. If not specified, the ISDA definitions provide for a fallback amount of the lower of either USD 1,000,000 (or its equivalent in the relevant obligation currency) or the quotation amount. ISDA 2003 Term: Minimum Quotation Amount">
     dealer fpml.consolidated.shared.NonEmptyToken (0..*) <"A dealer from whom quotations are obtained by the calculation agent on the reference obligation for purposes of cash settlement. ISDA 2003 Term: Dealer">
     cashSettlementBusinessDays int(min: 0) (0..1) <"The number of business days used in the determination of the cash settlement payment date. If a cash settlement amount is specified, the cash settlement payment date will be this number of business days following the calculation of the final price. If a cash settlement amount is not specified, the cash settlement payment date will be this number of business days after all conditions to settlement are satisfied. ISDA 2003 Term: Cash Settlement Date">
-    fixedRecoveryModel FixedRecoveryModel (0..1)
+    cashSettlementAmount fpml.consolidated.shared.Money (0..1) <"The amount paid by the seller to the buyer for cash settlement on the cash settlement date. If not otherwise specified, would typically be calculated as 100 (or the Reference Price) minus the price of the Reference Obligation (all expressed as a percentage) times Floating Rate Payer Calculation Amount. ISDA 2003 Term: Cash Settlement Amount.">
+    recoveryFactor fpml.consolidated.shared.DecimalFraction (0..1) <"Used for fixed recovery, specifies the recovery level, determined at contract inception, to be applied on a default. Used to calculate the amount paid by the seller to the buyer for cash settlement on the cash settlement date. Amount calculation is (1 minus the Recovery Factor) multiplied by the Floating Rate Payer Calculation Amount. The currency will be derived from the Floating Rate Payer Calculation Amount.">
     fixedSettlement boolean (0..1) <"Used for Recovery Lock, to indicate whether fixed Settlement is Applicable or Not Applicable. If Buyer fails to deliver an effective Notice of Physical Settlement on or before the Buyer NOPS Cut-off Date, and If Seller fails to deliver an effective Seller NOPS on or before the Seller NOPS Cut-off Date, then either: (a) if Fixed Settlement is specified in the related Confirmation as not applicable, then the Seller NOPS Cut-off Date shall be the Termination Date; or (b) if Fixed Settlement is specified in the related Confirmation as applicable, then: (i) if the Fixed Settlement Amount is a positive number, Seller shall, subject to Section 3.1 (except for the requirement of satisfaction of the Notice of Physical Settlement Condition to Settlement), pay the Fixed Settlement Amount to Buyer on the Fixed Settlement Payment Date; and (ii) if the Fixed Settlement Amount is a negative number, Buyer shall, subject to Section 3.1 (except for the requirement of satisfaction of the Notice of Physical Settlement Condition to Settlement), pay the absolute value of the Fixed Settlement Amount to Seller on the Fixed Settlement Payment Date.">
     accruedInterest boolean (0..1) <"Indicates whether accrued interest is included (true) or not (false). For cash settlement this specifies whether quotations should be obtained inclusive or not of accrued interest. For physical settlement this specifies whether the buyer should deliver the obligation with an outstanding principal balance that includes or excludes accrued interest. ISDA 2003 Term: Include/Exclude Accrued Interest">
     valuationMethod fpml.consolidated.fpmlenum.ValuationMethodEnum (0..1) <"The ISDA defined methodology for determining the final price of the reference obligation for purposes of cash settlement. (ISDA 2003 Term: Valuation Method). For example, Market, Highest etc.">
@@ -68,17 +63,11 @@ type CreditDefaultSwapChoice:
     cashSettlementTerms CashSettlementTerms (0..1) <"This element contains all the ISDA terms relevant to cash settlement for when cash settlement is applicable. ISDA 2003 Term: Cash Settlement">
     physicalSettlementTerms PhysicalSettlementTerms (0..1) <"This element contains all the ISDA terms relevant to physical settlement for when physical settlement is applicable. ISDA 2003 Term: Physical Settlement">
 
-    condition Choice:
-        optional choice cashSettlementTerms, physicalSettlementTerms
-
 type CreditOptionStrike: <"A complex type to specify the strike of a credit swaption or a credit default swap option.">
 
     spread number (0..1) <"The strike of a credit default swap option or credit swaption when expressed as a spread per annum.">
     price number (0..1) <"The strike of a credit default swap option or credit swaption when expressed as in reference to the price of the underlying obligation(s) or index.">
     strikeReference FixedRateReference (0..1) <"The strike of a credit default swap option or credit swaption when expressed in reference to the spread of the underlying swap (typical practice in the case of single name swaps).">
-
-    condition Choice:
-        one-of
 
 type DeliverableObligations:
 
@@ -106,9 +95,6 @@ type DeliverableObligations:
     excluded fpml.consolidated.shared.NonEmptyNormalizedString (0..1) <"A free format string to specify any excluded obligations or deliverable obligations, as the case may be, of the reference entity or excluded types of obligations or deliverable obligations. ISDA 2003 Term: Excluded Obligations/Excluded Deliverable Obligations">
     othReferenceEntityObligations fpml.consolidated.shared.NonEmptyToken (0..1) <"This element is used to specify any other obligations of a reference entity in both obligations and deliverable obligations. The obligations can be specified free-form. ISDA 2003 Term: Other Obligations of a Reference Entity">
 
-    condition Choice:
-        optional choice fullFaithAndCreditObLiability, generalFundObligationLiability , revenueObligationLiability
-
 type EntityType: <"Defines a coding scheme of the entity types defined in the ISDA First to Default documentation.">
 
     value fpml.consolidated.shared.Scheme (1..1)
@@ -116,25 +102,14 @@ type EntityType: <"Defines a coding scheme of the entity types defined in the IS
 
 type FeeLeg extends fpml.consolidated.shared.Leg:
 
-    feeLegSequence FeeLegSequence (0..1)
+    initialPayment InitialPayment (0..1) <"Specifies a single fixed payment that is payable by the payer to the receiver on the initial payment date. The fixed payment to be paid is specified in terms of a known currency amount. This element should be used for CDS Index trades, Standard CDS trades, and can be used for CDS trades where it is necessary to represent a payment from Seller to Buyer. For CDS trades where a payment is to be made from Buyer to Seller the feeLeg/singlePayment structure must be used.">
+    singlePayment SinglePayment (0..*) <"Specifies a single fixed amount that is payable by the buyer to the seller on the fixed rate payer payment date. The fixed amount to be paid is specified in terms of a known currency amount.">
     periodicPayment PeriodicPayment (0..1) <"Specifies a periodic schedule of fixed amounts that are payable by the buyer to the seller on the fixed rate payer payment dates. The fixed amount to be paid on each payment date can be specified in terms of a known currency amount or as an amount calculated on a formula basis by reference to a per annum fixed rate. The applicable business day convention and business day for adjusting any fixed rate payer payment date if it would otherwise fall on a day that is not a business day are those specified in the dateAdjustments element within the generalTerms component. ISDA 2003 Term:">
     marketFixedRate number (0..1) <"An optional element that only has meaning in a credit index trade. This element contains the credit spread (\"fair value\") at which the trade was executed. Unlike the fixedRate of an index, the marketFixedRate varies over the life of the index depending on market conditions. The marketFixedRate is the price of the index as quoted by trading desks.">
     paymentDelay boolean (0..1) <"Applicable to CDS on MBS to specify whether payment delays are applicable to the fixed Amount. RMBS typically have a payment delay of 5 days between the coupon date of the reference obligation and the payment date of the synthetic swap. CMBS do not, on the other hand, with both payment dates being on the 25th of each month.">
     initialPoints number (0..1) <"An optional element that contains the up-front points expressed as a percentage of the notional. An initialPoints value of 5% would be represented as 0.05. The initialPoints element is an alternative to marketFixedRate in quoting the traded level of a trade. When initialPoints is used, the traded level is the sum of fixedRate and initialPoints. The initialPoints is one of the items that are factored into the initialPayment calculation and is payable by the Buyer to the Seller. Note that initialPoints and marketFixedRate may both be present in the same document when both implied values are desired.">
     marketPrice fpml.consolidated.shared.NonNegativeDecimal (0..1) <"An optional element that only has meaning in a credit index trade. This element contains the price at which the trade was executed and is used instead of marketFixedRate on credit trades on certain indicies which are quoted using a price rather than a spread.">
     quotationStyle fpml.consolidated.fpmlenum.QuotationStyleEnum (0..1) <"The type of quotation that was used between the trading desks. The purpose of this element is to indicate the actual quotation style that was used to quote this trade which may not be apparent when both marketFixedRate and initialPoints are included in the document. When quotationStyle is ‘PointsUpFront’, the initialPoints element should be populated. When quotationStyle is ‘TradedSpread’, the marketFixedRate element should be populated.">
-
-    condition Choice:
-        required choice feeLegSequence, periodicPayment
-
-type FeeLegSequence:
-
-    initialPayment InitialPayment (0..1) <"Specifies a single fixed payment that is payable by the payer to the receiver on the initial payment date. The fixed payment to be paid is specified in terms of a known currency amount. This element should be used for CDS Index trades, Standard CDS trades, and can be used for CDS trades where it is necessary to represent a payment from Seller to Buyer. For CDS trades where a payment is to be made from Buyer to Seller the feeLeg/singlePayment structure must be used.">
-    singlePayment SinglePayment (0..*) <"Specifies a single fixed amount that is payable by the buyer to the seller on the fixed rate payer payment date. The fixed amount to be paid is specified in terms of a known currency amount.">
-    periodicPayment PeriodicPayment (0..1) <"Specifies a periodic schedule of fixed amounts that are payable by the buyer to the seller on the fixed rate payer payment dates. The fixed amount to be paid on each payment date can be specified in terms of a known currency amount or as an amount calculated on a formula basis by reference to a per annum fixed rate. The applicable business day convention and business day for adjusting any fixed rate payer payment date if it would otherwise fall on a day that is not a business day are those specified in the dateAdjustments element within the generalTerms component. ISDA 2003 Term:">
-
-    condition Choice:
-        required choice initialPayment, singlePayment
 
 type FixedAmountCalculation:
 
@@ -177,7 +152,10 @@ type GeneralTerms:
 
     effectiveDate fpml.consolidated.shared.AdjustableDate2 (0..1) <"The first day of the term of the trade. This day may be subject to adjustment in accordance with a business day convention. ISDA 2003 Term: Effective Date.">
     scheduledTerminationDate fpml.consolidated.shared.AdjustableDate2 (0..1) <"The scheduled date on which the credit protection will lapse. This day may be subject to adjustment in accordance with a business day convention. ISDA 2003 Term: Scheduled Termination Date.">
-    buyerSellerModel fpml.consolidated.shared.BuyerSellerModel (1..1)
+    buyerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party that buys this instrument, ie. pays for this instrument and receives the rights defined by it. See 2000 ISDA definitions Article 11.1 (b). In the case of FRAs this the fixed rate payer.">
+    buyerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that buys this instrument.">
+    sellerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party that sells (\"writes\") this instrument, i.e. that grants the rights defined by this instrument and in return receives a payment for it. See 2000 ISDA definitions Article 11.1 (a). In the case of FRAs this is the floating rate payer.">
+    sellerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that sells this instrument.">
     dateAdjustments fpml.consolidated.shared.BusinessDayAdjustments (0..1) <"ISDA 2003 Terms: Business Day and Business Day Convention.">
     referenceInformation ReferenceInformation (0..1) <"This element contains all the terms relevant to defining the reference entity and reference obligation(s).">
     indexReferenceInformation IndexReferenceInformation (0..1) <"This element contains all the terms relevant to defining the Credit DefaultSwap Index.">
@@ -185,9 +163,6 @@ type GeneralTerms:
     additionalTerm AdditionalTerm (0..*) <"This element is used for representing information contained in the Additional Terms field of the 2003 Master Credit Derivatives confirm.">
     substitution boolean (0..1) <"Value of this element set to \'true\' indicates that substitution is applicable.">
     modifiedEquityDelivery boolean (0..1) <"Value of this element set to \'true\' indicates that modified equity delivery is applicable.">
-
-    condition Choice:
-        required choice referenceInformation, indexReferenceInformation , basketReferenceInformation
 
 type IndexAnnexSource:
 
@@ -206,8 +181,9 @@ type IndexName:
 
 type IndexReferenceInformation: <"A type defining a Credit Default Swap Index.">
 
-    indexReferenceInformationSequence0 IndexReferenceInformationSequence0 (0..1)
-    indexReferenceInformationSequence1 IndexReferenceInformationSequence1 (0..1)
+    id string (0..1)
+    indexName IndexName (0..1) <"The name of the index expressed as a free format string. FpML does not define usage rules for this element.">
+    indexId IndexId (0..*) <"A CDS index identifier (e.g. RED pair code).">
     indexSeries int(min: 1) (0..1) <"A CDS index series identifier, e.g. 1, 2, 3 etc.">
     indexAnnexVersion int(min: 1) (0..1) <"A CDS index series version identifier, e.g. 1, 2, 3 etc.">
     indexAnnexDate zonedDateTime (0..1) <"A CDS index series annex date.">
@@ -215,30 +191,14 @@ type IndexReferenceInformation: <"A type defining a Credit Default Swap Index.">
     excludedReferenceEntity fpml.consolidated.shared.LegalEntity (0..*) <"Excluded reference entity.">
     tranche Tranche (0..1) <"This element contains CDS tranche terms.">
     settledEntityMatrix SettledEntityMatrix (0..1) <"Used to specify the Relevant Settled Entity Matrix when there are settled entities at the time of the trade.">
-    indexReferenceInformationSequence2 IndexReferenceInformationSequence2 (0..1)
-    id string (0..1)
-
-    condition Choice:
-        optional choice indexReferenceInformationSequence0, indexReferenceInformationSequence1
-
-type IndexReferenceInformationSequence0:
-
-    indexName IndexName (1..1) <"The name of the index expressed as a free format string. FpML does not define usage rules for this element.">
-    indexId IndexId (0..*) <"A CDS index identifier (e.g. RED pair code).">
-
-type IndexReferenceInformationSequence1:
-
-    indexId IndexId (1..*) <"A CDS index identifier (e.g. RED pair code).">
-
-type IndexReferenceInformationSequence2:
-
     indexFactor fpml.consolidated.shared.DecimalFraction (0..1) <"Index Factor is the index version factor or percent, expressed as an absolute decimal value between 0 and 1, that multiplied by the original notional amount yields the notional amount covered by the seller of protection.">
     seniority fpml.consolidated.shared.CreditSeniority (0..1) <"Seniority of debt instruments comprising the index.">
 
 type CreditEventIndexReferenceInformation: <"A type defining a Credit Default Swap Index after a Credit Event.">
 
-    creditEventIndexReferenceInformationSequence0 CreditEventIndexReferenceInformationSequence0 (0..1)
-    creditEventIndexReferenceInformationSequence1 CreditEventIndexReferenceInformationSequence1 (0..1)
+    id string (0..1)
+    indexName IndexName (0..1) <"The name of the index expressed as a free format string. FpML does not define usage rules for this element.">
+    indexId IndexId (0..*) <"A CDS index identifier (e.g. RED pair code).">
     indexSeries int(min: 1) (0..1) <"A CDS index series identifier, e.g. 1, 2, 3 etc.">
     indexAnnexVersion int(min: 1) (0..1) <"A CDS index series version identifier, e.g. 1, 2, 3 etc.">
     indexAnnexDate zonedDateTime (0..1) <"A CDS index series annex date.">
@@ -246,30 +206,16 @@ type CreditEventIndexReferenceInformation: <"A type defining a Credit Default Sw
     excludedReferenceEntity ReferenceInformation (0..*) <"Excluded reference entity.">
     tranche Tranche (0..1) <"This element contains CDS tranche terms.">
     settledEntityMatrix SettledEntityMatrix (0..1) <"Used to specify the Relevant Settled Entity Matrix when there are settled entities at the time of the trade.">
-    creditEventIndexReferenceInformationSequence2 CreditEventIndexReferenceInformationSequence2 (0..1)
-    indexReversionDate zonedDateTime (0..1) <"The date on which the index, affected by the credit event, is reversioned.">
-    id string (0..1)
-
-    condition Choice:
-        optional choice creditEventIndexReferenceInformationSequence0, creditEventIndexReferenceInformationSequence1
-
-type CreditEventIndexReferenceInformationSequence0:
-
-    indexName IndexName (1..1) <"The name of the index expressed as a free format string. FpML does not define usage rules for this element.">
-    indexId IndexId (0..*) <"A CDS index identifier (e.g. RED pair code).">
-
-type CreditEventIndexReferenceInformationSequence1:
-
-    indexId IndexId (1..*) <"A CDS index identifier (e.g. RED pair code).">
-
-type CreditEventIndexReferenceInformationSequence2:
-
     indexFactor fpml.consolidated.shared.DecimalFraction (0..1) <"Index Factor is the index version factor or percent, expressed as an absolute decimal value between 0 and 1, that multiplied by the original notional amount yields the notional amount covered by the seller of protection.">
     seniority fpml.consolidated.shared.CreditSeniority (0..1) <"Seniority of debt instruments comprising the index.">
+    indexReversionDate zonedDateTime (0..1) <"The date on which the index, affected by the credit event, is reversioned.">
 
 type InitialPayment extends fpml.consolidated.shared.PaymentBase:
 
-    payerReceiverModel fpml.consolidated.shared.PayerReceiverModel (1..1)
+    payerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party responsible for making the payments defined by this structure.">
+    payerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account responsible for making the payments defined by this structure.">
+    receiverPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A reference to the party that receives the payments corresponding to this structure.">
+    receiverAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that receives the payments corresponding to this structure.">
     adjustablePaymentDate zonedDateTime (0..1) <"A fixed payment date that shall be subject to adjustment in accordance with the applicable business day convention if it would otherwise fall on a day that is not a business day. The applicable business day convention and business day are those specified in the dateAdjustments element within the generalTerms component.">
     adjustedPaymentDate zonedDateTime (0..1) <"The adjusted payment date. This date should already be adjusted for any applicable business day convention. This component is not intended for use in trade confirmation but may be specified to allow the fee structure to also serve as a cashflow type component.">
     paymentAmount fpml.consolidated.shared.Money (1..1) <"A fixed payment amount.">
@@ -320,9 +266,6 @@ type Obligations:
     deliveryOfCommitments boolean (0..1) <"An obligation and deliverable obligation characteristic. Defined in the ISDA published Standard Terms Supplement for use with CDS Transactions on Leveraged Loans. ISDA 2003 Term: Delivery of Commitments.">
     continuity boolean (0..1) <"An obligation and deliverable obligation characteristic. Defined in the ISDA published Standard Terms Supplement for use with CDS Transactions on Leveraged Loans. ISDA 2003 Term: Continuity.">
 
-    condition Choice:
-        optional choice fullFaithAndCreditObLiability, generalFundObligationLiability , revenueObligationLiability
-
 type PCDeliverableObligationCharac:
 
     applicable boolean (0..1) <"Indicates whether the provision is applicable.">
@@ -340,17 +283,11 @@ type PeriodicPayment extends fpml.consolidated.shared.PaymentBase:
     floatingAmountCalculation FloatingAmountCalculation (0..1)
     adjustedPaymentDates AdjustedPaymentDates (0..*) <"An optional cashflow-like structure allowing the equivalent representation of the periodic fixed payments in terms of a series of adjusted payment dates and amounts. This is intended to support application integration within an organisation and is not intended for use in inter-firm communication or confirmations. ISDA 2003 Term: Fixed Rate Payer Payment Date">
 
-    condition Choice:
-        required choice fixedAmount, fixedAmountCalculation , floatingAmountCalculation
-
 type PhysicalSettlementPeriod:
 
     businessDaysNotSpecified boolean (0..1) <"An explicit indication that a number of business days are not specified and therefore ISDA fallback provisions should apply.">
     businessDays int(min: 0) (0..1) <"A number of business days. Its precise meaning is dependant on the context in which this element is used. ISDA 2003 Term: Business Day">
     maximumBusinessDays int(min: 0) (0..1) <"A maximum number of business days. Its precise meaning is dependant on the context in which this element is used. Intended to be used to limit a particular ISDA fallback provision.">
-
-    condition Choice:
-        one-of
 
 type PhysicalSettlementTerms extends fpml.consolidated.option.shared.SettlementTerms:
 
@@ -361,11 +298,11 @@ type PhysicalSettlementTerms extends fpml.consolidated.option.shared.SettlementT
 
 type ProtectionTerms:
 
+    id string (0..1)
     calculationAmount fpml.consolidated.shared.Money (1..1) <"The notional amount of protection coverage. ISDA 2003 Term: Floating Rate Payer Calculation Amount">
     creditEvents fpml.consolidated.option.shared.CreditEvents (0..1) <"This element contains all the ISDA terms relating to credit events.">
     obligations Obligations (0..1) <"The underlying obligations of the reference entity on which you are buying or selling protection. The credit events Failure to Pay, Obligation Acceleration, Obligation Default, Restructuring, Repudiation/Moratorium are defined with respect to these obligations. ISDA 2003 Term:">
     floatingAmountEvents FloatingAmountEvents (0..1) <"This element contains the ISDA terms relating to the floating rate payment events and the implied additional fixed payments, applicable to the credit derivatives transactions on mortgage-backed securities with pay-as-you-go or physical settlement.">
-    id string (0..1)
 
 type ProtectionTermsReference extends fpml.consolidated.shared.Reference: <"Reference to protectionTerms component.">
 
@@ -382,9 +319,6 @@ type ReferenceInformation:
     referencePolicy boolean (0..1) <"Applicable to the transactions on mortgage-backed security, which can make use of a reference policy. Presence of the element with value set to \'true\' indicates that the reference policy is applicable; absence implies that it is not.">
     securedList boolean (0..1) <"With respect to any day, the list of Syndicated Secured Obligations of the Designated Priority of the Reference Entity published by Markit Group Limited or any successor thereto appointed by the Specified Dealers (the \"Secured List Publisher\") on or most recently before such day, which list is currently available at [http://www.markit.com]. ISDA 2003 Term: Relevant Secured List.">
 
-    condition Choice:
-        optional choice referenceObligation, noReferenceObligation , unknownReferenceObligation
-
 type ReferenceObligation:
 
     bond fpml.consolidated.asset.Bond (0..1)
@@ -396,19 +330,10 @@ type ReferenceObligation:
     referenceObligationChoice ReferenceObligationChoice (0..*)
     standardReferenceObligation boolean (0..1) <"Indicates if the reference obligation is a Standard Reference Obligation. ISDA 2014 Term: Standard Reference Obligation.">
 
-    condition Choice0:
-        required choice bond, convertibleBond , mortgage , loan
-
-    condition Choice1:
-        optional choice primaryObligor, primaryObligorReference
-
 type ReferenceObligationChoice:
 
     guarantor fpml.consolidated.shared.LegalEntity (0..1) <"The party that guarantees by way of a contractual arrangement to pay the debts of an obligor if the obligor is unable to make the required payments itself. ISDA 2003 Term: Guarantor">
     guarantorReference fpml.consolidated.shared.LegalEntityReference (0..1) <"A pointer style reference to a reference entity defined elsewhere in the document. Used when the reference entity is the guarantor.">
-
-    condition Choice:
-        optional choice guarantor, guarantorReference
 
 type ReferencePair:
 
@@ -416,9 +341,6 @@ type ReferencePair:
     referenceObligation ReferenceObligation (0..1) <"The Reference Obligation is a financial instrument that is either issued or guaranteed by the reference entity. It serves to clarify the precise reference entity protection is being offered upon, and its legal position with regard to other related firms (parents/subsidiaries). Furthermore the Reference Obligation is ALWAYS deliverable and establishes the Pari Passu ranking (as the deliverable bonds must rank equal to the reference obligation). ISDA 2003 Term: Reference Obligation">
     noReferenceObligation boolean (0..1) <"Used to indicate that there is no Reference Obligation associated with this Credit Default Swap and that there will never be one.">
     entityType EntityType (0..1) <"Defines the reference entity types corresponding to a list of types in the ISDA First to Default documentation.">
-
-    condition Choice:
-        optional choice referenceObligation, noReferenceObligation
 
 type ReferencePool: <"This type contains all the reference pool items to define the reference entity and reference obligation(s) in the basket.">
 
@@ -465,14 +387,3 @@ type ValuationDate:
 
     singleValuationDate SingleValuationDate (0..1) <"Where single valuation date is specified as being applicable for cash settlement, this element specifies the number of business days after satisfaction of all conditions to settlement when such valuation date occurs. ISDA 2003 Term: Single Valuation Date">
     multipleValuationDates MultipleValuationDates (0..1) <"Where multiple valuation dates are specified as being applicable for cash settlement, this element specifies (a) the number of applicable valuation dates, and (b) the number of business days after satisfaction of all conditions to settlement when the first such valuation date occurs, and (c) the number of business days thereafter of each successive valuation date. ISDA 2003 Term: Multiple Valuation Dates">
-
-    condition Choice:
-        one-of
-
-type FixedRecoveryModel:
-
-    cashSettlementAmount fpml.consolidated.shared.Money (0..1) <"The amount paid by the seller to the buyer for cash settlement on the cash settlement date. If not otherwise specified, would typically be calculated as 100 (or the Reference Price) minus the price of the Reference Obligation (all expressed as a percentage) times Floating Rate Payer Calculation Amount. ISDA 2003 Term: Cash Settlement Amount.">
-    recoveryFactor fpml.consolidated.shared.DecimalFraction (0..1) <"Used for fixed recovery, specifies the recovery level, determined at contract inception, to be applied on a default. Used to calculate the amount paid by the seller to the buyer for cash settlement on the cash settlement date. Amount calculation is (1 minus the Recovery Factor) multiplied by the Floating Rate Payer Calculation Amount. The currency will be derived from the Floating Rate Payer Calculation Amount.">
-
-    condition Choice:
-        one-of

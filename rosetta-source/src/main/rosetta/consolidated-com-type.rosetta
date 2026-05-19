@@ -5,7 +5,9 @@ type BullionPhysicalLeg extends PhysicalForwardLeg: <"The physical leg of a Comm
 
     bullionType fpml.consolidated.fpmlenum.BullionTypeEnum (0..1) <"The type of Bullion underlying a Bullion Transaction.">
     deliveryLocation BullionDeliveryLocation (0..1) <"The physical delivery location for the transaction.">
-    commodityFixedPhysicalQuantityModel CommodityFixedPhysicalQuantityModel (1..1)
+    physicalQuantity CommodityNotionalQuantity (0..1) <"The Quantity per Delivery Period.">
+    physicalQuantitySchedule CommodityPhysicalQuantitySchedule (0..1) <"Allows the documentation of a shaped quantity trade where the quantity changes over the life of the transaction.">
+    totalPhysicalQuantity UnitQuantity (0..1) <"The Total Quantity of the commodity to be delivered.">
     settlementDate fpml.consolidated.shared.AdjustableOrRelativeDate (0..1) <"Date on which the bullion will settle.">
 
 type CoalPhysicalLeg extends PhysicalSwapLeg: <"Physically settled coal leg. Physically settled leg of a physically settled coal transaction.">
@@ -18,35 +20,45 @@ type CoalPhysicalLeg extends PhysicalSwapLeg: <"Physically settled coal leg. Phy
 type CommodityBasketOption extends fpml.consolidated.option.shared.Option: <"Defines a commodity basket option product.">
 
     optionType fpml.consolidated.fpmlenum.PutCallEnum (1..1) <"The type of option transaction.">
-    commodityBasketOptionFeaturesModel CommodityBasketOptionFeaturesModel (0..1)
-    commodityBasketModel CommodityBasketModel (1..1)
+    effectiveDate fpml.consolidated.shared.AdjustableOrRelativeDate (0..1) <"The effective date of the Commodity Option Transaction. Note that the Termination/Expiration Date should be specified in expirationDate within the CommodityAmericanExercise type or the CommodityEuropeanExercise type, as applicable.">
+    terminationDate fpml.consolidated.shared.AdjustableOrRelativeDate (0..1) <"Specifies the termination date of the Commodity Option Transaction. In some confirmations this will be indicated as the second date in \"Option Term\" or \"Term\". Note: If provided, terminationDate should not be before specified expirationDate within the CommodityAmericanExercise type or the CommodityEuropeanExercise type.">
+    calculationPeriodsSchedule CommodityCalculationPeriodsSchedule (0..1) <"A parametric representation of the Calculation Periods of the Commodity Option Transaction.">
+    calculationPeriods fpml.consolidated.shared.AdjustableDates (0..1) <"An absolute representation of the Calculation Period start dates of the Commodity Option Transaction.">
+    notionalQuantityBasket CommodityBasketByNotional (0..1)
+    notionalAmountBasket CommodityBasketByPercentage (0..1)
     strikePriceUnderlyingReference StrikePriceUnderlyingReference (0..1)
     strikePriceBasketReference StrikePriceBasketReference (0..1)
-    commodityStrikePriceModel CommodityStrikePriceModel (0..1)
-    commodityFloatingStrikePriceModel CommodityFloatingStrikePriceModel (0..1)
+    strikePricePerUnit fpml.consolidated.shared.NonNegativeMoney (0..1) <"The currency amount of the strike price per unit.">
+    strikePricePerUnitSchedule CommodityStrikeSchedule (0..1)
+    floatingStrikePricePerUnit FloatingStrikePrice (0..1) <"The currency amount of the strike price per unit.">
+    floatingStrikePricePerUnitSchedule CommodityCalculationPeriodsSchedule (0..1)
     exercise CommodityExerciseBasket (1..1) <"The parameters for defining how the commodity option can be exercised and how it is settled.">
     premium CommodityPremium (1..*) <"The option premium payable by the buyer to the seller.">
-    commodityContentModel CommodityContentModel (0..1)
-
-    condition Choice0:
-        optional choice strikePriceUnderlyingReference, strikePriceBasketReference
-
-    condition Choice1:
-        required choice commodityStrikePriceModel, commodityFloatingStrikePriceModel
+    commonPricing boolean (0..1) <"If Common Pricing is elected (“true”) for a Transaction with referencing more than one Commodity Reference Price then no date will be a Pricing Date unless such a date is a day on which all Commodity Reference Prices are scheduled to be published.">
+    marketDisruption CommodityMarketDisruption (0..1) <"Contains contract terms related to triggers and responses to market disruptions as defined in the 1993 or 2005 Commodity Definitions.">
+    settlementDisruption fpml.consolidated.fpmlenum.CommodityBullionSettlementDisruptionEnum (0..1) <"Describes contract terms related to the consequences of Bullion Settlement Disruption Events.">
+    rounding fpml.consolidated.shared.Rounding (0..1) <"Rounding direction and precision for amounts.">
 
 type CommodityDigitalOption extends fpml.consolidated.option.shared.Option: <"Defines a commodity digital option product. Defines the digital commodity option product type. Digital options exercise when a barrier is breached and are financially settled. The \'commodityDigitalOption\' type is an extension of the \'commodityOption\' product.">
 
     optionType fpml.consolidated.fpmlenum.PutCallEnum (1..1) <"The type of option transaction.">
     commodity fpml.consolidated.asset.Commodity (1..1) <"Specifies the underlying instrument. Usual content is an ISDA Commodity Reference Price Name. The \'commodity\' underlyer component is specified using a reference to the \'commodity\' asset (see description above at the Commodity Underlyer section).">
-    commodityDigitalOptionFeaturesModel CommodityDigitalOptionFeaturesModel (1..1)
+    effectiveDate fpml.consolidated.shared.AdjustableOrRelativeDate (0..1) <"The effective date of the Commodity Option Transaction. Note that the Termination/Expiration Date should be specified in expirationDate within the CommodityAmericanExercise type or the CommodityEuropeanExercise type, as applicable.">
+    terminationDate fpml.consolidated.shared.AdjustableOrRelativeDate (0..1) <"Specifies the termination date of the Commodity Option Transaction. In some confirmations this will be indicated as the second date in \"Option Term\" or \"Term\". Note: If provided, terminationDate should not be before specified expirationDate within the CommodityAmericanExercise type or the CommodityEuropeanExercise type.">
+    calculationPeriodsSchedule CommodityCalculationPeriodsSchedule (0..1) <"A parametric representation of the Calculation Periods of the Commodity Option Transaction.">
+    calculationPeriods fpml.consolidated.shared.AdjustableDates (0..1) <"An absolute representation of the Calculation Period start dates of the Commodity Option Transaction.">
+    pricingDates CommodityPricingDates (0..1) <"The dates on which the option will price.">
+    averagingMethod fpml.consolidated.fpmlenum.AveragingMethodEnum (0..1) <"The Method of Averaging if there is more than one Pricing Date.">
+    digital CommodityDigital (0..1) <"The barrier and cash payout features of the digital option.">
     notionalAmount fpml.consolidated.shared.NotionalAmount (0..1) <"Volume contracted when volume is specified as a currency-denominated amount.">
-    commodityDigitalOptionSequence CommodityDigitalOptionSequence (0..1)
+    notionalQuantity CommodityNotionalQuantity (0..1) <"The volume contracted when the volume is specified as a quantity of commodity.">
+    totalNotionalQuantity number (0..1)
     exercise CommodityDigitalExercise (0..1) <"The parameters for defining how the commodity option can be exercised and how it is settled.">
     premium CommodityPremium (0..*) <"The option premium payable by the buyer to the seller.">
-    commodityContentModel CommodityContentModel (0..1)
-
-    condition Choice:
-        required choice notionalAmount, commodityDigitalOptionSequence
+    commonPricing boolean (0..1) <"If Common Pricing is elected (“true”) for a Transaction with referencing more than one Commodity Reference Price then no date will be a Pricing Date unless such a date is a day on which all Commodity Reference Prices are scheduled to be published.">
+    marketDisruption CommodityMarketDisruption (0..1) <"Contains contract terms related to triggers and responses to market disruptions as defined in the 1993 or 2005 Commodity Definitions.">
+    settlementDisruption fpml.consolidated.fpmlenum.CommodityBullionSettlementDisruptionEnum (0..1) <"Describes contract terms related to the consequences of Bullion Settlement Disruption Events.">
+    rounding fpml.consolidated.shared.Rounding (0..1) <"Rounding direction and precision for amounts.">
 
 type CommodityForward extends fpml.consolidated.shared.Product: <"Defines a commodity forward product. Commodity Forward">
 
@@ -54,34 +66,65 @@ type CommodityForward extends fpml.consolidated.shared.Product: <"Defines a comm
     fixedLeg NonPeriodicFixedPriceLeg (0..1) <"The fixed leg of a Commodity Forward Transaction.">
     averagePriceLeg AveragePriceLeg (0..1) <"Specifies the calculated floating price leg of a Commodity Forward Transaction.">
     physicalCommodityForwardLeg PhysicalLegBase (0..1)
-    commodityContentModel CommodityContentModel (0..1)
-
-    condition Choice:
-        optional choice fixedLeg, averagePriceLeg
+    commonPricing boolean (0..1) <"If Common Pricing is elected (“true”) for a Transaction with referencing more than one Commodity Reference Price then no date will be a Pricing Date unless such a date is a day on which all Commodity Reference Prices are scheduled to be published.">
+    marketDisruption CommodityMarketDisruption (0..1) <"Contains contract terms related to triggers and responses to market disruptions as defined in the 1993 or 2005 Commodity Definitions.">
+    settlementDisruption fpml.consolidated.fpmlenum.CommodityBullionSettlementDisruptionEnum (0..1) <"Describes contract terms related to the consequences of Bullion Settlement Disruption Events.">
+    rounding fpml.consolidated.shared.Rounding (0..1) <"Rounding direction and precision for amounts.">
 
 type CommodityInterestLeg extends CommodityPerformanceSwapLeg: <"Specifies the fixed payments of a commodity performance swap. Sometimes also referred to as the fee. A type describing the interest rate leg (a.k.a fee leg) of the commodity performance swap.">
 
-    commodityCalculationPeriodsModel CommodityCalculationPeriodsModel (1..1)
-    commodityPaymentDatesModel CommodityPaymentDatesModel (1..1)
+    calculationDates fpml.consolidated.shared.AdjustableDates (0..1) <"The Calculation Period dates for this leg of the trade where the Calculation Periods are all one day long. Only dates explicitly included determine the Calculation Periods and there is a Calculation Period for each date specified. As such one-day Calculation Period are typical a physically-settled emissions or metals trades it is expected that this element will not be used in performance swaps.">
+    calculationPeriods fpml.consolidated.shared.AdjustableDates (0..1) <"The Calculation Period start dates for this leg of the swap. This type is only intended to be used if the Calculation Periods differ on each leg. If Calculation Periods mirror another leg, then the calculationPeriodsReference element should be used to point to the Calculation Periods on that leg - or the calculationPeriodsScheduleReference can be used to point to the Calculation Periods Schedule for that leg.">
+    calculationPeriodsSchedule CommodityCalculationPeriodsSchedule (0..1) <"The Calculation Periods for this leg of the swap. This type is only intended to be used if the Calculation Periods differ on each leg. If Calculation Periods mirror another leg, then the calculationPeriodsReference element should be used to point to the Calculation Periods on the other leg - or the calculationPeriodsScheduleReference can be used to point to the Calculation Periods Schedule for that leg.">
+    calculationPeriodsReference CalculationPeriodsReference (0..1) <"A pointer style reference to the Calculation Periods defined on another leg.">
+    calculationPeriodsScheduleReference CalculationPeriodsScheduleReference (0..1) <"A pointer style reference to the Calculation Periods Schedule defined on another leg.">
+    calculationPeriodsDatesReference CalculationPeriodsDatesReference (0..1) <"A pointer style reference to single-day-duration Calculation Periods defined on another leg.">
+    relativePaymentDates CommodityRelativePaymentDates (0..1) <"The Payment Dates of the trade relative to the Calculation Periods.">
+    paymentDates fpml.consolidated.shared.AdjustableDatesOrRelativeDateOffset (0..1) <"Dates on which payments will be made.">
+    masterAgreementPaymentDates boolean (0..1) <"If present and true indicates that the Payment Date(s) are specified in the relevant master agreement.">
     notionalAmount CommodityNotionalAmount (0..1) <"Specifies the notional amount of a commodity performance type swap. It is a currency-denominated value (i.e. price-times-quantity). In confirmations is also referred to as the Notional Quantity (sic, expressed in currency units), Notional Amount, Equity Notional Amount and, in the case of reinvesting swaps, Initial Notional Amount.">
     notionalAmountReference CommodityNotionalAmountReference (0..1) <"A reference to the Return swap notional amount defined in another leg of the return swap.">
     commodityFixedInterestCalculation CommodityFixedInterestCalculation (0..1) <"Specifies the interest payment amount on a return swap. This amount may be referred to as the interest amount or the fee amount. Used when the interest (a.k.a. \"Fee\") is calculated very simply: notional amount * (rate * (number of days in Calculation Period / number of days assumed in the the year)).">
 
-    condition Choice:
-        optional choice notionalAmount, notionalAmountReference
-
 type CommodityOption extends fpml.consolidated.shared.Product: <"Defines a commodity option product. The product support for financially-settled exercises or exercise into physical forward contracts written on precious and non-precious metals. options in FpML is based on the creation of a \'commodityOption\' product. The product references the \'commodity\' underlyer in order to support the underlying asset of the option. Defines a commodity option product type. The product support for financially-settled exercises or exercise into physical forward contracts written on precious and non-precious metals. options in FpML is based on the creation of a \'commodityOption\' product. The product references the \'commodity\' underlyer in order to support the underlying asset of the option.">
 
-    buyerSellerModel fpml.consolidated.shared.BuyerSellerModel (1..1)
+    buyerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party that buys this instrument, ie. pays for this instrument and receives the rights defined by it. See 2000 ISDA definitions Article 11.1 (b). In the case of FRAs this the fixed rate payer.">
+    buyerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that buys this instrument.">
+    sellerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party that sells (\"writes\") this instrument, i.e. that grants the rights defined by this instrument and in return receives a payment for it. See 2000 ISDA definitions Article 11.1 (a). In the case of FRAs this is the floating rate payer.">
+    sellerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that sells this instrument.">
     optionType fpml.consolidated.fpmlenum.PutCallEnum (1..1) <"The type of option transaction.">
-    commodityFinancialOptionModel CommodityFinancialOptionModel (0..1)
-    commodityPhysicalOptionModel CommodityPhysicalOptionModel (0..1)
-    commodityWeatherOptionModel CommodityWeatherOptionModel (0..1)
+    commodity fpml.consolidated.asset.Commodity (0..1) <"Specifies the underlying instrument. Usual content is an ISDA Commodity Reference Price Name. The \'commodity\' underlyer component is specified using a reference to the \'commodity\' asset (see description above at the Commodity Underlyer section).">
+    effectiveDate fpml.consolidated.shared.AdjustableOrRelativeDate (0..1) <"The effective date of the Commodity Option Transaction. Note that the Termination/Expiration Date should be specified in expirationDate within the CommodityAmericanExercise type or the CommodityEuropeanExercise type, as applicable.">
+    terminationDate fpml.consolidated.shared.AdjustableOrRelativeDate (0..1) <"Specifies the termination date of the Commodity Option Transaction. In some confirmations this will be indicated as the second date in \"Option Term\" or \"Term\". Note: If provided, terminationDate should not be before specified expirationDate within the CommodityAmericanExercise type or the CommodityEuropeanExercise type.">
+    calculationPeriodsSchedule CommodityCalculationPeriodsSchedule (0..1) <"A parametric representation of the Calculation Periods of the Commodity Option Transaction.">
+    calculationPeriods fpml.consolidated.shared.AdjustableDates (0..1) <"An absolute representation of the Calculation Period start dates of the Commodity Option Transaction.">
+    pricingDates CommodityPricingDates (0..1) <"The dates on which the option will price.">
+    averagingMethod fpml.consolidated.fpmlenum.AveragingMethodEnum (0..1) <"The Method of Averaging if there is more than one Pricing Date.">
+    barrier CommodityBarrier (0..1) <"Defines a commodity option barrier product feature.">
+    notionalQuantitySchedule CommodityNotionalQuantitySchedule (0..1) <"Allows the documentation of a shaped notional trade where the notional changes over the life of the transaction.">
+    notionalQuantity CommodityNotionalQuantity (0..1) <"The Notional Quantity.">
+    settlementPeriodsNotionalQuantity CommoditySettlementPeriodsNotionalQuantity (0..*) <"For an electricity transaction, the Notional Quantity for a one or more groups of Settlement Periods to which the Notional Quantity is based. If the schedule differs for different groups of Settlement Periods, this element should be repeated.">
+    totalNotionalQuantity number (0..1) <"The Total Notional Quantity.">
+    quantityReference QuantityReference (0..1) <"A pointer style reference to a quantity defined on another leg.">
+    exercise CommodityExercise (0..1) <"The parameters for defining how the commodity option can be exercised and how it is settled.">
+    strikePricePerUnit fpml.consolidated.shared.NonNegativeMoney (0..1) <"The currency amount of the strike price per unit.">
+    strikePricePerUnitSchedule CommodityStrikeSchedule (0..1)
+    floatingStrikePricePerUnit FloatingStrikePrice (0..1) <"The currency amount of the strike price per unit.">
+    floatingStrikePricePerUnitSchedule CommodityCalculationPeriodsSchedule (0..1)
+    commoditySwap CommoditySwap (0..1) <"DEPRECATED. Defines a commodity swap product.">
+    commodityForward CommodityForward (0..1)
+    physicalExercise CommodityPhysicalExercise (0..1) <"The parameters for defining how the commodity option can be exercised into a physical transaction.">
+    weatherCalculationPeriods WeatherCalculationPeriods (0..1)
+    weatherCalculationPeriodsReference CalculationPeriodsReference (0..1)
+    weatherNotionalAmount fpml.consolidated.shared.NonNegativeMoney (0..1)
+    weatherIndexStrikeLevel WeatherIndex (0..1) <"Weather Index strike price level is specified in terms of weather index units (e.g. 1 Days, 3 Inches, etc.)">
+    calculation WeatherLegCalculation (0..1) <"Contains parameters which figure in the calculation of payments on a Weather Index Option.">
+    weatherIndexData WeatherIndexData (0..1) <"Specifies where the data (e.g. CPD) have been collected, an actual physical reference point (weather station) and various fall back arrangements.">
     premium CommodityPremium (0..*) <"The option premium payable by the buyer to the seller.">
-    commodityContentModel CommodityContentModel (0..1)
-
-    condition Choice:
-        optional choice commodityFinancialOptionModel, commodityPhysicalOptionModel , commodityWeatherOptionModel
+    commonPricing boolean (0..1) <"If Common Pricing is elected (“true”) for a Transaction with referencing more than one Commodity Reference Price then no date will be a Pricing Date unless such a date is a day on which all Commodity Reference Prices are scheduled to be published.">
+    marketDisruption CommodityMarketDisruption (0..1) <"Contains contract terms related to triggers and responses to market disruptions as defined in the 1993 or 2005 Commodity Definitions.">
+    settlementDisruption fpml.consolidated.fpmlenum.CommodityBullionSettlementDisruptionEnum (0..1) <"Describes contract terms related to the consequences of Bullion Settlement Disruption Events.">
+    rounding fpml.consolidated.shared.Rounding (0..1) <"Rounding direction and precision for amounts.">
 
 type CommodityPerformanceSwap extends CommodityPerformanceSwapBase: <"A swap the payoff of which is linked to the performance of the underlying asset. Examples of potential performance features are return, correlation, covariance, variance and volatility. A type describing a commodity performance swap in which one leg pays out based on the return on a reference commodity index or commodity reference price.">
 
@@ -89,47 +132,68 @@ type CommodityPerformanceSwap extends CommodityPerformanceSwapBase: <"A swap the
 
 type CommodityReturnLeg extends CommodityPerformanceSwapLeg: <"Specifies the return payments of a commodity return swap. There can be one or two return legs. In simple return swaps there is a return leg and an interest (a.k.a. \'fee\') leg. In the case of a outperformance swap there are two return legs: the return performance of two commodity underlyers are swapped. In the case of a fully-funded return swap there is no financing component and, therefore, only a single return leg is specified. A type describing the return leg of a commodity return swap.">
 
-    commodityCalculationPeriodsModel CommodityCalculationPeriodsModel (1..1)
-    commodityPaymentDatesModel CommodityPaymentDatesModel (1..1)
-    commodityUnderlyerChoiceModel CommodityUnderlyerChoiceModel (1..1)
+    calculationDates fpml.consolidated.shared.AdjustableDates (0..1) <"The Calculation Period dates for this leg of the trade where the Calculation Periods are all one day long. Only dates explicitly included determine the Calculation Periods and there is a Calculation Period for each date specified. As such one-day Calculation Period are typical a physically-settled emissions or metals trades it is expected that this element will not be used in performance swaps.">
+    calculationPeriods fpml.consolidated.shared.AdjustableDates (0..1) <"The Calculation Period start dates for this leg of the swap. This type is only intended to be used if the Calculation Periods differ on each leg. If Calculation Periods mirror another leg, then the calculationPeriodsReference element should be used to point to the Calculation Periods on that leg - or the calculationPeriodsScheduleReference can be used to point to the Calculation Periods Schedule for that leg.">
+    calculationPeriodsSchedule CommodityCalculationPeriodsSchedule (0..1) <"The Calculation Periods for this leg of the swap. This type is only intended to be used if the Calculation Periods differ on each leg. If Calculation Periods mirror another leg, then the calculationPeriodsReference element should be used to point to the Calculation Periods on the other leg - or the calculationPeriodsScheduleReference can be used to point to the Calculation Periods Schedule for that leg.">
+    calculationPeriodsReference CalculationPeriodsReference (0..1) <"A pointer style reference to the Calculation Periods defined on another leg.">
+    calculationPeriodsScheduleReference CalculationPeriodsScheduleReference (0..1) <"A pointer style reference to the Calculation Periods Schedule defined on another leg.">
+    calculationPeriodsDatesReference CalculationPeriodsDatesReference (0..1) <"A pointer style reference to single-day-duration Calculation Periods defined on another leg.">
+    relativePaymentDates CommodityRelativePaymentDates (0..1) <"The Payment Dates of the trade relative to the Calculation Periods.">
+    paymentDates fpml.consolidated.shared.AdjustableDatesOrRelativeDateOffset (0..1) <"Dates on which payments will be made.">
+    masterAgreementPaymentDates boolean (0..1) <"If present and true indicates that the Payment Date(s) are specified in the relevant master agreement.">
+    commodity fpml.consolidated.asset.Commodity (0..1) <"Describes the swap\'s underlyer when it has only one asset component.">
+    commodityBasket CommodityBasket (0..1) <"Describes the swap\'s underlyer when it has multiple asset components.">
     notionalAmount CommodityNotionalAmount (0..1) <"Specifies the notional amount of a commodity performance type swap. It is a currency-denominated value (i.e. price-times-quantity). In confirmations is also referred to as the Notional Quantity (sic, expressed in currency units), Notional Amount, Equity Notional Amount and, in the case of reinvesting swaps, Initial Notional Amount.">
     notionalAmountReference CommodityNotionalAmountReference (0..1) <"A reference to the Return swap notional amount defined in another leg of the return swap.">
     commodityReturnCalculation CommodityReturnCalculation (0..1) <"Specifies, in relation to each Payment Date, the return percentage which, when multiplied times the notional amount is the amount to which the Payment Date relates.">
-
-    condition Choice:
-        optional choice notionalAmount, notionalAmountReference
 
 type PhysicalLeg extends PhysicalLegBase: <"Physical Commodity Leg.">
 
 type CommoditySwap extends fpml.consolidated.shared.Product: <"Defines a commodity swap product. The commodity swap product model is designed to support fixed-float swaps, float-float swaps, fixed vs. physical swaps, float vs. physical swaps as well as, weather specific swaps. Its design is fully compatible with other FpML products and the product reuses standard common types.">
 
-    commoditySwapDetailsModel CommoditySwapDetailsModel (1..1)
+    effectiveDate fpml.consolidated.shared.AdjustableOrRelativeDate (1..1) <"Specifies the effective date of this leg of the swap. When defined in relation to a date specified somewhere else in the document (through the relativeDate component), this element will typically point to the effective date of the other leg of the swap.">
+    terminationDate fpml.consolidated.shared.AdjustableOrRelativeDate (1..1) <"Specifies the termination date of this leg of the swap. When defined in relation to a date specified somewhere else in the document (through the relativeDate component), this element will typically point to the termination date of the other leg of the swap.">
+    settlementCurrency fpml.consolidated.shared.IdentifiedCurrency (0..1) <"The currency into which the Commodity Swap Transaction will settle. If this is not the same as the currency in which the Commodity Reference Price is quoted on a given floating leg of the Commodity Swap Transaction, then an FX rate should also be specified for that leg.">
+    commoditySwapLeg CommodityLeg (0..*)
+    weatherLeg WeatherLeg (0..2) <"A weather leg element of a Commodity Swap defines Weather Index Swap transactions. Weather Index Swap transactions are OTC derivative transactions which settle financially based on an index calculated from observations of temperature, precipitation and other weather-related measurements at weather stations throughout the world. Sub-Annex C of the 2005 ISDA Commodity Definitions provides definitions and terms for a number of types of weather indices. These indices include: HDD (heating degree days), CDD (cooling degree days), CPD (critical precipitation days). Weather Index Swap transactions result in a cash flow to one of the two counterparties each Calculation Period depending on the relationship between the Settlement Level and the Weather Index Level. A Weather Index swap transaction always consists of a commodity swap element as a parent to two weatherLeg elements.">
+    commonPricing boolean (0..1) <"If Common Pricing is elected (“true”) for a Transaction with referencing more than one Commodity Reference Price then no date will be a Pricing Date unless such a date is a day on which all Commodity Reference Prices are scheduled to be published.">
+    marketDisruption CommodityMarketDisruption (0..1) <"Contains contract terms related to triggers and responses to market disruptions as defined in the 1993 or 2005 Commodity Definitions.">
+    settlementDisruption fpml.consolidated.fpmlenum.CommodityBullionSettlementDisruptionEnum (0..1) <"Describes contract terms related to the consequences of Bullion Settlement Disruption Events.">
+    rounding fpml.consolidated.shared.Rounding (0..1) <"Rounding direction and precision for amounts.">
 
 type CommoditySwaption extends fpml.consolidated.shared.Product: <"Defines a commodity swaption product Commodity Swaption.">
 
-    buyerSellerModel fpml.consolidated.shared.BuyerSellerModel (1..1)
+    buyerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party that buys this instrument, ie. pays for this instrument and receives the rights defined by it. See 2000 ISDA definitions Article 11.1 (b). In the case of FRAs this the fixed rate payer.">
+    buyerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that buys this instrument.">
+    sellerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party that sells (\"writes\") this instrument, i.e. that grants the rights defined by this instrument and in return receives a payment for it. See 2000 ISDA definitions Article 11.1 (a). In the case of FRAs this is the floating rate payer.">
+    sellerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that sells this instrument.">
     optionType fpml.consolidated.fpmlenum.PutCallEnum (1..1) <"The type of option transaction.">
     commoditySwap CommoditySwaptionUnderlying (1..1) <"The underlying commodity swap definiton.">
     physicalExercise CommodityPhysicalExercise (0..1) <"The parameters for defining how the commodity option can be exercised into a physical transaction.">
     premium CommodityPremium (0..1) <"The option premium payable by the buyer to the seller.">
-    commodityContentModel CommodityContentModel (0..1)
+    commonPricing boolean (0..1) <"If Common Pricing is elected (“true”) for a Transaction with referencing more than one Commodity Reference Price then no date will be a Pricing Date unless such a date is a day on which all Commodity Reference Prices are scheduled to be published.">
+    marketDisruption CommodityMarketDisruption (0..1) <"Contains contract terms related to triggers and responses to market disruptions as defined in the 1993 or 2005 Commodity Definitions.">
+    settlementDisruption fpml.consolidated.fpmlenum.CommodityBullionSettlementDisruptionEnum (0..1) <"Describes contract terms related to the consequences of Bullion Settlement Disruption Events.">
+    rounding fpml.consolidated.shared.Rounding (0..1) <"Rounding direction and precision for amounts.">
 
 type CommodityVarianceLeg extends CommodityPerformanceSwapLeg: <"Specifies the variance payments of a commodity variance swap. A type describing the variance leg of a commodity variance swap.">
 
-    commodityCalculationPeriodsModel CommodityCalculationPeriodsModel (1..1)
-    commodityPaymentDatesModel CommodityPaymentDatesModel (1..1)
-    commodityUnderlyerChoiceModel CommodityUnderlyerChoiceModel (1..1)
+    calculationDates fpml.consolidated.shared.AdjustableDates (0..1) <"The Calculation Period dates for this leg of the trade where the Calculation Periods are all one day long. Only dates explicitly included determine the Calculation Periods and there is a Calculation Period for each date specified. As such one-day Calculation Period are typical a physically-settled emissions or metals trades it is expected that this element will not be used in performance swaps.">
+    calculationPeriods fpml.consolidated.shared.AdjustableDates (0..1) <"The Calculation Period start dates for this leg of the swap. This type is only intended to be used if the Calculation Periods differ on each leg. If Calculation Periods mirror another leg, then the calculationPeriodsReference element should be used to point to the Calculation Periods on that leg - or the calculationPeriodsScheduleReference can be used to point to the Calculation Periods Schedule for that leg.">
+    calculationPeriodsSchedule CommodityCalculationPeriodsSchedule (0..1) <"The Calculation Periods for this leg of the swap. This type is only intended to be used if the Calculation Periods differ on each leg. If Calculation Periods mirror another leg, then the calculationPeriodsReference element should be used to point to the Calculation Periods on the other leg - or the calculationPeriodsScheduleReference can be used to point to the Calculation Periods Schedule for that leg.">
+    calculationPeriodsReference CalculationPeriodsReference (0..1) <"A pointer style reference to the Calculation Periods defined on another leg.">
+    calculationPeriodsScheduleReference CalculationPeriodsScheduleReference (0..1) <"A pointer style reference to the Calculation Periods Schedule defined on another leg.">
+    calculationPeriodsDatesReference CalculationPeriodsDatesReference (0..1) <"A pointer style reference to single-day-duration Calculation Periods defined on another leg.">
+    relativePaymentDates CommodityRelativePaymentDates (0..1) <"The Payment Dates of the trade relative to the Calculation Periods.">
+    paymentDates fpml.consolidated.shared.AdjustableDatesOrRelativeDateOffset (0..1) <"Dates on which payments will be made.">
+    masterAgreementPaymentDates boolean (0..1) <"If present and true indicates that the Payment Date(s) are specified in the relevant master agreement.">
+    commodity fpml.consolidated.asset.Commodity (0..1) <"Describes the swap\'s underlyer when it has only one asset component.">
+    commodityBasket CommodityBasket (0..1) <"Describes the swap\'s underlyer when it has multiple asset components.">
     notionalAmount CommodityNotionalAmount (0..1) <"Specifies the notional amount of a commodity performance type swap. It is a currency-denominated value (i.e. price-times-quantity). In confirmations is also referred to as the Notional Quantity (sic, expressed in currency units), Notional Amount, Equity Notional Amount and, in the case of reinvesting swaps, Initial Notional Amount.">
     notionalAmountReference CommodityNotionalAmountReference (0..1) <"A reference to the Return swap notional amount defined in another leg of the return swap.">
     varianceStrikePrice number (0..1) <"Specifies the variance strike price when this strike is expressed in variance units. Payments on the variance leg are equal to the national amount multiplied by the realized variance minus this variance strike price: notional amount * (realized variance - variance strike price).">
     volatilityStrikePrice number (0..1) <"Specifies the volatility strike price when this strike is expressed in standard deviation units. Payments on the variance leg are equal to the national amount multiplied by the realized volatility squared minus the volatility strike price squared. Notional amount * (realized volatility^2 - volatility strike^2). Squaring the volatility strike price converts the volatility strike price into a variance strike price. Squaring the realized volatility converts realized volatility to realized variance.">
     varianceCalculation CommodityVarianceCalculation (0..1) <"Specifies, in relation to each Payment Date, the variance percentage which, when multiplied times the notional amount is the amount to which the Payment Date relates. For purposes of this representation the realized variance is: (annualizationFactor / N) * signma from i = 1 to N (ln (S sub (i+1)) / (S sub i)), where: ln is the natural logarithm, N is the number of pricing dates, S sub i is the relevant price on the observation date i. If nAdjustment is \'true\' then the denominator of the annualization factor is (N - 1) rather than N. If realized volatility is the performance metric in a variance swap rather than realized variance then the square root of the formula above will appear in the confirmation.">
-
-    condition Choice0:
-        optional choice notionalAmount, notionalAmountReference
-
-    condition Choice1:
-        optional choice varianceStrikePrice, volatilityStrikePrice
 
 type ElectricityPhysicalLeg extends PhysicalSwapLeg: <"Physically settled electricity leg. Physically settled leg of a physically settled electricity transaction.">
 
@@ -148,7 +212,8 @@ type EnvironmentalPhysicalLeg extends PhysicalSwapLeg: <"Physically settled envi
     abandonmentOfScheme fpml.consolidated.fpmlenum.EnvironmentalAbandonmentOfSchemeEnum (0..1) <"Applies to U.S. Emissions Allowance Transactions. Specifies terms which apply in the event of an Abandonment of Scheme event.">
     deliveryDate fpml.consolidated.shared.AdjustableOrRelativeDate (0..1) <"The date on which allowances are to be delivered as specified in the related Confirmation.">
     paymentDate fpml.consolidated.shared.DateOffset (0..1)
-    businessCentersOrReferenceModel fpml.consolidated.shared.BusinessCentersOrReferenceModel (0..1)
+    businessCentersReference fpml.consolidated.shared.BusinessCentersReference (0..1) <"A pointer style reference to a set of financial business centers defined elsewhere in the document. This set of business centers is used to determine whether a particular day is a business day or not.">
+    businessCenters fpml.consolidated.shared.BusinessCenters (0..1)
     failureToDeliverApplicable boolean (0..1) <"Applies to EU Emissions Allowance Transactions. Holds the Failure to Deliver (Alternative Method) election. Used to determine how provisions in Part [7] Page 7 (B) Failure to Deliver Not Remedied are to be applied.">
     eEPParameters EEPParameters (0..1) <"Applies to EU Emissions Allowance Transactions. Contains a series of parameters controlling Excess Emissions Penalty payments.">
 
@@ -168,7 +233,9 @@ type MetalPhysicalLeg extends PhysicalForwardLeg: <"Physically settled metal pro
     metal Metal (0..1) <"The specification of the Metal Product to be delivered.">
     deliveryPeriods CommodityDeliveryPeriods (0..1) <"The period during which delivery/deliveries of Metal may be scheduled.">
     deliveryConditions MetalDelivery (0..1) <"The physical delivery arrangements and requirements for a physically settled non-precious metal transaction.">
-    commodityFixedPhysicalQuantityModel CommodityFixedPhysicalQuantityModel (1..1)
+    physicalQuantity CommodityNotionalQuantity (0..1) <"The Quantity per Delivery Period.">
+    physicalQuantitySchedule CommodityPhysicalQuantitySchedule (0..1) <"Allows the documentation of a shaped quantity trade where the quantity changes over the life of the transaction.">
+    totalPhysicalQuantity UnitQuantity (0..1) <"The Total Quantity of the commodity to be delivered.">
     conversionFactor number (0..1) <"If the Notional Quantity is specified in a unit that does not match the unit in which the Commodity Reference Price is quoted, the scaling or conversion factor used to convert the Commodity Reference Price unit into the Notional Quantity unit should be stated here. If there is no conversion, this element is not intended to be used.">
 
 type OilPhysicalLeg extends PhysicalSwapLeg: <"Physically settled oil or refined products leg. Physically settled leg of a physically settled oil product transaction.">
@@ -187,13 +254,23 @@ type AbsoluteTolerance: <"The acceptable tolerance in the delivered quantity of 
 
 type AveragePriceLeg extends CommodityLeg: <"The average price leg of an average price commodity bullion or non-precious metal forward transaction.">
 
-    payerReceiverModel fpml.consolidated.shared.PayerReceiverModel (1..1)
-    commodityCalculationPeriodsModel CommodityCalculationPeriodsModel (1..1)
-    commodity fpml.consolidated.asset.Commodity (0..1)
+    payerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party responsible for making the payments defined by this structure.">
+    payerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account responsible for making the payments defined by this structure.">
+    receiverPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A reference to the party that receives the payments corresponding to this structure.">
+    receiverAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that receives the payments corresponding to this structure.">
+    calculationDates fpml.consolidated.shared.AdjustableDates (0..1) <"The Calculation Period dates for this leg of the trade where the Calculation Periods are all one day long. Only dates explicitly included determine the Calculation Periods and there is a Calculation Period for each date specified. As such one-day Calculation Period are typical a physically-settled emissions or metals trades it is expected that this element will not be used in performance swaps.">
+    calculationPeriods fpml.consolidated.shared.AdjustableDates (0..1) <"The Calculation Period start dates for this leg of the swap. This type is only intended to be used if the Calculation Periods differ on each leg. If Calculation Periods mirror another leg, then the calculationPeriodsReference element should be used to point to the Calculation Periods on that leg - or the calculationPeriodsScheduleReference can be used to point to the Calculation Periods Schedule for that leg.">
+    calculationPeriodsSchedule CommodityCalculationPeriodsSchedule (0..1) <"The Calculation Periods for this leg of the swap. This type is only intended to be used if the Calculation Periods differ on each leg. If Calculation Periods mirror another leg, then the calculationPeriodsReference element should be used to point to the Calculation Periods on the other leg - or the calculationPeriodsScheduleReference can be used to point to the Calculation Periods Schedule for that leg.">
+    calculationPeriodsReference CalculationPeriodsReference (0..1) <"A pointer style reference to the Calculation Periods defined on another leg.">
+    calculationPeriodsScheduleReference CalculationPeriodsScheduleReference (0..1) <"A pointer style reference to the Calculation Periods Schedule defined on another leg.">
+    calculationPeriodsDatesReference CalculationPeriodsDatesReference (0..1) <"A pointer style reference to single-day-duration Calculation Periods defined on another leg.">
+    commodity fpml.consolidated.asset.Commodity (1..1)
     quantityReference QuantityReference (0..1) <"A pointer to a specification of quantity defined elsewhere.">
     pricingStartDate fpml.consolidated.shared.AdjustableDate (0..1) <"Defines the Start of the Pricing period. PricingStartDate is optional when discrete pricingDates are supplied and is not recommended to be included. Should they coexist, pricingStartDate is expected to be the same as the earliest pricing date or earlier for a Term deal as the discrete dates will take precedence.">
     calculation FloatingLegCalculation (0..1) <"Captures details relevant to the calculation of the floating price.">
-    commodityPaymentDatesModel CommodityPaymentDatesModel (1..1)
+    relativePaymentDates CommodityRelativePaymentDates (0..1) <"The Payment Dates of the trade relative to the Calculation Periods.">
+    paymentDates fpml.consolidated.shared.AdjustableDatesOrRelativeDateOffset (0..1) <"Dates on which payments will be made.">
+    masterAgreementPaymentDates boolean (0..1) <"If present and true indicates that the Payment Date(s) are specified in the relevant master agreement.">
 
 type BullionDeliveryLocation: <"A scheme defining where bullion is to be delivered for a Bullion Transaction.">
 
@@ -214,22 +291,10 @@ type CalculationPeriodsScheduleReference extends fpml.consolidated.shared.Refere
 
 type CoalAttributeDecimal: <"The different options for specifying the attributes of a coal quality measure as a decimal value.">
 
-    coalAttributeDecimalSequence CoalAttributeDecimalSequence (1..1)
-    coalAttributeDecimalSequence0 CoalAttributeDecimalSequence0 (0..1)
-    coalAttributeDecimalSequence1 CoalAttributeDecimalSequence1 (0..1)
-
-type CoalAttributeDecimalSequence:
-
     standardContent number (0..1) <"The actual content of the quality characteristics of the Coal Product Shipment expected by the Buyer.">
     rejectionLimit number (0..1) <"The actual limits of the quality characteristics of the Coal Product above or below which the Buyer may reject a Shipment.">
 
 type CoalAttributePercentage: <"The different options for specifying the attributes of a coal quality measure as a percentage of the measured value.">
-
-    coalAttributePercentageSequence CoalAttributePercentageSequence (1..1)
-    coalAttributePercentageSequence0 CoalAttributePercentageSequence0 (0..1)
-    coalAttributePercentageSequence1 CoalAttributePercentageSequence1 (0..1)
-
-type CoalAttributePercentageSequence:
 
     standardContent fpml.consolidated.shared.Percentage (0..1) <"The actual content of the quality characteristics of the Coal Product Shipment expected by the Buyer. A value expressed in percentage units i.e. 5 means 5%.">
     rejectionLimit fpml.consolidated.shared.Percentage (0..1) <"The actual limits of the quality characteristics of the Coal Product above or below which the Buyer may reject a Shipment. A value expressed in percentage units i.e. 5 means 5%.">
@@ -238,10 +303,9 @@ type CoalDelivery: <"The physical delivery conditions for coal.">
 
     deliveryPoint CoalDeliveryPoint (0..1) <"The point at which the Coal Product will be delivered and received.">
     deliveryAtSource boolean (0..1) <"The point at which the Coal Product as a reference to the Source of the Coal Product. This should be a reference to the source element within product.">
-    commodityUSCoalDeliveryModel CommodityUSCoalDeliveryModel (0..1)
-
-    condition Choice:
-        optional choice deliveryPoint, deliveryAtSource
+    quantityVariationAdjustment boolean (0..1) <"If true, indicates that QVA is applicable. If false, indicates that QVA is inapplicable.">
+    transportationEquipment CoalTransportationEquipment (0..1) <"The transportation equipment with which the Coal Product will be delivered and received.">
+    risk CommodityDeliveryRisk (0..1) <"Specifies how the risk associated with the delivery is assigned.">
 
 type CoalDeliveryPoint: <"A scheme identifying the types of the Delivery Point for a physically settled coal trade.">
 
@@ -254,10 +318,8 @@ type CoalProduct: <"A type defining the characteristics of the coal being traded
     coalProductSpecifications CoalProductSpecifications (0..1) <"The type of coal product to be delivered specified in full.">
     source CoalProductSource (0..*) <"The SCoTA cargo origin, mining region, mine(s), mining complex(es), loadout(s) or river dock(s) or other point(s) of origin that Seller and Buyer agree are acceptable origins for the Coal Product. For International Coal transactions, this is the Origin of the Coal Product.">
     sCoTASpecifications boolean (0..1) <"Indicates whether type and source refer to globalCOAL SCoTA specifications.">
-    commodityUSCoalProductModel CommodityUSCoalProductModel (0..1)
-
-    condition Choice:
-        optional choice ^type, coalProductSpecifications
+    btuQualityAdjustment CoalQualityAdjustments (0..1) <"The Quality Adjustment formula to be used where the Actual Shipment BTU/Lb value differs from the Standard BTU/Lb value.">
+    so2QualityAdjustment CoalQualityAdjustments (0..1) <"The Quality Adjustment formula to be used where the Actual Shipment SO2/MMBTU value differs from the Standard SO2/MMBTU value.">
 
 type CoalProductSource: <"A scheme identifying the sources of coal for a physically settled coal trade.">
 
@@ -268,9 +330,6 @@ type CoalProductSpecifications: <"The different options for specifying the quali
 
     standardQuality CoalStandardQuality (0..1)
     standardQualitySchedule CoalStandardQualitySchedule (0..1)
-
-    condition Choice:
-        one-of
 
 type CoalProductType: <"A scheme identifying the types of coal for a physically settled coal trade.">
 
@@ -284,14 +343,26 @@ type CoalQualityAdjustments: <"A scheme identifying the quality adjustment formu
 
 type CoalStandardQuality: <"The quality attributes of the coal to be delivered.">
 
-    commodityCoalCompositionModel CommodityCoalCompositionModel (1..1)
-    commodityCoalPropertiesModel CommodityCoalPropertiesModel (1..1)
-    commodityCoalReducingAtmosphereModel CommodityCoalReducingAtmosphereModel (1..1)
+    moisture CoalAttributePercentage (0..1) <"The moisture content of the coal product.">
+    ash CoalAttributePercentage (0..1) <"The ash content of the coal product.">
+    sulfur CoalAttributePercentage (0..1) <"The sulfur/sulphur content of the coal product.">
+    sO2 CoalAttributePercentage (0..1) <"The sulfur/sulphur dioxide content of the coal product.">
+    volatile CoalAttributePercentage (0..1) <"The volatile content of the coal product.">
+    btUperLB CoalAttributeDecimal (0..1) <"The number of British Thermal Units per Pound of the coal product.">
+    topSize CoalAttributeDecimal (0..1) <"The smallest sieve opening that will result in less than 5% of a sample of the coal product remaining.">
+    finesPassingScreen CoalAttributeDecimal (0..1)
+    grindability CoalAttributeDecimal (0..1) <"The Hardgrove Grindability Index value of the coal to be delivered.">
+    ashFusionTemperature CoalAttributeDecimal (0..1) <"The temperature at which the ash form of the coal product fuses completely in accordance with the ASTM International D1857 Standard Test Methodology.">
+    initialDeformation CoalAttributeDecimal (0..1) <"The temperature at which an ash cone shows evidence of deformation.">
+    softeningHeightWidth CoalAttributeDecimal (0..1) <"The temperature at which the height of an ash cone equals its width. (Softening temperature).">
+    softeningHeightHalfWidth CoalAttributeDecimal (0..1) <"The temperature at which the height of an ash cone equals half its width. (Hemisphere temperature).">
+    fluid CoalAttributeDecimal (0..1) <"The temperature at which the ash cone flattens.">
 
 type CoalStandardQualitySchedule: <"The quality attributes of the coal to be delivered, specified on a periodic basis.">
 
     standardQualityStep CoalStandardQuality (0..*)
-    commodityDeliveryPeriodsPointerModel CommodityDeliveryPeriodsPointerModel (1..1)
+    deliveryPeriodsReference CalculationPeriodsReference (0..1) <"A pointer style reference to the Delivery Periods defined elsewhere.">
+    deliveryPeriodsScheduleReference CalculationPeriodsScheduleReference (0..1) <"A pointer style reference to the Calculation Periods Schedule defined elsewhere.">
 
 type CoalTransportationEquipment: <"A scheme identifying the methods by which coal may be transported.">
 
@@ -300,20 +371,12 @@ type CoalTransportationEquipment: <"A scheme identifying the methods by which co
 
 type CommodityAmericanExercise extends fpml.consolidated.shared.Exercise: <"A type for defining exercise procedures associated with an American style exercise of a commodity option.">
 
-    commodityAmericanExerciseSequence CommodityAmericanExerciseSequence (0..1)
+    exercisePeriod CommodityExercisePeriods (0..*) <"Describes the American exercise periods.">
+    exerciseFrequency fpml.consolidated.shared.Frequency (0..1) <"The exercise frequency for the strip.">
     latestExerciseTime fpml.consolidated.shared.BusinessCenterTime (0..1) <"For a Bermuda or American style option, the latest time on an exercise business day (excluding the expiration date) within the exercise period that notice can be given by the buyer to the seller or seller\'s agent. Notice of exercise given after this time will be deemed to have been given on the next exercise business day.">
     latestExerciseTimeDetermination fpml.consolidated.shared.DeterminationMethod (0..1) <"Latest exercise time determination method.">
     expirationTime fpml.consolidated.shared.BusinessCenterTime (0..1) <"The specific time of day on which the option expires.">
     multipleExercise CommodityMultipleExercise (0..1) <"The presence of this element indicates that the option may be partially exercised. It is not applicable to European or Asian options.">
-    exercisePeriod CommodityExercisePeriods (1..1) <"Describes the American exercise periods.">
-
-    condition Choice:
-        optional choice latestExerciseTime, latestExerciseTimeDetermination
-
-type CommodityAmericanExerciseSequence:
-
-    exercisePeriod CommodityExercisePeriods (1..*) <"Describes the American exercise periods.">
-    exerciseFrequency fpml.consolidated.shared.Frequency (0..1) <"The exercise frequency for the strip.">
 
 type CommodityBarrier: <"The specification of how a barrier option will trigger (that is, knock-in or knock-out) or expire based on the position of the spot rate relative to trigger level.">
 
@@ -323,8 +386,10 @@ type CommodityBarrier: <"The specification of how a barrier option will trigger 
 
 type CommodityBasket: <"Describes the swap\'s underlyer when it has multiple asset components.">
 
-    basketIdentifierModel fpml.consolidated.asset.BasketIdentifierModel (1..1)
-    commodityBasketModel CommodityBasketModel (1..1)
+    basketName fpml.consolidated.asset.BasketName (0..1) <"The name of the basket expressed as a free format string. FpML does not define usage rules for this element.">
+    basketId fpml.consolidated.asset.BasketId (0..*) <"A basket identifier">
+    notionalQuantityBasket CommodityBasketByNotional (0..1)
+    notionalAmountBasket CommodityBasketByPercentage (0..1)
 
 type CommodityBasketBase: <"Abstract base class for all underlying assets.">
 
@@ -341,17 +406,21 @@ type CommodityBasketByPercentage extends CommodityBasketBase:
 
 type CommodityBasketUnderlyingBase:
 
+    id string (0..1)
     direction fpml.consolidated.fpmlenum.PayerReceiverEnum (0..1) <"Indicates the role of the option buyer with regard to this underlyer.">
     commodity fpml.consolidated.asset.Commodity (0..1) <"Specifies the underlying component. At the time of the initial schema design, only underlyers of type Commodity are supported; the choice group in the future could offer the possibility of adding other types later.">
     pricingDates CommodityPricingDates (0..1) <"The dates on which the option will price.">
     averagingMethod fpml.consolidated.fpmlenum.AveragingMethodEnum (0..1) <"The Method of Averaging if there is more than one Pricing Date.">
-    id string (0..1)
 
 type CommodityBasketUnderlyingByNotional extends CommodityBasketUnderlyingBase:
 
     fx CommodityFx (0..1) <"FX observations to be used to convert the observed Commodity Reference Price to the Settlement Currency.">
     conversionFactor number (0..1) <"If the Notional Quantity is specified in a unit that does not match the unit in which the Commodity Reference Price is quoted, the scaling or conversion factor used to convert the Commodity Reference Price unit into the Notional Quantity unit should be stated here. If there is no conversion, this element is not intended to be used.">
-    commodityNotionalQuantityModel CommodityNotionalQuantityModel (1..1)
+    notionalQuantitySchedule CommodityNotionalQuantitySchedule (0..1) <"Allows the documentation of a shaped notional trade where the notional changes over the life of the transaction.">
+    notionalQuantity CommodityNotionalQuantity (0..1) <"The Notional Quantity.">
+    settlementPeriodsNotionalQuantity CommoditySettlementPeriodsNotionalQuantity (0..*) <"For an electricity transaction, the Notional Quantity for a one or more groups of Settlement Periods to which the Notional Quantity is based. If the schedule differs for different groups of Settlement Periods, this element should be repeated.">
+    totalNotionalQuantity number (0..1) <"The Total Notional Quantity.">
+    quantityReference QuantityReference (0..1) <"A pointer style reference to a quantity defined on another leg.">
 
 type CommodityBasketUnderlyingByPercentage extends CommodityBasketUnderlyingBase:
 
@@ -363,13 +432,12 @@ type CommodityCalculationPeriodsSchedule extends fpml.consolidated.shared.Freque
 
 type CommodityDeliveryPeriods: <"The different options for specifying the Delivery Periods of a physical leg.">
 
+    id string (0..1)
     periods fpml.consolidated.shared.AdjustableDates (0..1) <"The Delivery Periods for this leg of the swap. This type is only intended to be used if the Delivery Periods differ from the Calculation Periods on the fixed or floating leg. If DeliveryPeriods mirror another leg, then the calculationPeriodsReference element should be used to point to the Calculation Periods on that leg - or the calculationPeriodsScheduleReference can be used to point to the Calculation Periods Schedule for that leg.">
     periodsSchedule CommodityCalculationPeriodsSchedule (0..1) <"The Delivery Periods for this leg of the swap. This type is only intended to be used if the Delivery Periods differ from the Calculation Periods on the fixed or floating leg. If DeliveryPeriods mirror another leg, then the calculationPeriodsReference element should be used to point to the Calculation Periods on that leg - or the calculationPeriodsScheduleReference can be used to point to the Calculation Periods Schedule for that leg.">
-    commodityCalculationPeriodsPointerModel CommodityCalculationPeriodsPointerModel (0..1)
-    id string (0..1)
-
-    condition Choice:
-        required choice periods, periodsSchedule , commodityCalculationPeriodsPointerModel
+    calculationPeriodsReference CalculationPeriodsReference (0..1) <"A pointer style reference to the Calculation Periods defined on another leg.">
+    calculationPeriodsScheduleReference CalculationPeriodsScheduleReference (0..1) <"A pointer style reference to the Calculation Periods Schedule defined on another leg.">
+    calculationPeriodsDatesReference CalculationPeriodsDatesReference (0..1) <"A pointer style reference to single-day-duration Calculation Periods defined on another leg.">
 
 type CommodityDeliveryPoint: <"A scheme identifying the types of the Delivery Point for a physically settled commodity trade.">
 
@@ -392,26 +460,15 @@ type CommodityDigitalExercise: <"The parameters for defining how the commodity d
     europeanExercise CommodityEuropeanExercise (0..1) <"The parameters for defining the expiration date and time for a European or Asian style option. For an Asian style option the expiration date is equivalent to the termination date.">
     automaticExercise boolean (0..1) <"Specifies whether or not Automatic Exercise applies to a Commodity Option Transaction.">
     writtenConfirmation boolean (0..1) <"Specifies whether or not Written Confirmation applies to a Commodity Option Transaction.">
-    commodityPaymentDatesModel CommodityPaymentDatesModel (1..1)
-
-    condition Choice:
-        optional choice americanExercise, europeanExercise
-
-type CommodityDigitalOptionSequence:
-
-    notionalQuantity CommodityNotionalQuantity (0..1) <"The volume contracted when the volume is specified as a quantity of commodity.">
-    totalNotionalQuantity number (0..1)
+    relativePaymentDates CommodityRelativePaymentDates (0..1) <"The Payment Dates of the trade relative to the Calculation Periods.">
+    paymentDates fpml.consolidated.shared.AdjustableDatesOrRelativeDateOffset (0..1) <"Dates on which payments will be made.">
+    masterAgreementPaymentDates boolean (0..1) <"If present and true indicates that the Payment Date(s) are specified in the relevant master agreement.">
 
 type CommodityEuropeanExercise extends fpml.consolidated.shared.Exercise: <"A type for defining exercise procedures associated with a European style exercise of a commodity option.">
 
-    commodityEuropeanExerciseSequence CommodityEuropeanExerciseSequence (0..1)
-    expirationTime fpml.consolidated.shared.BusinessCenterTime (0..1) <"The specific time of day on which the option expires.">
-    expirationDate fpml.consolidated.shared.AdjustableOrRelativeDate (1..1) <"The last day within an exercise period for an American style option. For a European style option it is the only day within the exercise period. For an averaging option this is equivalent to the Termination Date.">
-
-type CommodityEuropeanExerciseSequence:
-
     expirationDate fpml.consolidated.shared.AdjustableOrRelativeDate (0..*) <"The last day within an exercise period for an American style option. For a European style option it is the only day within the exercise period. For an averaging option this is equivalent to the Termination Date.">
     exerciseFrequency fpml.consolidated.shared.Frequency (0..1) <"The exercise frequency for the strip.">
+    expirationTime fpml.consolidated.shared.BusinessCenterTime (0..1) <"The specific time of day on which the option expires.">
 
 type CommodityExercise: <"The parameters for defining how the commodity option can be exercised, how it is priced and how it is settled.">
 
@@ -422,10 +479,9 @@ type CommodityExercise: <"The parameters for defining how the commodity option c
     settlementCurrency fpml.consolidated.shared.IdentifiedCurrency (0..1) <"The currency into which the Commodity Option Transaction will settle. If this is not the same as the currency in which the Commodity Reference Price is quoted, then an FX determination method should also be specified.">
     fx CommodityFx (0..1) <"FX observations to be used to convert the observed Commodity Reference Price to the Settlement Currency.">
     conversionFactor number (0..1) <"If the Notional Quantity is specified in a unit that does not match the unit in which the Commodity Reference Price is quoted, the scaling or conversion factor used to convert the Commodity Reference Price unit into the Notional Quantity unit should be stated here. If there is no conversion, this element is not intended to be used.">
-    commodityPaymentDatesModel CommodityPaymentDatesModel (1..1)
-
-    condition Choice:
-        optional choice americanExercise, europeanExercise
+    relativePaymentDates CommodityRelativePaymentDates (0..1) <"The Payment Dates of the trade relative to the Calculation Periods.">
+    paymentDates fpml.consolidated.shared.AdjustableDatesOrRelativeDateOffset (0..1) <"Dates on which payments will be made.">
+    masterAgreementPaymentDates boolean (0..1) <"If present and true indicates that the Payment Date(s) are specified in the relevant master agreement.">
 
 type CommodityExerciseBasket: <"The parameters for defining how the commodity option can be exercised, how it is priced and how it is settled.">
 
@@ -434,10 +490,9 @@ type CommodityExerciseBasket: <"The parameters for defining how the commodity op
     automaticExercise boolean (0..1) <"Specifies whether or not Automatic Exercise applies to a Commodity Option Transaction.">
     writtenConfirmation boolean (0..1) <"Specifies whether or not Written Confirmation applies to a Commodity Option Transaction.">
     settlementCurrency fpml.consolidated.shared.IdentifiedCurrency (0..1) <"The currency into which the Commodity Option Transaction will settle. If this is not the same as the currency in which the Commodity Reference Price is quoted, then an FX determination method should also be specified.">
-    commodityPaymentDatesModel CommodityPaymentDatesModel (1..1)
-
-    condition Choice:
-        optional choice americanExercise, europeanExercise
+    relativePaymentDates CommodityRelativePaymentDates (0..1) <"The Payment Dates of the trade relative to the Calculation Periods.">
+    paymentDates fpml.consolidated.shared.AdjustableDatesOrRelativeDateOffset (0..1) <"Dates on which payments will be made.">
+    masterAgreementPaymentDates boolean (0..1) <"If present and true indicates that the Payment Date(s) are specified in the relevant master agreement.">
 
 type CommodityExercisePeriods:
 
@@ -460,10 +515,9 @@ type CommodityFixedPriceSchedule: <"The Fixed Price for a given Calculation Peri
     worldscaleRateStep number (0..*) <"For a Wet Voyager Charter Freight Swap, the number of Worldscale Points for purposes of the calculation of a Fixed Amount for a given Calculation Period during the life of the trade. There must be Worldscale Rate Step specified for each Calculation Period, regardless of whether the Worldscale Rate Step changes or remains the same between periods.">
     contractRateStep fpml.consolidated.shared.NonNegativeMoney (0..*) <"For a DRY Voyage Charter or Time Charter Freight Swap, the price per relevant unit for pruposes of the calculation of a Fixed Amount for a given Calculation Period during the life of the trade. There must be Worldscale Rate Step specified for each Calculation Period, regardless of whether the Worldscale Rate Step changes or remains the same between periods.">
     settlementPeriodsPriceSchedule CommoditySettlementPeriodsPriceSchedule (0..*) <"For an electricity transaction, the fixed price schedule for one or more groups of Settlement Periods on which fixed payments are based. if the schedule differs for different groups of Settlement Periods, this element should be repeated.">
-    commodityCalculationPeriodsPointerModel CommodityCalculationPeriodsPointerModel (0..1)
-
-    condition Choice:
-        optional choice fixedPriceStep, worldscaleRateStep , contractRateStep , settlementPeriodsPriceSchedule
+    calculationPeriodsReference CalculationPeriodsReference (0..1) <"A pointer style reference to the Calculation Periods defined on another leg.">
+    calculationPeriodsScheduleReference CalculationPeriodsScheduleReference (0..1) <"A pointer style reference to the Calculation Periods Schedule defined on another leg.">
+    calculationPeriodsDatesReference CalculationPeriodsDatesReference (0..1) <"A pointer style reference to single-day-duration Calculation Periods defined on another leg.">
 
 type CommodityFrequencyType: <"Frequency Type for use in Pricing Date specifications.">
 
@@ -477,7 +531,18 @@ type CommodityFx: <"A type defining the FX observations to be used to convert th
     fxType CommodityFxType (0..1) <"A type to identify how the FX rate will be applied. This is intended to differentiate between the various methods for applying FX to the floating price such as a daily calculation, or averaging the FX and applying the average at the end of each CalculationPeriod.">
     averagingMethod fpml.consolidated.fpmlenum.AveragingMethodEnum (0..1) <"The parties may specify a Method of Averaging when averaging of the FX rate is applicable.">
     fixingTime fpml.consolidated.shared.BusinessCenterTime (0..1) <"The time at which the spot currency exchange rate will be observed. It is specified as a time in a specific business center, e.g. 11:00am London time.">
-    commodityFxSequence CommodityFxSequence (0..1)
+    fxObservationDates fpml.consolidated.shared.AdjustableDates (0..*) <"A list of the fx observation dates for a given Calculation Period.">
+    dayType fpml.consolidated.fpmlenum.CommodityDayTypeEnum (0..1) <"The type of day on which pricing occurs.">
+    dayDistribution CommodityFrequencyType (0..1) <"The method by which the pricing days are distributed across the pricing period.">
+    dayCount int (0..1) <"The number of days over which pricing should take place.">
+    dayOfWeek fpml.consolidated.fpmlenum.DayOfWeekEnum (0..7) <"The day(s) of the week on which pricing will take place during the pricing period.">
+    dayNumber int (0..1) <"The occurrence of the dayOfWeek within the pricing period on which pricing will take place, e.g. the 3rd Friday within each Calculation Period. If omitted, every dayOfWeek will be a pricing day.">
+    businessDayConvention fpml.consolidated.fpmlenum.BusinessDayConventionEnum (0..1) <"The convention for adjusting a date if it would otherwise fall on a day that is not a business day.">
+    lag Lag (0..1) <"The pricing period per calculation period if the pricing days do not wholly fall within the respective calculation period.">
+    lagReference LagReference (0..1) <"Allows a lag to reference one already defined elsewhere in the trade.">
+    calculationPeriodsReference CalculationPeriodsReference (0..1) <"A pointer style reference to the Calculation Periods defined on another leg.">
+    calculationPeriodsScheduleReference CalculationPeriodsScheduleReference (0..1) <"A pointer style reference to the Calculation Periods Schedule defined on another leg.">
+    calculationPeriodsDatesReference CalculationPeriodsDatesReference (0..1) <"A pointer style reference to single-day-duration Calculation Periods defined on another leg.">
 
 type CommodityFxType: <"Identifes how the FX rate will be applied. This is intended to differentiate between the various methods for applying FX to the floating price such as a daily calculation, or averaging the FX and applying the average at the end of each CalculationPeriod.">
 
@@ -486,7 +551,8 @@ type CommodityFxType: <"Identifes how the FX rate will be applied. This is inten
 
 type CommodityHub: <"A type defining a hub or other reference for a physically settled commodity trade.">
 
-    partyAndAccountReferencesModel fpml.consolidated.shared.PartyAndAccountReferencesModel (1..1)
+    partyReference fpml.consolidated.shared.PartyReference (1..1) <"Reference to a party.">
+    accountReference fpml.consolidated.shared.AccountReference (0..1) <"Reference to an account.">
     hubCode CommodityHubCode (0..1)
 
 type CommodityHubCode: <"A scheme identifying the code for a hub or other reference for a physically settled commodity trade.">
@@ -498,7 +564,8 @@ type CommodityLeg extends fpml.consolidated.shared.Leg: <"Abstract base class fo
 
 type CommodityMarketDisruption: <"ISDA 1993 or 2005 commodity market disruption elements.">
 
-    commodityMarketDisruptionSequence CommodityMarketDisruptionSequence (0..1)
+    marketDisruptionEvents fpml.consolidated.fpmlenum.MarketDisruptionEventsEnum (0..1) <"If Market disruption Events are stated to be Applicable then the default Market Disruption Events of Section 7.4(d)(i) of the ISDA Commodity Definitions shall apply unless specific Market Disruption Events are stated hereunder, in which case these shall override the ISDA defaults. If Market Disruption Events are stated to be Not Applicable, Market Disruption Events are not applicable to the trade at all. It is also possible to reference the Market Disruption Events set out in the relevant Master Agreement governing the trade.">
+    additionalMarketDisruptionEvent MarketDisruptionEvent (0..*) <"To be used when marketDisruptionEvents is set to \"Applicable\" and additional market disruption events(s) apply to the default market disruption events of Section 7.4(d)(i) of the ISDA Commodity Definitions.">
     marketDisruptionEvent MarketDisruptionEvent (0..*) <"Market disruption event(s) that apply. Note that these should only be specified if the default market disruption events of Section 7.4(d)(i) of the ISDA Commodity Definitions are to be overridden.">
     disruptionFallbacks fpml.consolidated.fpmlenum.DisruptionFallbacksEnum (0..1) <"To be used where disruption fallbacks are set out in the relevant Master Agreement governing the trade.">
     disruptionFallback SequencedDisruptionFallback (0..*)
@@ -506,17 +573,6 @@ type CommodityMarketDisruption: <"ISDA 1993 or 2005 commodity market disruption 
     maximumNumberOfDaysOfDisruption int(min: 0) (0..1) <"2005 Commodity Definitions only. If omitted , the number of days specified in Section 7.6(a) of the Definitions will apply.">
     priceMaterialityPercentage fpml.consolidated.shared.Percentage (0..1) <"2005 Commodity Definitions only. To be used where a price materiality percentage applies to the \"Price Source Disruption\" event and this event has been specified by setting marketDisruption to true or including it in additionalMarketDisruptionEvent. A value expressed in percentage units i.e. 5 means 5%.">
     minimumFuturesContracts int(min: 1) (0..1) <"1993 Commodity Definitions only. Specifies the Mimum Futures Contracts level that dictates whether or not a \"De Minimis Trading\" event has occurred. Only relevant if \'De Minimis Trading\' has been specified in marketDisruptionEvent or additionalMarketDisruptionEvent.">
-
-    condition Choice0:
-        optional choice commodityMarketDisruptionSequence, marketDisruptionEvent
-
-    condition Choice1:
-        optional choice disruptionFallbacks, disruptionFallback
-
-type CommodityMarketDisruptionSequence:
-
-    marketDisruptionEvents fpml.consolidated.fpmlenum.MarketDisruptionEventsEnum (0..1) <"If Market disruption Events are stated to be Applicable then the default Market Disruption Events of Section 7.4(d)(i) of the ISDA Commodity Definitions shall apply unless specific Market Disruption Events are stated hereunder, in which case these shall override the ISDA defaults. If Market Disruption Events are stated to be Not Applicable, Market Disruption Events are not applicable to the trade at all. It is also possible to reference the Market Disruption Events set out in the relevant Master Agreement governing the trade.">
-    additionalMarketDisruptionEvent MarketDisruptionEvent (0..*) <"To be used when marketDisruptionEvents is set to \"Applicable\" and additional market disruption events(s) apply to the default market disruption events of Section 7.4(d)(i) of the ISDA Commodity Definitions.">
 
 type CommodityMetalBrand:
 
@@ -565,20 +621,19 @@ type CommodityNotionalAmountReference extends fpml.consolidated.shared.Reference
 
 type CommodityNotionalQuantity: <"Commodity Notional.">
 
+    id string (0..1)
     quantityUnit fpml.consolidated.asset.QuantityUnit (1..1) <"Quantity Unit is the unit of measure applicable for the quantity on the Transaction.">
     quantityFrequency CommodityQuantityFrequency (0..1) <"The frequency at which the Notional Quantity is deemed to apply for purposes of calculating the Total Notional Quantity.">
     quantity number (0..1) <"Amount of commodity per quantity frequency.">
-    id string (0..1)
 
 type CommodityNotionalQuantitySchedule: <"The Notional Quantity per Calculation Period. There must be a Notional Quantity step specified for each Calculation Period, regardless of whether the Notional Quantity changes or remains the same between periods.">
 
+    id string (0..1)
     notionalStep CommodityNotionalQuantity (0..*) <"The Notional Quantity per Calculation Period. There must be a Notional Quantity specified for each Calculation Period, regardless of whether the quantity changes or remains the same between periods.">
     settlementPeriodsNotionalQuantitySchedule CommoditySettlementPeriodsNotionalQuantitySchedule (0..*) <"For an electricity transaction, the Notional Quantity schedule for a one or more groups of Settlement Periods to which the Notional Quantity is based. If the schedule differs for different groups of Settlement Periods, this element should be repeated.">
-    commodityCalculationPeriodsPointerModel CommodityCalculationPeriodsPointerModel (0..1)
-    id string (0..1)
-
-    condition Choice:
-        optional choice notionalStep, settlementPeriodsNotionalQuantitySchedule
+    calculationPeriodsReference CalculationPeriodsReference (0..1) <"A pointer style reference to the Calculation Periods defined on another leg.">
+    calculationPeriodsScheduleReference CalculationPeriodsScheduleReference (0..1) <"A pointer style reference to the Calculation Periods Schedule defined on another leg.">
+    calculationPeriodsDatesReference CalculationPeriodsDatesReference (0..1) <"A pointer style reference to single-day-duration Calculation Periods defined on another leg.">
 
 type CommodityPayRelativeToEvent: <"A scheme identifying the physical event relative to which payment occurs.">
 
@@ -590,8 +645,11 @@ type CommodityPerformanceSwapBase extends fpml.consolidated.shared.Product: <"A 
     effectiveDate fpml.consolidated.shared.AdjustableOrRelativeDate (0..1) <"Specifies the Eeffective Date of the swap. It is an optional element because not all confirmations of total return swaps specify an Effective Date. In these cases the Term of the contract begins on the Trade Date.">
     terminationDate fpml.consolidated.shared.AdjustableOrRelativeDate (0..1) <"Specifies the Termination Date of the swap.">
     settlementCurrency fpml.consolidated.shared.IdentifiedCurrency (0..1) <"The currency in which the commodity performance swap transaction will settle. It is an optional element because not all confirmations of performance swaps specify a Settlement Currency.">
-    commodityPerformanceSwapLeg CommodityPerformanceSwapLeg (0..2)
-    commodityContentModel CommodityContentModel (0..1)
+    commodityPerformanceSwapLeg CommodityPerformanceSwapLeg (0..2) <"An placeholder for the actual performance swap leg definitions.">
+    commonPricing boolean (0..1) <"If Common Pricing is elected (“true”) for a Transaction with referencing more than one Commodity Reference Price then no date will be a Pricing Date unless such a date is a day on which all Commodity Reference Prices are scheduled to be published.">
+    marketDisruption CommodityMarketDisruption (0..1) <"Contains contract terms related to triggers and responses to market disruptions as defined in the 1993 or 2005 Commodity Definitions.">
+    settlementDisruption fpml.consolidated.fpmlenum.CommodityBullionSettlementDisruptionEnum (0..1) <"Describes contract terms related to the consequences of Bullion Settlement Disruption Events.">
+    rounding fpml.consolidated.shared.Rounding (0..1) <"Rounding direction and precision for amounts.">
 
 type CommodityPerformanceSwapEarlyTermination:
 
@@ -600,27 +658,19 @@ type CommodityPerformanceSwapEarlyTermination:
 
 type CommodityPerformanceSwapLeg extends fpml.consolidated.shared.Leg: <"Abstract base class for all commodity performance swap legs.">
 
-    payerReceiverModel fpml.consolidated.shared.PayerReceiverModel (1..1)
+    payerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party responsible for making the payments defined by this structure.">
+    payerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account responsible for making the payments defined by this structure.">
+    receiverPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A reference to the party that receives the payments corresponding to this structure.">
+    receiverAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that receives the payments corresponding to this structure.">
 
 type CommodityPhysicalAmericanExercise extends fpml.consolidated.shared.Exercise: <"The parameters for defining the expiration date(s) and time(s) for an American style option.">
 
-    commodityPhysicalAmericanExerciseSequence0 CommodityPhysicalAmericanExerciseSequence0 (0..1)
-    commodityPhysicalAmericanExerciseSequence1 CommodityPhysicalAmericanExerciseSequence1 (0..1)
-    latestExerciseTime fpml.consolidated.shared.PrevailingTime (0..1) <"For a Bermuda or American style option, the latest time on an exercise business day (excluding the expiration date) within the exercise period that notice can be given by the buyer to the seller or seller\'s agent. Notice of exercise given after this time will be deemed to have been given on the next exercise business day.">
-    expirationTime fpml.consolidated.shared.PrevailingTime (0..1) <"The specific time of day at which the option expires.">
-
-    condition Choice:
-        optional choice commodityPhysicalAmericanExerciseSequence0, commodityPhysicalAmericanExerciseSequence1
-
-type CommodityPhysicalAmericanExerciseSequence0:
-
     commencementDates fpml.consolidated.shared.AdjustableOrRelativeDates (0..1) <"The first day(s) of the exercise period(s) for an American-style option.">
     expirationDates fpml.consolidated.shared.AdjustableOrRelativeDates (0..1) <"The Expiration Date(s) of an American-style option.">
-
-type CommodityPhysicalAmericanExerciseSequence1:
-
     relativeCommencementDates CommodityRelativeExpirationDates (0..1) <"The first day(s) of the exercise period(s) for an American-style option where it is relative to the occurrence of an external event.">
     relativeExpirationDates CommodityRelativeExpirationDates (0..1) <"The Expiration Date(s) of an American-style option where it is relative to the occurrence of an external event.">
+    latestExerciseTime fpml.consolidated.shared.PrevailingTime (0..1) <"For a Bermuda or American style option, the latest time on an exercise business day (excluding the expiration date) within the exercise period that notice can be given by the buyer to the seller or seller\'s agent. Notice of exercise given after this time will be deemed to have been given on the next exercise business day.">
+    expirationTime fpml.consolidated.shared.PrevailingTime (0..1) <"The specific time of day at which the option expires.">
 
 type CommodityPhysicalEuropeanExercise extends fpml.consolidated.shared.Exercise: <"The parameters for defining the expiration date(s) and time(s) for a European style option.">
 
@@ -628,9 +678,6 @@ type CommodityPhysicalEuropeanExercise extends fpml.consolidated.shared.Exercise
     expirationDates fpml.consolidated.shared.AdjustableRelativeOrPeriodicDates2 (0..1) <"The Expiration Date(s) of a European-style option.">
     relativeExpirationDates CommodityRelativeExpirationDates (0..1) <"The Expiration Date(s) of a European-style option where it is relative to the occurrence of an external event.">
     expirationTime fpml.consolidated.shared.PrevailingTime (0..1) <"The specific time of day at which the option expires.">
-
-    condition Choice:
-        optional choice expirationDate, expirationDates , relativeExpirationDates
 
 type CommodityPhysicalExercise: <"The parameters for defining how the physically-settled commodity option can be exercised and how it is settled.">
 
@@ -640,12 +687,11 @@ type CommodityPhysicalExercise: <"The parameters for defining how the physically
     writtenConfirmation boolean (0..1) <"Specifies whether or not Written Confirmation applies to a Commodity Option Transaction.">
     clearingInstructions fpml.consolidated.shared.SwaptionPhysicalSettlement (0..1) <"Specifies any instructions on how the physical settlement is to be effected when the option is exercised.">
 
-    condition Choice:
-        optional choice americanExercise, europeanExercise
-
 type CommodityPhysicalQuantity extends CommodityPhysicalQuantityBase: <"A type defining the physical quantity of the commodity to be delivered.">
 
-    commodityFixedPhysicalQuantityModel CommodityFixedPhysicalQuantityModel (1..1)
+    physicalQuantity CommodityNotionalQuantity (0..1) <"The Quantity per Delivery Period.">
+    physicalQuantitySchedule CommodityPhysicalQuantitySchedule (0..1) <"Allows the documentation of a shaped quantity trade where the quantity changes over the life of the transaction.">
+    totalPhysicalQuantity UnitQuantity (0..1) <"The Total Quantity of the commodity to be delivered.">
 
 type CommodityPhysicalQuantityBase: <"An abstract base class for physical quantity types.">
 
@@ -653,9 +699,10 @@ type CommodityPhysicalQuantityBase: <"An abstract base class for physical quanti
 
 type CommodityPhysicalQuantitySchedule: <"The Quantity per Delivery Period. There must be a Quantity step specified for each Delivery Period, regardless of whether the Quantity changes or remains the same between periods.">
 
-    quantityStep CommodityNotionalQuantity (0..*) <"The quantity per Calculation Period. There must be a quantity specified for each Calculation Period, regardless of whether the quantity changes or remains the same between periods.">
-    commodityDeliveryPeriodsPointerModel CommodityDeliveryPeriodsPointerModel (1..1)
     id string (0..1)
+    quantityStep CommodityNotionalQuantity (0..*) <"The quantity per Calculation Period. There must be a quantity specified for each Calculation Period, regardless of whether the quantity changes or remains the same between periods.">
+    deliveryPeriodsReference CalculationPeriodsReference (0..1) <"A pointer style reference to the Delivery Periods defined elsewhere.">
+    deliveryPeriodsScheduleReference CalculationPeriodsScheduleReference (0..1) <"A pointer style reference to the Calculation Periods Schedule defined elsewhere.">
 
 type CommodityPipeline: <"The pipeline through which the physical commodity will be delivered.">
 
@@ -673,29 +720,22 @@ type CommodityPremium extends fpml.consolidated.shared.NonNegativePayment: <"The
 
 type CommodityPricingDates: <"The dates on which prices are observed for the underlyer.">
 
-    commodityCalculationPeriodsPointerModel CommodityCalculationPeriodsPointerModel (0..1)
-    commodityPricingDatesSequence CommodityPricingDatesSequence (0..1)
-    pricingDates fpml.consolidated.shared.AdjustableDates (0..*) <"A list of adjustable dates on which the trade will price. Each date will price for the Calculation Period within which it falls.">
     id string (0..1)
-
-    condition Choice:
-        optional choice commodityPricingDatesSequence, pricingDates
-
-type CommodityPricingDatesSequence:
-
+    calculationPeriodsReference CalculationPeriodsReference (0..1) <"A pointer style reference to the Calculation Periods defined on another leg.">
+    calculationPeriodsScheduleReference CalculationPeriodsScheduleReference (0..1) <"A pointer style reference to the Calculation Periods Schedule defined on another leg.">
+    calculationPeriodsDatesReference CalculationPeriodsDatesReference (0..1) <"A pointer style reference to single-day-duration Calculation Periods defined on another leg.">
     lag Lag (0..1) <"The pricing period per calculation period if the pricing days do not wholly fall within the respective calculation period.">
-    commodityPricingDatesSequenceSequence CommodityPricingDatesSequenceSequence (0..1)
-    settlementPeriods SettlementPeriods (0..*) <"Specifies a set of Settlement Periods associated with an Electricity Transaction for delivery on an Applicable Day or for a series of Applicable Days.">
-    settlementPeriodsReference SettlementPeriodsReference (0..*) <"Allows a set of Settlement Periods to reference one already defined elsewhere in the trade structure.">
-
-    condition Choice:
-        optional choice commodityPricingDatesSequenceSequence, settlementPeriods , settlementPeriodsReference
-
-type CommodityPricingDatesSequenceSequence:
-
-    daysModel DaysModel (1..1)
+    dayType fpml.consolidated.fpmlenum.CommodityDayTypeEnum (0..1) <"The type of day on which pricing occurs.">
+    dayDistribution CommodityFrequencyType (0..1) <"The method by which the pricing days are distributed across the pricing period.">
+    dayCount int(min: 1) (0..1) <"The number of days over which pricing should take place.">
+    dayOfWeek fpml.consolidated.fpmlenum.DayOfWeekEnum (0..7) <"The day(s) of the week on which pricing will take place during the pricing period.">
+    dayNumber int (0..1) <"The occurrence of the dayOfWeek within the pricing period on which pricing will take place, e.g. the 3rd Friday within each Calculation Period. If omitted, every dayOfWeek will be a pricing day.">
+    businessDayConvention fpml.consolidated.fpmlenum.BusinessDayConventionEnum (0..1) <"The convention for adjusting a date if it would otherwise fall on a day that is not a business day.">
     businessCalendar fpml.consolidated.asset.CommodityBusinessCalendar (0..1) <"Identifies a commodity business day calendar from which the pricing dates will be determined.">
     calendarSource fpml.consolidated.fpmlenum.CalendarSourceEnum (0..1) <"Used in conjunction with an exchange-based pricing source. Identifies a date source calendar from which the pricing dates and thus roll to the next contract will be based off (e.g. pricing is based on the NYMEX WTI First Nearby Futures Contract, if “Future” is chosen, the pricing will roll to the next futures contract on expiration, if “ListedOption” is chosen, the pricing will roll to the next futures contract on the Option expiration date which is three business days before the expiration of the NYMEX WTI futures contract.) Omitting this element will result in the default behavior expected with the pricing source described within the commodity element.">
+    settlementPeriods SettlementPeriods (0..*) <"Specifies a set of Settlement Periods associated with an Electricity Transaction for delivery on an Applicable Day or for a series of Applicable Days.">
+    settlementPeriodsReference SettlementPeriodsReference (0..*) <"Allows a set of Settlement Periods to reference one already defined elsewhere in the trade structure.">
+    pricingDates fpml.consolidated.shared.AdjustableDates (0..*) <"A list of adjustable dates on which the trade will price. Each date will price for the Calculation Period within which it falls.">
 
 type CommodityProductGrade: <"A scheme identifying the grade of physical commodity product to be delivered.">
 
@@ -709,22 +749,23 @@ type CommodityQuantityFrequency: <"A type for defining the frequency at which th
 
 type CommodityRelativeExpirationDates: <"The Expiration Dates of the trade relative to the Calculation Periods.">
 
+    id string (0..1)
     expireRelativeToEvent CommodityExpireRelativeToEvent (0..1) <"Specifies whether the payment(s) occur relative to the date of a physical event.">
     expirationDateOffset fpml.consolidated.shared.DateOffset (0..1) <"Specifies any offset from the adjusted Calculation Period start date or adjusted Calculation Period end date applicable to each Payment Date.">
-    businessCentersOrReferenceModel fpml.consolidated.shared.BusinessCentersOrReferenceModel (0..1)
-    id string (0..1)
+    businessCentersReference fpml.consolidated.shared.BusinessCentersReference (0..1) <"A pointer style reference to a set of financial business centers defined elsewhere in the document. This set of business centers is used to determine whether a particular day is a business day or not.">
+    businessCenters fpml.consolidated.shared.BusinessCenters (0..1)
 
 type CommodityRelativePaymentDates: <"The Payment Dates of the trade relative to the Calculation Periods.">
 
+    id string (0..1)
     payRelativeTo fpml.consolidated.fpmlenum.CommodityPayRelativeToEnum (0..1) <"Specifies whether the payment(s) occur relative to a date such as the end of each Calculation Period or the last Pricing Date in each Calculation Period.">
     payRelativeToEvent CommodityPayRelativeToEvent (0..1) <"Specifies whether the payment(s) occur relative to the date of a physical event such as issuance of a bill of lading.">
-    commodityCalculationPeriodsPointerModel CommodityCalculationPeriodsPointerModel (0..1)
+    calculationPeriodsReference CalculationPeriodsReference (0..1) <"A pointer style reference to the Calculation Periods defined on another leg.">
+    calculationPeriodsScheduleReference CalculationPeriodsScheduleReference (0..1) <"A pointer style reference to the Calculation Periods Schedule defined on another leg.">
+    calculationPeriodsDatesReference CalculationPeriodsDatesReference (0..1) <"A pointer style reference to single-day-duration Calculation Periods defined on another leg.">
     paymentDaysOffset fpml.consolidated.shared.DateOffset (0..1) <"Specifies any offset from the adjusted Calculation Period start date, adjusted Calculation Period end date or Calculation Date applicable to each Payment Date.">
-    businessCentersOrReferenceModel fpml.consolidated.shared.BusinessCentersOrReferenceModel (0..1)
-    id string (0..1)
-
-    condition Choice:
-        optional choice payRelativeTo, payRelativeToEvent
+    businessCentersReference fpml.consolidated.shared.BusinessCentersReference (0..1) <"A pointer style reference to a set of financial business centers defined elsewhere in the document. This set of business centers is used to determine whether a particular day is a business day or not.">
+    businessCenters fpml.consolidated.shared.BusinessCenters (0..1)
 
 type CommodityReturnCalculation:
 
@@ -755,65 +796,60 @@ type CommoditySpread extends fpml.consolidated.shared.Money:
 type CommoditySpreadSchedule: <"The Spread per Calculation Period. There must be a Spread specified for each Calculation Period, regardless of whether the Spread changes or remains the same between periods.">
 
     spreadStep CommoditySpread (0..*) <"The spread per Calculation Period. There must be a spread step specified for each Calculation Period, regardless of whether the spread changes or remains the same between periods.">
-    commodityCalculationPeriodsPointerModel CommodityCalculationPeriodsPointerModel (0..1)
+    calculationPeriodsReference CalculationPeriodsReference (0..1) <"A pointer style reference to the Calculation Periods defined on another leg.">
+    calculationPeriodsScheduleReference CalculationPeriodsScheduleReference (0..1) <"A pointer style reference to the Calculation Periods Schedule defined on another leg.">
+    calculationPeriodsDatesReference CalculationPeriodsDatesReference (0..1) <"A pointer style reference to single-day-duration Calculation Periods defined on another leg.">
 
 type CommodityStartingDate: <"A type specifying the date from which the early termination clause can be exercised.">
 
     dateRelativeTo fpml.consolidated.shared.PartyReference (0..1) <"Reference to a party defined elsewhere in this document which may be allowed to terminate the trade.">
     adjustableDate fpml.consolidated.shared.AdjustableDate (0..1) <"Date from which early termination clause can be exercised.">
 
-    condition Choice:
-        one-of
-
 type CommodityStrikeSchedule: <"The Strike Price per Unit per Calculation Period. There must be a Strike Price per Unit step specified for each Calculation Period, regardless of whether the Strike changes or remains the same between periods.">
 
     strikePricePerUnitStep fpml.consolidated.shared.NonNegativeMoney (0..*) <"The strike price per unit per Calculation Period. There must be a strike price per unit specified for each Calculation Period, regardless of whether the price changes or remains the same between periods.">
-    commodityCalculationPeriodsPointerModel CommodityCalculationPeriodsPointerModel (0..1)
+    calculationPeriodsReference CalculationPeriodsReference (0..1) <"A pointer style reference to the Calculation Periods defined on another leg.">
+    calculationPeriodsScheduleReference CalculationPeriodsScheduleReference (0..1) <"A pointer style reference to the Calculation Periods Schedule defined on another leg.">
+    calculationPeriodsDatesReference CalculationPeriodsDatesReference (0..1) <"A pointer style reference to single-day-duration Calculation Periods defined on another leg.">
 
 type CommoditySwaptionUnderlying:
 
-    commoditySwapDetailsModel CommoditySwapDetailsModel (1..1)
+    effectiveDate fpml.consolidated.shared.AdjustableOrRelativeDate (1..1) <"Specifies the effective date of this leg of the swap. When defined in relation to a date specified somewhere else in the document (through the relativeDate component), this element will typically point to the effective date of the other leg of the swap.">
+    terminationDate fpml.consolidated.shared.AdjustableOrRelativeDate (1..1) <"Specifies the termination date of this leg of the swap. When defined in relation to a date specified somewhere else in the document (through the relativeDate component), this element will typically point to the termination date of the other leg of the swap.">
+    settlementCurrency fpml.consolidated.shared.IdentifiedCurrency (0..1) <"The currency into which the Commodity Swap Transaction will settle. If this is not the same as the currency in which the Commodity Reference Price is quoted on a given floating leg of the Commodity Swap Transaction, then an FX rate should also be specified for that leg.">
+    commoditySwapLeg CommodityLeg (0..*)
+    weatherLeg WeatherLeg (0..2) <"A weather leg element of a Commodity Swap defines Weather Index Swap transactions. Weather Index Swap transactions are OTC derivative transactions which settle financially based on an index calculated from observations of temperature, precipitation and other weather-related measurements at weather stations throughout the world. Sub-Annex C of the 2005 ISDA Commodity Definitions provides definitions and terms for a number of types of weather indices. These indices include: HDD (heating degree days), CDD (cooling degree days), CPD (critical precipitation days). Weather Index Swap transactions result in a cash flow to one of the two counterparties each Calculation Period depending on the relationship between the Settlement Level and the Weather Index Level. A Weather Index swap transaction always consists of a commodity swap element as a parent to two weatherLeg elements.">
+    commonPricing boolean (0..1) <"If Common Pricing is elected (“true”) for a Transaction with referencing more than one Commodity Reference Price then no date will be a Pricing Date unless such a date is a day on which all Commodity Reference Prices are scheduled to be published.">
+    marketDisruption CommodityMarketDisruption (0..1) <"Contains contract terms related to triggers and responses to market disruptions as defined in the 1993 or 2005 Commodity Definitions.">
+    settlementDisruption fpml.consolidated.fpmlenum.CommodityBullionSettlementDisruptionEnum (0..1) <"Describes contract terms related to the consequences of Bullion Settlement Disruption Events.">
+    rounding fpml.consolidated.shared.Rounding (0..1) <"Rounding direction and precision for amounts.">
 
 type CommodityTrigger: <"The barrier which, when breached, triggers the knock-in or knock-out of the barrier option.">
 
-    commodityTriggerSequence CommodityTriggerSequence (0..1)
+    levelQuantity number (0..1) <"The amount used the specify the barrier in terms of an quantity of commodity or a change in the quantity of commodity. In confirmations this is often described as the \"Strike Volume\" or \"Strike Quantity\".">
+    levelUnit fpml.consolidated.asset.QuantityUnit (0..1) <"The units (e.g. BCF) used to specify the barrier in terms of an quantity of commodity or change in the quantity of commodity.">
     levelPercentage fpml.consolidated.shared.Percentage (0..1) <"A barrier expressed as a percentage of notional quantity or commodity price level. A value expressed in percentage units i.e. 5 means 5%.">
     levelPrice CommodityFixedPrice (0..1) <"A barrier expressed as a price level.">
     triggerType fpml.consolidated.fpmlenum.TriggerTypeEnum (1..1) <"For barrier options: the specification of how an option will trigger or expire based on the position of the spot rate relative to the trigger level. For trades with selectable notionals: the specification of the conditions where one of the alternative notional values would apply.">
 
-    condition Choice:
-        required choice commodityTriggerSequence, levelPercentage , levelPrice
-
-type CommodityTriggerSequence:
-
-    levelQuantity number (1..1) <"The amount used the specify the barrier in terms of an quantity of commodity or a change in the quantity of commodity. In confirmations this is often described as the \"Strike Volume\" or \"Strike Quantity\".">
-    levelUnit fpml.consolidated.asset.QuantityUnit (1..1) <"The units (e.g. BCF) used to specify the barrier in terms of an quantity of commodity or change in the quantity of commodity.">
-
 type CommodityValuationDates: <"The dates on which prices are observed for the underlyer.">
 
-    commodityCalculationPeriodsPointerModel CommodityCalculationPeriodsPointerModel (0..1)
-    commodityValuationDatesSequence CommodityValuationDatesSequence (0..1)
-    valuationDates fpml.consolidated.shared.AdjustableDates (0..*) <"A list of adjustable dates on which the trade will price. Each date will price for the Calculation Period within which it falls.">
     id string (0..1)
-
-    condition Choice:
-        optional choice commodityValuationDatesSequence, valuationDates
-
-type CommodityValuationDatesSequence:
-
+    calculationPeriodsReference CalculationPeriodsReference (0..1) <"A pointer style reference to the Calculation Periods defined on another leg.">
+    calculationPeriodsScheduleReference CalculationPeriodsScheduleReference (0..1) <"A pointer style reference to the Calculation Periods Schedule defined on another leg.">
+    calculationPeriodsDatesReference CalculationPeriodsDatesReference (0..1) <"A pointer style reference to single-day-duration Calculation Periods defined on another leg.">
     lag Lag (0..1) <"The pricing period per calculation period if the pricing days do not wholly fall within the respective calculation period.">
-    commodityValuationDatesSequenceSequence CommodityValuationDatesSequenceSequence (0..1)
-    settlementPeriods SettlementPeriods (0..*) <"Specifies a set of Settlement Periods associated with an Electricity Transaction for delivery on an Applicable Day or for a series of Applicable Days.">
-    settlementPeriodsReference SettlementPeriodsReference (0..*) <"Allows a set of Settlement Periods to reference one already defined elsewhere in the trade structure.">
-
-    condition Choice:
-        optional choice commodityValuationDatesSequenceSequence, settlementPeriods , settlementPeriodsReference
-
-type CommodityValuationDatesSequenceSequence:
-
-    daysModel DaysModel (1..1)
+    dayType fpml.consolidated.fpmlenum.CommodityDayTypeEnum (0..1) <"The type of day on which pricing occurs.">
+    dayDistribution CommodityFrequencyType (0..1) <"The method by which the pricing days are distributed across the pricing period.">
+    dayCount int(min: 1) (0..1) <"The number of days over which pricing should take place.">
+    dayOfWeek fpml.consolidated.fpmlenum.DayOfWeekEnum (0..7) <"The day(s) of the week on which pricing will take place during the pricing period.">
+    dayNumber int (0..1) <"The occurrence of the dayOfWeek within the pricing period on which pricing will take place, e.g. the 3rd Friday within each Calculation Period. If omitted, every dayOfWeek will be a pricing day.">
+    businessDayConvention fpml.consolidated.fpmlenum.BusinessDayConventionEnum (0..1) <"The convention for adjusting a date if it would otherwise fall on a day that is not a business day.">
     businessCalendar fpml.consolidated.asset.CommodityBusinessCalendar (0..1) <"Identifies a commodity business day calendar from which the pricing dates will be determined.">
     calendarSource fpml.consolidated.fpmlenum.CalendarSourceEnum (0..1) <"Used in conjunction with an exchange-based pricing source. Identifies a date source calendar from which the pricing dates and thus roll to the next contract will be based off (e.g. pricing is based on the NYMEX WTI First Nearby Futures Contract, if “Future” is chosen, the pricing will roll to the next futures contract on expiration, if “ListedOption” is chosen, the pricing will roll to the next futures contract on the Option expiration date which is three business days before the expiration of the NYMEX WTI futures contract.) Omitting this element will result in the default behavior expected with the pricing source described within the commodity element.">
+    settlementPeriods SettlementPeriods (0..*) <"Specifies a set of Settlement Periods associated with an Electricity Transaction for delivery on an Applicable Day or for a series of Applicable Days.">
+    settlementPeriodsReference SettlementPeriodsReference (0..*) <"Allows a set of Settlement Periods to reference one already defined elsewhere in the trade structure.">
+    valuationDates fpml.consolidated.shared.AdjustableDates (0..*) <"A list of adjustable dates on which the trade will price. Each date will price for the Calculation Period within which it falls.">
 
 type CommodityVarianceCalculation:
 
@@ -847,21 +883,10 @@ type EEPRiskPeriod: <"TBD.">
 
 type ElectricityDelivery: <"The physical delivery conditions for electricity.">
 
-    electricityDeliverySequence0 ElectricityDeliverySequence0 (0..1)
-    electricityDeliverySequence1 ElectricityDeliverySequence1 (0..1)
-
-    condition Choice:
-        one-of
-
-type ElectricityDeliverySequence0:
-
-    deliveryPoint ElectricityDeliveryPoint (1..1) <"The point at which delivery of the electricity will occur.">
+    deliveryPoint ElectricityDeliveryPoint (0..1) <"The point at which delivery of the electricity will occur.">
     deliveryType ElectricityDeliveryType (0..1) <"Indicates the under what conditions the Parties\' delivery obligations apply.">
     transmissionContingency ElectricityTransmissionContingency (0..1) <"Indicates that the performance of the buyer or seller shall be excused (under the conditions specified) if transmission of the elctricity is unavailable or interrupted.">
     interconnectionPoint InterconnectionPoint (0..1) <"Identification of the border(s) or border point(s) of a transportation contract.">
-
-type ElectricityDeliverySequence1:
-
     deliveryZone CommodityDeliveryPoint (0..1) <"The zone covering potential delivery points for the electricity.">
     electingPartyReference fpml.consolidated.shared.PartyReference (0..1) <"Indicates the party able to decide which delivery point within the deliveryPoint is used for delivery. For EEI transactions, this should reference the seller of the electricity.">
 
@@ -886,9 +911,6 @@ type ElectricityDeliveryType:
     systemFirm ElectricityDeliverySystemFirm (0..1) <"Indicates that the electricity is intended to be supplied from the owned or controlled generation or pre-existing purchased power assets of the system specified.">
     unitFirm ElectricityDeliveryUnitFirm (0..1) <"Indicates that the electricity is intended to be supplied from a generation asset which can optionally be specified.">
 
-    condition Choice:
-        one-of
-
 type ElectricityDeliveryUnitFirm: <"The physical delivery obligation options specific to a unit firm transaction.">
 
     applicable boolean (0..1) <"Indicates that the trade is for a Unit Firm product. Should always be set to \"true\".">
@@ -907,9 +929,6 @@ type ElectricityPhysicalQuantity extends CommodityPhysicalQuantityBase: <"The qu
     physicalQuantity ElectricityPhysicalDeliveryQuantity (0..*) <"The Quantity per Delivery Period.">
     physicalQuantitySchedule ElectricityPhysicalDeliveryQuantitySchedule (0..*) <"Allows the documentation of a shaped quantity trade where the quantity changes over the life of the transaction. Note that if the range of Settlement Periods also varies over the life of the transaction this element should not be used. Instead, physicalQuantity should be repeated for each range of Settlement Periods that apply at any point during the trade.">
     totalPhysicalQuantity UnitQuantity (0..1) <"The Total Quantity of the commodity to be delivered.">
-
-    condition Choice:
-        optional choice physicalQuantity, physicalQuantitySchedule
 
 type ElectricityProduct: <"The specification of the electricity to be delivered.">
 
@@ -951,21 +970,42 @@ type EnvironmentalTrackingSystem: <"For US Emissions Allowance Transactions. A s
 
 type FinancialSwapLeg extends CommodityLeg: <"The common components of a financially settled leg of a Commodity Swap. This is an abstract type and should be extended by commodity-specific types.">
 
-    payerReceiverModel fpml.consolidated.shared.PayerReceiverModel (1..1)
+    payerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party responsible for making the payments defined by this structure.">
+    payerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account responsible for making the payments defined by this structure.">
+    receiverPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A reference to the party that receives the payments corresponding to this structure.">
+    receiverAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that receives the payments corresponding to this structure.">
 
 type CommodityFixedPrice: <"A type defining the Commodity Fixed Price.">
 
-    price number (1..1) <"The Fixed Price.">
-    commodityPriceModel CommodityPriceModel (1..1)
     id string (0..1)
+    price number (1..1) <"The Fixed Price.">
+    priceCurrency fpml.consolidated.shared.Currency (1..1) <"The currency used to specify the fixed price or level in terms of a price per unit of commodity.">
+    priceUnit fpml.consolidated.asset.QuantityUnit (1..1) <"The unit of measure used to specify the fixed price or level in terms of a price per unit of commodity.">
 
 type FixedPriceLeg extends FinancialSwapLeg: <"Fixed Price Leg of a Commodity Swap. It defines schedule of fixed payments associated with a commodity swap.">
 
-    commodityCalculationPeriodsModel CommodityCalculationPeriodsModel (1..1)
-    commodityFixedPriceModel CommodityFixedPriceModel (1..1)
-    commodityNotionalQuantityModel CommodityNotionalQuantityModel (1..1)
-    commodityPaymentDatesModel CommodityPaymentDatesModel (1..1)
-    commodityFreightFlatRateModel CommodityFreightFlatRateModel (0..1)
+    calculationDates fpml.consolidated.shared.AdjustableDates (0..1) <"The Calculation Period dates for this leg of the trade where the Calculation Periods are all one day long. Only dates explicitly included determine the Calculation Periods and there is a Calculation Period for each date specified. As such one-day Calculation Period are typical a physically-settled emissions or metals trades it is expected that this element will not be used in performance swaps.">
+    calculationPeriods fpml.consolidated.shared.AdjustableDates (0..1) <"The Calculation Period start dates for this leg of the swap. This type is only intended to be used if the Calculation Periods differ on each leg. If Calculation Periods mirror another leg, then the calculationPeriodsReference element should be used to point to the Calculation Periods on that leg - or the calculationPeriodsScheduleReference can be used to point to the Calculation Periods Schedule for that leg.">
+    calculationPeriodsSchedule CommodityCalculationPeriodsSchedule (0..1) <"The Calculation Periods for this leg of the swap. This type is only intended to be used if the Calculation Periods differ on each leg. If Calculation Periods mirror another leg, then the calculationPeriodsReference element should be used to point to the Calculation Periods on the other leg - or the calculationPeriodsScheduleReference can be used to point to the Calculation Periods Schedule for that leg.">
+    calculationPeriodsReference CalculationPeriodsReference (0..1) <"A pointer style reference to the Calculation Periods defined on another leg.">
+    calculationPeriodsScheduleReference CalculationPeriodsScheduleReference (0..1) <"A pointer style reference to the Calculation Periods Schedule defined on another leg.">
+    calculationPeriodsDatesReference CalculationPeriodsDatesReference (0..1) <"A pointer style reference to single-day-duration Calculation Periods defined on another leg.">
+    fixedPriceSchedule CommodityFixedPriceSchedule (0..1) <"Allows the specification of a Fixed Price that varies over the life of the trade.">
+    fixedPrice CommodityFixedPrice (0..1) <"Fixed price on which fixed payments are based.">
+    worldscaleRate number (0..1) <"For a WET Voyager Charter Commodity Swap, the number of Worldscale Points for purposes of the calculation of a Fixed Amount.">
+    contractRate fpml.consolidated.shared.NonNegativeMoney (0..1) <"For a DRY Voyage Charter or Time Charter Commodity Swap, the price per relevant unit for pruposes of the calculation of a Fixed Amount.">
+    settlementPeriodsPrice SettlementPeriodsFixedPrice (0..*) <"For an electricity transaction, the fixed price for one or more groups of Settlement Periods on which fixed payments are based. If the fixed price differs for different groups of Settlement Periods, this element should be repeated.">
+    totalPrice fpml.consolidated.shared.NonNegativeMoney (0..1) <"The total amount of all fixed payments due during the term of the trade.">
+    notionalQuantitySchedule CommodityNotionalQuantitySchedule (0..1) <"Allows the documentation of a shaped notional trade where the notional changes over the life of the transaction.">
+    notionalQuantity CommodityNotionalQuantity (0..1) <"The Notional Quantity.">
+    settlementPeriodsNotionalQuantity CommoditySettlementPeriodsNotionalQuantity (0..*) <"For an electricity transaction, the Notional Quantity for a one or more groups of Settlement Periods to which the Notional Quantity is based. If the schedule differs for different groups of Settlement Periods, this element should be repeated.">
+    totalNotionalQuantity number (0..1) <"The Total Notional Quantity.">
+    quantityReference QuantityReference (0..1) <"A pointer style reference to a quantity defined on another leg.">
+    relativePaymentDates CommodityRelativePaymentDates (0..1) <"The Payment Dates of the trade relative to the Calculation Periods.">
+    paymentDates fpml.consolidated.shared.AdjustableDatesOrRelativeDateOffset (0..1) <"Dates on which payments will be made.">
+    masterAgreementPaymentDates boolean (0..1) <"If present and true indicates that the Payment Date(s) are specified in the relevant master agreement.">
+    flatRate fpml.consolidated.fpmlenum.FlatRateEnum (0..1) <"Whether the Flat Rate is the New Worldwide Tanker Nominal Freight Scale for the Freight Index Route taken at the Trade Date of the transaction or taken on each Pricing Date.">
+    flatRateAmount fpml.consolidated.shared.NonNegativeMoney (0..1) <"If flatRate is set to \"Fixed\", the actual value of the Flat Rate.">
 
 type FloatingLegCalculation: <"A type to capture details relevant to the calculation of the floating price.">
 
@@ -978,39 +1018,45 @@ type FloatingLegCalculation: <"A type to capture details relevant to the calcula
     spreadPercentage fpml.consolidated.shared.Percentage (0..1) <"The spread percentage over or under the Commodity Reference Price for this leg of the trade. A value expressed in percentage units i.e. 5 means 5%.">
     fx CommodityFx (0..1) <"Defines how observations of FX prices are to be used to calculate a factor with which to convert the observed Commodity Reference Price to the Settlement Currency.">
 
-    condition Choice:
-        optional choice spread, spreadSchedule , spreadPercentage
-
 type FloatingPriceLeg extends FinancialSwapLeg: <"Floating Price Leg of a Commodity Swap. Each \'floatingLeg\' defines a series of financial payments for a commodity the value of which is derived from a floating price such as an exchange or an index publication.">
 
-    commodityCalculationPeriodsModel CommodityCalculationPeriodsModel (1..1)
+    calculationDates fpml.consolidated.shared.AdjustableDates (0..1) <"The Calculation Period dates for this leg of the trade where the Calculation Periods are all one day long. Only dates explicitly included determine the Calculation Periods and there is a Calculation Period for each date specified. As such one-day Calculation Period are typical a physically-settled emissions or metals trades it is expected that this element will not be used in performance swaps.">
+    calculationPeriods fpml.consolidated.shared.AdjustableDates (0..1) <"The Calculation Period start dates for this leg of the swap. This type is only intended to be used if the Calculation Periods differ on each leg. If Calculation Periods mirror another leg, then the calculationPeriodsReference element should be used to point to the Calculation Periods on that leg - or the calculationPeriodsScheduleReference can be used to point to the Calculation Periods Schedule for that leg.">
+    calculationPeriodsSchedule CommodityCalculationPeriodsSchedule (0..1) <"The Calculation Periods for this leg of the swap. This type is only intended to be used if the Calculation Periods differ on each leg. If Calculation Periods mirror another leg, then the calculationPeriodsReference element should be used to point to the Calculation Periods on the other leg - or the calculationPeriodsScheduleReference can be used to point to the Calculation Periods Schedule for that leg.">
+    calculationPeriodsReference CalculationPeriodsReference (0..1) <"A pointer style reference to the Calculation Periods defined on another leg.">
+    calculationPeriodsScheduleReference CalculationPeriodsScheduleReference (0..1) <"A pointer style reference to the Calculation Periods Schedule defined on another leg.">
+    calculationPeriodsDatesReference CalculationPeriodsDatesReference (0..1) <"A pointer style reference to single-day-duration Calculation Periods defined on another leg.">
     commodity fpml.consolidated.asset.Commodity (1..1) <"Specifies the underlying instrument. Only underlyers of type Commodity are supported.">
-    commodityNotionalQuantityModel CommodityNotionalQuantityModel (1..1)
+    notionalQuantitySchedule CommodityNotionalQuantitySchedule (0..1) <"Allows the documentation of a shaped notional trade where the notional changes over the life of the transaction.">
+    notionalQuantity CommodityNotionalQuantity (0..1) <"The Notional Quantity.">
+    settlementPeriodsNotionalQuantity CommoditySettlementPeriodsNotionalQuantity (0..*) <"For an electricity transaction, the Notional Quantity for a one or more groups of Settlement Periods to which the Notional Quantity is based. If the schedule differs for different groups of Settlement Periods, this element should be repeated.">
+    totalNotionalQuantity number (0..1) <"The Total Notional Quantity.">
+    quantityReference QuantityReference (0..1) <"A pointer style reference to a quantity defined on another leg.">
     calculation FloatingLegCalculation (1..1) <"Defines details relevant to the calculation of the floating price.">
-    commodityPaymentDatesModel CommodityPaymentDatesModel (1..1)
-    commodityFreightFlatRateModel CommodityFreightFlatRateModel (0..1)
+    relativePaymentDates CommodityRelativePaymentDates (0..1) <"The Payment Dates of the trade relative to the Calculation Periods.">
+    paymentDates fpml.consolidated.shared.AdjustableDatesOrRelativeDateOffset (0..1) <"Dates on which payments will be made.">
+    masterAgreementPaymentDates boolean (0..1) <"If present and true indicates that the Payment Date(s) are specified in the relevant master agreement.">
+    flatRate fpml.consolidated.fpmlenum.FlatRateEnum (0..1) <"Whether the Flat Rate is the New Worldwide Tanker Nominal Freight Scale for the Freight Index Route taken at the Trade Date of the transaction or taken on each Pricing Date.">
+    flatRateAmount fpml.consolidated.shared.NonNegativeMoney (0..1) <"If flatRate is set to \"Fixed\", the actual value of the Flat Rate.">
 
 type FloatingStrikePrice extends FloatingLegCalculation:
 
-    commodity fpml.consolidated.asset.Commodity (0..1)
+    commodity fpml.consolidated.asset.Commodity (1..1)
 
 type GasDelivery: <"The specification of the gas to be delivered.">
 
-    commodityDeliveryPointsModel CommodityDeliveryPointsModel (1..1)
+    deliveryPoint GasDeliveryPoint (0..1) <"The physical or virtual point at which the commodity will be delivered.">
+    entryPoint CommodityDeliveryPoint (0..1) <"The physical or virtual point at which the commodity enters a transportation system.">
+    withdrawalPoint CommodityDeliveryPoint (0..1) <"The physical or virtual point at which the commodity is withdrawn from a transportation system.">
     deliveryType fpml.consolidated.fpmlenum.DeliveryTypeEnum (0..1) <"Indicates whether the buyer and seller are contractually obliged to consume and supply the specified quantities of the commodity.">
     interconnectionPoint InterconnectionPoint (0..1) <"Identification of the border(s) or border point(s) of a transportation contract.">
-    gasDeliverySequence GasDeliverySequence (0..1)
-
-type GasDeliverySequence:
-
     buyerHub CommodityHub (0..1) <"The hub code of the gas buyer.">
     sellerHub CommodityHub (0..1) <"The hub code of the has seller.">
 
 type GasDeliveryPeriods extends CommodityDeliveryPeriods: <"The different options for specifying the Delivery Periods for a physically settled gas trade.">
 
-    supplyStartTime fpml.consolidated.shared.PrevailingTime (1..1) <"The time at which gas delivery should start on each day of the Delivery Period(s).">
-    supplyEndTime fpml.consolidated.shared.PrevailingTime (1..1) <"The time at which gas delivery should end on each day of the Delivery Period(s).">
-    gasDeliveryPeriodsSequence GasDeliveryPeriodsSequence (0..1)
+    supplyStartTime fpml.consolidated.shared.PrevailingTime (0..1) <"The time at which gas delivery should start on each day of the Delivery Period(s).">
+    supplyEndTime fpml.consolidated.shared.PrevailingTime (0..1) <"The time at which gas delivery should end on each day of the Delivery Period(s).">
 
 type GasDeliveryPoint: <"A scheme identifying the types of the Delivery Point for a physically settled gas trade.">
 
@@ -1019,14 +1065,9 @@ type GasDeliveryPoint: <"A scheme identifying the types of the Delivery Point fo
 
 type GasPhysicalQuantity extends CommodityPhysicalQuantityBase: <"The quantity of gas to be delivered.">
 
-    commodityFixedPhysicalQuantityModel CommodityFixedPhysicalQuantityModel (0..1)
-    gasPhysicalQuantitySequence GasPhysicalQuantitySequence (0..1)
-
-    condition Choice:
-        optional choice commodityFixedPhysicalQuantityModel, gasPhysicalQuantitySequence
-
-type GasPhysicalQuantitySequence:
-
+    physicalQuantity CommodityNotionalQuantity (0..1) <"The Quantity per Delivery Period.">
+    physicalQuantitySchedule CommodityPhysicalQuantitySchedule (0..1) <"Allows the documentation of a shaped quantity trade where the quantity changes over the life of the transaction.">
+    totalPhysicalQuantity UnitQuantity (0..1) <"The Total Quantity of the commodity to be delivered.">
     minPhysicalQuantity CommodityNotionalQuantity (0..*) <"The minimum quantity to be delivered. If separate minimums need to be specified for different periods (e.g. a minimum per day and a minimum per month) this element should be repeated.">
     maxPhysicalQuantity CommodityNotionalQuantity (0..*) <"The maximum quantity to be delivered. If separate minimums need to be specified for different periods (e.g. a minimum per day and a minimum per month) this element should be repeated.">
     electingParty fpml.consolidated.shared.PartyReference (0..1) <"Indicates the party able to choose whether the gas is delivered for a particular period e.g. a swing or interruptible contract.">
@@ -1036,9 +1077,6 @@ type GasProduct: <"A type defining the characteristics of the gas being traded i
     ^type fpml.consolidated.fpmlenum.GasProductTypeEnum (1..1) <"The type of gas to be delivered.">
     calorificValue fpml.consolidated.shared.NonNegativeDecimal (0..1) <"The calorific value of the gas to be delivered, specified in megajoules per cubic meter (MJ/m3).">
     quality GasQuality (0..1) <"The quality of the gas to be delivered.">
-
-    condition Choice:
-        optional choice calorificValue, quality
 
 type GasQuality: <"The quantity of gas to be delivered.">
 
@@ -1052,9 +1090,9 @@ type InterconnectionPoint: <"Identification of the border(s) or border point(s) 
 
 type Lag: <"An observation period that is offset from a Calculation Period.">
 
+    id string (0..1)
     lagDuration fpml.consolidated.shared.Period (0..1) <"The period during which observations will be made. If a firstObservationDateOffset is specified, the observation period will start the specified interval prior to each Calculation Period - i.e. if the firstObservationDateOffset is 4 months and the lagDuration is 3 months, observations will be taken in months 4,3 and 2 (but not 1) prior to each Calculation Period. If no firstObservationDate is specified, the observation period will end immediately preceding each Calculation Period.">
     firstObservationDateOffset fpml.consolidated.shared.Period (0..1) <"The interval between the start of each lagDuration and the start of each respective calculation period.">
-    id string (0..1)
 
 type MarketDisruptionEvent: <"A Market Disruption Event.">
 
@@ -1083,11 +1121,16 @@ type MetalDelivery: <"The physical delivery conditions for the transaction.">
 
 type NonPeriodicFixedPriceLeg extends CommodityLeg: <"The details of a fixed payment. Can be used for a forward transaction or as the base for a more complex fixed leg component such as the fixed leg of a swap.">
 
-    payerReceiverModel fpml.consolidated.shared.PayerReceiverModel (1..1)
+    payerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party responsible for making the payments defined by this structure.">
+    payerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account responsible for making the payments defined by this structure.">
+    receiverPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A reference to the party that receives the payments corresponding to this structure.">
+    receiverAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that receives the payments corresponding to this structure.">
     fixedPrice CommodityFixedPrice (1..1) <"Fixed price on which fixed payments are based.">
     totalPrice fpml.consolidated.shared.NonNegativeMoney (0..1) <"The total amount of the fixed payment for all units of the underlying commodity.">
     quantityReference QuantityReference (0..1) <"A pointer style reference to a quantity defined on another leg.">
-    commodityPaymentDatesModel CommodityPaymentDatesModel (1..1)
+    relativePaymentDates CommodityRelativePaymentDates (0..1) <"The Payment Dates of the trade relative to the Calculation Periods.">
+    paymentDates fpml.consolidated.shared.AdjustableDatesOrRelativeDateOffset (0..1) <"Dates on which payments will be made.">
+    masterAgreementPaymentDates boolean (0..1) <"If present and true indicates that the Payment Date(s) are specified in the relevant master agreement.">
 
 type OilDelivery: <"The physical delivery conditions for an oil product.">
 
@@ -1096,12 +1139,6 @@ type OilDelivery: <"The physical delivery conditions for an oil product.">
     importerOfRecord fpml.consolidated.shared.PartyReference (0..1) <"Specifies which party is the Importer of Record for the purposes of paying customs duties and applicable taxes or costs related to the import of the oil product.">
     absoluteTolerance AbsoluteTolerance (0..1) <"Specifies the allowable quantity tolerance as an absolute quantity.">
     percentageTolerance PercentageTolerance (0..1) <"Specifies the allowable quantity tolerance as a percentage of the quantity.">
-
-    condition Choice0:
-        optional choice pipeline, transfer
-
-    condition Choice1:
-        optional choice absoluteTolerance, percentageTolerance
 
 type OilPipelineDelivery: <"The physical delivery conditions specific to an oil product delivered by pipeline.">
 
@@ -1135,7 +1172,10 @@ type PercentageTolerance: <"The acceptable tolerance in the delivered quantity o
 
 type PhysicalForwardLeg extends PhysicalLegBase: <"The common components of a physically settled leg of a Commodity Forward. This is an abstract type and should be extended by commodity-specific types.">
 
-    payerReceiverModel fpml.consolidated.shared.PayerReceiverModel (1..1)
+    payerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party responsible for making the payments defined by this structure.">
+    payerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account responsible for making the payments defined by this structure.">
+    receiverPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A reference to the party that receives the payments corresponding to this structure.">
+    receiverAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that receives the payments corresponding to this structure.">
 
 type PhysicalLegBase extends CommodityLeg:
 
@@ -1143,7 +1183,10 @@ type PhysicalLegBase extends CommodityLeg:
 
 type PhysicalSwapLeg extends PhysicalLegBase: <"The common components of a physically settled leg of a Commodity Swap. This is an abstract type and should be extended by commodity-specific types.">
 
-    payerReceiverModel fpml.consolidated.shared.PayerReceiverModel (1..1)
+    payerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party responsible for making the payments defined by this structure.">
+    payerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account responsible for making the payments defined by this structure.">
+    receiverPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A reference to the party that receives the payments corresponding to this structure.">
+    receiverAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that receives the payments corresponding to this structure.">
 
 type QuantityReference extends fpml.consolidated.shared.Reference: <"A pointer tyle reference to a Quantity defined elsewhere.">
 
@@ -1166,24 +1209,14 @@ type SequencedDisruptionFallback: <"A Disruption Fallback with the sequence in w
 
 type SettlementPeriods: <"Specifies a set of Settlement Periods associated with an Electricity Transaction for delivery on an Applicable Day or for a series of Applicable Days.">
 
+    id string (0..1)
     duration fpml.consolidated.fpmlenum.SettlementPeriodDurationEnum (0..1) <"The length of each Settlement Period.">
     applicableDay fpml.consolidated.fpmlenum.DayOfWeekExtEnum (0..7) <"Specifies the Applicable Day with respect to a range of Settlement Periods. This element can only be omitted if includesHolidays is present, in which case this range of Settlement Periods will apply to days that are holidays only.">
-    settlementPeriodsSequence SettlementPeriodsSequence (0..1)
-    excludeHolidays fpml.consolidated.asset.CommodityBusinessCalendar (0..1) <"Indicates that days that are holidays according to the referenced commodity business calendar should be excluded from this range of Settlement Periods, even if such day is an applicable day.">
-    includeHolidays fpml.consolidated.asset.CommodityBusinessCalendar (0..1) <"Indicates that days that are holidays according to the referenced commodity business calendar should be included in this range of Settlement Periods, even if such day is not an applicable day.">
-    id string (0..1)
-    startTime fpml.consolidated.shared.OffsetPrevailingTime (1..1) <"Specifies the hour-ending Start Time with respect to a range of Settlement Periods.">
-    endTime fpml.consolidated.shared.OffsetPrevailingTime (1..1) <"Specifies the hour-ending End Time with respect to a range of Settlement Periods. If neither startTime nor endTime contain an offset element and endTime is earlier than startTime, this indicates that the time period \"wraps around\" midnight. For example, if startTime is 23:00 and endTime is 01:00 then Settlement Periods apply from 22:00 to 23:00 and 23:00 to 00:00 and 00:00 to 01:00 on each included day.">
-    timeDuration time (0..1) <"Specifies the duration of the time window during which settlement/delivery occurs.">
-
-    condition Choice:
-        optional choice excludeHolidays, includeHolidays
-
-type SettlementPeriodsSequence:
-
-    startTime fpml.consolidated.shared.OffsetPrevailingTime (1..1) <"Specifies the hour-ending Start Time with respect to a range of Settlement Periods.">
+    startTime fpml.consolidated.shared.OffsetPrevailingTime (0..1) <"Specifies the hour-ending Start Time with respect to a range of Settlement Periods.">
     endTime fpml.consolidated.shared.OffsetPrevailingTime (0..1) <"Specifies the hour-ending End Time with respect to a range of Settlement Periods. If neither startTime nor endTime contain an offset element and endTime is earlier than startTime, this indicates that the time period \"wraps around\" midnight. For example, if startTime is 23:00 and endTime is 01:00 then Settlement Periods apply from 22:00 to 23:00 and 23:00 to 00:00 and 00:00 to 01:00 on each included day.">
     timeDuration time (0..1) <"Specifies the duration of the time window during which settlement/delivery occurs.">
+    excludeHolidays fpml.consolidated.asset.CommodityBusinessCalendar (0..1) <"Indicates that days that are holidays according to the referenced commodity business calendar should be excluded from this range of Settlement Periods, even if such day is an applicable day.">
+    includeHolidays fpml.consolidated.asset.CommodityBusinessCalendar (0..1) <"Indicates that days that are holidays according to the referenced commodity business calendar should be included in this range of Settlement Periods, even if such day is not an applicable day.">
 
 type SettlementPeriodsFixedPrice extends CommodityFixedPrice: <"A type defining the Fixed Price applicable to a range or ranges of Settlement Periods.">
 
@@ -1196,7 +1229,8 @@ type SettlementPeriodsReference extends fpml.consolidated.shared.Reference: <"Al
 type SettlementPeriodsSchedule: <"The specification of the Settlement Periods in which the electricity will be delivered for a \"shaped\" trade i.e. where different Settlement Period ranges will apply to different periods of the trade.">
 
     settlementPeriodsStep SettlementPeriodsStep (0..*) <"The range of Settlement Periods per Calculation Period. There must be a range of Settlement Periods specified for each Calculation Period, regardless of whether the range of Settlement Periods changes or stays the same between periods.">
-    commodityDeliveryPeriodsPointerModel CommodityDeliveryPeriodsPointerModel (1..1)
+    deliveryPeriodsReference CalculationPeriodsReference (0..1) <"A pointer style reference to the Delivery Periods defined elsewhere.">
+    deliveryPeriodsScheduleReference CalculationPeriodsScheduleReference (0..1) <"A pointer style reference to the Calculation Periods Schedule defined elsewhere.">
 
 type SettlementPeriodsStep: <"A reference to the range of Settlement Periods that applies to a given period of a transaction.">
 
@@ -1212,9 +1246,9 @@ type StrikePriceUnderlyingReference extends fpml.consolidated.shared.Reference: 
 
 type UnitQuantity: <"A quantity and associated unit.">
 
+    id string (0..1)
     quantityUnit fpml.consolidated.asset.QuantityUnit (1..1) <"Quantity Unit is the unit of measure applicable for the quantity on the Transaction.">
     quantity fpml.consolidated.shared.NonNegativeDecimal (1..1) <"Amount of commodity per quantity frequency.">
-    id string (0..1)
 
 type WeatherCalculationPeriod: <"The schedule of Calculation Period First Days and Lasts Days. If there is only one First Day - Last Day pair then the First is equal to the Effective Date and the Last Day is equal to the Termination Date.">
 
@@ -1223,14 +1257,14 @@ type WeatherCalculationPeriod: <"The schedule of Calculation Period First Days a
 
 type WeatherCalculationPeriods: <"The schedule of Calculation Period First Days and Lasts Days. If there is only one First Day - Last Day pair then the First is equal to the Effective Date and the Last Day is equal to the Termination Date.">
 
-    calculationPeriod WeatherCalculationPeriod (0..*)
     id string (0..1)
+    calculationPeriod WeatherCalculationPeriod (0..*)
 
 type WeatherIndex: <"A type defining the Weather Index Level or Weather Index Strike Level.">
 
+    id string (0..1)
     quantity number (1..1) <"This is the Reference Level. The CDD, HDD or HDD Reference Level is specified as the number of (amount of) Weather Index Units specified by the parties in the related Confirmation.">
     unit fpml.consolidated.asset.QuantityUnit (1..1) <"Weather Index Unit derived from one of the following variable methods of determination: Cooling Degree Day (CDD), Heating Degree Day (HDD), Critical Precipitation Day (CPD) as defined in Section 11.15 of the 2005 ISDA Commodity Definitions and User Guide.">
-    id string (0..1)
 
 type WeatherIndexData:
 
@@ -1249,7 +1283,8 @@ type WeatherIndexData:
 type WeatherLeg extends FinancialSwapLeg: <"A weather leg of a Commodity Swap defines Weather Index Swap transactions. Weather Index Swap transactions are OTC derivative transactions which settle financially based on an index calculated from observations of temperature, precipitation and other weather-related measurements at weather stations throughout the world. Sub-Annex C of the 2005 ISDA Commodity Definitions provides definitions and terms for a number of types of weather indices. These indices include: HDD (heating degree days), CDD (cooling degree days), CPD (critical precipitation days). Weather Index Swap transactions result in a cash flow to one of the two counterparties each Calculation Period depending on the relationship between the Settlement Level and the Weather Index Level. A Weather Index swap transaction always consists of a commodity swap element as a parent to two weatherLeg elements.">
 
     weatherIndexLevel WeatherIndex (1..1) <"Defining the Weather Index Level or Weather Index Strike Level.">
-    weatherCalculationPeriodModel WeatherCalculationPeriodModel (1..1)
+    weatherCalculationPeriods WeatherCalculationPeriods (0..1)
+    weatherCalculationPeriodsReference CalculationPeriodsReference (0..1)
     weatherNotionalAmount fpml.consolidated.shared.NonNegativeMoney (1..1) <"Defines the price per weather index unit.">
     calculation WeatherLegCalculation (1..1) <"Defines details relevant to the calculation of the aggregate weather index amount.">
     paymentDates CommodityRelativePaymentDates (0..1) <"The Payment Dates of the trade relative to the Calculation Periods or Calculation Date">
@@ -1274,9 +1309,6 @@ type WeatherStation: <"Weather Station.">
     weatherStationWBAN WeatherStationWBAN (0..1)
     weatherStationWMO WeatherStationWMO (0..1)
 
-    condition Choice:
-        optional choice weatherStationCity, weatherStationAirport , weatherStationWBAN , weatherStationWMO
-
 type WeatherStationAirport: <"A code identifying a Weather Station Airport (based on the the IATA standard).">
 
     value fpml.consolidated.shared.Scheme (1..1)
@@ -1295,346 +1327,6 @@ type WeatherStationWMO: <"A code identifying a Weather Index WMO.">
     weatherStationWMOScheme fpml.consolidated.shared.NonEmptyURI (0..1)
     id string (0..1)
 
-type CommodityAsianModel: <"Model group containing features specific to Asian/averaging commodity options.">
-
-    calculationPeriodsSchedule CommodityCalculationPeriodsSchedule (0..1) <"A parametric representation of the Calculation Periods of the Commodity Option Transaction.">
-    calculationPeriods fpml.consolidated.shared.AdjustableDates (0..1) <"An absolute representation of the Calculation Period start dates of the Commodity Option Transaction.">
-    pricingDates CommodityPricingDates (0..1) <"The dates on which the option will price.">
-    averagingMethod fpml.consolidated.fpmlenum.AveragingMethodEnum (0..1) <"The Method of Averaging if there is more than one Pricing Date.">
-
-    condition Choice:
-        optional choice calculationPeriodsSchedule, calculationPeriods
-
-type CommodityBasketModel:
-
-    notionalQuantityBasket CommodityBasketByNotional (0..1)
-    notionalAmountBasket CommodityBasketByPercentage (0..1)
-
-    condition Choice:
-        one-of
-
-type CommodityBasketOptionFeaturesModel: <"Describes the features a commodity basket option.">
-
-    effectiveDate fpml.consolidated.shared.AdjustableOrRelativeDate (0..1) <"The effective date of the Commodity Option Transaction. Note that the Termination/Expiration Date should be specified in expirationDate within the CommodityAmericanExercise type or the CommodityEuropeanExercise type, as applicable.">
-    terminationDate fpml.consolidated.shared.AdjustableOrRelativeDate (0..1) <"Specifies the termination date of the Commodity Option Transaction. In some confirmations this will be indicated as the second date in \"Option Term\" or \"Term\". Note: If provided, terminationDate should not be before specified expirationDate within the CommodityAmericanExercise type or the CommodityEuropeanExercise type.">
-    calculationPeriodsSchedule CommodityCalculationPeriodsSchedule (0..1) <"A parametric representation of the Calculation Periods of the Commodity Option Transaction.">
-    calculationPeriods fpml.consolidated.shared.AdjustableDates (0..1) <"An absolute representation of the Calculation Period start dates of the Commodity Option Transaction.">
-
-    condition Choice:
-        optional choice calculationPeriodsSchedule, calculationPeriods
-
-type CommodityCalculationPeriodsModel: <"The different options for specifying the Calculation Periods.">
-
-    calculationDates fpml.consolidated.shared.AdjustableDates (0..1) <"The Calculation Period dates for this leg of the trade where the Calculation Periods are all one day long. Only dates explicitly included determine the Calculation Periods and there is a Calculation Period for each date specified. As such one-day Calculation Period are typical a physically-settled emissions or metals trades it is expected that this element will not be used in performance swaps.">
-    calculationPeriods fpml.consolidated.shared.AdjustableDates (0..1) <"The Calculation Period start dates for this leg of the swap. This type is only intended to be used if the Calculation Periods differ on each leg. If Calculation Periods mirror another leg, then the calculationPeriodsReference element should be used to point to the Calculation Periods on that leg - or the calculationPeriodsScheduleReference can be used to point to the Calculation Periods Schedule for that leg.">
-    calculationPeriodsSchedule CommodityCalculationPeriodsSchedule (0..1) <"The Calculation Periods for this leg of the swap. This type is only intended to be used if the Calculation Periods differ on each leg. If Calculation Periods mirror another leg, then the calculationPeriodsReference element should be used to point to the Calculation Periods on the other leg - or the calculationPeriodsScheduleReference can be used to point to the Calculation Periods Schedule for that leg.">
-    commodityCalculationPeriodsPointerModel CommodityCalculationPeriodsPointerModel (0..1)
-
-    condition Choice:
-        one-of
-
-type CommodityCalculationPeriodsPointerModel: <"Model group enables users to reference a Calculation Periods schedule in the form of a series of actual dates in a calculationPeriods container or in the form of a parameterized schedule in a calculationPeriodsSchedule container.">
-
-    calculationPeriodsReference CalculationPeriodsReference (0..1) <"A pointer style reference to the Calculation Periods defined on another leg.">
-    calculationPeriodsScheduleReference CalculationPeriodsScheduleReference (0..1) <"A pointer style reference to the Calculation Periods Schedule defined on another leg.">
-    calculationPeriodsDatesReference CalculationPeriodsDatesReference (0..1) <"A pointer style reference to single-day-duration Calculation Periods defined on another leg.">
-
-    condition Choice:
-        one-of
-
-type CommodityCoalCompositionModel: <"Items defining the chemical composition of the coal product.">
-
-    moisture CoalAttributePercentage (0..1) <"The moisture content of the coal product.">
-    ash CoalAttributePercentage (0..1) <"The ash content of the coal product.">
-    sulfur CoalAttributePercentage (0..1) <"The sulfur/sulphur content of the coal product.">
-    sO2 CoalAttributePercentage (0..1) <"The sulfur/sulphur dioxide content of the coal product.">
-    volatile CoalAttributePercentage (0..1) <"The volatile content of the coal product.">
-
-type CommodityCoalPropertiesModel: <"Items defining the physical attributes of the coal product.">
-
-    btUperLB CoalAttributeDecimal (0..1) <"The number of British Thermal Units per Pound of the coal product.">
-    topSize CoalAttributeDecimal (0..1) <"The smallest sieve opening that will result in less than 5% of a sample of the coal product remaining.">
-    finesPassingScreen CoalAttributeDecimal (0..1)
-    grindability CoalAttributeDecimal (0..1) <"The Hardgrove Grindability Index value of the coal to be delivered.">
-    ashFusionTemperature CoalAttributeDecimal (0..1) <"The temperature at which the ash form of the coal product fuses completely in accordance with the ASTM International D1857 Standard Test Methodology.">
-
-type CommodityCoalReducingAtmosphereModel: <"Items defining the attributes of the coal product determined by ash fusion tests.">
-
-    initialDeformation CoalAttributeDecimal (0..1) <"The temperature at which an ash cone shows evidence of deformation.">
-    softeningHeightWidth CoalAttributeDecimal (0..1) <"The temperature at which the height of an ash cone equals its width. (Softening temperature).">
-    softeningHeightHalfWidth CoalAttributeDecimal (0..1) <"The temperature at which the height of an ash cone equals half its width. (Hemisphere temperature).">
-    fluid CoalAttributeDecimal (0..1) <"The temperature at which the ash cone flattens.">
-
-type CommodityContentModel: <"Items common to all Commodity Transactions.">
-
-    commonPricing boolean (0..1) <"If Common Pricing is elected (“true”) for a Transaction with referencing more than one Commodity Reference Price then no date will be a Pricing Date unless such a date is a day on which all Commodity Reference Prices are scheduled to be published.">
-    marketDisruption CommodityMarketDisruption (0..1) <"Contains contract terms related to triggers and responses to market disruptions as defined in the 1993 or 2005 Commodity Definitions.">
-    settlementDisruption fpml.consolidated.fpmlenum.CommodityBullionSettlementDisruptionEnum (0..1) <"Describes contract terms related to the consequences of Bullion Settlement Disruption Events.">
-    rounding fpml.consolidated.shared.Rounding (0..1) <"Rounding direction and precision for amounts.">
-
-type CommodityDeliveryPeriodsPointerModel: <"Model group to enable users to reference a Delivery Periods schedule in the form of a series of actual dates in a deliveryPeriods container or in the form of a parameterised schedule in a deliveryPeriodsSchedule container.">
-
-    deliveryPeriodsReference CalculationPeriodsReference (0..1) <"A pointer style reference to the Delivery Periods defined elsewhere.">
-    deliveryPeriodsScheduleReference CalculationPeriodsScheduleReference (0..1) <"A pointer style reference to the Calculation Periods Schedule defined elsewhere.">
-
-    condition Choice:
-        one-of
-
-type CommodityDeliveryPointsModel: <"A Delivery Point, applicable to physically settled commodity transactions.">
-
-    deliveryPoint GasDeliveryPoint (0..1) <"The physical or virtual point at which the commodity will be delivered.">
-    commodityDeliveryPointsModelSequence CommodityDeliveryPointsModelSequence (0..1)
-
-    condition Choice:
-        one-of
-
-type CommodityDeliveryPointsModelSequence:
-
-    entryPoint CommodityDeliveryPoint (0..1) <"The physical or virtual point at which the commodity enters a transportation system.">
-    withdrawalPoint CommodityDeliveryPoint (0..1) <"The physical or virtual point at which the commodity is withdrawn from a transportation system.">
-
-type CommodityDigitalOptionFeaturesModel: <"Describes features of the digital option.">
-
-    effectiveDate fpml.consolidated.shared.AdjustableOrRelativeDate (0..1) <"The effective date of the Commodity Option Transaction. Note that the Termination/Expiration Date should be specified in expirationDate within the CommodityAmericanExercise type or the CommodityEuropeanExercise type, as applicable.">
-    terminationDate fpml.consolidated.shared.AdjustableOrRelativeDate (0..1) <"Specifies the termination date of the Commodity Option Transaction. In some confirmations this will be indicated as the second date in \"Option Term\" or \"Term\". Note: If provided, terminationDate should not be before specified expirationDate within the CommodityAmericanExercise type or the CommodityEuropeanExercise type.">
-    commodityAsianModel CommodityAsianModel (0..1)
-    digital CommodityDigital (0..1) <"The barrier and cash payout features of the digital option.">
-
-type CommodityFinancialOptionModel: <"Items specific to financially-settled commodity options.">
-
-    commodity fpml.consolidated.asset.Commodity (1..1) <"Specifies the underlying instrument. Usual content is an ISDA Commodity Reference Price Name. The \'commodity\' underlyer component is specified using a reference to the \'commodity\' asset (see description above at the Commodity Underlyer section).">
-    commodityOptionFeaturesModel CommodityOptionFeaturesModel (0..1)
-    commodityNotionalQuantityModel CommodityNotionalQuantityModel (1..1)
-    exercise CommodityExercise (0..1) <"The parameters for defining how the commodity option can be exercised and how it is settled.">
-    commodityStrikePriceModel CommodityStrikePriceModel (0..1)
-    commodityFloatingStrikePriceModel CommodityFloatingStrikePriceModel (0..1)
-
-    condition Choice:
-        optional choice commodityStrikePriceModel, commodityFloatingStrikePriceModel
-
-type CommodityFixedPhysicalQuantityModel: <"The different options for specifying a fixed physical quantity of commodity to be delivered.">
-
-    physicalQuantity CommodityNotionalQuantity (0..1) <"The Quantity per Delivery Period.">
-    physicalQuantitySchedule CommodityPhysicalQuantitySchedule (0..1) <"Allows the documentation of a shaped quantity trade where the quantity changes over the life of the transaction.">
-    totalPhysicalQuantity UnitQuantity (0..1) <"The Total Quantity of the commodity to be delivered.">
-
-    condition Choice:
-        optional choice physicalQuantity, physicalQuantitySchedule
-
-type CommodityFixedPriceModel: <"The different options for specifying the Fixed Price.">
-
-    fixedPriceSchedule CommodityFixedPriceSchedule (0..1) <"Allows the specification of a Fixed Price that varies over the life of the trade.">
-    commodityFixedPriceModelChoice CommodityFixedPriceModelChoice (0..1)
-    totalPrice fpml.consolidated.shared.NonNegativeMoney (0..1) <"The total amount of all fixed payments due during the term of the trade.">
-
-    condition Choice:
-        optional choice fixedPriceSchedule, commodityFixedPriceModelChoice
-
-type CommodityFixedPriceModelChoice:
-
-    fixedPrice CommodityFixedPrice (0..1) <"Fixed price on which fixed payments are based.">
-    worldscaleRate number (0..1) <"For a WET Voyager Charter Commodity Swap, the number of Worldscale Points for purposes of the calculation of a Fixed Amount.">
-    contractRate fpml.consolidated.shared.NonNegativeMoney (0..1) <"For a DRY Voyage Charter or Time Charter Commodity Swap, the price per relevant unit for pruposes of the calculation of a Fixed Amount.">
-    settlementPeriodsPrice SettlementPeriodsFixedPrice (0..*) <"For an electricity transaction, the fixed price for one or more groups of Settlement Periods on which fixed payments are based. If the fixed price differs for different groups of Settlement Periods, this element should be repeated.">
-
-    condition Choice:
-        optional choice fixedPrice, worldscaleRate , contractRate , settlementPeriodsPrice
-
-type CommodityFloatingStrikePriceModel: <"The different options for specifying the average strike price per unit. These options are to specify a single average strike price per unit or to specify a schedule of average strike prices.">
-
-    floatingStrikePricePerUnit FloatingStrikePrice (0..1) <"The currency amount of the strike price per unit.">
-    floatingStrikePricePerUnitSchedule CommodityCalculationPeriodsSchedule (0..1)
-
-    condition Choice:
-        one-of
-
-type CommodityFreightFlatRateModel: <"The Flat Rate, applicable to Wet Voyager Charter Freight Swaps.">
-
-    flatRate fpml.consolidated.fpmlenum.FlatRateEnum (0..1) <"Whether the Flat Rate is the New Worldwide Tanker Nominal Freight Scale for the Freight Index Route taken at the Trade Date of the transaction or taken on each Pricing Date.">
-    flatRateAmount fpml.consolidated.shared.NonNegativeMoney (0..1) <"If flatRate is set to \"Fixed\", the actual value of the Flat Rate.">
-
-type CommodityNonPeriodicPaymentDatesModel: <"The different options for specifying the Payment Date.">
-
-    paymentDates fpml.consolidated.shared.AdjustableDatesOrRelativeDateOffset (0..1) <"Dates on which payments will be made.">
-    masterAgreementPaymentDates boolean (0..1) <"If present and true indicates that the Payment Date(s) are specified in the relevant master agreement.">
-
-    condition Choice:
-        one-of
-
-type CommodityNotionalQuantityModel: <"The different options for specifying the Notional Quantity. A flat notional for the term of the contract may be specified, or else the Notional Quantity per Calculation Period. In the latter case, there must be a notional quantity step specified for each Calculation Period, regardless of whether the Notional Quantity changes or remains the same between periods.">
-
-    commodityNotionalQuantityModelSequence CommodityNotionalQuantityModelSequence (0..1)
-    quantityReference QuantityReference (0..1) <"A pointer style reference to a quantity defined on another leg.">
-
-    condition Choice:
-        one-of
-
-type CommodityNotionalQuantityModelSequence:
-
-    notionalQuantitySchedule CommodityNotionalQuantitySchedule (0..1) <"Allows the documentation of a shaped notional trade where the notional changes over the life of the transaction.">
-    notionalQuantity CommodityNotionalQuantity (0..1) <"The Notional Quantity.">
-    settlementPeriodsNotionalQuantity CommoditySettlementPeriodsNotionalQuantity (0..*) <"For an electricity transaction, the Notional Quantity for a one or more groups of Settlement Periods to which the Notional Quantity is based. If the schedule differs for different groups of Settlement Periods, this element should be repeated.">
-    totalNotionalQuantity number (0..1) <"The Total Notional Quantity.">
-
-    condition Choice:
-        optional choice notionalQuantitySchedule, notionalQuantity , settlementPeriodsNotionalQuantity
-
-type CommodityOptionFeaturesModel: <"Describes additional features within the option.">
-
-    effectiveDate fpml.consolidated.shared.AdjustableOrRelativeDate (0..1) <"The effective date of the Commodity Option Transaction. Note that the Termination/Expiration Date should be specified in expirationDate within the CommodityAmericanExercise type or the CommodityEuropeanExercise type, as applicable.">
-    terminationDate fpml.consolidated.shared.AdjustableOrRelativeDate (0..1) <"Specifies the termination date of the Commodity Option Transaction. In some confirmations this will be indicated as the second date in \"Option Term\" or \"Term\". Note: If provided, terminationDate should not be before specified expirationDate within the CommodityAmericanExercise type or the CommodityEuropeanExercise type.">
-    commodityAsianModel CommodityAsianModel (0..1)
-    barrier CommodityBarrier (0..1) <"Defines a commodity option barrier product feature.">
-    commodityOptionFeaturesModelSequence CommodityOptionFeaturesModelSequence (0..1)
-
-type CommodityPaymentDatesModel: <"The different options for specifying the Payment Date. This will consist of either a set of Payment Dates or else a Payment Date schedule.">
-
-    relativePaymentDates CommodityRelativePaymentDates (0..1) <"The Payment Dates of the trade relative to the Calculation Periods.">
-    commodityNonPeriodicPaymentDatesModel CommodityNonPeriodicPaymentDatesModel (0..1)
-
-    condition Choice:
-        one-of
-
-type CommodityPhysicalOptionModel: <"Items specific to financially-settled commodity options.">
-
-    commoditySwap CommoditySwaptionUnderlying (0..1)
-    commodityForward CommodityForward (0..1)
-    physicalExercise CommodityPhysicalExercise (0..1) <"The parameters for defining how the commodity option can be exercised into a physical transaction.">
-
-    condition Choice:
-        optional choice commoditySwap, commodityForward
-
-type CommodityStrikePriceModel: <"The different options for specifying the Strike price per unit.">
-
-    strikePricePerUnit fpml.consolidated.shared.NonNegativeMoney (0..1) <"The currency amount of the strike price per unit.">
-    strikePricePerUnitSchedule CommodityStrikeSchedule (0..1)
-
-    condition Choice:
-        one-of
-
-type CommoditySwapDetailsModel:
-
-    effectiveDate fpml.consolidated.shared.AdjustableOrRelativeDate (1..1) <"Specifies the effective date of this leg of the swap. When defined in relation to a date specified somewhere else in the document (through the relativeDate component), this element will typically point to the effective date of the other leg of the swap.">
-    terminationDate fpml.consolidated.shared.AdjustableOrRelativeDate (1..1) <"Specifies the termination date of this leg of the swap. When defined in relation to a date specified somewhere else in the document (through the relativeDate component), this element will typically point to the termination date of the other leg of the swap.">
-    settlementCurrency fpml.consolidated.shared.IdentifiedCurrency (0..1) <"The currency into which the Commodity Swap Transaction will settle. If this is not the same as the currency in which the Commodity Reference Price is quoted on a given floating leg of the Commodity Swap Transaction, then an FX rate should also be specified for that leg.">
-    commoditySwapLeg CommodityLeg (0..*)
-    weatherLeg WeatherLeg (0..2) <"A weather leg element of a Commodity Swap defines Weather Index Swap transactions. Weather Index Swap transactions are OTC derivative transactions which settle financially based on an index calculated from observations of temperature, precipitation and other weather-related measurements at weather stations throughout the world. Sub-Annex C of the 2005 ISDA Commodity Definitions provides definitions and terms for a number of types of weather indices. These indices include: HDD (heating degree days), CDD (cooling degree days), CPD (critical precipitation days). Weather Index Swap transactions result in a cash flow to one of the two counterparties each Calculation Period depending on the relationship between the Settlement Level and the Weather Index Level. A Weather Index swap transaction always consists of a commodity swap element as a parent to two weatherLeg elements.">
-    commodityContentModel CommodityContentModel (0..1)
-
-    condition Choice:
-        optional choice commoditySwapLeg, weatherLeg
-
-type CommodityUnderlyerChoiceModel: <"A type describing the type of underlyer: a single commodity or a basket of commodities.">
-
-    commodity fpml.consolidated.asset.Commodity (0..1) <"Describes the swap\'s underlyer when it has only one asset component.">
-    commodityBasket CommodityBasket (0..1) <"Describes the swap\'s underlyer when it has multiple asset components.">
-
-    condition Choice:
-        one-of
-
-type CommodityUSCoalProductModel: <"Items specific to the definition of a US Coal Product.">
-
-    btuQualityAdjustment CoalQualityAdjustments (0..1) <"The Quality Adjustment formula to be used where the Actual Shipment BTU/Lb value differs from the Standard BTU/Lb value.">
-    so2QualityAdjustment CoalQualityAdjustments (0..1) <"The Quality Adjustment formula to be used where the Actual Shipment SO2/MMBTU value differs from the Standard SO2/MMBTU value.">
-
-type CommodityUSCoalDeliveryModel: <"Items specific to the definition of the delivery of a US Coal Product.">
-
-    quantityVariationAdjustment boolean (0..1) <"If true, indicates that QVA is applicable. If false, indicates that QVA is inapplicable.">
-    transportationEquipment CoalTransportationEquipment (0..1) <"The transportation equipment with which the Coal Product will be delivered and received.">
-    risk CommodityDeliveryRisk (0..1) <"Specifies how the risk associated with the delivery is assigned.">
-
-type CommodityWeatherOptionModel: <"Described Weather Index Option component. Weather Index Option transactions are OTC derivative transactions which settle financially based on an index calculated from observations of temperature and precipitation at weather stations throughout the world. Sub-Annex C of the 2005 ISDA Commodity Definitions provides definitions and terms for a number of types of weather indices. These indices include: HDD (heating degree days), CDD (cooling degree days), CPD (critical precipitation days). Weather Index Option Transactions results in a cash flow to the buyer depending on the relationship between the Settlement Level to the Weather Index Strike Level.">
-
-    effectiveDate fpml.consolidated.shared.AdjustableOrRelativeDate (1..1) <"Effective date of an option.">
-    weatherCalculationPeriodModel WeatherCalculationPeriodModel (1..1)
-    weatherNotionalAmount fpml.consolidated.shared.NonNegativeMoney (1..1)
-    exercise CommodityExercise (0..1)
-    weatherIndexStrikeLevel WeatherIndex (1..1) <"Weather Index strike price level is specified in terms of weather index units (e.g. 1 Days, 3 Inches, etc.)">
-    calculation WeatherLegCalculation (1..1) <"Contains parameters which figure in the calculation of payments on a Weather Index Option.">
-    weatherIndexData WeatherIndexData (0..1) <"Specifies where the data (e.g. CPD) have been collected, an actual physical reference point (weather station) and various fall back arrangements.">
-
-type DaysModel: <"The different options for specifying which days are pricing days within a pricing period. Unless a lag element is present, the pricing period will be contained within the calculation period.">
-
-    dayType fpml.consolidated.fpmlenum.CommodityDayTypeEnum (0..1) <"The type of day on which pricing occurs.">
-    daysModelSequence0 DaysModelSequence0 (0..1)
-    daysModelSequence1 DaysModelSequence1 (0..1)
-    businessDayConvention fpml.consolidated.fpmlenum.BusinessDayConventionEnum (0..1) <"The convention for adjusting a date if it would otherwise fall on a day that is not a business day.">
-
-    condition Choice:
-        optional choice daysModelSequence0, daysModelSequence1
-
-type DaysModelSequence0:
-
-    dayDistribution CommodityFrequencyType (0..1) <"The method by which the pricing days are distributed across the pricing period.">
-    dayCount int(min: 1) (0..1) <"The number of days over which pricing should take place.">
-
-type DaysModelSequence1:
-
-    dayOfWeek fpml.consolidated.fpmlenum.DayOfWeekEnum (0..7) <"The day(s) of the week on which pricing will take place during the pricing period.">
-    dayNumber int (0..1) <"The occurrence of the dayOfWeek within the pricing period on which pricing will take place, e.g. the 3rd Friday within each Calculation Period. If omitted, every dayOfWeek will be a pricing day.">
-
-type CommodityPriceModel: <"Commodity price model group.">
-
-    priceCurrency fpml.consolidated.shared.Currency (1..1) <"The currency used to specify the fixed price or level in terms of a price per unit of commodity.">
-    priceUnit fpml.consolidated.asset.QuantityUnit (1..1) <"The unit of measure used to specify the fixed price or level in terms of a price per unit of commodity.">
-
-type WeatherCalculationPeriodModel: <"Descriptions of a calculation period.">
-
-    weatherCalculationPeriods WeatherCalculationPeriods (0..1)
-    weatherCalculationPeriodsReference CalculationPeriodsReference (0..1)
-
-    condition Choice:
-        one-of
-
-type CoalAttributeDecimalSequence0:
-
-    standardContent number (1..1) <"The actual content of the quality characteristics of the Coal Product Shipment expected by the Buyer.">
-    rejectionLimit number (0..1) <"The actual limits of the quality characteristics of the Coal Product above or below which the Buyer may reject a Shipment.">
-
-type CoalAttributeDecimalSequence1:
-
-    rejectionLimit number (1..1) <"The actual limits of the quality characteristics of the Coal Product above or below which the Buyer may reject a Shipment.">
-
-type CoalAttributePercentageSequence0:
-
-    standardContent fpml.consolidated.shared.Percentage (1..1) <"The actual content of the quality characteristics of the Coal Product Shipment expected by the Buyer. A value expressed in percentage units i.e. 5 means 5%.">
-    rejectionLimit fpml.consolidated.shared.Percentage (0..1) <"The actual limits of the quality characteristics of the Coal Product above or below which the Buyer may reject a Shipment. A value expressed in percentage units i.e. 5 means 5%.">
-
-type CoalAttributePercentageSequence1:
-
-    rejectionLimit fpml.consolidated.shared.Percentage (1..1) <"The actual limits of the quality characteristics of the Coal Product above or below which the Buyer may reject a Shipment. A value expressed in percentage units i.e. 5 means 5%.">
-
-type CommodityFxSequence:
-
-    fxObservationDates fpml.consolidated.shared.AdjustableDates (0..*) <"A list of the fx observation dates for a given Calculation Period.">
-    commodityFxSequenceSequence CommodityFxSequenceSequence (0..1)
-    fixingTime fpml.consolidated.shared.BusinessCenterTime (0..1) <"The time at which the spot currency exchange rate will be observed. It is specified as a time in a specific business center, e.g. 11:00am London time.">
-
-type CommodityFxSequenceSequence:
-
-    commodityFxSequenceSequenceSequence CommodityFxSequenceSequenceSequence (0..1)
-    commodityCalculationPeriodsPointerModel CommodityCalculationPeriodsPointerModel (1..1)
-
-type CommodityFxSequenceSequenceSequence:
-
-    daysModel DaysModel (1..1)
-    lagOrReferenceModel LagOrReferenceModel (0..1)
-
-type GasDeliveryPeriodsSequence:
-
-    supplyStartTime fpml.consolidated.shared.PrevailingTime (1..1) <"The time at which gas delivery should start on each day of the Delivery Period(s).">
-    supplyEndTime fpml.consolidated.shared.PrevailingTime (1..1) <"The time at which gas delivery should end on each day of the Delivery Period(s).">
-
 type LagReference extends fpml.consolidated.shared.Reference: <"Allows a lag to reference one already defined elsewhere in the trade.">
 
     href string (1..1)
-
-type CommodityOptionFeaturesModelSequence:
-
-    commodityAsianModel CommodityAsianModel (1..1)
-    barrier CommodityBarrier (0..1) <"Defines a commodity option barrier product feature.">
-
-type LagOrReferenceModel: <"Allows a Lag or a LagReference to be specified.">
-
-    lag Lag (0..1) <"The pricing period per calculation period if the pricing days do not wholly fall within the respective calculation period.">
-    lagReference LagReference (0..1) <"Allows a lag to reference one already defined elsewhere in the trade.">

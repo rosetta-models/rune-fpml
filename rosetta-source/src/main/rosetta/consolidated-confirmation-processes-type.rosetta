@@ -4,34 +4,51 @@ version "${project.version}"
 type RequestExecution extends fpml.consolidated.msg.CorrectableRequestMessage: <"A message requesting that an order be executed.">
     [rootType]
 
-    tradingEventsModel fpml.consolidated.business.events.TradingEventsModel (0..1)
+    tradePackage fpml.consolidated.business.events.TradePackage (0..1)
+    originatingEvent fpml.consolidated.shared.OriginatingEvent (0..1)
+    trade fpml.consolidated.doc.Trade (0..1)
+    additionalEvent fpml.consolidated.business.events.AdditionalEvent (0..1)
     optionExercise fpml.consolidated.business.events.OptionExercise (0..1) <"A structure describing an option exercise event. The optionExercise event supports partial exercise (specify the number of options or amount to exercise), full exercise (use fullExercise flag), as well as the option to request options not to be exercised.">
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (1..1)
+    party fpml.consolidated.shared.Party (1..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
 type RequestExecutionRetracted extends fpml.consolidated.msg.NonCorrectableRequestMessage: <"A message withdrawing a request that an order be executed.">
     [rootType]
 
-    tradingEventsModel fpml.consolidated.business.events.TradingEventsModel (0..1)
+    tradePackage fpml.consolidated.business.events.TradePackage (0..1)
+    originatingEvent fpml.consolidated.shared.OriginatingEvent (0..1)
+    trade fpml.consolidated.doc.Trade (0..1)
+    additionalEvent fpml.consolidated.business.events.AdditionalEvent (0..1)
     optionExercise fpml.consolidated.business.events.OptionExercise (0..1) <"A structure describing an option exercise event. The optionExercise event supports partial exercise (specify the number of options or amount to exercise), full exercise (use fullExercise flag), as well as the option to request options not to be exercised.">
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+    party fpml.consolidated.shared.Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
 type ExecutionNotification extends fpml.consolidated.msg.CorrectableRequestMessage: <"A message notifying a party that a trade execution has occurred. (Typically this is sent by an execution platform to a participant.)">
     [rootType]
 
-    tradingEventsBaseModel fpml.consolidated.business.events.TradingEventsBaseModel (0..1)
+    tradePackage fpml.consolidated.business.events.TradePackage (0..1)
+    originatingEvent fpml.consolidated.shared.OriginatingEvent (0..1)
+    trade fpml.consolidated.doc.Trade (0..1)
     amendment fpml.consolidated.business.events.TradeAmendmentContent (0..1)
-    optionsEventsBaseModel fpml.consolidated.business.events.OptionsEventsBaseModel (0..1)
+    optionExercise fpml.consolidated.business.events.OptionExercise (0..1) <"A structure describing an option exercise event. The optionExercise event supports partial exercise (specify the number of options or amount to exercise), full exercise (use fullExercise flag), as well as the option to request options not to be exercised.">
+    optionExpiry fpml.consolidated.business.events.OptionExpiry (0..*) <"A structure describing an option expiring event (i.e. passing its last exercise time and becoming worthless.)">
+    optionEvent fpml.consolidated.business.events.OptionEvent (0..1) <"A structure describing knock in, knock out, touch and no touch events.">
     additionalEvent fpml.consolidated.business.events.AdditionalEvent (0..1)
-    eventValuationModel fpml.consolidated.business.events.EventValuationModel (0..1)
+    quote fpml.consolidated.asset.BasicQuotation (0..*) <"Pricing information for the trade.">
     collateralization fpml.consolidated.reg.fpmlreporting.shared.RegulatoryReportingCollateralization (0..2) <"Collateralization block, that holds Regulator specific requirement about the trades\' collateralization, is added here to accommodate a technical implementation of SFTR. The change aligns with the established principle that the content in recordkeeping view is now also available in the confirmation view for both functional and technical reasons. The appropriate place for this information is \'regulatoryDisclosure\' and \'nonpublicExecutionReport\' messages in the Recordkeeping view.">
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (1..1)
+    party fpml.consolidated.shared.Party (1..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
 type ExecutionRetracted extends fpml.consolidated.msg.NonCorrectableRequestMessage: <"A message retracting a notification to a party that a trade execution has occurred. (Typically this is sent by an execution platform to a participant.)">
     [rootType]
 
-    tradingEventsModel fpml.consolidated.business.events.TradingEventsModel (0..1)
+    tradePackage fpml.consolidated.business.events.TradePackage (0..1)
+    originatingEvent fpml.consolidated.shared.OriginatingEvent (0..1)
+    trade fpml.consolidated.doc.Trade (0..1)
+    additionalEvent fpml.consolidated.business.events.AdditionalEvent (0..1)
     optionExercise fpml.consolidated.business.events.OptionExercise (0..1) <"A structure describing an option exercise event. The optionExercise event supports partial exercise (specify the number of options or amount to exercise), full exercise (use fullExercise flag), as well as the option to request options not to be exercised.">
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+    party fpml.consolidated.shared.Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
 type ExecutionAcknowledgement extends EventRequestAcknowledgement:
     [rootType]
@@ -43,27 +60,51 @@ type ExecutionAdvice extends fpml.consolidated.msg.CorrectableRequestMessage: <"
     [rootType]
 
     productType fpml.consolidated.shared.ProductType (0..1)
-    tradingEventsBaseModel fpml.consolidated.business.events.TradingEventsBaseModel (0..1)
-    postTradeEventsBaseModel fpml.consolidated.business.events.PostTradeEventsBaseModel (0..1)
-    changeEventsBaseModel fpml.consolidated.business.events.ChangeEventsBaseModel (0..1)
-    optionsEventsBaseModel fpml.consolidated.business.events.OptionsEventsBaseModel (0..1)
+    tradePackage fpml.consolidated.business.events.TradePackage (0..1)
+    originatingEvent fpml.consolidated.shared.OriginatingEvent (0..1)
+    trade fpml.consolidated.doc.Trade (0..1)
+    amendment fpml.consolidated.business.events.TradeAmendmentContent (0..1)
+    increase fpml.consolidated.business.events.TradeNotionalChange (0..1)
+    terminatingEvent fpml.consolidated.business.events.TerminatingEvent (0..1) <"This may be used to describe why a trade was terminated.">
+    termination fpml.consolidated.business.events.TradeNotionalChange (0..1)
+    novation fpml.consolidated.business.events.TradeNovationContent (0..1)
+    withdrawal fpml.consolidated.business.events.Withdrawal (0..1)
+    observation fpml.consolidated.business.events.ObservationEvent (0..*)
+    reset fpml.consolidated.business.events.ResetEvent (0..*)
+    change fpml.consolidated.business.events.TradeChangeContent (0..1)
+    optionExercise fpml.consolidated.business.events.OptionExercise (0..1) <"A structure describing an option exercise event. The optionExercise event supports partial exercise (specify the number of options or amount to exercise), full exercise (use fullExercise flag), as well as the option to request options not to be exercised.">
+    optionExpiry fpml.consolidated.business.events.OptionExpiry (0..*) <"A structure describing an option expiring event (i.e. passing its last exercise time and becoming worthless.)">
+    optionEvent fpml.consolidated.business.events.OptionEvent (0..1) <"A structure describing knock in, knock out, touch and no touch events.">
     additionalEvent fpml.consolidated.business.events.AdditionalEvent (0..1)
-    eventValuationModel fpml.consolidated.business.events.EventValuationModel (0..1)
+    quote fpml.consolidated.asset.BasicQuotation (0..*) <"Pricing information for the trade.">
     collateralization fpml.consolidated.reg.fpmlreporting.shared.RegulatoryReportingCollateralization (0..2) <"Collateralization block, that holds Regulator specific requirement about the trades\' collateralization, is added here to accommodate a technical implementation of SFTR. The change aligns with the established principle that the content in recordkeeping view is now also available in the confirmation view for both functional and technical reasons. The appropriate place for this information is \'regulatoryDisclosure\' and \'nonpublicExecutionReport\' messages in the Recordkeeping view.">
     paymentDetails fpml.consolidated.shared.PaymentDetails (0..*) <"Details of the payments, like amount breakdowns, settlement information.">
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (1..1)
+    party fpml.consolidated.shared.Party (1..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
 type ExecutionAdviceRetracted extends fpml.consolidated.msg.NonCorrectableRequestMessage: <"A message that withdraws an advice to a third party that a trade execution has occurred.">
     [rootType]
 
-    tradingEventsBaseModel fpml.consolidated.business.events.TradingEventsBaseModel (0..1)
-    postTradeEventsBaseModel fpml.consolidated.business.events.PostTradeEventsBaseModel (0..1)
-    changeEventsBaseModel fpml.consolidated.business.events.ChangeEventsBaseModel (0..1)
-    optionsEventsBaseModel fpml.consolidated.business.events.OptionsEventsBaseModel (0..1)
+    tradePackage fpml.consolidated.business.events.TradePackage (0..1)
+    originatingEvent fpml.consolidated.shared.OriginatingEvent (0..1)
+    trade fpml.consolidated.doc.Trade (0..1)
+    amendment fpml.consolidated.business.events.TradeAmendmentContent (0..1)
+    increase fpml.consolidated.business.events.TradeNotionalChange (0..1)
+    terminatingEvent fpml.consolidated.business.events.TerminatingEvent (0..1) <"This may be used to describe why a trade was terminated.">
+    termination fpml.consolidated.business.events.TradeNotionalChange (0..1)
+    novation fpml.consolidated.business.events.TradeNovationContent (0..1)
+    withdrawal fpml.consolidated.business.events.Withdrawal (0..1)
+    observation fpml.consolidated.business.events.ObservationEvent (0..*)
+    reset fpml.consolidated.business.events.ResetEvent (0..*)
+    change fpml.consolidated.business.events.TradeChangeContent (0..1)
+    optionExercise fpml.consolidated.business.events.OptionExercise (0..1) <"A structure describing an option exercise event. The optionExercise event supports partial exercise (specify the number of options or amount to exercise), full exercise (use fullExercise flag), as well as the option to request options not to be exercised.">
+    optionExpiry fpml.consolidated.business.events.OptionExpiry (0..*) <"A structure describing an option expiring event (i.e. passing its last exercise time and becoming worthless.)">
+    optionEvent fpml.consolidated.business.events.OptionEvent (0..1) <"A structure describing knock in, knock out, touch and no touch events.">
     additionalEvent fpml.consolidated.business.events.AdditionalEvent (0..1)
     collateralization fpml.consolidated.reg.fpmlreporting.shared.RegulatoryReportingCollateralization (0..2)
     paymentDetails fpml.consolidated.shared.PaymentDetails (0..*) <"Details of the payments, like amount breakdowns, settlement information.">
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+    party fpml.consolidated.shared.Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
 type ExecutionAdviceAcknowledgement extends EventRequestAcknowledgement:
     [rootType]
@@ -76,7 +117,8 @@ type MaturityNotification extends fpml.consolidated.msg.CorrectableRequestMessag
 
     optionExpiry fpml.consolidated.business.events.OptionExpiryBase (0..1)
     tradeMaturity fpml.consolidated.business.events.TradeMaturity (0..1)
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (1..1)
+    party fpml.consolidated.shared.Party (1..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
 type MaturityAcknowledgement extends EventRequestAcknowledgement:
     [rootType]
@@ -87,14 +129,16 @@ type MaturityException extends fpml.consolidated.msg.Exception:
 type RequestTradeReferenceInformationUpdate extends fpml.consolidated.msg.CorrectableRequestMessage: <"Defines the structure for a message requesting information updates to a trade. The trade reference information should contain at least one trade identifier that the recipient is aware of.">
     [rootType]
 
-    tradeReferenceInformationModel fpml.consolidated.business.events.TradeReferenceInformationModel (1..1)
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (1..1)
+    tradeReferenceInformation fpml.consolidated.business.events.TradeReferenceInformation (1..1) <"Information about a trade.">
+    party fpml.consolidated.shared.Party (1..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
 type RequestTradeReferenceInformationUpdateRetracted extends fpml.consolidated.msg.NonCorrectableRequestMessage: <"Defines the structure for a message retracting a request to updated information about trade.">
     [rootType]
 
-    tradeReferenceInformationModel fpml.consolidated.business.events.TradeReferenceInformationModel (1..1)
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+    tradeReferenceInformation fpml.consolidated.business.events.TradeReferenceInformation (1..1) <"Information about a trade.">
+    party fpml.consolidated.shared.Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
 type TradeReferenceInformationUpdateAcknowledgement extends EventRequestAcknowledgement:
     [rootType]
@@ -106,9 +150,10 @@ type TradeChangeAdvice extends fpml.consolidated.msg.CorrectableRequestMessage: 
     [rootType]
 
     change fpml.consolidated.business.events.TradeChangeContent (1..1) <"Describes the details of the change.">
-    eventValuationModel fpml.consolidated.business.events.EventValuationModel (0..1)
+    quote fpml.consolidated.asset.BasicQuotation (0..*) <"Pricing information for the trade.">
     paymentDetails fpml.consolidated.shared.PaymentDetails (0..*) <"Details of the payments, like amount breakdowns, settlement information.">
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (1..1)
+    party fpml.consolidated.shared.Party (1..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
 type TradeChangeAdviceRetracted extends fpml.consolidated.msg.NonCorrectableRequestMessage: <"Defines the structure for a message retracting a prior change advice.">
     [rootType]
@@ -116,7 +161,8 @@ type TradeChangeAdviceRetracted extends fpml.consolidated.msg.NonCorrectableRequ
     tradeIdentifier fpml.consolidated.doc.PartyTradeIdentifier (1..*) <"The qualified identifiers of the subject trade.">
     change fpml.consolidated.business.events.TradeChangeContent (0..1) <"Describes the details of the change being retracted.">
     paymentDetails fpml.consolidated.shared.PaymentDetails (0..*) <"Details of the payments, like amount breakdowns, settlement information.">
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (1..1)
+    party fpml.consolidated.shared.Party (1..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
 type TradeChangeAdviceAcknowledgement extends EventRequestAcknowledgement:
     [rootType]
@@ -131,12 +177,24 @@ type RequestConsent extends fpml.consolidated.msg.CorrectableRequestMessage: <"A
     ^type fpml.consolidated.doc.ApprovalType (0..1) <"The type of approval (e.g. \"pre-clearing credit\").">
     approver fpml.consolidated.shared.PersonId (0..1) <"The full name or identifiying ID of the relevant approver.">
     approvingPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A pointer style reference to a party defined elsewhere in the document. The party referenced needs to approve the specified item (e.g. trade or allocation).">
-    portfolioReferenceModel fpml.consolidated.msg.PortfolioReferenceModel (0..1)
-    compressionModel fpml.consolidated.business.events.CompressionModel (0..1)
-    tradingAndPostTradeEventsModel fpml.consolidated.business.events.TradingAndPostTradeEventsModel (0..1)
+    portfolioReference fpml.consolidated.msg.PortfolioReference (0..1)
+    compressionActivity fpml.consolidated.business.events.CompressionActivity (0..1) <"Compression information for the trade.">
+    tradePackage fpml.consolidated.business.events.TradePackage (0..1)
+    originatingEvent fpml.consolidated.shared.OriginatingEvent (0..1)
+    trade fpml.consolidated.doc.Trade (0..1)
+    amendment fpml.consolidated.business.events.TradeAmendmentContent (0..1)
+    increase fpml.consolidated.business.events.TradeNotionalChange (0..1)
+    terminatingEvent fpml.consolidated.business.events.TerminatingEvent (0..1) <"This may be used to describe why a trade was terminated.">
+    termination fpml.consolidated.business.events.TradeNotionalChange (0..1)
+    novation fpml.consolidated.business.events.TradeNovationContent (0..1)
+    withdrawal fpml.consolidated.business.events.Withdrawal (0..1)
+    observation fpml.consolidated.business.events.ObservationEvent (0..*)
+    reset fpml.consolidated.business.events.ResetEvent (0..*)
+    additionalEvent fpml.consolidated.business.events.AdditionalEvent (0..1)
     deClear fpml.consolidated.business.events.DeClear (0..1) <"A structure describing a declear event. The deClear event allows a firm to request that a trade be removed from clearing, or a clearing service to request consent for this, or to report that it has been done.">
-    eventValuationModel fpml.consolidated.business.events.EventValuationModel (0..1)
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (1..1)
+    quote fpml.consolidated.asset.BasicQuotation (0..*) <"Pricing information for the trade.">
+    party fpml.consolidated.shared.Party (1..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
 type RequestConsentRetracted extends fpml.consolidated.msg.NonCorrectableRequestMessage: <"A message withdrawing a request that the sender be authorized by the recipient to peform an action.">
     [rootType]
@@ -144,9 +202,21 @@ type RequestConsentRetracted extends fpml.consolidated.msg.NonCorrectableRequest
     ^type fpml.consolidated.doc.ApprovalType (0..1) <"The type of approval (e.g. \"pre-clearing credit\").">
     approver fpml.consolidated.shared.PersonId (0..1) <"The full name or identifiying ID of the relevant approver.">
     approvingPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A pointer style reference to a party defined elsewhere in the document. The party referenced needs to approve the specified item (e.g. trade or allocation).">
-    tradingAndPostTradeEventsModel fpml.consolidated.business.events.TradingAndPostTradeEventsModel (0..1)
+    tradePackage fpml.consolidated.business.events.TradePackage (0..1)
+    originatingEvent fpml.consolidated.shared.OriginatingEvent (0..1)
+    trade fpml.consolidated.doc.Trade (0..1)
+    amendment fpml.consolidated.business.events.TradeAmendmentContent (0..1)
+    increase fpml.consolidated.business.events.TradeNotionalChange (0..1)
+    terminatingEvent fpml.consolidated.business.events.TerminatingEvent (0..1) <"This may be used to describe why a trade was terminated.">
+    termination fpml.consolidated.business.events.TradeNotionalChange (0..1)
+    novation fpml.consolidated.business.events.TradeNovationContent (0..1)
+    withdrawal fpml.consolidated.business.events.Withdrawal (0..1)
+    observation fpml.consolidated.business.events.ObservationEvent (0..*)
+    reset fpml.consolidated.business.events.ResetEvent (0..*)
+    additionalEvent fpml.consolidated.business.events.AdditionalEvent (0..1)
     deClear fpml.consolidated.business.events.DeClear (0..1) <"A structure describing a declear event. The deClear event allows a firm to request that a trade be removed from clearing, or a clearing service to request consent for this, or to report that it has been done.">
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+    party fpml.consolidated.shared.Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
 type ConsentAcknowledgement extends EventRequestAcknowledgement:
     [rootType]
@@ -161,10 +231,23 @@ type ConsentGranted extends fpml.consolidated.msg.ResponseMessage: <"A message i
     approver fpml.consolidated.shared.PersonId (0..1) <"The full name or identifiying ID of the relevant approver.">
     approvingPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A pointer style reference to a party defined elsewhere in the document. The party referenced needs to approve the specified item (e.g. trade or allocation).">
     approvalId fpml.consolidated.doc.ApprovalId (0..1) <"An identifer for a specific appoval, to allow the approval to be identified and tracked.">
-    portfolioReferenceBaseModel fpml.consolidated.msg.PortfolioReferenceBaseModel (0..1)
-    eventsOrInfoModel EventsOrInfoModel (0..1)
+    portfolioReference fpml.consolidated.msg.PortfolioReferenceBase (0..1)
+    tradePackage fpml.consolidated.business.events.TradePackage (0..1)
+    originatingEvent fpml.consolidated.shared.OriginatingEvent (0..1)
+    trade fpml.consolidated.doc.Trade (0..1)
+    amendment fpml.consolidated.business.events.TradeAmendmentContent (0..1)
+    increase fpml.consolidated.business.events.TradeNotionalChange (0..1)
+    terminatingEvent fpml.consolidated.business.events.TerminatingEvent (0..1) <"This may be used to describe why a trade was terminated.">
+    termination fpml.consolidated.business.events.TradeNotionalChange (0..1)
+    novation fpml.consolidated.business.events.TradeNovationContent (0..1)
+    withdrawal fpml.consolidated.business.events.Withdrawal (0..1)
+    observation fpml.consolidated.business.events.ObservationEvent (0..*)
+    reset fpml.consolidated.business.events.ResetEvent (0..*)
+    additionalEvent fpml.consolidated.business.events.AdditionalEvent (0..1)
+    tradeReferenceInformation fpml.consolidated.business.events.TradeReferenceInformation (0..1) <"Information about a trade.">
     creditLimitInformation fpml.consolidated.business.events.CreditLimitInformation (0..*)
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+    party fpml.consolidated.shared.Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
 type ConsentRefused extends fpml.consolidated.msg.ResponseMessage: <"A message indicating that the sender does not grant consent for the recipient to perform the requested action.">
     [rootType]
@@ -172,10 +255,23 @@ type ConsentRefused extends fpml.consolidated.msg.ResponseMessage: <"A message i
     ^type fpml.consolidated.doc.ApprovalType (0..1) <"The type of approval (e.g. \"pre-clearing credit\").">
     approver fpml.consolidated.shared.PersonId (0..1) <"The full name or identifiying ID of the relevant approver.">
     approvingPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A pointer style reference to a party defined elsewhere in the document. The party referenced needs to approve the specified item (e.g. trade or allocation).">
-    portfolioReferenceBaseModel fpml.consolidated.msg.PortfolioReferenceBaseModel (0..1)
-    eventsOrInfoModel EventsOrInfoModel (0..1)
+    portfolioReference fpml.consolidated.msg.PortfolioReferenceBase (0..1)
+    tradePackage fpml.consolidated.business.events.TradePackage (0..1)
+    originatingEvent fpml.consolidated.shared.OriginatingEvent (0..1)
+    trade fpml.consolidated.doc.Trade (0..1)
+    amendment fpml.consolidated.business.events.TradeAmendmentContent (0..1)
+    increase fpml.consolidated.business.events.TradeNotionalChange (0..1)
+    terminatingEvent fpml.consolidated.business.events.TerminatingEvent (0..1) <"This may be used to describe why a trade was terminated.">
+    termination fpml.consolidated.business.events.TradeNotionalChange (0..1)
+    novation fpml.consolidated.business.events.TradeNovationContent (0..1)
+    withdrawal fpml.consolidated.business.events.Withdrawal (0..1)
+    observation fpml.consolidated.business.events.ObservationEvent (0..*)
+    reset fpml.consolidated.business.events.ResetEvent (0..*)
+    additionalEvent fpml.consolidated.business.events.AdditionalEvent (0..1)
+    tradeReferenceInformation fpml.consolidated.business.events.TradeReferenceInformation (0..1) <"Information about a trade.">
     creditLimitInformation fpml.consolidated.business.events.CreditLimitInformation (0..*)
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+    party fpml.consolidated.shared.Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
     reason fpml.consolidated.doc.Reason (0..*)
 
 type ApprovalStatusNotification extends fpml.consolidated.msg.NotificationMessage: <"A message describing the approvals currently applied to the trade and their status (e.g. pending, approved, refused).">
@@ -184,14 +280,27 @@ type ApprovalStatusNotification extends fpml.consolidated.msg.NotificationMessag
     trade fpml.consolidated.doc.Trade (0..1)
     tradeIdentifier fpml.consolidated.doc.TradeIdentifier (0..1)
     approvals fpml.consolidated.doc.Approvals (1..1) <"All of the approvals for a specific trade.">
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+    party fpml.consolidated.shared.Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
 type RequestConfirmation extends fpml.consolidated.msg.CorrectableRequestMessage: <"The confirmation process starts with the requestConfirmation message. The message may be used to request the confirmation of a new trade or any other event supported by FpML such as novation, terminations, amendments, etc. A message type defining the start of the confirmation process. The message may be used to request the confirmation of a new trade or any other event supported by FpML such as novation, terminations, amendments, etc.">
     [rootType]
 
-    tradingAndPostTradeEventsModel fpml.consolidated.business.events.TradingAndPostTradeEventsModel (0..1)
+    tradePackage fpml.consolidated.business.events.TradePackage (0..1)
+    originatingEvent fpml.consolidated.shared.OriginatingEvent (0..1)
+    trade fpml.consolidated.doc.Trade (0..1)
+    amendment fpml.consolidated.business.events.TradeAmendmentContent (0..1)
+    increase fpml.consolidated.business.events.TradeNotionalChange (0..1)
+    terminatingEvent fpml.consolidated.business.events.TerminatingEvent (0..1) <"This may be used to describe why a trade was terminated.">
+    termination fpml.consolidated.business.events.TradeNotionalChange (0..1)
+    novation fpml.consolidated.business.events.TradeNovationContent (0..1)
+    withdrawal fpml.consolidated.business.events.Withdrawal (0..1)
+    observation fpml.consolidated.business.events.ObservationEvent (0..*)
+    reset fpml.consolidated.business.events.ResetEvent (0..*)
+    additionalEvent fpml.consolidated.business.events.AdditionalEvent (0..1)
     optionExercise fpml.consolidated.business.events.OptionExercise (0..1) <"A structure describing an option exercise event. The optionExercise event supports partial exercise (specify the number of options or amount to exercise), full exercise (use fullExercise flag), as well as the option to request options not to be exercised.">
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (1..1)
+    party fpml.consolidated.shared.Party (1..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
 type RequestConfirmationRetracted extends ConfirmationRetracted: <"A requestConfirmation message may be cancelled using the requestConfirmationRetracted message.">
     [rootType]
@@ -206,46 +315,80 @@ type ConfirmationStatus extends fpml.consolidated.msg.ResponseMessage: <"The con
     [rootType]
 
     status fpml.consolidated.msg.EventStatus (1..1) <"Defines the confirmation status of a trade or post-trade event (e.g. Matched, Mismatched, Unmatched, Alleged).">
-    confirmationStatusSequence ConfirmationStatusSequence (0..1)
+    assertedEvent fpml.consolidated.business.events.EventsChoice (0..1) <"Event (trade or post-trade event) asserted by one of the parties.">
+    proposedMatch fpml.consolidated.business.events.EventProposedMatch (0..*) <"\"Other side\'s\" event (trade or post-trade event) that meets the minimimum matching criteria and is proposed as match to the event that is being asserted.">
     allegedEvent fpml.consolidated.business.events.EventsChoice (0..1) <"Event (trade post-trade event) asserted by the \"other side\'s\" party.">
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+    party fpml.consolidated.shared.Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
 type ConfirmationAgreed extends fpml.consolidated.msg.ResponseMessage: <"The confirmationAgreed message is sent when the matching process returns a proposed match (trade or event) and the Confirmation Requester agrees with it. A message indicating that a confirmation has been agreed by a counterparty.">
     [rootType]
 
-    tradingEventsBaseModel fpml.consolidated.business.events.TradingEventsBaseModel (0..1)
-    postTradeEventsBaseModel fpml.consolidated.business.events.PostTradeEventsBaseModel (0..1)
-    changeEventsBaseModel fpml.consolidated.business.events.ChangeEventsBaseModel (0..1)
-    optionsEventsBaseModel fpml.consolidated.business.events.OptionsEventsBaseModel (0..1)
+    tradePackage fpml.consolidated.business.events.TradePackage (0..1)
+    originatingEvent fpml.consolidated.shared.OriginatingEvent (0..1)
+    trade fpml.consolidated.doc.Trade (0..1)
+    amendment fpml.consolidated.business.events.TradeAmendmentContent (0..1)
+    increase fpml.consolidated.business.events.TradeNotionalChange (0..1)
+    terminatingEvent fpml.consolidated.business.events.TerminatingEvent (0..1) <"This may be used to describe why a trade was terminated.">
+    termination fpml.consolidated.business.events.TradeNotionalChange (0..1)
+    novation fpml.consolidated.business.events.TradeNovationContent (0..1)
+    withdrawal fpml.consolidated.business.events.Withdrawal (0..1)
+    observation fpml.consolidated.business.events.ObservationEvent (0..*)
+    reset fpml.consolidated.business.events.ResetEvent (0..*)
+    change fpml.consolidated.business.events.TradeChangeContent (0..1)
+    optionExercise fpml.consolidated.business.events.OptionExercise (0..1) <"A structure describing an option exercise event. The optionExercise event supports partial exercise (specify the number of options or amount to exercise), full exercise (use fullExercise flag), as well as the option to request options not to be exercised.">
+    optionExpiry fpml.consolidated.business.events.OptionExpiry (0..*) <"A structure describing an option expiring event (i.e. passing its last exercise time and becoming worthless.)">
+    optionEvent fpml.consolidated.business.events.OptionEvent (0..1) <"A structure describing knock in, knock out, touch and no touch events.">
     additionalEvent fpml.consolidated.business.events.AdditionalEvent (0..1)
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+    party fpml.consolidated.shared.Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
 type ConfirmationDisputed extends fpml.consolidated.msg.ResponseMessage: <"The confirmationDisputed message is sent when the matching process returns a proposed match (trade or event) and the Confirmation Requester disputes it. A message indicating that a confirmation has not been agreed by a counterparty.">
     [rootType]
 
-    tradingEventsBaseModel fpml.consolidated.business.events.TradingEventsBaseModel (0..1)
-    postTradeEventsBaseModel fpml.consolidated.business.events.PostTradeEventsBaseModel (0..1)
-    changeEventsBaseModel fpml.consolidated.business.events.ChangeEventsBaseModel (0..1)
-    optionsEventsBaseModel fpml.consolidated.business.events.OptionsEventsBaseModel (0..1)
+    tradePackage fpml.consolidated.business.events.TradePackage (0..1)
+    originatingEvent fpml.consolidated.shared.OriginatingEvent (0..1)
+    trade fpml.consolidated.doc.Trade (0..1)
+    amendment fpml.consolidated.business.events.TradeAmendmentContent (0..1)
+    increase fpml.consolidated.business.events.TradeNotionalChange (0..1)
+    terminatingEvent fpml.consolidated.business.events.TerminatingEvent (0..1) <"This may be used to describe why a trade was terminated.">
+    termination fpml.consolidated.business.events.TradeNotionalChange (0..1)
+    novation fpml.consolidated.business.events.TradeNovationContent (0..1)
+    withdrawal fpml.consolidated.business.events.Withdrawal (0..1)
+    observation fpml.consolidated.business.events.ObservationEvent (0..*)
+    reset fpml.consolidated.business.events.ResetEvent (0..*)
+    change fpml.consolidated.business.events.TradeChangeContent (0..1)
+    optionExercise fpml.consolidated.business.events.OptionExercise (0..1) <"A structure describing an option exercise event. The optionExercise event supports partial exercise (specify the number of options or amount to exercise), full exercise (use fullExercise flag), as well as the option to request options not to be exercised.">
+    optionExpiry fpml.consolidated.business.events.OptionExpiry (0..*) <"A structure describing an option expiring event (i.e. passing its last exercise time and becoming worthless.)">
+    optionEvent fpml.consolidated.business.events.OptionEvent (0..1) <"A structure describing knock in, knock out, touch and no touch events.">
     additionalEvent fpml.consolidated.business.events.AdditionalEvent (0..1)
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+    party fpml.consolidated.shared.Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
     reason fpml.consolidated.doc.Reason (0..*)
 
 type RequestClearing extends fpml.consolidated.msg.CorrectableRequestMessage: <"A message requesting that a trade be cleared by a clearing service.">
     [rootType]
 
-    portfolioReferenceModel fpml.consolidated.msg.PortfolioReferenceModel (0..1)
-    tradingEventsModel fpml.consolidated.business.events.TradingEventsModel (0..1)
+    portfolioReference fpml.consolidated.msg.PortfolioReference (0..1)
+    tradePackage fpml.consolidated.business.events.TradePackage (0..1)
+    originatingEvent fpml.consolidated.shared.OriginatingEvent (0..1)
+    trade fpml.consolidated.doc.Trade (0..1)
+    additionalEvent fpml.consolidated.business.events.AdditionalEvent (0..1)
     deClear fpml.consolidated.business.events.DeClear (0..1) <"A structure describing a declear event. The deClear event allows a firm to request that a trade be removed from clearing, or a clearing service to request consent for this, or to report that it has been done.">
-    eventValuationModel fpml.consolidated.business.events.EventValuationModel (0..1)
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (1..1)
+    quote fpml.consolidated.asset.BasicQuotation (0..*) <"Pricing information for the trade.">
+    party fpml.consolidated.shared.Party (1..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
 type RequestClearingRetracted extends fpml.consolidated.msg.NonCorrectableRequestMessage: <"A message withdrawing a request that a trade be cleared by a clearing service.">
     [rootType]
 
-    tradingEventsModel fpml.consolidated.business.events.TradingEventsModel (0..1)
+    tradePackage fpml.consolidated.business.events.TradePackage (0..1)
+    originatingEvent fpml.consolidated.shared.OriginatingEvent (0..1)
+    trade fpml.consolidated.doc.Trade (0..1)
+    additionalEvent fpml.consolidated.business.events.AdditionalEvent (0..1)
     deClear fpml.consolidated.business.events.DeClear (0..1) <"A structure describing a declear event. The deClear event allows a firm to request that a trade be removed from clearing, or a clearing service to request consent for this, or to report that it has been done.">
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+    party fpml.consolidated.shared.Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
 type ClearingAcknowledgement extends EventRequestAcknowledgement:
     [rootType]
@@ -256,27 +399,40 @@ type ClearingException extends fpml.consolidated.msg.Exception:
 type ClearingRefused extends fpml.consolidated.msg.NotificationMessage: <"A message indicating that a clearing request has not been acted on due to a business decision and therefore no trade has been cleared.">
     [rootType]
 
-    tradingEventsModel fpml.consolidated.business.events.TradingEventsModel (0..1)
-    eventValuationModel fpml.consolidated.business.events.EventValuationModel (0..1)
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+    tradePackage fpml.consolidated.business.events.TradePackage (0..1)
+    originatingEvent fpml.consolidated.shared.OriginatingEvent (0..1)
+    trade fpml.consolidated.doc.Trade (0..1)
+    additionalEvent fpml.consolidated.business.events.AdditionalEvent (0..1)
+    quote fpml.consolidated.asset.BasicQuotation (0..*) <"Pricing information for the trade.">
+    party fpml.consolidated.shared.Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
     reason fpml.consolidated.doc.Reason (0..*)
 
 type ClearingStatus extends fpml.consolidated.msg.NotificationMessage: <"A message providing the current status of a clearing request. The Clearing Status message is designed to be sent from the Clearing House to the participants. The message sends the clearing status of the trade or the trade package. It’s a centralized model so there is no perspective.">
     [rootType]
 
     clearingStatusItem fpml.consolidated.business.events.ClearingStatusItem (0..1) <"Describes the status of the clearing process relating to the identified trade.">
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+    party fpml.consolidated.shared.Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
 type ClearingConfirmed extends fpml.consolidated.msg.NotificationMessage: <"A message indicating that a clearing request has been acted on and as a result a trade has been cleared.">
     [rootType]
 
-    compressionModel fpml.consolidated.business.events.CompressionModel (0..1)
-    portfolioReferenceModel fpml.consolidated.msg.PortfolioReferenceModel (0..1)
-    clearingResultsModel ClearingResultsModel (0..1)
+    compressionActivity fpml.consolidated.business.events.CompressionActivity (0..1) <"Compression information for the trade.">
+    portfolioReference fpml.consolidated.msg.PortfolioReference (0..1)
+    tradePackage fpml.consolidated.business.events.TradePackage (0..1)
+    originatingEvent fpml.consolidated.shared.OriginatingEvent (0..1)
+    trade fpml.consolidated.doc.Trade (0..1)
+    additionalEvent fpml.consolidated.business.events.AdditionalEvent (0..1)
+    terminatingEvent fpml.consolidated.business.events.TerminatingEvent (0..1) <"This may be used to describe why a trade was terminated.">
+    termination fpml.consolidated.business.events.TradeNotionalChange (0..1)
+    deClear fpml.consolidated.business.events.DeClear (0..1) <"A structure describing a declear event. The deClear event allows a firm to request that a trade be removed from clearing, or a clearing service to request consent for this, or to report that it has been done.">
+    clearing Clearing (0..1)
     change fpml.consolidated.business.events.TradeChangeContent (0..1)
-    eventValuationModel fpml.consolidated.business.events.EventValuationModel (0..1)
+    quote fpml.consolidated.asset.BasicQuotation (0..*) <"Pricing information for the trade.">
     creditLimitInformation fpml.consolidated.business.events.CreditLimitInformation (0..*)
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+    party fpml.consolidated.shared.Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
 type RequestAllocation extends fpml.consolidated.msg.CorrectableRequestMessage: <"A message requesting that a trade be split among several accounts.">
     [rootType]
@@ -284,14 +440,16 @@ type RequestAllocation extends fpml.consolidated.msg.CorrectableRequestMessage: 
     relatedParty fpml.consolidated.shared.RelatedParty (0..*) <"Identifies a related party performing a role within the transaction.">
     blockTradeIdentifier fpml.consolidated.doc.TradeIdentifier (1..1)
     allocations fpml.consolidated.doc.Allocations (1..1)
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (1..1)
+    party fpml.consolidated.shared.Party (1..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
 type RequestAllocationRetracted extends fpml.consolidated.msg.NonCorrectableRequestMessage: <"A message withdrawing a request that a trade be split among several accounts.">
     [rootType]
 
     blockTradeIdentifier fpml.consolidated.doc.TradeIdentifier (0..1)
     allocations fpml.consolidated.doc.Allocations (0..1)
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+    party fpml.consolidated.shared.Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
 type AllocationAcknowledgement extends EventRequestAcknowledgement:
     [rootType]
@@ -304,7 +462,8 @@ type AllocationRefused extends fpml.consolidated.msg.ResponseMessage: <"A messag
 
     blockTradeIdentifier fpml.consolidated.doc.TradeIdentifier (0..1)
     allocations fpml.consolidated.doc.Allocations (0..1)
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+    party fpml.consolidated.shared.Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
     reason fpml.consolidated.doc.Reason (0..*)
 
 type AllocationApproved extends fpml.consolidated.msg.ResponseMessage: <"A message indicating that a request to allocate a trade has been approved by the sender.">
@@ -312,7 +471,8 @@ type AllocationApproved extends fpml.consolidated.msg.ResponseMessage: <"A messa
 
     blockTradeIdentifier fpml.consolidated.doc.TradeIdentifier (0..1)
     allocations fpml.consolidated.doc.Allocations (0..1)
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+    party fpml.consolidated.shared.Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
 type RequestCollateralAllocation extends fpml.consolidated.msg.CorrectableRequestMessage:
     [rootType]
@@ -321,7 +481,8 @@ type RequestCollateralAllocation extends fpml.consolidated.msg.CorrectableReques
     requestedAction RequestedCollateralAllocationAction (0..1) <"The type of change requested for the collateral allocation.">
     collateralGiverPartyReference fpml.consolidated.shared.PartyReference (1..1) <"The party paying the margin / issuing the allocation request.">
     collateralAllocation fpml.consolidated.shared.ProposedCollateralAllocation (1..*) <"Allocation details">
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (1..1)
+    party fpml.consolidated.shared.Party (1..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
 type CollateralAllocationAcknowledgement extends fpml.consolidated.msg.Acknowledgement:
     [rootType]
@@ -342,20 +503,28 @@ type Clearing: <"A structure describing a trade registration event that is part 
 
 type ConfirmationRetracted extends fpml.consolidated.msg.NonCorrectableRequestMessage: <"A message indicating that a confirmation request has been withdrawn by the submitter.">
 
-    tradingAndPostTradeEventsModel fpml.consolidated.business.events.TradingAndPostTradeEventsModel (0..1)
+    tradePackage fpml.consolidated.business.events.TradePackage (0..1)
+    originatingEvent fpml.consolidated.shared.OriginatingEvent (0..1)
+    trade fpml.consolidated.doc.Trade (0..1)
+    amendment fpml.consolidated.business.events.TradeAmendmentContent (0..1)
+    increase fpml.consolidated.business.events.TradeNotionalChange (0..1)
+    terminatingEvent fpml.consolidated.business.events.TerminatingEvent (0..1) <"This may be used to describe why a trade was terminated.">
+    termination fpml.consolidated.business.events.TradeNotionalChange (0..1)
+    novation fpml.consolidated.business.events.TradeNovationContent (0..1)
+    withdrawal fpml.consolidated.business.events.Withdrawal (0..1)
+    observation fpml.consolidated.business.events.ObservationEvent (0..*)
+    reset fpml.consolidated.business.events.ResetEvent (0..*)
+    additionalEvent fpml.consolidated.business.events.AdditionalEvent (0..1)
     optionExercise fpml.consolidated.business.events.OptionExercise (0..1) <"A structure describing an option exercise event. The optionExercise event supports partial exercise (specify the number of options or amount to exercise), full exercise (use fullExercise flag), as well as the option to request options not to be exercised.">
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
-
-type ConfirmationStatusSequence:
-
-    assertedEvent fpml.consolidated.business.events.EventsChoice (1..1) <"Event (trade or post-trade event) asserted by one of the parties.">
-    proposedMatch fpml.consolidated.business.events.EventProposedMatch (0..*) <"\"Other side\'s\" event (trade or post-trade event) that meets the minimimum matching criteria and is proposed as match to the event that is being asserted.">
+    party fpml.consolidated.shared.Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
 type EventRequestAcknowledgement extends fpml.consolidated.msg.ResponseMessage: <"Defines the structure for a message acknowledging an event request.">
 
     originalMessage fpml.consolidated.doc.UnprocessedElementWrapper (0..1)
-    tradeReferenceInformationModel fpml.consolidated.business.events.TradeReferenceInformationModel (0..1)
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+    tradeReferenceInformation fpml.consolidated.business.events.TradeReferenceInformation (0..1) <"Information about a trade.">
+    party fpml.consolidated.shared.Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
 type RequestedCollateralAllocationAction: <"A type that describes the type of collateral allocation action that is requested. The purpose is to allow FCMs to specify how the allocations are to be processed.">
 
@@ -364,21 +533,7 @@ type RequestedCollateralAllocationAction: <"A type that describes the type of co
 
 type TradeWrapper: <"A structure that contains a business event.">
 
-    tradeOrInfoModel fpml.consolidated.business.events.TradeOrInfoModel (1..1)
-
-type ClearingResultsModel: <"Events/Results that are applicable to clearing processes.">
-
-    tradingEventsModel fpml.consolidated.business.events.TradingEventsModel (0..1)
-    clearingResultsModelSequence ClearingResultsModelSequence (0..1)
-    deClear fpml.consolidated.business.events.DeClear (0..1) <"A structure describing a declear event. The deClear event allows a firm to request that a trade be removed from clearing, or a clearing service to request consent for this, or to report that it has been done.">
-    clearing Clearing (0..1)
-
-type ClearingResultsModelSequence:
-
-    terminatingEvent fpml.consolidated.business.events.TerminatingEvent (0..1) <"This may be used to describe why a trade was terminated.">
-    termination fpml.consolidated.business.events.TradeNotionalChange (1..1)
-
-type EventsOrInfoModel: <"Defines a model group that allows either details of an event or information about a trade to be provided. Typically this will be used in a response to a request.">
-
-    tradingAndPostTradeEventsModel fpml.consolidated.business.events.TradingAndPostTradeEventsModel (0..1)
-    tradeReferenceInformationModel fpml.consolidated.business.events.TradeReferenceInformationModel (0..1)
+    originatingEvent fpml.consolidated.shared.OriginatingEvent (0..1) <"This may be used to describe why a trade was created. This can be used to provide context for a newly created trade that is not part of a post-trade event. For example, it can report that the trade was created as a result of netting activity, or due to a transfer, an allocation process, etc. Omitting this implies that the trade record was created as a result of a negotiated new trade.">
+    trade fpml.consolidated.doc.Trade (0..1)
+    tradeReferenceInformation fpml.consolidated.business.events.TradeReferenceInformation (0..1) <"Information about a trade.">
+    tradePackage fpml.consolidated.business.events.TradePackage (0..1)

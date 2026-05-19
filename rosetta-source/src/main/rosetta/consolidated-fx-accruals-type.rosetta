@@ -5,8 +5,10 @@ type FxAccrualDigitalOption extends fpml.consolidated.option.shared.Option: <"A 
 
     notionalAmount fpml.consolidated.shared.NonNegativeAmountSchedule (1..1) <"Notional amount Schedule. The notional value of the product. This number divided by the total number of fixings in the fixing schedule is the amount that is accrued at each fixing if the accrual factor is one.">
     accrual FxAccrual (1..1) <"Describes accrual features within the product.">
-    fxExpiryDateOrScheduleModel FxExpiryDateOrScheduleModel (1..1)
-    fxSettlementDateOrScheduleModel FxSettlementDateOrScheduleModel (1..1)
+    expiryDate FxExpiryDate (0..1) <"Defines the expiry of a single period accrual forward FX transaction.">
+    expirySchedule fpml.consolidated.fx.targets.FxExpirySchedule (0..1) <"The parameters for defining a schedule of expiry periods for an accrual forward FX transaction.">
+    settlementDate FxAdjustedDateAndDateAdjustments (0..1) <"The date on which settlement takes place for a settlement period.">
+    settlementSchedule fpml.consolidated.fx.targets.FxSettlementSchedule (0..1) <"The parameters for defining a schedule of settlement periods for a accrual forward FX transaction.">
     exerciseProcedure fpml.consolidated.shared.ExerciseProcedure (0..1) <"A set of parameters defining procedures associated with the exercise.">
     trigger FxAccrualTrigger (1..1) <"Defines one or more conditions under which the option will payout if exercisable.">
     barrier FxAccrualBarrier (0..*) <"Defines a knockout barrier conditions where if a barrier event occurs, the accrual process is terminated for the duration of all remaining accrual periods. Settlement rights for the next settlement are either retained or extinguished.">
@@ -16,8 +18,10 @@ type FxAccrualForward extends fpml.consolidated.shared.Product: <"A structured f
 
     notionalAmount fpml.consolidated.shared.NonNegativeAmountSchedule (1..1) <"Notional amount Schedule. The notional value of the product per settlement period. The notional amount may differ for each settlement period. This number divided by the total number of fixings in the settlement period is the amount that is accrued at each fixing if the accrual factor is one.">
     accrual FxAccrual (1..1) <"Describes accrual features within the product.">
-    fxExpiryDateOrScheduleModel FxExpiryDateOrScheduleModel (1..1)
-    fxSettlementDateOrScheduleModel FxSettlementDateOrScheduleModel (1..1)
+    expiryDate FxExpiryDate (0..1) <"Defines the expiry of a single period accrual forward FX transaction.">
+    expirySchedule fpml.consolidated.fx.targets.FxExpirySchedule (0..1) <"The parameters for defining a schedule of expiry periods for an accrual forward FX transaction.">
+    settlementDate FxAdjustedDateAndDateAdjustments (0..1) <"The date on which settlement takes place for a settlement period.">
+    settlementSchedule fpml.consolidated.fx.targets.FxSettlementSchedule (0..1) <"The parameters for defining a schedule of settlement periods for a accrual forward FX transaction.">
     spotRate fpml.consolidated.shared.PositiveDecimal (0..1) <"An optional element used for FX forwards and certain types of FX OTC options. For deals consummated in the FX Forwards Market, this represents the current market rate for a particular currency pair. For barrier and digital/binary options, it can be useful to include the spot rate at the time the option was executed to make it easier to know whether the option needs to move \"up\" or \"down\" to be triggered.">
     linearPayoffRegion FxAccrualLinearPayoffRegion (1..*) <"A region in which linear payoff applies i.e. the payoff bears a linear relationship to the fixing value (increases/decreases linearly with the fixing).">
     averageRate FxAverageRate (0..1) <"Average Rate Forward: means the average of the Reference Spot Rate on each Business Day from and including the Calculation Start Date up to and including the Calculation End Date rounded to the precision decimal places.">
@@ -28,38 +32,44 @@ type FxAccrualForward extends fpml.consolidated.shared.Product: <"A structured f
 
 type FxAccrualOption extends fpml.consolidated.option.shared.Option: <"A financial contract between two parties (the buyer and the seller) that provides the buyer the right to buy a currency (or receive a payment) at expiry. The distinctive characteristic of this contract is that the Notional to be transacted at expiry is uncertain and depends on the amount of time that the underlying currency trades within a pre-set level, or levels (the \'accrual barrier\', or \'barriers\'). The total Notional is only known at the end of the accrual period, and this extra uncertainty can make an accrual option substantially cheaper than the comparable vanilla one. An FX Accrual Option product The product defines a list of fixing (or observation) dates. There are m total fixings. At the expiry date of the product, the buyer of the option has the right to an FX settlement with n/m * Notional. Payout can be cash or physical.">
 
-    putCallCurrencyModel fpml.consolidated.fx.PutCallCurrencyModel (1..1)
+    putCurrency fpml.consolidated.shared.Currency (1..1) <"The currency which: - the option buyer will pay (sell) - the option writer will receive (buy)">
+    callCurrency fpml.consolidated.shared.Currency (1..1) <"The currency which: - the option buyer will receive (buy) - the option writer will pay (sell)">
     notionalAmount fpml.consolidated.shared.NonNegativeAmountSchedule (1..1) <"Notional amount Schedule. The notional value of the product. This number divided by the total number of fixings in the fixing schedule is the amount that is accrued at each fixing if the accrual factor is one.">
     accrual FxAccrual (1..1) <"Describes accrual features within the product.">
-    fxExpiryDateOrScheduleModel FxExpiryDateOrScheduleModel (1..1)
-    fxSettlementDateOrScheduleModel FxSettlementDateOrScheduleModel (1..1)
+    expiryDate FxExpiryDate (0..1) <"Defines the expiry of a single period accrual forward FX transaction.">
+    expirySchedule fpml.consolidated.fx.targets.FxExpirySchedule (0..1) <"The parameters for defining a schedule of expiry periods for an accrual forward FX transaction.">
+    settlementDate FxAdjustedDateAndDateAdjustments (0..1) <"The date on which settlement takes place for a settlement period.">
+    settlementSchedule fpml.consolidated.fx.targets.FxSettlementSchedule (0..1) <"The parameters for defining a schedule of settlement periods for a accrual forward FX transaction.">
     exerciseProcedure fpml.consolidated.shared.ExerciseProcedure (0..1) <"A set of parameters defining procedures associated with the exercise.">
     spotRate fpml.consolidated.shared.PositiveDecimal (0..1) <"An optional element used for FX forwards and certain types of FX OTC options. For deals consummated in the FX Forwards Market, this represents the current market rate for a particular currency pair. For barrier and digital/binary options, it can be useful to include the spot rate at the time the option was executed to make it easier to know whether the option needs to move \"up\" or \"down\" to be triggered.">
-    fxAccrualOptionSequence FxAccrualOptionSequence (0..1)
+    strike FxOptionStrikePrice (0..1) <"Defines the option strike price.">
+    counterCurrencyAmount fpml.consolidated.shared.NonNegativeAmountSchedule (0..1) <"The opposite currency amount the amount which is not always deterministic.">
     averageStrike FxAverageStrike (0..1) <"Average Strike: means the average of the Reference Spot Rate on each Business Day from and including the Calculation Start Date up to and including the Calculation End Date rounded to the precision decimal places.">
     averageRate FxAverageRate (0..1) <"Average Rate: means the average of the Reference Spot Rate on each Business Day from and including the Calculation Start Date up to and including the Calculation End Date rounded to the precision decimal places.">
     barrier FxAccrualBarrier (0..*) <"Defines a knockout barrier conditions where if a barrier event occurs, the accrual process is terminated for the duration of all remaining accrual periods. Settlement rights for the next settlement are either retained or extinguished.">
     premium fpml.consolidated.fx.FxOptionPremium (0..*) <"Premium amount or premium installment amount for an option.">
 
-    condition Choice:
-        required choice fxAccrualOptionSequence, averageStrike
-
 type FxRangeAccrual extends fpml.consolidated.shared.Product: <"A structured product which consists of a single cash payment or a strip of cash payments. At each settlement the settled amounts are a fraction of the notional amount for that settlement period calculated as the number of fixings which fall within accrual regions divided by the total number of fixings in the settlement period. An FX Range Accrual product. A strip of Digital Options product The product defines a list of fixing (or observation) dates. There are m total fixings. On the relevant Settlement Date, the Option Seller shall pay to the Option Buyer an amount, in the Settlement Currency, calculated according to the following formula: Accrual Currency and Notional Amount x (the total number of Accrual Days / Total Number of Calendar Days in the Accrual Period). Payout can be cash.">
 
-    payerReceiverModel fpml.consolidated.shared.PayerReceiverModel (1..1)
+    payerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party responsible for making the payments defined by this structure.">
+    payerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account responsible for making the payments defined by this structure.">
+    receiverPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A reference to the party that receives the payments corresponding to this structure.">
+    receiverAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that receives the payments corresponding to this structure.">
     notionalAmount fpml.consolidated.shared.NonNegativeAmountSchedule (1..1) <"Notional amount Schedule. The notional value of the product. This number divided by the total number of fixings in the fixing schedule is the amount that is accrued at each fixing if the accrual factor is one.">
     accrual FxAccrual (1..1) <"Describes accrual features within the product.">
-    fxExpiryDateOrScheduleModel FxExpiryDateOrScheduleModel (1..1)
-    fxSettlementDateOrScheduleModel FxSettlementDateOrScheduleModel (1..1)
+    expiryDate FxExpiryDate (0..1) <"Defines the expiry of a single period accrual forward FX transaction.">
+    expirySchedule fpml.consolidated.fx.targets.FxExpirySchedule (0..1) <"The parameters for defining a schedule of expiry periods for an accrual forward FX transaction.">
+    settlementDate FxAdjustedDateAndDateAdjustments (0..1) <"The date on which settlement takes place for a settlement period.">
+    settlementSchedule fpml.consolidated.fx.targets.FxSettlementSchedule (0..1) <"The parameters for defining a schedule of settlement periods for a accrual forward FX transaction.">
     barrier FxAccrualBarrier (0..*) <"Defines a knockout barrier conditions where if a barrier event occurs, the accrual process is terminated for the duration of all remaining accrual periods. Settlement rights for the next settlement are either retained or extinguished.">
     premium fpml.consolidated.fx.FxOptionPremium (0..*) <"Premium amount or premium installment amount for an option.">
 
 type FxAccrual: <"Accrual calculation process.">
 
+    id string (0..1)
     observable FxRateObservable (1..*) <"Contains the quoted currency pair, and the information source for fixing FX rate.">
     accrualRegion FxAccrualRegion (1..*) <"Defines the regions of the spot rate where fixings generate an accumulation of notional.">
     fixingSchedule FxFixingSchedule (1..1) <"Describes a parametric schedule of fixing dates.">
-    id string (0..1)
 
 type FxAccrualAverageStrikeReference extends fpml.consolidated.shared.Reference: <"Reference to an average rate structure in FxAccrualForward or FxAccrualOption products.">
 
@@ -69,53 +79,33 @@ type FxAccrualBarrier extends fpml.consolidated.fx.targets.FxComplexBarrierBase:
 
     accrualRetention fpml.consolidated.fpmlenum.FxAccrualKnockoutBarrierRetentionEnum (0..1) <"Specifies the behavior with respect to settlement rights for the accrual period in which a global knockout event occurs (the \"knockout period\"). \"Keep\" means that the parties retain settlement rights at the end of the knckout period, fixed at the prevailing accrued notional, and settlement rights for all future accrual periods are extinguished. \"Lose\" means that settlement rights for the knockout period and all future accrual periods are extinguished, and the product is effectively extinguished. This element should be produced in case of a global knockout barrier (barrierType= \"Knockout\", scope=\"Global\"), and omitted otherwise.">
     observableReference FxRateObservableReference (0..1) <"Reference to an \'FxRateObservable\' structure.">
-    fxAccrualBarrierSequence FxAccrualBarrierSequence (0..1)
-
-    condition Choice:
-        optional choice observableReference, fxAccrualBarrierSequence
-
-type FxAccrualBarrierSequence:
-
-    quotedCurrencyPair fpml.consolidated.shared.QuotedCurrencyPair (1..1) <"Defines the two currencies for an FX trade and the quotation relationship between the two currencies.">
+    quotedCurrencyPair fpml.consolidated.shared.QuotedCurrencyPair (0..1) <"Defines the two currencies for an FX trade and the quotation relationship between the two currencies.">
     informationSource fpml.consolidated.shared.InformationSource (0..*) <"The information source where a published or displayed market rate will be obtained, e.g. Telerate Page 3750.">
 
 type FxAccrualLeverage:
 
-    condition fpml.consolidated.fpmlenum.ConditionEnum (1..1) <"Condition in which leverage applies.">
-    fxAccrualConditionLevelModel FxAccrualConditionLevelModel (1..1)
-    ratio fpml.consolidated.shared.Schedule (0..1) <"Leverage rate with optional steps. Format is 2 for 200%.">
-    fxAccrualLeverageSequence FxAccrualLeverageSequence (0..1)
     id string (0..1)
-
-    condition Choice:
-        required choice ratio, fxAccrualLeverageSequence
-
-type FxAccrualLeverageSequence:
-
-    notionalAmount fpml.consolidated.shared.NonNegativeAmountSchedule (1..1) <"Notional amount Schedule. The notional value of the product per settlement period. This number divided by the total number of fixings in the fixing schedule is the amount that is accrued at each fixing if the accrual factor is one.">
+    condition fpml.consolidated.fpmlenum.ConditionEnum (1..1) <"Condition in which leverage applies.">
+    level fpml.consolidated.fx.targets.FxLevel (0..1) <"Level expressed as a level.">
+    quoteBasis fpml.consolidated.fpmlenum.QuoteBasisEnum (0..1) <"The Quoted Currency Pair that is used accross the product.">
+    strikeReference FxAccrualStrikeReference (0..1) <"Reference to a strike defined within the FxAccrualForward and FxAccrualOption products.">
+    averageStrikeReference FxAccrualAverageStrikeReference (0..1) <"Reference to an average rate defined within the FxAccrualForward and FxAccrualOption products.">
+    triggerReference FxAccrualTriggerReference (0..1) <"Reference to a trigger defined within the FxAccrualDigitalOption product.">
+    ratio fpml.consolidated.shared.Schedule (0..1) <"Leverage rate with optional steps. Format is 2 for 200%.">
+    notionalAmount fpml.consolidated.shared.NonNegativeAmountSchedule (0..1) <"Notional amount Schedule. The notional value of the product per settlement period. This number divided by the total number of fixings in the fixing schedule is the amount that is accrued at each fixing if the accrual factor is one.">
     counterCurrencyAmount fpml.consolidated.fx.targets.FxCounterCurrencyAmount (0..1) <"The opposite currency amount. The counterCurrencyAmount element is only optional if averageStrike component is present, in all other cases this element must be populated.">
 
 type FxAccrualLinearPayoffRegion extends FxAccrualPayoffRegion: <"A fixing region in which the payoff varies linearly with the fixing value.">
 
-    fxExchangedCurrencyModel fpml.consolidated.fx.targets.FxExchangedCurrencyModel (1..1)
-    fxAccrualLinearPayoffRegionSequence FxAccrualLinearPayoffRegionSequence (0..1)
+    exchangedCurrency1 fpml.consolidated.fx.targets.FxExchangedCurrency (1..1) <"Indicates the first direction of who pays and receives a specific currency without specifying the amount.">
+    exchangedCurrency2 fpml.consolidated.fx.targets.FxExchangedCurrency (1..1) <"Indicates the second direction of who pays and receives a specific currency without specifying the amount.">
+    strike FxForwardStrikePrice (0..1) <"The rate of exchange between the two currencies.">
+    counterCurrencyAmount fpml.consolidated.shared.NonNegativeAmountSchedule (0..1) <"The opposite currency amount. The counterCurrencyAmount element is only optional if averageStrike component is present or if the accrualRegion specifies the amount of counterCurrencyAmount to accrue, in all other cases this element must be populated.">
     averageStrike FxAverageStrike (0..1) <"Average Strike Forward: means the average of the Reference Spot Rate on each Business Day from and including the Calculation Start Date up to and including the Calculation End Date rounded to the precision decimal places.">
-    fxAccrualRegionBoundModel FxAccrualRegionBoundModel (0..1)
+    upperBound FxAccrualRegionUpperBound (0..1) <"Defines the upper bound of a payoff region.">
+    lowerBound FxAccrualRegionLowerBound (0..1) <"Defines the lower bound of a payoff region.">
     leverage FxAccrualLeverage (0..1) <"These structures define a leverage multiplier to the payoff amounts at settlement points.">
     payoffCap fpml.consolidated.fx.targets.FxPayoffCap (0..*) <"The amount of gain on the client upside or firm upside is limited. If spot settles above the cap, or below the floor, the payout is adjusted to limit the gain. The adjustment may be made by varying the strike, or by maintaining the strike, but varying the payout notionals.">
-
-    condition Choice:
-        required choice fxAccrualLinearPayoffRegionSequence, averageStrike
-
-type FxAccrualLinearPayoffRegionSequence:
-
-    strike FxForwardStrikePrice (1..1) <"The rate of exchange between the two currencies.">
-    counterCurrencyAmount fpml.consolidated.shared.NonNegativeAmountSchedule (0..1) <"The opposite currency amount. The counterCurrencyAmount element is only optional if averageStrike component is present or if the accrualRegion specifies the amount of counterCurrencyAmount to accrue, in all other cases this element must be populated.">
-
-type FxAccrualOptionSequence:
-
-    strike FxOptionStrikePrice (1..1) <"Defines the option strike price.">
-    counterCurrencyAmount fpml.consolidated.shared.NonNegativeAmountSchedule (0..1) <"The opposite currency amount the amount which is not always deterministic.">
 
 type FxAccrualPayoffRegion:
 
@@ -128,37 +118,31 @@ type FxAccrualPayoffRegionReference extends fpml.consolidated.shared.Reference: 
 type FxAccrualRegion: <"Defines a region of spot rate where the notional for the settlement period accrues by the accrued amount per fixing each time the spot rate fixes within the region.">
 
     observableReference FxRateObservableReference (1..1) <"Identifies the FX rate used as the basis for the condition (the accrual region).">
-    fxAccrualRegionBoundModel FxAccrualRegionBoundModel (1..1)
-    fxAccrualRegionSequence0 FxAccrualRegionSequence0 (0..1)
-    endDate zonedDateTime (0..1) <"Defines the end date of the observation period for the barrier. If ommitted, the last barrier observation point is understood to be the last fixing date in the fixing schedule.">
-    accrualFactor fpml.consolidated.shared.Schedule (0..1) <"A multiplier applied to the notional amount per fixing of each currency to specify the amount accrued each time the spot rate fixes within the accrual region. If the accrualFactor is omitted, the factor is one.">
-    fxAccrualRegionSequence1 FxAccrualRegionSequence1 (0..1)
-
-    condition Choice0:
-        optional choice fxAccrualRegionSequence0, endDate
-
-    condition Choice1:
-        optional choice accrualFactor, fxAccrualRegionSequence1
-
-type FxAccrualRegionSequence0:
-
-    startDate zonedDateTime (1..1) <"Defines the end date of the observation period for the barrier. If omitted, the last barrier observation point is understood to be the last fixing date in the fixing schedule.">
+    upperBound FxAccrualRegionUpperBound (0..1) <"Defines the upper bound of a payoff region.">
+    lowerBound FxAccrualRegionLowerBound (0..1) <"Defines the lower bound of a payoff region.">
+    startDate zonedDateTime (0..1) <"Defines the end date of the observation period for the barrier. If omitted, the last barrier observation point is understood to be the last fixing date in the fixing schedule.">
     endDate zonedDateTime (0..1) <"Defines the end date of the observation period for the barrier. If omitted, the last barrier observation point is understood to be the last fixing date in the fixing schedule.">
-
-type FxAccrualRegionSequence1:
-
-    notionalAmount fpml.consolidated.shared.NonNegativeAmountSchedule (1..1) <"Notional amount Schedule. The notional value of the product per settlement period. This number divided by the total number of fixings in the fixing schedule is the amount that is accrued at each fixing if the accrual factor is one.">
+    accrualFactor fpml.consolidated.shared.Schedule (0..1) <"A multiplier applied to the notional amount per fixing of each currency to specify the amount accrued each time the spot rate fixes within the accrual region. If the accrualFactor is omitted, the factor is one.">
+    notionalAmount fpml.consolidated.shared.NonNegativeAmountSchedule (0..1) <"Notional amount Schedule. The notional value of the product per settlement period. This number divided by the total number of fixings in the fixing schedule is the amount that is accrued at each fixing if the accrual factor is one.">
     counterCurrencyAmount fpml.consolidated.fx.targets.FxCounterCurrencyAmount (0..1) <"The opposite currency amount. The \'counterCurrencyAmount\' element is supplied if the accrual process operates on specific amounts of both notional and counter currency within this accrual region.">
 
 type FxAccrualRegionLowerBound:
 
     condition fpml.consolidated.fpmlenum.FxRegionLowerBoundDirectionEnum (1..1) <"The Lower Bound Direction. It only contains the AtOrAbove and Above values.">
-    fxAccrualConditionLevelModel FxAccrualConditionLevelModel (1..1)
+    level fpml.consolidated.fx.targets.FxLevel (0..1) <"Level expressed as a level.">
+    quoteBasis fpml.consolidated.fpmlenum.QuoteBasisEnum (0..1) <"The Quoted Currency Pair that is used accross the product.">
+    strikeReference FxAccrualStrikeReference (0..1) <"Reference to a strike defined within the FxAccrualForward and FxAccrualOption products.">
+    averageStrikeReference FxAccrualAverageStrikeReference (0..1) <"Reference to an average rate defined within the FxAccrualForward and FxAccrualOption products.">
+    triggerReference FxAccrualTriggerReference (0..1) <"Reference to a trigger defined within the FxAccrualDigitalOption product.">
 
 type FxAccrualRegionUpperBound:
 
     condition fpml.consolidated.fpmlenum.FxRegionUpperBoundDirectionEnum (1..1) <"The Upper Bound Direction. It only contains the AtOrBelow and Below values.">
-    fxAccrualConditionLevelModel FxAccrualConditionLevelModel (1..1)
+    level fpml.consolidated.fx.targets.FxLevel (0..1) <"Level expressed as a level.">
+    quoteBasis fpml.consolidated.fpmlenum.QuoteBasisEnum (0..1) <"The Quoted Currency Pair that is used accross the product.">
+    strikeReference FxAccrualStrikeReference (0..1) <"Reference to a strike defined within the FxAccrualForward and FxAccrualOption products.">
+    averageStrikeReference FxAccrualAverageStrikeReference (0..1) <"Reference to an average rate defined within the FxAccrualForward and FxAccrualOption products.">
+    triggerReference FxAccrualTriggerReference (0..1) <"Reference to a trigger defined within the FxAccrualDigitalOption product.">
 
 type FxAccrualSettlementPeriod extends fpml.consolidated.fx.targets.SettlementPeriod:
 
@@ -170,21 +154,14 @@ type FxAccrualSettlementPeriod extends fpml.consolidated.fx.targets.SettlementPe
 type FxAccrualSettlementPeriodPayoff: <"Payoff region">
 
     payoffRegionReference FxAccrualPayoffRegionReference (0..1) <"Optional reference to the Payoff Region in the parametric representation of the product.">
-    fxAccrualSettlementPeriodPayoffSequence FxAccrualSettlementPeriodPayoffSequence (0..1)
+    strike number (0..1) <"Strike for the settlement period.">
+    counterCurrencyAmount number (0..1) <"Counter Currency Amount for the settlement period. Multiple Counter Currency Amount elements may appear if there are more than one strike in the settlement period.">
     averageStrikeFixingDates fpml.consolidated.fx.targets.SettlementPeriodFixingDates (0..1) <"Average Strike Fixing Dates.">
     averageRateFixingDates fpml.consolidated.fx.targets.SettlementPeriodFixingDates (0..1) <"Average Rate Fixing Dates.">
     lowerBound number (0..1) <"Lower bound to the region.">
     upperBound number (0..1) <"Upper bound to the region.">
     leverage fpml.consolidated.fx.targets.SettlementPeriodLeverage (0..1) <"Leverage within the period expressed as either an amount or ratio.">
     payoffCap number (0..1) <"The amount of gain on the client upside or firm upside is limited. If spot settles above the cap, or below the floor, the payout is adjusted to limit the gain. The adjustment may be made by varying the strike, or by maintaining the strike, but varying the payout notionals.">
-
-    condition Choice:
-        optional choice fxAccrualSettlementPeriodPayoffSequence, averageStrikeFixingDates
-
-type FxAccrualSettlementPeriodPayoffSequence:
-
-    strike number (1..1) <"Strike for the settlement period.">
-    counterCurrencyAmount number (0..1) <"Counter Currency Amount for the settlement period. Multiple Counter Currency Amount elements may appear if there are more than one strike in the settlement period.">
 
 type FxAccrualSettlementPeriodSchedule:
 
@@ -198,8 +175,8 @@ type FxAccrualStrikeReference extends fpml.consolidated.shared.Reference: <"Refe
 
 type FxAccrualTrigger extends fpml.consolidated.fx.FxTriggerBase: <"Describes a european trigger applied to an FX digtal option.">
 
-    informationSource fpml.consolidated.shared.InformationSource (0..*) <"The information source where a published or displayed market rate will be obtained, e.g. Telerate Page 3750.">
     id string (0..1) <"An anchor to be referenced from the accrual region bound.">
+    informationSource fpml.consolidated.shared.InformationSource (0..*) <"The information source where a published or displayed market rate will be obtained, e.g. Telerate Page 3750.">
 
 type FxAccrualTriggerReference extends fpml.consolidated.shared.Reference: <"Reference to a trigger structure in FxAccrualDigitalOption product.">
 
@@ -238,25 +215,15 @@ type FxFixingObservation:
 
 type FxFixingSchedule: <"Describes a schedule of fixing dates as a parametric description, an explicit list of dates or both.">
 
-    fxFixingScheduleSequence0 FxFixingScheduleSequence0 (0..1)
-    fxFixingScheduleSequence1 FxFixingScheduleSequence1 (0..1)
-
-    condition Choice:
-        one-of
-
-type FxFixingScheduleSequence0:
-
     dateAdjustments fpml.consolidated.shared.BusinessDayAdjustments (0..1) <"Date adjustments applied to the adjusted dates including the business day convention and the business centers.">
     fixingDate zonedDateTime (0..*) <"List of schedule dates. These dates have been subject to adjustments based on the dateAdjustments structure.">
-
-type FxFixingScheduleSequence1:
-
-    parametricScheduleModel fpml.consolidated.fx.targets.ParametricScheduleModel (1..1)
+    startDate zonedDateTime (0..1) <"Start of the schedule.">
+    endDate zonedDateTime (0..1) <"End of the schedule.">
+    observationFrequency fpml.consolidated.shared.ObservationFrequency (0..1) <"Defines the frequency at which calculation period end dates occur within the period schedule and their roll date convention.">
+    dayType fpml.consolidated.fpmlenum.DayTypeEnum (0..1) <"A day type classification, e.g. Business, Calendar, etc.">
+    businessCentersReference fpml.consolidated.shared.BusinessCentersReference (0..1) <"A pointer style reference to a set of financial business centers defined elsewhere in the document. This set of business centers is used to determine whether a particular day is a business day or not.">
+    businessCenters fpml.consolidated.shared.BusinessCenters (0..1)
     numberOfFixings int(min: 0) (0..1) <"The number of fixing points in the fixing schedule.">
-    fixingDate zonedDateTime (0..*) <"An explicit list of dates in the schedule. Where a conflict every existed between parametric and explicit dates, the explicit list of dates would takes precedence.">
-
-    condition Choice:
-        optional choice numberOfFixings, fixingDate
 
 type FxForwardStrikePrice extends FxAccrualStrike: <"A type that describes the rate of exchange between the two currencies of the leg of a deal.">
 
@@ -268,13 +235,10 @@ type FxOptionStrikePrice extends FxAccrualStrike: <"A type that describes the ra
 
 type FxRateObservable:
 
+    id string (0..1)
     quotedCurrencyPair fpml.consolidated.shared.QuotedCurrencyPair (1..1) <"FX rate to be observed. The Quoted Currency Pair that is used across the product.">
     informationSource fpml.consolidated.shared.FxInformationSource (0..1) <"Information source for fixing the exchange rate. It is the same for all fixing periods.">
     crossRate FxCrossRateObservable (0..*) <"Contains the currency exchange rates information used to cross between the traded currencies for non-base currency FX contracts.">
-    id string (0..1)
-
-    condition Choice:
-        required choice informationSource, crossRate
 
 type FxRateObservableReference extends fpml.consolidated.shared.Reference: <"Reference to an \"FxRateObservable\" structure.">
 
@@ -282,66 +246,12 @@ type FxRateObservableReference extends fpml.consolidated.shared.Reference: <"Ref
 
 type FxWeightedFixingSchedule: <"Describes a schedule of fixing dates as a parametric description, an explicit list of dates or both.">
 
-    fxWeightedFixingScheduleSequence0 FxWeightedFixingScheduleSequence0 (0..1)
-    fxWeightedFixingScheduleSequence1 FxWeightedFixingScheduleSequence1 (0..1)
-
-    condition Choice:
-        one-of
-
-type FxWeightedFixingScheduleSequence0:
-
     dateAdjustments fpml.consolidated.shared.BusinessDayAdjustments (0..1) <"Date adjustments applied to the adjusted dates including the business day convention and the business centers.">
     fixing FxFixingObservation (0..*) <"List of schedule dates. These dates have been subject to adjustments based on the dateAdjustments structure.">
-
-type FxWeightedFixingScheduleSequence1:
-
-    parametricScheduleModel fpml.consolidated.fx.targets.ParametricScheduleModel (1..1)
+    startDate zonedDateTime (0..1) <"Start of the schedule.">
+    endDate zonedDateTime (0..1) <"End of the schedule.">
+    observationFrequency fpml.consolidated.shared.ObservationFrequency (0..1) <"Defines the frequency at which calculation period end dates occur within the period schedule and their roll date convention.">
+    dayType fpml.consolidated.fpmlenum.DayTypeEnum (0..1) <"A day type classification, e.g. Business, Calendar, etc.">
+    businessCentersReference fpml.consolidated.shared.BusinessCentersReference (0..1) <"A pointer style reference to a set of financial business centers defined elsewhere in the document. This set of business centers is used to determine whether a particular day is a business day or not.">
+    businessCenters fpml.consolidated.shared.BusinessCenters (0..1)
     numberOfFixings int(min: 0) (0..1) <"The number of fixing points in the fixing schedule.">
-    fixing FxFixingObservation (0..*) <"An explicit list of dates in the schedule. Where a conflict every existed between parametric and explicit dates, the explicit list of dates would takes precedence.">
-
-    condition Choice:
-        optional choice numberOfFixings, fixing
-
-type FxAccrualConditionLevelModel: <"Conditions can be expressed in different ways: as a specific level, or a reference to a strike, or a reference to an average strike in FxAccrualForward and FxAccrualOption, or a reference to a trigger in FxDigitalOption.">
-
-    fxAccrualConditionLevelModelSequence FxAccrualConditionLevelModelSequence (0..1)
-    strikeReference FxAccrualStrikeReference (0..1) <"Reference to a strike defined within the FxAccrualForward and FxAccrualOption products.">
-    averageStrikeReference FxAccrualAverageStrikeReference (0..1) <"Reference to an average rate defined within the FxAccrualForward and FxAccrualOption products.">
-    triggerReference FxAccrualTriggerReference (0..1) <"Reference to a trigger defined within the FxAccrualDigitalOption product.">
-
-    condition Choice:
-        one-of
-
-type FxAccrualConditionLevelModelSequence:
-
-    level fpml.consolidated.fx.targets.FxLevel (1..1) <"Level expressed as a level.">
-    quoteBasis fpml.consolidated.fpmlenum.QuoteBasisEnum (0..1) <"The Quoted Currency Pair that is used accross the product.">
-
-type FxAccrualRegionBoundModel: <"Defines the boundaries of the accrual region. If an upper or lower barrier is not defined then it is understood that if the barrier is missing in the direction facing the strike then the region is bounded by the strike but excludes the strike; if the barrier is missing in the direction facing away from the strike then the accrual region is unbounded in that direction. If the region is bounded by the strike then a barrier should be included to define whether the region includes or excludes the strike. If accrual regions overlap, it is understood that if one is nested within another wider region, the nested region takes precedence over the spot range that it applies. If there is an overlap but no nesting then this is invalid and barriers must be used to unequivocally define the regions.">
-
-    upperBound FxAccrualRegionUpperBound (0..1) <"Defines the upper bound of a payoff region.">
-    fxAccrualRegionBoundModelSequence FxAccrualRegionBoundModelSequence (0..1)
-
-    condition Choice:
-        one-of
-
-type FxAccrualRegionBoundModelSequence:
-
-    lowerBound FxAccrualRegionLowerBound (1..1) <"Defines the lower bound of a payoff region.">
-    upperBound FxAccrualRegionUpperBound (0..1) <"Defines the upper bound of a payoff region.">
-
-type FxExpiryDateOrScheduleModel: <"Defines the expiry/observation date or schedule of the accrual product.">
-
-    expiryDate FxExpiryDate (0..1) <"Defines the expiry of a single period accrual forward FX transaction.">
-    expirySchedule fpml.consolidated.fx.targets.FxExpirySchedule (0..1) <"The parameters for defining a schedule of expiry periods for an accrual forward FX transaction.">
-
-    condition Choice:
-        one-of
-
-type FxSettlementDateOrScheduleModel: <"Defines the settlement/payment date or schedule of the accrual product.">
-
-    settlementDate FxAdjustedDateAndDateAdjustments (0..1) <"The date on which settlement takes place for a settlement period.">
-    settlementSchedule fpml.consolidated.fx.targets.FxSettlementSchedule (0..1) <"The parameters for defining a schedule of settlement periods for a accrual forward FX transaction.">
-
-    condition Choice:
-        one-of

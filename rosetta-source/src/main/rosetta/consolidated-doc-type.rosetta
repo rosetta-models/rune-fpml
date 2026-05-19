@@ -5,8 +5,11 @@ typeAlias FpMLVersion: fpml.consolidated.shared.Token
 
 type InstrumentTradeDetails extends fpml.consolidated.shared.Product: <"A type to hold trades of multiply-traded instruments such as securities (e.g., stocks or bonds) or listed derivatives. Typically this will be used to represent the trade resulting from a physically-settled OTC product where the underlying is a security, for example the exercise of a physically-settled option. The economics of a trade of a multiply traded instrument.">
 
-    buyerSellerModel fpml.consolidated.shared.BuyerSellerModel (1..1)
-    underlyingAsset fpml.consolidated.asset.Asset (0..1)
+    buyerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party that buys this instrument, ie. pays for this instrument and receives the rights defined by it. See 2000 ISDA definitions Article 11.1 (b). In the case of FRAs this the fixed rate payer.">
+    buyerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that buys this instrument.">
+    sellerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party that sells (\"writes\") this instrument, i.e. that grants the rights defined by this instrument and in return receives a payment for it. See 2000 ISDA definitions Article 11.1 (a). In the case of FRAs this is the floating rate payer.">
+    sellerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that sells this instrument.">
+    underlyingAsset fpml.consolidated.asset.Asset (0..1) <"The FpML asset description for the asset.">
     quantity InstrumentTradeQuantity (0..1) <"A description of how much of the instrument was traded.">
     pricing InstrumentTradePricing (0..1) <"The price paid for the instrument.">
     principal InstrumentTradePrincipal (0..1) <"The value, in instrument currency, of the amount of the instrument that was traded.">
@@ -24,9 +27,6 @@ type AdditionalData: <"Provides extra information not represented in the model t
     hexadecimalBinary string (0..1) <"Provides extra information as binary contents coded in hexadecimal.">
     base64Binary string (0..1) <"Provides extra information as binary contents coded in base64.">
     originalMessage UnprocessedElementWrapper (0..1) <"Provides the content of the original message.">
-
-    condition Choice:
-        optional choice string, hexadecimalBinary , base64Binary , originalMessage
 
 type AdmissionToTrading: <"Information about whether and when a product was admitted to trading on a facility.">
 
@@ -49,13 +49,15 @@ type AlgorithmRole: <"A type describing a role played by an algorithm in one or 
 type Allocation:
 
     allocationTradeId TradeIdentifier (0..*) <"Unique ID for the allocation. Multiple allocation trade IDs are provided to allow for the use of USI/UTI representations along with party-specific trade identifiers.">
-    partyAndAccountReferencesModel fpml.consolidated.shared.PartyAndAccountReferencesModel (1..1)
+    partyReference fpml.consolidated.shared.PartyReference (1..1) <"Reference to a party.">
+    accountReference fpml.consolidated.shared.AccountReference (0..1) <"Reference to an account.">
     allocatedFraction number (0..1) <"The fractional allocation (0.45 = 45%) of the notional and \"block\" fees to this particular client subaccount.">
     allocatedNotional fpml.consolidated.shared.Money (0..2) <"The notional allocation (amount and currency) to this particular client account.">
-    allocationContentModel AllocationContentModel (1..1)
-
-    condition Choice:
-        optional choice allocatedFraction, allocatedNotional
+    collateral fpml.consolidated.shared.Collateral (0..1) <"The sum that must be posted upfront to collateralize against counterparty credit risk.">
+    creditChargeAmount fpml.consolidated.shared.Money (0..1) <"Special credit fee assessed to certain institutions.">
+    approvals Approvals (0..1) <"A container for approval states in the workflow.">
+    masterConfirmationDate zonedDateTime (0..1) <"The date of the confirmation executed between the parties and intended to govern the allocated trade between those parties.">
+    relatedParty fpml.consolidated.shared.RelatedParty (0..*) <"Specifies any relevant parties to the allocation which should be referenced.">
 
 type AllocationReportingStatus: <"Code that describes what type of allocation applies to the trade. Options include Unallocated, PreAllocation, PostAllocation.">
 
@@ -173,9 +175,6 @@ type InstrumentTradeQuantity: <"A structure describing the amount of an instrume
     number number (0..1) <"The (absolute) number of units of the underlying instrument that were traded.">
     nominal fpml.consolidated.shared.Money (0..1) <"The monetary value of the security (eg. fixed income security) that was traded).">
 
-    condition Choice:
-        one-of
-
 type InstrumentTradePricing: <"A structure describing the price paid for the instrument.">
 
     quote fpml.consolidated.asset.BasicQuotation (0..*)
@@ -205,7 +204,8 @@ type LinkType:
 
 type NetAndGross: <"A structure including a net and/or a gross amount and possibly fees and commissions.">
 
-    netAndOrGrossModel NetAndOrGrossModel (1..1)
+    net number (0..1) <"Value excluding fees and commissions.">
+    gross number (0..1) <"Value including fees and commissions.">
 
 type NotionalReportingType: <"How a notional is to be reported for this reporting regime. E.g. for ESMA EMIR, it would be Nominal or Monetary Amount">
 
@@ -251,9 +251,9 @@ type PartyEntityClassification: <"A type that specifies the classification of a 
 
 type PartyPortfolioName: <"A type to represent a portfolio name for a particular party.">
 
+    id string (0..1)
     partyReference fpml.consolidated.shared.PartyReference (0..1) <"A pointer style reference to a party identifier defined elsewhere in the document. The party referenced has allocated the trade identifier.">
     portfolioName PortfolioName (0..*)
-    id string (0..1)
 
 type PartyRelationshipType: <"A type containing a code representing how two parties are related, e.g. Affiliated, Intragroup, None.">
 
@@ -271,16 +271,14 @@ type PartyTradeIdentifier extends TradeIdentifier: <"A type defining one or more
     productComponentIdentifier ProductComponentIdentifier (0..*) <"Deprecated: The USIs of the components of this trade, when this trade contains a strategy.">
     linkedTrade LinkedTrade (0..*) <"Related trades">
 
-    condition Choice:
-        optional choice allocationTradeId, resultingTradeId
-
 type PartyTradeIdentifiers: <"A type containing multiple partyTradeIdentifier.">
 
     partyTradeIdentifier PartyTradeIdentifier (0..*)
 
 type PartyTradeInformation: <"A type defining party-specific additional information that may be recorded against a trade.">
 
-    partyAndAccountReferencesModel fpml.consolidated.shared.PartyAndAccountReferencesModel (1..1)
+    partyReference fpml.consolidated.shared.PartyReference (1..1) <"Reference to a party.">
+    accountReference fpml.consolidated.shared.AccountReference (0..1) <"Reference to an account.">
     relatedParty fpml.consolidated.shared.RelatedParty (0..*) <"This may be used to identify one or more parties that perform a role within the transaction. If this is within a partyTradeInformation block, the related party performs the role with respect to the party identifie by the \"partyReference\" in the partyTradeInformation block.">
     reportingRole ReportingRole (0..1) <"Identifies the role of this party in reporting this trade (e.g. originator, counterparty).">
     relatedBusinessUnit fpml.consolidated.shared.RelatedBusinessUnit (0..*) <"Provides information about a unit/division/desk etc. that executed or supports this trade">
@@ -299,24 +297,32 @@ type PartyTradeInformation: <"A type defining party-specific additional informat
     collateralPortfolioInitialMargin PortfolioName (0..1) <"Provides a name, code, or other identifier for the initial margin collateral portfolio to which this belongs. Added to support CFTC Amendments to Part 43/45 (Published November 2020).">
     collateralPortfolioVariationMargin PortfolioName (0..1) <"Provides a name, code, or other identifier for the variation margin collateral portfolio to which this belongs. Added to support CFTC Amendments to Part 43/45 (Published November 2020).">
     reportingRegime ReportingRegime (0..*) <"Allows the organization to specify which if any relevant regulators or other supervisory bodies this is relevant for, and what reporting rules apply.">
-    endUserExceptionModel EndUserExceptionModel (0..1)
+    endUserException boolean (0..1) <"Specifies whether the trade is not obligated to be cleared via a derivative clearing organization, i.e. whether there is an exemption from clearing. For historical reasons this is called \"end-user exception\", but this may be used to indication any exception from normal clearing mandates caused by the type of the partiees or their relationship, such as inter-affiliate trades. If a relatedParty block with a role of ClearingExceptionParty is present, that related party indicates which party is claiming the end user exception.">
+    endUserExceptionReason ClearingExceptionReason (0..*) <"Specifies a reason that the trade is exempted from a clearing requirement. This exemption may be an end-user exception, or another type such as in inter-affiliate trade.">
+    endUserExceptionDeclaration EndUserExceptionDeclaration (0..1) <"Claims an end user exception and provides supporting evidence. If a relatedParty block with a role of ClearingExceptionParty is present, that related party indicates which party is claiming the end user exception.">
     nonStandardTerms boolean (0..1) <"Indicates that the trade has price-affecting characteristics in addition to the standard real-time reportable terms. The flag indicates that the price for this trade is not to be construed as being indicative of the market for standardised trades with otherwise identical reportable terms.">
     offMarketPrice boolean (0..1) <"Indicates that the price does not reflect the current market. For example, in a credit trade where the two counterparties are not of equal credit standing, there is no initial margin and one party pays collateral to the other in the form of an add-on to the price (say a price that would otherwise be 100 at the market is struck at 105 to include the collateral, resulting in a very off-market looking price.)">
     pricingContext PricingContext (0..*) <"Describes why the price of this trade does not reflect the current market price. For example, the trade may have been traded off-market as part of a termination or compression operation.">
-    blockTradeModel BlockTradeModel (0..1)
+    largeSizeTrade boolean (0..1) <"For off-facility trades, specifies whether the sender of this trade considers it to be a large notional trade or block trade for reporting purposes, and thus eligible for delayed public reporting. This element is used to supply CFTC Large notional off-facility swap election indicator.">
+    blockTradeIndicator boolean (0..1) <"For on-facility trades, indicator of whether an election has been made to report the swap transaction as a block transaction by the reporting counterparty or as calculated by either the swap data repository acting on behalf of the reporting counterparty or by using a third party. This element is used to provide CFTC 93 Block Trade Election Indicator.">
     executionType ExecutionType (0..1) <"Used to describe how the trade was executed, e.g. via voice or electronically.">
     executionVenueType ExecutionVenueType (0..1) <"Used to describe the type of venue where trade was executed, e.g via an execution facility or privately.">
     verificationMethod VerificationMethod (0..1) <"Used to describe how the trade was or will be verified, e.g via a confirmation facility, via private electronic service, or via written documentation. This affect the timing of real-time reporting requirements. This field is provisional pending detailed confirmation of the data requirements, and may not be included in subsequent working drafts.">
     confirmationMethod ConfirmationMethod (0..1) <"Used to describe how the trade was confirmed, e.g via a confirmation facility, via private electronic service, or via written documentation. This affects the process flow for confirmation messages. This field is provisional pending detailed confirmation of the data requirements, and may not be included in subsequent working drafts.">
     compressedTrade boolean (0..1) <"Specifies whether this trade is a result of compression activity.">
-    transactionClassificationModel TransactionClassificationModel (0..1)
+    isSecuritiesFinancing boolean (0..1) <"Whether the transaction falls within the scope of activity but is exempted from reporting under [Securities Financing Transactions Regulation]">
+    otcClassification OtcClassification (0..*) <"Classification of the OTC transaction. Note: Coding scheme definition to encapsulate: Articles 20(3)(a) and 21(5)(a) of Regulation (EU) 600/2014. e.g. default=\"http://www.fpml.org/coding-scheme/esma-mifir-otc-classification\"">
+    tradingWaiver TradingWaiver (0..*) <"Classification of the pre-trade waiver, if any, that the transaction was executed under. Note: Coding scheme to encapsulate: Articles 4 and 9 of Regulation (EU) 600/2014. e.g. default=\"http://www.fpml.org/coding-scheme/esma-mifir-trading-waiver\"">
+    shortSale ShortSale (0..1) <"Classification of the transaction as a short sale or not and, if short, of the type of transaction. Note: Coding scheme to encapsulate: Article 11 of Regulation (EU) 600/2014. e.g. default=\"http://www.fpml.org/coding-scheme/esma-mifir-short-sale\"">
+    isCommodityHedge boolean (0..1) <"Whether the transaction reduces risk in an objectively measurable way. Only applicable for commodity derivative transactions.">
     isDisputed boolean (0..1) <"Used to report whether the trade is in dispute">
     unit fpml.consolidated.shared.Unit (0..*) <"Identifies the unit/division/desk etc. that executed or supports this trade">
     trader Trader (0..*) <"Identifies the person or persons who assumed the role of trader for this trade. New implementations are encouraged to use the relatedPerson structure instead.">
 
 type PartyTradeInformationSimple: <"A type defining party-specific additional information that may be recorded against a trade.">
 
-    partyAndAccountReferencesModel fpml.consolidated.shared.PartyAndAccountReferencesModel (1..1)
+    partyReference fpml.consolidated.shared.PartyReference (1..1) <"Reference to a party.">
+    accountReference fpml.consolidated.shared.AccountReference (0..1) <"Reference to an account.">
     relatedParty fpml.consolidated.shared.RelatedParty (0..*) <"This may be used to identify one or more parties that perform a role within the transaction. If this is within a partyTradeInformation block, the related party performs the role with respect to the party identifie by the \"partyReference\" in the partyTradeInformation block.">
     reportingRegime ReportingRegimeIdentifier (0..*) <"Allows the organization to specify which if any relevant regulators or other supervisory bodies this is relevant for, and what reporting rules apply.">
 
@@ -391,12 +397,14 @@ type ReportingPurpose: <"A value that explains the reason or purpose that inform
 
 type ReportingRegime: <"Provides information about how the information in this message is applicable to a regulatory reporting process.">
 
-    reportingRegimeSequence0 ReportingRegimeSequence0 (0..1)
+    name fpml.consolidated.shared.ReportingRegimeName (0..1) <"Identifies the reporting regime under which this data is reported. For example, Dodd-Frank, MiFID, HongKongOTCDRepository, ODRF">
     supervisorRegistration SupervisorRegistration (0..*) <"Identifies the specific regulator or other supervisory body for which this data is produced. For example, CFTC, SEC, UKFSA, ODRF, SFC, ESMA.">
     reportingRole ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for this regulator; roles could include ReportingParty and Voluntary reporting.">
     reportingPurpose ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, PET, Confirmation, RealTimePublic.">
     mandatorilyClearable ReportingBoolean (0..1) <"Whether the particular trade type in question is required by this regulator to be cleared.">
-    reportingRegimeSequence1 ReportingRegimeSequence1 (0..1)
+    mandatoryFacilityExecution boolean (0..1) <"Whether the particular product must be executed on a SEF or DCM. See to Dodd-Frank section 723(a)(8).">
+    mandatoryFacilityExecutionException boolean (0..1) <"Specifies whether the party invoked exception to not execute the trade on facility such as SEF and DCM even though the particular product is mandated to execute on a SEF.">
+    mandatoryFacilityExecutionExceptionDeclaration FacilityExecutionExceptionDeclaration (0..1) <"Provides supporting evidence when a party invoked exception to not execute the trade on facility such as SEF and DCM even though the particular product is mandated to execute on a SEF.">
     exceedsClearingThreshold boolean (0..1) <"Indicates whether the counterparty exceeds the volume threshold above which trades are required to be cleared.">
     relatedParty fpml.consolidated.shared.RelatedParty (0..*) <"This may be used to identify one or more parties that perform a role within the transaction. If this is within a partyTradeInformation block, the related party performs the role with respect to the party identifie by the \"partyReference\" in the partyTradeInformation block.">
     entityClassification EntityClassification (0..1) <"Indicates the category or classification or business role of the organization referenced by the partyTradeInformation with respect to this reporting regime, for example Financial, NonFinancial etc.">
@@ -409,24 +417,9 @@ type ReportingRegime: <"Provides information about how the information in this m
     transmissionOfOrder boolean (0..1)
     postPricedIndicator boolean (0..1)
     directlyLinkedActivity boolean (0..1) <"Directly linked to commercial activity or treasury financing. Information on whether the contract is objectively measurable as directly linked to the counterparty\'s commercial or treasury financing activity, as referred to in Article 10(3) of Regulation (EU) No 648/2012.">
-    endUserExceptionModel EndUserExceptionModel (0..1)
-
-    condition Choice0:
-        required choice reportingRegimeSequence0, supervisorRegistration
-
-    condition Choice1:
-        optional choice entityClassification, partyEntityClassification
-
-type ReportingRegimeSequence0:
-
-    name fpml.consolidated.shared.ReportingRegimeName (1..1) <"Identifies the reporting regime under which this data is reported. For example, Dodd-Frank, MiFID, HongKongOTCDRepository, ODRF">
-    supervisorRegistration SupervisorRegistration (0..*) <"Identifies the specific regulator or other supervisory body for which this data is produced. For example, CFTC, SEC, UKFSA, ODRF, SFC, ESMA.">
-
-type ReportingRegimeSequence1:
-
-    mandatoryFacilityExecution boolean (0..1) <"Whether the particular product must be executed on a SEF or DCM. See to Dodd-Frank section 723(a)(8).">
-    mandatoryFacilityExecutionException boolean (0..1) <"Specifies whether the party invoked exception to not execute the trade on facility such as SEF and DCM even though the particular product is mandated to execute on a SEF.">
-    mandatoryFacilityExecutionExceptionDeclaration FacilityExecutionExceptionDeclaration (0..1) <"Provides supporting evidence when a party invoked exception to not execute the trade on facility such as SEF and DCM even though the particular product is mandated to execute on a SEF.">
+    endUserException boolean (0..1) <"Specifies whether the trade is not obligated to be cleared via a derivative clearing organization, i.e. whether there is an exemption from clearing. For historical reasons this is called \"end-user exception\", but this may be used to indication any exception from normal clearing mandates caused by the type of the partiees or their relationship, such as inter-affiliate trades. If a relatedParty block with a role of ClearingExceptionParty is present, that related party indicates which party is claiming the end user exception.">
+    endUserExceptionReason ClearingExceptionReason (0..*) <"Specifies a reason that the trade is exempted from a clearing requirement. This exemption may be an end-user exception, or another type such as in inter-affiliate trade.">
+    endUserExceptionDeclaration EndUserExceptionDeclaration (0..1) <"Claims an end user exception and provides supporting evidence. If a relatedParty block with a role of ClearingExceptionParty is present, that related party indicates which party is claiming the end user exception.">
 
 type ReportingRole: <"A type containing a code representing the role of a party in a report, e.g. the originator, the recipient, the counterparty, etc. This is used to clarify which participant\'s information is being reported.">
 
@@ -442,18 +435,10 @@ type ReportingLevel: <"A type containing a code representing the level at which 
 
 type ReportingRegimeIdentifier: <"A type that provides identification for reporting regimes.">
 
-    reportingRegimeIdentifierSequence ReportingRegimeIdentifierSequence (0..1)
+    name fpml.consolidated.shared.ReportingRegimeName (0..1) <"Identifies the reporting regime under which this data is reported. For example, Dodd-Frank, MiFID, HongKongOTCDRepository, ODRF">
     supervisorRegistration SupervisorRegistration (0..*) <"Identifies the specific regulator or other supervisory body for which this data is produced. For example, CFTC, SEC, UKFSA, ODRF, SFC, ESMA.">
     reportingRole ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for this regulator; roles could include ReportingParty and Voluntary reporting.">
     actionType fpml.consolidated.shared.ActionType (0..1) <"Reports a regulator-specific code for the action associated with this submission. Used, for example, to report the ESMA action type.">
-
-    condition Choice:
-        required choice reportingRegimeIdentifierSequence, supervisorRegistration
-
-type ReportingRegimeIdentifierSequence:
-
-    name fpml.consolidated.shared.ReportingRegimeName (1..1) <"Identifies the reporting regime under which this data is reported. For example, Dodd-Frank, MiFID, HongKongOTCDRepository, ODRF">
-    supervisorRegistration SupervisorRegistration (0..*) <"Identifies the specific regulator or other supervisory body for which this data is produced. For example, CFTC, SEC, UKFSA, ODRF, SFC, ESMA.">
 
 type Reason: <"A type defining a content model for describing the nature and possible location of a error within a previous message.">
 
@@ -480,7 +465,8 @@ type StrategyComponentIdentification: <"Associates trade identifiers with compon
 
 type SupervisorRegistration: <"Provides information about a regulator or other supervisory body that an organization is registered with.">
 
-    supervisorRegistrationModel SupervisorRegistrationModel (1..1)
+    supervisoryBody fpml.consolidated.shared.SupervisoryBody (1..1) <"The regulator or other supervisory body the organization is registered with (e.g. SEC).">
+    registrationNumber RegulatorId (0..1) <"The ID assigned by the regulator (e.g. SEC\'s Central Index Key).">
 
 type TimestampTypeScheme: <"The type or meaning of a timestamp.">
 
@@ -489,11 +475,13 @@ type TimestampTypeScheme: <"The type or meaning of a timestamp.">
 
 type Trade: <"A type defining an FpML trade.">
 
+    id string (0..1)
     tradeHeader TradeHeader (0..1) <"The information on the trade which is not product specific, e.g. trade date.">
     product fpml.consolidated.shared.Product (0..1)
     otherPartyPayment fpml.consolidated.shared.Payment (0..*) <"Other fees or additional payments associated with the trade, e.g. broker commissions, where one or more of the parties involved are not principal parties involved in the trade.">
     brokerPartyReference fpml.consolidated.shared.PartyReference (0..*) <"Identifies that party (or parties) that brokered this trade.">
-    calculationAgentModel CalculationAgentModel (1..1)
+    calculationAgent fpml.consolidated.shared.CalculationAgent (0..1) <"The ISDA calculation agent responsible for performing duties as defined in the applicable product definitions.">
+    calculationAgentBusinessCenter fpml.consolidated.shared.BusinessCenter (0..1) <"The city in which the office through which ISDA Calculation Agent is acting for purposes of the transaction is located The short-form confirm for a trade that is executed under a Sovereign or Asia Pacific Master Confirmation Agreement ( MCA ), does not need to specify the Calculation Agent. However, the confirm does need to specify the Calculation Agent City. This is due to the fact that the MCA sets the value for Calculation Agent but does not set the value for Calculation Agent City.">
     determiningParty fpml.consolidated.shared.PartyReference (0..2) <"The party referenced is the ISDA Determination Party that specified in the related Confirmation as Determination Party.">
     barrierDeterminationAgent fpml.consolidated.shared.PartyReference (0..1) <"The party referenced is specified in the related Confirmation as Barrier Determination Agent.">
     hedgingParty fpml.consolidated.shared.PartyReference (0..2) <"The party referenced is the ISDA Hedging Party that specified in the related Confirmation as Hedging, or if no Hedging Party is specified, either party to the Transaction.">
@@ -501,7 +489,6 @@ type Trade: <"A type defining an FpML trade.">
     documentation fpml.consolidated.shared.Documentation (0..1) <"Defines the definitions that govern the document and should include the year and type of definitions referenced, along with any relevant documentation (such as master agreement) and the date it was signed.">
     governingLaw fpml.consolidated.shared.GoverningLaw (0..1) <"Identification of the law governing the transaction.">
     allocations Allocations (0..2) <"\"Short-form\" representation of allocations in which the key block economics are stated once within the trade structure, and the allocation data is contained in this allocations structure.">
-    id string (0..1)
     approvals Approvals (0..1) <"A container for approval states in the workflow.">
 
 type TradeCategory: <"A scheme used to categorize positions.">
@@ -511,7 +498,9 @@ type TradeCategory: <"A scheme used to categorize positions.">
 
 type TradeHeader: <"A type defining trade related information which is not product specific.">
 
-    tradeIdentifiersModel TradeIdentifiersModel (1..1)
+    uniqueSwapIdentifier fpml.consolidated.shared.IssuerTradeId (0..1)
+    uniqueTransactionIdentifier fpml.consolidated.shared.IssuerTradeId (0..1)
+    partyTradeIdentifier PartyTradeIdentifier (0..*) <"The trade reference identifier(s) allocated to the trade by the parties involved.">
     partyTradeInformation PartyTradeInformation (0..*) <"Additional trade information that may be provided by each involved party.">
     tradeSummary TradeSummary (0..1)
     productSummary ProductSummary (0..1)
@@ -521,25 +510,17 @@ type TradeHeader: <"A type defining trade related information which is not produ
 
 type TradeIdentifier: <"A type defining a trade identifier issued by the indicated party.">
 
-    issuerTradeIdModel fpml.consolidated.shared.IssuerTradeIdModel (0..1)
-    tradeIdentifierSequence TradeIdentifierSequence (0..1)
     id string (0..1)
+    issuer fpml.consolidated.shared.IssuerId (0..1)
+    tradeId fpml.consolidated.shared.TradeId (0..1)
+    partyReference fpml.consolidated.shared.PartyReference (0..1) <"Reference to a party.">
+    accountReference fpml.consolidated.shared.AccountReference (0..1) <"Reference to an account.">
+    tradeIdentifierChoice TradeIdentifierChoice (0..*)
 
-    condition Choice:
-        optional choice issuerTradeIdModel, tradeIdentifierSequence
-
-type TradeIdentifierSequence:
-
-    partyAndAccountReferencesModel fpml.consolidated.shared.PartyAndAccountReferencesModel (1..1)
-    tradeIdentifierSequenceChoice TradeIdentifierSequenceChoice (0..*)
-
-type TradeIdentifierSequenceChoice:
+type TradeIdentifierChoice:
 
     tradeId fpml.consolidated.shared.TradeId (0..1)
     versionedTradeId VersionedTradeId (0..1) <"A trade identifier accompanied by a version number. In regulatory reporting views, this should be avoided except for internal mnessaging.">
-
-    condition Choice:
-        optional choice tradeId, versionedTradeId
 
 type TradeIdentifierExtended extends TradeIdentifier: <"A type defining a trade identifier with a reference to the party that this trade is associated with.">
 
@@ -604,105 +585,8 @@ type VerificationMethod: <"A type used to represent the type of mechanism that c
 type VersionedTradeId: <"Trade Id with Version Support">
 
     tradeId fpml.consolidated.shared.TradeId (0..1)
-    versionHistoryModel fpml.consolidated.shared.VersionHistoryModel (1..1)
-
-type AllocationContentModel:
-
-    collateral fpml.consolidated.shared.Collateral (0..1) <"The sum that must be posted upfront to collateralize against counterparty credit risk.">
-    creditChargeAmount fpml.consolidated.shared.Money (0..1) <"Special credit fee assessed to certain institutions.">
-    approvals Approvals (0..1) <"A container for approval states in the workflow.">
-    masterConfirmationDate zonedDateTime (0..1) <"The date of the confirmation executed between the parties and intended to govern the allocated trade between those parties.">
-    relatedParty fpml.consolidated.shared.RelatedParty (0..*) <"Specifies any relevant parties to the allocation which should be referenced.">
-
-type CalculationAgentModel:
-
-    calculationAgent fpml.consolidated.shared.CalculationAgent (0..1) <"The ISDA calculation agent responsible for performing duties as defined in the applicable product definitions.">
-    calculationAgentBusinessCenter fpml.consolidated.shared.BusinessCenter (0..1) <"The city in which the office through which ISDA Calculation Agent is acting for purposes of the transaction is located The short-form confirm for a trade that is executed under a Sovereign or Asia Pacific Master Confirmation Agreement ( MCA ), does not need to specify the Calculation Agent. However, the confirm does need to specify the Calculation Agent City. This is due to the fact that the MCA sets the value for Calculation Agent but does not set the value for Calculation Agent City.">
-
-type GlobalTradeIdentifiersModel: <"Types that globally and uniquely identify trade across counterparties, for regulatory reporting and other purposes. Includes a USI and/or a UTI.">
-
-    globalTradeIdentifiersModelSequence GlobalTradeIdentifiersModelSequence (0..1)
-    uniqueTransactionIdentifier fpml.consolidated.shared.IssuerTradeId (0..1)
-
-    condition Choice:
-        one-of
-
-type GlobalTradeIdentifiersModelSequence:
-
-    uniqueSwapIdentifier fpml.consolidated.shared.IssuerTradeId (1..1)
-    uniqueTransactionIdentifier fpml.consolidated.shared.IssuerTradeId (0..1)
-
-type NetAndOrGrossModel: <"A group including a net and/or a gross amount.">
-
-    net number (0..1) <"Value excluding fees and commissions.">
-    netAndOrGrossModelSequence NetAndOrGrossModelSequence (0..1)
-
-    condition Choice:
-        one-of
-
-type NetAndOrGrossModelSequence:
-
-    gross number (1..1) <"Value including fees and commissions.">
-    net number (0..1) <"Value excluding fees and commissions.">
-
-type SupervisorRegistrationModel: <"Provides information about a regulator or other supervisory body that an organization is registered with.">
-
-    supervisoryBody fpml.consolidated.shared.SupervisoryBody (1..1) <"The regulator or other supervisory body the organization is registered with (e.g. SEC).">
-    registrationNumber RegulatorId (0..1) <"The ID assigned by the regulator (e.g. SEC\'s Central Index Key).">
-
-type TradeIdentifiersModel: <"Identification options for trades">
-
-    tradeIdentifiersModelSequence TradeIdentifiersModelSequence (0..1)
-    partyTradeIdentifier PartyTradeIdentifier (0..*) <"The trade reference identifier(s) allocated to the trade by the parties involved.">
-
-    condition Choice:
-        one-of
-
-type TradeIdentifiersModelSequence:
-
-    globalTradeIdentifiersModel GlobalTradeIdentifiersModel (1..1)
-    partyTradeIdentifier PartyTradeIdentifier (0..*) <"The trade reference identifier(s) allocated to the trade by the parties involved.">
-
-type TradeOrTradeReferenceModel: <"Choice between identification and representation of trade execution.">
-
-    trade Trade (0..1) <"An element that allows the full details of the trade to be used as a mechanism for identifying the trade for which the post-trade event pertains">
-    tradeReference PartyTradeIdentifiers (0..1) <"A container since an individual trade can be referenced by two or more different partyTradeIdentifier elements - each allocated by a different party.">
-
-    condition Choice:
-        one-of
-
-type TransactionClassificationModel:
-
-    isSecuritiesFinancing boolean (0..1) <"Whether the transaction falls within the scope of activity but is exempted from reporting under [Securities Financing Transactions Regulation]">
-    otcClassification OtcClassification (0..*) <"Classification of the OTC transaction. Note: Coding scheme definition to encapsulate: Articles 20(3)(a) and 21(5)(a) of Regulation (EU) 600/2014. e.g. default=\"http://www.fpml.org/coding-scheme/esma-mifir-otc-classification\"">
-    tradingWaiver TradingWaiver (0..*) <"Classification of the pre-trade waiver, if any, that the transaction was executed under. Note: Coding scheme to encapsulate: Articles 4 and 9 of Regulation (EU) 600/2014. e.g. default=\"http://www.fpml.org/coding-scheme/esma-mifir-trading-waiver\"">
-    shortSale ShortSale (0..1) <"Classification of the transaction as a short sale or not and, if short, of the type of transaction. Note: Coding scheme to encapsulate: Article 11 of Regulation (EU) 600/2014. e.g. default=\"http://www.fpml.org/coding-scheme/esma-mifir-short-sale\"">
-    isCommodityHedge boolean (0..1) <"Whether the transaction reduces risk in an objectively measurable way. Only applicable for commodity derivative transactions.">
-
-type ValidationModel:
-
-    validation Validation (0..*) <"A list of validation sets the sender asserts the document is valid with respect to.">
-
-type EndUserExceptionModel:
-
-    endUserExceptionModelSequence EndUserExceptionModelSequence (0..1)
-    endUserExceptionDeclaration EndUserExceptionDeclaration (0..1) <"Claims an end user exception and provides supporting evidence. If a relatedParty block with a role of ClearingExceptionParty is present, that related party indicates which party is claiming the end user exception.">
-
-    condition Choice:
-        one-of
-
-type EndUserExceptionModelSequence:
-
-    endUserException boolean (0..1) <"Specifies whether the trade is not obligated to be cleared via a derivative clearing organization, i.e. whether there is an exemption from clearing. For historical reasons this is called \"end-user exception\", but this may be used to indication any exception from normal clearing mandates caused by the type of the partiees or their relationship, such as inter-affiliate trades. If a relatedParty block with a role of ClearingExceptionParty is present, that related party indicates which party is claiming the end user exception.">
-    endUserExceptionReason ClearingExceptionReason (0..*) <"Specifies a reason that the trade is exempted from a clearing requirement. This exemption may be an end-user exception, or another type such as in inter-affiliate trade.">
-
-type BlockTradeModel:
-
-    largeSizeTrade boolean (0..1) <"For off-facility trades, specifies whether the sender of this trade considers it to be a large notional trade or block trade for reporting purposes, and thus eligible for delayed public reporting. This element is used to supply CFTC Large notional off-facility swap election indicator.">
-    blockTradeIndicator boolean (0..1) <"For on-facility trades, indicator of whether an election has been made to report the swap transaction as a block transaction by the reporting counterparty or as calculated by either the swap data repository acting on behalf of the reporting counterparty or by using a third party. This element is used to provide CFTC 93 Block Trade Election Indicator.">
-
-    condition Choice:
-        optional choice largeSizeTrade, blockTradeIndicator
+    version int(min: 0) (0..1) <"The version number">
+    effectiveDate fpml.consolidated.shared.IdentifiedDate (0..1) <"Optionally it is possible to specify a version effective date when a versionId is supplied.">
 
 type ContractId: <"A contact id identifier allocated by a party. FpML does not define the domain values associated with this element.">
 
@@ -712,10 +596,10 @@ type ContractId: <"A contact id identifier allocated by a party. FpML does not d
 
 type ContractIdentifier: <"A type defining a contract identifier issued by the indicated party.">
 
+    id string (0..1)
     partyReference fpml.consolidated.shared.PartyReference (1..1) <"A pointer style reference to a party identifier defined elsewhere in the document. The party referenced has allocated the contract identifier.">
     contractId ContractId (0..*) <"A contract id which is not version aware.">
     versionedContractId VersionedContractId (0..*) <"A contract id which is version aware.">
-    id string (0..1)
 
 type PackageInformation: <"A type defining additional information that may be recorded against a package of trades.">
 
@@ -731,11 +615,11 @@ type PackageInformation: <"A type defining additional information that may be re
 
 type Portfolio: <"A type representing an arbitary grouping of trade references.">
 
+    id string (0..1)
     partyPortfolioName PartyPortfolioName (0..1) <"The name of the portfolio together with the party that gave the name.">
     tradeId fpml.consolidated.shared.TradeId (0..*)
     partyTradeIdentifier PartyTradeIdentifier (0..*)
     portfolio Portfolio (0..*) <"An arbitary grouping of trade references (and possibly other portfolios).">
-    id string (0..1)
 
 type TradeDifference: <"A type used to record the details of a difference between two business objects/">
 
@@ -758,4 +642,5 @@ type Trader:
 type VersionedContractId: <"Contract Id with Version Support">
 
     contractId ContractId (1..1)
-    versionHistoryModel fpml.consolidated.shared.VersionHistoryModel (1..1)
+    version int (1..1) <"The version number">
+    effectiveDate fpml.consolidated.shared.IdentifiedDate (0..1) <"Optionally it is possible to specify a version effective date when a versionId is supplied.">

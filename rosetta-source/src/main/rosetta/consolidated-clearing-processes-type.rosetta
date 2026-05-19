@@ -5,19 +5,27 @@ type RequestClearingEligibility extends fpml.consolidated.msg.CorrectableRequest
     [rootType]
 
     requestingPartyReference fpml.consolidated.shared.PartyReference (0..1)
-    tradingEventsModel fpml.consolidated.business.events.TradingEventsModel (0..1)
+    tradePackage fpml.consolidated.business.events.TradePackage (0..1)
+    originatingEvent fpml.consolidated.shared.OriginatingEvent (0..1)
+    trade fpml.consolidated.doc.Trade (0..1)
+    additionalEvent fpml.consolidated.business.events.AdditionalEvent (0..1)
     deClear fpml.consolidated.business.events.DeClear (0..1) <"A structure describing a declear event. The deClear event allows a firm to request that a trade be removed from clearing, or a clearing service to request consent for this, or to report that it has been done.">
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (1..1)
+    party fpml.consolidated.shared.Party (1..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
 type ClearingEligibility extends fpml.consolidated.msg.ResponseMessage:
     [rootType]
 
-    tradingEventsModel fpml.consolidated.business.events.TradingEventsModel (0..1)
+    tradePackage fpml.consolidated.business.events.TradePackage (0..1)
+    originatingEvent fpml.consolidated.shared.OriginatingEvent (0..1)
+    trade fpml.consolidated.doc.Trade (0..1)
+    additionalEvent fpml.consolidated.business.events.AdditionalEvent (0..1)
     deClear fpml.consolidated.business.events.DeClear (0..1) <"A structure describing a declear event. The deClear event allows a firm to request that a trade be removed from clearing, or a clearing service to request consent for this, or to report that it has been done.">
     partyTradeIdentifier fpml.consolidated.doc.PartyTradeIdentifier (0..1)
     eligibleForClearing boolean (1..1)
     clearingRequirements ClearingRequirements (0..*)
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (1..1)
+    party fpml.consolidated.shared.Party (1..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
+    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
 type ClearingEligibilityException extends fpml.consolidated.msg.Exception:
     [rootType]

@@ -19,12 +19,10 @@ type AveragingPeriod: <"Period over which an average value is taken.">
     averagingObservations AveragingObservationList (0..1) <"A weighted list of averaging observation date and times.">
     marketDisruption MarketDisruption (0..1) <"The market disruption event as defined by ISDA 2002 Definitions.">
 
-    condition Choice:
-        optional choice averagingDateTimes, averagingObservations
-
 type AveragingSchedule: <"Method of generating a series of dates.">
 
-    periodModel fpml.consolidated.shared.PeriodModel (1..1)
+    startDate zonedDateTime (0..1) <"Date on which this period begins.">
+    endDate zonedDateTime (0..1) <"Date on which this period ends.">
     averagingPeriodFrequency fpml.consolidated.shared.CalculationPeriodFrequency (0..1) <"The frequency at which averaging period occurs with the regular part of the valuation schedule and their roll date convention.">
 
 type Barrier: <"As per ISDA 2002 Definitions.">
@@ -54,6 +52,7 @@ type CreditEventNotice:
 
 type CreditEvents:
 
+    id string (0..1)
     bankruptcy boolean (0..1) <"A credit event. The reference entity has been dissolved or has become insolvent. It also covers events that may be a precursor to insolvency such as instigation of bankruptcy or insolvency proceedings. Sovereign trades are not subject to Bankruptcy as \"technically\" a Sovereign cannot become bankrupt. ISDA 2003 Term: Bankruptcy.">
     failureToPay FailureToPay (0..1) <"A credit event. This credit event triggers, after the expiration of any applicable grace period, if the reference entity fails to make due payments in an aggregrate amount of not less than the payment requirement on one or more obligations (e.g. a missed coupon payment). ISDA 2003 Term: Failure to Pay.">
     failureToPayPrincipal boolean (0..1) <"A credit event. Corresponds to the failure by the Reference Entity to pay an expected principal amount or the payment of an actual principal amount that is less than the expected principal amount. ISDA 2003 Term: Failure to Pay Principal.">
@@ -69,7 +68,6 @@ type CreditEvents:
     impliedWritedown boolean (0..1) <"A credit event. Results from the fact that losses occur to the underlying instruments that do not result in reductions of the outstanding principal of the reference obligation.">
     defaultRequirement fpml.consolidated.shared.Money (0..1) <"In relation to certain credit events, serves as a threshold for Obligation Acceleration, Obligation Default, Repudiation/Moratorium and Restructuring. Market standard is USD 10,000,000 (JPY 1,000,000,000 for all Japanese Yen trades). This is applied on an aggregate or total basis across all Obligations of the Reference Entity. Used to prevent technical/operational errors from triggering credit events. ISDA 2003 Term: Default Requirement.">
     creditEventNotice CreditEventNotice (0..1) <"A specified condition to settlement. An irrevocable written or verbal notice that describes a credit event that has occurred. The notice is sent from the notifying party (either the buyer or the seller) to the counterparty. It provides information relevant to determining that a credit event has occurred. This is typically accompanied by Publicly Available Information. ISDA 2003 Term: Credit Event Notice.">
-    id string (0..1)
 
 type CreditEventsReference extends fpml.consolidated.shared.Reference: <"Reference to credit events.">
 
@@ -83,15 +81,15 @@ type FailureToPay:
 
 type FeaturePayment extends fpml.consolidated.shared.PaymentBase: <"Payment made following trigger occurence.">
 
-    payerReceiverModel fpml.consolidated.shared.PayerReceiverModel (1..1)
+    payerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party responsible for making the payments defined by this structure.">
+    payerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account responsible for making the payments defined by this structure.">
+    receiverPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A reference to the party that receives the payments corresponding to this structure.">
+    receiverAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that receives the payments corresponding to this structure.">
     levelPercentage fpml.consolidated.shared.Percentage (0..1) <"The trigger level percentage. A value expressed in percentage units i.e. 5 means 5%.">
     amount fpml.consolidated.shared.NonNegativeDecimal (0..1) <"The monetary quantity in currency units.">
     time fpml.consolidated.fpmlenum.TimeTypeEnum (0..1) <"The feature payment time.">
     currency fpml.consolidated.shared.Currency (0..1) <"The currency in which an amount is denominated.">
     featurePaymentDate fpml.consolidated.shared.AdjustableOrRelativeDate (0..1) <"The feature payment date.">
-
-    condition Choice:
-        optional choice levelPercentage, amount
 
 type FxFeature: <"A type for defining Fx Features.">
 
@@ -100,9 +98,6 @@ type FxFeature: <"A type for defining Fx Features.">
     quanto Quanto (0..1) <"If “Quanto” is specified as the Settlement Type in the relevant Transaction Supplement, an amount, as determined by the Calculation Agent in accordance with the Section 8.2 of the Equity Definitions.">
     crossCurrency Composite (0..1) <"If “Cross-Currency” is specified as the Settlement Type in the relevant Transaction Supplement, an amount in the Settlement Currency, determined by the Calculation Agent as being equal to the number of Options exercised or deemed exercised, multiplied by: (Settlement Price – Strike Price) / (Strike Price – Settlement Price) x Multiplier x one unit of the Reference Currency converted into an amount in the Settlement Currency using the rate of exchange of the Settlement Currency as quoted on the Reference Price Source on the Valuation Date, provided that if the above is equal to a negative amount the Option Cash Settlement Amount shall be deemed to be zero.">
 
-    condition Choice:
-        optional choice composite, quanto , crossCurrency
-
 type GracePeriodExtension:
 
     applicable boolean (0..1) <"Indicates whether the grace period extension provision is applicable.">
@@ -110,15 +105,7 @@ type GracePeriodExtension:
 
 type Knock: <"Knock In means option to exercise comes into existence. Knock Out means option to exercise goes out of existence.">
 
-    knockSequence KnockSequence (0..1)
-    knockOut TriggerEvent (0..1) <"The knock out.">
-
-    condition Choice:
-        one-of
-
-type KnockSequence:
-
-    knockIn TriggerEvent (1..1) <"The knock in.">
+    knockIn TriggerEvent (0..1) <"The knock in.">
     knockOut TriggerEvent (0..1) <"The knock out.">
 
 type MarketDisruption: <"Defines the handling of an averaging date market disruption for an equity derivative transaction.">
@@ -133,7 +120,10 @@ type NotifyingParty:
 
 type Option extends fpml.consolidated.shared.Product: <"A type for defining the common features of options. Buyer/seller information is not normally used in Transparency view but is optional in case the information is needed for administrative purposes such as Reporting Party determination.">
 
-    buyerSellerModel fpml.consolidated.shared.BuyerSellerModel (1..1)
+    buyerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party that buys this instrument, ie. pays for this instrument and receives the rights defined by it. See 2000 ISDA definitions Article 11.1 (b). In the case of FRAs this the fixed rate payer.">
+    buyerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that buys this instrument.">
+    sellerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party that sells (\"writes\") this instrument, i.e. that grants the rights defined by this instrument and in return receives a payment for it. See 2000 ISDA definitions Article 11.1 (a). In the case of FRAs this is the floating rate payer.">
+    sellerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that sells this instrument.">
 
 type OptionBase extends Option: <"A type for defining the common features of options.">
 
@@ -147,24 +137,27 @@ type OptionBaseExtended extends OptionBase: <"Base type for options starting wit
     feature OptionFeature (0..1) <"An Option feature such as quanto, asian, barrier, knock.">
     notionalReference fpml.consolidated.shared.NotionalAmountReference (0..1)
     notionalAmount fpml.consolidated.shared.Money (0..1)
-    optionDenominationModel OptionDenominationModel (0..1)
-    optionSettlementModel OptionSettlementModel (1..1)
-
-    condition Choice:
-        optional choice notionalReference, notionalAmount
+    optionEntitlement fpml.consolidated.shared.PositiveDecimal (0..1) <"The number of units of underlyer per option comprised in the option transaction.">
+    entitlementCurrency fpml.consolidated.shared.Currency (0..1) <"Currency of the relevant bonds to which one option relates. For Bond Options this element should be used to define the currency of the bonds instead of the currency element present in the Bond underlyer.">
+    numberOfOptions fpml.consolidated.shared.PositiveDecimal (0..1) <"The number of options comprised in the option transaction.">
+    settlementType fpml.consolidated.fpmlenum.SettlementTypeEnum (0..1)
+    settlementDate fpml.consolidated.shared.AdjustableOrRelativeDate (0..1)
+    settlementAmount fpml.consolidated.shared.Money (0..1) <"Settlement Amount">
+    settlementCurrency fpml.consolidated.shared.Currency (0..1) <"Settlement Currency for use where the Settlement Amount cannot be known in advance">
 
 type OptionFeature: <"A type for defining option features.">
 
-    optionBaseFeatureModel OptionBaseFeatureModel (1..1)
-    optionFeatureModel OptionFeatureModel (1..1)
+    fxFeature FxFeature (0..1) <"A quanto or composite FX feature.">
+    strategyFeature StrategyFeature (0..1) <"A simple strategy feature.">
+    asian Asian (0..1) <"An option where and average price is taken on valuation.">
+    barrier Barrier (0..1) <"An option with a barrier feature.">
+    knock Knock (0..1) <"A knock feature.">
+    passThrough PassThrough (0..1) <"Pass through payments from the underlyer, such as dividends.">
 
 type OptionNumericStrike: <"A type for defining the strike price for an option as a numeric value without currency.">
 
     strikePrice number (0..1) <"The price or level at which the option has been struck.">
     strikePercentage fpml.consolidated.shared.Percentage (0..1) <"The price or level expressed as a percentage of the forward starting spot price. A value expressed in percentage units i.e. 5 means 5%.">
-
-    condition Choice:
-        optional choice strikePrice, strikePercentage
 
 type OptionStrike extends OptionNumericStrike: <"A type for defining the strike price for an equity option. The strike price is either: (i) in respect of an index option transaction, the level of the relevant index specified or otherwise determined in the transaction; or (ii) in respect of a share option transaction, the price per share specified or otherwise determined in the transaction. This can be expressed either as a percentage of notional amount or as an absolute value.">
 
@@ -176,14 +169,20 @@ type PassThrough: <"Type which contains pass through payments.">
 
 type PassThroughItem: <"Type to represent a single pass through payment.">
 
-    payerReceiverModel fpml.consolidated.shared.PayerReceiverModel (1..1)
+    payerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party responsible for making the payments defined by this structure.">
+    payerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account responsible for making the payments defined by this structure.">
+    receiverPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A reference to the party that receives the payments corresponding to this structure.">
+    receiverAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that receives the payments corresponding to this structure.">
     underlyerReference fpml.consolidated.asset.AssetReference (0..1) <"Reference to the underlyer whose payments are being passed through.">
     passThroughPercentage fpml.consolidated.shared.Percentage (0..1) <"Percentage of payments from the underlyer which are passed through. A value expressed in percentage units i.e. 5 means 5%.">
 
 type Premium extends fpml.consolidated.shared.SimplePayment: <"A type for defining a premium.">
 
-    premiumModel fpml.consolidated.shared.PremiumModel (0..1)
-    paymentDiscountingModel fpml.consolidated.shared.PaymentDiscountingModel (0..1)
+    premiumType fpml.consolidated.fpmlenum.PremiumTypeEnum (0..1) <"Forward start Premium type">
+    pricePerOption fpml.consolidated.shared.Money (0..1) <"The amount of premium to be paid expressed as a function of the number of options.">
+    percentageOfNotional fpml.consolidated.shared.DecimalFraction (0..1) <"The amount of premium to be paid expressed as a percentage of the notional value of the transaction. A percentage of 5% would be expressed as 0.05.">
+    discountFactor number (0..1) <"The value representing the discount factor used to calculate the present value of the cash flow.">
+    presentValueAmount fpml.consolidated.shared.Money (0..1) <"The amount representing the present value of the forecast payment.">
 
 type PubliclyAvailableInformation:
 
@@ -210,16 +209,13 @@ type RestructuringType:
 
 type SettlementTerms:
 
-    settlementCurrency fpml.consolidated.shared.Currency (0..1) <"ISDA 2003 Term: Settlement Currency">
     id string (0..1)
+    settlementCurrency fpml.consolidated.shared.Currency (0..1) <"ISDA 2003 Term: Settlement Currency">
 
 type StrategyFeature: <"A type for definining equity option simple strike or calendar spread strategy features.">
 
     strikeSpread StrikeSpread (0..1) <"Definition of the upper strike in a strike spread.">
     calendarSpread CalendarSpread (0..1) <"Definition of the later expiration date in a calendar spread.">
-
-    condition Choice:
-        one-of
 
 type StrikeSpread: <"A type for defining a strike spread feature.">
 
@@ -230,20 +226,10 @@ type Trigger: <"Trigger point at which feature is effective.">
 
     level number (0..1) <"The trigger level.">
     levelPercentage fpml.consolidated.shared.Percentage (0..1) <"The trigger level percentage. A value expressed in percentage units i.e. 5 means 5%.">
-    triggerChoice TriggerChoice (0..1)
-    triggerType fpml.consolidated.fpmlenum.TriggerTypeEnum (0..1) <"The Triggering condition.">
-    triggerTimeType fpml.consolidated.fpmlenum.TriggerTimeTypeEnum (0..1) <"The valuation time type of knock condition.">
-
-    condition Choice:
-        optional choice level, levelPercentage , triggerChoice
-
-type TriggerChoice:
-
     creditEvents CreditEvents (0..1)
     creditEventsReference CreditEventsReference (0..1)
-
-    condition Choice:
-        optional choice creditEvents, creditEventsReference
+    triggerType fpml.consolidated.fpmlenum.TriggerTypeEnum (0..1) <"The Triggering condition.">
+    triggerTimeType fpml.consolidated.fpmlenum.TriggerTimeTypeEnum (0..1) <"The valuation time type of knock condition.">
 
 type TriggerEvent: <"Observation point for trigger.">
 
@@ -257,30 +243,3 @@ type WeightedAveragingObservation: <"A single weighted averaging observation.">
     dateTime zonedDateTime (0..1) <"Observation date time, which should be used when literal observation dates are required.">
     observationNumber int(min: 1) (0..1) <"Observation number, which should be unique, within a series generated by a date schedule.">
     weight fpml.consolidated.shared.NonNegativeDecimal (0..1) <"Observation weight, which is used as a multiplier for the observation value.">
-
-    condition Choice:
-        optional choice dateTime, observationNumber
-
-type OptionBaseFeatureModel: <"A model group containing Option Base Feature Elements.">
-
-    fxFeature FxFeature (0..1) <"A quanto or composite FX feature.">
-    strategyFeature StrategyFeature (0..1) <"A simple strategy feature.">
-
-type OptionDenominationModel: <"A model group containing the option denomination components.">
-
-    optionEntitlement fpml.consolidated.shared.PositiveDecimal (0..1) <"The number of units of underlyer per option comprised in the option transaction.">
-    entitlementCurrency fpml.consolidated.shared.Currency (0..1) <"Currency of the relevant bonds to which one option relates. For Bond Options this element should be used to define the currency of the bonds instead of the currency element present in the Bond underlyer.">
-    numberOfOptions fpml.consolidated.shared.PositiveDecimal (0..1) <"The number of options comprised in the option transaction.">
-
-type OptionFeatureModel: <"A model group containing Option Base Feature Elements.">
-
-    asian Asian (0..1) <"An option where and average price is taken on valuation.">
-    barrier Barrier (0..1) <"An option with a barrier feature.">
-    knock Knock (0..1) <"A knock feature.">
-    passThrough PassThrough (0..1) <"Pass through payments from the underlyer, such as dividends.">
-
-type OptionSettlementModel: <"A group which has Option Settlement elements.">
-
-    settlementType fpml.consolidated.fpmlenum.SettlementTypeEnum (0..1)
-    settlementDate fpml.consolidated.shared.AdjustableOrRelativeDate (0..1)
-    settlementAmountOrCurrencyModel fpml.consolidated.shared.SettlementAmountOrCurrencyModel (0..1)

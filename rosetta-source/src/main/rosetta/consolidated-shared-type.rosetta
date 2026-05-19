@@ -89,15 +89,10 @@ type EuropeanExercise extends Exercise: <"The parameters for defining the exerci
 
 type Account: <"A generic account that represents any party\'s account at another party. Parties may be identified by the account at another party.">
 
+    id string (1..1) <"The unique identifier for the account within the document.">
     accountId AccountId (0..*) <"An account identifier. For example an Account number.">
     accountName AccountName (0..1) <"The name by which the account is known.">
     accountType AccountType (0..1) <"The type of account. e.g., Client, House">
-    accountSequence AccountSequence (0..1)
-    id string (1..1) <"The unique identifier for the account within the document.">
-    servicingParty PartyReference (0..1) <"A reference to the party that services/supports the account.">
-
-type AccountSequence:
-
     accountBeneficiary PartyReference (0..1) <"A reference to the party beneficiary of the account.">
     servicingParty PartyReference (0..1) <"A reference to the party that services/supports the account.">
 
@@ -135,83 +130,63 @@ type Address: <"A type that represents a physical postal address.">
 
 type AdjustableDate: <"A type for defining a date that shall be subject to adjustment if it would otherwise fall on a day that is not a business day in the specified business centers, together with the convention for adjusting the date.">
 
+    id string (0..1)
     unadjustedDate IdentifiedDate (1..1) <"A date subject to adjustment.">
     dateAdjustments BusinessDayAdjustments (0..1) <"The business day convention and financial business centers used for adjusting the date if it would otherwise fall on a day that is not a business date in the specified business centers.">
     adjustedDate IdentifiedDate (0..1) <"The date once the adjustment has been performed. (Note that this date may change if the business center holidays change).">
-    id string (0..1)
 
 type AdjustableDate2: <"A type that is different from AdjustableDate in two regards. First, date adjustments can be specified with either a dateAdjustments element or a reference to an existing dateAdjustments element. Second, it does not require the specification of date adjustments.">
 
+    id string (0..1)
     unadjustedDate IdentifiedDate (1..1) <"A date subject to adjustment.">
     dateAdjustments BusinessDayAdjustments (0..1) <"The business day convention and financial business centers used for adjusting the date if it would otherwise fall on a day that is not a business dat in the specified business centers.">
     dateAdjustmentsReference BusinessDayAdjustmentsReference (0..1) <"A pointer style reference to date adjustments defined elsewhere in the document.">
     adjustedDate IdentifiedDate (0..1) <"The date once the adjustment has been performed. (Note that this date may change if the business center holidays change).">
-    id string (0..1)
-
-    condition Choice:
-        optional choice dateAdjustments, dateAdjustmentsReference
 
 type AdjustableDates: <"A type for defining a series of dates that shall be subject to adjustment if they would otherwise fall on a day that is not a business day in the specified business centers, together with the convention for adjusting the dates.">
 
+    id string (0..1)
     unadjustedDate IdentifiedDate (0..*) <"A date subject to adjustment.">
     dateAdjustments BusinessDayAdjustments (0..1) <"The business day convention and financial business centers used for adjusting the date if it would otherwise fall on a day that is not a business dat in the specified business centers.">
     adjustedDate IdentifiedDate (0..*) <"The date once the adjustment has been performed. (Note that this date may change if the business center holidays change).">
-    id string (0..1)
 
 type AdjustableDatesOrRelativeDateOffset: <"A type for defining a series of dates, either as a list of adjustable dates, or a as a repeating sequence from a base date">
 
     adjustableDates AdjustableDates (0..1) <"A series of adjustable dates">
     relativeDate RelativeDateOffset (0..1) <"A series of dates specified as a repeating sequence from a base date.">
 
-    condition Choice:
-        one-of
-
 type AdjustableOrAdjustedDate: <"A type for defining a date that shall be subject to adjustment if it would otherwise fall on a day that is not a business day in the specified business centers, together with the convention for adjusting the date.">
 
-    adjustableDateModel AdjustableDateModel (0..1)
-    adjustedDate IdentifiedDate (0..1) <"The date once the adjustment has been performed. (Note that this date may change if the business center holidays change).">
     id string (0..1)
-
-    condition Choice:
-        required choice adjustableDateModel, adjustedDate
+    unadjustedDate IdentifiedDate (0..1) <"A date subject to adjustment.">
+    dateAdjustments BusinessDayAdjustments (0..1) <"The business day convention and financial business centers used for adjusting the date if it would otherwise fall on a day that is not a business date in the specified business centers.">
+    adjustedDate IdentifiedDate (0..1) <"The date once the adjustment has been performed. (Note that this date may change if the business center holidays change).">
 
 type AdjustableOrRelativeDate: <"A type giving the choice between defining a date as an explicit date together with applicable adjustments or as relative to some other (anchor) date.">
 
+    id string (0..1)
     adjustableDate AdjustableDate (0..1) <"A date that is subject to adjustment if it would otherwise fall on a day that is not a business day in the specified business centers, together with the convention for adjusting the date.">
     relativeDate RelativeDateOffset (0..1) <"A date specified as an offset to another date (the anchor date).">
-    id string (0..1)
-
-    condition Choice:
-        required choice adjustableDate, relativeDate
 
 type AdjustableOrRelativeDates: <"A type giving the choice between defining a series of dates as an explicit list of dates together with applicable adjustments or as relative to some other series of (anchor) dates.">
 
+    id string (0..1)
     adjustableDates AdjustableDates (0..1) <"A series of dates that shall be subject to adjustment if they would otherwise fall on a day that is not a business day in the specified business centers, together with the convention for adjusting the date.">
     relativeDates RelativeDates (0..1) <"A series of dates specified as some offset to another series of dates (the anchor dates).">
-    id string (0..1)
-
-    condition Choice:
-        required choice adjustableDates, relativeDates
 
 type AdjustableRelativeOrPeriodicDates:
 
+    id string (0..1)
     adjustableDates AdjustableDates (0..1) <"A series of dates that shall be subject to adjustment if they would otherwise fall on a day that is not a business day in the specified business centers, together with the convention for adjusting the date.">
     relativeDateSequence RelativeDateSequence (0..1) <"A series of dates specified as some offset to other dates (the anchor dates) which can">
     periodicDates PeriodicDates (0..1)
-    id string (0..1)
-
-    condition Choice:
-        required choice adjustableDates, relativeDateSequence , periodicDates
 
 type AdjustableRelativeOrPeriodicDates2: <"A type giving the choice between defining a series of dates as an explicit list of dates together with applicable adjustments, or as relative to some other series of (anchor) dates, or as a set of factors to specify periodic occurences.">
 
+    id string (0..1)
     adjustableDates AdjustableDates (0..1) <"A series of dates that shall be subject to adjustment if they would otherwise fall on a day that is not a business day in the specified business centers, together with the convention for adjusting the date.">
     relativeDates RelativeDates (0..1) <"A series of dates specified as some offset to another series of dates (the anchor dates).">
     periodicDates PeriodicDates (0..1)
-    id string (0..1)
-
-    condition Choice:
-        required choice adjustableDates, relativeDates , periodicDates
 
 type AdjustedRelativeDateOffset extends RelativeDateOffset: <"A type defining a date (referred to as the derived date) as a relative offset from another date (referred to as the anchor date) plus optional date adjustments.">
 
@@ -246,7 +221,9 @@ type BenchmarkRate: <"The data type used for a benchmark rate (e.g. agreed disco
 
 type Beneficiary: <"A type defining the beneficiary of the funds.">
 
-    routingIdentificationModel RoutingIdentificationModel (1..1)
+    routingIds RoutingIds (0..1) <"A set of unique identifiers for a party, eachone identifying the party within a payment system. The assumption is that each party will not have more than one identifier within the same payment system.">
+    routingExplicitDetails RoutingExplicitDetails (0..1) <"A set of details that is used to identify a party involved in the routing of a payment when the party does not have a code that identifies it within one of the recognized payment systems.">
+    routingIdsAndExplicitDetails RoutingIdsAndExplicitDetails (0..1) <"A combination of coded payment system identifiers and details for physical addressing for a party involved in the routing of a payment.">
     beneficiaryPartyReference PartyReference (0..1) <"Link to the party acting as beneficiary. This element can only appear within the beneficiary container element.">
 
 type BrokerConfirmation: <"Identifies the market sector in which the trade has been arranged.">
@@ -266,12 +243,13 @@ type BusinessCenter: <"A code identifying a business day calendar location. A bu
 
 type BusinessCenters: <"A type for defining business day calendar used in determining whether a day is a business day or not. A list of business day calendar locations may be ordered in the document alphabetically based on business day calendar location code. An FpML document containing an unordered business day calendar location list is still regarded as a conformant document.">
 
-    businessCenter BusinessCenter (0..*)
     id string (0..1)
+    businessCenter BusinessCenter (0..*)
 
 type BusinessCentersOrReference: <"A pointer style reference to a set of business day calendar defined elsewhere in the document.">
 
-    businessCentersOrReferenceModel BusinessCentersOrReferenceModel (1..1)
+    businessCentersReference BusinessCentersReference (0..1) <"A pointer style reference to a set of financial business centers defined elsewhere in the document. This set of business centers is used to determine whether a particular day is a business day or not.">
+    businessCenters BusinessCenters (0..1)
 
 type BusinessCentersReference extends Reference: <"A pointer style reference to a set of business day calendar defined elsewhere in the document.">
 
@@ -285,13 +263,15 @@ type BusinessCenterTime: <"A type for defining a time with respect to a business
 type BusinessDateRange extends DateRange: <"A type defining a range of contiguous business days by defining an unadjusted first date, an unadjusted last date and a business day convention and business centers for adjusting the first and last dates if they would otherwise fall on a non business day in the specified business centers. The days between the first and last date must also be good business days in the specified centers to be counted in the range.">
 
     businessDayConvention fpml.consolidated.fpmlenum.BusinessDayConventionEnum (0..1) <"The convention for adjusting a date if it would otherwise fall on a day that is not a business day.">
-    businessCentersOrReferenceModel BusinessCentersOrReferenceModel (0..1)
+    businessCentersReference BusinessCentersReference (0..1) <"A pointer style reference to a set of financial business centers defined elsewhere in the document. This set of business centers is used to determine whether a particular day is a business day or not.">
+    businessCenters BusinessCenters (0..1)
 
 type BusinessDayAdjustments: <"A type defining the business day convention and financial business centers used for adjusting any relevant date if it would otherwise fall on a day that is not a business day in the specified business centers.">
 
-    businessDayConvention fpml.consolidated.fpmlenum.BusinessDayConventionEnum (0..1) <"The convention for adjusting a date if it would otherwise fall on a day that is not a business day.">
-    businessCentersOrReferenceModel BusinessCentersOrReferenceModel (0..1)
     id string (0..1)
+    businessDayConvention fpml.consolidated.fpmlenum.BusinessDayConventionEnum (0..1) <"The convention for adjusting a date if it would otherwise fall on a day that is not a business day.">
+    businessCentersReference BusinessCentersReference (0..1) <"A pointer style reference to a set of financial business centers defined elsewhere in the document. This set of business centers is used to determine whether a particular day is a business day or not.">
+    businessCenters BusinessCenters (0..1)
 
 type BusinessDayAdjustmentsReference extends Reference: <"Reference to a business day adjustments structure.">
 
@@ -299,11 +279,11 @@ type BusinessDayAdjustmentsReference extends Reference: <"Reference to a busines
 
 type BusinessUnit: <"A type that represents information about a unit within an organization.">
 
+    id string (0..1)
     name NonEmptyToken (0..1) <"A name used to describe the organization unit">
     businessUnitId Unit (0..1) <"An identifier used to uniquely identify organization unit">
     contactInfo ContactInformation (0..1) <"Information on how to contact the unit using various means.">
     country CountryCode (0..1) <"The ISO 3166 standard code for the country where the individual works.">
-    id string (0..1)
 
 type BusinessUnitReference extends Reference: <"Reference to an organizational unit.">
 
@@ -319,9 +299,6 @@ type CalculationAgent: <"A type defining the ISDA calculation agent responsible 
     calculationAgentPartyReference PartyReference (0..*) <"A pointer style reference to a party identifier defined elsewhere in the document. The party referenced is the ISDA Calculation Agent for the trade. If more than one party is referenced then the parties are assumed to be co-calculation agents, i.e. they have joint responsibility.">
     calculationAgentParty fpml.consolidated.fpmlenum.CalculationAgentPartyEnum (0..1) <"The ISDA calculation agent responsible for performing duties as defined in the applicable product definitions. For example, the Calculation Agent may be defined as being the Non-exercising Party.">
 
-    condition Choice:
-        one-of
-
 type CalculationParameters: <"A type defining a rate that is calculated based on a number of observations of an underlying rate that are averaged or compounded using a specified method. These are sometimes called modular calculated rates. These are described in the 2021 ISDA Definitions in Section 7.">
 
     calculationMethod fpml.consolidated.fpmlenum.CalculationMethodEnum (0..1) <"Specifies the type of calculation, e.g. whether the calculation is a compounding or an averaging calculation. This element distinguishes between the applicable subsections of Section 7 (7.3, 7.4, and 7.7). If the calculationMethod is Componding or Averaging, this implies that a daily compounded calculation will be done, i.e. that the underlying rate will be observed eacy applicalbe business day during the observation period and then compounded or averaged. If it is CompoundedIndex, this means that the rate administrator is doing the compounding each day and publishing the resulting index value. In this case the calculation agent is responsible for observing the index and the start and at the end of the observation period, and then backing out the implied rate by following the formula in section 7.7. (This formula divides the index value at the end by the index value at the beginning, subtracts 1, and then scales the resulting value based on the year fraction to annualize the rate.) In other words, for CompoundedIndex the observation frequency is effectively 1T, where for Compounding and Averaging, it is 1D.">
@@ -329,10 +306,8 @@ type CalculationParameters: <"A type defining a rate that is calculated based on
     lookback ObservationOffset (0..1) <"Specifies that lookback calculation is in effect, and supplies parameters needed to support that. See the ISDA 2021 Definitions Section 7.3.2 and 7.4.2. This should not be used when the calculationMethod is CompoundedIndex.">
     observationShift ObservationShiftParameters (0..1) <"Specifies that observation shift calculation is in effect, and supplies parameters needed to support that. See the ISDA 2021 Definitions Section 7.3.3 and 7.4.3 and 7.7.3.">
     lockout ObservationOffset (0..1) <"Specifies that lockout calculation is in effect, and supplies parameters needed to support that. See the ISDA 2021 Definitions Section 7.3.4 and 7.4.4. This should not be used when the calculationMethod is CompoundedIndex.">
-    observationParametersModel ObservationParametersModel (0..1)
-
-    condition Choice:
-        optional choice lookback, observationShift , lockout
+    observationCapRate number (0..1) <"A maximum rate for an rate observation; optionally applied for daily averaged rates. These are described in the 2021 ISDA Definitions in Section 7.2.4">
+    observationFloorRate number (0..1) <"A minimum rate for an rate observation; optionally applied for daily averaged rates. These are described in the 2021 ISDA Definitions in Section 7.2.3">
 
 type CalculationPeriodFrequency extends Frequency: <"A type defining the frequency at which calculation period end dates occur within the regular part of the calculation period schedule and thier roll date convention. In case the calculation frequency is of value T (term), the period is defined by the swap\\swapStream\\calculationPerioDates\\effectiveDate and the swap\\swapStream\\calculationPerioDates\\terminationDate.">
 
@@ -340,13 +315,10 @@ type CalculationPeriodFrequency extends Frequency: <"A type defining the frequen
 
 type CashflowNotional: <"The notional/principal value/quantity/volume used to compute the cashflow.">
 
+    id string (0..1)
     currency Currency (0..1) <"The currency in which an amount is denominated.">
     units NormalizedString (0..1) <"The units in which an amount (not monetary) is denominated.">
     amount number (1..1) <"The quantity of notional (in currency or other units).">
-    id string (0..1)
-
-    condition Choice:
-        optional choice currency, units
 
 type CashflowType: <"A coding scheme used to describe the type or purpose of a cash flow or cash flow component.">
 
@@ -355,8 +327,8 @@ type CashflowType: <"A coding scheme used to describe the type or purpose of a c
 
 type CashSettlementReferenceBanks: <"A type defining the list of reference institutions polled for relevant rates or prices when determining the cash settlement amount for a product where cash settlement is applicable.">
 
-    referenceBank ReferenceBank (0..*) <"An institution (party) identified by means of a coding scheme and an optional name.">
     id string (0..1)
+    referenceBank ReferenceBank (0..*) <"An institution (party) identified by means of a coding scheme and an optional name.">
 
 type ClearanceSystem: <"Unless otherwise specified, the principal clearance system customarily used for settling trades in the relevant underlying.">
 
@@ -407,7 +379,9 @@ type ContractualTermsSupplement: <"A contractual supplement (such as those publi
 
 type CorrespondentInformation: <"A type that describes the information to identify a correspondent bank that will make delivery of the funds on the paying bank\'s behalf in the country where the payment is to be made.">
 
-    routingIdentificationModel RoutingIdentificationModel (1..1)
+    routingIds RoutingIds (0..1) <"A set of unique identifiers for a party, eachone identifying the party within a payment system. The assumption is that each party will not have more than one identifier within the same payment system.">
+    routingExplicitDetails RoutingExplicitDetails (0..1) <"A set of details that is used to identify a party involved in the routing of a payment when the party does not have a code that identifies it within one of the recognized payment systems.">
+    routingIdsAndExplicitDetails RoutingIdsAndExplicitDetails (0..1) <"A combination of coded payment system identifiers and details for physical addressing for a party involved in the routing of a payment.">
     correspondentPartyReference PartyReference (0..1) <"Link to the party acting as correspondent. This element can only appear within the correspondentInformation container element.">
 
 type CountryCode: <"The code representation of a country or an area of special sovereignty. By default it is a valid 2 character country code as defined by the ISO standard 3166-1 alpha-2 - Codes for representation of countries http://www.niso.org/standards/resources/3166.html.">
@@ -485,7 +459,10 @@ type DeterminationMethodReference extends Reference: <"A reference to the return
 type DirectionalLeg extends Leg: <"An abstract base class for all directional leg types with effective date, termination date, where a payer makes a stream of payments of greater than zero value to a receiver.">
 
     legIdentifier LegIdentifier (0..*) <"Version aware identification of this leg.">
-    payerReceiverModel PayerReceiverModel (1..1)
+    payerPartyReference PartyReference (1..1) <"A reference to the party responsible for making the payments defined by this structure.">
+    payerAccountReference AccountReference (0..1) <"A reference to the account responsible for making the payments defined by this structure.">
+    receiverPartyReference PartyReference (0..1) <"A reference to the party that receives the payments corresponding to this structure.">
+    receiverAccountReference AccountReference (0..1) <"A reference to the account that receives the payments corresponding to this structure.">
     effectiveDate AdjustableOrRelativeDate (0..1) <"Specifies the effective date of this leg of the swap. When defined in relation to a date specified somewhere else in the document (through the relativeDate component), this element will typically point to the effective date of the other leg of the swap.">
     terminationDate AdjustableOrRelativeDate (0..1) <"Specifies the termination date of this leg of the swap. When defined in relation to a date specified somewhere else in the document (through the relativeDate component), this element will typically point to the termination date of the other leg of the swap.">
 
@@ -500,9 +477,6 @@ type Documentation: <"An entity for defining the definitions that govern the doc
     creditSupportAgreement CreditSupportAgreement (0..1) <"The agreement executed between the parties and intended to govern collateral arrangement for all OTC derivatives transactions between those parties.">
     otherAgreement OtherAgreement (0..*) <"Any other agreement executed between the parties.">
     attachment Resource (0..*) <"A human readable document related to this transaction, for example a confirmation.">
-
-    condition Choice:
-        optional choice masterConfirmation, brokerConfirmation
 
 type EmbeddedOptionType: <"A flexible description of the type or characteristics of an option embbedded within another product. For example, a cancelable provision or an optional early termination provision.">
 
@@ -532,25 +506,25 @@ type Exercise: <"The abstract base class for all types which define way in which
 
 type ExerciseFee: <"A type defining the fee payable on exercise of an option. This fee may be defined as an amount or a percentage of the notional exercised.">
 
-    payerReceiverModel PayerReceiverModel (1..1)
+    payerPartyReference PartyReference (1..1) <"A reference to the party responsible for making the payments defined by this structure.">
+    payerAccountReference AccountReference (0..1) <"A reference to the account responsible for making the payments defined by this structure.">
+    receiverPartyReference PartyReference (0..1) <"A reference to the party that receives the payments corresponding to this structure.">
+    receiverAccountReference AccountReference (0..1) <"A reference to the account that receives the payments corresponding to this structure.">
     notionalReference NotionalReference (0..1) <"A pointer style reference to the associated notional schedule defined elsewhere in the document.">
     feeAmount number (0..1) <"The amount of fee to be paid on exercise. The fee currency is that of the referenced notional.">
     feeRate number (0..1) <"A fee represented as a percentage of some referenced notional. A percentage of 5% would be represented as 0.05.">
     feePaymentDate RelativeDateOffset (0..1) <"The date on which exercise fee(s) will be paid. It is specified as a relative date.">
 
-    condition Choice:
-        optional choice feeAmount, feeRate
-
 type ExerciseFeeSchedule: <"A type to define a fee or schedule of fees to be payable on the exercise of an option. This fee may be defined as an amount or a percentage of the notional exercised.">
 
-    payerReceiverModel PayerReceiverModel (1..1)
+    payerPartyReference PartyReference (1..1) <"A reference to the party responsible for making the payments defined by this structure.">
+    payerAccountReference AccountReference (0..1) <"A reference to the account responsible for making the payments defined by this structure.">
+    receiverPartyReference PartyReference (0..1) <"A reference to the party that receives the payments corresponding to this structure.">
+    receiverAccountReference AccountReference (0..1) <"A reference to the account that receives the payments corresponding to this structure.">
     notionalReference ScheduleReference (0..1) <"A pointer style reference to the associated notional schedule defined elsewhere in the document.">
     feeAmountSchedule AmountSchedule (0..1) <"The exercise fee amount schedule. The fees are expressed as currency amounts. The currency of the fee is assumed to be that of the notional schedule referenced.">
     feeRateSchedule Schedule (0..1) <"The exercise free rate schedule. The fees are expressed as percentage rates of the notional being exercised. The currency of the fee is assumed to be that of the notional schedule referenced.">
     feePaymentDate RelativeDateOffset (0..1) <"The date on which exercise fee(s) will be paid. It is specified as a relative date.">
-
-    condition Choice:
-        optional choice feeAmountSchedule, feeRateSchedule
 
 type ExerciseNotice: <"A type defining to whom and where notice of execution should be given. The partyReference refers to one of the principal parties of the trade. If present the exerciseNoticePartyReference refers to a party, other than the principal party, to whome notice should be given.">
 
@@ -566,30 +540,16 @@ type ExerciseProcedure: <"A type describing how notice of exercise should be giv
     limitedRightToConfirm boolean (0..1) <"Has the meaning defined as part of the 1997 ISDA Government Bond Option Definitions, section 4.5 Limited Right to Confirm Exercise. If present, (i) the Seller may request the Buyer to confirm its intent if not done on or before the expiration time on the Expiration date (ii) specific rules will apply in relation to the settlement mode.">
     splitTicket boolean (0..1) <"Typically applicable to the physical settlement of bond and convertible bond options. If present, means that the Party required to deliver the bonds will divide those to be delivered as notifying party desires to facilitate delivery obligations.">
 
-    condition Choice:
-        required choice manualExercise, automaticExercise
-
 type ExerciseProcedureOption: <"A type describing how notice of exercise should be given. This can be either manual or automatic.">
 
     manualExercise Empty (0..1) <"Specifies that the notice of exercise must be given by the buyer to the seller or seller\'s agent.">
     automaticExercise Empty (0..1) <"If automatic is specified then the notional amount of the underlying swap, not previously exercised under the swaption will be automatically exercised at the expriration time on the expiration date if at such time the buyer is in-the-money, provided that the difference between the settlement rate and the fixed rate under the relevant underlying swap is not less than the specified threshold rate. The term in-the-money is assumed to have the meaning defining in the 2000 ISDA Definitions, Section 17.4 In-the-money.">
 
-    condition Choice:
-        one-of
-
 type FallbackRate: <"Defines a fallback rate, which is a rate to be used in place of a publish term rate (such as an ibor rate) when that term rate ceases to be usable, whether because it ceases to be published or is deemed non-representative by regulator.">
 
-    effectiveDate zonedDateTime (0..1) <"The Applicable Fallback Effective Date, as defined in the 2021 ISDA Interest Rate Derivatives Definitions, Section 8.5.4. The date upon which the fallback rate becomes effective. This means that any rate observation for that date or for any subsequent date would use the fallback rate rather than the originally defined rate. This date will typically immediately follow the cessation of publication of the original term rate but could occur before that (e.g. if the original rate is deemed non-representative prior to cessation of publication). If the effective date occurs within a calculation period with multiple rate observations (because of averaging), observations prior to the effective date will use the original floating rate index, and observations on or after the effective date will use the fallback rate.">
-    fallbackRateSequence FallbackRateSequence (0..1)
     id string (0..1)
-
-    condition Choice:
-        required choice effectiveDate, fallbackRateSequence
-
-type FallbackRateSequence:
-
-    floatingRateIndex FloatingRateIndex (1..1) <"The benchmark rate used for computing the fallback rate. Typically this will be a risk-free overnight rate.">
     effectiveDate zonedDateTime (0..1) <"The Applicable Fallback Effective Date, as defined in the 2021 ISDA Interest Rate Derivatives Definitions, Section 8.5.4. The date upon which the fallback rate becomes effective. This means that any rate observation for that date or for any subsequent date would use the fallback rate rather than the originally defined rate. This date will typically immediately follow the cessation of publication of the original term rate but could occur before that (e.g. if the original rate is deemed non-representative prior to cessation of publication). If the effective date occurs within a calculation period with multiple rate observations (because of averaging), observations prior to the effective date will use the original floating rate index, and observations on or after the effective date will use the fallback rate.">
+    floatingRateIndex FloatingRateIndex (0..1) <"The benchmark rate used for computing the fallback rate. Typically this will be a risk-free overnight rate.">
     calculationParameters CalculationParameters (0..1) <"This provides a representation of the approximate value of the fallback rate, i.e. a calculated rate that quite closely mimics the value anticipated to be published by the fallback rate administrator (once the spread adjustment is added).">
     spreadAdjustment number (0..1) <"An amount to be added to the calculated value before subsequent use, in order to more closely replicate the original term rate, by adjusting for the economic or credit spread between risk-free rates and risky term rates.">
 
@@ -600,10 +560,15 @@ type FallbackRateObservation: <"A type defining parameters associated with a fal
 
 type FloatingRate extends Rate: <"A type defining a floating rate.">
 
-    floatingRateIndexModel FloatingRateIndexModel (1..1)
+    floatingRateIndex FloatingRateIndex (1..1) <"The ISDA Floating Rate Option, i.e. the name of the floating rate.">
+    indexTenor Period (0..1) <"The ISDA Designated Maturity, i.e. the tenor of the floating rate.">
     calculationParameters CalculationParameters (0..1) <"Parameters to specify a rate calculated using an averaging or compounding formula, as described in the 2021 ISDA Defintions, section 7. Please note that when this structure is used, the \"resetDates\" structure will not be used. Instead, the observation rules for the calculated rate are defined within the structure.">
     fallbackRate FallbackRate (0..1) <"A fallback rate calculated using an averaging or compounding formula to be used in case of the cessation of the original term rate. This structure is provided to 1) allow a message sender to report that a fallback is effect, and/or 2) allow an approximate representation to be created for published fallback rates to allow operations such as valuation, accrual calculation, and risk calculation.">
-    floatingRateModel FloatingRateModel (1..1)
+    floatingRateMultiplierSchedule Schedule (0..1) <"A rate multiplier or multiplier schedule to apply to the floating rate. A multiplier schedule is expressed as explicit multipliers and dates. In the case of a schedule, the step dates may be subject to adjustment in accordance with any adjustments specified in the calculationPeriodDatesAdjustments. The multiplier can be a positive or negative decimal. This element should only be included if the multiplier is not equal to 1 (one) for the term of the stream.">
+    spreadSchedule SpreadSchedule (0..*) <"The ISDA Spread or a Spread schedule expressed as explicit spreads and dates. In the case of a schedule, the step dates may be subject to adjustment in accordance with any adjustments specified in calculationPeriodDatesAdjustments. The spread is a per annum rate, expressed as a decimal. For purposes of determining a calculation period amount, if positive the spread will be added to the floating rate and if negative the spread will be subtracted from the floating rate. A positive 10 basis point (0.1%) spread would be represented as 0.001.">
+    rateTreatment fpml.consolidated.fpmlenum.RateTreatmentEnum (0..1) <"The specification of any rate conversion which needs to be applied to the observed rate before being used in any calculations. The two common conversions are for securities quoted on a bank discount basis which will need to be converted to either a Money Market Yield or Bond Equivalent Yield. See the Annex to the 2000 ISDA Definitions, Section 7.3. Certain General Definitions Relating to Floating Rate Options, paragraphs (g) and (h) for definitions of these terms.">
+    capRateSchedule StrikeSchedule (0..*) <"The cap rate or cap rate schedule, if any, which applies to the floating rate. The cap rate (strike) is only required where the floating rate on a swap stream is capped at a certain level. A cap rate schedule is expressed as explicit cap rates and dates and the step dates may be subject to adjustment in accordance with any adjustments specified in calculationPeriodDatesAdjustments. The cap rate is assumed to be exclusive of any spread and is a per annum rate, expressed as a decimal. A cap rate of 5% would be represented as 0.05.">
+    floorRateSchedule StrikeSchedule (0..*) <"The floor rate or floor rate schedule, if any, which applies to the floating rate. The floor rate (strike) is only required where the floating rate on a swap stream is floored at a certain strike level. A floor rate schedule is expressed as explicit floor rates and dates and the step dates may be subject to adjustment in accordance with any adjustments specified in calculationPeriodDatesAdjustments. The floor rate is assumed to be exclusive of any spread and is a per annum rate, expressed as a decimal. A floor rate of 5% would be represented as 0.05.">
 
 type FloatingRateIndex: <"The ISDA Floating Rate Option, i.e. the floating rate index.">
 
@@ -623,15 +588,15 @@ type Formula: <"A type describing a financial formula, with its description and 
 
 type FormulaComponent: <"Elements describing the components of the formula. The name attribute points to a value used in the math element. The href attribute points to a numeric value defined elsewhere in the document that is used by the formula component.">
 
+    name NormalizedString (0..1)
     componentDescription NonEmptyNormalizedString (0..1) <"Text description of the component">
     formula Formula (0..1) <"Additional formulas required to describe this component">
-    name NormalizedString (0..1)
 
 type Frequency: <"A type defining a time frequency, e.g. one day, three months. Used for specifying payment or calculation frequencies at which the value T (Term) is applicable.">
 
+    id string (0..1)
     periodMultiplier int(min: 1) (0..1) <"A time period multiplier, e.g. 1, 2 or 3 etc. If the period value is T (Term) then periodMultiplier must contain the value 1.">
     period fpml.consolidated.fpmlenum.PeriodExtendedEnum (0..1) <"A time period, e.g. a day, week, month, year or term of the stream.">
-    id string (0..1)
 
 type FutureValueAmount extends NonNegativeMoney: <"A type defining a currency amount as at a future value date.">
 
@@ -647,18 +612,12 @@ type FxCashSettlement: <"A type that is used for describing cash settlement of a
     rateSourceFixing FxRateSourceFixing (0..*) <"Specifies the source for and timing of a fixing of an exchange rate. This is used in the agreement of non-deliverable forward trades as well as various types of FX OTC options that require observations against a particular rate. This element is optional, permitting it to be omitted where fixing details are unavailable at the point of message creation. It has multiple occurrence to support the case where fixing details must be specified for more than one currency pair e.g. on an option settled into a third currency (that is not one of the option currencies).">
     settlementDate AdjustableDate (0..1) <"The date on which settlement is scheduled to occur">
 
-    condition Choice:
-        optional choice fixing, rateSourceFixing
-
 type FxCashSettlementSimple: <"A type that is used for describing cash settlement of a variance or volatility swap option. It includes the settlement currency together with the spot currency exchange required to calculate the settlement currency amount.">
 
     settlementCurrency Currency (1..1) <"The currency in which cash settlement occurs.">
     referenceCurrency Currency (0..1) <"Reference Currency.">
     fixing FxFixing (0..*) <"Quoted currency pair.">
     rateSourceFixing FxRateSourceFixing (0..*) <"Settlement Rate Source and Fixing Date.">
-
-    condition Choice:
-        optional choice fixing, rateSourceFixing
 
 type FxInformationSource extends InformationSource:
 
@@ -684,9 +643,6 @@ type FxSettlementRateSource:
 
     settlementRateOption SettlementRateOption (0..1) <"Indicates that an officially defined rate settlement rate option will be the used for the fixing.">
     nonstandardSettlementRate FxInformationSource (0..1) <"Indicates that a non-standard rate source will be used for the fixing.">
-
-    condition Choice:
-        one-of
 
 type FxSpotRateSource: <"A type defining the rate source and fixing time for an fx rate.">
 
@@ -724,7 +680,10 @@ type IdentifiedRate: <"A rate which can be referenced elsewhere.">
 
 type IndependentAmount:
 
-    payerReceiverModel PayerReceiverModel (1..1)
+    payerPartyReference PartyReference (1..1) <"A reference to the party responsible for making the payments defined by this structure.">
+    payerAccountReference AccountReference (0..1) <"A reference to the account responsible for making the payments defined by this structure.">
+    receiverPartyReference PartyReference (0..1) <"A reference to the party that receives the payments corresponding to this structure.">
+    receiverAccountReference AccountReference (0..1) <"A reference to the account that receives the payments corresponding to this structure.">
     paymentDetail PaymentDetail (0..*) <"A container element allowing a schedule of payments associated with the Independent Amount.">
 
 type IndustryClassification: <"A party\'s industry sector classification.">
@@ -734,9 +693,17 @@ type IndustryClassification: <"A party\'s industry sector classification.">
 
 type InflationRateCalculationBase extends Rate: <"A type defining the floating rate and definitions relating to the calculation of floating rate amounts. This type mimics the \"FloatingRateCalculation\" type but excludes the option of defining modular calculated rates and fallback rates. It provides an extension point for the InflationRateCalculation which does not require those features.">
 
-    floatingRateIndexModel FloatingRateIndexModel (1..1)
-    floatingRateModel FloatingRateModel (1..1)
-    floatingRateCalculationModel FloatingRateCalculationModel (1..1)
+    floatingRateIndex FloatingRateIndex (1..1) <"The ISDA Floating Rate Option, i.e. the name of the floating rate.">
+    indexTenor Period (0..1) <"The ISDA Designated Maturity, i.e. the tenor of the floating rate.">
+    floatingRateMultiplierSchedule Schedule (0..1) <"A rate multiplier or multiplier schedule to apply to the floating rate. A multiplier schedule is expressed as explicit multipliers and dates. In the case of a schedule, the step dates may be subject to adjustment in accordance with any adjustments specified in the calculationPeriodDatesAdjustments. The multiplier can be a positive or negative decimal. This element should only be included if the multiplier is not equal to 1 (one) for the term of the stream.">
+    spreadSchedule SpreadSchedule (0..*) <"The ISDA Spread or a Spread schedule expressed as explicit spreads and dates. In the case of a schedule, the step dates may be subject to adjustment in accordance with any adjustments specified in calculationPeriodDatesAdjustments. The spread is a per annum rate, expressed as a decimal. For purposes of determining a calculation period amount, if positive the spread will be added to the floating rate and if negative the spread will be subtracted from the floating rate. A positive 10 basis point (0.1%) spread would be represented as 0.001.">
+    rateTreatment fpml.consolidated.fpmlenum.RateTreatmentEnum (0..1) <"The specification of any rate conversion which needs to be applied to the observed rate before being used in any calculations. The two common conversions are for securities quoted on a bank discount basis which will need to be converted to either a Money Market Yield or Bond Equivalent Yield. See the Annex to the 2000 ISDA Definitions, Section 7.3. Certain General Definitions Relating to Floating Rate Options, paragraphs (g) and (h) for definitions of these terms.">
+    capRateSchedule StrikeSchedule (0..*) <"The cap rate or cap rate schedule, if any, which applies to the floating rate. The cap rate (strike) is only required where the floating rate on a swap stream is capped at a certain level. A cap rate schedule is expressed as explicit cap rates and dates and the step dates may be subject to adjustment in accordance with any adjustments specified in calculationPeriodDatesAdjustments. The cap rate is assumed to be exclusive of any spread and is a per annum rate, expressed as a decimal. A cap rate of 5% would be represented as 0.05.">
+    floorRateSchedule StrikeSchedule (0..*) <"The floor rate or floor rate schedule, if any, which applies to the floating rate. The floor rate (strike) is only required where the floating rate on a swap stream is floored at a certain strike level. A floor rate schedule is expressed as explicit floor rates and dates and the step dates may be subject to adjustment in accordance with any adjustments specified in calculationPeriodDatesAdjustments. The floor rate is assumed to be exclusive of any spread and is a per annum rate, expressed as a decimal. A floor rate of 5% would be represented as 0.05.">
+    initialRate number (0..1) <"The initial floating rate reset agreed between the principal parties involved in the trade. This is assumed to be the first required reset rate for the first regular calculation period. It should only be included when the rate is not equal to the rate published on the source implied by the floating rate index. An initial rate of 5% would be represented as 0.05.">
+    finalRateRounding Rounding (0..1) <"The rounding convention to apply to the final rate used in determination of a calculation period amount.">
+    averagingMethod fpml.consolidated.fpmlenum.AveragingMethodEnum (0..1) <"If averaging is applicable, this component specifies whether a weighted or unweighted average method of calculation is to be used. The component must only be included when averaging applies.">
+    negativeInterestRateTreatment fpml.consolidated.fpmlenum.NegativeInterestRateTreatmentEnum (0..1) <"The specification of any provisions for calculating payment obligations when a floating rate is negative (either due to a quoted negative floating rate or by operation of a spread that is subtracted from the floating rate).">
 
 type InformationProvider:
 
@@ -756,10 +723,6 @@ type InstrumentId: <"A short form unique identifier for a security.">
 
 type InterestAccrualsCompoundingMethod extends InterestAccrualsMethod: <"A type defining the way in which interests are accrued: the applicable rate (fixed or floating reference) and the compounding method.">
 
-    interestAccrualsCompoundingMethodSequence InterestAccrualsCompoundingMethodSequence (0..1)
-
-type InterestAccrualsCompoundingMethodSequence:
-
     compoundingMethod fpml.consolidated.fpmlenum.CompoundingMethodEnum (0..1) <"If more that one calculation period contributes to a single payment amount this element specifies whether compounding is applicable, and if so, what compounding method is to be used. This element must only be included when more that one calculation period contributes to a single payment amount.">
 
 type InterestAccrualsMethod: <"A type describing the method for accruing interests on dividends. Can be either a fixed rate reference or a floating rate reference.">
@@ -767,12 +730,11 @@ type InterestAccrualsMethod: <"A type describing the method for accruing interes
     floatingRateCalculation fpml.consolidated.ird.FloatingRateCalculation (0..1) <"The floating rate calculation definitions">
     fixedRate number (0..1) <"The calculation period fixed rate. A per annum rate, expressed as a decimal. A fixed rate of 5% would be represented as 0.05.">
 
-    condition Choice:
-        one-of
-
 type IntermediaryInformation: <"A type that describes the information to identify an intermediary through which payment will be made by the correspondent bank to the ultimate beneficiary of the funds.">
 
-    routingIdentificationModel RoutingIdentificationModel (1..1)
+    routingIds RoutingIds (0..1) <"A set of unique identifiers for a party, eachone identifying the party within a payment system. The assumption is that each party will not have more than one identifier within the same payment system.">
+    routingExplicitDetails RoutingExplicitDetails (0..1) <"A set of details that is used to identify a party involved in the routing of a payment when the party does not have a code that identifies it within one of the recognized payment systems.">
+    routingIdsAndExplicitDetails RoutingIdsAndExplicitDetails (0..1) <"A combination of coded payment system identifiers and details for physical addressing for a party involved in the routing of a payment.">
     intermediarySequenceNumber int(min: 1) (0..1) <"A sequence number that gives the position of the current intermediary in the chain of payment intermediaries. The assumed domain value set is an ascending sequence of integers starting from 1.">
     intermediaryPartyReference PartyReference (0..1) <"Reference to the party acting as intermediary.">
 
@@ -788,7 +750,8 @@ type IssuerId: <"The data type used for issuer identifiers.">
 
 type IssuerTradeId: <"A complex type for a two part identifier such as a USI.">
 
-    issuerTradeIdModel IssuerTradeIdModel (1..1)
+    issuer IssuerId (1..1)
+    tradeId TradeId (1..1)
 
 type Language: <"The data type used for indicating the language of the resource, described using the ISO 639-2/T Code.">
 
@@ -801,16 +764,8 @@ type Leg: <"A supertype of leg. All swap legs extend this type.">
 
 type LegalEntity: <"A type defining a legal entity.">
 
-    legalEntitySequence LegalEntitySequence (0..1)
-    entityId EntityId (0..*) <"A legal entity identifier (e.g. RED entity code)..">
     id string (0..1)
-
-    condition Choice:
-        required choice legalEntitySequence, entityId
-
-type LegalEntitySequence:
-
-    entityName EntityName (1..1) <"The name of the reference entity. A free format string. FpML does not define usage rules for this element.">
+    entityName EntityName (0..1) <"The name of the reference entity. A free format string. FpML does not define usage rules for this element.">
     entityId EntityId (0..*) <"A legal entity identifier (e.g. RED entity code).">
 
 type LegalEntityReference extends Reference: <"References a credit entity defined elsewhere in the document.">
@@ -825,7 +780,8 @@ type LegId: <"Leg identity.">
 type LegIdentifier: <"Version aware identification of a leg.">
 
     legId LegId (0..1) <"Identity of this leg.">
-    versionHistoryModel VersionHistoryModel (0..1)
+    version int(min: 0) (0..1) <"The version number">
+    effectiveDate IdentifiedDate (0..1) <"Optionally it is possible to specify a version effective date when a versionId is supplied.">
 
 type MainPublication: <"A type to define the main publication source.">
 
@@ -901,25 +857,22 @@ type Money extends MoneyBase: <"A type defining a currency amount.">
 
 type MoneyBase: <"Abstract base class for all money types.">
 
-    currency Currency (1..1) <"The currency in which an amount is denominated.">
     id string (0..1)
+    currency Currency (1..1) <"The currency in which an amount is denominated.">
 
 type MultipleExercise: <"A type defining multiple exercises. As defining in the 2000 ISDA Definitions, Section 12.4. Multiple Exercise, the buyer of the option has the right to exercise all or less than all the unexercised notional amount of the underlying swap on one or more days in the exercise period, but on any such day may not exercise less than the minimum notional amount or more than the maximum notional amount, and if an integral multiple amount is specified, the notional exercised must be equal to or, be an integral multiple of, the integral multiple amount.">
 
-    partialExerciseModel PartialExerciseModel (1..1)
+    notionalReference NotionalReference (0..*) <"A pointer style reference to the associated notional schedule defined elsewhere in the document. This element has been made optional as part of its integration in the OptionBaseExtended, because not required for the options on securities.">
+    integralMultipleAmount number (0..1) <"A notional amount which restricts the amount of notional that can be exercised when partial exercise or multiple exercise is applicable. The integral multiple amount defines a lower limit of notional that can be exercised and also defines a unit multiple of notional that can be exercised, i.e. only integer multiples of this amount can be exercised.">
+    minimumNotionalAmount number (0..1) <"The minimum notional amount that can be exercised on a given exercise date. See multipleExercise.">
+    minimumNumberOfOptions NonNegativeDecimal (0..1) <"The minimum number of options that can be exercised on a given exercise date.">
     maximumNotionalAmount number (0..1) <"The maximum notional amount that can be exercised on a given exercise date.">
     maximumNumberOfOptions NonNegativeDecimal (0..1) <"The maximum number of options that can be exercised on a given exercise date. If the number is not specified, it means that the maximum number of options corresponds to the remaining unexercised options.">
-
-    condition Choice:
-        optional choice maximumNotionalAmount, maximumNumberOfOptions
 
 type MutuallyAgreedClearinghouse:
 
     partyReference PartyReference (0..1) <"A reference to the party structure for the clearinghouse">
     identifier OrganizationIdentifier (0..1) <"A string that identifies the clearinghouse">
-
-    condition Choice:
-        one-of
 
 type NonNegativeAmountSchedule extends NonNegativeSchedule: <"A type defining a currency amount or a currency amount schedule.">
 
@@ -935,9 +888,9 @@ type NonNegativePayment extends PaymentBaseExtended: <"A complex type to specify
 
 type NonNegativeSchedule: <"A type defining a schedule of non-negative rates or amounts in terms of an initial value and then a series of step date and value pairs. On each step date the rate or amount changes to the new step value. The series of step date and value pairs are optional. If not specified, this implies that the initial value remains unchanged over time.">
 
+    id string (0..1)
     initialValue NonNegativeDecimal (1..1) <"The non-negative initial rate or amount, as the case may be. An initial rate of 5% would be represented as 0.05.">
     step NonNegativeStep (0..*) <"The schedule of step date and non-negative value pairs. On each step date the associated step value becomes effective. A list of steps may be ordered in the document by ascending step date. An FpML document containing an unordered list of steps is still regarded as a conformant document.">
-    id string (0..1)
 
 type NonNegativeStep extends StepBase: <"A type defining a step date and non-negative step value pair. This step definitions are used to define varying rate or amount schedules, e.g. a notional amortization or a step-up coupon schedule.">
 
@@ -1027,21 +980,27 @@ type OtherAgreementVersion:
 
 type PartialExercise: <"A type defining partial exercise. As defined in the 2000 ISDA Definitions, Section 12.3 Partial Exercise, the buyer of the option may exercise all or less than all the notional amount of the underlying swap but may not be less than the minimum notional amount (if specified) and must be an integral multiple of the integral multiple amount if specified.">
 
-    partialExerciseModel PartialExerciseModel (1..1)
+    notionalReference NotionalReference (0..*) <"A pointer style reference to the associated notional schedule defined elsewhere in the document. This element has been made optional as part of its integration in the OptionBaseExtended, because not required for the options on securities.">
+    integralMultipleAmount number (0..1) <"A notional amount which restricts the amount of notional that can be exercised when partial exercise or multiple exercise is applicable. The integral multiple amount defines a lower limit of notional that can be exercised and also defines a unit multiple of notional that can be exercised, i.e. only integer multiples of this amount can be exercised.">
+    minimumNotionalAmount number (0..1) <"The minimum notional amount that can be exercised on a given exercise date. See multipleExercise.">
+    minimumNumberOfOptions NonNegativeDecimal (0..1) <"The minimum number of options that can be exercised on a given exercise date.">
 
 type Party: <"A type defining a legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
 
-    partyModel PartyModel (0..1)
-    partySequence PartySequence (0..1)
     id string (1..1) <"The id uniquely identifying the Party within the document.">
-
-    condition Choice:
-        required choice partyModel, partySequence
-
-type PartySequence:
-
-    groupType PartyGroupType (1..1) <"Party Group Type, e.g. JointAndSeveralLiability">
-    partyReference PartyReference (2..*) <"Reference to a party that is a member of the group of entities that are acting together as a single party in a transaction.">
+    partyId PartyId (0..*) <"A party identifier, e.g. a S.W.I.F.T. bank identifier code (BIC).">
+    partyName PartyName (0..1) <"The legal name of the organization. A free format string. FpML does not define usage rules for this element.">
+    classification IndustryClassification (0..*) <"The party\'s industry sector classification.">
+    creditRating CreditRating (0..*) <"The party\'s credit rating.">
+    country CountryCode (0..1) <"The country where the party is domiciled.">
+    region Region (0..*) <"A code for a grouping of countries to which this belongs.">
+    jurisdiction GoverningLaw (0..*) <"The legal jurisdiction of the entity\'s registration.">
+    organizationType OrganizationType (0..*) <"The type of an organization\'s participantion in the OTC derivatives market.">
+    contactInfo ContactInformation (0..1) <"Information on how to contact the party using various means.">
+    businessUnit BusinessUnit (0..*) <"Optional organization unit information used to describe the organization units (e.g. trading desks) involved in a transaction or business process .">
+    person Person (0..*) <"Optional information about people involved in a transaction or busines process. (These are eomployees of the party).">
+    groupType PartyGroupType (0..1) <"Party Group Type, e.g. JointAndSeveralLiability">
+    partyReference PartyReference (0..*) <"Reference to a party that is a member of the group of entities that are acting together as a single party in a transaction.">
 
 type PartyGroupType: <"The data type used for party group classification.">
 
@@ -1082,7 +1041,11 @@ type PartyTradeIdentifierReference extends Reference: <"A reference to a partyTr
 
 type Payment extends PaymentBase: <"A type for defining payments. Developers of FpML models are encouraged to make use of the SimplePayment type instead of this Payment type. In Transparency view, normally the payer and receiver party references are not used; however they may be provided if necessary for administrative activities such as Reporting Party Determination in FX.">
 
-    payerReceiverModel PayerReceiverModel (1..1)
+    href string (0..1) <"Can be used to reference the yield curve used to estimate the discount factor.">
+    payerPartyReference PartyReference (1..1) <"A reference to the party responsible for making the payments defined by this structure.">
+    payerAccountReference AccountReference (0..1) <"A reference to the account responsible for making the payments defined by this structure.">
+    receiverPartyReference PartyReference (0..1) <"A reference to the party that receives the payments corresponding to this structure.">
+    receiverAccountReference AccountReference (0..1) <"A reference to the account that receives the payments corresponding to this structure.">
     paymentAmount NonNegativeMoney (1..1) <"The currency amount of the payment.">
     paymentDate AdjustableOrAdjustedDate (0..1) <"The payment date. This date is subject to adjustment in accordance with any applicable business day convention.">
     paymentType PaymentType (0..1) <"A classification of the type of fee or additional payment, e.g. brokerage, upfront fee etc. FpML does not define domain values for this element.">
@@ -1090,7 +1053,6 @@ type Payment extends PaymentBase: <"A type for defining payments. Developers of 
     discountFactor number (0..1) <"The value representing the discount factor used to calculate the present value of the cash flow.">
     presentValueAmount Money (0..1) <"The amount representing the present value of the forecast payment.">
     pricingStructureReference PricingStructureReference (0..1) <"Can be used to reference the yield curve used to estimate the discount factor.">
-    href string (0..1) <"Can be used to reference the yield curve used to estimate the discount factor.">
 
 type PaymentBase: <"An abstract base class for payment types.">
 
@@ -1098,7 +1060,10 @@ type PaymentBase: <"An abstract base class for payment types.">
 
 type PaymentBaseExtended extends PaymentBase: <"Base type for payments.">
 
-    payerReceiverModel PayerReceiverModel (1..1)
+    payerPartyReference PartyReference (1..1) <"A reference to the party responsible for making the payments defined by this structure.">
+    payerAccountReference AccountReference (0..1) <"A reference to the account responsible for making the payments defined by this structure.">
+    receiverPartyReference PartyReference (0..1) <"A reference to the party that receives the payments corresponding to this structure.">
+    receiverAccountReference AccountReference (0..1) <"A reference to the account that receives the payments corresponding to this structure.">
     paymentDate AdjustableOrRelativeDate (0..1) <"The payment date, which can be expressed as either an adjustable or relative date.">
 
 type PaymentDetail extends PaymentBase:
@@ -1106,7 +1071,6 @@ type PaymentDetail extends PaymentBase:
     paymentDate AdjustableOrRelativeDate (0..1) <"Payment date.">
     paymentRule PaymentRule (0..1) <"A structure defining the calculation rule of the independent amount. Users are supposed to use type substitution at PaymentRule. PaymentRule is abstract and it is supposed to be substituted by PercentageRule. There is the expectation that other rules will be created in the future to model other types of independent amount payment rules.">
     paymentAmount Money (0..1) <"A fixed payment amount.">
-    paymentDetailSequence PaymentDetailSequence (0..1)
 
 type PaymentRule: <"The abstract base type from which all calculation rules of the independent amount must be derived. Users are supposed to use type substitution at PaymentRule. PaymentRule is supposed to be substituted by PercentageRule. There is the expectation that other rules will be created to model other types of independent amount payment rules in the future.">
 
@@ -1117,9 +1081,9 @@ type PaymentType:
 
 type Period: <"A type to define recurring periods or time offsets.">
 
+    id string (0..1)
     periodMultiplier int (1..1) <"A time period multiplier, e.g. 1, 2 or 3 etc. A negative value can be used when specifying an offset relative to another date, e.g. -2 days.">
     period fpml.consolidated.fpmlenum.PeriodEnum (1..1) <"A time period, e.g. a day, week, month or year of the stream. If the periodMultiplier value is 0 (zero) then period must contain the value D (day).">
-    id string (0..1)
 
 type PeriodicDates:
 
@@ -1130,25 +1094,18 @@ type PeriodicDates:
 
 type Person: <"A type that represents information about a person connected with a trade or business process.">
 
-    personSequence PersonSequence (0..1)
-    personId PersonId (0..*) <"An identifier assigned by a system for uniquely identifying the individual">
-    businessUnitReference BusinessUnitReference (0..1) <"The unit for which the indvidual works.">
-    contactInfo ContactInformation (0..1) <"Information on how to contact the individual using various means.">
-    dateOfBirth zonedDateTime (0..1) <"The birth date of the person, e.g. 1970-01-01">
-    country CountryCode (0..1) <"The ISO 3166 standard code for the country where the individual works.">
     id string (0..1)
-
-type PersonSequence:
-
     honorific NormalizedString (0..1) <"An honorific title, such as Mr., Ms., Dr. etc.">
     firstName NormalizedString (0..1) <"Given name, such as John or Mary.">
     middleName NormalizedString (0..*)
     initial Initial (0..*)
     surname NormalizedString (0..1) <"Family name, such as Smith or Jones.">
     suffix NormalizedString (0..1) <"Name suffix, such as Jr., III, etc.">
-
-    condition Choice:
-        optional choice middleName, initial
+    personId PersonId (0..*) <"An identifier assigned by a system for uniquely identifying the individual">
+    businessUnitReference BusinessUnitReference (0..1) <"The unit for which the indvidual works.">
+    contactInfo ContactInformation (0..1) <"Information on how to contact the individual using various means.">
+    dateOfBirth zonedDateTime (0..1) <"The birth date of the person, e.g. 1970-01-01">
+    country CountryCode (0..1) <"The ISO 3166 standard code for the country where the individual works.">
 
 type PersonId: <"An identifier used to identify an individual person.">
 
@@ -1171,9 +1128,9 @@ type PrevailingTime: <"A type for defining a time with respect to a geographic l
 
 type PricingStructure: <"An abstract pricing structure base type. Used as a base for structures such as yield curves and volatility matrices.">
 
+    id string (0..1)
     name NormalizedString (0..1) <"The name of the structure, e.g \"USDLIBOR-3M EOD Curve\".">
     currency Currency (0..1) <"The currency that the structure is expressed in (this is relevant mostly for the Interes Rates asset class).">
-    id string (0..1)
 
 type PricingStructureReference extends Reference: <"Reference to a pricing structure or any derived components (i.e. yield curve).">
 
@@ -1181,15 +1138,20 @@ type PricingStructureReference extends Reference: <"Reference to a pricing struc
 
 type PrincipalExchanges: <"A type defining which principal exchanges occur for the stream.">
 
+    id string (0..1)
     initialExchange boolean (0..1) <"A true/false flag to indicate whether there is an initial exchange of principal on the effective date.">
     finalExchange boolean (0..1) <"A true/false flag to indicate whether there is a final exchange of principal on the termination date.">
     intermediateExchange boolean (0..1) <"A true/false flag to indicate whether there are intermediate or interim exchanges of principal during the term of the swap.">
-    id string (0..1)
 
 type Product: <"The base type which all FpML products extend.">
 
-    productModel ProductModel (0..1)
     id string (0..1)
+    primaryAssetClass AssetClass (0..1) <"A classification of the most important risk class of the trade. FpML defines a simple asset class categorization using a coding scheme.">
+    secondaryAssetClass AssetClass (0..*) <"A classification of additional risk classes of the trade, if any. FpML defines a simple asset class categorization using a coding scheme.">
+    productType ProductType (0..*) <"A classification of the type of product. FpML defines a simple product categorization using a coding scheme.">
+    productId ProductId (0..*) <"A product reference identifier. The product ID is an identifier that describes the key economic characteristics of the trade type, with the exception of concepts such as size (notional, quantity, number of units) and price (fixed rate, strike, etc.) that are negotiated for each transaction. It can be used to hold identifiers such as the \"UPI\" (universal product identifier) required by certain regulatory reporting rules. It can also be used to hold identifiers of benchmark products or product temnplates used by certain trading systems or facilities. FpML does not define the domain values associated with this element. Note that the domain values for this element are not strictly an enumerated list.">
+    embeddedOptionType EmbeddedOptionType (0..2) <"Describes the type of any embedded optionality in the transaction that might not otherwise be apparent. Can be used to represent embedded optionality such as early termination provisions, extendible provisions, or cancelable provisions, etc., where applicable. If omitted, no embedded optionality is applicable.">
+    assetClass AssetClass (0..*) <"A classification of the risk class of the trade. FpML defines a simple asset class categorization using a coding scheme.">
 
 type ProductId:
 
@@ -1217,6 +1179,7 @@ type Rate: <"The abstract base class for all types which define interest rate st
 
 type RateObservation: <"A type defining parameters associated with an individual observation or fixing. This type forms part of the cashflow representation of a stream.">
 
+    id string (0..1)
     resetDate zonedDateTime (0..1) <"The reset date.">
     adjustedFixingDate zonedDateTime (0..1) <"The adjusted fixing date, i.e. the actual date the rate is observed. The date should already be adjusted for any applicable business day convention.">
     observedRate number (0..1) <"The actual observed rate before any required rate treatment is applied, e.g. before converting a rate quoted on a discount basis to an equivalent yield. An observed rate of 5% would be represented as 0.05.">
@@ -1226,7 +1189,6 @@ type RateObservation: <"A type defining parameters associated with an individual
     forecastRate number (0..1) <"The value representing the forecast rate used to calculate the forecast future value of the accrual period.A value of 1% should be represented as 0.01">
     treatedForecastRate number (0..1) <"The value representing the forecast rate after applying rate treatment rules. A value of 1% should be represented as 0.01">
     fallback FallbackRateObservation (0..1) <"Observation Parameters for IBOR fallback rates. These allow recording information about how the fallback rate was">
-    id string (0..1)
 
 type RateReference extends Reference: <"Reference to any rate (floating, inflation) derived from the abstract Rate component.">
 
@@ -1266,7 +1228,8 @@ type RelatedBusinessUnit:
 
 type RelatedParty:
 
-    partyAndAccountReferencesModel PartyAndAccountReferencesModel (1..1)
+    partyReference PartyReference (1..1) <"Reference to a party.">
+    accountReference AccountReference (0..1) <"Reference to an account.">
     role PartyRole (1..1) <"The category of the relationship. The related party performs the role specified in this field for the base party. For example, if the role is \"Guarantor\", the related party acts as a guarantor for the base party.">
     ^type PartyRoleType (0..1) <"Additional definition refining the type of relationship. For example, if the \"role\" is Guarantor, this element may be used to specify whether all positions are guaranteed, or only a subset of them.">
 
@@ -1278,7 +1241,8 @@ type RelatedPerson:
 type RelativeDateOffset extends Offset: <"A type defining a date (referred to as the derived date) as a relative offset from another date (referred to as the anchor date). If the anchor date is itself an adjustable date then the offset is assumed to be calculated from the adjusted anchor date. A number of different scenarios can be supported, namely; 1) the derived date may simply be a number of calendar periods (days, weeks, months or years) preceding or following the anchor date; 2) the unadjusted derived date may be a number of calendar periods (days, weeks, months or years) preceding or following the anchor date with the resulting unadjusted derived date subject to adjustment in accordance with a specified business day convention, i.e. the derived date must fall on a good business day; 3) the derived date may be a number of business days preceding or following the anchor date. Note that the businessDayConvention specifies any required adjustment to the unadjusted derived date. A negative or positive value in the periodMultiplier indicates whether the unadjusted derived precedes or follows the anchor date. The businessDayConvention should contain a value NONE if the day type element contains a value of Business (since specifying a negative or positive business days offset would already guarantee that the derived date would fall on a good business day in the specified business centers).">
 
     businessDayConvention fpml.consolidated.fpmlenum.BusinessDayConventionEnum (0..1) <"The convention for adjusting a date if it would otherwise fall on a day that is not a business day.">
-    businessCentersOrReferenceModel BusinessCentersOrReferenceModel (0..1)
+    businessCentersReference BusinessCentersReference (0..1) <"A pointer style reference to a set of financial business centers defined elsewhere in the document. This set of business centers is used to determine whether a particular day is a business day or not.">
+    businessCenters BusinessCenters (0..1)
     dateRelativeTo DateReference (0..1) <"Specifies the anchor as an href attribute. The href attribute value is a pointer style reference to the element or component elsewhere in the document where the anchor date is defined.">
     adjustedDate IdentifiedDate (0..1) <"The date once the adjustment has been performed. (Note that this date may change if the business center holidays change).">
 
@@ -1291,7 +1255,8 @@ type RelativeDateSequence: <"A type describing a date when this date is defined 
 
     dateRelativeTo DateReference (0..1) <"Specifies the anchor as an href attribute. The href attribute value is a pointer style reference to the element or component elsewhere in the document where the anchor date is defined.">
     dateOffset DateOffset (0..*)
-    businessCentersOrReferenceModel BusinessCentersOrReferenceModel (0..1)
+    businessCentersReference BusinessCentersReference (0..1) <"A pointer style reference to a set of financial business centers defined elsewhere in the document. This set of business centers is used to determine whether a particular day is a business day or not.">
+    businessCenters BusinessCenters (0..1)
 
 type ReportingRegimeName: <"An identifier of a reporting regime or format used for regulatory reporting. For example DoddFrankAct, MiFID, HongKongOTCDRepository, etc.">
 
@@ -1322,9 +1287,6 @@ type Resource: <"Describes the resource that contains the media representation o
     base64Binary string (0..1) <"Provides extra information as binary contents coded in base64.">
     url NonEmptyURI (0..1) <"Indicates where the resource can be found, as a URL that references the information on a web server accessible to the message recipient.">
 
-    condition Choice:
-        optional choice string, hexadecimalBinary , base64Binary , url
-
 type ResourceId: <"The data type used for resource identifiers.">
 
     value NonEmptyScheme (1..1)
@@ -1351,11 +1313,16 @@ type Rounding: <"A type defining a rounding direction and precision to be used i
 
 type Routing: <"A type that provides three alternative ways of identifying a party involved in the routing of a payment. The identification may use payment system identifiers only; actual name, address and other reference information; or a combination of both.">
 
-    routingIdentificationModel RoutingIdentificationModel (1..1)
+    routingIds RoutingIds (0..1) <"A set of unique identifiers for a party, eachone identifying the party within a payment system. The assumption is that each party will not have more than one identifier within the same payment system.">
+    routingExplicitDetails RoutingExplicitDetails (0..1) <"A set of details that is used to identify a party involved in the routing of a payment when the party does not have a code that identifies it within one of the recognized payment systems.">
+    routingIdsAndExplicitDetails RoutingIdsAndExplicitDetails (0..1) <"A combination of coded payment system identifiers and details for physical addressing for a party involved in the routing of a payment.">
 
 type RoutingExplicitDetails: <"A type that models name, address and supplementary textual information for the purposes of identifying a party involved in the routing of a payment.">
 
-    routingExplicitDetailsModel RoutingExplicitDetailsModel (1..1)
+    routingName String (0..1) <"A real name that is used to identify a party involved in the routing of a payment.">
+    routingAddress Address (0..1) <"A physical postal address via which a payment can be routed.">
+    routingAccountNumber NonEmptyToken (0..1) <"An account number via which a payment can be routed.">
+    routingReferenceText NonEmptyToken (0..*) <"A piece of free-format text used to assist the identification of a party involved in the routing of a payment.">
 
 type RoutingId:
 
@@ -1369,17 +1336,21 @@ type RoutingIds: <"A type that provides for identifying a party involved in the 
 type RoutingIdsAndExplicitDetails: <"A type that provides a combination of payment system identification codes with physical postal address details, for the purposes of identifying a party involved in the routing of a payment.">
 
     routingIds RoutingIds (0..*) <"A set of unique identifiers for a party, eachone identifying the party within a payment system. The assumption is that each party will not have more than one identifier within the same payment system.">
-    routingExplicitDetailsModel RoutingExplicitDetailsModel (1..1)
+    routingName String (0..1) <"A real name that is used to identify a party involved in the routing of a payment.">
+    routingAddress Address (0..1) <"A physical postal address via which a payment can be routed.">
+    routingAccountNumber NonEmptyToken (0..1) <"An account number via which a payment can be routed.">
+    routingReferenceText NonEmptyToken (0..*) <"A piece of free-format text used to assist the identification of a party involved in the routing of a payment.">
 
 type Schedule: <"A type defining a schedule of rates or amounts in terms of an initial value and then a series of step date and value pairs. On each step date, the rate or amount changes to the new step value. The series of step date and value pairs are optional. If not specified, this implies that the initial value remains unchanged over time.">
 
+    id string (0..1)
     initialValue number (1..1) <"The initial rate or amount, as the case may be. An initial rate of 5% would be represented as 0.05.">
     step Step (0..*) <"The schedule of step date and value pairs. On each step date, the associated step value becomes effective. A list of steps may be ordered in the document by ascending step date. An FpML document containing an unordered list of steps is still regarded as a conformant document.">
-    id string (0..1)
 
 type ScheduledDateBase: <"An servicing date relevant for a trade structure, such as a payment or a reset.">
 
-    adjustedAndOrUnadjustedDateModel AdjustedAndOrUnadjustedDateModel (1..1)
+    unadjustedDate zonedDateTime (0..1)
+    adjustedDate zonedDateTime (0..1)
     ^type ScheduledDateType (0..1) <"The type of the date, e.g. next or previous payment.">
 
 type ScheduledDateType: <"A scheme used to identify the type of a stream scheduled servicing date.">
@@ -1395,9 +1366,6 @@ type SettlementInformation: <"A type that represents the choice of methods for s
 
     standardSettlementStyle fpml.consolidated.fpmlenum.StandardSettlementStyleEnum (0..1) <"An optional element used to describe how a trade will settle. This defines a scheme and is used for identifying trades that are identified as settling standard and/or flagged for settlement netting.">
     settlementInstruction SettlementInstruction (0..1) <"An explicit specification of how a currency payment is to be made, when the payment is not netted and the route is other than the recipient\'s standard settlement instruction.">
-
-    condition Choice:
-        one-of
 
 type SettlementInstruction: <"A type that models a complete instruction for settling a currency payment, including the settlement method to be used, the correspondent bank, any intermediary banks and the ultimate beneficary.">
 
@@ -1434,9 +1402,6 @@ type SettlementRateSource: <"A type describing the method for obtaining a settle
     informationSource InformationSource (0..1) <"The information source where a published or displayed market rate will be obtained, e.g. Telerate Page 3750.">
     cashSettlementReferenceBanks CashSettlementReferenceBanks (0..1) <"A container for a set of reference institutions. These reference institutions may be called upon to provide rate quotations as part of the method to determine the applicable cash settlement amount. If institutions are not specified, it is assumed that reference institutions will be agreed between the parties on the exercise date, or in the case of swap transaction to which mandatory early termination is applicable, the cash settlement valuation date.">
 
-    condition Choice:
-        one-of
-
 type SharedAmericanExercise extends Exercise: <"TBA">
 
     commencementDate AdjustableOrRelativeDate (0..1) <"The first day of the exercise period for an American style option.">
@@ -1444,12 +1409,12 @@ type SharedAmericanExercise extends Exercise: <"TBA">
     latestExerciseTime BusinessCenterTime (0..1) <"For a Bermuda or American style option, the latest time on an exercise business day (excluding the expiration date) within the exercise period that notice can be given by the buyer to the seller or seller\'s agent. Notice of exercise given after this time will be deemed to have been given on the next exercise business day.">
     latestExerciseTimeDetermination DeterminationMethod (0..1) <"Latest exercise time determination method.">
 
-    condition Choice:
-        optional choice latestExerciseTime, latestExerciseTimeDetermination
-
 type SimplePayment extends PaymentBase: <"A complex type to specified payments in a simpler fashion than the Payment type. This construct should be used from the version 4.3 onwards.">
 
-    payerReceiverModel PayerReceiverModel (1..1)
+    payerPartyReference PartyReference (1..1) <"A reference to the party responsible for making the payments defined by this structure.">
+    payerAccountReference AccountReference (0..1) <"A reference to the account responsible for making the payments defined by this structure.">
+    receiverPartyReference PartyReference (0..1) <"A reference to the party that receives the payments corresponding to this structure.">
+    receiverAccountReference AccountReference (0..1) <"A reference to the account that receives the payments corresponding to this structure.">
     paymentAmount NonNegativeMoney (0..1)
     paymentDate AdjustableOrRelativeDate (0..1) <"The payment date. This date is subject to adjustment in accordance with any applicable business day convention.">
 
@@ -1478,8 +1443,8 @@ type Step extends StepBase: <"A type defining a step date and step value pair. T
 
 type StepBase: <"A type defining a step date and step value pair. This step definitions are used to define varying rate or amount schedules, e.g. a notional amortization or a step-up coupon schedule.">
 
-    stepDate zonedDateTime (0..1) <"The date on which the associated stepValue becomes effective. This day may be subject to adjustment in accordance with a business day convention.">
     id string (0..1)
+    stepDate zonedDateTime (0..1) <"The date on which the associated stepValue becomes effective. This day may be subject to adjustment in accordance with a business day convention.">
 
 type StreetAddress: <"A type that describes the set of street and building number information that identifies a postal address within a city.">
 
@@ -1487,10 +1452,10 @@ type StreetAddress: <"A type that describes the set of street and building numbe
 
 type Strike: <"A type describing a single cap or floor rate.">
 
+    id string (0..1)
     strikeRate number (0..1) <"The rate for a cap or floor.">
     buyer IdentifiedPayerReceiver (0..1) <"The buyer of the option">
     seller IdentifiedPayerReceiver (0..1) <"The party that has sold.">
-    id string (0..1)
 
 type StrikeSchedule extends Schedule: <"A type describing a schedule of cap or floor rates.">
 
@@ -1508,13 +1473,16 @@ type StubValue: <"A type defining how a stub calculation period amount is calcul
     stubRate number (0..1) <"An actual rate to apply for the initial or final stub period may have been agreed between the principal parties (in a similar way to how an initial rate may have been agreed for the first regular period). If an actual stub rate has been agreed then it would be included in this component. It will be a per annum rate, expressed as a decimal. A stub rate of 5% would be represented as 0.05.">
     stubAmount Money (0..1) <"An actual amount to apply for the initial or final stub period may have been agreed between th two parties. If an actual stub amount has been agreed then it would be included in this component.">
 
-    condition Choice:
-        one-of
-
 type StubFloatingRate extends Rate: <"A type defining a floating rate.">
 
-    stubFloatingRateIndexModel StubFloatingRateIndexModel (1..1)
-    floatingRateModel FloatingRateModel (0..1)
+    floatingRateIndex FloatingRateIndex (0..1)
+    indexTenor Period (0..1) <"The ISDA Designated Maturity, i.e. the tenor of the floating rate.">
+    fallbackRate FallbackRate (0..1) <"A fallback rate calculated using an averaging or compounding formula to be used in case of the cessation of the original term rate. This structure is provided to allow an approximate representation to be created for published fallback rates to allow operations such as valuation, accrual calculation, and risk calculation.">
+    floatingRateMultiplierSchedule Schedule (0..1) <"A rate multiplier or multiplier schedule to apply to the floating rate. A multiplier schedule is expressed as explicit multipliers and dates. In the case of a schedule, the step dates may be subject to adjustment in accordance with any adjustments specified in the calculationPeriodDatesAdjustments. The multiplier can be a positive or negative decimal. This element should only be included if the multiplier is not equal to 1 (one) for the term of the stream.">
+    spreadSchedule SpreadSchedule (0..*) <"The ISDA Spread or a Spread schedule expressed as explicit spreads and dates. In the case of a schedule, the step dates may be subject to adjustment in accordance with any adjustments specified in calculationPeriodDatesAdjustments. The spread is a per annum rate, expressed as a decimal. For purposes of determining a calculation period amount, if positive the spread will be added to the floating rate and if negative the spread will be subtracted from the floating rate. A positive 10 basis point (0.1%) spread would be represented as 0.001.">
+    rateTreatment fpml.consolidated.fpmlenum.RateTreatmentEnum (0..1) <"The specification of any rate conversion which needs to be applied to the observed rate before being used in any calculations. The two common conversions are for securities quoted on a bank discount basis which will need to be converted to either a Money Market Yield or Bond Equivalent Yield. See the Annex to the 2000 ISDA Definitions, Section 7.3. Certain General Definitions Relating to Floating Rate Options, paragraphs (g) and (h) for definitions of these terms.">
+    capRateSchedule StrikeSchedule (0..*) <"The cap rate or cap rate schedule, if any, which applies to the floating rate. The cap rate (strike) is only required where the floating rate on a swap stream is capped at a certain level. A cap rate schedule is expressed as explicit cap rates and dates and the step dates may be subject to adjustment in accordance with any adjustments specified in calculationPeriodDatesAdjustments. The cap rate is assumed to be exclusive of any spread and is a per annum rate, expressed as a decimal. A cap rate of 5% would be represented as 0.05.">
+    floorRateSchedule StrikeSchedule (0..*) <"The floor rate or floor rate schedule, if any, which applies to the floating rate. The floor rate (strike) is only required where the floating rate on a swap stream is floored at a certain strike level. A floor rate schedule is expressed as explicit floor rates and dates and the step dates may be subject to adjustment in accordance with any adjustments specified in calculationPeriodDatesAdjustments. The floor rate is assumed to be exclusive of any spread and is a per annum rate, expressed as a decimal. A floor rate of 5% would be represented as 0.05.">
 
 type SupervisoryBody: <"An identifier of an organization that supervises or regulates trading activity, e.g. CFTC, SEC, FSA, ODRF, etc.">
 
@@ -1533,9 +1501,6 @@ type SwaptionPhysicalSettlement:
     agreedDiscountRate BenchmarkRate (0..1) <"This may be used to indicate the discount rate to be used for cash collateral for cash settlement purposes.">
     settlementRateSource SettlementRateSource (0..1) <"The method for obtaining a settlement rate. This may be from some information source (e.g. Reuters) or from a set of reference banks.">
     quotationRateType fpml.consolidated.fpmlenum.QuotationRateTypeEnum (0..1) <"Which rate quote is to be observed, either Bid, Mid, Offer or Exercising Party Pays. The meaning of Exercising Party Pays is defined in the 2000 ISDA Definitions, Section 17.2. Certain Definitions Relating to Cash Settlement, paragraph (j)">
-
-    condition Choice:
-        optional choice predeterminedClearingOrganizationPartyReference, mutuallyAgreedClearinghouse
 
 type TelephoneNumber: <"A type that represents a telephonic contact.">
 
@@ -1563,216 +1528,10 @@ type UnderlyerInterestLeg extends DirectionalLeg: <"A type describing interest p
     fixedRate number (0..1) <"The calculation period fixed rate. A per annum rate, expressed as a decimal. A fixed rate of 5% would be represented as 0.05.">
     spreadSchedule SpreadSchedule (0..*) <"The ISDA Spread or a Spread schedule expressed as explicit spreads and dates. In the case of a schedule, the step dates may be subject to adjustment in accordance with any adjustments specified in calculationPeriodDatesAdjustments. The spread is a per annum rate, expressed as a decimal. For purposes of determining a calculation period amount, if positive the spread will be added to the floating rate and if negative the spread will be subtracted from the floating rate. A positive 10 basis point (0.1%) spread would be represented as 0.001.">
 
-    condition Choice:
-        optional choice fixedRate, spreadSchedule
-
 type Unit: <"A type used to record information about a unit, subdivision, desk, or other similar business entity.">
 
     value Scheme (1..1)
     unitScheme NonEmptyURI (0..1)
-
-type AdjustableDateModel:
-
-    unadjustedDate IdentifiedDate (1..1) <"A date subject to adjustment.">
-    dateAdjustments BusinessDayAdjustments (0..1) <"The business day convention and financial business centers used for adjusting the date if it would otherwise fall on a day that is not a business date in the specified business centers.">
-    adjustedDate IdentifiedDate (0..1) <"The date once the adjustment has been performed. (Note that this date may change if the business center holidays change).">
-
-type AdjustedAndOrUnadjustedDateModel: <"Contains at least one of an adjusted date and and unadjusted date, using the usual meanings of those terms.">
-
-    adjustedAndOrUnadjustedDateModelSequence AdjustedAndOrUnadjustedDateModelSequence (1..1)
-
-type AdjustedAndOrUnadjustedDateModelSequence:
-
-    unadjustedDate zonedDateTime (0..1)
-    adjustedDate zonedDateTime (0..1)
-
-type BusinessCentersOrReferenceModel:
-
-    businessCentersReference BusinessCentersReference (0..1) <"A pointer style reference to a set of financial business centers defined elsewhere in the document. This set of business centers is used to determine whether a particular day is a business day or not.">
-    businessCenters BusinessCenters (0..1)
-
-    condition Choice:
-        one-of
-
-type BuyerSellerModel:
-
-    buyerPartyReference PartyReference (1..1) <"A reference to the party that buys this instrument, ie. pays for this instrument and receives the rights defined by it. See 2000 ISDA definitions Article 11.1 (b). In the case of FRAs this the fixed rate payer.">
-    buyerAccountReference AccountReference (0..1) <"A reference to the account that buys this instrument.">
-    sellerPartyReference PartyReference (1..1) <"A reference to the party that sells (\"writes\") this instrument, i.e. that grants the rights defined by this instrument and in return receives a payment for it. See 2000 ISDA definitions Article 11.1 (a). In the case of FRAs this is the floating rate payer.">
-    sellerAccountReference AccountReference (0..1) <"A reference to the account that sells this instrument.">
-
-type FloatingRateModel: <"Elements representing the rate treatment and conditioning parameters that can be applied to a floating rate, such as spreads, multipliers, rate treatments, rate rounding, etc.">
-
-    floatingRateMultiplierSchedule Schedule (0..1) <"A rate multiplier or multiplier schedule to apply to the floating rate. A multiplier schedule is expressed as explicit multipliers and dates. In the case of a schedule, the step dates may be subject to adjustment in accordance with any adjustments specified in the calculationPeriodDatesAdjustments. The multiplier can be a positive or negative decimal. This element should only be included if the multiplier is not equal to 1 (one) for the term of the stream.">
-    spreadSchedule SpreadSchedule (0..*) <"The ISDA Spread or a Spread schedule expressed as explicit spreads and dates. In the case of a schedule, the step dates may be subject to adjustment in accordance with any adjustments specified in calculationPeriodDatesAdjustments. The spread is a per annum rate, expressed as a decimal. For purposes of determining a calculation period amount, if positive the spread will be added to the floating rate and if negative the spread will be subtracted from the floating rate. A positive 10 basis point (0.1%) spread would be represented as 0.001.">
-    rateTreatment fpml.consolidated.fpmlenum.RateTreatmentEnum (0..1) <"The specification of any rate conversion which needs to be applied to the observed rate before being used in any calculations. The two common conversions are for securities quoted on a bank discount basis which will need to be converted to either a Money Market Yield or Bond Equivalent Yield. See the Annex to the 2000 ISDA Definitions, Section 7.3. Certain General Definitions Relating to Floating Rate Options, paragraphs (g) and (h) for definitions of these terms.">
-    capRateSchedule StrikeSchedule (0..*) <"The cap rate or cap rate schedule, if any, which applies to the floating rate. The cap rate (strike) is only required where the floating rate on a swap stream is capped at a certain level. A cap rate schedule is expressed as explicit cap rates and dates and the step dates may be subject to adjustment in accordance with any adjustments specified in calculationPeriodDatesAdjustments. The cap rate is assumed to be exclusive of any spread and is a per annum rate, expressed as a decimal. A cap rate of 5% would be represented as 0.05.">
-    floorRateSchedule StrikeSchedule (0..*) <"The floor rate or floor rate schedule, if any, which applies to the floating rate. The floor rate (strike) is only required where the floating rate on a swap stream is floored at a certain strike level. A floor rate schedule is expressed as explicit floor rates and dates and the step dates may be subject to adjustment in accordance with any adjustments specified in calculationPeriodDatesAdjustments. The floor rate is assumed to be exclusive of any spread and is a per annum rate, expressed as a decimal. A floor rate of 5% would be represented as 0.05.">
-
-type FloatingRateCalculationModel: <"Elements representing the daily calculated rate and fallback rate definitions.">
-
-    initialRate number (0..1) <"The initial floating rate reset agreed between the principal parties involved in the trade. This is assumed to be the first required reset rate for the first regular calculation period. It should only be included when the rate is not equal to the rate published on the source implied by the floating rate index. An initial rate of 5% would be represented as 0.05.">
-    finalRateRounding Rounding (0..1) <"The rounding convention to apply to the final rate used in determination of a calculation period amount.">
-    averagingMethod fpml.consolidated.fpmlenum.AveragingMethodEnum (0..1) <"If averaging is applicable, this component specifies whether a weighted or unweighted average method of calculation is to be used. The component must only be included when averaging applies.">
-    negativeInterestRateTreatment fpml.consolidated.fpmlenum.NegativeInterestRateTreatmentEnum (0..1) <"The specification of any provisions for calculating payment obligations when a floating rate is negative (either due to a quoted negative floating rate or by operation of a spread that is subtracted from the floating rate).">
-
-type FloatingRateIndexModel:
-
-    floatingRateIndex FloatingRateIndex (1..1) <"The ISDA Floating Rate Option, i.e. the name of the floating rate.">
-    indexTenor Period (0..1) <"The ISDA Designated Maturity, i.e. the tenor of the floating rate.">
-
-type IssuerTradeIdModel: <"A model group for a two part identifier such as a USI.">
-
-    issuer IssuerId (1..1)
-    tradeId TradeId (1..1)
-
-type ObservationParametersModel: <"Definitions of daily cap and floor rates for floating rate indexes. These are described in the 2021 ISDA Definitions in Section 7.2.">
-
-    observationCapRate number (0..1) <"A maximum rate for an rate observation; optionally applied for daily averaged rates. These are described in the 2021 ISDA Definitions in Section 7.2.4">
-    observationFloorRate number (0..1) <"A minimum rate for an rate observation; optionally applied for daily averaged rates. These are described in the 2021 ISDA Definitions in Section 7.2.3">
-
-type OnBehalfOfModel:
-
-    onBehalfOf OnBehalfOf (0..4) <"Indicates which party (or parties) (and accounts) a trade or event is being processed for. Normally there will only be a maximum of 2 parties, but in the case of a novation there could be a transferor, transferee, remaining party, and other remaining party. Also, in the context of a trade package there could be several parties for which limit check is requested, necessitating multiple onBehalfOf elements. Except for these cases, there should be no more than two onBehalfOf references in a message.">
-
-type PartialExerciseModel:
-
-    notionalReference NotionalReference (0..*) <"A pointer style reference to the associated notional schedule defined elsewhere in the document. This element has been made optional as part of its integration in the OptionBaseExtended, because not required for the options on securities.">
-    integralMultipleAmount number (0..1) <"A notional amount which restricts the amount of notional that can be exercised when partial exercise or multiple exercise is applicable. The integral multiple amount defines a lower limit of notional that can be exercised and also defines a unit multiple of notional that can be exercised, i.e. only integer multiples of this amount can be exercised.">
-    minimumNotionalAmount number (0..1) <"The minimum notional amount that can be exercised on a given exercise date. See multipleExercise.">
-    minimumNumberOfOptions NonNegativeDecimal (0..1) <"The minimum number of options that can be exercised on a given exercise date.">
-
-    condition Choice:
-        optional choice minimumNotionalAmount, minimumNumberOfOptions
-
-type PartiesAndAccountsModel: <"Supporting party and account definitions.">
-
-    party Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
-    account Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
-
-type PartyModel: <"A model group with the content model of a party.">
-
-    partyId PartyId (1..*) <"A party identifier, e.g. a S.W.I.F.T. bank identifier code (BIC).">
-    partyName PartyName (0..1) <"The legal name of the organization. A free format string. FpML does not define usage rules for this element.">
-    partyInformationModel PartyInformationModel (0..1)
-    contactInfo ContactInformation (0..1) <"Information on how to contact the party using various means.">
-    businessUnit BusinessUnit (0..*) <"Optional organization unit information used to describe the organization units (e.g. trading desks) involved in a transaction or business process .">
-    person Person (0..*) <"Optional information about people involved in a transaction or busines process. (These are eomployees of the party).">
-
-type PartyAndAccountReferencesModel:
-
-    partyReference PartyReference (1..1) <"Reference to a party.">
-    accountReference AccountReference (0..1) <"Reference to an account.">
-
-type PartyInformationModel: <"Information about a party for reporting purposes.">
-
-    classification IndustryClassification (0..*) <"The party\'s industry sector classification.">
-    creditRating CreditRating (0..*) <"The party\'s credit rating.">
-    country CountryCode (0..1) <"The country where the party is domiciled.">
-    region Region (0..*) <"A code for a grouping of countries to which this belongs.">
-    jurisdiction GoverningLaw (0..*) <"The legal jurisdiction of the entity\'s registration.">
-    organizationType OrganizationType (0..*) <"The type of an organization\'s participantion in the OTC derivatives market.">
-
-type PayerModel:
-
-    payerPartyReference PartyReference (1..1) <"A reference to the party responsible for making the payments defined by this structure.">
-    payerAccountReference AccountReference (0..1) <"A reference to the account responsible for making the payments defined by this structure.">
-
-type PayerReceiverModel:
-
-    payerModel PayerModel (1..1)
-    receiverModel ReceiverModel (1..1)
-
-type PaymentDiscountingModel: <"A model group for representing the discounting elements that can be associated with a payment.">
-
-    discountFactor number (0..1) <"The value representing the discount factor used to calculate the present value of the cash flow.">
-    presentValueAmount Money (0..1) <"The amount representing the present value of the forecast payment.">
-
-type PeriodModel:
-
-    startDate zonedDateTime (0..1) <"Date on which this period begins.">
-    endDate zonedDateTime (0..1) <"Date on which this period ends.">
-
-type PremiumModel: <"A model group for representing the option premium when expressed in a way other than an amount.">
-
-    premiumType fpml.consolidated.fpmlenum.PremiumTypeEnum (0..1) <"Forward start Premium type">
-    pricePerOption Money (0..1) <"The amount of premium to be paid expressed as a function of the number of options.">
-    percentageOfNotional DecimalFraction (0..1) <"The amount of premium to be paid expressed as a percentage of the notional value of the transaction. A percentage of 5% would be expressed as 0.05.">
-
-type ProductModel:
-
-    primaryAssetClass AssetClass (0..1) <"A classification of the most important risk class of the trade. FpML defines a simple asset class categorization using a coding scheme.">
-    secondaryAssetClass AssetClass (0..*) <"A classification of additional risk classes of the trade, if any. FpML defines a simple asset class categorization using a coding scheme.">
-    productModelSequence ProductModelSequence (0..1)
-    productId ProductId (0..*) <"A product reference identifier. The product ID is an identifier that describes the key economic characteristics of the trade type, with the exception of concepts such as size (notional, quantity, number of units) and price (fixed rate, strike, etc.) that are negotiated for each transaction. It can be used to hold identifiers such as the \"UPI\" (universal product identifier) required by certain regulatory reporting rules. It can also be used to hold identifiers of benchmark products or product temnplates used by certain trading systems or facilities. FpML does not define the domain values associated with this element. Note that the domain values for this element are not strictly an enumerated list.">
-    embeddedOptionType EmbeddedOptionType (0..2) <"Describes the type of any embedded optionality in the transaction that might not otherwise be apparent. Can be used to represent embedded optionality such as early termination provisions, extendible provisions, or cancelable provisions, etc., where applicable. If omitted, no embedded optionality is applicable.">
-    productType ProductType (0..*) <"A classification of the type of product. FpML defines a simple product categorization using a coding scheme.">
-    assetClass AssetClass (0..*) <"A classification of the risk class of the trade. FpML defines a simple asset class categorization using a coding scheme.">
-
-    condition Choice:
-        required choice productModelSequence, productId
-
-type ProductModelSequence:
-
-    productType ProductType (1..*) <"A classification of the type of product. FpML defines a simple product categorization using a coding scheme.">
-    productId ProductId (0..*) <"A product reference identifier. The product ID is an identifier that describes the key economic characteristics of the trade type, with the exception of concepts such as size (notional, quantity, number of units) and price (fixed rate, strike, etc.) that are negotiated for each transaction. It can be used to hold identifiers such as the \"UPI\" (universal product identifier) required by certain regulatory reporting rules. It can also be used to hold identifiers of benchmark products or product temnplates used by certain trading systems or facilities. FpML does not define the domain values associated with this element. Note that the domain values for this element are not strictly an enumerated list.">
-
-type ReceiverModel:
-
-    receiverPartyReference PartyReference (0..1) <"A reference to the party that receives the payments corresponding to this structure.">
-    receiverAccountReference AccountReference (0..1) <"A reference to the account that receives the payments corresponding to this structure.">
-
-type RegulatoryBuyerAndSellerModel:
-
-    buyerPartyReference PartyReference (1..1) <"Indicates the party this regulator considers to be the buyer">
-    sellerPartyReference PartyReference (1..1) <"Indicates the party this regulator considers to be the seller.">
-
-type RoutingExplicitDetailsModel:
-
-    routingName String (0..1) <"A real name that is used to identify a party involved in the routing of a payment.">
-    routingAddress Address (0..1) <"A physical postal address via which a payment can be routed.">
-    routingAccountNumber NonEmptyToken (0..1) <"An account number via which a payment can be routed.">
-    routingReferenceText NonEmptyToken (0..*) <"A piece of free-format text used to assist the identification of a party involved in the routing of a payment.">
-
-type RoutingIdentificationModel:
-
-    routingIds RoutingIds (0..1) <"A set of unique identifiers for a party, eachone identifying the party within a payment system. The assumption is that each party will not have more than one identifier within the same payment system.">
-    routingExplicitDetails RoutingExplicitDetails (0..1) <"A set of details that is used to identify a party involved in the routing of a payment when the party does not have a code that identifies it within one of the recognized payment systems.">
-    routingIdsAndExplicitDetails RoutingIdsAndExplicitDetails (0..1) <"A combination of coded payment system identifiers and details for physical addressing for a party involved in the routing of a payment.">
-
-    condition Choice:
-        one-of
-
-type SettlementAmountOrCurrencyModel:
-
-    settlementAmount Money (0..1) <"Settlement Amount">
-    settlementCurrency Currency (0..1) <"Settlement Currency for use where the Settlement Amount cannot be known in advance">
-
-    condition Choice:
-        one-of
-
-type StockLoanModel: <"Stock Loan Content Model">
-
-    lossOfStockBorrow boolean (0..1) <"If true, then loss of stock borrow is applicable.">
-    maximumStockLoanRate DecimalFraction (0..1) <"Specifies the maximum stock loan rate for Loss of Stock Borrow.">
-    increasedCostOfStockBorrow boolean (0..1) <"If true, then increased cost of stock borrow is applicable.">
-    initialStockLoanRate DecimalFraction (0..1) <"Specifies the initial stock loan rate for Increased Cost of Stock Borrow.">
-
-type StubFloatingRateIndexModel:
-
-    floatingRateIndex FloatingRateIndex (0..1)
-    indexTenor Period (0..1) <"The ISDA Designated Maturity, i.e. the tenor of the floating rate.">
-    fallbackRate FallbackRate (0..1) <"A fallback rate calculated using an averaging or compounding formula to be used in case of the cessation of the original term rate. This structure is provided to allow an approximate representation to be created for published fallback rates to allow operations such as valuation, accrual calculation, and risk calculation.">
-
-type UnitContractModel: <"A group, which has unit based trade elements.">
-
-    numberOfUnits NonNegativeDecimal (1..1) <"The number of units (index or securities).">
-    unitPrice NonNegativeMoney (1..1) <"The price of each unit.">
-
-type VersionHistoryModel:
-
-    version int(min: 0) (0..1) <"The version number">
-    effectiveDate IdentifiedDate (0..1) <"Optionally it is possible to specify a version effective date when a versionId is supplied.">
 
 type CashflowId: <"An identifier used to identify a single component cashflow.">
 
@@ -1786,25 +1545,19 @@ type CollateralValueAllocation:
 
 type GrossCashflow: <"A payment component owed from one party to the other for the cash flow date. This payment component should by of only a single type, e.g. a fee or a cashflow from a cashflow stream.">
 
-    grossCashflowSequence GrossCashflowSequence (0..1)
-    cashflowType CashflowType (0..1) <"Defines the type of cash flow. For instance, a type of fee, premium, principal exchange, leg fee.">
-
-type GrossCashflowSequence:
-
-    cashflowId CashflowId (1..1) <"Unique identifier for a cash flow.">
+    cashflowId CashflowId (0..1) <"Unique identifier for a cash flow.">
     partyTradeIdentifierReference PartyTradeIdentifierReference (0..1) <"Pointer-style reference to the partyTradeIdentifier block within the tradeIdentifyingItems collection, which identifies the parent trade for this cashflow.">
-    payerReceiverModel PayerReceiverModel (1..1)
-    cashflowAmount Money (1..1) <"Cash flow amount in a given currency to be paid/received.">
+    payerPartyReference PartyReference (0..1) <"A reference to the party responsible for making the payments defined by this structure.">
+    payerAccountReference AccountReference (0..1) <"A reference to the account responsible for making the payments defined by this structure.">
+    receiverPartyReference PartyReference (0..1) <"A reference to the party that receives the payments corresponding to this structure.">
+    receiverAccountReference AccountReference (0..1) <"A reference to the account that receives the payments corresponding to this structure.">
+    cashflowAmount Money (0..1) <"Cash flow amount in a given currency to be paid/received.">
+    cashflowType CashflowType (0..1) <"Defines the type of cash flow. For instance, a type of fee, premium, principal exchange, leg fee.">
 
 type MatchId: <"An identifier used to identify matched cashflows.">
 
     value NonEmptyScheme (1..1)
     matchIdScheme NonEmptyURI (0..1)
-
-type PaymentDetailSequence:
-
-    paymentRule PaymentRule (1..1) <"A structure defining the calculation rule of the independent amount. Users are supposed to use type substitution at PaymentRule. PaymentRule is abstract and it is supposed to be substituted by PercentageRule. There is the expectation that other rules will be created in the future to model other types of independent amount payment rules.">
-    paymentAmount Money (0..1) <"A fixed payment amount.">
 
 type PaymentDetails: <"Details on the referenced payment. e.g. Its cashflow components, settlement details.">
 
@@ -1818,19 +1571,15 @@ type PaymentReference extends Reference: <"Reference to a payment.">
 
 type ProposedCollateralAllocation: <"The proposed collateral allocation.">
 
-    collateralPartyAndAccountReferencesModel CollateralPartyAndAccountReferencesModel (1..1)
+    allocationPartyReference PartyReference (0..1) <"Reference to a party.">
+    allocationAccountReference AccountReference (0..1) <"Reference to an account.">
     proposedCollateralAllocationChoice ProposedCollateralAllocationChoice (1..*)
 
 type ProposedCollateralAllocationChoice:
 
-    collateralValueAllocation CollateralValueAllocation (1..1) <"Collateral allocation by value.">
+    collateralValueAllocation CollateralValueAllocation (0..1) <"Collateral allocation by value.">
 
 type RequestedAction:
 
     value Scheme (1..1)
     requestedActionScheme NonEmptyURI (0..1)
-
-type CollateralPartyAndAccountReferencesModel:
-
-    allocationPartyReference PartyReference (0..1) <"Reference to a party.">
-    allocationAccountReference AccountReference (0..1) <"Reference to an account.">

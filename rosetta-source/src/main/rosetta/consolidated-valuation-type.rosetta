@@ -4,6 +4,7 @@ version "${project.version}"
 type ValuationSet: <"A set of valuation inputs and results. This structure can be used for requesting valuations, or for reporting them. In general, the request fills in fewer elements.">
     [rootType]
 
+    id string (0..1)
     name fpml.consolidated.shared.NonEmptyToken (0..1) <"The name of the valuation set, used to understand what it means. E.g., \"EOD Values and Risks for Party A\".">
     valuationScenario fpml.consolidated.riskdef.ValuationScenario (0..*) <"Valuation scenerios used (requested/reported) in this valuation set. E.g., the EOD valuation scenario for a particular value date. Used for the first occurrence of a valuation scenario in a document.">
     valuationScenarioReference fpml.consolidated.riskdef.ValuationScenarioReference (0..*) <"References to valuation scenarios used (requested/reported) in this valuation set. E..g, a reference to the EOD valuation scenario for a particular value date. Used for subsequence occurrences of a valuation set in an FpML document.">
@@ -12,7 +13,6 @@ type ValuationSet: <"A set of valuation inputs and results. This structure can b
     sensitivitySetDefinition fpml.consolidated.riskdef.SensitivitySetDefinition (0..*) <"Definition(s) of sensitivity sets used (requested or reported) in this valuation set.">
     detail ValuationSetDetail (0..1) <"Does this valuation set include a market environment?">
     assetValuation AssetValuation (0..*) <"Valuations reported in this valuation set. These values can be values (NPVs, prices, etc.) or risks (DAR, etc.) and can include sensitivities.">
-    id string (0..1)
 
 type AssetValuation extends fpml.consolidated.riskdef.Valuation: <"A structure that holds a set of measures about an asset, including possibly their sensitivities.">
 
@@ -21,7 +21,21 @@ type AssetValuation extends fpml.consolidated.riskdef.Valuation: <"A structure t
 
 type Quotation: <"Some kind of numerical measure about an asset, eg. its NPV, together with characteristics of that measure, together with optional sensitivities.">
 
-    quotationModel fpml.consolidated.asset.QuotationModel (1..1)
+    value number (0..1) <"The value of the the quotation.">
+    measureType fpml.consolidated.asset.AssetMeasureType (0..1) <"The type of the value that is measured. This could be an NPV, a cash flow, a clean price, etc.">
+    quoteUnits fpml.consolidated.asset.PriceQuoteUnits (0..1) <"The optional units that the measure is expressed in. If not supplied, this is assumed to be a price/value in currency units.">
+    side fpml.consolidated.fpmlenum.QuotationSideEnum (0..1) <"The side (bid/mid/ask) of the measure.">
+    currency fpml.consolidated.shared.Currency (0..1) <"The optional currency that the measure is expressed in. If not supplied, this is defaulted from the reportingCurrency in the valuationScenarioDefinition.">
+    currencyType fpml.consolidated.asset.ReportingCurrencyType (0..1) <"The optional currency that the measure is expressed in. If not supplied, this is defaulted from the reportingCurrency in the valuationScenarioDefinition.">
+    timing fpml.consolidated.asset.QuoteTiming (0..1) <"When during a day the quote is for. Typically, if this element is supplied, the QuoteLocation needs also to be supplied.">
+    businessCenter fpml.consolidated.shared.BusinessCenter (0..1) <"A city or other business center.">
+    exchangeId fpml.consolidated.shared.ExchangeId (0..1) <"The exchange (e.g. stock or futures exchange) from which the quote is obtained.">
+    informationSource fpml.consolidated.shared.InformationSource (0..*) <"The information source where a published or displayed market rate will be obtained, e.g. Telerate Page 3750.">
+    pricingModel fpml.consolidated.asset.PricingModel (0..1) <".">
+    time zonedDateTime (0..1) <"When the quote was observed or when a calculated value was generated.">
+    valuationDate zonedDateTime (0..1) <"When the quote was computed.">
+    expiryTime zonedDateTime (0..1) <"When does the quote cease to be valid.">
+    cashflowType fpml.consolidated.shared.CashflowType (0..1) <"For cash flows, the type of the cash flows. Examples include: Coupon payment, Premium Fee, Settlement Fee, Brokerage Fee, etc.">
     sensitivitySet SensitivitySet (0..*) <"Zero or more sets of sensitivities of this measure to various input parameters.">
 
 type Sensitivity: <"The sensitivity of a value to a defined change in input parameters.">
@@ -32,10 +46,10 @@ type Sensitivity: <"The sensitivity of a value to a defined change in input para
 
 type SensitivitySet: <"A collection of sensitivities. References a definition that explains the meaning/type of the sensitivities.">
 
+    id string (0..1)
     name fpml.consolidated.shared.NonEmptyToken (0..1)
     definitionReference fpml.consolidated.riskdef.SensitivitySetDefinitionReference (0..1) <"A reference to a sensitivity set definition.">
     sensitivity Sensitivity (0..*)
-    id string (0..1)
 
 type ValuationSetDetail: <"The amount of detail provided in the valuation set, e.g. is market environment data provided, are risk definitions provided, etc.">
 

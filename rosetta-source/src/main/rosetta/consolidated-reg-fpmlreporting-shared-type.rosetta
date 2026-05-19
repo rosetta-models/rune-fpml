@@ -22,9 +22,6 @@ type CollateralPortfolioChoice:
     cash fpml.consolidated.shared.PositiveMoney (0..1) <"Represents the amount of cash posted as collateral. The cash collateral component is simple, just an instance of PositiveMoney type.">
     nonCash CollateralPosition (0..1) <"Represents the type and the amount of security (non-cash) posted as collateral. The nonCash collateral component uses SecurityValuation.model to state what security it is, how much and the current dirty price. It also includes optional ability to specify the margin or haircut that applies to this piece of collateral.">
 
-    condition Choice:
-        optional choice cash, nonCash
-
 type CollateralPortfolioId:
 
     value fpml.consolidated.shared.Scheme (1..1)
@@ -34,9 +31,6 @@ type CollateralPosition extends fpml.consolidated.repo.SecurityValuation:
 
     marginRatio fpml.consolidated.shared.DecimalFraction (0..1) <"An element defining an initial margin expressed as a ratio of the Market Value of the collateral to the Purchase Price. A default value of initial margin ratio of 1.00 means there is no margin and thus no risk related with the collateral. See GMRA 2000 paragraph 2(z) and GMRA 2011 paragraph 2(bb).">
     haircut fpml.consolidated.shared.DecimalFraction (0..1) <"An element defining a haircut expressed as the percentage difference between the Market Value of the collateral and the Purchase Price of the repo and calculated as 100 multiplied by a ratio of the difference between the Market Value of the collateral and the Purchase Price of the repo to the Market Value of the collateral. Haircut is alternative way to adjust the value of collateral sold in a repurchase agreement to initial margin ratio. Because an initial margin is a percentage of the Purchase Price, while a haircut is a percentage of the Market Value of collateral, the arithmetic of initial margins and haircuts is slightly different. For example, an initial margin of 102% is not equivalent to a haircut of 2%, but to 1.961% (ie 100/102%). See GMRA 2011 paragraph 2(aa).">
-
-    condition Choice:
-        optional choice marginRatio, haircut
 
 type DisseminationId: <"The data type used for dissemination identifiers.">
 
@@ -51,9 +45,6 @@ type PublicDissemination: <"Information related to the public dissemination.">
     projectedTime zonedDateTime (0..1) <"The date and time the public report is projected to be disseminated.">
     withdrawn zonedDateTime (0..1) <"The date and time the public report was withdrawn from the public tape.">
 
-    condition Choice:
-        required choice publicationTime, projectedTime
-
 type RegulationName: <"An identifier of a regulation used for regulatory reporting, for example CFTC_PART43, CFTC_PART45, CSA_2013, etc.">
 
     value fpml.consolidated.shared.Scheme (1..1)
@@ -63,14 +54,17 @@ type RegulatorApplicability: <"Speccifies the trade is subject to this regulatio
 
     supervisoryBody string (0..1)
     regulation RegulationName (0..*)
-    reportingAndCounterPartyModel ReportingAndCounterPartyModel (0..1)
+    reportingPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A reference to the reporting party.">
+    counterPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A reference to the reporting party.">
 
 type RegulatoryReportingCollateralization: <"A type defining collateral information to be reported.">
 
     postingPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A party that can post the collateral.">
     beneficiaryPartyReference fpml.consolidated.shared.PartyReference (0..1)
     holdingPartyReference fpml.consolidated.shared.PartyReference (0..1)
-    regulatorReportCollateralInfoModel RegulatorReportCollateralInfoModel (0..1)
+    collateralizedExposureGrouping fpml.consolidated.shared.CollateralizedExposureGrouping (0..1) <"Whether the trade collateralized exposure is calculated at the individual (single) trade aggregation level or the net (multiple trades) aggregation level. SFTR description of the field: Collateralization of net exposure - Indicates whether the collateral has been provided for a net exposure, rather than for a single transaction (\'true\' or \'false\').">
+    collateralizationType fpml.consolidated.shared.CollateralizationType (0..1) <"Specifies how the transaction is collateralized by this party, fully or partially, or uncollateralized. For Transparency view, the options include Full, Partial, Uncollateralized, and One-Way. For Recordkeeping, the collateralization type refers to collateral that is posted by this firm, and One-Way option is not meaningful. In other words, if the collateralization type is Full, this trade is fully collateralized by this party. SFTR description of the field: Uncollateralised SL flag - Indicates whether the securities lending transaction is uncollateralised (\'true\' or \'false\'). Uncollateralised SL will be \'true\', if collateralizationType = \'Uncollateralized\'.">
+    portfolioId CollateralPortfolioId (0..1) <"Provides code, or other identifier for the collateral portfolio to which this belongs. The collateral portfolio describes how trades are aggregated for collateral calculation purposes. All trades that are aggregated together for collateral calculation purposes will share the same collateral portfolio code. This code may come from different sources depending on the level of aggregation defined in the CSA (e.g. it may be the LEI of a counterparty or a desk identifier). SFTR description of this field: Portfolio code - If the transaction is cleared and is included in a portfolio of transactions for which margins are exchanged, this portfolio should be identified by a unique code determined by the reporting counterparty. 52 alphanumeric character code including four special characters: .- _. Special characters are not allowed at the beginning and at the end of the code. No space allowed.">
     postedCollateral CollateralPortfolio (0..1) <"Information about the amount of collateral actually posted by the posting party as of a particular value date.">
 
 type RegulatorReportingStatusCode: <"A type that can be used to identify the reporting status of a transaction. Examples include FullyReported, ReportedWithWarnings, NotReported, etc.">
@@ -103,14 +97,3 @@ type RequestRegulatoryReportingStatusMessage extends fpml.consolidated.msg.Addre
     primaryAssetClass fpml.consolidated.shared.AssetClass (0..1) <"The asset class of the underlying product.">
     relatedParty fpml.consolidated.shared.RelatedParty (0..*)
     party fpml.consolidated.shared.Party (0..*) <"The supporting party definitions.">
-
-type RegulatorReportCollateralInfoModel:
-
-    collateralizedExposureGrouping fpml.consolidated.shared.CollateralizedExposureGrouping (0..1) <"Whether the trade collateralized exposure is calculated at the individual (single) trade aggregation level or the net (multiple trades) aggregation level. SFTR description of the field: Collateralization of net exposure - Indicates whether the collateral has been provided for a net exposure, rather than for a single transaction (\'true\' or \'false\').">
-    collateralizationType fpml.consolidated.shared.CollateralizationType (0..1) <"Specifies how the transaction is collateralized by this party, fully or partially, or uncollateralized. For Transparency view, the options include Full, Partial, Uncollateralized, and One-Way. For Recordkeeping, the collateralization type refers to collateral that is posted by this firm, and One-Way option is not meaningful. In other words, if the collateralization type is Full, this trade is fully collateralized by this party. SFTR description of the field: Uncollateralised SL flag - Indicates whether the securities lending transaction is uncollateralised (\'true\' or \'false\'). Uncollateralised SL will be \'true\', if collateralizationType = \'Uncollateralized\'.">
-    portfolioId CollateralPortfolioId (0..1) <"Provides code, or other identifier for the collateral portfolio to which this belongs. The collateral portfolio describes how trades are aggregated for collateral calculation purposes. All trades that are aggregated together for collateral calculation purposes will share the same collateral portfolio code. This code may come from different sources depending on the level of aggregation defined in the CSA (e.g. it may be the LEI of a counterparty or a desk identifier). SFTR description of this field: Portfolio code - If the transaction is cleared and is included in a portfolio of transactions for which margins are exchanged, this portfolio should be identified by a unique code determined by the reporting counterparty. 52 alphanumeric character code including four special characters: .- _. Special characters are not allowed at the beginning and at the end of the code. No space allowed.">
-
-type ReportingAndCounterPartyModel: <"Model group that references the reporting party and counterparty.">
-
-    reportingPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the reporting party.">
-    counterPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the reporting party.">

@@ -87,11 +87,11 @@ type RSAKeyValue extends RSAKeyValueType:
 
 type SignatureType:
 
+    id string (0..1)
     signedInfo SignedInfoType (1..1)
     signatureValue SignatureValueType (1..1)
     keyInfo KeyInfoType (0..1)
     object ObjectType (0..*)
-    id string (0..1)
 
 type SignatureValueType:
 
@@ -100,30 +100,30 @@ type SignatureValueType:
 
 type SignedInfoType:
 
+    id string (0..1)
     canonicalizationMethod CanonicalizationMethodType (1..1)
     signatureMethod SignatureMethodType (1..1)
     reference ReferenceType (1..*)
-    id string (0..1)
 
 type CanonicalizationMethodType:
 
-    anyContents string (0..*) <"Placeholder for xsd:any: Min Occurs: 0; Max Occurs: unbounded; Namespace: ##any; Process Contents: strict.">
     algorithm string(pattern: "\\w+:(\\/?\\/?)[^\\s]+") (1..1)
+    anyContents string (0..*) <"Placeholder for xsd:any: Min Occurs: 0; Max Occurs: unbounded; Namespace: ##any; Process Contents: strict.">
 
 type SignatureMethodType:
 
+    algorithm string(pattern: "\\w+:(\\/?\\/?)[^\\s]+") (1..1)
     hmacOutputLength HMACOutputLengthType (0..1)
     anyContents string (0..*) <"Placeholder for xsd:any: Min Occurs: 0; Max Occurs: unbounded; Namespace: ##other; Process Contents: strict.">
-    algorithm string(pattern: "\\w+:(\\/?\\/?)[^\\s]+") (1..1)
 
 type ReferenceType:
 
-    transforms TransformsType (0..1)
-    digestMethod DigestMethodType (1..1)
-    digestValue DigestValueType (1..1)
     id string (0..1)
     uri string(pattern: "\\w+:(\\/?\\/?)[^\\s]+") (0..1)
     ^type string(pattern: "\\w+:(\\/?\\/?)[^\\s]+") (0..1)
+    transforms TransformsType (0..1)
+    digestMethod DigestMethodType (1..1)
+    digestValue DigestValueType (1..1)
 
 type TransformsType:
 
@@ -131,26 +131,23 @@ type TransformsType:
 
 type TransformType:
 
-    transformTypeChoice TransformTypeChoice (0..*)
     algorithm string(pattern: "\\w+:(\\/?\\/?)[^\\s]+") (1..1)
+    transformTypeChoice TransformTypeChoice (0..*)
 
 type TransformTypeChoice:
 
     anyContents string (0..1) <"Placeholder for xsd:any: Min Occurs: 1; Max Occurs: 1; Namespace: ##other; Process Contents: lax.">
     xPath string (0..1)
 
-    condition Choice:
-        optional choice anyContents, xPath
-
 type DigestMethodType:
 
-    anyContents string (0..*) <"Placeholder for xsd:any: Min Occurs: 0; Max Occurs: unbounded; Namespace: ##other; Process Contents: lax.">
     algorithm string(pattern: "\\w+:(\\/?\\/?)[^\\s]+") (1..1)
+    anyContents string (0..*) <"Placeholder for xsd:any: Min Occurs: 0; Max Occurs: unbounded; Namespace: ##other; Process Contents: lax.">
 
 type KeyInfoType:
 
-    keyInfoTypeChoice KeyInfoTypeChoice (1..*)
     id string (0..1)
+    keyInfoTypeChoice KeyInfoTypeChoice (1..*)
 
 type KeyInfoTypeChoice:
 
@@ -163,23 +160,17 @@ type KeyInfoTypeChoice:
     mgmtData string (0..1)
     anyContents string (0..1) <"Placeholder for xsd:any: Min Occurs: 1; Max Occurs: 1; Namespace: ##other; Process Contents: lax.">
 
-    condition Choice:
-        one-of
-
 type KeyValueType:
 
     dsaKeyValue DSAKeyValueType (0..1)
     rsaKeyValue RSAKeyValueType (0..1)
     anyContents string (0..1) <"Placeholder for xsd:any: Min Occurs: 1; Max Occurs: 1; Namespace: ##other; Process Contents: lax.">
 
-    condition Choice:
-        one-of
-
 type RetrievalMethodType:
 
-    transforms TransformsType (0..1)
     uri string(pattern: "\\w+:(\\/?\\/?)[^\\s]+") (0..1)
     ^type string(pattern: "\\w+:(\\/?\\/?)[^\\s]+") (0..1)
+    transforms TransformsType (0..1)
 
 type X509DataType:
 
@@ -194,9 +185,6 @@ type X509DataTypeSequence:
     x509CRL string (0..1)
     anyContents string (0..1) <"Placeholder for xsd:any: Min Occurs: 1; Max Occurs: 1; Namespace: ##other; Process Contents: lax.">
 
-    condition Choice:
-        one-of
-
 type X509IssuerSerialType:
 
     x509IssuerName string (1..1)
@@ -204,22 +192,10 @@ type X509IssuerSerialType:
 
 type PGPDataType:
 
-    pgpDataTypeSequence0 PGPDataTypeSequence0 (0..1)
-    pgpDataTypeSequence1 PGPDataTypeSequence1 (0..1)
-
-    condition Choice:
-        one-of
-
-type PGPDataTypeSequence0:
-
-    pgpKeyID string (1..1)
+    pgpKeyID string (0..1)
     pgpKeyPacket string (0..1)
-    anyContents string (0..*) <"Placeholder for xsd:any: Min Occurs: 0; Max Occurs: unbounded; Namespace: ##other; Process Contents: lax.">
-
-type PGPDataTypeSequence1:
-
-    pgpKeyPacket string (1..1)
-    anyContents string (0..*) <"Placeholder for xsd:any: Min Occurs: 0; Max Occurs: unbounded; Namespace: ##other; Process Contents: lax.">
+    anyContents0 string (0..*) <"Placeholder for xsd:any: Min Occurs: 0; Max Occurs: unbounded; Namespace: ##other; Process Contents: lax.">
+    anyContents1 string (0..*) <"Placeholder for xsd:any: Min Occurs: 0; Max Occurs: unbounded; Namespace: ##other; Process Contents: lax.">
 
 type SPKIDataType:
 
@@ -232,10 +208,10 @@ type SPKIDataTypeSequence:
 
 type ObjectType:
 
-    objectTypeSequence ObjectTypeSequence (0..*)
     id string (0..1)
     mimeType string (0..1)
     encoding string(pattern: "\\w+:(\\/?\\/?)[^\\s]+") (0..1)
+    objectTypeSequence ObjectTypeSequence (0..*)
 
 type ObjectTypeSequence:
 
@@ -243,41 +219,33 @@ type ObjectTypeSequence:
 
 type ManifestType:
 
-    reference ReferenceType (1..*)
     id string (0..1)
+    reference ReferenceType (1..*)
 
 type SignaturePropertiesType:
 
-    signatureProperty SignaturePropertyType (1..*)
     id string (0..1)
+    signatureProperty SignaturePropertyType (1..*)
 
 type SignaturePropertyType:
 
-    signaturePropertyTypeChoice SignaturePropertyTypeChoice (1..*)
     target string(pattern: "\\w+:(\\/?\\/?)[^\\s]+") (1..1)
     id string (0..1)
+    signaturePropertyTypeChoice SignaturePropertyTypeChoice (1..*)
 
 type SignaturePropertyTypeChoice:
 
-    anyContents string (1..1) <"Placeholder for xsd:any: Min Occurs: 1; Max Occurs: 1; Namespace: ##other; Process Contents: lax.">
+    anyContents string (0..1) <"Placeholder for xsd:any: Min Occurs: 1; Max Occurs: 1; Namespace: ##other; Process Contents: lax.">
 
 type DSAKeyValueType:
 
-    dsaKeyValueTypeSequence0 DSAKeyValueTypeSequence0 (0..1)
+    p CryptoBinary (0..1)
+    q CryptoBinary (0..1)
     g CryptoBinary (0..1)
     y CryptoBinary (1..1)
     j CryptoBinary (0..1)
-    dsaKeyValueTypeSequence1 DSAKeyValueTypeSequence1 (0..1)
-
-type DSAKeyValueTypeSequence0:
-
-    p CryptoBinary (1..1)
-    q CryptoBinary (1..1)
-
-type DSAKeyValueTypeSequence1:
-
-    seed CryptoBinary (1..1)
-    pgenCounter CryptoBinary (1..1)
+    seed CryptoBinary (0..1)
+    pgenCounter CryptoBinary (0..1)
 
 type RSAKeyValueType:
 

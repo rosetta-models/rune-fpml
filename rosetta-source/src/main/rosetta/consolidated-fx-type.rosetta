@@ -8,24 +8,28 @@ type FxDigitalOption extends fpml.consolidated.option.shared.Option: <"An FX dig
 
     effectiveDate fpml.consolidated.shared.AdjustableOrRelativeDate (0..1) <"Effective date for a forward starting derivative. If this element is not present, the effective date is the trade date.">
     tenorPeriod fpml.consolidated.shared.Period (0..1) <"A tenor expressed as a period type and multiplier (e.g. 1D, 1Y, etc.)">
-    fxDigitalOptionSequence0 FxDigitalOptionSequence0 (0..1)
-    fxDigitalOptionSequence1 FxDigitalOptionSequence1 (0..1)
+    americanExercise FxDigitalAmericanExercise (0..1) <"The parameters for defining the exercise period for an American style option.">
+    touch FxTouch (0..*) <"Defines one or more conditions underwhich the option will payout if exercisable.">
+    europeanExercise FxEuropeanExercise (0..1) <"The parameters for defining the exercise period for an European style option.">
+    trigger FxTrigger (0..*) <"Defines one or more conditions underwhich the option will payout if exercisable.">
     exerciseProcedure fpml.consolidated.shared.ExerciseProcedure (0..1) <"A set of parameters defining procedures associated with the exercise.">
     payout FxOptionPayout (1..1) <"The amount of currency which becomes payable if and when a trigger event occurs.">
     premium FxOptionPremium (0..*) <"Premium amount or premium installment amount for an option.">
 
-    condition Choice:
-        required choice fxDigitalOptionSequence0, fxDigitalOptionSequence1
-
 type FxFlexibleForward extends fpml.consolidated.shared.Product: <"A flexible term fx forward product definition. Product model for a flexible-term fx forward (also known as callable forward, window forward). This is a term forward transaction over a specific period, allowing the client full flexibility on the timing of the transactional flow(s). The product allows for (full or partial) execution at a predetermined forward rate, at any time between the start date and the expiry date. Although, the product is an outright, it has some option-like characteristics, leading to the use of option components in the model: (i) the BuyerSeller model expresses the roles of the parties in the overall transaction - the client \"buys\" the product (ii) the PutCallCurrency model expresses the buyer\'s perspective on the exchanged currencies i.e. the client may buy (call) or sell (put) the notional currency for the alternative currency.">
 
-    buyerSellerModel fpml.consolidated.shared.BuyerSellerModel (1..1)
-    putCallCurrencyModel PutCallCurrencyModel (1..1)
+    buyerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party that buys this instrument, ie. pays for this instrument and receives the rights defined by it. See 2000 ISDA definitions Article 11.1 (b). In the case of FRAs this the fixed rate payer.">
+    buyerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that buys this instrument.">
+    sellerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party that sells (\"writes\") this instrument, i.e. that grants the rights defined by this instrument and in return receives a payment for it. See 2000 ISDA definitions Article 11.1 (a). In the case of FRAs this is the floating rate payer.">
+    sellerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that sells this instrument.">
+    putCurrency fpml.consolidated.shared.Currency (1..1) <"The currency which: - the option buyer will pay (sell) - the option writer will receive (buy)">
+    callCurrency fpml.consolidated.shared.Currency (1..1) <"The currency which: - the option buyer will receive (buy) - the option writer will pay (sell)">
     notionalAmount fpml.consolidated.shared.NonNegativeMoney (1..1) <"The aggregate notional amount which will be exchanged, possibly as multiple partial executions, during the course of the execution period. Any residual notional which remains unexchanged at the expiry date will automatically be executed at the applicable exchange rate (strike).">
     minimumExecutionAmount fpml.consolidated.shared.PositiveMoney (0..1) <"The minimum notional amount which must be executed in any single transaction.">
     settlementAmount fpml.consolidated.shared.NonNegativeMoney (0..1) <"The total amount of settlement currency that will be paid over the life of the trade if calculable. The Settlement Amount element is a synonym for Contra Amount.">
     executionPeriodDates FxFlexibleForwardExecutionPeriod (1..1) <"The period during which the client has the right to execute a transaction, on any business day defined by reference to the specified business centers, subject to the constraints of the minimum execution amount and aggregate total notional amount. * Period dates are inclusive i.e. the expiry date is the final date on which execution may occur.">
-    fxFlexibleForwardSequence FxFlexibleForwardSequence (0..1)
+    earliestExecutionTime fpml.consolidated.shared.BusinessCenterTime (0..1) <"The earliest time of day at the specified business center, at which the client may execute a transaction.">
+    latestExecutionTime fpml.consolidated.shared.BusinessCenterTime (0..1) <"The latest time of day at the specified business center, at which the client may execute a transaction.">
     settlementDateOffset fpml.consolidated.shared.RelativeDateOffset (0..1) <"The date on which delivery of the transacted currency amounts will occur, expressed as an offset from the execution date. * This property is optional in the schema, allowing it to be omitted by systems which do not support it; however this information would be expected in contractual documentation (e.g. termsheet, confirmation).">
     finalSettlementDate zonedDateTime (0..1) <"The final date for settlement. This is the date on which any residual exchange amount will be delivered. * This is an adjusted date i.e. a good business day for delivery in the location(s) specified in executionPeriodDates /businessCenters">
     forwardRate FxFlexibleForwardRate (1..1) <"Definition of the forward exchange rate for transactions executed during the execution period.">
@@ -33,7 +37,10 @@ type FxFlexibleForward extends fpml.consolidated.shared.Product: <"A flexible te
 
 type FxForwardVolatilityAgreement extends fpml.consolidated.shared.Product: <"An FX Forward Volatility Agreement transaction definition. Describes a contract on future levels of implied volatility. The main characteristic of this product is that the underlying is a straddle (underlying options) with a specific tenor starting from the fixing (effective or pricing) date, and are priced on that fixing date using a level of volatility that is agreed at the time of execution of the volatility agreement.">
 
-    buyerSellerModel fpml.consolidated.shared.BuyerSellerModel (1..1)
+    buyerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party that buys this instrument, ie. pays for this instrument and receives the rights defined by it. See 2000 ISDA definitions Article 11.1 (b). In the case of FRAs this the fixed rate payer.">
+    buyerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that buys this instrument.">
+    sellerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party that sells (\"writes\") this instrument, i.e. that grants the rights defined by this instrument and in return receives a payment for it. See 2000 ISDA definitions Article 11.1 (a). In the case of FRAs this is the floating rate payer.">
+    sellerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that sells this instrument.">
     quotedCurrencyPair fpml.consolidated.shared.QuotedCurrencyPair (1..1) <"A currency Pair the straddle is based on.">
     fixingDate zonedDateTime (1..1) <"The date when the underlying options are priced using the agreed forwardVolatilityStrikePrice and other market factors as agreed by the parties. Also known as \"Effective Date\" or \"Reference Date\".">
     fixingTime fpml.consolidated.shared.BusinessCenterTime (0..1) <"The time of the fixing date when the underlying options are priced using the agreed forwardVolatilityStrikePrice and other market factors as agreed by the parties.">
@@ -57,12 +64,19 @@ type FxOption extends fpml.consolidated.option.shared.Option: <"An FX option tra
     premium FxOptionPremium (0..*) <"Premium amount or premium installment amount for an option.">
     cashSettlement fpml.consolidated.shared.FxCashSettlement (0..1) <"Specifies the currency and fixing details for cash settlement. This optional element is produced only where it has been specified at execution time that the option wlll be settled into a single cash payment - for example, in the case of a non-deliverable option (although note that an Fx option may be contractually cash settled, without necessarily being non-deliverable).">
 
-    condition Choice:
-        optional choice americanExercise, europeanExercise
-
 type FxSingleLeg extends fpml.consolidated.shared.Product: <"A simple FX spot or forward transaction definition. A type defining either a spot or forward FX transactions.">
 
-    fxCoreDetailsModel FxCoreDetailsModel (1..1)
+    exchangedCurrency1 fpml.consolidated.shared.Payment (1..1) <"This is the first of the two currency flows that define a single leg of a standard foreign exchange transaction.">
+    exchangedCurrency2 fpml.consolidated.shared.Payment (1..1) <"This is the second of the two currency flows that define a single leg of a standard foreign exchange transaction.">
+    dealtCurrency fpml.consolidated.fpmlenum.DealtCurrencyEnum (0..1) <"Indicates which currency was dealt.">
+    tenorName fpml.consolidated.fpmlenum.FxTenorPeriodEnum (0..1) <"A tenor expressed with a standard business term (i.e. Spot, TomorrowNext, etc.)">
+    tenorPeriod fpml.consolidated.shared.Period (0..1) <"A tenor expressed as a period type and multiplier (e.g. 1D, 1Y, etc.)">
+    valueDate zonedDateTime (0..1) <"The date on which both currencies traded will settle.">
+    currency1ValueDate zonedDateTime (0..1) <"The date on which the currency1 amount will be settled. To be used in a split value date scenario.">
+    currency2ValueDate zonedDateTime (0..1) <"The date on which the currency2 amount will be settled. To be used in a split value date scenario.">
+    exchangeRate ExchangeRate (0..1) <"The rate of exchange between the two currencies.">
+    nonDeliverableSettlement fpml.consolidated.shared.FxCashSettlement (0..1) <"Used to describe a particular type of FX forward transaction that is settled in a single currency (for example, a non-deliverable forward).">
+    disruption FxDisruption (0..*) <"Describes the disruption events and fallbacks applicable to a currency pair referenced by the transaction.">
 
 type FxSwap extends fpml.consolidated.shared.Product: <"An FX Swap transaction definition. A type defining either a spot/forward or forward/forward FX swap transaction.">
 
@@ -75,10 +89,14 @@ type FxVolatilitySwap extends FxPerformanceSwap: <"An FX volatility swap transac
 
 type TermDeposit extends fpml.consolidated.shared.Product: <"A term deposit product definition. A class defining the content model for a term deposit product.">
 
-    payerReceiverModel fpml.consolidated.shared.PayerReceiverModel (1..1)
+    payerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party responsible for making the payments defined by this structure.">
+    payerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account responsible for making the payments defined by this structure.">
+    receiverPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A reference to the party that receives the payments corresponding to this structure.">
+    receiverAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that receives the payments corresponding to this structure.">
     startDate zonedDateTime (0..1) <"The start date of the calculation period.">
     maturityDate zonedDateTime (0..1) <"The end date of the calculation period. This date should already be adjusted for any applicable business day convention.">
-    fxTenorModel FxTenorModel (0..1)
+    tenorName fpml.consolidated.fpmlenum.FxTenorPeriodEnum (0..1) <"A tenor expressed with a standard business term (i.e. Spot, TomorrowNext, etc.)">
+    tenorPeriod fpml.consolidated.shared.Period (0..1) <"A tenor expressed as a period type and multiplier (e.g. 1D, 1Y, etc.)">
     principal fpml.consolidated.shared.PositiveMoney (0..1) <"The principal amount of the trade.">
     fixedRate fpml.consolidated.shared.PositiveDecimal (0..1) <"The calculation period fixed rate. A per annum rate, expressed as a decimal. A fixed rate of 5% would be represented as 0.05.">
     dayCountFraction fpml.consolidated.shared.DayCountFraction (0..1) <"The day count fraction.">
@@ -104,7 +122,8 @@ type PriceSourceDisruption extends FxDisruptionEvent: <"If present indicates tha
 
 type PriceMateriality extends FxDisruptionEvent: <"Defines the require price materiality percentage for the rate source to be considered valid. A structure describing the criteria for price materiality.">
 
-    prioritizedRateSourceModel PrioritizedRateSourceModel (1..1)
+    primaryRateSource fpml.consolidated.shared.SettlementRateOption (0..1)
+    secondaryRateSource fpml.consolidated.shared.SettlementRateOption (0..*)
     percentage fpml.consolidated.shared.Percentage (0..1) <"A value expressed in percentage units i.e. 5 means 5%.">
 
 type SettlementPostponement extends Postponement: <"Indicates that the Settlement Date for the tranaction shall be deemed to be the first Business Day following the day on which the applicable Disruption Event ceases to exist, unless the events continues to exists for more than a maximum number of days.">
@@ -114,10 +133,6 @@ type ValuationPostponement extends Postponement: <"Indicates that the Valuation 
 type CrossRate extends fpml.consolidated.shared.QuotedCurrencyPair: <"A type that is used for including the currency exchange rates used to cross between the traded currencies for non-base currency FX contracts.">
 
     rate fpml.consolidated.shared.PositiveDecimal (0..1) <"The exchange rate used to cross between the traded currencies.">
-    crossRateSequence CrossRateSequence (0..1)
-
-type CrossRateSequence:
-
     spotRate fpml.consolidated.shared.PositiveDecimal (0..1) <"An optional element used for FX forwards and certain types of FX OTC options. For deals consumated in the FX Forwards Market, this represents the current market rate for a particular currency pair.">
     forwardPoints number (0..1) <"An optional element used for deals consumated in the FX Forwards market. Forward points represent the interest rate differential between the two currencies traded and are quoted as a preminum or a discount. Forward points are added to, or subtracted from, the spot rate to create the rate of the forward trade.">
 
@@ -144,18 +159,10 @@ type ExchangeRate: <"A type that is used for describing the exchange rate for a 
 
     quotedCurrencyPair fpml.consolidated.shared.QuotedCurrencyPair (0..1) <"Defines the two currencies for an FX trade and the quotation relationship between the two currencies.">
     rate fpml.consolidated.shared.PositiveDecimal (1..1) <"The rate of exchange between the two currencies of the leg of a deal. Must be specified with a quote basis.">
-    exchangeRateSequence ExchangeRateSequence (0..1)
-    crossRate CrossRate (0..*) <"An optional element that allow for definition of the currency exchange rates used to cross between the traded currencies for non-base currency FX contracts.">
-
-type ExchangeRateSequence:
-
     spotRate fpml.consolidated.shared.PositiveDecimal (0..1) <"An element used for FX forwards and certain types of FX OTC options. For deals consumated in the FX Forwards Market, this represents the current market rate for a particular currency pair. For barrier and digital/binary options, it can be useful to include the spot rate at the time the option was executed to make it easier to know whether the option needs to move \"up\" or \"down\" to be triggered.">
-    exchangeRateSequenceSequence ExchangeRateSequenceSequence (0..1)
-
-type ExchangeRateSequenceSequence:
-
     forwardPoints number (0..1) <"An optional element used for deals consumated in the FX Forwards market. Forward points represent the interest rate differential between the two currencies traded and are quoted as a preminum or a discount. Forward points are added to, or subtracted from, the spot rate to create the rate of the forward trade.">
     pointValue PointValue (0..1) <"An optional element that documents the size of point (pip) in which a rate was quoted (or in this case, forwardPoints are calculated). Point (pip) size varies by currency pair: major currencies are all traded in points of 0.0001, with the exception of JPY which has a point size of 0.01.">
+    crossRate CrossRate (0..*) <"An optional element that allow for definition of the currency exchange rates used to cross between the traded currencies for non-base currency FX contracts.">
 
 type FxAmericanExercise extends FxDigitalAmericanExercise: <"Describes the characteristics for american exercise of FX products.">
 
@@ -166,15 +173,11 @@ type FxAsianFeature: <"Descibes the averaging period properties for an asian opt
     primaryRateSource fpml.consolidated.shared.InformationSource (0..1) <"The primary source for where the rate observation will occur. Will typically be either a page or a reference bank published rate.">
     secondaryRateSource fpml.consolidated.shared.InformationSource (0..1) <"An alternative, or secondary, source for where the rate observation will occur. Will typically be either a page or a reference bank published rate.">
     fixingTime fpml.consolidated.shared.BusinessCenterTime (0..1) <"The time at which the spot currency exchange rate will be observed. It is specified as a time in a business day calendar location, e.g. 11:00am London time.">
-    fxAsianFeatureSequence FxAsianFeatureSequence (0..1)
+    observationSchedule FxAverageRateObservationSchedule (0..1) <"Parametric schedule of rate observations.">
+    rateObservation FxAverageRateObservation (0..*) <"One or more specific rate observation dates.">
+    rateObservationQuoteBasis fpml.consolidated.fpmlenum.StrikeQuoteBasisEnum (0..1) <"The method by which observed rate values are quoted, in terms of the option put/call currencies. In the absence of this element, rate observations are assumed to be quoted as per the option strikeQuoteBasis.">
     payoutFormula fpml.consolidated.shared.NonEmptyNormalizedString (0..1) <"The description of the mathematical computation for how the payout is computed.">
     precision int(min: 0) (0..1) <"Specifies the rounding precision in terms of a number of decimal places. Note how a percentage rate rounding of 5 decimal places is expressed as a rounding precision of 7 in the FpML document since the percentage is expressed as a decimal, e.g. 9.876543% (or 0.09876543) being rounded to the nearest 5 decimal places is 9.87654% (or 0.0987654).">
-    fxRateObservationModel FxRateObservationModel (0..1)
-
-type FxAsianFeatureSequence:
-
-    observationSchedule FxAverageRateObservationSchedule (0..1) <"Parametric schedule of rate observations.">
-    fxRateObservationModel FxRateObservationModel (0..1)
 
 type FxAverageRateObservation: <"A type that, for average rate options, is used to describe each specific observation date, as opposed to a parametric frequency of rate observations.">
 
@@ -195,22 +198,11 @@ type FxBarrierFeature: <"Describes the properties of an FX barrier.">
     quotedCurrencyPair fpml.consolidated.shared.QuotedCurrencyPair (0..1) <"Defines the two currencies for an FX trade and the quotation relationship between the two currencies.">
     triggerRate fpml.consolidated.shared.PositiveDecimal (0..1) <"The market rate is observed relative to the trigger rate, and if it is found to be on the predefined side of (above or below) the trigger rate, a trigger event is deemed to have occurred.">
     informationSource fpml.consolidated.shared.InformationSource (0..*) <"The information source where a published or displayed market rate will be obtained, e.g. Telerate Page 3750.">
-    fxBarrierFeatureSequence FxBarrierFeatureSequence (0..1)
-    observationPoint FxBusinessCenterDateTime (0..*) <"The dates and times at which rate observations are made to determine whether a barrier event has occurred for a discrete or european barrier. If the time is not present then the time is deemed to be the same as the expiration time.">
-
-    condition Choice:
-        optional choice fxBarrierFeatureSequence, observationPoint
-
-type FxBarrierFeatureSequence:
-
     observationStartDate zonedDateTime (0..1) <"The date on which the observation period for an american barrier starts. If the start date is not present, then the date and time of the start of the period is deemed to be the date and time the transaction was entered into.">
     observationStartTime fpml.consolidated.shared.BusinessCenterTime (0..1) <"The time on the start date at which the observation period for an american barrier starts. If the time is not present and the start date is equivalent to the transaction date, the time is deemed to be the time the transaction was entered into. If the time is not present and the start date is other than the transaction date, then the time is deemed to be the same as the expiration time.">
-    fxBarrierFeatureSequenceSequence FxBarrierFeatureSequenceSequence (0..1)
-
-type FxBarrierFeatureSequenceSequence:
-
     observationEndDate zonedDateTime (0..1) <"The date on which the observation period for an american barrier ends. If the end date is not present, then the date and time of the end of the period is deemed to be the date and time of expiration.">
     observationEndTime fpml.consolidated.shared.BusinessCenterTime (0..1) <"The time on the end date at which the observation period for an american barrier ends. If the time is not present, then the time is deemed to be the same as the expiration time.">
+    observationPoint FxBusinessCenterDateTime (0..*) <"The dates and times at which rate observations are made to determine whether a barrier event has occurred for a discrete or european barrier. If the time is not present then the time is deemed to be the same as the expiration time.">
 
 type FxBusinessCenterDateTime:
 
@@ -224,16 +216,6 @@ type FxDigitalAmericanExercise extends fpml.consolidated.shared.Exercise: <"Desc
     expiryTime fpml.consolidated.shared.BusinessCenterTime (0..1) <"Time at which the option expires on the expiry date, at the specified business center. This component represents the formal definition of option expiry time.">
     cutName CutName (0..1) <"A code by which the expiry time is known in the market. This element is available to supplement the formal definition of expiry time, and must not be used in absence of the expiryTime element.">
     latestValueDate zonedDateTime (0..1) <"The latest date on which both currencies traded will settle.">
-
-type FxDigitalOptionSequence0:
-
-    americanExercise FxDigitalAmericanExercise (1..1) <"The parameters for defining the exercise period for an American style option.">
-    touch FxTouch (1..*) <"Defines one or more conditions underwhich the option will payout if exercisable.">
-
-type FxDigitalOptionSequence1:
-
-    europeanExercise FxEuropeanExercise (1..1) <"The parameters for defining the exercise period for an European style option.">
-    trigger FxTrigger (1..*) <"Defines one or more conditions underwhich the option will payout if exercisable.">
 
 type FxDisruption: <"A structure describing how disruption for a specified currency pair should be handled">
 
@@ -268,34 +250,24 @@ type FxEuropeanExercise extends fpml.consolidated.shared.Exercise: <"Describes t
 
 type FxFallbackReferencePrice extends FxDisruptionFallback: <"Describes an alternative set of price sources">
 
-    prioritizedRateSourceModel PrioritizedRateSourceModel (1..1)
+    primaryRateSource fpml.consolidated.shared.SettlementRateOption (0..1)
+    secondaryRateSource fpml.consolidated.shared.SettlementRateOption (0..*)
 
 type FxFixingScheduleSimple: <"Describes the FX fixing schedule, a single continuous observation period which follows the applicable business day schedule for the quoted rate source.">
 
-    startDate zonedDateTime (1..1) <"The start of the period over which observations are made to determine whether a trigger has occurred.">
+    startDate zonedDateTime (0..1) <"The start of the period over which observations are made to determine whether a trigger has occurred.">
     endDate zonedDateTime (0..1) <"The end of the period over which observations are made to determine whether a trigger event has occurred.">
     dayType fpml.consolidated.fpmlenum.DayTypeEnum (0..1) <"Specifies whether the schedule follows the business or calendar days.">
-    businessCentersOrReferenceModel fpml.consolidated.shared.BusinessCentersOrReferenceModel (0..1)
+    businessCentersReference fpml.consolidated.shared.BusinessCentersReference (0..1) <"A pointer style reference to a set of financial business centers defined elsewhere in the document. This set of business centers is used to determine whether a particular day is a business day or not.">
+    businessCenters fpml.consolidated.shared.BusinessCenters (0..1)
     fixingDate zonedDateTime (0..*) <"An explicit list of dates in the schedule. For documentation purpose only.">
-    fxFixingScheduleSimpleSequence FxFixingScheduleSimpleSequence (0..1)
-
-type FxFlexibleForwardSequence:
-
-    earliestExecutionTime fpml.consolidated.shared.BusinessCenterTime (0..1) <"The earliest time of day at the specified business center, at which the client may execute a transaction.">
-    latestExecutionTime fpml.consolidated.shared.BusinessCenterTime (0..1) <"The latest time of day at the specified business center, at which the client may execute a transaction.">
 
 type FxFlexibleForwardExecutionPeriod:
 
-    fxFlexibleForwardExecutionPeriodSequence FxFlexibleForwardExecutionPeriodSequence (0..1)
-    businessCenters fpml.consolidated.shared.BusinessCenters (0..1) <"Business centers for determination of execution period business days.">
     id string (1..1)
-    startDate zonedDateTime (1..1) <"Start date of the execution period/window.">
-    expiryDate zonedDateTime (1..1) <"Expiry (maturity) date of the execution period.">
-
-type FxFlexibleForwardExecutionPeriodSequence:
-
     startDate zonedDateTime (0..1) <"Start date of the execution period/window.">
     expiryDate zonedDateTime (0..1) <"Expiry (maturity) date of the execution period.">
+    businessCenters fpml.consolidated.shared.BusinessCenters (0..1) <"Business centers for determination of execution period business days.">
 
 type FxFlexibleForwardRate extends fpml.consolidated.shared.QuotedCurrencyPair:
 
@@ -309,15 +281,7 @@ type FxMultipleExercise: <"Describes the limits on the size of notional when mul
 
 type FxOptionFeatures: <"A type describing the features that may be present in an FX option.">
 
-    fxOptionFeaturesSequence FxOptionFeaturesSequence (0..1)
-    barrier FxBarrierFeature (0..*)
-
-    condition Choice:
-        one-of
-
-type FxOptionFeaturesSequence:
-
-    asian FxAsianFeature (1..1)
+    asian FxAsianFeature (0..1)
     barrier FxBarrierFeature (0..*)
 
 type FxOptionPayout extends fpml.consolidated.shared.NonNegativeMoney: <"A type that contains full details of a predefined fixed payout which may occur (or not) in a Barrier Option or Digital Option when a trigger event occurs (or not).">
@@ -338,8 +302,10 @@ type FxPerformanceFloatingLeg extends FxPerformanceLeg: <"Fx Performance Floatin
 
 type FxPerformanceLeg: <"Floating FX Rate describes Fixed FX Rate Payer and Fixed Rate">
 
-    payerModel fpml.consolidated.shared.PayerModel (1..1)
-    receiverModel fpml.consolidated.shared.ReceiverModel (0..1)
+    payerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party responsible for making the payments defined by this structure.">
+    payerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account responsible for making the payments defined by this structure.">
+    receiverPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A reference to the party that receives the payments corresponding to this structure.">
+    receiverAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that receives the payments corresponding to this structure.">
 
 type FxPerformanceSwap extends fpml.consolidated.shared.Product: <"Describes an FX volatility and variance swap.">
 
@@ -358,9 +324,6 @@ type FxPerformanceSwap extends fpml.consolidated.shared.Product: <"Describes an 
     additionalPayment fpml.consolidated.shared.Payment (0..*) <"Additional Payment means, in respect of an FX Transaction, where such fee is required, and a Transaction Fee Payment Date, the amount, if any, that is specified or otherwise determined as provided in the related Confirmation and, subject to any applicable condition precedent, is payable by one party to the other as further specified or otherwise determined as provided in the related Confirmation on the Transaction Fee Payment Date or on each Transaction Fee Payment Date if more than one is specified, for value on such date.">
     cashSettlement fpml.consolidated.shared.FxCashSettlementSimple (0..1) <"Specifies the Settlement currency and fixing details for cash settlement. The FX Volatility and FX Variance Swaps are inherently cash settled, but into the notional currency. The optional cashSettlement block is provided for the case where the Settlement Currency differs from that of the Notional.">
     numberOfReturns int (0..1) <"Number of Returns is the number of Observation Dates in the Observation Period, excluding the Initial Observation Date (where the Observation Rate on the Initial Observation Date shall equal S0).">
-
-    condition Choice:
-        required choice valuationDate, valuationDateOffset
 
 type FxStraddle: <"Straddle details. Straddle is composed of two options: a call and a put involving the quotedCurrencyPair.">
 
@@ -387,7 +350,17 @@ type FxStrikePrice: <"A type that describes the rate of exchange at which the op
 type FxSwapLeg extends fpml.consolidated.shared.Leg:
 
     tradeIdentifierReference fpml.consolidated.shared.PartyTradeIdentifierReference (0..*) <"A reference to a party trade ID. This is provided in case the message creator wishes to record that the swap leg is assocatiated with a particular trade identifier; typically this is used for identifying a USI assocatied wih the leg.">
-    fxCoreDetailsModel FxCoreDetailsModel (1..1)
+    exchangedCurrency1 fpml.consolidated.shared.Payment (1..1) <"This is the first of the two currency flows that define a single leg of a standard foreign exchange transaction.">
+    exchangedCurrency2 fpml.consolidated.shared.Payment (1..1) <"This is the second of the two currency flows that define a single leg of a standard foreign exchange transaction.">
+    dealtCurrency fpml.consolidated.fpmlenum.DealtCurrencyEnum (0..1) <"Indicates which currency was dealt.">
+    tenorName fpml.consolidated.fpmlenum.FxTenorPeriodEnum (0..1) <"A tenor expressed with a standard business term (i.e. Spot, TomorrowNext, etc.)">
+    tenorPeriod fpml.consolidated.shared.Period (0..1) <"A tenor expressed as a period type and multiplier (e.g. 1D, 1Y, etc.)">
+    valueDate zonedDateTime (0..1) <"The date on which both currencies traded will settle.">
+    currency1ValueDate zonedDateTime (0..1) <"The date on which the currency1 amount will be settled. To be used in a split value date scenario.">
+    currency2ValueDate zonedDateTime (0..1) <"The date on which the currency2 amount will be settled. To be used in a split value date scenario.">
+    exchangeRate ExchangeRate (0..1) <"The rate of exchange between the two currencies.">
+    nonDeliverableSettlement fpml.consolidated.shared.FxCashSettlement (0..1) <"Used to describe a particular type of FX forward transaction that is settled in a single currency (for example, a non-deliverable forward).">
+    disruption FxDisruption (0..*) <"Describes the disruption events and fallbacks applicable to a currency pair referenced by the transaction.">
 
 type FxTemplateTerms: <"Reference a code defining the origin of the trade template terms">
 
@@ -402,22 +375,11 @@ type FxTouch: <"Describes an american or discrete touch or no-touch trigger appl
     triggerRate fpml.consolidated.shared.PositiveDecimal (0..1) <"The market rate is observed relative to the trigger rate, and if it is found to be on the predefined side of (above or below) the trigger rate, a barrier event is deemed to have occurred.">
     spotRate fpml.consolidated.shared.PositiveDecimal (0..1) <"An optional element used for FX forwards and certain types of FX OTC options. For deals consumated in the FX Forwards Market, this represents the current market rate for a particular currency pair. For barrier and digital/binary options, it can be useful to include the spot rate at the time the option was executed to make it easier to know whether the market rate needs to move \"up\" or \"down\" to trigger a barrier event.">
     informationSource fpml.consolidated.shared.InformationSource (0..*) <"The information source where a published or displayed market rate will be obtained, e.g. Telerate Page 3750.">
-    fxTouchSequence FxTouchSequence (0..1)
-    observationPoint FxBusinessCenterDateTime (0..*) <"The dates and times at which rate observations are made to determine whether a barrier event has occurred for a discrete trigger. If the time is not present then the time is deemed to be the same as the expiration time.">
-
-    condition Choice:
-        optional choice fxTouchSequence, observationPoint
-
-type FxTouchSequence:
-
     observationStartDate zonedDateTime (0..1) <"The date on which the observation period for an american trigger starts. If the start date is not present, then the date and time of the start of the period is deemed to be the date and time the transaction was entered into.">
     observationStartTime fpml.consolidated.shared.BusinessCenterTime (0..1) <"The time on the start date at which the observation period for an american trigger starts. If the time is not present and the start date is equivalent to the transaction date, the time is deemed to be the time the transaction was entered into. If the time is not present and the start date is other than the transaction date, then the time is deemed to be the same as the expiration time.">
-    fxTouchSequenceSequence FxTouchSequenceSequence (0..1)
-
-type FxTouchSequenceSequence:
-
     observationEndDate zonedDateTime (0..1) <"The date on which the observation period for an american trigger ends. If the end date is not present, then the date and time of the end of the period is deemed to be the date and time of expiration.">
     observationEndTime fpml.consolidated.shared.BusinessCenterTime (0..1) <"The time on the end date at which the observation period for an american trigger ends. If the time is not present, then the time is deemed to be the same as the expiration time.">
+    observationPoint FxBusinessCenterDateTime (0..*) <"The dates and times at which rate observations are made to determine whether a barrier event has occurred for a discrete trigger. If the time is not present then the time is deemed to be the same as the expiration time.">
 
 type FxTrigger extends FxTriggerBase: <"Describes a european trigger applied to an FX digtal option.">
 
@@ -432,7 +394,8 @@ type FxTriggerBase: <"Describes a european trigger applied to an FX digtal optio
 
 type FxValuationDateOffset extends fpml.consolidated.shared.Offset: <"Valuation date offset is used in FX Variance Swap and Volatility Swap to always relate the Final Observation Date and can be: [Final Observation Date][The first Business Day following the Final Observation Date]">
 
-    businessCentersOrReferenceModel fpml.consolidated.shared.BusinessCentersOrReferenceModel (0..1)
+    businessCentersReference fpml.consolidated.shared.BusinessCentersReference (0..1) <"A pointer style reference to a set of financial business centers defined elsewhere in the document. This set of business centers is used to determine whether a particular day is a business day or not.">
+    businessCenters fpml.consolidated.shared.BusinessCenters (0..1)
 
 type Postponement extends FxDisruptionFallback: <"Describes a postponement">
 
@@ -446,51 +409,3 @@ type PremiumQuote: <"A type that describes the option premium as quoted.">
 type TermDepositFeatures:
 
     dualCurrency DualCurrencyFeature (0..1)
-
-type FxCoreDetailsModel: <"The elements common to FX spot, forward and swap legs.">
-
-    exchangedCurrency1 fpml.consolidated.shared.Payment (1..1) <"This is the first of the two currency flows that define a single leg of a standard foreign exchange transaction.">
-    exchangedCurrency2 fpml.consolidated.shared.Payment (1..1) <"This is the second of the two currency flows that define a single leg of a standard foreign exchange transaction.">
-    dealtCurrency fpml.consolidated.fpmlenum.DealtCurrencyEnum (0..1) <"Indicates which currency was dealt.">
-    fxTenorModel FxTenorModel (0..1)
-    valueDate zonedDateTime (0..1) <"The date on which both currencies traded will settle.">
-    fxCoreDetailsModelSequence FxCoreDetailsModelSequence (0..1)
-    exchangeRate ExchangeRate (0..1) <"The rate of exchange between the two currencies.">
-    nonDeliverableSettlement fpml.consolidated.shared.FxCashSettlement (0..1) <"Used to describe a particular type of FX forward transaction that is settled in a single currency (for example, a non-deliverable forward).">
-    disruption FxDisruption (0..*) <"Describes the disruption events and fallbacks applicable to a currency pair referenced by the transaction.">
-
-    condition Choice:
-        required choice valueDate, fxCoreDetailsModelSequence
-
-type FxCoreDetailsModelSequence:
-
-    currency1ValueDate zonedDateTime (1..1) <"The date on which the currency1 amount will be settled. To be used in a split value date scenario.">
-    currency2ValueDate zonedDateTime (1..1) <"The date on which the currency2 amount will be settled. To be used in a split value date scenario.">
-
-type FxRateObservationModel: <"The elements common to FX rate observation.">
-
-    rateObservation FxAverageRateObservation (0..*) <"One or more specific rate observation dates.">
-    rateObservationQuoteBasis fpml.consolidated.fpmlenum.StrikeQuoteBasisEnum (0..1) <"The method by which observed rate values are quoted, in terms of the option put/call currencies. In the absence of this element, rate observations are assumed to be quoted as per the option strikeQuoteBasis.">
-
-type FxTenorModel:
-
-    tenorName fpml.consolidated.fpmlenum.FxTenorPeriodEnum (0..1) <"A tenor expressed with a standard business term (i.e. Spot, TomorrowNext, etc.)">
-    tenorPeriod fpml.consolidated.shared.Period (0..1) <"A tenor expressed as a period type and multiplier (e.g. 1D, 1Y, etc.)">
-
-    condition Choice:
-        one-of
-
-type PrioritizedRateSourceModel: <"Defines a primary and optional secondary rate sources">
-
-    primaryRateSource fpml.consolidated.shared.SettlementRateOption (0..1)
-    secondaryRateSource fpml.consolidated.shared.SettlementRateOption (0..*)
-
-type PutCallCurrencyModel:
-
-    putCurrency fpml.consolidated.shared.Currency (1..1) <"The currency which: - the option buyer will pay (sell) - the option writer will receive (buy)">
-    callCurrency fpml.consolidated.shared.Currency (1..1) <"The currency which: - the option buyer will receive (buy) - the option writer will pay (sell)">
-
-type FxFixingScheduleSimpleSequence:
-
-    startDate zonedDateTime (1..1) <"The start of the period over which observations are made to determine whether a trigger has occurred.">
-    endDate zonedDateTime (1..1) <"The end of the period over which observations are made to determine whether a trigger event has occurred.">

@@ -3,7 +3,10 @@ version "${project.version}"
 
 type EquityAccumulator extends fpml.consolidated.shared.Product:
 
-    buyerSellerModel fpml.consolidated.shared.BuyerSellerModel (1..1)
+    buyerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party that buys this instrument, ie. pays for this instrument and receives the rights defined by it. See 2000 ISDA definitions Article 11.1 (b). In the case of FRAs this the fixed rate payer.">
+    buyerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that buys this instrument.">
+    sellerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party that sells (\"writes\") this instrument, i.e. that grants the rights defined by this instrument and in return receives a payment for it. See 2000 ISDA definitions Article 11.1 (a). In the case of FRAs this is the floating rate payer.">
+    sellerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that sells this instrument.">
     notional fpml.consolidated.shared.NonNegativeMoney (1..1) <"The notional amount">
     underlyer fpml.consolidated.asset.Underlyer (1..1) <"Specifies the underlying component, which can be either one security or a basket.">
     forwardPrice fpml.consolidated.shared.NonNegativeMoney (0..1) <"The price the shares will be accumulated at.">
@@ -23,7 +26,9 @@ type EquityAccumulator extends fpml.consolidated.shared.Product:
 type EquityForwardExpiration extends fpml.consolidated.shared.Exercise: <"A type for defining expiry of an equity forward contract.">
 
     expirationDate fpml.consolidated.shared.AdjustableOrRelativeDate (1..1) <"The last day within an exercise period for an American style option. For a European style option it is the only day within the exercise period.">
-    equityExpirationModel fpml.consolidated.eqd.EquityExpirationModel (1..1)
+    equityExpirationTimeType fpml.consolidated.fpmlenum.TimeTypeEnum (0..1) <"The time of day at which the equity option expires, for example the official closing time of the exchange.">
+    equityExpirationTime fpml.consolidated.shared.BusinessCenterTime (0..1) <"The specific time of day at which the equity option expires.">
+    expirationTimeDetermination fpml.consolidated.shared.DeterminationMethod (0..1) <"Expiration time determination method.">
 
 type SharesPerDay:
 
@@ -43,11 +48,6 @@ type ObservationPeriod: <"Period when accumulator will accumulate shares.">
 
 type AccumulatorKnockOut: <"Termination of contract prior to maturity date as a result of stock price reaching specified level or performance reaching target performance.">
 
-    accumulatorKnockOutSequence AccumulatorKnockOutSequence (0..1)
+    targetPerformance fpml.consolidated.shared.NonNegativeDecimal (0..1) <"The target performance.">
     level number (0..1) <"The share price, above which the contract is terminated.">
     triggerTimeType fpml.consolidated.fpmlenum.TriggerTimeTypeEnum (1..1) <"The time of day which would be considered for valuing the knock event.">
-
-type AccumulatorKnockOutSequence:
-
-    targetPerformance fpml.consolidated.shared.NonNegativeDecimal (1..1) <"The target performance.">
-    level number (0..1) <"The share price, above which the contract is terminated.">

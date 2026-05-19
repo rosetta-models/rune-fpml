@@ -3,6 +3,15 @@ version "${project.version}"
 
 type EquitySwapTransactionSupplement extends fpml.consolidated.eq.shared.ReturnSwapBase: <"Specifies the structure of the equity swap transaction supplement. A type for defining Equity Swap Transaction Supplement">
 
-    mutualOrOptionalEarlyTerminationModel fpml.consolidated.eq.shared.MutualOrOptionalEarlyTerminationModel (0..1)
-    equityUnderlyerProvisionsModel fpml.consolidated.eq.shared.EquityUnderlyerProvisionsModel (0..1)
+    mutualEarlyTermination boolean (0..1) <"Used for specifying whether the Mutual Early Termination Right that is detailed in the Master Confirmation will apply.">
+    optionalEarlyTermination boolean (0..1) <"A Boolean element used for specifying whether the Optional Early Termination clause detailed in the agreement will apply.">
+    optionalEarlyTerminationDate fpml.consolidated.fpmlenum.EarlyTerminationDateEnum (0..1) <"Optional Early Termination Date">
+    optionalEarlyTerminationElectingPartyReference fpml.consolidated.shared.PartyReference (0..1) <"Optional Early Termination Electing Party Reference">
+    breakFundingRecovery boolean (0..1) <"A Boolean element used for specifying whether the Break Funding Recovery detailed in the agreement will apply.">
+    breakFeeElection fpml.consolidated.fpmlenum.FeeElectionEnum (0..1) <"Defines the fee type.">
+    breakFeeRate fpml.consolidated.shared.NonNegativeDecimal (0..1)
+    multipleExchangeIndexAnnexFallback boolean (0..1) <"For an index option transaction, a flag to indicate whether a relevant Multiple Exchange Index Annex is applicable to the transaction. This annex defines additional provisions which are applicable where an index is comprised of component securities that are traded on multiple exchanges.">
+    componentSecurityIndexAnnexFallback boolean (0..1) <"For an index option transaction, a flag to indicate whether a relevant Component Security Index Annex is applicable to the transaction.">
+    localJurisdiction fpml.consolidated.shared.CountryCode (0..1) <"Local Jurisdiction is a term used in the AEJ Master Confirmation, which is used to determine local taxes, which shall mean taxes, duties, and similar charges imposed by the taxing authority of the Local Jurisdiction If this element is not present Local Jurisdiction is Not Applicable.">
+    relevantJurisdiction fpml.consolidated.shared.CountryCode (0..1) <"Relevent Jurisdiction is a term used in the AEJ Master Confirmation, which is used to determine local taxes, which shall mean taxes, duties and similar charges that would be imposed by the taxing authority of the Country of Underlyer on a Hypothetical Broker Dealer assuming the Applicable Hedge Positions are held by its office in the Relevant Jurisdiction. If this element is not present Relevant Jurisdiction is Not Applicable.">
     extraordinaryEvents fpml.consolidated.eq.shared.ExtraordinaryEvents (0..1) <"Where the underlying is shares, specifies events affecting the issuer of those shares that may require the terms of the transaction to be adjusted.">

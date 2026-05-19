@@ -10,9 +10,9 @@ type FxTargetKnockoutForward extends fpml.consolidated.shared.Product: <"A struc
     settlementSchedule FxSettlementSchedule (0..1) <"Defines the settlement/payment schedule of the target product.">
     fixingInformationSource fpml.consolidated.shared.FxInformationSource (0..1) <"Information source for fixing the exchange rate. It is the same for all fixing periods.">
     spotRate fpml.consolidated.shared.NonNegativeDecimal (0..1) <"Spot rate">
-    fxTargetKnockoutForwardSequence FxTargetKnockoutForwardSequence (0..1)
-    constantPayoffRegion FxTargetConstantPayoffRegion (0..*) <"It defines a region in which a digital payment occurs.">
-    linearPayoffRegion FxTargetLinearPayoffRegion (1..1) <"A region in which linear payoff applies i.e. the payoff bears a linear relationship to the fixing value (increases/decreases linearly with the fixing).">
+    pivot FxPivot (0..1) <"The boundary where the contract flips from being long and short is the pivot point. So the pivot indicates the level in which there is a change in direction of the currencies exchanged by the parties.">
+    constantPayoffRegion FxTargetConstantPayoffRegion (0..*) <"A region in which constant payoff applies i.e. the payoff is defined as a contant currency amount or fixing adjustment, unrelated to the fixing. In absence of the \"payoff\" element, zero payoff is assumed (note: zero payoff does not necessarily imply that no settlement occurs).">
+    linearPayoffRegion FxTargetLinearPayoffRegion (0..1) <"A region in which linear payoff applies i.e. the payoff bears a linear relationship to the fixing value (increases/decreases linearly with the fixing).">
     fxTargetKnockoutForwardChoice FxTargetKnockoutForwardChoice (0..*)
     barrier FxTargetBarrier (0..*) <"Generic FxTarget barrier. Element \"scope\" specifies whether the barrier has effect for the expiry period in which it is observed, or globally for whole product. Optional element \"rebate\" may be produced in conjunction with a Global Knockout barrier, to specify a rebate payable in the event of knockout.">
     additionalPayment fpml.consolidated.shared.SimplePayment (0..*) <"It supports the representation of premiums, fees, etc.">
@@ -21,23 +21,15 @@ type FxTargetKnockoutForward extends fpml.consolidated.shared.Product: <"A struc
 
 type FxComplexBarrierBase:
 
+    id string (0..1) <"Attribute to be able to point to the">
     barrierType fpml.consolidated.fpmlenum.FxBarrierTypeSimpleEnum (0..1) <"Specifies the outcome (action) in the event that the barrier is triggered i.e. whether the product becomes active (Knockin) or is extinguished (Knockout).">
     style fpml.consolidated.fpmlenum.FxBarrierStyleEnum (1..1) <"The barrier observation style: continuous (American) or discrete (European).">
     scope fpml.consolidated.fpmlenum.FxBarrierScopeEnum (0..1) <"The scope of the barrier (PerExpiry|Global). Specifies whether the barrier has effect for the current expiry period (in the case of a multi-phase product), or for the product as a whole.">
     condition fpml.consolidated.fpmlenum.ConditionEnum (1..1) <"Defines the condition when the barrier applies: AtOrAbove, AtOrBelow, Above, Below.">
     triggerRate fpml.consolidated.shared.Schedule (1..1) <"The market rate is observed relative to the trigger rate, and if it is found to be on the predefined side of (above or below) the trigger rate, a barrier event is deemed to have occurred.">
-    fxComplexBarrierBaseSequence0 FxComplexBarrierBaseSequence0 (0..1)
-    fxComplexBarrierBaseSequence1 FxComplexBarrierBaseSequence1 (0..1)
-    id string (0..1) <"Attribute to be able to point to the">
-
-type FxComplexBarrierBaseSequence0:
-
-    observationStartDate zonedDateTime (1..1) <"The date on which the observation period for an american barrier starts. If the start date is not present, then the date and time of the start of the period is deemed to be the date and time the transaction was entered into.">
+    observationStartDate zonedDateTime (0..1) <"The date on which the observation period for an american barrier starts. If the start date is not present, then the date and time of the start of the period is deemed to be the date and time the transaction was entered into.">
     observationStartTime fpml.consolidated.shared.BusinessCenterTime (0..1) <"The time on the start date at which the observation period for an american barrier starts. If the time is not present and the start date is equivalent to the transaction date, the time is deemed to be the time the transaction was entered into. If the time is not present and the start date is other than the transaction date, then the time is deemed to be the same as the expiration time.">
-
-type FxComplexBarrierBaseSequence1:
-
-    observationEndDate zonedDateTime (1..1) <"The date on which the observation period for an american barrier ends. If the end date is not present, then the date and time of the end of the period is deemed to be the date and time of expiration.">
+    observationEndDate zonedDateTime (0..1) <"The date on which the observation period for an american barrier ends. If the end date is not present, then the date and time of the end of the period is deemed to be the date and time of expiration.">
     observationEndTime fpml.consolidated.shared.BusinessCenterTime (0..1) <"The time on the end date at which the observation period for an american barrier ends. If the time is not present, then the time is deemed to be the same as the expiration time.">
 
 type FxComplexBarrierBaseReference extends fpml.consolidated.shared.Reference: <"Reference to a barrier structure defined within the parametric representation.">
@@ -56,7 +48,10 @@ type FxDateOffset: <"The representation of the schedule as an offset relative to
 
 type FxExchangedCurrency: <"Indicates the direction who pays and receives a specific currency without specifying the amount.">
 
-    payerReceiverModel fpml.consolidated.shared.PayerReceiverModel (1..1)
+    payerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party responsible for making the payments defined by this structure.">
+    payerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account responsible for making the payments defined by this structure.">
+    receiverPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A reference to the party that receives the payments corresponding to this structure.">
+    receiverAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that receives the payments corresponding to this structure.">
     currency fpml.consolidated.shared.Currency (1..1)
 
 type FxExpirySchedule extends FxSchedule: <"Defines the expiry/observation schedule of the target.">
@@ -75,9 +70,6 @@ type FxKnockoutLevel: <"Defines the Target level of gain.">
     intrinsicValue number (0..1) <"Target level expressed as intrinsic value (cumulative benefit over the prevailing spot rate at each observation point).">
     targetStyle fpml.consolidated.fpmlenum.FxTargetStyleEnum (1..1) <"Target style when it settles, whether it is Inclusive, Exclusive, or Exact. Exclusive: the gain for the knockout period is adjusted to zero i.e. the target yields zero value in the final period. Exact: the gain for the knockout period is adjusted to yield a final accumulated value equal to the target level. Inclusive: the gain for the knockout period is equal to the whole benefit of the final fixing over spot i.e. the final accumulated value may exceed the target level.">
     settlementAdjustmentStyle fpml.consolidated.fpmlenum.FxSettlementAdjustmentMethodEnum (0..1) <"Specifies the calculation method by which the final accumulated value is adjusted equal to the target value, in the case where the target style is \"Exact\". This element must be produced (only) where the target style is \"Exact\", and should be omitted otherwise.">
-
-    condition Choice:
-        required choice amount, intrinsicValue
 
 type FxLevel extends fpml.consolidated.shared.Schedule: <"Level is expressed as Schedule, with an initial value and optional steps.">
 
@@ -104,26 +96,16 @@ type FxPivotReference extends fpml.consolidated.shared.Reference: <"Reference to
 
 type FxSchedule: <"The FxSchedule may be expressed as explicit adjusted dates, or a parametric representation plus optional adjusted dates, or as an offset plus optional adusted dates.">
 
-    fxScheduleSequence0 FxScheduleSequence0 (0..1)
-    fxScheduleSequence1 FxScheduleSequence1 (0..1)
     id string (0..1)
-
-    condition Choice:
-        required choice fxScheduleSequence0, fxScheduleSequence1
-
-type FxScheduleSequence0:
-
     dateAdjustments fpml.consolidated.shared.BusinessDayAdjustments (0..1) <"Date adjustments applied to the adjusted dates including the business day convention and the business centers.">
-    adjustedDate zonedDateTime (1..*) <"List of schedule dates. These dates have been subject to adjustments based on the dateAdjustments structure.">
-
-type FxScheduleSequence1:
-
-    parametricScheduleModel ParametricScheduleModel (0..1)
-    dateOffset FxDateOffset (0..1) <"The representation of the schedule as an offset relative to another schedule. For example, the settlement schedule may be relative to the expiry schedule by an FxForward offset.">
     adjustedDate zonedDateTime (0..*) <"List of schedule dates. These dates have been subject to adjustments based on the dateAdjustments structure.">
-
-    condition Choice:
-        required choice parametricScheduleModel, dateOffset
+    startDate zonedDateTime (0..1) <"Start of the schedule.">
+    endDate zonedDateTime (0..1) <"End of the schedule.">
+    observationFrequency fpml.consolidated.shared.ObservationFrequency (0..1) <"Defines the frequency at which calculation period end dates occur within the period schedule and their roll date convention.">
+    dayType fpml.consolidated.fpmlenum.DayTypeEnum (0..1) <"A day type classification, e.g. Business, Calendar, etc.">
+    businessCentersReference fpml.consolidated.shared.BusinessCentersReference (0..1) <"A pointer style reference to a set of financial business centers defined elsewhere in the document. This set of business centers is used to determine whether a particular day is a business day or not.">
+    businessCenters fpml.consolidated.shared.BusinessCenters (0..1)
+    dateOffset FxDateOffset (0..1) <"The representation of the schedule as an offset relative to another schedule. For example, the settlement schedule may be relative to the expiry schedule by an FxForward offset.">
 
 type FxScheduleReference extends fpml.consolidated.shared.Reference: <"Reference to a FX Schedule structure.">
 
@@ -146,17 +128,15 @@ type FxStrikeReference extends fpml.consolidated.shared.Reference: <"Reference t
 
 type FxTarget:
 
+    id string (0..1)
     accumulationRegion FxTargetAccumulationRegion (1..2)
     knockoutLevel FxKnockoutLevel (0..1)
     knockoutCount FxKnockoutCount (0..1)
-    id string (0..1)
-
-    condition Choice:
-        required choice knockoutLevel, knockoutCount
 
 type FxTargetAccumulationRegion:
 
-    fxTargetRegionBoundModel FxTargetRegionBoundModel (1..1)
+    upperBound FxTargetRegionUpperBound (0..1) <"Defines the upper bound of a payoff region.">
+    lowerBound FxTargetRegionLowerBound (0..1) <"Defines the lower bound of a payoff region.">
     multiplier number (0..1) <"This is the factor that increases gain, not notional. Used to support Accelerated TARFs.">
 
 type FxTargetBarrier extends FxComplexBarrierBase:
@@ -165,56 +145,42 @@ type FxTargetBarrier extends FxComplexBarrierBase:
 
 type FxTargetConstantPayoff:
 
-    fxTargetConstantPayoffSequence FxTargetConstantPayoffSequence (0..1)
+    payerPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A reference to the party responsible for making the payments defined by this structure.">
+    payerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account responsible for making the payments defined by this structure.">
+    receiverPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A reference to the party that receives the payments corresponding to this structure.">
+    receiverAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that receives the payments corresponding to this structure.">
+    payment fpml.consolidated.shared.PositiveMoney (0..1) <"Cash payment.">
     fixingAdjustment number (0..1) <"Payoff (gain) expressed as a fixing adjustment. This style is used in the \"bonus collar\" TARF.">
-
-    condition Choice:
-        one-of
-
-type FxTargetConstantPayoffSequence:
-
-    payerReceiverModel fpml.consolidated.shared.PayerReceiverModel (1..1)
-    payment fpml.consolidated.shared.PositiveMoney (1..1) <"Cash payment.">
 
 type FxTargetConstantPayoffRegion extends FxTargetPayoffRegion: <"A fixing region in which the payoff is a constant value (a binary|digital payoff, or zero).">
 
-    fxTargetRegionBoundModel FxTargetRegionBoundModel (1..1)
+    upperBound FxTargetRegionUpperBound (0..1) <"Defines the upper bound of a payoff region.">
+    lowerBound FxTargetRegionLowerBound (0..1) <"Defines the lower bound of a payoff region.">
     payoff FxTargetConstantPayoff (0..1) <"A binary|digital payoff, expressed either as a cash payment, or a (non-zero) fixing adjustment.">
     physicalSettlement FxTargetPhysicalSettlement (0..1)
-
-type FxTargetKnockoutForwardSequence:
-
-    pivot FxPivot (1..1) <"The boundary where the contract flips from being long and short is the pivot point. So the pivot indicates the level in which there is a change in direction of the currencies exchanged by the parties.">
-    constantPayoffRegion FxTargetConstantPayoffRegion (0..*) <"A region in which constant payoff applies i.e. the payoff is defined as a contant currency amount or fixing adjustment, unrelated to the fixing. In absence of the \"payoff\" element, zero payoff is assumed (note: zero payoff does not necessarily imply that no settlement occurs).">
-    linearPayoffRegion FxTargetLinearPayoffRegion (1..1) <"A region in which linear payoff applies i.e. the payoff bears a linear relationship to the fixing value (increases/decreases linearly with the fixing).">
 
 type FxTargetKnockoutForwardChoice:
 
     constantPayoffRegion FxTargetConstantPayoffRegion (0..1) <"It defines a region in which a digital payment occurs.">
     linearPayoffRegion FxTargetLinearPayoffRegion (0..1) <"A region in which linear payoff applies i.e. the payoff bears a linear relationship to the fixing value (increases/decreases linearly with the fixing).">
 
-    condition Choice:
-        optional choice constantPayoffRegion, linearPayoffRegion
-
 type FxTargetLeverage:
 
-    condition fpml.consolidated.fpmlenum.ConditionEnum (1..1) <"Condition in which leverage applies.">
-    fxTargetConditionLevelModel FxTargetConditionLevelModel (1..1)
-    ratio fpml.consolidated.shared.Schedule (0..1) <"Leverage rate with optional steps. Format is 2 for 200%.">
-    fxTargetLeverageSequence FxTargetLeverageSequence (0..1)
     id string (0..1)
-
-    condition Choice:
-        required choice ratio, fxTargetLeverageSequence
-
-type FxTargetLeverageSequence:
-
-    notionalAmount fpml.consolidated.shared.NonNegativeAmountSchedule (1..1) <"Leveraged notional expressed as amount with optional steps.">
+    condition fpml.consolidated.fpmlenum.ConditionEnum (1..1) <"Condition in which leverage applies.">
+    level FxLevel (0..1) <"Level expressed as a level with optional steps different from strike, pivot, or barrier.">
+    strikeReference FxStrikeReference (0..1) <"Reference to a strike defined within the FX product.">
+    pivotReference FxPivotReference (0..1) <"Reference to the pivot defined within the FX product.">
+    barrierReference FxComplexBarrierBaseReference (0..1) <"Reference to a perExpiryBarrier component to indicate theat the bound of the region is defined by the barrier component.">
+    levelReference FxLevelReference (0..1) <"Reference to a level defined within the FX product.">
+    ratio fpml.consolidated.shared.Schedule (0..1) <"Leverage rate with optional steps. Format is 2 for 200%.">
+    notionalAmount fpml.consolidated.shared.NonNegativeAmountSchedule (0..1) <"Leveraged notional expressed as amount with optional steps.">
     counterCurrencyAmount FxCounterCurrencyAmount (0..*) <"The opposite currency amount of the Target.">
 
 type FxTargetLinearPayoffRegion extends FxTargetPayoffRegion: <"A fixing region in which the payoff varies linearly with the fixing value.">
 
-    fxExchangedCurrencyModel FxExchangedCurrencyModel (1..1)
+    exchangedCurrency1 FxExchangedCurrency (1..1) <"Indicates the first direction of who pays and receives a specific currency without specifying the amount.">
+    exchangedCurrency2 FxExchangedCurrency (1..1) <"Indicates the second direction of who pays and receives a specific currency without specifying the amount.">
     strike FxStrike (1..1) <"Strike price of the Target.">
     counterCurrencyAmount fpml.consolidated.shared.NonNegativeAmountSchedule (0..1) <"The opposite currency amount of the Target.">
     lowerBound FxTargetRegionLowerBound (0..1) <"Defines the lower bound of a payoff region.">
@@ -235,18 +201,23 @@ type FxTargetRebate: <"A rebate can be expressed as a payment amount or as amoun
     payment fpml.consolidated.shared.SimplePayment (0..1) <"Rebate amount expressed as a payment between the two parties.">
     outstandingGain FxOutstandingGain (0..1) <"Rebate expressed as amount of outstanding gain.">
 
-    condition Choice:
-        one-of
-
 type FxTargetRegionLowerBound:
 
     condition fpml.consolidated.fpmlenum.FxRegionLowerBoundDirectionEnum (1..1) <"AtOrAbove, Above.">
-    fxTargetConditionLevelModel FxTargetConditionLevelModel (1..1)
+    level FxLevel (0..1) <"Level expressed as a level with optional steps different from strike, pivot, or barrier.">
+    strikeReference FxStrikeReference (0..1) <"Reference to a strike defined within the FX product.">
+    pivotReference FxPivotReference (0..1) <"Reference to the pivot defined within the FX product.">
+    barrierReference FxComplexBarrierBaseReference (0..1) <"Reference to a perExpiryBarrier component to indicate theat the bound of the region is defined by the barrier component.">
+    levelReference FxLevelReference (0..1) <"Reference to a level defined within the FX product.">
 
 type FxTargetRegionUpperBound:
 
     condition fpml.consolidated.fpmlenum.FxRegionUpperBoundDirectionEnum (1..1) <"AtOrBelow, Below.">
-    fxTargetConditionLevelModel FxTargetConditionLevelModel (1..1)
+    level FxLevel (0..1) <"Level expressed as a level with optional steps different from strike, pivot, or barrier.">
+    strikeReference FxStrikeReference (0..1) <"Reference to a strike defined within the FX product.">
+    pivotReference FxPivotReference (0..1) <"Reference to the pivot defined within the FX product.">
+    barrierReference FxComplexBarrierBaseReference (0..1) <"Reference to a perExpiryBarrier component to indicate theat the bound of the region is defined by the barrier component.">
+    levelReference FxLevelReference (0..1) <"Reference to a level defined within the FX product.">
 
 type FxTargetSettlementPeriodPayoff: <"Payoff region">
 
@@ -270,9 +241,11 @@ type FxTargetSettlementPeriod extends SettlementPeriod:
 
 type FxTargetPhysicalSettlement:
 
-    fxExchangedCurrencyModel FxExchangedCurrencyModel (1..1)
+    exchangedCurrency1 FxExchangedCurrency (1..1) <"Indicates the first direction of who pays and receives a specific currency without specifying the amount.">
+    exchangedCurrency2 FxExchangedCurrency (1..1) <"Indicates the second direction of who pays and receives a specific currency without specifying the amount.">
     settlementAdjustmentStyle fpml.consolidated.fpmlenum.FxSettlementAdjustmentMethodEnum (1..1) <"The Settlement Adjustment Style can be VariedStrike or VariedNotional.">
-    strikeOrStrikeReferenceModel StrikeOrStrikeReferenceModel (0..1)
+    strike FxStrike (0..1) <"Strike price of the Target.">
+    strikeReference FxStrikeReference (0..1) <"Reference to an existing strike structure within the FX product.">
 
 type FxTargetReference extends fpml.consolidated.shared.Reference: <"Reference to a target structure.">
 
@@ -287,91 +260,12 @@ type SettlementPeriod:
 type SettlementPeriodFixingDates:
 
     fixingDate zonedDateTime (0..*) <"Observation date in a fixing period.">
-    settlementPeriodFixingDatesSequence SettlementPeriodFixingDatesSequence (0..1)
+    startDate zonedDateTime (0..1) <"Start date of the period.">
+    endDate zonedDateTime (0..1) <"End date of the period.">
     numberOfFixings int (0..1) <"Number of fixings between the fixing start and end date.">
-
-    condition Choice:
-        one-of
-
-type SettlementPeriodFixingDatesSequence:
-
-    startDate zonedDateTime (1..1) <"Start date of the period.">
-    endDate zonedDateTime (1..1) <"End date of the period.">
 
 type SettlementPeriodLeverage:
 
     ratio number (0..1) <"Leverage expressed as ratio.">
-    settlementPeriodLeverageSequence SettlementPeriodLeverageSequence (0..1)
-
-    condition Choice:
-        one-of
-
-type SettlementPeriodLeverageSequence:
-
     notionalAmount number (0..1) <"Leverage notional.">
     counterCurrencyAmount number (0..1) <"Leverage counter currency notional.">
-
-type FxExchangedCurrencyModel: <"Indicates the directions of who pays and receives a specific currency without specifying the amount.">
-
-    exchangedCurrency1 FxExchangedCurrency (1..1) <"Indicates the first direction of who pays and receives a specific currency without specifying the amount.">
-    exchangedCurrency2 FxExchangedCurrency (1..1) <"Indicates the second direction of who pays and receives a specific currency without specifying the amount.">
-
-type FxTargetConditionLevelModel: <"Conditions can be expressed in different ways: as a specific level, as strike, pivot, or barrier.">
-
-    level FxLevel (0..1) <"Level expressed as a level with optional steps different from strike, pivot, or barrier.">
-    strikeReference FxStrikeReference (0..1) <"Reference to a strike defined within the FX product.">
-    pivotReference FxPivotReference (0..1) <"Reference to the pivot defined within the FX product.">
-    barrierReference FxComplexBarrierBaseReference (0..1) <"Reference to a perExpiryBarrier component to indicate theat the bound of the region is defined by the barrier component.">
-    levelReference FxLevelReference (0..1) <"Reference to a level defined within the FX product.">
-
-    condition Choice:
-        one-of
-
-type FxTargetRegionBoundModel:
-
-    upperBound FxTargetRegionUpperBound (0..1) <"Defines the upper bound of a payoff region.">
-    fxTargetRegionBoundModelSequence FxTargetRegionBoundModelSequence (0..1)
-
-    condition Choice:
-        one-of
-
-type FxTargetRegionBoundModelSequence:
-
-    lowerBound FxTargetRegionLowerBound (1..1) <"Defines the lower bound of a payoff region.">
-    upperBound FxTargetRegionUpperBound (0..1) <"Defines the upper bound of a payoff region.">
-
-type ParametricScheduleModel: <"The schedule defined by the set of parameters to be able to calculate the schedule of adjusted date. The combination of the [start/endDate + dayType + businessCenters] will be used only to represent a daily schedule and the combination of [start/endDate + observationFrequency + dateAdjustments] for parametric representation of the schedules other than daily schedule.">
-
-    parametricScheduleModelSequence0 ParametricScheduleModelSequence0 (0..1)
-    endDate zonedDateTime (0..1) <"End of the schedule.">
-    parametricScheduleModelSequence1 ParametricScheduleModelSequence1 (0..1)
-    parametricScheduleModelSequence2 ParametricScheduleModelSequence2 (0..1)
-
-    condition Choice0:
-        required choice parametricScheduleModelSequence0, endDate
-
-    condition Choice1:
-        required choice parametricScheduleModelSequence1, parametricScheduleModelSequence2
-
-type ParametricScheduleModelSequence0:
-
-    startDate zonedDateTime (1..1) <"Start of the schedule.">
-    endDate zonedDateTime (0..1) <"End of the schedule.">
-
-type ParametricScheduleModelSequence1:
-
-    observationFrequency fpml.consolidated.shared.ObservationFrequency (1..1) <"Defines the frequency at which calculation period end dates occur within the period schedule and their roll date convention.">
-    dateAdjustments fpml.consolidated.shared.BusinessDayAdjustments (0..1) <"Date adjustments applied to the schedule including the business day convention and the business centers.">
-
-type ParametricScheduleModelSequence2:
-
-    dayType fpml.consolidated.fpmlenum.DayTypeEnum (1..1) <"A day type classification, e.g. Business, Calendar, etc.">
-    businessCentersOrReferenceModel fpml.consolidated.shared.BusinessCentersOrReferenceModel (0..1)
-
-type StrikeOrStrikeReferenceModel:
-
-    strike FxStrike (0..1) <"Strike price of the Target.">
-    strikeReference FxStrikeReference (0..1) <"Reference to an existing strike structure within the FX product.">
-
-    condition Choice:
-        one-of

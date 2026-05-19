@@ -36,7 +36,12 @@ type CreditEventException extends fpml.consolidated.msg.Exception:
 
 type AffectedTransactions:
 
-    tradeOrTradeReferenceModel fpml.consolidated.doc.TradeOrTradeReferenceModel (1..*)
+    affectedTransactionsChoice AffectedTransactionsChoice (1..*)
+
+type AffectedTransactionsChoice:
+
+    trade fpml.consolidated.doc.Trade (0..1) <"An element that allows the full details of the trade to be used as a mechanism for identifying the trade for which the post-trade event pertains">
+    tradeReference fpml.consolidated.doc.PartyTradeIdentifiers (0..1) <"A container since an individual trade can be referenced by two or more different partyTradeIdentifier elements - each allocated by a different party.">
 
 type BankruptcyEvent extends CreditEvent:
 
