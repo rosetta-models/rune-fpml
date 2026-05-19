@@ -5,185 +5,127 @@
       "value" : "EQUITYTRSFPMLORGPTTRADEREF",
       "messageIdScheme" : "http://www.xxx.com/coding-scheme/message-id"
     },
-    "messageHeaderModel" : {
-      "sentBy" : {
-        "value" : "ORIGUS33XXX",
-        "messageAddressScheme" : "http://www.fpml.org/ext/iso9362"
-      },
-      "creationTimestamp" : "2013-04-03T12:01:00Z"
-    }
+    "sentBy" : {
+      "value" : "ORIGUS33XXX",
+      "messageAddressScheme" : "http://www.fpml.org/ext/iso9362"
+    },
+    "creationTimestamp" : "2013-04-03T12:01:00Z"
   },
   "isCorrection" : false,
-  "correlationAndSequenceModel" : {
-    "correlationModel" : {
-      "correlationIdModel" : {
-        "correlationId" : [ {
-          "value" : "EQUITYTRSFPMLORGTRADEID",
-          "correlationIdScheme" : "http://www.xxx.com/coding-scheme/correlation-id"
-        } ]
+  "correlationId" : [ {
+    "value" : "EQUITYTRSFPMLORGTRADEID",
+    "correlationIdScheme" : "http://www.xxx.com/coding-scheme/correlation-id"
+  } ],
+  "sequenceNumber" : 2,
+  "termination" : {
+    "tradeIdentifier" : [ {
+      "partyReference" : {
+        "href" : "Originator"
+      },
+      "tradeIdentifierChoice" : [ {
+        "versionedTradeId" : {
+          "tradeId" : {
+            "value" : "EQUITYTRSFPMLORGTRADEID",
+            "tradeIdScheme" : "http://www.xxx.com/coding-scheme/parent-trade-id"
+          },
+          "version" : 1
+        }
+      } ]
+    } ],
+    "agreementDate" : "2013-04-04T00:00:00Z",
+    "effectiveDate" : "2013-04-04T00:00:00Z",
+    "payment" : [ {
+      "id" : "TERMINATION_FEE",
+      "payerPartyReference" : {
+        "href" : "Counterparty"
+      },
+      "receiverPartyReference" : {
+        "href" : "Originator"
+      },
+      "paymentAmount" : {
+        "currency" : {
+          "value" : "GBP"
+        },
+        "amount" : 5000.00
+      },
+      "paymentDate" : {
+        "adjustedDate" : {
+          "value" : "2013-04-04T00:00:00Z"
+        }
+      },
+      "paymentType" : {
+        "value" : "Termination Fee"
       }
-    },
-    "sequenceModel" : {
-      "sequenceNumber" : 2
-    }
-  },
-  "postTradeEventsBaseModel" : {
-    "postTradeEventsBaseModelSequence" : {
-      "termination" : {
-        "tradeIdentifier" : [ {
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "Originator"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "versionedTradeId" : {
-                "tradeId" : {
-                  "value" : "EQUITYTRSFPMLORGTRADEID",
-                  "tradeIdScheme" : "http://www.xxx.com/coding-scheme/parent-trade-id"
-                },
-                "versionHistoryModel" : {
-                  "version" : 1
-                }
-              }
-            } ]
-          }
-        } ],
-        "agreementAndEffectiveDatesModel" : {
-          "agreementDate" : "2013-04-04T00:00:00Z",
-          "effectiveDate" : "2013-04-04T00:00:00Z"
-        },
-        "tradeAlterationPaymentModel" : {
-          "payment" : [ {
-            "id" : "TERMINATION_FEE",
-            "payerReceiverModel" : {
-              "payerModel" : {
-                "payerPartyReference" : {
-                  "href" : "Counterparty"
-                }
-              },
-              "receiverModel" : {
-                "receiverPartyReference" : {
-                  "href" : "Originator"
-                }
-              }
-            },
-            "paymentAmount" : {
-              "currency" : {
-                "value" : "GBP"
-              },
-              "amount" : 5000.00
-            },
-            "paymentDate" : {
-              "adjustedDate" : {
-                "value" : "2013-04-04T00:00:00Z"
-              }
-            },
-            "paymentType" : {
-              "value" : "Termination Fee"
-            }
-          } ]
-        },
-        "tradeNotionalChangeModel" : {
-          "tradeNotionalChangeModelSequence2" : {
-            "changeInNumberOfUnits" : 70000000.00,
-            "outstandingNumberOfUnits" : 30000000.00
-          }
-        },
-        "priceChange" : [ {
-          "priceChangeAmount" : 2.0000,
-          "newPrice" : 3.0000
-        } ]
-      }
-    }
+    } ],
+    "changeInNumberOfUnits" : 70000000.00,
+    "outstandingNumberOfUnits" : 30000000.00,
+    "priceChange" : [ {
+      "priceChangeAmount" : 2.0000,
+      "newPrice" : 3.0000
+    } ]
   },
   "paymentDetails" : [ {
     "paymentReference" : {
       "href" : "TERMINATION_FEE"
     },
     "grossCashflow" : [ {
-      "grossCashflowSequence" : {
-        "cashflowId" : {
-          "value" : "PrincipalExchange",
-          "cashflowIdScheme" : "http://www.xxx.com/schemes/cashflow-id"
+      "cashflowId" : {
+        "value" : "PrincipalExchange",
+        "cashflowIdScheme" : "http://www.xxx.com/schemes/cashflow-id"
+      },
+      "payerPartyReference" : {
+        "href" : "Originator"
+      },
+      "receiverPartyReference" : {
+        "href" : "Counterparty"
+      },
+      "cashflowAmount" : {
+        "currency" : {
+          "value" : "GBP"
         },
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "Originator"
-            }
-          },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "Counterparty"
-            }
-          }
-        },
-        "cashflowAmount" : {
-          "currency" : {
-            "value" : "GBP"
-          },
-          "amount" : 7000
-        }
+        "amount" : 7000
       },
       "cashflowType" : {
         "value" : "PrincipalExchange",
         "cashflowTypeScheme" : "http://www.fpml.org/coding-scheme/cashflow-type"
       }
     }, {
-      "grossCashflowSequence" : {
-        "cashflowId" : {
-          "value" : "Fee",
-          "cashflowIdScheme" : "http://www.xxx.com/schemes/cashflow-id"
+      "cashflowId" : {
+        "value" : "Fee",
+        "cashflowIdScheme" : "http://www.xxx.com/schemes/cashflow-id"
+      },
+      "payerPartyReference" : {
+        "href" : "Originator"
+      },
+      "receiverPartyReference" : {
+        "href" : "Counterparty"
+      },
+      "cashflowAmount" : {
+        "currency" : {
+          "value" : "GBP"
         },
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "Originator"
-            }
-          },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "Counterparty"
-            }
-          }
-        },
-        "cashflowAmount" : {
-          "currency" : {
-            "value" : "GBP"
-          },
-          "amount" : 1000
-        }
+        "amount" : 1000
       },
       "cashflowType" : {
         "value" : "Fee",
         "cashflowTypeScheme" : "http://www.fpml.org/coding-scheme/cashflow-type"
       }
     }, {
-      "grossCashflowSequence" : {
-        "cashflowId" : {
-          "value" : "Coupon",
-          "cashflowIdScheme" : "http://www.xxx.com/schemes/cashflow-id"
+      "cashflowId" : {
+        "value" : "Coupon",
+        "cashflowIdScheme" : "http://www.xxx.com/schemes/cashflow-id"
+      },
+      "payerPartyReference" : {
+        "href" : "Counterparty"
+      },
+      "receiverPartyReference" : {
+        "href" : "Originator"
+      },
+      "cashflowAmount" : {
+        "currency" : {
+          "value" : "GBP"
         },
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "Counterparty"
-            }
-          },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "Originator"
-            }
-          }
-        },
-        "cashflowAmount" : {
-          "currency" : {
-            "value" : "GBP"
-          },
-          "amount" : 3000
-        }
+        "amount" : 3000
       },
       "cashflowType" : {
         "value" : "Coupon",
@@ -191,67 +133,55 @@
       }
     } ]
   } ],
-  "partiesAndAccountsModel" : {
-    "party" : [ {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "ORIGINATORBIC",
-          "partyIdScheme" : "ISO9362"
-        } ],
-        "partyName" : {
-          "value" : "Originator Name"
-        }
-      },
-      "id" : "Originator"
-    }, {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "COUNTERPARTYBIC",
-          "partyIdScheme" : "ISO9362"
-        } ],
-        "partyName" : {
-          "value" : "Counterparty Name"
-        }
-      },
-      "id" : "Counterparty"
-    }, {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "CUSTODIANBIC",
-          "partyIdScheme" : "ISO9362"
-        } ],
-        "partyName" : {
-          "value" : "Custodian Name"
-        }
-      },
-      "id" : "id_partyCustodian"
+  "party" : [ {
+    "id" : "Originator",
+    "partyId" : [ {
+      "value" : "ORIGINATORBIC",
+      "partyIdScheme" : "ISO9362"
     } ],
-    "account" : [ {
-      "accountId" : [ {
-        "value" : "ACCOUNTO"
-      } ],
-      "accountName" : {
-        "value" : "ORIGINATOR ACCOUNT NAME"
-      },
-      "accountSequence" : {
-        "accountBeneficiary" : {
-          "href" : "Originator"
-        }
-      },
-      "id" : "id_accountOriginator"
-    }, {
-      "accountId" : [ {
-        "value" : "ACCOUNTC"
-      } ],
-      "accountName" : {
-        "value" : "CUSTODIAN ACCOUNT NAME"
-      },
-      "accountSequence" : {
-        "accountBeneficiary" : {
-          "href" : "id_partyCustodian"
-        }
-      },
-      "id" : "id_accountCustodian"
-    } ]
-  }
+    "partyName" : {
+      "value" : "Originator Name"
+    }
+  }, {
+    "id" : "Counterparty",
+    "partyId" : [ {
+      "value" : "COUNTERPARTYBIC",
+      "partyIdScheme" : "ISO9362"
+    } ],
+    "partyName" : {
+      "value" : "Counterparty Name"
+    }
+  }, {
+    "id" : "id_partyCustodian",
+    "partyId" : [ {
+      "value" : "CUSTODIANBIC",
+      "partyIdScheme" : "ISO9362"
+    } ],
+    "partyName" : {
+      "value" : "Custodian Name"
+    }
+  } ],
+  "account" : [ {
+    "id" : "id_accountOriginator",
+    "accountId" : [ {
+      "value" : "ACCOUNTO"
+    } ],
+    "accountName" : {
+      "value" : "ORIGINATOR ACCOUNT NAME"
+    },
+    "accountBeneficiary" : {
+      "href" : "Originator"
+    }
+  }, {
+    "id" : "id_accountCustodian",
+    "accountId" : [ {
+      "value" : "ACCOUNTC"
+    } ],
+    "accountName" : {
+      "value" : "CUSTODIAN ACCOUNT NAME"
+    },
+    "accountBeneficiary" : {
+      "href" : "id_partyCustodian"
+    }
+  } ]
 }

@@ -2,49 +2,23 @@
   "fpmlVersion" : "5-10",
   "trade" : [ {
     "tradeHeader" : {
-      "tradeIdentifiersModel" : {
-        "partyTradeIdentifier" : [ {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "1147071",
-              "tradeIdScheme" : "http://www.tradeIdScheme.com/tradeIdScheme"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "partyA"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "1147071",
-                "tradeIdScheme" : "http://www.tradeIdScheme.com/tradeIdScheme"
-              }
-            } ]
-          }
-        }, {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "1147071",
-              "tradeIdScheme" : "http://www.tradeIdScheme.com/tradeIdScheme"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "partyB"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "1147071",
-                "tradeIdScheme" : "http://www.tradeIdScheme.com/tradeIdScheme"
-              }
-            } ]
-          }
-        } ]
-      },
+      "partyTradeIdentifier" : [ {
+        "tradeId" : {
+          "value" : "1147071",
+          "tradeIdScheme" : "http://www.tradeIdScheme.com/tradeIdScheme"
+        },
+        "partyReference" : {
+          "href" : "partyA"
+        }
+      }, {
+        "tradeId" : {
+          "value" : "1147071",
+          "tradeIdScheme" : "http://www.tradeIdScheme.com/tradeIdScheme"
+        },
+        "partyReference" : {
+          "href" : "partyB"
+        }
+      } ],
       "tradeDate" : {
         "value" : "2009-01-19T00:00:00Z"
       }
@@ -52,54 +26,45 @@
     "product" : {
       "returnSwapLeg" : [ {
         "id" : "interestLeg",
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "partyA"
-            }
-          },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "partyB"
-            }
-          }
+        "payerPartyReference" : {
+          "href" : "partyA"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyB"
         },
         "interestLegCalculationPeriodDates" : {
+          "id" : "interestCalcPeriodDates",
           "effectiveDate" : {
+            "id" : "interestEffectiveDate",
             "adjustableDate" : {
               "unadjustedDate" : {
                 "value" : "2009-01-21T00:00:00Z"
               },
               "dateAdjustments" : {
                 "businessDayConvention" : "FOLLOWING",
-                "businessCentersOrReferenceModel" : {
-                  "businessCenters" : {
-                    "businessCenter" : [ {
-                      "value" : "EUTA"
-                    } ]
-                  }
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "EUTA"
+                  } ]
                 }
               }
-            },
-            "id" : "interestEffectiveDate"
+            }
           },
           "terminationDate" : {
+            "id" : "interestTerminationDate",
             "adjustableDate" : {
               "unadjustedDate" : {
                 "value" : "2009-03-23T00:00:00Z"
               },
               "dateAdjustments" : {
                 "businessDayConvention" : "FOLLOWING",
-                "businessCentersOrReferenceModel" : {
-                  "businessCenters" : {
-                    "businessCenter" : [ {
-                      "value" : "EUTA"
-                    } ]
-                  }
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "EUTA"
+                  } ]
                 }
               }
-            },
-            "id" : "interestTerminationDate"
+            }
           },
           "interestLegResetDates" : {
             "calculationPeriodDatesReference" : {
@@ -115,12 +80,10 @@
                 "period" : "D",
                 "dayType" : "CurrencyBusiness",
                 "businessDayConvention" : "PRECEDING",
-                "businessCentersOrReferenceModel" : {
-                  "businessCenters" : {
-                    "businessCenter" : [ {
-                      "value" : "EUTA"
-                    } ]
-                  }
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "EUTA"
+                  } ]
                 },
                 "dateRelativeTo" : {
                   "href" : "interestLegPaymentDates"
@@ -129,6 +92,7 @@
             }
           },
           "interestLegPaymentDates" : {
+            "id" : "interestLegPaymentDates",
             "periodicDates" : {
               "calculationStartDate" : {
                 "relativeDate" : {
@@ -157,18 +121,14 @@
               },
               "calculationPeriodDatesAdjustments" : {
                 "businessDayConvention" : "FOLLOWING",
-                "businessCentersOrReferenceModel" : {
-                  "businessCenters" : {
-                    "businessCenter" : [ {
-                      "value" : "EUTA"
-                    } ]
-                  }
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "EUTA"
+                  } ]
                 }
               }
-            },
-            "id" : "interestLegPaymentDates"
-          },
-          "id" : "interestCalcPeriodDates"
+            }
+          }
         },
         "notional" : {
           "relativeNotionalAmount" : {
@@ -176,10 +136,8 @@
           }
         },
         "interestAmount" : {
-          "currencyAndDeterminationMethodModel" : {
-            "currencyReference" : {
-              "href" : "equityPaymentCurrency"
-            }
+          "currencyReference" : {
+            "href" : "equityPaymentCurrency"
           },
           "referenceAmount" : {
             "value" : "StandardISDA"
@@ -187,61 +145,47 @@
         },
         "interestCalculation" : {
           "floatingRateCalculation" : {
-            "floatingRateIndexModel" : {
-              "floatingRateIndex" : {
-                "value" : "EUR-EURIBOR-Reuters"
-              },
-              "indexTenor" : {
-                "periodMultiplier" : 1,
-                "period" : "M"
-              }
+            "floatingRateIndex" : {
+              "value" : "EUR-EURIBOR-Reuters"
             },
-            "floatingRateModel" : {
-              "spreadSchedule" : [ {
-                "initialValue" : 0.0001234
-              } ]
-            }
+            "indexTenor" : {
+              "periodMultiplier" : 1,
+              "period" : "M"
+            },
+            "spreadSchedule" : [ {
+              "initialValue" : 0.0001234
+            } ]
           },
           "dayCountFraction" : {
             "value" : "ACT/360"
           },
-          "interestCalculationSequence" : {
-            "interpolationMethod" : {
-              "value" : "LinearZeroYield"
-            }
+          "interpolationMethod" : {
+            "value" : "LinearZeroYield"
           }
         }
       }, {
         "id" : "returnLeg",
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "partyB"
-            }
-          },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "partyA"
-            }
-          }
+        "payerPartyReference" : {
+          "href" : "partyB"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyA"
         },
         "effectiveDate" : {
+          "id" : "equityEffectiveDate",
           "adjustableDate" : {
             "unadjustedDate" : {
               "value" : "2009-01-19T00:00:00Z"
             },
             "dateAdjustments" : {
               "businessDayConvention" : "FOLLOWING",
-              "businessCentersOrReferenceModel" : {
-                "businessCenters" : {
-                  "businessCenter" : [ {
-                    "value" : "DEFR"
-                  } ]
-                }
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "DEFR"
+                } ]
               }
             }
-          },
-          "id" : "equityEffectiveDate"
+          }
         },
         "terminationDate" : {
           "adjustableDate" : {
@@ -250,12 +194,10 @@
             },
             "dateAdjustments" : {
               "businessDayConvention" : "FOLLOWING",
-              "businessCentersOrReferenceModel" : {
-                "businessCenters" : {
-                  "businessCenter" : [ {
-                    "value" : "DEFR"
-                  } ]
-                }
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "DEFR"
+                } ]
               }
             }
           }
@@ -275,44 +217,28 @@
             },
             "openUnits" : 100000,
             "dividendPayout" : {
-              "dividendPayoutSequence" : {
-                "dividendPayoutRatio" : 1
-              }
+              "dividendPayoutRatio" : 1
             }
           }
         },
         "rateOfReturn" : {
           "initialPrice" : {
-            "priceSequence" : {
-              "equityPriceModel" : {
-                "netPrice" : {
-                  "currency" : {
-                    "value" : "EUR"
-                  },
-                  "amount" : 100,
-                  "priceExpression" : "AbsoluteTerms"
-                }
-              }
-            },
-            "equityPriceModel" : {
-              "netPrice" : {
-                "currency" : {
-                  "value" : "EUR"
-                },
-                "amount" : 100,
-                "priceExpression" : "AbsoluteTerms"
-              }
+            "netPrice" : {
+              "currency" : {
+                "value" : "EUR"
+              },
+              "amount" : 100,
+              "priceExpression" : "AbsoluteTerms"
             }
           },
           "notionalReset" : true,
           "valuationPriceInterim" : {
-            "priceSequence" : {
-              "determinationMethod" : {
-                "value" : "ValuationTime"
-              }
+            "determinationMethod" : {
+              "value" : "ValuationTime"
             },
             "valuationRules" : {
               "valuationDates" : {
+                "id" : "interimValuationDate",
                 "periodicDates" : {
                   "calculationStartDate" : {
                     "relativeDate" : {
@@ -341,44 +267,37 @@
                   },
                   "calculationPeriodDatesAdjustments" : {
                     "businessDayConvention" : "FOLLOWING",
-                    "businessCentersOrReferenceModel" : {
-                      "businessCenters" : {
-                        "businessCenter" : [ {
-                          "value" : "DEFR"
-                        } ]
-                      }
+                    "businessCenters" : {
+                      "businessCenter" : [ {
+                        "value" : "DEFR"
+                      } ]
                     }
                   }
-                },
-                "id" : "interimValuationDate"
+                }
               },
               "valuationTimeType" : "AsSpecifiedInMasterConfirmation"
             }
           },
           "valuationPriceFinal" : {
-            "priceSequence" : {
-              "determinationMethod" : {
-                "value" : "HedgeExecution"
-              }
+            "determinationMethod" : {
+              "value" : "HedgeExecution"
             },
             "valuationRules" : {
               "valuationDate" : {
+                "id" : "finalValuationDate",
                 "adjustableDate" : {
                   "unadjustedDate" : {
                     "value" : "2009-03-19T00:00:00Z"
                   },
                   "dateAdjustments" : {
                     "businessDayConvention" : "FOLLOWING",
-                    "businessCentersOrReferenceModel" : {
-                      "businessCenters" : {
-                        "businessCenter" : [ {
-                          "value" : "DEFR"
-                        } ]
-                      }
+                    "businessCenters" : {
+                      "businessCenter" : [ {
+                        "value" : "DEFR"
+                      } ]
                     }
                   }
-                },
-                "id" : "finalValuationDate"
+                }
               },
               "valuationTimeType" : "AsSpecifiedInMasterConfirmation",
               "futuresPriceValuation" : false
@@ -391,12 +310,10 @@
                 "period" : "D",
                 "dayType" : "CurrencyBusiness",
                 "businessDayConvention" : "FOLLOWING",
-                "businessCentersOrReferenceModel" : {
-                  "businessCenters" : {
-                    "businessCenter" : [ {
-                      "value" : "EUTA"
-                    } ]
-                  }
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "EUTA"
+                  } ]
                 },
                 "dateRelativeTo" : {
                   "href" : "interimValuationDate"
@@ -409,12 +326,10 @@
                 "period" : "D",
                 "dayType" : "CurrencyBusiness",
                 "businessDayConvention" : "FOLLOWING",
-                "businessCentersOrReferenceModel" : {
-                  "businessCenters" : {
-                    "businessCenter" : [ {
-                      "value" : "EUTA"
-                    } ]
-                  }
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "EUTA"
+                  } ]
                 },
                 "dateRelativeTo" : {
                   "href" : "finalValuationDate"
@@ -424,20 +339,18 @@
           }
         },
         "notional" : {
+          "id" : "equityNotionalAmount",
           "notionalAmount" : {
             "currency" : {
               "value" : "EUR"
             },
             "amount" : 10000000
-          },
-          "id" : "equityNotionalAmount"
+          }
         },
         "amount" : {
-          "currencyAndDeterminationMethodModel" : {
-            "currency" : {
-              "value" : "EUR",
-              "id" : "equityPaymentCurrency"
-            }
+          "currency" : {
+            "value" : "EUR",
+            "id" : "equityPaymentCurrency"
           },
           "referenceAmount" : {
             "value" : "StandardISDA"
@@ -449,24 +362,16 @@
           "returnType" : "Total",
           "dividendConditions" : {
             "dividendPaymentDate" : {
-              "dividendPaymentDateSequence" : {
-                "dividendDateReference" : "CashSettlementPaymentDate"
-              }
+              "dividendDateReference" : "CashSettlementPaymentDate"
             },
             "dividendPeriod" : "SecondPeriod",
-            "declaredCashAndCashEquivalentDividendPercentageModel" : {
-              "declaredCashDividendPercentage" : 1,
-              "declaredCashEquivalentDividendPercentage" : 1
-            }
+            "declaredCashDividendPercentage" : 1,
+            "declaredCashEquivalentDividendPercentage" : 1
           }
         }
       } ],
-      "mutualOrOptionalEarlyTerminationModel" : {
-        "mutualOrOptionalEarlyTerminationModelSequence" : {
-          "optionalEarlyTermination" : true,
-          "breakFundingRecovery" : true
-        }
-      }
+      "optionalEarlyTermination" : true,
+      "breakFundingRecovery" : true
     },
     "documentation" : {
       "masterConfirmation" : {
@@ -477,29 +382,23 @@
       }
     }
   } ],
-  "partiesAndAccountsModel" : {
-    "party" : [ {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "PARTY1234",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
-        } ],
-        "partyName" : {
-          "value" : "Party 1234 Ltd"
-        }
-      },
-      "id" : "partyA"
-    }, {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "PARTY5678",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
-        } ],
-        "partyName" : {
-          "value" : "Party 5678 Ltd"
-        }
-      },
-      "id" : "partyB"
-    } ]
-  }
+  "party" : [ {
+    "id" : "partyA",
+    "partyId" : [ {
+      "value" : "PARTY1234",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
+    } ],
+    "partyName" : {
+      "value" : "Party 1234 Ltd"
+    }
+  }, {
+    "id" : "partyB",
+    "partyId" : [ {
+      "value" : "PARTY5678",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
+    } ],
+    "partyName" : {
+      "value" : "Party 5678 Ltd"
+    }
+  } ]
 }

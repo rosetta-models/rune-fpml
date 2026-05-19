@@ -5,260 +5,184 @@
       "value" : "FX87654",
       "messageIdScheme" : "http://www.abn.com/coding-scheme/messageId"
     },
-    "messageHeaderModel" : {
-      "sentBy" : {
-        "value" : "ABNANL2A",
-        "messageAddressScheme" : "http://www.abn.com/partyId"
-      },
-      "sendTo" : [ {
-        "value" : "PARTYAUS33",
-        "messageAddressScheme" : "http://www.abn.com/partyId"
-      } ],
-      "creationTimestamp" : "2001-12-04T08:57:00Z"
-    }
+    "sentBy" : {
+      "value" : "ABNANL2A",
+      "messageAddressScheme" : "http://www.abn.com/partyId"
+    },
+    "sendTo" : [ {
+      "value" : "PARTYAUS33",
+      "messageAddressScheme" : "http://www.abn.com/partyId"
+    } ],
+    "creationTimestamp" : "2001-12-04T08:57:00Z"
   },
   "isCorrection" : false,
-  "correlationAndSequenceModel" : {
-    "correlationModel" : {
-      "correlationIdModel" : {
-        "correlationId" : [ {
-          "value" : "FX65432",
-          "correlationIdScheme" : "http://www.abn.com/coding-scheme/conversationId"
-        } ]
+  "correlationId" : [ {
+    "value" : "FX65432",
+    "correlationIdScheme" : "http://www.abn.com/coding-scheme/conversationId"
+  } ],
+  "sequenceNumber" : 1,
+  "trade" : {
+    "tradeHeader" : {
+      "partyTradeIdentifier" : [ {
+        "tradeId" : {
+          "value" : "123456789",
+          "tradeIdScheme" : "http://www.markets.Reuters.com/rss/spec/2001/trade-id-3-0"
+        },
+        "partyReference" : {
+          "href" : "party1"
+        }
+      }, {
+        "tradeId" : {
+          "value" : "123456789",
+          "tradeIdScheme" : "http://www.markets.Reuters.com/rss/spec/2001/trade-id-3-0"
+        },
+        "partyReference" : {
+          "href" : "party2"
+        }
+      } ],
+      "tradeDate" : {
+        "value" : "2001-12-04T00:00:00Z"
       }
     },
-    "sequenceModel" : {
-      "sequenceNumber" : 1
-    }
-  },
-  "tradingAndPostTradeEventsModel" : {
-    "tradingEventsBaseModel" : {
-      "tradingEventsBaseModelSequence" : {
-        "trade" : {
-          "tradeHeader" : {
-            "tradeIdentifiersModel" : {
-              "partyTradeIdentifier" : [ {
-                "issuerTradeIdModel" : {
-                  "tradeId" : {
-                    "value" : "123456789",
-                    "tradeIdScheme" : "http://www.markets.Reuters.com/rss/spec/2001/trade-id-3-0"
-                  }
-                },
-                "tradeIdentifierSequence" : {
-                  "partyAndAccountReferencesModel" : {
-                    "partyReference" : {
-                      "href" : "party1"
-                    }
-                  },
-                  "tradeIdentifierSequenceChoice" : [ {
-                    "tradeId" : {
-                      "value" : "123456789",
-                      "tradeIdScheme" : "http://www.markets.Reuters.com/rss/spec/2001/trade-id-3-0"
-                    }
-                  } ]
-                }
-              }, {
-                "issuerTradeIdModel" : {
-                  "tradeId" : {
-                    "value" : "123456789",
-                    "tradeIdScheme" : "http://www.markets.Reuters.com/rss/spec/2001/trade-id-3-0"
-                  }
-                },
-                "tradeIdentifierSequence" : {
-                  "partyAndAccountReferencesModel" : {
-                    "partyReference" : {
-                      "href" : "party2"
-                    }
-                  },
-                  "tradeIdentifierSequenceChoice" : [ {
-                    "tradeId" : {
-                      "value" : "123456789",
-                      "tradeIdScheme" : "http://www.markets.Reuters.com/rss/spec/2001/trade-id-3-0"
-                    }
-                  } ]
-                }
-              } ]
-            },
-            "tradeDate" : {
-              "value" : "2001-12-04T00:00:00Z"
+    "product" : {
+      "productType" : [ {
+        "value" : "DeltaHedge",
+        "productTypeScheme" : "http://www.sample.com/coding-scheme/product-type-simple"
+      } ],
+      "product" : [ {
+        "productType" : [ {
+          "value" : "EuropeanFXOption",
+          "productTypeScheme" : "http://www.sample.com/coding-scheme/product-type-simple"
+        } ],
+        "buyerPartyReference" : {
+          "href" : "party1"
+        },
+        "sellerPartyReference" : {
+          "href" : "party2"
+        },
+        "europeanExercise" : {
+          "expiryDate" : "2002-06-04T00:00:00Z",
+          "expiryTime" : {
+            "hourMinuteTime" : "14:00:00",
+            "businessCenter" : {
+              "value" : "USNY"
             }
           },
-          "product" : {
-            "productModel" : {
-              "productType" : [ {
-                "value" : "DeltaHedge",
-                "productTypeScheme" : "http://www.sample.com/coding-scheme/product-type-simple"
-              } ]
-            },
-            "product" : [ {
-              "productModel" : {
-                "productType" : [ {
-                  "value" : "EuropeanFXOption",
-                  "productTypeScheme" : "http://www.sample.com/coding-scheme/product-type-simple"
-                } ]
+          "cutName" : {
+            "value" : "NewYork"
+          },
+          "valueDate" : "2002-06-06T00:00:00Z"
+        },
+        "putCurrencyAmount" : {
+          "currency" : {
+            "value" : "AUD"
+          },
+          "amount" : 75000000
+        },
+        "callCurrencyAmount" : {
+          "currency" : {
+            "value" : "USD"
+          },
+          "amount" : 36900000
+        },
+        "strike" : {
+          "rate" : 0.4920,
+          "strikeQuoteBasis" : "CallCurrencyPerPutCurrency"
+        },
+        "premium" : [ {
+          "payerPartyReference" : {
+            "href" : "party1"
+          },
+          "receiverPartyReference" : {
+            "href" : "party2"
+          },
+          "paymentDate" : {
+            "adjustableDate" : {
+              "unadjustedDate" : {
+                "value" : "2001-12-06T00:00:00Z"
               },
-              "buyerSellerModel" : {
-                "buyerPartyReference" : {
-                  "href" : "party1"
-                },
-                "sellerPartyReference" : {
-                  "href" : "party2"
-                }
-              },
-              "europeanExercise" : {
-                "expiryDate" : "2002-06-04T00:00:00Z",
-                "expiryTime" : {
-                  "hourMinuteTime" : "14:00:00",
-                  "businessCenter" : {
-                    "value" : "USNY"
-                  }
-                },
-                "cutName" : {
-                  "value" : "NewYork"
-                },
-                "valueDate" : "2002-06-06T00:00:00Z"
-              },
-              "putCurrencyAmount" : {
-                "currency" : {
-                  "value" : "AUD"
-                },
-                "amount" : 75000000
-              },
-              "callCurrencyAmount" : {
-                "currency" : {
-                  "value" : "USD"
-                },
-                "amount" : 36900000
-              },
-              "strike" : {
-                "rate" : 0.4920,
-                "strikeQuoteBasis" : "CallCurrencyPerPutCurrency"
-              },
-              "premium" : [ {
-                "payerReceiverModel" : {
-                  "payerModel" : {
-                    "payerPartyReference" : {
-                      "href" : "party1"
-                    }
-                  },
-                  "receiverModel" : {
-                    "receiverPartyReference" : {
-                      "href" : "party2"
-                    }
-                  }
-                },
-                "paymentDate" : {
-                  "adjustableDate" : {
-                    "unadjustedDate" : {
-                      "value" : "2001-12-06T00:00:00Z"
-                    },
-                    "dateAdjustments" : {
-                      "businessDayConvention" : "NONE"
-                    }
-                  }
-                },
-                "paymentAmount" : {
-                  "currency" : {
-                    "value" : "USD"
-                  },
-                  "amount" : 36900
-                },
-                "quote" : {
-                  "value" : 0.001,
-                  "quoteBasis" : "PercentageOfCallCurrencyAmount"
-                }
-              } ]
-            }, {
-              "productModel" : {
-                "productType" : [ {
-                  "value" : "SpotHedge",
-                  "productTypeScheme" : "http://www.sample.com/coding-scheme/product-type-simple"
-                } ]
-              },
-              "fxCoreDetailsModel" : {
-                "exchangedCurrency1" : {
-                  "payerReceiverModel" : {
-                    "payerModel" : {
-                      "payerPartyReference" : {
-                        "href" : "party2"
-                      }
-                    },
-                    "receiverModel" : {
-                      "receiverPartyReference" : {
-                        "href" : "party1"
-                      }
-                    }
-                  },
-                  "paymentAmount" : {
-                    "currency" : {
-                      "value" : "AUD"
-                    },
-                    "amount" : 18750000
-                  }
-                },
-                "exchangedCurrency2" : {
-                  "payerReceiverModel" : {
-                    "payerModel" : {
-                      "payerPartyReference" : {
-                        "href" : "party1"
-                      }
-                    },
-                    "receiverModel" : {
-                      "receiverPartyReference" : {
-                        "href" : "party2"
-                      }
-                    }
-                  },
-                  "paymentAmount" : {
-                    "currency" : {
-                      "value" : "USD"
-                    },
-                    "amount" : 9736875
-                  }
-                },
-                "valueDate" : "2001-12-06T00:00:00Z",
-                "exchangeRate" : {
-                  "quotedCurrencyPair" : {
-                    "currency1" : {
-                      "value" : "AUD"
-                    },
-                    "currency2" : {
-                      "value" : "USD"
-                    },
-                    "quoteBasis" : "Currency2PerCurrency1"
-                  },
-                  "rate" : 0.5193
-                }
+              "dateAdjustments" : {
+                "businessDayConvention" : "NONE"
               }
-            } ]
+            }
+          },
+          "paymentAmount" : {
+            "currency" : {
+              "value" : "USD"
+            },
+            "amount" : 36900
+          },
+          "quote" : {
+            "value" : 0.001,
+            "quoteBasis" : "PercentageOfCallCurrencyAmount"
           }
+        } ]
+      }, {
+        "productType" : [ {
+          "value" : "SpotHedge",
+          "productTypeScheme" : "http://www.sample.com/coding-scheme/product-type-simple"
+        } ],
+        "exchangedCurrency1" : {
+          "payerPartyReference" : {
+            "href" : "party2"
+          },
+          "receiverPartyReference" : {
+            "href" : "party1"
+          },
+          "paymentAmount" : {
+            "currency" : {
+              "value" : "AUD"
+            },
+            "amount" : 18750000
+          }
+        },
+        "exchangedCurrency2" : {
+          "payerPartyReference" : {
+            "href" : "party1"
+          },
+          "receiverPartyReference" : {
+            "href" : "party2"
+          },
+          "paymentAmount" : {
+            "currency" : {
+              "value" : "USD"
+            },
+            "amount" : 9736875
+          }
+        },
+        "valueDate" : "2001-12-06T00:00:00Z",
+        "exchangeRate" : {
+          "quotedCurrencyPair" : {
+            "currency1" : {
+              "value" : "AUD"
+            },
+            "currency2" : {
+              "value" : "USD"
+            },
+            "quoteBasis" : "Currency2PerCurrency1"
+          },
+          "rate" : 0.5193
         }
-      }
+      } ]
     }
   },
-  "partiesAndAccountsModel" : {
-    "party" : [ {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "549300VBWWV6BYQOWM67",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "PARTYA"
-        }
-      },
-      "id" : "party1"
-    }, {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "BFXS5XCH7N0Y05NIXW11",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "ABN Amro"
-        }
-      },
-      "id" : "party2"
-    } ]
-  }
+  "party" : [ {
+    "id" : "party1",
+    "partyId" : [ {
+      "value" : "549300VBWWV6BYQOWM67",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "PARTYA"
+    }
+  }, {
+    "id" : "party2",
+    "partyId" : [ {
+      "value" : "BFXS5XCH7N0Y05NIXW11",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "ABN Amro"
+    }
+  } ]
 }

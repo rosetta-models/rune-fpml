@@ -2,223 +2,125 @@
   "fpmlVersion" : "5-13",
   "trade" : [ {
     "tradeHeader" : {
-      "tradeIdentifiersModel" : {
-        "partyTradeIdentifier" : [ {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "GHJK0987",
-              "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "partyA"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "GHJK0987",
-                "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
-              }
-            } ]
-          }
-        } ]
-      },
+      "partyTradeIdentifier" : [ {
+        "tradeId" : {
+          "value" : "GHJK0987",
+          "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
+        },
+        "partyReference" : {
+          "href" : "partyA"
+        }
+      } ],
       "tradeDate" : {
         "value" : "2012-04-10T00:00:00Z"
       }
     },
     "product" : {
-      "buyerSellerModel" : {
-        "buyerPartyReference" : {
-          "href" : "partyB"
-        },
-        "sellerPartyReference" : {
-          "href" : "partyA"
-        }
+      "buyerPartyReference" : {
+        "href" : "partyB"
+      },
+      "sellerPartyReference" : {
+        "href" : "partyA"
       },
       "optionType" : "Put",
-      "commodityFinancialOptionModel" : {
-        "commodity" : {
-          "instrumentId" : [ {
-            "value" : "NATURAL GAS-LOUISIANA (HENRY HUB)-GAS DAILY",
-            "instrumentIdScheme" : "http://www.partyA.com/instrumentId/commodity-reference-price"
-          } ],
-          "commodityProductModel" : {
-            "specifiedPrice" : "Midpoint"
-          }
-        },
-        "commodityOptionFeaturesModel" : {
-          "effectiveDate" : {
-            "adjustableDate" : {
-              "unadjustedDate" : {
-                "value" : "2012-09-01T00:00:00Z"
-              },
-              "dateAdjustments" : {
-                "businessDayConvention" : "NotApplicable"
-              }
-            }
+      "commodity" : {
+        "instrumentId" : [ {
+          "value" : "NATURAL GAS-LOUISIANA (HENRY HUB)-GAS DAILY",
+          "instrumentIdScheme" : "http://www.partyA.com/instrumentId/commodity-reference-price"
+        } ],
+        "specifiedPrice" : "Midpoint"
+      },
+      "effectiveDate" : {
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2012-09-01T00:00:00Z"
           },
-          "terminationDate" : {
-            "adjustableDate" : {
-              "unadjustedDate" : {
-                "value" : "2012-09-30T00:00:00Z"
-              },
-              "dateAdjustments" : {
-                "businessDayConvention" : "NotApplicable"
-              }
-            }
-          },
-          "commodityOptionFeaturesModelSequence" : {
-            "commodityAsianModel" : {
-              "calculationPeriodsSchedule" : {
-                "periodMultiplier" : 1,
-                "period" : "M",
-                "id" : "CalculationPeriods",
-                "balanceOfFirstPeriod" : false
-              },
-              "pricingDates" : {
-                "commodityCalculationPeriodsPointerModel" : {
-                  "calculationPeriodsReference" : {
-                    "href" : "CalculationPeriods"
-                  }
-                },
-                "commodityPricingDatesSequence" : {
-                  "commodityPricingDatesSequenceSequence" : {
-                    "daysModel" : {
-                      "dayType" : "CommodityBusiness",
-                      "daysModelSequence0" : {
-                        "dayDistribution" : {
-                          "value" : "Last"
-                        }
-                      }
-                    },
-                    "businessCalendar" : {
-                      "value" : "GAS-DAILY-PRICE-GUIDE"
-                    }
-                  }
-                },
-                "id" : "PricingDate"
-              }
-            }
-          }
-        },
-        "commodityNotionalQuantityModel" : {
-          "commodityNotionalQuantityModelSequence" : {
-            "notionalQuantity" : {
-              "quantityUnit" : {
-                "value" : "USMMBTU"
-              },
-              "quantityFrequency" : {
-                "value" : "PerCalendarDay"
-              },
-              "quantity" : 10000
-            },
-            "totalNotionalQuantity" : 300000
-          }
-        },
-        "exercise" : {
-          "europeanExercise" : {
-            "expirationDate" : {
-              "relativeDate" : {
-                "periodMultiplier" : 0,
-                "period" : "D",
-                "businessDayConvention" : "NotApplicable",
-                "dateRelativeTo" : {
-                  "href" : "PricingDate"
-                }
-              }
-            }
-          },
-          "automaticExercise" : true,
-          "settlementCurrency" : {
-            "value" : "USD"
-          },
-          "commodityPaymentDatesModel" : {
-            "relativePaymentDates" : {
-              "payRelativeTo" : "LastPricingDate",
-              "commodityCalculationPeriodsPointerModel" : {
-                "calculationPeriodsReference" : {
-                  "href" : "CalculationPeriods"
-                }
-              },
-              "paymentDaysOffset" : {
-                "periodMultiplier" : 5,
-                "period" : "D",
-                "dayType" : "Business",
-                "businessDayConvention" : "MODFOLLOWING"
-              }
-            }
-          }
-        },
-        "commodityStrikePriceModel" : {
-          "strikePricePerUnit" : {
-            "currency" : {
-              "value" : "USD"
-            },
-            "amount" : 1.9500
+          "dateAdjustments" : {
+            "businessDayConvention" : "NotApplicable"
           }
         }
       },
-      "commodityWeatherOptionModel" : {
-        "effectiveDate" : {
-          "adjustableDate" : {
-            "unadjustedDate" : {
-              "value" : "2012-09-01T00:00:00Z"
-            },
-            "dateAdjustments" : {
-              "businessDayConvention" : "NotApplicable"
-            }
-          }
-        },
-        "exercise" : {
-          "europeanExercise" : {
-            "expirationDate" : {
-              "relativeDate" : {
-                "periodMultiplier" : 0,
-                "period" : "D",
-                "businessDayConvention" : "NotApplicable",
-                "dateRelativeTo" : {
-                  "href" : "PricingDate"
-                }
-              }
-            }
+      "terminationDate" : {
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2012-09-30T00:00:00Z"
           },
-          "automaticExercise" : true,
-          "settlementCurrency" : {
-            "value" : "USD"
-          },
-          "commodityPaymentDatesModel" : {
-            "relativePaymentDates" : {
-              "payRelativeTo" : "LastPricingDate",
-              "commodityCalculationPeriodsPointerModel" : {
-                "calculationPeriodsReference" : {
-                  "href" : "CalculationPeriods"
-                }
-              },
-              "paymentDaysOffset" : {
-                "periodMultiplier" : 5,
-                "period" : "D",
-                "dayType" : "Business",
-                "businessDayConvention" : "MODFOLLOWING"
-              }
-            }
+          "dateAdjustments" : {
+            "businessDayConvention" : "NotApplicable"
           }
         }
+      },
+      "calculationPeriodsSchedule" : {
+        "id" : "CalculationPeriods",
+        "periodMultiplier" : 1,
+        "period" : "M",
+        "balanceOfFirstPeriod" : false
+      },
+      "pricingDates" : {
+        "id" : "PricingDate",
+        "calculationPeriodsReference" : {
+          "href" : "CalculationPeriods"
+        },
+        "dayType" : "CommodityBusiness",
+        "dayDistribution" : {
+          "value" : "Last"
+        },
+        "businessCalendar" : {
+          "value" : "GAS-DAILY-PRICE-GUIDE"
+        }
+      },
+      "notionalQuantity" : {
+        "quantityUnit" : {
+          "value" : "USMMBTU"
+        },
+        "quantityFrequency" : {
+          "value" : "PerCalendarDay"
+        },
+        "quantity" : 10000
+      },
+      "totalNotionalQuantity" : 300000,
+      "exercise" : {
+        "europeanExercise" : {
+          "expirationDate" : [ {
+            "relativeDate" : {
+              "periodMultiplier" : 0,
+              "period" : "D",
+              "businessDayConvention" : "NotApplicable",
+              "dateRelativeTo" : {
+                "href" : "PricingDate"
+              }
+            }
+          } ]
+        },
+        "automaticExercise" : true,
+        "settlementCurrency" : {
+          "value" : "USD"
+        },
+        "relativePaymentDates" : {
+          "payRelativeTo" : "LastPricingDate",
+          "calculationPeriodsReference" : {
+            "href" : "CalculationPeriods"
+          },
+          "paymentDaysOffset" : {
+            "periodMultiplier" : 5,
+            "period" : "D",
+            "dayType" : "Business",
+            "businessDayConvention" : "MODFOLLOWING"
+          }
+        }
+      },
+      "strikePricePerUnit" : {
+        "currency" : {
+          "value" : "USD"
+        },
+        "amount" : 1.9500
       },
       "premium" : [ {
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "partyB"
-            }
-          },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "partyA"
-            }
-          }
+        "payerPartyReference" : {
+          "href" : "partyB"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyA"
         },
         "paymentDate" : {
           "adjustableDate" : {
@@ -244,12 +146,10 @@
         }
       } ]
     },
-    "calculationAgentModel" : {
-      "calculationAgent" : {
-        "calculationAgentPartyReference" : [ {
-          "href" : "partyA"
-        } ]
-      }
+    "calculationAgent" : {
+      "calculationAgentPartyReference" : [ {
+        "href" : "partyA"
+      } ]
     },
     "documentation" : {
       "masterAgreement" : {
@@ -265,29 +165,23 @@
       } ]
     }
   } ],
-  "partiesAndAccountsModel" : {
-    "party" : [ {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "5299000NIGT14YW8ZD26",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "Bank A"
-        }
-      },
-      "id" : "partyA"
-    }, {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "969500QCC36R89FI3U25",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "Energy Co."
-        }
-      },
-      "id" : "partyB"
-    } ]
-  }
+  "party" : [ {
+    "id" : "partyA",
+    "partyId" : [ {
+      "value" : "5299000NIGT14YW8ZD26",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Bank A"
+    }
+  }, {
+    "id" : "partyB",
+    "partyId" : [ {
+      "value" : "969500QCC36R89FI3U25",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Energy Co."
+    }
+  } ]
 }

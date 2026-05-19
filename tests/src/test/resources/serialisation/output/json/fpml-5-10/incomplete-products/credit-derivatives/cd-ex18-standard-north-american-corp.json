@@ -2,49 +2,23 @@
   "fpmlVersion" : "5-10",
   "trade" : [ {
     "tradeHeader" : {
-      "tradeIdentifiersModel" : {
-        "partyTradeIdentifier" : [ {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "xyz1234",
-              "tradeIdScheme" : "http://www.xyzbank.com/cd-trade-id"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "party1"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "xyz1234",
-                "tradeIdScheme" : "http://www.xyzbank.com/cd-trade-id"
-              }
-            } ]
-          }
-        }, {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "abc1234",
-              "tradeIdScheme" : "http://www.abcbank.com/cd-trade-id"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "party2"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "abc1234",
-                "tradeIdScheme" : "http://www.abcbank.com/cd-trade-id"
-              }
-            } ]
-          }
-        } ]
-      },
+      "partyTradeIdentifier" : [ {
+        "tradeId" : {
+          "value" : "xyz1234",
+          "tradeIdScheme" : "http://www.xyzbank.com/cd-trade-id"
+        },
+        "partyReference" : {
+          "href" : "party1"
+        }
+      }, {
+        "tradeId" : {
+          "value" : "abc1234",
+          "tradeIdScheme" : "http://www.abcbank.com/cd-trade-id"
+        },
+        "partyReference" : {
+          "href" : "party2"
+        }
+      } ],
       "tradeDate" : {
         "value" : "2009-03-25T00:00:00Z"
       }
@@ -61,26 +35,22 @@
             "value" : "2014-06-20T00:00:00Z"
           }
         },
-        "buyerSellerModel" : {
-          "buyerPartyReference" : {
-            "href" : "party1"
-          },
-          "sellerPartyReference" : {
-            "href" : "party2"
-          }
+        "buyerPartyReference" : {
+          "href" : "party1"
+        },
+        "sellerPartyReference" : {
+          "href" : "party2"
         },
         "referenceInformation" : {
           "referenceEntity" : {
-            "legalEntitySequence" : {
-              "entityName" : {
-                "value" : "TENET HEALTHCARE CORPORATION"
-              }
+            "id" : "referenceEntity",
+            "entityName" : {
+              "value" : "TENET HEALTHCARE CORPORATION"
             },
             "entityId" : [ {
               "value" : "8G836J",
               "entityIdScheme" : "http://www.fpml.org/spec/2003/entity-id-RED-1-0"
-            } ],
-            "id" : "referenceEntity"
+            } ]
           },
           "referenceObligation" : [ {
             "bond" : {
@@ -93,28 +63,20 @@
         }
       },
       "feeLeg" : {
-        "feeLegSequence" : {
-          "initialPayment" : {
-            "payerReceiverModel" : {
-              "payerModel" : {
-                "payerPartyReference" : {
-                  "href" : "party1"
-                }
-              },
-              "receiverModel" : {
-                "receiverPartyReference" : {
-                  "href" : "party2"
-                }
-              }
+        "initialPayment" : {
+          "payerPartyReference" : {
+            "href" : "party1"
+          },
+          "receiverPartyReference" : {
+            "href" : "party2"
+          },
+          "adjustablePaymentDate" : "2009-03-28T00:00:00Z",
+          "adjustedPaymentDate" : "2009-03-30T00:00:00Z",
+          "paymentAmount" : {
+            "currency" : {
+              "value" : "USD"
             },
-            "adjustablePaymentDate" : "2009-03-28T00:00:00Z",
-            "adjustedPaymentDate" : "2009-03-30T00:00:00Z",
-            "paymentAmount" : {
-              "currency" : {
-                "value" : "USD"
-              },
-              "amount" : 1000
-            }
+            "amount" : 1000
           }
         },
         "periodicPayment" : {
@@ -153,29 +115,23 @@
       } ]
     }
   } ],
-  "partiesAndAccountsModel" : {
-    "party" : [ {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "254900BIAQJIUV6DLE92",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "XYZ Bank"
-        }
-      },
-      "id" : "party1"
-    }, {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "549300VBWWV6BYQOWM67",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "ABC Bank"
-        }
-      },
-      "id" : "party2"
-    } ]
-  }
+  "party" : [ {
+    "id" : "party1",
+    "partyId" : [ {
+      "value" : "254900BIAQJIUV6DLE92",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "XYZ Bank"
+    }
+  }, {
+    "id" : "party2",
+    "partyId" : [ {
+      "value" : "549300VBWWV6BYQOWM67",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "ABC Bank"
+    }
+  } ]
 }

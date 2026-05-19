@@ -1,68 +1,39 @@
 {
   "fpmlVersion" : "5-13",
   "trade" : [ {
+    "id" : "trs-eq1-trade",
     "tradeHeader" : {
-      "tradeIdentifiersModel" : {
-        "partyTradeIdentifier" : [ {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "TRS-01",
-              "tradeIdScheme" : "http://www.abc.com/swaps/trade-id"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "Party_1"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "TRS-01",
-                "tradeIdScheme" : "http://www.abc.com/swaps/trade-id"
-              }
-            } ]
-          }
-        }, {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "total-ret-swap-01",
-              "tradeIdScheme" : "http://www.hedgeco.com/swaps/trade-id"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "Party_2"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "total-ret-swap-01",
-                "tradeIdScheme" : "http://www.hedgeco.com/swaps/trade-id"
-              }
-            } ]
-          }
-        } ]
-      },
+      "partyTradeIdentifier" : [ {
+        "tradeId" : {
+          "value" : "TRS-01",
+          "tradeIdScheme" : "http://www.abc.com/swaps/trade-id"
+        },
+        "partyReference" : {
+          "href" : "Party_1"
+        }
+      }, {
+        "tradeId" : {
+          "value" : "total-ret-swap-01",
+          "tradeIdScheme" : "http://www.hedgeco.com/swaps/trade-id"
+        },
+        "partyReference" : {
+          "href" : "Party_2"
+        }
+      } ],
       "tradeDate" : {
         "value" : "2021-08-18T00:00:00Z"
       }
     },
     "product" : {
-      "productModel" : {
-        "productType" : [ {
-          "value" : "TotalReturnSwap",
-          "productTypeScheme" : "http://www.fpml.org/coding-scheme/product-type-simple"
-        } ]
+      "productType" : [ {
+        "value" : "TotalReturnSwap",
+        "productTypeScheme" : "http://www.fpml.org/coding-scheme/product-type-simple"
+      } ],
+      "buyerPartyReference" : {
+        "href" : "Party_1"
       },
-      "buyerSellerModel" : {
-        "buyerPartyReference" : {
-          "href" : "Party_1"
-        },
-        "sellerPartyReference" : {
-          "href" : "Party_2"
-        }
+      "sellerPartyReference" : {
+        "href" : "Party_2"
       },
       "returnSwapLeg" : [ {
         "id" : "id_ReturnLeg",
@@ -72,17 +43,11 @@
             "legIdScheme" : "http://www.partyA.com/leg-id"
           }
         } ],
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "Party_2"
-            }
-          },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "Party_1"
-            }
-          }
+        "payerPartyReference" : {
+          "href" : "Party_2"
+        },
+        "receiverPartyReference" : {
+          "href" : "Party_1"
         },
         "effectiveDate" : {
           "adjustableDate" : {
@@ -118,38 +83,25 @@
             },
             "openUnits" : 212000.0000,
             "dividendPayout" : {
-              "dividendPayoutSequence" : {
-                "dividendPayoutRatio" : 1.00
-              }
+              "dividendPayoutRatio" : 1.00
             }
           }
         },
         "rateOfReturn" : {
           "initialPrice" : {
-            "priceSequence" : {
-              "equityPriceModel" : {
-                "netPrice" : {
-                  "amount" : 29.4500,
-                  "priceExpression" : "AbsoluteTerms"
-                }
-              }
-            },
-            "equityPriceModel" : {
-              "netPrice" : {
-                "amount" : 29.4500,
-                "priceExpression" : "AbsoluteTerms"
-              }
+            "netPrice" : {
+              "amount" : 29.4500,
+              "priceExpression" : "AbsoluteTerms"
             }
           },
           "notionalReset" : true,
           "valuationPriceInterim" : {
-            "priceSequence" : {
-              "determinationMethod" : {
-                "value" : "ValuationTime"
-              }
+            "determinationMethod" : {
+              "value" : "ValuationTime"
             },
             "valuationRules" : {
               "valuationDates" : {
+                "id" : "InterimValuationDates",
                 "adjustableDates" : {
                   "unadjustedDate" : [ {
                     "value" : "2021-08-31T00:00:00Z"
@@ -179,20 +131,18 @@
                   "dateAdjustments" : {
                     "businessDayConvention" : "NotApplicable"
                   }
-                },
-                "id" : "InterimValuationDates"
+                }
               },
               "valuationTimeType" : "Close"
             }
           },
           "valuationPriceFinal" : {
-            "priceSequence" : {
-              "determinationMethod" : {
-                "value" : "HedgeExecution"
-              }
+            "determinationMethod" : {
+              "value" : "HedgeExecution"
             },
             "valuationRules" : {
               "valuationDate" : {
+                "id" : "FinalValuationDate",
                 "adjustableDate" : {
                   "unadjustedDate" : {
                     "value" : "2022-08-29T00:00:00Z"
@@ -200,68 +150,61 @@
                   "dateAdjustments" : {
                     "businessDayConvention" : "NotApplicable"
                   }
-                },
-                "id" : "FinalValuationDate"
+                }
               }
             }
           },
           "paymentDates" : {
+            "id" : "ReturnLegPaymentDates",
             "paymentDatesInterim" : {
+              "id" : "InterimReturnLegPaymentDates",
               "relativeDates" : {
                 "periodMultiplier" : 2,
                 "period" : "D",
                 "dayType" : "CurrencyBusiness",
                 "businessDayConvention" : "NONE",
-                "businessCentersOrReferenceModel" : {
-                  "businessCenters" : {
-                    "businessCenter" : [ {
-                      "value" : "USNY"
-                    } ]
-                  }
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "USNY"
+                  } ]
                 },
                 "dateRelativeTo" : {
                   "href" : "InterimValuationDates"
                 }
-              },
-              "id" : "InterimReturnLegPaymentDates"
+              }
             },
             "paymentDateFinal" : {
+              "id" : "FinalReturnLegPaymentDate",
               "relativeDate" : {
                 "periodMultiplier" : 2,
                 "period" : "D",
                 "dayType" : "CurrencyBusiness",
                 "businessDayConvention" : "NONE",
-                "businessCentersOrReferenceModel" : {
-                  "businessCenters" : {
-                    "businessCenter" : [ {
-                      "value" : "USNY"
-                    } ]
-                  }
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "USNY"
+                  } ]
                 },
                 "dateRelativeTo" : {
                   "href" : "FinalValuationDate"
                 }
-              },
-              "id" : "FinalReturnLegPaymentDate"
-            },
-            "id" : "ReturnLegPaymentDates"
+              }
+            }
           }
         },
         "notional" : {
+          "id" : "NotionalAmount",
           "notionalAmount" : {
             "currency" : {
               "value" : "USD"
             },
             "amount" : 6243400
-          },
-          "id" : "NotionalAmount"
+          }
         },
         "amount" : {
-          "currencyAndDeterminationMethodModel" : {
-            "currency" : {
-              "value" : "USD",
-              "id" : "ReturnLegPaymentCurrency"
-            }
+          "currency" : {
+            "value" : "USD",
+            "id" : "ReturnLegPaymentCurrency"
           },
           "referenceAmount" : {
             "value" : "StandardISDA"
@@ -276,9 +219,7 @@
             "dividendEntitlement" : "ExDate",
             "dividendAmount" : "RecordAmount",
             "dividendPaymentDate" : {
-              "dividendPaymentDateSequence" : {
-                "dividendDateReference" : "CashSettlementPaymentDate"
-              }
+              "dividendDateReference" : "CashSettlementPaymentDate"
             },
             "dividendPeriod" : "SecondPeriod"
           }
@@ -291,19 +232,14 @@
             "legIdScheme" : "http://www.partyA.com/leg-id"
           }
         } ],
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "Party_1"
-            }
-          },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "Party_2"
-            }
-          }
+        "payerPartyReference" : {
+          "href" : "Party_1"
+        },
+        "receiverPartyReference" : {
+          "href" : "Party_2"
         },
         "interestLegCalculationPeriodDates" : {
+          "id" : "InterestLegCalculationPeriodDates",
           "effectiveDate" : {
             "adjustableDate" : {
               "unadjustedDate" : {
@@ -339,8 +275,7 @@
                 "href" : "ReturnLegPaymentDates"
               }
             }
-          },
-          "id" : "InterestLegCalculationPeriodDates"
+          }
         },
         "notional" : {
           "notionalAmount" : {
@@ -351,10 +286,8 @@
           }
         },
         "interestAmount" : {
-          "currencyAndDeterminationMethodModel" : {
-            "currencyReference" : {
-              "href" : "ReturnLegPaymentCurrency"
-            }
+          "currencyReference" : {
+            "href" : "ReturnLegPaymentCurrency"
           },
           "referenceAmount" : {
             "value" : "StandardISDA"
@@ -362,52 +295,40 @@
         },
         "interestCalculation" : {
           "floatingRateCalculation" : {
-            "floatingRateIndexModel" : {
-              "floatingRateIndex" : {
-                "value" : "USD-SOFR"
-              }
+            "floatingRateIndex" : {
+              "value" : "USD-SOFR"
             },
             "calculationParameters" : {
               "calculationMethod" : "Compounding",
               "applicableBusinessDays" : {
-                "businessCentersOrReferenceModel" : {
-                  "businessCenters" : {
-                    "businessCenter" : [ {
-                      "value" : "USGS"
-                    } ]
-                  }
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "USGS"
+                  } ]
                 }
               },
               "lookback" : {
                 "offsetDays" : 2
               }
             },
-            "floatingRateModel" : {
-              "spreadSchedule" : [ {
-                "initialValue" : 0.0020
-              } ]
-            }
+            "spreadSchedule" : [ {
+              "initialValue" : 0.0020
+            } ]
           },
+          "id" : "InterestCalculation",
           "dayCountFraction" : {
             "value" : "ACT/360"
-          },
-          "id" : "InterestCalculation"
+          }
         }
       } ]
     },
     "collateral" : {
       "independentAmount" : [ {
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "Party_2"
-            }
-          },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "Party_1"
-            }
-          }
+        "payerPartyReference" : {
+          "href" : "Party_2"
+        },
+        "receiverPartyReference" : {
+          "href" : "Party_1"
         },
         "paymentDetail" : [ {
           "paymentDate" : {
@@ -428,32 +349,25 @@
           }
         } ]
       } ]
-    },
-    "id" : "trs-eq1-trade"
+    }
   } ],
-  "partiesAndAccountsModel" : {
-    "party" : [ {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "QGPGHQ1ENZOOLJRFTH41",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "ABCD Securities Inc."
-        }
-      },
-      "id" : "Party_1"
-    }, {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "J6W9XJWVE853A9CVRQ85",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "HedgeCo Capital L.L.C."
-        }
-      },
-      "id" : "Party_2"
-    } ]
-  }
+  "party" : [ {
+    "id" : "Party_1",
+    "partyId" : [ {
+      "value" : "QGPGHQ1ENZOOLJRFTH41",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "ABCD Securities Inc."
+    }
+  }, {
+    "id" : "Party_2",
+    "partyId" : [ {
+      "value" : "J6W9XJWVE853A9CVRQ85",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "HedgeCo Capital L.L.C."
+    }
+  } ]
 }

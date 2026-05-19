@@ -2,47 +2,29 @@
   "fpmlVersion" : "5-10",
   "trade" : [ {
     "tradeHeader" : {
-      "tradeIdentifiersModel" : {
-        "partyTradeIdentifier" : [ {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "1234",
-              "tradeIdScheme" : "http://www.PartyA.com/tradeId/OTC"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "party1"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "1234",
-                "tradeIdScheme" : "http://www.PartyA.com/tradeId/OTC"
-              }
-            } ]
-          }
-        } ]
-      },
+      "partyTradeIdentifier" : [ {
+        "tradeId" : {
+          "value" : "1234",
+          "tradeIdScheme" : "http://www.PartyA.com/tradeId/OTC"
+        },
+        "partyReference" : {
+          "href" : "party1"
+        }
+      } ],
       "tradeDate" : {
         "value" : "2005-07-13T00:00:00Z",
         "id" : "TradeDate"
       }
     },
     "product" : {
-      "productModel" : {
-        "productType" : [ {
-          "value" : "Equity:Option:PriceReturnBasicPerformance:SingleName"
-        } ]
+      "productType" : [ {
+        "value" : "Equity:Option:PriceReturnBasicPerformance:SingleName"
+      } ],
+      "buyerPartyReference" : {
+        "href" : "party2"
       },
-      "buyerSellerModel" : {
-        "buyerPartyReference" : {
-          "href" : "party2"
-        },
-        "sellerPartyReference" : {
-          "href" : "party1"
-        }
+      "sellerPartyReference" : {
+        "href" : "party1"
       },
       "optionType" : "Put",
       "underlyer" : {
@@ -89,15 +71,9 @@
             }
           },
           "latestExerciseTimeType" : "SpecificTime",
-          "equityExpirationModel" : {
-            "equityExpirationModelSequence" : {
-              "equityExpirationTimeType" : "Close"
-            }
-          }
+          "equityExpirationTimeType" : "Close"
         },
-        "equityExerciseValuationSettlementSequence" : {
-          "automaticExercise" : true
-        },
+        "automaticExercise" : true,
         "equityValuation" : {
           "valuationTimeType" : "Close"
         },
@@ -115,17 +91,11 @@
       "spotPrice" : 30.00,
       "numberOfOptions" : 10000,
       "equityPremium" : {
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "party2"
-            }
-          },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "party1"
-            }
-          }
+        "payerPartyReference" : {
+          "href" : "party2"
+        },
+        "receiverPartyReference" : {
+          "href" : "party1"
         },
         "paymentAmount" : {
           "currency" : {
@@ -149,12 +119,10 @@
         }
       }
     },
-    "calculationAgentModel" : {
-      "calculationAgent" : {
-        "calculationAgentPartyReference" : [ {
-          "href" : "party1"
-        } ]
-      }
+    "calculationAgent" : {
+      "calculationAgentPartyReference" : [ {
+        "href" : "party1"
+      } ]
     },
     "documentation" : {
       "masterAgreement" : {
@@ -173,23 +141,17 @@
       "value" : "GBEN"
     }
   } ],
-  "partiesAndAccountsModel" : {
-    "party" : [ {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "Party A",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
-        } ]
-      },
-      "id" : "party1"
-    }, {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "Party B",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
-        } ]
-      },
-      "id" : "party2"
+  "party" : [ {
+    "id" : "party1",
+    "partyId" : [ {
+      "value" : "Party A",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
     } ]
-  }
+  }, {
+    "id" : "party2",
+    "partyId" : [ {
+      "value" : "Party B",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
+    } ]
+  } ]
 }

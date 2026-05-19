@@ -2,276 +2,178 @@
   "fpmlVersion" : "5-10",
   "trade" : [ {
     "tradeHeader" : {
-      "tradeIdentifiersModel" : {
-        "partyTradeIdentifier" : [ {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "1234",
-              "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "partyA"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "1234",
-                "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
-              }
-            } ]
-          }
-        }, {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "2345",
-              "tradeIdScheme" : "http://www.PartyB.com/com-trade-id"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "partyB"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "2345",
-                "tradeIdScheme" : "http://www.PartyB.com/com-trade-id"
-              }
-            } ]
-          }
-        } ]
-      },
+      "partyTradeIdentifier" : [ {
+        "tradeId" : {
+          "value" : "1234",
+          "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
+        },
+        "partyReference" : {
+          "href" : "partyA"
+        }
+      }, {
+        "tradeId" : {
+          "value" : "2345",
+          "tradeIdScheme" : "http://www.PartyB.com/com-trade-id"
+        },
+        "partyReference" : {
+          "href" : "partyB"
+        }
+      } ],
       "tradeDate" : {
         "value" : "2012-04-04T00:00:00Z"
       }
     },
     "product" : {
-      "productModel" : {
-        "primaryAssetClass" : {
-          "value" : "Commodity"
-        }
+      "primaryAssetClass" : {
+        "value" : "Commodity"
       },
-      "buyerSellerModel" : {
-        "buyerPartyReference" : {
-          "href" : "partyB"
-        },
-        "sellerPartyReference" : {
-          "href" : "partyA"
-        }
+      "buyerPartyReference" : {
+        "href" : "partyB"
+      },
+      "sellerPartyReference" : {
+        "href" : "partyA"
       },
       "optionType" : "Put",
-      "commodityFinancialOptionModel" : {
-        "commodityOptionFeaturesModel" : {
-          "effectiveDate" : {
+      "effectiveDate" : {
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2012-11-01T00:00:00Z"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NONE"
+          }
+        }
+      },
+      "exercise" : {
+        "europeanExercise" : {
+          "expirationDate" : [ {
             "adjustableDate" : {
               "unadjustedDate" : {
-                "value" : "2012-11-01T00:00:00Z"
+                "value" : "2013-03-31T00:00:00Z"
               },
               "dateAdjustments" : {
                 "businessDayConvention" : "NONE"
               }
             }
-          }
+          } ]
         },
-        "exercise" : {
-          "europeanExercise" : {
-            "expirationDate" : {
-              "adjustableDate" : {
-                "unadjustedDate" : {
-                  "value" : "2013-03-31T00:00:00Z"
-                },
-                "dateAdjustments" : {
-                  "businessDayConvention" : "NONE"
-                }
-              }
-            }
-          },
-          "settlementCurrency" : {
-            "value" : "USD"
-          },
-          "commodityPaymentDatesModel" : {
-            "commodityNonPeriodicPaymentDatesModel" : {
-              "paymentDates" : {
-                "relativeDate" : {
-                  "periodMultiplier" : 5,
-                  "period" : "D",
-                  "businessDayConvention" : "MODFOLLOWING",
-                  "businessCentersOrReferenceModel" : {
-                    "businessCenters" : {
-                      "businessCenter" : [ {
-                        "value" : "USNY"
-                      } ]
-                    }
-                  },
-                  "dateRelativeTo" : {
-                    "href" : "weatherCalculationPeriods"
-                  }
-                }
-              }
+        "settlementCurrency" : {
+          "value" : "USD"
+        },
+        "paymentDates" : {
+          "relativeDate" : {
+            "periodMultiplier" : 5,
+            "period" : "D",
+            "businessDayConvention" : "MODFOLLOWING",
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "USNY"
+              } ]
+            },
+            "dateRelativeTo" : {
+              "href" : "weatherCalculationPeriods"
             }
           }
         }
       },
-      "commodityWeatherOptionModel" : {
-        "effectiveDate" : {
-          "adjustableDate" : {
-            "unadjustedDate" : {
-              "value" : "2012-11-01T00:00:00Z"
-            },
-            "dateAdjustments" : {
-              "businessDayConvention" : "NONE"
-            }
-          }
-        },
-        "weatherCalculationPeriodModel" : {
-          "weatherCalculationPeriods" : {
-            "calculationPeriod" : [ {
-              "calculationPeriodFirstDay" : {
-                "value" : "2012-11-01T00:00:00Z"
-              },
-              "calculationPeriodEndDay" : {
-                "value" : "2012-11-30T00:00:00Z"
-              }
-            }, {
-              "calculationPeriodFirstDay" : {
-                "value" : "2012-12-01T00:00:00Z"
-              },
-              "calculationPeriodEndDay" : {
-                "value" : "2012-12-31T00:00:00Z"
-              }
-            }, {
-              "calculationPeriodFirstDay" : {
-                "value" : "2013-01-01T00:00:00Z"
-              },
-              "calculationPeriodEndDay" : {
-                "value" : "2013-01-31T00:00:00Z"
-              }
-            }, {
-              "calculationPeriodFirstDay" : {
-                "value" : "2013-02-01T00:00:00Z"
-              },
-              "calculationPeriodEndDay" : {
-                "value" : "2013-02-28T00:00:00Z"
-              }
-            }, {
-              "calculationPeriodFirstDay" : {
-                "value" : "2013-03-01T00:00:00Z"
-              },
-              "calculationPeriodEndDay" : {
-                "value" : "2013-03-31T00:00:00Z"
-              }
-            } ],
-            "id" : "weatherCalculationPeriods"
-          }
-        },
-        "weatherNotionalAmount" : {
-          "currency" : {
-            "value" : "USD"
+      "weatherCalculationPeriods" : {
+        "id" : "weatherCalculationPeriods",
+        "calculationPeriod" : [ {
+          "calculationPeriodFirstDay" : {
+            "value" : "2012-11-01T00:00:00Z"
           },
-          "amount" : 150000.00
-        },
-        "exercise" : {
-          "europeanExercise" : {
-            "expirationDate" : {
-              "adjustableDate" : {
-                "unadjustedDate" : {
-                  "value" : "2013-03-31T00:00:00Z"
-                },
-                "dateAdjustments" : {
-                  "businessDayConvention" : "NONE"
-                }
-              }
-            }
-          },
-          "settlementCurrency" : {
-            "value" : "USD"
-          },
-          "commodityPaymentDatesModel" : {
-            "commodityNonPeriodicPaymentDatesModel" : {
-              "paymentDates" : {
-                "relativeDate" : {
-                  "periodMultiplier" : 5,
-                  "period" : "D",
-                  "businessDayConvention" : "MODFOLLOWING",
-                  "businessCentersOrReferenceModel" : {
-                    "businessCenters" : {
-                      "businessCenter" : [ {
-                        "value" : "USNY"
-                      } ]
-                    }
-                  },
-                  "dateRelativeTo" : {
-                    "href" : "weatherCalculationPeriods"
-                  }
-                }
-              }
-            }
+          "calculationPeriodEndDay" : {
+            "value" : "2012-11-30T00:00:00Z"
           }
+        }, {
+          "calculationPeriodFirstDay" : {
+            "value" : "2012-12-01T00:00:00Z"
+          },
+          "calculationPeriodEndDay" : {
+            "value" : "2012-12-31T00:00:00Z"
+          }
+        }, {
+          "calculationPeriodFirstDay" : {
+            "value" : "2013-01-01T00:00:00Z"
+          },
+          "calculationPeriodEndDay" : {
+            "value" : "2013-01-31T00:00:00Z"
+          }
+        }, {
+          "calculationPeriodFirstDay" : {
+            "value" : "2013-02-01T00:00:00Z"
+          },
+          "calculationPeriodEndDay" : {
+            "value" : "2013-02-28T00:00:00Z"
+          }
+        }, {
+          "calculationPeriodFirstDay" : {
+            "value" : "2013-03-01T00:00:00Z"
+          },
+          "calculationPeriodEndDay" : {
+            "value" : "2013-03-31T00:00:00Z"
+          }
+        } ]
+      },
+      "weatherNotionalAmount" : {
+        "currency" : {
+          "value" : "USD"
         },
-        "weatherIndexStrikeLevel" : {
-          "quantity" : 3.5,
-          "unit" : {
+        "amount" : 150000.00
+      },
+      "weatherIndexStrikeLevel" : {
+        "quantity" : 3.5,
+        "unit" : {
+          "value" : "Inches"
+        }
+      },
+      "calculation" : {
+        "settlementLevel" : "Average",
+        "referenceLevelEqualsZero" : true,
+        "calculationDate" : {
+          "periodMultiplier" : 3,
+          "period" : "D"
+        },
+        "businessDays" : {
+          "value" : "USNY"
+        },
+        "dataCorrection" : false
+      },
+      "weatherIndexData" : {
+        "referenceLevel" : {
+          "amount" : 0.00,
+          "referenceLevelUnit" : {
             "value" : "Inches"
           }
         },
-        "calculation" : {
-          "settlementLevel" : "Average",
-          "referenceLevelEqualsZero" : true,
-          "calculationDate" : {
-            "periodMultiplier" : 3,
-            "period" : "D"
-          },
-          "businessDays" : {
-            "value" : "USNY"
-          },
-          "dataCorrection" : false
+        "dataProvider" : {
+          "value" : "US-NOAA"
         },
-        "weatherIndexData" : {
-          "referenceLevel" : {
-            "amount" : 0.00,
-            "referenceLevelUnit" : {
-              "value" : "Inches"
-            }
-          },
-          "dataProvider" : {
-            "value" : "US-NOAA"
-          },
-          "finalEditedData" : false,
-          "weatherStation" : {
-            "weatherStationWBAN" : {
-              "value" : "93086"
-            }
-          },
-          "weatherStationFallback" : {
-            "weatherStationWBAN" : {
-              "value" : "93073"
-            }
-          },
-          "weatherStationSecondFallback" : {
-            "weatherStationWBAN" : {
-              "value" : "93003"
-            }
-          },
-          "alternativeDataProvider" : false,
-          "synopticDataFallback" : false
-        }
+        "finalEditedData" : false,
+        "weatherStation" : {
+          "weatherStationWBAN" : {
+            "value" : "93086"
+          }
+        },
+        "weatherStationFallback" : {
+          "weatherStationWBAN" : {
+            "value" : "93073"
+          }
+        },
+        "weatherStationSecondFallback" : {
+          "weatherStationWBAN" : {
+            "value" : "93003"
+          }
+        },
+        "alternativeDataProvider" : false,
+        "synopticDataFallback" : false
       },
       "premium" : [ {
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "partyB"
-            }
-          },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "partyA"
-            }
-          }
+        "payerPartyReference" : {
+          "href" : "partyB"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyA"
         },
         "paymentDate" : {
           "adjustableDate" : {
@@ -290,13 +192,9 @@
           "amount" : 5000.00
         }
       } ],
-      "commodityContentModel" : {
-        "marketDisruption" : {
-          "commodityMarketDisruptionSequence" : {
-            "marketDisruptionEvents" : "AsSpecifiedInMasterAgreement"
-          },
-          "disruptionFallbacks" : "AsSpecifiedInMasterAgreement"
-        }
+      "marketDisruption" : {
+        "marketDisruptionEvents" : "AsSpecifiedInMasterAgreement",
+        "disruptionFallbacks" : "AsSpecifiedInMasterAgreement"
       }
     },
     "documentation" : {
@@ -310,29 +208,23 @@
       } ]
     }
   } ],
-  "partiesAndAccountsModel" : {
-    "party" : [ {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "5299000NIGT14YW8ZD26",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "ART Reinsurance LLC"
-        }
-      },
-      "id" : "partyA"
-    }, {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "969500QCC36R89FI3U25",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "Mountain Ski Resorts Inc."
-        }
-      },
-      "id" : "partyB"
-    } ]
-  }
+  "party" : [ {
+    "id" : "partyA",
+    "partyId" : [ {
+      "value" : "5299000NIGT14YW8ZD26",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "ART Reinsurance LLC"
+    }
+  }, {
+    "id" : "partyB",
+    "partyId" : [ {
+      "value" : "969500QCC36R89FI3U25",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Mountain Ski Resorts Inc."
+    }
+  } ]
 }

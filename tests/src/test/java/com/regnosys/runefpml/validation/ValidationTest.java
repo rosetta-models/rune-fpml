@@ -32,6 +32,6 @@ public class ValidationTest {
         // Validate
         ValidationReport validationReport = validateProcessor.runProcessStep(DataDocument.class, dataDocumentBuilder);
         validationReport.logReport(); // logs validation failures as DEBUG and validation success as TRACE
-        assertThat(validationReport.validationFailures(), hasSize(4));
+        assertThat(validationReport.validationFailures(), hasSize(0));
     }
 }

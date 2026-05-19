@@ -2,225 +2,161 @@
   "fpmlVersion" : "5-10",
   "trade" : [ {
     "tradeHeader" : {
-      "tradeIdentifiersModel" : {
-        "partyTradeIdentifier" : [ {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "1234",
-              "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "partyA"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "1234",
-                "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
-              }
-            } ]
-          }
-        }, {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "2345",
-              "tradeIdScheme" : "http://www.PartyB.com/com-trade-id"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "partyB"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "2345",
-                "tradeIdScheme" : "http://www.PartyB.com/com-trade-id"
-              }
-            } ]
-          }
-        } ]
-      },
+      "partyTradeIdentifier" : [ {
+        "tradeId" : {
+          "value" : "1234",
+          "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
+        },
+        "partyReference" : {
+          "href" : "partyA"
+        }
+      }, {
+        "tradeId" : {
+          "value" : "2345",
+          "tradeIdScheme" : "http://www.PartyB.com/com-trade-id"
+        },
+        "partyReference" : {
+          "href" : "partyB"
+        }
+      } ],
       "tradeDate" : {
         "value" : "2009-01-28T00:00:00Z"
       }
     },
     "product" : {
-      "commoditySwapDetailsModel" : {
-        "effectiveDate" : {
-          "adjustableDate" : {
-            "unadjustedDate" : {
-              "value" : "2009-06-01T00:00:00Z"
-            },
-            "dateAdjustments" : {
-              "businessDayConvention" : "NotApplicable"
-            }
+      "effectiveDate" : {
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2009-06-01T00:00:00Z"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NotApplicable"
+          }
+        }
+      },
+      "terminationDate" : {
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2009-06-30T00:00:00Z"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NotApplicable"
+          }
+        }
+      },
+      "settlementCurrency" : {
+        "value" : "EUR"
+      },
+      "commoditySwapLeg" : [ {
+        "payerPartyReference" : {
+          "href" : "partyA"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyB"
+        },
+        "deliveryPeriods" : {
+          "id" : "deliveryPeriods",
+          "calculationPeriodsScheduleReference" : {
+            "href" : "calculationPeriods"
           }
         },
-        "terminationDate" : {
-          "adjustableDate" : {
-            "unadjustedDate" : {
-              "value" : "2009-06-30T00:00:00Z"
-            },
-            "dateAdjustments" : {
-              "businessDayConvention" : "NotApplicable"
+        "settlementPeriods" : [ {
+          "id" : "settlementPeriods",
+          "duration" : "30Minutes",
+          "applicableDay" : [ "MON", "TUE", "WED", "THU", "FRI" ],
+          "startTime" : {
+            "time" : {
+              "hourMinuteTime" : "07:00:00",
+              "location" : {
+                "value" : "Europe/London"
+              }
             }
+          },
+          "endTime" : {
+            "time" : {
+              "hourMinuteTime" : "19:00:00",
+              "location" : {
+                "value" : "Europe/London"
+              }
+            }
+          },
+          "excludeHolidays" : {
+            "value" : "N2EX"
+          }
+        } ],
+        "electricity" : {
+          "type" : "Electricity"
+        },
+        "deliveryConditions" : {
+          "deliveryPoint" : {
+            "value" : "10YGB----------A",
+            "deliveryPointScheme" : "http://www.etso-net.org/Activities/edi/eic/ars/area.htm"
           }
         },
-        "settlementCurrency" : {
-          "value" : "EUR"
-        },
-        "commoditySwapLeg" : [ {
-          "payerReceiverModel" : {
-            "payerModel" : {
-              "payerPartyReference" : {
-                "href" : "partyA"
-              }
+        "deliveryQuantity" : {
+          "id" : "deliveryQuantity",
+          "physicalQuantity" : [ {
+            "quantityUnit" : {
+              "value" : "MWh"
             },
-            "receiverModel" : {
-              "receiverPartyReference" : {
-                "href" : "partyB"
-              }
-            }
-          },
-          "deliveryPeriods" : {
-            "commodityCalculationPeriodsPointerModel" : {
-              "calculationPeriodsScheduleReference" : {
-                "href" : "calculationPeriods"
-              }
+            "quantityFrequency" : {
+              "value" : "PerSettlementPeriod"
             },
-            "id" : "deliveryPeriods"
-          },
-          "settlementPeriods" : [ {
-            "duration" : "30Minutes",
-            "applicableDay" : [ "MON", "TUE", "WED", "THU", "FRI" ],
-            "excludeHolidays" : {
-              "value" : "N2EX"
-            },
-            "id" : "settlementPeriods",
-            "startTime" : {
-              "time" : {
-                "hourMinuteTime" : "07:00:00",
-                "location" : {
-                  "value" : "Europe/London"
-                }
-              }
-            },
-            "endTime" : {
-              "time" : {
-                "hourMinuteTime" : "19:00:00",
-                "location" : {
-                  "value" : "Europe/London"
-                }
-              }
-            }
-          } ],
-          "electricity" : {
-            "type" : "Electricity"
-          },
-          "deliveryConditions" : {
-            "electricityDeliverySequence0" : {
-              "deliveryPoint" : {
-                "value" : "10YGB----------A",
-                "deliveryPointScheme" : "http://www.etso-net.org/Activities/edi/eic/ars/area.htm"
-              }
-            }
-          },
-          "deliveryQuantity" : {
-            "id" : "deliveryQuantity",
-            "physicalQuantity" : [ {
-              "quantityUnit" : {
-                "value" : "MWh"
-              },
-              "quantityFrequency" : {
-                "value" : "PerSettlementPeriod"
-              },
-              "quantity" : 200.0,
-              "settlementPeriodsReference" : [ {
-                "href" : "settlementPeriods"
-              } ]
+            "quantity" : 200.0,
+            "settlementPeriodsReference" : [ {
+              "href" : "settlementPeriods"
             } ]
-          }
-        }, {
-          "payerReceiverModel" : {
-            "payerModel" : {
-              "payerPartyReference" : {
-                "href" : "partyB"
-              }
-            },
-            "receiverModel" : {
-              "receiverPartyReference" : {
-                "href" : "partyA"
-              }
-            }
+          } ]
+        }
+      }, {
+        "payerPartyReference" : {
+          "href" : "partyB"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyA"
+        },
+        "calculationPeriodsSchedule" : {
+          "id" : "calculationPeriods",
+          "periodMultiplier" : 1,
+          "period" : "M",
+          "balanceOfFirstPeriod" : false
+        },
+        "settlementPeriodsPrice" : [ {
+          "price" : 55.0,
+          "priceCurrency" : {
+            "value" : "GBP"
           },
-          "commodityCalculationPeriodsModel" : {
-            "calculationPeriodsSchedule" : {
-              "periodMultiplier" : 1,
-              "period" : "M",
-              "id" : "calculationPeriods",
-              "balanceOfFirstPeriod" : false
-            }
+          "priceUnit" : {
+            "value" : "MWh"
           },
-          "commodityFixedPriceModel" : {
-            "commodityFixedPriceModelChoice" : {
-              "settlementPeriodsPrice" : [ {
-                "price" : 55.0,
-                "commodityPriceModel" : {
-                  "priceCurrency" : {
-                    "value" : "GBP"
-                  },
-                  "priceUnit" : {
-                    "value" : "MWh"
-                  }
-                },
-                "settlementPeriodsReference" : [ {
-                  "href" : "settlementPeriods"
-                } ]
-              } ]
-            }
-          },
-          "commodityNotionalQuantityModel" : {
-            "quantityReference" : {
-              "href" : "deliveryQuantity"
-            }
-          },
-          "commodityPaymentDatesModel" : {
-            "commodityNonPeriodicPaymentDatesModel" : {
-              "masterAgreementPaymentDates" : true
-            }
-          }
-        } ]
-      }
+          "settlementPeriodsReference" : [ {
+            "href" : "settlementPeriods"
+          } ]
+        } ],
+        "quantityReference" : {
+          "href" : "deliveryQuantity"
+        },
+        "masterAgreementPaymentDates" : true
+      } ]
     }
   } ],
-  "partiesAndAccountsModel" : {
-    "party" : [ {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "549300KFSLY4U7N3LL12",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "Bank"
-        }
-      },
-      "id" : "partyA"
-    }, {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "549300AJRHKBLY9GM262",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "Energy Co."
-        }
-      },
-      "id" : "partyB"
-    } ]
-  }
+  "party" : [ {
+    "id" : "partyA",
+    "partyId" : [ {
+      "value" : "549300KFSLY4U7N3LL12",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Bank"
+    }
+  }, {
+    "id" : "partyB",
+    "partyId" : [ {
+      "value" : "549300AJRHKBLY9GM262",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Energy Co."
+    }
+  } ]
 }

@@ -5,286 +5,230 @@
       "value" : "456a789b",
       "messageIdScheme" : "http://www.partyA.com/coding-scheme/messsage-id"
     },
-    "messageHeaderModel" : {
-      "sentBy" : {
-        "value" : "msdw",
-        "messageAddressScheme" : "http://www.partyA.com/coding-scheme/party-id"
-      },
-      "creationTimestamp" : "2000-08-01T08:57:00Z"
-    }
+    "sentBy" : {
+      "value" : "msdw",
+      "messageAddressScheme" : "http://www.partyA.com/coding-scheme/party-id"
+    },
+    "creationTimestamp" : "2000-08-01T08:57:00Z"
   },
   "isCorrection" : false,
-  "correlationAndSequenceModel" : {
-    "correlationModel" : {
-      "correlationIdModel" : {
-        "correlationId" : [ {
-          "value" : "CORR/2000/08/01/456a779b",
-          "correlationIdScheme" : "http://www.example.com/correlationId"
-        } ]
+  "correlationId" : [ {
+    "value" : "CORR/2000/08/01/456a779b",
+    "correlationIdScheme" : "http://www.example.com/correlationId"
+  } ],
+  "sequenceNumber" : 1,
+  "trade" : {
+    "tradeHeader" : {
+      "partyTradeIdentifier" : [ {
+        "tradeId" : {
+          "value" : "109257",
+          "tradeIdScheme" : "http://www.partyA.com/"
+        },
+        "partyReference" : {
+          "href" : "party1"
+        }
+      }, {
+        "tradeId" : {
+          "value" : "1234567",
+          "tradeIdScheme" : "http://www.partyB.com/"
+        },
+        "partyReference" : {
+          "href" : "party2"
+        }
+      } ],
+      "tradeDate" : {
+        "value" : "2006-12-01T00:00:00Z"
       }
     },
-    "sequenceModel" : {
-      "sequenceNumber" : 1
-    }
-  },
-  "tradingAndPostTradeEventsModel" : {
-    "tradingEventsBaseModel" : {
-      "tradingEventsBaseModelSequence" : {
-        "trade" : {
-          "tradeHeader" : {
-            "tradeIdentifiersModel" : {
-              "partyTradeIdentifier" : [ {
-                "issuerTradeIdModel" : {
-                  "tradeId" : {
-                    "value" : "109257",
-                    "tradeIdScheme" : "http://www.partyA.com/"
-                  }
-                },
-                "tradeIdentifierSequence" : {
-                  "partyAndAccountReferencesModel" : {
-                    "partyReference" : {
-                      "href" : "party1"
-                    }
-                  },
-                  "tradeIdentifierSequenceChoice" : [ {
-                    "tradeId" : {
-                      "value" : "109257",
-                      "tradeIdScheme" : "http://www.partyA.com/"
-                    }
-                  } ]
-                }
-              }, {
-                "issuerTradeIdModel" : {
-                  "tradeId" : {
-                    "value" : "1234567",
-                    "tradeIdScheme" : "http://www.partyB.com/"
-                  }
-                },
-                "tradeIdentifierSequence" : {
-                  "partyAndAccountReferencesModel" : {
-                    "partyReference" : {
-                      "href" : "party2"
-                    }
-                  },
-                  "tradeIdentifierSequenceChoice" : [ {
-                    "tradeId" : {
-                      "value" : "1234567",
-                      "tradeIdScheme" : "http://www.partyB.com/"
-                    }
-                  } ]
-                }
-              } ]
-            },
-            "tradeDate" : {
-              "value" : "2006-12-01T00:00:00Z"
-            }
+    "product" : {
+      "generalTerms" : {
+        "effectiveDate" : {
+          "unadjustedDate" : {
+            "value" : "2006-12-02T00:00:00Z"
           },
-          "product" : {
-            "generalTerms" : {
-              "effectiveDate" : {
-                "unadjustedDate" : {
-                  "value" : "2006-12-02T00:00:00Z"
-                },
-                "dateAdjustments" : {
-                  "businessDayConvention" : "NONE"
-                }
-              },
-              "scheduledTerminationDate" : {
-                "unadjustedDate" : {
-                  "value" : "2010-03-21T00:00:00Z"
-                },
-                "dateAdjustments" : {
-                  "businessDayConvention" : "NONE"
-                }
-              },
-              "buyerSellerModel" : {
-                "buyerPartyReference" : {
-                  "href" : "party1"
-                },
-                "sellerPartyReference" : {
-                  "href" : "party2"
-                }
-              },
-              "dateAdjustments" : {
-                "businessDayConvention" : "FOLLOWING",
-                "businessCentersOrReferenceModel" : {
-                  "businessCenters" : {
-                    "businessCenter" : [ {
-                      "value" : "GBLO"
-                    }, {
-                      "value" : "USNY"
-                    } ]
-                  }
-                }
-              },
-              "referenceInformation" : {
-                "referenceEntity" : {
-                  "legalEntitySequence" : {
-                    "entityName" : {
-                      "value" : "CompanyDEF"
-                    }
-                  }
-                },
-                "noReferenceObligation" : true,
-                "allGuarantees" : false,
-                "referencePrice" : 1.0000000000,
-                "securedList" : true
-              }
-            },
-            "feeLeg" : {
-              "periodicPayment" : {
-                "paymentFrequency" : {
-                  "periodMultiplier" : 3,
-                  "period" : "M"
-                },
-                "firstPaymentDate" : "2007-03-20T00:00:00Z",
-                "lastRegularPaymentDate" : "2010-03-20T00:00:00Z",
-                "rollConvention" : "20",
-                "fixedAmountCalculation" : {
-                  "calculationAmount" : {
-                    "currency" : {
-                      "value" : "USD"
-                    },
-                    "amount" : 5000000
-                  },
-                  "fixedRate" : {
-                    "value" : 0.0115
-                  },
-                  "dayCountFraction" : {
-                    "value" : "ACT/360"
-                  }
-                }
-              }
-            },
-            "protectionTerms" : [ {
-              "calculationAmount" : {
-                "currency" : {
-                  "value" : "USD"
-                },
-                "amount" : 5000000
-              },
-              "creditEvents" : {
-                "bankruptcy" : true,
-                "failureToPay" : {
-                  "applicable" : true,
-                  "paymentRequirement" : {
-                    "currency" : {
-                      "value" : "USD"
-                    },
-                    "amount" : 500000
-                  }
-                },
-                "defaultRequirement" : {
-                  "currency" : {
-                    "value" : "USD"
-                  },
-                  "amount" : 5000000
-                },
-                "creditEventNotice" : {
-                  "notifyingParty" : {
-                    "buyerPartyReference" : {
-                      "href" : "party1"
-                    },
-                    "sellerPartyReference" : {
-                      "href" : "party2"
-                    }
-                  },
-                  "publiclyAvailableInformation" : {
-                    "publicSource" : [ "Standard Public Sources" ],
-                    "specifiedNumber" : 2
-                  }
-                }
-              },
-              "obligations" : {
-                "category" : "BorrowedMoney",
-                "notSubordinated" : true,
-                "excluded" : "true",
-                "othReferenceEntityObligations" : "true",
-                "designatedPriority" : {
-                  "value" : "FirstLienLoan"
-                }
-              }
-            } ],
-            "creditDefaultSwapChoice" : [ {
-              "physicalSettlementTerms" : {
-                "physicalSettlementPeriod" : {
-                  "maximumBusinessDays" : 30
-                },
-                "deliverableObligations" : {
-                  "accruedInterest" : false,
-                  "category" : "Loan",
-                  "notSubordinated" : true,
-                  "notContingent" : true,
-                  "consentRequiredLoan" : {
-                    "applicable" : true
-                  },
-                  "transferable" : true,
-                  "maximumMaturity" : {
-                    "periodMultiplier" : 30,
-                    "period" : "Y"
-                  },
-                  "notBearer" : true,
-                  "excluded" : "true",
-                  "othReferenceEntityObligations" : "true"
-                }
-              }
-            } ]
+          "dateAdjustments" : {
+            "businessDayConvention" : "NONE"
+          }
+        },
+        "scheduledTerminationDate" : {
+          "unadjustedDate" : {
+            "value" : "2010-03-21T00:00:00Z"
           },
-          "calculationAgentModel" : {
-            "calculationAgent" : {
-              "calculationAgentPartyReference" : [ {
-                "href" : "party1"
-              } ]
-            },
-            "calculationAgentBusinessCenter" : {
+          "dateAdjustments" : {
+            "businessDayConvention" : "NONE"
+          }
+        },
+        "buyerPartyReference" : {
+          "href" : "party1"
+        },
+        "sellerPartyReference" : {
+          "href" : "party2"
+        },
+        "dateAdjustments" : {
+          "businessDayConvention" : "FOLLOWING",
+          "businessCenters" : {
+            "businessCenter" : [ {
+              "value" : "GBLO"
+            }, {
               "value" : "USNY"
-            }
-          },
-          "documentation" : {
-            "masterAgreement" : {
-              "masterAgreementType" : {
-                "value" : "ISDA"
-              },
-              "masterAgreementVersion" : {
-                "value" : "1992"
-              }
-            },
-            "contractualDefinitions" : [ {
-              "value" : "ISDA2003Credit"
-            } ],
-            "contractualTermsSupplement" : [ {
-              "type" : {
-                "value" : "ISDA2003CreditMay2003"
-              }
             } ]
           }
+        },
+        "referenceInformation" : {
+          "referenceEntity" : {
+            "entityName" : {
+              "value" : "CompanyDEF"
+            }
+          },
+          "noReferenceObligation" : true,
+          "allGuarantees" : false,
+          "referencePrice" : 1.0000000000,
+          "securedList" : true
         }
-      }
+      },
+      "feeLeg" : {
+        "periodicPayment" : {
+          "paymentFrequency" : {
+            "periodMultiplier" : 3,
+            "period" : "M"
+          },
+          "firstPaymentDate" : "2007-03-20T00:00:00Z",
+          "lastRegularPaymentDate" : "2010-03-20T00:00:00Z",
+          "rollConvention" : "20",
+          "fixedAmountCalculation" : {
+            "calculationAmount" : {
+              "currency" : {
+                "value" : "USD"
+              },
+              "amount" : 5000000
+            },
+            "fixedRate" : {
+              "value" : 0.0115
+            },
+            "dayCountFraction" : {
+              "value" : "ACT/360"
+            }
+          }
+        }
+      },
+      "protectionTerms" : [ {
+        "calculationAmount" : {
+          "currency" : {
+            "value" : "USD"
+          },
+          "amount" : 5000000
+        },
+        "creditEvents" : {
+          "bankruptcy" : true,
+          "failureToPay" : {
+            "applicable" : true,
+            "paymentRequirement" : {
+              "currency" : {
+                "value" : "USD"
+              },
+              "amount" : 500000
+            }
+          },
+          "defaultRequirement" : {
+            "currency" : {
+              "value" : "USD"
+            },
+            "amount" : 5000000
+          },
+          "creditEventNotice" : {
+            "notifyingParty" : {
+              "buyerPartyReference" : {
+                "href" : "party1"
+              },
+              "sellerPartyReference" : {
+                "href" : "party2"
+              }
+            },
+            "publiclyAvailableInformation" : {
+              "publicSource" : [ "Standard Public Sources" ],
+              "specifiedNumber" : 2
+            }
+          }
+        },
+        "obligations" : {
+          "category" : "BorrowedMoney",
+          "notSubordinated" : true,
+          "excluded" : "true",
+          "othReferenceEntityObligations" : "true",
+          "designatedPriority" : {
+            "value" : "FirstLienLoan"
+          }
+        }
+      } ],
+      "creditDefaultSwapChoice" : [ {
+        "physicalSettlementTerms" : {
+          "physicalSettlementPeriod" : {
+            "maximumBusinessDays" : 30
+          },
+          "deliverableObligations" : {
+            "accruedInterest" : false,
+            "category" : "Loan",
+            "notSubordinated" : true,
+            "notContingent" : true,
+            "consentRequiredLoan" : {
+              "applicable" : true
+            },
+            "transferable" : true,
+            "maximumMaturity" : {
+              "periodMultiplier" : 30,
+              "period" : "Y"
+            },
+            "notBearer" : true,
+            "excluded" : "true",
+            "othReferenceEntityObligations" : "true"
+          }
+        }
+      } ]
+    },
+    "calculationAgent" : {
+      "calculationAgentPartyReference" : [ {
+        "href" : "party1"
+      } ]
+    },
+    "calculationAgentBusinessCenter" : {
+      "value" : "USNY"
+    },
+    "documentation" : {
+      "masterAgreement" : {
+        "masterAgreementType" : {
+          "value" : "ISDA"
+        },
+        "masterAgreementVersion" : {
+          "value" : "1992"
+        }
+      },
+      "contractualDefinitions" : [ {
+        "value" : "ISDA2003Credit"
+      } ],
+      "contractualTermsSupplement" : [ {
+        "type" : {
+          "value" : "ISDA2003CreditMay2003"
+        }
+      } ]
     }
   },
-  "partiesAndAccountsModel" : {
-    "party" : [ {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "254900BIAQJIUV6DLE92",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "XYZ Bank"
-        }
-      },
-      "id" : "party1"
-    }, {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "549300VBWWV6BYQOWM67",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "ABC Bank"
-        }
-      },
-      "id" : "party2"
-    } ]
-  }
+  "party" : [ {
+    "id" : "party1",
+    "partyId" : [ {
+      "value" : "254900BIAQJIUV6DLE92",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "XYZ Bank"
+    }
+  }, {
+    "id" : "party2",
+    "partyId" : [ {
+      "value" : "549300VBWWV6BYQOWM67",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "ABC Bank"
+    }
+  } ]
 }

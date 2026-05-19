@@ -2,193 +2,133 @@
   "fpmlVersion" : "5-13",
   "trade" : [ {
     "tradeHeader" : {
-      "tradeIdentifiersModel" : {
-        "partyTradeIdentifier" : [ {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "1234",
-              "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "partyA"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "1234",
-                "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
-              }
-            } ]
-          }
-        }, {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "2345",
-              "tradeIdScheme" : "http://www.PartyB.com/com-trade-id"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "partyB"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "2345",
-                "tradeIdScheme" : "http://www.PartyB.com/com-trade-id"
-              }
-            } ]
-          }
-        } ]
-      },
+      "partyTradeIdentifier" : [ {
+        "tradeId" : {
+          "value" : "1234",
+          "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
+        },
+        "partyReference" : {
+          "href" : "partyA"
+        }
+      }, {
+        "tradeId" : {
+          "value" : "2345",
+          "tradeIdScheme" : "http://www.PartyB.com/com-trade-id"
+        },
+        "partyReference" : {
+          "href" : "partyB"
+        }
+      } ],
       "tradeDate" : {
         "value" : "2009-01-28T00:00:00Z"
       }
     },
     "product" : {
-      "commoditySwapDetailsModel" : {
-        "effectiveDate" : {
-          "adjustableDate" : {
-            "unadjustedDate" : {
-              "value" : "2009-06-01T00:00:00Z"
-            },
-            "dateAdjustments" : {
-              "businessDayConvention" : "NotApplicable"
+      "effectiveDate" : {
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2009-06-01T00:00:00Z"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NotApplicable"
+          }
+        }
+      },
+      "terminationDate" : {
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2009-07-01T00:00:00Z"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NotApplicable"
+          }
+        }
+      },
+      "settlementCurrency" : {
+        "value" : "EUR"
+      },
+      "commoditySwapLeg" : [ {
+        "payerPartyReference" : {
+          "href" : "partyA"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyB"
+        },
+        "deliveryPeriods" : {
+          "periodsSchedule" : {
+            "id" : "deliveryPeriods",
+            "periodMultiplier" : 1,
+            "period" : "T",
+            "balanceOfFirstPeriod" : false
+          },
+          "supplyStartTime" : {
+            "hourMinuteTime" : "09:00:00",
+            "location" : {
+              "value" : "Europe/Amsterdam"
+            }
+          },
+          "supplyEndTime" : {
+            "hourMinuteTime" : "09:00:00",
+            "location" : {
+              "value" : "Europe/Amsterdam"
             }
           }
         },
-        "terminationDate" : {
-          "adjustableDate" : {
-            "unadjustedDate" : {
-              "value" : "2009-07-01T00:00:00Z"
+        "gas" : {
+          "quality" : {
+            "value" : "G"
+          },
+          "type" : "NaturalGas"
+        },
+        "deliveryConditions" : {
+          "deliveryPoint" : {
+            "value" : "21YNL----TTF---1",
+            "deliveryPointScheme" : "http://www.efet.org/ecm/staticdata/xml/DeliveryPointArea.xml"
+          },
+          "deliveryType" : "Firm"
+        },
+        "deliveryQuantity" : {
+          "id" : "deliveryQuantity",
+          "physicalQuantity" : {
+            "quantityUnit" : {
+              "value" : "Therm"
             },
-            "dateAdjustments" : {
-              "businessDayConvention" : "NotApplicable"
-            }
+            "quantityFrequency" : {
+              "value" : "PerCalendarDay"
+            },
+            "quantity" : 2400.0
+          },
+          "totalPhysicalQuantity" : {
+            "quantityUnit" : {
+              "value" : "Therm"
+            },
+            "quantity" : 72000.0
+          }
+        }
+      }, {
+        "payerPartyReference" : {
+          "href" : "partyB"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyA"
+        },
+        "calculationPeriodsReference" : {
+          "href" : "deliveryPeriods"
+        },
+        "fixedPrice" : {
+          "price" : 1.2,
+          "priceCurrency" : {
+            "value" : "EUR"
+          },
+          "priceUnit" : {
+            "value" : "Therm"
           }
         },
-        "settlementCurrency" : {
-          "value" : "EUR"
+        "quantityReference" : {
+          "href" : "deliveryQuantity"
         },
-        "commoditySwapLeg" : [ {
-          "payerReceiverModel" : {
-            "payerModel" : {
-              "payerPartyReference" : {
-                "href" : "partyA"
-              }
-            },
-            "receiverModel" : {
-              "receiverPartyReference" : {
-                "href" : "partyB"
-              }
-            }
-          },
-          "deliveryPeriods" : {
-            "periodsSchedule" : {
-              "periodMultiplier" : 1,
-              "period" : "T",
-              "id" : "deliveryPeriods",
-              "balanceOfFirstPeriod" : false
-            },
-            "supplyStartTime" : {
-              "hourMinuteTime" : "09:00:00",
-              "location" : {
-                "value" : "Europe/Amsterdam"
-              }
-            },
-            "supplyEndTime" : {
-              "hourMinuteTime" : "09:00:00",
-              "location" : {
-                "value" : "Europe/Amsterdam"
-              }
-            }
-          },
-          "gas" : {
-            "quality" : {
-              "value" : "G"
-            },
-            "type" : "NaturalGas"
-          },
-          "deliveryConditions" : {
-            "commodityDeliveryPointsModel" : {
-              "deliveryPoint" : {
-                "value" : "21YNL----TTF---1",
-                "deliveryPointScheme" : "http://www.efet.org/ecm/staticdata/xml/DeliveryPointArea.xml"
-              }
-            },
-            "deliveryType" : "Firm"
-          },
-          "deliveryQuantity" : {
-            "id" : "deliveryQuantity",
-            "commodityFixedPhysicalQuantityModel" : {
-              "physicalQuantity" : {
-                "quantityUnit" : {
-                  "value" : "Therm"
-                },
-                "quantityFrequency" : {
-                  "value" : "PerCalendarDay"
-                },
-                "quantity" : 2400.0
-              },
-              "totalPhysicalQuantity" : {
-                "quantityUnit" : {
-                  "value" : "Therm"
-                },
-                "quantity" : 72000.0
-              }
-            }
-          }
-        }, {
-          "payerReceiverModel" : {
-            "payerModel" : {
-              "payerPartyReference" : {
-                "href" : "partyB"
-              }
-            },
-            "receiverModel" : {
-              "receiverPartyReference" : {
-                "href" : "partyA"
-              }
-            }
-          },
-          "commodityCalculationPeriodsModel" : {
-            "commodityCalculationPeriodsPointerModel" : {
-              "calculationPeriodsReference" : {
-                "href" : "deliveryPeriods"
-              }
-            }
-          },
-          "commodityFixedPriceModel" : {
-            "commodityFixedPriceModelChoice" : {
-              "fixedPrice" : {
-                "price" : 1.2,
-                "commodityPriceModel" : {
-                  "priceCurrency" : {
-                    "value" : "EUR"
-                  },
-                  "priceUnit" : {
-                    "value" : "Therm"
-                  }
-                }
-              }
-            }
-          },
-          "commodityNotionalQuantityModel" : {
-            "quantityReference" : {
-              "href" : "deliveryQuantity"
-            }
-          },
-          "commodityPaymentDatesModel" : {
-            "commodityNonPeriodicPaymentDatesModel" : {
-              "masterAgreementPaymentDates" : true
-            }
-          }
-        } ]
-      }
+        "masterAgreementPaymentDates" : true
+      } ]
     },
     "documentation" : {
       "masterAgreement" : {
@@ -198,29 +138,23 @@
       }
     }
   } ],
-  "partiesAndAccountsModel" : {
-    "party" : [ {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "549300KFSLY4U7N3LL12",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "Bank"
-        }
-      },
-      "id" : "partyA"
-    }, {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "549300AJRHKBLY9GM262",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "Energy Co."
-        }
-      },
-      "id" : "partyB"
-    } ]
-  }
+  "party" : [ {
+    "id" : "partyA",
+    "partyId" : [ {
+      "value" : "549300KFSLY4U7N3LL12",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Bank"
+    }
+  }, {
+    "id" : "partyB",
+    "partyId" : [ {
+      "value" : "549300AJRHKBLY9GM262",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Energy Co."
+    }
+  } ]
 }

@@ -2,43 +2,27 @@
   "fpmlVersion" : "5-13",
   "trade" : [ {
     "tradeHeader" : {
-      "tradeIdentifiersModel" : {
-        "partyTradeIdentifier" : [ {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "T901234-123456",
-              "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "PartyA"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "T901234-123456",
-                "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
-              }
-            } ]
-          }
-        } ]
-      },
+      "partyTradeIdentifier" : [ {
+        "tradeId" : {
+          "value" : "T901234-123456",
+          "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
+        },
+        "partyReference" : {
+          "href" : "PartyA"
+        }
+      } ],
       "tradeDate" : {
         "value" : "2012-05-20T00:00:00Z",
         "id" : "TradeDate"
       }
     },
     "product" : {
-      "productModel" : {
-        "primaryAssetClass" : {
-          "value" : "Commodity"
-        },
-        "productType" : [ {
-          "value" : "Commodity:Energy:Oil:Swap:Cash"
-        } ]
+      "primaryAssetClass" : {
+        "value" : "Commodity"
       },
+      "productType" : [ {
+        "value" : "Commodity:Energy:Oil:Swap:Cash"
+      } ],
       "effectiveDate" : {
         "adjustableDate" : {
           "unadjustedDate" : {
@@ -63,56 +47,38 @@
         "value" : "USD"
       },
       "commodityPerformanceSwapLeg" : [ {
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "PartyA"
-            }
+        "payerPartyReference" : {
+          "href" : "PartyA"
+        },
+        "receiverPartyReference" : {
+          "href" : "PartyB"
+        },
+        "calculationPeriodsSchedule" : {
+          "id" : "CalculationPeriodSchedule",
+          "periodMultiplier" : 1,
+          "period" : "T",
+          "balanceOfFirstPeriod" : false
+        },
+        "relativePaymentDates" : {
+          "id" : "CashSettlementPaymentDate",
+          "payRelativeTo" : "ValuationDate",
+          "calculationPeriodsScheduleReference" : {
+            "href" : "CalculationPeriodSchedule"
           },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "PartyB"
-            }
+          "paymentDaysOffset" : {
+            "periodMultiplier" : 2,
+            "period" : "D",
+            "dayType" : "Business",
+            "businessDayConvention" : "NONE"
           }
         },
-        "commodityCalculationPeriodsModel" : {
-          "calculationPeriodsSchedule" : {
-            "periodMultiplier" : 1,
-            "period" : "T",
-            "id" : "CalculationPeriodSchedule",
-            "balanceOfFirstPeriod" : false
-          }
-        },
-        "commodityPaymentDatesModel" : {
-          "relativePaymentDates" : {
-            "payRelativeTo" : "ValuationDate",
-            "commodityCalculationPeriodsPointerModel" : {
-              "calculationPeriodsScheduleReference" : {
-                "href" : "CalculationPeriodSchedule"
-              }
-            },
-            "paymentDaysOffset" : {
-              "periodMultiplier" : 2,
-              "period" : "D",
-              "dayType" : "Business",
-              "businessDayConvention" : "NONE"
-            },
-            "id" : "CashSettlementPaymentDate"
-          }
-        },
-        "commodityUnderlyerChoiceModel" : {
-          "commodity" : {
-            "instrumentId" : [ {
-              "value" : "OIL-WTI-NYMEX",
-              "instrumentIdScheme" : "http://www.fpml.org/coding-scheme/commodity-reference-price-3-0"
-            } ],
-            "commodityProductModel" : {
-              "specifiedPrice" : "Closing",
-              "commodityProductModelSequence" : {
-                "deliveryDateYearMonth" : "2013-06"
-              }
-            }
-          }
+        "commodity" : {
+          "instrumentId" : [ {
+            "value" : "OIL-WTI-NYMEX",
+            "instrumentIdScheme" : "http://www.fpml.org/coding-scheme/commodity-reference-price-3-0"
+          } ],
+          "specifiedPrice" : "Closing",
+          "deliveryDateYearMonth" : "2013-06"
         },
         "notionalAmount" : {
           "currency" : {
@@ -124,41 +90,29 @@
         "varianceStrikePrice" : 0.09000,
         "varianceCalculation" : {
           "pricingDates" : {
-            "commodityCalculationPeriodsPointerModel" : {
-              "calculationPeriodsScheduleReference" : {
-                "href" : "CalculationPeriodSchedule"
-              }
+            "calculationPeriodsScheduleReference" : {
+              "href" : "CalculationPeriodSchedule"
             },
-            "commodityPricingDatesSequence" : {
-              "commodityPricingDatesSequenceSequence" : {
-                "daysModel" : {
-                  "dayType" : "CommodityBusiness",
-                  "daysModelSequence0" : {
-                    "dayDistribution" : {
-                      "value" : "All"
-                    }
-                  }
-                },
-                "businessCalendar" : {
-                  "value" : "NYMEX-OIL"
-                }
-              }
+            "dayType" : "CommodityBusiness",
+            "dayDistribution" : {
+              "value" : "All"
+            },
+            "businessCalendar" : {
+              "value" : "NYMEX-OIL"
             }
           },
           "valuationDates" : {
-            "commodityCalculationPeriodsPointerModel" : {
-              "calculationPeriodsScheduleReference" : {
-                "href" : "CalculationPeriodSchedule"
-              }
+            "calculationPeriodsScheduleReference" : {
+              "href" : "CalculationPeriodSchedule"
             },
             "valuationDates" : [ {
+              "id" : "valuationDate",
               "unadjustedDate" : [ {
                 "value" : "2013-05-16T00:00:00Z"
               } ],
               "dateAdjustments" : {
                 "businessDayConvention" : "MODFOLLOWING"
-              },
-              "id" : "valuationDate"
+              }
             } ]
           },
           "annualizationFactor" : 252,
@@ -166,10 +120,8 @@
         }
       } ]
     },
-    "calculationAgentModel" : {
-      "calculationAgent" : {
-        "calculationAgentParty" : "AsSpecifiedInMasterAgreement"
-      }
+    "calculationAgent" : {
+      "calculationAgentParty" : "AsSpecifiedInMasterAgreement"
     },
     "documentation" : {
       "masterAgreement" : {
@@ -185,36 +137,26 @@
       } ]
     }
   } ],
-  "partiesAndAccountsModel" : {
-    "party" : [ {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "95980020140005196564",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyInformationModel" : {
-          "country" : {
-            "value" : "US"
-          },
-          "organizationType" : [ {
-            "value" : "SD"
-          } ]
-        }
-      },
-      "id" : "PartyA"
-    }, {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "549300XQFX97CITUR430",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyInformationModel" : {
-          "organizationType" : [ {
-            "value" : "non-SD/MSP"
-          } ]
-        }
-      },
-      "id" : "PartyB"
+  "party" : [ {
+    "id" : "PartyA",
+    "partyId" : [ {
+      "value" : "95980020140005196564",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "country" : {
+      "value" : "US"
+    },
+    "organizationType" : [ {
+      "value" : "SD"
     } ]
-  }
+  }, {
+    "id" : "PartyB",
+    "partyId" : [ {
+      "value" : "549300XQFX97CITUR430",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "organizationType" : [ {
+      "value" : "non-SD/MSP"
+    } ]
+  } ]
 }

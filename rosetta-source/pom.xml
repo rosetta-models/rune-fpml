@@ -13,82 +13,10 @@
     <name>rosetta-source</name>
     <packaging>jar</packaging>
 
-    <profiles>
-        <profile>
-            <id>generate</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>exec-maven-plugin</artifactId>
-                        <version>${exec-maven-plugin.version}</version>
-                        <configuration>
-                            <includePluginDependencies>true</includePluginDependencies>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>import-fpml-5-13-confirmation-schema</id>
-                                <phase>generate-sources</phase>
-                                <goals>
-                                    <goal>java</goal>
-                                </goals>
-                                <configuration>
-                                    <mainClass>com.regnosys.rosetta.tools.modelimport.XsdImportMain</mainClass>
-                                    <cleanupDaemonThreads>false</cleanupDaemonThreads>
-                                    <arguments>
-                                        <argument>-config-path</argument>
-                                        <argument>${project.basedir}/src/main/resources/fpml-5-13-config.yml</argument>
-                                        <argument>-rosetta-output-path</argument>
-                                        <argument>${project.basedir}/src/main/rosetta</argument>
-                                        <argument>-xml-config-output-path</argument>
-                                        <argument>${project.basedir}/src/main/resources/xml-config/confirmation-v5_13-rosetta-xml-config.json</argument>
-                                    </arguments>
-                                    <includePluginDependencies>true</includePluginDependencies>
-                                </configuration>
-                            </execution>
-                        </executions>
-                        <dependencies>
-                            <dependency>
-                                <groupId>com.regnosys.rosetta</groupId>
-                                <artifactId>com.regnosys.rosetta.tools</artifactId>
-                                <version>${rosetta.dsl.version}</version>
-                                <exclusions>
-                                    <exclusion>
-                                        <groupId>com.regnosys.rosetta</groupId>
-                                        <artifactId>com.regnosys.rosetta.ide</artifactId>
-                                    </exclusion>
-                                    <exclusion>
-                                        <groupId>org.osgi</groupId>
-                                        <artifactId>org.osgi.service.prefs</artifactId>
-                                    </exclusion>
-                                </exclusions>
-                            </dependency>
-                            <dependency>
-                                <groupId>com.regnosys.rosetta</groupId>
-                                <artifactId>com.regnosys.rosetta.xcore</artifactId>
-                                <version>${rosetta.dsl.version}</version>
-                                <exclusions>
-                                    <exclusion>
-                                        <groupId>org.eclipse.emf</groupId>
-                                        <artifactId>org.eclipse.emf.ecore</artifactId>
-                                    </exclusion>
-                                    <exclusion>
-                                        <groupId>org.osgi</groupId>
-                                        <artifactId>org.osgi.service.prefs</artifactId>
-                                    </exclusion>
-                                </exclusions>
-                            </dependency>
-                        </dependencies>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
-
     <dependencies>
         <dependency>
-            <groupId>com.regnosys.rosetta</groupId>
-            <artifactId>com.regnosys.rosetta.lib</artifactId>
+            <groupId>org.finos.rune</groupId>
+            <artifactId>rune-runtime</artifactId>
         </dependency>
         <dependency>
             <groupId>com.regnosys</groupId>
@@ -216,8 +144,8 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>com.regnosys.rosetta</groupId>
-                <artifactId>rosetta-maven-plugin</artifactId>
+                <groupId>org.finos.rune</groupId>
+                <artifactId>rune-maven-plugin</artifactId>
                 <executions>
                     <execution>
                         <id>default-cli</id>
@@ -271,24 +199,24 @@
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <groupId>com.regnosys.rosetta</groupId>
-                    <artifactId>rosetta-maven-plugin</artifactId>
+                    <groupId>org.finos.rune</groupId>
+                    <artifactId>rune-maven-plugin</artifactId>
                     <version>${rosetta.dsl.version}</version>
                     <dependencies>
                         <dependency>
-                            <groupId>com.regnosys.rosetta</groupId>
-                            <artifactId>com.regnosys.rosetta</artifactId>
+                            <groupId>org.finos.rune</groupId>
+                            <artifactId>rune-lang</artifactId>
                             <version>${rosetta.dsl.version}</version>
                             <exclusions>
                                 <exclusion>
-                                    <groupId>com.regnosys.rosetta</groupId>
-                                    <artifactId>com.regnosys.rosetta.xcore</artifactId>
+                                    <groupId>org.finos.rune</groupId>
+                                    <artifactId>rune-xcore-plugin-dependencies</artifactId>
                                 </exclusion>
                             </exclusions>
                         </dependency>
                         <dependency>
-                            <groupId>com.regnosys.rosetta</groupId>
-                            <artifactId>com.regnosys.rosetta.lib</artifactId>
+                            <groupId>org.finos.rune</groupId>
+                            <artifactId>rune-runtime</artifactId>
                             <version>${rosetta.dsl.version}</version>
                         </dependency>
                     </dependencies>

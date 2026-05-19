@@ -5,232 +5,174 @@
       "value" : "FX456a789b",
       "messageIdScheme" : "http://www.executionnotificationservice.com/coding-scheme/messageId"
     },
-    "messageHeaderModel" : {
-      "sentBy" : {
-        "value" : "EXECSRV",
-        "messageAddressScheme" : "http://www.executionnotificationservice.com/partyId"
-      },
-      "sendTo" : [ {
-        "value" : "PARTYA",
-        "messageAddressScheme" : "http://www.executionnotificationservice.com/partyId"
-      } ],
-      "creationTimestamp" : "2014-06-24T08:57:00Z"
-    }
+    "sentBy" : {
+      "value" : "EXECSRV",
+      "messageAddressScheme" : "http://www.executionnotificationservice.com/partyId"
+    },
+    "sendTo" : [ {
+      "value" : "PARTYA",
+      "messageAddressScheme" : "http://www.executionnotificationservice.com/partyId"
+    } ],
+    "creationTimestamp" : "2014-06-24T08:57:00Z"
   },
   "isCorrection" : false,
-  "tradingEventsBaseModel" : {
-    "tradingEventsBaseModelSequence" : {
-      "trade" : {
-        "tradeHeader" : {
-          "tradeIdentifiersModel" : {
-            "partyTradeIdentifier" : [ {
-              "issuerTradeIdModel" : {
-                "tradeId" : {
-                  "value" : "12345",
-                  "tradeIdScheme" : "#partyA"
-                }
-              },
-              "tradeIdentifierSequence" : {
-                "partyAndAccountReferencesModel" : {
-                  "partyReference" : {
-                    "href" : "partyA"
-                  }
-                },
-                "tradeIdentifierSequenceChoice" : [ {
-                  "tradeId" : {
-                    "value" : "12345",
-                    "tradeIdScheme" : "#partyA"
-                  }
-                } ]
+  "trade" : {
+    "tradeHeader" : {
+      "partyTradeIdentifier" : [ {
+        "tradeId" : {
+          "value" : "12345",
+          "tradeIdScheme" : "#partyA"
+        },
+        "partyReference" : {
+          "href" : "partyA"
+        }
+      } ],
+      "tradeDate" : {
+        "value" : "2014-06-24T00:00:00Z"
+      }
+    },
+    "product" : {
+      "productType" : [ {
+        "value" : "FxAccrualDigitalOption",
+        "productTypeScheme" : "http://www.fpml.org/coding-scheme/product-type-simple"
+      } ],
+      "buyerPartyReference" : {
+        "href" : "partyB"
+      },
+      "sellerPartyReference" : {
+        "href" : "partyA"
+      },
+      "notionalAmount" : {
+        "initialValue" : 100000.00,
+        "currency" : {
+          "value" : "HKD"
+        }
+      },
+      "accrual" : {
+        "observable" : [ {
+          "id" : "ob1",
+          "quotedCurrencyPair" : {
+            "currency1" : {
+              "value" : "EUR"
+            },
+            "currency2" : {
+              "value" : "HKD"
+            },
+            "quoteBasis" : "Currency2PerCurrency1"
+          },
+          "informationSource" : {
+            "rateSource" : {
+              "value" : "Reuters"
+            },
+            "rateSourcePage" : {
+              "value" : "ECB37"
+            },
+            "fixingTime" : {
+              "hourMinuteTime" : "14:15:00",
+              "businessCenter" : {
+                "value" : "DEFR"
               }
+            }
+          }
+        } ],
+        "accrualRegion" : [ {
+          "observableReference" : {
+            "href" : "ob1"
+          },
+          "lowerBound" : {
+            "condition" : "Above",
+            "level" : {
+              "initialValue" : 10.7500
+            }
+          }
+        } ],
+        "fixingSchedule" : {
+          "startDate" : "2014-06-25T00:00:00Z",
+          "endDate" : "2014-09-30T00:00:00Z",
+          "dayType" : "Business",
+          "businessCenters" : {
+            "businessCenter" : [ {
+              "value" : "EUTA"
+            }, {
+              "value" : "HKHK"
             } ]
           },
-          "tradeDate" : {
-            "value" : "2014-06-24T00:00:00Z"
+          "numberOfFixings" : 70
+        }
+      },
+      "expiryDate" : {
+        "dateAdjustments" : {
+          "businessDayConvention" : "FOLLOWING",
+          "businessCenters" : {
+            "businessCenter" : [ {
+              "value" : "EUTA"
+            }, {
+              "value" : "HKHK"
+            } ]
           }
         },
-        "product" : {
-          "productModel" : {
-            "productType" : [ {
-              "value" : "FxAccrualDigitalOption",
-              "productTypeScheme" : "http://www.fpml.org/coding-scheme/product-type-simple"
-            } ]
-          },
-          "buyerSellerModel" : {
-            "buyerPartyReference" : {
-              "href" : "partyB"
-            },
-            "sellerPartyReference" : {
-              "href" : "partyA"
-            }
-          },
-          "notionalAmount" : {
-            "initialValue" : 100000.00,
-            "currency" : {
-              "value" : "HKD"
-            }
-          },
-          "accrual" : {
-            "observable" : [ {
-              "quotedCurrencyPair" : {
-                "currency1" : {
-                  "value" : "EUR"
-                },
-                "currency2" : {
-                  "value" : "HKD"
-                },
-                "quoteBasis" : "Currency2PerCurrency1"
-              },
-              "informationSource" : {
-                "rateSource" : {
-                  "value" : "Reuters"
-                },
-                "rateSourcePage" : {
-                  "value" : "ECB37"
-                },
-                "fixingTime" : {
-                  "hourMinuteTime" : "14:15:00",
-                  "businessCenter" : {
-                    "value" : "DEFR"
-                  }
-                }
-              },
-              "id" : "ob1"
-            } ],
-            "accrualRegion" : [ {
-              "observableReference" : {
-                "href" : "ob1"
-              },
-              "fxAccrualRegionBoundModel" : {
-                "fxAccrualRegionBoundModelSequence" : {
-                  "lowerBound" : {
-                    "condition" : "Above",
-                    "fxAccrualConditionLevelModel" : {
-                      "fxAccrualConditionLevelModelSequence" : {
-                        "level" : {
-                          "initialValue" : 10.7500
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            } ],
-            "fixingSchedule" : {
-              "fxFixingScheduleSequence1" : {
-                "parametricScheduleModel" : {
-                  "parametricScheduleModelSequence0" : {
-                    "startDate" : "2014-06-25T00:00:00Z"
-                  },
-                  "endDate" : "2014-09-30T00:00:00Z",
-                  "parametricScheduleModelSequence2" : {
-                    "dayType" : "Business",
-                    "businessCentersOrReferenceModel" : {
-                      "businessCenters" : {
-                        "businessCenter" : [ {
-                          "value" : "EUTA"
-                        }, {
-                          "value" : "HKHK"
-                        } ]
-                      }
-                    }
-                  }
-                },
-                "numberOfFixings" : 70
-              }
-            }
-          },
-          "fxExpiryDateOrScheduleModel" : {
-            "expiryDate" : {
-              "dateAdjustments" : {
-                "businessDayConvention" : "FOLLOWING",
-                "businessCentersOrReferenceModel" : {
-                  "businessCenters" : {
-                    "businessCenter" : [ {
-                      "value" : "EUTA"
-                    }, {
-                      "value" : "HKHK"
-                    } ]
-                  }
-                }
-              },
-              "adjustedDate" : "2014-09-30T00:00:00Z",
-              "expiryTime" : {
-                "hourMinuteTime" : "10:00:00",
-                "businessCenter" : {
-                  "value" : "USNY"
-                }
-              }
-            }
-          },
-          "fxSettlementDateOrScheduleModel" : {
-            "settlementDate" : {
-              "dateAdjustments" : {
-                "businessDayConvention" : "FOLLOWING",
-                "businessCentersOrReferenceModel" : {
-                  "businessCenters" : {
-                    "businessCenter" : [ {
-                      "value" : "EUTA"
-                    }, {
-                      "value" : "HKHK"
-                    } ]
-                  }
-                }
-              },
-              "adjustedDate" : "2014-10-06T00:00:00Z"
-            }
-          },
-          "trigger" : {
-            "triggerCondition" : "AtOrAbove",
-            "quotedCurrencyPair" : {
-              "currency1" : {
-                "value" : "EUR"
-              },
-              "currency2" : {
-                "value" : "HKD"
-              },
-              "quoteBasis" : "Currency2PerCurrency1"
-            },
-            "triggerRate" : 10.7000
-          },
-          "barrier" : [ {
-            "barrierType" : "Knockout",
-            "style" : "American",
-            "scope" : "Global",
-            "condition" : "AtOrAbove",
-            "triggerRate" : {
-              "initialValue" : 10.7700
-            },
-            "accrualRetention" : "Keep"
-          } ]
-        },
-        "calculationAgentModel" : {
-          "calculationAgent" : {
-            "calculationAgentPartyReference" : [ {
-              "href" : "partyA"
-            } ]
+        "adjustedDate" : "2014-09-30T00:00:00Z",
+        "expiryTime" : {
+          "hourMinuteTime" : "10:00:00",
+          "businessCenter" : {
+            "value" : "USNY"
           }
         }
-      }
+      },
+      "settlementDate" : {
+        "dateAdjustments" : {
+          "businessDayConvention" : "FOLLOWING",
+          "businessCenters" : {
+            "businessCenter" : [ {
+              "value" : "EUTA"
+            }, {
+              "value" : "HKHK"
+            } ]
+          }
+        },
+        "adjustedDate" : "2014-10-06T00:00:00Z"
+      },
+      "trigger" : {
+        "triggerCondition" : "AtOrAbove",
+        "quotedCurrencyPair" : {
+          "currency1" : {
+            "value" : "EUR"
+          },
+          "currency2" : {
+            "value" : "HKD"
+          },
+          "quoteBasis" : "Currency2PerCurrency1"
+        },
+        "triggerRate" : 10.7000
+      },
+      "barrier" : [ {
+        "barrierType" : "Knockout",
+        "style" : "American",
+        "scope" : "Global",
+        "condition" : "AtOrAbove",
+        "triggerRate" : {
+          "initialValue" : 10.7700
+        },
+        "accrualRetention" : "Keep"
+      } ]
+    },
+    "calculationAgent" : {
+      "calculationAgentPartyReference" : [ {
+        "href" : "partyA"
+      } ]
     }
   },
-  "partiesAndAccountsModel" : {
-    "party" : [ {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "549300SRLRVTR996F086",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ]
-      },
-      "id" : "partyA"
-    }, {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "549300RE0FSXJE8G1L65",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ]
-      },
-      "id" : "partyB"
+  "party" : [ {
+    "id" : "partyA",
+    "partyId" : [ {
+      "value" : "549300SRLRVTR996F086",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
     } ]
-  }
+  }, {
+    "id" : "partyB",
+    "partyId" : [ {
+      "value" : "549300RE0FSXJE8G1L65",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ]
+  } ]
 }

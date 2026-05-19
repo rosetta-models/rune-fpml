@@ -2,362 +2,242 @@
   "fpmlVersion" : "5-10",
   "trade" : [ {
     "tradeHeader" : {
-      "tradeIdentifiersModel" : {
-        "partyTradeIdentifier" : [ {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "ABCD1234",
-              "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "PartyA"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "ABCD1234",
-                "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
-              }
-            } ]
-          }
-        }, {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "EFGH2345",
-              "tradeIdScheme" : "http://www.PartyB.com/com-trade-id"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "PartyB"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "EFGH2345",
-                "tradeIdScheme" : "http://www.PartyB.com/com-trade-id"
-              }
-            } ]
-          }
-        } ]
-      },
+      "partyTradeIdentifier" : [ {
+        "tradeId" : {
+          "value" : "ABCD1234",
+          "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
+        },
+        "partyReference" : {
+          "href" : "PartyA"
+        }
+      }, {
+        "tradeId" : {
+          "value" : "EFGH2345",
+          "tradeIdScheme" : "http://www.PartyB.com/com-trade-id"
+        },
+        "partyReference" : {
+          "href" : "PartyB"
+        }
+      } ],
       "tradeDate" : {
         "value" : "2013-04-01T00:00:00Z"
       }
     },
     "product" : {
-      "productModel" : {
-        "primaryAssetClass" : {
-          "value" : "Commodity"
-        },
-        "productType" : [ {
-          "value" : "Commodity:Energy:Oil:Option:Cash"
-        } ]
+      "primaryAssetClass" : {
+        "value" : "Commodity"
       },
-      "buyerSellerModel" : {
-        "buyerPartyReference" : {
-          "href" : "PartyA"
-        },
-        "sellerPartyReference" : {
-          "href" : "PartyB"
-        }
+      "productType" : [ {
+        "value" : "Commodity:Energy:Oil:Option:Cash"
+      } ],
+      "buyerPartyReference" : {
+        "href" : "PartyA"
+      },
+      "sellerPartyReference" : {
+        "href" : "PartyB"
       },
       "optionType" : "Call",
-      "commodityBasketOptionFeaturesModel" : {
-        "effectiveDate" : {
-          "adjustableDate" : {
-            "unadjustedDate" : {
-              "value" : "2013-10-01T00:00:00Z"
-            },
-            "dateAdjustments" : {
-              "businessDayConvention" : "NONE"
-            }
+      "effectiveDate" : {
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2013-10-01T00:00:00Z"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NONE"
           }
-        },
-        "terminationDate" : {
-          "adjustableDate" : {
-            "unadjustedDate" : {
-              "value" : "2014-03-31T00:00:00Z"
-            },
-            "dateAdjustments" : {
-              "businessDayConvention" : "NONE"
-            }
-          }
-        },
-        "calculationPeriodsSchedule" : {
-          "periodMultiplier" : 1,
-          "period" : "M",
-          "id" : "CalculationPeriodsSchedule",
-          "balanceOfFirstPeriod" : false
         }
       },
-      "commodityBasketModel" : {
-        "notionalQuantityBasket" : {
-          "id" : "Basket",
-          "underlying" : [ {
-            "direction" : "Receiver",
-            "commodity" : {
-              "instrumentId" : [ {
-                "value" : "GAS OIL-0.2 PERCENT-CIF MED (GENOVA/LAVERA)-PLATTS EUROPEAN",
-                "instrumentIdScheme" : "http://www.fpml.org/coding-scheme/commodity-reference-price-3-0"
-              } ],
-              "commodityProductModel" : {
-                "specifiedPrice" : "MeanOfHighAndLow"
-              }
-            },
-            "pricingDates" : {
-              "commodityCalculationPeriodsPointerModel" : {
-                "calculationPeriodsScheduleReference" : {
-                  "href" : "CalculationPeriodsSchedule"
-                }
-              },
-              "commodityPricingDatesSequence" : {
-                "lag" : {
-                  "lagDuration" : {
-                    "periodMultiplier" : 9,
-                    "period" : "M"
-                  }
-                },
-                "commodityPricingDatesSequenceSequence" : {
-                  "daysModel" : {
-                    "dayType" : "CommodityBusiness",
-                    "daysModelSequence0" : {
-                      "dayDistribution" : {
-                        "value" : "All"
-                      }
-                    }
-                  },
-                  "businessCalendar" : {
-                    "value" : "PLATTS-OILGRAM"
-                  }
-                }
-              }
-            },
-            "averagingMethod" : "Unweighted",
-            "id" : "Component1",
-            "fx" : {
-              "primaryRateSource" : {
-                "rateSource" : {
-                  "value" : "EuroCentralBank"
-                }
-              },
-              "commodityFxSequence" : {
-                "commodityFxSequenceSequence" : {
-                  "commodityFxSequenceSequenceSequence" : {
-                    "daysModel" : {
-                      "dayType" : "CommodityBusiness",
-                      "daysModelSequence0" : {
-                        "dayDistribution" : {
-                          "value" : "All"
-                        }
-                      }
-                    }
-                  },
-                  "commodityCalculationPeriodsPointerModel" : {
-                    "calculationPeriodsReference" : {
-                      "href" : "CalculationPeriodsSchedule"
-                    }
-                  }
-                }
-              }
-            },
-            "commodityNotionalQuantityModel" : {
-              "commodityNotionalQuantityModelSequence" : {
-                "notionalQuantity" : {
-                  "quantityUnit" : {
-                    "value" : "MB"
-                  },
-                  "quantityFrequency" : {
-                    "value" : "PerCalculationPeriod"
-                  },
-                  "quantity" : 28.27384309
-                },
-                "totalNotionalQuantity" : 15174.113285
-              }
-            }
-          }, {
-            "direction" : "Receiver",
-            "commodity" : {
-              "instrumentId" : [ {
-                "value" : "FUEL OIL-1 PERCENT-CIF MED (GENOVA/LAVERA)-PLATTS EUROPEAN",
-                "instrumentIdScheme" : "http://www.fpml.org/coding-scheme/commodity-reference-price-3-0"
-              } ],
-              "commodityProductModel" : {
-                "specifiedPrice" : "MeanOfHighAndLow"
-              }
-            },
-            "pricingDates" : {
-              "commodityCalculationPeriodsPointerModel" : {
-                "calculationPeriodsScheduleReference" : {
-                  "href" : "CalculationPeriodsSchedule"
-                }
-              },
-              "commodityPricingDatesSequence" : {
-                "lag" : {
-                  "lagDuration" : {
-                    "periodMultiplier" : 9,
-                    "period" : "M"
-                  }
-                },
-                "commodityPricingDatesSequenceSequence" : {
-                  "daysModel" : {
-                    "dayType" : "CommodityBusiness",
-                    "daysModelSequence0" : {
-                      "dayDistribution" : {
-                        "value" : "All"
-                      }
-                    }
-                  },
-                  "businessCalendar" : {
-                    "value" : "PLATTS-OILGRAM"
-                  }
-                }
-              }
-            },
-            "averagingMethod" : "Unweighted",
-            "id" : "Component2",
-            "fx" : {
-              "primaryRateSource" : {
-                "rateSource" : {
-                  "value" : "EuroCentralBank"
-                }
-              },
-              "commodityFxSequence" : {
-                "commodityFxSequenceSequence" : {
-                  "commodityFxSequenceSequenceSequence" : {
-                    "daysModel" : {
-                      "dayType" : "CommodityBusiness",
-                      "daysModelSequence0" : {
-                        "dayDistribution" : {
-                          "value" : "All"
-                        }
-                      }
-                    }
-                  },
-                  "commodityCalculationPeriodsPointerModel" : {
-                    "calculationPeriodsReference" : {
-                      "href" : "CalculationPeriodsSchedule"
-                    }
-                  }
-                }
-              }
-            },
-            "commodityNotionalQuantityModel" : {
-              "commodityNotionalQuantityModelSequence" : {
-                "notionalQuantity" : {
-                  "quantityUnit" : {
-                    "value" : "MB"
-                  },
-                  "quantityFrequency" : {
-                    "value" : "PerCalendarDay"
-                  },
-                  "quantity" : 49.2765012
-                },
-                "totalNotionalQuantity" : 9017.59972
-              }
-            }
-          }, {
-            "direction" : "Receiver",
-            "commodity" : {
-              "instrumentId" : [ {
-                "value" : "OIL-BRENT/BFOE (DTD)-PLATTS MARKETWIRE",
-                "instrumentIdScheme" : "http://www.fpml.org/coding-scheme/commodity-reference-price-3-0"
-              } ],
-              "commodityProductModel" : {
-                "specifiedPrice" : "MeanOfHighAndLow"
-              }
-            },
-            "pricingDates" : {
-              "commodityCalculationPeriodsPointerModel" : {
-                "calculationPeriodsScheduleReference" : {
-                  "href" : "CalculationPeriodsSchedule"
-                }
-              },
-              "commodityPricingDatesSequence" : {
-                "lag" : {
-                  "lagDuration" : {
-                    "periodMultiplier" : 9,
-                    "period" : "M"
-                  }
-                },
-                "commodityPricingDatesSequenceSequence" : {
-                  "daysModel" : {
-                    "dayType" : "CommodityBusiness",
-                    "daysModelSequence0" : {
-                      "dayDistribution" : {
-                        "value" : "All"
-                      }
-                    }
-                  },
-                  "businessCalendar" : {
-                    "value" : "PLATTS-OILGRAM"
-                  }
-                }
-              }
-            },
-            "averagingMethod" : "Unweighted",
-            "id" : "Component3",
-            "fx" : {
-              "primaryRateSource" : {
-                "rateSource" : {
-                  "value" : "EuroCentralBank"
-                }
-              },
-              "commodityFxSequence" : {
-                "commodityFxSequenceSequence" : {
-                  "commodityFxSequenceSequenceSequence" : {
-                    "daysModel" : {
-                      "dayType" : "CommodityBusiness",
-                      "daysModelSequence0" : {
-                        "dayDistribution" : {
-                          "value" : "All"
-                        }
-                      }
-                    }
-                  },
-                  "commodityCalculationPeriodsPointerModel" : {
-                    "calculationPeriodsReference" : {
-                      "href" : "CalculationPeriodsSchedule"
-                    }
-                  }
-                }
-              }
-            },
-            "commodityNotionalQuantityModel" : {
-              "commodityNotionalQuantityModelSequence" : {
-                "notionalQuantity" : {
-                  "quantityUnit" : {
-                    "value" : "MB"
-                  },
-                  "quantityFrequency" : {
-                    "value" : "PerCalculationPeriod"
-                  },
-                  "quantity" : 10.76458229
-                },
-                "totalNotionalQuantity" : 1969.918559
-              }
-            }
-          } ]
+      "terminationDate" : {
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2014-03-31T00:00:00Z"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NONE"
+          }
         }
+      },
+      "calculationPeriodsSchedule" : {
+        "id" : "CalculationPeriodsSchedule",
+        "periodMultiplier" : 1,
+        "period" : "M",
+        "balanceOfFirstPeriod" : false
+      },
+      "notionalQuantityBasket" : {
+        "id" : "Basket",
+        "underlying" : [ {
+          "id" : "Component1",
+          "direction" : "Receiver",
+          "commodity" : {
+            "instrumentId" : [ {
+              "value" : "GAS OIL-0.2 PERCENT-CIF MED (GENOVA/LAVERA)-PLATTS EUROPEAN",
+              "instrumentIdScheme" : "http://www.fpml.org/coding-scheme/commodity-reference-price-3-0"
+            } ],
+            "specifiedPrice" : "MeanOfHighAndLow"
+          },
+          "pricingDates" : {
+            "calculationPeriodsScheduleReference" : {
+              "href" : "CalculationPeriodsSchedule"
+            },
+            "lag" : {
+              "lagDuration" : {
+                "periodMultiplier" : 9,
+                "period" : "M"
+              }
+            },
+            "dayType" : "CommodityBusiness",
+            "dayDistribution" : {
+              "value" : "All"
+            },
+            "businessCalendar" : {
+              "value" : "PLATTS-OILGRAM"
+            }
+          },
+          "averagingMethod" : "Unweighted",
+          "fx" : {
+            "primaryRateSource" : {
+              "rateSource" : {
+                "value" : "EuroCentralBank"
+              }
+            },
+            "dayType" : "CommodityBusiness",
+            "dayDistribution" : {
+              "value" : "All"
+            },
+            "calculationPeriodsReference" : {
+              "href" : "CalculationPeriodsSchedule"
+            }
+          },
+          "notionalQuantity" : {
+            "quantityUnit" : {
+              "value" : "MB"
+            },
+            "quantityFrequency" : {
+              "value" : "PerCalculationPeriod"
+            },
+            "quantity" : 28.27384309
+          },
+          "totalNotionalQuantity" : 15174.113285
+        }, {
+          "id" : "Component2",
+          "direction" : "Receiver",
+          "commodity" : {
+            "instrumentId" : [ {
+              "value" : "FUEL OIL-1 PERCENT-CIF MED (GENOVA/LAVERA)-PLATTS EUROPEAN",
+              "instrumentIdScheme" : "http://www.fpml.org/coding-scheme/commodity-reference-price-3-0"
+            } ],
+            "specifiedPrice" : "MeanOfHighAndLow"
+          },
+          "pricingDates" : {
+            "calculationPeriodsScheduleReference" : {
+              "href" : "CalculationPeriodsSchedule"
+            },
+            "lag" : {
+              "lagDuration" : {
+                "periodMultiplier" : 9,
+                "period" : "M"
+              }
+            },
+            "dayType" : "CommodityBusiness",
+            "dayDistribution" : {
+              "value" : "All"
+            },
+            "businessCalendar" : {
+              "value" : "PLATTS-OILGRAM"
+            }
+          },
+          "averagingMethod" : "Unweighted",
+          "fx" : {
+            "primaryRateSource" : {
+              "rateSource" : {
+                "value" : "EuroCentralBank"
+              }
+            },
+            "dayType" : "CommodityBusiness",
+            "dayDistribution" : {
+              "value" : "All"
+            },
+            "calculationPeriodsReference" : {
+              "href" : "CalculationPeriodsSchedule"
+            }
+          },
+          "notionalQuantity" : {
+            "quantityUnit" : {
+              "value" : "MB"
+            },
+            "quantityFrequency" : {
+              "value" : "PerCalendarDay"
+            },
+            "quantity" : 49.2765012
+          },
+          "totalNotionalQuantity" : 9017.59972
+        }, {
+          "id" : "Component3",
+          "direction" : "Receiver",
+          "commodity" : {
+            "instrumentId" : [ {
+              "value" : "OIL-BRENT/BFOE (DTD)-PLATTS MARKETWIRE",
+              "instrumentIdScheme" : "http://www.fpml.org/coding-scheme/commodity-reference-price-3-0"
+            } ],
+            "specifiedPrice" : "MeanOfHighAndLow"
+          },
+          "pricingDates" : {
+            "calculationPeriodsScheduleReference" : {
+              "href" : "CalculationPeriodsSchedule"
+            },
+            "lag" : {
+              "lagDuration" : {
+                "periodMultiplier" : 9,
+                "period" : "M"
+              }
+            },
+            "dayType" : "CommodityBusiness",
+            "dayDistribution" : {
+              "value" : "All"
+            },
+            "businessCalendar" : {
+              "value" : "PLATTS-OILGRAM"
+            }
+          },
+          "averagingMethod" : "Unweighted",
+          "fx" : {
+            "primaryRateSource" : {
+              "rateSource" : {
+                "value" : "EuroCentralBank"
+              }
+            },
+            "dayType" : "CommodityBusiness",
+            "dayDistribution" : {
+              "value" : "All"
+            },
+            "calculationPeriodsReference" : {
+              "href" : "CalculationPeriodsSchedule"
+            }
+          },
+          "notionalQuantity" : {
+            "quantityUnit" : {
+              "value" : "MB"
+            },
+            "quantityFrequency" : {
+              "value" : "PerCalculationPeriod"
+            },
+            "quantity" : 10.76458229
+          },
+          "totalNotionalQuantity" : 1969.918559
+        } ]
       },
       "strikePriceBasketReference" : {
         "href" : "Basket"
       },
-      "commodityStrikePriceModel" : {
-        "strikePricePerUnit" : {
-          "currency" : {
-            "value" : "EUR"
-          },
-          "amount" : 0.3693
-        }
+      "strikePricePerUnit" : {
+        "currency" : {
+          "value" : "EUR"
+        },
+        "amount" : 0.3693
       },
       "exercise" : {
         "europeanExercise" : {
-          "expirationDate" : {
+          "expirationDate" : [ {
             "relativeDate" : {
               "periodMultiplier" : 0,
               "period" : "D",
@@ -366,42 +246,32 @@
                 "href" : "CalculationPeriodsSchedule"
               }
             }
-          }
+          } ]
         },
         "automaticExercise" : true,
         "writtenConfirmation" : false,
         "settlementCurrency" : {
           "value" : "EUR"
         },
-        "commodityPaymentDatesModel" : {
-          "relativePaymentDates" : {
-            "payRelativeTo" : "TerminationOrExpirationDate",
-            "commodityCalculationPeriodsPointerModel" : {
-              "calculationPeriodsScheduleReference" : {
-                "href" : "CalculationPeriodsSchedule"
-              }
-            },
-            "paymentDaysOffset" : {
-              "periodMultiplier" : 3,
-              "period" : "D",
-              "dayType" : "Business",
-              "businessDayConvention" : "NONE"
-            }
+        "relativePaymentDates" : {
+          "payRelativeTo" : "TerminationOrExpirationDate",
+          "calculationPeriodsScheduleReference" : {
+            "href" : "CalculationPeriodsSchedule"
+          },
+          "paymentDaysOffset" : {
+            "periodMultiplier" : 3,
+            "period" : "D",
+            "dayType" : "Business",
+            "businessDayConvention" : "NONE"
           }
         }
       },
       "premium" : [ {
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "PartyA"
-            }
-          },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "PartyB"
-            }
-          }
+        "payerPartyReference" : {
+          "href" : "PartyA"
+        },
+        "receiverPartyReference" : {
+          "href" : "PartyB"
         },
         "paymentDate" : {
           "adjustableDate" : {
@@ -428,36 +298,26 @@
       } ]
     }
   } ],
-  "partiesAndAccountsModel" : {
-    "party" : [ {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "95980020140005196564",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyInformationModel" : {
-          "country" : {
-            "value" : "US"
-          },
-          "organizationType" : [ {
-            "value" : "SwapDealer"
-          } ]
-        }
-      },
-      "id" : "PartyA"
-    }, {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "549300XQFX97CITUR430",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyInformationModel" : {
-          "organizationType" : [ {
-            "value" : "Non-SD_Non-MSP"
-          } ]
-        }
-      },
-      "id" : "PartyB"
+  "party" : [ {
+    "id" : "PartyA",
+    "partyId" : [ {
+      "value" : "95980020140005196564",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "country" : {
+      "value" : "US"
+    },
+    "organizationType" : [ {
+      "value" : "SwapDealer"
     } ]
-  }
+  }, {
+    "id" : "PartyB",
+    "partyId" : [ {
+      "value" : "549300XQFX97CITUR430",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "organizationType" : [ {
+      "value" : "Non-SD_Non-MSP"
+    } ]
+  } ]
 }

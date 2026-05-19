@@ -2,223 +2,163 @@
   "fpmlVersion" : "5-10",
   "trade" : [ {
     "tradeHeader" : {
-      "tradeIdentifiersModel" : {
-        "partyTradeIdentifier" : [ {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "268151",
-              "tradeIdScheme" : "http://www.swapswire.com/spec/2001/trade-id-1-0"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "partyA"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "268151",
-                "tradeIdScheme" : "http://www.swapswire.com/spec/2001/trade-id-1-0"
-              }
-            } ]
-          }
-        }, {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "268151",
-              "tradeIdScheme" : "http://www.swapswire.com/spec/2001/trade-id-1-0"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "partyB"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "268151",
-                "tradeIdScheme" : "http://www.swapswire.com/spec/2001/trade-id-1-0"
-              }
-            } ]
-          }
-        } ]
-      },
+      "partyTradeIdentifier" : [ {
+        "tradeId" : {
+          "value" : "268151",
+          "tradeIdScheme" : "http://www.swapswire.com/spec/2001/trade-id-1-0"
+        },
+        "partyReference" : {
+          "href" : "partyA"
+        }
+      }, {
+        "tradeId" : {
+          "value" : "268151",
+          "tradeIdScheme" : "http://www.swapswire.com/spec/2001/trade-id-1-0"
+        },
+        "partyReference" : {
+          "href" : "partyB"
+        }
+      } ],
       "tradeDate" : {
         "value" : "2008-11-12T00:00:00Z"
       }
     },
     "product" : {
-      "buyerSellerModel" : {
-        "buyerPartyReference" : {
-          "href" : "partyA"
-        },
-        "sellerPartyReference" : {
-          "href" : "partyB"
-        }
+      "buyerPartyReference" : {
+        "href" : "partyA"
+      },
+      "sellerPartyReference" : {
+        "href" : "partyB"
       },
       "optionType" : "Call",
       "commoditySwap" : {
-        "commoditySwapDetailsModel" : {
-          "effectiveDate" : {
-            "adjustableDate" : {
-              "unadjustedDate" : {
-                "value" : "2010-01-01T00:00:00Z"
-              },
-              "dateAdjustments" : {
-                "businessDayConvention" : "NotApplicable"
-              }
+        "effectiveDate" : {
+          "id" : "forwardEffectiveDate",
+          "adjustableDate" : {
+            "unadjustedDate" : {
+              "value" : "2010-01-01T00:00:00Z"
             },
-            "id" : "forwardEffectiveDate"
-          },
-          "terminationDate" : {
-            "adjustableDate" : {
-              "unadjustedDate" : {
-                "value" : "2010-12-31T00:00:00Z"
-              },
-              "dateAdjustments" : {
-                "businessDayConvention" : "NotApplicable"
-              }
+            "dateAdjustments" : {
+              "businessDayConvention" : "NotApplicable"
+            }
+          }
+        },
+        "terminationDate" : {
+          "id" : "forwardTerminationDate",
+          "adjustableDate" : {
+            "unadjustedDate" : {
+              "value" : "2010-12-31T00:00:00Z"
             },
-            "id" : "forwardTerminationDate"
+            "dateAdjustments" : {
+              "businessDayConvention" : "NotApplicable"
+            }
+          }
+        },
+        "settlementCurrency" : {
+          "value" : "EUR"
+        },
+        "commoditySwapLeg" : [ {
+          "id" : "fixedLeg",
+          "payerPartyReference" : {
+            "href" : "partyB"
           },
-          "settlementCurrency" : {
-            "value" : "EUR"
+          "receiverPartyReference" : {
+            "href" : "partyA"
           },
-          "commoditySwapLeg" : [ {
-            "id" : "fixedLeg",
-            "payerReceiverModel" : {
-              "payerModel" : {
-                "payerPartyReference" : {
-                  "href" : "partyB"
+          "calculationPeriodsSchedule" : {
+            "id" : "fixedLegCalculationPeriods",
+            "periodMultiplier" : 1,
+            "period" : "M",
+            "balanceOfFirstPeriod" : false
+          },
+          "settlementPeriodsPrice" : [ {
+            "price" : 30.7,
+            "priceCurrency" : {
+              "value" : "EUR"
+            },
+            "priceUnit" : {
+              "value" : "MW"
+            },
+            "settlementPeriodsReference" : [ {
+              "href" : "settlementPeriods1"
+            } ]
+          } ],
+          "totalPrice" : {
+            "currency" : {
+              "value" : "EUR"
+            },
+            "amount" : 34961160.0
+          },
+          "quantityReference" : {
+            "href" : "deliveryQuantity"
+          },
+          "masterAgreementPaymentDates" : true
+        }, {
+          "id" : "electricityLeg",
+          "payerPartyReference" : {
+            "href" : "partyA"
+          },
+          "receiverPartyReference" : {
+            "href" : "partyB"
+          },
+          "deliveryPeriods" : {
+            "id" : "deliveryPeriods",
+            "calculationPeriodsScheduleReference" : {
+              "href" : "fixedLegCalculationPeriods"
+            }
+          },
+          "settlementPeriods" : [ {
+            "id" : "settlementPeriods1",
+            "duration" : "1Hour",
+            "applicableDay" : [ "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN" ],
+            "startTime" : {
+              "time" : {
+                "hourMinuteTime" : "00:00:00",
+                "location" : {
+                  "value" : "Europe/Berlin"
                 }
-              },
-              "receiverModel" : {
-                "receiverPartyReference" : {
-                  "href" : "partyA"
+              }
+            },
+            "endTime" : {
+              "time" : {
+                "hourMinuteTime" : "00:00:00",
+                "location" : {
+                  "value" : "Europe/Berlin"
                 }
-              }
-            },
-            "commodityCalculationPeriodsModel" : {
-              "calculationPeriodsSchedule" : {
-                "periodMultiplier" : 1,
-                "period" : "M",
-                "id" : "fixedLegCalculationPeriods",
-                "balanceOfFirstPeriod" : false
-              }
-            },
-            "commodityFixedPriceModel" : {
-              "commodityFixedPriceModelChoice" : {
-                "settlementPeriodsPrice" : [ {
-                  "price" : 30.7,
-                  "commodityPriceModel" : {
-                    "priceCurrency" : {
-                      "value" : "EUR"
-                    },
-                    "priceUnit" : {
-                      "value" : "MW"
-                    }
-                  },
-                  "settlementPeriodsReference" : [ {
-                    "href" : "settlementPeriods1"
-                  } ]
-                } ]
-              },
-              "totalPrice" : {
-                "currency" : {
-                  "value" : "EUR"
-                },
-                "amount" : 34961160.0
-              }
-            },
-            "commodityNotionalQuantityModel" : {
-              "quantityReference" : {
-                "href" : "deliveryQuantity"
-              }
-            },
-            "commodityPaymentDatesModel" : {
-              "commodityNonPeriodicPaymentDatesModel" : {
-                "masterAgreementPaymentDates" : true
               }
             }
-          }, {
-            "id" : "electricityLeg",
-            "payerReceiverModel" : {
-              "payerModel" : {
-                "payerPartyReference" : {
-                  "href" : "partyA"
-                }
+          } ],
+          "electricity" : {
+            "voltage" : 230,
+            "type" : "Electricity"
+          },
+          "deliveryConditions" : {
+            "deliveryPoint" : {
+              "value" : "Germany"
+            }
+          },
+          "deliveryQuantity" : {
+            "id" : "deliveryQuantity",
+            "physicalQuantity" : [ {
+              "quantityUnit" : {
+                "value" : "MW"
               },
-              "receiverModel" : {
-                "receiverPartyReference" : {
-                  "href" : "partyB"
-                }
-              }
-            },
-            "deliveryPeriods" : {
-              "commodityCalculationPeriodsPointerModel" : {
-                "calculationPeriodsScheduleReference" : {
-                  "href" : "fixedLegCalculationPeriods"
-                }
+              "quantityFrequency" : {
+                "value" : "PerSettlementPeriod"
               },
-              "id" : "deliveryPeriods"
-            },
-            "settlementPeriods" : [ {
-              "duration" : "1Hour",
-              "applicableDay" : [ "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN" ],
-              "id" : "settlementPeriods1",
-              "startTime" : {
-                "time" : {
-                  "hourMinuteTime" : "00:00:00",
-                  "location" : {
-                    "value" : "Europe/Berlin"
-                  }
-                }
-              },
-              "endTime" : {
-                "time" : {
-                  "hourMinuteTime" : "00:00:00",
-                  "location" : {
-                    "value" : "Europe/Berlin"
-                  }
-                }
-              }
+              "quantity" : 130,
+              "settlementPeriodsReference" : [ {
+                "href" : "settlementPeriods1"
+              } ]
             } ],
-            "electricity" : {
-              "voltage" : 230,
-              "type" : "Electricity"
-            },
-            "deliveryConditions" : {
-              "electricityDeliverySequence0" : {
-                "deliveryPoint" : {
-                  "value" : "Germany"
-                }
-              }
-            },
-            "deliveryQuantity" : {
-              "id" : "deliveryQuantity",
-              "physicalQuantity" : [ {
-                "quantityUnit" : {
-                  "value" : "MW"
-                },
-                "quantityFrequency" : {
-                  "value" : "PerSettlementPeriod"
-                },
-                "quantity" : 130,
-                "settlementPeriodsReference" : [ {
-                  "href" : "settlementPeriods1"
-                } ]
-              } ],
-              "totalPhysicalQuantity" : {
-                "quantityUnit" : {
-                  "value" : "MW"
-                },
-                "quantity" : 1138800
-              }
+            "totalPhysicalQuantity" : {
+              "quantityUnit" : {
+                "value" : "MW"
+              },
+              "quantity" : 1138800
             }
-          } ]
-        }
+          }
+        } ]
       },
       "physicalExercise" : {
         "europeanExercise" : {
@@ -251,15 +191,13 @@
               },
               "calculationPeriodDatesAdjustments" : {
                 "businessDayConvention" : "PRECEDING",
-                "businessCentersOrReferenceModel" : {
-                  "businessCenters" : {
-                    "businessCenter" : [ {
-                      "value" : "USNY"
-                    }, {
-                      "value" : "GBLO"
-                    } ],
-                    "id" : "bc1"
-                  }
+                "businessCenters" : {
+                  "id" : "bc1",
+                  "businessCenter" : [ {
+                    "value" : "USNY"
+                  }, {
+                    "value" : "GBLO"
+                  } ]
                 }
               }
             }
@@ -275,17 +213,11 @@
         "writtenConfirmation" : false
       },
       "premium" : {
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "partyA"
-            }
-          },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "partyB"
-            }
-          }
+        "payerPartyReference" : {
+          "href" : "partyA"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyB"
         },
         "paymentDate" : {
           "adjustableDate" : {
@@ -294,10 +226,8 @@
             },
             "dateAdjustments" : {
               "businessDayConvention" : "MODFOLLOWING",
-              "businessCentersOrReferenceModel" : {
-                "businessCentersReference" : {
-                  "href" : "bc1"
-                }
+              "businessCentersReference" : {
+                "href" : "bc1"
               }
             }
           }
@@ -317,29 +247,23 @@
       }
     }
   } ],
-  "partiesAndAccountsModel" : {
-    "party" : [ {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "549300KFSLY4U7N3LL12",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "Bank"
-        }
-      },
-      "id" : "partyA"
-    }, {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "549300AJRHKBLY9GM262",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "Energy Co."
-        }
-      },
-      "id" : "partyB"
-    } ]
-  }
+  "party" : [ {
+    "id" : "partyA",
+    "partyId" : [ {
+      "value" : "549300KFSLY4U7N3LL12",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Bank"
+    }
+  }, {
+    "id" : "partyB",
+    "partyId" : [ {
+      "value" : "549300AJRHKBLY9GM262",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Energy Co."
+    }
+  } ]
 }
