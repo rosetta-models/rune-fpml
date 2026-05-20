@@ -2,190 +2,128 @@
   "fpmlVersion" : "5-10",
   "trade" : [ {
     "tradeHeader" : {
-      "tradeIdentifiersModel" : {
-        "partyTradeIdentifier" : [ {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "1234",
-              "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "partyA"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "1234",
-                "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
-              }
-            } ]
-          }
-        }, {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "2345",
-              "tradeIdScheme" : "http://www.PartyB.com/com-trade-id"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "partyB"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "2345",
-                "tradeIdScheme" : "http://www.PartyB.com/com-trade-id"
-              }
-            } ]
-          }
-        } ]
-      },
+      "partyTradeIdentifier" : [ {
+        "tradeId" : {
+          "value" : "1234",
+          "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
+        },
+        "partyReference" : {
+          "href" : "partyA"
+        }
+      }, {
+        "tradeId" : {
+          "value" : "2345",
+          "tradeIdScheme" : "http://www.PartyB.com/com-trade-id"
+        },
+        "partyReference" : {
+          "href" : "partyB"
+        }
+      } ],
       "tradeDate" : {
         "value" : "2009-04-22T00:00:00Z"
       }
     },
     "product" : {
-      "buyerSellerModel" : {
-        "buyerPartyReference" : {
-          "href" : "partyA"
-        },
-        "sellerPartyReference" : {
-          "href" : "partyB"
-        }
+      "buyerPartyReference" : {
+        "href" : "partyA"
+      },
+      "sellerPartyReference" : {
+        "href" : "partyB"
       },
       "optionType" : "Call",
       "commoditySwap" : {
-        "commoditySwapDetailsModel" : {
-          "effectiveDate" : {
-            "adjustableDate" : {
-              "unadjustedDate" : {
-                "value" : "2010-01-01T00:00:00Z"
-              },
-              "dateAdjustments" : {
-                "businessDayConvention" : "NONE"
-              }
+        "effectiveDate" : {
+          "id" : "physicalEffectiveDate",
+          "adjustableDate" : {
+            "unadjustedDate" : {
+              "value" : "2010-01-01T00:00:00Z"
             },
-            "id" : "physicalEffectiveDate"
-          },
-          "terminationDate" : {
-            "adjustableDate" : {
-              "unadjustedDate" : {
-                "value" : "2010-12-31T00:00:00Z"
-              },
-              "dateAdjustments" : {
-                "businessDayConvention" : "NONE"
-              }
-            },
-            "id" : "physicalTerminationDate"
-          },
-          "settlementCurrency" : {
-            "value" : "USD"
-          },
-          "commoditySwapLeg" : [ {
-            "payerReceiverModel" : {
-              "payerModel" : {
-                "payerPartyReference" : {
-                  "href" : "partyA"
-                }
-              },
-              "receiverModel" : {
-                "receiverPartyReference" : {
-                  "href" : "partyB"
-                }
-              }
-            },
-            "commodityCalculationPeriodsModel" : {
-              "calculationPeriodsSchedule" : {
-                "periodMultiplier" : 1,
-                "period" : "M",
-                "id" : "calculationPeriodsSchedule",
-                "balanceOfFirstPeriod" : false
-              }
-            },
-            "commodityFixedPriceModel" : {
-              "commodityFixedPriceModelChoice" : {
-                "fixedPrice" : {
-                  "price" : 45.6,
-                  "commodityPriceModel" : {
-                    "priceCurrency" : {
-                      "value" : "USD"
-                    },
-                    "priceUnit" : {
-                      "value" : "USMMBTU"
-                    }
-                  }
-                }
-              }
-            },
-            "commodityNotionalQuantityModel" : {
-              "quantityReference" : {
-                "href" : "deliveryQuantity"
-              }
-            },
-            "commodityPaymentDatesModel" : {
-              "commodityNonPeriodicPaymentDatesModel" : {
-                "masterAgreementPaymentDates" : true
-              }
+            "dateAdjustments" : {
+              "businessDayConvention" : "NONE"
             }
-          }, {
-            "payerReceiverModel" : {
-              "payerModel" : {
-                "payerPartyReference" : {
-                  "href" : "partyB"
-                }
-              },
-              "receiverModel" : {
-                "receiverPartyReference" : {
-                  "href" : "partyA"
-                }
-              }
+          }
+        },
+        "terminationDate" : {
+          "id" : "physicalTerminationDate",
+          "adjustableDate" : {
+            "unadjustedDate" : {
+              "value" : "2010-12-31T00:00:00Z"
             },
-            "deliveryPeriods" : {
-              "commodityCalculationPeriodsPointerModel" : {
-                "calculationPeriodsScheduleReference" : {
-                  "href" : "calculationPeriodsSchedule"
-                }
-              }
-            },
-            "gas" : {
-              "type" : "NaturalGas"
-            },
-            "deliveryConditions" : {
-              "commodityDeliveryPointsModel" : {
-                "deliveryPoint" : {
-                  "value" : "TETCO M2 Zone",
-                  "deliveryPointScheme" : "http://www.PartyA.com/commodity-delivery-point-gas-1-0"
-                }
-              },
-              "deliveryType" : "Firm"
-            },
-            "deliveryQuantity" : {
-              "id" : "deliveryQuantity",
-              "commodityFixedPhysicalQuantityModel" : {
-                "physicalQuantity" : {
-                  "quantityUnit" : {
-                    "value" : "USMMBTU"
-                  },
-                  "quantityFrequency" : {
-                    "value" : "PerCalendarDay"
-                  },
-                  "quantity" : 100.0
-                },
-                "totalPhysicalQuantity" : {
-                  "quantityUnit" : {
-                    "value" : "USMMBTU"
-                  },
-                  "quantity" : 36500.0
-                }
-              }
+            "dateAdjustments" : {
+              "businessDayConvention" : "NONE"
             }
-          } ]
-        }
+          }
+        },
+        "settlementCurrency" : {
+          "value" : "USD"
+        },
+        "commoditySwapLeg" : [ {
+          "payerPartyReference" : {
+            "href" : "partyA"
+          },
+          "receiverPartyReference" : {
+            "href" : "partyB"
+          },
+          "calculationPeriodsSchedule" : {
+            "id" : "calculationPeriodsSchedule",
+            "periodMultiplier" : 1,
+            "period" : "M",
+            "balanceOfFirstPeriod" : false
+          },
+          "fixedPrice" : {
+            "price" : 45.6,
+            "priceCurrency" : {
+              "value" : "USD"
+            },
+            "priceUnit" : {
+              "value" : "USMMBTU"
+            }
+          },
+          "quantityReference" : {
+            "href" : "deliveryQuantity"
+          },
+          "masterAgreementPaymentDates" : true
+        }, {
+          "payerPartyReference" : {
+            "href" : "partyB"
+          },
+          "receiverPartyReference" : {
+            "href" : "partyA"
+          },
+          "deliveryPeriods" : {
+            "calculationPeriodsScheduleReference" : {
+              "href" : "calculationPeriodsSchedule"
+            }
+          },
+          "gas" : {
+            "type" : "NaturalGas"
+          },
+          "deliveryConditions" : {
+            "deliveryPoint" : {
+              "value" : "TETCO M2 Zone",
+              "deliveryPointScheme" : "http://www.PartyA.com/commodity-delivery-point-gas-1-0"
+            },
+            "deliveryType" : "Firm"
+          },
+          "deliveryQuantity" : {
+            "id" : "deliveryQuantity",
+            "physicalQuantity" : {
+              "quantityUnit" : {
+                "value" : "USMMBTU"
+              },
+              "quantityFrequency" : {
+                "value" : "PerCalendarDay"
+              },
+              "quantity" : 100.0
+            },
+            "totalPhysicalQuantity" : {
+              "quantityUnit" : {
+                "value" : "USMMBTU"
+              },
+              "quantity" : 36500.0
+            }
+          }
+        } ]
       },
       "physicalExercise" : {
         "europeanExercise" : {
@@ -220,15 +158,13 @@
               },
               "calculationPeriodDatesAdjustments" : {
                 "businessDayConvention" : "MODFOLLOWING",
-                "businessCentersOrReferenceModel" : {
-                  "businessCenters" : {
-                    "businessCenter" : [ {
-                      "value" : "USNY"
-                    }, {
-                      "value" : "GBLO"
-                    } ],
-                    "id" : "bc1"
-                  }
+                "businessCenters" : {
+                  "id" : "bc1",
+                  "businessCenter" : [ {
+                    "value" : "USNY"
+                  }, {
+                    "value" : "GBLO"
+                  } ]
                 }
               }
             }
@@ -238,17 +174,11 @@
         "writtenConfirmation" : false
       },
       "premium" : {
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "partyA"
-            }
-          },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "partyB"
-            }
-          }
+        "payerPartyReference" : {
+          "href" : "partyA"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyB"
         },
         "paymentDate" : {
           "adjustableDate" : {
@@ -257,10 +187,8 @@
             },
             "dateAdjustments" : {
               "businessDayConvention" : "FOLLOWING",
-              "businessCentersOrReferenceModel" : {
-                "businessCentersReference" : {
-                  "href" : "bc1"
-                }
+              "businessCentersReference" : {
+                "href" : "bc1"
               }
             }
           }
@@ -280,29 +208,23 @@
       }
     }
   } ],
-  "partiesAndAccountsModel" : {
-    "party" : [ {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "549300KFSLY4U7N3LL12",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "Bank"
-        }
-      },
-      "id" : "partyA"
-    }, {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "549300AJRHKBLY9GM262",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "Energy Co."
-        }
-      },
-      "id" : "partyB"
-    } ]
-  }
+  "party" : [ {
+    "id" : "partyA",
+    "partyId" : [ {
+      "value" : "549300KFSLY4U7N3LL12",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Bank"
+    }
+  }, {
+    "id" : "partyB",
+    "partyId" : [ {
+      "value" : "549300AJRHKBLY9GM262",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Energy Co."
+    }
+  } ]
 }

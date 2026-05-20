@@ -2,397 +2,319 @@
   "fpmlVersion" : "5-13",
   "trade" : [ {
     "tradeHeader" : {
-      "tradeIdentifiersModel" : {
-        "partyTradeIdentifier" : [ {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "1234",
-              "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "partyA"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "1234",
-                "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
-              }
-            } ]
-          }
-        }, {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "2345",
-              "tradeIdScheme" : "http://www.PartyB.com/com-trade-id"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "partyB"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "2345",
-                "tradeIdScheme" : "http://www.PartyB.com/com-trade-id"
-              }
-            } ]
-          }
-        } ]
-      },
+      "partyTradeIdentifier" : [ {
+        "tradeId" : {
+          "value" : "1234",
+          "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
+        },
+        "partyReference" : {
+          "href" : "partyA"
+        }
+      }, {
+        "tradeId" : {
+          "value" : "2345",
+          "tradeIdScheme" : "http://www.PartyB.com/com-trade-id"
+        },
+        "partyReference" : {
+          "href" : "partyB"
+        }
+      } ],
       "tradeDate" : {
         "value" : "2002-04-22T00:00:00Z"
       }
     },
     "product" : {
-      "commoditySwapDetailsModel" : {
-        "effectiveDate" : {
-          "adjustableDate" : {
-            "unadjustedDate" : {
-              "value" : "2002-05-01T00:00:00Z"
-            },
-            "dateAdjustments" : {
-              "businessDayConvention" : "NotApplicable"
-            }
+      "effectiveDate" : {
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2002-05-01T00:00:00Z"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NotApplicable"
+          }
+        }
+      },
+      "terminationDate" : {
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2002-07-31T00:00:00Z"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NotApplicable"
+          }
+        }
+      },
+      "settlementCurrency" : {
+        "value" : "USD"
+      },
+      "commoditySwapLeg" : [ {
+        "payerPartyReference" : {
+          "href" : "partyA"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyB"
+        },
+        "deliveryPeriods" : {
+          "id" : "deliveryPeriods",
+          "calculationPeriodsScheduleReference" : {
+            "href" : "calculationPeriods"
           }
         },
-        "terminationDate" : {
-          "adjustableDate" : {
-            "unadjustedDate" : {
-              "value" : "2002-07-31T00:00:00Z"
-            },
-            "dateAdjustments" : {
-              "businessDayConvention" : "NotApplicable"
-            }
-          }
-        },
-        "settlementCurrency" : {
-          "value" : "USD"
-        },
-        "commoditySwapLeg" : [ {
-          "payerReceiverModel" : {
-            "payerModel" : {
-              "payerPartyReference" : {
-                "href" : "partyA"
-              }
-            },
-            "receiverModel" : {
-              "receiverPartyReference" : {
-                "href" : "partyB"
+        "settlementPeriods" : [ {
+          "id" : "peak",
+          "duration" : "1Hour",
+          "applicableDay" : [ "MON", "TUE", "WED", "THU", "FRI", "SAT" ],
+          "startTime" : {
+            "time" : {
+              "hourMinuteTime" : "07:00:00",
+              "location" : {
+                "value" : "American/Los Angeles"
               }
             }
           },
-          "deliveryPeriods" : {
-            "commodityCalculationPeriodsPointerModel" : {
-              "calculationPeriodsScheduleReference" : {
-                "href" : "calculationPeriods"
-              }
-            },
-            "id" : "deliveryPeriods"
-          },
-          "settlementPeriods" : [ {
-            "duration" : "1Hour",
-            "applicableDay" : [ "MON", "TUE", "WED", "THU", "FRI", "SAT" ],
-            "excludeHolidays" : {
-              "value" : "NERC"
-            },
-            "id" : "peak",
-            "startTime" : {
-              "time" : {
-                "hourMinuteTime" : "07:00:00",
-                "location" : {
-                  "value" : "American/Los Angeles"
-                }
-              }
-            },
-            "endTime" : {
-              "time" : {
-                "hourMinuteTime" : "22:00:00",
-                "location" : {
-                  "value" : "American/Los Angeles"
-                }
-              }
-            }
-          }, {
-            "duration" : "1Hour",
-            "applicableDay" : [ "MON", "TUE", "WED", "THU", "FRI", "SAT" ],
-            "excludeHolidays" : {
-              "value" : "NERC"
-            },
-            "id" : "off-peak-week",
-            "startTime" : {
-              "time" : {
-                "hourMinuteTime" : "01:00:00",
-                "location" : {
-                  "value" : "American/Los Angeles"
-                }
-              }
-            },
-            "endTime" : {
-              "time" : {
-                "hourMinuteTime" : "06:00:00",
-                "location" : {
-                  "value" : "American/Los Angeles"
-                }
-              }
-            }
-          }, {
-            "duration" : "1Hour",
-            "applicableDay" : [ "SUN" ],
-            "includeHolidays" : {
-              "value" : "NERC"
-            },
-            "id" : "off-peak-weekend",
-            "startTime" : {
-              "time" : {
-                "hourMinuteTime" : "23:00:00",
-                "location" : {
-                  "value" : "American/Los Angeles"
-                }
-              }
-            },
-            "endTime" : {
-              "time" : {
-                "hourMinuteTime" : "00:00:00",
-                "location" : {
-                  "value" : "American/Los Angeles"
-                }
-              }
-            }
-          } ],
-          "electricity" : {
-            "type" : "Electricity"
-          },
-          "deliveryConditions" : {
-            "electricityDeliverySequence1" : {
-              "deliveryZone" : {
-                "value" : "NorthPath15",
-                "deliveryPointScheme" : "http://www.PartyA.com/delivery-point-scheme-power-1-0"
-              },
-              "electingPartyReference" : {
-                "href" : "partyA"
+          "endTime" : {
+            "time" : {
+              "hourMinuteTime" : "22:00:00",
+              "location" : {
+                "value" : "American/Los Angeles"
               }
             }
           },
-          "deliveryQuantity" : {
-            "id" : "deliveryQuantity",
-            "physicalQuantitySchedule" : [ {
-              "quantityStep" : [ {
-                "quantityUnit" : {
-                  "value" : "MW"
-                },
-                "quantityFrequency" : {
-                  "value" : "PerSettlementPeriod"
-                },
-                "quantity" : 200
-              }, {
-                "quantityUnit" : {
-                  "value" : "MW"
-                },
-                "quantityFrequency" : {
-                  "value" : "PerSettlementPeriod"
-                },
-                "quantity" : 50
-              }, {
-                "quantityUnit" : {
-                  "value" : "MW"
-                },
-                "quantityFrequency" : {
-                  "value" : "PerSettlementPeriod"
-                },
-                "quantity" : 650
-              } ],
-              "commodityDeliveryPeriodsPointerModel" : {
-                "deliveryPeriodsScheduleReference" : {
-                  "href" : "deliveryPeriods"
-                }
-              },
-              "settlementPeriodsReference" : [ {
-                "href" : "peak"
-              } ]
-            }, {
-              "quantityStep" : [ {
-                "quantityUnit" : {
-                  "value" : "MW"
-                },
-                "quantityFrequency" : {
-                  "value" : "PerSettlementPeriod"
-                },
-                "quantity" : 400
-              }, {
-                "quantityUnit" : {
-                  "value" : "MW"
-                },
-                "quantityFrequency" : {
-                  "value" : "PerSettlementPeriod"
-                },
-                "quantity" : 400
-              }, {
-                "quantityUnit" : {
-                  "value" : "MW"
-                },
-                "quantityFrequency" : {
-                  "value" : "PerSettlementPeriod"
-                },
-                "quantity" : 400
-              } ],
-              "commodityDeliveryPeriodsPointerModel" : {
-                "deliveryPeriodsScheduleReference" : {
-                  "href" : "deliveryPeriods"
-                }
-              },
-              "settlementPeriodsReference" : [ {
-                "href" : "off-peak-week"
-              }, {
-                "href" : "off-peak-weekend"
-              } ]
-            } ]
+          "excludeHolidays" : {
+            "value" : "NERC"
           }
         }, {
-          "payerReceiverModel" : {
-            "payerModel" : {
-              "payerPartyReference" : {
-                "href" : "partyB"
-              }
-            },
-            "receiverModel" : {
-              "receiverPartyReference" : {
-                "href" : "partyA"
-              }
-            }
-          },
-          "commodityCalculationPeriodsModel" : {
-            "calculationPeriodsSchedule" : {
-              "periodMultiplier" : 1,
-              "period" : "M",
-              "id" : "calculationPeriods",
-              "balanceOfFirstPeriod" : false
-            }
-          },
-          "commodityFixedPriceModel" : {
-            "fixedPriceSchedule" : {
-              "settlementPeriodsPriceSchedule" : [ {
-                "settlementPeriodsPriceStep" : [ {
-                  "price" : 58.60,
-                  "commodityPriceModel" : {
-                    "priceCurrency" : {
-                      "value" : "USD"
-                    },
-                    "priceUnit" : {
-                      "value" : "MWh"
-                    }
-                  }
-                }, {
-                  "price" : 58.60,
-                  "commodityPriceModel" : {
-                    "priceCurrency" : {
-                      "value" : "USD"
-                    },
-                    "priceUnit" : {
-                      "value" : "MWh"
-                    }
-                  }
-                }, {
-                  "price" : 58.60,
-                  "commodityPriceModel" : {
-                    "priceCurrency" : {
-                      "value" : "USD"
-                    },
-                    "priceUnit" : {
-                      "value" : "MWh"
-                    }
-                  }
-                } ],
-                "settlementPeriodsReference" : [ {
-                  "href" : "peak"
-                } ]
-              }, {
-                "settlementPeriodsPriceStep" : [ {
-                  "price" : 40.00,
-                  "commodityPriceModel" : {
-                    "priceCurrency" : {
-                      "value" : "USD"
-                    },
-                    "priceUnit" : {
-                      "value" : "MWh"
-                    }
-                  }
-                }, {
-                  "price" : 45.00,
-                  "commodityPriceModel" : {
-                    "priceCurrency" : {
-                      "value" : "USD"
-                    },
-                    "priceUnit" : {
-                      "value" : "MWh"
-                    }
-                  }
-                }, {
-                  "price" : 50.00,
-                  "commodityPriceModel" : {
-                    "priceCurrency" : {
-                      "value" : "USD"
-                    },
-                    "priceUnit" : {
-                      "value" : "MWh"
-                    }
-                  }
-                } ],
-                "settlementPeriodsReference" : [ {
-                  "href" : "off-peak-weekend"
-                }, {
-                  "href" : "off-peak-week"
-                } ]
-              } ],
-              "commodityCalculationPeriodsPointerModel" : {
-                "calculationPeriodsScheduleReference" : {
-                  "href" : "calculationPeriods"
-                }
+          "id" : "off-peak-week",
+          "duration" : "1Hour",
+          "applicableDay" : [ "MON", "TUE", "WED", "THU", "FRI", "SAT" ],
+          "startTime" : {
+            "time" : {
+              "hourMinuteTime" : "01:00:00",
+              "location" : {
+                "value" : "American/Los Angeles"
               }
             }
           },
-          "commodityNotionalQuantityModel" : {
-            "quantityReference" : {
-              "href" : "deliveryQuantity"
+          "endTime" : {
+            "time" : {
+              "hourMinuteTime" : "06:00:00",
+              "location" : {
+                "value" : "American/Los Angeles"
+              }
             }
           },
-          "commodityPaymentDatesModel" : {
-            "commodityNonPeriodicPaymentDatesModel" : {
-              "masterAgreementPaymentDates" : true
-            }
+          "excludeHolidays" : {
+            "value" : "NERC"
           }
-        } ]
-      }
+        }, {
+          "id" : "off-peak-weekend",
+          "duration" : "1Hour",
+          "applicableDay" : [ "SUN" ],
+          "startTime" : {
+            "time" : {
+              "hourMinuteTime" : "23:00:00",
+              "location" : {
+                "value" : "American/Los Angeles"
+              }
+            }
+          },
+          "endTime" : {
+            "time" : {
+              "hourMinuteTime" : "00:00:00",
+              "location" : {
+                "value" : "American/Los Angeles"
+              }
+            }
+          },
+          "includeHolidays" : {
+            "value" : "NERC"
+          }
+        } ],
+        "electricity" : {
+          "type" : "Electricity"
+        },
+        "deliveryConditions" : {
+          "deliveryZone" : {
+            "value" : "NorthPath15",
+            "deliveryPointScheme" : "http://www.PartyA.com/delivery-point-scheme-power-1-0"
+          },
+          "electingPartyReference" : {
+            "href" : "partyA"
+          }
+        },
+        "deliveryQuantity" : {
+          "id" : "deliveryQuantity",
+          "physicalQuantitySchedule" : [ {
+            "quantityStep" : [ {
+              "quantityUnit" : {
+                "value" : "MW"
+              },
+              "quantityFrequency" : {
+                "value" : "PerSettlementPeriod"
+              },
+              "quantity" : 200
+            }, {
+              "quantityUnit" : {
+                "value" : "MW"
+              },
+              "quantityFrequency" : {
+                "value" : "PerSettlementPeriod"
+              },
+              "quantity" : 50
+            }, {
+              "quantityUnit" : {
+                "value" : "MW"
+              },
+              "quantityFrequency" : {
+                "value" : "PerSettlementPeriod"
+              },
+              "quantity" : 650
+            } ],
+            "deliveryPeriodsScheduleReference" : {
+              "href" : "deliveryPeriods"
+            },
+            "settlementPeriodsReference" : [ {
+              "href" : "peak"
+            } ]
+          }, {
+            "quantityStep" : [ {
+              "quantityUnit" : {
+                "value" : "MW"
+              },
+              "quantityFrequency" : {
+                "value" : "PerSettlementPeriod"
+              },
+              "quantity" : 400
+            }, {
+              "quantityUnit" : {
+                "value" : "MW"
+              },
+              "quantityFrequency" : {
+                "value" : "PerSettlementPeriod"
+              },
+              "quantity" : 400
+            }, {
+              "quantityUnit" : {
+                "value" : "MW"
+              },
+              "quantityFrequency" : {
+                "value" : "PerSettlementPeriod"
+              },
+              "quantity" : 400
+            } ],
+            "deliveryPeriodsScheduleReference" : {
+              "href" : "deliveryPeriods"
+            },
+            "settlementPeriodsReference" : [ {
+              "href" : "off-peak-week"
+            }, {
+              "href" : "off-peak-weekend"
+            } ]
+          } ]
+        }
+      }, {
+        "payerPartyReference" : {
+          "href" : "partyB"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyA"
+        },
+        "calculationPeriodsSchedule" : {
+          "id" : "calculationPeriods",
+          "periodMultiplier" : 1,
+          "period" : "M",
+          "balanceOfFirstPeriod" : false
+        },
+        "fixedPriceSchedule" : {
+          "settlementPeriodsPriceSchedule" : [ {
+            "settlementPeriodsPriceStep" : [ {
+              "price" : 58.60,
+              "priceCurrency" : {
+                "value" : "USD"
+              },
+              "priceUnit" : {
+                "value" : "MWh"
+              }
+            }, {
+              "price" : 58.60,
+              "priceCurrency" : {
+                "value" : "USD"
+              },
+              "priceUnit" : {
+                "value" : "MWh"
+              }
+            }, {
+              "price" : 58.60,
+              "priceCurrency" : {
+                "value" : "USD"
+              },
+              "priceUnit" : {
+                "value" : "MWh"
+              }
+            } ],
+            "settlementPeriodsReference" : [ {
+              "href" : "peak"
+            } ]
+          }, {
+            "settlementPeriodsPriceStep" : [ {
+              "price" : 40.00,
+              "priceCurrency" : {
+                "value" : "USD"
+              },
+              "priceUnit" : {
+                "value" : "MWh"
+              }
+            }, {
+              "price" : 45.00,
+              "priceCurrency" : {
+                "value" : "USD"
+              },
+              "priceUnit" : {
+                "value" : "MWh"
+              }
+            }, {
+              "price" : 50.00,
+              "priceCurrency" : {
+                "value" : "USD"
+              },
+              "priceUnit" : {
+                "value" : "MWh"
+              }
+            } ],
+            "settlementPeriodsReference" : [ {
+              "href" : "off-peak-weekend"
+            }, {
+              "href" : "off-peak-week"
+            } ]
+          } ],
+          "calculationPeriodsScheduleReference" : {
+            "href" : "calculationPeriods"
+          }
+        },
+        "quantityReference" : {
+          "href" : "deliveryQuantity"
+        },
+        "masterAgreementPaymentDates" : true
+      } ]
     }
   } ],
-  "partiesAndAccountsModel" : {
-    "party" : [ {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "549300KFSLY4U7N3LL12",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "Bank"
-        }
-      },
-      "id" : "partyA"
-    }, {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "549300AJRHKBLY9GM262",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "Energy Co."
-        }
-      },
-      "id" : "partyB"
-    } ]
-  }
+  "party" : [ {
+    "id" : "partyA",
+    "partyId" : [ {
+      "value" : "549300KFSLY4U7N3LL12",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Bank"
+    }
+  }, {
+    "id" : "partyB",
+    "partyId" : [ {
+      "value" : "549300AJRHKBLY9GM262",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Energy Co."
+    }
+  } ]
 }

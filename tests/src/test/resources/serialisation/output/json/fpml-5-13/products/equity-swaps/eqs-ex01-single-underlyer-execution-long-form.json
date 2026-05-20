@@ -5,516 +5,411 @@
       "value" : "MS/2006/04/07/15-99",
       "messageIdScheme" : "http://www.example.com/messageId"
     },
-    "messageHeaderModel" : {
-      "sentBy" : {
-        "value" : "PARTYABICXXX"
-      },
-      "sendTo" : [ {
-        "value" : "PARTYBBICXXX"
-      } ],
-      "creationTimestamp" : "2006-07-02T16:38:00Z"
-    }
+    "sentBy" : {
+      "value" : "PARTYABICXXX"
+    },
+    "sendTo" : [ {
+      "value" : "PARTYBBICXXX"
+    } ],
+    "creationTimestamp" : "2006-07-02T16:38:00Z"
   },
   "isCorrection" : false,
-  "correlationAndSequenceModel" : {
-    "correlationModel" : {
-      "correlationIdModel" : {
-        "correlationId" : [ {
-          "value" : "CS/2006/07/02/32-09",
-          "correlationIdScheme" : "http://www.example.com/correlationId"
-        } ]
+  "correlationId" : [ {
+    "value" : "CS/2006/07/02/32-09",
+    "correlationIdScheme" : "http://www.example.com/correlationId"
+  } ],
+  "sequenceNumber" : 1,
+  "trade" : {
+    "tradeHeader" : {
+      "partyTradeIdentifier" : [ {
+        "tradeId" : {
+          "value" : "6234",
+          "tradeIdScheme" : "http://www.partyA.com/eqs-trade-id"
+        },
+        "partyReference" : {
+          "href" : "party1"
+        }
+      }, {
+        "tradeId" : {
+          "value" : "6569",
+          "tradeIdScheme" : "http://www.partyB.com/eqs-trade-id"
+        },
+        "partyReference" : {
+          "href" : "party2"
+        }
+      } ],
+      "tradeDate" : {
+        "value" : "2001-09-24T00:00:00Z",
+        "id" : "TradeDate"
       }
     },
-    "sequenceModel" : {
-      "sequenceNumber" : 1
-    }
-  },
-  "tradingAndPostTradeEventsModel" : {
-    "tradingEventsBaseModel" : {
-      "tradingEventsBaseModelSequence" : {
-        "trade" : {
-          "tradeHeader" : {
-            "tradeIdentifiersModel" : {
-              "partyTradeIdentifier" : [ {
-                "issuerTradeIdModel" : {
-                  "tradeId" : {
-                    "value" : "6234",
-                    "tradeIdScheme" : "http://www.partyA.com/eqs-trade-id"
+    "product" : {
+      "productType" : [ {
+        "value" : "Equity:Swap:PriceReturnBasicPerformance:SingleName"
+      } ],
+      "returnSwapLeg" : [ {
+        "payerPartyReference" : {
+          "href" : "party1"
+        },
+        "receiverPartyReference" : {
+          "href" : "party2"
+        },
+        "effectiveDate" : {
+          "id" : "EffectiveDate",
+          "relativeDate" : {
+            "periodMultiplier" : 3,
+            "period" : "D",
+            "dayType" : "ExchangeBusiness",
+            "businessDayConvention" : "NotApplicable",
+            "dateRelativeTo" : {
+              "href" : "TradeDate"
+            }
+          }
+        },
+        "terminationDate" : {
+          "id" : "TerminationDate",
+          "relativeDate" : {
+            "periodMultiplier" : 0,
+            "period" : "D",
+            "businessDayConvention" : "NotApplicable",
+            "dateRelativeTo" : {
+              "href" : "FinalEquityPaymentDate"
+            }
+          }
+        },
+        "underlyer" : {
+          "singleUnderlyer" : {
+            "underlyingAsset" : {
+              "instrumentId" : [ {
+                "value" : "SHPGY.O",
+                "instrumentIdScheme" : "http://www.abc.com/instrumentId"
+              } ],
+              "description" : "Shire Pharmeceuticals Group - American Depositary Receipts",
+              "exchangeId" : {
+                "value" : "NASD",
+                "exchangeIdScheme" : "http://www.abc.com/exchangeId"
+              }
+            },
+            "openUnits" : 760400,
+            "dividendPayout" : {
+              "dividendPayoutRatio" : 1
+            }
+          }
+        },
+        "settlementType" : "Cash",
+        "rateOfReturn" : {
+          "initialPrice" : {
+            "netPrice" : {
+              "currency" : {
+                "value" : "USD"
+              },
+              "amount" : 37.44,
+              "priceExpression" : "AbsoluteTerms"
+            }
+          },
+          "notionalReset" : true,
+          "valuationPriceInterim" : {
+            "determinationMethod" : {
+              "value" : "ValuationTime"
+            },
+            "valuationRules" : {
+              "valuationDates" : {
+                "id" : "InterimValuationDate",
+                "adjustableDates" : {
+                  "unadjustedDate" : [ {
+                    "value" : "2001-10-12T00:00:00Z"
+                  }, {
+                    "value" : "2001-11-13T00:00:00Z"
+                  }, {
+                    "value" : "2001-12-12T00:00:00Z"
+                  }, {
+                    "value" : "2002-01-14T00:00:00Z"
+                  }, {
+                    "value" : "2002-02-12T00:00:00Z"
+                  }, {
+                    "value" : "2002-03-12T00:00:00Z"
+                  }, {
+                    "value" : "2002-04-12T00:00:00Z"
+                  }, {
+                    "value" : "2002-05-13T00:00:00Z"
+                  }, {
+                    "value" : "2002-06-12T00:00:00Z"
+                  }, {
+                    "value" : "2002-07-12T00:00:00Z"
+                  }, {
+                    "value" : "2002-08-12T00:00:00Z"
+                  } ],
+                  "dateAdjustments" : {
+                    "businessDayConvention" : "NotApplicable"
                   }
-                },
-                "tradeIdentifierSequence" : {
-                  "partyAndAccountReferencesModel" : {
-                    "partyReference" : {
-                      "href" : "party1"
-                    }
+                }
+              },
+              "valuationTimeType" : "Close"
+            }
+          },
+          "valuationPriceFinal" : {
+            "determinationMethod" : {
+              "value" : "HedgeExecution"
+            },
+            "valuationRules" : {
+              "valuationDate" : {
+                "id" : "FinalValuationDate",
+                "adjustableDate" : {
+                  "unadjustedDate" : {
+                    "value" : "2002-09-24T00:00:00Z"
                   },
-                  "tradeIdentifierSequenceChoice" : [ {
-                    "tradeId" : {
-                      "value" : "6234",
-                      "tradeIdScheme" : "http://www.partyA.com/eqs-trade-id"
-                    }
+                  "dateAdjustments" : {
+                    "businessDayConvention" : "NotApplicable"
+                  }
+                }
+              }
+            }
+          },
+          "paymentDates" : {
+            "id" : "EquityPaymentDate",
+            "paymentDatesInterim" : {
+              "id" : "InterimEquityPaymentDate",
+              "relativeDates" : {
+                "periodMultiplier" : 3,
+                "period" : "D",
+                "dayType" : "CurrencyBusiness",
+                "businessDayConvention" : "FOLLOWING",
+                "businessCenters" : {
+                  "id" : "PrimaryBusinessCenter",
+                  "businessCenter" : [ {
+                    "value" : "USNY"
                   } ]
-                }
-              }, {
-                "issuerTradeIdModel" : {
-                  "tradeId" : {
-                    "value" : "6569",
-                    "tradeIdScheme" : "http://www.partyB.com/eqs-trade-id"
-                  }
                 },
-                "tradeIdentifierSequence" : {
-                  "partyAndAccountReferencesModel" : {
-                    "partyReference" : {
-                      "href" : "party2"
-                    }
-                  },
-                  "tradeIdentifierSequenceChoice" : [ {
-                    "tradeId" : {
-                      "value" : "6569",
-                      "tradeIdScheme" : "http://www.partyB.com/eqs-trade-id"
-                    }
-                  } ]
-                }
-              } ]
-            },
-            "tradeDate" : {
-              "value" : "2001-09-24T00:00:00Z",
-              "id" : "TradeDate"
-            }
-          },
-          "product" : {
-            "productModel" : {
-              "productType" : [ {
-                "value" : "Equity:Swap:PriceReturnBasicPerformance:SingleName"
-              } ]
-            },
-            "returnSwapLeg" : [ {
-              "payerReceiverModel" : {
-                "payerModel" : {
-                  "payerPartyReference" : {
-                    "href" : "party1"
-                  }
-                },
-                "receiverModel" : {
-                  "receiverPartyReference" : {
-                    "href" : "party2"
-                  }
-                }
-              },
-              "effectiveDate" : {
-                "relativeDate" : {
-                  "periodMultiplier" : 3,
-                  "period" : "D",
-                  "dayType" : "ExchangeBusiness",
-                  "businessDayConvention" : "NotApplicable",
-                  "dateRelativeTo" : {
-                    "href" : "TradeDate"
-                  }
-                },
-                "id" : "EffectiveDate"
-              },
-              "terminationDate" : {
-                "relativeDate" : {
-                  "periodMultiplier" : 0,
-                  "period" : "D",
-                  "businessDayConvention" : "NotApplicable",
-                  "dateRelativeTo" : {
-                    "href" : "FinalEquityPaymentDate"
-                  }
-                },
-                "id" : "TerminationDate"
-              },
-              "underlyer" : {
-                "singleUnderlyer" : {
-                  "underlyingAsset" : {
-                    "instrumentId" : [ {
-                      "value" : "SHPGY.O",
-                      "instrumentIdScheme" : "http://www.abc.com/instrumentId"
-                    } ],
-                    "description" : "Shire Pharmeceuticals Group - American Depositary Receipts",
-                    "exchangeId" : {
-                      "value" : "NASD",
-                      "exchangeIdScheme" : "http://www.abc.com/exchangeId"
-                    }
-                  },
-                  "openUnits" : 760400,
-                  "dividendPayout" : {
-                    "dividendPayoutSequence" : {
-                      "dividendPayoutRatio" : 1
-                    }
-                  }
-                }
-              },
-              "optionSettlementModel" : {
-                "settlementType" : "Cash"
-              },
-              "rateOfReturn" : {
-                "initialPrice" : {
-                  "priceSequence" : {
-                    "equityPriceModel" : {
-                      "netPrice" : {
-                        "currency" : {
-                          "value" : "USD"
-                        },
-                        "amount" : 37.44,
-                        "priceExpression" : "AbsoluteTerms"
-                      }
-                    }
-                  },
-                  "equityPriceModel" : {
-                    "netPrice" : {
-                      "currency" : {
-                        "value" : "USD"
-                      },
-                      "amount" : 37.44,
-                      "priceExpression" : "AbsoluteTerms"
-                    }
-                  }
-                },
-                "notionalReset" : true,
-                "valuationPriceInterim" : {
-                  "priceSequence" : {
-                    "determinationMethod" : {
-                      "value" : "ValuationTime"
-                    }
-                  },
-                  "valuationRules" : {
-                    "valuationDates" : {
-                      "adjustableDates" : {
-                        "unadjustedDate" : [ {
-                          "value" : "2001-10-12T00:00:00Z"
-                        }, {
-                          "value" : "2001-11-13T00:00:00Z"
-                        }, {
-                          "value" : "2001-12-12T00:00:00Z"
-                        }, {
-                          "value" : "2002-01-14T00:00:00Z"
-                        }, {
-                          "value" : "2002-02-12T00:00:00Z"
-                        }, {
-                          "value" : "2002-03-12T00:00:00Z"
-                        }, {
-                          "value" : "2002-04-12T00:00:00Z"
-                        }, {
-                          "value" : "2002-05-13T00:00:00Z"
-                        }, {
-                          "value" : "2002-06-12T00:00:00Z"
-                        }, {
-                          "value" : "2002-07-12T00:00:00Z"
-                        }, {
-                          "value" : "2002-08-12T00:00:00Z"
-                        } ],
-                        "dateAdjustments" : {
-                          "businessDayConvention" : "NotApplicable"
-                        }
-                      },
-                      "id" : "InterimValuationDate"
-                    },
-                    "valuationTimeType" : "Close"
-                  }
-                },
-                "valuationPriceFinal" : {
-                  "priceSequence" : {
-                    "determinationMethod" : {
-                      "value" : "HedgeExecution"
-                    }
-                  },
-                  "valuationRules" : {
-                    "valuationDate" : {
-                      "adjustableDate" : {
-                        "unadjustedDate" : {
-                          "value" : "2002-09-24T00:00:00Z"
-                        },
-                        "dateAdjustments" : {
-                          "businessDayConvention" : "NotApplicable"
-                        }
-                      },
-                      "id" : "FinalValuationDate"
-                    }
-                  }
-                },
-                "paymentDates" : {
-                  "paymentDatesInterim" : {
-                    "relativeDates" : {
-                      "periodMultiplier" : 3,
-                      "period" : "D",
-                      "dayType" : "CurrencyBusiness",
-                      "businessDayConvention" : "FOLLOWING",
-                      "businessCentersOrReferenceModel" : {
-                        "businessCenters" : {
-                          "businessCenter" : [ {
-                            "value" : "USNY"
-                          } ],
-                          "id" : "PrimaryBusinessCenter"
-                        }
-                      },
-                      "dateRelativeTo" : {
-                        "href" : "InterimValuationDate"
-                      }
-                    },
-                    "id" : "InterimEquityPaymentDate"
-                  },
-                  "paymentDateFinal" : {
-                    "relativeDate" : {
-                      "periodMultiplier" : 3,
-                      "period" : "D",
-                      "dayType" : "CurrencyBusiness",
-                      "businessDayConvention" : "FOLLOWING",
-                      "businessCentersOrReferenceModel" : {
-                        "businessCentersReference" : {
-                          "href" : "PrimaryBusinessCenter"
-                        }
-                      },
-                      "dateRelativeTo" : {
-                        "href" : "FinalValuationDate"
-                      }
-                    },
-                    "id" : "FinalEquityPaymentDate"
-                  },
-                  "id" : "EquityPaymentDate"
-                }
-              },
-              "notional" : {
-                "notionalAmount" : {
-                  "currency" : {
-                    "value" : "USD"
-                  },
-                  "id" : "EquityNotionalAmount",
-                  "amount" : 28469376
-                }
-              },
-              "amount" : {
-                "currencyAndDeterminationMethodModel" : {
-                  "currency" : {
-                    "value" : "USD",
-                    "id" : "EquityPaymentCurrency"
-                  }
-                },
-                "referenceAmount" : {
-                  "value" : "ISDA Standard"
-                },
-                "cashSettlement" : true
-              },
-              "notionalAdjustments" : "Execution",
-              "return" : {
-                "returnType" : "Total",
-                "dividendConditions" : {
-                  "dividendReinvestment" : false,
-                  "dividendEntitlement" : "ExDate",
-                  "dividendPaymentDate" : {
-                    "dividendPaymentDateSequence" : {
-                      "dividendDateReference" : "EquityPaymentDate"
-                    }
-                  },
-                  "dividendConditionsSequence" : {
-                    "dividendPeriodEffectiveDate" : {
-                      "href" : "TradeDate"
-                    },
-                    "dividendPeriodEndDate" : {
-                      "href" : "TerminationDate"
-                    }
-                  },
-                  "extraOrdinaryDividends" : {
-                    "href" : "party1"
-                  },
-                  "excessDividendAmount" : "RecordAmount",
-                  "currencyAndDeterminationMethodModel" : {
-                    "determinationMethod" : {
-                      "value" : "DividendCurrency"
-                    }
-                  }
-                }
-              }
-            }, {
-              "payerReceiverModel" : {
-                "payerModel" : {
-                  "payerPartyReference" : {
-                    "href" : "party2"
-                  }
-                },
-                "receiverModel" : {
-                  "receiverPartyReference" : {
-                    "href" : "party1"
-                  }
-                }
-              },
-              "interestLegCalculationPeriodDates" : {
-                "effectiveDate" : {
-                  "relativeDate" : {
-                    "periodMultiplier" : 3,
-                    "period" : "D",
-                    "dayType" : "ExchangeBusiness",
-                    "businessDayConvention" : "NotApplicable",
-                    "dateRelativeTo" : {
-                      "href" : "TradeDate"
-                    }
-                  }
-                },
-                "terminationDate" : {
-                  "relativeDate" : {
-                    "periodMultiplier" : 0,
-                    "period" : "D",
-                    "businessDayConvention" : "NotApplicable",
-                    "dateRelativeTo" : {
-                      "href" : "FinalEquityPaymentDate"
-                    }
-                  }
-                },
-                "interestLegResetDates" : {
-                  "calculationPeriodDatesReference" : {
-                    "href" : "InterestLegPeriodDates"
-                  },
-                  "resetRelativeTo" : "CalculationPeriodStartDate"
-                },
-                "interestLegPaymentDates" : {
-                  "relativeDates" : {
-                    "periodMultiplier" : 0,
-                    "period" : "D",
-                    "businessDayConvention" : "NotApplicable",
-                    "dateRelativeTo" : {
-                      "href" : "EquityPaymentDate"
-                    }
-                  }
-                },
-                "id" : "InterestLegPeriodDates"
-              },
-              "notional" : {
-                "relativeNotionalAmount" : {
-                  "href" : "EquityNotionalAmount"
-                }
-              },
-              "interestAmount" : {
-                "currencyAndDeterminationMethodModel" : {
-                  "currencyReference" : {
-                    "href" : "EquityPaymentCurrency"
-                  }
-                },
-                "referenceAmount" : {
-                  "value" : "Standard ISDA"
-                }
-              },
-              "interestCalculation" : {
-                "floatingRateCalculation" : {
-                  "floatingRateIndexModel" : {
-                    "floatingRateIndex" : {
-                      "value" : "USD-LIBOR-BBA"
-                    },
-                    "indexTenor" : {
-                      "periodMultiplier" : 1,
-                      "period" : "M"
-                    }
-                  },
-                  "floatingRateModel" : {
-                    "spreadSchedule" : [ {
-                      "initialValue" : 0.0020
-                    } ]
-                  }
-                },
-                "dayCountFraction" : {
-                  "value" : "ACT/360"
-                }
-              }
-            } ],
-            "earlyTermination" : [ {
-              "partyReference" : {
-                "href" : "party1"
-              },
-              "startingDate" : {
                 "dateRelativeTo" : {
-                  "href" : "TradeDate"
+                  "href" : "InterimValuationDate"
                 }
-              }
-            }, {
-              "partyReference" : {
-                "href" : "party2"
-              },
-              "startingDate" : {
-                "dateRelativeTo" : {
-                  "href" : "TradeDate"
-                }
-              }
-            } ],
-            "extraordinaryEvents" : {
-              "mergerEvents" : {
-                "shareForShare" : "ModifiedCalculationAgent",
-                "shareForOther" : "ModifiedCalculationAgent",
-                "shareForCombined" : "ModifiedCalculationAgent"
-              },
-              "tenderOffer" : true,
-              "tenderOfferEvents" : {
-                "shareForShare" : "ModifiedCalculationAgent",
-                "shareForOther" : "ModifiedCalculationAgent",
-                "shareForCombined" : "ModifiedCalculationAgent"
-              },
-              "compositionOfCombinedConsideration" : true,
-              "additionalDisruptionEvents" : {
-                "changeInLaw" : true,
-                "failureToDeliver" : true,
-                "insolvencyFiling" : false,
-                "hedgingDisruption" : true,
-                "stockLoanModel" : {
-                  "lossOfStockBorrow" : true,
-                  "increasedCostOfStockBorrow" : false
-                },
-                "increasedCostOfHedging" : false,
-                "determiningPartyReference" : {
-                  "href" : "party1"
-                }
-              },
-              "representations" : {
-                "nonReliance" : true,
-                "agreementsRegardingHedging" : true,
-                "additionalAcknowledgements" : true
-              },
-              "nationalisationOrInsolvency" : "CancellationAndPayment"
-            }
-          },
-          "calculationAgentModel" : {
-            "calculationAgent" : {
-              "calculationAgentPartyReference" : [ {
-                "href" : "party1"
-              } ]
-            }
-          },
-          "documentation" : {
-            "masterAgreement" : {
-              "masterAgreementType" : {
-                "value" : "ISDA"
-              },
-              "masterAgreementVersion" : {
-                "value" : "2002"
               }
             },
-            "contractualDefinitions" : [ {
-              "value" : "ISDA2000"
-            }, {
-              "value" : "ISDA2002Equity"
-            } ]
+            "paymentDateFinal" : {
+              "id" : "FinalEquityPaymentDate",
+              "relativeDate" : {
+                "periodMultiplier" : 3,
+                "period" : "D",
+                "dayType" : "CurrencyBusiness",
+                "businessDayConvention" : "FOLLOWING",
+                "businessCentersReference" : {
+                  "href" : "PrimaryBusinessCenter"
+                },
+                "dateRelativeTo" : {
+                  "href" : "FinalValuationDate"
+                }
+              }
+            }
+          }
+        },
+        "notional" : {
+          "notionalAmount" : {
+            "id" : "EquityNotionalAmount",
+            "currency" : {
+              "value" : "USD"
+            },
+            "amount" : 28469376
+          }
+        },
+        "amount" : {
+          "currency" : {
+            "value" : "USD",
+            "id" : "EquityPaymentCurrency"
           },
-          "governingLaw" : {
-            "value" : "GBEN"
+          "referenceAmount" : {
+            "value" : "ISDA Standard"
+          },
+          "cashSettlement" : true
+        },
+        "notionalAdjustments" : "Execution",
+        "return" : {
+          "returnType" : "Total",
+          "dividendConditions" : {
+            "dividendReinvestment" : false,
+            "dividendEntitlement" : "ExDate",
+            "dividendPaymentDate" : {
+              "dividendDateReference" : "EquityPaymentDate"
+            },
+            "dividendPeriodEffectiveDate" : {
+              "href" : "TradeDate"
+            },
+            "dividendPeriodEndDate" : {
+              "href" : "TerminationDate"
+            },
+            "extraOrdinaryDividends" : {
+              "href" : "party1"
+            },
+            "excessDividendAmount" : "RecordAmount",
+            "determinationMethod" : {
+              "value" : "DividendCurrency"
+            }
           }
         }
+      }, {
+        "payerPartyReference" : {
+          "href" : "party2"
+        },
+        "receiverPartyReference" : {
+          "href" : "party1"
+        },
+        "interestLegCalculationPeriodDates" : {
+          "id" : "InterestLegPeriodDates",
+          "effectiveDate" : {
+            "relativeDate" : {
+              "periodMultiplier" : 3,
+              "period" : "D",
+              "dayType" : "ExchangeBusiness",
+              "businessDayConvention" : "NotApplicable",
+              "dateRelativeTo" : {
+                "href" : "TradeDate"
+              }
+            }
+          },
+          "terminationDate" : {
+            "relativeDate" : {
+              "periodMultiplier" : 0,
+              "period" : "D",
+              "businessDayConvention" : "NotApplicable",
+              "dateRelativeTo" : {
+                "href" : "FinalEquityPaymentDate"
+              }
+            }
+          },
+          "interestLegResetDates" : {
+            "calculationPeriodDatesReference" : {
+              "href" : "InterestLegPeriodDates"
+            },
+            "resetRelativeTo" : "CalculationPeriodStartDate"
+          },
+          "interestLegPaymentDates" : {
+            "relativeDates" : {
+              "periodMultiplier" : 0,
+              "period" : "D",
+              "businessDayConvention" : "NotApplicable",
+              "dateRelativeTo" : {
+                "href" : "EquityPaymentDate"
+              }
+            }
+          }
+        },
+        "notional" : {
+          "relativeNotionalAmount" : {
+            "href" : "EquityNotionalAmount"
+          }
+        },
+        "interestAmount" : {
+          "currencyReference" : {
+            "href" : "EquityPaymentCurrency"
+          },
+          "referenceAmount" : {
+            "value" : "Standard ISDA"
+          }
+        },
+        "interestCalculation" : {
+          "floatingRateCalculation" : {
+            "floatingRateIndex" : {
+              "value" : "USD-LIBOR-BBA"
+            },
+            "indexTenor" : {
+              "periodMultiplier" : 1,
+              "period" : "M"
+            },
+            "spreadSchedule" : [ {
+              "initialValue" : 0.0020
+            } ]
+          },
+          "dayCountFraction" : {
+            "value" : "ACT/360"
+          }
+        }
+      } ],
+      "earlyTermination" : [ {
+        "partyReference" : {
+          "href" : "party1"
+        },
+        "startingDate" : {
+          "dateRelativeTo" : {
+            "href" : "TradeDate"
+          }
+        }
+      }, {
+        "partyReference" : {
+          "href" : "party2"
+        },
+        "startingDate" : {
+          "dateRelativeTo" : {
+            "href" : "TradeDate"
+          }
+        }
+      } ],
+      "extraordinaryEvents" : {
+        "mergerEvents" : {
+          "shareForShare" : "ModifiedCalculationAgent",
+          "shareForOther" : "ModifiedCalculationAgent",
+          "shareForCombined" : "ModifiedCalculationAgent"
+        },
+        "tenderOffer" : true,
+        "tenderOfferEvents" : {
+          "shareForShare" : "ModifiedCalculationAgent",
+          "shareForOther" : "ModifiedCalculationAgent",
+          "shareForCombined" : "ModifiedCalculationAgent"
+        },
+        "compositionOfCombinedConsideration" : true,
+        "additionalDisruptionEvents" : {
+          "changeInLaw" : true,
+          "failureToDeliver" : true,
+          "insolvencyFiling" : false,
+          "hedgingDisruption" : true,
+          "lossOfStockBorrow" : true,
+          "increasedCostOfStockBorrow" : false,
+          "increasedCostOfHedging" : false,
+          "determiningPartyReference" : {
+            "href" : "party1"
+          }
+        },
+        "representations" : {
+          "nonReliance" : true,
+          "agreementsRegardingHedging" : true,
+          "additionalAcknowledgements" : true
+        },
+        "nationalisationOrInsolvency" : "CancellationAndPayment"
       }
+    },
+    "calculationAgent" : {
+      "calculationAgentPartyReference" : [ {
+        "href" : "party1"
+      } ]
+    },
+    "documentation" : {
+      "masterAgreement" : {
+        "masterAgreementType" : {
+          "value" : "ISDA"
+        },
+        "masterAgreementVersion" : {
+          "value" : "2002"
+        }
+      },
+      "contractualDefinitions" : [ {
+        "value" : "ISDA2000"
+      }, {
+        "value" : "ISDA2002Equity"
+      } ]
+    },
+    "governingLaw" : {
+      "value" : "GBEN"
     }
   },
-  "partiesAndAccountsModel" : {
-    "party" : [ {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "Party A",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
-        } ]
-      },
-      "id" : "party1"
-    }, {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "Party B",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
-        } ]
-      },
-      "id" : "party2"
+  "party" : [ {
+    "id" : "party1",
+    "partyId" : [ {
+      "value" : "Party A",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
     } ]
-  }
+  }, {
+    "id" : "party2",
+    "partyId" : [ {
+      "value" : "Party B",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
+    } ]
+  } ]
 }

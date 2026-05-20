@@ -2,49 +2,31 @@
   "fpmlVersion" : "5-10",
   "trade" : [ {
     "tradeHeader" : {
-      "tradeIdentifiersModel" : {
-        "partyTradeIdentifier" : [ {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "87654321",
-              "tradeIdScheme" : "http://www.bnpparibas.com/trade-id"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "partyA"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "87654321",
-                "tradeIdScheme" : "http://www.bnpparibas.com/trade-id"
-              }
-            } ]
-          }
-        } ]
-      },
+      "partyTradeIdentifier" : [ {
+        "tradeId" : {
+          "value" : "87654321",
+          "tradeIdScheme" : "http://www.bnpparibas.com/trade-id"
+        },
+        "partyReference" : {
+          "href" : "partyA"
+        }
+      } ],
       "tradeDate" : {
         "value" : "2011-09-20T00:00:00Z"
       }
     },
     "product" : {
-      "buyerSellerModel" : {
-        "buyerPartyReference" : {
-          "href" : "partyB"
-        },
-        "sellerPartyReference" : {
-          "href" : "partyA"
-        }
+      "buyerPartyReference" : {
+        "href" : "partyB"
       },
-      "putCallCurrencyModel" : {
-        "putCurrency" : {
-          "value" : "USD"
-        },
-        "callCurrency" : {
-          "value" : "EUR"
-        }
+      "sellerPartyReference" : {
+        "href" : "partyA"
+      },
+      "putCurrency" : {
+        "value" : "USD"
+      },
+      "callCurrency" : {
+        "value" : "EUR"
       },
       "notionalAmount" : {
         "currency" : {
@@ -59,27 +41,25 @@
         "amount" : 500000
       },
       "executionPeriodDates" : {
+        "id" : "purchasePeriod",
+        "startDate" : "2011-09-30T00:00:00Z",
+        "expiryDate" : "2012-12-30T00:00:00Z",
         "businessCenters" : {
           "businessCenter" : [ {
             "value" : "EUTA"
           } ]
-        },
-        "id" : "purchasePeriod",
-        "startDate" : "2011-09-30T00:00:00Z",
-        "expiryDate" : "2012-12-30T00:00:00Z"
+        }
       },
-      "fxFlexibleForwardSequence" : {
-        "earliestExecutionTime" : {
-          "hourMinuteTime" : "09:00:00",
-          "businessCenter" : {
-            "value" : "GBLO"
-          }
-        },
-        "latestExecutionTime" : {
-          "hourMinuteTime" : "15:00:00",
-          "businessCenter" : {
-            "value" : "GBLO"
-          }
+      "earliestExecutionTime" : {
+        "hourMinuteTime" : "09:00:00",
+        "businessCenter" : {
+          "value" : "GBLO"
+        }
+      },
+      "latestExecutionTime" : {
+        "hourMinuteTime" : "15:00:00",
+        "businessCenter" : {
+          "value" : "GBLO"
         }
       },
       "settlementDateOffset" : {
@@ -87,14 +67,12 @@
         "period" : "D",
         "dayType" : "Business",
         "businessDayConvention" : "FOLLOWING",
-        "businessCentersOrReferenceModel" : {
-          "businessCenters" : {
-            "businessCenter" : [ {
-              "value" : "EUTA"
-            }, {
-              "value" : "USNY"
-            } ]
-          }
+        "businessCenters" : {
+          "businessCenter" : [ {
+            "value" : "EUTA"
+          }, {
+            "value" : "USNY"
+          } ]
         },
         "dateRelativeTo" : {
           "href" : "purchasePeriod"
@@ -111,17 +89,11 @@
         "rate" : 1.375
       },
       "additionalPayment" : {
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "partyB"
-            }
-          },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "partyA"
-            }
-          }
+        "payerPartyReference" : {
+          "href" : "partyB"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyA"
         },
         "paymentAmount" : {
           "currency" : {
@@ -137,29 +109,23 @@
       }
     }
   } ],
-  "partiesAndAccountsModel" : {
-    "party" : [ {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "5493001RKR55V4X61F71",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "BNP Paribas S.A."
-        }
-      },
-      "id" : "partyA"
-    }, {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "XXXXYYYZZ",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
-        } ],
-        "partyName" : {
-          "value" : "Client"
-        }
-      },
-      "id" : "partyB"
-    } ]
-  }
+  "party" : [ {
+    "id" : "partyA",
+    "partyId" : [ {
+      "value" : "5493001RKR55V4X61F71",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "BNP Paribas S.A."
+    }
+  }, {
+    "id" : "partyB",
+    "partyId" : [ {
+      "value" : "XXXXYYYZZ",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
+    } ],
+    "partyName" : {
+      "value" : "Client"
+    }
+  } ]
 }

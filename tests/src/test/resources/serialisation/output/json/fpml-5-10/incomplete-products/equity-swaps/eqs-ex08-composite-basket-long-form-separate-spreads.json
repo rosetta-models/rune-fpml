@@ -5,673 +5,560 @@
       "value" : "MS/2006/04/07/15-99",
       "messageIdScheme" : "http://www.example.com/messageId"
     },
-    "messageHeaderModel" : {
-      "sentBy" : {
-        "value" : "PARTYABICXXX"
-      },
-      "sendTo" : [ {
-        "value" : "PARTYBBICXXX"
-      } ],
-      "creationTimestamp" : "2006-07-02T16:38:00Z"
-    }
+    "sentBy" : {
+      "value" : "PARTYABICXXX"
+    },
+    "sendTo" : [ {
+      "value" : "PARTYBBICXXX"
+    } ],
+    "creationTimestamp" : "2006-07-02T16:38:00Z"
   },
   "isCorrection" : false,
-  "correlationAndSequenceModel" : {
-    "correlationModel" : {
-      "correlationIdModel" : {
-        "correlationId" : [ {
-          "value" : "CS/2006/07/02/32-09",
-          "correlationIdScheme" : "http://www.example.com/correlationId"
-        } ]
+  "correlationId" : [ {
+    "value" : "CS/2006/07/02/32-09",
+    "correlationIdScheme" : "http://www.example.com/correlationId"
+  } ],
+  "sequenceNumber" : 1,
+  "trade" : {
+    "tradeHeader" : {
+      "partyTradeIdentifier" : [ {
+        "tradeId" : {
+          "value" : "1245",
+          "tradeIdScheme" : "http://www.partyA.com/eqs-trade-id"
+        },
+        "partyReference" : {
+          "href" : "party1"
+        }
+      }, {
+        "tradeId" : {
+          "value" : "4569",
+          "tradeIdScheme" : "http://www.partyB.com/eqs-trade-id"
+        },
+        "partyReference" : {
+          "href" : "party2"
+        }
+      } ],
+      "tradeDate" : {
+        "value" : "2002-07-17T00:00:00Z",
+        "id" : "TradeDate"
       }
     },
-    "sequenceModel" : {
-      "sequenceNumber" : 1
-    }
-  },
-  "tradingAndPostTradeEventsModel" : {
-    "tradingEventsBaseModel" : {
-      "tradingEventsBaseModelSequence" : {
-        "trade" : {
-          "tradeHeader" : {
-            "tradeIdentifiersModel" : {
-              "partyTradeIdentifier" : [ {
-                "issuerTradeIdModel" : {
-                  "tradeId" : {
-                    "value" : "1245",
-                    "tradeIdScheme" : "http://www.partyA.com/eqs-trade-id"
-                  }
-                },
-                "tradeIdentifierSequence" : {
-                  "partyAndAccountReferencesModel" : {
-                    "partyReference" : {
-                      "href" : "party1"
-                    }
-                  },
-                  "tradeIdentifierSequenceChoice" : [ {
-                    "tradeId" : {
-                      "value" : "1245",
-                      "tradeIdScheme" : "http://www.partyA.com/eqs-trade-id"
-                    }
-                  } ]
-                }
-              }, {
-                "issuerTradeIdModel" : {
-                  "tradeId" : {
-                    "value" : "4569",
-                    "tradeIdScheme" : "http://www.partyB.com/eqs-trade-id"
-                  }
-                },
-                "tradeIdentifierSequence" : {
-                  "partyAndAccountReferencesModel" : {
-                    "partyReference" : {
-                      "href" : "party2"
-                    }
-                  },
-                  "tradeIdentifierSequenceChoice" : [ {
-                    "tradeId" : {
-                      "value" : "4569",
-                      "tradeIdScheme" : "http://www.partyB.com/eqs-trade-id"
-                    }
-                  } ]
-                }
-              } ]
-            },
-            "tradeDate" : {
-              "value" : "2002-07-17T00:00:00Z",
-              "id" : "TradeDate"
+    "product" : {
+      "productType" : [ {
+        "value" : "Equity:Swap:PriceReturnBasicPerformance:Basket"
+      } ],
+      "returnSwapLeg" : [ {
+        "payerPartyReference" : {
+          "href" : "party1"
+        },
+        "receiverPartyReference" : {
+          "href" : "party2"
+        },
+        "effectiveDate" : {
+          "id" : "EffectiveDate",
+          "relativeDate" : {
+            "periodMultiplier" : 3,
+            "period" : "D",
+            "dayType" : "ExchangeBusiness",
+            "businessDayConvention" : "NotApplicable",
+            "dateRelativeTo" : {
+              "href" : "TradeDate"
             }
-          },
-          "product" : {
-            "productModel" : {
-              "productType" : [ {
-                "value" : "Equity:Swap:PriceReturnBasicPerformance:Basket"
-              } ]
-            },
-            "returnSwapLeg" : [ {
-              "payerReceiverModel" : {
-                "payerModel" : {
-                  "payerPartyReference" : {
-                    "href" : "party1"
-                  }
+          }
+        },
+        "terminationDate" : {
+          "id" : "TerminationDate",
+          "relativeDate" : {
+            "periodMultiplier" : 0,
+            "period" : "D",
+            "businessDayConvention" : "NotApplicable",
+            "dateRelativeTo" : {
+              "href" : "FinalEquityPaymentDate"
+            }
+          }
+        },
+        "underlyer" : {
+          "basket" : {
+            "openUnits" : 1,
+            "basketConstituent" : [ {
+              "underlyingAsset" : {
+                "instrumentId" : [ {
+                  "value" : "TIT.ME",
+                  "instrumentIdScheme" : "http://www.abc.com/instrumentId"
+                } ],
+                "description" : "Telecom Italia spa",
+                "currency" : {
+                  "value" : "EUR"
                 },
-                "receiverModel" : {
-                  "receiverPartyReference" : {
-                    "href" : "party2"
-                  }
+                "exchangeId" : {
+                  "value" : "XMIL",
+                  "exchangeIdScheme" : "http://www.abc.com/exchangeId"
                 }
               },
-              "effectiveDate" : {
-                "relativeDate" : {
-                  "periodMultiplier" : 3,
-                  "period" : "D",
-                  "dayType" : "ExchangeBusiness",
-                  "businessDayConvention" : "NotApplicable",
-                  "dateRelativeTo" : {
-                    "href" : "TradeDate"
-                  }
-                },
-                "id" : "EffectiveDate"
+              "constituentWeight" : {
+                "openUnits" : 432000
               },
-              "terminationDate" : {
-                "relativeDate" : {
-                  "periodMultiplier" : 0,
-                  "period" : "D",
-                  "businessDayConvention" : "NotApplicable",
-                  "dateRelativeTo" : {
-                    "href" : "FinalEquityPaymentDate"
-                  }
-                },
-                "id" : "TerminationDate"
+              "underlyerSpread" : {
+                "href" : "US_TIT.ME"
               },
-              "underlyer" : {
-                "basket" : {
-                  "openUnits" : 1,
-                  "basketConstituent" : [ {
-                    "underlyingAsset" : {
-                      "instrumentId" : [ {
-                        "value" : "TIT.ME",
-                        "instrumentIdScheme" : "http://www.abc.com/instrumentId"
-                      } ],
-                      "description" : "Telecom Italia spa",
-                      "currency" : {
-                        "value" : "EUR"
-                      },
-                      "exchangeId" : {
-                        "value" : "XMIL",
-                        "exchangeIdScheme" : "http://www.abc.com/exchangeId"
-                      }
-                    },
-                    "constituentWeight" : {
-                      "openUnits" : 432000
-                    },
-                    "underlyerSpread" : {
-                      "href" : "US_TIT.ME"
-                    },
-                    "dividendPayout" : {
-                      "dividendPayoutSequence" : {
-                        "dividendPayoutRatio" : 0.85
-                      }
-                    }
-                  }, {
-                    "underlyingAsset" : {
-                      "instrumentId" : [ {
-                        "value" : "NOK1V.HE",
-                        "instrumentIdScheme" : "http://www.abc.com/instrumentId"
-                      } ],
-                      "description" : "Nokya Oyj",
-                      "currency" : {
-                        "value" : "EUR"
-                      },
-                      "exchangeId" : {
-                        "value" : "XHEL",
-                        "exchangeIdScheme" : "http://www.abc.com/exchangeId"
-                      }
-                    },
-                    "constituentWeight" : {
-                      "openUnits" : 227000
-                    },
-                    "underlyerSpread" : {
-                      "href" : "US_NOKIV.HE"
-                    },
-                    "dividendPayout" : {
-                      "dividendPayoutSequence" : {
-                        "dividendPayoutRatio" : 0.85
-                      }
-                    }
-                  }, {
-                    "underlyingAsset" : {
-                      "instrumentId" : [ {
-                        "value" : "TIM.MI",
-                        "instrumentIdScheme" : "http://www.abc.com/instrumentId"
-                      } ],
-                      "description" : "Telecom Italia Mobile spa",
-                      "currency" : {
-                        "value" : "EUR"
-                      },
-                      "exchangeId" : {
-                        "value" : "XMIL",
-                        "exchangeIdScheme" : "http://www.abc.com/exchangeId"
-                      }
-                    },
-                    "constituentWeight" : {
-                      "openUnits" : 783000
-                    },
-                    "underlyerSpread" : {
-                      "href" : "US_TIM.MI"
-                    },
-                    "dividendPayout" : {
-                      "dividendPayoutSequence" : {
-                        "dividendPayoutRatio" : 0.85
-                      }
-                    }
-                  }, {
-                    "underlyingAsset" : {
-                      "instrumentId" : [ {
-                        "value" : "TEF.MC",
-                        "instrumentIdScheme" : "http://www.abc.com/instrumentId"
-                      } ],
-                      "description" : "Telefonica de Espana",
-                      "currency" : {
-                        "value" : "EUR"
-                      },
-                      "exchangeId" : {
-                        "value" : "XMAD",
-                        "exchangeIdScheme" : "http://www.abc.com/exchangeId"
-                      }
-                    },
-                    "constituentWeight" : {
-                      "openUnits" : 344000
-                    },
-                    "underlyerSpread" : {
-                      "href" : "US_TEF.MC"
-                    },
-                    "dividendPayout" : {
-                      "dividendPayoutSequence" : {
-                        "dividendPayoutRatio" : 0.85
-                      }
-                    }
-                  }, {
-                    "underlyingAsset" : {
-                      "instrumentId" : [ {
-                        "value" : "PTCO.IN",
-                        "instrumentIdScheme" : "http://www.abc.com/instrumentId"
-                      } ],
-                      "description" : "Portugal Telecom SA",
-                      "currency" : {
-                        "value" : "EUR"
-                      },
-                      "exchangeId" : {
-                        "value" : "XCVM",
-                        "exchangeIdScheme" : "http://www.abc.com/exchangeId"
-                      }
-                    },
-                    "constituentWeight" : {
-                      "openUnits" : 340000
-                    },
-                    "underlyerSpread" : {
-                      "href" : "US_PTCO.IN"
-                    },
-                    "dividendPayout" : {
-                      "dividendPayoutSequence" : {
-                        "dividendPayoutRatio" : 0.85
-                      }
-                    }
-                  }, {
-                    "underlyingAsset" : {
-                      "instrumentId" : [ {
-                        "value" : "VOD.L",
-                        "instrumentIdScheme" : "http://www.abc.com/instrumentId"
-                      } ],
-                      "description" : "Vodafone Group",
-                      "currency" : {
-                        "value" : "GBP"
-                      },
-                      "exchangeId" : {
-                        "value" : "XLON",
-                        "exchangeIdScheme" : "http://www.abc.com/exchangeId"
-                      }
-                    },
-                    "constituentWeight" : {
-                      "openUnits" : 2486000
-                    },
-                    "underlyerSpread" : {
-                      "href" : "US_VOD.L"
-                    },
-                    "dividendPayout" : {
-                      "dividendPayoutSequence" : {
-                        "dividendPayoutRatio" : 0.85
-                      }
-                    }
-                  } ]
-                }
-              },
-              "rateOfReturn" : {
-                "initialPrice" : {
-                  "priceSequence" : {
-                    "equityPriceModel" : {
-                      "netPrice" : {
-                        "currency" : {
-                          "value" : "EUR"
-                        },
-                        "amount" : 19785157.16,
-                        "priceExpression" : "AbsoluteTerms"
-                      }
-                    }
-                  },
-                  "equityPriceModel" : {
-                    "netPrice" : {
-                      "currency" : {
-                        "value" : "EUR"
-                      },
-                      "amount" : 19785157.16,
-                      "priceExpression" : "AbsoluteTerms"
-                    }
-                  }
-                },
-                "notionalReset" : true,
-                "valuationPriceInterim" : {
-                  "priceSequence" : {
-                    "determinationMethod" : {
-                      "value" : "ValuationTime"
-                    }
-                  },
-                  "valuationRules" : {
-                    "valuationDates" : {
-                      "adjustableDates" : {
-                        "unadjustedDate" : [ {
-                          "value" : "2002-10-17T00:00:00Z"
-                        } ],
-                        "dateAdjustments" : {
-                          "businessDayConvention" : "NotApplicable"
-                        }
-                      },
-                      "id" : "InterimValuationDate"
-                    },
-                    "valuationTimeType" : "Close"
-                  }
-                },
-                "valuationPriceFinal" : {
-                  "priceSequence" : {
-                    "determinationMethod" : {
-                      "value" : "HedgeExecution"
-                    }
-                  },
-                  "valuationRules" : {
-                    "valuationDate" : {
-                      "adjustableDate" : {
-                        "unadjustedDate" : {
-                          "value" : "2004-01-17T00:00:00Z"
-                        },
-                        "dateAdjustments" : {
-                          "businessDayConvention" : "NotApplicable"
-                        }
-                      },
-                      "id" : "FinalValuationDate"
-                    }
-                  }
-                },
-                "paymentDates" : {
-                  "paymentDatesInterim" : {
-                    "relativeDates" : {
-                      "periodMultiplier" : 3,
-                      "period" : "D",
-                      "dayType" : "CurrencyBusiness",
-                      "businessDayConvention" : "FOLLOWING",
-                      "businessCentersOrReferenceModel" : {
-                        "businessCenters" : {
-                          "businessCenter" : [ {
-                            "value" : "USNY"
-                          } ],
-                          "id" : "primaryBusinessCenter"
-                        }
-                      },
-                      "dateRelativeTo" : {
-                        "href" : "InterimValuationDate"
-                      }
-                    },
-                    "id" : "InterimEquityPaymentDate"
-                  },
-                  "paymentDateFinal" : {
-                    "relativeDate" : {
-                      "periodMultiplier" : 3,
-                      "period" : "D",
-                      "dayType" : "CurrencyBusiness",
-                      "businessDayConvention" : "FOLLOWING",
-                      "businessCentersOrReferenceModel" : {
-                        "businessCentersReference" : {
-                          "href" : "primaryBusinessCenter"
-                        }
-                      },
-                      "dateRelativeTo" : {
-                        "href" : "FinalValuationDate"
-                      }
-                    },
-                    "id" : "FinalEquityPaymentDate"
-                  },
-                  "id" : "EquityPaymentDate"
-                }
-              },
-              "notional" : {
-                "notionalAmount" : {
-                  "currency" : {
-                    "value" : "EUR"
-                  },
-                  "id" : "EquityNotionalAmount",
-                  "amount" : 19785157.16
-                }
-              },
-              "amount" : {
-                "currencyAndDeterminationMethodModel" : {
-                  "currencyReference" : {
-                    "href" : "ReferenceCurrency"
-                  }
-                },
-                "referenceAmount" : {
-                  "value" : "ISDA Standard"
-                },
-                "cashSettlement" : true
-              },
-              "notionalAdjustments" : "Execution",
-              "fxFeature" : {
-                "referenceCurrency" : {
-                  "value" : "EUR",
-                  "id" : "ReferenceCurrency"
-                },
-                "composite" : {
-                  "determinationMethod" : {
-                    "value" : "CalculationAgent"
-                  }
-                }
-              },
-              "return" : {
-                "returnType" : "Total",
-                "dividendConditions" : {
-                  "dividendReinvestment" : false,
-                  "dividendEntitlement" : "ExDate",
-                  "dividendPaymentDate" : {
-                    "dividendPaymentDateSequence" : {
-                      "dividendDateReference" : "EquityPaymentDate"
-                    }
-                  },
-                  "dividendConditionsSequence" : {
-                    "dividendPeriodEffectiveDate" : {
-                      "href" : "TradeDate"
-                    },
-                    "dividendPeriodEndDate" : {
-                      "href" : "FinalValuationDate"
-                    }
-                  },
-                  "excessDividendAmount" : "PaidAmount",
-                  "currencyAndDeterminationMethodModel" : {
-                    "currencyReference" : {
-                      "href" : "ReferenceCurrency"
-                    }
-                  }
-                }
+              "dividendPayout" : {
+                "dividendPayoutRatio" : 0.85
               }
             }, {
-              "payerReceiverModel" : {
-                "payerModel" : {
-                  "payerPartyReference" : {
-                    "href" : "party2"
-                  }
+              "underlyingAsset" : {
+                "instrumentId" : [ {
+                  "value" : "NOK1V.HE",
+                  "instrumentIdScheme" : "http://www.abc.com/instrumentId"
+                } ],
+                "description" : "Nokya Oyj",
+                "currency" : {
+                  "value" : "EUR"
                 },
-                "receiverModel" : {
-                  "receiverPartyReference" : {
-                    "href" : "party1"
-                  }
+                "exchangeId" : {
+                  "value" : "XHEL",
+                  "exchangeIdScheme" : "http://www.abc.com/exchangeId"
                 }
               },
-              "interestLegCalculationPeriodDates" : {
-                "effectiveDate" : {
-                  "relativeDate" : {
-                    "periodMultiplier" : 3,
-                    "period" : "D",
-                    "dayType" : "ExchangeBusiness",
-                    "businessDayConvention" : "NotApplicable",
-                    "dateRelativeTo" : {
-                      "href" : "TradeDate"
-                    }
-                  }
-                },
-                "terminationDate" : {
-                  "relativeDate" : {
-                    "periodMultiplier" : 0,
-                    "period" : "D",
-                    "businessDayConvention" : "NotApplicable",
-                    "dateRelativeTo" : {
-                      "href" : "FinalEquityPaymentDate"
-                    }
-                  }
-                },
-                "interestLegResetDates" : {
-                  "calculationPeriodDatesReference" : {
-                    "href" : "InterestLegPeriodDates"
-                  },
-                  "resetRelativeTo" : "CalculationPeriodStartDate"
-                },
-                "interestLegPaymentDates" : {
-                  "relativeDates" : {
-                    "periodMultiplier" : 0,
-                    "period" : "D",
-                    "businessDayConvention" : "NotApplicable",
-                    "dateRelativeTo" : {
-                      "href" : "EquityPaymentDate"
-                    }
-                  }
-                },
-                "id" : "InterestLegPeriodDates"
+              "constituentWeight" : {
+                "openUnits" : 227000
               },
-              "notional" : {
-                "relativeNotionalAmount" : {
-                  "href" : "EquityNotionalAmount"
-                }
+              "underlyerSpread" : {
+                "href" : "US_NOKIV.HE"
               },
-              "interestAmount" : {
-                "currencyAndDeterminationMethodModel" : {
-                  "currencyReference" : {
-                    "href" : "ReferenceCurrency"
-                  }
-                },
-                "referenceAmount" : {
-                  "value" : "Standard ISDA"
-                }
-              },
-              "interestCalculation" : {
-                "floatingRateCalculation" : {
-                  "floatingRateIndexModel" : {
-                    "floatingRateIndex" : {
-                      "value" : "EUR-EURIBOR-Telerate"
-                    },
-                    "indexTenor" : {
-                      "periodMultiplier" : 3,
-                      "period" : "M"
-                    }
-                  },
-                  "floatingRateModel" : {
-                    "spreadSchedule" : [ {
-                      "initialValue" : 0.0050,
-                      "id" : "US_TIT.ME"
-                    }, {
-                      "initialValue" : 0.0050,
-                      "step" : [ {
-                        "stepDate" : "2002-03-17T00:00:00Z",
-                        "stepValue" : 0.0055
-                      } ],
-                      "id" : "US_NOKIV.HE"
-                    }, {
-                      "initialValue" : 0.0050,
-                      "id" : "US_TIM.MI"
-                    }, {
-                      "initialValue" : 0.0050,
-                      "step" : [ {
-                        "stepDate" : "2002-04-17T00:00:00Z",
-                        "stepValue" : 0.0042
-                      } ],
-                      "id" : "US_TEF.MC"
-                    }, {
-                      "initialValue" : 0.0050,
-                      "step" : [ {
-                        "stepDate" : "2002-03-20T00:00:00Z",
-                        "stepValue" : 0.0065
-                      } ],
-                      "id" : "US_PTCO.IN"
-                    }, {
-                      "initialValue" : 0.0050,
-                      "step" : [ {
-                        "stepDate" : "2002-02-22T00:00:00Z",
-                        "stepValue" : 0.0022
-                      } ],
-                      "id" : "US_VOD.L"
-                    } ]
-                  }
-                },
-                "dayCountFraction" : {
-                  "value" : "ACT/360"
-                }
-              }
-            } ],
-            "earlyTermination" : [ {
-              "partyReference" : {
-                "href" : "party1"
-              },
-              "startingDate" : {
-                "dateRelativeTo" : {
-                  "href" : "TradeDate"
-                }
+              "dividendPayout" : {
+                "dividendPayoutRatio" : 0.85
               }
             }, {
-              "partyReference" : {
-                "href" : "party2"
-              },
-              "startingDate" : {
-                "dateRelativeTo" : {
-                  "href" : "TradeDate"
-                }
-              }
-            } ],
-            "extraordinaryEvents" : {
-              "mergerEvents" : {
-                "shareForShare" : "ModifiedCalculationAgent",
-                "shareForOther" : "ModifiedCalculationAgent",
-                "shareForCombined" : "ModifiedCalculationAgent"
-              },
-              "tenderOffer" : true,
-              "tenderOfferEvents" : {
-                "shareForShare" : "ModifiedCalculationAgent",
-                "shareForOther" : "ModifiedCalculationAgent",
-                "shareForCombined" : "ModifiedCalculationAgent"
-              },
-              "compositionOfCombinedConsideration" : true,
-              "additionalDisruptionEvents" : {
-                "changeInLaw" : true,
-                "failureToDeliver" : true,
-                "insolvencyFiling" : false,
-                "hedgingDisruption" : true,
-                "stockLoanModel" : {
-                  "lossOfStockBorrow" : true,
-                  "increasedCostOfStockBorrow" : false
+              "underlyingAsset" : {
+                "instrumentId" : [ {
+                  "value" : "TIM.MI",
+                  "instrumentIdScheme" : "http://www.abc.com/instrumentId"
+                } ],
+                "description" : "Telecom Italia Mobile spa",
+                "currency" : {
+                  "value" : "EUR"
                 },
-                "increasedCostOfHedging" : false,
-                "determiningPartyReference" : {
-                  "href" : "party1"
+                "exchangeId" : {
+                  "value" : "XMIL",
+                  "exchangeIdScheme" : "http://www.abc.com/exchangeId"
                 }
               },
-              "representations" : {
-                "nonReliance" : true,
-                "agreementsRegardingHedging" : true,
-                "additionalAcknowledgements" : true
+              "constituentWeight" : {
+                "openUnits" : 783000
               },
-              "nationalisationOrInsolvency" : "CancellationAndPayment"
-            }
-          },
-          "calculationAgentModel" : {
-            "calculationAgent" : {
-              "calculationAgentPartyReference" : [ {
-                "href" : "party1"
-              } ]
-            }
-          },
-          "documentation" : {
-            "masterAgreement" : {
-              "masterAgreementType" : {
-                "value" : "ISDA"
+              "underlyerSpread" : {
+                "href" : "US_TIM.MI"
               },
-              "masterAgreementVersion" : {
-                "value" : "2002"
+              "dividendPayout" : {
+                "dividendPayoutRatio" : 0.85
               }
-            },
-            "contractualDefinitions" : [ {
-              "value" : "ISDA2000"
             }, {
-              "value" : "ISDA2002Equity"
+              "underlyingAsset" : {
+                "instrumentId" : [ {
+                  "value" : "TEF.MC",
+                  "instrumentIdScheme" : "http://www.abc.com/instrumentId"
+                } ],
+                "description" : "Telefonica de Espana",
+                "currency" : {
+                  "value" : "EUR"
+                },
+                "exchangeId" : {
+                  "value" : "XMAD",
+                  "exchangeIdScheme" : "http://www.abc.com/exchangeId"
+                }
+              },
+              "constituentWeight" : {
+                "openUnits" : 344000
+              },
+              "underlyerSpread" : {
+                "href" : "US_TEF.MC"
+              },
+              "dividendPayout" : {
+                "dividendPayoutRatio" : 0.85
+              }
+            }, {
+              "underlyingAsset" : {
+                "instrumentId" : [ {
+                  "value" : "PTCO.IN",
+                  "instrumentIdScheme" : "http://www.abc.com/instrumentId"
+                } ],
+                "description" : "Portugal Telecom SA",
+                "currency" : {
+                  "value" : "EUR"
+                },
+                "exchangeId" : {
+                  "value" : "XCVM",
+                  "exchangeIdScheme" : "http://www.abc.com/exchangeId"
+                }
+              },
+              "constituentWeight" : {
+                "openUnits" : 340000
+              },
+              "underlyerSpread" : {
+                "href" : "US_PTCO.IN"
+              },
+              "dividendPayout" : {
+                "dividendPayoutRatio" : 0.85
+              }
+            }, {
+              "underlyingAsset" : {
+                "instrumentId" : [ {
+                  "value" : "VOD.L",
+                  "instrumentIdScheme" : "http://www.abc.com/instrumentId"
+                } ],
+                "description" : "Vodafone Group",
+                "currency" : {
+                  "value" : "GBP"
+                },
+                "exchangeId" : {
+                  "value" : "XLON",
+                  "exchangeIdScheme" : "http://www.abc.com/exchangeId"
+                }
+              },
+              "constituentWeight" : {
+                "openUnits" : 2486000
+              },
+              "underlyerSpread" : {
+                "href" : "US_VOD.L"
+              },
+              "dividendPayout" : {
+                "dividendPayoutRatio" : 0.85
+              }
             } ]
+          }
+        },
+        "rateOfReturn" : {
+          "initialPrice" : {
+            "netPrice" : {
+              "currency" : {
+                "value" : "EUR"
+              },
+              "amount" : 19785157.16,
+              "priceExpression" : "AbsoluteTerms"
+            }
           },
-          "governingLaw" : {
-            "value" : "GBEN"
+          "notionalReset" : true,
+          "valuationPriceInterim" : {
+            "determinationMethod" : {
+              "value" : "ValuationTime"
+            },
+            "valuationRules" : {
+              "valuationDates" : {
+                "id" : "InterimValuationDate",
+                "adjustableDates" : {
+                  "unadjustedDate" : [ {
+                    "value" : "2002-10-17T00:00:00Z"
+                  } ],
+                  "dateAdjustments" : {
+                    "businessDayConvention" : "NotApplicable"
+                  }
+                }
+              },
+              "valuationTimeType" : "Close"
+            }
+          },
+          "valuationPriceFinal" : {
+            "determinationMethod" : {
+              "value" : "HedgeExecution"
+            },
+            "valuationRules" : {
+              "valuationDate" : {
+                "id" : "FinalValuationDate",
+                "adjustableDate" : {
+                  "unadjustedDate" : {
+                    "value" : "2004-01-17T00:00:00Z"
+                  },
+                  "dateAdjustments" : {
+                    "businessDayConvention" : "NotApplicable"
+                  }
+                }
+              }
+            }
+          },
+          "paymentDates" : {
+            "id" : "EquityPaymentDate",
+            "paymentDatesInterim" : {
+              "id" : "InterimEquityPaymentDate",
+              "relativeDates" : {
+                "periodMultiplier" : 3,
+                "period" : "D",
+                "dayType" : "CurrencyBusiness",
+                "businessDayConvention" : "FOLLOWING",
+                "businessCenters" : {
+                  "id" : "primaryBusinessCenter",
+                  "businessCenter" : [ {
+                    "value" : "USNY"
+                  } ]
+                },
+                "dateRelativeTo" : {
+                  "href" : "InterimValuationDate"
+                }
+              }
+            },
+            "paymentDateFinal" : {
+              "id" : "FinalEquityPaymentDate",
+              "relativeDate" : {
+                "periodMultiplier" : 3,
+                "period" : "D",
+                "dayType" : "CurrencyBusiness",
+                "businessDayConvention" : "FOLLOWING",
+                "businessCentersReference" : {
+                  "href" : "primaryBusinessCenter"
+                },
+                "dateRelativeTo" : {
+                  "href" : "FinalValuationDate"
+                }
+              }
+            }
+          }
+        },
+        "notional" : {
+          "notionalAmount" : {
+            "id" : "EquityNotionalAmount",
+            "currency" : {
+              "value" : "EUR"
+            },
+            "amount" : 19785157.16
+          }
+        },
+        "amount" : {
+          "currencyReference" : {
+            "href" : "ReferenceCurrency"
+          },
+          "referenceAmount" : {
+            "value" : "ISDA Standard"
+          },
+          "cashSettlement" : true
+        },
+        "notionalAdjustments" : "Execution",
+        "fxFeature" : {
+          "referenceCurrency" : {
+            "value" : "EUR",
+            "id" : "ReferenceCurrency"
+          },
+          "composite" : {
+            "determinationMethod" : {
+              "value" : "CalculationAgent"
+            }
+          }
+        },
+        "return" : {
+          "returnType" : "Total",
+          "dividendConditions" : {
+            "dividendReinvestment" : false,
+            "dividendEntitlement" : "ExDate",
+            "dividendPaymentDate" : {
+              "dividendDateReference" : "EquityPaymentDate"
+            },
+            "dividendPeriodEffectiveDate" : {
+              "href" : "TradeDate"
+            },
+            "dividendPeriodEndDate" : {
+              "href" : "FinalValuationDate"
+            },
+            "excessDividendAmount" : "PaidAmount",
+            "currencyReference" : {
+              "href" : "ReferenceCurrency"
+            }
           }
         }
+      }, {
+        "payerPartyReference" : {
+          "href" : "party2"
+        },
+        "receiverPartyReference" : {
+          "href" : "party1"
+        },
+        "interestLegCalculationPeriodDates" : {
+          "id" : "InterestLegPeriodDates",
+          "effectiveDate" : {
+            "relativeDate" : {
+              "periodMultiplier" : 3,
+              "period" : "D",
+              "dayType" : "ExchangeBusiness",
+              "businessDayConvention" : "NotApplicable",
+              "dateRelativeTo" : {
+                "href" : "TradeDate"
+              }
+            }
+          },
+          "terminationDate" : {
+            "relativeDate" : {
+              "periodMultiplier" : 0,
+              "period" : "D",
+              "businessDayConvention" : "NotApplicable",
+              "dateRelativeTo" : {
+                "href" : "FinalEquityPaymentDate"
+              }
+            }
+          },
+          "interestLegResetDates" : {
+            "calculationPeriodDatesReference" : {
+              "href" : "InterestLegPeriodDates"
+            },
+            "resetRelativeTo" : "CalculationPeriodStartDate"
+          },
+          "interestLegPaymentDates" : {
+            "relativeDates" : {
+              "periodMultiplier" : 0,
+              "period" : "D",
+              "businessDayConvention" : "NotApplicable",
+              "dateRelativeTo" : {
+                "href" : "EquityPaymentDate"
+              }
+            }
+          }
+        },
+        "notional" : {
+          "relativeNotionalAmount" : {
+            "href" : "EquityNotionalAmount"
+          }
+        },
+        "interestAmount" : {
+          "currencyReference" : {
+            "href" : "ReferenceCurrency"
+          },
+          "referenceAmount" : {
+            "value" : "Standard ISDA"
+          }
+        },
+        "interestCalculation" : {
+          "floatingRateCalculation" : {
+            "floatingRateIndex" : {
+              "value" : "EUR-EURIBOR-Telerate"
+            },
+            "indexTenor" : {
+              "periodMultiplier" : 3,
+              "period" : "M"
+            },
+            "spreadSchedule" : [ {
+              "id" : "US_TIT.ME",
+              "initialValue" : 0.0050
+            }, {
+              "id" : "US_NOKIV.HE",
+              "initialValue" : 0.0050,
+              "step" : [ {
+                "stepDate" : "2002-03-17T00:00:00Z",
+                "stepValue" : 0.0055
+              } ]
+            }, {
+              "id" : "US_TIM.MI",
+              "initialValue" : 0.0050
+            }, {
+              "id" : "US_TEF.MC",
+              "initialValue" : 0.0050,
+              "step" : [ {
+                "stepDate" : "2002-04-17T00:00:00Z",
+                "stepValue" : 0.0042
+              } ]
+            }, {
+              "id" : "US_PTCO.IN",
+              "initialValue" : 0.0050,
+              "step" : [ {
+                "stepDate" : "2002-03-20T00:00:00Z",
+                "stepValue" : 0.0065
+              } ]
+            }, {
+              "id" : "US_VOD.L",
+              "initialValue" : 0.0050,
+              "step" : [ {
+                "stepDate" : "2002-02-22T00:00:00Z",
+                "stepValue" : 0.0022
+              } ]
+            } ]
+          },
+          "dayCountFraction" : {
+            "value" : "ACT/360"
+          }
+        }
+      } ],
+      "earlyTermination" : [ {
+        "partyReference" : {
+          "href" : "party1"
+        },
+        "startingDate" : {
+          "dateRelativeTo" : {
+            "href" : "TradeDate"
+          }
+        }
+      }, {
+        "partyReference" : {
+          "href" : "party2"
+        },
+        "startingDate" : {
+          "dateRelativeTo" : {
+            "href" : "TradeDate"
+          }
+        }
+      } ],
+      "extraordinaryEvents" : {
+        "mergerEvents" : {
+          "shareForShare" : "ModifiedCalculationAgent",
+          "shareForOther" : "ModifiedCalculationAgent",
+          "shareForCombined" : "ModifiedCalculationAgent"
+        },
+        "tenderOffer" : true,
+        "tenderOfferEvents" : {
+          "shareForShare" : "ModifiedCalculationAgent",
+          "shareForOther" : "ModifiedCalculationAgent",
+          "shareForCombined" : "ModifiedCalculationAgent"
+        },
+        "compositionOfCombinedConsideration" : true,
+        "additionalDisruptionEvents" : {
+          "changeInLaw" : true,
+          "failureToDeliver" : true,
+          "insolvencyFiling" : false,
+          "hedgingDisruption" : true,
+          "lossOfStockBorrow" : true,
+          "increasedCostOfStockBorrow" : false,
+          "increasedCostOfHedging" : false,
+          "determiningPartyReference" : {
+            "href" : "party1"
+          }
+        },
+        "representations" : {
+          "nonReliance" : true,
+          "agreementsRegardingHedging" : true,
+          "additionalAcknowledgements" : true
+        },
+        "nationalisationOrInsolvency" : "CancellationAndPayment"
       }
+    },
+    "calculationAgent" : {
+      "calculationAgentPartyReference" : [ {
+        "href" : "party1"
+      } ]
+    },
+    "documentation" : {
+      "masterAgreement" : {
+        "masterAgreementType" : {
+          "value" : "ISDA"
+        },
+        "masterAgreementVersion" : {
+          "value" : "2002"
+        }
+      },
+      "contractualDefinitions" : [ {
+        "value" : "ISDA2000"
+      }, {
+        "value" : "ISDA2002Equity"
+      } ]
+    },
+    "governingLaw" : {
+      "value" : "GBEN"
     }
   },
-  "partiesAndAccountsModel" : {
-    "party" : [ {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "Party A",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
-        } ]
-      },
-      "id" : "party1"
-    }, {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "Party B",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
-        } ]
-      },
-      "id" : "party2"
+  "party" : [ {
+    "id" : "party1",
+    "partyId" : [ {
+      "value" : "Party A",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
     } ]
-  }
+  }, {
+    "id" : "party2",
+    "partyId" : [ {
+      "value" : "Party B",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
+    } ]
+  } ]
 }

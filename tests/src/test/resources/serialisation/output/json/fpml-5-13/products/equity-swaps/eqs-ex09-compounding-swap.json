@@ -2,48 +2,29 @@
   "fpmlVersion" : "5-13",
   "trade" : [ {
     "tradeHeader" : {
-      "tradeIdentifiersModel" : {
-        "partyTradeIdentifier" : [ {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "TRADEABC",
-              "tradeIdScheme" : "TradeRefNbr"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "BankB"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "TRADEABC",
-                "tradeIdScheme" : "TradeRefNbr"
-              }
-            } ]
-          }
-        } ]
-      },
+      "partyTradeIdentifier" : [ {
+        "tradeId" : {
+          "value" : "TRADEABC",
+          "tradeIdScheme" : "TradeRefNbr"
+        },
+        "partyReference" : {
+          "href" : "BankB"
+        }
+      } ],
       "tradeDate" : {
         "value" : "2008-01-01T00:00:00Z"
       }
     },
     "product" : {
       "returnSwapLeg" : [ {
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "BankB"
-            }
-          },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "BankA"
-            }
-          }
+        "payerPartyReference" : {
+          "href" : "BankB"
+        },
+        "receiverPartyReference" : {
+          "href" : "BankA"
         },
         "effectiveDate" : {
+          "id" : "equityEffectiveDate",
           "adjustableDate" : {
             "unadjustedDate" : {
               "value" : "2008-01-01T00:00:00Z"
@@ -51,8 +32,7 @@
             "dateAdjustments" : {
               "businessDayConvention" : "NONE"
             }
-          },
-          "id" : "equityEffectiveDate"
+          }
         },
         "terminationDate" : {
           "relativeDate" : {
@@ -75,40 +55,27 @@
                 "value" : "N",
                 "exchangeIdScheme" : "http://www.abc.com/exchange-id-REC-1-0"
               },
-              "exchangeIdentifierModel" : {
-                "relatedExchangeId" : [ {
-                  "value" : "ALL",
-                  "exchangeIdScheme" : "http://www.abc.com/exchange-id-REC-1-0"
-                } ]
-              }
+              "relatedExchangeId" : [ {
+                "value" : "ALL",
+                "exchangeIdScheme" : "http://www.abc.com/exchange-id-REC-1-0"
+              } ]
             }
           }
         },
         "rateOfReturn" : {
           "initialPrice" : {
-            "priceSequence" : {
-              "equityPriceModel" : {
-                "netPrice" : {
-                  "amount" : 100,
-                  "priceExpression" : "AbsoluteTerms"
-                }
-              }
-            },
-            "equityPriceModel" : {
-              "netPrice" : {
-                "amount" : 100,
-                "priceExpression" : "AbsoluteTerms"
-              }
+            "netPrice" : {
+              "amount" : 100,
+              "priceExpression" : "AbsoluteTerms"
             }
           },
           "notionalReset" : true,
           "valuationPriceInterim" : {
-            "priceSequence" : {
-              "determinationMethod" : {
-                "value" : "ValuationTime"
-              }
+            "determinationMethod" : {
+              "value" : "ValuationTime"
             },
             "valuationRules" : {
+              "id" : "equityValuationDates",
               "valuationDates" : {
                 "adjustableDates" : {
                   "unadjustedDate" : [ {
@@ -118,18 +85,16 @@
                     "businessDayConvention" : "NotApplicable"
                   }
                 }
-              },
-              "id" : "equityValuationDates"
-            }
-          },
-          "valuationPriceFinal" : {
-            "priceSequence" : {
-              "determinationMethod" : {
-                "value" : "ValuationTime"
               }
             }
           },
+          "valuationPriceFinal" : {
+            "determinationMethod" : {
+              "value" : "ValuationTime"
+            }
+          },
           "paymentDates" : {
+            "id" : "CashSettlementPaymentDate",
             "paymentDatesInterim" : {
               "relativeDates" : {
                 "periodMultiplier" : 3,
@@ -142,6 +107,7 @@
               }
             },
             "paymentDateFinal" : {
+              "id" : "finalCashSettlementPaymentDate",
               "relativeDate" : {
                 "periodMultiplier" : 3,
                 "period" : "D",
@@ -150,27 +116,23 @@
                 "dateRelativeTo" : {
                   "href" : "equityValuationDates"
                 }
-              },
-              "id" : "finalCashSettlementPaymentDate"
-            },
-            "id" : "CashSettlementPaymentDate"
+              }
+            }
           }
         },
         "notional" : {
           "notionalAmount" : {
+            "id" : "equityNotionalAmount",
             "currency" : {
               "value" : "USD"
             },
-            "id" : "equityNotionalAmount",
             "amount" : 1000000
           }
         },
         "amount" : {
-          "currencyAndDeterminationMethodModel" : {
-            "currency" : {
-              "value" : "USD",
-              "id" : "settlementCurrency"
-            }
+          "currency" : {
+            "value" : "USD",
+            "id" : "settlementCurrency"
           },
           "referenceAmount" : {
             "value" : "StandardISDA"
@@ -182,19 +144,14 @@
           "returnType" : "Price"
         }
       }, {
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "BankA"
-            }
-          },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "BankB"
-            }
-          }
+        "payerPartyReference" : {
+          "href" : "BankA"
+        },
+        "receiverPartyReference" : {
+          "href" : "BankB"
         },
         "interestLegCalculationPeriodDates" : {
+          "id" : "floatingCalculationPeriodDates",
           "effectiveDate" : {
             "relativeDate" : {
               "periodMultiplier" : 0,
@@ -230,8 +187,7 @@
                 "businessDayConvention" : "NotApplicable"
               }
             }
-          },
-          "id" : "floatingCalculationPeriodDates"
+          }
         },
         "notional" : {
           "relativeNotionalAmount" : {
@@ -239,10 +195,8 @@
           }
         },
         "interestAmount" : {
-          "currencyAndDeterminationMethodModel" : {
-            "currencyReference" : {
-              "href" : "settlementCurrency"
-            }
+          "currencyReference" : {
+            "href" : "settlementCurrency"
           },
           "referenceAmount" : {
             "value" : "StandardISDA"
@@ -251,20 +205,16 @@
         "interestCalculation" : {
           "floatingRateCalculation" : {
             "id" : "floatingRateCalculation",
-            "floatingRateIndexModel" : {
-              "floatingRateIndex" : {
-                "value" : "USD-LIBOR-BBA"
-              },
-              "indexTenor" : {
-                "periodMultiplier" : 1,
-                "period" : "M"
-              }
+            "floatingRateIndex" : {
+              "value" : "USD-LIBOR-BBA"
             },
-            "floatingRateModel" : {
-              "spreadSchedule" : [ {
-                "initialValue" : 0.01
-              } ]
-            }
+            "indexTenor" : {
+              "periodMultiplier" : 1,
+              "period" : "M"
+            },
+            "spreadSchedule" : [ {
+              "initialValue" : 0.01
+            } ]
           },
           "dayCountFraction" : {
             "value" : "ACT/360"
@@ -279,23 +229,15 @@
           }
         }
       } ],
-      "mutualOrOptionalEarlyTerminationModel" : {
-        "mutualEarlyTermination" : false
-      }
+      "mutualEarlyTermination" : false
     },
     "collateral" : {
       "independentAmount" : [ {
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "BankA"
-            }
-          },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "BankB"
-            }
-          }
+        "payerPartyReference" : {
+          "href" : "BankA"
+        },
+        "receiverPartyReference" : {
+          "href" : "BankB"
         }
       } ]
     },
@@ -308,23 +250,17 @@
       }
     }
   } ],
-  "partiesAndAccountsModel" : {
-    "party" : [ {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "BankB",
-          "partyIdScheme" : "DTCC"
-        } ]
-      },
-      "id" : "BankB"
-    }, {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "BankA",
-          "partyIdScheme" : "DTCC"
-        } ]
-      },
-      "id" : "BankA"
+  "party" : [ {
+    "id" : "BankB",
+    "partyId" : [ {
+      "value" : "BankB",
+      "partyIdScheme" : "DTCC"
     } ]
-  }
+  }, {
+    "id" : "BankA",
+    "partyId" : [ {
+      "value" : "BankA",
+      "partyIdScheme" : "DTCC"
+    } ]
+  } ]
 }
