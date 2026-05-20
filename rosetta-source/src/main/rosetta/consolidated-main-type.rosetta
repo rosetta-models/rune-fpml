@@ -1,19 +1,61 @@
 namespace fpml.consolidated.main : < "fpml definition" >
 version "${project.version}"
 
-type DataDocument extends fpml.consolidated.doc.Document: <"A document containing trade and/or portfolio and/or party data without expressing any processing intention. A type defining a content model that is backwards compatible with older FpML releases and which can be used to contain sets of data without expressing any processing intention.">
+import fpml.consolidated.*
+import fpml.consolidated.doc.*
+import fpml.consolidated.riskdef.*
+import fpml.consolidated.shared.*
+import fpml.consolidated.valuation.*
+
+type DataDocument extends Document:
     [rootType]
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "A type defining a content model that is backwards compatible with older FpML releases and which can be used to contain sets of data without expressing any processing intention."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A type defining a content model that is backwards compatible with older FpML releases and which can be used to contain sets of data without expressing any processing intention."]
 
-    validation fpml.consolidated.doc.Validation (0..*) <"A list of validation sets the sender asserts the document is valid with respect to.">
-    onBehalfOf fpml.consolidated.shared.OnBehalfOf (0..1) <"Indicates which party (and accounts) a trade is being processed for.">
-    originatingEvent fpml.consolidated.shared.OriginatingEvent (0..1)
-    trade fpml.consolidated.doc.Trade (0..*) <"The root element in an FpML trade document.">
-    party fpml.consolidated.shared.Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
-    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
-    portfolio fpml.consolidated.doc.Portfolio (0..*) <"An arbitary grouping of trade references (and possibly other portfolios).">
+    validation Validation (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A list of validation sets the sender asserts the document is valid with respect to."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A list of validation sets the sender asserts the document is valid with respect to."]
+    onBehalfOf OnBehalfOf (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Indicates which party (and accounts) a trade is being processed for."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Indicates which party (and accounts) a trade is being processed for."]
+    originatingEvent OriginatingEvent (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
+    trade Trade (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The root element in an FpML trade document."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The root element in an FpML trade document."]
+    party Party (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document."]
+    account Account (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Optional account information used to precisely define the origination and destination of financial instruments."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Optional account information used to precisely define the origination and destination of financial instruments."]
+    portfolio Portfolio (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "An arbitary grouping of trade references (and possibly other portfolios)."]
 
-type ValuationDocument extends DataDocument: <"A document that includes trade and/or valuation (pricing and risk) data without expressing any processing intention. A type defining a content model that includes valuation (pricing and risk) data without expressing any processing intention.">
+type ValuationDocument extends DataDocument:
     [rootType]
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "A type defining a content model that includes valuation (pricing and risk) data without expressing any processing intention."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A type defining a content model that includes valuation (pricing and risk) data without expressing any processing intention."]
 
-    market fpml.consolidated.riskdef.Market (0..*)
-    valuationSet fpml.consolidated.valuation.ValuationSet (0..*)
+    market Market (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
+    valuationSet ValuationSet (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]

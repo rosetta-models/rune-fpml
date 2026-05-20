@@ -1,117 +1,299 @@
 namespace fpml.consolidated.reg.fpmlreporting.product : < "fpml definition" >
 version "${project.version}"
 
-type RegulatoryProductInfo extends RegulatoryReportingProduct: <"Product data fields required by regulators in satisfaction of non-public (recordkeeping) regulatory reporting regulations. These are identified where possible using CPMI-IOSCO Common Data Element lexicon and terminology, but include additional fields required by other regulations. This product is not intended to provide the full trade economics required for confirmation or valuation purposes. This product allows a simpler representation of OTC derivative products that have full standardized representations in FpML. DEPRECATED. Reason: Not used. (RPTWG decision 2024-05-30)">
+import fpml.consolidated.*
+import fpml.consolidated.com.*
+import fpml.consolidated.fpmlenum.*
+import fpml.consolidated.fx.*
+import fpml.consolidated.generic.*
+import fpml.consolidated.shared.*
 
-type RegReportingPayment extends fpml.consolidated.shared.NonNegativePayment: <"Simple product representation providing key information about trade economics of any type of trade for regulatory reporting purposes. DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
+type RegulatoryProductInfo extends RegulatoryReportingProduct:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "Product data fields required by regulators in satisfaction of non-public (recordkeeping) regulatory reporting regulations. These are identified where possible using CPMI-IOSCO Common Data Element lexicon and terminology, but include additional fields required by other regulations. This product is not intended to provide the full trade economics required for confirmation or valuation purposes. This product allows a simpler representation of OTC derivative products that have full standardized representations in FpML. DEPRECATED. Reason: Not used. (RPTWG decision 2024-05-30)"]
 
-    paymentType fpml.consolidated.shared.PaymentType (0..1) <"A classification of the type of fee or additional payment, e.g. brokerage, upfront fee etc. FpML does not define domain values for this element. DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
+type RegReportingPayment extends NonNegativePayment:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "Simple product representation providing key information about trade economics of any type of trade for regulatory reporting purposes. DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
 
-type RegulatoryReportingNonCDEOptionDetails: <"This defines data elements not defined in CDE that describe option characteristics. DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
+    paymentType PaymentType (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A classification of the type of fee or additional payment, e.g. brokerage, upfront fee etc. FpML does not define domain values for this element. DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
 
-    optionType fpml.consolidated.fpmlenum.OptionTypeEnum (0..1) <"For options, what type of option it is (e.g. butterfly). DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    firstExerciseDate zonedDateTime (0..*) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    optionExpirationDate zonedDateTime (0..*) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    underlyerMaturityDate zonedDateTime (0..*) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    exerciseStyle fpml.consolidated.generic.GenericExerciseStyle (0..1) <"For options, whether the option is a put or call option. DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    feature fpml.consolidated.generic.GenericProductFeature (0..*) <"Special features that the option may have, such as Asian averaging, Barriers, Digital payout, etc. DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
+type RegulatoryReportingNonCDEOptionDetails:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "This defines data elements not defined in CDE that describe option characteristics. DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
 
-type RegulatoryReportingNonCDEProductCommodityDetails: <"Commodity product data fields not called out in CPMI-IOSCO CDE. DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
+    optionType OptionTypeEnum (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "For options, what type of option it is (e.g. butterfly). DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    firstExerciseDate zonedDateTime (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    optionExpirationDate zonedDateTime (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    underlyerMaturityDate zonedDateTime (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    exerciseStyle GenericExerciseStyle (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "For options, whether the option is a put or call option. DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    feature GenericProductFeature (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Special features that the option may have, such as Asian averaging, Barriers, Digital payout, etc. DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
 
-    grade fpml.consolidated.generic.GenericCommodityGrade (0..*) <"The grade(s) of material which can be delivered in seller\'s option.">
-    settlementPeriods fpml.consolidated.generic.GenericCommodityDeliveryPeriod (0..*) <"Specifies the delivery time periods (normally used for electricity swaps).">
-    loadType fpml.consolidated.fpmlenum.LoadTypeEnum (0..1) <"LoadType is a summary of the full description of the settlement periods with respect to the region. Used for describing Electricity delivery schedules (e.g. Base, Peak, Off-Peak, Custom).">
-    quantity number (0..1) <"The periodic quantity. Used in conjunction with the quantityFrequency to define quantity per period.">
-    quantityFrequency fpml.consolidated.com.CommodityQuantityFrequency (0..1) <"The frequency at which the Notional Quantity is deemed to apply for purposes of calculating the Total Notional Quantity.">
-    fixedPrice fpml.consolidated.com.CommodityFixedPrice (0..1) <"Fixed price on which fixed payments are based.">
-    interconnectionPoint fpml.consolidated.com.InterconnectionPoint (0..1) <"Identification of the border(s) or border point(s) of a transportation contract.">
+type RegulatoryReportingNonCDEProductCommodityDetails:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "Commodity product data fields not called out in CPMI-IOSCO CDE. DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
 
-type RegulatoryReportingProduct extends fpml.consolidated.shared.Product: <"Simple product representation providing key information about trade economics of any type of trade for regulatory reporting purposes. DEPRECATED. Reason: Not used. (RPTWG decision 2024-05-30)">
+    grade GenericCommodityGrade (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The grade(s) of material which can be delivered in seller\'s option."]
+    settlementPeriods GenericCommodityDeliveryPeriod (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Specifies the delivery time periods (normally used for electricity swaps)."]
+    loadType LoadTypeEnum (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "LoadType is a summary of the full description of the settlement periods with respect to the region. Used for describing Electricity delivery schedules (e.g. Base, Peak, Off-Peak, Custom)."]
+    quantity number (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The periodic quantity. Used in conjunction with the quantityFrequency to define quantity per period."]
+    quantityFrequency CommodityQuantityFrequency (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The frequency at which the Notional Quantity is deemed to apply for purposes of calculating the Total Notional Quantity."]
+    fixedPrice CommodityFixedPrice (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Fixed price on which fixed payments are based."]
+    interconnectionPoint InterconnectionPoint (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Identification of the border(s) or border point(s) of a transportation contract."]
 
-    parties RegulatoryReportingProductParties (0..1) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    dates RegulatoryReportingProductDates (0..1) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    sizes RegulatoryReportingProductSizes (0..1) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    underlyers RegulatoryReportingProductUnderlyers (0..1) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    priceTerms RegulatoryReportingProductPriceTerms (0..1) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    otherCalculationTerms RegulatoryReportingProductCalculationTerms (0..1) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    optionDetails RegulatoryReportingNonCDEOptionDetails (0..1) <"DEPRECATED. Reason: Deprecated parent element. (RPTWG decision 2024-05-30)">
-    settlementDetails RegulatoryReportingProductSettlementDetails (0..1) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    otherPayment RegReportingPayment (0..*) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    creditDetails RegulatoryReportingProductCreditDetails (0..1) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    fxDetails RegulatoryReportingProductNonCDEFxDetails (0..1) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    commodityDetails RegulatoryReportingNonCDEProductCommodityDetails (0..1) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
+type RegulatoryReportingProduct extends Product:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "Simple product representation providing key information about trade economics of any type of trade for regulatory reporting purposes. DEPRECATED. Reason: Not used. (RPTWG decision 2024-05-30)"]
 
-type RegulatoryReportingProductCalculationTerms: <"Calculation terms. DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
+    parties RegulatoryReportingProductParties (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    dates RegulatoryReportingProductDates (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    sizes RegulatoryReportingProductSizes (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    underlyers RegulatoryReportingProductUnderlyers (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    priceTerms RegulatoryReportingProductPriceTerms (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    otherCalculationTerms RegulatoryReportingProductCalculationTerms (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    optionDetails RegulatoryReportingNonCDEOptionDetails (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Deprecated parent element. (RPTWG decision 2024-05-30)"]
+    settlementDetails RegulatoryReportingProductSettlementDetails (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    otherPayment RegReportingPayment (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    creditDetails RegulatoryReportingProductCreditDetails (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    fxDetails RegulatoryReportingProductNonCDEFxDetails (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    commodityDetails RegulatoryReportingNonCDEProductCommodityDetails (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
 
-    dayCountFraction fpml.consolidated.shared.DayCountFraction (0..*) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    paymentFrequency fpml.consolidated.shared.Frequency (0..*) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    calculationFrequency fpml.consolidated.shared.Frequency (0..*) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    resetFrequency fpml.consolidated.shared.Frequency (0..*) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
+type RegulatoryReportingProductCalculationTerms:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "Calculation terms. DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
 
-type RegulatoryReportingProductCreditDetails: <"Credit related fields. DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
+    dayCountFraction DayCountFraction (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    paymentFrequency Frequency (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    calculationFrequency Frequency (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    resetFrequency Frequency (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
 
-    attachmentPoint number (0..1) <"Lower bound percentage of the loss that the Tranche can endure, expressed as a decimal. An attachment point of 5% would be represented as 0.05. The difference between Attachment and Exhaustion points is call the width of the Tranche. A schema facet to constraint the value between 0 to 1 will be introduced in FpML 4.3. DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    exhaustionPoint number (0..1) <"Upper bound percentage of the loss that the Tranche can endure, expressed as a decimal. An exhaustion point of 5% would be represented as 0.05. The difference between Attachment and Exhaustion points is call the width of the Tranche. A schema facet to constraint the value between 0 to 1 will be introduced in FpML 4.3. DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    seniority fpml.consolidated.shared.CreditSeniority (0..1) <"DEPRECATED. Use instead the field within credit products: indexReferenceInformation/seniority (RPTWG decision 2017-09)">
-    indexFactor number (0..1) <"DEPRECATED. Use instead the field within credit products: indexReferenceInformation/indexFactor (RPTWG decision 2017-09)">
-    indexSeries int(min: 1) (0..1) <"A CDS index series identifier, e.g. 1, 2, 3 etc. DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    indexAnnexVersion int(min: 1) (0..1) <"A CDS index series version identifier, e.g. 1, 2, 3 etc. DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    fixedRecoveryFinalPrice number (0..1) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
+type RegulatoryReportingProductCreditDetails:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "Credit related fields. DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
 
-type RegulatoryReportingProductDates: <"Date related fields. DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
+    attachmentPoint number (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Lower bound percentage of the loss that the Tranche can endure, expressed as a decimal. An attachment point of 5% would be represented as 0.05. The difference between Attachment and Exhaustion points is call the width of the Tranche. A schema facet to constraint the value between 0 to 1 will be introduced in FpML 4.3. DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    exhaustionPoint number (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Upper bound percentage of the loss that the Tranche can endure, expressed as a decimal. An exhaustion point of 5% would be represented as 0.05. The difference between Attachment and Exhaustion points is call the width of the Tranche. A schema facet to constraint the value between 0 to 1 will be introduced in FpML 4.3. DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    seniority CreditSeniority (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Use instead the field within credit products: indexReferenceInformation/seniority (RPTWG decision 2017-09)"]
+    indexFactor number (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Use instead the field within credit products: indexReferenceInformation/indexFactor (RPTWG decision 2017-09)"]
+    indexSeries int(min: 1) (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A CDS index series identifier, e.g. 1, 2, 3 etc. DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    indexAnnexVersion int(min: 1) (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A CDS index series version identifier, e.g. 1, 2, 3 etc. DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    fixedRecoveryFinalPrice number (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
 
-    effectiveDate zonedDateTime (0..*) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    contractExpirationDate zonedDateTime (0..*) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    finalContractualSettlementDate zonedDateTime (0..*) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
+type RegulatoryReportingProductDates:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "Date related fields. DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
 
-type RegulatoryReportingProductNonCDEFxDetails: <"FX-related data elements not called out in CPMI-IOSCO CDE. DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
+    effectiveDate zonedDateTime (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    contractExpirationDate zonedDateTime (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    finalContractualSettlementDate zonedDateTime (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
 
-    fxType string (0..1) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    deliveryCurrency fpml.consolidated.shared.Currency (0..1) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    deliveryCurrency2 fpml.consolidated.shared.Currency (0..1) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    forwardExchangeRate number (0..1) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
+type RegulatoryReportingProductNonCDEFxDetails:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "FX-related data elements not called out in CPMI-IOSCO CDE. DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
 
-type RegulatoryReportingProductParties: <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
+    fxType string (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    deliveryCurrency Currency (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    deliveryCurrency2 Currency (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    forwardExchangeRate number (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
 
-    buyerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"Indicates the party this regulator considers to be the buyer">
-    sellerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"Indicates the party this regulator considers to be the seller.">
-    fixedPayerPartyReference fpml.consolidated.shared.PartyReference (0..1) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    fixedReceiverPartyReference fpml.consolidated.shared.PartyReference (0..1) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    floatingPayerPartyReference fpml.consolidated.shared.PartyReference (0..1) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    floatingReceiverPartyReference fpml.consolidated.shared.PartyReference (0..1) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    floating2PayerPartyReference fpml.consolidated.shared.PartyReference (0..1) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    floating2ReceiverPartyReference fpml.consolidated.shared.PartyReference (0..1) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
+type RegulatoryReportingProductParties:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
 
-type RegulatoryReportingProductPriceTerms: <"All price term information is defined by CPMI-IOSCO CDE. DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
+    buyerPartyReference PartyReference (1..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Indicates the party this regulator considers to be the buyer"]
+    sellerPartyReference PartyReference (1..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Indicates the party this regulator considers to be the seller."]
+    fixedPayerPartyReference PartyReference (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    fixedReceiverPartyReference PartyReference (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    floatingPayerPartyReference PartyReference (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    floatingReceiverPartyReference PartyReference (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    floating2PayerPartyReference PartyReference (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    floating2ReceiverPartyReference PartyReference (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
 
-    fixedRate number (0..*) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    fixedRateNotation string (0..*) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    fixedRateSchedule fpml.consolidated.shared.Schedule (0..*) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    spread number (0..*) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    spreadCurrency fpml.consolidated.shared.Currency (0..*) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    spreadNotation string (0..*) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    strikePrice number (0..*) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    strikePriceNotation string (0..*) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    strikePriceSchedule fpml.consolidated.shared.Schedule (0..*) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    exchangeRate fpml.consolidated.fx.ExchangeRate (0..*) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
+type RegulatoryReportingProductPriceTerms:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "All price term information is defined by CPMI-IOSCO CDE. DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
 
-type RegulatoryReportingProductSettlementDetails: <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
+    fixedRate number (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    fixedRateNotation string (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    fixedRateSchedule Schedule (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    spread number (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    spreadCurrency Currency (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    spreadNotation string (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    strikePrice number (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    strikePriceNotation string (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    strikePriceSchedule Schedule (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    exchangeRate ExchangeRate (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
 
-    settlementMethod fpml.consolidated.fpmlenum.SettlementTypeEnum (0..1) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    settlementCurrency fpml.consolidated.shared.Currency (0..1) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    settlementLocation fpml.consolidated.shared.BusinessCenter (0..1) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
+type RegulatoryReportingProductSettlementDetails:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
 
-type RegulatoryReportingProductSizes: <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
+    settlementMethod SettlementTypeEnum (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    settlementCurrency Currency (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    settlementLocation BusinessCenter (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
 
-    notional fpml.consolidated.shared.NonNegativeMoney (0..*) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    callAmount fpml.consolidated.shared.NonNegativeMoney (0..1) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    putAmount fpml.consolidated.shared.NonNegativeMoney (0..1) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    notionalSchedule fpml.consolidated.shared.NonNegativeAmountSchedule (0..*) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    quantity fpml.consolidated.shared.NonNegativeDecimal (0..*) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    quantityFrequency fpml.consolidated.shared.NonNegativeDecimal (0..*) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    quantitySchedule fpml.consolidated.com.CommodityPhysicalQuantitySchedule (0..1) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
-    totalNotionalQuantity fpml.consolidated.shared.NonNegativeDecimal (0..*) <"DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
+type RegulatoryReportingProductSizes:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
 
-type RegulatoryReportingProductUnderlyers: <"At the moment all of the underlyer information is non-CDE, as CPMI-IOSCO CDE doesn not define underlier information. Instead, it relies on the UPI to convey this information. DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)">
+    notional NonNegativeMoney (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    callAmount NonNegativeMoney (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    putAmount NonNegativeMoney (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    notionalSchedule NonNegativeAmountSchedule (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    quantity NonNegativeDecimal (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    quantityFrequency NonNegativeDecimal (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    quantitySchedule CommodityPhysicalQuantitySchedule (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+    totalNotionalQuantity NonNegativeDecimal (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
 
-    underlyer fpml.consolidated.generic.TradeUnderlyer2 (0..*)
+type RegulatoryReportingProductUnderlyers:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "At the moment all of the underlyer information is non-CDE, as CPMI-IOSCO CDE doesn not define underlier information. Instead, it relies on the UPI to convey this information. DEPRECATED. Reason: Not used, deprecated parent element. (RPTWG decision 2024-05-30)"]
+
+    underlyer TradeUnderlyer2 (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
