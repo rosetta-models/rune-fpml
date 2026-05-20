@@ -2,43 +2,27 @@
   "fpmlVersion" : "5-10",
   "trade" : [ {
     "tradeHeader" : {
-      "tradeIdentifiersModel" : {
-        "partyTradeIdentifier" : [ {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "SUSNUMERIS",
-              "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "PartyA"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "SUSNUMERIS",
-                "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
-              }
-            } ]
-          }
-        } ]
-      },
+      "partyTradeIdentifier" : [ {
+        "tradeId" : {
+          "value" : "SUSNUMERIS",
+          "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
+        },
+        "partyReference" : {
+          "href" : "PartyA"
+        }
+      } ],
       "tradeDate" : {
         "value" : "2014-01-15T00:00:00Z",
         "id" : "TradeDate"
       }
     },
     "product" : {
-      "productModel" : {
-        "primaryAssetClass" : {
-          "value" : "Commodity"
-        },
-        "productType" : [ {
-          "value" : "Commodity:Energy:Index:Swap:Cash"
-        } ]
+      "primaryAssetClass" : {
+        "value" : "Commodity"
       },
+      "productType" : [ {
+        "value" : "Commodity:Energy:Index:Swap:Cash"
+      } ],
       "effectiveDate" : {
         "adjustableDate" : {
           "unadjustedDate" : {
@@ -50,6 +34,7 @@
         }
       },
       "terminationDate" : {
+        "id" : "TerminationDate",
         "adjustableDate" : {
           "unadjustedDate" : {
             "value" : "2014-07-31T00:00:00Z"
@@ -57,54 +42,39 @@
           "dateAdjustments" : {
             "businessDayConvention" : "FOLLOWING"
           }
-        },
-        "id" : "TerminationDate"
+        }
       },
       "settlementCurrency" : {
         "value" : "USD"
       },
       "commodityPerformanceSwapLeg" : [ {
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "PartyB"
-            }
+        "payerPartyReference" : {
+          "href" : "PartyB"
+        },
+        "receiverPartyReference" : {
+          "href" : "PartyA"
+        },
+        "calculationPeriodsSchedule" : {
+          "id" : "interestLegCalculationPeriodsSchedule",
+          "periodMultiplier" : 1,
+          "period" : "M",
+          "balanceOfFirstPeriod" : false
+        },
+        "relativePaymentDates" : {
+          "payRelativeTo" : "CalculationPeriodEndDate",
+          "calculationPeriodsScheduleReference" : {
+            "href" : "interestLegCalculationPeriodsSchedule"
           },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "PartyA"
-            }
-          }
-        },
-        "commodityCalculationPeriodsModel" : {
-          "calculationPeriodsSchedule" : {
-            "periodMultiplier" : 1,
-            "period" : "M",
-            "id" : "interestLegCalculationPeriodsSchedule",
-            "balanceOfFirstPeriod" : false
-          }
-        },
-        "commodityPaymentDatesModel" : {
-          "relativePaymentDates" : {
-            "payRelativeTo" : "CalculationPeriodEndDate",
-            "commodityCalculationPeriodsPointerModel" : {
-              "calculationPeriodsScheduleReference" : {
-                "href" : "interestLegCalculationPeriodsSchedule"
-              }
-            },
-            "paymentDaysOffset" : {
-              "periodMultiplier" : 2,
-              "period" : "D",
-              "dayType" : "Business",
-              "businessDayConvention" : "FOLLOWING"
-            },
-            "businessCentersOrReferenceModel" : {
-              "businessCenters" : {
-                "businessCenter" : [ {
-                  "value" : "USNY"
-                } ]
-              }
-            }
+          "paymentDaysOffset" : {
+            "periodMultiplier" : 2,
+            "period" : "D",
+            "dayType" : "Business",
+            "businessDayConvention" : "FOLLOWING"
+          },
+          "businessCenters" : {
+            "businessCenter" : [ {
+              "value" : "USNY"
+            } ]
           }
         },
         "notionalAmountReference" : {
@@ -119,116 +89,74 @@
           }
         }
       }, {
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "PartyA"
-            }
+        "payerPartyReference" : {
+          "href" : "PartyA"
+        },
+        "receiverPartyReference" : {
+          "href" : "PartyB"
+        },
+        "calculationPeriodsScheduleReference" : {
+          "href" : "interestLegCalculationPeriodsSchedule"
+        },
+        "relativePaymentDates" : {
+          "payRelativeTo" : "CalculationPeriodEndDate",
+          "calculationPeriodsScheduleReference" : {
+            "href" : "interestLegCalculationPeriodsSchedule"
           },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "PartyB"
-            }
+          "paymentDaysOffset" : {
+            "periodMultiplier" : 2,
+            "period" : "D",
+            "dayType" : "Business",
+            "businessDayConvention" : "FOLLOWING"
+          },
+          "businessCenters" : {
+            "businessCenter" : [ {
+              "value" : "USNY"
+            } ]
           }
         },
-        "commodityCalculationPeriodsModel" : {
-          "commodityCalculationPeriodsPointerModel" : {
-            "calculationPeriodsScheduleReference" : {
-              "href" : "interestLegCalculationPeriodsSchedule"
-            }
-          }
-        },
-        "commodityPaymentDatesModel" : {
-          "relativePaymentDates" : {
-            "payRelativeTo" : "CalculationPeriodEndDate",
-            "commodityCalculationPeriodsPointerModel" : {
-              "calculationPeriodsScheduleReference" : {
-                "href" : "interestLegCalculationPeriodsSchedule"
-              }
-            },
-            "paymentDaysOffset" : {
-              "periodMultiplier" : 2,
-              "period" : "D",
-              "dayType" : "Business",
-              "businessDayConvention" : "FOLLOWING"
-            },
-            "businessCentersOrReferenceModel" : {
-              "businessCenters" : {
-                "businessCenter" : [ {
-                  "value" : "USNY"
-                } ]
-              }
-            }
-          }
-        },
-        "commodityUnderlyerChoiceModel" : {
-          "commodity" : {
-            "instrumentId" : [ {
-              "value" : "S+P GSCI™ Lean Hogs Index Total Return",
-              "instrumentIdScheme" : "http://www.fpml.org/coding-scheme/commodity-reference-price-3-0"
-            } ],
-            "commodityProductModel" : {
-              "specifiedPrice" : "Closing"
-            }
-          }
+        "commodity" : {
+          "instrumentId" : [ {
+            "value" : "S+P GSCI™ Lean Hogs Index Total Return",
+            "instrumentIdScheme" : "http://www.fpml.org/coding-scheme/commodity-reference-price-3-0"
+          } ],
+          "specifiedPrice" : "Closing"
         },
         "notionalAmount" : {
+          "id" : "returnLegNotionalAmount",
           "currency" : {
             "value" : "USD"
           },
-          "id" : "returnLegNotionalAmount",
           "amount" : 1000000.00,
           "reinvestmentFeature" : true
         },
         "commodityReturnCalculation" : {
           "formula" : "SimpleFormula",
           "pricingDates" : {
-            "commodityCalculationPeriodsPointerModel" : {
-              "calculationPeriodsScheduleReference" : {
-                "href" : "interestLegCalculationPeriodsSchedule"
-              }
+            "calculationPeriodsScheduleReference" : {
+              "href" : "interestLegCalculationPeriodsSchedule"
             },
-            "commodityPricingDatesSequence" : {
-              "commodityPricingDatesSequenceSequence" : {
-                "daysModel" : {
-                  "dayType" : "CommodityBusiness",
-                  "daysModelSequence0" : {
-                    "dayDistribution" : {
-                      "value" : "All"
-                    }
-                  }
-                }
-              }
+            "dayType" : "CommodityBusiness",
+            "dayDistribution" : {
+              "value" : "All"
             }
           },
           "valuationDates" : {
-            "commodityCalculationPeriodsPointerModel" : {
-              "calculationPeriodsScheduleReference" : {
-                "href" : "interestLegCalculationPeriodsSchedule"
-              }
+            "calculationPeriodsScheduleReference" : {
+              "href" : "interestLegCalculationPeriodsSchedule"
             },
-            "commodityValuationDatesSequence" : {
-              "commodityValuationDatesSequenceSequence" : {
-                "daysModel" : {
-                  "dayType" : "CommodityBusiness",
-                  "daysModelSequence0" : {
-                    "dayDistribution" : {
-                      "value" : "Last"
-                    }
-                  }
-                }
-              }
+            "dayType" : "CommodityBusiness",
+            "dayDistribution" : {
+              "value" : "Last"
             }
           }
         }
       } ],
-      "commodityContentModel" : {
-        "marketDisruption" : {
-          "marketDisruptionEvent" : [ {
-            "value" : "AsSpecifiedInConfirmation"
-          } ],
-          "disruptionFallbacks" : "AsSpecifiedInConfirmation"
-        }
+      "marketDisruption" : {
+        "marketDisruptionEvent" : [ {
+          "value" : "AsSpecifiedInConfirmation"
+        } ],
+        "disruptionFallbacks" : "AsSpecifiedInConfirmation"
       }
     },
     "documentation" : {
@@ -245,36 +173,26 @@
       } ]
     }
   } ],
-  "partiesAndAccountsModel" : {
-    "party" : [ {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "95980020140005196564",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyInformationModel" : {
-          "country" : {
-            "value" : "US"
-          },
-          "organizationType" : [ {
-            "value" : "SwapDealer"
-          } ]
-        }
-      },
-      "id" : "PartyA"
-    }, {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "549300XQFX97CITUR430",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyInformationModel" : {
-          "organizationType" : [ {
-            "value" : "Non-SD_Non-MSP"
-          } ]
-        }
-      },
-      "id" : "PartyB"
+  "party" : [ {
+    "id" : "PartyA",
+    "partyId" : [ {
+      "value" : "95980020140005196564",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "country" : {
+      "value" : "US"
+    },
+    "organizationType" : [ {
+      "value" : "SwapDealer"
     } ]
-  }
+  }, {
+    "id" : "PartyB",
+    "partyId" : [ {
+      "value" : "549300XQFX97CITUR430",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "organizationType" : [ {
+      "value" : "Non-SD_Non-MSP"
+    } ]
+  } ]
 }

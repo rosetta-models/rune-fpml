@@ -2,251 +2,183 @@
   "fpmlVersion" : "5-13",
   "trade" : [ {
     "tradeHeader" : {
-      "tradeIdentifiersModel" : {
-        "partyTradeIdentifier" : [ {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "1234",
-              "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "partyA"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "1234",
-                "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
-              }
-            } ]
-          }
-        }, {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "2345",
-              "tradeIdScheme" : "http://www.PartyB.com/com-trade-id"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "partyB"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "2345",
-                "tradeIdScheme" : "http://www.PartyB.com/com-trade-id"
-              }
-            } ]
-          }
-        } ]
-      },
+      "partyTradeIdentifier" : [ {
+        "tradeId" : {
+          "value" : "1234",
+          "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
+        },
+        "partyReference" : {
+          "href" : "partyA"
+        }
+      }, {
+        "tradeId" : {
+          "value" : "2345",
+          "tradeIdScheme" : "http://www.PartyB.com/com-trade-id"
+        },
+        "partyReference" : {
+          "href" : "partyB"
+        }
+      } ],
       "tradeDate" : {
         "value" : "2009-01-28T00:00:00Z"
       }
     },
     "product" : {
-      "commoditySwapDetailsModel" : {
-        "effectiveDate" : {
-          "adjustableDate" : {
-            "unadjustedDate" : {
-              "value" : "2009-08-01T00:00:00Z"
-            },
-            "dateAdjustments" : {
-              "businessDayConvention" : "NotApplicable"
+      "effectiveDate" : {
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2009-08-01T00:00:00Z"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NotApplicable"
+          }
+        }
+      },
+      "terminationDate" : {
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2009-08-31T00:00:00Z"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NotApplicable"
+          }
+        }
+      },
+      "settlementCurrency" : {
+        "value" : "USD"
+      },
+      "commoditySwapLeg" : [ {
+        "payerPartyReference" : {
+          "href" : "partyA"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyB"
+        },
+        "deliveryPeriods" : {
+          "periodsSchedule" : {
+            "periodMultiplier" : 1,
+            "period" : "T",
+            "balanceOfFirstPeriod" : false
+          }
+        },
+        "settlementPeriods" : [ {
+          "id" : "settlementPeriods",
+          "duration" : "1Hour",
+          "applicableDay" : [ "MON", "TUE", "WED", "THU", "FRI" ],
+          "startTime" : {
+            "time" : {
+              "hourMinuteTime" : "07:00:00",
+              "location" : {
+                "value" : "America/Chicago"
+              }
+            }
+          },
+          "endTime" : {
+            "time" : {
+              "hourMinuteTime" : "22:00:00",
+              "location" : {
+                "value" : "America/Chicago"
+              }
+            }
+          },
+          "excludeHolidays" : {
+            "value" : "NERC"
+          }
+        } ],
+        "loadType" : "Peak",
+        "electricity" : {
+          "type" : "Electricity"
+        },
+        "deliveryConditions" : {
+          "deliveryPoint" : {
+            "value" : "ErcotNorthCongestionZone",
+            "deliveryPointScheme" : "http://www.PartyA.com/delivery-point-scheme-power-1-0"
+          },
+          "deliveryType" : {
+            "firm" : {
+              "forceMajeure" : true
             }
           }
         },
-        "terminationDate" : {
-          "adjustableDate" : {
-            "unadjustedDate" : {
-              "value" : "2009-08-31T00:00:00Z"
+        "deliveryQuantity" : {
+          "id" : "deliveryQuantity",
+          "physicalQuantity" : [ {
+            "quantityUnit" : {
+              "value" : "MWh"
             },
-            "dateAdjustments" : {
-              "businessDayConvention" : "NotApplicable"
-            }
-          }
-        },
-        "settlementCurrency" : {
-          "value" : "USD"
-        },
-        "commoditySwapLeg" : [ {
-          "payerReceiverModel" : {
-            "payerModel" : {
-              "payerPartyReference" : {
-                "href" : "partyA"
-              }
+            "quantityFrequency" : {
+              "value" : "PerSettlementPeriod"
             },
-            "receiverModel" : {
-              "receiverPartyReference" : {
-                "href" : "partyB"
-              }
-            }
-          },
-          "deliveryPeriods" : {
-            "periodsSchedule" : {
-              "periodMultiplier" : 1,
-              "period" : "T",
-              "balanceOfFirstPeriod" : false
-            }
-          },
-          "settlementPeriods" : [ {
-            "duration" : "1Hour",
-            "applicableDay" : [ "MON", "TUE", "WED", "THU", "FRI" ],
-            "excludeHolidays" : {
-              "value" : "NERC"
-            },
-            "id" : "settlementPeriods",
-            "startTime" : {
-              "time" : {
-                "hourMinuteTime" : "07:00:00",
-                "location" : {
-                  "value" : "America/Chicago"
-                }
-              }
-            },
-            "endTime" : {
-              "time" : {
-                "hourMinuteTime" : "22:00:00",
-                "location" : {
-                  "value" : "America/Chicago"
-                }
-              }
-            }
-          } ],
-          "loadType" : "Peak",
-          "electricity" : {
-            "type" : "Electricity"
-          },
-          "deliveryConditions" : {
-            "electricityDeliverySequence0" : {
-              "deliveryPoint" : {
-                "value" : "ErcotNorthCongestionZone",
-                "deliveryPointScheme" : "http://www.PartyA.com/delivery-point-scheme-power-1-0"
-              },
-              "deliveryType" : {
-                "firm" : {
-                  "forceMajeure" : true
-                }
-              }
-            }
-          },
-          "deliveryQuantity" : {
-            "id" : "deliveryQuantity",
-            "physicalQuantity" : [ {
-              "quantityUnit" : {
-                "value" : "MWh"
-              },
-              "quantityFrequency" : {
-                "value" : "PerSettlementPeriod"
-              },
-              "quantity" : 200.0,
-              "settlementPeriodsReference" : [ {
-                "href" : "settlementPeriods"
-              } ]
+            "quantity" : 200.0,
+            "settlementPeriodsReference" : [ {
+              "href" : "settlementPeriods"
             } ]
-          }
-        }, {
-          "payerReceiverModel" : {
-            "payerModel" : {
-              "payerPartyReference" : {
-                "href" : "partyB"
-              }
+          } ]
+        }
+      }, {
+        "payerPartyReference" : {
+          "href" : "partyB"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyA"
+        },
+        "calculationPeriodsSchedule" : {
+          "id" : "floatingLegCalculationPeriods",
+          "periodMultiplier" : 1,
+          "period" : "M",
+          "balanceOfFirstPeriod" : false
+        },
+        "commodity" : {
+          "instrumentId" : [ {
+            "value" : "ELECTRICITY-ERCOT-NORTH PEAK-ICE/10X DAILY-POWER",
+            "instrumentIdScheme" : "http://www.fpml.org/coding-scheme/commodity-reference-price-1-0"
+          } ],
+          "specifiedPrice" : "MeanOfHighAndLow"
+        },
+        "quantityReference" : {
+          "href" : "deliveryQuantity"
+        },
+        "calculation" : {
+          "pricingDates" : {
+            "calculationPeriodsScheduleReference" : {
+              "href" : "floatingLegCalculationPeriods"
             },
-            "receiverModel" : {
-              "receiverPartyReference" : {
-                "href" : "partyA"
-              }
-            }
-          },
-          "commodityCalculationPeriodsModel" : {
-            "calculationPeriodsSchedule" : {
-              "periodMultiplier" : 1,
-              "period" : "M",
-              "id" : "floatingLegCalculationPeriods",
-              "balanceOfFirstPeriod" : false
-            }
-          },
-          "commodity" : {
-            "instrumentId" : [ {
-              "value" : "ELECTRICITY-ERCOT-NORTH PEAK-ICE/10X DAILY-POWER",
-              "instrumentIdScheme" : "http://www.fpml.org/coding-scheme/commodity-reference-price-1-0"
-            } ],
-            "commodityProductModel" : {
-              "specifiedPrice" : "MeanOfHighAndLow"
-            }
-          },
-          "commodityNotionalQuantityModel" : {
-            "quantityReference" : {
-              "href" : "deliveryQuantity"
-            }
-          },
-          "calculation" : {
-            "pricingDates" : {
-              "commodityCalculationPeriodsPointerModel" : {
-                "calculationPeriodsScheduleReference" : {
-                  "href" : "floatingLegCalculationPeriods"
-                }
-              },
-              "commodityPricingDatesSequence" : {
-                "commodityPricingDatesSequenceSequence" : {
-                  "daysModel" : {
-                    "dayType" : "CommodityBusiness",
-                    "daysModelSequence0" : {
-                      "dayDistribution" : {
-                        "value" : "All"
-                      }
-                    }
-                  },
-                  "businessCalendar" : {
-                    "value" : "ICE/10X-DAILY"
-                  }
-                }
-              }
+            "dayType" : "CommodityBusiness",
+            "dayDistribution" : {
+              "value" : "All"
             },
-            "spread" : {
-              "currency" : {
-                "value" : "USD"
-              },
-              "amount" : 3.0
+            "businessCalendar" : {
+              "value" : "ICE/10X-DAILY"
             }
           },
-          "commodityPaymentDatesModel" : {
-            "commodityNonPeriodicPaymentDatesModel" : {
-              "masterAgreementPaymentDates" : true
-            }
+          "spread" : {
+            "currency" : {
+              "value" : "USD"
+            },
+            "amount" : 3.0
           }
-        } ]
-      }
+        },
+        "masterAgreementPaymentDates" : true
+      } ]
     }
   } ],
-  "partiesAndAccountsModel" : {
-    "party" : [ {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "549300KFSLY4U7N3LL12",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "Bank"
-        }
-      },
-      "id" : "partyA"
-    }, {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "549300AJRHKBLY9GM262",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "Energy Co."
-        }
-      },
-      "id" : "partyB"
-    } ]
-  }
+  "party" : [ {
+    "id" : "partyA",
+    "partyId" : [ {
+      "value" : "549300KFSLY4U7N3LL12",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Bank"
+    }
+  }, {
+    "id" : "partyB",
+    "partyId" : [ {
+      "value" : "549300AJRHKBLY9GM262",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Energy Co."
+    }
+  } ]
 }

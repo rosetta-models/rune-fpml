@@ -2,68 +2,37 @@
   "fpmlVersion" : "5-13",
   "trade" : [ {
     "tradeHeader" : {
-      "tradeIdentifiersModel" : {
-        "partyTradeIdentifier" : [ {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "xyz1234",
-              "tradeIdScheme" : "buyside-trade-id"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "party1"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "xyz1234",
-                "tradeIdScheme" : "buyside-trade-id"
-              }
-            } ]
-          }
-        }, {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "abc1234",
-              "tradeIdScheme" : "sellside-trade-id"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "party2"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "abc1234",
-                "tradeIdScheme" : "sellside-trade-id"
-              }
-            } ]
-          }
-        } ]
-      },
+      "partyTradeIdentifier" : [ {
+        "tradeId" : {
+          "value" : "xyz1234",
+          "tradeIdScheme" : "buyside-trade-id"
+        },
+        "partyReference" : {
+          "href" : "party1"
+        }
+      }, {
+        "tradeId" : {
+          "value" : "abc1234",
+          "tradeIdScheme" : "sellside-trade-id"
+        },
+        "partyReference" : {
+          "href" : "party2"
+        }
+      } ],
       "tradeDate" : {
         "value" : "2010-12-12T00:00:00Z"
       }
     },
     "product" : {
       "swapStream" : [ {
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "party2"
-            }
-          },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "party1"
-            }
-          }
+        "payerPartyReference" : {
+          "href" : "party2"
+        },
+        "receiverPartyReference" : {
+          "href" : "party1"
         },
         "calculationPeriodDates" : {
+          "id" : "floatingCalcPeriodDates",
           "effectiveDate" : {
             "unadjustedDate" : {
               "value" : "2010-12-14T00:00:00Z"
@@ -78,18 +47,6 @@
             },
             "dateAdjustments" : {
               "businessDayConvention" : "MODFOLLOWING",
-              "businessCentersOrReferenceModel" : {
-                "businessCenters" : {
-                  "businessCenter" : [ {
-                    "value" : "MXMC"
-                  } ]
-                }
-              }
-            }
-          },
-          "calculationPeriodDatesAdjustments" : {
-            "businessDayConvention" : "MODFOLLOWING",
-            "businessCentersOrReferenceModel" : {
               "businessCenters" : {
                 "businessCenter" : [ {
                   "value" : "MXMC"
@@ -97,12 +54,19 @@
               }
             }
           },
+          "calculationPeriodDatesAdjustments" : {
+            "businessDayConvention" : "MODFOLLOWING",
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "MXMC"
+              } ]
+            }
+          },
           "calculationPeriodFrequency" : {
             "periodMultiplier" : 28,
             "period" : "D",
             "rollConvention" : "NONE"
-          },
-          "id" : "floatingCalcPeriodDates"
+          }
         },
         "paymentDates" : {
           "calculationPeriodDatesReference" : {
@@ -115,16 +79,15 @@
           "payRelativeTo" : "CalculationPeriodEndDate",
           "paymentDatesAdjustments" : {
             "businessDayConvention" : "MODFOLLOWING",
-            "businessCentersOrReferenceModel" : {
-              "businessCenters" : {
-                "businessCenter" : [ {
-                  "value" : "MXMC"
-                } ]
-              }
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "MXMC"
+              } ]
             }
           }
         },
         "resetDates" : {
+          "id" : "resetDates",
           "calculationPeriodDatesReference" : {
             "href" : "floatingCalcPeriodDates"
           },
@@ -134,12 +97,10 @@
             "period" : "D",
             "dayType" : "Business",
             "businessDayConvention" : "NONE",
-            "businessCentersOrReferenceModel" : {
-              "businessCenters" : {
-                "businessCenter" : [ {
-                  "value" : "MXMC"
-                } ]
-              }
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "MXMC"
+              } ]
             },
             "dateRelativeTo" : {
               "href" : "resetDates"
@@ -151,15 +112,12 @@
           },
           "resetDatesAdjustments" : {
             "businessDayConvention" : "MODFOLLOWING",
-            "businessCentersOrReferenceModel" : {
-              "businessCenters" : {
-                "businessCenter" : [ {
-                  "value" : "MXMC"
-                } ]
-              }
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "MXMC"
+              } ]
             }
-          },
-          "id" : "resetDates"
+          }
         },
         "calculationPeriodAmount" : {
           "calculation" : {
@@ -172,14 +130,12 @@
               }
             },
             "rateCalculation" : {
-              "floatingRateIndexModel" : {
-                "floatingRateIndex" : {
-                  "value" : "MXN-TIIE-Banxico"
-                },
-                "indexTenor" : {
-                  "periodMultiplier" : 28,
-                  "period" : "D"
-                }
+              "floatingRateIndex" : {
+                "value" : "MXN-TIIE-Banxico"
+              },
+              "indexTenor" : {
+                "periodMultiplier" : 28,
+                "period" : "D"
               }
             },
             "dayCountFraction" : {
@@ -188,19 +144,14 @@
           }
         }
       }, {
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "party1"
-            }
-          },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "party2"
-            }
-          }
+        "payerPartyReference" : {
+          "href" : "party1"
+        },
+        "receiverPartyReference" : {
+          "href" : "party2"
         },
         "calculationPeriodDates" : {
+          "id" : "fixedCalcPeriodDates",
           "effectiveDate" : {
             "unadjustedDate" : {
               "value" : "2010-12-14T00:00:00Z"
@@ -215,18 +166,6 @@
             },
             "dateAdjustments" : {
               "businessDayConvention" : "MODFOLLOWING",
-              "businessCentersOrReferenceModel" : {
-                "businessCenters" : {
-                  "businessCenter" : [ {
-                    "value" : "MXMC"
-                  } ]
-                }
-              }
-            }
-          },
-          "calculationPeriodDatesAdjustments" : {
-            "businessDayConvention" : "MODFOLLOWING",
-            "businessCentersOrReferenceModel" : {
               "businessCenters" : {
                 "businessCenter" : [ {
                   "value" : "MXMC"
@@ -234,12 +173,19 @@
               }
             }
           },
+          "calculationPeriodDatesAdjustments" : {
+            "businessDayConvention" : "MODFOLLOWING",
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "MXMC"
+              } ]
+            }
+          },
           "calculationPeriodFrequency" : {
             "periodMultiplier" : 28,
             "period" : "D",
             "rollConvention" : "NONE"
-          },
-          "id" : "fixedCalcPeriodDates"
+          }
         },
         "paymentDates" : {
           "calculationPeriodDatesReference" : {
@@ -252,12 +198,10 @@
           "payRelativeTo" : "CalculationPeriodEndDate",
           "paymentDatesAdjustments" : {
             "businessDayConvention" : "MODFOLLOWING",
-            "businessCentersOrReferenceModel" : {
-              "businessCenters" : {
-                "businessCenter" : [ {
-                  "value" : "MXMC"
-                } ]
-              }
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "MXMC"
+              } ]
             }
           }
         },
@@ -271,42 +215,34 @@
                 }
               }
             },
+            "fixedRateSchedule" : {
+              "initialValue" : 0.06
+            },
             "dayCountFraction" : {
               "value" : "30E/360"
-            },
-            "calculationSequence" : {
-              "fixedRateSchedule" : {
-                "initialValue" : 0.06
-              }
             }
           }
         }
       } ]
     }
   } ],
-  "partiesAndAccountsModel" : {
-    "party" : [ {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "254900BIAQJIUV6DLE92",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "Buyside"
-        }
-      },
-      "id" : "party1"
-    }, {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "549300VBWWV6BYQOWM67",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "Sellside"
-        }
-      },
-      "id" : "party2"
-    } ]
-  }
+  "party" : [ {
+    "id" : "party1",
+    "partyId" : [ {
+      "value" : "254900BIAQJIUV6DLE92",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Buyside"
+    }
+  }, {
+    "id" : "party2",
+    "partyId" : [ {
+      "value" : "549300VBWWV6BYQOWM67",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Sellside"
+    }
+  } ]
 }

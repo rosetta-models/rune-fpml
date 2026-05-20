@@ -2,47 +2,30 @@
   "fpmlVersion" : "5-10",
   "trade" : [ {
     "tradeHeader" : {
-      "tradeIdentifiersModel" : {
-        "partyTradeIdentifier" : [ {
-          "issuerTradeIdModel" : {
-            "issuer" : {
-              "value" : "54930084UKLVMY22DS16",
-              "issuerIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-            },
-            "tradeId" : {
-              "value" : "UITD7895394",
-              "tradeIdScheme" : "http://www.fpml.org/coding-scheme/external/uti"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "UITD7895394",
-                "tradeIdScheme" : "http://www.fpml.org/coding-scheme/external/uti"
-              }
-            } ]
-          }
-        } ]
-      },
+      "partyTradeIdentifier" : [ {
+        "issuer" : {
+          "value" : "54930084UKLVMY22DS16",
+          "issuerIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+        },
+        "tradeId" : {
+          "value" : "UITD7895394",
+          "tradeIdScheme" : "http://www.fpml.org/coding-scheme/external/uti"
+        }
+      } ],
       "tradeDate" : {
         "value" : "2006-01-09T00:00:00Z"
       }
     },
     "product" : {
       "swapStream" : [ {
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "party2"
-            }
-          },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "party1"
-            }
-          }
+        "payerPartyReference" : {
+          "href" : "party2"
+        },
+        "receiverPartyReference" : {
+          "href" : "party1"
         },
         "calculationPeriodDates" : {
+          "id" : "fixedCalcPeriodDatesJPY",
           "effectiveDate" : {
             "unadjustedDate" : {
               "value" : "2006-01-11T00:00:00Z"
@@ -57,22 +40,6 @@
             },
             "dateAdjustments" : {
               "businessDayConvention" : "MODFOLLOWING",
-              "businessCentersOrReferenceModel" : {
-                "businessCenters" : {
-                  "businessCenter" : [ {
-                    "value" : "GBLO"
-                  }, {
-                    "value" : "USNY"
-                  }, {
-                    "value" : "JPTO"
-                  } ]
-                }
-              }
-            }
-          },
-          "calculationPeriodDatesAdjustments" : {
-            "businessDayConvention" : "MODFOLLOWING",
-            "businessCentersOrReferenceModel" : {
               "businessCenters" : {
                 "businessCenter" : [ {
                   "value" : "GBLO"
@@ -84,12 +51,23 @@
               }
             }
           },
+          "calculationPeriodDatesAdjustments" : {
+            "businessDayConvention" : "MODFOLLOWING",
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "GBLO"
+              }, {
+                "value" : "USNY"
+              }, {
+                "value" : "JPTO"
+              } ]
+            }
+          },
           "calculationPeriodFrequency" : {
             "periodMultiplier" : 6,
             "period" : "M",
             "rollConvention" : "11"
-          },
-          "id" : "fixedCalcPeriodDatesJPY"
+          }
         },
         "paymentDates" : {
           "calculationPeriodDatesReference" : {
@@ -102,37 +80,33 @@
           "payRelativeTo" : "CalculationPeriodEndDate",
           "paymentDatesAdjustments" : {
             "businessDayConvention" : "MODFOLLOWING",
-            "businessCentersOrReferenceModel" : {
-              "businessCenters" : {
-                "businessCenter" : [ {
-                  "value" : "GBLO"
-                }, {
-                  "value" : "USNY"
-                }, {
-                  "value" : "JPTO"
-                } ]
-              }
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "GBLO"
+              }, {
+                "value" : "USNY"
+              }, {
+                "value" : "JPTO"
+              } ]
             }
           }
         },
         "calculationPeriodAmount" : {
           "calculation" : {
             "notionalSchedule" : {
+              "id" : "notionalScheduleJPY",
               "notionalStepSchedule" : {
                 "initialValue" : 1000000000,
                 "currency" : {
                   "value" : "JPY"
                 }
-              },
-              "id" : "notionalScheduleJPY"
+              }
+            },
+            "fixedRateSchedule" : {
+              "initialValue" : 0.001
             },
             "dayCountFraction" : {
               "value" : "ACT/365.FIXED"
-            },
-            "calculationSequence" : {
-              "fixedRateSchedule" : {
-                "initialValue" : 0.001
-              }
             }
           }
         },
@@ -142,19 +116,14 @@
           "intermediateExchange" : true
         }
       }, {
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "party1"
-            }
-          },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "party2"
-            }
-          }
+        "payerPartyReference" : {
+          "href" : "party1"
+        },
+        "receiverPartyReference" : {
+          "href" : "party2"
         },
         "calculationPeriodDates" : {
+          "id" : "fixedCalcPeriodDatesUSD",
           "effectiveDate" : {
             "unadjustedDate" : {
               "value" : "2006-01-11T00:00:00Z"
@@ -169,22 +138,6 @@
             },
             "dateAdjustments" : {
               "businessDayConvention" : "MODFOLLOWING",
-              "businessCentersOrReferenceModel" : {
-                "businessCenters" : {
-                  "businessCenter" : [ {
-                    "value" : "GBLO"
-                  }, {
-                    "value" : "USNY"
-                  }, {
-                    "value" : "JPTO"
-                  } ]
-                }
-              }
-            }
-          },
-          "calculationPeriodDatesAdjustments" : {
-            "businessDayConvention" : "MODFOLLOWING",
-            "businessCentersOrReferenceModel" : {
               "businessCenters" : {
                 "businessCenter" : [ {
                   "value" : "GBLO"
@@ -196,12 +149,23 @@
               }
             }
           },
+          "calculationPeriodDatesAdjustments" : {
+            "businessDayConvention" : "MODFOLLOWING",
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "GBLO"
+              }, {
+                "value" : "USNY"
+              }, {
+                "value" : "JPTO"
+              } ]
+            }
+          },
           "calculationPeriodFrequency" : {
             "periodMultiplier" : 6,
             "period" : "M",
             "rollConvention" : "11"
-          },
-          "id" : "fixedCalcPeriodDatesUSD"
+          }
         },
         "paymentDates" : {
           "calculationPeriodDatesReference" : {
@@ -214,37 +178,33 @@
           "payRelativeTo" : "CalculationPeriodEndDate",
           "paymentDatesAdjustments" : {
             "businessDayConvention" : "MODFOLLOWING",
-            "businessCentersOrReferenceModel" : {
-              "businessCenters" : {
-                "businessCenter" : [ {
-                  "value" : "GBLO"
-                }, {
-                  "value" : "USNY"
-                }, {
-                  "value" : "JPTO"
-                } ]
-              }
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "GBLO"
+              }, {
+                "value" : "USNY"
+              }, {
+                "value" : "JPTO"
+              } ]
             }
           }
         },
         "calculationPeriodAmount" : {
           "calculation" : {
             "notionalSchedule" : {
+              "id" : "notionalScheduleUSD",
               "notionalStepSchedule" : {
                 "initialValue" : 100000000,
                 "currency" : {
                   "value" : "USD"
                 }
-              },
-              "id" : "notionalScheduleUSD"
+              }
+            },
+            "fixedRateSchedule" : {
+              "initialValue" : 0.02
             },
             "dayCountFraction" : {
               "value" : "ACT/365.FIXED"
-            },
-            "calculationSequence" : {
-              "fixedRateSchedule" : {
-                "initialValue" : 0.02
-              }
             }
           }
         },
@@ -256,29 +216,23 @@
       } ]
     }
   } ],
-  "partiesAndAccountsModel" : {
-    "party" : [ {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "54930084UKLVMY22DS16",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "Party A"
-        }
-      },
-      "id" : "party1"
-    }, {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "48750084UKLVTR22DS78",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "Party B"
-        }
-      },
-      "id" : "party2"
-    } ]
-  }
+  "party" : [ {
+    "id" : "party1",
+    "partyId" : [ {
+      "value" : "54930084UKLVMY22DS16",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Party A"
+    }
+  }, {
+    "id" : "party2",
+    "partyId" : [ {
+      "value" : "48750084UKLVTR22DS78",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Party B"
+    }
+  } ]
 }

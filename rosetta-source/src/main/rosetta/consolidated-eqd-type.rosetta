@@ -1,129 +1,481 @@
 namespace fpml.consolidated.eqd : < "fpml definition" >
 version "${project.version}"
 
-type BrokerEquityOption extends EquityDerivativeShortFormBase: <"A component describing a Broker View of an Equity Option. A type for defining the broker equity options.">
+import fpml.consolidated.*
+import fpml.consolidated.asset.*
+import fpml.consolidated.eq.shared.*
+import fpml.consolidated.fpmlenum.*
+import fpml.consolidated.option.shared.*
+import fpml.consolidated.shared.*
+
+type BrokerEquityOption extends EquityDerivativeShortFormBase:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "A type for defining the broker equity options."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A type for defining the broker equity options."]
 
     deltaCrossed boolean (0..1)
-    brokerageFee fpml.consolidated.shared.Money (0..1)
-    brokerNotes fpml.consolidated.shared.NonEmptyNormalizedString (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
+    brokerageFee Money (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
+    brokerNotes NonEmptyNormalizedString (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
 
-type EquityForward extends EquityDerivativeLongFormBase: <"A component describing an Equity Forward product. A type for defining equity forwards.">
+type EquityForward extends EquityDerivativeLongFormBase:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "A type for defining equity forwards."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A type for defining equity forwards."]
 
-    forwardPrice fpml.consolidated.shared.NonNegativeMoney (0..1) <"The forward price per share, index or basket.">
+    forwardPrice NonNegativeMoney (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The forward price per share, index or basket."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The forward price per share, index or basket."]
 
-type EquityOption extends EquityDerivativeLongFormBase: <"A component describing an Equity Option product. A type for defining equity options.">
+type EquityOption extends EquityDerivativeLongFormBase:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "A type for defining equity options."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A type for defining equity options."]
 
-    strike fpml.consolidated.eq.shared.EquityStrike (0..1) <"Defines whether it is a price or level at which the option has been, or will be, struck.">
-    spotPrice fpml.consolidated.shared.NonNegativeDecimal (0..1) <"The price per share, index or basket observed on the trade or effective date.">
-    numberOfOptions fpml.consolidated.shared.NonNegativeDecimal (0..1) <"The number of options comprised in the option transaction.">
-    optionEntitlement fpml.consolidated.shared.PositiveDecimal (0..1) <"The number of shares per option comprised in the option transaction.">
-    equityPremium fpml.consolidated.eq.shared.EquityPremium (0..1) <"The equity option premium payable by the buyer to the seller.">
+    strike EquityStrike (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Defines whether it is a price or level at which the option has been, or will be, struck."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Defines whether it is a price or level at which the option has been, or will be, struck."]
+    spotPrice NonNegativeDecimal (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The price per share, index or basket observed on the trade or effective date."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The price per share, index or basket observed on the trade or effective date."]
+    numberOfOptions NonNegativeDecimal (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The number of options comprised in the option transaction."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The number of options comprised in the option transaction."]
+    optionEntitlement PositiveDecimal (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The number of shares per option comprised in the option transaction."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The number of shares per option comprised in the option transaction."]
+    equityPremium EquityPremium (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The equity option premium payable by the buyer to the seller."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The equity option premium payable by the buyer to the seller."]
 
-type EquityOptionTransactionSupplement extends EquityDerivativeShortFormBase: <"A component describing an Equity Option Transaction Supplement. A type for defining equity option transaction supplements.">
+type EquityOptionTransactionSupplement extends EquityDerivativeShortFormBase:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "A type for defining equity option transaction supplements."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A type for defining equity option transaction supplements."]
 
-    exchangeLookAlike boolean (0..1) <"For a share option transaction, a flag used to indicate whether the transaction is to be treated as an \'exchange look-alike\'. This designation has significance for how share adjustments (arising from corporate actions) will be determined for the transaction. For an \'exchange look-alike\' transaction the relevant share adjustments will follow that for a corresponding designated contract listed on the related exchange (referred to as Options Exchange Adjustment (ISDA defined term), otherwise the share adjustments will be determined by the calculation agent (referred to as Calculation Agent Adjustment (ISDA defined term)).">
-    exchangeTradedContractNearest boolean (0..1) <"For an index option transaction, a flag used in conjuction with Futures Price Valuation (ISDA defined term) to indicate whether the Nearest Index Contract provision is applicable. The Nearest Index Contract provision is a rule for determining the Exchange-traded Contract (ISDA defined term) without having to explicitly state the actual contract, delivery month and exchange on which it is traded.">
-    indexAnnexFallbackModel fpml.consolidated.eq.shared.IndexAnnexFallbackModel (0..1)
-    methodOfAdjustment fpml.consolidated.fpmlenum.MethodOfAdjustmentEnum (0..1)
-    localJurisdiction fpml.consolidated.shared.CountryCode (0..1) <"Local Jurisdiction is a term used in the AEJ Master Confirmation, which is used to determine local taxes, which shall mean taxes, duties, and similar charges imposed by the taxing authority of the Local Jurisdiction If this element is not present Local Jurisdiction is Not Applicable.">
-    optionEntitlement fpml.consolidated.shared.PositiveDecimal (0..1) <"The number of shares per option comprised in the option transaction supplement.">
-    multiplier fpml.consolidated.shared.PositiveDecimal (0..1) <"Specifies the contract multiplier that can be associated with an index option.">
-    extraordinaryEvents fpml.consolidated.eq.shared.ExtraordinaryEvents (0..1) <"A component to contain elements that represent an extraordinary event.">
-
-    condition Choice:
-        optional choice optionEntitlement, multiplier
-
-type EquityAmericanExercise extends fpml.consolidated.shared.SharedAmericanExercise: <"A type for defining exercise procedures associated with an American style exercise of an equity option. This entity inherits from the type SharedAmericanExercise.">
-
-    latestExerciseTimeType fpml.consolidated.fpmlenum.TimeTypeEnum (0..1) <"The latest time of day at which the equity option can be exercised, for example the official closing time of the exchange.">
-    equityExpirationModel EquityExpirationModel (1..1)
-    equityMultipleExercise EquityMultipleExercise (0..1) <"The presence of this element indicates that the option may be exercised on different days. It is not applicable to European options.">
-
-type EquityBermudaExercise extends fpml.consolidated.shared.SharedAmericanExercise: <"A type for defining exercise procedures associated with a Bermuda style exercise of an equity option. The term Bermuda is adopted in FpML for consistency with the ISDA Definitions.">
-
-    bermudaExerciseDates fpml.consolidated.shared.DateList (0..1) <"List of Exercise Dates for a Bermuda option.">
-    latestExerciseTimeType fpml.consolidated.fpmlenum.TimeTypeEnum (0..1) <"The latest time of day at which the equity option can be exercised, for example the official closing time of the exchange.">
-    equityExpirationModel EquityExpirationModel (1..1)
-    equityMultipleExercise EquityMultipleExercise (0..1) <"The presence of this element indicates that the option may be exercised on different days. It is not applicable to European options.">
-
-type EquityDerivativeBase extends fpml.consolidated.shared.Product: <"A type for defining the common features of equity derivatives.">
-
-    buyerSellerModel fpml.consolidated.shared.BuyerSellerModel (1..1)
-    optionType fpml.consolidated.fpmlenum.EquityOptionTypeEnum (0..1) <"The type of option transaction.">
-    equityEffectiveDate zonedDateTime (0..1) <"Effective date for a forward starting option.">
-    underlyer fpml.consolidated.asset.Underlyer (1..1) <"Specifies the underlying component, which can be either one or many and consists in either equity, index or convertible bond component, or a combination of these.">
-    notional fpml.consolidated.shared.NonNegativeMoney (0..1) <"The notional amount.">
-    equityExercise EquityExerciseValuationSettlement (1..1) <"The parameters for defining how the equity option can be exercised, how it is valued and how it is settled.">
-    featureModel fpml.consolidated.eq.shared.FeatureModel (0..1)
-    strategyFeature fpml.consolidated.option.shared.StrategyFeature (0..1) <"A equity option simple strategy feature.">
-
-type EquityDerivativeLongFormBase extends EquityDerivativeBase: <"type for defining the common features of equity derivatives.">
-
-    dividendConditions fpml.consolidated.eq.shared.DividendConditions (0..1)
-    methodOfAdjustment fpml.consolidated.fpmlenum.MethodOfAdjustmentEnum (0..1) <"Defines how adjustments will be made to the contract should one or more of the extraordinary events occur.">
-    extraordinaryEvents fpml.consolidated.eq.shared.ExtraordinaryEvents (0..1) <"Where the underlying is shares, specifies events affecting the issuer of those shares that may require the terms of the transaction to be adjusted.">
-
-type EquityDerivativeShortFormBase extends EquityDerivativeBase: <"A type for defining short form equity option basic features.">
-
-    strike fpml.consolidated.eq.shared.EquityStrike (0..1) <"Defines whether it is a price or level at which the option has been, or will be, struck.">
-    spotPrice fpml.consolidated.shared.NonNegativeDecimal (0..1) <"The price per share, index or basket observed on the trade or effective date.">
-    numberOfOptions fpml.consolidated.shared.NonNegativeDecimal (0..1) <"The number of options comprised in the option transaction.">
-    equityPremium fpml.consolidated.eq.shared.EquityPremium (0..1) <"The equity option premium payable by the buyer to the seller.">
-
-type EquityEuropeanExercise extends fpml.consolidated.shared.Exercise: <"A type for defining exercise procedures associated with a European style exercise of an equity option.">
-
-    expirationDate fpml.consolidated.shared.AdjustableOrRelativeDate (1..1) <"The last day within an exercise period for an American style option. For a European style option it is the only day within the exercise period.">
-    equityExpirationModel EquityExpirationModel (1..1)
-
-type EquityExerciseValuationSettlement: <"A type for defining exercise procedures for equity options.">
-
-    equityEuropeanExercise EquityEuropeanExercise (0..1) <"The parameters for defining the expiration date and time for a European style equity option.">
-    equityAmericanExercise EquityAmericanExercise (0..1) <"The parameters for defining the exercise period for an American style equity option together with the rules governing the quantity of the underlying that can be exercised on any given exercise date.">
-    equityBermudaExercise EquityBermudaExercise (0..1) <"The parameters for defining the exercise period for an Bermuda style equity option together with the rules governing the quantity of the underlying that can be exercised on any given exercise date.">
-    equityExerciseValuationSettlementSequence EquityExerciseValuationSettlementSequence (0..1)
-    prePayment PrePayment (0..1) <"Prepayment features for Forward.">
-    equityValuation fpml.consolidated.eq.shared.EquityValuation (0..1) <"The parameters for defining when valuation of the underlying takes place.">
-    settlementDate fpml.consolidated.shared.AdjustableOrRelativeDate (0..1) <"The date when the option is to be settled relative to the valuation date. If the settlement date is not specified explicitly then settlement will take place on the valuation date.">
-    settlementCurrency fpml.consolidated.shared.Currency (0..1) <"The currency in which a cash settlement for non-deliverable forward and non-deliverable options.">
-    settlementPriceSource fpml.consolidated.shared.SettlementPriceSource (0..1)
-    settlementType fpml.consolidated.fpmlenum.SettlementTypeEnum (0..1) <"How the option will be settled.">
-    settlementMethodElectionDate fpml.consolidated.shared.AdjustableOrRelativeDate (0..1)
-    settlementMethodElectingPartyReference fpml.consolidated.shared.PartyReference (0..1)
-    settlementPriceDefaultElection fpml.consolidated.shared.SettlementPriceDefaultElection (0..1)
+    exchangeLookAlike boolean (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "For a share option transaction, a flag used to indicate whether the transaction is to be treated as an \'exchange look-alike\'. This designation has significance for how share adjustments (arising from corporate actions) will be determined for the transaction. For an \'exchange look-alike\' transaction the relevant share adjustments will follow that for a corresponding designated contract listed on the related exchange (referred to as Options Exchange Adjustment (ISDA defined term), otherwise the share adjustments will be determined by the calculation agent (referred to as Calculation Agent Adjustment (ISDA defined term))."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "For a share option transaction, a flag used to indicate whether the transaction is to be treated as an \'exchange look-alike\'. This designation has significance for how share adjustments (arising from corporate actions) will be determined for the transaction. For an \'exchange look-alike\' transaction the relevant share adjustments will follow that for a corresponding designated contract listed on the related exchange (referred to as Options Exchange Adjustment (ISDA defined term), otherwise the share adjustments will be determined by the calculation agent (referred to as Calculation Agent Adjustment (ISDA defined term))."]
+    exchangeTradedContractNearest boolean (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "For an index option transaction, a flag used in conjuction with Futures Price Valuation (ISDA defined term) to indicate whether the Nearest Index Contract provision is applicable. The Nearest Index Contract provision is a rule for determining the Exchange-traded Contract (ISDA defined term) without having to explicitly state the actual contract, delivery month and exchange on which it is traded."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "For an index option transaction, a flag used in conjuction with Futures Price Valuation (ISDA defined term) to indicate whether the Nearest Index Contract provision is applicable. The Nearest Index Contract provision is a rule for determining the Exchange-traded Contract (ISDA defined term) without having to explicitly state the actual contract, delivery month and exchange on which it is traded."]
+    multipleExchangeIndexAnnexFallback boolean (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "For an index option transaction, a flag to indicate whether a relevant Multiple Exchange Index Annex is applicable to the transaction. This annex defines additional provisions which are applicable where an index is comprised of component securities that are traded on multiple exchanges."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "For an index option transaction, a flag to indicate whether a relevant Multiple Exchange Index Annex is applicable to the transaction. This annex defines additional provisions which are applicable where an index is comprised of component securities that are traded on multiple exchanges."]
+    componentSecurityIndexAnnexFallback boolean (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "For an index option transaction, a flag to indicate whether a relevant Component Security Index Annex is applicable to the transaction."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "For an index option transaction, a flag to indicate whether a relevant Component Security Index Annex is applicable to the transaction."]
+    methodOfAdjustment MethodOfAdjustmentEnum (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
+    localJurisdiction CountryCode (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Local Jurisdiction is a term used in the AEJ Master Confirmation, which is used to determine local taxes, which shall mean taxes, duties, and similar charges imposed by the taxing authority of the Local Jurisdiction If this element is not present Local Jurisdiction is Not Applicable."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Local Jurisdiction is a term used in the AEJ Master Confirmation, which is used to determine local taxes, which shall mean taxes, duties, and similar charges imposed by the taxing authority of the Local Jurisdiction If this element is not present Local Jurisdiction is Not Applicable."]
+    optionEntitlement PositiveDecimal (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The number of shares per option comprised in the option transaction supplement."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The number of shares per option comprised in the option transaction supplement."]
+    multiplier PositiveDecimal (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Specifies the contract multiplier that can be associated with an index option."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Specifies the contract multiplier that can be associated with an index option."]
+    extraordinaryEvents ExtraordinaryEvents (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A component to contain elements that represent an extraordinary event."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A component to contain elements that represent an extraordinary event."]
 
     condition Choice0:
-        optional choice equityEuropeanExercise, equityAmericanExercise , equityBermudaExercise
+        optional choice multipleExchangeIndexAnnexFallback, componentSecurityIndexAnnexFallback
 
     condition Choice1:
-        optional choice equityExerciseValuationSettlementSequence, prePayment
+        optional choice optionEntitlement, multiplier
 
-type EquityExerciseValuationSettlementSequence:
+type EquityAmericanExercise extends SharedAmericanExercise:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "A type for defining exercise procedures associated with an American style exercise of an equity option. This entity inherits from the type SharedAmericanExercise."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A type for defining exercise procedures associated with an American style exercise of an equity option. This entity inherits from the type SharedAmericanExercise."]
 
-    automaticExercise boolean (0..1) <"If true then each option not previously exercised will be deemed to be exercised at the expiration time on the expiration date without service of notice unless the buyer notifies the seller that it no longer wishes this to occur.">
-    makeWholeProvisions fpml.consolidated.eq.shared.MakeWholeProvisions (0..1) <"Provisions covering early exercise of option.">
-
-type EquityMultipleExercise: <"A type for defining the multiple exercise provisions of an American or Bermuda style equity option.">
-
-    integralMultipleExercise fpml.consolidated.shared.PositiveDecimal (0..1) <"When multiple exercise is applicable and this element is present it specifies that the number of options that can be exercised on a given exercise date must either be equal to the value of this element or be an integral multiple of it.">
-    minimumNumberOfOptions fpml.consolidated.shared.NonNegativeDecimal (0..1) <"When multiple exercise is applicable this element specifies the minimum number of options that can be exercised on a given exercise date. If this element is not present then the minimum number is deemed to be 1. Its value can be a fractional number as a result of corporate actions.">
-    maximumNumberOfOptions fpml.consolidated.shared.NonNegativeDecimal (0..1) <"When multiple exercise is applicable this element specifies the maximum number of options that can be exercised on a given exercise date. If this element is not present then the maximum number is deemed to be the same as the number of options. Its value can be a fractional number as a result of corporate actions.">
-
-type PrePayment extends fpml.consolidated.shared.PaymentBase: <"A type for defining PrePayment.">
-
-    payerReceiverModel fpml.consolidated.shared.PayerReceiverModel (1..1)
-    prePayment boolean (0..1)
-    prePaymentAmount fpml.consolidated.shared.NonNegativeMoney (0..1)
-    prePaymentDate fpml.consolidated.shared.AdjustableDate (0..1)
-
-type EquityExpirationModel: <"Choice between expiration expressed as symbolic and optional literal time, or using a determination method.">
-
-    equityExpirationModelSequence EquityExpirationModelSequence (0..1)
-    expirationTimeDetermination fpml.consolidated.shared.DeterminationMethod (0..1) <"Expiration time determination method.">
+    latestExerciseTimeType TimeTypeEnum (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The latest time of day at which the equity option can be exercised, for example the official closing time of the exchange."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The latest time of day at which the equity option can be exercised, for example the official closing time of the exchange."]
+    equityExpirationTimeType TimeTypeEnum (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The time of day at which the equity option expires, for example the official closing time of the exchange."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The time of day at which the equity option expires, for example the official closing time of the exchange."]
+    equityExpirationTime BusinessCenterTime (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The specific time of day at which the equity option expires."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The specific time of day at which the equity option expires."]
+    expirationTimeDetermination DeterminationMethod (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Expiration time determination method."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Expiration time determination method."]
+    equityMultipleExercise EquityMultipleExercise (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The presence of this element indicates that the option may be exercised on different days. It is not applicable to European options."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The presence of this element indicates that the option may be exercised on different days. It is not applicable to European options."]
 
     condition Choice:
-        one-of
+        expirationTimeDetermination is absent
+            or equityExpirationTimeType is absent and equityExpirationTime is absent
 
-type EquityExpirationModelSequence:
+type EquityBermudaExercise extends SharedAmericanExercise:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "A type for defining exercise procedures associated with a Bermuda style exercise of an equity option. The term Bermuda is adopted in FpML for consistency with the ISDA Definitions."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A type for defining exercise procedures associated with a Bermuda style exercise of an equity option. The term Bermuda is adopted in FpML for consistency with the ISDA Definitions."]
 
-    equityExpirationTimeType fpml.consolidated.fpmlenum.TimeTypeEnum (0..1) <"The time of day at which the equity option expires, for example the official closing time of the exchange.">
-    equityExpirationTime fpml.consolidated.shared.BusinessCenterTime (0..1) <"The specific time of day at which the equity option expires.">
+    bermudaExerciseDates DateList (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "List of Exercise Dates for a Bermuda option."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "List of Exercise Dates for a Bermuda option."]
+    latestExerciseTimeType TimeTypeEnum (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The latest time of day at which the equity option can be exercised, for example the official closing time of the exchange."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The latest time of day at which the equity option can be exercised, for example the official closing time of the exchange."]
+    equityExpirationTimeType TimeTypeEnum (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The time of day at which the equity option expires, for example the official closing time of the exchange."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The time of day at which the equity option expires, for example the official closing time of the exchange."]
+    equityExpirationTime BusinessCenterTime (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The specific time of day at which the equity option expires."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The specific time of day at which the equity option expires."]
+    expirationTimeDetermination DeterminationMethod (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Expiration time determination method."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Expiration time determination method."]
+    equityMultipleExercise EquityMultipleExercise (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The presence of this element indicates that the option may be exercised on different days. It is not applicable to European options."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The presence of this element indicates that the option may be exercised on different days. It is not applicable to European options."]
+
+    condition Choice:
+        expirationTimeDetermination is absent
+            or equityExpirationTimeType is absent and equityExpirationTime is absent
+
+type EquityDerivativeBase extends Product:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "A type for defining the common features of equity derivatives."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A type for defining the common features of equity derivatives."]
+
+    buyerPartyReference PartyReference (1..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A reference to the party that buys this instrument, ie. pays for this instrument and receives the rights defined by it. See 2000 ISDA definitions Article 11.1 (b). In the case of FRAs this the fixed rate payer."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A reference to the party that buys this instrument, ie. pays for this instrument and receives the rights defined by it. See 2000 ISDA definitions Article 11.1 (b). In the case of FRAs this the fixed rate payer."]
+    buyerAccountReference AccountReference (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A reference to the account that buys this instrument."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A reference to the account that buys this instrument."]
+    sellerPartyReference PartyReference (1..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A reference to the party that sells (\"writes\") this instrument, i.e. that grants the rights defined by this instrument and in return receives a payment for it. See 2000 ISDA definitions Article 11.1 (a). In the case of FRAs this is the floating rate payer."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A reference to the party that sells (\"writes\") this instrument, i.e. that grants the rights defined by this instrument and in return receives a payment for it. See 2000 ISDA definitions Article 11.1 (a). In the case of FRAs this is the floating rate payer."]
+    sellerAccountReference AccountReference (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A reference to the account that sells this instrument."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A reference to the account that sells this instrument."]
+    optionType EquityOptionTypeEnum (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The type of option transaction."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The type of option transaction."]
+    equityEffectiveDate zonedDateTime (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Effective date for a forward starting option."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Effective date for a forward starting option."]
+    underlyer Underlyer (1..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Specifies the underlying component, which can be either one or many and consists in either equity, index or convertible bond component, or a combination of these."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Specifies the underlying component, which can be either one or many and consists in either equity, index or convertible bond component, or a combination of these."]
+    notional NonNegativeMoney (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The notional amount."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The notional amount."]
+    equityExercise EquityExerciseValuationSettlement (1..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The parameters for defining how the equity option can be exercised, how it is valued and how it is settled."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The parameters for defining how the equity option can be exercised, how it is valued and how it is settled."]
+    feature OptionFeatures (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Asian, Barrier, Knock and Pass Through features."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Asian, Barrier, Knock and Pass Through features."]
+    fxFeature FxFeature (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Quanto, Composite, or Cross Currency FX features."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Quanto, Composite, or Cross Currency FX features."]
+    strategyFeature StrategyFeature (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A equity option simple strategy feature."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A equity option simple strategy feature."]
+
+type EquityDerivativeLongFormBase extends EquityDerivativeBase:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "type for defining the common features of equity derivatives."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "type for defining the common features of equity derivatives."]
+
+    dividendConditions DividendConditions (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
+    methodOfAdjustment MethodOfAdjustmentEnum (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Defines how adjustments will be made to the contract should one or more of the extraordinary events occur."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Defines how adjustments will be made to the contract should one or more of the extraordinary events occur."]
+    extraordinaryEvents ExtraordinaryEvents (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Where the underlying is shares, specifies events affecting the issuer of those shares that may require the terms of the transaction to be adjusted."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Where the underlying is shares, specifies events affecting the issuer of those shares that may require the terms of the transaction to be adjusted."]
+
+type EquityDerivativeShortFormBase extends EquityDerivativeBase:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "A type for defining short form equity option basic features."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A type for defining short form equity option basic features."]
+
+    strike EquityStrike (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Defines whether it is a price or level at which the option has been, or will be, struck."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Defines whether it is a price or level at which the option has been, or will be, struck."]
+    spotPrice NonNegativeDecimal (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The price per share, index or basket observed on the trade or effective date."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The price per share, index or basket observed on the trade or effective date."]
+    numberOfOptions NonNegativeDecimal (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The number of options comprised in the option transaction."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The number of options comprised in the option transaction."]
+    equityPremium EquityPremium (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The equity option premium payable by the buyer to the seller."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The equity option premium payable by the buyer to the seller."]
+
+type EquityEuropeanExercise extends Exercise:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "A type for defining exercise procedures associated with a European style exercise of an equity option."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A type for defining exercise procedures associated with a European style exercise of an equity option."]
+
+    expirationDate AdjustableOrRelativeDate (1..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The last day within an exercise period for an American style option. For a European style option it is the only day within the exercise period."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The last day within an exercise period for an American style option. For a European style option it is the only day within the exercise period."]
+    equityExpirationTimeType TimeTypeEnum (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The time of day at which the equity option expires, for example the official closing time of the exchange."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The time of day at which the equity option expires, for example the official closing time of the exchange."]
+    equityExpirationTime BusinessCenterTime (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The specific time of day at which the equity option expires."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The specific time of day at which the equity option expires."]
+    expirationTimeDetermination DeterminationMethod (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Expiration time determination method."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Expiration time determination method."]
+
+    condition Choice:
+        expirationTimeDetermination is absent
+            or equityExpirationTimeType is absent and equityExpirationTime is absent
+
+type EquityExerciseValuationSettlement:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "A type for defining exercise procedures for equity options."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A type for defining exercise procedures for equity options."]
+
+    equityEuropeanExercise EquityEuropeanExercise (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The parameters for defining the expiration date and time for a European style equity option."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The parameters for defining the expiration date and time for a European style equity option."]
+    equityAmericanExercise EquityAmericanExercise (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The parameters for defining the exercise period for an American style equity option together with the rules governing the quantity of the underlying that can be exercised on any given exercise date."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The parameters for defining the exercise period for an American style equity option together with the rules governing the quantity of the underlying that can be exercised on any given exercise date."]
+    equityBermudaExercise EquityBermudaExercise (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The parameters for defining the exercise period for an Bermuda style equity option together with the rules governing the quantity of the underlying that can be exercised on any given exercise date."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The parameters for defining the exercise period for an Bermuda style equity option together with the rules governing the quantity of the underlying that can be exercised on any given exercise date."]
+    automaticExercise boolean (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "If true then each option not previously exercised will be deemed to be exercised at the expiration time on the expiration date without service of notice unless the buyer notifies the seller that it no longer wishes this to occur."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "If true then each option not previously exercised will be deemed to be exercised at the expiration time on the expiration date without service of notice unless the buyer notifies the seller that it no longer wishes this to occur."]
+    makeWholeProvisions MakeWholeProvisions (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Provisions covering early exercise of option."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Provisions covering early exercise of option."]
+    prePayment PrePayment (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Prepayment features for Forward."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Prepayment features for Forward."]
+    equityValuation EquityValuation (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The parameters for defining when valuation of the underlying takes place."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The parameters for defining when valuation of the underlying takes place."]
+    settlementDate AdjustableOrRelativeDate (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The date when the option is to be settled relative to the valuation date. If the settlement date is not specified explicitly then settlement will take place on the valuation date."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The date when the option is to be settled relative to the valuation date. If the settlement date is not specified explicitly then settlement will take place on the valuation date."]
+    settlementCurrency Currency (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The currency in which a cash settlement for non-deliverable forward and non-deliverable options."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The currency in which a cash settlement for non-deliverable forward and non-deliverable options."]
+    settlementPriceSource SettlementPriceSource (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
+    settlementType SettlementTypeEnum (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "How the option will be settled."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "How the option will be settled."]
+    settlementMethodElectionDate AdjustableOrRelativeDate (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
+    settlementMethodElectingPartyReference PartyReference (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
+    settlementPriceDefaultElection SettlementPriceDefaultElection (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
+
+    condition Choice0:
+        optional choice equityEuropeanExercise, equityAmericanExercise, equityBermudaExercise
+
+    condition Choice1:
+        prePayment is absent
+            or automaticExercise is absent and makeWholeProvisions is absent
+
+type EquityMultipleExercise:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "A type for defining the multiple exercise provisions of an American or Bermuda style equity option."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A type for defining the multiple exercise provisions of an American or Bermuda style equity option."]
+
+    integralMultipleExercise PositiveDecimal (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "When multiple exercise is applicable and this element is present it specifies that the number of options that can be exercised on a given exercise date must either be equal to the value of this element or be an integral multiple of it."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "When multiple exercise is applicable and this element is present it specifies that the number of options that can be exercised on a given exercise date must either be equal to the value of this element or be an integral multiple of it."]
+    minimumNumberOfOptions NonNegativeDecimal (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "When multiple exercise is applicable this element specifies the minimum number of options that can be exercised on a given exercise date. If this element is not present then the minimum number is deemed to be 1. Its value can be a fractional number as a result of corporate actions."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "When multiple exercise is applicable this element specifies the minimum number of options that can be exercised on a given exercise date. If this element is not present then the minimum number is deemed to be 1. Its value can be a fractional number as a result of corporate actions."]
+    maximumNumberOfOptions NonNegativeDecimal (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "When multiple exercise is applicable this element specifies the maximum number of options that can be exercised on a given exercise date. If this element is not present then the maximum number is deemed to be the same as the number of options. Its value can be a fractional number as a result of corporate actions."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "When multiple exercise is applicable this element specifies the maximum number of options that can be exercised on a given exercise date. If this element is not present then the maximum number is deemed to be the same as the number of options. Its value can be a fractional number as a result of corporate actions."]
+
+type PrePayment extends PaymentBase:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "A type for defining PrePayment."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A type for defining PrePayment."]
+
+    payerPartyReference PartyReference (1..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A reference to the party responsible for making the payments defined by this structure."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A reference to the party responsible for making the payments defined by this structure."]
+    payerAccountReference AccountReference (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A reference to the account responsible for making the payments defined by this structure."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A reference to the account responsible for making the payments defined by this structure."]
+    receiverPartyReference PartyReference (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A reference to the party that receives the payments corresponding to this structure."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A reference to the party that receives the payments corresponding to this structure."]
+    receiverAccountReference AccountReference (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A reference to the account that receives the payments corresponding to this structure."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A reference to the account that receives the payments corresponding to this structure."]
+    prePayment boolean (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
+    prePaymentAmount NonNegativeMoney (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
+    prePaymentDate AdjustableDate (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]

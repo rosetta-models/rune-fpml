@@ -5,341 +5,255 @@
       "value" : "123",
       "messageIdScheme" : "http://www.fpml.org/msg-id"
     },
-    "messageHeaderModel" : {
-      "sentBy" : {
-        "value" : "BIC1"
-      },
-      "sendTo" : [ {
-        "value" : "BIC16C"
-      } ],
-      "creationTimestamp" : "2009-01-27T15:38:00Z"
-    }
+    "sentBy" : {
+      "value" : "BIC1"
+    },
+    "sendTo" : [ {
+      "value" : "BIC16C"
+    } ],
+    "creationTimestamp" : "2009-01-27T15:38:00Z"
   },
   "isCorrection" : false,
-  "correlationAndSequenceModel" : {
-    "correlationModel" : {
-      "correlationIdModel" : {
-        "correlationId" : [ {
-          "value" : "CW/2009/01/27/123",
-          "correlationIdScheme" : "http://www.example.com/conversationId"
-        } ]
+  "correlationId" : [ {
+    "value" : "CW/2009/01/27/123",
+    "correlationIdScheme" : "http://www.example.com/conversationId"
+  } ],
+  "sequenceNumber" : 1,
+  "trade" : {
+    "tradeHeader" : {
+      "partyTradeIdentifier" : [ {
+        "tradeId" : {
+          "value" : "166555",
+          "tradeIdScheme" : "http://www.swapswire.com/spec/2001/trade-id-1-0"
+        },
+        "partyReference" : {
+          "href" : "partyA"
+        }
+      }, {
+        "tradeId" : {
+          "value" : "166555",
+          "tradeIdScheme" : "http://www.swapswire.com/spec/2001/trade-id-1-0"
+        },
+        "partyReference" : {
+          "href" : "partyB"
+        }
+      } ],
+      "tradeDate" : {
+        "value" : "2009-01-27T00:00:00Z"
       }
     },
-    "sequenceModel" : {
-      "sequenceNumber" : 1
-    }
-  },
-  "tradingAndPostTradeEventsModel" : {
-    "tradingEventsBaseModel" : {
-      "tradingEventsBaseModelSequence" : {
-        "trade" : {
-          "tradeHeader" : {
-            "tradeIdentifiersModel" : {
-              "partyTradeIdentifier" : [ {
-                "issuerTradeIdModel" : {
-                  "tradeId" : {
-                    "value" : "166555",
-                    "tradeIdScheme" : "http://www.swapswire.com/spec/2001/trade-id-1-0"
-                  }
-                },
-                "tradeIdentifierSequence" : {
-                  "partyAndAccountReferencesModel" : {
-                    "partyReference" : {
-                      "href" : "partyA"
-                    }
-                  },
-                  "tradeIdentifierSequenceChoice" : [ {
-                    "tradeId" : {
-                      "value" : "166555",
-                      "tradeIdScheme" : "http://www.swapswire.com/spec/2001/trade-id-1-0"
-                    }
-                  } ]
-                }
-              }, {
-                "issuerTradeIdModel" : {
-                  "tradeId" : {
-                    "value" : "166555",
-                    "tradeIdScheme" : "http://www.swapswire.com/spec/2001/trade-id-1-0"
-                  }
-                },
-                "tradeIdentifierSequence" : {
-                  "partyAndAccountReferencesModel" : {
-                    "partyReference" : {
-                      "href" : "partyB"
-                    }
-                  },
-                  "tradeIdentifierSequenceChoice" : [ {
-                    "tradeId" : {
-                      "value" : "166555",
-                      "tradeIdScheme" : "http://www.swapswire.com/spec/2001/trade-id-1-0"
-                    }
-                  } ]
-                }
-              } ]
-            },
-            "tradeDate" : {
-              "value" : "2009-01-27T00:00:00Z"
+    "product" : {
+      "buyerPartyReference" : {
+        "href" : "partyA"
+      },
+      "sellerPartyReference" : {
+        "href" : "partyB"
+      },
+      "optionType" : "Call",
+      "equityPremium" : {
+        "payerPartyReference" : {
+          "href" : "partyA"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyB"
+        },
+        "paymentAmount" : {
+          "currency" : {
+            "value" : "GBP"
+          },
+          "amount" : 1500000
+        },
+        "paymentDate" : {
+          "unadjustedDate" : {
+            "value" : "2009-01-29T00:00:00Z"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NotApplicable"
+          }
+        }
+      },
+      "equityExercise" : {
+        "equityEuropeanExercise" : {
+          "expirationDate" : {
+            "adjustableDate" : {
+              "unadjustedDate" : {
+                "value" : "2015-03-20T00:00:00Z"
+              },
+              "dateAdjustments" : {
+                "businessDayConvention" : "NotApplicable"
+              }
             }
           },
-          "product" : {
-            "buyerSellerModel" : {
-              "buyerPartyReference" : {
-                "href" : "partyA"
-              },
-              "sellerPartyReference" : {
-                "href" : "partyB"
-              }
-            },
-            "optionType" : "Call",
-            "equityPremium" : {
-              "payerReceiverModel" : {
-                "payerModel" : {
-                  "payerPartyReference" : {
-                    "href" : "partyA"
-                  }
-                },
-                "receiverModel" : {
-                  "receiverPartyReference" : {
-                    "href" : "partyB"
-                  }
-                }
-              },
-              "paymentAmount" : {
+          "equityExpirationTimeType" : "OSP"
+        },
+        "automaticExercise" : true,
+        "equityValuation" : {
+          "id" : "valuationDate",
+          "futuresPriceValuation" : true
+        },
+        "settlementCurrency" : {
+          "value" : "USD"
+        },
+        "settlementType" : "Cash"
+      },
+      "dividendSwapTransactionSupplement" : {
+        "dividendLeg" : {
+          "payerPartyReference" : {
+            "href" : "partyA"
+          },
+          "receiverPartyReference" : {
+            "href" : "partyB"
+          },
+          "underlyer" : {
+            "singleUnderlyer" : {
+              "underlyingAsset" : {
+                "instrumentId" : [ {
+                  "value" : ".FCHI",
+                  "instrumentIdScheme" : "http://example.com/instrumentId"
+                } ],
+                "description" : "France CAC 40 Index",
                 "currency" : {
-                  "value" : "GBP"
+                  "value" : "EUR"
                 },
-                "amount" : 1500000
+                "exchangeId" : {
+                  "value" : "XPAR"
+                },
+                "relatedExchangeId" : [ {
+                  "value" : "XMAT"
+                }, {
+                  "value" : "XMON"
+                } ]
               },
-              "paymentDate" : {
-                "unadjustedDate" : {
-                  "value" : "2009-01-29T00:00:00Z"
-                },
-                "dateAdjustments" : {
-                  "businessDayConvention" : "NotApplicable"
-                }
+              "openUnits" : 1000
+            }
+          },
+          "settlementType" : "Cash",
+          "settlementCurrency" : {
+            "value" : "USD"
+          },
+          "declaredCashDividendPercentage" : 1.0,
+          "declaredCashEquivalentDividendPercentage" : 1.0,
+          "dividendPeriod" : [ {
+            "id" : "d1",
+            "unadjustedStartDate" : {
+              "value" : "2010-12-20T00:00:00Z"
+            },
+            "unadjustedEndDate" : {
+              "value" : "2011-12-19T00:00:00Z",
+              "id" : "e1"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "FOLLOWING",
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "EUTA"
+                } ]
               }
             },
-            "equityExercise" : {
-              "equityEuropeanExercise" : {
-                "expirationDate" : {
-                  "adjustableDate" : {
-                    "unadjustedDate" : {
-                      "value" : "2015-03-20T00:00:00Z"
-                    },
-                    "dateAdjustments" : {
-                      "businessDayConvention" : "NotApplicable"
-                    }
-                  }
-                },
-                "equityExpirationModel" : {
-                  "equityExpirationModelSequence" : {
-                    "equityExpirationTimeType" : "OSP"
-                  }
+            "fixedStrike" : 0.045,
+            "paymentDate" : {
+              "id" : "p1",
+              "relativeDate" : {
+                "periodMultiplier" : 3,
+                "period" : "D",
+                "dayType" : "Calendar",
+                "businessDayConvention" : "FOLLOWING",
+                "dateRelativeTo" : {
+                  "href" : "e1"
                 }
-              },
-              "equityExerciseValuationSettlementSequence" : {
-                "automaticExercise" : true
-              },
-              "equityValuation" : {
-                "futuresPriceValuation" : true,
-                "id" : "valuationDate"
-              },
-              "settlementCurrency" : {
-                "value" : "USD"
-              },
-              "settlementType" : "Cash"
-            },
-            "dividendSwapTransactionSupplement" : {
-              "dividendLeg" : {
-                "payerReceiverModel" : {
-                  "payerModel" : {
-                    "payerPartyReference" : {
-                      "href" : "partyA"
-                    }
-                  },
-                  "receiverModel" : {
-                    "receiverPartyReference" : {
-                      "href" : "partyB"
-                    }
-                  }
-                },
-                "underlyer" : {
-                  "singleUnderlyer" : {
-                    "underlyingAsset" : {
-                      "instrumentId" : [ {
-                        "value" : ".FCHI",
-                        "instrumentIdScheme" : "http://example.com/instrumentId"
-                      } ],
-                      "description" : "France CAC 40 Index",
-                      "currency" : {
-                        "value" : "EUR"
-                      },
-                      "exchangeId" : {
-                        "value" : "XPAR"
-                      },
-                      "exchangeIdentifierModel" : {
-                        "relatedExchangeId" : [ {
-                          "value" : "XMAT"
-                        }, {
-                          "value" : "XMON"
-                        } ]
-                      }
-                    },
-                    "openUnits" : 1000
-                  }
-                },
-                "optionSettlementModel" : {
-                  "settlementType" : "Cash",
-                  "settlementAmountOrCurrencyModel" : {
-                    "settlementCurrency" : {
-                      "value" : "USD"
-                    }
-                  }
-                },
-                "declaredCashAndCashEquivalentDividendPercentageModel" : {
-                  "declaredCashDividendPercentage" : 1.0,
-                  "declaredCashEquivalentDividendPercentage" : 1.0
-                },
-                "dividendPeriod" : [ {
-                  "unadjustedStartDate" : {
-                    "value" : "2010-12-20T00:00:00Z"
-                  },
-                  "unadjustedEndDate" : {
-                    "value" : "2011-12-19T00:00:00Z",
-                    "id" : "e1"
-                  },
-                  "dateAdjustments" : {
-                    "businessDayConvention" : "FOLLOWING",
-                    "businessCentersOrReferenceModel" : {
-                      "businessCenters" : {
-                        "businessCenter" : [ {
-                          "value" : "EUTA"
-                        } ]
-                      }
-                    }
-                  },
-                  "id" : "d1",
-                  "fixedStrike" : 0.045,
-                  "paymentDate" : {
-                    "relativeDate" : {
-                      "periodMultiplier" : 3,
-                      "period" : "D",
-                      "dayType" : "Calendar",
-                      "businessDayConvention" : "FOLLOWING",
-                      "dateRelativeTo" : {
-                        "href" : "e1"
-                      }
-                    },
-                    "id" : "p1"
-                  }
-                }, {
-                  "unadjustedStartDate" : {
-                    "value" : "2011-12-20T00:00:00Z"
-                  },
-                  "unadjustedEndDate" : {
-                    "value" : "2012-12-19T00:00:00Z",
-                    "id" : "e2"
-                  },
-                  "dateAdjustments" : {
-                    "businessDayConvention" : "FOLLOWING",
-                    "businessCentersOrReferenceModel" : {
-                      "businessCenters" : {
-                        "businessCenter" : [ {
-                          "value" : "EUTA"
-                        } ]
-                      }
-                    }
-                  },
-                  "id" : "d2",
-                  "fixedStrike" : 0.045,
-                  "paymentDate" : {
-                    "relativeDate" : {
-                      "periodMultiplier" : 3,
-                      "period" : "D",
-                      "dayType" : "Calendar",
-                      "businessDayConvention" : "FOLLOWING",
-                      "dateRelativeTo" : {
-                        "href" : "e2"
-                      }
-                    },
-                    "id" : "p2"
-                  }
-                } ]
-              },
-              "fixedLeg" : {
-                "payerReceiverModel" : {
-                  "payerModel" : {
-                    "payerPartyReference" : {
-                      "href" : "partyB"
-                    }
-                  },
-                  "receiverModel" : {
-                    "receiverPartyReference" : {
-                      "href" : "partyA"
-                    }
-                  }
-                },
-                "fixedPayment" : [ {
-                  "paymentAmount" : {
-                    "currency" : {
-                      "value" : "USD"
-                    },
-                    "amount" : 50000
-                  },
-                  "paymentDate" : {
-                    "periodMultiplier" : 0,
-                    "period" : "D",
-                    "businessDayConvention" : "NONE",
-                    "dateRelativeTo" : {
-                      "href" : "p1"
-                    }
-                  }
-                }, {
-                  "paymentAmount" : {
-                    "currency" : {
-                      "value" : "USD"
-                    },
-                    "amount" : 56000
-                  },
-                  "paymentDate" : {
-                    "periodMultiplier" : 0,
-                    "period" : "D",
-                    "businessDayConvention" : "NONE",
-                    "dateRelativeTo" : {
-                      "href" : "p1"
-                    }
-                  }
-                } ]
               }
             }
-          }
+          }, {
+            "id" : "d2",
+            "unadjustedStartDate" : {
+              "value" : "2011-12-20T00:00:00Z"
+            },
+            "unadjustedEndDate" : {
+              "value" : "2012-12-19T00:00:00Z",
+              "id" : "e2"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "FOLLOWING",
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "EUTA"
+                } ]
+              }
+            },
+            "fixedStrike" : 0.045,
+            "paymentDate" : {
+              "id" : "p2",
+              "relativeDate" : {
+                "periodMultiplier" : 3,
+                "period" : "D",
+                "dayType" : "Calendar",
+                "businessDayConvention" : "FOLLOWING",
+                "dateRelativeTo" : {
+                  "href" : "e2"
+                }
+              }
+            }
+          } ]
+        },
+        "fixedLeg" : {
+          "payerPartyReference" : {
+            "href" : "partyB"
+          },
+          "receiverPartyReference" : {
+            "href" : "partyA"
+          },
+          "fixedPayment" : [ {
+            "paymentAmount" : {
+              "currency" : {
+                "value" : "USD"
+              },
+              "amount" : 50000
+            },
+            "paymentDate" : {
+              "periodMultiplier" : 0,
+              "period" : "D",
+              "businessDayConvention" : "NONE",
+              "dateRelativeTo" : {
+                "href" : "p1"
+              }
+            }
+          }, {
+            "paymentAmount" : {
+              "currency" : {
+                "value" : "USD"
+              },
+              "amount" : 56000
+            },
+            "paymentDate" : {
+              "periodMultiplier" : 0,
+              "period" : "D",
+              "businessDayConvention" : "NONE",
+              "dateRelativeTo" : {
+                "href" : "p1"
+              }
+            }
+          } ]
         }
       }
     }
   },
-  "partiesAndAccountsModel" : {
-    "party" : [ {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "ABC1",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
-        } ],
-        "partyName" : {
-          "value" : "SwapsWire Ltd (LE)"
-        }
-      },
-      "id" : "partyA"
-    }, {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "ABC6",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
-        } ],
-        "partyName" : {
-          "value" : "Rusty"
-        }
-      },
-      "id" : "partyB"
-    } ]
-  }
+  "party" : [ {
+    "id" : "partyA",
+    "partyId" : [ {
+      "value" : "ABC1",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
+    } ],
+    "partyName" : {
+      "value" : "SwapsWire Ltd (LE)"
+    }
+  }, {
+    "id" : "partyB",
+    "partyId" : [ {
+      "value" : "ABC6",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
+    } ],
+    "partyName" : {
+      "value" : "Rusty"
+    }
+  } ]
 }

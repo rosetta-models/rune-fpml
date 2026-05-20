@@ -1,384 +1,1355 @@
 namespace fpml.consolidated.confirmation.processes : < "fpml definition" >
 version "${project.version}"
 
-type RequestExecution extends fpml.consolidated.msg.CorrectableRequestMessage: <"A message requesting that an order be executed.">
+import fpml.consolidated.*
+import fpml.consolidated.asset.*
+import fpml.consolidated.business.events.*
+import fpml.consolidated.doc.*
+import fpml.consolidated.msg.*
+import fpml.consolidated.reg.fpmlreporting.shared.*
+import fpml.consolidated.shared.*
+
+type RequestExecution extends CorrectableRequestMessage:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A message requesting that an order be executed."]
 
-    tradingEventsModel fpml.consolidated.business.events.TradingEventsModel (0..1)
-    optionExercise fpml.consolidated.business.events.OptionExercise (0..1) <"A structure describing an option exercise event. The optionExercise event supports partial exercise (specify the number of options or amount to exercise), full exercise (use fullExercise flag), as well as the option to request options not to be exercised.">
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (1..1)
+    tradePackage TradePackage (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    originatingEvent OriginatingEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    trade Trade (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    additionalEvent AdditionalEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    optionExercise OptionExercise (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A structure describing an option exercise event. The optionExercise event supports partial exercise (specify the number of options or amount to exercise), full exercise (use fullExercise flag), as well as the option to request options not to be exercised."]
+    party Party (1..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document."]
+    account Account (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Optional account information used to precisely define the origination and destination of financial instruments."]
 
-type RequestExecutionRetracted extends fpml.consolidated.msg.NonCorrectableRequestMessage: <"A message withdrawing a request that an order be executed.">
+    condition Choice:
+        if tradePackage exists
+        then originatingEvent is absent
+                and trade is absent
+                and additionalEvent is absent
+                and optionExercise is absent
+        else if trade exists
+        then tradePackage is absent
+                and additionalEvent is absent
+                and optionExercise is absent
+        else if additionalEvent exists
+        then tradePackage is absent
+                and trade is absent
+                and originatingEvent is absent
+                and optionExercise is absent
+        else if optionExercise exists
+        then tradePackage is absent
+                and trade is absent
+                and additionalEvent is absent
+                and originatingEvent is absent
+        else False
+
+type RequestExecutionRetracted extends NonCorrectableRequestMessage:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A message withdrawing a request that an order be executed."]
 
-    tradingEventsModel fpml.consolidated.business.events.TradingEventsModel (0..1)
-    optionExercise fpml.consolidated.business.events.OptionExercise (0..1) <"A structure describing an option exercise event. The optionExercise event supports partial exercise (specify the number of options or amount to exercise), full exercise (use fullExercise flag), as well as the option to request options not to be exercised.">
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+    tradePackage TradePackage (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    originatingEvent OriginatingEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    trade Trade (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    additionalEvent AdditionalEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    optionExercise OptionExercise (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A structure describing an option exercise event. The optionExercise event supports partial exercise (specify the number of options or amount to exercise), full exercise (use fullExercise flag), as well as the option to request options not to be exercised."]
+    party Party (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document."]
+    account Account (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Optional account information used to precisely define the origination and destination of financial instruments."]
 
-type ExecutionNotification extends fpml.consolidated.msg.CorrectableRequestMessage: <"A message notifying a party that a trade execution has occurred. (Typically this is sent by an execution platform to a participant.)">
+    condition Choice:
+        if trade exists
+        then tradePackage is absent
+                and additionalEvent is absent
+                and optionExercise is absent
+        else if additionalEvent exists
+        then trade is absent
+                and tradePackage is absent
+                and originatingEvent is absent
+                and optionExercise is absent
+        else if optionExercise exists
+        then trade is absent
+                and additionalEvent is absent
+                and tradePackage is absent
+                and originatingEvent is absent
+        else trade is absent
+            and additionalEvent is absent
+            and optionExercise is absent
+            and originatingEvent is absent
+
+type ExecutionNotification extends CorrectableRequestMessage:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A message notifying a party that a trade execution has occurred. (Typically this is sent by an execution platform to a participant.)"]
 
-    tradingEventsBaseModel fpml.consolidated.business.events.TradingEventsBaseModel (0..1)
-    amendment fpml.consolidated.business.events.TradeAmendmentContent (0..1)
-    optionsEventsBaseModel fpml.consolidated.business.events.OptionsEventsBaseModel (0..1)
-    additionalEvent fpml.consolidated.business.events.AdditionalEvent (0..1)
-    eventValuationModel fpml.consolidated.business.events.EventValuationModel (0..1)
-    collateralization fpml.consolidated.reg.fpmlreporting.shared.RegulatoryReportingCollateralization (0..2) <"Collateralization block, that holds Regulator specific requirement about the trades\' collateralization, is added here to accommodate a technical implementation of SFTR. The change aligns with the established principle that the content in recordkeeping view is now also available in the confirmation view for both functional and technical reasons. The appropriate place for this information is \'regulatoryDisclosure\' and \'nonpublicExecutionReport\' messages in the Recordkeeping view.">
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (1..1)
+    tradePackage TradePackage (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    originatingEvent OriginatingEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    trade Trade (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    amendment TradeAmendmentContent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    optionExercise OptionExercise (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A structure describing an option exercise event. The optionExercise event supports partial exercise (specify the number of options or amount to exercise), full exercise (use fullExercise flag), as well as the option to request options not to be exercised."]
+    optionExpiry OptionExpiry (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A structure describing an option expiring event (i.e. passing its last exercise time and becoming worthless.)"]
+    optionEvent OptionEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A structure describing knock in, knock out, touch and no touch events."]
+    additionalEvent AdditionalEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    quote BasicQuotation (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Pricing information for the trade."]
+    collateralization RegulatoryReportingCollateralization (0..2)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Collateralization block, that holds Regulator specific requirement about the trades\' collateralization, is added here to accommodate a technical implementation of SFTR. The change aligns with the established principle that the content in recordkeeping view is now also available in the confirmation view for both functional and technical reasons. The appropriate place for this information is \'regulatoryDisclosure\' and \'nonpublicExecutionReport\' messages in the Recordkeeping view."]
+    party Party (1..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document."]
+    account Account (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Optional account information used to precisely define the origination and destination of financial instruments."]
 
-type ExecutionRetracted extends fpml.consolidated.msg.NonCorrectableRequestMessage: <"A message retracting a notification to a party that a trade execution has occurred. (Typically this is sent by an execution platform to a participant.)">
+    condition Choice:
+        if tradePackage exists
+        then originatingEvent is absent
+                and trade is absent
+                and amendment is absent
+                and optionExercise is absent
+                and optionExpiry is absent
+                and optionEvent is absent
+                and additionalEvent is absent
+        else if trade exists
+        then tradePackage is absent
+                and amendment is absent
+                and optionExercise is absent
+                and optionExpiry is absent
+                and optionEvent is absent
+                and additionalEvent is absent
+        else if amendment exists
+        then tradePackage is absent
+                and trade is absent
+                and originatingEvent is absent
+                and optionExercise is absent
+                and optionExpiry is absent
+                and optionEvent is absent
+                and additionalEvent is absent
+        else if optionExercise exists
+        then tradePackage is absent
+                and trade is absent
+                and amendment is absent
+                and optionExpiry is absent
+                and optionEvent is absent
+                and originatingEvent is absent
+                and additionalEvent is absent
+        else if optionExpiry exists
+        then tradePackage is absent
+                and trade is absent
+                and amendment is absent
+                and optionExercise is absent
+                and optionEvent is absent
+                and originatingEvent is absent
+                and additionalEvent is absent
+        else if optionEvent exists
+        then tradePackage is absent
+                and trade is absent
+                and amendment is absent
+                and optionExercise is absent
+                and optionExpiry is absent
+                and originatingEvent is absent
+                and additionalEvent is absent
+        else if additionalEvent exists
+        then tradePackage is absent
+                and trade is absent
+                and amendment is absent
+                and optionExercise is absent
+                and optionExpiry is absent
+                and optionEvent is absent
+                and originatingEvent is absent
+        else False
+
+type ExecutionRetracted extends NonCorrectableRequestMessage:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A message retracting a notification to a party that a trade execution has occurred. (Typically this is sent by an execution platform to a participant.)"]
 
-    tradingEventsModel fpml.consolidated.business.events.TradingEventsModel (0..1)
-    optionExercise fpml.consolidated.business.events.OptionExercise (0..1) <"A structure describing an option exercise event. The optionExercise event supports partial exercise (specify the number of options or amount to exercise), full exercise (use fullExercise flag), as well as the option to request options not to be exercised.">
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+    tradePackage TradePackage (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    originatingEvent OriginatingEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    trade Trade (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    additionalEvent AdditionalEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    optionExercise OptionExercise (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A structure describing an option exercise event. The optionExercise event supports partial exercise (specify the number of options or amount to exercise), full exercise (use fullExercise flag), as well as the option to request options not to be exercised."]
+    party Party (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document."]
+    account Account (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Optional account information used to precisely define the origination and destination of financial instruments."]
+
+    condition Choice:
+        if trade exists
+        then tradePackage is absent
+                and additionalEvent is absent
+                and optionExercise is absent
+        else if additionalEvent exists
+        then trade is absent
+                and tradePackage is absent
+                and originatingEvent is absent
+                and optionExercise is absent
+        else if optionExercise exists
+        then trade is absent
+                and additionalEvent is absent
+                and tradePackage is absent
+                and originatingEvent is absent
+        else trade is absent
+            and additionalEvent is absent
+            and optionExercise is absent
+            and originatingEvent is absent
 
 type ExecutionAcknowledgement extends EventRequestAcknowledgement:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
-type ExecutionException extends fpml.consolidated.msg.Exception:
+type ExecutionException extends Exception:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
-type ExecutionAdvice extends fpml.consolidated.msg.CorrectableRequestMessage: <"A message advising a third party that a trade execution has occurred.">
+type ExecutionAdvice extends CorrectableRequestMessage:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A message advising a third party that a trade execution has occurred."]
 
-    productType fpml.consolidated.shared.ProductType (0..1)
-    tradingEventsBaseModel fpml.consolidated.business.events.TradingEventsBaseModel (0..1)
-    postTradeEventsBaseModel fpml.consolidated.business.events.PostTradeEventsBaseModel (0..1)
-    changeEventsBaseModel fpml.consolidated.business.events.ChangeEventsBaseModel (0..1)
-    optionsEventsBaseModel fpml.consolidated.business.events.OptionsEventsBaseModel (0..1)
-    additionalEvent fpml.consolidated.business.events.AdditionalEvent (0..1)
-    eventValuationModel fpml.consolidated.business.events.EventValuationModel (0..1)
-    collateralization fpml.consolidated.reg.fpmlreporting.shared.RegulatoryReportingCollateralization (0..2) <"Collateralization block, that holds Regulator specific requirement about the trades\' collateralization, is added here to accommodate a technical implementation of SFTR. The change aligns with the established principle that the content in recordkeeping view is now also available in the confirmation view for both functional and technical reasons. The appropriate place for this information is \'regulatoryDisclosure\' and \'nonpublicExecutionReport\' messages in the Recordkeeping view.">
-    paymentDetails fpml.consolidated.shared.PaymentDetails (0..*) <"Details of the payments, like amount breakdowns, settlement information.">
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (1..1)
+    productType ProductType (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    tradePackage TradePackage (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    originatingEvent OriginatingEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    trade Trade (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    amendment TradeAmendmentContent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    increase TradeNotionalChange (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    terminatingEvent TerminatingEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "This may be used to describe why a trade was terminated."]
+    termination TradeNotionalChange (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    novation TradeNovationContent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    withdrawal Withdrawal (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    observation ObservationEvent (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    reset ResetEvent (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    change TradeChangeContent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    optionExercise OptionExercise (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A structure describing an option exercise event. The optionExercise event supports partial exercise (specify the number of options or amount to exercise), full exercise (use fullExercise flag), as well as the option to request options not to be exercised."]
+    optionExpiry OptionExpiry (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A structure describing an option expiring event (i.e. passing its last exercise time and becoming worthless.)"]
+    optionEvent OptionEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A structure describing knock in, knock out, touch and no touch events."]
+    additionalEvent AdditionalEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    quote BasicQuotation (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Pricing information for the trade."]
+    collateralization RegulatoryReportingCollateralization (0..2)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Collateralization block, that holds Regulator specific requirement about the trades\' collateralization, is added here to accommodate a technical implementation of SFTR. The change aligns with the established principle that the content in recordkeeping view is now also available in the confirmation view for both functional and technical reasons. The appropriate place for this information is \'regulatoryDisclosure\' and \'nonpublicExecutionReport\' messages in the Recordkeeping view."]
+    paymentDetails PaymentDetails (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Details of the payments, like amount breakdowns, settlement information."]
+    party Party (1..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document."]
+    account Account (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Optional account information used to precisely define the origination and destination of financial instruments."]
 
-type ExecutionAdviceRetracted extends fpml.consolidated.msg.NonCorrectableRequestMessage: <"A message that withdraws an advice to a third party that a trade execution has occurred.">
+type ExecutionAdviceRetracted extends NonCorrectableRequestMessage:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A message that withdraws an advice to a third party that a trade execution has occurred."]
 
-    tradingEventsBaseModel fpml.consolidated.business.events.TradingEventsBaseModel (0..1)
-    postTradeEventsBaseModel fpml.consolidated.business.events.PostTradeEventsBaseModel (0..1)
-    changeEventsBaseModel fpml.consolidated.business.events.ChangeEventsBaseModel (0..1)
-    optionsEventsBaseModel fpml.consolidated.business.events.OptionsEventsBaseModel (0..1)
-    additionalEvent fpml.consolidated.business.events.AdditionalEvent (0..1)
-    collateralization fpml.consolidated.reg.fpmlreporting.shared.RegulatoryReportingCollateralization (0..2)
-    paymentDetails fpml.consolidated.shared.PaymentDetails (0..*) <"Details of the payments, like amount breakdowns, settlement information.">
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+    tradePackage TradePackage (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    originatingEvent OriginatingEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    trade Trade (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    amendment TradeAmendmentContent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    increase TradeNotionalChange (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    terminatingEvent TerminatingEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "This may be used to describe why a trade was terminated."]
+    termination TradeNotionalChange (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    novation TradeNovationContent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    withdrawal Withdrawal (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    observation ObservationEvent (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    reset ResetEvent (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    change TradeChangeContent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    optionExercise OptionExercise (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A structure describing an option exercise event. The optionExercise event supports partial exercise (specify the number of options or amount to exercise), full exercise (use fullExercise flag), as well as the option to request options not to be exercised."]
+    optionExpiry OptionExpiry (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A structure describing an option expiring event (i.e. passing its last exercise time and becoming worthless.)"]
+    optionEvent OptionEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A structure describing knock in, knock out, touch and no touch events."]
+    additionalEvent AdditionalEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    collateralization RegulatoryReportingCollateralization (0..2)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    paymentDetails PaymentDetails (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Details of the payments, like amount breakdowns, settlement information."]
+    party Party (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document."]
+    account Account (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Optional account information used to precisely define the origination and destination of financial instruments."]
 
 type ExecutionAdviceAcknowledgement extends EventRequestAcknowledgement:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
-type ExecutionAdviceException extends fpml.consolidated.msg.Exception:
+type ExecutionAdviceException extends Exception:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
-type MaturityNotification extends fpml.consolidated.msg.CorrectableRequestMessage: <"A message used to notify another party that a trade has matured. This can be used to report, for example, that a swap has passed its final payment and can be removed, or that an option has expired without being executed.">
+type MaturityNotification extends CorrectableRequestMessage:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A message used to notify another party that a trade has matured. This can be used to report, for example, that a swap has passed its final payment and can be removed, or that an option has expired without being executed."]
 
-    optionExpiry fpml.consolidated.business.events.OptionExpiryBase (0..1)
-    tradeMaturity fpml.consolidated.business.events.TradeMaturity (0..1)
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (1..1)
+    optionExpiry OptionExpiryBase (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    tradeMaturity TradeMaturity (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    party Party (1..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document."]
+    account Account (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Optional account information used to precisely define the origination and destination of financial instruments."]
+
+    condition Choice:
+        required choice optionExpiry, tradeMaturity
 
 type MaturityAcknowledgement extends EventRequestAcknowledgement:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
-type MaturityException extends fpml.consolidated.msg.Exception:
+type MaturityException extends Exception:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
-type RequestTradeReferenceInformationUpdate extends fpml.consolidated.msg.CorrectableRequestMessage: <"Defines the structure for a message requesting information updates to a trade. The trade reference information should contain at least one trade identifier that the recipient is aware of.">
+type RequestTradeReferenceInformationUpdate extends CorrectableRequestMessage:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "Defines the structure for a message requesting information updates to a trade. The trade reference information should contain at least one trade identifier that the recipient is aware of."]
 
-    tradeReferenceInformationModel fpml.consolidated.business.events.TradeReferenceInformationModel (1..1)
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (1..1)
+    tradeReferenceInformation TradeReferenceInformation (1..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Information about a trade."]
+    party Party (1..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document."]
+    account Account (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Optional account information used to precisely define the origination and destination of financial instruments."]
 
-type RequestTradeReferenceInformationUpdateRetracted extends fpml.consolidated.msg.NonCorrectableRequestMessage: <"Defines the structure for a message retracting a request to updated information about trade.">
+type RequestTradeReferenceInformationUpdateRetracted extends NonCorrectableRequestMessage:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "Defines the structure for a message retracting a request to updated information about trade."]
 
-    tradeReferenceInformationModel fpml.consolidated.business.events.TradeReferenceInformationModel (1..1)
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+    tradeReferenceInformation TradeReferenceInformation (1..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Information about a trade."]
+    party Party (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document."]
+    account Account (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Optional account information used to precisely define the origination and destination of financial instruments."]
 
 type TradeReferenceInformationUpdateAcknowledgement extends EventRequestAcknowledgement:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
-type TradeReferenceInformationUpdateException extends fpml.consolidated.msg.Exception:
+type TradeReferenceInformationUpdateException extends Exception:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
-type TradeChangeAdvice extends fpml.consolidated.msg.CorrectableRequestMessage: <"Defines the structure for a message indicating that a trade is being changed due to a non-negotiated event.">
+type TradeChangeAdvice extends CorrectableRequestMessage:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "Defines the structure for a message indicating that a trade is being changed due to a non-negotiated event."]
 
-    change fpml.consolidated.business.events.TradeChangeContent (1..1) <"Describes the details of the change.">
-    eventValuationModel fpml.consolidated.business.events.EventValuationModel (0..1)
-    paymentDetails fpml.consolidated.shared.PaymentDetails (0..*) <"Details of the payments, like amount breakdowns, settlement information.">
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (1..1)
+    change TradeChangeContent (1..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Describes the details of the change."]
+    quote BasicQuotation (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Pricing information for the trade."]
+    paymentDetails PaymentDetails (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Details of the payments, like amount breakdowns, settlement information."]
+    party Party (1..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document."]
+    account Account (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Optional account information used to precisely define the origination and destination of financial instruments."]
 
-type TradeChangeAdviceRetracted extends fpml.consolidated.msg.NonCorrectableRequestMessage: <"Defines the structure for a message retracting a prior change advice.">
+type TradeChangeAdviceRetracted extends NonCorrectableRequestMessage:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "Defines the structure for a message retracting a prior change advice."]
 
-    tradeIdentifier fpml.consolidated.doc.PartyTradeIdentifier (1..*) <"The qualified identifiers of the subject trade.">
-    change fpml.consolidated.business.events.TradeChangeContent (0..1) <"Describes the details of the change being retracted.">
-    paymentDetails fpml.consolidated.shared.PaymentDetails (0..*) <"Details of the payments, like amount breakdowns, settlement information.">
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (1..1)
+    tradeIdentifier PartyTradeIdentifier (1..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The qualified identifiers of the subject trade."]
+    change TradeChangeContent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Describes the details of the change being retracted."]
+    paymentDetails PaymentDetails (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Details of the payments, like amount breakdowns, settlement information."]
+    party Party (1..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document."]
+    account Account (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Optional account information used to precisely define the origination and destination of financial instruments."]
 
 type TradeChangeAdviceAcknowledgement extends EventRequestAcknowledgement:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
-type TradeChangeAdviceException extends fpml.consolidated.msg.Exception:
+type TradeChangeAdviceException extends Exception:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
-type RequestConsent extends fpml.consolidated.msg.CorrectableRequestMessage: <"A message requesting that the sender be authorized by the recipient to peform an action.">
+type RequestConsent extends CorrectableRequestMessage:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A message requesting that the sender be authorized by the recipient to peform an action."]
 
-    requestedAction fpml.consolidated.shared.RequestedAction (0..1) <"The reason the consent was requested.">
-    ^type fpml.consolidated.doc.ApprovalType (0..1) <"The type of approval (e.g. \"pre-clearing credit\").">
-    approver fpml.consolidated.shared.PersonId (0..1) <"The full name or identifiying ID of the relevant approver.">
-    approvingPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A pointer style reference to a party defined elsewhere in the document. The party referenced needs to approve the specified item (e.g. trade or allocation).">
-    portfolioReferenceModel fpml.consolidated.msg.PortfolioReferenceModel (0..1)
-    compressionModel fpml.consolidated.business.events.CompressionModel (0..1)
-    tradingAndPostTradeEventsModel fpml.consolidated.business.events.TradingAndPostTradeEventsModel (0..1)
-    deClear fpml.consolidated.business.events.DeClear (0..1) <"A structure describing a declear event. The deClear event allows a firm to request that a trade be removed from clearing, or a clearing service to request consent for this, or to report that it has been done.">
-    eventValuationModel fpml.consolidated.business.events.EventValuationModel (0..1)
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (1..1)
+    requestedAction RequestedAction (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The reason the consent was requested."]
+    ^type ApprovalType (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The type of approval (e.g. \"pre-clearing credit\")."]
+    approver PersonId (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The full name or identifiying ID of the relevant approver."]
+    approvingPartyReference PartyReference (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A pointer style reference to a party defined elsewhere in the document. The party referenced needs to approve the specified item (e.g. trade or allocation)."]
+    portfolioReference PortfolioReference (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    compressionActivity CompressionActivity (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Compression information for the trade."]
+    tradePackage TradePackage (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    originatingEvent OriginatingEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    trade Trade (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    amendment TradeAmendmentContent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    increase TradeNotionalChange (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    terminatingEvent TerminatingEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "This may be used to describe why a trade was terminated."]
+    termination TradeNotionalChange (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    novation TradeNovationContent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    withdrawal Withdrawal (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    observation ObservationEvent (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    reset ResetEvent (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    additionalEvent AdditionalEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    deClear DeClear (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A structure describing a declear event. The deClear event allows a firm to request that a trade be removed from clearing, or a clearing service to request consent for this, or to report that it has been done."]
+    quote BasicQuotation (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Pricing information for the trade."]
+    party Party (1..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document."]
+    account Account (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Optional account information used to precisely define the origination and destination of financial instruments."]
 
-type RequestConsentRetracted extends fpml.consolidated.msg.NonCorrectableRequestMessage: <"A message withdrawing a request that the sender be authorized by the recipient to peform an action.">
+type RequestConsentRetracted extends NonCorrectableRequestMessage:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A message withdrawing a request that the sender be authorized by the recipient to peform an action."]
 
-    ^type fpml.consolidated.doc.ApprovalType (0..1) <"The type of approval (e.g. \"pre-clearing credit\").">
-    approver fpml.consolidated.shared.PersonId (0..1) <"The full name or identifiying ID of the relevant approver.">
-    approvingPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A pointer style reference to a party defined elsewhere in the document. The party referenced needs to approve the specified item (e.g. trade or allocation).">
-    tradingAndPostTradeEventsModel fpml.consolidated.business.events.TradingAndPostTradeEventsModel (0..1)
-    deClear fpml.consolidated.business.events.DeClear (0..1) <"A structure describing a declear event. The deClear event allows a firm to request that a trade be removed from clearing, or a clearing service to request consent for this, or to report that it has been done.">
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+    ^type ApprovalType (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The type of approval (e.g. \"pre-clearing credit\")."]
+    approver PersonId (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The full name or identifiying ID of the relevant approver."]
+    approvingPartyReference PartyReference (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A pointer style reference to a party defined elsewhere in the document. The party referenced needs to approve the specified item (e.g. trade or allocation)."]
+    tradePackage TradePackage (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    originatingEvent OriginatingEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    trade Trade (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    amendment TradeAmendmentContent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    increase TradeNotionalChange (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    terminatingEvent TerminatingEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "This may be used to describe why a trade was terminated."]
+    termination TradeNotionalChange (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    novation TradeNovationContent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    withdrawal Withdrawal (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    observation ObservationEvent (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    reset ResetEvent (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    additionalEvent AdditionalEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    deClear DeClear (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A structure describing a declear event. The deClear event allows a firm to request that a trade be removed from clearing, or a clearing service to request consent for this, or to report that it has been done."]
+    party Party (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document."]
+    account Account (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Optional account information used to precisely define the origination and destination of financial instruments."]
 
 type ConsentAcknowledgement extends EventRequestAcknowledgement:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
-type ConsentException extends fpml.consolidated.msg.Exception:
+type ConsentException extends Exception:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
-type ConsentGranted extends fpml.consolidated.msg.ResponseMessage: <"A message indicating that the sender grants consent for the recipient to perform the requested action.">
+type ConsentGranted extends ResponseMessage:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A message indicating that the sender grants consent for the recipient to perform the requested action."]
 
-    ^type fpml.consolidated.doc.ApprovalType (0..1) <"The type of approval (e.g. \"pre-clearing credit\").">
-    approver fpml.consolidated.shared.PersonId (0..1) <"The full name or identifiying ID of the relevant approver.">
-    approvingPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A pointer style reference to a party defined elsewhere in the document. The party referenced needs to approve the specified item (e.g. trade or allocation).">
-    approvalId fpml.consolidated.doc.ApprovalId (0..1) <"An identifer for a specific appoval, to allow the approval to be identified and tracked.">
-    portfolioReferenceBaseModel fpml.consolidated.msg.PortfolioReferenceBaseModel (0..1)
-    eventsOrInfoModel EventsOrInfoModel (0..1)
-    creditLimitInformation fpml.consolidated.business.events.CreditLimitInformation (0..*)
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+    ^type ApprovalType (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The type of approval (e.g. \"pre-clearing credit\")."]
+    approver PersonId (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The full name or identifiying ID of the relevant approver."]
+    approvingPartyReference PartyReference (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A pointer style reference to a party defined elsewhere in the document. The party referenced needs to approve the specified item (e.g. trade or allocation)."]
+    approvalId ApprovalId (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "An identifer for a specific appoval, to allow the approval to be identified and tracked."]
+    portfolioReference PortfolioReferenceBase (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    tradePackage TradePackage (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    originatingEvent OriginatingEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    trade Trade (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    amendment TradeAmendmentContent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    increase TradeNotionalChange (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    terminatingEvent TerminatingEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "This may be used to describe why a trade was terminated."]
+    termination TradeNotionalChange (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    novation TradeNovationContent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    withdrawal Withdrawal (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    observation ObservationEvent (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    reset ResetEvent (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    additionalEvent AdditionalEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    tradeReferenceInformation TradeReferenceInformation (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Information about a trade."]
+    creditLimitInformation CreditLimitInformation (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    party Party (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document."]
+    account Account (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Optional account information used to precisely define the origination and destination of financial instruments."]
 
-type ConsentRefused extends fpml.consolidated.msg.ResponseMessage: <"A message indicating that the sender does not grant consent for the recipient to perform the requested action.">
+type ConsentRefused extends ResponseMessage:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A message indicating that the sender does not grant consent for the recipient to perform the requested action."]
 
-    ^type fpml.consolidated.doc.ApprovalType (0..1) <"The type of approval (e.g. \"pre-clearing credit\").">
-    approver fpml.consolidated.shared.PersonId (0..1) <"The full name or identifiying ID of the relevant approver.">
-    approvingPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A pointer style reference to a party defined elsewhere in the document. The party referenced needs to approve the specified item (e.g. trade or allocation).">
-    portfolioReferenceBaseModel fpml.consolidated.msg.PortfolioReferenceBaseModel (0..1)
-    eventsOrInfoModel EventsOrInfoModel (0..1)
-    creditLimitInformation fpml.consolidated.business.events.CreditLimitInformation (0..*)
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
-    reason fpml.consolidated.doc.Reason (0..*)
+    ^type ApprovalType (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The type of approval (e.g. \"pre-clearing credit\")."]
+    approver PersonId (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The full name or identifiying ID of the relevant approver."]
+    approvingPartyReference PartyReference (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A pointer style reference to a party defined elsewhere in the document. The party referenced needs to approve the specified item (e.g. trade or allocation)."]
+    portfolioReference PortfolioReferenceBase (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    tradePackage TradePackage (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    originatingEvent OriginatingEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    trade Trade (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    amendment TradeAmendmentContent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    increase TradeNotionalChange (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    terminatingEvent TerminatingEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "This may be used to describe why a trade was terminated."]
+    termination TradeNotionalChange (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    novation TradeNovationContent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    withdrawal Withdrawal (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    observation ObservationEvent (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    reset ResetEvent (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    additionalEvent AdditionalEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    tradeReferenceInformation TradeReferenceInformation (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Information about a trade."]
+    creditLimitInformation CreditLimitInformation (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    party Party (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document."]
+    account Account (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Optional account information used to precisely define the origination and destination of financial instruments."]
+    reason Reason (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"]
 
-type ApprovalStatusNotification extends fpml.consolidated.msg.NotificationMessage: <"A message describing the approvals currently applied to the trade and their status (e.g. pending, approved, refused).">
+type ApprovalStatusNotification extends NotificationMessage:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A message describing the approvals currently applied to the trade and their status (e.g. pending, approved, refused)."]
 
-    trade fpml.consolidated.doc.Trade (0..1)
-    tradeIdentifier fpml.consolidated.doc.TradeIdentifier (0..1)
-    approvals fpml.consolidated.doc.Approvals (1..1) <"All of the approvals for a specific trade.">
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+    trade Trade (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    tradeIdentifier TradeIdentifier (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    approvals Approvals (1..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "All of the approvals for a specific trade."]
+    party Party (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document."]
+    account Account (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Optional account information used to precisely define the origination and destination of financial instruments."]
 
-type RequestConfirmation extends fpml.consolidated.msg.CorrectableRequestMessage: <"The confirmation process starts with the requestConfirmation message. The message may be used to request the confirmation of a new trade or any other event supported by FpML such as novation, terminations, amendments, etc. A message type defining the start of the confirmation process. The message may be used to request the confirmation of a new trade or any other event supported by FpML such as novation, terminations, amendments, etc.">
+    condition Choice:
+        required choice trade, tradeIdentifier
+
+type RequestConfirmation extends CorrectableRequestMessage:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A message type defining the start of the confirmation process. The message may be used to request the confirmation of a new trade or any other event supported by FpML such as novation, terminations, amendments, etc."]
 
-    tradingAndPostTradeEventsModel fpml.consolidated.business.events.TradingAndPostTradeEventsModel (0..1)
-    optionExercise fpml.consolidated.business.events.OptionExercise (0..1) <"A structure describing an option exercise event. The optionExercise event supports partial exercise (specify the number of options or amount to exercise), full exercise (use fullExercise flag), as well as the option to request options not to be exercised.">
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (1..1)
+    tradePackage TradePackage (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    originatingEvent OriginatingEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    trade Trade (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    amendment TradeAmendmentContent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    increase TradeNotionalChange (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    terminatingEvent TerminatingEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "This may be used to describe why a trade was terminated."]
+    termination TradeNotionalChange (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    novation TradeNovationContent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    withdrawal Withdrawal (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    observation ObservationEvent (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    reset ResetEvent (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    additionalEvent AdditionalEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    optionExercise OptionExercise (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A structure describing an option exercise event. The optionExercise event supports partial exercise (specify the number of options or amount to exercise), full exercise (use fullExercise flag), as well as the option to request options not to be exercised."]
+    party Party (1..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document."]
+    account Account (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Optional account information used to precisely define the origination and destination of financial instruments."]
 
-type RequestConfirmationRetracted extends ConfirmationRetracted: <"A requestConfirmation message may be cancelled using the requestConfirmationRetracted message.">
+type RequestConfirmationRetracted extends ConfirmationRetracted:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A requestConfirmation message may be cancelled using the requestConfirmationRetracted message."]
 
-type ConfirmationAcknowledgement extends EventRequestAcknowledgement: <"A business acknowledgement message to indicate that the previously sent message was sucessfully processed.">
+type ConfirmationAcknowledgement extends EventRequestAcknowledgement:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A business acknowledgement message to indicate that the previously sent message was sucessfully processed."]
 
-type ConfirmationException extends fpml.consolidated.msg.Exception: <"A message sent to inform another system that some exception has been detected.">
+type ConfirmationException extends Exception:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A message sent to inform another system that some exception has been detected."]
 
-type ConfirmationStatus extends fpml.consolidated.msg.ResponseMessage: <"The confirmationStatus message provides the status of the matching process: matched, mismatched, unmatched, or alleged. It may also provide the best fit trade(s) or event(s) as result of the matching process. Message for sending matching results. Response message that returns the status of an event that have been submitted for matching.">
+type ConfirmationStatus extends ResponseMessage:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "Message for sending matching results. Response message that returns the status of an event that have been submitted for matching."]
 
-    status fpml.consolidated.msg.EventStatus (1..1) <"Defines the confirmation status of a trade or post-trade event (e.g. Matched, Mismatched, Unmatched, Alleged).">
-    confirmationStatusSequence ConfirmationStatusSequence (0..1)
-    allegedEvent fpml.consolidated.business.events.EventsChoice (0..1) <"Event (trade post-trade event) asserted by the \"other side\'s\" party.">
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+    status EventStatus (1..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Defines the confirmation status of a trade or post-trade event (e.g. Matched, Mismatched, Unmatched, Alleged)."]
+    assertedEvent EventsChoice (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Event (trade or post-trade event) asserted by one of the parties."]
+    proposedMatch EventProposedMatch (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "\"Other side\'s\" event (trade or post-trade event) that meets the minimimum matching criteria and is proposed as match to the event that is being asserted."]
+    allegedEvent EventsChoice (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Event (trade post-trade event) asserted by the \"other side\'s\" party."]
+    party Party (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document."]
+    account Account (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Optional account information used to precisely define the origination and destination of financial instruments."]
 
-type ConfirmationAgreed extends fpml.consolidated.msg.ResponseMessage: <"The confirmationAgreed message is sent when the matching process returns a proposed match (trade or event) and the Confirmation Requester agrees with it. A message indicating that a confirmation has been agreed by a counterparty.">
+    condition Choice:
+        if assertedEvent exists
+        then allegedEvent is absent
+        else if allegedEvent exists
+        then assertedEvent is absent and proposedMatch is absent
+        else False
+
+type ConfirmationAgreed extends ResponseMessage:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A message indicating that a confirmation has been agreed by a counterparty."]
 
-    tradingEventsBaseModel fpml.consolidated.business.events.TradingEventsBaseModel (0..1)
-    postTradeEventsBaseModel fpml.consolidated.business.events.PostTradeEventsBaseModel (0..1)
-    changeEventsBaseModel fpml.consolidated.business.events.ChangeEventsBaseModel (0..1)
-    optionsEventsBaseModel fpml.consolidated.business.events.OptionsEventsBaseModel (0..1)
-    additionalEvent fpml.consolidated.business.events.AdditionalEvent (0..1)
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+    tradePackage TradePackage (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    originatingEvent OriginatingEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    trade Trade (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    amendment TradeAmendmentContent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    increase TradeNotionalChange (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    terminatingEvent TerminatingEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "This may be used to describe why a trade was terminated."]
+    termination TradeNotionalChange (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    novation TradeNovationContent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    withdrawal Withdrawal (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    observation ObservationEvent (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    reset ResetEvent (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    change TradeChangeContent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    optionExercise OptionExercise (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A structure describing an option exercise event. The optionExercise event supports partial exercise (specify the number of options or amount to exercise), full exercise (use fullExercise flag), as well as the option to request options not to be exercised."]
+    optionExpiry OptionExpiry (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A structure describing an option expiring event (i.e. passing its last exercise time and becoming worthless.)"]
+    optionEvent OptionEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A structure describing knock in, knock out, touch and no touch events."]
+    additionalEvent AdditionalEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    party Party (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document."]
+    account Account (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Optional account information used to precisely define the origination and destination of financial instruments."]
 
-type ConfirmationDisputed extends fpml.consolidated.msg.ResponseMessage: <"The confirmationDisputed message is sent when the matching process returns a proposed match (trade or event) and the Confirmation Requester disputes it. A message indicating that a confirmation has not been agreed by a counterparty.">
+type ConfirmationDisputed extends ResponseMessage:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A message indicating that a confirmation has not been agreed by a counterparty."]
 
-    tradingEventsBaseModel fpml.consolidated.business.events.TradingEventsBaseModel (0..1)
-    postTradeEventsBaseModel fpml.consolidated.business.events.PostTradeEventsBaseModel (0..1)
-    changeEventsBaseModel fpml.consolidated.business.events.ChangeEventsBaseModel (0..1)
-    optionsEventsBaseModel fpml.consolidated.business.events.OptionsEventsBaseModel (0..1)
-    additionalEvent fpml.consolidated.business.events.AdditionalEvent (0..1)
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
-    reason fpml.consolidated.doc.Reason (0..*)
+    tradePackage TradePackage (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    originatingEvent OriginatingEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    trade Trade (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    amendment TradeAmendmentContent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    increase TradeNotionalChange (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    terminatingEvent TerminatingEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "This may be used to describe why a trade was terminated."]
+    termination TradeNotionalChange (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    novation TradeNovationContent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    withdrawal Withdrawal (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    observation ObservationEvent (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    reset ResetEvent (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    change TradeChangeContent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    optionExercise OptionExercise (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A structure describing an option exercise event. The optionExercise event supports partial exercise (specify the number of options or amount to exercise), full exercise (use fullExercise flag), as well as the option to request options not to be exercised."]
+    optionExpiry OptionExpiry (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A structure describing an option expiring event (i.e. passing its last exercise time and becoming worthless.)"]
+    optionEvent OptionEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A structure describing knock in, knock out, touch and no touch events."]
+    additionalEvent AdditionalEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    party Party (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document."]
+    account Account (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Optional account information used to precisely define the origination and destination of financial instruments."]
+    reason Reason (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"]
 
-type RequestClearing extends fpml.consolidated.msg.CorrectableRequestMessage: <"A message requesting that a trade be cleared by a clearing service.">
+type RequestClearing extends CorrectableRequestMessage:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A message requesting that a trade be cleared by a clearing service."]
 
-    portfolioReferenceModel fpml.consolidated.msg.PortfolioReferenceModel (0..1)
-    tradingEventsModel fpml.consolidated.business.events.TradingEventsModel (0..1)
-    deClear fpml.consolidated.business.events.DeClear (0..1) <"A structure describing a declear event. The deClear event allows a firm to request that a trade be removed from clearing, or a clearing service to request consent for this, or to report that it has been done.">
-    eventValuationModel fpml.consolidated.business.events.EventValuationModel (0..1)
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (1..1)
+    portfolioReference PortfolioReference (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    tradePackage TradePackage (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    originatingEvent OriginatingEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    trade Trade (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    additionalEvent AdditionalEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    deClear DeClear (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A structure describing a declear event. The deClear event allows a firm to request that a trade be removed from clearing, or a clearing service to request consent for this, or to report that it has been done."]
+    quote BasicQuotation (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Pricing information for the trade."]
+    party Party (1..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document."]
+    account Account (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Optional account information used to precisely define the origination and destination of financial instruments."]
 
-type RequestClearingRetracted extends fpml.consolidated.msg.NonCorrectableRequestMessage: <"A message withdrawing a request that a trade be cleared by a clearing service.">
+    condition Choice:
+        if tradePackage exists
+        then originatingEvent is absent
+                and trade is absent
+                and additionalEvent is absent
+                and deClear is absent
+        else if trade exists
+        then tradePackage is absent and additionalEvent is absent and deClear is absent
+        else if additionalEvent exists
+        then tradePackage is absent
+                and trade is absent
+                and originatingEvent is absent
+                and deClear is absent
+        else if deClear exists
+        then tradePackage is absent
+                and trade is absent
+                and additionalEvent is absent
+                and originatingEvent is absent
+        else False
+
+type RequestClearingRetracted extends NonCorrectableRequestMessage:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A message withdrawing a request that a trade be cleared by a clearing service."]
 
-    tradingEventsModel fpml.consolidated.business.events.TradingEventsModel (0..1)
-    deClear fpml.consolidated.business.events.DeClear (0..1) <"A structure describing a declear event. The deClear event allows a firm to request that a trade be removed from clearing, or a clearing service to request consent for this, or to report that it has been done.">
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+    tradePackage TradePackage (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    originatingEvent OriginatingEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    trade Trade (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    additionalEvent AdditionalEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    deClear DeClear (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A structure describing a declear event. The deClear event allows a firm to request that a trade be removed from clearing, or a clearing service to request consent for this, or to report that it has been done."]
+    party Party (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document."]
+    account Account (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Optional account information used to precisely define the origination and destination of financial instruments."]
+
+    condition Choice:
+        if trade exists
+        then tradePackage is absent and additionalEvent is absent and deClear is absent
+        else if additionalEvent exists
+        then trade is absent
+                and tradePackage is absent
+                and originatingEvent is absent
+                and deClear is absent
+        else if deClear exists
+        then trade is absent
+                and additionalEvent is absent
+                and tradePackage is absent
+                and originatingEvent is absent
+        else trade is absent
+            and additionalEvent is absent
+            and deClear is absent
+            and originatingEvent is absent
 
 type ClearingAcknowledgement extends EventRequestAcknowledgement:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
-type ClearingException extends fpml.consolidated.msg.Exception:
+type ClearingException extends Exception:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
-type ClearingRefused extends fpml.consolidated.msg.NotificationMessage: <"A message indicating that a clearing request has not been acted on due to a business decision and therefore no trade has been cleared.">
+type ClearingRefused extends NotificationMessage:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A message indicating that a clearing request has not been acted on due to a business decision and therefore no trade has been cleared."]
 
-    tradingEventsModel fpml.consolidated.business.events.TradingEventsModel (0..1)
-    eventValuationModel fpml.consolidated.business.events.EventValuationModel (0..1)
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
-    reason fpml.consolidated.doc.Reason (0..*)
+    tradePackage TradePackage (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    originatingEvent OriginatingEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    trade Trade (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    additionalEvent AdditionalEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    quote BasicQuotation (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Pricing information for the trade."]
+    party Party (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document."]
+    account Account (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Optional account information used to precisely define the origination and destination of financial instruments."]
+    reason Reason (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"]
 
-type ClearingStatus extends fpml.consolidated.msg.NotificationMessage: <"A message providing the current status of a clearing request. The Clearing Status message is designed to be sent from the Clearing House to the participants. The message sends the clearing status of the trade or the trade package. It’s a centralized model so there is no perspective.">
+    condition Choice:
+        if trade exists
+        then tradePackage is absent and additionalEvent is absent
+        else if additionalEvent exists
+        then trade is absent and tradePackage is absent and originatingEvent is absent
+        else trade is absent and additionalEvent is absent and originatingEvent is absent
+
+type ClearingStatus extends NotificationMessage:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A message providing the current status of a clearing request. The Clearing Status message is designed to be sent from the Clearing House to the participants. The message sends the clearing status of the trade or the trade package. It’s a centralized model so there is no perspective."]
 
-    clearingStatusItem fpml.consolidated.business.events.ClearingStatusItem (0..1) <"Describes the status of the clearing process relating to the identified trade.">
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+    clearingStatusItem ClearingStatusItem (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Describes the status of the clearing process relating to the identified trade."]
+    party Party (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document."]
+    account Account (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Optional account information used to precisely define the origination and destination of financial instruments."]
 
-type ClearingConfirmed extends fpml.consolidated.msg.NotificationMessage: <"A message indicating that a clearing request has been acted on and as a result a trade has been cleared.">
+type ClearingConfirmed extends NotificationMessage:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A message indicating that a clearing request has been acted on and as a result a trade has been cleared."]
 
-    compressionModel fpml.consolidated.business.events.CompressionModel (0..1)
-    portfolioReferenceModel fpml.consolidated.msg.PortfolioReferenceModel (0..1)
-    clearingResultsModel ClearingResultsModel (0..1)
-    change fpml.consolidated.business.events.TradeChangeContent (0..1)
-    eventValuationModel fpml.consolidated.business.events.EventValuationModel (0..1)
-    creditLimitInformation fpml.consolidated.business.events.CreditLimitInformation (0..*)
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+    compressionActivity CompressionActivity (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Compression information for the trade."]
+    portfolioReference PortfolioReference (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    tradePackage TradePackage (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    originatingEvent OriginatingEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    trade Trade (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    additionalEvent AdditionalEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    terminatingEvent TerminatingEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "This may be used to describe why a trade was terminated."]
+    termination TradeNotionalChange (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    deClear DeClear (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A structure describing a declear event. The deClear event allows a firm to request that a trade be removed from clearing, or a clearing service to request consent for this, or to report that it has been done."]
+    clearing Clearing (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    change TradeChangeContent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    quote BasicQuotation (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Pricing information for the trade."]
+    creditLimitInformation CreditLimitInformation (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    party Party (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document."]
+    account Account (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Optional account information used to precisely define the origination and destination of financial instruments."]
 
-type RequestAllocation extends fpml.consolidated.msg.CorrectableRequestMessage: <"A message requesting that a trade be split among several accounts.">
+    condition Choice:
+        if trade exists
+        then tradePackage is absent
+                and additionalEvent is absent
+                and terminatingEvent is absent
+                and termination is absent
+                and deClear is absent
+                and clearing is absent
+                and change is absent
+        else if additionalEvent exists
+        then tradePackage is absent
+                and originatingEvent is absent
+                and terminatingEvent is absent
+                and termination is absent
+                and deClear is absent
+                and clearing is absent
+                and change is absent
+        else if termination exists
+        then tradePackage is absent
+                and originatingEvent is absent
+                and deClear is absent
+                and clearing is absent
+                and change is absent
+        else if deClear exists
+        then tradePackage is absent
+                and originatingEvent is absent
+                and terminatingEvent is absent
+                and clearing is absent
+                and change is absent
+        else if clearing exists
+        then tradePackage is absent
+                and originatingEvent is absent
+                and terminatingEvent is absent
+                and change is absent
+        else originatingEvent is absent and terminatingEvent is absent and change is absent
+            or tradePackage is absent
+                and originatingEvent is absent
+                and terminatingEvent is absent
+
+type RequestAllocation extends CorrectableRequestMessage:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A message requesting that a trade be split among several accounts."]
 
-    relatedParty fpml.consolidated.shared.RelatedParty (0..*) <"Identifies a related party performing a role within the transaction.">
-    blockTradeIdentifier fpml.consolidated.doc.TradeIdentifier (1..1)
-    allocations fpml.consolidated.doc.Allocations (1..1)
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (1..1)
+    relatedParty RelatedParty (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Identifies a related party performing a role within the transaction."]
+    blockTradeIdentifier TradeIdentifier (1..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    allocations Allocations (1..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    party Party (1..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document."]
+    account Account (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Optional account information used to precisely define the origination and destination of financial instruments."]
 
-type RequestAllocationRetracted extends fpml.consolidated.msg.NonCorrectableRequestMessage: <"A message withdrawing a request that a trade be split among several accounts.">
+type RequestAllocationRetracted extends NonCorrectableRequestMessage:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A message withdrawing a request that a trade be split among several accounts."]
 
-    blockTradeIdentifier fpml.consolidated.doc.TradeIdentifier (0..1)
-    allocations fpml.consolidated.doc.Allocations (0..1)
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+    blockTradeIdentifier TradeIdentifier (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    allocations Allocations (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    party Party (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document."]
+    account Account (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Optional account information used to precisely define the origination and destination of financial instruments."]
 
 type AllocationAcknowledgement extends EventRequestAcknowledgement:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
-type AllocationException extends fpml.consolidated.msg.Exception:
+type AllocationException extends Exception:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
-type AllocationRefused extends fpml.consolidated.msg.ResponseMessage: <"A message indicating that a request to allocate a trade has been refused by the sender.">
+type AllocationRefused extends ResponseMessage:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A message indicating that a request to allocate a trade has been refused by the sender."]
 
-    blockTradeIdentifier fpml.consolidated.doc.TradeIdentifier (0..1)
-    allocations fpml.consolidated.doc.Allocations (0..1)
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
-    reason fpml.consolidated.doc.Reason (0..*)
+    blockTradeIdentifier TradeIdentifier (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    allocations Allocations (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    party Party (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document."]
+    account Account (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Optional account information used to precisely define the origination and destination of financial instruments."]
+    reason Reason (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"]
 
-type AllocationApproved extends fpml.consolidated.msg.ResponseMessage: <"A message indicating that a request to allocate a trade has been approved by the sender.">
+type AllocationApproved extends ResponseMessage:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A message indicating that a request to allocate a trade has been approved by the sender."]
 
-    blockTradeIdentifier fpml.consolidated.doc.TradeIdentifier (0..1)
-    allocations fpml.consolidated.doc.Allocations (0..1)
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+    blockTradeIdentifier TradeIdentifier (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    allocations Allocations (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    party Party (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document."]
+    account Account (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Optional account information used to precisely define the origination and destination of financial instruments."]
 
-type RequestCollateralAllocation extends fpml.consolidated.msg.CorrectableRequestMessage:
+type RequestCollateralAllocation extends CorrectableRequestMessage:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
-    serviceName fpml.consolidated.shared.NormalizedString (0..1) <"The name of the service to which the message applies">
-    requestedAction RequestedCollateralAllocationAction (0..1) <"The type of change requested for the collateral allocation.">
-    collateralGiverPartyReference fpml.consolidated.shared.PartyReference (1..1) <"The party paying the margin / issuing the allocation request.">
-    collateralAllocation fpml.consolidated.shared.ProposedCollateralAllocation (1..*) <"Allocation details">
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (1..1)
+    serviceName NormalizedString (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The name of the service to which the message applies"]
+    requestedAction RequestedCollateralAllocationAction (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The type of change requested for the collateral allocation."]
+    collateralGiverPartyReference PartyReference (1..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The party paying the margin / issuing the allocation request."]
+    collateralAllocation ProposedCollateralAllocation (1..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Allocation details"]
+    party Party (1..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document."]
+    account Account (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Optional account information used to precisely define the origination and destination of financial instruments."]
 
-type CollateralAllocationAcknowledgement extends fpml.consolidated.msg.Acknowledgement:
+type CollateralAllocationAcknowledgement extends Acknowledgement:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
-type CollateralAllocationRejected extends fpml.consolidated.msg.Exception:
+type CollateralAllocationRejected extends Exception:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
-type CollateralAllocationAccepted extends fpml.consolidated.msg.ResponseMessage:
+type CollateralAllocationAccepted extends ResponseMessage:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
 type OptionExpirationNotification extends ExecutionNotification:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
-type Clearing: <"A structure describing a trade registration event that is part of a clearing process.">
+type Clearing:
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A structure describing a trade registration event that is part of a clearing process."]
 
-    submitted TradeWrapper (1..1) <"The original trade or event submitted to the clearing service.">
-    cleared TradeWrapper (2..2) <"The trades or events generated by the clearing service as a result of clearing.">
+    submitted TradeWrapper (1..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The original trade or event submitted to the clearing service."]
+    cleared TradeWrapper (2..2)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The trades or events generated by the clearing service as a result of clearing."]
 
-type ConfirmationRetracted extends fpml.consolidated.msg.NonCorrectableRequestMessage: <"A message indicating that a confirmation request has been withdrawn by the submitter.">
+type ConfirmationRetracted extends NonCorrectableRequestMessage:
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A message indicating that a confirmation request has been withdrawn by the submitter."]
 
-    tradingAndPostTradeEventsModel fpml.consolidated.business.events.TradingAndPostTradeEventsModel (0..1)
-    optionExercise fpml.consolidated.business.events.OptionExercise (0..1) <"A structure describing an option exercise event. The optionExercise event supports partial exercise (specify the number of options or amount to exercise), full exercise (use fullExercise flag), as well as the option to request options not to be exercised.">
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+    tradePackage TradePackage (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    originatingEvent OriginatingEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    trade Trade (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    amendment TradeAmendmentContent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    increase TradeNotionalChange (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    terminatingEvent TerminatingEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "This may be used to describe why a trade was terminated."]
+    termination TradeNotionalChange (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    novation TradeNovationContent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    withdrawal Withdrawal (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    observation ObservationEvent (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    reset ResetEvent (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    additionalEvent AdditionalEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    optionExercise OptionExercise (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A structure describing an option exercise event. The optionExercise event supports partial exercise (specify the number of options or amount to exercise), full exercise (use fullExercise flag), as well as the option to request options not to be exercised."]
+    party Party (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document."]
+    account Account (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Optional account information used to precisely define the origination and destination of financial instruments."]
 
-type ConfirmationStatusSequence:
+type EventRequestAcknowledgement extends ResponseMessage:
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "Defines the structure for a message acknowledging an event request."]
 
-    assertedEvent fpml.consolidated.business.events.EventsChoice (1..1) <"Event (trade or post-trade event) asserted by one of the parties.">
-    proposedMatch fpml.consolidated.business.events.EventProposedMatch (0..*) <"\"Other side\'s\" event (trade or post-trade event) that meets the minimimum matching criteria and is proposed as match to the event that is being asserted.">
+    originalMessage UnprocessedElementWrapper (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    tradeReferenceInformation TradeReferenceInformation (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Information about a trade."]
+    party Party (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document."]
+    account Account (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Optional account information used to precisely define the origination and destination of financial instruments."]
 
-type EventRequestAcknowledgement extends fpml.consolidated.msg.ResponseMessage: <"Defines the structure for a message acknowledging an event request.">
+type RequestedCollateralAllocationAction:
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A type that describes the type of collateral allocation action that is requested. The purpose is to allow FCMs to specify how the allocations are to be processed."]
 
-    originalMessage fpml.consolidated.doc.UnprocessedElementWrapper (0..1)
-    tradeReferenceInformationModel fpml.consolidated.business.events.TradeReferenceInformationModel (0..1)
-    partiesAndAccountsModel fpml.consolidated.shared.PartiesAndAccountsModel (0..1)
+    value Scheme (1..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    requestedCollateralAllocationActionScheme NonEmptyURI (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
 
-type RequestedCollateralAllocationAction: <"A type that describes the type of collateral allocation action that is requested. The purpose is to allow FCMs to specify how the allocations are to be processed.">
+type TradeWrapper:
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A structure that contains a business event."]
 
-    value fpml.consolidated.shared.Scheme (1..1)
-    requestedCollateralAllocationActionScheme fpml.consolidated.shared.NonEmptyURI (0..1)
+    originatingEvent OriginatingEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "This may be used to describe why a trade was created. This can be used to provide context for a newly created trade that is not part of a post-trade event. For example, it can report that the trade was created as a result of netting activity, or due to a transfer, an allocation process, etc. Omitting this implies that the trade record was created as a result of a negotiated new trade."]
+    trade Trade (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    tradeReferenceInformation TradeReferenceInformation (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Information about a trade."]
+    tradePackage TradePackage (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
 
-type TradeWrapper: <"A structure that contains a business event.">
-
-    tradeOrInfoModel fpml.consolidated.business.events.TradeOrInfoModel (1..1)
-
-type ClearingResultsModel: <"Events/Results that are applicable to clearing processes.">
-
-    tradingEventsModel fpml.consolidated.business.events.TradingEventsModel (0..1)
-    clearingResultsModelSequence ClearingResultsModelSequence (0..1)
-    deClear fpml.consolidated.business.events.DeClear (0..1) <"A structure describing a declear event. The deClear event allows a firm to request that a trade be removed from clearing, or a clearing service to request consent for this, or to report that it has been done.">
-    clearing Clearing (0..1)
-
-type ClearingResultsModelSequence:
-
-    terminatingEvent fpml.consolidated.business.events.TerminatingEvent (0..1) <"This may be used to describe why a trade was terminated.">
-    termination fpml.consolidated.business.events.TradeNotionalChange (1..1)
-
-type EventsOrInfoModel: <"Defines a model group that allows either details of an event or information about a trade to be provided. Typically this will be used in a response to a request.">
-
-    tradingAndPostTradeEventsModel fpml.consolidated.business.events.TradingAndPostTradeEventsModel (0..1)
-    tradeReferenceInformationModel fpml.consolidated.business.events.TradeReferenceInformationModel (0..1)
+    condition Choice:
+        if trade exists
+        then tradeReferenceInformation is absent and tradePackage is absent
+        else if tradeReferenceInformation exists
+        then trade is absent and originatingEvent is absent and tradePackage is absent
+        else if tradePackage exists
+        then trade is absent
+                and tradeReferenceInformation is absent
+                and originatingEvent is absent
+        else False

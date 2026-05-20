@@ -2,68 +2,37 @@
   "fpmlVersion" : "5-10",
   "trade" : [ {
     "tradeHeader" : {
-      "tradeIdentifiersModel" : {
-        "partyTradeIdentifier" : [ {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "123",
-              "tradeIdScheme" : "http://www.partyA.com/trade-id"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "party1"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "123",
-                "tradeIdScheme" : "http://www.partyA.com/trade-id"
-              }
-            } ]
-          }
-        }, {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "123",
-              "tradeIdScheme" : "http://www.partyB.com/trade-id"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "party2"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "123",
-                "tradeIdScheme" : "http://www.partyB.com/trade-id"
-              }
-            } ]
-          }
-        } ]
-      },
+      "partyTradeIdentifier" : [ {
+        "tradeId" : {
+          "value" : "123",
+          "tradeIdScheme" : "http://www.partyA.com/trade-id"
+        },
+        "partyReference" : {
+          "href" : "party1"
+        }
+      }, {
+        "tradeId" : {
+          "value" : "123",
+          "tradeIdScheme" : "http://www.partyB.com/trade-id"
+        },
+        "partyReference" : {
+          "href" : "party2"
+        }
+      } ],
       "tradeDate" : {
         "value" : "2001-04-29T00:00:00Z"
       }
     },
     "product" : {
       "swapStream" : [ {
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "party1"
-            }
-          },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "party2"
-            }
-          }
+        "payerPartyReference" : {
+          "href" : "party1"
+        },
+        "receiverPartyReference" : {
+          "href" : "party2"
         },
         "calculationPeriodDates" : {
+          "id" : "CalcPeriodDates0",
           "effectiveDate" : {
             "unadjustedDate" : {
               "value" : "2001-08-30T00:00:00Z"
@@ -78,30 +47,25 @@
             },
             "dateAdjustments" : {
               "businessDayConvention" : "MODFOLLOWING",
-              "businessCentersOrReferenceModel" : {
-                "businessCenters" : {
-                  "businessCenter" : [ {
-                    "value" : "USNY"
-                  } ],
-                  "id" : "accrualBusinessCenters0"
-                }
+              "businessCenters" : {
+                "id" : "accrualBusinessCenters0",
+                "businessCenter" : [ {
+                  "value" : "USNY"
+                } ]
               }
             }
           },
           "calculationPeriodDatesAdjustments" : {
             "businessDayConvention" : "MODFOLLOWING",
-            "businessCentersOrReferenceModel" : {
-              "businessCentersReference" : {
-                "href" : "accrualBusinessCenters0"
-              }
+            "businessCentersReference" : {
+              "href" : "accrualBusinessCenters0"
             }
           },
           "calculationPeriodFrequency" : {
             "periodMultiplier" : 3,
             "period" : "M",
             "rollConvention" : "30"
-          },
-          "id" : "CalcPeriodDates0"
+          }
         },
         "paymentDates" : {
           "calculationPeriodDatesReference" : {
@@ -114,17 +78,16 @@
           "payRelativeTo" : "CalculationPeriodEndDate",
           "paymentDatesAdjustments" : {
             "businessDayConvention" : "MODFOLLOWING",
-            "businessCentersOrReferenceModel" : {
-              "businessCenters" : {
-                "businessCenter" : [ {
-                  "value" : "USNY"
-                } ],
-                "id" : "paymentBusinessCenters0"
-              }
+            "businessCenters" : {
+              "id" : "paymentBusinessCenters0",
+              "businessCenter" : [ {
+                "value" : "USNY"
+              } ]
             }
           }
         },
         "resetDates" : {
+          "id" : "resetDates0",
           "calculationPeriodDatesReference" : {
             "href" : "CalcPeriodDates0"
           },
@@ -134,13 +97,11 @@
             "period" : "D",
             "dayType" : "Business",
             "businessDayConvention" : "NONE",
-            "businessCentersOrReferenceModel" : {
-              "businessCenters" : {
-                "businessCenter" : [ {
-                  "value" : "GBLO"
-                } ],
-                "id" : "resetBusinessCenters0"
-              }
+            "businessCenters" : {
+              "id" : "resetBusinessCenters0",
+              "businessCenter" : [ {
+                "value" : "GBLO"
+              } ]
             },
             "dateRelativeTo" : {
               "href" : "resetDates0"
@@ -152,13 +113,10 @@
           },
           "resetDatesAdjustments" : {
             "businessDayConvention" : "MODFOLLOWING",
-            "businessCentersOrReferenceModel" : {
-              "businessCentersReference" : {
-                "href" : "resetBusinessCenters0"
-              }
+            "businessCentersReference" : {
+              "href" : "resetBusinessCenters0"
             }
-          },
-          "id" : "resetDates0"
+          }
         },
         "calculationPeriodAmount" : {
           "calculation" : {
@@ -171,23 +129,19 @@
               }
             },
             "rateCalculation" : {
-              "floatingRateIndexModel" : {
-                "floatingRateIndex" : {
-                  "value" : "USD-LIBOR-BBA"
-                },
-                "indexTenor" : {
-                  "periodMultiplier" : 3,
-                  "period" : "M"
-                }
+              "floatingRateIndex" : {
+                "value" : "USD-LIBOR-BBA"
               },
-              "floatingRateModel" : {
-                "floatingRateMultiplierSchedule" : {
-                  "initialValue" : -1.0
-                },
-                "spreadSchedule" : [ {
-                  "initialValue" : 0.085
-                } ]
-              }
+              "indexTenor" : {
+                "periodMultiplier" : 3,
+                "period" : "M"
+              },
+              "floatingRateMultiplierSchedule" : {
+                "initialValue" : -1.0
+              },
+              "spreadSchedule" : [ {
+                "initialValue" : 0.085
+              } ]
             },
             "dayCountFraction" : {
               "value" : "ACT/360"
@@ -195,19 +149,14 @@
           }
         }
       }, {
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "party2"
-            }
-          },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "party1"
-            }
-          }
+        "payerPartyReference" : {
+          "href" : "party2"
+        },
+        "receiverPartyReference" : {
+          "href" : "party1"
         },
         "calculationPeriodDates" : {
+          "id" : "CalcPeriodDates1",
           "effectiveDate" : {
             "unadjustedDate" : {
               "value" : "2001-08-30T00:00:00Z"
@@ -222,30 +171,25 @@
             },
             "dateAdjustments" : {
               "businessDayConvention" : "MODFOLLOWING",
-              "businessCentersOrReferenceModel" : {
-                "businessCenters" : {
-                  "businessCenter" : [ {
-                    "value" : "USNY"
-                  } ],
-                  "id" : "accrualBusinessCenters1"
-                }
+              "businessCenters" : {
+                "id" : "accrualBusinessCenters1",
+                "businessCenter" : [ {
+                  "value" : "USNY"
+                } ]
               }
             }
           },
           "calculationPeriodDatesAdjustments" : {
             "businessDayConvention" : "MODFOLLOWING",
-            "businessCentersOrReferenceModel" : {
-              "businessCentersReference" : {
-                "href" : "accrualBusinessCenters1"
-              }
+            "businessCentersReference" : {
+              "href" : "accrualBusinessCenters1"
             }
           },
           "calculationPeriodFrequency" : {
             "periodMultiplier" : 6,
             "period" : "M",
             "rollConvention" : "30"
-          },
-          "id" : "CalcPeriodDates1"
+          }
         },
         "paymentDates" : {
           "calculationPeriodDatesReference" : {
@@ -258,13 +202,11 @@
           "payRelativeTo" : "CalculationPeriodEndDate",
           "paymentDatesAdjustments" : {
             "businessDayConvention" : "MODFOLLOWING",
-            "businessCentersOrReferenceModel" : {
-              "businessCenters" : {
-                "businessCenter" : [ {
-                  "value" : "USNY"
-                } ],
-                "id" : "paymentBusinessCenters1"
-              }
+            "businessCenters" : {
+              "id" : "paymentBusinessCenters1",
+              "businessCenter" : [ {
+                "value" : "USNY"
+              } ]
             }
           }
         },
@@ -278,36 +220,28 @@
                 }
               }
             },
+            "fixedRateSchedule" : {
+              "initialValue" : 0.045
+            },
             "dayCountFraction" : {
               "value" : "30/360"
-            },
-            "calculationSequence" : {
-              "fixedRateSchedule" : {
-                "initialValue" : 0.045
-              }
             }
           }
         }
       } ]
     }
   } ],
-  "partiesAndAccountsModel" : {
-    "party" : [ {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "Party A",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
-        } ]
-      },
-      "id" : "party1"
-    }, {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "Party B",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
-        } ]
-      },
-      "id" : "party2"
+  "party" : [ {
+    "id" : "party1",
+    "partyId" : [ {
+      "value" : "Party A",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
     } ]
-  }
+  }, {
+    "id" : "party2",
+    "partyId" : [ {
+      "value" : "Party B",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
+    } ]
+  } ]
 }

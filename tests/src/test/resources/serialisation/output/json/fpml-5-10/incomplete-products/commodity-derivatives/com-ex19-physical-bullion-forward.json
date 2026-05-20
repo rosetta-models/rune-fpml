@@ -2,55 +2,30 @@
   "fpmlVersion" : "5-10",
   "trade" : [ {
     "tradeHeader" : {
-      "tradeIdentifiersModel" : {
-        "partyTradeIdentifier" : [ {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "1234",
-              "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "partyA"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "1234",
-                "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
-              }
-            } ]
-          }
-        }, {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "2345",
-              "tradeIdScheme" : "http://www.PartyB.com/com-trade-id"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "partyB"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "2345",
-                "tradeIdScheme" : "http://www.PartyB.com/com-trade-id"
-              }
-            } ]
-          }
-        } ]
-      },
+      "partyTradeIdentifier" : [ {
+        "tradeId" : {
+          "value" : "1234",
+          "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
+        },
+        "partyReference" : {
+          "href" : "partyA"
+        }
+      }, {
+        "tradeId" : {
+          "value" : "2345",
+          "tradeIdScheme" : "http://www.PartyB.com/com-trade-id"
+        },
+        "partyReference" : {
+          "href" : "partyB"
+        }
+      } ],
       "tradeDate" : {
         "value" : "2009-01-28T00:00:00Z"
       }
     },
     "product" : {
       "valueDate" : {
+        "id" : "valueDate",
         "adjustableDate" : {
           "unadjustedDate" : {
             "value" : "2009-05-12T00:00:00Z"
@@ -58,81 +33,60 @@
           "dateAdjustments" : {
             "businessDayConvention" : "NotApplicable"
           }
-        },
-        "id" : "valueDate"
+        }
       },
       "fixedLeg" : {
         "id" : "fixedLeg",
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "partyA"
-            }
-          },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "partyB"
-            }
-          }
+        "payerPartyReference" : {
+          "href" : "partyA"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyB"
         },
         "fixedPrice" : {
           "price" : 987.12,
-          "commodityPriceModel" : {
-            "priceCurrency" : {
-              "value" : "USD"
-            },
-            "priceUnit" : {
-              "value" : "ozt"
-            }
+          "priceCurrency" : {
+            "value" : "USD"
+          },
+          "priceUnit" : {
+            "value" : "ozt"
           }
         },
         "quantityReference" : {
           "href" : "deliveryQuantity"
         },
-        "commodityPaymentDatesModel" : {
-          "commodityNonPeriodicPaymentDatesModel" : {
-            "paymentDates" : {
-              "relativeDate" : {
-                "periodMultiplier" : 0,
-                "period" : "D",
-                "businessDayConvention" : "NotApplicable",
-                "dateRelativeTo" : {
-                  "href" : "valueDate"
-                }
-              }
+        "paymentDates" : {
+          "relativeDate" : {
+            "periodMultiplier" : 0,
+            "period" : "D",
+            "businessDayConvention" : "NotApplicable",
+            "dateRelativeTo" : {
+              "href" : "valueDate"
             }
           }
         }
       },
       "physicalCommodityForwardLeg" : {
         "id" : "bullionLeg",
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "partyB"
-            }
-          },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "partyA"
-            }
-          }
+        "payerPartyReference" : {
+          "href" : "partyB"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyA"
         },
         "bullionType" : "Gold",
         "deliveryLocation" : {
           "value" : "London"
         },
-        "commodityFixedPhysicalQuantityModel" : {
-          "physicalQuantity" : {
-            "quantityUnit" : {
-              "value" : "ozt"
-            },
-            "quantityFrequency" : {
-              "value" : "Term"
-            },
-            "quantity" : 1000.0,
-            "id" : "deliveryQuantity"
-          }
+        "physicalQuantity" : {
+          "id" : "deliveryQuantity",
+          "quantityUnit" : {
+            "value" : "ozt"
+          },
+          "quantityFrequency" : {
+            "value" : "Term"
+          },
+          "quantity" : 1000.0
         },
         "settlementDate" : {
           "relativeDate" : {
@@ -145,9 +99,7 @@
           }
         }
       },
-      "commodityContentModel" : {
-        "settlementDisruption" : "Negotiation"
-      }
+      "settlementDisruption" : "Negotiation"
     },
     "documentation" : {
       "masterAgreement" : {
@@ -162,29 +114,23 @@
       } ]
     }
   } ],
-  "partiesAndAccountsModel" : {
-    "party" : [ {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "549300KFSLY4U7N3LL12",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "Bank A"
-        }
-      },
-      "id" : "partyA"
-    }, {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "549300AJRHKBLY9GM262",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "Bank B"
-        }
-      },
-      "id" : "partyB"
-    } ]
-  }
+  "party" : [ {
+    "id" : "partyA",
+    "partyId" : [ {
+      "value" : "549300KFSLY4U7N3LL12",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Bank A"
+    }
+  }, {
+    "id" : "partyB",
+    "partyId" : [ {
+      "value" : "549300AJRHKBLY9GM262",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Bank B"
+    }
+  } ]
 }

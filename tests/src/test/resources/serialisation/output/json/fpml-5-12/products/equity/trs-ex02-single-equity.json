@@ -1,62 +1,35 @@
 {
   "fpmlVersion" : "5-12",
   "trade" : [ {
+    "id" : "trs-eq1-trade",
     "tradeHeader" : {
-      "tradeIdentifiersModel" : {
-        "partyTradeIdentifier" : [ {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "TRS-01",
-              "tradeIdScheme" : "http://www.abc.com/swaps/trade-id"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "party1"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "TRS-01",
-                "tradeIdScheme" : "http://www.abc.com/swaps/trade-id"
-              }
-            } ]
-          }
-        }, {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "total-ret-swap-01",
-              "tradeIdScheme" : "http://www.hedgeco.com/swaps/trade-id"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "party2"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "total-ret-swap-01",
-                "tradeIdScheme" : "http://www.hedgeco.com/swaps/trade-id"
-              }
-            } ]
-          }
-        } ]
-      },
+      "partyTradeIdentifier" : [ {
+        "tradeId" : {
+          "value" : "TRS-01",
+          "tradeIdScheme" : "http://www.abc.com/swaps/trade-id"
+        },
+        "partyReference" : {
+          "href" : "party1"
+        }
+      }, {
+        "tradeId" : {
+          "value" : "total-ret-swap-01",
+          "tradeIdScheme" : "http://www.hedgeco.com/swaps/trade-id"
+        },
+        "partyReference" : {
+          "href" : "party2"
+        }
+      } ],
       "tradeDate" : {
         "value" : "2004-10-10T00:00:00Z",
         "id" : "trs-eq1-TradeDate"
       }
     },
     "product" : {
-      "productModel" : {
-        "productType" : [ {
-          "value" : "TotalReturnSwap",
-          "productTypeScheme" : "http://www.fpml.org/coding-scheme/product-type-simple"
-        } ]
-      },
+      "productType" : [ {
+        "value" : "TotalReturnSwap",
+        "productTypeScheme" : "http://www.fpml.org/coding-scheme/product-type-simple"
+      } ],
       "returnSwapLeg" : [ {
         "id" : "trs-eq1-equityLeg",
         "legIdentifier" : [ {
@@ -65,19 +38,14 @@
             "legIdScheme" : "http://www.partyA.com/leg-id"
           }
         } ],
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "party1"
-            }
-          },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "party2"
-            }
-          }
+        "payerPartyReference" : {
+          "href" : "party1"
+        },
+        "receiverPartyReference" : {
+          "href" : "party2"
         },
         "effectiveDate" : {
+          "id" : "trs-eq1-EffectiveDate",
           "adjustableDate" : {
             "unadjustedDate" : {
               "value" : "2004-10-12T00:00:00Z"
@@ -85,10 +53,10 @@
             "dateAdjustments" : {
               "businessDayConvention" : "NONE"
             }
-          },
-          "id" : "trs-eq1-EffectiveDate"
+          }
         },
         "terminationDate" : {
+          "id" : "trs-eq1-TerminationDate",
           "adjustableDate" : {
             "unadjustedDate" : {
               "value" : "2006-10-12T00:00:00Z"
@@ -96,8 +64,7 @@
             "dateAdjustments" : {
               "businessDayConvention" : "NONE"
             }
-          },
-          "id" : "trs-eq1-TerminationDate"
+          }
         },
         "underlyer" : {
           "singleUnderlyer" : {
@@ -118,9 +85,7 @@
             },
             "openUnits" : 760400,
             "dividendPayout" : {
-              "dividendPayoutSequence" : {
-                "dividendPayoutRatio" : 0.85
-              },
+              "dividendPayoutRatio" : 0.85,
               "dividendPayment" : [ {
                 "paymentDate" : "2004-01-01T00:00:00Z",
                 "amount" : {
@@ -161,25 +126,12 @@
               "commissionAmount" : 60,
               "commissionPerTrade" : 1234
             },
-            "priceSequence" : {
-              "equityPriceModel" : {
-                "netPrice" : {
-                  "currency" : {
-                    "value" : "USD"
-                  },
-                  "amount" : 37.44,
-                  "priceExpression" : "AbsoluteTerms"
-                }
-              }
-            },
-            "equityPriceModel" : {
-              "netPrice" : {
-                "currency" : {
-                  "value" : "USD"
-                },
-                "amount" : 37.44,
-                "priceExpression" : "AbsoluteTerms"
-              }
+            "netPrice" : {
+              "currency" : {
+                "value" : "USD"
+              },
+              "amount" : 37.44,
+              "priceExpression" : "AbsoluteTerms"
             }
           },
           "notionalReset" : true,
@@ -189,13 +141,12 @@
               "commissionAmount" : 60,
               "commissionPerTrade" : 1234
             },
-            "priceSequence" : {
-              "determinationMethod" : {
-                "value" : "ValuationTime"
-              }
+            "determinationMethod" : {
+              "value" : "ValuationTime"
             },
             "valuationRules" : {
               "valuationDates" : {
+                "id" : "trs-eq1-InterimValuationDate",
                 "adjustableDates" : {
                   "unadjustedDate" : [ {
                     "value" : "2004-10-12T00:00:00Z"
@@ -223,8 +174,7 @@
                   "dateAdjustments" : {
                     "businessDayConvention" : "NotApplicable"
                   }
-                },
-                "id" : "trs-eq1-InterimValuationDate"
+                }
               },
               "valuationTimeType" : "Close"
             }
@@ -235,13 +185,12 @@
               "commissionAmount" : 60,
               "commissionPerTrade" : 1234
             },
-            "priceSequence" : {
-              "determinationMethod" : {
-                "value" : "HedgeExecution"
-              }
+            "determinationMethod" : {
+              "value" : "HedgeExecution"
             },
             "valuationRules" : {
               "valuationDate" : {
+                "id" : "trs-eq1-FinalValuationDate",
                 "adjustableDate" : {
                   "unadjustedDate" : {
                     "value" : "2005-09-24T00:00:00Z"
@@ -249,13 +198,14 @@
                   "dateAdjustments" : {
                     "businessDayConvention" : "NotApplicable"
                   }
-                },
-                "id" : "trs-eq1-FinalValuationDate"
+                }
               }
             }
           },
           "paymentDates" : {
+            "id" : "trs-eq1-EquityPaymentDate",
             "paymentDatesInterim" : {
+              "id" : "trs-eq1-InterimEquityPaymentDate",
               "adjustableDates" : {
                 "unadjustedDate" : [ {
                   "value" : "2004-10-14T00:00:00Z"
@@ -266,57 +216,49 @@
                 } ],
                 "dateAdjustments" : {
                   "businessDayConvention" : "FOLLOWING",
-                  "businessCentersOrReferenceModel" : {
-                    "businessCenters" : {
-                      "businessCenter" : [ {
-                        "value" : "EUTA"
-                      }, {
-                        "value" : "GBLO"
-                      } ]
-                    }
+                  "businessCenters" : {
+                    "businessCenter" : [ {
+                      "value" : "EUTA"
+                    }, {
+                      "value" : "GBLO"
+                    } ]
                   }
                 }
-              },
-              "id" : "trs-eq1-InterimEquityPaymentDate"
+              }
             },
             "paymentDateFinal" : {
+              "id" : "trs-eq1-FinalEquityPaymentDate",
               "adjustableDate" : {
                 "unadjustedDate" : {
                   "value" : "2006-10-14T00:00:00Z"
                 },
                 "dateAdjustments" : {
                   "businessDayConvention" : "FOLLOWING",
-                  "businessCentersOrReferenceModel" : {
-                    "businessCenters" : {
-                      "businessCenter" : [ {
-                        "value" : "EUTA"
-                      }, {
-                        "value" : "GBLO"
-                      } ]
-                    }
+                  "businessCenters" : {
+                    "businessCenter" : [ {
+                      "value" : "EUTA"
+                    }, {
+                      "value" : "GBLO"
+                    } ]
                   }
                 }
-              },
-              "id" : "trs-eq1-FinalEquityPaymentDate"
-            },
-            "id" : "trs-eq1-EquityPaymentDate"
+              }
+            }
           }
         },
         "notional" : {
+          "id" : "trs-eq1-EquityNotionalAmount",
           "notionalAmount" : {
             "currency" : {
               "value" : "USD"
             },
             "amount" : 28469376
-          },
-          "id" : "trs-eq1-EquityNotionalAmount"
+          }
         },
         "amount" : {
-          "currencyAndDeterminationMethodModel" : {
-            "currency" : {
-              "value" : "USD",
-              "id" : "trs-eq1-EquityPaymentCurrency"
-            }
+          "currency" : {
+            "value" : "USD",
+            "id" : "trs-eq1-EquityPaymentCurrency"
           },
           "referenceAmount" : {
             "value" : "ISDA Standard"
@@ -331,26 +273,20 @@
             "dividendEntitlement" : "ExDate",
             "dividendAmount" : "RecordAmount",
             "dividendPaymentDate" : {
-              "dividendPaymentDateSequence" : {
-                "dividendDateReference" : "EquityPaymentDate"
-              }
+              "dividendDateReference" : "EquityPaymentDate"
             },
-            "dividendConditionsSequence" : {
-              "dividendPeriodEffectiveDate" : {
-                "href" : "trs-eq1-TradeDate"
-              },
-              "dividendPeriodEndDate" : {
-                "href" : "trs-eq1-TerminationDate"
-              }
+            "dividendPeriodEffectiveDate" : {
+              "href" : "trs-eq1-TradeDate"
+            },
+            "dividendPeriodEndDate" : {
+              "href" : "trs-eq1-TerminationDate"
             },
             "extraOrdinaryDividends" : {
               "href" : "party1"
             },
             "excessDividendAmount" : "RecordAmount",
-            "currencyAndDeterminationMethodModel" : {
-              "determinationMethod" : {
-                "value" : "DividendCurrency"
-              }
+            "determinationMethod" : {
+              "value" : "DividendCurrency"
             }
           }
         }
@@ -362,19 +298,14 @@
             "legIdScheme" : "http://www.partyA.com/leg-id"
           }
         } ],
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "party2"
-            }
-          },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "party1"
-            }
-          }
+        "payerPartyReference" : {
+          "href" : "party2"
+        },
+        "receiverPartyReference" : {
+          "href" : "party1"
         },
         "interestLegCalculationPeriodDates" : {
+          "id" : "trs-eq1-InterestLegPeriodDates",
           "effectiveDate" : {
             "adjustableDate" : {
               "unadjustedDate" : {
@@ -412,19 +343,16 @@
               } ],
               "dateAdjustments" : {
                 "businessDayConvention" : "FOLLOWING",
-                "businessCentersOrReferenceModel" : {
-                  "businessCenters" : {
-                    "businessCenter" : [ {
-                      "value" : "EUTA"
-                    }, {
-                      "value" : "GBLO"
-                    } ]
-                  }
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "EUTA"
+                  }, {
+                    "value" : "GBLO"
+                  } ]
                 }
               }
             }
-          },
-          "id" : "trs-eq1-InterestLegPeriodDates"
+          }
         },
         "notional" : {
           "notionalAmount" : {
@@ -435,10 +363,8 @@
           }
         },
         "interestAmount" : {
-          "currencyAndDeterminationMethodModel" : {
-            "currencyReference" : {
-              "href" : "trs-eq1-EquityPaymentCurrency"
-            }
+          "currencyReference" : {
+            "href" : "trs-eq1-EquityPaymentCurrency"
           },
           "referenceAmount" : {
             "value" : "Standard ISDA"
@@ -446,20 +372,16 @@
         },
         "interestCalculation" : {
           "floatingRateCalculation" : {
-            "floatingRateIndexModel" : {
-              "floatingRateIndex" : {
-                "value" : "USD-LIBOR-BBA"
-              },
-              "indexTenor" : {
-                "periodMultiplier" : 1,
-                "period" : "M"
-              }
+            "floatingRateIndex" : {
+              "value" : "USD-LIBOR-BBA"
             },
-            "floatingRateModel" : {
-              "spreadSchedule" : [ {
-                "initialValue" : 0.0020
-              } ]
-            }
+            "indexTenor" : {
+              "periodMultiplier" : 1,
+              "period" : "M"
+            },
+            "spreadSchedule" : [ {
+              "initialValue" : 0.0020
+            } ]
           },
           "dayCountFraction" : {
             "value" : "ACT/360"
@@ -513,10 +435,8 @@
           "failureToDeliver" : true,
           "insolvencyFiling" : false,
           "hedgingDisruption" : true,
-          "stockLoanModel" : {
-            "lossOfStockBorrow" : true,
-            "increasedCostOfStockBorrow" : false
-          },
+          "lossOfStockBorrow" : true,
+          "increasedCostOfStockBorrow" : false,
           "increasedCostOfHedging" : false,
           "determiningPartyReference" : {
             "href" : "party1"
@@ -532,17 +452,11 @@
     },
     "collateral" : {
       "independentAmount" : [ {
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "party2"
-            }
-          },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "party1"
-            }
-          }
+        "payerPartyReference" : {
+          "href" : "party2"
+        },
+        "receiverPartyReference" : {
+          "href" : "party1"
         },
         "paymentDetail" : [ {
           "paymentDate" : {
@@ -563,32 +477,25 @@
           }
         } ]
       } ]
-    },
-    "id" : "trs-eq1-trade"
+    }
   } ],
-  "partiesAndAccountsModel" : {
-    "party" : [ {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "QGPGHQ1ENZOOLJRFTH41",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "ABCD Securities Inc."
-        }
-      },
-      "id" : "party1"
-    }, {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "J6W9XJWVE853A9CVRQ85",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "HedgeCo Capital L.L.C."
-        }
-      },
-      "id" : "party2"
-    } ]
-  }
+  "party" : [ {
+    "id" : "party1",
+    "partyId" : [ {
+      "value" : "QGPGHQ1ENZOOLJRFTH41",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "ABCD Securities Inc."
+    }
+  }, {
+    "id" : "party2",
+    "partyId" : [ {
+      "value" : "J6W9XJWVE853A9CVRQ85",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "HedgeCo Capital L.L.C."
+    }
+  } ]
 }

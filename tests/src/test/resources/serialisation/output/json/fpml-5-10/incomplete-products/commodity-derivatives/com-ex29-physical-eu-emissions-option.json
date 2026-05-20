@@ -2,196 +2,148 @@
   "fpmlVersion" : "5-10",
   "trade" : [ {
     "tradeHeader" : {
-      "tradeIdentifiersModel" : {
-        "partyTradeIdentifier" : [ {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "123456",
-              "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "partyA"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "123456",
-                "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
-              }
-            } ]
-          }
-        } ]
-      },
+      "partyTradeIdentifier" : [ {
+        "tradeId" : {
+          "value" : "123456",
+          "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
+        },
+        "partyReference" : {
+          "href" : "partyA"
+        }
+      } ],
       "tradeDate" : {
         "value" : "2012-06-04T00:00:00Z",
         "id" : "tradeDate"
       }
     },
     "product" : {
-      "productModel" : {
-        "primaryAssetClass" : {
-          "value" : "Commodity"
-        }
+      "primaryAssetClass" : {
+        "value" : "Commodity"
       },
-      "buyerSellerModel" : {
-        "buyerPartyReference" : {
-          "href" : "partyB"
-        },
-        "sellerPartyReference" : {
-          "href" : "partyA"
-        }
+      "buyerPartyReference" : {
+        "href" : "partyB"
+      },
+      "sellerPartyReference" : {
+        "href" : "partyA"
       },
       "optionType" : "Call",
       "commoditySwap" : {
-        "commoditySwapDetailsModel" : {
-          "effectiveDate" : {
-            "adjustableDate" : {
-              "unadjustedDate" : {
-                "value" : "2012-12-31T00:00:00Z"
-              },
-              "dateAdjustments" : {
-                "businessDayConvention" : "NONE"
-              }
+        "effectiveDate" : {
+          "adjustableDate" : {
+            "unadjustedDate" : {
+              "value" : "2012-12-31T00:00:00Z"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "NONE"
+            }
+          }
+        },
+        "terminationDate" : {
+          "id" : "physicalTerminationDate",
+          "adjustableDate" : {
+            "unadjustedDate" : {
+              "value" : "2012-12-31T00:00:00Z"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "NONE"
+            }
+          }
+        },
+        "settlementCurrency" : {
+          "value" : "EUR"
+        },
+        "commoditySwapLeg" : [ {
+          "payerPartyReference" : {
+            "href" : "partyB"
+          },
+          "receiverPartyReference" : {
+            "href" : "partyA"
+          },
+          "calculationDates" : {
+            "unadjustedDate" : [ {
+              "value" : "2012-12-31T00:00:00Z"
+            } ],
+            "dateAdjustments" : {
+              "businessDayConvention" : "NONE"
             }
           },
-          "terminationDate" : {
-            "adjustableDate" : {
-              "unadjustedDate" : {
-                "value" : "2012-12-31T00:00:00Z"
-              },
-              "dateAdjustments" : {
-                "businessDayConvention" : "NONE"
-              }
+          "fixedPrice" : {
+            "price" : 7.38,
+            "priceCurrency" : {
+              "value" : "EUR"
             },
-            "id" : "physicalTerminationDate"
-          },
-          "settlementCurrency" : {
-            "value" : "EUR"
-          },
-          "commoditySwapLeg" : [ {
-            "payerReceiverModel" : {
-              "payerModel" : {
-                "payerPartyReference" : {
-                  "href" : "partyB"
-                }
-              },
-              "receiverModel" : {
-                "receiverPartyReference" : {
-                  "href" : "partyA"
-                }
-              }
-            },
-            "commodityCalculationPeriodsModel" : {
-              "calculationDates" : {
-                "unadjustedDate" : [ {
-                  "value" : "2012-12-31T00:00:00Z"
-                } ],
-                "dateAdjustments" : {
-                  "businessDayConvention" : "NONE"
-                }
-              }
-            },
-            "commodityFixedPriceModel" : {
-              "commodityFixedPriceModelChoice" : {
-                "fixedPrice" : {
-                  "price" : 7.38,
-                  "commodityPriceModel" : {
-                    "priceCurrency" : {
-                      "value" : "EUR"
-                    },
-                    "priceUnit" : {
-                      "value" : "Allowances"
-                    }
-                  }
-                }
-              }
-            },
-            "commodityNotionalQuantityModel" : {
-              "quantityReference" : {
-                "href" : "deliveryQuantity"
-              }
-            },
-            "commodityPaymentDatesModel" : {
-              "commodityNonPeriodicPaymentDatesModel" : {
-                "masterAgreementPaymentDates" : false
-              }
+            "priceUnit" : {
+              "value" : "Allowances"
             }
-          }, {
-            "payerReceiverModel" : {
-              "payerModel" : {
-                "payerPartyReference" : {
-                  "href" : "partyB"
-                }
-              },
-              "receiverModel" : {
-                "receiverPartyReference" : {
-                  "href" : "partyA"
-                }
-              }
+          },
+          "quantityReference" : {
+            "href" : "deliveryQuantity"
+          },
+          "masterAgreementPaymentDates" : false
+        }, {
+          "payerPartyReference" : {
+            "href" : "partyB"
+          },
+          "receiverPartyReference" : {
+            "href" : "partyA"
+          },
+          "numberOfAllowances" : {
+            "id" : "deliveryQuantity",
+            "quantityUnit" : {
+              "value" : "Allowances"
             },
-            "numberOfAllowances" : {
-              "quantityUnit" : {
-                "value" : "Allowances"
-              },
-              "quantity" : 1000,
-              "id" : "deliveryQuantity"
-            },
-            "environmental" : {
-              "productType" : "EUAllowance",
-              "compliancePeriod" : {
-                "startYear" : "2012",
-                "endYear" : "2012"
-              }
-            },
-            "deliveryDate" : {
-              "relativeDate" : {
-                "periodMultiplier" : 2,
-                "period" : "D",
-                "businessDayConvention" : "NONE",
-                "dateRelativeTo" : {
-                  "href" : "exerciseDate"
-                }
-              }
-            },
-            "paymentDate" : {
-              "periodMultiplier" : 3,
+            "quantity" : 1000
+          },
+          "environmental" : {
+            "productType" : "EUAllowance",
+            "compliancePeriod" : {
+              "startYear" : "2012",
+              "endYear" : "2012"
+            }
+          },
+          "deliveryDate" : {
+            "relativeDate" : {
+              "periodMultiplier" : 2,
               "period" : "D",
-              "businessDayConvention" : "FOLLOWING"
-            },
-            "businessCentersOrReferenceModel" : {
-              "businessCenters" : {
-                "businessCenter" : [ {
-                  "value" : "EUTA"
-                } ]
+              "businessDayConvention" : "NONE",
+              "dateRelativeTo" : {
+                "href" : "exerciseDate"
               }
-            },
-            "failureToDeliverApplicable" : true,
-            "eEPParameters" : {
-              "riskPeriod" : {
-                "startDate" : "2012-01-01T00:00:00Z",
-                "endDate" : "2012-12-31T00:00:00Z"
-              },
-              "equivalentApplicable" : true,
-              "penaltyApplicable" : true,
-              "eEPApplicable" : true
             }
-          } ]
-        }
+          },
+          "paymentDate" : {
+            "periodMultiplier" : 3,
+            "period" : "D",
+            "businessDayConvention" : "FOLLOWING"
+          },
+          "businessCenters" : {
+            "businessCenter" : [ {
+              "value" : "EUTA"
+            } ]
+          },
+          "failureToDeliverApplicable" : true,
+          "eEPParameters" : {
+            "riskPeriod" : {
+              "startDate" : "2012-01-01T00:00:00Z",
+              "endDate" : "2012-12-31T00:00:00Z"
+            },
+            "equivalentApplicable" : true,
+            "penaltyApplicable" : true,
+            "eEPApplicable" : true
+          }
+        } ]
       },
       "physicalExercise" : {
         "europeanExercise" : {
           "expirationDate" : {
             "adjustableDate" : {
+              "id" : "exerciseDate",
               "unadjustedDate" : {
                 "value" : "2012-12-31T00:00:00Z"
               },
               "dateAdjustments" : {
                 "businessDayConvention" : "NONE"
-              },
-              "id" : "exerciseDate"
+              }
             }
           },
           "expirationTime" : {
@@ -205,17 +157,11 @@
         "writtenConfirmation" : true
       },
       "premium" : {
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "partyB"
-            }
-          },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "partyA"
-            }
-          }
+        "payerPartyReference" : {
+          "href" : "partyB"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyA"
         },
         "paymentDate" : {
           "relativeDate" : {
@@ -236,29 +182,23 @@
       }
     }
   } ],
-  "partiesAndAccountsModel" : {
-    "party" : [ {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "5299000NIGT14YW8ZD26",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "EnergyCoA"
-        }
-      },
-      "id" : "partyA"
-    }, {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "969500QCC36R89FI3U25",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "EnergyCoB"
-        }
-      },
-      "id" : "partyB"
-    } ]
-  }
+  "party" : [ {
+    "id" : "partyA",
+    "partyId" : [ {
+      "value" : "5299000NIGT14YW8ZD26",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "EnergyCoA"
+    }
+  }, {
+    "id" : "partyB",
+    "partyId" : [ {
+      "value" : "969500QCC36R89FI3U25",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "EnergyCoB"
+    }
+  } ]
 }

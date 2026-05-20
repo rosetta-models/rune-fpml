@@ -1,66 +1,169 @@
 namespace fpml.consolidated.credit.event.notification : < "fpml definition" >
 version "${project.version}"
 
-type Bankruptcy extends BankruptcyEvent:
+import fpml.consolidated.*
+import fpml.consolidated.doc.*
+import fpml.consolidated.msg.*
+import fpml.consolidated.shared.*
 
-type CreditEventNotice extends CreditEventNoticeDocument: <"A global element used to hold CENs.">
+type Bankruptcy extends BankruptcyEvent:
+    [docReference ISDA FPML version "recordkeeping-5.13"]
+    [docReference ISDA FPML version "confirmation-5.13"]
+
+type CreditEventNotice extends CreditEventNoticeDocument:
     [rootType]
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "A global element used to hold CENs."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A global element used to hold CENs."]
 
 type FailureToPay extends FailureToPayEvent:
+    [docReference ISDA FPML version "recordkeeping-5.13"]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
 type ObligationAcceleration extends ObligationAccelerationEvent:
+    [docReference ISDA FPML version "recordkeeping-5.13"]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
 type ObligationDefault extends ObligationDefaultEvent:
+    [docReference ISDA FPML version "recordkeeping-5.13"]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
 type RepudiationMoratorium extends RepudiationMoratoriumEvent:
+    [docReference ISDA FPML version "recordkeeping-5.13"]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
 type Restructuring extends RestructuringEvent:
+    [docReference ISDA FPML version "recordkeeping-5.13"]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
-type CreditEventNotification extends fpml.consolidated.msg.CorrectableRequestMessage: <"A message defining the ISDA defined Credit Event Notice. ISDA defines it as an irrevocable notice from a Notifying Party to the other party that describes a Credit Event that occurred. A Credit Event Notice must contain detail of the facts relevant to the determination that a Credit Event has occurred. A message type defining the ISDA defined Credit Event Notice. ISDA defines it as an irrevocable notice from a Notifying Party to the other party that describes a Credit Event that occurred. A Credit Event Notice must contain detail of the facts relevant to the determination that a Credit Event has occurred.">
+type CreditEventNotification extends CorrectableRequestMessage:
     [rootType]
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "A message type defining the ISDA defined Credit Event Notice. ISDA defines it as an irrevocable notice from a Notifying Party to the other party that describes a Credit Event that occurred. A Credit Event Notice must contain detail of the facts relevant to the determination that a Credit Event has occurred."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A message type defining the ISDA defined Credit Event Notice. ISDA defines it as an irrevocable notice from a Notifying Party to the other party that describes a Credit Event that occurred. A Credit Event Notice must contain detail of the facts relevant to the determination that a Credit Event has occurred."]
 
     creditEventNotice CreditEventNoticeDocument (0..1)
-    party fpml.consolidated.shared.Party (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
+    party Party (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
 
-type CreditEventNotificationRetracted extends fpml.consolidated.msg.NonCorrectableRequestMessage: <"A message retracting a previous credit event notification. A message type retracting a previous credit event notification.">
+type CreditEventNotificationRetracted extends NonCorrectableRequestMessage:
     [rootType]
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "A message type retracting a previous credit event notification."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A message type retracting a previous credit event notification."]
 
     creditEventNotice CreditEventNoticeDocument (0..1)
-    party fpml.consolidated.shared.Party (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
+    party Party (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
 
-type CreditEventAcknowledgement extends fpml.consolidated.msg.Acknowledgement:
+type CreditEventAcknowledgement extends Acknowledgement:
     [rootType]
+    [docReference ISDA FPML version "recordkeeping-5.13"]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
-type CreditEventException extends fpml.consolidated.msg.Exception:
+type CreditEventException extends Exception:
     [rootType]
+    [docReference ISDA FPML version "recordkeeping-5.13"]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
 type AffectedTransactions:
+    [docReference ISDA FPML version "recordkeeping-5.13"]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
-    tradeOrTradeReferenceModel fpml.consolidated.doc.TradeOrTradeReferenceModel (1..*)
+    affectedTransactionsChoice AffectedTransactionsChoice (1..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
+
+type AffectedTransactionsChoice:
+    [docReference ISDA FPML version "recordkeeping-5.13"]
+    [docReference ISDA FPML version "confirmation-5.13"]
+
+    trade Trade (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "An element that allows the full details of the trade to be used as a mechanism for identifying the trade for which the post-trade event pertains"]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "An element that allows the full details of the trade to be used as a mechanism for identifying the trade for which the post-trade event pertains"]
+    tradeReference PartyTradeIdentifiers (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A container since an individual trade can be referenced by two or more different partyTradeIdentifier elements - each allocated by a different party."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A container since an individual trade can be referenced by two or more different partyTradeIdentifier elements - each allocated by a different party."]
+
+    condition Choice:
+        one-of
 
 type BankruptcyEvent extends CreditEvent:
+    [docReference ISDA FPML version "recordkeeping-5.13"]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
 type CreditEvent:
+    [docReference ISDA FPML version "recordkeeping-5.13"]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
-type CreditEventNoticeDocument: <"An event type that records the occurrence of a credit event notice.">
+type CreditEventNoticeDocument:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "An event type that records the occurrence of a credit event notice."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "An event type that records the occurrence of a credit event notice."]
 
-    affectedTransactions AffectedTransactions (0..1) <"Trades affected by this event.">
-    referenceEntity fpml.consolidated.shared.LegalEntity (0..1)
+    affectedTransactions AffectedTransactions (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Trades affected by this event."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Trades affected by this event."]
+    referenceEntity LegalEntity (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
     creditEvent CreditEvent (0..1)
-    publiclyAvailableInformation fpml.consolidated.shared.Resource (0..*) <"A public information source, e.g. a particular newspaper or electronic news service, that may publish relevant information used in the determination of whether or not a credit event has occurred.">
-    notifyingPartyReference fpml.consolidated.shared.PartyReference (0..1)
-    notifiedPartyReference fpml.consolidated.shared.PartyReference (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
+    publiclyAvailableInformation Resource (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A public information source, e.g. a particular newspaper or electronic news service, that may publish relevant information used in the determination of whether or not a credit event has occurred."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A public information source, e.g. a particular newspaper or electronic news service, that may publish relevant information used in the determination of whether or not a credit event has occurred."]
+    notifyingPartyReference PartyReference (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
+    notifiedPartyReference PartyReference (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
     creditEventNoticeDate zonedDateTime (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
     creditEventDate zonedDateTime (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
 
 type FailureToPayEvent extends CreditEvent:
+    [docReference ISDA FPML version "recordkeeping-5.13"]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
 type ObligationAccelerationEvent extends CreditEvent:
+    [docReference ISDA FPML version "recordkeeping-5.13"]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
 type ObligationDefaultEvent extends CreditEvent:
+    [docReference ISDA FPML version "recordkeeping-5.13"]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
 type RepudiationMoratoriumEvent extends CreditEvent:
+    [docReference ISDA FPML version "recordkeeping-5.13"]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
 type RestructuringEvent extends CreditEvent:
+    [docReference ISDA FPML version "recordkeeping-5.13"]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
-    partialExerciseAmount fpml.consolidated.shared.Money (0..1)
+    partialExerciseAmount Money (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]

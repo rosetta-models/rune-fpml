@@ -1,33 +1,130 @@
 namespace fpml.consolidated.variance.swaps : < "fpml definition" >
 version "${project.version}"
 
-type VarianceOptionTransactionSupplement extends fpml.consolidated.option.shared.OptionBase: <"Specifies the structure of a variance option.">
+import fpml.consolidated.*
+import fpml.consolidated.eq.shared.*
+import fpml.consolidated.eqd.*
+import fpml.consolidated.fpmlenum.*
+import fpml.consolidated.option.shared.*
+import fpml.consolidated.shared.*
 
-    equityPremium fpml.consolidated.eq.shared.EquityPremium (1..1) <"The variance option premium payable by the buyer to the seller.">
-    equityExercise fpml.consolidated.eqd.EquityExerciseValuationSettlement (1..1) <"The parameters for defining how the equity option can be exercised, how it is valued and how it is settled.">
-    exchangeLookAlike boolean (0..1) <"For a share option transaction, a flag used to indicate whether the transaction is to be treated as an \'exchange look-alike\'. This designation has significance for how share adjustments (arising from corporate actions) will be determined for the transaction. For an \'exchange look-alike\' transaction the relevant share adjustments will follow that for a corresponding designated contract listed on the related exchange (referred to as Options Exchange Adjustment (ISDA defined term), otherwise the share adjustments will be determined by the calculation agent (referred to as Calculation Agent Adjustment (ISDA defined term)).">
-    methodOfAdjustment fpml.consolidated.fpmlenum.MethodOfAdjustmentEnum (0..1) <"Defines how adjustments will be made to the contract should one or more of the extraordinary events occur.">
-    optionEntitlement fpml.consolidated.shared.PositiveDecimal (0..1) <"The number of shares per option comprised in the option transaction supplement.">
-    multiplier fpml.consolidated.shared.PositiveDecimal (0..1) <"Specifies the contract multiplier that can be associated with an index option.">
-    clearingInstructions fpml.consolidated.shared.SwaptionPhysicalSettlement (0..1) <"Specifies any instructions on how the physical settlement is to be effected when the option is exercised.">
-    varianceSwapTransactionSupplement VarianceSwapTransactionSupplement (1..1) <"The variance swap details.">
+type VarianceOptionTransactionSupplement extends OptionBase:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "Specifies the structure of a variance option."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "Specifies the structure of a variance option."]
+
+    equityPremium EquityPremium (1..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The variance option premium payable by the buyer to the seller."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The variance option premium payable by the buyer to the seller."]
+    equityExercise EquityExerciseValuationSettlement (1..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The parameters for defining how the equity option can be exercised, how it is valued and how it is settled."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The parameters for defining how the equity option can be exercised, how it is valued and how it is settled."]
+    exchangeLookAlike boolean (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "For a share option transaction, a flag used to indicate whether the transaction is to be treated as an \'exchange look-alike\'. This designation has significance for how share adjustments (arising from corporate actions) will be determined for the transaction. For an \'exchange look-alike\' transaction the relevant share adjustments will follow that for a corresponding designated contract listed on the related exchange (referred to as Options Exchange Adjustment (ISDA defined term), otherwise the share adjustments will be determined by the calculation agent (referred to as Calculation Agent Adjustment (ISDA defined term))."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "For a share option transaction, a flag used to indicate whether the transaction is to be treated as an \'exchange look-alike\'. This designation has significance for how share adjustments (arising from corporate actions) will be determined for the transaction. For an \'exchange look-alike\' transaction the relevant share adjustments will follow that for a corresponding designated contract listed on the related exchange (referred to as Options Exchange Adjustment (ISDA defined term), otherwise the share adjustments will be determined by the calculation agent (referred to as Calculation Agent Adjustment (ISDA defined term))."]
+    methodOfAdjustment MethodOfAdjustmentEnum (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Defines how adjustments will be made to the contract should one or more of the extraordinary events occur."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Defines how adjustments will be made to the contract should one or more of the extraordinary events occur."]
+    optionEntitlement PositiveDecimal (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The number of shares per option comprised in the option transaction supplement."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The number of shares per option comprised in the option transaction supplement."]
+    multiplier PositiveDecimal (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Specifies the contract multiplier that can be associated with an index option."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Specifies the contract multiplier that can be associated with an index option."]
+    clearingInstructions SwaptionPhysicalSettlement (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Specifies any instructions on how the physical settlement is to be effected when the option is exercised."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Specifies any instructions on how the physical settlement is to be effected when the option is exercised."]
+    varianceSwapTransactionSupplement VarianceSwapTransactionSupplement (1..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The variance swap details."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The variance swap details."]
 
     condition Choice:
         optional choice optionEntitlement, multiplier
 
-type VarianceSwap extends fpml.consolidated.eq.shared.NettedSwapBase: <"Specifies the structure of a variance swap. A Variance Swap.">
+type VarianceSwap extends NettedSwapBase:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "A Variance Swap."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A Variance Swap."]
 
-    varianceLeg VarianceLeg (1..*) <"Variance Leg.">
+    varianceLeg VarianceLeg (1..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Variance Leg."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Variance Leg."]
 
-type VarianceSwapTransactionSupplement extends fpml.consolidated.shared.Product: <"Specifies the structure of a variance swap transaction supplement. A Variance Swap Transaction Supplement.">
+type VarianceSwapTransactionSupplement extends Product:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "A Variance Swap Transaction Supplement."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A Variance Swap Transaction Supplement."]
 
-    varianceLeg VarianceLeg (1..*) <"Variance Leg.">
-    equityUnderlyerProvisionsModel fpml.consolidated.eq.shared.EquityUnderlyerProvisionsModel (0..1)
+    varianceLeg VarianceLeg (1..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Variance Leg."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Variance Leg."]
+    multipleExchangeIndexAnnexFallback boolean (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "For an index option transaction, a flag to indicate whether a relevant Multiple Exchange Index Annex is applicable to the transaction. This annex defines additional provisions which are applicable where an index is comprised of component securities that are traded on multiple exchanges."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "For an index option transaction, a flag to indicate whether a relevant Multiple Exchange Index Annex is applicable to the transaction. This annex defines additional provisions which are applicable where an index is comprised of component securities that are traded on multiple exchanges."]
+    componentSecurityIndexAnnexFallback boolean (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "For an index option transaction, a flag to indicate whether a relevant Component Security Index Annex is applicable to the transaction."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "For an index option transaction, a flag to indicate whether a relevant Component Security Index Annex is applicable to the transaction."]
+    localJurisdiction CountryCode (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Local Jurisdiction is a term used in the AEJ Master Confirmation, which is used to determine local taxes, which shall mean taxes, duties, and similar charges imposed by the taxing authority of the Local Jurisdiction If this element is not present Local Jurisdiction is Not Applicable."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Local Jurisdiction is a term used in the AEJ Master Confirmation, which is used to determine local taxes, which shall mean taxes, duties, and similar charges imposed by the taxing authority of the Local Jurisdiction If this element is not present Local Jurisdiction is Not Applicable."]
+    relevantJurisdiction CountryCode (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Relevent Jurisdiction is a term used in the AEJ Master Confirmation, which is used to determine local taxes, which shall mean taxes, duties and similar charges that would be imposed by the taxing authority of the Country of Underlyer on a Hypothetical Broker Dealer assuming the Applicable Hedge Positions are held by its office in the Relevant Jurisdiction. If this element is not present Relevant Jurisdiction is Not Applicable."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Relevent Jurisdiction is a term used in the AEJ Master Confirmation, which is used to determine local taxes, which shall mean taxes, duties and similar charges that would be imposed by the taxing authority of the Country of Underlyer on a Hypothetical Broker Dealer assuming the Applicable Hedge Positions are held by its office in the Relevant Jurisdiction. If this element is not present Relevant Jurisdiction is Not Applicable."]
 
-type VarianceAmount extends fpml.consolidated.eq.shared.CalculatedAmount: <"Calculation of a Variance Amount.">
+    condition Choice:
+        optional choice multipleExchangeIndexAnnexFallback, componentSecurityIndexAnnexFallback
 
-    variance fpml.consolidated.eq.shared.Variance (1..1) <"Specifies Variance.">
+type VarianceAmount extends CalculatedAmount:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "Calculation of a Variance Amount."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "Calculation of a Variance Amount."]
 
-type VarianceLeg extends fpml.consolidated.eq.shared.DirectionalLegUnderlyerValuation: <"A type describing return which is driven by a Variance Calculation.">
+    variance Variance (1..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Specifies Variance."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Specifies Variance."]
 
-    amount VarianceAmount (1..1) <"Specifies, in relation to each Equity Payment Date, the amount to which the Equity Payment Date relates. Unless otherwise specified, this term has the meaning defined in the ISDA 2002 Equity Derivatives Definitions.">
+type VarianceLeg extends DirectionalLegUnderlyerValuation:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "A type describing return which is driven by a Variance Calculation."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A type describing return which is driven by a Variance Calculation."]
+
+    amount VarianceAmount (1..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Specifies, in relation to each Equity Payment Date, the amount to which the Equity Payment Date relates. Unless otherwise specified, this term has the meaning defined in the ISDA 2002 Equity Derivatives Definitions."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Specifies, in relation to each Equity Payment Date, the amount to which the Equity Payment Date relates. Unless otherwise specified, this term has the meaning defined in the ISDA 2002 Equity Derivatives Definitions."]

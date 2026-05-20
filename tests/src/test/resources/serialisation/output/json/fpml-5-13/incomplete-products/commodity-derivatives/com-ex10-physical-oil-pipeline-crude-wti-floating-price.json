@@ -2,199 +2,135 @@
   "fpmlVersion" : "5-13",
   "trade" : [ {
     "tradeHeader" : {
-      "tradeIdentifiersModel" : {
-        "partyTradeIdentifier" : [ {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "1234",
-              "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "partyA"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "1234",
-                "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
-              }
-            } ]
-          }
-        }, {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "2345",
-              "tradeIdScheme" : "http://www.PartyB.com/com-trade-id"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "partyB"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "2345",
-                "tradeIdScheme" : "http://www.PartyB.com/com-trade-id"
-              }
-            } ]
-          }
-        } ]
-      },
+      "partyTradeIdentifier" : [ {
+        "tradeId" : {
+          "value" : "1234",
+          "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
+        },
+        "partyReference" : {
+          "href" : "partyA"
+        }
+      }, {
+        "tradeId" : {
+          "value" : "2345",
+          "tradeIdScheme" : "http://www.PartyB.com/com-trade-id"
+        },
+        "partyReference" : {
+          "href" : "partyB"
+        }
+      } ],
       "tradeDate" : {
         "value" : "2009-01-28T00:00:00Z"
       }
     },
     "product" : {
-      "commoditySwapDetailsModel" : {
-        "effectiveDate" : {
-          "adjustableDate" : {
-            "unadjustedDate" : {
-              "value" : "2009-06-01T00:00:00Z"
+      "effectiveDate" : {
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2009-06-01T00:00:00Z"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NotApplicable"
+          }
+        }
+      },
+      "terminationDate" : {
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2009-06-30T00:00:00Z"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NotApplicable"
+          }
+        }
+      },
+      "settlementCurrency" : {
+        "value" : "USD"
+      },
+      "commoditySwapLeg" : [ {
+        "payerPartyReference" : {
+          "href" : "partyA"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyB"
+        },
+        "deliveryPeriods" : {
+          "periodsSchedule" : {
+            "id" : "deliveryPeriods",
+            "periodMultiplier" : 1,
+            "period" : "T",
+            "balanceOfFirstPeriod" : false
+          }
+        },
+        "oil" : {
+          "grade" : {
+            "value" : "WTI"
+          },
+          "type" : {
+            "value" : "Oil"
+          }
+        },
+        "deliveryConditions" : {
+          "pipeline" : {
+            "pipelineName" : {
+              "value" : "TeppcoSeawayCrude",
+              "pipelineScheme" : "http://www.PartyA.com/pipeline-scheme-1-0"
             },
-            "dateAdjustments" : {
-              "businessDayConvention" : "NotApplicable"
+            "withdrawalPoint" : {
+              "value" : "Cushing",
+              "deliveryPointScheme" : "http://www.PartyA.com/delivery-point-scheme-oil-1-0"
+            },
+            "deliverableByBarge" : false,
+            "risk" : {
+              "value" : "FOB"
             }
           }
         },
-        "terminationDate" : {
-          "adjustableDate" : {
-            "unadjustedDate" : {
-              "value" : "2009-06-30T00:00:00Z"
+        "deliveryQuantity" : {
+          "physicalQuantity" : {
+            "id" : "deliveryQuantity",
+            "quantityUnit" : {
+              "value" : "BBL"
             },
-            "dateAdjustments" : {
-              "businessDayConvention" : "NotApplicable"
+            "quantityFrequency" : {
+              "value" : "PerCalculationPeriod"
+            },
+            "quantity" : 10000.0
+          }
+        }
+      }, {
+        "payerPartyReference" : {
+          "href" : "partyB"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyA"
+        },
+        "calculationPeriodsScheduleReference" : {
+          "href" : "deliveryPeriods"
+        },
+        "commodity" : {
+          "instrumentId" : [ {
+            "value" : "OIL-WTI-NYMEX",
+            "instrumentIdScheme" : "http://www.fpml.org/spec/2008/commodity-reference-price-1-0"
+          } ],
+          "specifiedPrice" : "Settlement"
+        },
+        "quantityReference" : {
+          "href" : "deliveryQuantity"
+        },
+        "calculation" : {
+          "pricingDates" : {
+            "calculationPeriodsScheduleReference" : {
+              "href" : "deliveryPeriods"
+            },
+            "dayType" : "CommodityBusiness",
+            "dayDistribution" : {
+              "value" : "All"
             }
           }
         },
-        "settlementCurrency" : {
-          "value" : "USD"
-        },
-        "commoditySwapLeg" : [ {
-          "payerReceiverModel" : {
-            "payerModel" : {
-              "payerPartyReference" : {
-                "href" : "partyA"
-              }
-            },
-            "receiverModel" : {
-              "receiverPartyReference" : {
-                "href" : "partyB"
-              }
-            }
-          },
-          "deliveryPeriods" : {
-            "periodsSchedule" : {
-              "periodMultiplier" : 1,
-              "period" : "T",
-              "id" : "deliveryPeriods",
-              "balanceOfFirstPeriod" : false
-            }
-          },
-          "oil" : {
-            "grade" : {
-              "value" : "WTI"
-            },
-            "type" : {
-              "value" : "Oil"
-            }
-          },
-          "deliveryConditions" : {
-            "pipeline" : {
-              "pipelineName" : {
-                "value" : "TeppcoSeawayCrude",
-                "pipelineScheme" : "http://www.PartyA.com/pipeline-scheme-1-0"
-              },
-              "withdrawalPoint" : {
-                "value" : "Cushing",
-                "deliveryPointScheme" : "http://www.PartyA.com/delivery-point-scheme-oil-1-0"
-              },
-              "deliverableByBarge" : false,
-              "risk" : {
-                "value" : "FOB"
-              }
-            }
-          },
-          "deliveryQuantity" : {
-            "commodityFixedPhysicalQuantityModel" : {
-              "physicalQuantity" : {
-                "quantityUnit" : {
-                  "value" : "BBL"
-                },
-                "quantityFrequency" : {
-                  "value" : "PerCalculationPeriod"
-                },
-                "quantity" : 10000.0,
-                "id" : "deliveryQuantity"
-              }
-            }
-          }
-        }, {
-          "payerReceiverModel" : {
-            "payerModel" : {
-              "payerPartyReference" : {
-                "href" : "partyB"
-              }
-            },
-            "receiverModel" : {
-              "receiverPartyReference" : {
-                "href" : "partyA"
-              }
-            }
-          },
-          "commodityCalculationPeriodsModel" : {
-            "commodityCalculationPeriodsPointerModel" : {
-              "calculationPeriodsScheduleReference" : {
-                "href" : "deliveryPeriods"
-              }
-            }
-          },
-          "commodity" : {
-            "instrumentId" : [ {
-              "value" : "OIL-WTI-NYMEX",
-              "instrumentIdScheme" : "http://www.fpml.org/spec/2008/commodity-reference-price-1-0"
-            } ],
-            "commodityProductModel" : {
-              "specifiedPrice" : "Settlement"
-            }
-          },
-          "commodityNotionalQuantityModel" : {
-            "quantityReference" : {
-              "href" : "deliveryQuantity"
-            }
-          },
-          "calculation" : {
-            "pricingDates" : {
-              "commodityCalculationPeriodsPointerModel" : {
-                "calculationPeriodsScheduleReference" : {
-                  "href" : "deliveryPeriods"
-                }
-              },
-              "commodityPricingDatesSequence" : {
-                "commodityPricingDatesSequenceSequence" : {
-                  "daysModel" : {
-                    "dayType" : "CommodityBusiness",
-                    "daysModelSequence0" : {
-                      "dayDistribution" : {
-                        "value" : "All"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "commodityPaymentDatesModel" : {
-            "commodityNonPeriodicPaymentDatesModel" : {
-              "masterAgreementPaymentDates" : true
-            }
-          }
-        } ]
-      }
+        "masterAgreementPaymentDates" : true
+      } ]
     },
     "documentation" : {
       "masterAgreement" : {
@@ -207,29 +143,23 @@
       } ]
     }
   } ],
-  "partiesAndAccountsModel" : {
-    "party" : [ {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "549300KFSLY4U7N3LL12",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "Bank"
-        }
-      },
-      "id" : "partyA"
-    }, {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "549300AJRHKBLY9GM262",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "Energy Co."
-        }
-      },
-      "id" : "partyB"
-    } ]
-  }
+  "party" : [ {
+    "id" : "partyA",
+    "partyId" : [ {
+      "value" : "549300KFSLY4U7N3LL12",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Bank"
+    }
+  }, {
+    "id" : "partyB",
+    "partyId" : [ {
+      "value" : "549300AJRHKBLY9GM262",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Energy Co."
+    }
+  } ]
 }

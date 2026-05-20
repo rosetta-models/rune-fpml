@@ -4,7 +4,6 @@
     <tradeHeader>
       <partyTradeIdentifier>
         <tradeId tradeIdScheme="http://www.PartyA.com/com-trade-id">UVXY54321</tradeId>
-        <tradeId tradeIdScheme="http://www.PartyA.com/com-trade-id">UVXY54321</tradeId>
         <partyReference href="PartyA"/>
       </partyTradeIdentifier>
       <tradeDate id="TradeDate">2012-11-15T00:00:00</tradeDate>
@@ -39,17 +38,6 @@
           </dateAdjustments>
         </adjustableDate>
       </terminationDate>
-      <barrier>
-        <knock>Out</knock>
-        <trigger>
-          <levelPrice>
-            <price>115.00</price>
-            <priceCurrency>USD</priceCurrency>
-            <priceUnit>BBL</priceUnit>
-          </levelPrice>
-          <triggerType>Greater</triggerType>
-        </trigger>
-      </barrier>
       <calculationPeriodsSchedule id="CalculationPeriodsSchedule">
         <periodMultiplier>1</periodMultiplier>
         <period>Y</period>
@@ -61,6 +49,17 @@
         <dayDistribution>Last</dayDistribution>
         <dayCount>5</dayCount>
       </pricingDates>
+      <barrier>
+        <knock>Out</knock>
+        <trigger>
+          <levelPrice>
+            <price>115.00</price>
+            <priceCurrency>USD</priceCurrency>
+            <priceUnit>BBL</priceUnit>
+          </levelPrice>
+          <triggerType>Greater</triggerType>
+        </trigger>
+      </barrier>
       <notionalQuantity>
         <quantityUnit>BBL</quantityUnit>
         <quantityFrequency>PerCalculationPeriod</quantityFrequency>
@@ -69,10 +68,22 @@
       <totalNotionalQuantity>30000</totalNotionalQuantity>
       <exercise>
         <europeanExercise>
-          <exerciseFrequency>
-            <periodMultiplier>1</periodMultiplier>
-            <period>M</period>
-          </exerciseFrequency>
+          <expirationDate>
+            <adjustableDate>
+              <unadjustedDate>2013-01-31T00:00:00</unadjustedDate>
+              <dateAdjustments>
+                <businessDayConvention>NotApplicable</businessDayConvention>
+              </dateAdjustments>
+            </adjustableDate>
+          </expirationDate>
+          <expirationDate>
+            <adjustableDate>
+              <unadjustedDate>2013-02-28T00:00:00</unadjustedDate>
+              <dateAdjustments>
+                <businessDayConvention>NotApplicable</businessDayConvention>
+              </dateAdjustments>
+            </adjustableDate>
+          </expirationDate>
           <expirationDate>
             <adjustableDate>
               <unadjustedDate>2013-03-31T00:00:00</unadjustedDate>
@@ -81,6 +92,10 @@
               </dateAdjustments>
             </adjustableDate>
           </expirationDate>
+          <exerciseFrequency>
+            <periodMultiplier>1</periodMultiplier>
+            <period>M</period>
+          </exerciseFrequency>
         </europeanExercise>
         <automaticExercise>true</automaticExercise>
         <settlementCurrency>USD</settlementCurrency>
@@ -111,42 +126,6 @@
           </deliveryNearby>
         </commodity>
       </floatingStrikePricePerUnit>
-      <effectiveDate>
-        <adjustableDate>
-          <unadjustedDate>2013-01-01T00:00:00</unadjustedDate>
-          <dateAdjustments>
-            <businessDayConvention>NONE</businessDayConvention>
-          </dateAdjustments>
-        </adjustableDate>
-      </effectiveDate>
-      <exercise>
-        <europeanExercise>
-          <exerciseFrequency>
-            <periodMultiplier>1</periodMultiplier>
-            <period>M</period>
-          </exerciseFrequency>
-          <expirationDate>
-            <adjustableDate>
-              <unadjustedDate>2013-03-31T00:00:00</unadjustedDate>
-              <dateAdjustments>
-                <businessDayConvention>NotApplicable</businessDayConvention>
-              </dateAdjustments>
-            </adjustableDate>
-          </expirationDate>
-        </europeanExercise>
-        <automaticExercise>true</automaticExercise>
-        <settlementCurrency>USD</settlementCurrency>
-        <relativePaymentDates>
-          <payRelativeTo>TerminationOrExpirationDate</payRelativeTo>
-          <calculationPeriodsScheduleReference href="CalculationPeriodsSchedule"/>
-          <paymentDaysOffset>
-            <periodMultiplier>5</periodMultiplier>
-            <period>D</period>
-            <dayType>Business</dayType>
-            <businessDayConvention>NONE</businessDayConvention>
-          </paymentDaysOffset>
-        </relativePaymentDates>
-      </exercise>
       <premium>
         <payerPartyReference href="PartyB"/>
         <receiverPartyReference href="PartyA"/>

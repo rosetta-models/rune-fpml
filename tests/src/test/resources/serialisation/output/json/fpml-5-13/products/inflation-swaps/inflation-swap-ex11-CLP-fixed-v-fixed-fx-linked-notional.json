@@ -2,94 +2,49 @@
   "fpmlVersion" : "5-13",
   "trade" : [ {
     "tradeHeader" : {
-      "tradeIdentifiersModel" : {
-        "partyTradeIdentifier" : [ {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "596604984",
-              "tradeIdScheme" : "http://www.party-a.com/swaps/trade-id"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "partyA"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "596604984",
-                "tradeIdScheme" : "http://www.party-a.com/swaps/trade-id"
-              }
-            } ]
-          }
-        }, {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "BCID71046476",
-              "tradeIdScheme" : "http://www.party-b.com/swaps/trade-id"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "partyB"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "BCID71046476",
-                "tradeIdScheme" : "http://www.party-b.com/swaps/trade-id"
-              }
-            } ]
-          }
-        }, {
-          "issuerTradeIdModel" : {
-            "tradeId" : {
-              "value" : "184467696-2",
-              "tradeIdScheme" : "http://www.swapswire.com/spec/2001/trade-id-1-0"
-            }
-          },
-          "tradeIdentifierSequence" : {
-            "partyAndAccountReferencesModel" : {
-              "partyReference" : {
-                "href" : "partyC"
-              }
-            },
-            "tradeIdentifierSequenceChoice" : [ {
-              "tradeId" : {
-                "value" : "184467696-2",
-                "tradeIdScheme" : "http://www.swapswire.com/spec/2001/trade-id-1-0"
-              }
-            } ]
-          }
-        } ]
-      },
+      "partyTradeIdentifier" : [ {
+        "tradeId" : {
+          "value" : "596604984",
+          "tradeIdScheme" : "http://www.party-a.com/swaps/trade-id"
+        },
+        "partyReference" : {
+          "href" : "partyA"
+        }
+      }, {
+        "tradeId" : {
+          "value" : "BCID71046476",
+          "tradeIdScheme" : "http://www.party-b.com/swaps/trade-id"
+        },
+        "partyReference" : {
+          "href" : "partyB"
+        }
+      }, {
+        "tradeId" : {
+          "value" : "184467696-2",
+          "tradeIdScheme" : "http://www.swapswire.com/spec/2001/trade-id-1-0"
+        },
+        "partyReference" : {
+          "href" : "partyC"
+        }
+      } ],
       "tradeDate" : {
         "value" : "2022-05-03T00:00:00Z"
       }
     },
     "product" : {
-      "productModel" : {
-        "productType" : [ {
-          "value" : "InterestRateSwap"
-        } ]
-      },
+      "productType" : [ {
+        "value" : "InterestRateSwap"
+      } ],
       "swapStream" : [ {
         "id" : "fixedLeg",
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "partyA"
-            }
-          },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "partyB"
-            }
-          }
+        "payerPartyReference" : {
+          "href" : "partyA"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyB"
         },
         "calculationPeriodDates" : {
+          "id" : "fixedLegCalcPeriodDates",
           "effectiveDate" : {
             "unadjustedDate" : {
               "value" : "2022-09-21T00:00:00Z"
@@ -104,20 +59,6 @@
             },
             "dateAdjustments" : {
               "businessDayConvention" : "MODFOLLOWING",
-              "businessCentersOrReferenceModel" : {
-                "businessCenters" : {
-                  "businessCenter" : [ {
-                    "value" : "USNY"
-                  }, {
-                    "value" : "CLSA"
-                  } ]
-                }
-              }
-            }
-          },
-          "calculationPeriodDatesAdjustments" : {
-            "businessDayConvention" : "MODFOLLOWING",
-            "businessCentersOrReferenceModel" : {
               "businessCenters" : {
                 "businessCenter" : [ {
                   "value" : "USNY"
@@ -127,14 +68,24 @@
               }
             }
           },
+          "calculationPeriodDatesAdjustments" : {
+            "businessDayConvention" : "MODFOLLOWING",
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "USNY"
+              }, {
+                "value" : "CLSA"
+              } ]
+            }
+          },
           "calculationPeriodFrequency" : {
             "periodMultiplier" : 1,
             "period" : "T",
             "rollConvention" : "NONE"
-          },
-          "id" : "fixedLegCalcPeriodDates"
+          }
         },
         "paymentDates" : {
+          "id" : "fixedLegPaymentDates",
           "calculationPeriodDatesReference" : {
             "href" : "fixedLegCalcPeriodDates"
           },
@@ -145,36 +96,31 @@
           "payRelativeTo" : "CalculationPeriodEndDate",
           "paymentDatesAdjustments" : {
             "businessDayConvention" : "MODFOLLOWING",
-            "businessCentersOrReferenceModel" : {
-              "businessCenters" : {
-                "businessCenter" : [ {
-                  "value" : "USNY"
-                }, {
-                  "value" : "CLSA"
-                } ]
-              }
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "USNY"
+              }, {
+                "value" : "CLSA"
+              } ]
             }
-          },
-          "id" : "fixedLegPaymentDates"
+          }
         },
         "calculationPeriodAmount" : {
           "calculation" : {
             "notionalSchedule" : {
+              "id" : "notionalScheduleCLP",
               "notionalStepSchedule" : {
                 "initialValue" : 16713460000,
                 "currency" : {
                   "value" : "CLP"
                 }
-              },
-              "id" : "notionalScheduleCLP"
+              }
+            },
+            "fixedRateSchedule" : {
+              "initialValue" : 0.0
             },
             "dayCountFraction" : {
               "value" : "ACT/360"
-            },
-            "calculationSequence" : {
-              "fixedRateSchedule" : {
-                "initialValue" : 0.0
-              }
             }
           }
         },
@@ -196,14 +142,12 @@
               "period" : "D",
               "dayType" : "Business",
               "businessDayConvention" : "NONE",
-              "businessCentersOrReferenceModel" : {
-                "businessCenters" : {
-                  "businessCenter" : [ {
-                    "value" : "USNY"
-                  }, {
-                    "value" : "CLSA"
-                  } ]
-                }
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "USNY"
+                }, {
+                  "value" : "CLSA"
+                } ]
               },
               "dateRelativeToPaymentDates" : {
                 "paymentDatesReference" : [ {
@@ -218,19 +162,14 @@
         }
       }, {
         "id" : "fixedLeg2",
-        "payerReceiverModel" : {
-          "payerModel" : {
-            "payerPartyReference" : {
-              "href" : "partyB"
-            }
-          },
-          "receiverModel" : {
-            "receiverPartyReference" : {
-              "href" : "partyA"
-            }
-          }
+        "payerPartyReference" : {
+          "href" : "partyB"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyA"
         },
         "calculationPeriodDates" : {
+          "id" : "fixedLeg2CalcPeriodDates",
           "effectiveDate" : {
             "unadjustedDate" : {
               "value" : "2022-09-21T00:00:00Z"
@@ -245,20 +184,6 @@
             },
             "dateAdjustments" : {
               "businessDayConvention" : "MODFOLLOWING",
-              "businessCentersOrReferenceModel" : {
-                "businessCenters" : {
-                  "businessCenter" : [ {
-                    "value" : "USNY"
-                  }, {
-                    "value" : "CLSA"
-                  } ]
-                }
-              }
-            }
-          },
-          "calculationPeriodDatesAdjustments" : {
-            "businessDayConvention" : "MODFOLLOWING",
-            "businessCentersOrReferenceModel" : {
               "businessCenters" : {
                 "businessCenter" : [ {
                   "value" : "USNY"
@@ -268,14 +193,24 @@
               }
             }
           },
+          "calculationPeriodDatesAdjustments" : {
+            "businessDayConvention" : "MODFOLLOWING",
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "USNY"
+              }, {
+                "value" : "CLSA"
+              } ]
+            }
+          },
           "calculationPeriodFrequency" : {
             "periodMultiplier" : 1,
             "period" : "T",
             "rollConvention" : "NONE"
-          },
-          "id" : "fixedLeg2CalcPeriodDates"
+          }
         },
         "paymentDates" : {
+          "id" : "fixedLeg2PaymentDates",
           "calculationPeriodDatesReference" : {
             "href" : "fixedLeg2CalcPeriodDates"
           },
@@ -286,17 +221,14 @@
           "payRelativeTo" : "CalculationPeriodEndDate",
           "paymentDatesAdjustments" : {
             "businessDayConvention" : "MODFOLLOWING",
-            "businessCentersOrReferenceModel" : {
-              "businessCenters" : {
-                "businessCenter" : [ {
-                  "value" : "USNY"
-                }, {
-                  "value" : "CLSA"
-                } ]
-              }
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "USNY"
+              }, {
+                "value" : "CLSA"
+              } ]
             }
-          },
-          "id" : "fixedLeg2PaymentDates"
+          }
         },
         "calculationPeriodAmount" : {
           "calculation" : {
@@ -312,12 +244,10 @@
                 "periodMultiplier" : 0,
                 "period" : "D",
                 "businessDayConvention" : "NONE",
-                "businessCentersOrReferenceModel" : {
-                  "businessCenters" : {
-                    "businessCenter" : [ {
-                      "value" : "CLSA"
-                    } ]
-                  }
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "CLSA"
+                  } ]
                 },
                 "dateRelativeTo" : {
                   "href" : "fixedLeg2PaymentDates"
@@ -345,13 +275,11 @@
                 }
               }
             },
+            "fixedRateSchedule" : {
+              "initialValue" : 0.0
+            },
             "dayCountFraction" : {
               "value" : "ACT/360"
-            },
-            "calculationSequence" : {
-              "fixedRateSchedule" : {
-                "initialValue" : 0.0
-              }
             }
           }
         },
@@ -373,14 +301,12 @@
               "period" : "D",
               "dayType" : "Business",
               "businessDayConvention" : "NONE",
-              "businessCentersOrReferenceModel" : {
-                "businessCenters" : {
-                  "businessCenter" : [ {
-                    "value" : "USNY"
-                  }, {
-                    "value" : "CLSA"
-                  } ]
-                }
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "USNY"
+                }, {
+                  "value" : "CLSA"
+                } ]
               },
               "dateRelativeToPaymentDates" : {
                 "paymentDatesReference" : [ {
@@ -396,40 +322,32 @@
       } ]
     }
   } ],
-  "partiesAndAccountsModel" : {
-    "party" : [ {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "549300ABANKV6BYQOWM67",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "AAA International"
-        }
-      },
-      "id" : "partyA"
-    }, {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "529900CPTY57S5UCBB52",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "AAA Capital Services Inc."
-        }
-      },
-      "id" : "partyB"
-    }, {
-      "partyModel" : {
-        "partyId" : [ {
-          "value" : "529900AYEI57S5UCED35",
-          "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
-        } ],
-        "partyName" : {
-          "value" : "SWAPSWIRE"
-        }
-      },
-      "id" : "partyC"
-    } ]
-  }
+  "party" : [ {
+    "id" : "partyA",
+    "partyId" : [ {
+      "value" : "549300ABANKV6BYQOWM67",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "AAA International"
+    }
+  }, {
+    "id" : "partyB",
+    "partyId" : [ {
+      "value" : "529900CPTY57S5UCBB52",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "AAA Capital Services Inc."
+    }
+  }, {
+    "id" : "partyC",
+    "partyId" : [ {
+      "value" : "529900AYEI57S5UCED35",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "SWAPSWIRE"
+    }
+  } ]
 }
