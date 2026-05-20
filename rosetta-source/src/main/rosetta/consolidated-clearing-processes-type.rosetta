@@ -1,40 +1,131 @@
 namespace fpml.consolidated.clearing.processes : < "fpml definition" >
 version "${project.version}"
 
-type RequestClearingEligibility extends fpml.consolidated.msg.CorrectableRequestMessage:
+import fpml.consolidated.*
+import fpml.consolidated.business.events.*
+import fpml.consolidated.doc.*
+import fpml.consolidated.msg.*
+import fpml.consolidated.shared.*
+
+type RequestClearingEligibility extends CorrectableRequestMessage:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
-    requestingPartyReference fpml.consolidated.shared.PartyReference (0..1)
-    tradePackage fpml.consolidated.business.events.TradePackage (0..1)
-    originatingEvent fpml.consolidated.shared.OriginatingEvent (0..1)
-    trade fpml.consolidated.doc.Trade (0..1)
-    additionalEvent fpml.consolidated.business.events.AdditionalEvent (0..1)
-    deClear fpml.consolidated.business.events.DeClear (0..1) <"A structure describing a declear event. The deClear event allows a firm to request that a trade be removed from clearing, or a clearing service to request consent for this, or to report that it has been done.">
-    party fpml.consolidated.shared.Party (1..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
-    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
+    requestingPartyReference PartyReference (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    tradePackage TradePackage (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    originatingEvent OriginatingEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    trade Trade (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    additionalEvent AdditionalEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    deClear DeClear (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A structure describing a declear event. The deClear event allows a firm to request that a trade be removed from clearing, or a clearing service to request consent for this, or to report that it has been done."]
+    party Party (1..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document."]
+    account Account (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Optional account information used to precisely define the origination and destination of financial instruments."]
 
-type ClearingEligibility extends fpml.consolidated.msg.ResponseMessage:
+    condition Choice:
+        if tradePackage exists
+        then originatingEvent is absent
+                and trade is absent
+                and additionalEvent is absent
+                and deClear is absent
+        else if trade exists
+        then tradePackage is absent and additionalEvent is absent and deClear is absent
+        else if additionalEvent exists
+        then tradePackage is absent
+                and trade is absent
+                and originatingEvent is absent
+                and deClear is absent
+        else if deClear exists
+        then tradePackage is absent
+                and trade is absent
+                and additionalEvent is absent
+                and originatingEvent is absent
+        else False
+
+type ClearingEligibility extends ResponseMessage:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
-    tradePackage fpml.consolidated.business.events.TradePackage (0..1)
-    originatingEvent fpml.consolidated.shared.OriginatingEvent (0..1)
-    trade fpml.consolidated.doc.Trade (0..1)
-    additionalEvent fpml.consolidated.business.events.AdditionalEvent (0..1)
-    deClear fpml.consolidated.business.events.DeClear (0..1) <"A structure describing a declear event. The deClear event allows a firm to request that a trade be removed from clearing, or a clearing service to request consent for this, or to report that it has been done.">
-    partyTradeIdentifier fpml.consolidated.doc.PartyTradeIdentifier (0..1)
+    tradePackage TradePackage (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    originatingEvent OriginatingEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    trade Trade (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    additionalEvent AdditionalEvent (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
+    deClear DeClear (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A structure describing a declear event. The deClear event allows a firm to request that a trade be removed from clearing, or a clearing service to request consent for this, or to report that it has been done."]
+    partyTradeIdentifier PartyTradeIdentifier (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
     eligibleForClearing boolean (1..1)
+        [docReference ISDA FPML version "confirmation-5.13"]
     clearingRequirements ClearingRequirements (0..*)
-    party fpml.consolidated.shared.Party (1..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
-    account fpml.consolidated.shared.Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
+        [docReference ISDA FPML version "confirmation-5.13"]
+    party Party (1..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document."]
+    account Account (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Optional account information used to precisely define the origination and destination of financial instruments."]
 
-type ClearingEligibilityException extends fpml.consolidated.msg.Exception:
-    [rootType]
+    condition Choice:
+        if trade exists
+        then tradePackage is absent
+                and additionalEvent is absent
+                and deClear is absent
+                and partyTradeIdentifier is absent
+        else if additionalEvent exists
+        then trade is absent
+                and tradePackage is absent
+                and originatingEvent is absent
+                and deClear is absent
+                and partyTradeIdentifier is absent
+        else if deClear exists
+        then trade is absent
+                and additionalEvent is absent
+                and tradePackage is absent
+                and originatingEvent is absent
+                and partyTradeIdentifier is absent
+        else if partyTradeIdentifier exists
+        then trade is absent
+                and additionalEvent is absent
+                and deClear is absent
+                and tradePackage is absent
+                and originatingEvent is absent
+        else trade is absent
+            and additionalEvent is absent
+            and deClear is absent
+            and partyTradeIdentifier is absent
+            and originatingEvent is absent
 
-type ClearingEligibilityAcknowledgement extends fpml.consolidated.msg.Acknowledgement:
+type ClearingEligibilityException extends Exception:
     [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"]
+
+type ClearingEligibilityAcknowledgement extends Acknowledgement:
+    [rootType]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
 type ClearingRequirements:
+    [docReference ISDA FPML version "confirmation-5.13"]
 
-    supervisoryBody fpml.consolidated.shared.SupervisoryBody (1..1) <"The regulator or other supervisory body to which the clearing requirements apply.">
-    mandatorilyClearable boolean (1..1) <"Whether the particular trade type in question is required by this regulator to be cleared.">
-    reason fpml.consolidated.doc.Reason (0..*) <"Indicates a reason supporting why the trade is mandatorily clearable or not.">
+    supervisoryBody SupervisoryBody (1..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The regulator or other supervisory body to which the clearing requirements apply."]
+    mandatorilyClearable boolean (1..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Whether the particular trade type in question is required by this regulator to be cleared."]
+    reason Reason (0..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Indicates a reason supporting why the trade is mandatorily clearable or not."]

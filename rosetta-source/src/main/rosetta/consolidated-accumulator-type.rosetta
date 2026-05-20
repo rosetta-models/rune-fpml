@@ -1,53 +1,144 @@
 namespace fpml.consolidated.accumulator : < "fpml definition" >
 version "${project.version}"
 
-type EquityAccumulator extends fpml.consolidated.shared.Product:
+import fpml.consolidated.*
+import fpml.consolidated.asset.*
+import fpml.consolidated.eqd.*
+import fpml.consolidated.fpmlenum.*
+import fpml.consolidated.shared.*
 
-    buyerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party that buys this instrument, ie. pays for this instrument and receives the rights defined by it. See 2000 ISDA definitions Article 11.1 (b). In the case of FRAs this the fixed rate payer.">
-    buyerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that buys this instrument.">
-    sellerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party that sells (\"writes\") this instrument, i.e. that grants the rights defined by this instrument and in return receives a payment for it. See 2000 ISDA definitions Article 11.1 (a). In the case of FRAs this is the floating rate payer.">
-    sellerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that sells this instrument.">
-    notional fpml.consolidated.shared.NonNegativeMoney (1..1) <"The notional amount">
-    underlyer fpml.consolidated.asset.Underlyer (1..1) <"Specifies the underlying component, which can be either one security or a basket.">
-    forwardPrice fpml.consolidated.shared.NonNegativeMoney (0..1) <"The price the shares will be accumulated at.">
-    spotPrice fpml.consolidated.shared.NonNegativeMoney (0..1) <"The current price of the stock">
-    numberOfSharesPerDay fpml.consolidated.shared.NonNegativeDecimal (1..1) <"The number of shares to be purchased per day">
-    maxNoOfTradingDays int (0..1) <"Maximum number of trading days">
-    gearing Gearing (0..1) <"Leverage or Gearing. Optional condition where if shares fall below trigger price, number of shares purchased increase by the gearing factor.">
-    guaranteedPeriodEndDate zonedDateTime (0..1) <"End date of guaranteed period. If knock out is triggered within guaranteed period, guaranteed number of shares will be delivered.">
-    observationPeriod ObservationPeriod (1..*) <"Period when accumulator will accumulate shares">
-    expiration EquityForwardExpiration (1..1) <"Expiration date of accumulator.">
-    prePayment fpml.consolidated.eqd.PrePayment (0..1) <"A payment made in advance for the purchase of the shares.">
-    settlementType fpml.consolidated.fpmlenum.SettlementTypeEnum (1..1) <"How the accululator will be settled.">
-    settlementCurrency fpml.consolidated.shared.Currency (0..1) <"The currency in which a cash settlement for non-deliverable forward and non-deliverable options.">
-    settlementPriceSource fpml.consolidated.shared.SettlementPriceSource (0..1) <"The source from which the settlement price is to be obtained, e.g. a Reuters page, Prezzo di Riferimento, etc.">
-    knockOut AccumulatorKnockOut (0..1) <"Termination of contract prior to maturity date as a result of stock price exceeding specified level or performance reaching target performance.">
+type EquityAccumulator extends Product:
+    [docReference ISDA FPML version "confirmation-5.13"]
 
-type EquityForwardExpiration extends fpml.consolidated.shared.Exercise: <"A type for defining expiry of an equity forward contract.">
+    buyerPartyReference PartyReference (1..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A reference to the party that buys this instrument, ie. pays for this instrument and receives the rights defined by it. See 2000 ISDA definitions Article 11.1 (b). In the case of FRAs this the fixed rate payer."]
+    buyerAccountReference AccountReference (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A reference to the account that buys this instrument."]
+    sellerPartyReference PartyReference (1..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A reference to the party that sells (\"writes\") this instrument, i.e. that grants the rights defined by this instrument and in return receives a payment for it. See 2000 ISDA definitions Article 11.1 (a). In the case of FRAs this is the floating rate payer."]
+    sellerAccountReference AccountReference (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A reference to the account that sells this instrument."]
+    notional NonNegativeMoney (1..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The notional amount"]
+    underlyer Underlyer (1..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Specifies the underlying component, which can be either one security or a basket."]
+    forwardPrice NonNegativeMoney (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The price the shares will be accumulated at."]
+    spotPrice NonNegativeMoney (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The current price of the stock"]
+    numberOfSharesPerDay NonNegativeDecimal (1..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The number of shares to be purchased per day"]
+    maxNoOfTradingDays int (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Maximum number of trading days"]
+    gearing Gearing (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Leverage or Gearing. Optional condition where if shares fall below trigger price, number of shares purchased increase by the gearing factor."]
+    guaranteedPeriodEndDate zonedDateTime (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "End date of guaranteed period. If knock out is triggered within guaranteed period, guaranteed number of shares will be delivered."]
+    observationPeriod ObservationPeriod (1..*)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Period when accumulator will accumulate shares"]
+    expiration EquityForwardExpiration (1..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Expiration date of accumulator."]
+    prePayment PrePayment (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A payment made in advance for the purchase of the shares."]
+    settlementType SettlementTypeEnum (1..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "How the accululator will be settled."]
+    settlementCurrency Currency (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The currency in which a cash settlement for non-deliverable forward and non-deliverable options."]
+    settlementPriceSource SettlementPriceSource (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The source from which the settlement price is to be obtained, e.g. a Reuters page, Prezzo di Riferimento, etc."]
+    knockOut AccumulatorKnockOut (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Termination of contract prior to maturity date as a result of stock price exceeding specified level or performance reaching target performance."]
 
-    expirationDate fpml.consolidated.shared.AdjustableOrRelativeDate (1..1) <"The last day within an exercise period for an American style option. For a European style option it is the only day within the exercise period.">
-    equityExpirationTimeType fpml.consolidated.fpmlenum.TimeTypeEnum (0..1) <"The time of day at which the equity option expires, for example the official closing time of the exchange.">
-    equityExpirationTime fpml.consolidated.shared.BusinessCenterTime (0..1) <"The specific time of day at which the equity option expires.">
-    expirationTimeDetermination fpml.consolidated.shared.DeterminationMethod (0..1) <"Expiration time determination method.">
+type EquityForwardExpiration extends Exercise:
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A type for defining expiry of an equity forward contract."]
+
+    expirationDate AdjustableOrRelativeDate (1..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The last day within an exercise period for an American style option. For a European style option it is the only day within the exercise period."]
+    equityExpirationTimeType TimeTypeEnum (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The time of day at which the equity option expires, for example the official closing time of the exchange."]
+    equityExpirationTime BusinessCenterTime (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The specific time of day at which the equity option expires."]
+    expirationTimeDetermination DeterminationMethod (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Expiration time determination method."]
+
+    condition Choice:
+        if equityExpirationTimeType exists
+        then expirationTimeDetermination is absent
+        else if expirationTimeDetermination exists
+        then equityExpirationTimeType is absent and equityExpirationTime is absent
+        else False
 
 type SharesPerDay:
+    [docReference ISDA FPML version "confirmation-5.13"]
 
-type Gearing: <"Leverage or Gearing. Optional condition where if shares fall below trigger price, number of shares puchased increase by the gearing factor.">
+type Gearing:
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "Leverage or Gearing. Optional condition where if shares fall below trigger price, number of shares puchased increase by the gearing factor."]
 
-    gearingFactor number (1..1) <"Increase in number of shares purchased.">
-    leverageTriggerPrice number (0..1) <"If specified, gearing factor applied only if share price falls below this trigger price.">
+    gearingFactor number (1..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Increase in number of shares purchased."]
+    leverageTriggerPrice number (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "If specified, gearing factor applied only if share price falls below this trigger price."]
 
-type ObservationPeriod: <"Period when accumulator will accumulate shares.">
+type ObservationPeriod:
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "Period when accumulator will accumulate shares."]
 
-    observationPeriodStartDate zonedDateTime (1..1) <"Start date of observation period">
-    observationPeriodEndDate zonedDateTime (1..1) <"End date of observation period">
-    observationPeriodSettlementDate zonedDateTime (0..1) <"Settlement date for shares accumulated during the observation period.">
-    observationPeriodNoOfTradingDays int (0..1) <"Number of trading days in observation period">
-    upFrontSettlement boolean (0..1) <"Does the investor need to invest the maximum notional amount for this observation period upfront ? The alternative is to transact on a margin basis.">
-    noOfScheduledTradingDays int (0..1) <"Number of scheduled trading days in observation period">
+    observationPeriodStartDate zonedDateTime (1..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Start date of observation period"]
+    observationPeriodEndDate zonedDateTime (1..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "End date of observation period"]
+    observationPeriodSettlementDate zonedDateTime (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Settlement date for shares accumulated during the observation period."]
+    observationPeriodNoOfTradingDays int (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Number of trading days in observation period"]
+    upFrontSettlement boolean (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Does the investor need to invest the maximum notional amount for this observation period upfront ? The alternative is to transact on a margin basis."]
+    noOfScheduledTradingDays int (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Number of scheduled trading days in observation period"]
 
-type AccumulatorKnockOut: <"Termination of contract prior to maturity date as a result of stock price reaching specified level or performance reaching target performance.">
+type AccumulatorKnockOut:
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "Termination of contract prior to maturity date as a result of stock price reaching specified level or performance reaching target performance."]
 
-    targetPerformance fpml.consolidated.shared.NonNegativeDecimal (0..1) <"The target performance.">
-    level number (0..1) <"The share price, above which the contract is terminated.">
-    triggerTimeType fpml.consolidated.fpmlenum.TriggerTimeTypeEnum (1..1) <"The time of day which would be considered for valuing the knock event.">
+    targetPerformance NonNegativeDecimal (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The target performance."]
+    level number (0..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The share price, above which the contract is terminated."]
+    triggerTimeType TriggerTimeTypeEnum (1..1)
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The time of day which would be considered for valuing the knock event."]

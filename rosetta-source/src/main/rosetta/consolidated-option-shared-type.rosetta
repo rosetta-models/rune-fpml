@@ -1,245 +1,899 @@
 namespace fpml.consolidated.option.shared : < "fpml definition" >
 version "${project.version}"
 
-type Asian: <"As per ISDA 2002 Definitions.">
+import fpml.consolidated.*
+import fpml.consolidated.asset.*
+import fpml.consolidated.fpmlenum.*
+import fpml.consolidated.shared.*
 
-    averagingInOut fpml.consolidated.fpmlenum.AveragingInOutEnum (0..1)
-    strikeFactor number (0..1) <"The factor of strike.">
-    averagingPeriodIn AveragingPeriod (0..1) <"The averaging in period.">
-    averagingPeriodOut AveragingPeriod (0..1) <"The averaging out period.">
+type Asian:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "As per ISDA 2002 Definitions."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "As per ISDA 2002 Definitions."]
 
-type AveragingObservationList: <"An un ordered list of weighted averaging observations.">
+    averagingInOut AveragingInOutEnum (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
+    strikeFactor number (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The factor of strike."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The factor of strike."]
+    averagingPeriodIn AveragingPeriod (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The averaging in period."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The averaging in period."]
+    averagingPeriodOut AveragingPeriod (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The averaging out period."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The averaging out period."]
 
-    averagingObservation WeightedAveragingObservation (0..*) <"A single weighted averaging observation.">
+type AveragingObservationList:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "An un ordered list of weighted averaging observations."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "An un ordered list of weighted averaging observations."]
 
-type AveragingPeriod: <"Period over which an average value is taken.">
+    averagingObservation WeightedAveragingObservation (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A single weighted averaging observation."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A single weighted averaging observation."]
 
-    schedule AveragingSchedule (0..*) <"A schedule for generating averaging observation dates.">
-    averagingDateTimes fpml.consolidated.shared.DateTimeList (0..1) <"An unweighted list of averaging observation date and times.">
-    averagingObservations AveragingObservationList (0..1) <"A weighted list of averaging observation date and times.">
-    marketDisruption MarketDisruption (0..1) <"The market disruption event as defined by ISDA 2002 Definitions.">
+type AveragingPeriod:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "Period over which an average value is taken."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "Period over which an average value is taken."]
 
-type AveragingSchedule: <"Method of generating a series of dates.">
+    schedule AveragingSchedule (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A schedule for generating averaging observation dates."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A schedule for generating averaging observation dates."]
+    averagingDateTimes DateTimeList (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "An unweighted list of averaging observation date and times."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "An unweighted list of averaging observation date and times."]
+    averagingObservations AveragingObservationList (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A weighted list of averaging observation date and times."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A weighted list of averaging observation date and times."]
+    marketDisruption MarketDisruption (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The market disruption event as defined by ISDA 2002 Definitions."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The market disruption event as defined by ISDA 2002 Definitions."]
 
-    startDate zonedDateTime (0..1) <"Date on which this period begins.">
-    endDate zonedDateTime (0..1) <"Date on which this period ends.">
-    averagingPeriodFrequency fpml.consolidated.shared.CalculationPeriodFrequency (0..1) <"The frequency at which averaging period occurs with the regular part of the valuation schedule and their roll date convention.">
+    condition Choice:
+        optional choice averagingDateTimes, averagingObservations
 
-type Barrier: <"As per ISDA 2002 Definitions.">
+type AveragingSchedule:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "Method of generating a series of dates."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "Method of generating a series of dates."]
 
-    barrierCap TriggerEvent (0..1) <"A trigger level approached from beneath.">
-    barrierFloor TriggerEvent (0..1) <"A trigger level approached from above.">
+    startDate zonedDateTime (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Date on which this period begins."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Date on which this period begins."]
+    endDate zonedDateTime (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Date on which this period ends."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Date on which this period ends."]
+    averagingPeriodFrequency CalculationPeriodFrequency (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The frequency at which averaging period occurs with the regular part of the valuation schedule and their roll date convention."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The frequency at which averaging period occurs with the regular part of the valuation schedule and their roll date convention."]
 
-type CalendarSpread: <"A type for defining a calendar spread feature.">
+type Barrier:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "As per ISDA 2002 Definitions."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "As per ISDA 2002 Definitions."]
 
-    expirationDateTwo fpml.consolidated.shared.AdjustableOrRelativeDate (0..1)
+    barrierCap TriggerEvent (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A trigger level approached from beneath."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A trigger level approached from beneath."]
+    barrierFloor TriggerEvent (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A trigger level approached from above."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A trigger level approached from above."]
 
-type ClassifiablePayment extends fpml.consolidated.shared.NonNegativePayment: <"A classified non negative payment.">
+type CalendarSpread:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "A type for defining a calendar spread feature."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A type for defining a calendar spread feature."]
 
-    paymentType fpml.consolidated.shared.PaymentType (0..*) <"Payment classification.">
+    expirationDateTwo AdjustableOrRelativeDate (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
 
-type Composite: <"Specifies the conditions to be applied for converting into a reference currency when the actual currency rate is not determined upfront.">
+type ClassifiablePayment extends NonNegativePayment:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "A classified non negative payment."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A classified non negative payment."]
 
-    determinationMethod fpml.consolidated.shared.DeterminationMethod (0..1) <"Specifies the method according to which an amount or a date is determined.">
-    relativeDate fpml.consolidated.shared.RelativeDateOffset (0..1) <"A date specified as some offset to another date (the anchor date).">
-    fxSpotRateSource fpml.consolidated.shared.FxSpotRateSource (0..1) <"Specifies the methodology (reference source and, optionally, fixing time) to be used for determining a currency conversion rate.">
+    paymentType PaymentType (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Payment classification."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Payment classification."]
+
+type Composite:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "Specifies the conditions to be applied for converting into a reference currency when the actual currency rate is not determined upfront."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "Specifies the conditions to be applied for converting into a reference currency when the actual currency rate is not determined upfront."]
+
+    determinationMethod DeterminationMethod (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Specifies the method according to which an amount or a date is determined."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Specifies the method according to which an amount or a date is determined."]
+    relativeDate RelativeDateOffset (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A date specified as some offset to another date (the anchor date)."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A date specified as some offset to another date (the anchor date)."]
+    fxSpotRateSource FxSpotRateSource (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Specifies the methodology (reference source and, optionally, fixing time) to be used for determining a currency conversion rate."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Specifies the methodology (reference source and, optionally, fixing time) to be used for determining a currency conversion rate."]
 
 type CreditEventNotice:
+    [docReference ISDA FPML version "recordkeeping-5.13"]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
-    notifyingParty NotifyingParty (0..1) <"Pointer style references to a party identifier defined elsewhere in the document. The notifying party is the party that notifies the other party when a credit event has occurred by means of a credit event notice. If more than one party is referenced as being the notifying party then either party may notify the other of a credit event occurring. ISDA 2003 Term: Notifying Party.">
-    businessCenter fpml.consolidated.shared.BusinessCenter (0..1) <"Inclusion of this business center element implies that Greenwich Mean Time in Section 3.3 of the 2003 ISDA Credit Derivatives Definitions is replaced by the local time of the city indicated by the businessCenter element value.">
-    publiclyAvailableInformation PubliclyAvailableInformation (0..1) <"A specified condition to settlement. Publicly available information means information that reasonably confirms any of the facts relevant to determining that a credit event or potential repudiation/moratorium, as applicable, has occurred. The ISDA defined list (2003) is the market standard and is considered comprehensive, and a minimum of two differing public sources must have published the relevant information, to declare a Credit Event. ISDA 2003 Term: Notice of Publicly Available Information Applicable.">
+    notifyingParty NotifyingParty (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Pointer style references to a party identifier defined elsewhere in the document. The notifying party is the party that notifies the other party when a credit event has occurred by means of a credit event notice. If more than one party is referenced as being the notifying party then either party may notify the other of a credit event occurring. ISDA 2003 Term: Notifying Party."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Pointer style references to a party identifier defined elsewhere in the document. The notifying party is the party that notifies the other party when a credit event has occurred by means of a credit event notice. If more than one party is referenced as being the notifying party then either party may notify the other of a credit event occurring. ISDA 2003 Term: Notifying Party."]
+    businessCenter BusinessCenter (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Inclusion of this business center element implies that Greenwich Mean Time in Section 3.3 of the 2003 ISDA Credit Derivatives Definitions is replaced by the local time of the city indicated by the businessCenter element value."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Inclusion of this business center element implies that Greenwich Mean Time in Section 3.3 of the 2003 ISDA Credit Derivatives Definitions is replaced by the local time of the city indicated by the businessCenter element value."]
+    publiclyAvailableInformation PubliclyAvailableInformation (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A specified condition to settlement. Publicly available information means information that reasonably confirms any of the facts relevant to determining that a credit event or potential repudiation/moratorium, as applicable, has occurred. The ISDA defined list (2003) is the market standard and is considered comprehensive, and a minimum of two differing public sources must have published the relevant information, to declare a Credit Event. ISDA 2003 Term: Notice of Publicly Available Information Applicable."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A specified condition to settlement. Publicly available information means information that reasonably confirms any of the facts relevant to determining that a credit event or potential repudiation/moratorium, as applicable, has occurred. The ISDA defined list (2003) is the market standard and is considered comprehensive, and a minimum of two differing public sources must have published the relevant information, to declare a Credit Event. ISDA 2003 Term: Notice of Publicly Available Information Applicable."]
 
 type CreditEvents:
+    [docReference ISDA FPML version "recordkeeping-5.13"]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
     id string (0..1)
-    bankruptcy boolean (0..1) <"A credit event. The reference entity has been dissolved or has become insolvent. It also covers events that may be a precursor to insolvency such as instigation of bankruptcy or insolvency proceedings. Sovereign trades are not subject to Bankruptcy as \"technically\" a Sovereign cannot become bankrupt. ISDA 2003 Term: Bankruptcy.">
-    failureToPay FailureToPay (0..1) <"A credit event. This credit event triggers, after the expiration of any applicable grace period, if the reference entity fails to make due payments in an aggregrate amount of not less than the payment requirement on one or more obligations (e.g. a missed coupon payment). ISDA 2003 Term: Failure to Pay.">
-    failureToPayPrincipal boolean (0..1) <"A credit event. Corresponds to the failure by the Reference Entity to pay an expected principal amount or the payment of an actual principal amount that is less than the expected principal amount. ISDA 2003 Term: Failure to Pay Principal.">
-    failureToPayInterest boolean (0..1) <"A credit event. Corresponds to the failure by the Reference Entity to pay an expected interest amount or the payment of an actual interest amount that is less than the expected interest amount. ISDA 2003 Term: Failure to Pay Interest.">
-    obligationDefault boolean (0..1) <"A credit event. One or more of the obligations have become capable of being declared due and payable before they would otherwise have been due and payable as a result of, or on the basis of, the occurrence of a default, event of default or other similar condition or event other than failure to pay. ISDA 2003 Term: Obligation Default.">
-    obligationAcceleration boolean (0..1) <"A credit event. One or more of the obligations have been declared due and payable before they would otherwise have been due and payable as a result of, or on the basis of, the occurrence of a default, event of default or other similar condition or event other than failure to pay (preferred by the market over Obligation Default, because more definitive and encompasses the definition of Obligation Default - this is more favorable to the Seller). Subject to the default requirement amount. ISDA 2003 Term: Obligation Acceleration.">
-    repudiationMoratorium boolean (0..1) <"A credit event. The reference entity, or a governmental authority, either refuses to recognise or challenges the validity of one or more obligations of the reference entity, or imposes a moratorium thereby postponing payments on one or more of the obligations of the reference entity. Subject to the default requirement amount. ISDA 2003 Term: Repudiation/Moratorium.">
-    restructuring Restructuring (0..1) <"A credit event. A restructuring is an event that materially impacts the reference entity\'s obligations, such as an interest rate reduction, principal reduction, deferral of interest or principal, change in priority ranking, or change in currency or composition of payment. ISDA 2003 Term: Restructuring.">
-    governmentalIntervention boolean (0..1) <"A credit event. A governmental intervention is an event resulting from an action by a governmental authority that materially impacts the reference entity\'s obligations, such as an interest rate reduction, principal reduction, deferral of interest or principal, change in priority ranking, or change in currency or composition of payment. ISDA 2014 Term: Governmental Intervention.">
-    distressedRatingsDowngrade boolean (0..1) <"A credit event. Results from the fact that the rating of the reference obligation is downgraded to a distressed rating level. From a usage standpoint, this credit event is typically not applicable in case of RMBS trades.">
-    maturityExtension boolean (0..1) <"A credit event. Results from the fact that the underlier fails to make principal payments as expected.">
-    writedown boolean (0..1) <"A credit event. Results from the fact that the underlier writes down its outstanding principal amount.">
-    impliedWritedown boolean (0..1) <"A credit event. Results from the fact that losses occur to the underlying instruments that do not result in reductions of the outstanding principal of the reference obligation.">
-    defaultRequirement fpml.consolidated.shared.Money (0..1) <"In relation to certain credit events, serves as a threshold for Obligation Acceleration, Obligation Default, Repudiation/Moratorium and Restructuring. Market standard is USD 10,000,000 (JPY 1,000,000,000 for all Japanese Yen trades). This is applied on an aggregate or total basis across all Obligations of the Reference Entity. Used to prevent technical/operational errors from triggering credit events. ISDA 2003 Term: Default Requirement.">
-    creditEventNotice CreditEventNotice (0..1) <"A specified condition to settlement. An irrevocable written or verbal notice that describes a credit event that has occurred. The notice is sent from the notifying party (either the buyer or the seller) to the counterparty. It provides information relevant to determining that a credit event has occurred. This is typically accompanied by Publicly Available Information. ISDA 2003 Term: Credit Event Notice.">
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
+    bankruptcy boolean (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A credit event. The reference entity has been dissolved or has become insolvent. It also covers events that may be a precursor to insolvency such as instigation of bankruptcy or insolvency proceedings. Sovereign trades are not subject to Bankruptcy as \"technically\" a Sovereign cannot become bankrupt. ISDA 2003 Term: Bankruptcy."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A credit event. The reference entity has been dissolved or has become insolvent. It also covers events that may be a precursor to insolvency such as instigation of bankruptcy or insolvency proceedings. Sovereign trades are not subject to Bankruptcy as \"technically\" a Sovereign cannot become bankrupt. ISDA 2003 Term: Bankruptcy."]
+    failureToPay FailureToPay (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A credit event. This credit event triggers, after the expiration of any applicable grace period, if the reference entity fails to make due payments in an aggregrate amount of not less than the payment requirement on one or more obligations (e.g. a missed coupon payment). ISDA 2003 Term: Failure to Pay."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A credit event. This credit event triggers, after the expiration of any applicable grace period, if the reference entity fails to make due payments in an aggregrate amount of not less than the payment requirement on one or more obligations (e.g. a missed coupon payment). ISDA 2003 Term: Failure to Pay."]
+    failureToPayPrincipal boolean (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A credit event. Corresponds to the failure by the Reference Entity to pay an expected principal amount or the payment of an actual principal amount that is less than the expected principal amount. ISDA 2003 Term: Failure to Pay Principal."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A credit event. Corresponds to the failure by the Reference Entity to pay an expected principal amount or the payment of an actual principal amount that is less than the expected principal amount. ISDA 2003 Term: Failure to Pay Principal."]
+    failureToPayInterest boolean (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A credit event. Corresponds to the failure by the Reference Entity to pay an expected interest amount or the payment of an actual interest amount that is less than the expected interest amount. ISDA 2003 Term: Failure to Pay Interest."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A credit event. Corresponds to the failure by the Reference Entity to pay an expected interest amount or the payment of an actual interest amount that is less than the expected interest amount. ISDA 2003 Term: Failure to Pay Interest."]
+    obligationDefault boolean (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A credit event. One or more of the obligations have become capable of being declared due and payable before they would otherwise have been due and payable as a result of, or on the basis of, the occurrence of a default, event of default or other similar condition or event other than failure to pay. ISDA 2003 Term: Obligation Default."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A credit event. One or more of the obligations have become capable of being declared due and payable before they would otherwise have been due and payable as a result of, or on the basis of, the occurrence of a default, event of default or other similar condition or event other than failure to pay. ISDA 2003 Term: Obligation Default."]
+    obligationAcceleration boolean (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A credit event. One or more of the obligations have been declared due and payable before they would otherwise have been due and payable as a result of, or on the basis of, the occurrence of a default, event of default or other similar condition or event other than failure to pay (preferred by the market over Obligation Default, because more definitive and encompasses the definition of Obligation Default - this is more favorable to the Seller). Subject to the default requirement amount. ISDA 2003 Term: Obligation Acceleration."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A credit event. One or more of the obligations have been declared due and payable before they would otherwise have been due and payable as a result of, or on the basis of, the occurrence of a default, event of default or other similar condition or event other than failure to pay (preferred by the market over Obligation Default, because more definitive and encompasses the definition of Obligation Default - this is more favorable to the Seller). Subject to the default requirement amount. ISDA 2003 Term: Obligation Acceleration."]
+    repudiationMoratorium boolean (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A credit event. The reference entity, or a governmental authority, either refuses to recognise or challenges the validity of one or more obligations of the reference entity, or imposes a moratorium thereby postponing payments on one or more of the obligations of the reference entity. Subject to the default requirement amount. ISDA 2003 Term: Repudiation/Moratorium."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A credit event. The reference entity, or a governmental authority, either refuses to recognise or challenges the validity of one or more obligations of the reference entity, or imposes a moratorium thereby postponing payments on one or more of the obligations of the reference entity. Subject to the default requirement amount. ISDA 2003 Term: Repudiation/Moratorium."]
+    restructuring Restructuring (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A credit event. A restructuring is an event that materially impacts the reference entity\'s obligations, such as an interest rate reduction, principal reduction, deferral of interest or principal, change in priority ranking, or change in currency or composition of payment. ISDA 2003 Term: Restructuring."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A credit event. A restructuring is an event that materially impacts the reference entity\'s obligations, such as an interest rate reduction, principal reduction, deferral of interest or principal, change in priority ranking, or change in currency or composition of payment. ISDA 2003 Term: Restructuring."]
+    governmentalIntervention boolean (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A credit event. A governmental intervention is an event resulting from an action by a governmental authority that materially impacts the reference entity\'s obligations, such as an interest rate reduction, principal reduction, deferral of interest or principal, change in priority ranking, or change in currency or composition of payment. ISDA 2014 Term: Governmental Intervention."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A credit event. A governmental intervention is an event resulting from an action by a governmental authority that materially impacts the reference entity\'s obligations, such as an interest rate reduction, principal reduction, deferral of interest or principal, change in priority ranking, or change in currency or composition of payment. ISDA 2014 Term: Governmental Intervention."]
+    distressedRatingsDowngrade boolean (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A credit event. Results from the fact that the rating of the reference obligation is downgraded to a distressed rating level. From a usage standpoint, this credit event is typically not applicable in case of RMBS trades."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A credit event. Results from the fact that the rating of the reference obligation is downgraded to a distressed rating level. From a usage standpoint, this credit event is typically not applicable in case of RMBS trades."]
+    maturityExtension boolean (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A credit event. Results from the fact that the underlier fails to make principal payments as expected."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A credit event. Results from the fact that the underlier fails to make principal payments as expected."]
+    writedown boolean (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A credit event. Results from the fact that the underlier writes down its outstanding principal amount."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A credit event. Results from the fact that the underlier writes down its outstanding principal amount."]
+    impliedWritedown boolean (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A credit event. Results from the fact that losses occur to the underlying instruments that do not result in reductions of the outstanding principal of the reference obligation."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A credit event. Results from the fact that losses occur to the underlying instruments that do not result in reductions of the outstanding principal of the reference obligation."]
+    defaultRequirement Money (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "In relation to certain credit events, serves as a threshold for Obligation Acceleration, Obligation Default, Repudiation/Moratorium and Restructuring. Market standard is USD 10,000,000 (JPY 1,000,000,000 for all Japanese Yen trades). This is applied on an aggregate or total basis across all Obligations of the Reference Entity. Used to prevent technical/operational errors from triggering credit events. ISDA 2003 Term: Default Requirement."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "In relation to certain credit events, serves as a threshold for Obligation Acceleration, Obligation Default, Repudiation/Moratorium and Restructuring. Market standard is USD 10,000,000 (JPY 1,000,000,000 for all Japanese Yen trades). This is applied on an aggregate or total basis across all Obligations of the Reference Entity. Used to prevent technical/operational errors from triggering credit events. ISDA 2003 Term: Default Requirement."]
+    creditEventNotice CreditEventNotice (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A specified condition to settlement. An irrevocable written or verbal notice that describes a credit event that has occurred. The notice is sent from the notifying party (either the buyer or the seller) to the counterparty. It provides information relevant to determining that a credit event has occurred. This is typically accompanied by Publicly Available Information. ISDA 2003 Term: Credit Event Notice."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A specified condition to settlement. An irrevocable written or verbal notice that describes a credit event that has occurred. The notice is sent from the notifying party (either the buyer or the seller) to the counterparty. It provides information relevant to determining that a credit event has occurred. This is typically accompanied by Publicly Available Information. ISDA 2003 Term: Credit Event Notice."]
 
-type CreditEventsReference extends fpml.consolidated.shared.Reference: <"Reference to credit events.">
+type CreditEventsReference extends fpml.consolidated.shared.Reference:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "Reference to credit events."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "Reference to credit events."]
 
     href string (1..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
 
 type FailureToPay:
+    [docReference ISDA FPML version "recordkeeping-5.13"]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
-    applicable boolean (0..1) <"Indicates whether the failure to pay provision is applicable.">
-    gracePeriodExtension GracePeriodExtension (0..1) <"If this element is specified, indicates whether or not a grace period extension is applicable. ISDA 2003 Term: Grace Period Extension Applicable.">
-    paymentRequirement fpml.consolidated.shared.Money (0..1) <"Specifies a threshold for the failure to pay credit event. Market standard is USD 1,000,000 (JPY 100,000,000 for Japanese Yen trades) or its equivalent in the relevant obligation currency. This is applied on an aggregate basis across all Obligations of the Reference Entity. Intended to prevent technical/operational errors from triggering credit events. ISDA 2003 Term: Payment Requirement.">
+    applicable boolean (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Indicates whether the failure to pay provision is applicable."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Indicates whether the failure to pay provision is applicable."]
+    gracePeriodExtension GracePeriodExtension (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "If this element is specified, indicates whether or not a grace period extension is applicable. ISDA 2003 Term: Grace Period Extension Applicable."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "If this element is specified, indicates whether or not a grace period extension is applicable. ISDA 2003 Term: Grace Period Extension Applicable."]
+    paymentRequirement Money (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Specifies a threshold for the failure to pay credit event. Market standard is USD 1,000,000 (JPY 100,000,000 for Japanese Yen trades) or its equivalent in the relevant obligation currency. This is applied on an aggregate basis across all Obligations of the Reference Entity. Intended to prevent technical/operational errors from triggering credit events. ISDA 2003 Term: Payment Requirement."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Specifies a threshold for the failure to pay credit event. Market standard is USD 1,000,000 (JPY 100,000,000 for Japanese Yen trades) or its equivalent in the relevant obligation currency. This is applied on an aggregate basis across all Obligations of the Reference Entity. Intended to prevent technical/operational errors from triggering credit events. ISDA 2003 Term: Payment Requirement."]
 
-type FeaturePayment extends fpml.consolidated.shared.PaymentBase: <"Payment made following trigger occurence.">
+type FeaturePayment extends PaymentBase:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "Payment made following trigger occurence."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "Payment made following trigger occurence."]
 
-    payerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party responsible for making the payments defined by this structure.">
-    payerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account responsible for making the payments defined by this structure.">
-    receiverPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A reference to the party that receives the payments corresponding to this structure.">
-    receiverAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that receives the payments corresponding to this structure.">
-    levelPercentage fpml.consolidated.shared.Percentage (0..1) <"The trigger level percentage. A value expressed in percentage units i.e. 5 means 5%.">
-    amount fpml.consolidated.shared.NonNegativeDecimal (0..1) <"The monetary quantity in currency units.">
-    time fpml.consolidated.fpmlenum.TimeTypeEnum (0..1) <"The feature payment time.">
-    currency fpml.consolidated.shared.Currency (0..1) <"The currency in which an amount is denominated.">
-    featurePaymentDate fpml.consolidated.shared.AdjustableOrRelativeDate (0..1) <"The feature payment date.">
+    payerPartyReference PartyReference (1..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A reference to the party responsible for making the payments defined by this structure."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A reference to the party responsible for making the payments defined by this structure."]
+    payerAccountReference AccountReference (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A reference to the account responsible for making the payments defined by this structure."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A reference to the account responsible for making the payments defined by this structure."]
+    receiverPartyReference PartyReference (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A reference to the party that receives the payments corresponding to this structure."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A reference to the party that receives the payments corresponding to this structure."]
+    receiverAccountReference AccountReference (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A reference to the account that receives the payments corresponding to this structure."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A reference to the account that receives the payments corresponding to this structure."]
+    levelPercentage Percentage (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The trigger level percentage. A value expressed in percentage units i.e. 5 means 5%."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The trigger level percentage. A value expressed in percentage units i.e. 5 means 5%."]
+    amount NonNegativeDecimal (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The monetary quantity in currency units."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The monetary quantity in currency units."]
+    time TimeTypeEnum (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The feature payment time."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The feature payment time."]
+    currency Currency (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The currency in which an amount is denominated."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The currency in which an amount is denominated."]
+    featurePaymentDate AdjustableOrRelativeDate (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The feature payment date."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The feature payment date."]
 
-type FxFeature: <"A type for defining Fx Features.">
+    condition Choice:
+        optional choice levelPercentage, amount
 
-    referenceCurrency fpml.consolidated.shared.IdentifiedCurrency (0..1) <"Specifies the reference currency of the trade.">
-    composite Composite (0..1) <"If “Composite” is specified as the Settlement Type in the relevant Transaction Supplement, an amount in the Settlement Currency, determined by the Calculation Agent as being equal to the number of Options exercised or deemed exercised, multiplied by: (Settlement Price – Strike Price) / (Strike Price – Settlement Price) x Multiplier provided that if the above is equal to a negative amount the Option Cash Settlement Amount shall be deemed to be zero.">
-    quanto Quanto (0..1) <"If “Quanto” is specified as the Settlement Type in the relevant Transaction Supplement, an amount, as determined by the Calculation Agent in accordance with the Section 8.2 of the Equity Definitions.">
-    crossCurrency Composite (0..1) <"If “Cross-Currency” is specified as the Settlement Type in the relevant Transaction Supplement, an amount in the Settlement Currency, determined by the Calculation Agent as being equal to the number of Options exercised or deemed exercised, multiplied by: (Settlement Price – Strike Price) / (Strike Price – Settlement Price) x Multiplier x one unit of the Reference Currency converted into an amount in the Settlement Currency using the rate of exchange of the Settlement Currency as quoted on the Reference Price Source on the Valuation Date, provided that if the above is equal to a negative amount the Option Cash Settlement Amount shall be deemed to be zero.">
+type FxFeature:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "A type for defining Fx Features."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A type for defining Fx Features."]
+
+    referenceCurrency IdentifiedCurrency (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Specifies the reference currency of the trade."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Specifies the reference currency of the trade."]
+    composite Composite (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "If “Composite” is specified as the Settlement Type in the relevant Transaction Supplement, an amount in the Settlement Currency, determined by the Calculation Agent as being equal to the number of Options exercised or deemed exercised, multiplied by: (Settlement Price – Strike Price) / (Strike Price – Settlement Price) x Multiplier provided that if the above is equal to a negative amount the Option Cash Settlement Amount shall be deemed to be zero."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "If “Composite” is specified as the Settlement Type in the relevant Transaction Supplement, an amount in the Settlement Currency, determined by the Calculation Agent as being equal to the number of Options exercised or deemed exercised, multiplied by: (Settlement Price – Strike Price) / (Strike Price – Settlement Price) x Multiplier provided that if the above is equal to a negative amount the Option Cash Settlement Amount shall be deemed to be zero."]
+    quanto Quanto (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "If “Quanto” is specified as the Settlement Type in the relevant Transaction Supplement, an amount, as determined by the Calculation Agent in accordance with the Section 8.2 of the Equity Definitions."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "If “Quanto” is specified as the Settlement Type in the relevant Transaction Supplement, an amount, as determined by the Calculation Agent in accordance with the Section 8.2 of the Equity Definitions."]
+    crossCurrency Composite (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "If “Cross-Currency” is specified as the Settlement Type in the relevant Transaction Supplement, an amount in the Settlement Currency, determined by the Calculation Agent as being equal to the number of Options exercised or deemed exercised, multiplied by: (Settlement Price – Strike Price) / (Strike Price – Settlement Price) x Multiplier x one unit of the Reference Currency converted into an amount in the Settlement Currency using the rate of exchange of the Settlement Currency as quoted on the Reference Price Source on the Valuation Date, provided that if the above is equal to a negative amount the Option Cash Settlement Amount shall be deemed to be zero."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "If “Cross-Currency” is specified as the Settlement Type in the relevant Transaction Supplement, an amount in the Settlement Currency, determined by the Calculation Agent as being equal to the number of Options exercised or deemed exercised, multiplied by: (Settlement Price – Strike Price) / (Strike Price – Settlement Price) x Multiplier x one unit of the Reference Currency converted into an amount in the Settlement Currency using the rate of exchange of the Settlement Currency as quoted on the Reference Price Source on the Valuation Date, provided that if the above is equal to a negative amount the Option Cash Settlement Amount shall be deemed to be zero."]
+
+    condition Choice:
+        optional choice composite, quanto, crossCurrency
 
 type GracePeriodExtension:
+    [docReference ISDA FPML version "recordkeeping-5.13"]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
-    applicable boolean (0..1) <"Indicates whether the grace period extension provision is applicable.">
-    gracePeriod fpml.consolidated.shared.Offset (0..1) <"The number of calendar or business days after any due date that the reference entity has to fulfil its obligations before a failure to pay credit event is deemed to have occurred. ISDA 2003 Term: Grace Period.">
+    applicable boolean (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Indicates whether the grace period extension provision is applicable."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Indicates whether the grace period extension provision is applicable."]
+    gracePeriod Offset (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The number of calendar or business days after any due date that the reference entity has to fulfil its obligations before a failure to pay credit event is deemed to have occurred. ISDA 2003 Term: Grace Period."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The number of calendar or business days after any due date that the reference entity has to fulfil its obligations before a failure to pay credit event is deemed to have occurred. ISDA 2003 Term: Grace Period."]
 
-type Knock: <"Knock In means option to exercise comes into existence. Knock Out means option to exercise goes out of existence.">
+type Knock:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "Knock In means option to exercise comes into existence. Knock Out means option to exercise goes out of existence."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "Knock In means option to exercise comes into existence. Knock Out means option to exercise goes out of existence."]
 
-    knockIn TriggerEvent (0..1) <"The knock in.">
-    knockOut TriggerEvent (0..1) <"The knock out.">
+    knockIn TriggerEvent (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The knock in."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The knock in."]
+    knockOut TriggerEvent (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The knock out."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The knock out."]
 
-type MarketDisruption: <"Defines the handling of an averaging date market disruption for an equity derivative transaction.">
+type MarketDisruption:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "Defines the handling of an averaging date market disruption for an equity derivative transaction."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "Defines the handling of an averaging date market disruption for an equity derivative transaction."]
 
-    value fpml.consolidated.shared.Scheme (1..1)
-    marketDisruptionScheme fpml.consolidated.shared.NonEmptyURI (0..1)
+    value Scheme (1..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
+    marketDisruptionScheme NonEmptyURI (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
 
 type NotifyingParty:
+    [docReference ISDA FPML version "recordkeeping-5.13"]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
-    buyerPartyReference fpml.consolidated.shared.PartyReference (0..1)
-    sellerPartyReference fpml.consolidated.shared.PartyReference (0..1)
+    buyerPartyReference PartyReference (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
+    sellerPartyReference PartyReference (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
 
-type Option extends fpml.consolidated.shared.Product: <"A type for defining the common features of options. Buyer/seller information is not normally used in Transparency view but is optional in case the information is needed for administrative purposes such as Reporting Party determination.">
+type Option extends Product:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "A type for defining the common features of options. Buyer/seller information is not normally used in Transparency view but is optional in case the information is needed for administrative purposes such as Reporting Party determination."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A type for defining the common features of options. Buyer/seller information is not normally used in Transparency view but is optional in case the information is needed for administrative purposes such as Reporting Party determination."]
 
-    buyerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party that buys this instrument, ie. pays for this instrument and receives the rights defined by it. See 2000 ISDA definitions Article 11.1 (b). In the case of FRAs this the fixed rate payer.">
-    buyerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that buys this instrument.">
-    sellerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party that sells (\"writes\") this instrument, i.e. that grants the rights defined by this instrument and in return receives a payment for it. See 2000 ISDA definitions Article 11.1 (a). In the case of FRAs this is the floating rate payer.">
-    sellerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that sells this instrument.">
+    buyerPartyReference PartyReference (1..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A reference to the party that buys this instrument, ie. pays for this instrument and receives the rights defined by it. See 2000 ISDA definitions Article 11.1 (b). In the case of FRAs this the fixed rate payer."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A reference to the party that buys this instrument, ie. pays for this instrument and receives the rights defined by it. See 2000 ISDA definitions Article 11.1 (b). In the case of FRAs this the fixed rate payer."]
+    buyerAccountReference AccountReference (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A reference to the account that buys this instrument."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A reference to the account that buys this instrument."]
+    sellerPartyReference PartyReference (1..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A reference to the party that sells (\"writes\") this instrument, i.e. that grants the rights defined by this instrument and in return receives a payment for it. See 2000 ISDA definitions Article 11.1 (a). In the case of FRAs this is the floating rate payer."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A reference to the party that sells (\"writes\") this instrument, i.e. that grants the rights defined by this instrument and in return receives a payment for it. See 2000 ISDA definitions Article 11.1 (a). In the case of FRAs this is the floating rate payer."]
+    sellerAccountReference AccountReference (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A reference to the account that sells this instrument."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A reference to the account that sells this instrument."]
 
-type OptionBase extends Option: <"A type for defining the common features of options.">
+type OptionBase extends fpml.consolidated.option.shared.Option:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "A type for defining the common features of options."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A type for defining the common features of options."]
 
-    optionType fpml.consolidated.fpmlenum.OptionTypeEnum (1..1) <"The type of option transaction. From a usage standpoint, put/call is the default option type, while payer/receiver indicator is used for options index credit default swaps, consistently with the industry practice. Straddle is used for the case of straddle strategy, that combine a call and a put with the same strike.">
+    optionType OptionTypeEnum (1..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The type of option transaction. From a usage standpoint, put/call is the default option type, while payer/receiver indicator is used for options index credit default swaps, consistently with the industry practice. Straddle is used for the case of straddle strategy, that combine a call and a put with the same strike."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The type of option transaction. From a usage standpoint, put/call is the default option type, while payer/receiver indicator is used for options index credit default swaps, consistently with the industry practice. Straddle is used for the case of straddle strategy, that combine a call and a put with the same strike."]
 
-type OptionBaseExtended extends OptionBase: <"Base type for options starting with the 4-3 release, until we refactor the schema as part of the 5-0 release series.">
+type OptionBaseExtended extends OptionBase:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "Base type for options starting with the 4-3 release, until we refactor the schema as part of the 5-0 release series."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "Base type for options starting with the 4-3 release, until we refactor the schema as part of the 5-0 release series."]
 
-    premium Premium (0..1) <"The option premium payable by the buyer to the seller.">
-    exercise fpml.consolidated.shared.Exercise (1..1)
-    exerciseProcedure fpml.consolidated.shared.ExerciseProcedure (0..1) <"A set of parameters defining procedures associated with the exercise.">
-    feature OptionFeature (0..1) <"An Option feature such as quanto, asian, barrier, knock.">
-    notionalReference fpml.consolidated.shared.NotionalAmountReference (0..1)
-    notionalAmount fpml.consolidated.shared.Money (0..1)
-    optionEntitlement fpml.consolidated.shared.PositiveDecimal (0..1) <"The number of units of underlyer per option comprised in the option transaction.">
-    entitlementCurrency fpml.consolidated.shared.Currency (0..1) <"Currency of the relevant bonds to which one option relates. For Bond Options this element should be used to define the currency of the bonds instead of the currency element present in the Bond underlyer.">
-    numberOfOptions fpml.consolidated.shared.PositiveDecimal (0..1) <"The number of options comprised in the option transaction.">
-    settlementType fpml.consolidated.fpmlenum.SettlementTypeEnum (0..1)
-    settlementDate fpml.consolidated.shared.AdjustableOrRelativeDate (0..1)
-    settlementAmount fpml.consolidated.shared.Money (0..1) <"Settlement Amount">
-    settlementCurrency fpml.consolidated.shared.Currency (0..1) <"Settlement Currency for use where the Settlement Amount cannot be known in advance">
+    premium Premium (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The option premium payable by the buyer to the seller."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The option premium payable by the buyer to the seller."]
+    exercise Exercise (1..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
+    exerciseProcedure ExerciseProcedure (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A set of parameters defining procedures associated with the exercise."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A set of parameters defining procedures associated with the exercise."]
+    feature OptionFeature (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "An Option feature such as quanto, asian, barrier, knock."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "An Option feature such as quanto, asian, barrier, knock."]
+    notionalReference NotionalAmountReference (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
+    notionalAmount Money (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
+    optionEntitlement PositiveDecimal (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The number of units of underlyer per option comprised in the option transaction."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The number of units of underlyer per option comprised in the option transaction."]
+    entitlementCurrency Currency (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Currency of the relevant bonds to which one option relates. For Bond Options this element should be used to define the currency of the bonds instead of the currency element present in the Bond underlyer."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Currency of the relevant bonds to which one option relates. For Bond Options this element should be used to define the currency of the bonds instead of the currency element present in the Bond underlyer."]
+    numberOfOptions PositiveDecimal (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The number of options comprised in the option transaction."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The number of options comprised in the option transaction."]
+    settlementType SettlementTypeEnum (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
+    settlementDate AdjustableOrRelativeDate (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
+    settlementAmount Money (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Settlement Amount"]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Settlement Amount"]
+    settlementCurrency Currency (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Settlement Currency for use where the Settlement Amount cannot be known in advance"]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Settlement Currency for use where the Settlement Amount cannot be known in advance"]
 
-type OptionFeature: <"A type for defining option features.">
+    condition Choice0:
+        optional choice notionalReference, notionalAmount
 
-    fxFeature FxFeature (0..1) <"A quanto or composite FX feature.">
-    strategyFeature StrategyFeature (0..1) <"A simple strategy feature.">
-    asian Asian (0..1) <"An option where and average price is taken on valuation.">
-    barrier Barrier (0..1) <"An option with a barrier feature.">
-    knock Knock (0..1) <"A knock feature.">
-    passThrough PassThrough (0..1) <"Pass through payments from the underlyer, such as dividends.">
+    condition Choice1:
+        optional choice settlementAmount, settlementCurrency
 
-type OptionNumericStrike: <"A type for defining the strike price for an option as a numeric value without currency.">
+type OptionFeature:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "A type for defining option features."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A type for defining option features."]
 
-    strikePrice number (0..1) <"The price or level at which the option has been struck.">
-    strikePercentage fpml.consolidated.shared.Percentage (0..1) <"The price or level expressed as a percentage of the forward starting spot price. A value expressed in percentage units i.e. 5 means 5%.">
+    fxFeature FxFeature (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A quanto or composite FX feature."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A quanto or composite FX feature."]
+    strategyFeature StrategyFeature (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A simple strategy feature."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A simple strategy feature."]
+    asian Asian (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "An option where and average price is taken on valuation."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "An option where and average price is taken on valuation."]
+    barrier Barrier (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "An option with a barrier feature."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "An option with a barrier feature."]
+    knock Knock (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A knock feature."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A knock feature."]
+    passThrough PassThrough (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Pass through payments from the underlyer, such as dividends."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Pass through payments from the underlyer, such as dividends."]
 
-type OptionStrike extends OptionNumericStrike: <"A type for defining the strike price for an equity option. The strike price is either: (i) in respect of an index option transaction, the level of the relevant index specified or otherwise determined in the transaction; or (ii) in respect of a share option transaction, the price per share specified or otherwise determined in the transaction. This can be expressed either as a percentage of notional amount or as an absolute value.">
+type OptionNumericStrike:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "A type for defining the strike price for an option as a numeric value without currency."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A type for defining the strike price for an option as a numeric value without currency."]
 
-    currency fpml.consolidated.shared.Currency (0..1) <"The currency in which an amount is denominated.">
+    strikePrice number (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The price or level at which the option has been struck."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The price or level at which the option has been struck."]
+    strikePercentage Percentage (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The price or level expressed as a percentage of the forward starting spot price. A value expressed in percentage units i.e. 5 means 5%."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The price or level expressed as a percentage of the forward starting spot price. A value expressed in percentage units i.e. 5 means 5%."]
 
-type PassThrough: <"Type which contains pass through payments.">
+    condition Choice:
+        optional choice strikePrice, strikePercentage
 
-    passThroughItem PassThroughItem (0..*) <"One to many pass through payment items.">
+type OptionStrike extends OptionNumericStrike:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "A type for defining the strike price for an equity option. The strike price is either: (i) in respect of an index option transaction, the level of the relevant index specified or otherwise determined in the transaction; or (ii) in respect of a share option transaction, the price per share specified or otherwise determined in the transaction. This can be expressed either as a percentage of notional amount or as an absolute value."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A type for defining the strike price for an equity option. The strike price is either: (i) in respect of an index option transaction, the level of the relevant index specified or otherwise determined in the transaction; or (ii) in respect of a share option transaction, the price per share specified or otherwise determined in the transaction. This can be expressed either as a percentage of notional amount or as an absolute value."]
 
-type PassThroughItem: <"Type to represent a single pass through payment.">
+    currency Currency (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The currency in which an amount is denominated."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The currency in which an amount is denominated."]
 
-    payerPartyReference fpml.consolidated.shared.PartyReference (1..1) <"A reference to the party responsible for making the payments defined by this structure.">
-    payerAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account responsible for making the payments defined by this structure.">
-    receiverPartyReference fpml.consolidated.shared.PartyReference (0..1) <"A reference to the party that receives the payments corresponding to this structure.">
-    receiverAccountReference fpml.consolidated.shared.AccountReference (0..1) <"A reference to the account that receives the payments corresponding to this structure.">
-    underlyerReference fpml.consolidated.asset.AssetReference (0..1) <"Reference to the underlyer whose payments are being passed through.">
-    passThroughPercentage fpml.consolidated.shared.Percentage (0..1) <"Percentage of payments from the underlyer which are passed through. A value expressed in percentage units i.e. 5 means 5%.">
+type PassThrough:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "Type which contains pass through payments."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "Type which contains pass through payments."]
 
-type Premium extends fpml.consolidated.shared.SimplePayment: <"A type for defining a premium.">
+    passThroughItem PassThroughItem (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "One to many pass through payment items."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "One to many pass through payment items."]
 
-    premiumType fpml.consolidated.fpmlenum.PremiumTypeEnum (0..1) <"Forward start Premium type">
-    pricePerOption fpml.consolidated.shared.Money (0..1) <"The amount of premium to be paid expressed as a function of the number of options.">
-    percentageOfNotional fpml.consolidated.shared.DecimalFraction (0..1) <"The amount of premium to be paid expressed as a percentage of the notional value of the transaction. A percentage of 5% would be expressed as 0.05.">
-    discountFactor number (0..1) <"The value representing the discount factor used to calculate the present value of the cash flow.">
-    presentValueAmount fpml.consolidated.shared.Money (0..1) <"The amount representing the present value of the forecast payment.">
+type PassThroughItem:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "Type to represent a single pass through payment."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "Type to represent a single pass through payment."]
+
+    payerPartyReference PartyReference (1..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A reference to the party responsible for making the payments defined by this structure."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A reference to the party responsible for making the payments defined by this structure."]
+    payerAccountReference AccountReference (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A reference to the account responsible for making the payments defined by this structure."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A reference to the account responsible for making the payments defined by this structure."]
+    receiverPartyReference PartyReference (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A reference to the party that receives the payments corresponding to this structure."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A reference to the party that receives the payments corresponding to this structure."]
+    receiverAccountReference AccountReference (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A reference to the account that receives the payments corresponding to this structure."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A reference to the account that receives the payments corresponding to this structure."]
+    underlyerReference AssetReference (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Reference to the underlyer whose payments are being passed through."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Reference to the underlyer whose payments are being passed through."]
+    passThroughPercentage Percentage (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Percentage of payments from the underlyer which are passed through. A value expressed in percentage units i.e. 5 means 5%."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Percentage of payments from the underlyer which are passed through. A value expressed in percentage units i.e. 5 means 5%."]
+
+type Premium extends SimplePayment:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "A type for defining a premium."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A type for defining a premium."]
+
+    premiumType PremiumTypeEnum (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Forward start Premium type"]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Forward start Premium type"]
+    pricePerOption Money (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The amount of premium to be paid expressed as a function of the number of options."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The amount of premium to be paid expressed as a function of the number of options."]
+    percentageOfNotional DecimalFraction (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The amount of premium to be paid expressed as a percentage of the notional value of the transaction. A percentage of 5% would be expressed as 0.05."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The amount of premium to be paid expressed as a percentage of the notional value of the transaction. A percentage of 5% would be expressed as 0.05."]
+    discountFactor number (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The value representing the discount factor used to calculate the present value of the cash flow."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The value representing the discount factor used to calculate the present value of the cash flow."]
+    presentValueAmount Money (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The amount representing the present value of the forecast payment."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The amount representing the present value of the forecast payment."]
 
 type PubliclyAvailableInformation:
+    [docReference ISDA FPML version "recordkeeping-5.13"]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
-    standardPublicSources boolean (0..1) <"If this element is specified and set to \'true\', indicates that ISDA defined Standard Public Sources are applicable.">
-    publicSource fpml.consolidated.shared.NonEmptyToken (0..*) <"A public information source, e.g. a particular newspaper or electronic news service, that may publish relevant information used in the determination of whether or not a credit event has occurred. ISDA 2003 Term: Public Source.">
-    specifiedNumber int(min: 1) (0..1) <"The minimum number of the specified public information sources that must publish information that reasonably confirms that a credit event has occurred. The market convention is two. ISDA 2003 Term: Specified Number.">
+    standardPublicSources boolean (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "If this element is specified and set to \'true\', indicates that ISDA defined Standard Public Sources are applicable."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "If this element is specified and set to \'true\', indicates that ISDA defined Standard Public Sources are applicable."]
+    publicSource NonEmptyToken (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A public information source, e.g. a particular newspaper or electronic news service, that may publish relevant information used in the determination of whether or not a credit event has occurred. ISDA 2003 Term: Public Source."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A public information source, e.g. a particular newspaper or electronic news service, that may publish relevant information used in the determination of whether or not a credit event has occurred. ISDA 2003 Term: Public Source."]
+    specifiedNumber int(min: 1) (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The minimum number of the specified public information sources that must publish information that reasonably confirms that a credit event has occurred. The market convention is two. ISDA 2003 Term: Specified Number."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The minimum number of the specified public information sources that must publish information that reasonably confirms that a credit event has occurred. The market convention is two. ISDA 2003 Term: Specified Number."]
 
-type Quanto: <"Determines the currency rate that the seller of the equity amounts will apply at each valuation date for converting the respective amounts into a currency that is different from the currency denomination of the underlyer.">
+type Quanto:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "Determines the currency rate that the seller of the equity amounts will apply at each valuation date for converting the respective amounts into a currency that is different from the currency denomination of the underlyer."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "Determines the currency rate that the seller of the equity amounts will apply at each valuation date for converting the respective amounts into a currency that is different from the currency denomination of the underlyer."]
 
-    fxRate fpml.consolidated.shared.FxRate (0..*) <"Specifies a currency conversion rate.">
-    fxSpotRateSource fpml.consolidated.shared.FxSpotRateSource (0..1) <"Specifies the methodology (reference source and, optionally, fixing time) to be used for determining a currency conversion rate.">
+    fxRate FxRate (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Specifies a currency conversion rate."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Specifies a currency conversion rate."]
+    fxSpotRateSource FxSpotRateSource (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Specifies the methodology (reference source and, optionally, fixing time) to be used for determining a currency conversion rate."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Specifies the methodology (reference source and, optionally, fixing time) to be used for determining a currency conversion rate."]
 
 type Restructuring:
+    [docReference ISDA FPML version "recordkeeping-5.13"]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
-    applicable boolean (0..1) <"Indicates whether the restructuring provision is applicable.">
-    restructuringType RestructuringType (0..1) <"Specifies the type of restructuring that is applicable.">
-    multipleHolderObligation boolean (0..1) <"In relation to a restructuring credit event, unless multiple holder obligation is not specified restructurings are limited to multiple holder obligations. A multiple holder obligation means an obligation that is held by more than three holders that are not affiliates of each other and where at least two thirds of the holders must agree to the event that constitutes the restructuring credit event. ISDA 2003 Term: Multiple Holder Obligation.">
-    multipleCreditEventNotices boolean (0..1) <"Presence of this element and value set to \'true\' indicates that Section 3.9 of the 2003 Credit Derivatives Definitions shall apply. Absence of this element indicates that Section 3.9 shall not apply. NOTE: Not allowed under ISDA Credit 1999.">
+    applicable boolean (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Indicates whether the restructuring provision is applicable."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Indicates whether the restructuring provision is applicable."]
+    restructuringType RestructuringType (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Specifies the type of restructuring that is applicable."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Specifies the type of restructuring that is applicable."]
+    multipleHolderObligation boolean (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "In relation to a restructuring credit event, unless multiple holder obligation is not specified restructurings are limited to multiple holder obligations. A multiple holder obligation means an obligation that is held by more than three holders that are not affiliates of each other and where at least two thirds of the holders must agree to the event that constitutes the restructuring credit event. ISDA 2003 Term: Multiple Holder Obligation."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "In relation to a restructuring credit event, unless multiple holder obligation is not specified restructurings are limited to multiple holder obligations. A multiple holder obligation means an obligation that is held by more than three holders that are not affiliates of each other and where at least two thirds of the holders must agree to the event that constitutes the restructuring credit event. ISDA 2003 Term: Multiple Holder Obligation."]
+    multipleCreditEventNotices boolean (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Presence of this element and value set to \'true\' indicates that Section 3.9 of the 2003 Credit Derivatives Definitions shall apply. Absence of this element indicates that Section 3.9 shall not apply. NOTE: Not allowed under ISDA Credit 1999."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Presence of this element and value set to \'true\' indicates that Section 3.9 of the 2003 Credit Derivatives Definitions shall apply. Absence of this element indicates that Section 3.9 shall not apply. NOTE: Not allowed under ISDA Credit 1999."]
 
 type RestructuringType:
+    [docReference ISDA FPML version "recordkeeping-5.13"]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
-    value fpml.consolidated.shared.Scheme (1..1)
-    restructuringScheme fpml.consolidated.shared.NonEmptyURI (0..1)
+    value Scheme (1..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
+    restructuringScheme NonEmptyURI (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
 
 type SettlementTerms:
+    [docReference ISDA FPML version "recordkeeping-5.13"]
+    [docReference ISDA FPML version "confirmation-5.13"]
 
     id string (0..1)
-    settlementCurrency fpml.consolidated.shared.Currency (0..1) <"ISDA 2003 Term: Settlement Currency">
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
+    settlementCurrency Currency (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "ISDA 2003 Term: Settlement Currency"]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "ISDA 2003 Term: Settlement Currency"]
 
-type StrategyFeature: <"A type for definining equity option simple strike or calendar spread strategy features.">
+type StrategyFeature:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "A type for definining equity option simple strike or calendar spread strategy features."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A type for definining equity option simple strike or calendar spread strategy features."]
 
-    strikeSpread StrikeSpread (0..1) <"Definition of the upper strike in a strike spread.">
-    calendarSpread CalendarSpread (0..1) <"Definition of the later expiration date in a calendar spread.">
+    strikeSpread StrikeSpread (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Definition of the upper strike in a strike spread."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Definition of the upper strike in a strike spread."]
+    calendarSpread CalendarSpread (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Definition of the later expiration date in a calendar spread."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Definition of the later expiration date in a calendar spread."]
 
-type StrikeSpread: <"A type for defining a strike spread feature.">
+    condition Choice:
+        one-of
 
-    upperStrike OptionStrike (0..1) <"Upper strike in a strike spread.">
-    upperStrikeNumberOfOptions fpml.consolidated.shared.PositiveDecimal (0..1) <"Number of options at the upper strike price in a strike spread.">
+type StrikeSpread:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "A type for defining a strike spread feature."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A type for defining a strike spread feature."]
 
-type Trigger: <"Trigger point at which feature is effective.">
+    upperStrike OptionStrike (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Upper strike in a strike spread."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Upper strike in a strike spread."]
+    upperStrikeNumberOfOptions PositiveDecimal (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Number of options at the upper strike price in a strike spread."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Number of options at the upper strike price in a strike spread."]
 
-    level number (0..1) <"The trigger level.">
-    levelPercentage fpml.consolidated.shared.Percentage (0..1) <"The trigger level percentage. A value expressed in percentage units i.e. 5 means 5%.">
+type Trigger:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "Trigger point at which feature is effective."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "Trigger point at which feature is effective."]
+
+    level number (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The trigger level."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The trigger level."]
+    levelPercentage Percentage (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The trigger level percentage. A value expressed in percentage units i.e. 5 means 5%."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The trigger level percentage. A value expressed in percentage units i.e. 5 means 5%."]
     creditEvents CreditEvents (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
     creditEventsReference CreditEventsReference (0..1)
-    triggerType fpml.consolidated.fpmlenum.TriggerTypeEnum (0..1) <"The Triggering condition.">
-    triggerTimeType fpml.consolidated.fpmlenum.TriggerTimeTypeEnum (0..1) <"The valuation time type of knock condition.">
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
+    triggerType TriggerTypeEnum (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The Triggering condition."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The Triggering condition."]
+    triggerTimeType TriggerTimeTypeEnum (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The valuation time type of knock condition."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The valuation time type of knock condition."]
 
-type TriggerEvent: <"Observation point for trigger.">
+    condition Choice:
+        optional choice level, levelPercentage, creditEvents, creditEventsReference
 
-    schedule AveragingSchedule (0..*) <"A Equity Derivative schedule.">
-    triggerDates fpml.consolidated.shared.DateList (0..1) <"The trigger Dates.">
-    trigger Trigger (0..1) <"The trigger level.">
-    featurePayment FeaturePayment (0..1) <"The feature payment.">
+type TriggerEvent:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "Observation point for trigger."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "Observation point for trigger."]
 
-type WeightedAveragingObservation: <"A single weighted averaging observation.">
+    schedule AveragingSchedule (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A Equity Derivative schedule."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A Equity Derivative schedule."]
+    triggerDates DateList (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The trigger Dates."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The trigger Dates."]
+    trigger Trigger (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The trigger level."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The trigger level."]
+    featurePayment FeaturePayment (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The feature payment."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The feature payment."]
 
-    dateTime zonedDateTime (0..1) <"Observation date time, which should be used when literal observation dates are required.">
-    observationNumber int(min: 1) (0..1) <"Observation number, which should be unique, within a series generated by a date schedule.">
-    weight fpml.consolidated.shared.NonNegativeDecimal (0..1) <"Observation weight, which is used as a multiplier for the observation value.">
+type WeightedAveragingObservation:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "A single weighted averaging observation."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A single weighted averaging observation."]
+
+    dateTime zonedDateTime (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Observation date time, which should be used when literal observation dates are required."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Observation date time, which should be used when literal observation dates are required."]
+    observationNumber int(min: 1) (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Observation number, which should be unique, within a series generated by a date schedule."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Observation number, which should be unique, within a series generated by a date schedule."]
+    weight NonNegativeDecimal (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Observation weight, which is used as a multiplier for the observation value."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Observation weight, which is used as a multiplier for the observation value."]
+
+    condition Choice:
+        optional choice dateTime, observationNumber

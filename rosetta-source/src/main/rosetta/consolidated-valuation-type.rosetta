@@ -1,57 +1,220 @@
 namespace fpml.consolidated.valuation : < "fpml definition" >
 version "${project.version}"
 
-type ValuationSet: <"A set of valuation inputs and results. This structure can be used for requesting valuations, or for reporting them. In general, the request fills in fewer elements.">
+import fpml.consolidated.*
+import fpml.consolidated.asset.*
+import fpml.consolidated.fpmlenum.*
+import fpml.consolidated.riskdef.*
+import fpml.consolidated.shared.*
+
+type ValuationSet:
     [rootType]
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "A set of valuation inputs and results. This structure can be used for requesting valuations, or for reporting them. In general, the request fills in fewer elements."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A set of valuation inputs and results. This structure can be used for requesting valuations, or for reporting them. In general, the request fills in fewer elements."]
 
     id string (0..1)
-    name fpml.consolidated.shared.NonEmptyToken (0..1) <"The name of the valuation set, used to understand what it means. E.g., \"EOD Values and Risks for Party A\".">
-    valuationScenario fpml.consolidated.riskdef.ValuationScenario (0..*) <"Valuation scenerios used (requested/reported) in this valuation set. E.g., the EOD valuation scenario for a particular value date. Used for the first occurrence of a valuation scenario in a document.">
-    valuationScenarioReference fpml.consolidated.riskdef.ValuationScenarioReference (0..*) <"References to valuation scenarios used (requested/reported) in this valuation set. E..g, a reference to the EOD valuation scenario for a particular value date. Used for subsequence occurrences of a valuation set in an FpML document.">
-    baseParty fpml.consolidated.shared.PartyReference (0..1) <"Reference to the party from whose point of view the assets are valued.">
-    quotationCharacteristics fpml.consolidated.asset.QuotationCharacteristics (0..*) <"Charactistics (measure types, units, sides, etc.) of the quotes used (requested/reported) in the valuation set.">
-    sensitivitySetDefinition fpml.consolidated.riskdef.SensitivitySetDefinition (0..*) <"Definition(s) of sensitivity sets used (requested or reported) in this valuation set.">
-    detail ValuationSetDetail (0..1) <"Does this valuation set include a market environment?">
-    assetValuation AssetValuation (0..*) <"Valuations reported in this valuation set. These values can be values (NPVs, prices, etc.) or risks (DAR, etc.) and can include sensitivities.">
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
+    name NonEmptyToken (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The name of the valuation set, used to understand what it means. E.g., \"EOD Values and Risks for Party A\"."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The name of the valuation set, used to understand what it means. E.g., \"EOD Values and Risks for Party A\"."]
+    valuationScenario ValuationScenario (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Valuation scenerios used (requested/reported) in this valuation set. E.g., the EOD valuation scenario for a particular value date. Used for the first occurrence of a valuation scenario in a document."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Valuation scenerios used (requested/reported) in this valuation set. E.g., the EOD valuation scenario for a particular value date. Used for the first occurrence of a valuation scenario in a document."]
+    valuationScenarioReference ValuationScenarioReference (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "References to valuation scenarios used (requested/reported) in this valuation set. E..g, a reference to the EOD valuation scenario for a particular value date. Used for subsequence occurrences of a valuation set in an FpML document."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "References to valuation scenarios used (requested/reported) in this valuation set. E..g, a reference to the EOD valuation scenario for a particular value date. Used for subsequence occurrences of a valuation set in an FpML document."]
+    baseParty PartyReference (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Reference to the party from whose point of view the assets are valued."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Reference to the party from whose point of view the assets are valued."]
+    quotationCharacteristics QuotationCharacteristics (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Charactistics (measure types, units, sides, etc.) of the quotes used (requested/reported) in the valuation set."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Charactistics (measure types, units, sides, etc.) of the quotes used (requested/reported) in the valuation set."]
+    sensitivitySetDefinition SensitivitySetDefinition (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Definition(s) of sensitivity sets used (requested or reported) in this valuation set."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Definition(s) of sensitivity sets used (requested or reported) in this valuation set."]
+    detail ValuationSetDetail (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Does this valuation set include a market environment?"]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Does this valuation set include a market environment?"]
+    assetValuation AssetValuation (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Valuations reported in this valuation set. These values can be values (NPVs, prices, etc.) or risks (DAR, etc.) and can include sensitivities."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Valuations reported in this valuation set. These values can be values (NPVs, prices, etc.) or risks (DAR, etc.) and can include sensitivities."]
 
-type AssetValuation extends fpml.consolidated.riskdef.Valuation: <"A structure that holds a set of measures about an asset, including possibly their sensitivities.">
+type AssetValuation extends Valuation:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "A structure that holds a set of measures about an asset, including possibly their sensitivities."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A structure that holds a set of measures about an asset, including possibly their sensitivities."]
 
-    quote Quotation (0..*) <"One or more numerical measures relating to the asset, possibly together with sensitivities of that measure to pricing inputs.">
-    fxRate fpml.consolidated.shared.FxRate (0..*) <"Indicates the rate of a currency conversion that may have been used to compute valuations.">
+    quote Quotation (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "One or more numerical measures relating to the asset, possibly together with sensitivities of that measure to pricing inputs."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "One or more numerical measures relating to the asset, possibly together with sensitivities of that measure to pricing inputs."]
+    fxRate FxRate (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Indicates the rate of a currency conversion that may have been used to compute valuations."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Indicates the rate of a currency conversion that may have been used to compute valuations."]
 
-type Quotation: <"Some kind of numerical measure about an asset, eg. its NPV, together with characteristics of that measure, together with optional sensitivities.">
+type Quotation:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "Some kind of numerical measure about an asset, eg. its NPV, together with characteristics of that measure, together with optional sensitivities."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "Some kind of numerical measure about an asset, eg. its NPV, together with characteristics of that measure, together with optional sensitivities."]
 
-    value number (0..1) <"The value of the the quotation.">
-    measureType fpml.consolidated.asset.AssetMeasureType (0..1) <"The type of the value that is measured. This could be an NPV, a cash flow, a clean price, etc.">
-    quoteUnits fpml.consolidated.asset.PriceQuoteUnits (0..1) <"The optional units that the measure is expressed in. If not supplied, this is assumed to be a price/value in currency units.">
-    side fpml.consolidated.fpmlenum.QuotationSideEnum (0..1) <"The side (bid/mid/ask) of the measure.">
-    currency fpml.consolidated.shared.Currency (0..1) <"The optional currency that the measure is expressed in. If not supplied, this is defaulted from the reportingCurrency in the valuationScenarioDefinition.">
-    currencyType fpml.consolidated.asset.ReportingCurrencyType (0..1) <"The optional currency that the measure is expressed in. If not supplied, this is defaulted from the reportingCurrency in the valuationScenarioDefinition.">
-    timing fpml.consolidated.asset.QuoteTiming (0..1) <"When during a day the quote is for. Typically, if this element is supplied, the QuoteLocation needs also to be supplied.">
-    businessCenter fpml.consolidated.shared.BusinessCenter (0..1) <"A city or other business center.">
-    exchangeId fpml.consolidated.shared.ExchangeId (0..1) <"The exchange (e.g. stock or futures exchange) from which the quote is obtained.">
-    informationSource fpml.consolidated.shared.InformationSource (0..*) <"The information source where a published or displayed market rate will be obtained, e.g. Telerate Page 3750.">
-    pricingModel fpml.consolidated.asset.PricingModel (0..1) <".">
-    time zonedDateTime (0..1) <"When the quote was observed or when a calculated value was generated.">
-    valuationDate zonedDateTime (0..1) <"When the quote was computed.">
-    expiryTime zonedDateTime (0..1) <"When does the quote cease to be valid.">
-    cashflowType fpml.consolidated.shared.CashflowType (0..1) <"For cash flows, the type of the cash flows. Examples include: Coupon payment, Premium Fee, Settlement Fee, Brokerage Fee, etc.">
-    sensitivitySet SensitivitySet (0..*) <"Zero or more sets of sensitivities of this measure to various input parameters.">
+    value number (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The value of the the quotation."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The value of the the quotation."]
+    measureType AssetMeasureType (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The type of the value that is measured. This could be an NPV, a cash flow, a clean price, etc."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The type of the value that is measured. This could be an NPV, a cash flow, a clean price, etc."]
+    quoteUnits PriceQuoteUnits (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The optional units that the measure is expressed in. If not supplied, this is assumed to be a price/value in currency units."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The optional units that the measure is expressed in. If not supplied, this is assumed to be a price/value in currency units."]
+    side QuotationSideEnum (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The side (bid/mid/ask) of the measure."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The side (bid/mid/ask) of the measure."]
+    currency Currency (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The optional currency that the measure is expressed in. If not supplied, this is defaulted from the reportingCurrency in the valuationScenarioDefinition."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The optional currency that the measure is expressed in. If not supplied, this is defaulted from the reportingCurrency in the valuationScenarioDefinition."]
+    currencyType ReportingCurrencyType (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The optional currency that the measure is expressed in. If not supplied, this is defaulted from the reportingCurrency in the valuationScenarioDefinition."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The optional currency that the measure is expressed in. If not supplied, this is defaulted from the reportingCurrency in the valuationScenarioDefinition."]
+    timing QuoteTiming (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "When during a day the quote is for. Typically, if this element is supplied, the QuoteLocation needs also to be supplied."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "When during a day the quote is for. Typically, if this element is supplied, the QuoteLocation needs also to be supplied."]
+    businessCenter BusinessCenter (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A city or other business center."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A city or other business center."]
+    exchangeId ExchangeId (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The exchange (e.g. stock or futures exchange) from which the quote is obtained."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The exchange (e.g. stock or futures exchange) from which the quote is obtained."]
+    informationSource InformationSource (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "The information source where a published or displayed market rate will be obtained, e.g. Telerate Page 3750."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "The information source where a published or displayed market rate will be obtained, e.g. Telerate Page 3750."]
+    pricingModel PricingModel (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "."]
+    time zonedDateTime (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "When the quote was observed or when a calculated value was generated."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "When the quote was observed or when a calculated value was generated."]
+    valuationDate zonedDateTime (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "When the quote was computed."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "When the quote was computed."]
+    expiryTime zonedDateTime (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "When does the quote cease to be valid."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "When does the quote cease to be valid."]
+    cashflowType CashflowType (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "For cash flows, the type of the cash flows. Examples include: Coupon payment, Premium Fee, Settlement Fee, Brokerage Fee, etc."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "For cash flows, the type of the cash flows. Examples include: Coupon payment, Premium Fee, Settlement Fee, Brokerage Fee, etc."]
+    sensitivitySet SensitivitySet (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "Zero or more sets of sensitivities of this measure to various input parameters."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "Zero or more sets of sensitivities of this measure to various input parameters."]
 
-type Sensitivity: <"The sensitivity of a value to a defined change in input parameters.">
+    condition Choice:
+        optional choice businessCenter, exchangeId
+
+type Sensitivity:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "The sensitivity of a value to a defined change in input parameters."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "The sensitivity of a value to a defined change in input parameters."]
 
     value number (1..1)
-    name fpml.consolidated.shared.NormalizedString (0..1) <"A optional name for this sensitivity. This is primarily intended for display purposes.">
-    definitionRef string (0..1) <"A optional (but normally supplied) reference to the definition of this sensitivity.">
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
+    name NormalizedString (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A optional name for this sensitivity. This is primarily intended for display purposes."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A optional name for this sensitivity. This is primarily intended for display purposes."]
+    definitionRef string (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A optional (but normally supplied) reference to the definition of this sensitivity."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A optional (but normally supplied) reference to the definition of this sensitivity."]
 
-type SensitivitySet: <"A collection of sensitivities. References a definition that explains the meaning/type of the sensitivities.">
+type SensitivitySet:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "A collection of sensitivities. References a definition that explains the meaning/type of the sensitivities."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "A collection of sensitivities. References a definition that explains the meaning/type of the sensitivities."]
 
     id string (0..1)
-    name fpml.consolidated.shared.NonEmptyToken (0..1)
-    definitionReference fpml.consolidated.riskdef.SensitivitySetDefinitionReference (0..1) <"A reference to a sensitivity set definition.">
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
+    name NonEmptyToken (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
+    definitionReference SensitivitySetDefinitionReference (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"
+            provision "A reference to a sensitivity set definition."]
+        [docReference ISDA FPML version "confirmation-5.13"
+            provision "A reference to a sensitivity set definition."]
     sensitivity Sensitivity (0..*)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
 
-type ValuationSetDetail: <"The amount of detail provided in the valuation set, e.g. is market environment data provided, are risk definitions provided, etc.">
+type ValuationSetDetail:
+    [docReference ISDA FPML version "recordkeeping-5.13"
+        provision "The amount of detail provided in the valuation set, e.g. is market environment data provided, are risk definitions provided, etc."]
+    [docReference ISDA FPML version "confirmation-5.13"
+        provision "The amount of detail provided in the valuation set, e.g. is market environment data provided, are risk definitions provided, etc."]
 
-    value fpml.consolidated.shared.Scheme (1..1)
-    valuationSetDetailScheme fpml.consolidated.shared.NonEmptyURI (0..1)
+    value Scheme (1..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
+    valuationSetDetailScheme NonEmptyURI (0..1)
+        [docReference ISDA FPML version "recordkeeping-5.13"]
+        [docReference ISDA FPML version "confirmation-5.13"]
