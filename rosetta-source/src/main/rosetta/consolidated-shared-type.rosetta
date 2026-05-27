@@ -454,6 +454,9 @@ type AdjustableOrAdjustedDate:
         [docReference ISDA FPML version "confirmation-5.13"
             provision "The date once the adjustment has been performed. (Note that this date may change if the business center holidays change)."]
 
+    condition Choice:
+        unadjustedDate exists or adjustedDate exists and dateAdjustments is absent
+
 type AdjustableOrRelativeDate:
     [docReference ISDA FPML version "recordkeeping-5.13"
         provision "A type giving the choice between defining a date as an explicit date together with applicable adjustments or as relative to some other (anchor) date."]
@@ -1741,6 +1744,12 @@ type FallbackRate:
         [docReference ISDA FPML version "confirmation-5.13"
             provision "An amount to be added to the calculated value before subsequent use, in order to more closely replicate the original term rate, by adjusting for the economic or credit spread between risk-free rates and risky term rates."]
 
+    condition Choice:
+        floatingRateIndex exists
+            or effectiveDate exists
+                and calculationParameters is absent
+                and spreadAdjustment is absent
+
 type FallbackRateObservation:
     [docReference ISDA FPML version "recordkeeping-5.13"
         provision "A type defining parameters associated with a fallback observation, i.e. a rate observation where the original published rate is not available and instead a fallback rate must be used."]
@@ -2460,6 +2469,9 @@ type LegalEntity:
             provision "A legal entity identifier (e.g. RED entity code)."]
         [docReference ISDA FPML version "confirmation-5.13"
             provision "A legal entity identifier (e.g. RED entity code)."]
+
+    condition Choice:
+        entityName exists or entityId exists
 
 type LegalEntityReference extends fpml.consolidated.shared.Reference:
     [docReference ISDA FPML version "recordkeeping-5.13"

@@ -583,6 +583,356 @@ type CommodityOption extends Product:
         [docReference ISDA FPML version "confirmation-5.13"
             provision "Rounding direction and precision for amounts."]
 
+    condition Choice0:
+        optional choice notionalQuantitySchedule, notionalQuantity, settlementPeriodsNotionalQuantity, quantityReference, commoditySwap, commodityForward, weatherCalculationPeriods, weatherCalculationPeriodsReference
+
+    condition Choice1:
+        optional choice strikePricePerUnit, strikePricePerUnitSchedule, floatingStrikePricePerUnit, floatingStrikePricePerUnitSchedule, commoditySwap, weatherCalculationPeriods
+
+    condition Choice2:
+        if strikePricePerUnit exists
+        then commodity exists
+                and physicalExercise is absent
+                and weatherNotionalAmount is absent
+                and weatherIndexStrikeLevel is absent
+                and calculation is absent
+                and weatherIndexData is absent
+                and commodityForward is absent
+                and weatherCalculationPeriodsReference is absent
+                and optional choice calculationPeriodsSchedule, calculationPeriods
+                and if calculationPeriodsSchedule exists
+                    then optional choice totalNotionalQuantity, quantityReference
+                            and if quantityReference exists
+                                then exercise exists and pricingDates exists
+                                        or notionalQuantitySchedule is absent
+                                            and notionalQuantity is absent
+                                            and settlementPeriodsNotionalQuantity is absent
+                            and if totalNotionalQuantity is absent
+                                        and quantityReference is absent
+                                then exercise exists
+                                        and pricingDates exists
+                                        and (notionalQuantity exists or notionalQuantitySchedule exists or settlementPeriodsNotionalQuantity exists)
+                and if calculationPeriods exists
+                    then optional choice totalNotionalQuantity, quantityReference
+                            and if quantityReference exists
+                                then exercise exists and pricingDates exists
+                                        or notionalQuantitySchedule is absent
+                                            and notionalQuantity is absent
+                                            and settlementPeriodsNotionalQuantity is absent
+                            and if totalNotionalQuantity is absent
+                                        and quantityReference is absent
+                                then exercise exists
+                                        and pricingDates exists
+                                        and (notionalQuantity exists or notionalQuantitySchedule exists or settlementPeriodsNotionalQuantity exists)
+                and if calculationPeriodsSchedule is absent and calculationPeriods is absent
+                    then optional choice totalNotionalQuantity, quantityReference
+                            and if quantityReference exists
+                                then exercise exists
+                                            and pricingDates is absent
+                                            and averagingMethod is absent
+                                        or notionalQuantitySchedule is absent
+                                            and notionalQuantity is absent
+                                            and settlementPeriodsNotionalQuantity is absent
+                            and if totalNotionalQuantity is absent
+                                        and quantityReference is absent
+                                then exercise exists
+                                        and pricingDates is absent
+                                        and averagingMethod is absent
+                                        and (notionalQuantity exists or notionalQuantitySchedule exists or settlementPeriodsNotionalQuantity exists)
+
+    condition Choice3:
+        if strikePricePerUnitSchedule exists
+        then commodity exists
+                and physicalExercise is absent
+                and weatherNotionalAmount is absent
+                and weatherIndexStrikeLevel is absent
+                and calculation is absent
+                and weatherIndexData is absent
+                and commodityForward is absent
+                and weatherCalculationPeriodsReference is absent
+                and optional choice calculationPeriodsSchedule, calculationPeriods
+                and if calculationPeriodsSchedule exists
+                    then optional choice totalNotionalQuantity, quantityReference
+                            and if quantityReference exists
+                                then exercise exists and pricingDates exists
+                                        or notionalQuantitySchedule is absent
+                                            and notionalQuantity is absent
+                                            and settlementPeriodsNotionalQuantity is absent
+                            and if totalNotionalQuantity is absent
+                                        and quantityReference is absent
+                                then exercise exists
+                                        and pricingDates exists
+                                        and (notionalQuantity exists or notionalQuantitySchedule exists or settlementPeriodsNotionalQuantity exists)
+                and if calculationPeriods exists
+                    then optional choice totalNotionalQuantity, quantityReference
+                            and if quantityReference exists
+                                then exercise exists and pricingDates exists
+                                        or notionalQuantitySchedule is absent
+                                            and notionalQuantity is absent
+                                            and settlementPeriodsNotionalQuantity is absent
+                            and if totalNotionalQuantity is absent
+                                        and quantityReference is absent
+                                then exercise exists
+                                        and pricingDates exists
+                                        and (notionalQuantity exists or notionalQuantitySchedule exists or settlementPeriodsNotionalQuantity exists)
+                and if calculationPeriodsSchedule is absent and calculationPeriods is absent
+                    then optional choice totalNotionalQuantity, quantityReference
+                            and if quantityReference exists
+                                then exercise exists
+                                            and pricingDates is absent
+                                            and averagingMethod is absent
+                                        or notionalQuantitySchedule is absent
+                                            and notionalQuantity is absent
+                                            and settlementPeriodsNotionalQuantity is absent
+                            and if totalNotionalQuantity is absent
+                                        and quantityReference is absent
+                                then exercise exists
+                                        and pricingDates is absent
+                                        and averagingMethod is absent
+                                        and (notionalQuantity exists or notionalQuantitySchedule exists or settlementPeriodsNotionalQuantity exists)
+
+    condition Choice4:
+        if floatingStrikePricePerUnit exists
+        then commodity exists
+                and physicalExercise is absent
+                and weatherNotionalAmount is absent
+                and weatherIndexStrikeLevel is absent
+                and calculation is absent
+                and weatherIndexData is absent
+                and commodityForward is absent
+                and weatherCalculationPeriodsReference is absent
+                and optional choice calculationPeriodsSchedule, calculationPeriods
+                and if calculationPeriodsSchedule exists
+                    then optional choice totalNotionalQuantity, quantityReference
+                            and if quantityReference exists
+                                then exercise exists and pricingDates exists
+                                        or notionalQuantitySchedule is absent
+                                            and notionalQuantity is absent
+                                            and settlementPeriodsNotionalQuantity is absent
+                            and if totalNotionalQuantity is absent
+                                        and quantityReference is absent
+                                then exercise exists
+                                        and pricingDates exists
+                                        and (notionalQuantity exists or notionalQuantitySchedule exists or settlementPeriodsNotionalQuantity exists)
+                and if calculationPeriods exists
+                    then optional choice totalNotionalQuantity, quantityReference
+                            and if quantityReference exists
+                                then exercise exists and pricingDates exists
+                                        or notionalQuantitySchedule is absent
+                                            and notionalQuantity is absent
+                                            and settlementPeriodsNotionalQuantity is absent
+                            and if totalNotionalQuantity is absent
+                                        and quantityReference is absent
+                                then exercise exists
+                                        and pricingDates exists
+                                        and (notionalQuantity exists or notionalQuantitySchedule exists or settlementPeriodsNotionalQuantity exists)
+                and if calculationPeriodsSchedule is absent and calculationPeriods is absent
+                    then optional choice totalNotionalQuantity, quantityReference
+                            and if quantityReference exists
+                                then exercise exists
+                                            and pricingDates is absent
+                                            and averagingMethod is absent
+                                        or notionalQuantitySchedule is absent
+                                            and notionalQuantity is absent
+                                            and settlementPeriodsNotionalQuantity is absent
+                            and if totalNotionalQuantity is absent
+                                        and quantityReference is absent
+                                then exercise exists
+                                        and pricingDates is absent
+                                        and averagingMethod is absent
+                                        and (notionalQuantity exists or notionalQuantitySchedule exists or settlementPeriodsNotionalQuantity exists)
+
+    condition Choice5:
+        if floatingStrikePricePerUnitSchedule exists
+        then commodity exists
+                and physicalExercise is absent
+                and weatherNotionalAmount is absent
+                and weatherIndexStrikeLevel is absent
+                and calculation is absent
+                and weatherIndexData is absent
+                and commodityForward is absent
+                and weatherCalculationPeriodsReference is absent
+                and optional choice calculationPeriodsSchedule, calculationPeriods
+                and if calculationPeriodsSchedule exists
+                    then optional choice totalNotionalQuantity, quantityReference
+                            and if quantityReference exists
+                                then exercise exists and pricingDates exists
+                                        or notionalQuantitySchedule is absent
+                                            and notionalQuantity is absent
+                                            and settlementPeriodsNotionalQuantity is absent
+                            and if totalNotionalQuantity is absent
+                                        and quantityReference is absent
+                                then exercise exists
+                                        and pricingDates exists
+                                        and (notionalQuantity exists or notionalQuantitySchedule exists or settlementPeriodsNotionalQuantity exists)
+                and if calculationPeriods exists
+                    then optional choice totalNotionalQuantity, quantityReference
+                            and if quantityReference exists
+                                then exercise exists and pricingDates exists
+                                        or notionalQuantitySchedule is absent
+                                            and notionalQuantity is absent
+                                            and settlementPeriodsNotionalQuantity is absent
+                            and if totalNotionalQuantity is absent
+                                        and quantityReference is absent
+                                then exercise exists
+                                        and pricingDates exists
+                                        and (notionalQuantity exists or notionalQuantitySchedule exists or settlementPeriodsNotionalQuantity exists)
+                and if calculationPeriodsSchedule is absent and calculationPeriods is absent
+                    then optional choice totalNotionalQuantity, quantityReference
+                            and if quantityReference exists
+                                then exercise exists
+                                            and pricingDates is absent
+                                            and averagingMethod is absent
+                                        or notionalQuantitySchedule is absent
+                                            and notionalQuantity is absent
+                                            and settlementPeriodsNotionalQuantity is absent
+                            and if totalNotionalQuantity is absent
+                                        and quantityReference is absent
+                                then exercise exists
+                                        and pricingDates is absent
+                                        and averagingMethod is absent
+                                        and (notionalQuantity exists or notionalQuantitySchedule exists or settlementPeriodsNotionalQuantity exists)
+
+    condition Choice6:
+        if commoditySwap exists
+        then notionalQuantitySchedule is absent
+                and notionalQuantity is absent
+                and settlementPeriodsNotionalQuantity is absent
+                and quantityReference is absent
+                and commodity is absent
+                and effectiveDate is absent
+                and terminationDate is absent
+                and calculationPeriodsSchedule is absent
+                and calculationPeriods is absent
+                and pricingDates is absent
+                and averagingMethod is absent
+                and barrier is absent
+                and totalNotionalQuantity is absent
+                and exercise is absent
+                and weatherNotionalAmount is absent
+                and weatherIndexStrikeLevel is absent
+                and calculation is absent
+                and weatherIndexData is absent
+                and weatherCalculationPeriodsReference is absent
+
+    condition Choice7:
+        if weatherCalculationPeriods exists
+        then effectiveDate exists
+                and weatherNotionalAmount exists
+                and weatherIndexStrikeLevel exists
+                and calculation exists
+                and notionalQuantitySchedule is absent
+                and notionalQuantity is absent
+                and settlementPeriodsNotionalQuantity is absent
+                and quantityReference is absent
+                and commodityForward is absent
+                and commodity is absent
+                and terminationDate is absent
+                and calculationPeriodsSchedule is absent
+                and calculationPeriods is absent
+                and pricingDates is absent
+                and averagingMethod is absent
+                and barrier is absent
+                and totalNotionalQuantity is absent
+                and physicalExercise is absent
+
+    condition Choice8:
+        if strikePricePerUnit is absent
+                and strikePricePerUnitSchedule is absent
+                and floatingStrikePricePerUnit is absent
+                and floatingStrikePricePerUnitSchedule is absent
+                and commoditySwap is absent
+                and weatherCalculationPeriods is absent
+        then if commodity exists
+            then if calculationPeriods exists
+                then if quantityReference exists
+                    then notionalQuantitySchedule is absent
+                            and notionalQuantity is absent
+                            and settlementPeriodsNotionalQuantity is absent
+                            and totalNotionalQuantity is absent
+                            and physicalExercise is absent
+                            and weatherNotionalAmount is absent
+                            and weatherIndexStrikeLevel is absent
+                            and calculation is absent
+                            and weatherIndexData is absent
+                            and calculationPeriodsSchedule is absent
+                            and commodityForward is absent
+                            and weatherCalculationPeriodsReference is absent
+                    else if totalNotionalQuantity exists
+                    then physicalExercise is absent
+                            and weatherNotionalAmount is absent
+                            and weatherIndexStrikeLevel is absent
+                            and calculation is absent
+                            and weatherIndexData is absent
+                            and calculationPeriodsSchedule is absent
+                            and quantityReference is absent
+                            and commodityForward is absent
+                            and weatherCalculationPeriodsReference is absent
+                    else False
+                else if quantityReference exists
+                then notionalQuantitySchedule is absent
+                        and notionalQuantity is absent
+                        and settlementPeriodsNotionalQuantity is absent
+                        and totalNotionalQuantity is absent
+                        and physicalExercise is absent
+                        and weatherNotionalAmount is absent
+                        and weatherIndexStrikeLevel is absent
+                        and calculation is absent
+                        and weatherIndexData is absent
+                        and commodityForward is absent
+                        and weatherCalculationPeriodsReference is absent
+                else if totalNotionalQuantity exists
+                then physicalExercise is absent
+                        and weatherNotionalAmount is absent
+                        and weatherIndexStrikeLevel is absent
+                        and calculation is absent
+                        and weatherIndexData is absent
+                        and quantityReference is absent
+                        and commodityForward is absent
+                        and weatherCalculationPeriodsReference is absent
+                else False
+            else if effectiveDate exists
+                    or weatherNotionalAmount exists
+                    or weatherIndexStrikeLevel exists
+                    or calculation exists
+                    or weatherCalculationPeriodsReference exists
+            then effectiveDate exists
+                    and weatherNotionalAmount exists
+                    and weatherIndexStrikeLevel exists
+                    and calculation exists
+                    and weatherCalculationPeriodsReference exists
+                    and notionalQuantitySchedule is absent
+                    and notionalQuantity is absent
+                    and settlementPeriodsNotionalQuantity is absent
+                    and quantityReference is absent
+                    and commodityForward is absent
+                    and terminationDate is absent
+                    and calculationPeriodsSchedule is absent
+                    and calculationPeriods is absent
+                    and pricingDates is absent
+                    and averagingMethod is absent
+                    and barrier is absent
+                    and totalNotionalQuantity is absent
+                    and physicalExercise is absent
+            else notionalQuantitySchedule is absent
+                and notionalQuantity is absent
+                and settlementPeriodsNotionalQuantity is absent
+                and quantityReference is absent
+                and effectiveDate is absent
+                and terminationDate is absent
+                and calculationPeriodsSchedule is absent
+                and calculationPeriods is absent
+                and pricingDates is absent
+                and averagingMethod is absent
+                and barrier is absent
+                and totalNotionalQuantity is absent
+                and exercise is absent
+                and weatherNotionalAmount is absent
+                and weatherIndexStrikeLevel is absent
+                and calculation is absent
+                and weatherIndexData is absent
+                and weatherCalculationPeriodsReference is absent
+
 type CommodityPerformanceSwap extends CommodityPerformanceSwapBase:
     [docReference ISDA FPML version "recordkeeping-5.13"
         provision "A type describing a commodity performance swap in which one leg pays out based on the return on a reference commodity index or commodity reference price."]
