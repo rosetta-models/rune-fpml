@@ -677,6 +677,9 @@ type NetAndGross:
         [docReference ISDA FPML version "confirmation-5.13"
             provision "Value including fees and commissions."]
 
+    condition Choice:
+        gross exists or net exists
+
 type NotionalReportingType:
     [docReference ISDA FPML version "recordkeeping-5.13"
         provision "How a notional is to be reported for this reporting regime. E.g. for ESMA EMIR, it would be Nominal or Monetary Amount"]
@@ -1423,9 +1426,12 @@ type ReportingRegime:
             provision "Claims an end user exception and provides supporting evidence. If a relatedParty block with a role of ClearingExceptionParty is present, that related party indicates which party is claiming the end user exception."]
 
     condition Choice0:
-        optional choice entityClassification, partyEntityClassification
+        name exists or supervisorRegistration exists
 
     condition Choice1:
+        optional choice entityClassification, partyEntityClassification
+
+    condition Choice2:
         endUserExceptionDeclaration is absent
             or endUserException is absent and endUserExceptionReason is absent
 
@@ -1487,6 +1493,9 @@ type ReportingRegimeIdentifier:
             provision "Reports a regulator-specific code for the action associated with this submission. Used, for example, to report the ESMA action type."]
         [docReference ISDA FPML version "confirmation-5.13"
             provision "Reports a regulator-specific code for the action associated with this submission. Used, for example, to report the ESMA action type."]
+
+    condition Choice:
+        name exists or supervisorRegistration exists
 
 type Reason:
     [docReference ISDA FPML version "recordkeeping-5.13"
@@ -1725,6 +1734,11 @@ type TradeHeader:
             provision "If the trade was cleared (novated) through a central counterparty clearing service, this represents the date the trade was cleared (transferred to the central counterparty)."]
         [docReference ISDA FPML version "confirmation-5.13"
             provision "If the trade was cleared (novated) through a central counterparty clearing service, this represents the date the trade was cleared (transferred to the central counterparty)."]
+
+    condition Choice:
+        if uniqueSwapIdentifier exists
+        then True
+        else uniqueTransactionIdentifier exists or partyTradeIdentifier exists
 
 type TradeIdentifier:
     [docReference ISDA FPML version "recordkeeping-5.13"

@@ -130,6 +130,16 @@ type Repo extends Product:
         else False
 
     condition Choice1:
+        duration exists
+            or callingParty exists
+                and extensionStyle is absent
+                and extensionPeriod is absent
+                and earliestCallDate is absent
+
+    condition Choice2:
+        optional choice noticePeriod, partyNoticePeriod
+
+    condition Choice3:
         optional choice repoChoice, security, triParty
 
 type AdjustableOffset extends Offset:
@@ -256,6 +266,35 @@ type CollateralValuation:
             provision "A reference to explicitly identify which asset is being valued."]
         [docReference ISDA FPML version "confirmation-5.13"
             provision "A reference to explicitly identify which asset is being valued."]
+
+    condition Choice0:
+        optional choice nominalAmount, numberOfUnits
+
+    condition Choice1:
+        optional choice nominalAmount, unitPrice
+
+    condition Choice2:
+        if nominalAmount exists
+        then cleanPrice exists or accruals is absent
+
+    condition Choice3:
+        numberOfUnits is absent
+            or unitPrice exists
+                and quantity is absent
+                and cleanPrice is absent
+                and accruals is absent
+                and dirtyPrice is absent
+                and relativePrice is absent
+                and yieldToMaturity is absent
+                and inflationFactor is absent
+                and allInPrice is absent
+                and accrualsAmount is absent
+
+    condition Choice4:
+        nominalAmount exists
+            or numberOfUnits exists
+            or quantity exists and cleanPrice exists and unitPrice is absent
+            or quantity exists and unitPrice is absent and accruals is absent
 
 type DeliveryMethod:
     [docReference ISDA FPML version "recordkeeping-5.13"
@@ -578,6 +617,23 @@ type SecurityValuation:
             provision "Market / Fair Value amount."]
         [docReference ISDA FPML version "confirmation-5.13"
             provision "Market / Fair Value amount."]
+
+    condition Choice0:
+        nominalAmount exists or quantity exists
+
+    condition Choice1:
+        if cleanPrice exists
+        then unitPrice is absent and quoteUnits is absent
+        else if dirtyPrice exists
+        then accruals is absent and unitPrice is absent and quoteUnits is absent
+        else if unitPrice exists
+        then dirtyPrice is absent
+                and accruals is absent
+                and relativePrice is absent
+                and yieldToMaturity is absent
+                and inflationFactor is absent
+                and allInPrice is absent
+        else False
 
 type TriParty:
     [docReference ISDA FPML version "recordkeeping-5.13"

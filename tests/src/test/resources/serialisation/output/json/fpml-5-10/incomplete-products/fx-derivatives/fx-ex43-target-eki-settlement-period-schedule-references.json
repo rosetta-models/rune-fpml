@@ -19,13 +19,15 @@
   "trade" : {
     "tradeHeader" : {
       "partyTradeIdentifier" : [ {
-        "tradeId" : {
-          "value" : "12345",
-          "tradeIdScheme" : "http://www.partyA.com/fx/trade-id"
-        },
         "partyReference" : {
           "href" : "ptyA"
-        }
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "12345",
+            "tradeIdScheme" : "http://www.partyA.com/fx/trade-id"
+          }
+        } ]
       } ],
       "tradeDate" : {
         "value" : "2014-07-25T00:00:00Z"
@@ -102,20 +104,6 @@
           }
         }
       },
-      "constantPayoffRegion" : [ {
-        "upperBound" : {
-          "condition" : "Below",
-          "barrierReference" : {
-            "href" : "barrier"
-          }
-        },
-        "lowerBound" : {
-          "condition" : "Above",
-          "strikeReference" : {
-            "href" : "s1"
-          }
-        }
-      } ],
       "linearPayoffRegion" : {
         "id" : "region",
         "exchangedCurrency1" : {
@@ -154,6 +142,22 @@
           }
         }
       },
+      "fxTargetKnockoutForwardChoice" : [ {
+        "constantPayoffRegion" : {
+          "upperBound" : {
+            "condition" : "Below",
+            "barrierReference" : {
+              "href" : "barrier"
+            }
+          },
+          "lowerBound" : {
+            "condition" : "Above",
+            "strikeReference" : {
+              "href" : "s1"
+            }
+          }
+        }
+      } ],
       "barrier" : [ {
         "id" : "barrier",
         "barrierType" : "Knockin",
