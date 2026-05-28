@@ -19,13 +19,15 @@
   "trade" : {
     "tradeHeader" : {
       "partyTradeIdentifier" : [ {
-        "tradeId" : {
-          "value" : "12345",
-          "tradeIdScheme" : "http://www.partyA.com/fx/trade-id"
-        },
         "partyReference" : {
           "href" : "ptyA"
-        }
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "12345",
+            "tradeIdScheme" : "http://www.partyA.com/fx/trade-id"
+          }
+        } ]
       } ],
       "tradeDate" : {
         "value" : "2013-07-04T00:00:00Z"
@@ -109,48 +111,6 @@
           }
         }
       },
-      "constantPayoffRegion" : [ {
-        "upperBound" : {
-          "condition" : "AtOrBelow",
-          "strikeReference" : {
-            "href" : "s1"
-          }
-        },
-        "lowerBound" : {
-          "condition" : "AtOrAbove",
-          "strikeReference" : {
-            "href" : "s2"
-          }
-        },
-        "payoff" : {
-          "fixingAdjustment" : 0.0150
-        },
-        "physicalSettlement" : {
-          "exchangedCurrency1" : {
-            "payerPartyReference" : {
-              "href" : "ptyA"
-            },
-            "receiverPartyReference" : {
-              "href" : "ptyB"
-            },
-            "currency" : {
-              "value" : "EUR"
-            }
-          },
-          "exchangedCurrency2" : {
-            "payerPartyReference" : {
-              "href" : "ptyB"
-            },
-            "receiverPartyReference" : {
-              "href" : "ptyA"
-            },
-            "currency" : {
-              "value" : "USD"
-            }
-          },
-          "settlementAdjustmentStyle" : "VariedStrike"
-        }
-      } ],
       "linearPayoffRegion" : {
         "exchangedCurrency1" : {
           "payerPartyReference" : {
@@ -175,34 +135,119 @@
           }
         },
         "strike" : {
-          "id" : "s2",
-          "initialValue" : 1.3035
+          "id" : "s1",
+          "initialValue" : 1.3235
         },
-        "upperBound" : {
-          "condition" : "Below",
-          "strikeReference" : {
-            "href" : "s2"
+        "counterCurrencyAmount" : {
+          "initialValue" : 661750.00,
+          "currency" : {
+            "value" : "USD"
           }
         },
-        "leverage" : {
-          "condition" : "Below",
+        "lowerBound" : {
+          "condition" : "Above",
           "strikeReference" : {
-            "href" : "s2"
-          },
-          "notionalAmount" : {
-            "initialValue" : 1000000.00,
+            "href" : "s1"
+          }
+        }
+      },
+      "fxTargetKnockoutForwardChoice" : [ {
+        "linearPayoffRegion" : {
+          "exchangedCurrency1" : {
+            "payerPartyReference" : {
+              "href" : "ptyA"
+            },
+            "receiverPartyReference" : {
+              "href" : "ptyB"
+            },
             "currency" : {
               "value" : "EUR"
             }
           },
-          "counterCurrencyAmount" : [ {
-            "initialValue" : 1303500.00,
+          "exchangedCurrency2" : {
+            "payerPartyReference" : {
+              "href" : "ptyB"
+            },
+            "receiverPartyReference" : {
+              "href" : "ptyA"
+            },
             "currency" : {
               "value" : "USD"
             }
-          } ]
+          },
+          "strike" : {
+            "id" : "s2",
+            "initialValue" : 1.3035
+          },
+          "upperBound" : {
+            "condition" : "Below",
+            "strikeReference" : {
+              "href" : "s2"
+            }
+          },
+          "leverage" : {
+            "condition" : "Below",
+            "strikeReference" : {
+              "href" : "s2"
+            },
+            "notionalAmount" : {
+              "initialValue" : 1000000.00,
+              "currency" : {
+                "value" : "EUR"
+              }
+            },
+            "counterCurrencyAmount" : [ {
+              "initialValue" : 1303500.00,
+              "currency" : {
+                "value" : "USD"
+              }
+            } ]
+          }
         }
-      },
+      }, {
+        "constantPayoffRegion" : {
+          "upperBound" : {
+            "condition" : "AtOrBelow",
+            "strikeReference" : {
+              "href" : "s1"
+            }
+          },
+          "lowerBound" : {
+            "condition" : "AtOrAbove",
+            "strikeReference" : {
+              "href" : "s2"
+            }
+          },
+          "payoff" : {
+            "fixingAdjustment" : 0.0150
+          },
+          "physicalSettlement" : {
+            "exchangedCurrency1" : {
+              "payerPartyReference" : {
+                "href" : "ptyA"
+              },
+              "receiverPartyReference" : {
+                "href" : "ptyB"
+              },
+              "currency" : {
+                "value" : "EUR"
+              }
+            },
+            "exchangedCurrency2" : {
+              "payerPartyReference" : {
+                "href" : "ptyB"
+              },
+              "receiverPartyReference" : {
+                "href" : "ptyA"
+              },
+              "currency" : {
+                "value" : "USD"
+              }
+            },
+            "settlementAdjustmentStyle" : "VariedStrike"
+          }
+        }
+      } ],
       "additionalPayment" : [ {
         "payerPartyReference" : {
           "href" : "ptyA"

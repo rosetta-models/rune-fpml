@@ -16,6 +16,63 @@
       <tradeDate>2013-07-04T00:00:00</tradeDate>
     </tradeHeader>
     <fxTargetKnockoutForward>
+      <linearPayoffRegion>
+        <exchangedCurrency1>
+          <payerPartyReference href="ptyA"/>
+          <receiverPartyReference href="ptyB"/>
+          <currency>EUR</currency>
+        </exchangedCurrency1>
+        <exchangedCurrency2>
+          <payerPartyReference href="ptyB"/>
+          <receiverPartyReference href="ptyA"/>
+          <currency>USD</currency>
+        </exchangedCurrency2>
+        <strike id="s2">
+          <initialValue>1.3035</initialValue>
+        </strike>
+        <upperBound>
+          <condition>Below</condition>
+          <strikeReference href="s2"/>
+        </upperBound>
+        <leverage>
+          <condition>Below</condition>
+          <strikeReference href="s2"/>
+          <notionalAmount>
+            <initialValue>1000000.00</initialValue>
+            <currency>EUR</currency>
+          </notionalAmount>
+          <counterCurrencyAmount>
+            <initialValue>1303500.00</initialValue>
+            <currency>USD</currency>
+          </counterCurrencyAmount>
+        </leverage>
+      </linearPayoffRegion>
+      <constantPayoffRegion>
+        <upperBound>
+          <condition>AtOrBelow</condition>
+          <strikeReference href="s1"/>
+        </upperBound>
+        <lowerBound>
+          <condition>AtOrAbove</condition>
+          <strikeReference href="s2"/>
+        </lowerBound>
+        <payoff>
+          <fixingAdjustment>0.0150</fixingAdjustment>
+        </payoff>
+        <physicalSettlement>
+          <exchangedCurrency1>
+            <payerPartyReference href="ptyA"/>
+            <receiverPartyReference href="ptyB"/>
+            <currency>EUR</currency>
+          </exchangedCurrency1>
+          <exchangedCurrency2>
+            <payerPartyReference href="ptyB"/>
+            <receiverPartyReference href="ptyA"/>
+            <currency>USD</currency>
+          </exchangedCurrency2>
+          <settlementAdjustmentStyle>VariedStrike</settlementAdjustmentStyle>
+        </physicalSettlement>
+      </constantPayoffRegion>
       <quotedCurrencyPair>
         <currency1>EUR</currency1>
         <currency2>USD</currency2>
@@ -86,32 +143,6 @@
           <businessCenter>DEFR</businessCenter>
         </fixingTime>
       </fixingInformationSource>
-      <constantPayoffRegion>
-        <upperBound>
-          <condition>AtOrBelow</condition>
-          <strikeReference href="s1"/>
-        </upperBound>
-        <lowerBound>
-          <condition>AtOrAbove</condition>
-          <strikeReference href="s2"/>
-        </lowerBound>
-        <payoff>
-          <fixingAdjustment>0.0150</fixingAdjustment>
-        </payoff>
-        <physicalSettlement>
-          <exchangedCurrency1>
-            <payerPartyReference href="ptyA"/>
-            <receiverPartyReference href="ptyB"/>
-            <currency>EUR</currency>
-          </exchangedCurrency1>
-          <exchangedCurrency2>
-            <payerPartyReference href="ptyB"/>
-            <receiverPartyReference href="ptyA"/>
-            <currency>USD</currency>
-          </exchangedCurrency2>
-          <settlementAdjustmentStyle>VariedStrike</settlementAdjustmentStyle>
-        </physicalSettlement>
-      </constantPayoffRegion>
       <linearPayoffRegion>
         <exchangedCurrency1>
           <payerPartyReference href="ptyA"/>
@@ -123,25 +154,17 @@
           <receiverPartyReference href="ptyA"/>
           <currency>USD</currency>
         </exchangedCurrency2>
-        <strike id="s2">
-          <initialValue>1.3035</initialValue>
+        <strike id="s1">
+          <initialValue>1.3235</initialValue>
         </strike>
-        <upperBound>
-          <condition>Below</condition>
-          <strikeReference href="s2"/>
-        </upperBound>
-        <leverage>
-          <condition>Below</condition>
-          <strikeReference href="s2"/>
-          <notionalAmount>
-            <initialValue>1000000.00</initialValue>
-            <currency>EUR</currency>
-          </notionalAmount>
-          <counterCurrencyAmount>
-            <initialValue>1303500.00</initialValue>
-            <currency>USD</currency>
-          </counterCurrencyAmount>
-        </leverage>
+        <counterCurrencyAmount>
+          <initialValue>661750.00</initialValue>
+          <currency>USD</currency>
+        </counterCurrencyAmount>
+        <lowerBound>
+          <condition>Above</condition>
+          <strikeReference href="s1"/>
+        </lowerBound>
       </linearPayoffRegion>
       <additionalPayment>
         <payerPartyReference href="ptyA"/>
