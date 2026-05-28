@@ -441,6 +441,12 @@ type FeeLeg extends Leg:
         [docReference ISDA FPML version "confirmation-5.13"
             provision "The type of quotation that was used between the trading desks. The purpose of this element is to indicate the actual quotation style that was used to quote this trade which may not be apparent when both marketFixedRate and initialPoints are included in the document. When quotationStyle is ‘PointsUpFront’, the initialPoints element should be populated. When quotationStyle is ‘TradedSpread’, the marketFixedRate element should be populated."]
 
+    condition Choice0:
+        optional choice initialPayment, singlePayment
+
+    condition Choice1:
+        initialPayment exists or singlePayment exists or periodicPayment exists
+
 type FixedAmountCalculation:
     [docReference ISDA FPML version "recordkeeping-5.13"]
     [docReference ISDA FPML version "confirmation-5.13"]

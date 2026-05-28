@@ -396,6 +396,61 @@ type FxSchedule:
         [docReference ISDA FPML version "confirmation-5.13"
             provision "The representation of the schedule as an offset relative to another schedule. For example, the settlement schedule may be relative to the expiry schedule by an FxForward offset."]
 
+    condition Choice0:
+        optional choice dateAdjustments, businessCentersReference, businessCenters, dateOffset
+
+    condition Choice1:
+        optional choice observationFrequency, businessCentersReference
+
+    condition Choice2:
+        if businessCentersReference exists
+        then dayType exists and (startDate exists or endDate exists)
+
+    condition Choice3:
+        optional choice observationFrequency, businessCenters
+
+    condition Choice4:
+        if businessCenters exists
+        then dayType exists and (startDate exists or endDate exists)
+
+    condition Choice5:
+        dateOffset is absent
+            or startDate is absent
+                and endDate is absent
+                and observationFrequency is absent
+                and dayType is absent
+
+    condition Choice6:
+        optional choice dateAdjustments, dayType
+
+    condition Choice7:
+        if dateAdjustments exists
+        then if observationFrequency exists
+            then startDate exists or endDate exists
+            else if adjustedDate exists
+            then startDate is absent and endDate is absent
+            else False
+
+    condition Choice8:
+        if dayType exists
+        then startDate exists and observationFrequency is absent
+                or endDate exists and observationFrequency is absent
+                or businessCentersReference exists
+                or businessCenters exists
+                or dateOffset exists
+
+    condition Choice9:
+        if dateAdjustments is absent and dayType is absent
+        then startDate exists and observationFrequency exists
+                or adjustedDate exists
+                    and observationFrequency is absent
+                    and startDate is absent
+                    and endDate is absent
+                or observationFrequency exists and endDate exists
+                or businessCentersReference exists
+                or businessCenters exists
+                or dateOffset exists
+
 type FxScheduleReference extends fpml.consolidated.shared.Reference:
     [docReference ISDA FPML version "recordkeeping-5.13"
         provision "Reference to a FX Schedule structure."]
@@ -487,6 +542,9 @@ type FxTargetAccumulationRegion:
         [docReference ISDA FPML version "confirmation-5.13"
             provision "This is the factor that increases gain, not notional. Used to support Accelerated TARFs."]
 
+    condition Choice:
+        lowerBound exists or upperBound exists
+
 type FxTargetBarrier extends FxComplexBarrierBase:
     [docReference ISDA FPML version "recordkeeping-5.13"]
     [docReference ISDA FPML version "confirmation-5.13"]
@@ -567,6 +625,9 @@ type FxTargetConstantPayoffRegion extends FxTargetPayoffRegion:
     physicalSettlement FxTargetPhysicalSettlement (0..1)
         [docReference ISDA FPML version "recordkeeping-5.13"]
         [docReference ISDA FPML version "confirmation-5.13"]
+
+    condition Choice:
+        lowerBound exists or upperBound exists
 
 type FxTargetKnockoutForwardChoice:
     [docReference ISDA FPML version "recordkeeping-5.13"]

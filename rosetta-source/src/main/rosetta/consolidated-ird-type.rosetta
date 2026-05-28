@@ -425,10 +425,27 @@ type Calculation:
         [docReference ISDA FPML version "confirmation-5.13"
             provision "If more that one calculation period contributes to a single payment amount this element specifies whether compounding is applicable, and if so, what compounding method is to be used. This element must only be included when more that one calculation period contributes to a single payment amount."]
 
-    condition Choice:
-        if fixedRateSchedule exists
-        then rateCalculation is absent
-        else fixedRateSchedule is absent and futureValueNotional is absent
+    condition Choice0:
+        optional choice notionalSchedule, fxLinkedNotionalSchedule
+
+    condition Choice1:
+        if notionalSchedule exists
+        then if fixedRateSchedule exists
+            then rateCalculation is absent
+            else fixedRateSchedule is absent and futureValueNotional is absent
+
+    condition Choice2:
+        if fxLinkedNotionalSchedule exists
+        then if fixedRateSchedule exists
+            then rateCalculation is absent
+            else rateCalculation exists and futureValueNotional is absent
+                or currentNotional is absent and futureValueNotional is absent
+
+    condition Choice3:
+        if notionalSchedule is absent and fxLinkedNotionalSchedule is absent
+        then if fixedRateSchedule exists
+            then rateCalculation is absent
+            else fixedRateSchedule is absent and futureValueNotional is absent
 
 type CalculationPeriod:
     [docReference ISDA FPML version "recordkeeping-5.13"
@@ -997,6 +1014,13 @@ type EarlyTerminationProvision:
             provision "Definition of the first early termination date and the frequency of the termination dates subsequent to that. American exercise is defined by having a frequency of one day."]
         [docReference ISDA FPML version "confirmation-5.13"
             provision "Definition of the first early termination date and the frequency of the termination dates subsequent to that. American exercise is defined by having a frequency of one day."]
+
+    condition Choice:
+        if mandatoryEarlyTerminationDateTenor exists
+        then True
+        else if mandatoryEarlyTermination exists
+        then True
+        else optionalEarlyTerminationParameters exists or optionalEarlyTermination exists
 
 type ExerciseEvent:
     [docReference ISDA FPML version "recordkeeping-5.13"
