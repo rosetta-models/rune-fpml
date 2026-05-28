@@ -117,7 +117,7 @@ type SecurityLending extends Product:
         [docReference ISDA FPML version "confirmation-5.13"
             provision "Collateral provisions component derives collateral information from the Master Agreement documentation."]
 
-    condition Choice:
+    condition Choice0:
         if extensionStyle exists
         then callingParty is absent
                 and callDate is absent
@@ -131,6 +131,9 @@ type SecurityLending extends Product:
             and callDate is absent
             and noticePeriod is absent
             and partyNoticePeriod is absent
+
+    condition Choice1:
+        fee exists or rebate exists
 
 type PrepaidRate:
     [docReference ISDA FPML version "recordkeeping-5.13"

@@ -308,6 +308,11 @@ type CalculationFromObservation:
         [docReference ISDA FPML version "confirmation-5.13"
             provision "Expected number of trading days."]
 
+    condition Choice:
+        if initialLevel exists
+        then closingLevel is absent and expiringLevel is absent
+        else required choice initialLevelSource, closingLevel, expiringLevel
+
 type Compounding:
     [docReference ISDA FPML version "recordkeeping-5.13"
         provision "Specifies the compounding method and the compounding rate."]

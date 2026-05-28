@@ -593,7 +593,10 @@ type FxAccrualRegion:
         [docReference ISDA FPML version "confirmation-5.13"
             provision "The opposite currency amount. The \'counterCurrencyAmount\' element is supplied if the accrual process operates on specific amounts of both notional and counter currency within this accrual region."]
 
-    condition Choice:
+    condition Choice0:
+        lowerBound exists or upperBound exists
+
+    condition Choice1:
         if notionalAmount exists
         then accrualFactor is absent
         else notionalAmount is absent and counterCurrencyAmount is absent
@@ -988,6 +991,75 @@ type FxFixingSchedule:
         [docReference ISDA FPML version "confirmation-5.13"
             provision "The number of fixing points in the fixing schedule."]
 
+    condition Choice0:
+        optional choice dateAdjustments, businessCentersReference, businessCenters
+
+    condition Choice1:
+        optional choice observationFrequency, businessCentersReference
+
+    condition Choice2:
+        if businessCentersReference exists
+        then dayType exists
+                and (startDate exists or endDate exists)
+                and optional choice fixingDate, numberOfFixings
+
+    condition Choice3:
+        optional choice observationFrequency, businessCenters
+
+    condition Choice4:
+        if businessCenters exists
+        then dayType exists
+                and (startDate exists or endDate exists)
+                and optional choice fixingDate, numberOfFixings
+
+    condition Choice5:
+        optional choice dateAdjustments, dayType
+
+    condition Choice6:
+        if dateAdjustments exists
+        then optional choice fixingDate, numberOfFixings
+                and if fixingDate exists
+                    then if observationFrequency exists
+                        then startDate exists or endDate exists
+                        else startDate is absent and endDate is absent
+                and if numberOfFixings exists
+                    then observationFrequency exists
+                            and (endDate exists or startDate exists)
+                and if fixingDate is absent and numberOfFixings is absent
+                    then if observationFrequency exists
+                        then startDate exists or endDate exists
+                        else startDate is absent and endDate is absent
+
+    condition Choice7:
+        if dayType exists
+        then startDate exists and fixingDate is absent and observationFrequency is absent
+                or endDate exists
+                    and fixingDate is absent
+                    and observationFrequency is absent
+                or startDate exists
+                    and numberOfFixings is absent
+                    and observationFrequency is absent
+                or endDate exists
+                    and numberOfFixings is absent
+                    and observationFrequency is absent
+                or businessCentersReference exists
+                or businessCenters exists
+
+    condition Choice8:
+        if dateAdjustments is absent and dayType is absent
+        then startDate exists and observationFrequency exists and numberOfFixings is absent
+                or observationFrequency exists and endDate exists and fixingDate is absent
+                or observationFrequency exists and startDate exists and fixingDate is absent
+                or endDate exists
+                    and observationFrequency exists
+                    and numberOfFixings is absent
+                or numberOfFixings is absent
+                    and startDate is absent
+                    and endDate is absent
+                    and observationFrequency is absent
+                or businessCentersReference exists
+                or businessCenters exists
+
 type FxForwardStrikePrice extends FxAccrualStrike:
     [docReference ISDA FPML version "recordkeeping-5.13"
         provision "A type that describes the rate of exchange between the two currencies of the leg of a deal."]
@@ -1097,3 +1169,70 @@ type FxWeightedFixingSchedule:
             provision "The number of fixing points in the fixing schedule."]
         [docReference ISDA FPML version "confirmation-5.13"
             provision "The number of fixing points in the fixing schedule."]
+
+    condition Choice0:
+        optional choice dateAdjustments, businessCentersReference, businessCenters
+
+    condition Choice1:
+        optional choice observationFrequency, businessCentersReference
+
+    condition Choice2:
+        if businessCentersReference exists
+        then dayType exists
+                and (startDate exists or endDate exists)
+                and optional choice fixing, numberOfFixings
+
+    condition Choice3:
+        optional choice observationFrequency, businessCenters
+
+    condition Choice4:
+        if businessCenters exists
+        then dayType exists
+                and (startDate exists or endDate exists)
+                and optional choice fixing, numberOfFixings
+
+    condition Choice5:
+        optional choice dateAdjustments, dayType
+
+    condition Choice6:
+        if dateAdjustments exists
+        then optional choice fixing, numberOfFixings
+                and if fixing exists
+                    then if observationFrequency exists
+                        then startDate exists or endDate exists
+                        else startDate is absent and endDate is absent
+                and if numberOfFixings exists
+                    then observationFrequency exists
+                            and (endDate exists or startDate exists)
+                and if fixing is absent and numberOfFixings is absent
+                    then if observationFrequency exists
+                        then startDate exists or endDate exists
+                        else startDate is absent and endDate is absent
+
+    condition Choice7:
+        if dayType exists
+        then startDate exists and fixing is absent and observationFrequency is absent
+                or endDate exists and fixing is absent and observationFrequency is absent
+                or startDate exists
+                    and numberOfFixings is absent
+                    and observationFrequency is absent
+                or endDate exists
+                    and numberOfFixings is absent
+                    and observationFrequency is absent
+                or businessCentersReference exists
+                or businessCenters exists
+
+    condition Choice8:
+        if dateAdjustments is absent and dayType is absent
+        then startDate exists and observationFrequency exists and numberOfFixings is absent
+                or observationFrequency exists and endDate exists and fixing is absent
+                or observationFrequency exists and startDate exists and fixing is absent
+                or endDate exists
+                    and observationFrequency exists
+                    and numberOfFixings is absent
+                or numberOfFixings is absent
+                    and startDate is absent
+                    and endDate is absent
+                    and observationFrequency is absent
+                or businessCentersReference exists
+                or businessCenters exists

@@ -433,6 +433,13 @@ type PGPDataType:
         [docReference ISDA FPML version "confirmation-5.13"
             provision "Placeholder for xsd:any: Min Occurs: 0; Max Occurs: unbounded; Namespace: ##other; Process Contents: lax."]
 
+    condition Choice:
+        if pgpKeyID exists
+        then anyContents1 is absent
+        else if pgpKeyPacket exists
+        then anyContents0 is absent
+        else False
+
 type SPKIDataType:
     [docReference ISDA FPML version "recordkeeping-5.13"]
     [docReference ISDA FPML version "confirmation-5.13"]
