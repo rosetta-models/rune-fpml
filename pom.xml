@@ -13,7 +13,6 @@
     <name>FpML as Rune</name>
     <groupId>com.regnosys.rune-fpml</groupId>
     <artifactId>parent</artifactId>
-    
     <packaging>pom</packaging>
     <version>0.0.0.master-SNAPSHOT</version>
     <modules>
@@ -32,6 +31,7 @@
         <guice.version>6.0.0</guice.version>
         <guava.version>33.3.1-jre</guava.version>
         <jackson.version>2.18.0</jackson.version>
+        <plexus-utils.version>3.6.1</plexus-utils.version>
 
         <!-- Release -->
         <gpg.keyname>configured-by-release-profile</gpg.keyname>
@@ -46,7 +46,7 @@
         <logback.version>1.4.4</logback.version>
 
         <!-- Plugins -->
-        <maven-enforcer-plugin.version>3.2.1</maven-enforcer-plugin.version>
+        <maven-enforcer-plugin.version>3.3.0</maven-enforcer-plugin.version>
         <maven-checkstyle-plugin.version>3.4.0</maven-checkstyle-plugin.version>
         <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
         <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
@@ -129,6 +129,14 @@
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
+            </dependency>
+            <!-- Force patched versions of transitive dependencies pulled in via
+                 rosetta-common's build-time xtext/rune code-generation tooling,
+                 to clear CVEs flagged by the dependency-check CVE scan. -->
+            <dependency>
+                <groupId>org.codehaus.plexus</groupId>
+                <artifactId>plexus-utils</artifactId>
+                <version>${plexus-utils.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.google.inject</groupId>
