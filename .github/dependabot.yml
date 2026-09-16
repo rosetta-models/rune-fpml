@@ -38,6 +38,13 @@ updates:
         update-types:
           - version-update:semver-major
           - version-update:semver-minor
+      # plexus-utils is pinned in the parent pom to force a patched version
+      # past a CVE in the transitive version pulled in by maven-artifact
+      # (via rune-testing) - patch updates should keep flowing automatically.
+      - dependency-name: org.codehaus.plexus:plexus-utils
+        update-types:
+          - version-update:semver-major
+          - version-update:semver-minor
       # Guice stays on major version 6 - minor/patch updates are fine.
       - dependency-name: com.google.inject*
         update-types:
@@ -50,6 +57,7 @@ updates:
           - com.fasterxml.jackson*
           - org.eclipse.xtext:xtext-dev-bom
           - com.google.guava:guava
+          - org.codehaus.plexus:plexus-utils
         update-types:
           - minor
           - patch
