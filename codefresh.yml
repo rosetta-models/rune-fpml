@@ -36,9 +36,22 @@ steps:
       - cf_export MVN_CLI_OPT="-Dmaven.repo.local=\"${{CF_VOLUME_PATH}}/${{CF_REPO_NAME}}_m2/repository\" -s ${{CF_VOLUME_PATH}}/${{CF_REPO_NAME}}/settings.xml"
       - cf_export GPG_IMPORT_COMMAND="cat <(echo -e '${{GPG_PRIVATE_KEY}}') | gpg --batch --import" --mask
 
+  # Exports GCP_ACCESS_TOKEN, which the Artifact Registry servers in settings.xml
+  # use as their Basic auth password, by workload identity federation rather than
+  # a service account key. Step definition lives in the REGnosys/scripts repo, at
+  # codefresh/step-types/gcp-oidc-auth.yml.
+  #
+  # Last of the setup steps on purpose: the token lasts an hour from here, and
+  # everything that spends it is below.
+  Authenticate:
+    title: Federate into GCP
+    type: regnosysops/gcp-oidc-auth:1.0.1
+    arguments:
+      WIF_PROVIDER: ${{GCP_WIF_PROVIDER_CODEFRESH_AUDIENCE}}
+      SERVICE_ACCOUNT: ${{GCP_CODEFRESH_SERVICE_ACCOUNT}}
+
   Build:
-    no_cache: true
-    no_cf_cache: true
+
     image: maven:3.9.11-eclipse-temurin-21-alpine
     working_directory: ./
     commands:
