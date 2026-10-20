@@ -26,7 +26,7 @@ public class FpmlConfirmationSerialisationTest {
                 Document.class,
                 RuneFpmlModelConfig.FPML_CONFIRMATION_SCHEMA_PATH,
                 RuneFpmlModelConfig.FPML_CONFIRMATION_XML_CONFIG_PATH,
-                "http://www.fpml.org/FpML-5/confirmation schemas/fpml-5-13/confirmation/fpml-main-5-13.xsd"
+                "http://www.fpml.org/FpML-5/confirmation schemas/fpml-5-14-5-rec-1/confirmation/fpml-main-5-14.xsd"
         );
     }
 

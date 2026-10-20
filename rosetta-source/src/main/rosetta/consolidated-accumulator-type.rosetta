@@ -6,7 +6,7 @@ import fpml.consolidated.eqd.*
 import fpml.consolidated.fpmlenum.*
 import fpml.consolidated.shared.*
 
-type EquityAccumulator extends Product:
+type EquityAccumulator extends Product: <"A share accumulator under which the buyer acquires a specified number of shares on each day of the observation period at a fixed forward price, subject to any gearing applicable below the trigger price, the guaranteed period, and the knock-out and expiration provisions. A type defining a share accumulator, including the underlyer, notional, forward price, daily share quantity, observation periods, gearing, guaranteed period, expiration, settlement terms and knock-out provisions.">
 
     buyerPartyReference PartyReference (1..1) <"A reference to the party that buys this instrument, ie. pays for this instrument and receives the rights defined by it. See 2000 ISDA definitions Article 11.1 (b). In the case of FRAs this the fixed rate payer.">
     buyerAccountReference AccountReference (0..1) <"A reference to the account that buys this instrument.">
@@ -18,8 +18,8 @@ type EquityAccumulator extends Product:
     spotPrice NonNegativeMoney (0..1) <"The current price of the stock">
     numberOfSharesPerDay NonNegativeDecimal (1..1) <"The number of shares to be purchased per day">
     maxNoOfTradingDays int (0..1) <"Maximum number of trading days">
-    gearing Gearing (0..1) <"Leverage or Gearing. Optional condition where if shares fall below trigger price, number of shares purchased increase by the gearing factor.">
-    guaranteedPeriodEndDate zonedDateTime (0..1) <"End date of guaranteed period. If knock out is triggered within guaranteed period, guaranteed number of shares will be delivered.">
+    gearing Gearing (0..1) <"Leverage or Gearing.  Optional condition where if shares fall below trigger price, number of shares purchased increase by the gearing factor.">
+    guaranteedPeriodEndDate zonedDateTime (0..1) <"End date of guaranteed period.  If knock out is triggered within guaranteed period, guaranteed number of shares will be delivered.">
     observationPeriod ObservationPeriod (1..*) <"Period when accumulator will accumulate shares">
     expiration EquityForwardExpiration (1..1) <"Expiration date of accumulator.">
     prePayment PrePayment (0..1) <"A payment made in advance for the purchase of the shares.">
@@ -28,9 +28,9 @@ type EquityAccumulator extends Product:
     settlementPriceSource SettlementPriceSource (0..1) <"The source from which the settlement price is to be obtained, e.g. a Reuters page, Prezzo di Riferimento, etc.">
     knockOut AccumulatorKnockOut (0..1) <"Termination of contract prior to maturity date as a result of stock price exceeding specified level or performance reaching target performance.">
 
-type EquityForwardExpiration extends Exercise: <"A type for defining expiry of an equity forward contract.">
+type EquityForwardExpiration extends Exercise: <"A type for defining expiry of an equity forward         contract.">
 
-    expirationDate AdjustableOrRelativeDate (1..1) <"The last day within an exercise period for an American style option. For a European style option it is the only day within the exercise period.">
+    expirationDate AdjustableOrRelativeDate (1..1) <"The last day within an exercise period for an                 American style option. For a European style option it is the only day within the                 exercise period.">
     equityExpirationTimeType TimeTypeEnum (0..1) <"The time of day at which the equity option expires, for example the official closing time of the exchange.">
     equityExpirationTime BusinessCenterTime (0..1) <"The specific time of day at which the equity option expires.">
     expirationTimeDetermination DeterminationMethod (0..1) <"Expiration time determination method.">
@@ -42,9 +42,7 @@ type EquityForwardExpiration extends Exercise: <"A type for defining expiry of a
         then equityExpirationTimeType is absent and equityExpirationTime is absent
         else False
 
-type SharesPerDay:
-
-type Gearing: <"Leverage or Gearing. Optional condition where if shares fall below trigger price, number of shares puchased increase by the gearing factor.">
+type Gearing: <"Leverage or Gearing.  Optional condition where if shares fall below trigger price, number of shares puchased increase by the gearing factor.">
 
     gearingFactor number (1..1) <"Increase in number of shares purchased.">
     leverageTriggerPrice number (0..1) <"If specified, gearing factor applied only if share price falls below this trigger price.">

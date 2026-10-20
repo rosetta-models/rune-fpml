@@ -1,20 +1,38 @@
 schemas:
-  - name: "fpml-5-13-confirmation"
-    location: "schemas/fpml-5-13-7-rec-1/confirmation/fpml-main-5-13.xsd"
-    version: "confirmation-5.13"
+  - name: "fpml-5-14-confirmation"
+    location: "schemas/fpml-5-14-5-rec-1/confirmation/fpml-main-5-14.xsd"
+    version: "confirmation-5.14"
     mergeMode: SYMMETRIC
-  - name: "fpml-5-13-recordkeeping"
-    location: "schemas/fpml-5-13-7-rec-1/recordkeeping/fpml-main-5-13.xsd"
-    version: "recordkeeping-5.13"
+  - name: "fpml-5-14-recordkeeping"
+    location: "schemas/fpml-5-14-5-rec-1/recordkeeping/fpml-main-5-14.xsd"
+    version: "recordkeeping-5.14"
     mergeMode: SYMMETRIC
 
 target:
   defaultNamespace: "fpml.consolidated"
   namespaceDefinition: "fpml definition"
-  namespaceGrouping:
-    groupByNamespace: true
-    regex: "^.*/fpml-(?<name>.*)-(?<version>[0-9]*-[0-9]*)\\.xsd$"
-    captureGroup: "name"
+  namespaceGroupings:
+    # `enum`, `return` and `reporting` are Rune keywords. Pinned to the names the
+    # model has always used, so consumers' imports keep resolving; without these the
+    # importer would escape them as ^enum / ^return / ^reporting.
+    - groupByNamespace: true
+      regex: "^.*/fpml-enum-[0-9]*-[0-9]*\\.xsd$"
+      groupNamespace: "fpml.consolidated.fpmlenum"
+    - groupByNamespace: true
+      regex: "^.*/fpml-return-swaps-[0-9]*-[0-9]*\\.xsd$"
+      groupNamespace: "fpml.consolidated.fpmlreturn.swaps"
+    - groupByNamespace: true
+      regex: "^.*/fpml-reg-reporting-product-[0-9]*-[0-9]*\\.xsd$"
+      groupNamespace: "fpml.consolidated.reg.fpmlreporting.product"
+    - groupByNamespace: true
+      regex: "^.*/fpml-reg-reporting-shared-[0-9]*-[0-9]*\\.xsd$"
+      groupNamespace: "fpml.consolidated.reg.fpmlreporting.shared"
+    - groupByNamespace: true
+      regex: "^.*/fpml-valuation-reporting-[0-9]*-[0-9]*\\.xsd$"
+      groupNamespace: "fpml.consolidated.valuation.fpmlreporting"
+    - groupByNamespace: true
+      regex: "^.*/fpml-(?<name>.*)-(?<version>[0-9]*-[0-9]*)\\.xsd$"
+      captureGroup: "name"
   nameOverrides:
     "Agent Bank": "AgentBank_Deprecated"
   preferences:

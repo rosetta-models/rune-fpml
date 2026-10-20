@@ -1,6 +1,6 @@
 ## FpML as Rune
 
-This repository is a [Rune DSL](https://github.com/finos/rune-dsl) model that contains Rune representation of the FpML 5.13 schema, Confirmation view. The model was created by the importing the FpML schema .xsd files, which translates each FpML schema complex type into an equivalent Rune data type, e.g., FpML `<dataDocument>` is imported into the Rune model as type `DataDocument`.
+This repository is a [Rune DSL](https://github.com/finos/rune-dsl) model that contains Rune representation of the FpML 5.14 schema, Confirmation view. The model was created by the importing the FpML schema .xsd files, which translates each FpML schema complex type into an equivalent Rune data type, e.g., FpML `<dataDocument>` is imported into the Rune model as type `DataDocument`.
 
 What is Rune?
 
@@ -186,10 +186,11 @@ For more information on FpML views, see the FpML overview [here](https://www.fpm
 
 Supported FpML Schemas
 
-Currently the model is based on FpML Confirmation 5.13. FpML Confirmation is backwards compatible, so actually is supports all FpML 5.x versions
+Currently the model is based on FpML Confirmation 5.14. FpML Confirmation is backwards compatible, so actually is supports all FpML 5.x versions
 
 | Version | Confirmation | Record Keeping |
 | --- | --- | --- |
+| 5.14 | x | Roadmap |
 | 5.13 | x | Roadmap |
 | 5.12 | x | Roadmap |
 | 5.11 | x | Roadmap |

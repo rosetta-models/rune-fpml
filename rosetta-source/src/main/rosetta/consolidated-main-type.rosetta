@@ -6,19 +6,19 @@ import fpml.consolidated.riskdef.*
 import fpml.consolidated.shared.*
 import fpml.consolidated.valuation.*
 
-type DataDocument extends Document: <"A document containing trade and/or portfolio and/or party data without expressing any processing intention. A type defining a content model that is backwards compatible with older FpML releases and which can be used to contain sets of data without expressing any processing intention.">
+type DataDocument extends Document: <"A document containing trade and/or portfolio and/or party data without expressing any processing intention. A type defining a content model that is backwards compatible with                 older FpML releases and which can be used to contain sets of data without expressing                 any processing intention.">
     [rootType]
 
-    validation Validation (0..*) <"A list of validation sets the sender asserts the document is valid with respect to.">
-    onBehalfOf OnBehalfOf (0..1) <"Indicates which party (and accounts) a trade is being processed for.">
-    originatingEvent OriginatingEvent (0..1)
-    trade Trade (0..*) <"The root element in an FpML trade document.">
+    validation Validation (0..*) <"A list of validation sets the sender asserts the document is                         valid with respect to.">
+    onBehalfOf OnBehalfOf (0..1) <"Indicates which party (and accounts) a trade                                         is being processed for.">
+    originatingEvent OriginatingEvent (0..1) <"Specifies the event that triggered the creation of a financial transaction or data record within an FpML DataDocument. It is based on a predefined coding scheme.">
+    trade Trade (0..*) <"The root element in an FpML trade                                         document.">
     party Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
     account Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
-    portfolio Portfolio (0..*) <"An arbitary grouping of trade references (and possibly other portfolios).">
+    portfolio Portfolio (0..*) <"An arbitary grouping of trade references (and                                         possibly other portfolios).">
 
 type ValuationDocument extends DataDocument: <"A document that includes trade and/or valuation (pricing and risk) data without expressing any processing intention. A type defining a content model that includes valuation (pricing and risk) data without expressing any processing intention.">
     [rootType]
 
-    market Market (0..*)
-    valuationSet ValuationSet (0..*)
+    market Market (0..*) <"Identifies pricing inputs associated with the valuation and risk data reported in the valuation document.">
+    valuationSet ValuationSet (0..*) <"Specifies valuation inputs and results contributing pricing and risk data for financial instruments within the document.">
