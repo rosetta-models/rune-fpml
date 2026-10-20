@@ -6,11 +6,11 @@ import fpml.consolidated.shared.*
 
 type VolatilitySwap extends NettedSwapBase: <"Specifies the structure of a volatility swap. A Volatility Swap.">
 
-    volatilityLeg VolatilityLeg (1..*)
+    volatilityLeg VolatilityLeg (1..*) <"Specifies a directional leg of the volatility swap, including its effective and termination dates, underlyer, valuation terms, and payer and receiver roles for the associated payment stream.">
 
-type VolatilitySwapTransactionSupplement extends Product:
+type VolatilitySwapTransactionSupplement extends Product: <"A transaction supplement representing a volatility swap and specifying the product terms applicable to that transaction. A product-level structure that captures the volatility leg terms of a transaction together with any applicable equity underlyer provisions.">
 
-    volatilityLeg VolatilityLeg (1..*)
+    volatilityLeg VolatilityLeg (1..*) <"Defines a directional leg of the volatility swap, including its underlyer, valuation provisions, effective and termination dates, and payer-to-receiver payment obligations.">
     multipleExchangeIndexAnnexFallback boolean (0..1) <"For an index option transaction, a flag to indicate whether a relevant Multiple Exchange Index Annex is applicable to the transaction. This annex defines additional provisions which are applicable where an index is comprised of component securities that are traded on multiple exchanges.">
     componentSecurityIndexAnnexFallback boolean (0..1) <"For an index option transaction, a flag to indicate whether a relevant Component Security Index Annex is applicable to the transaction.">
     localJurisdiction CountryCode (0..1) <"Local Jurisdiction is a term used in the AEJ Master Confirmation, which is used to determine local taxes, which shall mean taxes, duties, and similar charges imposed by the taxing authority of the Local Jurisdiction If this element is not present Local Jurisdiction is Not Applicable.">
@@ -25,16 +25,16 @@ type Volatility extends CalculationFromObservation: <"Under 2002 Definitions, Wh
     volatilityStrikePrice NonNegativeDecimal (1..1) <"Volatility Strike Price in accordance with the ISDA 2011 Equity Derivatives Definitions.">
     vegaNotionalAmount number (1..1) <"Vega Notional represents the approximate gain/loss at maturity for a 1% difference between RVol(realised vol) and KVol (strike vol). It does not necessarily represent the Vega Risk of the trade. Volatility Amount means the Vega Notional Amount. In accordance with the ISDA 2002 and 2011 Equity Derivatives Definitions.">
 
-type VolatilityAmount extends CalculatedAmount:
+type VolatilityAmount extends CalculatedAmount: <"A calculated money amount, denominated in the currency of the calculation’s cash multiplier, with an optional specification of the associated volatility.">
 
     volatility Volatility (1..1) <"Specifies Volatility.">
 
-type VolatilityCap:
+type VolatilityCap: <"A provision for recording the applicability and quantitative terms of a volatility cap. The cap may be expressed as a positive total volatility value or as a positive cap factor, optionally accompanied by a positive total volatility value.">
 
     applicable boolean (0..1) <"Indicates whether the volatility cap is applicable in accordance with the ISDA 2011 Equity Derivatives Definitions. Setting the element \'applicable\' to \'False\' - means No Volatility Cap and no \'totalVolatilityCap\' or \'volatilityCapFactor\' should be provided. Setting the element \'applicable\' to \'True\' - means Volatility Cap election, then \'totalVolatilityCap\' or \'volatilityCapFactor\' should be provided, otherwise it defaults to volatilityCapFactor=2.5.">
     totalVolatilityCap PositiveDecimal (0..1) <"Volatility Cap Amount in accordance with the ISDA 2011 Equity Derivatives Definitions. This means the Volatility Cap Amount election is a number.">
     volatilityCapFactor PositiveDecimal (0..1) <"Volatility Cap Factor in accordance with the ISDA 2011 Equity Derivatives Definitions. This means the Volatility Cap Amount election is Calculated VolCapAmt (\'volatilityCapFactor\' * \'volatilityStrikePrice\'). By specifying a decimal for \'volatilityCapFactor\', means the default value of 2.5 does not apply.">
 
-type VolatilityLeg extends DirectionalLegUnderlyerValuation:
+type VolatilityLeg extends DirectionalLegUnderlyerValuation: <"A directional leg for a volatility-based transaction, supplementing the common dates, underlyer, and payer-to-receiver structure with optional volatility amount terms.">
 
     amount VolatilityAmount (1..1) <"Specifies, in relation to each Equity Payment Date, the amount to which the Equity Payment Date relates. Unless otherwise specified, this term has the meaning defined in the ISDA 2011 and 2002 Equity Derivatives Definitions.">

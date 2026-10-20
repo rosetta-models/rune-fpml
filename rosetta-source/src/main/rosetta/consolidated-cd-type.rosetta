@@ -7,7 +7,7 @@ import fpml.consolidated.ird.*
 import fpml.consolidated.option.shared.*
 import fpml.consolidated.shared.*
 
-type CreditDefaultSwap extends Product: <"In a credit default swap one party (the protection seller) agrees to compensate another party (the protection buyer) if a specified company or Sovereign (the reference entity) experiences a credit event, indicating it is or may be unable to service its debts. The protection seller is typically paid a fee and/or premium, expressed as an annualized percent of the notional in basis points, regularly over the life of the transaction or otherwise as agreed by the parties.">
+type CreditDefaultSwap extends Product: <"In a credit default swap one party (the protection seller) agrees to compensate another party (the protection buyer) if a specified company or Sovereign (the reference entity) experiences a credit event, indicating it is or may be unable to service its debts. The protection seller is typically paid a fee and/or premium, expressed as an annualized percent of the notional in basis points, regularly over the life of the transaction or otherwise as agreed by the parties. A financial contract where the protection buyer pays a fee to the protection seller in exchange for compensation if a credit event occurs on a reference entity.">
 
     generalTerms GeneralTerms (1..1) <"This element contains all the data that appears in the section entitled \"1. General Terms\" in the 2003 ISDA Credit Derivatives Confirmation.">
     feeLeg FeeLeg (1..1) <"This element contains all the terms relevant to defining the fixed amounts/payments per the applicable ISDA definitions.">
@@ -18,27 +18,27 @@ type CreditDefaultSwapOption extends OptionBaseExtended: <"An option on a credit
 
     clearingInstructions SwaptionPhysicalSettlement (0..1) <"Specifies any instructions on how the physical settlement is to be effected when the option is exercised.">
     strike CreditOptionStrike (1..1) <"Specifies the strike of the option on credit default swap.">
-    creditDefaultSwap CreditDefaultSwap (1..1)
+    creditDefaultSwap CreditDefaultSwap (1..1) <"Specifies the terms of the underlying CDS, including its general terms, fee obligations, protection conditions, and settlement details. This allows the credit default swap option to define its strike price (strike) and other option-specific terms while referencing a concrete CDS contract that determines the payout conditions if exercised.">
 
-type AdditionalFixedPayments:
+type AdditionalFixedPayments: <"Captures supplementary fixed payments that may be required under specific conditions. These payments include reimbursements for interest or principal shortfalls and compensation for writedowns, ensuring the contract accounts for potential financial adjustments.">
 
     interestShortfallReimbursement boolean (0..1) <"An additional Fixed Payment Event. Corresponds to the payment by or on behalf of the Issuer of an actual interest amount in respect to the reference obligation that is greater than the expected interest amount. ISDA 2003 Term: Interest Shortfall Reimbursement.">
     principalShortfallReimbursement boolean (0..1) <"An additional Fixed Payment Event. Corresponds to the payment by or on behalf of the Issuer of an actual principal amount in respect to the reference obligation that is greater than the expected principal amount. ISDA 2003 Term: Principal Shortfall Reimbursement.">
     writedownReimbursement boolean (0..1) <"An Additional Fixed Payment. Corresponds to the payment by or on behalf of the issuer of an amount in respect to the reference obligation in reduction of the prior writedowns. ISDA 2003 Term: Writedown Reimbursement.">
 
-type AdditionalTerm:
+type AdditionalTerm: <"Specifies an additional contractual term using a predefined scheme.">
 
     value Scheme (1..1)
     additionalTermScheme NonEmptyURI (0..1)
 
-type AdjustedPaymentDates:
+type AdjustedPaymentDates: <"Specifies a payment date that has been adjusted according to applicable business day conventions. It includes the adjustedPaymentDate, which represents the finalized payment date after adjustments, and the paymentAmount, which specifies the monetary value to be paid on that date.">
 
     adjustedPaymentDate zonedDateTime (0..1) <"The adjusted payment date. This date should already be adjusted for any applicable business day convention. This component is not intended for use in trade confirmation but my be specified to allow the fee structure to also serve as a cashflow type component (all dates the the Cashflows type are adjusted payment dates).">
     paymentAmount Money (0..1) <"The currency amount of the payment.">
 
 type BasketReferenceInformation: <"CDS Basket Reference Information">
 
-    basketName BasketName (0..1) <"The name of the basket expressed as a free format string. FpML does not define usage rules for this element.">
+    basketName BasketName (0..1) <"The name of the basket expressed as a free                             format string. FpML does not define usage rules for this                             element.">
     basketId BasketId (0..*) <"A basket identifier">
     referencePool ReferencePool (0..1) <"This element contains all the reference pool items to define the reference entity and reference obligation(s) in the basket">
     nthToDefault int(min: 1) (0..1) <"N th reference obligation to default triggers payout.">
@@ -48,11 +48,11 @@ type BasketReferenceInformation: <"CDS Basket Reference Information">
     condition Choice:
         nthToDefault is absent and mthToDefault is absent or tranche is absent
 
-type CalculationAmount extends Money:
+type CalculationAmount extends Money: <"The notional amount on which the fixed and floating amounts are calculated, together with any scheduled changes to that amount over the term of the trade.">
 
     step Step (0..*) <"A schedule of step date and value pairs. On each step date the associated step value becomes effective. A list of steps may be ordered in the document by ascending step date. An FpML document containing an unordered list of steps is still regarded as a conformant document.">
 
-type CashSettlementTerms extends SettlementTerms:
+type CashSettlementTerms extends SettlementTerms: <"Defines the contractual terms and conditions for settling a financial transaction in cash rather than physical delivery.">
 
     valuationDate ValuationDate (0..1) <"The number of business days after conditions to settlement have been satisfied when the calculation agent obtains a price quotation on the Reference Obligation for purposes of cash settlement. There may be one or more valuation dates. This is typically specified if the cash settlement amount is not a fixed amount. ISDA 2003 Term: Valuation Date">
     valuationTime BusinessCenterTime (0..1) <"The time of day in the specified business center when the calculation agent seeks quotations for an amount of the reference obligation for purposes of cash settlement. ISDA 2003 Term: Valuation Time">
@@ -63,7 +63,7 @@ type CashSettlementTerms extends SettlementTerms:
     cashSettlementBusinessDays int(min: 0) (0..1) <"The number of business days used in the determination of the cash settlement payment date. If a cash settlement amount is specified, the cash settlement payment date will be this number of business days following the calculation of the final price. If a cash settlement amount is not specified, the cash settlement payment date will be this number of business days after all conditions to settlement are satisfied. ISDA 2003 Term: Cash Settlement Date">
     cashSettlementAmount Money (0..1) <"The amount paid by the seller to the buyer for cash settlement on the cash settlement date. If not otherwise specified, would typically be calculated as 100 (or the Reference Price) minus the price of the Reference Obligation (all expressed as a percentage) times Floating Rate Payer Calculation Amount. ISDA 2003 Term: Cash Settlement Amount.">
     recoveryFactor DecimalFraction (0..1) <"Used for fixed recovery, specifies the recovery level, determined at contract inception, to be applied on a default. Used to calculate the amount paid by the seller to the buyer for cash settlement on the cash settlement date. Amount calculation is (1 minus the Recovery Factor) multiplied by the Floating Rate Payer Calculation Amount. The currency will be derived from the Floating Rate Payer Calculation Amount.">
-    fixedSettlement boolean (0..1) <"Used for Recovery Lock, to indicate whether fixed Settlement is Applicable or Not Applicable. If Buyer fails to deliver an effective Notice of Physical Settlement on or before the Buyer NOPS Cut-off Date, and If Seller fails to deliver an effective Seller NOPS on or before the Seller NOPS Cut-off Date, then either: (a) if Fixed Settlement is specified in the related Confirmation as not applicable, then the Seller NOPS Cut-off Date shall be the Termination Date; or (b) if Fixed Settlement is specified in the related Confirmation as applicable, then: (i) if the Fixed Settlement Amount is a positive number, Seller shall, subject to Section 3.1 (except for the requirement of satisfaction of the Notice of Physical Settlement Condition to Settlement), pay the Fixed Settlement Amount to Buyer on the Fixed Settlement Payment Date; and (ii) if the Fixed Settlement Amount is a negative number, Buyer shall, subject to Section 3.1 (except for the requirement of satisfaction of the Notice of Physical Settlement Condition to Settlement), pay the absolute value of the Fixed Settlement Amount to Seller on the Fixed Settlement Payment Date.">
+    fixedSettlement boolean (0..1) <"Used for Recovery Lock, to indicate whether fixed Settlement is Applicable or Not Applicable. If Buyer fails to deliver an effective Notice of Physical Settlement on or before the Buyer NOPS Cut-off Date, and If Seller fails to deliver an effective Seller NOPS on or before the Seller NOPS Cut-off Date, then either: (a) if Fixed Settlement is specified in the related Confirmation as not applicable, then the Seller NOPS Cut-off Date shall be the Termination Date; or (b) if Fixed Settlement is specified in the related Confirmation as applicable, then: (i) if the Fixed Settlement Amount is a positive number, Seller shall, subject to Section 3.1 (except for the requirement of satisfaction of the Notice of Physical Settlement Condition to Settlement), pay the Fixed Settlement Amount to Buyer on the Fixed Settlement Payment Date; and (ii) if the Fixed Settlement Amount is a negative number, Buyer shall, subject to Section 3.1 (except for the                 requirement of satisfaction of the Notice of Physical Settlement Condition to Settlement), pay the absolute value of the Fixed Settlement Amount to Seller on the Fixed Settlement Payment Date.">
     accruedInterest boolean (0..1) <"Indicates whether accrued interest is included (true) or not (false). For cash settlement this specifies whether quotations should be obtained inclusive or not of accrued interest. For physical settlement this specifies whether the buyer should deliver the obligation with an outstanding principal balance that includes or excludes accrued interest. ISDA 2003 Term: Include/Exclude Accrued Interest">
     valuationMethod ValuationMethodEnum (0..1) <"The ISDA defined methodology for determining the final price of the reference obligation for purposes of cash settlement. (ISDA 2003 Term: Valuation Method). For example, Market, Highest etc.">
 
@@ -87,7 +87,7 @@ type CreditOptionStrike: <"A complex type to specify the strike of a credit swap
     condition Choice:
         one-of
 
-type DeliverableObligations:
+type DeliverableObligations: <"Specifies the eligibility criteria for obligations that may be delivered upon the occurrence of a credit event. It includes attributes such as obligation category, subordination restrictions, currency specifications, listing requirements, and legal or jurisdictional considerations. Additionally, it covers aspects related to loan participations, transferability, and specific exclusions, ensuring compliance with contractual terms in a CDS settlement.">
 
     accruedInterest boolean (0..1) <"Indicates whether accrued interest is included (true) or not (false). For cash settlement this specifies whether quotations should be obtained inclusive or not of accrued interest. For physical settlement this specifies whether the buyer should deliver the obligation with an outstanding principal balance that includes or excludes accrued interest. ISDA 2003 Term: Include/Exclude Accrued Interest">
     category ObligationCategoryEnum (0..1) <"Used in both obligations and deliverable obligations to represent a class or type of securities which apply. ISDA 2003 Term: Obligation Category/Deliverable Obligation Category">
@@ -121,7 +121,7 @@ type EntityType: <"Defines a coding scheme of the entity types defined in the IS
     value Scheme (1..1)
     entityTypeScheme NonEmptyURI (0..1)
 
-type FeeLeg extends Leg:
+type FeeLeg extends Leg: <"Defines the payment structure associated with a credit default swap (CDS), specifying details about upfront, single, and periodic payments, along with market-related parameters.">
 
     initialPayment InitialPayment (0..1) <"Specifies a single fixed payment that is payable by the payer to the receiver on the initial payment date. The fixed payment to be paid is specified in terms of a known currency amount. This element should be used for CDS Index trades, Standard CDS trades, and can be used for CDS trades where it is necessary to represent a payment from Seller to Buyer. For CDS trades where a payment is to be made from Buyer to Seller the feeLeg/singlePayment structure must be used.">
     singlePayment SinglePayment (0..*) <"Specifies a single fixed amount that is payable by the buyer to the seller on the fixed rate payer payment date. The fixed amount to be paid is specified in terms of a known currency amount.">
@@ -138,7 +138,7 @@ type FeeLeg extends Leg:
     condition Choice1:
         initialPayment exists or singlePayment exists or periodicPayment exists
 
-type FixedAmountCalculation:
+type FixedAmountCalculation: <"Specifies the calculation of a fixed payment based on a notional amount, a fixed rate, and an optional day count fraction.">
 
     calculationAmount CalculationAmount (0..1) <"The notional amount used in the calculation of fixed amounts where an amount is calculated on a formula basis, i.e. fixed amount = fixed rate payer calculation amount x fixed rate x fixed rate day count fraction. ISDA 2003 Term: Fixed Rate Payer Calculation Amount.">
     fixedRate FixedRate (1..1) <"The calculation period fixed rate. A per annum rate, expressed as a decimal. A fixed rate of 5% would be represented as 0.05.">
@@ -149,19 +149,19 @@ type FixedRate: <"The calculation period fixed rate. A per annum rate, expressed
     value number (1..1)
     id string (0..1)
 
-type FixedRateReference extends Reference:
+type FixedRateReference extends Reference: <"A reference to a fixed rate defined elsewhere in the document.">
 
     href string (1..1)
 
-type FloatingAmountCalculation:
+type FloatingAmountCalculation: <"Specifies the methodology for calculating a floating amount based on a reference interest rate. It includes the calculation amount, the floating rate calculation details, an optional day count fraction for prorating interest, and optional initial and final fixing dates to determine applicable rate periods.">
 
     calculationAmount CalculationAmount (0..1) <"The notional amount used in the calculation of fixed amounts where an amount is calculated on a formula basis, i.e. fixed amount = fixed rate payer calculation amount x fixed rate x fixed rate day count fraction. ISDA 2003 Term: Fixed Rate Payer Calculation Amount.">
     floatingRate FloatingRateCalculation (1..1) <"The calculation period floating rate.">
     dayCountFraction DayCountFraction (0..1) <"The day count fraction. ISDA 2003 Term: Fixed Rate Day Count Fraction.">
-    initialFixingDate zonedDateTime (0..1)
-    finalFixingDate AdjustableDate (0..1)
+    initialFixingDate zonedDateTime (0..1) <"The first date on which the reference interest rate is observed for the floating amount calculation.">
+    finalFixingDate AdjustableDate (0..1) <"The adjustable date on which the reference interest rate is observed for the final applicable rate period.">
 
-type FloatingAmountEvents:
+type FloatingAmountEvents: <"Captures events affecting floating payments in a CDS, such as principal payment failures, interest shortfalls, and writedown occurrences. It also includes provisions for adjusting floating amounts and specifying additional fixed payments related to these events.">
 
     failureToPayPrincipal boolean (0..1) <"A floating rate payment event. Corresponds to the failure by the Reference Entity to pay an expected principal amount or the payment of an actual principal amount that is less than the expected principal amount. ISDA 2003 Term: Failure to Pay Principal.">
     interestShortfall InterestShortFall (0..1) <"A floating rate payment event. With respect to any Reference Obligation Payment Date, either (a) the non-payment of an Expected Interest Amount or (b) the payment of an Actual Interest Amount that is less than the Expected Interest Amount. ISDA 2003 Term: Interest Shortfall.">
@@ -170,12 +170,12 @@ type FloatingAmountEvents:
     floatingAmountProvisions FloatingAmountProvisions (0..1) <"Specifies the floating amount provisions associated with the floatingAmountEvents.">
     additionalFixedPayments AdditionalFixedPayments (0..1) <"Specifies the events that will give rise to the payment a additional fixed payments.">
 
-type FloatingAmountProvisions:
+type FloatingAmountProvisions: <"Captures specific conditions affecting floating rate payments, including whether a Weighted Average Coupon (WAC) cap applies to interest payments and whether a step-up provision is in place to increase payments over time.">
 
     wacCapInterestProvision boolean (0..1) <"As specified by the ISDA Supplement for use with trades on mortgage-backed securities, \"WAC Cap\" means a weighted average coupon or weighted average rate cap provision (however defined in the Underlying Instruments) of the Underlying Instruments that limits, increases or decreases the interest rate or interest entitlement, as set out in the Underlying Instruments on the Effective Date without regard to any subsequent amendment The presence of the element with value set to \'true\' signifies that the provision is applicable. From a usage standpoint, this provision is typically applicable in the case of CMBS and not applicable in case of RMBS trades.">
     stepUpProvision boolean (0..1) <"As specified by the ISDA Standard Terms Supplement for use with trades on mortgage-backed securities. The presence of the element with value set to \'true\' signifies that the provision is applicable. If applicable, the applicable step-up terms are specified as part of that ISDA Standard Terms Supplement. From a usage standpoint, this provision is typically applicable in the case of RMBS and not applicable in case of CMBS trades.">
 
-type GeneralTerms:
+type GeneralTerms: <"Outlines various key parameters and conditions that govern the terms of a credit default swap (CDS) agreement. It includes both flexible and mandatory provisions, such as dates, reference information, and adjustments, helping to define the structure of the CDS contract.">
 
     effectiveDate AdjustableDate2 (0..1) <"The first day of the term of the trade. This day may be subject to adjustment in accordance with a business day convention. ISDA 2003 Term: Effective Date.">
     scheduledTerminationDate AdjustableDate2 (0..1) <"The scheduled date on which the credit protection will lapse. This day may be subject to adjustment in accordance with a business day convention. ISDA 2003 Term: Scheduled Termination Date.">
@@ -194,17 +194,17 @@ type GeneralTerms:
     condition Choice:
         required choice referenceInformation, indexReferenceInformation, basketReferenceInformation
 
-type IndexAnnexSource:
+type IndexAnnexSource: <"Specifies the source of an index annex used in a credit derivatives contract, which can either be derived from a Master Confirmation or a Publisher.">
 
     value Scheme (1..1)
     indexAnnexSourceScheme NonEmptyURI (0..1)
 
-type IndexId:
+type IndexId: <"Represents a unique identifier for a financial index, ensuring clarity in referencing indices within financial contracts.">
 
     value NonEmptyScheme (1..1)
     indexIdScheme NonEmptyURI (0..1)
 
-type IndexName:
+type IndexName: <"The official name of a financial index referenced in a transaction. It extends the NonEmptyScheme base type and includes an indexNameScheme attribute, which provides a URI defining the naming convention. This ensures consistency and accuracy when identifying indices across financial agreements.">
 
     value NonEmptyScheme (1..1)
     indexNameScheme NonEmptyURI (0..1)
@@ -240,7 +240,7 @@ type CreditEventIndexReferenceInformation: <"A type defining a Credit Default Sw
     seniority CreditSeniority (0..1) <"Seniority of debt instruments comprising the index.">
     indexReversionDate zonedDateTime (0..1) <"The date on which the index, affected by the credit event, is reversioned.">
 
-type InitialPayment extends PaymentBase:
+type InitialPayment extends PaymentBase: <"Defines a one-time fixed payment in a credit derivatives contract, specifying the payment amount, payer, receiver, and relevant payment dates.">
 
     payerPartyReference PartyReference (1..1) <"A reference to the party responsible for making the payments defined by this structure.">
     payerAccountReference AccountReference (0..1) <"A reference to the account responsible for making the payments defined by this structure.">
@@ -250,32 +250,32 @@ type InitialPayment extends PaymentBase:
     adjustedPaymentDate zonedDateTime (0..1) <"The adjusted payment date. This date should already be adjusted for any applicable business day convention. This component is not intended for use in trade confirmation but may be specified to allow the fee structure to also serve as a cashflow type component.">
     paymentAmount Money (1..1) <"A fixed payment amount.">
 
-type InterestShortFall:
+type InterestShortFall: <"The conditions under which an interest shortfall occurs and how it is managed. It includes a cap on the shortfall, an indication of whether interest shortfalls are compounded, and an optional reference to a floating rate index that may be used for calculations.">
 
     interestShortfallCap InterestShortfallCapEnum (0..1) <"Specifies the nature of the interest Shortfall cap (i.e. Fixed Cap or Variable Cap) in the case where it is applicable. ISDA 2003 Term: Interest Shortfall Cap.">
-    compounding boolean (0..1)
+    compounding boolean (0..1) <"Indicates whether an interest shortfall amount accrues interest over subsequent periods until it is reimbursed.">
     rateSource FloatingRateIndex (0..1) <"The rate source in the case of a variable cap.">
 
-type LoanParticipation extends PCDeliverableObligationCharac:
+type LoanParticipation extends PCDeliverableObligationCharac: <"The characteristics related to loan participations as deliverable obligations under credit derivative contracts. It inherits attributes that define whether a loan participation is applicable and whether partial cash settlement is permitted. Additionally, it identifies the seller of the loan participation, ensuring that the obligation meets the necessary criteria for delivery.">
 
     qualifyingParticipationSeller NonEmptyNormalizedString (0..1) <"If Direct Loan Participation is specified as a deliverable obligation characteristic, this specifies any requirements for the Qualifying Participation Seller. The requirements may be listed free-form. ISDA 2003 Term: Qualifying Participation Seller">
 
-type MatrixSource:
+type MatrixSource: <"The source of the Relevant Settled Entity Matrix applicable to the transaction.">
 
     value Scheme (1..1)
     settledEntityMatrixSourceScheme NonEmptyURI (0..1)
 
-type MultipleValuationDates extends SingleValuationDate:
+type MultipleValuationDates extends SingleValuationDate: <"Defines the parameters for multiple valuation dates in the context of cash settlement for financial contracts, particularly in credit derivatives and other OTC transactions. It is used when settlement involves multiple valuation dates rather than a single fixed date, allowing for a more dynamic determination of settlement amounts based on market conditions over a period.">
 
     businessDaysThereafter int(min: 1) (0..1) <"The number of business days between successive valuation dates when multiple valuation dates are applicable for cash settlement. ISDA 2003 Term: Business Days thereafter">
     numberValuationDates int(min: 1) (0..1) <"Where multiple valuation dates are specified as being applicable for cash settlement, this element specifies (a) the number of applicable valuation dates, and (b) the number of business days after satisfaction of all conditions to settlement when the first such valuation date occurs, and (c) the number of business days thereafter of each successive valuation date. ISDA 2003 Term: Multiple Valuation Dates">
 
-type NotDomesticCurrency:
+type NotDomesticCurrency: <"Defines whether an obligation or deliverable obligation is payable in a non-domestic currency. This characteristic is used in credit derivatives to specify whether obligations must be denominated in a currency other than the domestic currency of the reference entity.">
 
     applicable boolean (0..1) <"Indicates whether the not domestic currency provision is applicable.">
     currency Currency (0..1) <"An explicit specification of the domestic currency.">
 
-type Obligations:
+type Obligations: <"Allows for defining various attributes of the obligations underlying a credit derivative contract, ensuring the protection buyer and seller understand the specific characteristics and constraints of the reference entity\'s obligations.">
 
     category ObligationCategoryEnum (0..1) <"Used in both obligations and deliverable obligations to represent a class or type of securities which apply. ISDA 2003 Term: Obligation Category/Deliverable Obligation Category">
     notSubordinated boolean (0..1) <"An obligation and deliverable obligation characteristic. An obligation that ranks at least equal with the most senior Reference Obligation in priority of payment or, if no Reference Obligation is specified in the related Confirmation, the obligations of the Reference Entity that are senior. ISDA 2003 Term: Not Subordinated">
@@ -299,12 +299,12 @@ type Obligations:
     condition Choice:
         optional choice fullFaithAndCreditObLiability, generalFundObligationLiability, revenueObligationLiability
 
-type PCDeliverableObligationCharac:
+type PCDeliverableObligationCharac: <"Characterizes deliverable obligations that could potentially be settled through physical delivery or cash settlement.">
 
     applicable boolean (0..1) <"Indicates whether the provision is applicable.">
-    partialCashSettlement boolean (0..1) <"Specifies whether either \'Partial Cash Settlement of Assignable Loans\', \'Partial Cash Settlement of Consent Required Loans\' or \'Partial Cash Settlement of Participations\' is applicable. If this element is specified and Assignable Loan is a Deliverable Obligation Chracteristic, any Assignable Loan that is deliverable, but where a non-receipt of Consent by the Physical Settlement Date has occurred, the Loan can be cash settled rather than physically delivered. If this element is specified and Consent Required Loan is a Deliverable Obligation Characterisitc, any Consent Required Loan that is deliverable, but where a non-receipt of Consent by the Physical Settlement Date has occurred, the Loan can be cash settled rather than physically delivered. If this element is specified and Direct Loan Participation is a Deliverable Obligation Characterisitic, any Participation that is deliverable, but where this participation has not been effected (has not come into effect) by the Physical Settlement Date, the participation can be cash settled rather than physically delivered.">
+    partialCashSettlement boolean (0..1) <"Specifies whether either \'Partial Cash Settlement of Assignable Loans\', \'Partial Cash Settlement of Consent Required Loans\' or \'Partial Cash Settlement of Participations\' is applicable. If this element is specified and Assignable Loan is a Deliverable Obligation Chracteristic, any Assignable Loan that is deliverable, but where a non-receipt of Consent by the Physical Settlement Date has occurred, the Loan can be cash settled rather than physically delivered. If this element is specified and Consent Required Loan is a Deliverable Obligation Characterisitc, any Consent Required Loan that is deliverable, but where a non-receipt of Consent by the Physical Settlement Date has occurred, the Loan can be cash settled rather than physically delivered. If this element is specified and Direct Loan Participation is a Deliverable Obligation Characterisitic, any Participation that is deliverable, but where this participation has not been effected (has not             come into effect) by the Physical Settlement Date, the participation can be cash settled rather than physically delivered.">
 
-type PeriodicPayment extends PaymentBase:
+type PeriodicPayment extends PaymentBase: <"Represents a structured series of payments that occur at regular intervals. It provides attributes to define the frequency, amount, and schedule of payments.">
 
     paymentFrequency Period (0..1) <"The time interval between regular fixed rate payer payment dates.">
     firstPeriodStartDate zonedDateTime (0..1) <"The start date of the initial calculation period if such date is not equal to the trade’s effective date. It must only be specified if it is not equal to the effective date. The applicable business day convention and business day are those specified in the dateAdjustments element within the generalTerms component (or in a transaction supplement FpML representation defined within the referenced general terms confirmation agreement).">
@@ -313,13 +313,13 @@ type PeriodicPayment extends PaymentBase:
     rollConvention RollConventionEnum (0..1) <"Used in conjunction with the effectiveDate, scheduledTerminationDate, firstPaymentDate, lastRegularPaymentDate and paymentFrequency to determine the regular fixed rate payer payment dates.">
     fixedAmount Money (0..1) <"A fixed payment amount. ISDA 2003 Term: Fixed Amount">
     fixedAmountCalculation FixedAmountCalculation (0..1) <"This element contains all the terms relevant to calculating a fixed amount where the fixed amount is calculated by reference to a per annum fixed rate. There is no corresponding ISDA 2003 Term. The equivalent is Sec 5.1 \"Calculation of Fixed Amount\" but this in itself is not a defined Term.">
-    floatingAmountCalculation FloatingAmountCalculation (0..1)
+    floatingAmountCalculation FloatingAmountCalculation (0..1) <"Specifies how the floating amount payable on each periodic payment date is calculated, including the calculation amount, the floating rate and any applicable day count fraction.">
     adjustedPaymentDates AdjustedPaymentDates (0..*) <"An optional cashflow-like structure allowing the equivalent representation of the periodic fixed payments in terms of a series of adjusted payment dates and amounts. This is intended to support application integration within an organisation and is not intended for use in inter-firm communication or confirmations. ISDA 2003 Term: Fixed Rate Payer Payment Date">
 
     condition Choice:
         required choice fixedAmount, fixedAmountCalculation, floatingAmountCalculation
 
-type PhysicalSettlementPeriod:
+type PhysicalSettlementPeriod: <"Defines the number of business days required to determine the physical settlement date in a financial transaction, particularly for physically settled derivatives like credit default swaps.">
 
     businessDaysNotSpecified boolean (0..1) <"An explicit indication that a number of business days are not specified and therefore ISDA fallback provisions should apply.">
     businessDays int(min: 0) (0..1) <"A number of business days. Its precise meaning is dependant on the context in which this element is used. ISDA 2003 Term: Business Day">
@@ -328,14 +328,14 @@ type PhysicalSettlementPeriod:
     condition Choice:
         one-of
 
-type PhysicalSettlementTerms extends SettlementTerms:
+type PhysicalSettlementTerms extends SettlementTerms: <"Defines the terms and conditions for physical settlement in financial transactions, such as credit default swaps (CDS) and other derivatives requiring the physical delivery of an asset upon settlement.">
 
     physicalSettlementPeriod PhysicalSettlementPeriod (0..1) <"The number of business days used in the determination of the physical settlement date. The physical settlement date is this number of business days after all applicable conditions to settlement are satisfied. If a number of business days is not specified fallback provisions apply for determining the number of business days. If Section 8.5/8.6 of the 1999/2003 ISDA Definitions are to apply the businessDaysNotSpecified element should be included. If a specified number of business days are to apply these should be specified in the businessDays element. If Section 8.5/8.6 of the 1999/2003 ISDA Definitions are to apply but capped at a maximum number of business days then the maximum number should be specified in the maximumBusinessDays element. ISDA 2003 Term: Physical Settlement Period">
     deliverableObligations DeliverableObligations (0..1) <"This element contains all the ISDA terms relevant to defining the deliverable obligations.">
     escrow boolean (0..1) <"If this element is specified and set to \'true\', indicates that physical settlement must take place through the use of an escrow agent. (For Canadian counterparties this is always \"Not Applicable\". ISDA 2003 Term: Escrow.">
-    sixtyBusinessDaySettlementCap boolean (0..1) <"If this element is specified and set to \'true\', for a transaction documented under the 2003 ISDA Credit Derivatives Definitions, has the effect of incorporating the language set forth below into the confirmation. The section references are to the 2003 ISDA Credit Derivatives Definitions. Notwithstanding Section 1.7 or any provisions of Sections 9.9 or 9.10 to the contrary, but without prejudice to Section 9.3 and (where applicable) Sections 9.4, 9.5 and 9.6, if the Termination Date has not occurred on or prior to the date that is 60 Business Days following the Physical Settlement Date, such 60th Business Day shall be deemed to be the Termination Date with respect to this Transaction except in relation to any portion of the Transaction (an \"Affected Portion\") in respect of which: (1) a valid notice of Buy-in Price has been delivered that is effective fewer than three Business Days prior to such 60th Business Day, in which case the Termination Date for that Affected Portion shall be the third Business Day following the date on which such notice is effective; or (2) Buyer has purchased but not Delivered Deliverable Obligations validly specified by Seller pursuant to Section 9.10(b), in which case the Termination Date for that Affected Portion shall be the tenth Business Day following the date on which Seller validly specified such Deliverable Obligations to Buyer.">
+    sixtyBusinessDaySettlementCap boolean (0..1) <"If this element is specified and set to \'true\', for a transaction documented under the 2003 ISDA Credit Derivatives Definitions, has the effect of incorporating the language set forth below into the confirmation. The section references are to the 2003 ISDA Credit Derivatives Definitions. Notwithstanding Section 1.7 or any provisions of Sections 9.9 or 9.10 to the contrary, but without prejudice to Section 9.3 and (where applicable) Sections 9.4, 9.5 and 9.6, if the Termination Date has not occurred on or prior to the date that is 60 Business Days following the Physical Settlement Date, such 60th Business Day shall be deemed to be the Termination Date with respect to this Transaction except in relation to any portion of the Transaction (an \"Affected Portion\") in respect of which: (1) a valid notice of Buy-in Price has been delivered that is effective fewer than three Business Days prior to such 60th Business Day, in which case the                 Termination Date for that Affected Portion shall be the third Business Day following the date on which such notice is effective; or (2) Buyer has purchased but not Delivered Deliverable Obligations validly specified by Seller pursuant to Section 9.10(b), in which case the Termination Date for that Affected Portion shall be the tenth Business Day following the date on which Seller validly specified such Deliverable Obligations to Buyer.">
 
-type ProtectionTerms:
+type ProtectionTerms: <"Defines the key contractual terms related to credit protection in a Credit Default Swap (CDS) or similar financial instruments. These terms specify the calculation amount, credit events, obligations, and floating amount adjustments that determine how the protection buyer and seller interact upon a credit event.">
 
     id string (0..1)
     calculationAmount Money (1..1) <"The notional amount of protection coverage. ISDA 2003 Term: Floating Rate Payer Calculation Amount">
@@ -347,7 +347,7 @@ type ProtectionTermsReference extends Reference: <"Reference to protectionTerms 
 
     href string (1..1)
 
-type ReferenceInformation:
+type ReferenceInformation: <"Defines the credit derivative reference framework by identifying a reference entity, specifying reference obligations or their absence or unknown status, and recording an optional reference price and indicators for guarantees, policy, and secured lists.">
 
     referenceEntity LegalEntity (1..1) <"The corporate or sovereign entity on which you are buying or selling protection and any successor that assumes all or substantially all of its contractual and other obligations. It is vital to use the correct legal name of the entity and to be careful not to choose a subsidiary if you really want to trade protection on a parent company. Please note, Reference Entities cannot be senior or subordinated. It is the obligations of the Reference Entities that can be senior or subordinated. ISDA 2003 Term: Reference Entity">
     referenceObligation ReferenceObligation (0..*) <"The Reference Obligation is a financial instrument that is either issued or guaranteed by the reference entity. It serves to clarify the precise reference entity protection is being offered upon, and its legal position with regard to other related firms (parents/subsidiaries). Furthermore the Reference Obligation is ALWAYS deliverable and establishes the Pari Passu ranking (as the deliverable bonds must rank equal to the reference obligation). ISDA 2003 Term: Reference Obligation">
@@ -361,12 +361,12 @@ type ReferenceInformation:
     condition Choice:
         optional choice referenceObligation, noReferenceObligation, unknownReferenceObligation
 
-type ReferenceObligation:
+type ReferenceObligation: <"Defines a specific financial instrument that is either issued or guaranteed by a reference entity in a credit derivative contract. This serves to clarify the scope of credit protection, ensuring that protection applies to a well-defined debt obligation and establishes its ranking among other obligations.">
 
-    bond Bond (0..1)
-    convertibleBond ConvertibleBond (0..1)
-    mortgage Mortgage (0..1)
-    loan Loan (0..1)
+    bond Bond (0..1) <"Identifies the bond that serves as the specific reference obligation for determining the scope of protection under the credit derivative contract.">
+    convertibleBond ConvertibleBond (0..1) <"Identifies the convertible bond serving as the specific reference obligation for the credit derivative contract.">
+    mortgage Mortgage (0..1) <"Specifies the mortgage-backed security serving as the reference obligation for the applicable credit derivative contract.">
+    loan Loan (0..1) <"Specifies the loan instrument serving as the reference obligation for determining the scope of protection under the credit derivative contract.">
     primaryObligor LegalEntity (0..1) <"The entity primarily responsible for repaying debt to a creditor as a result of borrowing or issuing bonds. ISDA 2003 Term: Primary Obligor">
     primaryObligorReference LegalEntityReference (0..1) <"A pointer style reference to a reference entity defined elsewhere in the document. Used when the reference entity is the primary obligor.">
     referenceObligationChoice ReferenceObligationChoice (0..*)
@@ -386,7 +386,7 @@ type ReferenceObligationChoice:
     condition Choice:
         optional choice guarantor, guarantorReference
 
-type ReferencePair:
+type ReferencePair: <"Defines a pairing of a reference entity and its associated reference obligation for use in credit derivatives. It is crucial in transactions such as first-to-default baskets, nth-to-default swaps, and other structured credit products, where multiple reference entities and obligations are tracked.">
 
     referenceEntity LegalEntity (0..1) <"The corporate or sovereign entity on which you are buying or selling protection and any successor that assumes all or substantially all of its contractual and other obligations. It is vital to use the correct legal name of the entity and to be careful not to choose a subsidiary if you really want to trade protection on a parent company. Please note, Reference Entities cannot be senior or subordinated. It is the obligations of the Reference Entities that can be senior or subordinated. ISDA 2003 Term: Reference Entity">
     referenceObligation ReferenceObligation (0..1) <"The Reference Obligation is a financial instrument that is either issued or guaranteed by the reference entity. It serves to clarify the precise reference entity protection is being offered upon, and its legal position with regard to other related firms (parents/subsidiaries). Furthermore the Reference Obligation is ALWAYS deliverable and establishes the Pari Passu ranking (as the deliverable bonds must rank equal to the reference obligation). ISDA 2003 Term: Reference Obligation">
@@ -398,16 +398,16 @@ type ReferencePair:
 
 type ReferencePool: <"This type contains all the reference pool items to define the reference entity and reference obligation(s) in the basket.">
 
-    referencePoolItem ReferencePoolItem (0..*)
+    referencePoolItem ReferencePoolItem (0..*) <"Represents an individual component within a reference pool for credit derivatives. This is essential in basket credit default swaps (CDS), nth-to-default swaps, and collateralized debt obligations (CDOs), where a pool of reference names is tracked.">
 
 type ReferencePoolItem: <"This type contains all the constituent weight and reference information.">
 
     constituentWeight ConstituentWeight (0..1) <"Describes the weight of each of the constituents within the basket. If not provided, it is assumed to be equal weighted.">
-    referencePair ReferencePair (0..1)
+    referencePair ReferencePair (0..1) <"Defines a pairing of a reference entity and its associated reference obligation for use in credit derivatives. It is crucial in transactions such as first-to-default baskets, nth-to-default swaps, and other structured credit products, where multiple reference entities and obligations are tracked.">
     protectionTermsReference ProtectionTermsReference (0..1) <"Reference to the documentation terms applicable to this item.">
     settlementTermsReference SettlementTermsReference (0..1) <"Reference to the settlement terms applicable to this item.">
 
-type SettledEntityMatrix:
+type SettledEntityMatrix: <"Defines a standardized reference source for determining the eligible settled entities in credit derivatives. This matrix provides a recognized list of entities that are eligible for settlement in case of a credit event.">
 
     matrixSource MatrixSource (0..1) <"Relevant settled entity matrix source.">
     publicationDate zonedDateTime (0..1) <"Specifies the publication date of the applicable version of the matrix. When this element is omitted, the Standard Terms Supplement defines rules for which version of the matrix is applicable.">
@@ -416,17 +416,17 @@ type SettlementTermsReference extends Reference: <"Reference to a settlement ter
 
     href string (1..1)
 
-type SinglePayment extends PaymentBase:
+type SinglePayment extends PaymentBase: <"A one-time fixed payment made between counterparties in a financial contract. It specifies both the amount and the payment date, ensuring clarity in contractual obligations.">
 
     adjustablePaymentDate zonedDateTime (0..1) <"A fixed amount payment date that shall be subject to adjustment in accordance with the applicable business day convention if it would otherwise fall on a day that is not a business day. The applicable business day convention and business day are those specified in the dateAdjustments element within the generalTerms component. ISDA 2003 Term: Fixed Rate Payer Payment Date">
     adjustedPaymentDate zonedDateTime (0..1) <"The adjusted payment date. This date should already be adjusted for any applicable business day convention. This component is not intended for use in trade confirmation but may be specified to allow the fee structure to also serve as a cashflow type component.">
     fixedAmount Money (1..1) <"A fixed payment amount. ISDA 2003 Term: Fixed Amount">
 
-type SingleValuationDate:
+type SingleValuationDate: <"Defines the timing of a single valuation date in relation to a cash settlement, specifying how many business days after the settlement conditions are met the valuation date will occur.">
 
     businessDays int(min: 0) (0..1) <"A number of business days. Its precise meaning is dependant on the context in which this element is used. ISDA 2003 Term: Business Day">
 
-type SpecifiedCurrency:
+type SpecifiedCurrency: <"Defines the currency requirements for an obligation or deliverable obligation. It specifies whether a currency condition applies and, if so, which currencies are acceptable.">
 
     applicable boolean (0..1) <"Indicates whether the specified currency provision is applicable.">
     currency Currency (0..*) <"The currency in which an amount is denominated.">
@@ -437,7 +437,7 @@ type Tranche: <"This type represents a CDS Tranche.">
     exhaustionPoint number (0..1) <"Upper bound percentage of the loss that the Tranche can endure, expressed as a decimal. An exhaustion point of 5% would be represented as 0.05. The difference between Attachment and Exhaustion points is call the width of the Tranche. A schema facet to constraint the value between 0 to 1 will be introduced in FpML 4.3.">
     incurredRecoveryApplicable boolean (0..1) <"Outstanding Swap Notional Amount is defined at any time on any day, as the greater of: (a) Zero; If Incurred Recovery Amount Applicable: (b) The Original Swap Notional Amount minus the sum of all Incurred Loss Amounts and all Incurred Recovery Amounts (if any) determined under this Confirmation at or prior to such time.Incurred Recovery Amount not populated: (b) The Original Swap Notional Amount minus the sum of all Incurred Loss Amounts determined under this Confirmation at or prior to such time.">
 
-type ValuationDate:
+type ValuationDate: <"Defines the timing of the valuation process for cash settlement, specifying when the calculation agent obtains a price quotation for the Reference Obligation. It allows for either a single valuation date or multiple valuation dates after all conditions to settlement have been met.">
 
     singleValuationDate SingleValuationDate (0..1) <"Where single valuation date is specified as being applicable for cash settlement, this element specifies the number of business days after satisfaction of all conditions to settlement when such valuation date occurs. ISDA 2003 Term: Single Valuation Date">
     multipleValuationDates MultipleValuationDates (0..1) <"Where multiple valuation dates are specified as being applicable for cash settlement, this element specifies (a) the number of applicable valuation dates, and (b) the number of business days after satisfaction of all conditions to settlement when the first such valuation date occurs, and (c) the number of business days thereafter of each successive valuation date. ISDA 2003 Term: Multiple Valuation Dates">

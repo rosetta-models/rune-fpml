@@ -12,28 +12,28 @@ import fpml.consolidated.shared.*
 type NonpublicExecutionReport extends CorrectableRequestMessage: <"Non public execution report message.">
     [rootType]
 
-    asOfDate IdentifiedDate (0..1) <"The date for which this document reports positions and valuations.">
-    asOfTime time (0..1) <"The time for which this report was generated (i.e., the cut-off time of the report).">
-    portfolioReference PortfolioReferenceBase (0..1)
-    originatingEvent OriginatingEvent (0..1)
-    trade Trade (0..1)
-    tradingEvent TradingEventSummary (0..*) <"This is provided to support snapshot reporting that requires trading history. Some implementations are using the \"trade\" event to report the current snapshot of a contract. In these cases it may also be necessary to report the most recent trading event to support regulatory reporting mandates. For this reason the tradingEvent is provided to allow that event to be attached to the trade report.">
-    amendment TradeAmendmentContent (0..1)
-    increase TradeNotionalChange (0..1)
+    asOfDate IdentifiedDate (0..1) <"The date for which this document reports positions \t\t\t\t\t\t\t\tand valuations.">
+    asOfTime time (0..1) <"The time for which this report was generated (i.e., \t\t\t\t\t\t\t\tthe cut-off time of the report).">
+    portfolioReference PortfolioReferenceBase (0..1) <"A reference structure identifying the portfolio to which the response message relates within the applicable messaging process.">
+    originatingEvent OriginatingEvent (0..1) <"Identifies the business event that caused generation of the non-public execution report, using an applicable coding scheme.">
+    trade Trade (0..1) <"The trade associated with the execution or lifecycle event reported for non-public regulatory recordkeeping.">
+    tradingEvent TradingEventSummary (0..*) <"This is provided to support snapshot \t\t\t\t\t\t\t\t\t\treporting that requires trading history. Some \t\t\t\t\t\t\t\t\t\timplementations are using the \"trade\" event to report the \t\t\t\t\t\t\t\t\t\tcurrent snapshot of a contract. In these cases it may also \t\t\t\t\t\t\t\t\t\tbe necessary to report the most recent trading event to \t\t\t\t\t\t\t\t\t\tsupport regulatory reporting mandates. For this reason the \t\t\t\t\t\t\t\t\t\ttradingEvent is provided to allow that event to be attached \t\t\t\t\t\t\t\t\t\tto the trade report.">
+    amendment TradeAmendmentContent (0..1) <"Records modifications to an existing trade, specifying the updated trade details, agreement terms, and any related payments or notional changes.">
+    increase TradeNotionalChange (0..1) <"Reflects a change in the trade\'s notional amount or size, capturing adjustments to its economic terms, including price and quantity modifications.">
     terminatingEvent TerminatingEvent (0..1) <"This may be used to describe why a trade was terminated.">
-    termination TradeNotionalChange (0..1)
-    novation TradeNovationContent (0..1)
-    withdrawal Withdrawal (0..1)
-    observation ObservationEvent (0..*)
-    reset ResetEvent (0..*)
-    change TradeChangeContent (0..1)
+    termination TradeNotionalChange (0..1) <"Documents the full or partial closure of a trade, reducing or eliminating its notional exposure, often due to settlement, early closeout, or expiration.">
+    novation TradeNovationContent (0..1) <"Represents the transfer of a trade from one counterparty to another, detailing the original and new trades, fees, payment obligations, and updated contractual terms.">
+    withdrawal Withdrawal (0..1) <"Indicates the removal or cancellation of a trade from reporting or processing systems, including identifiers, reasons, effective date, and requested actions.">
+    observation ObservationEvent (0..*) <"Captures a recorded market event, including date, time, price, rate type, and source, often used in derivatives pricing or index calculations.">
+    reset ResetEvent (0..*) <"Defines the periodic adjustment of a trade\'s rate or value, specifying the reference trade, date, calculated reset value, and any relevant details affecting financial terms.">
+    change TradeChangeContent (0..1) <"Represents the change event associated with a trade.">
     optionExercise OptionExercise (0..1) <"A structure describing an option exercise event. The optionExercise event supports partial exercise (specify the number of options or amount to exercise), full exercise (use fullExercise flag), as well as the option to request options not to be exercised.">
     optionExpiry OptionExpiry (0..*) <"A structure describing an option expiring event (i.e. passing its last exercise time and becoming worthless.)">
     optionEvent OptionEvent (0..1) <"A structure describing knock in, knock out, touch and no touch events.">
-    additionalEvent AdditionalEvent (0..1)
+    additionalEvent AdditionalEvent (0..1) <"Specifies a customized business event constituting the subject of the non-public execution report beyond the defined standard trade lifecycle event forms.">
     quote BasicQuotation (0..*) <"Pricing information for the trade.">
-    scheduledDate ScheduledDateBase (0..*) <"Upcoming important dates for the trade. Added to support CFTC Amendments to Part 43/45 (Published November 2020).">
-    collateralization RegulatoryReportingCollateralization (0..2)
+    scheduledDate ScheduledDateBase (0..*) <"Upcoming important dates for the trade. Added to \t\t\t\t\t\t\t\tsupport CFTC Amendments to Part 43/45 (Published November \t\t\t\t\t\t\t\t2020).">
+    collateralization RegulatoryReportingCollateralization (0..2) <"Collateral information associated with the reported trade or lifecycle event and supplied for non-public regulatory recordkeeping and reporting.">
     party Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
     account Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
@@ -226,7 +226,7 @@ type NonpublicExecutionReport extends CorrectableRequestMessage: <"Non public ex
             and optionEvent is absent
             and additionalEvent is absent
 
-type NonpublicExecutionReportAcknowledgement extends Acknowledgement: <"Acknowledgement message for nonpublicExecutionReport.">
+type NonpublicExecutionReportAcknowledgement extends Acknowledgement: <"Acknowledgement message for \t\t\t\tnonpublicExecutionReport.">
     [rootType]
 
 type NonpublicExecutionReportException extends Exception: <"Exception message for nonpublicExecutionReport.">
@@ -235,26 +235,26 @@ type NonpublicExecutionReportException extends Exception: <"Exception message fo
 type NonpublicExecutionReportRetracted extends NonCorrectableRequestMessage: <"Retraction message for nonpublicExecutionReport.">
     [rootType]
 
-    originatingEvent OriginatingEvent (0..1)
-    trade Trade (0..1)
-    tradingEvent TradingEventSummary (0..*) <"This is provided to support snapshot reporting that requires trading history. Some implementations are using the \"trade\" event to report the current snapshot of a contract. In these cases it may also be necessary to report the most recent trading event to support regulatory reporting mandates. For this reason the tradingEvent is provided to allow that event to be attached to the trade report.">
-    amendment TradeAmendmentContent (0..1)
-    increase TradeNotionalChange (0..1)
+    originatingEvent OriginatingEvent (0..1) <"Provides a scheme-qualified code identifying the event that originated the non-public execution report being retracted.">
+    trade Trade (0..1) <"The trade associated with the execution report being retracted, providing transaction details relevant to its identification and regulatory recordkeeping.">
+    tradingEvent TradingEventSummary (0..*) <"This is provided to support snapshot \t\t\t\t\t\t\t\t\t\t\treporting that requires trading history. Some \t\t\t\t\t\t\t\t\t\t\timplementations are using the \"trade\" event to report \t\t\t\t\t\t\t\t\t\t\tthe current snapshot of a contract. In these cases it \t\t\t\t\t\t\t\t\t\t\tmay also be necessary to report the most recent trading \t\t\t\t\t\t\t\t\t\t\tevent to support regulatory reporting mandates. For this \t\t\t\t\t\t\t\t\t\t\treason the tradingEvent is provided to allow that event \t\t\t\t\t\t\t\t\t\t\tto be attached to the trade report.">
+    amendment TradeAmendmentContent (0..1) <"Records modifications to an existing trade, specifying the updated trade details, agreement terms, and any related payments or notional changes.">
+    increase TradeNotionalChange (0..1) <"Reflects a change in the trade\'s notional amount or size, capturing adjustments to its economic terms, including price and quantity modifications.">
     terminatingEvent TerminatingEvent (0..1) <"This may be used to describe why a trade was terminated.">
-    termination TradeNotionalChange (0..1)
-    novation TradeNovationContent (0..1)
-    withdrawal Withdrawal (0..1)
-    observation ObservationEvent (0..*)
-    reset ResetEvent (0..*)
-    change TradeChangeContent (0..1)
+    termination TradeNotionalChange (0..1) <"Documents the full or partial closure of a trade, reducing or eliminating its notional exposure, often due to settlement, early closeout, or expiration.">
+    novation TradeNovationContent (0..1) <"Represents the transfer of a trade from one counterparty to another, detailing the original and new trades, fees, payment obligations, and updated contractual terms.">
+    withdrawal Withdrawal (0..1) <"Indicates the removal or cancellation of a trade from reporting or processing systems, including identifiers, reasons, effective date, and requested actions.">
+    observation ObservationEvent (0..*) <"Captures a recorded market event, including date, time, price, rate type, and source, often used in derivatives pricing or index calculations.">
+    reset ResetEvent (0..*) <"Defines the periodic adjustment of a trade\'s rate or value, specifying the reference trade, date, calculated reset value, and any relevant details affecting financial terms.">
+    change TradeChangeContent (0..1) <"Represents the change event associated with a trade.">
     optionExercise OptionExercise (0..1) <"A structure describing an option exercise event. The optionExercise event supports partial exercise (specify the number of options or amount to exercise), full exercise (use fullExercise flag), as well as the option to request options not to be exercised.">
     optionExpiry OptionExpiry (0..*) <"A structure describing an option expiring event (i.e. passing its last exercise time and becoming worthless.)">
     optionEvent OptionEvent (0..1) <"A structure describing knock in, knock out, touch and no touch events.">
-    additionalEvent AdditionalEvent (0..1)
-    primaryAssetClass AssetClass (0..1)
-    tradeIdentifier PartyTradeIdentifier (0..1)
-    eventIdentifier BusinessEventIdentifier (0..2) <"Individual parties should only use a single event identifier to identify a retraction. Platforms providing services on behalf of both parties in a transaction may provide event identifiers for both parties; in this case it is up to the recipient (the trade repository) to validate that the event IDs refer to the same event.">
-    relatedParty RelatedParty (0..*) <"This may be used to identify one or more parties that perform a role within the transaction. If this is within a partyTradeInformation block, the related party performs the role with respect to the party identifie by the \"partyReference\" in the partyTradeInformation block.">
+    additionalEvent AdditionalEvent (0..1) <"Identifies a customized business event to which the retraction of the non-public execution report relates.">
+    primaryAssetClass AssetClass (0..1) <"Identifies, using an asset classification scheme, the principal asset category of the transaction or business event referenced by the retracted non-public execution report.">
+    tradeIdentifier PartyTradeIdentifier (0..1) <"Identifies the trade whose non-public execution report is being retracted, using one or more identifiers allocated by a party, including any link identifier associating it with related trades.">
+    eventIdentifier BusinessEventIdentifier (0..2) <"Individual parties should only use a single \t\t\t\t\t\t\t\t\t\tevent identifier to identify a retraction. Platforms \t\t\t\t\t\t\t\t\t\tproviding services on behalf of both parties in a \t\t\t\t\t\t\t\t\t\ttransaction may provide event identifiers for both parties; \t\t\t\t\t\t\t\t\t\tin this case it is up to the recipient (the trade \t\t\t\t\t\t\t\t\t\trepository) to validate that the event IDs refer to the same \t\t\t\t\t\t\t\t\t\tevent.">
+    relatedParty RelatedParty (0..*) <"This may be used to identify one or more \t\t\t\t\t\t\t\t\t\tparties that perform a role within the transaction. If this \t\t\t\t\t\t\t\t\t\tis within a partyTradeInformation block, the related party \t\t\t\t\t\t\t\t\t\tperforms the role with respect to the party identifie by the \t\t\t\t\t\t\t\t\t\t\"partyReference\" in the partyTradeInformation \t\t\t\t\t\t\t\t\t\tblock.">
     party Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
     account Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
@@ -434,61 +434,61 @@ type NonpublicExecutionReportRetracted extends NonCorrectableRequestMessage: <"R
                 and terminatingEvent is absent
                 and observation is absent
 
-type RegulatoryDisclosure extends AddressedMessage: <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Regulatory disclosure message used for reporting to trade repositories. DEPRECATED. Not in use (RPTWG decision 2024-12-12). A type that defines a message to be used for reporting non-public information to a regulator, typically via a trade repository or other reporting service. CAVEAT: This new regulatory reporting message set is supported by the FpML Standards Committee, and will be present in future versions of the standard. However, there is no absolute guarantee of backward compatibility with future versions of the standard, until such time as the Standards Committee deems that the message set has been extensively adopted in production. The Standards Committee will attempt to maintain full backward compatibility with this version while adjusting as required to take into account implementation experience with the message set. The Standards Committee advises that the areas where there is more likely to be change include the applicableRegulatiorns section, the regulatorionSpecificInformation section, and the regulatoryProductInformation [DEPRECATED] product, which is developed as part of this reporting framework. Feedback or questions can be addressed to ISDA at rptwgchair@fpml.org.">
+type RegulatoryDisclosure extends AddressedMessage: <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t2024-12-12). Regulatory disclosure message used for reporting to trade \t\t\t\trepositories. DEPRECATED. Not in use (RPTWG decision \t\t\t\t2024-12-12). A type that defines a message to be used for reporting non-public \t\t\t\tinformation to a regulator, typically via a trade repository or other reporting \t\t\t\tservice. CAVEAT: This new regulatory reporting message set is supported by the FpML \t\t\t\tStandards Committee, and will be present in future versions of the standard. \t\t\t\tHowever, there is no absolute guarantee of backward compatibility with future \t\t\t\tversions of the standard, until such time as the Standards Committee deems that the \t\t\t\tmessage set has been extensively adopted in production. The Standards Committee will \t\t\t\tattempt to maintain full backward compatibility with this version while adjusting as \t\t\t\trequired to take into account implementation experience with the message set. The \t\t\t\tStandards Committee advises that the areas where there is more likely to be change \t\t\t\tinclude the applicableRegulatiorns section, the regulatorionSpecificInformation \t\t\t\tsection, and the regulatoryProductInformation [DEPRECATED] product, which is \t\t\t\tdeveloped as part of this reporting framework. Feedback or questions can be \t\t\t\taddressed to ISDA at rptwgchair@fpml.org.">
     [rootType]
 
-    isCorrection boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Indicates if this message corrects an earlier submission. If true, the recipient is directed to record information about the most recent lifecycle event affecting the trade as a correction of the previous submission, rather than as a new lifecycle event.">
-    onBehalfOf OnBehalfOf (0..4) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Indicates which party (or parties) (and accounts) a trade or event is being processed for. Normally there will only be a maximum of 2 parties, but in the case of a novation there could be a transferor, transferee, remaining party, and other remaining party. Also, in the context of a trade package there could be several parties for which limit check is requested, necessitating multiple onBehalfOf elements. Except for these cases, there should be no more than two onBehalfOf references in a message.">
-    asOfDate IdentifiedDate (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). The date for which this document reports positions and valuations.">
-    asOfTime time (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). The time for which this report was generated (i.e., the cut-off time of the report).">
-    eventId EventId (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). A unique event identifier.">
-    eventType EventTaxonomy (1..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). A structured code indicating the event type.">
-    eventTimestamps EventTimestamps (1..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Various timestamps related to the event.">
-    reportingPartyReference PartyReference (1..1) <"A reference to the reporting party.">
-    counterPartyReference PartyReference (1..1) <"A reference to the reporting party.">
+    isCorrection boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12). Indicates if this message corrects an earlier \t\t\t\t\t\t\t\tsubmission. If true, the recipient is directed to record information \t\t\t\t\t\t\t\tabout the most recent lifecycle event affecting the trade as a \t\t\t\t\t\t\t\tcorrection of the previous submission, rather than as a new \t\t\t\t\t\t\t\tlifecycle event.">
+    onBehalfOf OnBehalfOf (0..4) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12). Indicates which party (or parties) (and accounts) a \t\t\t\t\t\t\t\ttrade or event is being processed for. Normally there will only be a \t\t\t\t\t\t\t\tmaximum of 2 parties, but in the case of a novation there could be a \t\t\t\t\t\t\t\ttransferor, transferee, remaining party, and other remaining party. \t\t\t\t\t\t\t\tAlso, in the context of a trade package there could be several \t\t\t\t\t\t\t\tparties for which limit check is requested, necessitating multiple \t\t\t\t\t\t\t\tonBehalfOf elements. Except for these cases, there should be no more \t\t\t\t\t\t\t\tthan two onBehalfOf references in a message.">
+    asOfDate IdentifiedDate (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12). The date for which this document reports positions \t\t\t\t\t\t\t\tand valuations.">
+    asOfTime time (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12). The time for which this report was generated (i.e., \t\t\t\t\t\t\t\tthe cut-off time of the report).">
+    eventId EventId (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12). A unique event identifier.">
+    eventType EventTaxonomy (1..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12). A structured code indicating the event \t\t\t\t\t\t\t\ttype.">
+    eventTimestamps EventTimestamps (1..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12). Various timestamps related to the \t\t\t\t\t\t\t\tevent.">
+    reportingPartyReference PartyReference (1..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t2025-09-25). A reference to the reporting party.">
+    counterPartyReference PartyReference (1..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t2025-09-25). A reference to the reporting party.">
     notionalChange NotionalChangeEnum (0..1) <"Indication as to whether the transaction is an increase or decrease of notional of a derivative contract. Only applies when there is change in notional for a derivative contract">
     changeInNotional MoneyRef (0..*) <"The change in notional amount for a prior report as a result of this event. The current notional will be reported in the trade itself. This corresponds to MiFIR Nominal or Monetary amount values; these can be distinguished by the esmaNotionalType indicator.">
     changeInNumberOfOptions AmountRef (0..*) <"The change in nominal amount from a prior report as a result of this event. The current number of options will be reported in the trade itself. This corresponds to the MiFIR \"units\" value.">
     changeInQuantity UnitQuantityRef (0..*) <"The change in quantity(s) from a prior report as a result of this event. The current quantity will be reported in the trade itself. This corresponds to the MiFIR \"units\" value.">
-    payment NonNegativePayment (0..*) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Payments in settlement of the event">
-    applicableRegulations ApplicableRegulations (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). All the regulators to which this trade should be reported. Optional, can be infeerred from the list of regulations to which the trade is submitted.">
-    regulationSpecificInformation RegulationDetails (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). All the regulations that this trade should be reported under.">
-    cpmiIoscoCDE RegReportingCDE (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). The revised state of the trade or its final state for a lifecycle ending event">
-    trade Trade (1..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). The revised state of the trade or its final state for a lifecycle ending event">
-    quote BasicQuotation (0..*) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Pricing information for the trade.">
-    collateralization RegulatoryReportingCollateralization (0..2) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    party Party (1..*) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). The supporting party definitions.">
+    payment NonNegativePayment (0..*) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12). Payments in settlement of the \t\t\t\t\t\t\t\tevent">
+    applicableRegulations ApplicableRegulations (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12). All the regulators to which this trade should be \t\t\t\t\t\t\t\treported. Optional, can be infeerred from the list of regulations to \t\t\t\t\t\t\t\twhich the trade is submitted.">
+    regulationSpecificInformation RegulationDetails (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12). All the regulations that this trade should be \t\t\t\t\t\t\t\treported under.">
+    cpmiIoscoCDE RegReportingCDE (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12). The revised state of the trade or its final state for \t\t\t\t\t\t\t\ta lifecycle ending event">
+    trade Trade (1..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12). The revised state of the trade or its final state for \t\t\t\t\t\t\t\ta lifecycle ending event">
+    quote BasicQuotation (0..*) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12). Pricing information for the \t\t\t\t\t\t\t\ttrade.">
+    collateralization RegulatoryReportingCollateralization (0..2) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    party Party (1..*) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12). The supporting party definitions.">
 
     condition Choice:
         optional choice changeInNotional, changeInNumberOfOptions, changeInQuantity
 
-type RegulatoryReportingAcknowledgement extends Message: <"Used to report that a regulatory reporting message (e.g. regulatory disclosure or withdrawal) was processed successfully, and the status of reporting to any regulators. A type defining an acknowledgement to a regulatory reporting submission, e.g. regulatoryDisclosure or regulatoryWithdrawal.">
+type RegulatoryReportingAcknowledgement extends Message: <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t2025-09-25). Used to report that a regulatory reporting message (e.g. regulatory \t\t\t\tdisclosure or withdrawal) was processed successfully, and the status of reporting to \t\t\t\tany regulators. DEPRECATED. Not in use (RPTWG decision \t\t\t\t2025-09-25). A type defining an acknowledgement to a regulatory reporting \t\t\t\tsubmission, e.g. regulatoryDisclosure or regulatoryWithdrawal.">
     [rootType]
 
-    header ResponseMessageHeader (0..1) <"Standard FpML message header">
-    tradeIdentifier PartyTradeIdentifier (0..1) <"identifies the affected trade">
-    reportingStatus ReportingStatus (0..*) <"Information about how the position is being reported to regulators.">
-    additionalData AdditionalData (0..1)
-    party Party (0..*) <"Reference information about parties, business units, and persons involed in the trade.">
+    header ResponseMessageHeader (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2025-09-25). Standard FpML message header">
+    tradeIdentifier PartyTradeIdentifier (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2025-09-25). identifies the affected trade">
+    reportingStatus ReportingStatus (0..*) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2025-09-25). Information about how the position is being reported \t\t\t\t\t\t\t\tto regulators.">
+    additionalData AdditionalData (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2025-09-25).">
+    party Party (0..*) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2025-09-25). Reference information about parties, business units, \t\t\t\t\t\t\t\tand persons involed in the trade.">
 
-type RegulatoryReportingException extends Message: <"Used to report that a regulatory reporting message was not processed successfully, and the reasons for that. A type defining the basic content for a message sent to inform another system that some exception has been detected in a regulatory reporting message.">
+type RegulatoryReportingException extends Message: <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t2025-09-25). Used to report that a regulatory reporting message was not processed \t\t\t\tsuccessfully, and the reasons for that. DEPRECATED. Not in use (RPTWG decision \t\t\t\t2025-09-25). A type defining the basic content for a message sent to inform \t\t\t\tanother system that some exception has been detected in a regulatory reporting \t\t\t\tmessage.">
     [rootType]
 
-    header ExceptionMessageHeader (0..1)
-    reason Reason (0..*) <"An instance of the Reason type used to record the nature of any errors associated with a message.">
-    additionalData AdditionalData (0..1) <"Any string of additional data that may help the message processor, for example in a rejection message this might contain a code value or the text of the original request (within a CDATA section).">
+    header ExceptionMessageHeader (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2025-09-25).">
+    reason Reason (0..*) <"An instance of the Reason type used to record the nature of any errors             associated with a message.">
+    additionalData AdditionalData (0..1) <"Any string of additional data that may help the message processor, for             example in a rejection message this might contain a code value or the text of the             original request (within a CDATA section).">
 
-type RegulatoryWithdrawal extends AddressedMessage: <"Message used to request withdrawal from one or more jurisdictions. A type defining the message used to request withdrawal from one or more jurisdictions.">
+type RegulatoryWithdrawal extends AddressedMessage: <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t2025-09-25). Message used to request withdrawal from one or more \t\t\t\tjurisdictions. DEPRECATED. Not in use (RPTWG decision \t\t\t\t2025-09-25). A type defining the message used to request withdrawal from one or \t\t\t\tmore jurisdictions.">
     [rootType]
 
-    onBehalfOf OnBehalfOf (0..4) <"Indicates which party (or parties) (and accounts) a trade or event is being processed for. Normally there will only be a maximum of 2 parties, but in the case of a novation there could be a transferor, transferee, remaining party, and other remaining party. Also, in the context of a trade package there could be several parties for which limit check is requested, necessitating multiple onBehalfOf elements. Except for these cases, there should be no more than two onBehalfOf references in a message.">
-    tradeIdentifier PartyTradeIdentifier (0..1) <"identifies the affected trade">
-    primaryAssetClass AssetClass (0..1) <"The asset class of the underlying product.">
-    inapplicableRegulation InapplicableRegulation (1..*) <"Indicates which regulation the trade is to withdrawn from. At least one child element must be selected.">
-    withdrawalReason NormalizedString (0..1)
-    fullyWithdrawn boolean (1..1) <"Indicates if the trade is now fully withdrawn from all regulatory reports. This can be used by a trade repository to perform a consistency check. For instance, if \"fullyWithdrawn\" is \"true\" but the TR believes that the trade is still reportable to at least one regulator, it could report an exception with the identity of that regulator. Or if \"fullyWithdrawn\" is false but the TR believes that the trade is no longer reportable to any regulator, the TR should report that fact.">
-    relatedParty RelatedParty (0..*)
-    party Party (0..*) <"The supporting party definitions.">
+    onBehalfOf OnBehalfOf (0..4) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2025-09-25). Indicates which party (or parties) (and accounts) a \t\t\t\t\t\t\t\ttrade or event is being processed for. Normally there will only be a \t\t\t\t\t\t\t\tmaximum of 2 parties, but in the case of a novation there could be a \t\t\t\t\t\t\t\ttransferor, transferee, remaining party, and other remaining party. \t\t\t\t\t\t\t\tAlso, in the context of a trade package there could be several \t\t\t\t\t\t\t\tparties for which limit check is requested, necessitating multiple \t\t\t\t\t\t\t\tonBehalfOf elements. Except for these cases, there should be no more \t\t\t\t\t\t\t\tthan two onBehalfOf references in a message.">
+    tradeIdentifier PartyTradeIdentifier (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2025-09-25). identifies the affected trade">
+    primaryAssetClass AssetClass (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2025-09-25). The asset class of the underlying \t\t\t\t\t\t\t\tproduct.">
+    inapplicableRegulation InapplicableRegulation (1..*) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2025-09-25). Indicates which regulation the trade is to withdrawn \t\t\t\t\t\t\t\tfrom. At least one child element must be \t\t\t\t\t\t\t\tselected.">
+    withdrawalReason NormalizedString (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2025-09-25).">
+    fullyWithdrawn boolean (1..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2025-09-25). Indicates if the trade is now fully withdrawn from \t\t\t\t\t\t\t\tall regulatory reports. This can be used by a trade repository to \t\t\t\t\t\t\t\tperform a consistency check. For instance, if \"fullyWithdrawn\" is \t\t\t\t\t\t\t\t\"true\" but the TR believes that the trade is still reportable to at \t\t\t\t\t\t\t\tleast one regulator, it could report an exception with the identity \t\t\t\t\t\t\t\tof that regulator. Or if \"fullyWithdrawn\" is false but the TR \t\t\t\t\t\t\t\tbelieves that the trade is no longer reportable to any regulator, \t\t\t\t\t\t\t\tthe TR should report that fact.">
+    relatedParty RelatedParty (0..*) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2025-09-25).">
+    party Party (0..*) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2025-09-25). The supporting party definitions.">
 
 type ESMAContractType:
 
@@ -497,8 +497,8 @@ type ESMAContractType:
 
 type ESMACreditDetails:
 
-    seniority ESMACreditSeniority (0..1)
-    indexFactor NonNegativeDecimal (0..*)
+    seniority ESMACreditSeniority (0..1) <"A scheme-qualified code identifying the seniority classification assigned to the credit instrument for regulatory recordkeeping and reporting.">
+    indexFactor NonNegativeDecimal (0..*) <"Specifies the non-negative factor applicable to a credit index in the transaction details provided for ESMA regulatory reporting.">
 
 type ESMACreditSeniority:
 
@@ -512,17 +512,17 @@ type ESMADeliveryType:
 
 type ESMAIndexIdentification:
 
-    code ESMABenchmarkIndexCode (0..1)
-    name ESMAIndexName (0..1)
+    code ESMABenchmarkIndexCode (0..1) <"The ESMA benchmark index code used to identify the index in regulatory recordkeeping and trade reporting submissions.">
+    name ESMAIndexName (0..1) <"The textual designation used to identify the relevant index for ESMA reporting in place of its benchmark index code.">
 
     condition Choice:
         one-of
 
 type ESMAProductUnderlyer:
 
-    instrumentId InstrumentId (0..*)
-    index ESMAIndexIdentification (0..1)
-    maturityDate zonedDateTime (0..1)
+    instrumentId InstrumentId (0..*) <"A scheme-qualified short-form unique identifier for the security serving as the underlyer of the product reported to ESMA.">
+    index ESMAIndexIdentification (0..1) <"Identifies the index serving as the underlying reference for the product in an ESMA regulatory record.">
+    maturityDate zonedDateTime (0..1) <"Specifies the maturity date of the underlying instrument or index for identification in ESMA regulatory reporting.">
 
     condition Choice0:
         optional choice instrumentId, index
@@ -531,297 +531,297 @@ type ESMAProductUnderlyer:
         if instrumentId is absent and index is absent
         then maturityDate exists
 
-type EventTimestamps: <" DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
+type EventTimestamps: <" DEPRECATED. Not in use (RPTWG decision \t\t\t\t2024-12-12).">
 
-    agreementDate zonedDateTime (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). When the details of the event were agreed.">
-    entryDateTime zonedDateTime (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). When the agreed details where recorded.">
-    executionDateTime zonedDateTime (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). When the event was executed.">
-    effectiveDate zonedDateTime (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). When the event is actually effective from">
+    agreementDate zonedDateTime (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t2024-12-12). When the details of the event were \t\t\t\t\t\tagreed.">
+    entryDateTime zonedDateTime (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t2024-12-12). When the agreed details where recorded.">
+    executionDateTime zonedDateTime (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t2024-12-12). When the event was executed.">
+    effectiveDate zonedDateTime (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t2024-12-12). When the event is actually effective from">
 
-type InapplicableRegulation:
+type InapplicableRegulation: <"Identifies a supervisory body, optionally qualified by one or more regulations, or an individual regulation, as inapplicable to the reported record, with an optional coded withdrawal reason.">
 
-    supervisoryBody string (0..1)
-    regulation RegulationName (0..*)
-    withdrawalReasonCode ReasonCode (0..1)
+    supervisoryBody string (0..1) <"Identifies the supervisory authority associated with the regulations determined to be inapplicable for the relevant regulatory submission.">
+    regulation RegulationName (0..*) <"Identifies a regulation determined to be inapplicable to the regulatory reporting submission, using the applicable regulation coding scheme.">
+    withdrawalReasonCode ReasonCode (0..1) <"A machine-interpretable code specifying the reason for withdrawing the identified regulation or supervisory body’s regulations as applicable to the reported transaction.">
 
     condition Choice:
         if supervisoryBody is absent then regulation exists
 
-type RegReportingCDE extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
+type RegReportingCDE extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t2024-12-12).">
 
     buyerPartyReference PartyReference (0..1) <"Indicates the party this regulator considers to be the buyer">
     sellerPartyReference PartyReference (0..1) <"Indicates the party this regulator considers to be the seller.">
-    finalContractualSettlementDate zonedDateTime (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Unadjusted date as per the contract, by which all transfer of cash or assets should take place and the counterparties should no longer have any outstanding obligations to each other under that contract. For products that may not have a final contractual settlement date (eg American options), this data element reflects the date by which the transfer of cash or asset would take place if termination were to occur on the expiration date.">
-    earlyTerminationDate zonedDateTime (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Effective date of the early termination (expiry) of the reported transaction. This data element is applicable if the termination of the transaction occurs prior to its maturity due to an ex-interim decision of a counterparty (or counterparties). Examples of early terminations (expiry) are: negotiated early termination; early termination under an optional early termination provision (\"mutual put\"); novation; offsetting (netting) transaction; option exercise; compression; early termination clause specified in the original contract which is a callable swap (bought embedded option); mutual credit break.">
-    clearingStatus ClearingStatusValue (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Indicator of whether the transaction has been cleared, or is intended to be cleared, by a central counterparty.">
-    confirmationStatus string (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). For new reportable transactions (as defined by the CPMI-IOSCO Technical Guidance: Harmonisation of the Unique Transaction Identifier), whether the legally binding terms of an OTC derivatives contract were documented and agreed upon (confirmed) or not (unconfirmed). If documented and agreed, whether such confirmation was done: - via a shared confirmation facility or platform, or a private/bilateral electronic system (electronic); - via a human-readable written document, such as fax, paper or manually processed e-mails (non-electronic).">
+    finalContractualSettlementDate zonedDateTime (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12). Unadjusted date as per the contract, by which all \t\t\t\t\t\t\t\ttransfer of cash or assets should take place and the counterparties \t\t\t\t\t\t\t\tshould no longer have any outstanding obligations to each other \t\t\t\t\t\t\t\tunder that contract. For products that may not have a final \t\t\t\t\t\t\t\tcontractual settlement date (eg American options), this data element \t\t\t\t\t\t\t\treflects the date by which the transfer of cash or asset would take \t\t\t\t\t\t\t\tplace if termination were to occur on the expiration \t\t\t\t\t\t\t\tdate.">
+    earlyTerminationDate zonedDateTime (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12). Effective date of the early termination (expiry) of \t\t\t\t\t\t\t\tthe reported transaction. This data element is applicable if the \t\t\t\t\t\t\t\ttermination of the transaction occurs prior to its maturity due to \t\t\t\t\t\t\t\tan ex-interim decision of a counterparty (or counterparties). \t\t\t\t\t\t\t\tExamples of early terminations (expiry) are: negotiated early \t\t\t\t\t\t\t\ttermination; early termination under an optional early termination \t\t\t\t\t\t\t\tprovision (\"mutual put\"); novation; offsetting (netting) \t\t\t\t\t\t\t\ttransaction; option exercise; compression; early termination clause \t\t\t\t\t\t\t\tspecified in the original contract which is a callable swap (bought \t\t\t\t\t\t\t\tembedded option); mutual credit break.">
+    clearingStatus ClearingStatusValue (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12). Indicator of whether the transaction has been \t\t\t\t\t\t\t\tcleared, or is intended to be cleared, by a central \t\t\t\t\t\t\t\tcounterparty.">
+    confirmationStatus string (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12). For new reportable transactions (as defined by the \t\t\t\t\t\t\t\tCPMI-IOSCO Technical Guidance: Harmonisation of the Unique \t\t\t\t\t\t\t\tTransaction Identifier), whether the legally binding terms of an OTC \t\t\t\t\t\t\t\tderivatives contract were documented and agreed upon (confirmed) or \t\t\t\t\t\t\t\tnot (unconfirmed). If documented and agreed, whether such \t\t\t\t\t\t\t\tconfirmation was done: - via a shared confirmation facility or \t\t\t\t\t\t\t\tplatform, or a private/bilateral electronic system (electronic); - \t\t\t\t\t\t\t\tvia a human-readable written document, such as fax, paper or \t\t\t\t\t\t\t\tmanually processed e-mails (non-electronic).">
 
 type RegReportingPackageInfo:
 
-    packageIdentifier IssuerTradeId (0..1)
-    pacakageWithNonReportableComponent boolean (0..1)
+    packageIdentifier IssuerTradeId (0..1) <"Identifies the regulatory reporting package using a two-part identifier assigned by an issuer, such as a USI.">
+    pacakageWithNonReportableComponent boolean (0..1) <"Indicates whether the regulatory reporting package identified by the associated package identifier contains a component that is not reportable.">
 
-type RegulationDetails: <" DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
+type RegulationDetails: <" DEPRECATED. Not in use (RPTWG decision \t\t\t\t2024-12-12).">
 
-    cftc_part43_2012 RegulatoryClassificationPart43_2012 (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    cftc_part43_2019 RegulatoryClassificationPart43_2019 (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    cftc_part45_2012 RegulatoryClassificationPart45_2012 (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    cftc_part45_2019 RegulatoryClassificationPart45_2019 (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    esma_emirRts_2015 RegulatoryClassificationEMIR_2015 (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    esma_mifirRts6a_2015 RegulatoryClassificationMifirRTS6a_2015 (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    esma_mifirRts6b_2015 RegulatoryClassificationMifirRTS6b_2015 (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    esma_mifirRts22_2015 RegulatoryClassificationMifirRTS22_2015 (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    esma_mifirRts23_2015 RegulatoryClassificationMifirRTS23_2015 (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    esma_mifirRts24_2015 RegulatoryClassificationMifirRTS24_2015 (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    csa_derivativesReporting_2016 RegulatoryClassificationCSA_2016 (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    mas_sfa_2013 RegulatoryClassificationMAS_2013 (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    asic_derivativesTransactionRules_2013 RegulatoryClassificationASIC_2013 (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    esma_sftrRts_2019 RegulatoryClassificationSFTR_2019 (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    other RegulatoryClassificationOther (0..*) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
+    cftc_part43_2012 RegulatoryClassificationPart43_2012 (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t2024-12-12).">
+    cftc_part43_2019 RegulatoryClassificationPart43_2019 (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t2024-12-12).">
+    cftc_part45_2012 RegulatoryClassificationPart45_2012 (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t2024-12-12).">
+    cftc_part45_2019 RegulatoryClassificationPart45_2019 (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t2024-12-12).">
+    esma_emirRts_2015 RegulatoryClassificationEMIR_2015 (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t2024-12-12).">
+    esma_mifirRts6a_2015 RegulatoryClassificationMifirRTS6a_2015 (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t2024-12-12).">
+    esma_mifirRts6b_2015 RegulatoryClassificationMifirRTS6b_2015 (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t2024-12-12).">
+    esma_mifirRts22_2015 RegulatoryClassificationMifirRTS22_2015 (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t2024-12-12).">
+    esma_mifirRts23_2015 RegulatoryClassificationMifirRTS23_2015 (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t2024-12-12).">
+    esma_mifirRts24_2015 RegulatoryClassificationMifirRTS24_2015 (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t2024-12-12).">
+    csa_derivativesReporting_2016 RegulatoryClassificationCSA_2016 (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t2024-12-12).">
+    mas_sfa_2013 RegulatoryClassificationMAS_2013 (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t2024-12-12).">
+    asic_derivativesTransactionRules_2013 RegulatoryClassificationASIC_2013 (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t2024-12-12).">
+    esma_sftrRts_2019 RegulatoryClassificationSFTR_2019 (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t2024-12-12).">
+    other RegulatoryClassificationOther (0..*) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t2024-12-12).">
 
-type RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). The base type which all regulatory classification types extend.">
+type RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t2024-12-12). The base type which all regulatory classification types \t\t\t\textend.">
 
-type RegulatoryClassificationASIC_2013 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
+type RegulatoryClassificationASIC_2013 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t2024-12-12).">
 
-    supervisoryBody string (0..*) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    reportingRole ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for this regulator; roles could include ReportingParty and Voluntary reporting.">
-    reportingPurpose ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, PET, Confirmation, RealTimePublic.">
-    interAffiliate boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    actionType ActionType (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). A notation to indicate whether the report being made relates to : (a) a Reportable Transaction that is an entry into of an arrangement that is a Derivative, in which case the notation must be \"new\"; (b) a Reportable Transaction that is a modification of an arrangement that is a Derivative, in which case the notation must be \"modify\"; (c) a Reportable Transaction that is a termination of an arrangement that is a Derivative, in which case the notation must be \"cancel\"; or (d) a compression of a Derivative, in which case the notation must be \"compression\". For the purposes of subrule 2.2.2(1), a notation to indicate whether the change relates to: (a) a cancellation of a report previously made in error, in which case, the notation must be \"error\"; (b) a change or update to the information referred to in items 30-32 (mark-to-market, mark-to-model, or other valuation) or items 40-44 (collateral), in which case the notation must be \"valuation update\"; or (c) any other amendments to a report previously made, in which case the notation must be \"other\".">
-    isAccountingHedge boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). If the Reporting Entity is not an Australian ADI, an AFS Licensee, a CS Facility Licensee, an Exempt Foreign Licensee or a Foreign ADI, an indication of whether the Derivative to which the Reportable Transaction relates is entered into by the Reporting Entity for the purpose of managing a financial risk that arises in the ordinary course of business.">
+    supervisoryBody string (0..*) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    reportingRole ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for \t\t\t\t\t\tthis regulator; roles could include ReportingParty and Voluntary \t\t\t\t\t\treporting.">
+    reportingPurpose ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, \t\t\t\t\t\tPET, Confirmation, RealTimePublic.">
+    interAffiliate boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    actionType ActionType (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12). A notation to indicate whether the report being made \t\t\t\t\t\t\t\trelates to : (a) a Reportable Transaction that is an entry into of \t\t\t\t\t\t\t\tan arrangement that is a Derivative, in which case the notation must \t\t\t\t\t\t\t\tbe \"new\"; (b) a Reportable Transaction that is a modification of an \t\t\t\t\t\t\t\tarrangement that is a Derivative, in which case the notation must be \t\t\t\t\t\t\t\t\"modify\"; (c) a Reportable Transaction that is a termination of an \t\t\t\t\t\t\t\tarrangement that is a Derivative, in which case the notation must be \t\t\t\t\t\t\t\t\"cancel\"; or (d) a compression of a Derivative, in which case the \t\t\t\t\t\t\t\tnotation must be \"compression\". For the purposes of subrule \t\t\t\t\t\t\t\t2.2.2(1), a notation to indicate whether the change relates to: (a) \t\t\t\t\t\t\t\ta cancellation of a report previously made in error, in which case, \t\t\t\t\t\t\t\tthe notation must be \"error\"; (b) a change or update to the \t\t\t\t\t\t\t\tinformation referred to in items 30-32 (mark-to-market, \t\t\t\t\t\t\t\tmark-to-model, or other valuation) or items 40-44 (collateral), in \t\t\t\t\t\t\t\twhich case the notation must be \"valuation update\"; or (c) any other \t\t\t\t\t\t\t\tamendments to a report previously made, in which case the notation \t\t\t\t\t\t\t\tmust be \"other\".">
+    isAccountingHedge boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12). If the Reporting Entity is not an Australian ADI, an \t\t\t\t\t\t\t\tAFS Licensee, a CS Facility Licensee, an Exempt Foreign Licensee or \t\t\t\t\t\t\t\ta Foreign ADI, an indication of whether the Derivative to which the \t\t\t\t\t\t\t\tReportable Transaction relates is entered into by the Reporting \t\t\t\t\t\t\t\tEntity for the purpose of managing a financial risk that arises in \t\t\t\t\t\t\t\tthe ordinary course of business.">
 
-type RegulatoryClassificationCSA_2016 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
+type RegulatoryClassificationCSA_2016 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t2024-12-12).">
 
-    supervisoryBody string (0..*) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    reportingRole ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for this regulator; roles could include ReportingParty and Voluntary reporting.">
-    reportingPurpose ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, PET, Confirmation, RealTimePublic.">
-    interAffiliate boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    actionType ActionType (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Describes the type of event to the transaction (e.g., new transaction, modification or cancellation of existing transaction, etc.). TBD: FpML doesn’t currently define a coding scheme for this value. We anticipate that one will be developed in a future release.">
-    eventType string (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Indicate whether the transaction resulted from a post-transaction service (e.g. compression, reconciliation, etc.) or from a lifecycle event (e.g. novation, amendment, etc.). TBD: FpML doesn’t currently define a coding scheme for this value. We anticipate that one will be developed in a future release.">
+    supervisoryBody string (0..*) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    reportingRole ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for \t\t\t\t\t\tthis regulator; roles could include ReportingParty and Voluntary \t\t\t\t\t\treporting.">
+    reportingPurpose ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, \t\t\t\t\t\tPET, Confirmation, RealTimePublic.">
+    interAffiliate boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    actionType ActionType (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12). Describes the type of event to the transaction (e.g., \t\t\t\t\t\t\t\tnew transaction, modification or cancellation of existing \t\t\t\t\t\t\t\ttransaction, etc.). TBD: FpML doesn’t currently define a coding \t\t\t\t\t\t\t\tscheme for this value. We anticipate that one will be developed in a \t\t\t\t\t\t\t\tfuture release.">
+    eventType string (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12). Indicate whether the transaction resulted from a \t\t\t\t\t\t\t\tpost-transaction service (e.g. compression, reconciliation, etc.) or \t\t\t\t\t\t\t\tfrom a lifecycle event (e.g. novation, amendment, etc.). TBD: FpML \t\t\t\t\t\t\t\tdoesn’t currently define a coding scheme for this value. We \t\t\t\t\t\t\t\tanticipate that one will be developed in a future \t\t\t\t\t\t\t\trelease.">
 
-type RegulatoryClassificationEMIR_2015 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
+type RegulatoryClassificationEMIR_2015 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t2024-12-12).">
 
-    supervisoryBody EMIRSupervisoryBodyEnum (0..*) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). The regulator or other supervisory body the organization is registered with (e.g. ESMA).">
-    reportingRole ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for this regulator; roles could include ReportingParty and Voluntary reporting.">
-    reportingPurpose ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, PET, Confirmation, RealTimePublic.">
+    supervisoryBody EMIRSupervisoryBodyEnum (0..*) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12). The regulator or other supervisory body the \t\t\t\t\t\t\t\torganization is registered with (e.g. ESMA).">
+    reportingRole ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for \t\t\t\t\t\tthis regulator; roles could include ReportingParty and Voluntary \t\t\t\t\t\treporting.">
+    reportingPurpose ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, \t\t\t\t\t\tPET, Confirmation, RealTimePublic.">
     buyerPartyReference PartyReference (0..1) <"Indicates the party this regulator considers to be the buyer">
     sellerPartyReference PartyReference (0..1) <"Indicates the party this regulator considers to be the seller.">
-    tradePartyRelationshipType PartyRelationshipType (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Indicates how the parties to the trade (the counterparties) are related to each other with respect to this reporting regime, e.g. Affiliated, Intragroup, etc..">
-    actionType ActionType (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Reports a regulator-specific code for the action associated with this submission. Used, for example, to report the ESMA action type.">
-    mandatorilyClearable CanonicalBoolean (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    exceedsClearingThreshold boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Indicates whether the counterparty exceeds the volume threshold above which trades are required to be cleared.">
-    reportingPartyClassification EntityClassification (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Indicates the category or classification or business role of the organization referenced by the partyTradeInformation with respect to this reporting regime, for example Financial, NonFinancial etc.">
-    counterPartyClassification EntityClassification (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Indicates the category or classification or business role of the organization referenced by the partyTradeInformation with respect to this reporting regime, for example Financial, NonFinancial etc.">
-    counterPartyisEEA boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Indicates whether the counterparty is in the European Economic Area">
+    tradePartyRelationshipType PartyRelationshipType (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12). Indicates how the parties to the trade (the \t\t\t\t\t\t\t\t\tcounterparties) are related to each other with respect to this \t\t\t\t\t\t\t\t\treporting regime, e.g. Affiliated, Intragroup, \t\t\t\t\t\t\t\t\tetc..">
+    actionType ActionType (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12). Reports a regulator-specific code for the action \t\t\t\t\t\t\t\t\tassociated with this submission. Used, for example, to report \t\t\t\t\t\t\t\t\tthe ESMA action type.">
+    mandatorilyClearable CanonicalBoolean (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    exceedsClearingThreshold boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12). Indicates whether the counterparty exceeds the \t\t\t\t\t\t\t\t\tvolume threshold above which trades are required to be \t\t\t\t\t\t\t\t\tcleared.">
+    reportingPartyClassification EntityClassification (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12). Indicates the category or classification or \t\t\t\t\t\t\t\t\tbusiness role of the organization referenced by the \t\t\t\t\t\t\t\t\tpartyTradeInformation with respect to this reporting regime, for \t\t\t\t\t\t\t\t\texample Financial, NonFinancial etc.">
+    counterPartyClassification EntityClassification (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12). Indicates the category or classification or \t\t\t\t\t\t\t\t\tbusiness role of the organization referenced by the \t\t\t\t\t\t\t\t\tpartyTradeInformation with respect to this reporting regime, for \t\t\t\t\t\t\t\t\texample Financial, NonFinancial etc.">
+    counterPartyisEEA boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12). Indicates whether the counterparty is in the \t\t\t\t\t\t\t\t\tEuropean Economic Area">
     contractType ESMAContractType (0..1) <"ESMA prodcut classification">
     deliveryType ESMADeliveryType (0..1) <"ESMA delivery type">
-    creditDetails ESMACreditDetails (0..1)
-    underlyer ESMAProductUnderlyer (0..1)
+    creditDetails ESMACreditDetails (0..1) <"Provides the ESMA-specific credit product details used for Level 3 regulatory classification of the reported contract.">
+    underlyer ESMAProductUnderlyer (0..1) <"Specifies the ESMA product underlyer details associated with the reported contract for regulatory recordkeeping and trade reporting.">
 
-type RegulatoryClassificationMAS_2013 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
+type RegulatoryClassificationMAS_2013 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t2024-12-12).">
 
-    supervisoryBody string (0..*) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    reportingRole ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for this regulator; roles could include ReportingParty and Voluntary reporting.">
-    reportingPurpose ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, PET, Confirmation, RealTimePublic.">
-    interAffiliate boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
+    supervisoryBody string (0..*) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    reportingRole ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for \t\t\t\t\t\tthis regulator; roles could include ReportingParty and Voluntary \t\t\t\t\t\treporting.">
+    reportingPurpose ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, \t\t\t\t\t\tPET, Confirmation, RealTimePublic.">
+    interAffiliate boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
 
-type RegulatoryClassificationOther extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
+type RegulatoryClassificationOther extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t2024-12-12).">
 
-    supervisoryBody SupervisoryBody (1..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). The regulator or other supervisory body the organization is registered with (e.g. SEC).">
-    reportingRole ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for this regulator; roles could include ReportingParty and Voluntary reporting.">
-    reportingPurpose ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, PET, Confirmation, RealTimePublic.">
+    supervisoryBody SupervisoryBody (1..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12). The regulator or other supervisory body the \t\t\t\t\t\t\t\torganization is registered with (e.g. SEC).">
+    reportingRole ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for \t\t\t\t\t\tthis regulator; roles could include ReportingParty and Voluntary \t\t\t\t\t\treporting.">
+    reportingPurpose ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, \t\t\t\t\t\tPET, Confirmation, RealTimePublic.">
     buyerPartyReference PartyReference (0..1) <"Indicates the party this regulator considers to be the buyer">
     sellerPartyReference PartyReference (0..1) <"Indicates the party this regulator considers to be the seller.">
 
-type RegulatoryClassificationMifirRTS6a_2015 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
+type RegulatoryClassificationMifirRTS6a_2015 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t2024-12-12).">
 
-    supervisoryBody string (0..*) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    reportingRole ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for this regulator; roles could include ReportingParty and Voluntary reporting.">
-    reportingPurpose ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, PET, Confirmation, RealTimePublic.">
+    supervisoryBody string (0..*) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    reportingRole ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for \t\t\t\t\t\tthis regulator; roles could include ReportingParty and Voluntary \t\t\t\t\t\treporting.">
+    reportingPurpose ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, \t\t\t\t\t\tPET, Confirmation, RealTimePublic.">
     buyerPartyReference PartyReference (0..1) <"Indicates the party this regulator considers to be the buyer">
     sellerPartyReference PartyReference (0..1) <"Indicates the party this regulator considers to be the seller.">
-    relatedParty RelatedParty (0..*) <"This may be used to identify one or more parties that perform a role within the transaction. If this is within a partyTradeInformation block, the related party performs the role with respect to the party identifie by the \"partyReference\" in the partyTradeInformation block.">
-    relatedPerson RelatedPerson (0..*) <"Provides information about a person that executed or supports this trade">
-    tradingObligation RegulatoryTradingObligation (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    isSecuritiesFinancing boolean (0..1) <"Whether the transaction falls within the scope of activity but is exempted from reporting under [Securities Financing Transactions Regulation]">
-    otcClassification OtcClassification (0..*) <"Classification of the OTC transaction. Note: Coding scheme definition to encapsulate: Articles 20(3)(a) and 21(5)(a) of Regulation (EU) 600/2014. e.g. default=\"http://www.fpml.org/coding-scheme/esma-mifir-otc-classification\"">
-    tradingWaiver TradingWaiver (0..*) <"Classification of the pre-trade waiver, if any, that the transaction was executed under. Note: Coding scheme to encapsulate: Articles 4 and 9 of Regulation (EU) 600/2014. e.g. default=\"http://www.fpml.org/coding-scheme/esma-mifir-trading-waiver\"">
-    shortSale ShortSale (0..1) <"Classification of the transaction as a short sale or not and, if short, of the type of transaction. Note: Coding scheme to encapsulate: Article 11 of Regulation (EU) 600/2014. e.g. default=\"http://www.fpml.org/coding-scheme/esma-mifir-short-sale\"">
-    isCommodityHedge boolean (0..1) <"Whether the transaction reduces risk in an objectively measurable way. Only applicable for commodity derivative transactions.">
+    relatedParty RelatedParty (0..*) <"This may be used to identify one or more parties that perform \t\t\t\t\t\ta role within the transaction. If this is within a partyTradeInformation \t\t\t\t\t\tblock, the related party performs the role with respect to the party \t\t\t\t\t\tidentifie by the \"partyReference\" in the partyTradeInformation \t\t\t\t\t\tblock.">
+    relatedPerson RelatedPerson (0..*) <"Provides information about a person that executed or supports \t\t\t\t\t\tthis trade">
+    tradingObligation RegulatoryTradingObligation (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    isSecuritiesFinancing boolean (0..1) <"Whether the transaction falls within the scope of activity                         but is exempted from reporting under [Securities Financing Transactions                         Regulation]">
+    otcClassification OtcClassification (0..*) <"Classification of the OTC transaction. Note: Coding scheme                         definition to encapsulate: Articles 20(3)(a) and 21(5)(a) of Regulation (EU)                         600/2014. e.g.                         default=\"http://www.fpml.org/coding-scheme/esma-mifir-otc-classification\"">
+    tradingWaiver TradingWaiver (0..*) <"Classification of the pre-trade waiver, if any, that the                         transaction was executed under. Note: Coding scheme to encapsulate: Articles                         4 and 9 of Regulation (EU) 600/2014. e.g.                         default=\"http://www.fpml.org/coding-scheme/esma-mifir-trading-waiver\"">
+    shortSale ShortSale (0..1) <"Classification of the transaction as a short sale or not and,                         if short, of the type of transaction. Note: Coding scheme to encapsulate:                         Article 11 of Regulation (EU) 600/2014. e.g.                         default=\"http://www.fpml.org/coding-scheme/esma-mifir-short-sale\"">
+    isCommodityHedge boolean (0..1) <"Whether the transaction reduces risk in an objectively                         measurable way. Only applicable for commodity derivative                         transactions.">
 
-type RegulatoryClassificationMifirRTS6b_2015 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
+type RegulatoryClassificationMifirRTS6b_2015 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t2024-12-12).">
 
-    supervisoryBody string (0..*) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    reportingRole ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for this regulator; roles could include ReportingParty and Voluntary reporting.">
-    reportingPurpose ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, PET, Confirmation, RealTimePublic.">
+    supervisoryBody string (0..*) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    reportingRole ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for \t\t\t\t\t\tthis regulator; roles could include ReportingParty and Voluntary \t\t\t\t\t\treporting.">
+    reportingPurpose ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, \t\t\t\t\t\tPET, Confirmation, RealTimePublic.">
     buyerPartyReference PartyReference (0..1) <"Indicates the party this regulator considers to be the buyer">
     sellerPartyReference PartyReference (0..1) <"Indicates the party this regulator considers to be the seller.">
-    relatedParty RelatedParty (0..*) <"This may be used to identify one or more parties that perform a role within the transaction. If this is within a partyTradeInformation block, the related party performs the role with respect to the party identifie by the \"partyReference\" in the partyTradeInformation block.">
-    relatedPerson RelatedPerson (0..*) <"Provides information about a person that executed or supports this trade">
-    tradingObligation RegulatoryTradingObligation (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    isSecuritiesFinancing boolean (0..1) <"Whether the transaction falls within the scope of activity but is exempted from reporting under [Securities Financing Transactions Regulation]">
-    otcClassification OtcClassification (0..*) <"Classification of the OTC transaction. Note: Coding scheme definition to encapsulate: Articles 20(3)(a) and 21(5)(a) of Regulation (EU) 600/2014. e.g. default=\"http://www.fpml.org/coding-scheme/esma-mifir-otc-classification\"">
-    tradingWaiver TradingWaiver (0..*) <"Classification of the pre-trade waiver, if any, that the transaction was executed under. Note: Coding scheme to encapsulate: Articles 4 and 9 of Regulation (EU) 600/2014. e.g. default=\"http://www.fpml.org/coding-scheme/esma-mifir-trading-waiver\"">
-    shortSale ShortSale (0..1) <"Classification of the transaction as a short sale or not and, if short, of the type of transaction. Note: Coding scheme to encapsulate: Article 11 of Regulation (EU) 600/2014. e.g. default=\"http://www.fpml.org/coding-scheme/esma-mifir-short-sale\"">
-    isCommodityHedge boolean (0..1) <"Whether the transaction reduces risk in an objectively measurable way. Only applicable for commodity derivative transactions.">
+    relatedParty RelatedParty (0..*) <"This may be used to identify one or more parties that perform \t\t\t\t\t\ta role within the transaction. If this is within a partyTradeInformation \t\t\t\t\t\tblock, the related party performs the role with respect to the party \t\t\t\t\t\tidentifie by the \"partyReference\" in the partyTradeInformation \t\t\t\t\t\tblock.">
+    relatedPerson RelatedPerson (0..*) <"Provides information about a person that executed or supports \t\t\t\t\t\tthis trade">
+    tradingObligation RegulatoryTradingObligation (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    isSecuritiesFinancing boolean (0..1) <"Whether the transaction falls within the scope of activity                         but is exempted from reporting under [Securities Financing Transactions                         Regulation]">
+    otcClassification OtcClassification (0..*) <"Classification of the OTC transaction. Note: Coding scheme                         definition to encapsulate: Articles 20(3)(a) and 21(5)(a) of Regulation (EU)                         600/2014. e.g.                         default=\"http://www.fpml.org/coding-scheme/esma-mifir-otc-classification\"">
+    tradingWaiver TradingWaiver (0..*) <"Classification of the pre-trade waiver, if any, that the                         transaction was executed under. Note: Coding scheme to encapsulate: Articles                         4 and 9 of Regulation (EU) 600/2014. e.g.                         default=\"http://www.fpml.org/coding-scheme/esma-mifir-trading-waiver\"">
+    shortSale ShortSale (0..1) <"Classification of the transaction as a short sale or not and,                         if short, of the type of transaction. Note: Coding scheme to encapsulate:                         Article 11 of Regulation (EU) 600/2014. e.g.                         default=\"http://www.fpml.org/coding-scheme/esma-mifir-short-sale\"">
+    isCommodityHedge boolean (0..1) <"Whether the transaction reduces risk in an objectively                         measurable way. Only applicable for commodity derivative                         transactions.">
 
-type RegulatoryClassificationMifirRTS22_2015 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
+type RegulatoryClassificationMifirRTS22_2015 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t2024-12-12).">
 
-    supervisoryBody string (0..*) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    reportingRole ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for this regulator; roles could include ReportingParty and Voluntary reporting.">
-    reportingPurpose ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, PET, Confirmation, RealTimePublic.">
+    supervisoryBody string (0..*) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    reportingRole ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for \t\t\t\t\t\tthis regulator; roles could include ReportingParty and Voluntary \t\t\t\t\t\treporting.">
+    reportingPurpose ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, \t\t\t\t\t\tPET, Confirmation, RealTimePublic.">
     buyerPartyReference PartyReference (0..1) <"Indicates the party this regulator considers to be the buyer">
     sellerPartyReference PartyReference (0..1) <"Indicates the party this regulator considers to be the seller.">
-    relatedParty RelatedParty (0..*) <"This may be used to identify one or more parties that perform a role within the transaction. If this is within a partyTradeInformation block, the related party performs the role with respect to the party identifie by the \"partyReference\" in the partyTradeInformation block.">
-    relatedPerson RelatedPerson (0..*) <"Provides information about a person that executed or supports this trade">
-    tradingObligation RegulatoryTradingObligation (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    isSecuritiesFinancing boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Whether the transaction falls within the scope of activity but is exempted from reporting under [Securities Financing Transactions Regulation]">
-    tradingWaiver TradingWaiver (0..*) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Classification of the pre-trade waiver, if any, that the transaction was executed under. Note: Coding scheme to encapsulate: Articles 4 and 9 of Regulation (EU) 600/2014. e.g. default=\"http://www.fpml.org/coding-scheme/esma-mifir-trading-waiver\"">
-    shortSale ShortSale (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Classification of the transaction as a short sale or not and, if short, of the type of transaction. Note: Coding scheme to encapsulate: Article 11 of Regulation (EU) 600/2014. e.g. default=\"http://www.fpml.org/coding-scheme/esma-mifir-short-sale\"">
-    isCommodityHedge boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Whether the transaction reduces risk in an objectively measurable way. Only applicable for commodity derivative transactions.">
+    relatedParty RelatedParty (0..*) <"This may be used to identify one or more parties that perform \t\t\t\t\t\ta role within the transaction. If this is within a partyTradeInformation \t\t\t\t\t\tblock, the related party performs the role with respect to the party \t\t\t\t\t\tidentifie by the \"partyReference\" in the partyTradeInformation \t\t\t\t\t\tblock.">
+    relatedPerson RelatedPerson (0..*) <"Provides information about a person that executed or supports \t\t\t\t\t\tthis trade">
+    tradingObligation RegulatoryTradingObligation (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    isSecuritiesFinancing boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12). Whether the transaction falls within the scope of \t\t\t\t\t\t\t\tactivity but is exempted from reporting under [Securities Financing \t\t\t\t\t\t\t\tTransactions Regulation]">
+    tradingWaiver TradingWaiver (0..*) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12). Classification of the pre-trade waiver, if any, that \t\t\t\t\t\t\t\tthe transaction was executed under. Note: Coding scheme to \t\t\t\t\t\t\t\tencapsulate: Articles 4 and 9 of Regulation (EU) 600/2014. e.g. \t\t\t\t\t\t\t\tdefault=\"http://www.fpml.org/coding-scheme/esma-mifir-trading-waiver\"">
+    shortSale ShortSale (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12). Classification of the transaction as a short sale or \t\t\t\t\t\t\t\tnot and, if short, of the type of transaction. Note: Coding scheme \t\t\t\t\t\t\t\tto encapsulate: Article 11 of Regulation (EU) 600/2014. e.g. \t\t\t\t\t\t\t\tdefault=\"http://www.fpml.org/coding-scheme/esma-mifir-short-sale\"">
+    isCommodityHedge boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12). Whether the transaction reduces risk in an \t\t\t\t\t\t\t\tobjectively measurable way. Only applicable for commodity derivative \t\t\t\t\t\t\t\ttransactions.">
 
-type RegulatoryClassificationMifirRTS23_2015 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
+type RegulatoryClassificationMifirRTS23_2015 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t2024-12-12).">
 
-    supervisoryBody string (0..*) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    reportingRole ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for this regulator; roles could include ReportingParty and Voluntary reporting.">
-    reportingPurpose ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, PET, Confirmation, RealTimePublic.">
+    supervisoryBody string (0..*) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    reportingRole ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for \t\t\t\t\t\tthis regulator; roles could include ReportingParty and Voluntary \t\t\t\t\t\treporting.">
+    reportingPurpose ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, \t\t\t\t\t\tPET, Confirmation, RealTimePublic.">
     buyerPartyReference PartyReference (0..1) <"Indicates the party this regulator considers to be the buyer">
     sellerPartyReference PartyReference (0..1) <"Indicates the party this regulator considers to be the seller.">
-    relatedParty RelatedParty (0..*) <"This may be used to identify one or more parties that perform a role within the transaction. If this is within a partyTradeInformation block, the related party performs the role with respect to the party identifie by the \"partyReference\" in the partyTradeInformation block.">
-    relatedPerson RelatedPerson (0..*) <"Provides information about a person that executed or supports this trade">
-    tradingObligation RegulatoryTradingObligation (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    isCommodityHedge boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Whether the transaction reduces risk in an objectively measurable way. Only applicable for commodity derivative transactions.">
-    currencyPairClassification CurrencyPairClassification (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Reports a regulator-specific code classifying the currency pair in the trade into risk categories such as Major Currencies or Emerging Markets.">
-    transmissionOfOrder boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    admissionToTrading AdmissionToTrading (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    seniority CreditSeniority (0..1) <"DEPRECATED. Use instead the field within credit products: indexReferenceInformation/seniority (RPTWG decision 2017-09)">
+    relatedParty RelatedParty (0..*) <"This may be used to identify one or more parties that perform \t\t\t\t\t\ta role within the transaction. If this is within a partyTradeInformation \t\t\t\t\t\tblock, the related party performs the role with respect to the party \t\t\t\t\t\tidentifie by the \"partyReference\" in the partyTradeInformation \t\t\t\t\t\tblock.">
+    relatedPerson RelatedPerson (0..*) <"Provides information about a person that executed or supports \t\t\t\t\t\tthis trade">
+    tradingObligation RegulatoryTradingObligation (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    isCommodityHedge boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12). Whether the transaction reduces risk in an \t\t\t\t\t\t\t\tobjectively measurable way. Only applicable for commodity derivative \t\t\t\t\t\t\t\ttransactions.">
+    currencyPairClassification CurrencyPairClassification (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12). Reports a regulator-specific code classifying the \t\t\t\t\t\t\t\tcurrency pair in the trade into risk categories such as Major \t\t\t\t\t\t\t\tCurrencies or Emerging Markets.">
+    transmissionOfOrder boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    admissionToTrading AdmissionToTrading (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    seniority CreditSeniority (0..1) <"DEPRECATED. Use instead the field within credit \t\t\t\t\t\t\t\tproducts: indexReferenceInformation/seniority (RPTWG decision \t\t\t\t\t\t\t\t2017-09)">
 
-type RegulatoryClassificationMifirRTS24_2015 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
+type RegulatoryClassificationMifirRTS24_2015 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t2024-12-12).">
 
-    supervisoryBody string (0..*) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    reportingRole ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for this regulator; roles could include ReportingParty and Voluntary reporting.">
-    reportingPurpose ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, PET, Confirmation, RealTimePublic.">
+    supervisoryBody string (0..*) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    reportingRole ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for \t\t\t\t\t\tthis regulator; roles could include ReportingParty and Voluntary \t\t\t\t\t\treporting.">
+    reportingPurpose ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, \t\t\t\t\t\tPET, Confirmation, RealTimePublic.">
     buyerPartyReference PartyReference (0..1) <"Indicates the party this regulator considers to be the buyer">
     sellerPartyReference PartyReference (0..1) <"Indicates the party this regulator considers to be the seller.">
-    relatedParty RelatedParty (0..*) <"This may be used to identify one or more parties that perform a role within the transaction. If this is within a partyTradeInformation block, the related party performs the role with respect to the party identifie by the \"partyReference\" in the partyTradeInformation block.">
-    relatedPerson RelatedPerson (0..*) <"Provides information about a person that executed or supports this trade">
-    tradingObligation RegulatoryTradingObligation (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    isSecuritiesFinancing boolean (0..1) <"Whether the transaction falls within the scope of activity but is exempted from reporting under [Securities Financing Transactions Regulation]">
-    otcClassification OtcClassification (0..*) <"Classification of the OTC transaction. Note: Coding scheme definition to encapsulate: Articles 20(3)(a) and 21(5)(a) of Regulation (EU) 600/2014. e.g. default=\"http://www.fpml.org/coding-scheme/esma-mifir-otc-classification\"">
-    tradingWaiver TradingWaiver (0..*) <"Classification of the pre-trade waiver, if any, that the transaction was executed under. Note: Coding scheme to encapsulate: Articles 4 and 9 of Regulation (EU) 600/2014. e.g. default=\"http://www.fpml.org/coding-scheme/esma-mifir-trading-waiver\"">
-    shortSale ShortSale (0..1) <"Classification of the transaction as a short sale or not and, if short, of the type of transaction. Note: Coding scheme to encapsulate: Article 11 of Regulation (EU) 600/2014. e.g. default=\"http://www.fpml.org/coding-scheme/esma-mifir-short-sale\"">
-    isCommodityHedge boolean (0..1) <"Whether the transaction reduces risk in an objectively measurable way. Only applicable for commodity derivative transactions.">
+    relatedParty RelatedParty (0..*) <"This may be used to identify one or more parties that perform \t\t\t\t\t\ta role within the transaction. If this is within a partyTradeInformation \t\t\t\t\t\tblock, the related party performs the role with respect to the party \t\t\t\t\t\tidentifie by the \"partyReference\" in the partyTradeInformation \t\t\t\t\t\tblock.">
+    relatedPerson RelatedPerson (0..*) <"Provides information about a person that executed or supports \t\t\t\t\t\tthis trade">
+    tradingObligation RegulatoryTradingObligation (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    isSecuritiesFinancing boolean (0..1) <"Whether the transaction falls within the scope of activity                         but is exempted from reporting under [Securities Financing Transactions                         Regulation]">
+    otcClassification OtcClassification (0..*) <"Classification of the OTC transaction. Note: Coding scheme                         definition to encapsulate: Articles 20(3)(a) and 21(5)(a) of Regulation (EU)                         600/2014. e.g.                         default=\"http://www.fpml.org/coding-scheme/esma-mifir-otc-classification\"">
+    tradingWaiver TradingWaiver (0..*) <"Classification of the pre-trade waiver, if any, that the                         transaction was executed under. Note: Coding scheme to encapsulate: Articles                         4 and 9 of Regulation (EU) 600/2014. e.g.                         default=\"http://www.fpml.org/coding-scheme/esma-mifir-trading-waiver\"">
+    shortSale ShortSale (0..1) <"Classification of the transaction as a short sale or not and,                         if short, of the type of transaction. Note: Coding scheme to encapsulate:                         Article 11 of Regulation (EU) 600/2014. e.g.                         default=\"http://www.fpml.org/coding-scheme/esma-mifir-short-sale\"">
+    isCommodityHedge boolean (0..1) <"Whether the transaction reduces risk in an objectively                         measurable way. Only applicable for commodity derivative                         transactions.">
 
-type RegulatoryClassificationPart43_2012 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
+type RegulatoryClassificationPart43_2012 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t2024-12-12).">
 
-    supervisoryBody string (0..*) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    reportingRole ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for this regulator; roles could include ReportingParty and Voluntary reporting.">
-    reportingPurpose ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, PET, Confirmation, RealTimePublic.">
-    cancellation boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    cleared string (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    executionVenueType ExecutionVenueType (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    collateralizationType CollateralizationType (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    offMarketPrice boolean (0..1) <"Indicates that the price does not reflect the current market. For example, in a credit trade where the two counterparties are not of equal credit standing, there is no initial margin and one party pays collateral to the other in the form of an add-on to the price (say a price that would otherwise be 100 at the market is struck at 105 to include the collateral, resulting in a very off-market looking price.) DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    largeSizeTrade boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
+    supervisoryBody string (0..*) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    reportingRole ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for \t\t\t\t\t\tthis regulator; roles could include ReportingParty and Voluntary \t\t\t\t\t\treporting.">
+    reportingPurpose ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, \t\t\t\t\t\tPET, Confirmation, RealTimePublic.">
+    cancellation boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    cleared string (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    executionVenueType ExecutionVenueType (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    collateralizationType CollateralizationType (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    offMarketPrice boolean (0..1) <"Indicates that the price does not reflect the current \t\t\t\t\t\t\t\tmarket. For example, in a credit trade where the two counterparties \t\t\t\t\t\t\t\tare not of equal credit standing, there is no initial margin and one \t\t\t\t\t\t\t\tparty pays collateral to the other in the form of an add-on to the \t\t\t\t\t\t\t\tprice (say a price that would otherwise be 100 at the market is \t\t\t\t\t\t\t\tstruck at 105 to include the collateral, resulting in a very \t\t\t\t\t\t\t\toff-market looking price.) DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    largeSizeTrade boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
 
-type RegulatoryClassificationPart43_2019 extends RegulatoryClassification: <" DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
+type RegulatoryClassificationPart43_2019 extends RegulatoryClassification: <" DEPRECATED. Not in use (RPTWG decision \t\t\t\t2024-12-12).">
 
-    supervisoryBody string (0..*) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    reportingRole ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for this regulator; roles could include ReportingParty and Voluntary reporting.">
-    reportingPurpose ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, PET, Confirmation, RealTimePublic.">
-    cancellationOfPublicReporting boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    cleared string (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    endUserException boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    executionVenueType ExecutionVenueType (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    collateralizationType CollateralizationType (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    offMarketPrice boolean (0..1) <"Indicates that the price does not reflect the current market. For example, in a credit trade where the two counterparties are not of equal credit standing, there is no initial margin and one party pays collateral to the other in the form of an add-on to the price (say a price that would otherwise be 100 at the market is struck at 105 to include the collateral, resulting in a very off-market looking price.) DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    largeSizeTrade boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    clearingService PartyReference (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    packageInfo RegReportingPackageInfo (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    disseminationTime zonedDateTime (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    disseminationId string (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    originalDisseminationId string (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    postPricedIndicator boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
+    supervisoryBody string (0..*) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    reportingRole ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for \t\t\t\t\t\tthis regulator; roles could include ReportingParty and Voluntary \t\t\t\t\t\treporting.">
+    reportingPurpose ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, \t\t\t\t\t\tPET, Confirmation, RealTimePublic.">
+    cancellationOfPublicReporting boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    cleared string (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    endUserException boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    executionVenueType ExecutionVenueType (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    collateralizationType CollateralizationType (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    offMarketPrice boolean (0..1) <"Indicates that the price does not reflect the current \t\t\t\t\t\t\t\tmarket. For example, in a credit trade where the two counterparties \t\t\t\t\t\t\t\tare not of equal credit standing, there is no initial margin and one \t\t\t\t\t\t\t\tparty pays collateral to the other in the form of an add-on to the \t\t\t\t\t\t\t\tprice (say a price that would otherwise be 100 at the market is \t\t\t\t\t\t\t\tstruck at 105 to include the collateral, resulting in a very \t\t\t\t\t\t\t\toff-market looking price.) DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    largeSizeTrade boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    clearingService PartyReference (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    packageInfo RegReportingPackageInfo (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    disseminationTime zonedDateTime (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    disseminationId string (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    originalDisseminationId string (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    postPricedIndicator boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
 
-type RegulatoryClassificationPart45_2012 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
+type RegulatoryClassificationPart45_2012 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t2024-12-12).">
 
-    supervisoryBody string (0..*) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    reportingRole ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for this regulator; roles could include ReportingParty and Voluntary reporting.">
-    reportingPurpose ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, PET, Confirmation, RealTimePublic.">
+    supervisoryBody string (0..*) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    reportingRole ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for \t\t\t\t\t\tthis regulator; roles could include ReportingParty and Voluntary \t\t\t\t\t\treporting.">
+    reportingPurpose ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, \t\t\t\t\t\tPET, Confirmation, RealTimePublic.">
     buyerPartyReference PartyReference (0..1) <"Indicates the party this regulator considers to be the buyer">
     sellerPartyReference PartyReference (0..1) <"Indicates the party this regulator considers to be the seller.">
-    mandatorilyClearable ReportingBoolean (0..1) <"Whether the particular trade type in question is required by this regulator to be cleared. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    endUserException boolean (0..1) <"Specifies whether the trade is not obligated to be cleared via a derivative clearing organization, i.e. wehter there is an exemption from clearing. For historical reasons this is called \"end-user exception\", but this may be used to indication any exception from normal clearing mandates caused by the type of the partiees or their relationship, such as inter-affiliate trades. If a relatedParty block with a role of ClearingExceptionParty is present, that related party indicates which party is claiming the end user exception. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    endUserExceptionReason ClearingExceptionReason (0..*) <"Specifies a reason that the trade is exempted from a clearing requirement. This exemption may be an end-user exception, or another type such as in inter-affiliate trade. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    endUserExceptionDeclaration EndUserExceptionDeclaration (0..1) <"Claims an end user exception and provides supporting evidence. If a relatedParty block with a role of ClearingExceptionParty is present, that related party indicates which party is claiming the end user exception. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    largeSizeTrade boolean (0..1) <"Specifies whether the sender of this trade considers it to be a large notional trade or block trade for reporting purposes, and thus eligible for delayed public reporting. Normally this will only be applicable for off-facility trades. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    executionType ExecutionType (0..1) <"Used to describe how the trade was executed, e.g. via voice or electronically. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    executionVenueType ExecutionVenueType (0..1) <"Used to describe the type of venue where trade was executed, e.g via an execution facility or privately. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    verificationMethod VerificationMethod (0..1) <"Used to describe how the trade was or will be verified, e.g via a confirmation facility, via private electronic service, or via written documentation. This affect the timing of real-time reporting requirements. This field is provisional pending detailed confirmation of the data requirements, and may not be included in subsequent working drafts. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    confirmationMethod ConfirmationMethod (0..1) <"Used to describe how the trade was confirmed, e.g via a confirmation facility, via private electronic service, or via written documentation. This affects the process flow for confirmation messages. This field is provisional pending detailed confirmation of the data requirements, and may not be included in subsequent working drafts. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    collateralizationType CollateralizationType (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    reportingPartyOrganizationType string (0..1) <"E.g. SD, MSP, etc. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    counterPartyOrganizationType string (0..1) <"E.g. SD, MSP, etc. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    counterPartyIsUsPerson boolean (0..1) <"whether the counterparty is a US person DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    intentToAllocate boolean (0..1) <"Specifies whether the trade is anticipated to be allocated. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    allocationStatus AllocationReportingStatus (0..1) <"Specifies whether the trade is anticipated to be allocated, has been allocated, or will not be allocated. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    allocationAgent PartyReference (0..1) <"Identifies the party responsible for executing the allocation for the counterparty DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    multiAssetSwap boolean (0..1) <"Indicates whether the swap is a multi-asset swap as defined by CFTC Part 45. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    mixedSwap boolean (0..1) <"Indicates whether the swap is a mixed swap as defined by CFTC Part 45 (i.e. subject to reporting to both CFTC and SEC). DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    contractType ProductId (0..1) <"Indicatdes the CFTC Contract type. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
+    mandatorilyClearable ReportingBoolean (0..1) <"Whether the particular trade type in question is \t\t\t\t\t\t\t\t\trequired by this regulator to be cleared. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    endUserException boolean (0..1) <"Specifies whether the trade is not \t\t\t\t\t\t\t\t\t\t\tobligated to be cleared via a derivative clearing \t\t\t\t\t\t\t\t\t\t\torganization, i.e. wehter there is an exemption from \t\t\t\t\t\t\t\t\t\t\tclearing. For historical reasons this is called \t\t\t\t\t\t\t\t\t\t\t\"end-user exception\", but this may be used to indication \t\t\t\t\t\t\t\t\t\t\tany exception from normal clearing mandates caused by \t\t\t\t\t\t\t\t\t\t\tthe type of the partiees or their relationship, such as \t\t\t\t\t\t\t\t\t\t\tinter-affiliate trades. If a relatedParty block with a \t\t\t\t\t\t\t\t\t\t\trole of ClearingExceptionParty is present, that related \t\t\t\t\t\t\t\t\t\t\tparty indicates which party is claiming the end user \t\t\t\t\t\t\t\t\t\t\texception. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t\t\t2024-12-12).">
+    endUserExceptionReason ClearingExceptionReason (0..*) <"Specifies a reason that the trade is \t\t\t\t\t\t\t\t\t\t\texempted from a clearing requirement. This exemption may \t\t\t\t\t\t\t\t\t\t\tbe an end-user exception, or another type such as in \t\t\t\t\t\t\t\t\t\t\tinter-affiliate trade. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t\t\t2024-12-12).">
+    endUserExceptionDeclaration EndUserExceptionDeclaration (0..1) <"Claims an end user exception and provides \t\t\t\t\t\t\t\t\t\tsupporting evidence. If a relatedParty block with a role of \t\t\t\t\t\t\t\t\t\tClearingExceptionParty is present, that related party \t\t\t\t\t\t\t\t\t\tindicates which party is claiming the end user \t\t\t\t\t\t\t\t\t\texception. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t\t2024-12-12).">
+    largeSizeTrade boolean (0..1) <"Specifies whether the sender of this trade \t\t\t\t\t\t\t\t\tconsiders it to be a large notional trade or block trade for \t\t\t\t\t\t\t\t\treporting purposes, and thus eligible for delayed public \t\t\t\t\t\t\t\t\treporting. Normally this will only be applicable for \t\t\t\t\t\t\t\t\toff-facility trades. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    executionType ExecutionType (0..1) <"Used to describe how the trade was executed, e.g. \t\t\t\t\t\t\t\t\tvia voice or electronically. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    executionVenueType ExecutionVenueType (0..1) <"Used to describe the type of venue where trade \t\t\t\t\t\t\t\t\twas executed, e.g via an execution facility or \t\t\t\t\t\t\t\t\tprivately. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    verificationMethod VerificationMethod (0..1) <"Used to describe how the trade was or will be \t\t\t\t\t\t\t\t\tverified, e.g via a confirmation facility, via private \t\t\t\t\t\t\t\t\telectronic service, or via written documentation. This affect \t\t\t\t\t\t\t\t\tthe timing of real-time reporting requirements. This field is \t\t\t\t\t\t\t\t\tprovisional pending detailed confirmation of the data \t\t\t\t\t\t\t\t\trequirements, and may not be included in subsequent working \t\t\t\t\t\t\t\t\tdrafts. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    confirmationMethod ConfirmationMethod (0..1) <"Used to describe how the trade was confirmed, e.g \t\t\t\t\t\t\t\t\tvia a confirmation facility, via private electronic service, or \t\t\t\t\t\t\t\t\tvia written documentation. This affects the process flow for \t\t\t\t\t\t\t\t\tconfirmation messages. This field is provisional pending \t\t\t\t\t\t\t\t\tdetailed confirmation of the data requirements, and may not be \t\t\t\t\t\t\t\t\tincluded in subsequent working drafts. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    collateralizationType CollateralizationType (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    reportingPartyOrganizationType string (0..1) <"E.g. SD, MSP, etc. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    counterPartyOrganizationType string (0..1) <"E.g. SD, MSP, etc. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    counterPartyIsUsPerson boolean (0..1) <"whether the counterparty is a US \t\t\t\t\t\t\t\t\tperson DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    intentToAllocate boolean (0..1) <"Specifies whether the trade is anticipated to be \t\t\t\t\t\t\t\t\tallocated. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    allocationStatus AllocationReportingStatus (0..1) <"Specifies whether the trade is anticipated to be \t\t\t\t\t\t\t\t\tallocated, has been allocated, or will not be \t\t\t\t\t\t\t\t\tallocated. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    allocationAgent PartyReference (0..1) <"Identifies the party responsible for executing \t\t\t\t\t\t\t\t\tthe allocation for the counterparty DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    multiAssetSwap boolean (0..1) <"Indicates whether the swap is a multi-asset swap \t\t\t\t\t\t\t\t\tas defined by CFTC Part 45. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    mixedSwap boolean (0..1) <"Indicates whether the swap is a mixed swap as \t\t\t\t\t\t\t\t\tdefined by CFTC Part 45 (i.e. subject to reporting to both CFTC \t\t\t\t\t\t\t\t\tand SEC). DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    contractType ProductId (0..1) <"Indicatdes the CFTC Contract \t\t\t\t\t\t\t\t\ttype. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
 
     condition Choice:
         endUserExceptionDeclaration is absent
             or endUserException is absent and endUserExceptionReason is absent
 
-type RegulatoryClassificationPart45_2019 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
+type RegulatoryClassificationPart45_2019 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t2024-12-12).">
 
-    supervisoryBody string (0..*) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    reportingRole ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for this regulator; roles could include ReportingParty and Voluntary reporting.">
-    reportingPurpose ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, PET, Confirmation, RealTimePublic.">
+    supervisoryBody string (0..*) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    reportingRole ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for \t\t\t\t\t\tthis regulator; roles could include ReportingParty and Voluntary \t\t\t\t\t\treporting.">
+    reportingPurpose ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, \t\t\t\t\t\tPET, Confirmation, RealTimePublic.">
     buyerPartyReference PartyReference (0..1) <"Indicates the party this regulator considers to be the buyer">
     sellerPartyReference PartyReference (0..1) <"Indicates the party this regulator considers to be the seller.">
-    mandatorilyClearable ReportingBoolean (0..1) <"Whether the particular trade type in question is required by this regulator to be cleared. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    endUserException boolean (0..1) <"Specifies whether the trade is not obligated to be cleared via a derivative clearing organization, i.e. wehter there is an exemption from clearing. For historical reasons this is called \"end-user exception\", but this may be used to indication any exception from normal clearing mandates caused by the type of the partiees or their relationship, such as inter-affiliate trades. If a relatedParty block with a role of ClearingExceptionParty is present, that related party indicates which party is claiming the end user exception. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    endUserExceptionReason ClearingExceptionReason (0..*) <"Specifies a reason that the trade is exempted from a clearing requirement. This exemption may be an end-user exception, or another type such as in inter-affiliate trade. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    endUserExceptionDeclaration EndUserExceptionDeclaration (0..1) <"Claims an end user exception and provides supporting evidence. If a relatedParty block with a role of ClearingExceptionParty is present, that related party indicates which party is claiming the end user exception. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    largeSizeTrade boolean (0..1) <"Specifies whether the sender of this trade considers it to be a large notional trade or block trade for reporting purposes, and thus eligible for delayed public reporting. Normally this will only be applicable for off-facility trades. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    executionType ExecutionType (0..1) <"Used to describe how the trade was executed, e.g. via voice or electronically. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    executionVenueType ExecutionVenueType (0..1) <"Used to describe the type of venue where trade was executed, e.g via an execution facility or privately. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    verificationMethod VerificationMethod (0..1) <"Used to describe how the trade was or will be verified, e.g via a confirmation facility, via private electronic service, or via written documentation. This affect the timing of real-time reporting requirements. This field is provisional pending detailed confirmation of the data requirements, and may not be included in subsequent working drafts. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    confirmationMethod ConfirmationMethod (0..1) <"Used to describe how the trade was confirmed, e.g via a confirmation facility, via private electronic service, or via written documentation. This affects the process flow for confirmation messages. This field is provisional pending detailed confirmation of the data requirements, and may not be included in subsequent working drafts. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    collateralizationType CollateralizationType (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    reportingPartyOrganizationType string (0..1) <"E.g. SD, MSP, etc. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    counterPartyOrganizationType string (0..1) <"E.g. SD, MSP, etc. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    counterPartyIsUsPerson boolean (0..1) <"whether the counterparty is a US person DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    allocationStatus AllocationReportingStatus (0..1) <"Specifies whether the trade is anticipated to be allocated, has been allocated, or will not be allocated. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    clientAccountType TradeCategory (0..1) <"Specifies whether the reporting party takes a Principal or an Agent role in this trade. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    interAffiliateClearingExemptionParty PartyReference (0..1) <"Identifies which party is electing the inter-affiliate exmption to the clearing requirement pursuant to section 50.52 DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    reportingPartyClearingExemption string (0..*) <"Identifies the type of clearing exemption that the Counterparty 1 has elected (if not indicated previously). All applicable exceptions and exemption must be selected. The values may be repeacted as applicable. TBD: FpML doesn’t currently define a coding scheme for this value. We anticipate that one will be developed in a future release. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    counterPartyClearingExemption string (0..*) <"Identifies the type of clearing exemption that the Counterparty 2 has elected (if not indicated previously). All applicable exceptions and exemption must be selected. The values may be repeacted as applicable. TBD: FpML doesn’t currently define a coding scheme for this value. We anticipate that one will be developed in a future release. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    collateralTypeAllowed string (0..*) <"Identifies the types of collateral that may be posted according to the CSA. TBD: FpML doesn’t currently define a coding scheme for this value. We anticipate that one will be developed in a future release. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    collateralPortfolioContainsNonReportableComponents boolean (0..1) <"Indicator of whether the collateral portfolio includes transactions exempt from reporting. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    packageContainsNonReportableComponents boolean (0..1) <"Indicator of whether the package in which this trade was traded includes transactions exempt from reporting. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    specialEntityType string (0..1) <"The type of Special entity/utility special entity that is reported by the reporting counterparty as per Section 23.401(c) and Section 1.3 (ggg)(4)(i)(B)(2), respectively. Note that \"utility special entity\" is a subset of \"special entity.\" TBD: FpML doesn’t currently define a coding scheme for this value. We anticipate that one will be developed in a future release. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    actionType ActionType (0..1) <"Reports a regulator-specific code for the action associated with this submission. Used, for example, to report the ESMA action type. TBD: FpML doesn’t currently define a coding scheme for this value. We anticipate that one will be developed in a future release. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    eventType string (0..1) <"Explanation for the action being take on the transaction. TBD: FpML doesn’t currently define a coding scheme for this value. We anticipate that one will be developed in a future release. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    tradeExecutionRequirementIndicator boolean (0..1) <"The data element will indicate if the swap is subject to the trade execution requirement under CEA section 2(h)(8). If the swap is subject to an exemption from CEA section 2(h)(8)(a), this data element shall be populated with the value \"False\". DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    lastFloatingReferenceResetDate zonedDateTime (0..1) <"The date of the most recent sampling of the floating reference for the purposes of determining cashflow. Ties to \"Last Floating Reference Value\" field. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    nextFloatingReferenceResetDate zonedDateTime (0..1) <"The nearest date in the future that the floating reference resets on DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
+    mandatorilyClearable ReportingBoolean (0..1) <"Whether the particular trade type in question is \t\t\t\t\t\t\t\t\trequired by this regulator to be cleared. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    endUserException boolean (0..1) <"Specifies whether the trade is not \t\t\t\t\t\t\t\t\t\t\tobligated to be cleared via a derivative clearing \t\t\t\t\t\t\t\t\t\t\torganization, i.e. wehter there is an exemption from \t\t\t\t\t\t\t\t\t\t\tclearing. For historical reasons this is called \t\t\t\t\t\t\t\t\t\t\t\"end-user exception\", but this may be used to indication \t\t\t\t\t\t\t\t\t\t\tany exception from normal clearing mandates caused by \t\t\t\t\t\t\t\t\t\t\tthe type of the partiees or their relationship, such as \t\t\t\t\t\t\t\t\t\t\tinter-affiliate trades. If a relatedParty block with a \t\t\t\t\t\t\t\t\t\t\trole of ClearingExceptionParty is present, that related \t\t\t\t\t\t\t\t\t\t\tparty indicates which party is claiming the end user \t\t\t\t\t\t\t\t\t\t\texception. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t\t\t2024-12-12).">
+    endUserExceptionReason ClearingExceptionReason (0..*) <"Specifies a reason that the trade is \t\t\t\t\t\t\t\t\t\t\texempted from a clearing requirement. This exemption may \t\t\t\t\t\t\t\t\t\t\tbe an end-user exception, or another type such as in \t\t\t\t\t\t\t\t\t\t\tinter-affiliate trade. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t\t\t2024-12-12).">
+    endUserExceptionDeclaration EndUserExceptionDeclaration (0..1) <"Claims an end user exception and provides \t\t\t\t\t\t\t\t\t\tsupporting evidence. If a relatedParty block with a role of \t\t\t\t\t\t\t\t\t\tClearingExceptionParty is present, that related party \t\t\t\t\t\t\t\t\t\tindicates which party is claiming the end user \t\t\t\t\t\t\t\t\t\texception. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t\t2024-12-12).">
+    largeSizeTrade boolean (0..1) <"Specifies whether the sender of this trade \t\t\t\t\t\t\t\t\tconsiders it to be a large notional trade or block trade for \t\t\t\t\t\t\t\t\treporting purposes, and thus eligible for delayed public \t\t\t\t\t\t\t\t\treporting. Normally this will only be applicable for \t\t\t\t\t\t\t\t\toff-facility trades. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    executionType ExecutionType (0..1) <"Used to describe how the trade was executed, e.g. \t\t\t\t\t\t\t\t\tvia voice or electronically. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    executionVenueType ExecutionVenueType (0..1) <"Used to describe the type of venue where trade \t\t\t\t\t\t\t\t\twas executed, e.g via an execution facility or \t\t\t\t\t\t\t\t\tprivately. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    verificationMethod VerificationMethod (0..1) <"Used to describe how the trade was or will be \t\t\t\t\t\t\t\t\tverified, e.g via a confirmation facility, via private \t\t\t\t\t\t\t\t\telectronic service, or via written documentation. This affect \t\t\t\t\t\t\t\t\tthe timing of real-time reporting requirements. This field is \t\t\t\t\t\t\t\t\tprovisional pending detailed confirmation of the data \t\t\t\t\t\t\t\t\trequirements, and may not be included in subsequent working \t\t\t\t\t\t\t\t\tdrafts. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    confirmationMethod ConfirmationMethod (0..1) <"Used to describe how the trade was confirmed, e.g \t\t\t\t\t\t\t\t\tvia a confirmation facility, via private electronic service, or \t\t\t\t\t\t\t\t\tvia written documentation. This affects the process flow for \t\t\t\t\t\t\t\t\tconfirmation messages. This field is provisional pending \t\t\t\t\t\t\t\t\tdetailed confirmation of the data requirements, and may not be \t\t\t\t\t\t\t\t\tincluded in subsequent working drafts. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    collateralizationType CollateralizationType (0..1) <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    reportingPartyOrganizationType string (0..1) <"E.g. SD, MSP, etc. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    counterPartyOrganizationType string (0..1) <"E.g. SD, MSP, etc. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    counterPartyIsUsPerson boolean (0..1) <"whether the counterparty is a US \t\t\t\t\t\t\t\t\tperson DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    allocationStatus AllocationReportingStatus (0..1) <"Specifies whether the trade is anticipated to be \t\t\t\t\t\t\t\t\tallocated, has been allocated, or will not be \t\t\t\t\t\t\t\t\tallocated. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    clientAccountType TradeCategory (0..1) <"Specifies whether the reporting party takes a \t\t\t\t\t\t\t\t\tPrincipal or an Agent role in this trade. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    interAffiliateClearingExemptionParty PartyReference (0..1) <"Identifies which party is electing the \t\t\t\t\t\t\t\t\tinter-affiliate exmption to the clearing requirement pursuant to \t\t\t\t\t\t\t\t\tsection 50.52 DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    reportingPartyClearingExemption string (0..*) <"Identifies the type of clearing exemption that \t\t\t\t\t\t\t\t\tthe Counterparty 1 has elected (if not indicated previously). \t\t\t\t\t\t\t\t\tAll applicable exceptions and exemption must be selected. The \t\t\t\t\t\t\t\t\tvalues may be repeacted as applicable. TBD: FpML doesn’t \t\t\t\t\t\t\t\t\tcurrently define a coding scheme for this value. We anticipate \t\t\t\t\t\t\t\t\tthat one will be developed in a future \t\t\t\t\t\t\t\t\trelease. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    counterPartyClearingExemption string (0..*) <"Identifies the type of clearing exemption that \t\t\t\t\t\t\t\t\tthe Counterparty 2 has elected (if not indicated previously). \t\t\t\t\t\t\t\t\tAll applicable exceptions and exemption must be selected. The \t\t\t\t\t\t\t\t\tvalues may be repeacted as applicable. TBD: FpML doesn’t \t\t\t\t\t\t\t\t\tcurrently define a coding scheme for this value. We anticipate \t\t\t\t\t\t\t\t\tthat one will be developed in a future \t\t\t\t\t\t\t\t\trelease. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    collateralTypeAllowed string (0..*) <"Identifies the types of collateral that may be \t\t\t\t\t\t\t\t\tposted according to the CSA. TBD: FpML doesn’t currently define \t\t\t\t\t\t\t\t\ta coding scheme for this value. We anticipate that one will be \t\t\t\t\t\t\t\t\tdeveloped in a future release. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    collateralPortfolioContainsNonReportableComponents boolean (0..1) <"Indicator of whether the collateral portfolio \t\t\t\t\t\t\t\t\tincludes transactions exempt from reporting. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    packageContainsNonReportableComponents boolean (0..1) <"Indicator of whether the package in which this \t\t\t\t\t\t\t\t\ttrade was traded includes transactions exempt from \t\t\t\t\t\t\t\t\treporting. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    specialEntityType string (0..1) <"The type of Special entity/utility special entity \t\t\t\t\t\t\t\t\tthat is reported by the reporting counterparty as per Section \t\t\t\t\t\t\t\t\t23.401(c) and Section 1.3 (ggg)(4)(i)(B)(2), respectively. Note \t\t\t\t\t\t\t\t\tthat \"utility special entity\" is a subset of \"special entity.\" \t\t\t\t\t\t\t\t\tTBD: FpML doesn’t currently define a coding scheme for this \t\t\t\t\t\t\t\t\tvalue. We anticipate that one will be developed in a future \t\t\t\t\t\t\t\t\trelease. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    actionType ActionType (0..1) <"Reports a regulator-specific code for the action \t\t\t\t\t\t\t\t\tassociated with this submission. Used, for example, to report \t\t\t\t\t\t\t\t\tthe ESMA action type. TBD: FpML doesn’t currently define a \t\t\t\t\t\t\t\t\tcoding scheme for this value. We anticipate that one will be \t\t\t\t\t\t\t\t\tdeveloped in a future release. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    eventType string (0..1) <"Explanation for the action being take on the \t\t\t\t\t\t\t\t\ttransaction. TBD: FpML doesn’t currently define a coding scheme \t\t\t\t\t\t\t\t\tfor this value. We anticipate that one will be developed in a \t\t\t\t\t\t\t\t\tfuture release. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    tradeExecutionRequirementIndicator boolean (0..1) <"The data element will indicate if the swap is \t\t\t\t\t\t\t\t\tsubject to the trade execution requirement under CEA section \t\t\t\t\t\t\t\t\t2(h)(8). If the swap is subject to an exemption from CEA section \t\t\t\t\t\t\t\t\t2(h)(8)(a), this data element shall be populated with the value \t\t\t\t\t\t\t\t\t\"False\". DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    lastFloatingReferenceResetDate zonedDateTime (0..1) <"The date of the most recent sampling of the \t\t\t\t\t\t\t\t\tfloating reference for the purposes of determining cashflow. \t\t\t\t\t\t\t\t\tTies to \"Last Floating Reference Value\" \t\t\t\t\t\t\t\t\tfield. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
+    nextFloatingReferenceResetDate zonedDateTime (0..1) <"The nearest date in the future that the floating \t\t\t\t\t\t\t\t\treference resets on DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t\t2024-12-12).">
 
     condition Choice:
         endUserExceptionDeclaration is absent
             or endUserException is absent and endUserExceptionReason is absent
 
-type RegulatoryClassificationSFTR_2019 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
+type RegulatoryClassificationSFTR_2019 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision \t\t\t\t2024-12-12).">
 
-    reportingRole ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for this regulator; roles could include ReportingParty and Voluntary reporting.">
-    reportingPurpose ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, PET, Confirmation, RealTimePublic.">
-    reportingLevel ReportingLevel (0..1) <"An indication whether the report is done at trade or position level. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
-    actionType ActionType (0..1) <"SFTR notation to indicate whether the report is New, Modification, Valuation, Collateral update, Error, Correction, Termination / Early Termination or Position component DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
+    reportingRole ReportingRole (0..1) <"Identifies the role of this party in reporting this trade for \t\t\t\t\t\tthis regulator; roles could include ReportingParty and Voluntary \t\t\t\t\t\treporting.">
+    reportingPurpose ReportingPurpose (0..*) <"The reason this message is being sent, for example Snapshot, \t\t\t\t\t\tPET, Confirmation, RealTimePublic.">
+    reportingLevel ReportingLevel (0..1) <"An indication whether the report is done at trade or \t\t\t\t\t\t\t\tposition level. DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
+    actionType ActionType (0..1) <"SFTR notation to indicate whether the report is New, \t\t\t\t\t\t\t\tModification, Valuation, Collateral update, Error, Correction, \t\t\t\t\t\t\t\tTermination / Early Termination or Position component DEPRECATED. Not in use (RPTWG decision \t\t\t\t\t\t\t\t2024-12-12).">
 
-type RegulatoryTradingObligation:
+type RegulatoryTradingObligation: <"A regulatory record indicating whether trading occurred on a venue and, where applicable, whether an exception applies, with the corresponding facility execution exception declaration.">
 
-    tradedOnVenue boolean (1..1) <"Whether the particular product must be executed on a SEF or DCM. See to Dodd-Frank section 723(a)(8).">
-    exception boolean (0..1) <"Specifies whether the party invoked exception to not execute the trade on facility such as SEF and DCM even though the particular product is mandated to execute on a SEF.">
-    exceptionDeclaration FacilityExecutionExceptionDeclaration (0..1) <"Provides supporting evidence when a party invoked exception to not execute the trade on facility such as SEF and DCM even though the particular product is mandated to execute on a SEF.">
+    tradedOnVenue boolean (1..1) <"Whether the particular product must be executed on a SEF or \t\t\t\t\t\tDCM. See to Dodd-Frank section 723(a)(8).">
+    exception boolean (0..1) <"Specifies whether the party invoked exception to not execute \t\t\t\t\t\tthe trade on facility such as SEF and DCM even though the particular product \t\t\t\t\t\tis mandated to execute on a SEF.">
+    exceptionDeclaration FacilityExecutionExceptionDeclaration (0..1) <"Provides supporting evidence when a party invoked exception \t\t\t\t\t\tto not execute the trade on facility such as SEF and DCM even though the \t\t\t\t\t\tparticular product is mandated to execute on a SEF.">

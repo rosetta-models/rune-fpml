@@ -6,7 +6,7 @@ import fpml.consolidated.fpmlenum.*
 import fpml.consolidated.riskdef.*
 import fpml.consolidated.shared.*
 
-type ValuationSet: <"A set of valuation inputs and results. This structure can be used for requesting valuations, or for reporting them. In general, the request fills in fewer elements.">
+type ValuationSet: <"A top-level set of valuation inputs and results used to request valuations or report their outcomes. A set of valuation inputs and results. This structure can be used for requesting valuations, or for reporting them. In general, the request fills in fewer elements.">
     [rootType]
 
     id string (0..1)
@@ -26,21 +26,21 @@ type AssetValuation extends Valuation: <"A structure that holds a set of measure
 
 type Quotation: <"Some kind of numerical measure about an asset, eg. its NPV, together with characteristics of that measure, together with optional sensitivities.">
 
-    value number (0..1) <"The value of the the quotation.">
-    measureType AssetMeasureType (0..1) <"The type of the value that is measured. This could be an NPV, a cash flow, a clean price, etc.">
-    quoteUnits PriceQuoteUnits (0..1) <"The optional units that the measure is expressed in. If not supplied, this is assumed to be a price/value in currency units.">
-    side QuotationSideEnum (0..1) <"The side (bid/mid/ask) of the measure.">
-    currency Currency (0..1) <"The optional currency that the measure is expressed in. If not supplied, this is defaulted from the reportingCurrency in the valuationScenarioDefinition.">
-    currencyType ReportingCurrencyType (0..1) <"The optional currency that the measure is expressed in. If not supplied, this is defaulted from the reportingCurrency in the valuationScenarioDefinition.">
-    timing QuoteTiming (0..1) <"When during a day the quote is for. Typically, if this element is supplied, the QuoteLocation needs also to be supplied.">
-    businessCenter BusinessCenter (0..1) <"A city or other business center.">
-    exchangeId ExchangeId (0..1) <"The exchange (e.g. stock or futures exchange) from which the quote is obtained.">
-    informationSource InformationSource (0..*) <"The information source where a published or displayed market rate will be obtained, e.g. Telerate Page 3750.">
+    value number (0..1) <"The value of the the                         quotation.">
+    measureType AssetMeasureType (0..1) <"The type of the value that is measured. This                         could be an NPV, a cash flow, a clean price, etc.">
+    quoteUnits PriceQuoteUnits (0..1) <"The optional units that the measure is                         expressed in. If not supplied, this is assumed to be a price/value in                         currency units.">
+    side QuotationSideEnum (0..1) <"The side (bid/mid/ask) of the                         measure.">
+    currency Currency (0..1) <"The optional currency that the measure is                         expressed in. If not supplied, this is defaulted from the reportingCurrency                         in the valuationScenarioDefinition.">
+    currencyType ReportingCurrencyType (0..1) <"The optional currency that the measure is                         expressed in. If not supplied, this is defaulted from the reportingCurrency                         in the valuationScenarioDefinition.">
+    timing QuoteTiming (0..1) <"When during a day the quote is for. Typically,                         if this element is supplied, the QuoteLocation needs also to be                         supplied.">
+    businessCenter BusinessCenter (0..1) <"A city or other business                         center.">
+    exchangeId ExchangeId (0..1) <"The exchange (e.g. stock or futures exchange)                         from which the quote is obtained.">
+    informationSource InformationSource (0..*) <"The information source where a published or                         displayed market rate will be obtained, e.g. Telerate Page                         3750.">
     pricingModel PricingModel (0..1) <".">
-    time zonedDateTime (0..1) <"When the quote was observed or when a calculated value was generated.">
-    valuationDate zonedDateTime (0..1) <"When the quote was computed.">
-    expiryTime zonedDateTime (0..1) <"When does the quote cease to be valid.">
-    cashflowType CashflowType (0..1) <"For cash flows, the type of the cash flows. Examples include: Coupon payment, Premium Fee, Settlement Fee, Brokerage Fee, etc.">
+    time zonedDateTime (0..1) <"When the quote was observed or when a                         calculated value was generated.">
+    valuationDate zonedDateTime (0..1) <"When the quote was                         computed.">
+    expiryTime zonedDateTime (0..1) <"When does the quote cease to be                         valid.">
+    cashflowType CashflowType (0..1) <"For cash flows, the type of the cash flows.                         Examples include: Coupon payment, Premium Fee, Settlement Fee, Brokerage                         Fee, etc.">
     sensitivitySet SensitivitySet (0..*) <"Zero or more sets of sensitivities of this measure to various input parameters.">
 
     condition Choice:
@@ -55,9 +55,9 @@ type Sensitivity: <"The sensitivity of a value to a defined change in input para
 type SensitivitySet: <"A collection of sensitivities. References a definition that explains the meaning/type of the sensitivities.">
 
     id string (0..1)
-    name NonEmptyToken (0..1)
+    name NonEmptyToken (0..1) <"A non-empty textual label assigned to identify the sensitivity collection represented by this set for valuation purposes.">
     definitionReference SensitivitySetDefinitionReference (0..1) <"A reference to a sensitivity set definition.">
-    sensitivity Sensitivity (0..*)
+    sensitivity Sensitivity (0..*) <"A sensitivity value measuring the response to a defined change in input parameters, interpreted according to the referenced set definition.">
 
 type ValuationSetDetail: <"The amount of detail provided in the valuation set, e.g. is market environment data provided, are risk definitions provided, etc.">
 

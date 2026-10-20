@@ -5,299 +5,299 @@ import fpml.consolidated.*
 import fpml.consolidated.doc.*
 import fpml.consolidated.shared.*
 
-type EventStatusResponse extends ResponseMessage: <"A type defining the content model for a message normally generated in response to a requestEventStatus request.">
+type EventStatusResponse extends ResponseMessage: <"A top-level response message generated to provide event status information following a corresponding requestEventStatus request. A type defining the content model for a message normally generated in         response to a requestEventStatus request.">
     [rootType]
 
-    statusItem EventStatusItem (0..*)
+    statusItem EventStatusItem (0..*) <"Relates an event identifier to its current status in the response to an event status enquiry.">
     party Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
     account Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
-type EventStatusException extends Exception:
+type EventStatusException extends Exception: <"A top-level FpML message notifying another system that an exception concerning event status has been detected.">
     [rootType]
 
 type MessageRejected extends Exception: <"The root element used for rejected message exceptions">
     [rootType]
 
-type ServiceNotification extends NotificationMessage: <"A type defining the content model for a message that allows a service to send a notification message to a user of the service.">
+type ServiceNotification extends NotificationMessage: <"A top-level message through which a service informs a user of a business event, without expecting a reply. A type defining the content model for a message that allows a service to         send a notification message to a user of the service.">
     [rootType]
 
-    serviceName NormalizedString (0..1) <"The name of the service to which the message applies">
-    status ServiceStatus (0..1) <"The current state of the service (e.g. Available, Unavailable).">
-    processingStatus ServiceProcessingStatus (0..1) <"A description of the stage of processing of the service, for example EndofDayProcessingCutoffOccurred, EndOfDayProcessingCompleted. [TBD: could be combined with advisory]">
-    advisory ServiceAdvisory (0..1) <"A human-readable message providing information about the service..">
+    serviceName NormalizedString (0..1) <"The name of the service to which the message                 applies">
+    status ServiceStatus (0..1) <"The current state of the service (e.g. Available,                   Unavailable).">
+    processingStatus ServiceProcessingStatus (0..1) <"A description of the stage of processing of the service, for                   example EndofDayProcessingCutoffOccurred, EndOfDayProcessingCompleted. [TBD: could                   be combined with advisory]">
+    advisory ServiceAdvisory (0..1) <"A human-readable message providing information about the                   service..">
 
     condition Choice:
         optional choice status, processingStatus, advisory
 
-type ServiceNotificationException extends Exception:
+type ServiceNotificationException extends Exception: <"A top-level FpML message informing another system that an exception has been detected for a service notification.">
     [rootType]
 
-type RequestEventStatus extends NonCorrectableRequestMessage: <"A type defining the content model for a message allowing one party to query the status of one event (trade or post-trade event) previously sent to another party.">
+type RequestEventStatus extends NonCorrectableRequestMessage: <"A top-level request message for querying another party about the status of one previously sent trade or post-trade event. A type defining the content model for a message allowing one party to query         the status of one event (trade or post-trade event) previously sent to another         party.">
     [rootType]
 
-    businessProcess BusinessProcess (0..1)
-    eventIdentifier EventIdentifier (0..1)
+    businessProcess BusinessProcess (0..1) <"Identifies the type of business process associated with the event whose status is being queried, using an applicable coding scheme.">
+    eventIdentifier EventIdentifier (0..1) <"Identifies the previously submitted trade or post-trade event whose status is requested, using its correlation identifier or another business identifier.">
     party Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
     account Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
-type RequestRetransmission extends NonCorrectableRequestMessage: <"A message to request that a message be retransmitted. The original message will typically be a component of a group of messages, such as a portfolio or a report in multiple parts.">
+type RequestRetransmission extends NonCorrectableRequestMessage: <"A top-level request message seeking retransmission of an original message, typically within a portfolio or multipart report, that cannot subsequently be corrected or retracted. A message to request that a message be retransmitted. The original message         will typically be a component of a group of messages, such as a portfolio or a report in         multiple parts.">
     [rootType]
 
-    portfolioReference PortfolioConstituentReference (0..1)
-    reportIdentification ReportSectionIdentification (0..1)
+    portfolioReference PortfolioConstituentReference (0..1) <"Identifies a portfolio constituent comprising individual messages to be included and acted upon collectively in a request retransmission message.">
+    reportIdentification ReportSectionIdentification (0..1) <"Provides the identifiers for the specific report and section associated with a report chunk in a retransmission request message.">
     party Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
     account Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
     condition Choice:
         optional choice portfolioReference, reportIdentification
 
-type VerificationStatusNotification extends NonCorrectableRequestMessage:
+type VerificationStatusNotification extends NonCorrectableRequestMessage: <"A top-level message conveying verification status, structured as a request that cannot be subsequently corrected or retracted. A non-correctable request message reporting a trade’s verification status, supporting explanatory reasons, party trade identification, and associated party and account information.">
     [rootType]
 
-    status VerificationStatus (1..1)
-    reason Reason (0..*) <"The reason for any dispute or change in verification status.">
-    partyTradeIdentifier PartyTradeIdentifier (1..1)
+    status VerificationStatus (1..1) <"The verification status of the position, as reported by the sender, such as verified or disputed.">
+    reason Reason (0..*) <"The reason for any dispute or change in verification                 status.">
+    partyTradeIdentifier PartyTradeIdentifier (1..1) <"The trade identifiers allocated by a party for the trade to which the reported verification status applies.">
     party Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
     account Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
-type VerificationStatusException extends Exception:
+type VerificationStatusException extends Exception: <"A top-level message informing another system that an exception has been detected in relation to verification status.">
     [rootType]
 
-type VerificationStatusAcknowledgement extends Acknowledgement:
+type VerificationStatusAcknowledgement extends Acknowledgement: <"A top-level response message representing acknowledgement of verification status information under the generic message content model.">
     [rootType]
 
-type AddressedMessage extends Message: <"A type defining the basic content for a message sent to inform another system that some exception has been detected.">
+type AddressedMessage extends Message: <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). A type defining the basic content for a message sent to inform another         system that some exception has been detected.">
 
-    header NotificationMessageHeader (0..1)
+    header NotificationMessageHeader (0..1) <"Provides identification and routing information for an addressed notification message informing another system that an exception has been detected.">
 
-type Acknowledgement extends ResponseMessage:
+type Acknowledgement extends ResponseMessage: <"A response message acknowledging a prior message that may include its original unprocessed content and associated party and account information.">
 
-    originalMessage UnprocessedElementWrapper (0..1)
+    originalMessage UnprocessedElementWrapper (0..1) <"A wrapper containing the unvalidated structure of the original message to which the acknowledgement applies.">
     party Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
     account Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
-type BusinessProcess: <"A type that can be used to identify the type of business process in a request. Examples include Allocation, Clearing, Confirmation, etc.">
+type BusinessProcess: <"A type that can be used to identify the type of business process in a         request. Examples include Allocation, Clearing, Confirmation, etc.">
 
     value Scheme (1..1)
     businessProcessScheme NonEmptyURI (0..1)
 
-type CorrectableRequestMessage extends RequestMessage: <"A type defining the content model for a request message that can be subsequently corrected or retracted.">
+type CorrectableRequestMessage extends RequestMessage: <"A type defining the content model for a request message that can be         subsequently corrected or retracted.">
 
-    isCorrection boolean (0..1) <"Indicates if this message corrects an earlier request.">
-    parentCorrelationId CorrelationId (0..1) <"An optional identifier used to correlate between related processes">
-    correlationId CorrelationId (0..2) <"A qualified identifier used to correlate between messages">
-    sequenceNumber int(min: 1) (0..1) <"A numeric value that can be used to order messages with the same correlation identifier from the same sender.">
+    isCorrection boolean (0..1) <"Indicates if this message corrects an earlier                 request.">
+    parentCorrelationId CorrelationId (0..1) <"An optional identifier used to correlate between related             processes">
+    correlationId CorrelationId (0..2) <"A qualified identifier used to correlate between             messages">
+    sequenceNumber int(min: 1) (0..1) <"A numeric value that can be used to order messages with the same             correlation identifier from the same sender.">
     onBehalfOf OnBehalfOf (0..4) <"Indicates which party (or parties) (and accounts) a trade or event is being processed for. Normally there will only be a maximum of 2 parties, but in the case of a novation there could be a transferor, transferee, remaining party, and other remaining party. Also, in the context of a trade package there could be several parties for which limit check is requested, necessitating multiple onBehalfOf elements. Except for these cases, there should be no more than two onBehalfOf references in a message.">
 
-type CorrelationId: <"A type defining a correlation identifier and qualifying scheme">
+type CorrelationId: <"A type defining a correlation identifier and qualifying         scheme">
 
     value NonEmptyScheme (1..1)
     correlationIdScheme NonEmptyURI (1..1)
 
-type EventIdentifier: <"Identification of a business event, for example through its correlation id or a business identifier.">
+type EventIdentifier: <"Identification of a business event, for example through its correlation id         or a business identifier.">
 
-    correlationId CorrelationId (0..2) <"A qualified identifier used to correlate between messages">
-    sequenceNumber int(min: 1) (0..1) <"A numeric value that can be used to order messages with the same correlation identifier from the same sender.">
-    tradeIdentifier TradeIdentifier (0..1)
+    correlationId CorrelationId (0..2) <"A qualified identifier used to correlate between             messages">
+    sequenceNumber int(min: 1) (0..1) <"A numeric value that can be used to order messages with the same             correlation identifier from the same sender.">
+    tradeIdentifier TradeIdentifier (0..1) <"Provides a trade identifier issued by the indicated party to identify the business event associated with the containing message.">
 
     condition Choice:
         tradeIdentifier is absent or correlationId is absent and sequenceNumber is absent
 
-type EventStatus: <"A coding scheme used to describe the matching/confirmation status of a trade, post-trade event, position, or cash flows.">
+type EventStatus: <"A coding scheme used to describe the matching/confirmation status of a         trade, post-trade event, position, or cash flows.">
 
     value Scheme (1..1)
     eventStatusScheme NonEmptyURI (0..1)
 
-type EventStatusItem: <"A type used in event status enquiry messages which relates an event identifier to its current status value.">
+type EventStatusItem: <"A type used in event status enquiry messages which relates an event         identifier to its current status value.">
 
     eventIdentifier EventIdentifier (0..1) <"An instance of a unique event identifier.">
     status EventStatus (0..1) <"An event status value.">
 
-type Exception extends Message: <"A type defining the basic content for a message sent to inform another system that some exception has been detected.">
+type Exception extends Message: <"A type defining the basic content for a message sent to inform another         system that some exception has been detected.">
 
-    header ExceptionMessageHeader (0..1)
-    validation Validation (0..*) <"A list of validation sets the sender asserts the document is valid with respect to.">
-    parentCorrelationId CorrelationId (0..1) <"An optional identifier used to correlate between related processes">
-    correlationId CorrelationId (0..2) <"A qualified identifier used to correlate between messages">
-    sequenceNumber int(min: 1) (0..1) <"A numeric value that can be used to order messages with the same correlation identifier from the same sender.">
-    reason Reason (0..*) <"An instance of the Reason type used to record the nature of any errors associated with a message.">
-    additionalData AdditionalData (0..1) <"Any string of additional data that may help the message processor, for example in a rejection message this might contain a code value or the text of the original request (within a CDATA section).">
+    header ExceptionMessageHeader (0..1) <"Contains header information specific to a message informing another system that an exception has been detected.">
+    validation Validation (0..*) <"A list of validation sets the sender asserts the document is                         valid with respect to.">
+    parentCorrelationId CorrelationId (0..1) <"An optional identifier used to correlate between related             processes">
+    correlationId CorrelationId (0..2) <"A qualified identifier used to correlate between             messages">
+    sequenceNumber int(min: 1) (0..1) <"A numeric value that can be used to order messages with the same             correlation identifier from the same sender.">
+    reason Reason (0..*) <"An instance of the Reason type used to record the nature of any errors             associated with a message.">
+    additionalData AdditionalData (0..1) <"Any string of additional data that may help the message processor, for             example in a rejection message this might contain a code value or the text of the             original request (within a CDATA section).">
 
-type ExceptionMessageHeader extends MessageHeader: <"A type defining the content model for an exception message header.">
+type ExceptionMessageHeader extends MessageHeader: <"A type defining the content model for an exception message         header.">
 
-    inReplyTo MessageId (0..1) <"A copy of the unique message identifier (within it own coding scheme) to which this message is responding.">
-    sentBy MessageAddress (0..1) <"The unique identifier (within its coding scheme) for the originator of a message instance.">
-    sendTo MessageAddress (0..*) <"A unique identifier (within its coding scheme) indicating an intended recipent of a message.">
-    copyTo MessageAddress (0..*) <"A unique identifier (within the specified coding scheme) giving the details of some party to whom a copy of this message will be sent for reference.">
-    creationTimestamp zonedDateTime (0..1) <"The date and time (on the source system) when this message instance was created.">
-    expiryTimestamp zonedDateTime (0..1) <"The date and time (on the source system) when this message instance will be considered expired.">
-    implementationSpecification ImplementationSpecification (0..1) <"The version(s) of specifications that the sender asserts the message was developed for.">
-    partyMessageInformation PartyMessageInformation (0..*) <"Additional message information that may be provided by each involved party.">
+    inReplyTo MessageId (0..1) <"A copy of the unique message identifier (within it own coding                 scheme) to which this message is responding.">
+    sentBy MessageAddress (0..1) <"The unique identifier (within its coding scheme) for the originator of             a message instance.">
+    sendTo MessageAddress (0..*) <"A unique identifier (within its coding scheme) indicating an intended             recipent of a message.">
+    copyTo MessageAddress (0..*) <"A unique identifier (within the specified coding scheme) giving the             details of some party to whom a copy of this message will be sent for             reference.">
+    creationTimestamp zonedDateTime (0..1) <"The date and time (on the source system) when this message instance was             created.">
+    expiryTimestamp zonedDateTime (0..1) <"The date and time (on the source system) when this message instance             will be considered expired.">
+    implementationSpecification ImplementationSpecification (0..1) <"The version(s) of specifications that the sender asserts the message             was developed for.">
+    partyMessageInformation PartyMessageInformation (0..*) <"Additional message information that may be provided by each involved             party.">
     signature SignatureType (0..*)
 
-type Message extends Document: <"A type defining the basic structure of all FpML messages which is refined by its derived types.">
+type Message extends Document: <"A type defining the basic structure of all FpML messages which is refined         by its derived types.">
 
 type MessageAddress: <"The data type used for identifying a message address.">
 
     value Scheme (1..1)
     messageAddressScheme NonEmptyURI (0..1)
 
-type MessageHeader: <"A type defining the content model for a generic message header that is refined by its derived classes.">
+type MessageHeader: <"A type defining the content model for a generic message header that is         refined by its derived classes.">
 
-    messageId MessageId (0..1) <"A unique identifier (within its coding scheme) assigned to the message by its creating party.">
+    messageId MessageId (0..1) <"A unique identifier (within its coding scheme) assigned to the message             by its creating party.">
 
 type MessageId: <"The data type use for message identifiers.">
 
     value NonEmptyScheme (1..1)
     messageIdScheme NonEmptyURI (1..1)
 
-type NonCorrectableRequestMessage extends RequestMessage: <"A type defining the content model for a request message that cannot be subsequently corrected or retracted.">
+type NonCorrectableRequestMessage extends RequestMessage: <"A type defining the content model for a request message that cannot be         subsequently corrected or retracted.">
 
-    parentCorrelationId CorrelationId (0..1) <"An optional identifier used to correlate between related processes">
-    correlationId CorrelationId (0..2) <"A qualified identifier used to correlate between messages">
-    sequenceNumber int(min: 1) (0..1) <"A numeric value that can be used to order messages with the same correlation identifier from the same sender.">
+    parentCorrelationId CorrelationId (0..1) <"An optional identifier used to correlate between related             processes">
+    correlationId CorrelationId (0..2) <"A qualified identifier used to correlate between             messages">
+    sequenceNumber int(min: 1) (0..1) <"A numeric value that can be used to order messages with the same             correlation identifier from the same sender.">
     onBehalfOf OnBehalfOf (0..4) <"Indicates which party (or parties) (and accounts) a trade or event is being processed for. Normally there will only be a maximum of 2 parties, but in the case of a novation there could be a transferor, transferee, remaining party, and other remaining party. Also, in the context of a trade package there could be several parties for which limit check is requested, necessitating multiple onBehalfOf elements. Except for these cases, there should be no more than two onBehalfOf references in a message.">
 
-type NotificationMessage extends Message: <"A type defining the basic content for a message sent to inform another system that some \'business event\' has occured. Notifications are not expected to be replied to.">
+type NotificationMessage extends Message: <"A type defining the basic content for a message sent to inform another         system that some \'business event\' has occured. Notifications are not expected to be replied         to.">
 
-    header NotificationMessageHeader (0..1)
-    validation Validation (0..*) <"A list of validation sets the sender asserts the document is valid with respect to.">
-    parentCorrelationId CorrelationId (0..1) <"An optional identifier used to correlate between related processes">
-    correlationId CorrelationId (0..2) <"A qualified identifier used to correlate between messages">
-    sequenceNumber int(min: 1) (0..1) <"A numeric value that can be used to order messages with the same correlation identifier from the same sender.">
+    header NotificationMessageHeader (0..1) <"Contains header information tailored to identify and route a business event notification that is not expected to receive a reply.">
+    validation Validation (0..*) <"A list of validation sets the sender asserts the document is                         valid with respect to.">
+    parentCorrelationId CorrelationId (0..1) <"An optional identifier used to correlate between related             processes">
+    correlationId CorrelationId (0..2) <"A qualified identifier used to correlate between             messages">
+    sequenceNumber int(min: 1) (0..1) <"A numeric value that can be used to order messages with the same             correlation identifier from the same sender.">
     onBehalfOf OnBehalfOf (0..4) <"Indicates which party (or parties) (and accounts) a trade or event is being processed for. Normally there will only be a maximum of 2 parties, but in the case of a novation there could be a transferor, transferee, remaining party, and other remaining party. Also, in the context of a trade package there could be several parties for which limit check is requested, necessitating multiple onBehalfOf elements. Except for these cases, there should be no more than two onBehalfOf references in a message.">
 
-type NotificationMessageHeader extends MessageHeader: <"A type that refines the generic message header to match the requirements of a NotificationMessage.">
+type NotificationMessageHeader extends MessageHeader: <"A type that refines the generic message header to match the requirements of         a NotificationMessage.">
 
-    inReplyTo MessageId (0..1) <"A copy of the unique message identifier (within it own coding scheme) to which this message is responding.">
-    sentBy MessageAddress (0..1) <"The unique identifier (within its coding scheme) for the originator of a message instance.">
-    sendTo MessageAddress (0..*) <"A unique identifier (within its coding scheme) indicating an intended recipent of a message.">
-    copyTo MessageAddress (0..*) <"A unique identifier (within the specified coding scheme) giving the details of some party to whom a copy of this message will be sent for reference.">
-    creationTimestamp zonedDateTime (0..1) <"The date and time (on the source system) when this message instance was created.">
-    expiryTimestamp zonedDateTime (0..1) <"The date and time (on the source system) when this message instance will be considered expired.">
-    implementationSpecification ImplementationSpecification (0..1) <"The version(s) of specifications that the sender asserts the message was developed for.">
-    partyMessageInformation PartyMessageInformation (0..*) <"Additional message information that may be provided by each involved party.">
+    inReplyTo MessageId (0..1) <"A copy of the unique message identifier (within it own coding                 scheme) to which this message is responding.">
+    sentBy MessageAddress (0..1) <"The unique identifier (within its coding scheme) for the originator of             a message instance.">
+    sendTo MessageAddress (0..*) <"A unique identifier (within its coding scheme) indicating an intended             recipent of a message.">
+    copyTo MessageAddress (0..*) <"A unique identifier (within the specified coding scheme) giving the             details of some party to whom a copy of this message will be sent for             reference.">
+    creationTimestamp zonedDateTime (0..1) <"The date and time (on the source system) when this message instance was             created.">
+    expiryTimestamp zonedDateTime (0..1) <"The date and time (on the source system) when this message instance             will be considered expired.">
+    implementationSpecification ImplementationSpecification (0..1) <"The version(s) of specifications that the sender asserts the message             was developed for.">
+    partyMessageInformation PartyMessageInformation (0..*) <"Additional message information that may be provided by each involved             party.">
     signature SignatureType (0..*)
 
-type ImplementationSpecification: <"A version of a specification document used by the message generator to format the document.">
+type ImplementationSpecification: <"A version of a specification document used by the message generator to         format the document.">
 
-    name NormalizedString (0..1)
-    version ImplementationSpecificationVersion (0..1)
-    date zonedDateTime (0..1)
+    name NormalizedString (0..1) <"The textual designation of the specification document used by the message generator to format the generated document.">
+    version ImplementationSpecificationVersion (0..1) <"Identifies the version of the implementation specification used by the message generator, using a scheme-qualified value.">
+    date zonedDateTime (0..1) <"The date associated with the specification document version used by the message generator to format the document.">
 
-type ImplementationSpecificationVersion:
+type ImplementationSpecificationVersion: <"A qualified identifier for the version of a specification document used to format a message, with an optional URI identifying the external scheme.">
 
     value Scheme (1..1)
     implementationSpecificationVersionScheme NonEmptyURI (0..1)
 
-type PartyMessageInformation: <"A type defining additional information that may be recorded against a message.">
+type PartyMessageInformation: <"A type defining additional information that may be recorded against a         message.">
 
-    partyReference PartyReference (0..1) <"Identifies that party that has ownership of this information.">
+    partyReference PartyReference (0..1) <"Identifies that party that has ownership of this             information.">
 
-type PortfolioConstituentReference extends PortfolioReferenceBase: <"A structure used to group together individual messages that can be acted on at a group level.">
+type PortfolioConstituentReference extends PortfolioReferenceBase: <"A structure used to group together individual messages that can be acted on         at a group level.">
 
-    sequenceNumber int(min: 1) (0..1) <"A numeric, sequentially ascending (i.e. gapless) value (starting at 1) that can be used to identify and distinguish the individual constituents of a portfolio request. A recipient should ensure that all sequence numbers from 1 to the final sequence number (where submissionsComplete is true) have arrived before completing the portfolio request.">
+    sequenceNumber int(min: 1) (0..1) <"A numeric, sequentially ascending (i.e. gapless) value (starting at                 1) that can be used to identify and distinguish the individual constituents of a                 portfolio request. A recipient should ensure that all sequence numbers from 1 to the                 final sequence number (where submissionsComplete is true) have arrived before                 completing the portfolio request.">
 
 type PortfolioReferenceBase: <"A structure used to identify a portfolio in a message.">
 
-    portfolioName PortfolioName (0..1) <"An identifier that is unique for each portfolio-level request, and which can be used to group together the individual messages in the portfolio request.">
+    portfolioName PortfolioName (0..1) <"An identifier that is unique for each portfolio-level request, and             which can be used to group together the individual messages in the portfolio             request.">
 
-type RequestMessage extends Message: <"A type defining the basic content of a message that requests the receiver to perform some business operation determined by the message type and its content.">
+type RequestMessage extends Message: <"A type defining the basic content of a message that requests the receiver         to perform some business operation determined by the message type and its         content.">
 
-    header RequestMessageHeader (0..1)
-    validation Validation (0..*) <"A list of validation sets the sender asserts the document is valid with respect to.">
+    header RequestMessageHeader (0..1) <"Contains request-specific header information for identifying and routing the message associated with the requested business operation.">
+    validation Validation (0..*) <"A list of validation sets the sender asserts the document is                         valid with respect to.">
 
-type RequestMessageHeader extends MessageHeader: <"A type refining the generic message header content to make it specific to request messages.">
+type RequestMessageHeader extends MessageHeader: <"A type refining the generic message header content to make it specific to         request messages.">
 
-    sentBy MessageAddress (0..1) <"The unique identifier (within its coding scheme) for the originator of a message instance.">
-    sendTo MessageAddress (0..*) <"A unique identifier (within its coding scheme) indicating an intended recipent of a message.">
-    copyTo MessageAddress (0..*) <"A unique identifier (within the specified coding scheme) giving the details of some party to whom a copy of this message will be sent for reference.">
-    creationTimestamp zonedDateTime (0..1) <"The date and time (on the source system) when this message instance was created.">
-    expiryTimestamp zonedDateTime (0..1) <"The date and time (on the source system) when this message instance will be considered expired.">
-    implementationSpecification ImplementationSpecification (0..1) <"The version(s) of specifications that the sender asserts the message was developed for.">
-    partyMessageInformation PartyMessageInformation (0..*) <"Additional message information that may be provided by each involved party.">
+    sentBy MessageAddress (0..1) <"The unique identifier (within its coding scheme) for the originator of             a message instance.">
+    sendTo MessageAddress (0..*) <"A unique identifier (within its coding scheme) indicating an intended             recipent of a message.">
+    copyTo MessageAddress (0..*) <"A unique identifier (within the specified coding scheme) giving the             details of some party to whom a copy of this message will be sent for             reference.">
+    creationTimestamp zonedDateTime (0..1) <"The date and time (on the source system) when this message instance was             created.">
+    expiryTimestamp zonedDateTime (0..1) <"The date and time (on the source system) when this message instance             will be considered expired.">
+    implementationSpecification ImplementationSpecification (0..1) <"The version(s) of specifications that the sender asserts the message             was developed for.">
+    partyMessageInformation PartyMessageInformation (0..*) <"Additional message information that may be provided by each involved             party.">
     signature SignatureType (0..*)
 
-type ReportId: <"A type that can be used to hold an identifier for a report instance.">
+type ReportId: <"A type that can be used to hold an identifier for a report         instance.">
 
     value NonEmptyScheme (1..1)
     reportIdScheme NonEmptyURI (0..1)
 
-type ReportIdentification extends ReportSectionIdentification: <"A type that allows the specific report and section to be identified.">
+type ReportIdentification extends ReportSectionIdentification: <"A type that allows the specific report and section to be         identified.">
 
-    numberOfSections int(min: 1) (0..1) <"A numeric value, optionally supplied by the sender, that can be used to specify the number of sections constituting a report.">
-    submissionsComplete boolean (0..1) <"Indicates whether all sections have been sent for this report instance ID.">
+    numberOfSections int(min: 1) (0..1) <"A numeric value, optionally supplied by the sender, that can be                 used to specify the number of sections constituting a report.">
+    submissionsComplete boolean (0..1) <"Indicates whether all sections have been sent for this report                 instance ID.">
 
-type ReportSectionIdentification: <"A type that allows the specific report and section to be identified.">
+type ReportSectionIdentification: <"A type that allows the specific report and section to be         identified.">
 
-    reportId ReportId (0..1) <"An identifier for the specific instance of this report.">
-    sectionNumber int(min: 1) (0..1) <"A strictly ascending sequential (gapless) numeric value that can be used to identify the section of a report.">
+    reportId ReportId (0..1) <"An identifier for the specific instance of this             report.">
+    sectionNumber int(min: 1) (0..1) <"A strictly ascending sequential (gapless) numeric value that can be             used to identify the section of a report.">
 
-type ResponseMessage extends Message: <"A type refining the generic message content model to make it specific to response messages.">
+type ResponseMessage extends Message: <"A type refining the generic message content model to make it specific to         response messages.">
 
-    header ResponseMessageHeader (0..1)
-    validation Validation (0..*) <"A list of validation sets the sender asserts the document is valid with respect to.">
-    parentCorrelationId CorrelationId (0..1) <"An optional identifier used to correlate between related processes">
-    correlationId CorrelationId (0..2) <"A qualified identifier used to correlate between messages">
-    sequenceNumber int(min: 1) (0..1) <"A numeric value that can be used to order messages with the same correlation identifier from the same sender.">
+    header ResponseMessageHeader (0..1) <"Provides header information specialized for identifying and processing a response message within the FpML messaging framework.">
+    validation Validation (0..*) <"A list of validation sets the sender asserts the document is                         valid with respect to.">
+    parentCorrelationId CorrelationId (0..1) <"An optional identifier used to correlate between related             processes">
+    correlationId CorrelationId (0..2) <"A qualified identifier used to correlate between             messages">
+    sequenceNumber int(min: 1) (0..1) <"A numeric value that can be used to order messages with the same             correlation identifier from the same sender.">
     onBehalfOf OnBehalfOf (0..4) <"Indicates which party (or parties) (and accounts) a trade or event is being processed for. Normally there will only be a maximum of 2 parties, but in the case of a novation there could be a transferor, transferee, remaining party, and other remaining party. Also, in the context of a trade package there could be several parties for which limit check is requested, necessitating multiple onBehalfOf elements. Except for these cases, there should be no more than two onBehalfOf references in a message.">
 
-type ResponseMessageHeader extends MessageHeader: <"A type refining the generic message header to make it specific to response messages.">
+type ResponseMessageHeader extends MessageHeader: <"A type refining the generic message header to make it specific to response         messages.">
 
-    inReplyTo MessageId (0..1) <"A copy of the unique message identifier (within it own coding scheme) to which this message is responding.">
-    sentBy MessageAddress (0..1) <"The unique identifier (within its coding scheme) for the originator of a message instance.">
-    sendTo MessageAddress (0..*) <"A unique identifier (within its coding scheme) indicating an intended recipent of a message.">
-    copyTo MessageAddress (0..*) <"A unique identifier (within the specified coding scheme) giving the details of some party to whom a copy of this message will be sent for reference.">
-    creationTimestamp zonedDateTime (0..1) <"The date and time (on the source system) when this message instance was created.">
-    expiryTimestamp zonedDateTime (0..1) <"The date and time (on the source system) when this message instance will be considered expired.">
-    implementationSpecification ImplementationSpecification (0..1) <"The version(s) of specifications that the sender asserts the message was developed for.">
-    partyMessageInformation PartyMessageInformation (0..*) <"Additional message information that may be provided by each involved party.">
+    inReplyTo MessageId (0..1) <"A copy of the unique message identifier (within it own coding                 scheme) to which this message is responding.">
+    sentBy MessageAddress (0..1) <"The unique identifier (within its coding scheme) for the originator of             a message instance.">
+    sendTo MessageAddress (0..*) <"A unique identifier (within its coding scheme) indicating an intended             recipent of a message.">
+    copyTo MessageAddress (0..*) <"A unique identifier (within the specified coding scheme) giving the             details of some party to whom a copy of this message will be sent for             reference.">
+    creationTimestamp zonedDateTime (0..1) <"The date and time (on the source system) when this message instance was             created.">
+    expiryTimestamp zonedDateTime (0..1) <"The date and time (on the source system) when this message instance             will be considered expired.">
+    implementationSpecification ImplementationSpecification (0..1) <"The version(s) of specifications that the sender asserts the message             was developed for.">
+    partyMessageInformation PartyMessageInformation (0..*) <"Additional message information that may be provided by each involved             party.">
     signature SignatureType (0..*)
 
-type ServiceAdvisory: <"A type defining the content model for a human-readable notification to the users of a service.">
+type ServiceAdvisory: <"A type defining the content model for a human-readable notification to the         users of a service.">
 
-    category ServiceAdvisoryCategory (0..1) <"The category or type of the notification message, e.g. availability, product coverage, rules, etc.">
+    category ServiceAdvisoryCategory (0..1) <"The category or type of the notification message, e.g. availability,             product coverage, rules, etc.">
     description NonEmptyNormalizedString (0..1) <"A human-readable notification.">
-    effectiveFrom zonedDateTime (0..1) <"The time at which the information supplied by the advisory becomes effective. For example, if the advisory advises of a newly planned service outage, it will be the time the service outage begins.">
-    effectiveTo zonedDateTime (0..1) <"The time at which the information supplied by the advisory becomes no longer effective. For example, if the advisory advises of a newly planned service outage, it will be the time the service outage ends.">
+    effectiveFrom zonedDateTime (0..1) <"The time at which the information supplied by the advisory becomes             effective. For example, if the advisory advises of a newly planned service outage, it             will be the time the service outage begins.">
+    effectiveTo zonedDateTime (0..1) <"The time at which the information supplied by the advisory becomes no             longer effective. For example, if the advisory advises of a newly planned service             outage, it will be the time the service outage ends.">
 
-type ServiceAdvisoryCategory: <"A type that can be used to describe the category of an advisory message, e.g.. Availability, Rules, Products, etc., etc..">
+type ServiceAdvisoryCategory: <"A type that can be used to describe the category of an advisory message,         e.g.. Availability, Rules, Products, etc., etc..">
 
     value Scheme (1..1)
     serviceAdvisoryCategoryScheme NonEmptyURI (0..1)
 
-type ServiceProcessingCycle: <"A type that can be used to describe the processing phase of a service. For example, EndOfDay, Intraday.">
+type ServiceProcessingCycle: <"A type that can be used to describe the processing phase of a service. For         example, EndOfDay, Intraday.">
 
     value Scheme (1..1)
     serviceProcessingCycleScheme NonEmptyURI (0..1)
 
-type ServiceProcessingEvent: <"A type that can be used to describe a stage or step in processing provided by a service, for example processing completed.">
+type ServiceProcessingEvent: <"A type that can be used to describe a stage or step in processing provided         by a service, for example processing completed.">
 
     value Scheme (1..1)
     serviceProcessingEventScheme NonEmptyURI (0..1)
 
-type ServiceProcessingStatus: <"A type defining the content model for report on the status of the processing by a service. In the future we may wish to provide some kind of scope or other qualification for the event, e.g. the currencies, products, or books to which it applies.">
+type ServiceProcessingStatus: <"A type defining the content model for report on the status of the         processing by a service. In the future we may wish to provide some kind of scope or other         qualification for the event, e.g. the currencies, products, or books to which it         applies.">
 
-    cycle ServiceProcessingCycle (0..1) <"The processing cycle or phase that this message describes. For example, EndOfDay or Intraday.">
-    step ServiceProcessingStep (0..1) <"The stage within a processing cycle or phase that this message describes. For example, Netting or Valuation.">
-    event ServiceProcessingEvent (0..1) <"The event that occurred within the cycle or step, for example \"Started\" or \"Completed\"..">
+    cycle ServiceProcessingCycle (0..1) <"The processing cycle or phase that this message describes. For example,             EndOfDay or Intraday.">
+    step ServiceProcessingStep (0..1) <"The stage within a processing cycle or phase that this message             describes. For example, Netting or Valuation.">
+    event ServiceProcessingEvent (0..1) <"The event that occurred within the cycle or step, for example \"Started\"             or \"Completed\"..">
 
-type ServiceProcessingStep: <"A type that can be used to describe what stage of processing a service is in. For example, Netting or Valuation.">
+type ServiceProcessingStep: <"A type that can be used to describe what stage of processing a service is         in. For example, Netting or Valuation.">
 
     value Scheme (1..1)
     serviceProcessingStep NonEmptyURI (0..1)
 
-type ServiceStatus: <"A type that can be used to describe the availability or other state of a service, e.g. Available, Unavaialble.">
+type ServiceStatus: <"A type that can be used to describe the availability or other state of a         service, e.g. Available, Unavaialble.">
 
     value Scheme (1..1)
     serviceStatusScheme NonEmptyURI (0..1)
 
-type VerificationStatus: <"The verification status of the position as reported by the sender (Verified, Disputed).">
+type VerificationStatus: <"The verification status of the position as reported by the sender         (Verified, Disputed).">
 
     value Scheme (1..1)
     verificationStatusScheme NonEmptyURI (0..1)
 
-type PortfolioReference extends PortfolioReferenceBase: <"A structure used to group together individual messages that can be acted on at a group level.">
+type PortfolioReference extends PortfolioReferenceBase: <"A structure used to group together individual messages that can be acted on         at a group level.">
 
-    sequenceNumber int (1..1) <"A numeric, sequentially ascending (i.e. gapless) value (starting at 1) that can be used to identify and distinguish the individual constituents of a portfolio request. A recipient should ensure that all sequence numbers from 1 to the final sequence number (where submissionsComplete is true) have arrived before completing the portfolio request.">
-    submissionsComplete boolean (0..1) <"Indicates whether all individual requests have been submitted for this portfolio request.">
+    sequenceNumber int (1..1) <"A numeric, sequentially ascending (i.e. gapless) value (starting at                 1) that can be used to identify and distinguish the individual constituents of a                 portfolio request. A recipient should ensure that all sequence numbers from 1 to the                 final sequence number (where submissionsComplete is true) have arrived before                 completing the portfolio request.">
+    submissionsComplete boolean (0..1) <"Indicates whether all individual requests have been submitted for                 this portfolio request.">
