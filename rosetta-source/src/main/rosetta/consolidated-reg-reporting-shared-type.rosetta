@@ -1,0 +1,113 @@
+namespace fpml.consolidated.reg.^reporting.shared : < "fpml definition" >
+version "${project.version}"
+
+import fpml.consolidated.doc.*
+import fpml.consolidated.msg.*
+import fpml.consolidated.repo.*
+import fpml.consolidated.shared.*
+
+type RegulatoryReportingStatus extends RegulatoryReportingStatusMessage: <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). Used to report the status of reporting on a trade to any regulators.">
+    [rootType]
+
+type RequestRegulatoryReportingStatus extends RequestRegulatoryReportingStatusMessage: <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). Used to request the status of reporting on a trade to any regulators.">
+    [rootType]
+
+type ApplicableRegulations: <"Specifies the list ofregulations the trade is subject to reporting. DEPRECATED. Not in use (RPTWG decision 2025-09-25).">
+
+    regulatorApplicability RegulatorApplicability (1..*) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25).">
+
+type CollateralPortfolio: <"The CollateralPortfolio component provides the ability to specify the collateral in support of the transaction reporting as of a particular value date. It includes unbounded choice of cash or nonCash collateral. This model would allow mixing cash and non-cash collateral without any regards to order. In real life transaction, you almost always see some cash or a collection of non-cash collateral blocs.">
+
+    valueDate zonedDateTime (1..1) <"Specifies the date as of which the reported cash and non-cash collateral positions and total valuation amounts apply.">
+    collateralPortfolioChoice CollateralPortfolioChoice (0..*)
+    totalValuationAmount PositiveMoney (0..*) <"Represents aggregated Market / Fair Value amount.">
+
+type CollateralPortfolioChoice:
+
+    cash PositiveMoney (0..1) <"Represents the amount of cash posted as collateral. The cash collateral component is simple, just an instance of PositiveMoney type.">
+    nonCash CollateralPosition (0..1) <"Represents the type and the amount of security (non-cash) posted as collateral. The nonCash collateral component uses SecurityValuation.model to state what security it is, how much and the current dirty price. It also includes optional ability to specify the margin or haircut that applies to this piece of collateral.">
+
+    condition Choice:
+        optional choice cash, nonCash
+
+type CollateralPortfolioId: <"A collateral portfolio identifier expressed as a text value and optionally qualified by the URI of an external reference scheme.">
+
+    value Scheme (1..1)
+    collateralPortfolioIdScheme NonEmptyURI (0..1)
+
+type CollateralPosition extends SecurityValuation: <"A valuation of security collateral, optionally qualified by either a margin ratio or haircut expressed as a decimal fraction.">
+
+    marginRatio DecimalFraction (0..1) <"An element defining an initial margin expressed as a ratio of the Market Value of the collateral to the Purchase Price. A default value of initial margin ratio of 1.00 means there is no margin and thus no risk related with the collateral. See GMRA 2000 paragraph 2(z) and GMRA 2011 paragraph 2(bb).">
+    haircut DecimalFraction (0..1) <"An element defining a haircut expressed as the percentage difference between the Market Value of the collateral and the Purchase Price of the repo and calculated as 100 multiplied by a ratio of the difference between the Market Value of the collateral and the Purchase Price of the repo to the Market Value of the collateral. Haircut is alternative way to adjust the value of collateral sold in a repurchase agreement to initial margin ratio. Because an initial margin is a percentage of the Purchase Price, while a haircut is a percentage of the Market Value of collateral, the arithmetic of initial margins and haircuts is slightly different. For example, an initial margin of 102% is not equivalent to a haircut of 2%, but to 1.961% (ie 100/102%). See GMRA 2011 paragraph 2(aa).">
+
+    condition Choice:
+        optional choice marginRatio, haircut
+
+type DisseminationId: <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). The data type used for dissemination identifiers.">
+
+    value NonEmptyScheme (1..1)
+    id string (0..1)
+    disseminationIdScheme NonEmptyURI (0..1)
+
+type PublicDissemination: <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). Information related to the public dissemination.">
+
+    disseminationId DisseminationId (0..1) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). Specifies the disseminationId used for public reporting.">
+    publicationTime zonedDateTime (0..1) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). The date and time the public report was disseminated.">
+    projectedTime zonedDateTime (0..1) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). The date and time the public report is projected to be disseminated.">
+    withdrawn zonedDateTime (0..1) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). The date and time the public report was withdrawn from the public tape.">
+
+    condition Choice:
+        optional choice publicationTime, projectedTime
+
+type RegulationName: <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). An identifier of a regulation used for regulatory reporting, for example CFTC_PART43, CFTC_PART45, CSA_2013, etc.">
+
+    value Scheme (1..1)
+    regulationNameScheme NonEmptyURI (0..1)
+
+type RegulatorApplicability: <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). Specifies the trade is subject to this regulation.">
+
+    supervisoryBody string (0..1) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25).">
+    regulation RegulationName (0..*) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25).">
+    reportingPartyReference PartyReference (0..1) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). A reference to the reporting party.">
+    counterPartyReference PartyReference (0..1) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). A reference to the reporting party.">
+
+type RegulatoryReportingCollateralization: <"A type defining collateral information to be reported.">
+
+    postingPartyReference PartyReference (1..1) <"A party that can post the collateral.">
+    beneficiaryPartyReference PartyReference (0..1) <"A reference to the party for whose benefit the reported collateral is posted by the posting party.">
+    holdingPartyReference PartyReference (0..1) <"A reference to the party that holds the collateral identified in the reported collateral portfolio.">
+    collateralizedExposureGrouping CollateralizedExposureGrouping (0..1) <"Whether the trade collateralized exposure is calculated at the individual (single) trade aggregation level or the net (multiple trades) aggregation level. SFTR description of the field: Collateralization of net exposure - Indicates whether the collateral has been provided for a net exposure, rather than for a single transaction (\'true\' or \'false\').">
+    collateralizationType CollateralizationType (0..1) <"Specifies how the transaction is collateralized by this party, fully or partially, or uncollateralized. For Transparency view, the options include Full, Partial, Uncollateralized, and One-Way. For Recordkeeping, the collateralization type refers to collateral that is posted by this firm, and One-Way option is not meaningful. In other words, if the collateralization type is Full, this trade is fully collateralized by this party. SFTR description of the field: Uncollateralised SL flag - Indicates whether the securities lending transaction is uncollateralised (\'true\' or \'false\'). Uncollateralised SL will be \'true\', if collateralizationType = \'Uncollateralized\'.">
+    portfolioId CollateralPortfolioId (0..1) <"Provides code, or other identifier for the collateral portfolio to which this belongs. The collateral portfolio describes how trades are aggregated for collateral calculation purposes. All trades that are aggregated together for collateral calculation purposes will share the same collateral portfolio code. This code may come from different sources depending on the level of aggregation defined in the CSA (e.g. it may be the LEI of a counterparty or a desk identifier). SFTR description of this field: Portfolio code - If the transaction is cleared and is included in a portfolio of transactions for which margins are exchanged, this portfolio should be identified by a unique code determined by the reporting counterparty. 52 alphanumeric character code including four special characters: .- _. Special characters are not allowed at the beginning and at the end of the code. No space allowed.">
+    postedCollateral CollateralPortfolio (0..1) <"Information about the amount of collateral actually posted by the posting party as of a particular value date.">
+
+type RegulatorReportingStatusCode: <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). A type that can be used to identify the reporting status of a transaction. Examples include FullyReported, ReportedWithWarnings, NotReported, etc.">
+
+    value Scheme (1..1)
+    reportingStatusScheme NonEmptyURI (0..1)
+
+type RegulatoryReportingStatusMessage extends Message: <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). A type defining message that can be used for returning the regulatory reporting status of a trade.">
+
+    header ResponseMessageHeader (0..1) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). Standard FpML message header">
+    tradeIdentifier PartyTradeIdentifier (0..1) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). identifies the affected trade">
+    reportingStatus ReportingStatus (0..*) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). Information about how the position is being reported to regulators.">
+    party Party (0..*) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). Reference information about parties, business units, and persons involed in the trade.">
+
+type ReportingStatus: <"DEPRECATED. Not in use (RPTWG decision 2025-09-25).">
+
+    regimeName ReportingRegimeName (0..1) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). Identifies the reporting regime under which this data is reported. For example, Dodd-Frank, EMIR, MiFID, HongKongOTCDRepository, ODRF">
+    supervisoryBody SupervisoryBody (1..1) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). Identifies the specific regulator or other supervisory body for which this data is produced. For example, CFTC, SEC, UKFSA, ODRF, SFC, ESMA.">
+    regulation RegulationName (0..1) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). Identifies the reporting regime under which this data is reported. For example, Dodd-Frank, EMIR, MiFID, HongKongOTCDRepository, ODRF">
+    reportingRole ReportingRole (0..1) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). Identifies the role of this party in reporting this trade for this regulator; roles could include ReportingParty and Voluntary reporting.">
+    reportingPurpose ReportingPurpose (0..*) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). The reason this message is being sent, for example Snapshot, PET, Confirmation, RealTimePublic.">
+    status RegulatorReportingStatusCode (1..1) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). Describes the extent to which this trade is being reported to the regime (e.g. Not reported, reported with warnings, fully reported).">
+    publicDissemination PublicDissemination (0..*) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). Describes the extent to which this trade is being reported to the regime (e.g. Not reported, reported with warnings, fully reported).">
+    reason Reason (0..*) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). Used to describe and validation errors or warnings associated with the message for the regime.">
+
+type RequestRegulatoryReportingStatusMessage extends AddressedMessage: <"DEPRECATED. Not in use (RPTWG decision 2025-09-25).">
+
+    onBehalfOf OnBehalfOf (0..4) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). Indicates which party (or parties) (and accounts) a trade or event is being processed for. Normally there will only be a maximum of 2 parties, but in the case of a novation there could be a transferor, transferee, remaining party, and other remaining party. Also, in the context of a trade package there could be several parties for which limit check is requested, necessitating multiple onBehalfOf elements. Except for these cases, there should be no more than two onBehalfOf references in a message.">
+    tradeIdentifier PartyTradeIdentifier (0..1) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). identifies the affected trade">
+    primaryAssetClass AssetClass (0..1) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). The asset class of the underlying product.">
+    relatedParty RelatedParty (0..*) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25).">
+    party Party (0..*) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). The supporting party definitions.">

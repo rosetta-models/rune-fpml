@@ -3,12 +3,12 @@ version "${project.version}"
 
 import fpml.consolidated.asset.*
 import fpml.consolidated.cd.*
-import fpml.consolidated.fpmlenum.*
+import fpml.consolidated.^enum.*
 import fpml.consolidated.option.shared.*
 import fpml.consolidated.riskdef.*
 import fpml.consolidated.shared.*
 
-type CreditCurve extends PricingStructure: <"A generic credit curve definition.">
+type CreditCurve extends PricingStructure: <"A generic credit curve providing credit-related market inputs for valuation and risk calculations as a concrete pricing structure. A generic credit curve definition.">
 
     referenceEntity LegalEntity (0..1) <"The entity for which this is defined.">
     creditEntityReference LegalEntityReference (0..1) <"An XML reference a credit entity defined elsewhere in the document.">
@@ -22,9 +22,9 @@ type CreditCurve extends PricingStructure: <"A generic credit curve definition."
     condition Choice:
         optional choice referenceEntity, creditEntityReference
 
-type CreditCurveValuation extends PricingStructureValuation: <"A set of credit curve values, which can include pricing inputs (which are typically credit spreads), default probabilities, and recovery rates.">
+type CreditCurveValuation extends PricingStructureValuation: <"A set of credit curve values comprising pricing inputs, typically credit spreads, default probabilities, and recovery rates. A set of credit curve values, which can include pricing inputs (which are typically credit spreads), default probabilities, and recovery rates.">
 
-    ^inputs QuotedAssetSet (0..1)
+    ^inputs QuotedAssetSet (0..1) <"A collection of quoted assets providing the pricing inputs used to determine the credit curve valuation.">
     defaultProbabilityCurve DefaultProbabilityCurve (0..1) <"A curve of default probabilities.">
     recoveryRate number (0..1) <"A single recovery rate, to be used for all terms.">
     recoveryRateCurve TermCurve (0..1) <"A curve of recovery rates, allowing different terms to have different recovery rates.">
@@ -32,21 +32,21 @@ type CreditCurveValuation extends PricingStructureValuation: <"A set of credit c
     condition Choice:
         optional choice recoveryRate, recoveryRateCurve
 
-type FxCurve extends PricingStructure: <"An fx curve object., which includes pricing inputs and term structures for fx forwards.">
+type FxCurve extends PricingStructure: <"A foreign exchange curve containing pricing inputs and term structures used to value foreign exchange forwards. An fx curve object., which includes pricing inputs and term structures for fx forwards.">
 
     quotedCurrencyPair QuotedCurrencyPair (0..1) <"Defines the two currencies for an FX trade and the quotation relationship between the two currencies.">
 
-type FxCurveValuation extends PricingStructureValuation: <"A valuation of an FX curve object., which includes pricing inputs and term structures for fx forwards.">
+type FxCurveValuation extends PricingStructureValuation: <"A valuation of an FX curve object, including pricing inputs and term structures for foreign exchange forwards. A valuation of an FX curve object., which includes pricing inputs and term structures for fx forwards.">
 
-    settlementCurrencyYieldCurve PricingStructureReference (0..1)
-    forecastCurrencyYieldCurve PricingStructureReference (0..1)
-    spotRate FxRateSet (0..1)
+    settlementCurrencyYieldCurve PricingStructureReference (0..1) <"A reference to the yield curve for the settlement currency used as a pricing input in the FX curve valuation.">
+    forecastCurrencyYieldCurve PricingStructureReference (0..1) <"A reference to the yield curve for the forecast currency used as an input to the FX curve valuation.">
+    spotRate FxRateSet (0..1) <"A collection of quoted spot foreign exchange rates used as pricing inputs for the FX curve valuation.">
     fxForwardCurve TermCurve (0..1) <"A curve of fx forward rates.">
     fxForwardPointsCurve TermCurve (0..1) <"A curve of fx forward point spreads.">
 
-type VolatilityMatrixValuation extends VolatilityMatrix:
+type VolatilityMatrixValuation extends VolatilityMatrix: <"Valuation data structured as a volatility matrix whose dimensionality ranges from zero to three dimensions.">
 
-type VolatilityRepresentation extends PricingStructure: <"A representation of volatilities of an asset. This is a generic structure whose values can be supplied in a specific volatility matrix.">
+type VolatilityRepresentation extends PricingStructure: <"Representation of an asset’s volatilities whose values can be supplied in a specific volatility matrix. A representation of volatilities of an asset. This is a generic structure whose values can be supplied in a specific volatility matrix.">
 
     asset AssetReference (0..1) <"A reference to the asset whose volatility is modeled.">
     yieldCurveReference YieldCurveReference (0..1) <"A reference to the yield curve whose volatility is modeled.">
@@ -54,14 +54,14 @@ type VolatilityRepresentation extends PricingStructure: <"A representation of vo
     condition Choice:
         optional choice asset, yieldCurveReference
 
-type YieldCurve extends PricingStructure: <"A generic yield curve object, which can be valued in a variety of ways.">
+type YieldCurve extends PricingStructure: <"A generic yield curve pricing structure that can be valued using a variety of valuation methods. A generic yield curve object, which can be valued in a variety of ways.">
 
-    algorithm NonEmptyNormalizedString (0..1)
-    forecastRateIndex ForecastRateIndex (0..1)
+    algorithm NonEmptyNormalizedString (0..1) <"Provides the nonempty textual designation of the computational method used to generate the characterized yield curve outputs.">
+    forecastRateIndex ForecastRateIndex (0..1) <"Identifies the rate index whose future rate values are represented by the yield curve outputs.">
 
-type YieldCurveValuation extends PricingStructureValuation: <"The values of a yield curve, including possibly inputs and outputs (dfs, forwards, zero rates).">
+type YieldCurveValuation extends PricingStructureValuation: <"Values of a yield curve, potentially including inputs and outputs such as discount factors, forward rates, and zero rates. The values of a yield curve, including possibly inputs and outputs (dfs, forwards, zero rates).">
 
-    ^inputs QuotedAssetSet (0..1)
+    ^inputs QuotedAssetSet (0..1) <"The collection of quoted assets used as inputs to the valuation and derivation of the represented yield curves.">
     zeroCurve ZeroRateCurve (0..1) <"A curve of zero rates.">
     forwardCurve ForwardRateCurve (0..*) <"A curve of forward rates.">
     discountFactorCurve TermCurve (0..1) <"A curve of discount factors.">
@@ -99,7 +99,7 @@ type MultiDimensionalPricingData: <"A pricing data set that contains a series of
     valuationDate zonedDateTime (0..1) <"When the quote was computed.">
     expiryTime zonedDateTime (0..1) <"When does the quote cease to be valid.">
     cashflowType CashflowType (0..1) <"For cash flows, the type of the cash flows. Examples include: Coupon payment, Premium Fee, Settlement Fee, Brokerage Fee, etc.">
-    point PricingStructurePoint (0..*)
+    point PricingStructurePoint (0..*) <"A single pricing value associated with coordinates identifying its position within the sparse multidimensional pricing data set.">
 
     condition Choice:
         optional choice businessCenter, exchangeId
@@ -153,9 +153,9 @@ type PricingStructurePointChoice:
 
 type TermCurve: <"A curve consisting only of values over a term. This is a restricted form of One Dimensional Structure.">
 
-    interpolationMethod InterpolationMethod (0..1)
-    extrapolationPermitted boolean (0..1)
-    point TermPoint (0..*)
+    interpolationMethod InterpolationMethod (0..1) <"Specifies the coding-scheme value identifying the interpolation technique used to derive values between defined term curve points.">
+    extrapolationPermitted boolean (0..1) <"Indicates whether values may be extrapolated beyond the range of specified term points when evaluating the curve.">
+    point TermPoint (0..*) <"A value point on the term curve, supporting a time dimension and bid, mid, ask, or spread values.">
 
 type TermPoint: <"A value point that can have a time dimension. Allows bid, mid, ask, and spread values to be represented.">
 

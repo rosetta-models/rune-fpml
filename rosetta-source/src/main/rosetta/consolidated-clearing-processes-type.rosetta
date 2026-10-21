@@ -6,13 +6,13 @@ import fpml.consolidated.doc.*
 import fpml.consolidated.msg.*
 import fpml.consolidated.shared.*
 
-type RequestClearingEligibility extends CorrectableRequestMessage:
+type RequestClearingEligibility extends CorrectableRequestMessage: <"A formal request to determine whether a financial trade is eligible for central clearing. This request is typically sent to clearinghouses or regulatory entities to assess whether a trade meets clearing requirements under applicable regulations. A formal request to determine whether a financial trade is eligible for central clearing. This request is typically sent to clearinghouses or regulatory entities to assess whether a trade meets clearing requirements under applicable regulations.">
     [rootType]
 
-    requestingPartyReference PartyReference (0..1)
-    tradePackage TradePackage (0..1)
-    originatingEvent OriginatingEvent (0..1)
-    trade Trade (0..1)
+    requestingPartyReference PartyReference (0..1) <"The party that originally submitted the clearing eligibility request. It references a specific entity using a PartyReference, which links to a party definition elsewhere in the FpML message. However, this element is deprecated in favor of onBehalfOf, which provides a more structured way to indicate that the request is submitted on behalf of another entity.">
+    tradePackage TradePackage (0..1) <"A structured collection of related trades grouped under a common package. It includes a package header for metadata, multiple trade instances or references, and optional elements for allocations and approvals. This element facilitates efficient management of complex trading strategies, block trades, or multi-leg transactions by encapsulating all relevant trade details within a single package.">
+    originatingEvent OriginatingEvent (0..1) <"Specifies the underlying event that triggered the creation of a trade. It is defined as a coded value based on an external scheme, allowing for standardized classification of trade origins, such as novations, amendments, or corporate actions. This element helps track the trade lifecycle by linking it to its originating context.">
+    trade Trade (0..1) <"The details of a financial transaction between parties. It encapsulates key information such as product terms, counterparties, pricing, and execution details. This element serves as the foundational unit of financial contracts, supporting various trade events and lifecycle actions within the FpML framework.">
     additionalEvent AdditionalEvent (0..1)
     deClear DeClear (0..1) <"A structure describing a declear event. The deClear event allows a firm to request that a trade be removed from clearing, or a clearing service to request consent for this, or to report that it has been done.">
     party Party (1..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
@@ -38,17 +38,17 @@ type RequestClearingEligibility extends CorrectableRequestMessage:
                 and originatingEvent is absent
         else False
 
-type ClearingEligibility extends ResponseMessage:
+type ClearingEligibility extends ResponseMessage: <"Determines whether a trade is eligible for clearing through a central clearinghouse. Determines whether a trade is eligible for clearing through a central clearinghouse.">
     [rootType]
 
-    tradePackage TradePackage (0..1)
-    originatingEvent OriginatingEvent (0..1)
-    trade Trade (0..1)
+    tradePackage TradePackage (0..1) <"A structured collection of related trades grouped under a common package. It includes a package header for metadata, multiple trade instances or references, and optional elements for allocations and approvals. This element facilitates efficient management of complex trading strategies, block trades, or multi-leg transactions by encapsulating all relevant trade details within a single package.">
+    originatingEvent OriginatingEvent (0..1) <"Specifies the underlying event that triggered the creation of a trade. It is defined as a coded value based on an external scheme, allowing for standardized classification of trade origins, such as novations, amendments, or corporate actions. This element helps track the trade lifecycle by linking it to its originating context.">
+    trade Trade (0..1) <"The details of a financial transaction between parties. It encapsulates key information such as product terms, counterparties, pricing, and execution details. This element serves as the foundational unit of financial contracts, supporting various trade events and lifecycle actions within the FpML framework.">
     additionalEvent AdditionalEvent (0..1)
     deClear DeClear (0..1) <"A structure describing a declear event. The deClear event allows a firm to request that a trade be removed from clearing, or a clearing service to request consent for this, or to report that it has been done.">
-    partyTradeIdentifier PartyTradeIdentifier (0..1)
-    eligibleForClearing boolean (1..1)
-    clearingRequirements ClearingRequirements (0..*)
+    partyTradeIdentifier PartyTradeIdentifier (0..1) <"Uniquely identifies a trade from the perspective of a specific party involved in the transaction.">
+    eligibleForClearing boolean (1..1) <"A boolean flag that indicates whether the trade is eligible for clearing through a clearinghouse.">
+    clearingRequirements ClearingRequirements (0..*) <"Specifies the regulatory rules governing whether a trade must be cleared.">
     party Party (1..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
     account Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
@@ -82,13 +82,13 @@ type ClearingEligibility extends ResponseMessage:
             and partyTradeIdentifier is absent
             and originatingEvent is absent
 
-type ClearingEligibilityException extends Exception:
+type ClearingEligibilityException extends Exception: <"Represents a formal notification of an exception encountered when determining whether a financial transaction is eligible for central clearing.">
     [rootType]
 
-type ClearingEligibilityAcknowledgement extends Acknowledgement:
+type ClearingEligibilityAcknowledgement extends Acknowledgement: <"Represents a formal response confirming receipt and processing of a clearing eligibility request or decision.">
     [rootType]
 
-type ClearingRequirements:
+type ClearingRequirements: <"Specifies the regulatory rules governing whether a trade must be cleared.">
 
     supervisoryBody SupervisoryBody (1..1) <"The regulator or other supervisory body to which the clearing requirements apply.">
     mandatorilyClearable boolean (1..1) <"Whether the particular trade type in question is required by this regulator to be cleared.">

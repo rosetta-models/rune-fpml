@@ -5,20 +5,20 @@ import fpml.consolidated.*
 import fpml.consolidated.doc.*
 import fpml.consolidated.shared.*
 
-type EventStatusResponse extends ResponseMessage: <"A type defining the content model for a message normally generated in response to a requestEventStatus request.">
+type EventStatusResponse extends ResponseMessage: <"A top-level response message generated to provide event status information following a corresponding requestEventStatus request. A type defining the content model for a message normally generated in response to a requestEventStatus request.">
     [rootType]
 
-    statusItem EventStatusItem (0..*)
+    statusItem EventStatusItem (0..*) <"Relates an event identifier to its current status in the response to an event status enquiry.">
     party Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
     account Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
-type EventStatusException extends Exception:
+type EventStatusException extends Exception: <"A top-level FpML message notifying another system that an exception concerning event status has been detected.">
     [rootType]
 
 type MessageRejected extends Exception: <"The root element used for rejected message exceptions">
     [rootType]
 
-type ServiceNotification extends NotificationMessage: <"A type defining the content model for a message that allows a service to send a notification message to a user of the service.">
+type ServiceNotification extends NotificationMessage: <"A top-level message through which a service informs a user of a business event, without expecting a reply. A type defining the content model for a message that allows a service to send a notification message to a user of the service.">
     [rootType]
 
     serviceName NormalizedString (0..1) <"The name of the service to which the message applies">
@@ -29,50 +29,50 @@ type ServiceNotification extends NotificationMessage: <"A type defining the cont
     condition Choice:
         optional choice status, processingStatus, advisory
 
-type ServiceNotificationException extends Exception:
+type ServiceNotificationException extends Exception: <"A top-level FpML message informing another system that an exception has been detected for a service notification.">
     [rootType]
 
-type RequestEventStatus extends NonCorrectableRequestMessage: <"A type defining the content model for a message allowing one party to query the status of one event (trade or post-trade event) previously sent to another party.">
+type RequestEventStatus extends NonCorrectableRequestMessage: <"A top-level request message for querying another party about the status of one previously sent trade or post-trade event. A type defining the content model for a message allowing one party to query the status of one event (trade or post-trade event) previously sent to another party.">
     [rootType]
 
-    businessProcess BusinessProcess (0..1)
-    eventIdentifier EventIdentifier (0..1)
+    businessProcess BusinessProcess (0..1) <"Identifies the type of business process associated with the event whose status is being queried, using an applicable coding scheme.">
+    eventIdentifier EventIdentifier (0..1) <"Identifies the previously submitted trade or post-trade event whose status is requested, using its correlation identifier or another business identifier.">
     party Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
     account Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
-type RequestRetransmission extends NonCorrectableRequestMessage: <"A message to request that a message be retransmitted. The original message will typically be a component of a group of messages, such as a portfolio or a report in multiple parts.">
+type RequestRetransmission extends NonCorrectableRequestMessage: <"A top-level request message seeking retransmission of an original message, typically within a portfolio or multipart report, that cannot subsequently be corrected or retracted. A message to request that a message be retransmitted. The original message will typically be a component of a group of messages, such as a portfolio or a report in multiple parts.">
     [rootType]
 
-    portfolioReference PortfolioConstituentReference (0..1)
-    reportIdentification ReportSectionIdentification (0..1)
+    portfolioReference PortfolioConstituentReference (0..1) <"Identifies a portfolio constituent comprising individual messages to be included and acted upon collectively in a request retransmission message.">
+    reportIdentification ReportSectionIdentification (0..1) <"Provides the identifiers for the specific report and section associated with a report chunk in a retransmission request message.">
     party Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
     account Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
     condition Choice:
         optional choice portfolioReference, reportIdentification
 
-type VerificationStatusNotification extends NonCorrectableRequestMessage:
+type VerificationStatusNotification extends NonCorrectableRequestMessage: <"A top-level message conveying verification status, structured as a request that cannot be subsequently corrected or retracted. A non-correctable request message reporting a trade’s verification status, supporting explanatory reasons, party trade identification, and associated party and account information.">
     [rootType]
 
-    status VerificationStatus (1..1)
+    status VerificationStatus (1..1) <"The verification status of the position, as reported by the sender, such as verified or disputed.">
     reason Reason (0..*) <"The reason for any dispute or change in verification status.">
-    partyTradeIdentifier PartyTradeIdentifier (1..1)
+    partyTradeIdentifier PartyTradeIdentifier (1..1) <"The trade identifiers allocated by a party for the trade to which the reported verification status applies.">
     party Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
     account Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
-type VerificationStatusException extends Exception:
+type VerificationStatusException extends Exception: <"A top-level message informing another system that an exception has been detected in relation to verification status.">
     [rootType]
 
-type VerificationStatusAcknowledgement extends Acknowledgement:
+type VerificationStatusAcknowledgement extends Acknowledgement: <"A top-level response message representing acknowledgement of verification status information under the generic message content model.">
     [rootType]
 
-type AddressedMessage extends Message: <"A type defining the basic content for a message sent to inform another system that some exception has been detected.">
+type AddressedMessage extends Message: <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). A type defining the basic content for a message sent to inform another system that some exception has been detected.">
 
-    header NotificationMessageHeader (0..1)
+    header NotificationMessageHeader (0..1) <"Provides identification and routing information for an addressed notification message informing another system that an exception has been detected.">
 
-type Acknowledgement extends ResponseMessage:
+type Acknowledgement extends ResponseMessage: <"A response message acknowledging a prior message that may include its original unprocessed content and associated party and account information.">
 
-    originalMessage UnprocessedElementWrapper (0..1)
+    originalMessage UnprocessedElementWrapper (0..1) <"A wrapper containing the unvalidated structure of the original message to which the acknowledgement applies.">
     party Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
     account Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
@@ -98,7 +98,7 @@ type EventIdentifier: <"Identification of a business event, for example through 
 
     correlationId CorrelationId (0..2) <"A qualified identifier used to correlate between messages">
     sequenceNumber int(min: 1) (0..1) <"A numeric value that can be used to order messages with the same correlation identifier from the same sender.">
-    tradeIdentifier TradeIdentifier (0..1)
+    tradeIdentifier TradeIdentifier (0..1) <"Provides a trade identifier issued by the indicated party to identify the business event associated with the containing message.">
 
     condition Choice:
         tradeIdentifier is absent or correlationId is absent and sequenceNumber is absent
@@ -115,7 +115,7 @@ type EventStatusItem: <"A type used in event status enquiry messages which relat
 
 type Exception extends Message: <"A type defining the basic content for a message sent to inform another system that some exception has been detected.">
 
-    header ExceptionMessageHeader (0..1)
+    header ExceptionMessageHeader (0..1) <"Contains header information specific to a message informing another system that an exception has been detected.">
     validation Validation (0..*) <"A list of validation sets the sender asserts the document is valid with respect to.">
     parentCorrelationId CorrelationId (0..1) <"An optional identifier used to correlate between related processes">
     correlationId CorrelationId (0..2) <"A qualified identifier used to correlate between messages">
@@ -160,7 +160,7 @@ type NonCorrectableRequestMessage extends RequestMessage: <"A type defining the 
 
 type NotificationMessage extends Message: <"A type defining the basic content for a message sent to inform another system that some \'business event\' has occured. Notifications are not expected to be replied to.">
 
-    header NotificationMessageHeader (0..1)
+    header NotificationMessageHeader (0..1) <"Contains header information tailored to identify and route a business event notification that is not expected to receive a reply.">
     validation Validation (0..*) <"A list of validation sets the sender asserts the document is valid with respect to.">
     parentCorrelationId CorrelationId (0..1) <"An optional identifier used to correlate between related processes">
     correlationId CorrelationId (0..2) <"A qualified identifier used to correlate between messages">
@@ -181,11 +181,11 @@ type NotificationMessageHeader extends MessageHeader: <"A type that refines the 
 
 type ImplementationSpecification: <"A version of a specification document used by the message generator to format the document.">
 
-    name NormalizedString (0..1)
-    version ImplementationSpecificationVersion (0..1)
-    date zonedDateTime (0..1)
+    name NormalizedString (0..1) <"The textual designation of the specification document used by the message generator to format the generated document.">
+    version ImplementationSpecificationVersion (0..1) <"Identifies the version of the implementation specification used by the message generator, using a scheme-qualified value.">
+    date zonedDateTime (0..1) <"The date associated with the specification document version used by the message generator to format the document.">
 
-type ImplementationSpecificationVersion:
+type ImplementationSpecificationVersion: <"A qualified identifier for the version of a specification document used to format a message, with an optional URI identifying the external scheme.">
 
     value Scheme (1..1)
     implementationSpecificationVersionScheme NonEmptyURI (0..1)
@@ -204,7 +204,7 @@ type PortfolioReferenceBase: <"A structure used to identify a portfolio in a mes
 
 type RequestMessage extends Message: <"A type defining the basic content of a message that requests the receiver to perform some business operation determined by the message type and its content.">
 
-    header RequestMessageHeader (0..1)
+    header RequestMessageHeader (0..1) <"Contains request-specific header information for identifying and routing the message associated with the requested business operation.">
     validation Validation (0..*) <"A list of validation sets the sender asserts the document is valid with respect to.">
 
 type RequestMessageHeader extends MessageHeader: <"A type refining the generic message header content to make it specific to request messages.">
@@ -235,7 +235,7 @@ type ReportSectionIdentification: <"A type that allows the specific report and s
 
 type ResponseMessage extends Message: <"A type refining the generic message content model to make it specific to response messages.">
 
-    header ResponseMessageHeader (0..1)
+    header ResponseMessageHeader (0..1) <"Provides header information specialized for identifying and processing a response message within the FpML messaging framework.">
     validation Validation (0..*) <"A list of validation sets the sender asserts the document is valid with respect to.">
     parentCorrelationId CorrelationId (0..1) <"An optional identifier used to correlate between related processes">
     correlationId CorrelationId (0..2) <"A qualified identifier used to correlate between messages">

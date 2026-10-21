@@ -2,7 +2,7 @@ namespace fpml.consolidated.com : < "fpml definition" >
 version "${project.version}"
 
 import fpml.consolidated.asset.*
-import fpml.consolidated.fpmlenum.*
+import fpml.consolidated.^enum.*
 import fpml.consolidated.option.shared.*
 import fpml.consolidated.shared.*
 
@@ -25,21 +25,21 @@ type CoalPhysicalLeg extends PhysicalSwapLeg: <"Physically settled coal leg. Phy
     deliveryConditions CoalDelivery (0..1) <"The physical delivery conditions for the transaction.">
     deliveryQuantity CommodityPhysicalQuantity (1..1) <"The different options for specifying the quantity.">
 
-type CommodityBasketOption extends fpml.consolidated.option.shared.Option: <"Defines a commodity basket option product.">
+type CommodityBasketOption extends fpml.consolidated.option.shared.Option: <"Defines a commodity basket option product. Represents an option contract on a basket of commodities, where the holder has the right, but not the obligation, to buy or sell the basket at a specified price.">
 
     optionType PutCallEnum (1..1) <"The type of option transaction.">
     effectiveDate AdjustableOrRelativeDate (0..1) <"The effective date of the Commodity Option Transaction. Note that the Termination/Expiration Date should be specified in expirationDate within the CommodityAmericanExercise type or the CommodityEuropeanExercise type, as applicable.">
     terminationDate AdjustableOrRelativeDate (0..1) <"Specifies the termination date of the Commodity Option Transaction. In some confirmations this will be indicated as the second date in \"Option Term\" or \"Term\". Note: If provided, terminationDate should not be before specified expirationDate within the CommodityAmericanExercise type or the CommodityEuropeanExercise type.">
     calculationPeriodsSchedule CommodityCalculationPeriodsSchedule (0..1) <"A parametric representation of the Calculation Periods of the Commodity Option Transaction.">
     calculationPeriods AdjustableDates (0..1) <"An absolute representation of the Calculation Period start dates of the Commodity Option Transaction.">
-    notionalQuantityBasket CommodityBasketByNotional (0..1)
-    notionalAmountBasket CommodityBasketByPercentage (0..1)
-    strikePriceUnderlyingReference StrikePriceUnderlyingReference (0..1)
-    strikePriceBasketReference StrikePriceBasketReference (0..1)
+    notionalQuantityBasket CommodityBasketByNotional (0..1) <"Represents a commodity basket where the quantity of each commodity is specified based on its notional value.">
+    notionalAmountBasket CommodityBasketByPercentage (0..1) <"Represents a commodity basket where each commodity\'s weight in the basket is defined as a percentage of the total notional amount.">
+    strikePriceUnderlyingReference StrikePriceUnderlyingReference (0..1) <"Provides an intra-document reference to the product leg serving as the underlying for determining the commodity basket option’s strike price.">
+    strikePriceBasketReference StrikePriceBasketReference (0..1) <"Provides an intra-document pointer to the commodity basket associated with the option\'s specified strike price.">
     strikePricePerUnit NonNegativeMoney (0..1) <"The currency amount of the strike price per unit.">
-    strikePricePerUnitSchedule CommodityStrikeSchedule (0..1)
+    strikePricePerUnitSchedule CommodityStrikeSchedule (0..1) <"Specifies a series of strike price values that apply at different time intervals or calculation periods within a commodity contract. Each strike price step is captured through the strikePricePerUnitStep element, which represents a non-negative monetary value corresponding to a specific period.">
     floatingStrikePricePerUnit FloatingStrikePrice (0..1) <"The currency amount of the strike price per unit.">
-    floatingStrikePricePerUnitSchedule CommodityCalculationPeriodsSchedule (0..1)
+    floatingStrikePricePerUnitSchedule CommodityCalculationPeriodsSchedule (0..1) <"Specifies how the floating strike price per unit is determined according to a predefined schedule over multiple calculation periods. It determines the periodicity of the strike price updates, and a balanceOfFirstPeriod flag indicates whether any adjustments are applied to the first period in the schedule.">
     exercise CommodityExerciseBasket (1..1) <"The parameters for defining how the commodity option can be exercised and how it is settled.">
     premium CommodityPremium (1..*) <"The option premium payable by the buyer to the seller.">
     commonPricing boolean (0..1) <"If Common Pricing is elected (“true”) for a Transaction with referencing more than one Commodity Reference Price then no date will be a Pricing Date unless such a date is a day on which all Commodity Reference Prices are scheduled to be published.">
@@ -72,7 +72,7 @@ type CommodityDigitalOption extends fpml.consolidated.option.shared.Option: <"De
     digital CommodityDigital (0..1) <"The barrier and cash payout features of the digital option.">
     notionalAmount NotionalAmount (0..1) <"Volume contracted when volume is specified as a currency-denominated amount.">
     notionalQuantity CommodityNotionalQuantity (0..1) <"The volume contracted when the volume is specified as a quantity of commodity.">
-    totalNotionalQuantity number (0..1)
+    totalNotionalQuantity number (0..1) <"The total quantity of the commodity associated with the digital option, expressed as a decimal value.">
     exercise CommodityDigitalExercise (0..1) <"The parameters for defining how the commodity option can be exercised and how it is settled.">
     premium CommodityPremium (0..*) <"The option premium payable by the buyer to the seller.">
     commonPricing boolean (0..1) <"If Common Pricing is elected (“true”) for a Transaction with referencing more than one Commodity Reference Price then no date will be a Pricing Date unless such a date is a day on which all Commodity Reference Prices are scheduled to be published.">
@@ -93,7 +93,7 @@ type CommodityForward extends Product: <"Defines a commodity forward product. Co
     valueDate AdjustableOrRelativeDate (0..1) <"Specifies the value date of the Commodity Forward Transaction. This is the day on which both the cash and the physical commodity settle.">
     fixedLeg NonPeriodicFixedPriceLeg (0..1) <"The fixed leg of a Commodity Forward Transaction.">
     averagePriceLeg AveragePriceLeg (0..1) <"Specifies the calculated floating price leg of a Commodity Forward Transaction.">
-    physicalCommodityForwardLeg PhysicalLegBase (0..1)
+    physicalCommodityForwardLeg PhysicalLegBase (0..1) <"Represents the physical settlement terms of a commodity forward contract. This element can take one of two possible forms, depending on the type of commodity being delivered: the bullionPhysicalLeg (when the forward contract involves precious metals such as gold or silver) or the metalPhysicalLeg (used for base metals like copper or aluminum).">
     commonPricing boolean (0..1) <"If Common Pricing is elected (“true”) for a Transaction with referencing more than one Commodity Reference Price then no date will be a Pricing Date unless such a date is a day on which all Commodity Reference Prices are scheduled to be published.">
     marketDisruption CommodityMarketDisruption (0..1) <"Contains contract terms related to triggers and responses to market disruptions as defined in the 1993 or 2005 Commodity Definitions.">
     settlementDisruption CommodityBullionSettlementDisruptionEnum (0..1) <"Describes contract terms related to the consequences of Bullion Settlement Disruption Events.">
@@ -148,15 +148,15 @@ type CommodityOption extends Product: <"Defines a commodity option product. The 
     quantityReference QuantityReference (0..1) <"A pointer style reference to a quantity defined on another leg.">
     exercise CommodityExercise (0..1) <"The parameters for defining how the commodity option can be exercised and how it is settled.">
     strikePricePerUnit NonNegativeMoney (0..1) <"The currency amount of the strike price per unit.">
-    strikePricePerUnitSchedule CommodityStrikeSchedule (0..1)
+    strikePricePerUnitSchedule CommodityStrikeSchedule (0..1) <"Specifies a series of strike price values that apply at different time intervals or calculation periods within a commodity contract. Each strike price step is captured through the strikePricePerUnitStep element, which represents a non-negative monetary value corresponding to a specific period.">
     floatingStrikePricePerUnit FloatingStrikePrice (0..1) <"The currency amount of the strike price per unit.">
-    floatingStrikePricePerUnitSchedule CommodityCalculationPeriodsSchedule (0..1)
+    floatingStrikePricePerUnitSchedule CommodityCalculationPeriodsSchedule (0..1) <"Specifies how the floating strike price per unit is determined according to a predefined schedule over multiple calculation periods. It determines the periodicity of the strike price updates, and a balanceOfFirstPeriod flag indicates whether any adjustments are applied to the first period in the schedule.">
     commoditySwap CommoditySwap (0..1) <"DEPRECATED. Defines a commodity swap product.">
-    commodityForward CommodityForward (0..1)
+    commodityForward CommodityForward (0..1) <"Specifies a contractual agreement to buy or sell a physical commodity at a predetermined price on a future date.">
     physicalExercise CommodityPhysicalExercise (0..1) <"The parameters for defining how the commodity option can be exercised into a physical transaction.">
-    weatherCalculationPeriods WeatherCalculationPeriods (0..1)
-    weatherCalculationPeriodsReference CalculationPeriodsReference (0..1)
-    weatherNotionalAmount NonNegativeMoney (0..1)
+    weatherCalculationPeriods WeatherCalculationPeriods (0..1) <"Defines a set of time periods over which weather-related measurements (e.g., temperature, rainfall, wind speed) are observed and aggregated for contract valuation.">
+    weatherCalculationPeriodsReference CalculationPeriodsReference (0..1) <"Provides a reference to an existing set of weather calculation periods rather than defining them explicitly.">
+    weatherNotionalAmount NonNegativeMoney (0..1) <"Represents the notional monetary value of a weather-related option contract. This amount is used to determine the payout or settlement based on the contract terms and the observed weather conditions, such as temperature, rainfall, or wind speed.">
     weatherIndexStrikeLevel WeatherIndex (0..1) <"Weather Index strike price level is specified in terms of weather index units (e.g. 1 Days, 3 Inches, etc.)">
     calculation WeatherLegCalculation (0..1) <"Contains parameters which figure in the calculation of payments on a Weather Index Option.">
     weatherIndexData WeatherIndexData (0..1) <"Specifies where the data (e.g. CPD) have been collected, an actual physical reference point (weather station) and various fall back arrangements.">
@@ -556,12 +556,13 @@ type CommoditySwap extends Product: <"Defines a commodity swap product. The comm
     effectiveDate AdjustableOrRelativeDate (1..1) <"Specifies the effective date of this leg of the swap. When defined in relation to a date specified somewhere else in the document (through the relativeDate component), this element will typically point to the effective date of the other leg of the swap.">
     terminationDate AdjustableOrRelativeDate (1..1) <"Specifies the termination date of this leg of the swap. When defined in relation to a date specified somewhere else in the document (through the relativeDate component), this element will typically point to the termination date of the other leg of the swap.">
     settlementCurrency IdentifiedCurrency (0..1) <"The currency into which the Commodity Swap Transaction will settle. If this is not the same as the currency in which the Commodity Reference Price is quoted on a given floating leg of the Commodity Swap Transaction, then an FX rate should also be specified for that leg.">
-    commoditySwapLeg CommodityLeg (0..*)
+    commoditySwapLeg CommodityLeg (0..*) <"Defines a leg of a commodity swap, specifying either a fixed payment, floating payment, or physical delivery of a commodity. The specific type of leg depends on the nature of the swap and the underlying asset.">
     weatherLeg WeatherLeg (0..2) <"A weather leg element of a Commodity Swap defines Weather Index Swap transactions. Weather Index Swap transactions are OTC derivative transactions which settle financially based on an index calculated from observations of temperature, precipitation and other weather-related measurements at weather stations throughout the world. Sub-Annex C of the 2005 ISDA Commodity Definitions provides definitions and terms for a number of types of weather indices. These indices include: HDD (heating degree days), CDD (cooling degree days), CPD (critical precipitation days). Weather Index Swap transactions result in a cash flow to one of the two counterparties each Calculation Period depending on the relationship between the Settlement Level and the Weather Index Level. A Weather Index swap transaction always consists of a commodity swap element as a parent to two weatherLeg elements.">
     commonPricing boolean (0..1) <"If Common Pricing is elected (“true”) for a Transaction with referencing more than one Commodity Reference Price then no date will be a Pricing Date unless such a date is a day on which all Commodity Reference Prices are scheduled to be published.">
     marketDisruption CommodityMarketDisruption (0..1) <"Contains contract terms related to triggers and responses to market disruptions as defined in the 1993 or 2005 Commodity Definitions.">
     settlementDisruption CommodityBullionSettlementDisruptionEnum (0..1) <"Describes contract terms related to the consequences of Bullion Settlement Disruption Events.">
     rounding Rounding (0..1) <"Rounding direction and precision for amounts.">
+    schedule CommodityScheduleFloating (0..2) <"Commodity floating payment/fixing schedule. In the case where multiple schedules exist (up to two), each schedule should reference the commodity swap leg to which it relates by means of the legReference element. * A single schedule without legReference is construed as applying to the parent commoditySwap as a whole.">
 
     condition Choice:
         optional choice commoditySwapLeg, weatherLeg
@@ -625,15 +626,15 @@ type ElectricityPhysicalLeg extends PhysicalSwapLeg: <"Physically settled electr
     deliveryConditions ElectricityDelivery (1..1) <"The physical delivery conditions for the transaction.">
     deliveryQuantity ElectricityPhysicalQuantity (1..1) <"The different options for specifying the quantity.">
 
-type EnvironmentalPhysicalLeg extends PhysicalSwapLeg: <"Physically settled environmental leg.">
+type EnvironmentalPhysicalLeg extends PhysicalSwapLeg: <"Physically settled environmental leg. Represents the physical delivery leg of an environmental product transaction structured as a physical swap. It includes details on the number of allowances delivered, the environmental product type, potential abandonment of the scheme, and key dates such as delivery and payment. It also accounts for failure-to-deliver scenarios and excess emissions penalty (EEP) parameters when applicable.">
 
     numberOfAllowances UnitQuantity (1..1) <"The number of allowances, certificates or credit to be transaction in the transaction.">
     environmental EnvironmentalProduct (1..1) <"The specification of the type of allowance or credit.">
     abandonmentOfScheme EnvironmentalAbandonmentOfSchemeEnum (0..1) <"Applies to U.S. Emissions Allowance Transactions. Specifies terms which apply in the event of an Abandonment of Scheme event.">
     deliveryDate AdjustableOrRelativeDate (0..1) <"The date on which allowances are to be delivered as specified in the related Confirmation.">
-    paymentDate DateOffset (0..1)
+    paymentDate DateOffset (0..1) <"The specific date when payment for the environmental product or service is due.">
     businessCentersReference BusinessCentersReference (0..1) <"A pointer style reference to a set of financial business centers defined elsewhere in the document. This set of business centers is used to determine whether a particular day is a business day or not.">
-    businessCenters BusinessCenters (0..1)
+    businessCenters BusinessCenters (0..1) <"A set of financial business centers specified directly for use in determining whether a particular day is a business day.">
     failureToDeliverApplicable boolean (0..1) <"Applies to EU Emissions Allowance Transactions. Holds the Failure to Deliver (Alternative Method) election. Used to determine how provisions in Part [7] Page 7 (B) Failure to Deliver Not Remedied are to be applied.">
     eEPParameters EEPParameters (0..1) <"Applies to EU Emissions Allowance Transactions. Contains a series of parameters controlling Excess Emissions Penalty payments.">
 
@@ -671,6 +672,61 @@ type OilPhysicalLeg extends PhysicalSwapLeg: <"Physically settled oil or refined
     deliveryConditions OilDelivery (0..1) <"The physical delivery conditions for the transaction.">
     deliveryQuantity CommodityPhysicalQuantity (1..1) <"The different options for specifying the quantity.">
 
+type ElectricityDelivery extends CommodityDelivery: <"The physical delivery conditions for electricity. The physical delivery conditions for electricity.">
+
+    deliveryPoint ElectricityDeliveryPoint (0..1) <"The point at which delivery of the electricity will occur.">
+    deliveryType ElectricityDeliveryType (0..1) <"Indicates the under what conditions the Parties\' delivery obligations apply.">
+    transmissionContingency ElectricityTransmissionContingency (0..1) <"Indicates that the performance of the buyer or seller shall be excused (under the conditions specified) if transmission of the elctricity is unavailable or interrupted.">
+    interconnectionPoint InterconnectionPoint (0..1) <"Identification of the border(s) or border point(s) of a transportation contract.">
+    deliveryZone CommodityDeliveryPoint (0..1) <"The zone covering potential delivery points for the electricity.">
+    electingPartyReference PartyReference (0..1) <"Indicates the party able to decide which delivery point within the deliveryPoint is used for delivery. For EEI transactions, this should reference the seller of the electricity.">
+
+    condition Choice:
+        if deliveryPoint exists
+        then deliveryZone is absent and electingPartyReference is absent
+        else deliveryPoint is absent
+            and deliveryType is absent
+            and transmissionContingency is absent
+            and interconnectionPoint is absent
+
+type GasDelivery extends CommodityDelivery: <"The physical delivery conditions for gas. The specification of the gas to be delivered.">
+
+    deliveryPoint GasDeliveryPoint (0..1) <"The physical or virtual point at which the commodity will be delivered.">
+    entryPoint CommodityDeliveryPoint (0..1) <"The physical or virtual point at which the commodity enters a transportation system.">
+    withdrawalPoint CommodityDeliveryPoint (0..1) <"The physical or virtual point at which the commodity is withdrawn from a transportation system.">
+    deliveryType DeliveryTypeEnum (0..1) <"Indicates whether the buyer and seller are contractually obliged to consume and supply the specified quantities of the commodity.">
+    interconnectionPoint InterconnectionPoint (0..1) <"Identification of the border(s) or border point(s) of a transportation contract.">
+    buyerHub CommodityHub (0..1) <"The hub code of the gas buyer.">
+    sellerHub CommodityHub (0..1) <"The hub code of the has seller.">
+
+    condition Choice:
+        deliveryPoint is absent or entryPoint is absent and withdrawalPoint is absent
+
+type CoalDelivery extends CommodityDelivery: <"The physical delivery conditions for coal. The physical delivery conditions for coal.">
+
+    deliveryPoint CoalDeliveryPoint (0..1) <"The point at which the Coal Product will be delivered and received.">
+    deliveryAtSource boolean (0..1) <"The point at which the Coal Product as a reference to the Source of the Coal Product. This should be a reference to the source element within product.">
+    quantityVariationAdjustment boolean (0..1) <"If true, indicates that QVA is applicable. If false, indicates that QVA is inapplicable.">
+    transportationEquipment CoalTransportationEquipment (0..1) <"The transportation equipment with which the Coal Product will be delivered and received.">
+    risk CommodityDeliveryRisk (0..1) <"Specifies how the risk associated with the delivery is assigned.">
+
+    condition Choice:
+        optional choice deliveryPoint, deliveryAtSource
+
+type OilDelivery extends CommodityDelivery: <"The physical delivery conditions for oil. The physical delivery conditions for an oil product.">
+
+    pipeline OilPipelineDelivery (0..1) <"Specified the delivery conditions where the oil product is to be delivered by pipeline.">
+    transfer OilTransferDelivery (0..1) <"Specified the delivery conditions where the oil product is to be delivered by title transfer.">
+    importerOfRecord PartyReference (0..1) <"Specifies which party is the Importer of Record for the purposes of paying customs duties and applicable taxes or costs related to the import of the oil product.">
+    absoluteTolerance AbsoluteTolerance (0..1) <"Specifies the allowable quantity tolerance as an absolute quantity.">
+    percentageTolerance PercentageTolerance (0..1) <"Specifies the allowable quantity tolerance as a percentage of the quantity.">
+
+    condition Choice0:
+        optional choice absoluteTolerance, percentageTolerance
+
+    condition Choice1:
+        optional choice pipeline, transfer
+
 type AbsoluteTolerance: <"The acceptable tolerance in the delivered quantity of a physical commodity product in terms of a number of units of that product.">
 
     positive number (0..1) <"The maxmium amount by which the quantity delivered can exceed the agreed quantity.">
@@ -690,7 +746,7 @@ type AveragePriceLeg extends CommodityLeg: <"The average price leg of an average
     calculationPeriodsReference CalculationPeriodsReference (0..1) <"A pointer style reference to the Calculation Periods defined on another leg.">
     calculationPeriodsScheduleReference CalculationPeriodsScheduleReference (0..1) <"A pointer style reference to the Calculation Periods Schedule defined on another leg.">
     calculationPeriodsDatesReference CalculationPeriodsDatesReference (0..1) <"A pointer style reference to single-day-duration Calculation Periods defined on another leg.">
-    commodity Commodity (1..1)
+    commodity Commodity (1..1) <"The underlying asset in a commodity-based financial contract. It includes unique identifiers and classification details, and defines essential attributes such as product type, grade, delivery location, and market references. This element is critical in defining the specific commodity being traded or used as the basis for pricing in derivative contracts.">
     quantityReference QuantityReference (0..1) <"A pointer to a specification of quantity defined elsewhere.">
     pricingStartDate AdjustableDate (0..1) <"Defines the Start of the Pricing period. PricingStartDate is optional when discrete pricingDates are supplied and is not recommended to be included. Should they coexist, pricingStartDate is expected to be the same as the earliest pricing date or earlier for a Term deal as the discrete dates will take precedence.">
     calculation FloatingLegCalculation (0..1) <"Captures details relevant to the calculation of the floating price.">
@@ -731,17 +787,6 @@ type CoalAttributePercentage: <"The different options for specifying the attribu
     standardContent Percentage (0..1) <"The actual content of the quality characteristics of the Coal Product Shipment expected by the Buyer. A value expressed in percentage units i.e. 5 means 5%.">
     rejectionLimit Percentage (0..1) <"The actual limits of the quality characteristics of the Coal Product above or below which the Buyer may reject a Shipment. A value expressed in percentage units i.e. 5 means 5%.">
 
-type CoalDelivery: <"The physical delivery conditions for coal.">
-
-    deliveryPoint CoalDeliveryPoint (0..1) <"The point at which the Coal Product will be delivered and received.">
-    deliveryAtSource boolean (0..1) <"The point at which the Coal Product as a reference to the Source of the Coal Product. This should be a reference to the source element within product.">
-    quantityVariationAdjustment boolean (0..1) <"If true, indicates that QVA is applicable. If false, indicates that QVA is inapplicable.">
-    transportationEquipment CoalTransportationEquipment (0..1) <"The transportation equipment with which the Coal Product will be delivered and received.">
-    risk CommodityDeliveryRisk (0..1) <"Specifies how the risk associated with the delivery is assigned.">
-
-    condition Choice:
-        optional choice deliveryPoint, deliveryAtSource
-
 type CoalDeliveryPoint: <"A scheme identifying the types of the Delivery Point for a physically settled coal trade.">
 
     value Scheme (1..1)
@@ -766,8 +811,8 @@ type CoalProductSource: <"A scheme identifying the sources of coal for a physica
 
 type CoalProductSpecifications: <"The different options for specifying the quality attributes of the coal to be delivered.">
 
-    standardQuality CoalStandardQuality (0..1)
-    standardQualitySchedule CoalStandardQualitySchedule (0..1)
+    standardQuality CoalStandardQuality (0..1) <"The baseline quality specifications for a coal product in a financial or physical contract. It includes details about coal composition, properties, and behavior under reducing atmospheres, ensuring the contract aligns with industry standards for coal quality.">
+    standardQualitySchedule CoalStandardQualitySchedule (0..1) <"A time-dependent schedule of coal quality standards, allowing for variations in quality over different delivery periods.">
 
     condition Choice:
         one-of
@@ -791,7 +836,7 @@ type CoalStandardQuality: <"The quality attributes of the coal to be delivered."
     volatile CoalAttributePercentage (0..1) <"The volatile content of the coal product.">
     btUperLB CoalAttributeDecimal (0..1) <"The number of British Thermal Units per Pound of the coal product.">
     topSize CoalAttributeDecimal (0..1) <"The smallest sieve opening that will result in less than 5% of a sample of the coal product remaining.">
-    finesPassingScreen CoalAttributeDecimal (0..1)
+    finesPassingScreen CoalAttributeDecimal (0..1) <"Represents the amount of fines that pass through a given screen size, typically measured in terms of a decimal value.">
     grindability CoalAttributeDecimal (0..1) <"The Hardgrove Grindability Index value of the coal to be delivered.">
     ashFusionTemperature CoalAttributeDecimal (0..1) <"The temperature at which the ash form of the coal product fuses completely in accordance with the ASTM International D1857 Standard Test Methodology.">
     initialDeformation CoalAttributeDecimal (0..1) <"The temperature at which an ash cone shows evidence of deformation.">
@@ -801,7 +846,7 @@ type CoalStandardQuality: <"The quality attributes of the coal to be delivered."
 
 type CoalStandardQualitySchedule: <"The quality attributes of the coal to be delivered, specified on a periodic basis.">
 
-    standardQualityStep CoalStandardQuality (0..*)
+    standardQualityStep CoalStandardQuality (0..*) <"Represents a specific coal quality standard applicable to a defined delivery period within a contractual schedule. It details the coal’s composition, physical and chemical properties, and behavior under reducing atmospheres.">
     deliveryPeriodsReference CalculationPeriodsReference (0..1) <"A pointer style reference to the Delivery Periods defined elsewhere.">
     deliveryPeriodsScheduleReference CalculationPeriodsScheduleReference (0..1) <"A pointer style reference to the Calculation Periods Schedule defined elsewhere.">
 
@@ -829,14 +874,14 @@ type CommodityBarrier: <"The specification of how a barrier option will trigger 
 
     knock CommodityKnockEnum (1..1) <"The knock feature of a commodity barrier option.">
     featurePaymentAmount PositiveMoney (0..1) <"In the case of barrier options where the option automatically expires and the barrier is breached in such a way to to result in a \"knock-out\" vent, this amount is paid to the the option holder so as to refund or rebate a portion of any premium paid.">
-    trigger CommodityTrigger (1..1)
+    trigger CommodityTrigger (1..1) <"Defines the activation condition for a commodity barrier feature based on a specified threshold. It determines whether the barrier event is triggered by a quantity, percentage, or fixed price level, along with the corresponding unit of measure. The trigger also specifies the type of event (e.g., breach above or below the threshold) that influences the contract’s payoff structure.">
 
 type CommodityBasket: <"Describes the swap\'s underlyer when it has multiple asset components.">
 
     basketName BasketName (0..1) <"The name of the basket expressed as a free format string. FpML does not define usage rules for this element.">
     basketId BasketId (0..*) <"A basket identifier">
-    notionalQuantityBasket CommodityBasketByNotional (0..1)
-    notionalAmountBasket CommodityBasketByPercentage (0..1)
+    notionalQuantityBasket CommodityBasketByNotional (0..1) <"Represents a commodity basket where the quantity of each commodity is specified based on its notional value.">
+    notionalAmountBasket CommodityBasketByPercentage (0..1) <"Represents a commodity basket where each commodity\'s weight in the basket is defined as a percentage of the total notional amount.">
 
     condition Choice:
         required choice notionalQuantityBasket, notionalAmountBasket
@@ -845,16 +890,16 @@ type CommodityBasketBase: <"Abstract base class for all underlying assets.">
 
     id string (0..1)
 
-type CommodityBasketByNotional extends CommodityBasketBase:
+type CommodityBasketByNotional extends CommodityBasketBase: <"Represents a commodity basket where each underlying component is weighted by its notional value. It includes at least two underlying commodities.">
 
     underlying CommodityBasketUnderlyingByNotional (0..*) <"Indicates the role of the option buyer with regard to this underlyer.">
 
-type CommodityBasketByPercentage extends CommodityBasketBase:
+type CommodityBasketByPercentage extends CommodityBasketBase: <"Represents a commodity basket where each underlying component is weighted by a percentage allocation. It requires at least two underlying commodities.">
 
     underlying CommodityBasketUnderlyingByPercentage (0..*) <"Indicates the role of the option buyer with regard to this underlyer.">
-    notionalAmount NotionalAmount (0..1)
+    notionalAmount NotionalAmount (0..1) <"The total monetary value of the commodity basket, expressed as a non-negative amount. It defines the overall notional exposure allocated across the underlying commodities based on their percentage weights.">
 
-type CommodityBasketUnderlyingBase:
+type CommodityBasketUnderlyingBase: <"Represents a single commodity component within a commodity basket. It defines the direction of the trade (payer or receiver), the specific commodity being referenced, and optional details such as pricing dates and the averaging method used to determine the final price.">
 
     id string (0..1)
     direction PayerReceiverEnum (0..1) <"Indicates the role of the option buyer with regard to this underlyer.">
@@ -862,7 +907,7 @@ type CommodityBasketUnderlyingBase:
     pricingDates CommodityPricingDates (0..1) <"The dates on which the option will price.">
     averagingMethod AveragingMethodEnum (0..1) <"The Method of Averaging if there is more than one Pricing Date.">
 
-type CommodityBasketUnderlyingByNotional extends CommodityBasketUnderlyingBase:
+type CommodityBasketUnderlyingByNotional extends CommodityBasketUnderlyingBase: <"Represents a commodity component within a basket where the notional quantity is explicitly specified.">
 
     fx CommodityFx (0..1) <"FX observations to be used to convert the observed Commodity Reference Price to the Settlement Currency.">
     conversionFactor number (0..1) <"If the Notional Quantity is specified in a unit that does not match the unit in which the Commodity Reference Price is quoted, the scaling or conversion factor used to convert the Commodity Reference Price unit into the Notional Quantity unit should be stated here. If there is no conversion, this element is not intended to be used.">
@@ -886,13 +931,17 @@ type CommodityBasketUnderlyingByNotional extends CommodityBasketUnderlyingBase:
                 and quantityReference is absent
         then totalNotionalQuantity exists
 
-type CommodityBasketUnderlyingByPercentage extends CommodityBasketUnderlyingBase:
+type CommodityBasketUnderlyingByPercentage extends CommodityBasketUnderlyingBase: <"Represents a commodity component within a basket where its contribution is expressed as a percentage weight rather than a fixed notional quantity, by including an optional constituentWeight, which defines the proportion of the total basket value allocated to this commodity.">
 
     constituentWeight NonNegativeDecimal (0..1) <"If the Notional Quantity is specified in a unit that does not match the unit in which the Commodity Reference Price is quoted, the scaling or conversion factor used to convert the Commodity Reference Price unit into the Notional Quantity unit should be stated here. If there is no conversion, this element is not intended to be used.">
 
 type CommodityCalculationPeriodsSchedule extends Frequency: <"A parametric representation of the Calculation Periods for on Asian option or a leg of a swap. In case the calculation frequency is of value T (term), the period is defined by the commoditySwap\\effectiveDate and the commoditySwap\\terminationDate.">
 
     balanceOfFirstPeriod boolean (0..1) <"If true, indicates that that the first Calculation Period should run from the Effective Date to the end of the calendar period in which the Effective Date falls, e.g. Jan 15 - Jan 31 if the calculation periods are one month long and Effective Date is Jan 15. If false, the first Calculation Period should run from the Effective Date for one whole period, e.g. Jan 15 to Feb 14 if the calculation periods are one month long and Effective Date is Jan 15.">
+
+type CommodityDelivery: <"An abstract type common to all asset deliveries to satisfy the requirements of the deliveryProperties substitution group.">
+
+    id string (0..1)
 
 type CommodityDeliveryPeriods: <"The different options for specifying the Delivery Periods of a physical leg.">
 
@@ -918,7 +967,7 @@ type CommodityDeliveryRisk: <"A scheme identifying how the parties to the trade 
 
 type CommodityDigital: <"Defined the conditions under which the digital option can triggers and, if triggered, what payment results.">
 
-    trigger CommodityTrigger (0..1)
+    trigger CommodityTrigger (0..1) <"Specifies the conditions under which a digital commodity contract activates a payout. It defines a threshold level that can be expressed as a quantity, percentage, or price, along with a triggerType indicating how the threshold is applied.">
     featurePaymentAmount PositiveMoney (0..1) <"The cash payment that is made when the digital barrier is breached.">
 
 type CommodityDigitalExercise: <"The parameters for defining how the commodity digital option can be exercised. It differs from the CommodityExercise type in that it lacks a specification of Settlement Currency. The Settlement Currency is specified in the \'featurePayment\' element.">
@@ -979,7 +1028,7 @@ type CommodityExerciseBasket: <"The parameters for defining how the commodity op
     condition Choice1:
         optional choice americanExercise, europeanExercise
 
-type CommodityExercisePeriods:
+type CommodityExercisePeriods: <"The period during which a commodity option may be exercised, specified by optional adjustable or relative commencement and expiration dates.">
 
     commencementDate AdjustableOrRelativeDate (0..1) <"The first day of the exercise period for an American style option.">
     expirationDate AdjustableOrRelativeDate (0..1) <"The last day within an exercise period for an American style option. For a European style option it is the only day within the exercise period.">
@@ -989,7 +1038,7 @@ type CommodityExpireRelativeToEvent: <"A scheme identifying the physical event r
     value Scheme (1..1)
     commodityExpireRelativeToEventScheme NonEmptyURI (0..1)
 
-type CommodityFixedInterestCalculation:
+type CommodityFixedInterestCalculation: <"Represents the calculation method for a fixed interest rate associated with a commodity transaction.">
 
     fixedRate IdentifiedRate (0..1) <"The calculation period fixed rate or \"fee\" rate. A per annum rate, expressed as a decimal. A fixed rate of 5% would be represented as 0.05. When multiplied by the Notional Amount and the number of calendar days in the Calculation Period divided by the calendar days basis, is the fixed amount payed per Calculation Period.">
     dayCountFraction DayCountFraction (0..1) <"Specifies the basis for the adjustment of a rate from an annual rate to a rate appropriate for the Calculation Period: e.g. the number of calendar days in the Calculation Period divided by the calendar days basis e.g. actual number of days in the Calculation Period divided by 365.">
@@ -1044,7 +1093,7 @@ type CommodityHub: <"A type defining a hub or other reference for a physically s
 
     partyReference PartyReference (1..1) <"Reference to a party.">
     accountReference AccountReference (0..1) <"Reference to an account.">
-    hubCode CommodityHubCode (0..1)
+    hubCode CommodityHubCode (0..1) <"A standardized identifier for a commodity trading hub, used to specify the physical or financial location of commodity transactions.">
 
 type CommodityHubCode: <"A scheme identifying the code for a hub or other reference for a physically settled commodity trade.">
 
@@ -1053,13 +1102,17 @@ type CommodityHubCode: <"A scheme identifying the code for a hub or other refere
 
 type CommodityLeg extends Leg: <"Abstract base class for all commodity legs">
 
+type CommodityLegReference extends Reference: <"Reference to a commodity swap leg located elsewhere in the document.">
+
+    href string (1..1)
+
 type CommodityMarketDisruption: <"ISDA 1993 or 2005 commodity market disruption elements.">
 
     marketDisruptionEvents MarketDisruptionEventsEnum (0..1) <"If Market disruption Events are stated to be Applicable then the default Market Disruption Events of Section 7.4(d)(i) of the ISDA Commodity Definitions shall apply unless specific Market Disruption Events are stated hereunder, in which case these shall override the ISDA defaults. If Market Disruption Events are stated to be Not Applicable, Market Disruption Events are not applicable to the trade at all. It is also possible to reference the Market Disruption Events set out in the relevant Master Agreement governing the trade.">
     additionalMarketDisruptionEvent MarketDisruptionEvent (0..*) <"To be used when marketDisruptionEvents is set to \"Applicable\" and additional market disruption events(s) apply to the default market disruption events of Section 7.4(d)(i) of the ISDA Commodity Definitions.">
     marketDisruptionEvent MarketDisruptionEvent (0..*) <"Market disruption event(s) that apply. Note that these should only be specified if the default market disruption events of Section 7.4(d)(i) of the ISDA Commodity Definitions are to be overridden.">
     disruptionFallbacks DisruptionFallbacksEnum (0..1) <"To be used where disruption fallbacks are set out in the relevant Master Agreement governing the trade.">
-    disruptionFallback SequencedDisruptionFallback (0..*)
+    disruptionFallback SequencedDisruptionFallback (0..*) <"Specifies an alternative method for determining the price or settlement of a commodity contract when a market disruption event occurs. It ensures structured handling of market disruptions, maintaining contract integrity and reducing uncertainty.">
     fallbackReferencePrice Underlyer (0..1) <"A fallback commodity reference price for use when relying on Disruption Fallbacks in Section 7.5(d)(i) of the ISDA Commodity Definitions or have selected \"Fallback Reference Price\" as a disruptionFallback.">
     maximumNumberOfDaysOfDisruption int(min: 0) (0..1) <"2005 Commodity Definitions only. If omitted , the number of days specified in Section 7.6(a) of the Definitions will apply.">
     priceMaterialityPercentage Percentage (0..1) <"2005 Commodity Definitions only. To be used where a price materiality percentage applies to the \"Price Source Disruption\" event and this event has been specified by setting marketDisruption to true or including it in additionalMarketDisruptionEvent. A value expressed in percentage units i.e. 5 means 5%.">
@@ -1073,14 +1126,14 @@ type CommodityMarketDisruption: <"ISDA 1993 or 2005 commodity market disruption 
             or marketDisruptionEvents is absent
                 and additionalMarketDisruptionEvent is absent
 
-type CommodityMetalBrand:
+type CommodityMetalBrand: <"Represents a specific brand of metal recognized in commodity markets, often linked to exchange-traded metals with defined quality standards.">
 
-    name CommodityMetalBrandName (0..1)
-    brandManager CommodityMetalBrandManager (0..1)
-    country CountryCode (0..1)
-    producer CommodityMetalProducer (0..1)
+    name CommodityMetalBrandName (0..1) <"Identifies the metal brand using a standardized or market-recognized name.">
+    brandManager CommodityMetalBrandManager (0..1) <"Specifies the entity responsible for overseeing or certifying the brand of metal.">
+    country CountryCode (0..1) <"Indicates the country associated with the brand, typically where it is registered or produced.">
+    producer CommodityMetalProducer (0..1) <"Names the company or entity that manufactures or refines the metal.">
 
-type CommodityMetalBrandManager:
+type CommodityMetalBrandManager: <"Specifies the entity responsible for overseeing or certifying the brand of metal.">
 
     value Scheme (1..1)
     commodityMetalBrandManagerScheme NonEmptyURI (0..1)
@@ -1090,17 +1143,17 @@ type CommodityMetalBrandName: <"The name of the entity that issues the brand">
     value Scheme (1..1)
     commodityMetalBrandNameScheme NonEmptyURI (0..1)
 
-type CommodityMetalGrade:
+type CommodityMetalGrade: <"Defines the quality or purity standard of a metal in commodity markets, typically based on industry or exchange specifications.">
 
     value Scheme (1..1)
     commodityMetalGradeScheme NonEmptyURI (0..1)
 
-type CommodityMetalProducer:
+type CommodityMetalProducer: <"Identifies the producer or refiner of a metal commodity, typically based on recognized industry or exchange standards.">
 
     value Scheme (1..1)
     commodityMetalProducerScheme NonEmptyURI (0..1)
 
-type CommodityMetalShape:
+type CommodityMetalShape: <"Specifies the physical form or shape in which a metal commodity is traded, such as bars, ingots, plates, or coils.">
 
     value Scheme (1..1)
     commodityMetalShapeScheme NonEmptyURI (0..1)
@@ -1156,10 +1209,10 @@ type CommodityPerformanceSwapBase extends Product: <"A product with which to rep
     settlementDisruption CommodityBullionSettlementDisruptionEnum (0..1) <"Describes contract terms related to the consequences of Bullion Settlement Disruption Events.">
     rounding Rounding (0..1) <"Rounding direction and precision for amounts.">
 
-type CommodityPerformanceSwapEarlyTermination:
+type CommodityPerformanceSwapEarlyTermination: <"Defines the early termination conditions for a commodity performance swap, specifying the involved party and the applicable starting date.">
 
-    partyReference PartyReference (0..1)
-    startingDate CommodityStartingDate (0..1)
+    partyReference PartyReference (0..1) <"Identifies the party associated with the early termination event of the commodity performance swap.">
+    startingDate CommodityStartingDate (0..1) <"Specifies the commencement date of the early termination terms for the commodity performance swap.">
 
 type CommodityPerformanceSwapLeg extends Leg: <"Abstract base class for all commodity performance swap legs.">
 
@@ -1167,6 +1220,11 @@ type CommodityPerformanceSwapLeg extends Leg: <"Abstract base class for all comm
     payerAccountReference AccountReference (0..1) <"A reference to the account responsible for making the payments defined by this structure.">
     receiverPartyReference PartyReference (0..1) <"A reference to the party that receives the payments corresponding to this structure.">
     receiverAccountReference AccountReference (0..1) <"A reference to the account that receives the payments corresponding to this structure.">
+
+type CommodityPeriod: <"Commodity payment/fixing period.">
+
+    startDate zonedDateTime (0..1) <"Date on which this period begins.">
+    endDate zonedDateTime (0..1) <"Date on which this period ends.">
 
 type CommodityPhysicalAmericanExercise extends Exercise: <"The parameters for defining the expiration date(s) and time(s) for an American style option.">
 
@@ -1312,7 +1370,7 @@ type CommodityRelativeExpirationDates: <"The Expiration Dates of the trade relat
     expireRelativeToEvent CommodityExpireRelativeToEvent (0..1) <"Specifies whether the payment(s) occur relative to the date of a physical event.">
     expirationDateOffset DateOffset (0..1) <"Specifies any offset from the adjusted Calculation Period start date or adjusted Calculation Period end date applicable to each Payment Date.">
     businessCentersReference BusinessCentersReference (0..1) <"A pointer style reference to a set of financial business centers defined elsewhere in the document. This set of business centers is used to determine whether a particular day is a business day or not.">
-    businessCenters BusinessCenters (0..1)
+    businessCenters BusinessCenters (0..1) <"A set of financial business centers specified directly for use in determining whether a particular day is a business day.">
 
     condition Choice:
         optional choice businessCentersReference, businessCenters
@@ -1327,7 +1385,7 @@ type CommodityRelativePaymentDates: <"The Payment Dates of the trade relative to
     calculationPeriodsDatesReference CalculationPeriodsDatesReference (0..1) <"A pointer style reference to single-day-duration Calculation Periods defined on another leg.">
     paymentDaysOffset DateOffset (0..1) <"Specifies any offset from the adjusted Calculation Period start date, adjusted Calculation Period end date or Calculation Date applicable to each Payment Date.">
     businessCentersReference BusinessCentersReference (0..1) <"A pointer style reference to a set of financial business centers defined elsewhere in the document. This set of business centers is used to determine whether a particular day is a business day or not.">
-    businessCenters BusinessCenters (0..1)
+    businessCenters BusinessCenters (0..1) <"A set of financial business centers specified directly for use in determining whether a particular day is a business day.">
 
     condition Choice0:
         optional choice businessCentersReference, businessCenters
@@ -1338,12 +1396,36 @@ type CommodityRelativePaymentDates: <"The Payment Dates of the trade relative to
     condition Choice2:
         optional choice calculationPeriodsReference, calculationPeriodsScheduleReference, calculationPeriodsDatesReference
 
-type CommodityReturnCalculation:
+type CommodityReturnCalculation: <"Defines the methodology for calculating the return on a commodity-based financial instrument, specifying key elements involved in the computation.">
 
     formula CommodityReturnCalculationFormulaEnum (0..1) <"Defines the value of the commodity return calculation formula as simple or compound.">
     pricingDates CommodityPricingDates (0..1) <"Describes which dates are valid dates on which to observe a price or index level">
     valuationDates CommodityValuationDates (0..1) <"Defines when a price or index level will be observed that will figure in the return calculation.">
     initialPrice number (0..1) <"If specified in the confirmation, the price or index level at the beginning of the initial Calculation Period. For example, if the return calculation is [(Index End / Index Begin) - 1] and Index Begin is defined as equal to Index End for the immediately preceeding Calculation Period, then the value of Index Begin in the very first Calculation Period is not defined and is usually specified in the confirmation.">
+
+type CommoditySchedulePeriodBase: <"Abstract type containing the schedule data for a period.">
+
+    calculationPeriod CommodityPeriod (0..1) <"Period for which the payment is generated.">
+    quantity number (0..1) <"Amount of commodity per schedule period.">
+    totalQuantity number (0..1) <"Total Notional Quantity per Calculation Period.">
+    notionalQuantityReference Reference (0..1) <"Reference to a Commodity Notional Quantity specified elsewhere in the document.">
+    paymentDate zonedDateTime (0..1) <"Adjusted payment date.">
+
+    condition Choice:
+        optional choice totalQuantity, notionalQuantityReference
+
+type CommoditySchedulePeriodFloating extends CommoditySchedulePeriodBase: <"Schedule data for a commodity floating-price period, specifying its fixing period and, where applicable, an associated spread and notional capacity.">
+
+    fixingPeriod CommodityPeriod (0..1) <"Period over which the underyling price or rate is observed.">
+    spread number (0..1) <"Spread (margin) applied to the observed price or rate.">
+    capacity CommodityNotionalQuantity (0..1) <"Capacity per period.">
+
+type CommodityScheduleFloating: <"Schedule of commodity floating payment/fixing periods (one-to-many)">
+
+    legReference CommodityLegReference (0..1) <"Reference to the commodity swap leg to which this schedule relates.">
+    quantityUnit QuantityUnit (0..1) <"Notional Quantity unit in which the Schedule is denominated.">
+    deliveryProperties CommodityDelivery (0..1) <"Commodity physical delivery properties.">
+    period CommoditySchedulePeriodFloating (0..*) <"Commodity floating payment/ fixing period.">
 
 type CommoditySettlementPeriodsNotionalQuantity extends CommodityNotionalQuantity: <"The notional quantity of electricity that applies to one or more groups of Settlement Periods.">
 
@@ -1359,7 +1441,7 @@ type CommoditySettlementPeriodsPriceSchedule: <"The fixed price schedule for ele
     settlementPeriodsPriceStep CommodityFixedPrice (0..*) <"For an electricity transaction, the Fixed Price for a given Calculation Period during the life of the trade which applies to the range(s) of Settlement Periods referenced by settlementPeriods Reference. There must be a Fixed Price step specified for each Calculation Period, regardless of whether the Fixed Price changes or remains the same between periods.">
     settlementPeriodsReference SettlementPeriodsReference (0..*) <"The range(s) of Settlement Periods to which the Fixed Price steps apply.">
 
-type CommoditySpread extends Money:
+type CommoditySpread extends Money: <"Represents the price difference (spread) applied in a commodity contract.">
 
     spreadConversionFactor number (0..1) <"spreadConversionFactor should be used when the unit of measure of the Commodity Reference Price and the unit of measure in which the spread is quoted are different. The value of spreadConversionFactor is the number of units of measure in which the spread is quoted per unit of measure of the Commodity Reference Price.">
     spreadUnit QuantityUnit (0..1) <"spreadUnit should be used when the unit of measure of the Commodity Reference Price and the unit of measure in which the spread is quoted are different. The value of spreadUnit is the unit of measure in which the spread is quoted.">
@@ -1392,12 +1474,12 @@ type CommodityStrikeSchedule: <"The Strike Price per Unit per Calculation Period
     condition Choice:
         optional choice calculationPeriodsReference, calculationPeriodsScheduleReference, calculationPeriodsDatesReference
 
-type CommoditySwaptionUnderlying:
+type CommoditySwaptionUnderlying: <"Represents the underlying details of a commodity swaption contract, which grants the holder the right, but not the obligation, to enter into a commodity swap.">
 
     effectiveDate AdjustableOrRelativeDate (1..1) <"Specifies the effective date of this leg of the swap. When defined in relation to a date specified somewhere else in the document (through the relativeDate component), this element will typically point to the effective date of the other leg of the swap.">
     terminationDate AdjustableOrRelativeDate (1..1) <"Specifies the termination date of this leg of the swap. When defined in relation to a date specified somewhere else in the document (through the relativeDate component), this element will typically point to the termination date of the other leg of the swap.">
     settlementCurrency IdentifiedCurrency (0..1) <"The currency into which the Commodity Swap Transaction will settle. If this is not the same as the currency in which the Commodity Reference Price is quoted on a given floating leg of the Commodity Swap Transaction, then an FX rate should also be specified for that leg.">
-    commoditySwapLeg CommodityLeg (0..*)
+    commoditySwapLeg CommodityLeg (0..*) <"Defines a leg of a commodity swap, specifying either a fixed payment, floating payment, or physical delivery of a commodity. The specific type of leg depends on the nature of the swap and the underlying asset.">
     weatherLeg WeatherLeg (0..2) <"A weather leg element of a Commodity Swap defines Weather Index Swap transactions. Weather Index Swap transactions are OTC derivative transactions which settle financially based on an index calculated from observations of temperature, precipitation and other weather-related measurements at weather stations throughout the world. Sub-Annex C of the 2005 ISDA Commodity Definitions provides definitions and terms for a number of types of weather indices. These indices include: HDD (heating degree days), CDD (cooling degree days), CPD (critical precipitation days). Weather Index Swap transactions result in a cash flow to one of the two counterparties each Calculation Period depending on the relationship between the Settlement Level and the Weather Index Level. A Weather Index swap transaction always consists of a commodity swap element as a parent to two weatherLeg elements.">
     commonPricing boolean (0..1) <"If Common Pricing is elected (“true”) for a Transaction with referencing more than one Commodity Reference Price then no date will be a Pricing Date unless such a date is a day on which all Commodity Reference Prices are scheduled to be published.">
     marketDisruption CommodityMarketDisruption (0..1) <"Contains contract terms related to triggers and responses to market disruptions as defined in the 1993 or 2005 Commodity Definitions.">
@@ -1484,7 +1566,7 @@ type CommodityValuationDates: <"The dates on which prices are observed for the u
         else dayOfWeek is absent and dayNumber is absent
             or dayDistribution is absent and dayCount is absent
 
-type CommodityVarianceCalculation:
+type CommodityVarianceCalculation: <"Defines the methodology for calculating the variance of a commodity’s price over time, typically used in derivative pricing and risk management.">
 
     pricingDates CommodityPricingDates (0..1) <"Describes which dates are valid dates on which to observe a price or index level.">
     valuationDates CommodityValuationDates (0..1) <"Defines when a price or index level will be observed that will figure in the return calculation.">
@@ -1509,27 +1591,10 @@ type EEPParameters: <"Excess Emission Penalty related parameters.">
     equivalentApplicable boolean (0..1) <"When \"true\" the EEP Equivalent is applicable. See Part [7] definition of EEP Equivalent.">
     penaltyApplicable boolean (0..1) <"When \"true\" the Excess Emissions Penalty is applicable. See Part [7] definition of Excess Emissions Penalty.">
 
-type EEPRiskPeriod: <"TBD.">
+type EEPRiskPeriod: <"Defines the period during which excess emissions penalties (EEP) are assessed in an environmental or emissions-related contract. It specifies a time frame within which emissions data is evaluated for compliance and potential penalties.">
 
-    startDate zonedDateTime (0..1)
-    endDate zonedDateTime (0..1)
-
-type ElectricityDelivery: <"The physical delivery conditions for electricity.">
-
-    deliveryPoint ElectricityDeliveryPoint (0..1) <"The point at which delivery of the electricity will occur.">
-    deliveryType ElectricityDeliveryType (0..1) <"Indicates the under what conditions the Parties\' delivery obligations apply.">
-    transmissionContingency ElectricityTransmissionContingency (0..1) <"Indicates that the performance of the buyer or seller shall be excused (under the conditions specified) if transmission of the elctricity is unavailable or interrupted.">
-    interconnectionPoint InterconnectionPoint (0..1) <"Identification of the border(s) or border point(s) of a transportation contract.">
-    deliveryZone CommodityDeliveryPoint (0..1) <"The zone covering potential delivery points for the electricity.">
-    electingPartyReference PartyReference (0..1) <"Indicates the party able to decide which delivery point within the deliveryPoint is used for delivery. For EEI transactions, this should reference the seller of the electricity.">
-
-    condition Choice:
-        if deliveryPoint exists
-        then deliveryZone is absent and electingPartyReference is absent
-        else deliveryPoint is absent
-            and deliveryType is absent
-            and transmissionContingency is absent
-            and interconnectionPoint is absent
+    startDate zonedDateTime (0..1) <"The date on which the risk period for assessing excess emissions begins.">
+    endDate zonedDateTime (0..1) <"The date on which the risk period for assessing excess emissions concludes.">
 
 type ElectricityDeliveryFirm: <"The physical delivery obligation options specific to a firm transaction.">
 
@@ -1543,9 +1608,9 @@ type ElectricityDeliveryPoint: <"A scheme identifying the types of the Delivery 
 type ElectricityDeliverySystemFirm: <"The physical delivery obligation options specific to a system firm transaction.">
 
     applicable boolean (0..1) <"Indicates that the trade is for a System Firm product. Should always be set to \"true\".">
-    system CommodityDeliveryPoint (0..1)
+    system CommodityDeliveryPoint (0..1) <"Specifies the electricity delivery system or network through which power is transmitted under a firm delivery contract. It identifies a designated delivery point, typically referencing a standardized scheme for commodity delivery locations.">
 
-type ElectricityDeliveryType:
+type ElectricityDeliveryType: <"Specifies the type of electricity delivery commitment in a contract. It defines whether the delivery is firm, non-firm, system firm, or unit firm.">
 
     firm ElectricityDeliveryFirm (0..1) <"Indicates under what condtitions the Parties\' delivery obligations apply.">
     nonFirm boolean (0..1) <"If present and set to true, indicates that delivery or receipt of the electricity may be interrupted for any reason or for no reason, without liability on the part of either Party. This element should never have a value of false.">
@@ -1558,7 +1623,7 @@ type ElectricityDeliveryType:
 type ElectricityDeliveryUnitFirm: <"The physical delivery obligation options specific to a unit firm transaction.">
 
     applicable boolean (0..1) <"Indicates that the trade is for a Unit Firm product. Should always be set to \"true\".">
-    generationAsset CommodityDeliveryPoint (0..1)
+    generationAsset CommodityDeliveryPoint (0..1) <"Represents the specific power generation facility designated for electricity delivery in a unit firm contract.">
 
 type ElectricityPhysicalDeliveryQuantity extends CommodityNotionalQuantity: <"A type defining the physical quantity of the electricity to be delivered.">
 
@@ -1605,7 +1670,7 @@ type EnvironmentalProductApplicableLaw: <"TBD.">
     value Scheme (1..1)
     environmentalProductApplicableLawScheme NonEmptyURI (0..1)
 
-type EnvironmentalProductComplaincePeriod:
+type EnvironmentalProductComplaincePeriod: <"Defines a period during which an environmental product must comply with certain regulations or standards.">
 
     startYear string (0..1) <"The first year of the Compliance Period.">
     endYear string (0..1) <"The last year of the Commpliance Period.">
@@ -1764,22 +1829,9 @@ type FloatingPriceLeg extends FinancialSwapLeg: <"Floating Price Leg of a Commod
                 or calculationPeriodsScheduleReference exists
                 or calculationPeriodsDatesReference exists
 
-type FloatingStrikePrice extends FloatingLegCalculation:
+type FloatingStrikePrice extends FloatingLegCalculation: <"Represents a floating strike price mechanism in a commodity derivatives contract.">
 
-    commodity Commodity (1..1)
-
-type GasDelivery: <"The specification of the gas to be delivered.">
-
-    deliveryPoint GasDeliveryPoint (0..1) <"The physical or virtual point at which the commodity will be delivered.">
-    entryPoint CommodityDeliveryPoint (0..1) <"The physical or virtual point at which the commodity enters a transportation system.">
-    withdrawalPoint CommodityDeliveryPoint (0..1) <"The physical or virtual point at which the commodity is withdrawn from a transportation system.">
-    deliveryType DeliveryTypeEnum (0..1) <"Indicates whether the buyer and seller are contractually obliged to consume and supply the specified quantities of the commodity.">
-    interconnectionPoint InterconnectionPoint (0..1) <"Identification of the border(s) or border point(s) of a transportation contract.">
-    buyerHub CommodityHub (0..1) <"The hub code of the gas buyer.">
-    sellerHub CommodityHub (0..1) <"The hub code of the has seller.">
-
-    condition Choice:
-        deliveryPoint is absent or entryPoint is absent and withdrawalPoint is absent
+    commodity Commodity (1..1) <"A reference to the underlying commodity associated with the floating strike price. This element determines which commodity\'s market price will be used for calculating the strike price dynamically over time.">
 
 type GasDeliveryPeriods extends CommodityDeliveryPeriods: <"The different options for specifying the Delivery Periods for a physically settled gas trade.">
 
@@ -1882,20 +1934,6 @@ type NonPeriodicFixedPriceLeg extends CommodityLeg: <"The details of a fixed pay
     condition Choice:
         required choice relativePaymentDates, paymentDates, masterAgreementPaymentDates
 
-type OilDelivery: <"The physical delivery conditions for an oil product.">
-
-    pipeline OilPipelineDelivery (0..1) <"Specified the delivery conditions where the oil product is to be delivered by pipeline.">
-    transfer OilTransferDelivery (0..1) <"Specified the delivery conditions where the oil product is to be delivered by title transfer.">
-    importerOfRecord PartyReference (0..1) <"Specifies which party is the Importer of Record for the purposes of paying customs duties and applicable taxes or costs related to the import of the oil product.">
-    absoluteTolerance AbsoluteTolerance (0..1) <"Specifies the allowable quantity tolerance as an absolute quantity.">
-    percentageTolerance PercentageTolerance (0..1) <"Specifies the allowable quantity tolerance as a percentage of the quantity.">
-
-    condition Choice0:
-        optional choice absoluteTolerance, percentageTolerance
-
-    condition Choice1:
-        optional choice pipeline, transfer
-
 type OilPipelineDelivery: <"The physical delivery conditions specific to an oil product delivered by pipeline.">
 
     pipelineName CommodityPipeline (0..1) <"The name of pipeline by which the oil product will be delivered.">
@@ -1933,9 +1971,9 @@ type PhysicalForwardLeg extends PhysicalLegBase: <"The common components of a ph
     receiverPartyReference PartyReference (0..1) <"A reference to the party that receives the payments corresponding to this structure.">
     receiverAccountReference AccountReference (0..1) <"A reference to the account that receives the payments corresponding to this structure.">
 
-type PhysicalLegBase extends CommodityLeg:
+type PhysicalLegBase extends CommodityLeg: <"A foundational structure for defining the physical settlement aspects of a commodity contract. It extends CommodityLeg, inheriting general attributes and characteristics applicable to commodity transactions.">
 
-    commodityClassification CommodityClassification (0..*)
+    commodityClassification CommodityClassification (0..*) <"Specifies the classification of the commodity being physically delivered.">
 
 type PhysicalSwapLeg extends PhysicalLegBase: <"The common components of a physically settled leg of a Commodity Swap. This is an abstract type and should be extended by commodity-specific types.">
 
@@ -1948,10 +1986,10 @@ type QuantityReference extends Reference: <"A pointer tyle reference to a Quanti
 
     href string (1..1)
 
-type ReferenceLevel:
+type ReferenceLevel: <"Specifies a benchmark or threshold level used in commodity or environmental transactions. It typically defines a reference value against which contract terms, payments, or compliance measures are evaluated.">
 
-    amount number (1..1)
-    referenceLevelUnit ReferenceLevelUnit (1..1)
+    amount number (1..1) <"Represents the numeric reference level as a decimal value. This could indicate a threshold price, a measured quantity, or an index level relevant to the contract. Its interpretation depends on the context in which the reference level is applied.">
+    referenceLevelUnit ReferenceLevelUnit (1..1) <"Specifies the unit of measure for the reference level. It ensures standardized representation and interoperability in financial and commodity markets.">
 
 type ReferenceLevelUnit: <"CPD Reference Level: millimeters or inches of daily precipitation HDD Reference Level: degree-days CDD Reference Level: degree-days.">
 
@@ -1979,7 +2017,7 @@ type SettlementPeriods: <"Specifies a set of Settlement Periods associated with 
 
 type SettlementPeriodsFixedPrice extends CommodityFixedPrice: <"A type defining the Fixed Price applicable to a range or ranges of Settlement Periods.">
 
-    settlementPeriodsReference SettlementPeriodsReference (0..*)
+    settlementPeriodsReference SettlementPeriodsReference (0..*) <"Provides a reference to a predefined settlement period within a commodity contract.">
 
 type SettlementPeriodsReference extends Reference: <"Allows a set of Settlement Periods to reference one already defined elsewhere in the trade.">
 
@@ -2014,13 +2052,13 @@ type UnitQuantity: <"A quantity and associated unit.">
 
 type WeatherCalculationPeriod: <"The schedule of Calculation Period First Days and Lasts Days. If there is only one First Day - Last Day pair then the First is equal to the Effective Date and the Last Day is equal to the Termination Date.">
 
-    calculationPeriodFirstDay IdentifiedDate (0..1)
-    calculationPeriodEndDay IdentifiedDate (0..1)
+    calculationPeriodFirstDay IdentifiedDate (0..1) <"Defines the start date of a weather-related calculation period in a financial contract.">
+    calculationPeriodEndDay IdentifiedDate (0..1) <"Defines the end date of a weather-related calculation period in a financial contract.">
 
 type WeatherCalculationPeriods: <"The schedule of Calculation Period First Days and Lasts Days. If there is only one First Day - Last Day pair then the First is equal to the Effective Date and the Last Day is equal to the Termination Date.">
 
     id string (0..1)
-    calculationPeriod WeatherCalculationPeriod (0..*)
+    calculationPeriod WeatherCalculationPeriod (0..*) <"Represents an individual weather-related calculation period within a financial contract.">
 
 type WeatherIndex: <"A type defining the Weather Index Level or Weather Index Strike Level.">
 
@@ -2028,7 +2066,7 @@ type WeatherIndex: <"A type defining the Weather Index Level or Weather Index St
     quantity number (1..1) <"This is the Reference Level. The CDD, HDD or HDD Reference Level is specified as the number of (amount of) Weather Index Units specified by the parties in the related Confirmation.">
     unit QuantityUnit (1..1) <"Weather Index Unit derived from one of the following variable methods of determination: Cooling Degree Day (CDD), Heating Degree Day (HDD), Critical Precipitation Day (CPD) as defined in Section 11.15 of the 2005 ISDA Commodity Definitions and User Guide.">
 
-type WeatherIndexData:
+type WeatherIndexData: <"Represents key parameters used in weather-related financial contracts to define how weather data is sourced, validated, and adjusted.">
 
     referenceLevel ReferenceLevel (1..1) <"Reference level is the number of degree-days (in the case of HDD and CDD) or inches/millimeters (in the case of CPD) on which the differential is calculated. In the case of HDD it is the number of degree-days below this reference level. In the case of CDD it is the number of degree days above this reference level. In the case of CPD it is number of inches/millimeters above this reference level.">
     dataProvider DataProvider (0..1) <"The provider of either temperature data or precipitation data specified by the parties in the related Confirmation.">
@@ -2045,8 +2083,8 @@ type WeatherIndexData:
 type WeatherLeg extends FinancialSwapLeg: <"A weather leg of a Commodity Swap defines Weather Index Swap transactions. Weather Index Swap transactions are OTC derivative transactions which settle financially based on an index calculated from observations of temperature, precipitation and other weather-related measurements at weather stations throughout the world. Sub-Annex C of the 2005 ISDA Commodity Definitions provides definitions and terms for a number of types of weather indices. These indices include: HDD (heating degree days), CDD (cooling degree days), CPD (critical precipitation days). Weather Index Swap transactions result in a cash flow to one of the two counterparties each Calculation Period depending on the relationship between the Settlement Level and the Weather Index Level. A Weather Index swap transaction always consists of a commodity swap element as a parent to two weatherLeg elements.">
 
     weatherIndexLevel WeatherIndex (1..1) <"Defining the Weather Index Level or Weather Index Strike Level.">
-    weatherCalculationPeriods WeatherCalculationPeriods (0..1)
-    weatherCalculationPeriodsReference CalculationPeriodsReference (0..1)
+    weatherCalculationPeriods WeatherCalculationPeriods (0..1) <"Defines a set of time periods over which weather-related measurements (e.g., temperature, rainfall, wind speed) are observed and aggregated for contract valuation.">
+    weatherCalculationPeriodsReference CalculationPeriodsReference (0..1) <"Provides a reference to an existing set of weather calculation periods rather than defining them explicitly.">
     weatherNotionalAmount NonNegativeMoney (1..1) <"Defines the price per weather index unit.">
     calculation WeatherLegCalculation (1..1) <"Defines details relevant to the calculation of the aggregate weather index amount.">
     paymentDates CommodityRelativePaymentDates (0..1) <"The Payment Dates of the trade relative to the Calculation Periods or Calculation Date">
@@ -2069,10 +2107,10 @@ type WeatherLegCalculation: <"A type to capture details of the calculation of th
 
 type WeatherStation: <"Weather Station.">
 
-    weatherStationCity BusinessCenter (0..1)
-    weatherStationAirport WeatherStationAirport (0..1)
-    weatherStationWBAN WeatherStationWBAN (0..1)
-    weatherStationWMO WeatherStationWMO (0..1)
+    weatherStationCity BusinessCenter (0..1) <"Specifies a weather station by referencing a business center, typically a major city where weather data is collected.">
+    weatherStationAirport WeatherStationAirport (0..1) <"Identifies a weather station located at an airport, using standardized airport weather station codes as defined in the external weather station airport coding scheme.">
+    weatherStationWBAN WeatherStationWBAN (0..1) <"Represents a weather station using the Weather Bureau Army Navy (WBAN) identification system, which assigns unique numerical codes to weather monitoring stations, as defined in the external WBAN coding scheme.">
+    weatherStationWMO WeatherStationWMO (0..1) <"Specifies a weather station using the World Meteorological Organization (WMO) identification system, which provides globally recognized codes for official meteorological stations, following the external WMO coding scheme.">
 
     condition Choice:
         optional choice weatherStationCity, weatherStationAirport, weatherStationWBAN, weatherStationWMO

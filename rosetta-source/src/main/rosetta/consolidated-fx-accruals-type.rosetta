@@ -1,7 +1,7 @@
 namespace fpml.consolidated.fx.accruals : < "fpml definition" >
 version "${project.version}"
 
-import fpml.consolidated.fpmlenum.*
+import fpml.consolidated.^enum.*
 import fpml.consolidated.fx.*
 import fpml.consolidated.fx.targets.*
 import fpml.consolidated.option.shared.*
@@ -112,7 +112,7 @@ type FxAccrualAverageStrikeReference extends Reference: <"Reference to an averag
 
     href string (1..1)
 
-type FxAccrualBarrier extends FxComplexBarrierBase:
+type FxAccrualBarrier extends FxComplexBarrierBase: <"Defines the structure of an FX accrual barrier condition used in exotic FX options. It inherits common barrier attributes such as style, scope, and trigger conditions. It also includes an optional accrual retention rule indicating whether accrued amounts are retained upon barrier breach. The rate to monitor can be defined either by an observable reference or directly through a quoted currency pair and its associated information sources.">
 
     accrualRetention FxAccrualKnockoutBarrierRetentionEnum (0..1) <"Specifies the behavior with respect to settlement rights for the accrual period in which a global knockout event occurs (the \"knockout period\"). \"Keep\" means that the parties retain settlement rights at the end of the knckout period, fixed at the prevailing accrued notional, and settlement rights for all future accrual periods are extinguished. \"Lose\" means that settlement rights for the knockout period and all future accrual periods are extinguished, and the product is effectively extinguished. This element should be produced in case of a global knockout barrier (barrierType= \"Knockout\", scope=\"Global\"), and omitted otherwise.">
     observableReference FxRateObservableReference (0..1) <"Reference to an \'FxRateObservable\' structure.">
@@ -124,7 +124,7 @@ type FxAccrualBarrier extends FxComplexBarrierBase:
         then observableReference is absent
         else quotedCurrencyPair is absent and informationSource is absent
 
-type FxAccrualLeverage:
+type FxAccrualLeverage: <"Represents a conditional payout feature in an FX accrual product, where the amount received depends on whether certain market conditions are met. These conditions can be defined by a specific rate level, a quoted basis, or a reference to a strike or average value. If the condition is satisfied, the payout may increase either by applying a multiplier (ratio) or by specifying larger notional or counter currency amounts. This type allows flexible modeling of scenarios where returns are amplified when predefined criteria are met.">
 
     id string (0..1)
     condition ConditionEnum (1..1) <"Condition in which leverage applies.">
@@ -185,7 +185,7 @@ type FxAccrualLinearPayoffRegion extends FxAccrualPayoffRegion: <"A fixing regio
         then strike is absent and counterCurrencyAmount is absent
         else False
 
-type FxAccrualPayoffRegion:
+type FxAccrualPayoffRegion: <"An abstract type used as a base for defining specific regions or scenarios in an FX accrual structure where particular payout rules apply. It acts as a placeholder to be extended by concrete types that specify the conditions and logic for calculating accrual-based payoffs in different rate or event regions.">
 
     id string (0..1)
 
@@ -212,7 +212,7 @@ type FxAccrualRegion: <"Defines a region of spot rate where the notional for the
         then accrualFactor is absent
         else notionalAmount is absent and counterCurrencyAmount is absent
 
-type FxAccrualRegionLowerBound:
+type FxAccrualRegionLowerBound: <"Defines the lower boundary condition for an FX accrual range. It specifies whether the accrual region begins above or at/above a given rate level, strike, average, or trigger reference, allowing flexible configuration of when accrual begins based on market conditions.">
 
     condition FxRegionLowerBoundDirectionEnum (1..1) <"The Lower Bound Direction. It only contains the AtOrAbove and Above values.">
     level FxLevel (0..1) <"Level expressed as a level.">
@@ -243,7 +243,7 @@ type FxAccrualRegionLowerBound:
                 and quoteBasis is absent
         else False
 
-type FxAccrualRegionUpperBound:
+type FxAccrualRegionUpperBound: <"Defines the upper boundary condition for an FX accrual range. It indicates whether the accrual region ends below or at/below a specified rate level, strike, average, or trigger reference, helping to determine when accrual should stop according to market rate thresholds.">
 
     condition FxRegionUpperBoundDirectionEnum (1..1) <"The Upper Bound Direction. It only contains the AtOrBelow and Below values.">
     level FxLevel (0..1) <"Level expressed as a level.">
@@ -274,7 +274,7 @@ type FxAccrualRegionUpperBound:
                 and quoteBasis is absent
         else False
 
-type FxAccrualSettlementPeriod extends SettlementPeriod:
+type FxAccrualSettlementPeriod extends SettlementPeriod: <"Represents a time period within an FX accrual structure during which settlement conditions are evaluated. It includes expiry and settlement dates, the notional amount, and one or more payoffs tied to accrual performance. Optional elements like accrual factor, barriers, and fixing dates allow for flexible modeling of complex FX payout conditions over the period.">
 
     payoff FxAccrualSettlementPeriodPayoff (1..*) <"Payoff Region within the settlement period to link strike with the relevant payoff components.">
     accrualFactor number (0..1) <"Accrual factor for the settlement period.">
@@ -298,7 +298,7 @@ type FxAccrualSettlementPeriodPayoff: <"Payoff region">
         then averageStrikeFixingDates is absent
         else strike is absent and counterCurrencyAmount is absent
 
-type FxAccrualSettlementPeriodSchedule:
+type FxAccrualSettlementPeriodSchedule: <"Defines a sequence of accrual settlement periods for a foreign exchange (FX) accrual product. Each period in the schedule captures specific details such as settlement dates, notional amounts, payoffs, and any associated accrual or barrier conditions, allowing for structured payout modeling over time.">
 
     settlementPeriod FxAccrualSettlementPeriod (1..*) <"Defines each settlement period in the tabular/matrix representation of the product.">
 
@@ -322,28 +322,28 @@ type FxAdjustedDateAndDateAdjustments: <"Defines the expiry/observation schedule
     dateAdjustments BusinessDayAdjustments (0..1) <"Date adjustments applied to the adjusted dates including the business day convention and the business centers. The date adjustments are as specified in the definitions.">
     adjustedDate zonedDateTime (1..1) <"List of schedule dates. These dates have been subject to adjustments based on the dateAdjustments structure.">
 
-type FxAverageRate extends FxAveragingProcess:
+type FxAverageRate extends FxAveragingProcess: <"Represents an FX rate determined through an averaging process over a defined schedule of fixings. It includes details about the fixing dates, the method of averaging (e.g., arithmetic or harmonic), and optional decimal precision.">
 
-type FxAverageStrike extends FxAveragingProcess:
+type FxAverageStrike extends FxAveragingProcess: <"Defines an average strike value in an FX contract, calculated using an averaging process over a schedule of fixings. It includes an optional adjustment to the computed average, allowing for fine-tuning of the strike.">
 
     strikeAdjustment number (0..1) <"A layer an Adjustment on the top of the average of the fixings across the schedule.">
 
 type FxAveragingProcess extends FxRateObservable: <"Accrual calculation process.">
 
     fixingSchedule FxWeightedFixingSchedule (1..1) <"Describes a parametric schedule of fixing dates.">
-    averagingMethod FxAveragingMethodEnum (1..1)
+    averagingMethod FxAveragingMethodEnum (1..1) <"Specifies the method used to calculate the average FX rate over the fixing schedule. It can be either arithmetic (simple average of the observed rates) or harmonic (reciprocal of the average of reciprocals). The choice of method affects how the final rate is derived from individual fixings.">
     precision int(min: 0) (0..1) <"Specifies the rounding precision in terms of a number of decimal places. Note how a percentage rate rounding of 5 decimal places is expressed as a rounding precision of 7 in the FpML document since the percentage is expressed as a decimal, e.g. 9.876543% (or 0.09876543) being rounded to the nearest 5 decimal places is 9.87654% (or 0.0987654).">
 
 type FxCrossRateObservable: <"A type that is used for including the currency exchange rates information used to cross between the traded currencies for non-base currency FX contracts.">
 
-    quotedCurrencyPair QuotedCurrencyPair (1..1)
-    informationSource FxInformationSource (1..1)
+    quotedCurrencyPair QuotedCurrencyPair (1..1) <"Specifies the two currencies forming the FX rate being observed, along with the quote basis. It identifies which currency is priced in terms of the other, providing essential context for interpreting the exchange rate.">
+    informationSource FxInformationSource (1..1) <"Defines the source from which the FX rate is obtained, including the provider (e.g. Bloomberg, Reuters), page reference if applicable, and optionally, the time of the fixing. This ensures transparency and traceability of the observed rate.">
 
 type FxExpiryDate extends FxAdjustedDateAndDateAdjustments: <"Defines the expiry date of the accrual. The date is adjusted, date adjustments may be provided, and also the expiry time.">
 
     expiryTime BusinessCenterTime (0..1) <"Time of expiration of each expiry date.">
 
-type FxFixingObservation:
+type FxFixingObservation: <"Represents a single FX rate observation used in an averaging process. It records the date of the fixing and optionally assigns a numerical weight to indicate the relative importance of this observation within the average calculation.">
 
     date zonedDateTime (1..1) <"A specific date for which an observation against a particular rate will be made and will be used for subsequent computations.">
     weight number (0..1) <"An optional factor that can be used for weighting certain observation dates. Typically, firms will weight each date with a factor of 1 if there are standard, unweighted adjustments. If omitted, weight is defaulted to 1.">
@@ -357,7 +357,7 @@ type FxFixingSchedule: <"Describes a schedule of fixing dates as a parametric de
     observationFrequency ObservationFrequency (0..1) <"Defines the frequency at which calculation period end dates occur within the period schedule and their roll date convention.">
     dayType DayTypeEnum (0..1) <"A day type classification, e.g. Business, Calendar, etc.">
     businessCentersReference BusinessCentersReference (0..1) <"A pointer style reference to a set of financial business centers defined elsewhere in the document. This set of business centers is used to determine whether a particular day is a business day or not.">
-    businessCenters BusinessCenters (0..1)
+    businessCenters BusinessCenters (0..1) <"A set of financial business centers specified directly for use in determining whether a particular day is a business day.">
     numberOfFixings int(min: 0) (0..1) <"The number of fixing points in the fixing schedule.">
 
     condition Choice0:
@@ -437,7 +437,7 @@ type FxOptionStrikePrice extends FxAccrualStrike: <"A type that describes the ra
 
     strikeQuoteBasis StrikeQuoteBasisEnum (1..1) <"The method by which the strike rate is quoted.">
 
-type FxRateObservable:
+type FxRateObservable: <"Defines a foreign exchange rate reference used in a financial product. It specifies the currency pair being observed and either the direct market source of the rate or a set of cross rates used to derive it. Each instance may also carry a unique identifier for referencing purposes.">
 
     id string (0..1)
     quotedCurrencyPair QuotedCurrencyPair (1..1) <"FX rate to be observed. The Quoted Currency Pair that is used across the product.">
@@ -460,7 +460,7 @@ type FxWeightedFixingSchedule: <"Describes a schedule of fixing dates as a param
     observationFrequency ObservationFrequency (0..1) <"Defines the frequency at which calculation period end dates occur within the period schedule and their roll date convention.">
     dayType DayTypeEnum (0..1) <"A day type classification, e.g. Business, Calendar, etc.">
     businessCentersReference BusinessCentersReference (0..1) <"A pointer style reference to a set of financial business centers defined elsewhere in the document. This set of business centers is used to determine whether a particular day is a business day or not.">
-    businessCenters BusinessCenters (0..1)
+    businessCenters BusinessCenters (0..1) <"A set of financial business centers specified directly for use in determining whether a particular day is a business day.">
     numberOfFixings int(min: 0) (0..1) <"The number of fixing points in the fixing schedule.">
 
     condition Choice0:

@@ -2,7 +2,7 @@ namespace fpml.consolidated.bond.option : < "fpml definition" >
 version "${project.version}"
 
 import fpml.consolidated.asset.*
-import fpml.consolidated.fpmlenum.*
+import fpml.consolidated.^enum.*
 import fpml.consolidated.option.shared.*
 import fpml.consolidated.shared.*
 
@@ -18,7 +18,7 @@ type BondOption extends OptionBaseExtended: <"A component describing a Bond Opti
 type BondOptionStrike: <"A complex type to specify the strike of a bond or convertible bond option.">
 
     referenceSwapCurve ReferenceSwapCurve (0..1) <"The strike of an option when expressed by reference to a swap curve. (Typically the case for a convertible bond option.)">
-    price OptionStrike (0..1)
+    price OptionStrike (0..1) <"The strike price for an option, which can be expressed either as a percentage of the notional amount or as an absolute value.">
 
     condition Choice:
         one-of
@@ -30,7 +30,7 @@ type MakeWholeAmount extends SwapCurveValuation: <"A complex type to specify the
 
 type ReferenceSwapCurve: <"A complex type used to specify the option and convertible bond option strike when expressed in reference to a swap curve.">
 
-    swapUnwindValue SwapCurveValuation (0..1)
+    swapUnwindValue SwapCurveValuation (0..1) <"The valuation of a swap that is being unwound, typically in the context of determining the strike price for bond or convertible bond options when expressed relative to a swap curve.">
     makeWholeAmount MakeWholeAmount (0..1) <"Amount to be paid by the buyer of the option if the option is exercised prior to the Early Call Date. (The market practice in the convertible bond option space being that the buyer should be penalized if he/she exercises the option early on.)">
 
 type SwapCurveValuation: <"A complex type to specify a valuation swap curve, which is used as part of the strike construct for the bond and convertible bond options.">

@@ -5,7 +5,7 @@ import fpml.consolidated.asset.*
 import fpml.consolidated.cd.*
 import fpml.consolidated.com.*
 import fpml.consolidated.doc.*
-import fpml.consolidated.fpmlenum.*
+import fpml.consolidated.^enum.*
 import fpml.consolidated.generic.*
 import fpml.consolidated.shared.*
 
@@ -30,18 +30,18 @@ type CorporateAction extends CorporateActionEvent: <"Describes a change due to a
 type IndexChange extends ChangeEvent: <"Describes a change due to an index component being adjusted. A structure describing the effect of a change to an index.">
     [rootType]
 
-    indexFactor number (0..1)
-    factoredCalculationAmount Money (0..1)
+    indexFactor number (0..1) <"Represents the index version factor or percentage as an absolute decimal value between 0 and 1. This factor, when multiplied by the original notional amount, determines the adjusted notional amount following an index change. This structure allows for precise calculation of the impact of index adjustments on financial instruments.">
+    factoredCalculationAmount Money (0..1) <"Represents the monetary value obtained by applying the specified indexFactor to the original calculation amount. This adjusted amount reflects the impact of the index change on the financial instrument\'s value.">
 
 type AbstractEvent: <"Abstract base type for all events.">
 
-    eventIdentifier BusinessEventIdentifier (0..*)
+    eventIdentifier BusinessEventIdentifier (0..*) <"Serves to uniquely identify a business event. This structure allows for precise identification and tracking of events within financial transactions.">
 
-type ActionOnExpiration:
+type ActionOnExpiration: <"Defines the action to be taken when an option expires. It describes how an option\'s exercise amount is handled upon expiration, as well as allowing for different types of actions, such as exercising in notional amounts, options, or units, and includes the possibility of specifying amounts for each. It also accommodates multiple exercise specifications, such as whether the action involves a full exercise or partial exercise, and it allows for indicating the remaining notional amount, outstanding options, or units.">
 
-    exerciseAction ExerciseActionEnum (0..1)
-    expiry boolean (0..1)
-    fullExercise boolean (0..1)
+    exerciseAction ExerciseActionEnum (0..1) <"Indicates the type of exercise action performed for the option, with possible values of \"FullExercise\", \"PartialExercise\", or \"Abandon\".">
+    expiry boolean (0..1) <"A boolean indicating whether the option has expired, with true for expired and false for not expired.">
+    fullExercise boolean (0..1) <"A boolean indicating whether the option was fully exercised (true) or not (false).">
     exerciseInNotionalAmount Money (0..1) <"Specifies the fixed amount by which the option should be exercised expressed as notional amount.">
     outstandingNotionalAmount Money (0..1) <"Specifies the Notional amount after the Change">
     exerciseInNumberOfOptions number (0..1) <"Specifies the fixed amount by which the option should be exercised expressed as number of options.">
@@ -102,8 +102,8 @@ type AdditionalEvent extends AbstractEvent: <"Abstract base type for an extensio
 
 type AmountRef: <"A type defining a nominal amount with a reference.">
 
-    amount PositiveDecimal (1..1)
-    amountReference AmountReference (0..1)
+    amount PositiveDecimal (1..1) <"A positive decimal number representing a monetary value. It is used within the AmountRef complex type to specify the amount of money involved in a financial transaction. This structure allows for clear representation of monetary amounts and their references in financial documents.">
+    amountReference AmountReference (0..1) <"A reference to another amount specified elsewhere in the document, using the AmountReference type. This structure allows for the reuse of amount definitions within a financial document, promoting consistency and reducing redundancy.">
 
 type BasketChangeEvent extends ChangeEvent: <"A structure indicating that the basket underlyer of the trade has changed due to client trading activity">
 
@@ -112,14 +112,14 @@ type BusinessEventIdentifier: <"A type defining an event identifier issued by th
     id string (0..1)
     partyReference PartyReference (1..1) <"Reference to a party.">
     accountReference AccountReference (0..1) <"Reference to an account.">
-    eventId EventId (1..1)
+    eventId EventId (1..1) <"A unique identifier assigned by a party to a post-trade event. Its structure allows for the precise identification and referencing of events within financial transactions.">
 
 type ResetCalculationDetails: <"A cashflow component with optional calculation details that explain how the reset value was computed.">
 
     observation Observation (0..*) <"The underlyer rate or price observation(s) used to compute the amount of this cashflow component.">
     calculationElements ResetCalculationElements (0..1) <"The calculation details used to compute the reset rate.">
 
-type ResetCalculationElements:
+type ResetCalculationElements: <"Defines the components used to calculate the reset rate for a financial instrument.">
 
     notional CashflowNotional (0..1) <"Identifies the notional in effect for this calculation period.">
     calculatedRate CashflowFixing (0..1) <"The computed rate(s) or price(s) used to calculate the amount of this reset. These computed rates or prices may include averaging and/or various types of rate treatment rules.">
@@ -149,14 +149,14 @@ type CashflowObservationReference extends Reference: <"Reference to a cash flow 
 
     href string (1..1)
 
-type ClearingInstructions:
+type ClearingInstructions: <"Specifies instructions related to the clearing process of a financial transaction. It provides the necessary details to facilitate the clearing process in financial transactions.">
 
-    requestedClearingAction RequestedClearingAction (0..1)
-    requestedClearingOrganizationPartyReference PartyReference (0..1)
+    requestedClearingAction RequestedClearingAction (0..1) <"Specifies the action a party requests regarding the clearing of a trade.">
+    requestedClearingOrganizationPartyReference PartyReference (0..1) <"A pointer to a specific party defined elsewhere in the document, identifying the clearing organization that is requested to handle the clearing process for the associated trade. By referencing the clearing organization in this manner, the element facilitates clear and precise instructions within the clearing process.">
 
 type CorporateActionEvent extends ChangeEvent: <"A structure indicating that a trade has changed due to a corporate action">
 
-    ^type CorporateActionType (0..1)
+    ^type CorporateActionType (0..1) <"Specifies the nature of a corporate action that has occurred. This structure allows for the classification of corporate actions, such as mergers, acquisitions, or stock splits, by referencing a specific coding scheme.">
 
 type CorporateActionType: <"A type that describes what type of corporate action occurred.">
 
@@ -180,12 +180,12 @@ type EventId: <"A post-trade event reference identifier allocated by a party. Fp
     eventIdScheme NonEmptyURI (0..1)
     id string (0..1)
 
-type EventTaxonomy:
+type EventTaxonomy: <"DEPRECATED. Not in use (RPTWG decision 2025-09-25).">
 
     value NonEmptyScheme (1..1)
-    eventTaxonomyScheme NonEmptyURI (0..1)
+    eventTaxonomyScheme NonEmptyURI (0..1) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25).">
 
-type EventType:
+type EventType: <"Represents a code that identifies the type of event occurring within a financial transaction. Its structure allows for the classification of events using a standardized coding scheme, facilitating consistent reporting and processing of various event types in financial transactions.">
 
     value NonEmptyScheme (1..1)
     eventTypeScheme NonEmptyURI (0..1)
@@ -198,7 +198,7 @@ type MoneyRef extends PositiveMoney: <"A type defining a currency amount with a 
 
     notionalReference NotionalReference (0..1) <"A pointer style reference to the associated notional schedule defined elsewhere in the document.">
 
-type NoTouchLowerBarrierObservation:
+type NoTouchLowerBarrierObservation: <"Represents the observation details for a no-touch option\'s lower barrier. It allows for specifying either a trigger rate with associated currency pair and minimum observed rate, or a trigger price with minimum observed price, to detail the conditions under which the barrier event is assessed.">
 
     triggerRate number (0..1) <"The rate value (level) which was attained/breached, in order to trigger the barrier event.">
     quotedCurrencyPair QuotedCurrencyPair (0..1) <"Defines the currency pair and quote basis for an FX rate.">
@@ -212,18 +212,18 @@ type NoTouchLowerBarrierObservation:
                 and quotedCurrencyPair is absent
                 and minimumObservedRate is absent
 
-type NoTouchRateObservation:
+type NoTouchRateObservation: <"Defines the parameters for observing rates in a no-touch option. It includes optional elements for specifying the observation period, and allows for the definition of lower and upper barriers. Additionally, it provides options to specify exercise details. The structure is designed to capture the necessary information for processing no-touch options within the FpML framework.">
 
-    observationStartDate zonedDateTime (0..1)
-    observationEndDate zonedDateTime (0..1)
-    lowerBarrier NoTouchLowerBarrierObservation (0..1)
-    upperBarrier NoTouchUpperBarrierObservation (0..1)
-    exerciseSide ExerciseSideEnum (0..1)
-    settlementType SettlementTypeEnum (0..1)
-    cashSettlement SimplePayment (0..1)
-    physicalSettlement PhysicalSettlement (0..1)
-    payment NonNegativePayment (0..1)
-    clearingInstructions ClearingInstructions (0..1)
+    observationStartDate zonedDateTime (0..1) <"Define the beginning period during which the underlying rate or price is monitored to determine if it breaches the specified barriers. The observationStartDate marks the beginning of this monitoring period, while the observationEndDate signifies its conclusion. This date is crucial for assessing the occurrence of barrier events in no-touch options.">
+    observationEndDate zonedDateTime (0..1) <"Define the end of the period during which the underlying rate or price is monitored to determine if it breaches the specified barriers. This date is crucial for assessing the occurrence of barrier events in no-touch options.">
+    lowerBarrier NoTouchLowerBarrierObservation (0..1) <"Defines the thresholds that, if breached, determine the outcome of a no-touch option. In this case, the lowerBarrier specifies the lower price or rate limit. If the underlying asset\'s price or rate crosses this limit during the observation period, the no-touch condition is violated, affecting the option\'s payoff.">
+    upperBarrier NoTouchUpperBarrierObservation (0..1) <"The upper trigger level of a double no-touch observation, together with the highest rate or price observed over the observation period.">
+    exerciseSide ExerciseSideEnum (0..1) <"Specifies which party has the right to exercise the option. It can take values such as \"Put\" or \"Call\", indicating the nature of the option, or \"Payer\" or \"Receiver\", specifying the role of the party in the transaction. This enumeration is particularly relevant in scenarios like straddle options, where it\'s necessary to define which side—paying or receiving—is being exercised.">
+    settlementType SettlementTypeEnum (0..1) <"Specifies the method by which a transaction is settled upon exercise. It can take the following values: {\"Cash\", \"Physical\", \"Election\", \"CashOrPhysical\"}.">
+    cashSettlement SimplePayment (0..1) <"Defines that the financial instrument is cash settled upon exercise. It specifies a straightforward payment arrangement between parties. This includes details such as the payer and receiver, the payment amount, and the payment date. This field is essential for specifying the settlement methods in derivative contracts, particularly in the context of no-touch options, where the instrument settles based on the underlying asset\'s price movement relative to predefined barriers.">
+    physicalSettlement PhysicalSettlement (0..1) <"Defines that the financial instrument is physically settled upon exercise. It outlines the terms for the physical delivery of the underlying asset. This can include references to resulting trade identifiers, resulting trades, or specific product details. This field is essential for specifying the settlement methods in derivative contracts, particularly in the context of no-touch options, where the instrument settles based on the underlying asset\'s price movement relative to predefined barriers.">
+    payment NonNegativePayment (0..1) <"Represents an optional payment associated with the observation.">
+    clearingInstructions ClearingInstructions (0..1) <"Specifies instructions for how physical settlement should be executed when the option is exercised.">
     isExercisable boolean (0..1) <"If the touch or no touch event hasn\'t generated an exercise, then we specify whether the option is exercisable or not.">
 
     condition Choice0:
@@ -235,7 +235,7 @@ type NoTouchRateObservation:
     condition Choice1:
         optional choice settlementType, cashSettlement, physicalSettlement, isExercisable
 
-type NoTouchUpperBarrierObservation:
+type NoTouchUpperBarrierObservation: <"Designed to capture details about the upper barrier observation in a no-touch option.">
 
     triggerRate number (0..1) <"The rate value (level) which was attained/breached, in order to trigger the barrier event.">
     quotedCurrencyPair QuotedCurrencyPair (0..1) <"Defines the currency pair and quote basis for an FX rate.">
@@ -249,12 +249,12 @@ type NoTouchUpperBarrierObservation:
                 and quotedCurrencyPair is absent
                 and maximumObservedRate is absent
 
-type Observation:
+type Observation: <"Represents individual observations of an underlying rate or price, which are utilized in calculating cashflow components. It comprises two optional elements, observationReference and weight. This structure allows for the detailed specification of each observation and its contribution to financial computations.">
 
-    observationReference ObservationReference (0..1)
-    weight number (0..1)
+    observationReference ObservationReference (0..1) <"An optional component that serves as a pointer to a specific observation instance. This reference facilitates the identification and retrieval of particular observation data within a financial document.">
+    weight number (0..1) <"An optional decimal value that assigns significance to the associated observation. It is used as a multiplier to adjust the impact of the observation when calculating weighted averages.">
 
-type ObservationEvent extends AbstractEvent:
+type ObservationEvent extends AbstractEvent: <"An event in which a specific value is observed or recorded at a particular date and time, often as part of a financial calculation or trigger condition. Its structure allows for detailed recording of market observations, including the date, time, nature of the rate, the observed value, and its source.">
 
     date zonedDateTime (1..1) <"Date of observation.">
     time TimeZone (0..1) <"The observation time, with a possible indication of the timezone dimension.">
@@ -265,16 +265,16 @@ type ObservationEvent extends AbstractEvent:
 type ObservationSource: <"The observation source can be composed of an curve and/or and information source.">
 
     informationSource InformationSource (0..1) <"The source of the observation.">
-    underlyer TradeUnderlyer2 (0..1)
+    underlyer TradeUnderlyer2 (0..1) <"Represents the underlying asset, index, or reference price whose rate or price is observed to determine the value of a cashflow or other financial calculation. It provides a flexible structure to define various types of underlyers, including floating rates, fixed rates, exchange rates, underlying assets, currency pairs, reference entities, indices, and commodity products. This element ensures clarity and precision in transparency reporting and other financial workflows.">
 
-type ObservedPrice:
+type ObservedPrice: <"Represents a recorded price observation relevant to a financial transaction. It is used to record and report observed prices for financial instruments, commodities, or other assets, ensuring accuracy and traceability in pricing data. Its structure allows for detailed documentation of price observations, including their values, timestamps, and origins.">
 
     price NonNegativeMoney (0..1) <"The observed rate value which triggered the barrier event.">
     date zonedDateTime (0..1) <"The date when the rate was observed.">
     time time (0..1) <"The time when the rate ws observed.">
     informationSource InformationSource (0..1) <"The source of the observation.">
 
-type ObservedRate:
+type ObservedRate: <"Represents a recorded interest rate observation pertinent to a financial transaction. This structure allows for detailed documentation of observed rates, including their values, timestamps, and origins.">
 
     rate number (0..1) <"The observed rate value which triggered the barrier event.">
     date zonedDateTime (0..1) <"The date when the rate was observed.">
@@ -283,7 +283,7 @@ type ObservedRate:
 
 type ObservationReference extends AbstractEvent: <"Reference to the observation details of a particular rate observation.">
 
-type OptionEvent extends AbstractEvent:
+type OptionEvent extends AbstractEvent: <"Represents occurrences affecting an option\'s status. It captures the nature of the event through elements like knockIn, knockOut, touch, or noTouch, each corresponding to specific option event types. This structure ensures comprehensive documentation of option-related events within the FpML framework.">
 
     originalTrade Trade (0..1) <"Fully describes the original trade (prior to the exercise).">
     tradeIdentifier PartyTradeIdentifier (0..*) <"Identified the trade to which the option event applies.">
@@ -300,16 +300,16 @@ type OptionEvent extends AbstractEvent:
 
 type OptionExercise extends AbstractEvent: <"A structure describing an option exercise. The OptionExercise type supports partial exercise (specify the number of options or amount to exercise), full exercise (use fullExercise flag), as well as the option to request options not to be exercised.">
 
-    optionSeller PartyReference (0..1)
-    optionBuyer PartyReference (0..1)
+    optionSeller PartyReference (0..1) <"The party responsible for selling or writing the option contract. Its structure ensures clear identification of the option seller within the trade, facilitating accurate contract processing and risk management.">
+    optionBuyer PartyReference (0..1) <"The party purchasing or holding the option contract. Its structure ensures proper identification of the option buyer, enabling accurate trade processing and risk management in the context of the option agreement.">
     originalTrade Trade (0..1) <"Fully describes the original trade (prior to the exercise).">
-    tradeIdentifier PartyTradeIdentifier (0..*)
-    exerciseDate zonedDateTime (0..1)
-    exerciseTime time (0..1)
-    exerciseTiming ExerciseTimingEnum (0..1)
-    exerciseAction ExerciseActionEnum (0..1)
-    expiry boolean (0..1)
-    fullExercise boolean (0..1)
+    tradeIdentifier PartyTradeIdentifier (0..*) <"Represents identifiers for the trades involved in an option exercise event. It can include multiple identifiers, each linked to a specific trade. This element helps to track and link the trades connected to the exercise, whether it\'s a partial or full exercise, and ensures proper identification and processing of the associated trades.">
+    exerciseDate zonedDateTime (0..1) <"Specifies the date on which the option exercise takes place. It is defined using the xsd:date type and indicates the specific calendar day the option will be exercised.">
+    exerciseTime time (0..1) <"Specifies the exact time of day when the option exercise occurs, using the xsd:time type.">
+    exerciseTiming ExerciseTimingEnum (0..1) <"Specifies when the option will be exercised. It is an enumeration with two possible values: \"Immediate\" and \"OnExpiration.\" \"Immediate\" indicates that the option will be exercised right away, while \"OnExpiration\" means the option will be exercised at its expiration date.">
+    exerciseAction ExerciseActionEnum (0..1) <"Indicates the type of exercise action performed for the option, with possible values of \"FullExercise\", \"PartialExercise\", or \"Abandon\".">
+    expiry boolean (0..1) <"A boolean indicating whether the option has expired, with true for expired and false for not expired.">
+    fullExercise boolean (0..1) <"A boolean indicating whether the option was fully exercised (true) or not (false).">
     exerciseInNotionalAmount Money (0..1) <"Specifies the fixed amount by which the option should be exercised expressed as notional amount.">
     outstandingNotionalAmount Money (0..1) <"Specifies the Notional amount after the Change">
     exerciseInNumberOfOptions number (0..1) <"Specifies the fixed amount by which the option should be exercised expressed as number of options.">
@@ -317,12 +317,12 @@ type OptionExercise extends AbstractEvent: <"A structure describing an option ex
     exerciseInNumberOfUnits number (0..1) <"Specifies the fixed amount by which the option should be exercised express as number of units.">
     outstandingNumberOfUnits number (0..1) <"Specifies the Number of Units">
     specifiedExercise OptionExerciseAmounts (0..*) <"Specifies the Number of Units">
-    exerciseSide ExerciseSideEnum (0..1)
-    settlementType SettlementTypeEnum (0..1)
-    cashSettlement SimplePayment (0..1)
-    physicalSettlement PhysicalSettlement (0..1)
-    payment NonNegativePayment (0..1)
-    clearingInstructions ClearingInstructions (0..1)
+    exerciseSide ExerciseSideEnum (0..1) <"Specifies the side of the option exercise, and can take two possible sets of values: either \"Put\" or \"Call\" (indicating the type of option), or \"Payer\" or \"Receiver\" (indicating the role in the transaction).">
+    settlementType SettlementTypeEnum (0..1) <"Specifies the type of settlement for the option exercise. The possible values are \"Cash\" (settling with cash), \"Physical\" (settling with the underlying asset), \"Election\" (giving the option holder the choice between cash or physical settlement), or \"CashOrPhysical\" (allowing either cash or physical settlement without a decision).">
+    cashSettlement SimplePayment (0..1) <"Represents a cash settlement for the option exercise. It contains details such as the payer/receiver, payment amount, and payment date, specifying the conditions under which cash is paid for the settlement.">
+    physicalSettlement PhysicalSettlement (0..1) <"Represents a physical settlement for the option exercise. It involves either referencing a resulting trade identifier, a specific trade, or the underlying product, outlining the asset or process through which physical settlement will occur.">
+    payment NonNegativePayment (0..1) <"Represents a payment associated with the option exercise. It contains details of the payment amount, ensuring that only non-negative values are accepted. This is typically used to indicate the monetary aspect of the settlement or exercise process.">
+    clearingInstructions ClearingInstructions (0..1) <"Provides instructions for the clearing of the option exercise. These instructions ensure that the clearing process is carried out according to specified requirements.">
 
     condition Choice0:
         exerciseTiming is absent or exerciseDate is absent and exerciseTime is absent
@@ -381,18 +381,18 @@ type OptionExercise extends AbstractEvent: <"A structure describing an option ex
                 and exerciseInNumberOfOptions is absent
                 and outstandingNumberOfOptions is absent
 
-type OptionExerciseAmounts:
+type OptionExerciseAmounts: <"Specifies the amounts involved in the exercise of an option. It provides multiple ways to express exercised and outstanding amounts, allowing flexibility based on notional amounts, schedules, number of options, or number of units.">
 
-    notionalReference NotionalReference (0..1)
+    notionalReference NotionalReference (0..1) <"Provides a reference to a notional amount associated with the option contract. By linking to a Notional entity, this element allows for clear identification and tracking of the notional value used in the exercise calculation, ensuring consistency across related financial transactions.">
     exerciseInNotionalAmount Money (0..1) <"Specifies the fixed amount by which the option should be exercised expressed as notional amount.">
     outstandingNotionalAmount Money (0..1) <"Specifies the Notional amount after the Change">
-    notionalScheduleReference NotionalReference (0..1)
+    notionalScheduleReference NotionalReference (0..1) <"An optional reference to a notional schedule associated with the option contract. It provides a link to a predefined notional schedule elsewhere in the FpML document. Additionally, this element is used when the option exercise involves a scheduled notional amount instead of a fixed value, allowing for dynamic adjustments over time.">
     exerciseInNotionalSchedule NonNegativeAmountSchedule (0..1) <"Specifies the amount by which the option should be exercised expressed as notional schedule.">
     outstandingNotionalSchedule NonNegativeAmountSchedule (0..1) <"Specifies the Notional schedule after the Change">
-    numberOfOptionsReference NumberOfOptionsReference (0..1)
+    numberOfOptionsReference NumberOfOptionsReference (0..1) <"An optional reference to a predefined number of options related to the exercise. This reference ensures consistency in identifying the number of options involved in the exercise event, particularly in cases where multiple option contracts exist.">
     exerciseInNumberOfOptions number (0..1) <"Specifies the fixed amount by which the option should be exercised expressed as number of options.">
     outstandingNumberOfOptions number (0..1) <"Specifies the Number of Options after the Change.">
-    numberOfUnitsReference NumberOfUnitsReference (0..1)
+    numberOfUnitsReference NumberOfUnitsReference (0..1) <"An optional reference to a predefined number of units related to the option exercise. This element is relevant when the exercise is defined in terms of units (e.g., shares, barrels, or other underlying assets), ensuring clear identification and alignment with the overall contract structure.">
     exerciseInNumberOfUnits number (0..1) <"Specifies the fixed amount by which the option should be exercised express as number of units.">
     outstandingNumberOfUnits number (0..1) <"Specifies the Number of Units">
 
@@ -437,11 +437,11 @@ type OptionExerciseAmounts:
 type OptionExpiry extends AbstractEvent: <"A structure describing an option expiring (i.e. passing its last exercise time and becoming worthless.)">
 
     originalTrade Trade (0..1) <"Fully describes the original trade (prior to the exercise).">
-    tradeIdentifier PartyTradeIdentifier (0..*)
-    date zonedDateTime (0..1)
-    time time (0..1)
-    exerciseProcedure ExerciseProcedureOption (0..1)
-    actionOnExpiration ActionOnExpiration (0..1)
+    tradeIdentifier PartyTradeIdentifier (0..*) <"Associates an expired option contract with one or more trade identifiers.">
+    date zonedDateTime (0..1) <"Specifies the calendar date on which the option contract reaches its expiration. This marks the last day on which the option holder can exercise their rights under the contract. It is defined as an xsd:date, ensuring a standardized format (YYYY-MM-DD).">
+    time time (0..1) <"Specifies the precise time on the expiration date when the option expires. It is defined as an xsd:time, capturing the exact moment in hours, minutes, and seconds when the option can no longer be exercised.">
+    exerciseProcedure ExerciseProcedureOption (0..1) <"Specifies how the option can be exercised before expiration. It can either be manualExercise, requiring the holder to actively notify their intent to exercise, or automaticExercise, where the option is exercised automatically if it is in the money at expiration.">
+    actionOnExpiration ActionOnExpiration (0..1) <"Defines what happens when the option reaches expiration, detailing whether it is exercised fully, partially, or expires worthless.">
 
     condition Choice:
         optional choice originalTrade, tradeIdentifier
@@ -450,7 +450,7 @@ type PhysicalSettlement: <"A structure that describes how an option settles into
 
     resultingTradeIdentifier PartyTradeIdentifier (0..1) <"The ID of the trade that resulted from the physical settlement.">
     resultingTrade Trade (0..1) <"The trade that resulted from the physical settlement.">
-    product Product (0..1)
+    product Product (0..1) <"Represents an abstract financial product involved in a physical settlement. It serves as a placeholder for specific product types, allowing for flexibility in defining the underlying asset or contract being physically settled.">
 
     condition Choice:
         one-of
@@ -465,7 +465,7 @@ type RequestedWithdrawalAction: <"A type that describes what the requester would
     value Scheme (1..1)
     requestedWithdrawalActionScheme NonEmptyURI (0..1)
 
-type ResetEvent extends AbstractEvent:
+type ResetEvent extends AbstractEvent: <"An event in which the floating rate of a financial contract is determined based on market conditions at a specific reset date. It extends the AbstractEvent type and includes key details such as the associated trade reference, leg identifiers, reset date, determined rate, and optional calculation details.">
 
     tradeReference PartyTradeIdentifiers (0..1) <"A container since an individual trade can be referenced by two or more different partyTradeIdentifier elements - each allocated by a different party.">
     legIdentifier LegIdentifier (0..*) <"Version aware identification of this leg.">
@@ -495,9 +495,9 @@ type TradeAmendmentContent extends AbstractEvent: <"A structure describing a neg
 
 type TradeChangeBase extends AbstractEvent: <"A structure describing a trade change.">
 
-    tradeIdentifier PartyTradeIdentifier (0..*)
-    originalTrade Trade (0..1)
-    resultingTrade Trade (0..1)
+    tradeIdentifier PartyTradeIdentifier (0..*) <"Uniquely identifies a trade involved in a modification event. It captures references to trades affected by changes, including allocations, resulting trades, block trades, and originating trades.">
+    originalTrade Trade (0..1) <"The trade as it existed before the modification event. It retains the original terms, parties, and economic details prior to any amendments, novations, or other changes.">
+    resultingTrade Trade (0..1) <"Captures the trade after the modification event has been applied. It reflects any updates or adjustments made, such as changes in counterparties, notional amounts, or settlement terms. If no new trade is created as a result of the modification, this element may be omitted.">
     agreementDate zonedDateTime (0..1) <"The date on which the change was agreed.">
     executionDateTime ExecutionDateTime (0..1) <"The date and time at which the negotiated change to the terms of the original contract was agreed, such as via telephone or electronic trading system (i.e., agreement date/time).">
     effectiveDate zonedDateTime (0..1) <"The date on which the change become effective.">
@@ -520,31 +520,31 @@ type TradeChangeContent: <"A structure describing a non-negotiated trade resulti
 
 type TradeLegPriceChange: <"A structure describing a change to the size of a single leg or stream of a trade.">
 
-    priceReference Reference (0..1)
+    priceReference Reference (0..1) <"Provides a reference to an external price or pricing source used to determine the trade leg\'s valuation before or after the change. It ensures traceability and consistency by linking the price modification to a specific pricing mechanism, market data source, or previously established reference price.">
     instrumentId InstrumentId (0..*) <"Identification of the underlying asset, using public and/or private identifiers.">
-    priceChangeAmount number (0..1)
-    newPrice number (0..1)
+    priceChangeAmount number (0..1) <"The numerical adjustment applied to the original price of the trade leg. It quantifies the increase or decrease in price due to the modification and is expressed as a decimal value.">
+    newPrice number (0..1) <"The updated price of the trade leg after applying the change. It reflects the revised valuation of the leg or stream post-modification and is expressed as a decimal value.">
 
     condition Choice:
         optional choice priceReference, instrumentId
 
 type TradeLegSizeChange: <"A structure describing a change to the size of a single leg or stream of a trade.">
 
-    notionalReference NotionalReference (0..1)
-    changeInNotionalAmount NonNegativeMoney (0..1)
-    outstandingNotionalAmount NonNegativeMoney (0..1)
-    numberOfOptionsReference NumberOfOptionsReference (0..1)
-    changeInNumberOfOptions number (0..1)
-    outstandingNumberOfOptions number (0..1)
-    numberOfUnitsReference NumberOfUnitsReference (0..1)
-    changeInNumberOfUnits number (0..1)
-    outstandingNumberOfUnits number (0..1)
-    notionalScheduleReference NotionalReference (0..1)
-    changeInNotionalSchedule NonNegativeAmountSchedule (0..1)
-    outstandingNotionalSchedule NonNegativeAmountSchedule (0..1)
-    knownAmountReference AmountReference (0..1)
-    changeInKnownAmount NonNegativeMoney (0..1)
-    outstandingKnownAmount NonNegativeMoney (0..1)
+    notionalReference NotionalReference (0..1) <"A reference to a specific notional amount, identified by the href attribute, which links to the corresponding notional definition.">
+    changeInNotionalAmount NonNegativeMoney (0..1) <"A non-negative monetary value indicating the change in the notional amount.">
+    outstandingNotionalAmount NonNegativeMoney (0..1) <"A non-negative monetary value indicating the remaining outstanding notional amount.">
+    numberOfOptionsReference NumberOfOptionsReference (0..1) <"A reference to a specific notional quantity of options, identified by the href attribute, which links to the corresponding notional definition.">
+    changeInNumberOfOptions number (0..1) <"Specifies the numerical change in the quantity of options as a decimal value, indicating an increase or decrease.">
+    outstandingNumberOfOptions number (0..1) <"The remaining number of options after adjustments, expressed as a decimal value.">
+    numberOfUnitsReference NumberOfUnitsReference (0..1) <"A reference to a specific notional quantity of units, identified by the href attribute, which links to the corresponding notional definition.">
+    changeInNumberOfUnits number (0..1) <"Specifies the numerical change in the quantity of units as a decimal value, indicating an increase or decrease.">
+    outstandingNumberOfUnits number (0..1) <"The remaining number of units after adjustments, expressed as a decimal value.">
+    notionalScheduleReference NotionalReference (0..1) <"A reference to a specific notional schedule, identified by the href attribute, which links to the corresponding notional schedule definition.">
+    changeInNotionalSchedule NonNegativeAmountSchedule (0..1) <"A non-negative schedule of changes to the notional amount over time. It may specify the currency in which these changes occur.">
+    outstandingNotionalSchedule NonNegativeAmountSchedule (0..1) <"A non-negative schedule indicating the remaining notional amounts over time. It may specify the currency in which these values are measured.">
+    knownAmountReference AmountReference (0..1) <"A reference to a specific amount identified by the href attribute, which points to the corresponding amount definition.">
+    changeInKnownAmount NonNegativeMoney (0..1) <"A non-negative monetary value indicating the change in the known amount.">
+    outstandingKnownAmount NonNegativeMoney (0..1) <"A non-negative monetary value indicating the outstanding balance of the known amount.">
 
     condition Choice:
         if changeInNotionalAmount exists or outstandingNotionalAmount exists
@@ -632,8 +632,8 @@ type TradeNotionalChange extends TradeChangeBase: <"A structure describing a cha
     outstandingNumberOfOptions number (0..1) <"Specifies the Number of Options after the Change.">
     changeInNumberOfUnits number (0..1) <"Specifies the fixed amount by which the Number of Units changes">
     outstandingNumberOfUnits number (0..1) <"Specifies the Number of Units">
-    sizeChange TradeLegSizeChange (0..*)
-    priceChange TradeLegPriceChange (0..*)
+    sizeChange TradeLegSizeChange (0..*) <"Describes changes to the size or amount of a trade leg or stream. It can accommodate different types of changes, including alterations to the notional amount, number of options, units, or other fixed amounts.">
+    priceChange TradeLegPriceChange (0..*) <"Captures any changes in the price of a trade leg or stream. This element can appear multiple times to represent different price changes, and it specifies how the price of a trade has been altered, including the new price and any associated amount of change.">
 
     condition Choice:
         if changeInNotionalAmount exists
@@ -670,15 +670,15 @@ type TradeNovationContent extends AbstractEvent: <"A structure describing a nova
     feeTradeIdentifier PartyTradeIdentifier (0..1) <"Indicates a reference to the implied trade (the \"fee trade\") that the associated novation fee based on. This is equivalent to the new trade that is created by the novation (between the transferee and the remaining party), but is between the transferor and the transferee. A reference to the Fee Trade supports regulatory reporting of novations.">
     feeTrade Trade (0..1) <"Indicates the implied trade (the \"fee trade\") that the associated novation fee based on. This is equivalent to the new trade that is created by the novation (between the transferee and the remaining party), but is between the transferor and the transferee. Fee Trade supports regulatory reporting of novations.">
     transferor PartyReference (0..1) <"A pointer style reference to a party identifier defined elsewhere in the document. In a three-way novation the party referenced is the Transferor (outgoing party) in the novation. The Transferor means a party which transfers by novation to a Transferee all of its rights, liabilities, duties and obligations with respect to a Remaining Party. In a four-way novation the party referenced is Transferor 1 which transfers by novation to Transferee 1 all of its rights, liabilities, duties and obligations with respect to Transferor 2. ISDA 2004 Novation Term: Transferor (three-way novation) or Transferor 1 (four-way novation).">
-    transferorAccount AccountReference (0..1)
+    transferorAccount AccountReference (0..1) <"Reference to the account of the party transferring obligations under a novation agreement.">
     transferee PartyReference (0..1) <"A pointer style reference to a party identifier defined elsewhere in the document. In a three-way novation the party referenced is the Transferee (incoming party) in the novation. Transferee means a party which accepts by way of novation all rights, liabilities, duties and obligations of a Transferor with respect to a Remaining Party. In a four-way novation the party referenced is Transferee 1 which accepts by way of novation the rights, liabilities, duties and obligations of Transferor 1. ISDA 2004 Novation Term: Transferee (three-way novation) or Transferee 1 (four-way novation).">
     otherTransferee PartyReference (0..1) <"A pointer style reference to a party identifier defined elsewhere in the document. In a five-way novation the party referenced is the Transferee\'s legal entity that is involved in the settlement of the fee leg of the novation transaction (this might be a different legal entity than the one that assumes the novation trade). NB: this element has been added pending confirmation of the business need/context in which it would be used, and might not appear in a subsequent draft of this schema.">
-    transfereeAccount AccountReference (0..1)
-    otherTransfereeAccount AccountReference (0..1)
+    transfereeAccount AccountReference (0..1) <"Reference to the account of the party receiving the transferred obligations under the novation agreement.">
+    otherTransfereeAccount AccountReference (0..1) <"Reference to an additional account associated with the transferee, if applicable.">
     remainingParty PartyReference (0..1) <"A pointer style reference to a party identifier defined elsewhere in the document. In a three-way novation the party referenced is the Remaining Party in the novation. Remaining Party means a party which consents to a Transferor\'s transfer by novation and the acceptance thereof by the Transferee of all of the Transferor\'s rights, liabilities, duties and obligations with respect to such Remaining Party under and with respect of the Novated Amount of a transaction. In a four-way novation the party referenced is Transferor 2 per the ISDA definition and acts in the role of a Transferor. Transferor 2 transfers by novation to Transferee 2 all of its rights, liabilities, duties and obligations with respect to Transferor 1. ISDA 2004 Novation Term: Remaining Party (three-way novation) or Transferor 2 (four-way novation).">
-    remainingPartyAccount AccountReference (0..1)
+    remainingPartyAccount AccountReference (0..1) <"Reference to the account of the party retaining certain obligations after the novation.">
     otherRemainingParty PartyReference (0..1) <"A pointer style reference to a party identifier defined elsewhere in the document. This element is not applicable in a three-way novation and should be omitted. In a four-way novation the party referenced is Transferee 2. Transferee 2 means a party which accepts by way of novation the rights, liabilities, duties and obligations of Transferor 2. ISDA 2004 Novation Term: Transferee 2 (four-way novation).">
-    otherRemainingPartyAccount AccountReference (0..1)
+    otherRemainingPartyAccount AccountReference (0..1) <"Reference to an additional account associated with the remaining party, if applicable.">
     novationDate zonedDateTime (0..1) <"Specifies the date that one party\'s legal obligations with regard to a trade are transferred to another party. It corresponds to the Novation Date section of the 2004 ISDA Novation Definitions, section 1.16.">
     executionDateTime ExecutionDateTime (0..1) <"The date and time at which the change was agreed.">
     novationTradeDate zonedDateTime (0..1) <"Specifies the date the parties agree to assign or novate a Contract. If this element is not specified, the novationContractDate will be deemed to be the novationDate. It corresponds to the Novation Trade Date section of the 2004 ISDA Novation Definitions, section 1.17.">
@@ -688,7 +688,7 @@ type TradeNovationContent extends AbstractEvent: <"A structure describing a nova
     remainingNumberOfOptions number (0..1) <"The number of options which represent the portion of the Old Contract not being novated.">
     novatedNumberOfUnits number (0..1) <"The number of options which represent the portion of the Old Contract being novated.">
     remainingNumberOfUnits number (0..1) <"The number of options which represent the portion of the Old Contract not being novated.">
-    novationAmount TradeLegSizeChange (0..*)
+    novationAmount TradeLegSizeChange (0..*) <"The financial adjustment associated with a novation event, where a trade\'s obligations are transferred from one party to another. It captures changes in trade leg size, such as notional amount, number of options, number of units, scheduled notional adjustments, or fixed amount modifications. This element ensures accurate representation of contractual amendments resulting from a novation.">
     fullFirstCalculationPeriod boolean (0..1) <"This element corresponds to the applicability of the Full First Calculation Period as defined in the 2004 ISDA Novation Definitions, section 1.20.">
     firstPeriodStartDate FirstPeriodStartDate (0..2) <"Element that is used to be able to make sense of the “new transaction” without requiring reference back to the “old transaction”. In the case of interest rate products there are potentially 2 “first period start dates” to reference – one with respect to each party to the new transaction. For Credit Default Swaps there is just the one with respect to the party that is the fixed rate payer.">
     nonReliance Empty (0..1) <"This element corresponds to the non-Reliance section in the 2004 ISDA Novation Definitions, section 2.1 (c) (i). The element appears in the instance document when non-Reliance is applicable.">
@@ -765,8 +765,8 @@ type TradeNovationContent extends AbstractEvent: <"A structure describing a nova
 
 type TradingEventSummary: <"A type that records a short form event history of a trade.">
 
-    eventIdentifier BusinessEventIdentifier (0..*)
-    eventType EventType (1..1)
+    eventIdentifier BusinessEventIdentifier (0..*) <"Uniquely identifies a business event associated with a trade. It provides essential references for tracking and managing lifecycle events in financial transactions.">
+    eventType EventType (1..1) <"Specifies the category or nature of the business event affecting the trade. It provides a standardized classification of trading events, facilitating consistent interpretation and reporting.">
     agreementDate zonedDateTime (0..1) <"The date on which the change was agreed.">
     executionDateTime ExecutionDateTime (0..1) <"The date and time at which the negotiated change to the terms of the original contract was agreed, such as via telephone or electronic trading system (i.e., agreement date/time).">
     effectiveDate zonedDateTime (0..1) <"The date on which the change become effective.">
@@ -779,14 +779,14 @@ type TradingEventSummary: <"A type that records a short form event history of a 
     condition Choice:
         optional choice changeInNotional, changeInNumberOfOptions, changeInQuantity
 
-type TouchRateObservation extends TriggerRateObservation:
+type TouchRateObservation extends TriggerRateObservation: <"An observation of a trigger rate in structured financial products, particularly in exotic derivatives where touch/no-touch events determine payouts. It extends the TriggerRateObservation base type and includes additional details related to exercise, settlement, and payment.">
 
-    exerciseSide ExerciseSideEnum (0..1)
-    settlementType SettlementTypeEnum (0..1)
-    cashSettlement SimplePayment (0..1)
-    physicalSettlement PhysicalSettlement (0..1)
-    payment NonNegativePayment (0..1)
-    clearingInstructions ClearingInstructions (0..1)
+    exerciseSide ExerciseSideEnum (0..1) <"Specifies whether the option can be exercised by the buyer or seller, using predefined values from ExerciseSideEnum: { (\"Put\" | \"Call\") | (\"Payer\" | \"Receiver\") }.">
+    settlementType SettlementTypeEnum (0..1) <"Specifies the method of settlement when the touch event occurs. It can take one of four values: Cash (the contract settles with a cash payment), Physical (the contract settles through physical delivery of the underlying asset), Election (the settlement type is chosen based on pre-agreed election terms, or CashOrPhysical (the party has the option to choose between cash or physical settlement).">
+    cashSettlement SimplePayment (0..1) <"Defines the cash amount payable upon settlement.">
+    physicalSettlement PhysicalSettlement (0..1) <"Specifies the terms for settling through asset delivery.">
+    payment NonNegativePayment (0..1) <"Represents the non-negative payment amount due when the touch event is triggered.">
+    clearingInstructions ClearingInstructions (0..1) <"Contains details for clearing the trade.">
     isExercisable boolean (0..1) <"If the touch or no touch event hasn\'t generated an exercise, then we specify whether the option is exercisable or not.">
 
     condition Choice0:
@@ -798,11 +798,11 @@ type TouchRateObservation extends TriggerRateObservation:
     condition Choice1:
         optional choice settlementType, cashSettlement, physicalSettlement, isExercisable
 
-type TriggerRateObservation:
+type TriggerRateObservation: <"Represents the details of a rate-based trigger event, specifying the observed market conditions that determine whether the trigger has been met.">
 
     observationDate zonedDateTime (0..1) <"The date on which the rate observation occurred, in order to trigger the barrier event.observationDate">
     observationTime BusinessCenterTime (0..1) <"The time at which the observation occurred.">
-    informationSource InformationSource (0..1)
+    informationSource InformationSource (0..1) <"The market source used to obtain the observed rate or price. It provides details about where the rate was published, ensuring transparency and consistency in financial transactions.">
     triggerRate number (0..1) <"The rate value (level) which was attained/breached, in order to trigger the barrier event.">
     quotedCurrencyPair QuotedCurrencyPair (0..1) <"Defines the currency pair and quote basis for an FX rate.">
     observedRate number (0..1) <"The observed rate value which triggered the barrier event.">
@@ -821,9 +821,9 @@ type Withdrawal: <"A structure describing the removal of a trade from a service,
     partyTradeIdentifier PartyTradeIdentifier (0..*) <"Identifiers of the trade that is being withdrawn.">
     partyTradeInformation WithdrawalPartyTradeInformation (0..*) <"Holds party-specific information about the trade that is being withdrawn from.">
     trade Trade (0..1) <"The full trade representation that is being withdrawn.">
-    effectiveDate zonedDateTime (0..1)
-    requestedAction RequestedWithdrawalAction (0..1)
-    reason WithdrawalReason (0..*)
+    effectiveDate zonedDateTime (0..1) <"Specifies the date when the withdrawal action becomes effective.">
+    requestedAction RequestedWithdrawalAction (0..1) <"Specifies the action requested for the withdrawal. It points to a URI that identifies the coding scheme used for this action. The element is optional, meaning that a withdrawal may or may not have an associated requested action.">
+    reason WithdrawalReason (0..*) <"Specifies the reason for the withdrawal. The reason element can appear multiple times (unbounded) within the withdrawal, and each instance can refer to a different reason for the action.">
     reportingRegime ReportingRegimeIdentifier (0..*) <"DEPRECATED. The supervisor/regulator to which this withdrawal applies">
 
     condition Choice:
@@ -845,7 +845,7 @@ type WithdrawalReason: <"A type that describes why a trade was withdrawn.">
 
 type UnitQuantityRef extends UnitQuantity: <"A type defining a quantity and unit with a reference.">
 
-    quantityReference NotionalReference (0..1)
+    quantityReference NotionalReference (0..1) <"A reference to a previously defined notional amount or quantity, ensuring consistency and avoiding duplication in trade documentation.">
 
 type CreditEventType: <"A type that describes which credit event is taking place, e.g. Bankruptcy, FailureToPay, etc.">
 
@@ -857,7 +857,7 @@ type ClearingStatusItem: <"A component of a clearing status report. This provide
     tradeIdentifier TradeIdentifier (0..*) <"Identifier(s) for the trade which is the subject of the clearing request to which this status relates.">
     tradeReferenceInformation TradeReferenceInformation (0..1) <"Information about a trade.">
     trade Trade (0..1) <"Complete economics of the trade">
-    tradePackage TradePackage (0..1)
+    tradePackage TradePackage (0..1) <"A collection of trades grouped together as a single unit for reporting purposes. This aggregation facilitates the management and reporting of multiple trades under a unified identifier, streamlining the processing and analysis of related transactions.">
     quote BasicQuotation (0..*) <"Pricing information for the trade.">
     clearingStatusValue ClearingStatusValue (1..1) <"The status of the clearing process for the identified trade. For example, Received, Pending (Approval), Registered (i.e. cleared), Rejected, etc.">
     updatedDateTime zonedDateTime (0..1) <"When the clearing status changed to the current value. This is mostly useful if the clearing status messages could be delayed from when the status actually changes; this could be important if the status date is used as the basis of any settlement calculations.">
@@ -869,11 +869,11 @@ type ClearingStatusItem: <"A component of a clearing status report. This provide
 
 type CompressionActivity: <"A type that shows how multiple trades have been combined into a result.">
 
-    compressionType CompressionType (0..1)
-    replacementTradeIdentifier TradeIdentifier (0..1)
-    originatingTradeIdentifier TradeIdentifier (0..*)
-    replacementTradeId TradeId (0..1)
-    originatingTradeId TradeId (0..*)
+    compressionType CompressionType (0..1) <"The method of trade amalgamation applied, such as netting or portfolio compression. This structure allows for the categorization of compression activities within financial transactions.">
+    replacementTradeIdentifier TradeIdentifier (0..1) <"Specifies the identifier for a trade that replaces a previous one. This is commonly used in scenarios such as trade novations or corrections, where an existing trade is supplanted by a new one.">
+    originatingTradeIdentifier TradeIdentifier (0..*) <"Specifies the identifier(s) of the original trade(s) from which a current trade is derived. This is particularly relevant in scenarios such as cleared trades, where the originatingTradeIdentifier references the ID of the trade submitted for clearing.">
+    replacementTradeId TradeId (0..1) <"A deprecated identifier for a trade, represented by the TradeId type. It has been replaced by the replacementTradeIdentifier element.">
+    originatingTradeId TradeId (0..*) <"A deprecated identifier used to reference the identifier(s) of original trade(s) from which a current trade originated. It has been replaced in favor of the originatingTradeIdentifier element.">
 
     condition Choice:
         replacementTradeId is absent and originatingTradeId is absent
@@ -886,32 +886,32 @@ type CompressionType: <"A type that identifies the type of trade amalgamation, f
 
 type CreditLimitBase: <"A structure describing a basic credit limit.">
 
-    limitId LimitId (1..1)
+    limitId LimitId (1..1) <"Specifies a unique identifier for a credit limit, as defined by a particular scheme.">
     primaryAssetClass AssetClass (0..1) <"A classification of the most important risk class of the trade. FpML defines a simple asset class categorization using a coding scheme.">
     secondaryAssetClass AssetClass (0..*) <"A classification of additional risk classes of the trade, if any. FpML defines a simple asset class categorization using a coding scheme.">
     productType ProductType (0..*) <"A classification of the type of product. FpML defines a simple product categorization using a coding scheme.">
     productId ProductId (0..*) <"A product reference identifier. The product ID is an identifier that describes the key economic characteristics of the trade type, with the exception of concepts such as size (notional, quantity, number of units) and price (fixed rate, strike, etc.) that are negotiated for each transaction. It can be used to hold identifiers such as the \"UPI\" (universal product identifier) required by certain regulatory reporting rules. It can also be used to hold identifiers of benchmark products or product temnplates used by certain trading systems or facilities. FpML does not define the domain values associated with this element. Note that the domain values for this element are not strictly an enumerated list.">
     assetClass AssetClass (0..*) <"A classification of the risk class of the trade. FpML defines a simple asset class categorization using a coding scheme.">
-    currency Currency (1..1)
+    currency Currency (1..1) <"Specifies the currency in which the credit limit is denominated.">
     tenor Period (1..1) <"The maximum allowed tenor for a trade under this limit. When this structure is used as part of a suspendCredit message, this tenor imposes a temporary tenor limit on allowed trade types.">
 
 type CreditLimit extends CreditLimitBase: <"A structure describing a credit limit with applicability constraints.">
 
-    limitApplicable LimitApplicable (1..*)
-    expirationDate zonedDateTime (0..1)
+    limitApplicable LimitApplicable (1..*) <"Specifies the constraints and details of a credit limit that is applicable to a particular product or transaction.">
+    expirationDate zonedDateTime (0..1) <"Specifies the date and time when the credit limit becomes invalid or expires.">
 
-type CreditLimitInformation:
+type CreditLimitInformation: <"A collection of credit limit details associated with a specific party. This structure facilitates the management and reporting of credit limits within financial transactions.">
 
-    partyInformation PartyTradeInformation (1..1)
-    limitModel LimitModelEnum (1..1)
-    creditLimit CreditLimit (1..*)
+    partyInformation PartyTradeInformation (1..1) <"Details about the party associated with the credit limit, including identifiers, names, and related party information. It is an optional element and, when present, provides essential information about the party involved in the credit limit arrangement.">
+    limitModel LimitModelEnum (1..1) <"Specifies the model used to determine credit limits within a credit limit agreement. Can take one of the following values: \"Ping\", \"Plus1ToStop\", \"Plus1ToPing\", \"PushToPing\", \"PushToStop\".">
+    creditLimit CreditLimit (1..*) <"A structure that defines a credit limit with specific applicability constraints. This structure allows for detailed specification of credit limits within financial transactions.">
 
-type CreditLimitUtilization:
+type CreditLimitUtilization: <"Represents the usage of a credit limit, detailing both executed and pending positions. It comprises two optional elements: executed and pending, both of which are of type CreditLimitUtilizationPosition. These elements provide a breakdown of the credit limit utilization, distinguishing between amounts that have been executed and those that are pending. This structure allows for a clear representation of how much of the credit limit has been utilized and how much is still pending execution.">
 
     executed CreditLimitUtilizationPosition (1..1) <"Credit limit utilization attributable to executed trades.">
     pending CreditLimitUtilizationPosition (1..1) <"Credit limit utilization attributable to pending unexecuted orders.">
 
-type CreditLimitUtilizationPosition:
+type CreditLimitUtilizationPosition: <"Specifies the utilization of a credit limit, detailing positions in terms of short, long, and global amounts.">
 
     short NonNegativeDecimal (0..1) <"Credit limit utilization attributable to short positions.">
     long NonNegativeDecimal (0..1) <"Credit limit utilization attributable to long positions.">
@@ -926,9 +926,9 @@ type CreditLimitUtilizationPosition:
 
 type DeClear: <"A structure describing a declear event. The deClear event allows a firm to request that a trade be removed from clearing, or a clearing service to request consent for this, or to report that is has been done.">
 
-    tradeIdentifier PartyTradeIdentifier (1..*)
-    effectiveDate zonedDateTime (1..1)
-    reason DeclearReason (0..1)
+    tradeIdentifier PartyTradeIdentifier (1..*) <"Specifies one or more identifiers assigned to a trade by a party, facilitating the association of the trade with related transactions.">
+    effectiveDate zonedDateTime (1..1) <"Specifies the date on which the declear event becomes effective, indicating when the trade is officially removed from clearing.">
+    reason DeclearReason (0..1) <"Specifies the rationale for removing a trade from clearing.">
 
 type DeclearReason: <"A type that describes why a trade was removed from clearing.">
 
@@ -937,22 +937,22 @@ type DeclearReason: <"A type that describes why a trade was removed from clearin
 
 type EventProposedMatch: <"A structure that describes a proposed match between trades or post-trade event reports.">
 
-    tradePackage TradePackage (0..1)
-    originatingEvent OriginatingEvent (0..1)
-    trade Trade (0..1)
-    amendment TradeAmendmentContent (0..1)
-    increase TradeNotionalChange (0..1)
+    tradePackage TradePackage (0..1) <"A structured collection of related trades grouped under a common package. It includes a package header for metadata, multiple trade instances or references, and optional elements for allocations and approvals. This element facilitates efficient management of complex trading strategies, block trades, or multi-leg transactions by encapsulating all relevant trade details within a single package.">
+    originatingEvent OriginatingEvent (0..1) <"Specifies the underlying event that triggered the creation of a trade. It is defined as a coded value based on an external scheme, allowing for standardized classification of trade origins, such as novations, amendments, or corporate actions. This element helps track the trade lifecycle by linking it to its originating context.">
+    trade Trade (0..1) <"The details of a financial transaction between parties. It encapsulates key information such as product terms, counterparties, pricing, and execution details. This element serves as the foundational unit of financial contracts, supporting various trade events and lifecycle actions within the FpML framework.">
+    amendment TradeAmendmentContent (0..1) <"Records modifications to an existing trade, specifying the updated trade details, agreement terms, and any related payments or notional changes.">
+    increase TradeNotionalChange (0..1) <"Reflects a change in the trade\'s notional amount or size, capturing adjustments to its economic terms, including price and quantity modifications.">
     terminatingEvent TerminatingEvent (0..1) <"This may be used to describe why a trade was terminated.">
-    termination TradeNotionalChange (0..1)
-    novation TradeNovationContent (0..1)
-    withdrawal Withdrawal (0..1)
-    observation ObservationEvent (0..*)
-    reset ResetEvent (0..*)
-    change TradeChangeContent (0..1)
+    termination TradeNotionalChange (0..1) <"Documents the full or partial closure of a trade, reducing or eliminating its notional exposure, often due to settlement, early closeout, or expiration.">
+    novation TradeNovationContent (0..1) <"Represents the transfer of a trade from one counterparty to another, detailing the original and new trades, fees, payment obligations, and updated contractual terms.">
+    withdrawal Withdrawal (0..1) <"Indicates the removal or cancellation of a trade from reporting or processing systems, including identifiers, reasons, effective date, and requested actions.">
+    observation ObservationEvent (0..*) <"Captures a recorded market event, including date, time, price, rate type, and source, often used in derivatives pricing or index calculations.">
+    reset ResetEvent (0..*) <"Defines the periodic adjustment of a trade\'s rate or value, specifying the reference trade, date, calculated reset value, and any relevant details affecting financial terms.">
+    change TradeChangeContent (0..1) <"Represents the change event associated with a trade.">
     optionExercise OptionExercise (0..1) <"A structure describing an option exercise event. The optionExercise event supports partial exercise (specify the number of options or amount to exercise), full exercise (use fullExercise flag), as well as the option to request options not to be exercised.">
     optionExpiry OptionExpiry (0..*) <"A structure describing an option expiring event (i.e. passing its last exercise time and becoming worthless.)">
     optionEvent OptionEvent (0..1) <"A structure describing knock in, knock out, touch and no touch events.">
-    additionalEvent AdditionalEvent (0..1)
+    additionalEvent AdditionalEvent (0..1) <"Represents an additional customized event serving as the event report subject of the proposed match.">
     matchId MatchId (0..1) <"A unique identifier assigned by the matching service to each set of matched positions.">
     difference TradeDifference (0..*) <"A type used to record the details of a difference between two sides of a business event.">
     matchScore number (0..1) <"Numeric score to represent the quality of the match.">
@@ -1105,24 +1105,24 @@ type EventProposedMatch: <"A structure that describes a proposed match between t
                 and terminatingEvent is absent
         else False
 
-type EventsChoice:
+type EventsChoice: <"Defines a choice among various event groups and an additional event element. It allows for the selection of one option from the following: TradingEventsBase.model, PostTradeEventsBase.model, ChangeEventsBase.model, OptionsEventsBase.model, and an additionalEvent, which is an element for any supplementary events not covered by the predefined groups. In summary, this structure provides flexibility in representing various event types within FpML.">
 
-    tradePackage TradePackage (0..1)
-    originatingEvent OriginatingEvent (0..1)
-    trade Trade (0..1)
-    amendment TradeAmendmentContent (0..1)
-    increase TradeNotionalChange (0..1)
+    tradePackage TradePackage (0..1) <"A structured collection of related trades grouped under a common package. It includes a package header for metadata, multiple trade instances or references, and optional elements for allocations and approvals. This element facilitates efficient management of complex trading strategies, block trades, or multi-leg transactions by encapsulating all relevant trade details within a single package.">
+    originatingEvent OriginatingEvent (0..1) <"Specifies the underlying event that triggered the creation of a trade. It is defined as a coded value based on an external scheme, allowing for standardized classification of trade origins, such as novations, amendments, or corporate actions. This element helps track the trade lifecycle by linking it to its originating context.">
+    trade Trade (0..1) <"The details of a financial transaction between parties. It encapsulates key information such as product terms, counterparties, pricing, and execution details. This element serves as the foundational unit of financial contracts, supporting various trade events and lifecycle actions within the FpML framework.">
+    amendment TradeAmendmentContent (0..1) <"Records modifications to an existing trade, specifying the updated trade details, agreement terms, and any related payments or notional changes.">
+    increase TradeNotionalChange (0..1) <"Reflects a change in the trade\'s notional amount or size, capturing adjustments to its economic terms, including price and quantity modifications.">
     terminatingEvent TerminatingEvent (0..1) <"This may be used to describe why a trade was terminated.">
-    termination TradeNotionalChange (0..1)
-    novation TradeNovationContent (0..1)
-    withdrawal Withdrawal (0..1)
-    observation ObservationEvent (0..*)
-    reset ResetEvent (0..*)
-    change TradeChangeContent (0..1)
+    termination TradeNotionalChange (0..1) <"Documents the full or partial closure of a trade, reducing or eliminating its notional exposure, often due to settlement, early closeout, or expiration.">
+    novation TradeNovationContent (0..1) <"Represents the transfer of a trade from one counterparty to another, detailing the original and new trades, fees, payment obligations, and updated contractual terms.">
+    withdrawal Withdrawal (0..1) <"Indicates the removal or cancellation of a trade from reporting or processing systems, including identifiers, reasons, effective date, and requested actions.">
+    observation ObservationEvent (0..*) <"Captures a recorded market event, including date, time, price, rate type, and source, often used in derivatives pricing or index calculations.">
+    reset ResetEvent (0..*) <"Defines the periodic adjustment of a trade\'s rate or value, specifying the reference trade, date, calculated reset value, and any relevant details affecting financial terms.">
+    change TradeChangeContent (0..1) <"Represents the change event associated with a trade.">
     optionExercise OptionExercise (0..1) <"A structure describing an option exercise event. The optionExercise event supports partial exercise (specify the number of options or amount to exercise), full exercise (use fullExercise flag), as well as the option to request options not to be exercised.">
     optionExpiry OptionExpiry (0..*) <"A structure describing an option expiring event (i.e. passing its last exercise time and becoming worthless.)">
     optionEvent OptionEvent (0..1) <"A structure describing knock in, knock out, touch and no touch events.">
-    additionalEvent AdditionalEvent (0..1)
+    additionalEvent AdditionalEvent (0..1) <"Represents a supplementary lifecycle event not covered by the predefined trading, post-trade, change, or options event categories.">
 
     condition Choice:
         if tradePackage exists
@@ -1272,55 +1272,55 @@ type EventsChoice:
                 and terminatingEvent is absent
         else False
 
-type LimitApplicable:
+type LimitApplicable: <"Specifies the details of a credit limit applied to a financial transaction.">
 
     limitType LimitType (1..1) <"Standard code to indicate which type of credit line is being referred to - i.e. IM, DV01, PV01, CS01, Notional, Clip Size, Notional, maximumOrderQuantity">
-    clipSize int (1..1)
-    amountUtilized int (0..1)
+    clipSize int (1..1) <"Represents the maximum allowable amount or quantity for a specific limit type. The clipSize ensures that any transaction or position does not exceed the specified limit, thereby aiding in risk management and compliance with internal or regulatory requirements.">
+    amountUtilized int (0..1) <"Represents the amount of the credit limit that has been used. This element helps in monitoring and managing exposure by indicating how much of the available credit has been utilized.">
     utilization CreditLimitUtilization (0..1) <"Credit limit utilization breakdown by executed trades and pending orders.">
-    amountRemaining int (0..1)
-    currency Currency (0..1)
-    velocity Velocity (0..1)
+    amountRemaining int (0..1) <"Represents the remaining amount of a credit limit that has not been utilized.">
+    currency Currency (0..1) <"Specifies the currency in which the credit limit is denominated.">
+    velocity Velocity (0..1) <"Specifies the frequency at which a credit limit is utilized or replenished.">
 
     condition Choice:
         optional choice amountUtilized, utilization
 
-type LimitId:
+type LimitId: <"Uniquely identifies a credit limit within a financial institution\'s system. Its structure allows for the consistent and standardized representation of credit limit identifiers across different systems and platforms.">
 
     value NonEmptyScheme (1..1)
     creditLimitIdScheme NonEmptyURI (0..1)
 
-type LimitType:
+type LimitType: <"Specifies the type of credit limit being referenced. It includes an attribute named creditLimitTypeScheme, which is a URI that points to the coding scheme used to define the credit limit type. This structure allows for the standardized representation of various credit limit types, such as IM (Initial Margin), DV01 (dollar value of 1 basis point), PV01 (price value of 1 basis point), CS01 (credit spread of 1 basis point), Notional, Clip Size, and maximum order quantity. By utilizing the LimitType complex type, financial institutions can effectively categorize and manage different types of credit limits within their systems.">
 
     value Scheme (1..1)
     creditLimitTypeScheme NonEmptyURI (0..1)
 
 type OptionExpiryBase: <"A structure describing an option expiring.">
 
-    tradeIdentifier PartyTradeIdentifier (1..*)
-    date zonedDateTime (1..1)
-    time time (1..1)
+    tradeIdentifier PartyTradeIdentifier (1..*) <"Uniquely identifies the trade associated with the expiring option.">
+    date zonedDateTime (1..1) <"Specifies the calendar date on which the option expires.">
+    time time (1..1) <"Records the exact time of expiration, typically in a specified time zone, ensuring precision in tracking the expiration event.">
 
 type PackageHeader: <"Identifying information for a tradePackage (a bundle of trades).">
 
-    packageIdentifier IssuerTradeId (0..1)
-    orderIdentifier OrderIdentifier (0..1)
+    packageIdentifier IssuerTradeId (0..1) <"Uniquely identifies a trade package, which is a bundle of trades executed together. It consists of an issuer, representing the entity assigning the identifier, and a tradeId, which is the unique reference for the package within that issuer\'s system.">
+    orderIdentifier OrderIdentifier (0..1) <"Represents a unique reference to an order associated with a trade package. It consists of an orderId, which uniquely identifies the order within a trading system or marketplace.">
     packageType PackageType (0..*) <"Classification of the package. FpML has defined a list of coding scheme values. Different organizations might have different naming schemes for the packages so the multiplicity of unbounded is meant to support synonyms but it does not mean that a trade has multiple package types.">
-    size PositiveDecimal (0..1)
+    size PositiveDecimal (0..1) <"The total quantity or notional amount of the trade package, expressed as a positive decimal value.">
     originatingEvent OriginatingEvent (0..1) <"This may be used to describe why a package was created. This can be used to provide context for a newly created package that is not part of a post-trade event. For example, it can report that the package was created as a result of netting activity, or due to a transfer, an allocation process, etc.">
-    packageInformation PackageInformation (0..1)
+    packageInformation PackageInformation (0..1) <"Provides additional details about the trade package, including related parties, trade categories, execution timing, processing timestamps, allocation and clearing intentions, and execution venue type.">
 
 type TradeMaturity: <"A structure describing a trade maturing.">
 
-    tradeIdentifier PartyTradeIdentifier (1..*)
-    date zonedDateTime (1..1)
+    tradeIdentifier PartyTradeIdentifier (1..*) <"Uniquely identifies the trade that has reached its maturity date.">
+    date zonedDateTime (1..1) <"Specifies the maturity date of the trade. It represents the date on which the trade reaches its full term or expiration, marking the point when the trade\'s contractual obligations are fulfilled.">
 
 type TradePackage: <"A bundle of trades collected together into a single unit for reporting.">
 
-    packageHeader PackageHeader (0..1)
-    trade Trade (0..*)
+    packageHeader PackageHeader (0..1) <"Provides essential metadata about a trade package. It includes identifiers, size, event information, and related details that describe the contents of the package. This structure helps in categorizing and organizing the trades into specific packages and provides information necessary for processing or referencing the package.">
+    trade Trade (0..*) <"One or more trades, with each trade representing a specific transaction or agreement. It provides the details of the trade, which can be important for analysis or settlement. The use of maxOccurs=\"unbounded\" indicates that a package can contain any number of trades, offering flexibility in how trade data is organized.">
     tradePackageSequence TradePackageSequence (0..*)
-    tradeIdentifier TradeIdentifier (0..*)
+    tradeIdentifier TradeIdentifier (0..*) <"Uniquely identifies one or more trades within the package. It ensures that each trade can be traced and associated with its corresponding transaction or agreement.">
     approvals Approvals (0..1) <"A container for approval states in the workflow.">
 
     condition Choice:
@@ -1336,13 +1336,13 @@ type TradeReferenceInformation: <"Defines a type that allows trade identifiers a
     terminatingEvent TerminatingEvent (0..1) <"This may be used to describe why a trade was terminated.">
     partyTradeIdentifier PartyTradeIdentifier (1..*) <"This allows the acknowledging party to supply additional trade identifiers for a trade underlying a request relating to a business event.">
     partyTradeInformation PartyTradeInformation (0..*) <"This allows the acknowledging party to supply additional trade information about a trade underlying a request relating to a business event.">
-    productType ProductType (0..1)
-    productId ProductId (0..1)
+    productType ProductType (0..1) <"Specifies the classification of the financial product associated with a trade. It provides a standardized way to categorize trades based on predefined taxonomies.">
+    productId ProductId (0..1) <"Uniquely identifies the financial product associated with a trade. It provides a standardized identifier that can be used across systems for tracking and reference.">
 
     condition Choice:
         optional choice originatingEvent, terminatingEvent
 
-type Velocity:
+type Velocity: <"The speed at which an underlying reference, such as a price or rate, changes over a defined time period. It is commonly used in financial contracts and derivative calculations where rate-of-change metrics are relevant.">
 
-    periodMultiplier int (1..1)
-    period PeriodTimeEnum (1..1)
+    periodMultiplier int (1..1) <"Specifies the number of time units used to measure velocity. It is an integer value that, when combined with the period element, defines the total duration over which velocity is calculated.">
+    period PeriodTimeEnum (1..1) <"Defines the time unit over which velocity is calculated. It is an enumerated value that can represent standard financial time periods (\"D\" for days, \"W\" for weeks, \"M\" for months, \"Y\" for years) or finer time intervals (\"Hour,\" \"Minute,\" \"Second\") for high-frequency measurements.">

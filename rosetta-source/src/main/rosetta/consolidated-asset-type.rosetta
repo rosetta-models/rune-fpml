@@ -1,7 +1,7 @@
 namespace fpml.consolidated.asset : < "fpml definition" >
 version "${project.version}"
 
-import fpml.consolidated.fpmlenum.*
+import fpml.consolidated.^enum.*
 import fpml.consolidated.shared.*
 
 type Basket extends Asset: <"Defines the underlying asset when it is a basket. A type describing the underlyer features of a basket swap. Each of the basket constituents are described through an embedded component, the basketConstituentsType.">
@@ -16,8 +16,8 @@ type Basket extends Asset: <"Defines the underlying asset when it is a basket. A
 
 type Bond extends UnderlyingAsset: <"Identifies the underlying asset when it is a series or a class of bonds. An exchange traded bond.">
 
-    issuerName NonEmptyToken (0..1)
-    issuerPartyReference PartyReference (0..1)
+    issuerName NonEmptyToken (0..1) <"The name of the entity that issues a fixed income security or convertible bond. Within the FixedIncomeSecurityContent.model group, issuerName can be used as an alternative to issuerPartyReference to identify the issuer directly by name.">
+    issuerPartyReference PartyReference (0..1) <"Represents a reference to the entity issuing a fixed-income security. It is an alternative to directly specifying the issuer\'s name and is used to link the security to a registered party in the transaction framework.">
     seniority CreditSeniority (0..1) <"The repayment precedence of a debt instrument.">
     creditQuality CreditQuality (0..*) <"Credit quality type (e.g. \'INVG\' - Investment grade; \'NIVG\' - Non-investment grade; \'NOTR\' - Non-rated). Classifies the risk of the security. Note: \'NOAP\' - Not applicable value is indicated by the absence of the \'creditQuality\' element.">
     creditRating CreditRating (0..*) <"The credit rating.">
@@ -32,7 +32,7 @@ type Bond extends UnderlyingAsset: <"Identifies the underlying asset when it is 
     condition Choice:
         optional choice issuerName, issuerPartyReference
 
-type Cash extends Asset: <"Identifies a simple underlying asset type that is a cash payment. Used for specifying discounting factors for future cash flows in the pricing and risk model.">
+type Cash extends Asset: <"Identifies a simple underlying asset type that is a cash payment. Used for specifying discounting factors for future cash flows in the pricing and risk model. A cash asset as a financial instrument. It extends the Asset type and includes identifiers, a description, and the currency in which the cash is denominated. It is used to specify cash holdings or cash components in financial transactions, portfolios, or structured products.">
 
     instrumentId InstrumentId (0..*) <"Identification of the underlying asset, using public and/or private identifiers.">
     description NonEmptyNormalizedString (0..1) <"Long name of the underlying asset.">
@@ -66,12 +66,12 @@ type Commodity extends IdentifiedAsset: <"Identifies the underlying asset when i
         commodityBase is absent and commodityDetails is absent
             or commodityClassification is absent
 
-type ConvertibleBond extends Bond: <"Identifies the underlying asset when it is a convertible bond.">
+type ConvertibleBond extends Bond: <"Identifies the underlying asset when it is a convertible bond. A bond that can be converted into a specified underlying equity asset. It extends the Bond type and includes details about the underlyingEquity, which defines the equity asset into which the bond may be converted, and the redemptionDate, which specifies the date when the bond matures or is redeemed.">
 
     underlyingEquity EquityAsset (0..1) <"Specifies the equity in which the convertible bond can be converted.">
     redemptionDate zonedDateTime (0..1) <"Earlier date between the convertible bond put dates and its maturity date.">
 
-type Deposit extends UnderlyingAsset: <"Identifies a simple underlying asset that is a term deposit.">
+type Deposit extends UnderlyingAsset: <"Identifies a simple underlying asset that is a term deposit. A term deposit as an underlying asset in financial transactions. It includes key attributes such as the deposit term, the frequency of interest payments, and the method used to calculate accrued interest.">
 
     term Period (0..1) <"Specifies the term of the deposit, e.g. 5Y.">
     paymentFrequency Period (0..1) <"Specifies the frequency at which the deposit pays, e.g. 6M.">
@@ -113,10 +113,10 @@ type Loan extends UnderlyingAsset: <"Identifies a simple underlying asset that i
 
 type Mortgage extends UnderlyingAsset: <"Identifies a mortgage backed security. A type describing a mortgage asset.">
 
-    insurer LegalEntity (0..1)
-    insurerReference LegalEntityReference (0..1)
-    issuerName NonEmptyToken (0..1)
-    issuerPartyReference PartyReference (0..1)
+    insurer LegalEntity (0..1) <"Identifies the legal entity that provides insurance coverage for the mortgage. This entity is responsible for mitigating the lender\'s risk by insuring against potential borrower defaults or other financial risks associated with the mortgage.">
+    insurerReference LegalEntityReference (0..1) <"A reference to a previously defined legal entity that serves as the insurer for the mortgage. This ensures consistency and avoids redundancy in identifying the insurer within the document.">
+    issuerName NonEmptyToken (0..1) <"The name of the entity that issues a fixed income security or convertible bond. Within the FixedIncomeSecurityContent.model group, issuerName can be used as an alternative to issuerPartyReference to identify the issuer directly by name.">
+    issuerPartyReference PartyReference (0..1) <"Represents a reference to the entity issuing a fixed-income security. It is an alternative to directly specifying the issuer\'s name and is used to link the security to a registered party in the transaction framework.">
     seniority CreditSeniority (0..1) <"The repayment precedence of a debt instrument.">
     creditQuality CreditQuality (0..*) <"Credit quality type (e.g. \'INVG\' - Investment grade; \'NIVG\' - Non-investment grade; \'NOTR\' - Non-rated). Classifies the risk of the security. Note: \'NOAP\' - Not applicable value is indicated by the absence of the \'creditQuality\' element.">
     creditRating CreditRating (0..*) <"The credit rating.">
@@ -136,23 +136,23 @@ type Mortgage extends UnderlyingAsset: <"Identifies a mortgage backed security. 
     condition Choice1:
         optional choice issuerName, issuerPartyReference
 
-type MutualFund extends UnderlyingAsset: <"Identifies the class of unit issued by a fund.">
+type MutualFund extends UnderlyingAsset: <"Identifies the class of unit issued by a fund. An asset type that refers to a mutual fund, which is a pooled investment vehicle managed by a professional fund manager. This asset typically involves a collection of stocks, bonds, or other securities. The mutual fund may be open-ended, allowing investors to buy or redeem shares at any time, or closed-ended, with a fixed number of shares.">
 
     openEndedFund boolean (0..1) <"Boolean indicator to specify whether the mutual fund is an open-ended mutual fund.">
     fundManager NonEmptyToken (0..1) <"Specifies the fund manager that is in charge of the fund.">
 
 type Option extends ExchangeTradedOption: <"Identifies the underlying asset when it is a listed option contract.">
 
-type RateIndex extends UnderlyingAsset: <"Identifies a simple underlying asset that is an interest rate index. Used for specifying benchmark assets in the market environment in the pricing and risk model.">
+type RateIndex extends UnderlyingAsset: <"Identifies a simple underlying asset that is an interest rate index. Used for specifying benchmark assets in the market environment in the pricing and risk model. An interest rate index used as an underlying asset in financial instruments.">
 
-    floatingRateIndex FloatingRateIndex (0..1)
+    floatingRateIndex FloatingRateIndex (0..1) <"The reference rate used in floating-rate financial instruments, such as interest rate swaps or floating-rate options. It identifies standard benchmarks that determine the variable interest payments in these instruments. It also aligns with the ISDA Floating Rate Option conventions.">
     term Period (0..1) <"Specifies the term of the simple swap, e.g. 5Y.">
     paymentFrequency Period (0..1) <"Specifies the frequency at which the index pays, e.g. 6M.">
     dayCountFraction DayCountFraction (0..1) <"The day count basis for the index.">
 
 type Security extends GenericSecurity: <"Identifies a security of implicit type (derivable from the security reference data).">
 
-type SimpleCreditDefaultSwap extends UnderlyingAsset: <"Identifies a simple underlying asset that is a credit default swap.">
+type SimpleCreditDefaultSwap extends UnderlyingAsset: <"Identifies a simple underlying asset that is a credit default swap. A straightforward credit default swap (CDS) used as an underlying asset. This structure allows for the representation of a basic CDS within the FpML framework, capturing essential details about the reference entity, contract term, and payment schedule.">
 
     referenceEntity LegalEntity (0..1) <"The entity for which this is defined.">
     creditEntityReference LegalEntityReference (0..1) <"An XML reference a credit entity defined elsewhere in the document.">
@@ -162,13 +162,13 @@ type SimpleCreditDefaultSwap extends UnderlyingAsset: <"Identifies a simple unde
     condition Choice:
         required choice referenceEntity, creditEntityReference
 
-type SimpleFra extends UnderlyingAsset: <"Identifies a simple underlying asset that is a forward rate agreement.">
+type SimpleFra extends UnderlyingAsset: <"Identifies a simple underlying asset that is a forward rate agreement. A simple Forward Rate Agreement (FRA) as an underlying asset in financial transactions. A Forward Rate Agreement is a financial contract between two parties that determines the interest rate to be paid or received on an agreed-upon notional amount for a future period. The SimpleFra includes attributes specific to FRAs, such as the start and end terms of the agreement and the day count fraction used for interest calculations.">
 
     startTerm Period (0..1) <"Specifies the start term of the simple fra, e.g. 3M.">
     endTerm Period (0..1) <"Specifies the end term of the simple fra, e.g. 9M.">
     dayCountFraction DayCountFraction (0..1) <"The day count basis for the FRA.">
 
-type SimpleIRSwap extends UnderlyingAsset: <"Identifies a simple underlying asset that is a swap.">
+type SimpleIRSwap extends UnderlyingAsset: <"Identifies a simple underlying asset that is a swap. A simple Interest Rate Swap (IRS) as an underlying asset in financial transactions. An Interest Rate Swap is a financial derivative contract in which two parties agree to exchange interest payments based on a specified notional amount. The SimpleIRSwap type extends the UnderlyingAsset base type to include attributes specific to IRS, such as the term of the swap, the payment frequency, and the day count fraction used for interest calculations.">
 
     term Period (0..1) <"Specifies the term of the simple swap, e.g. 5Y.">
     paymentFrequency Period (0..1) <"Specifies the frequency at which the swap pays, e.g. 6M.">
@@ -176,7 +176,7 @@ type SimpleIRSwap extends UnderlyingAsset: <"Identifies a simple underlying asse
 
 type Warrant extends ExchangeTradedContract: <"Defines the underlying asset when it is a warrant.">
 
-type ActualPrice:
+type ActualPrice: <"Allows for precise representation of an asset\'s price, including its value, the currency used, and the manner in which the price is expressed, facilitating clear communication in financial transactions.">
 
     id string (0..1)
     currency Currency (0..1) <"Specifies the currency associated with the net price. This element is not present if the price is expressed in percentage terms (as specified through the priceExpression element).">
@@ -236,7 +236,7 @@ type BasketConstituent: <"A type describing each of the constituents of a basket
     payerAccountReference AccountReference (0..1) <"A reference to the account responsible for making the payments defined by this structure.">
     receiverPartyReference PartyReference (0..1) <"A reference to the party that receives the payments corresponding to this structure.">
     receiverAccountReference AccountReference (0..1) <"A reference to the account that receives the payments corresponding to this structure.">
-    underlyingAsset Asset (1..1)
+    underlyingAsset Asset (1..1) <"The financial instrument that serves as a constituent of a basket in a structured product, derivative, or other financial contract. Within the BasketConstituent complex type, it defines the specific asset that contributes to the overall performance of the basket.">
     constituentWeight ConstituentWeight (0..1) <"Specifies the weight of each of the underlyer constituent within the basket, either in absolute or relative terms. This is an optional component, as certain swaps do not specify a specific weight for each of their basket constituents.">
     underlyerPrice Price (0..1) <"Specifies the price that is associated with each of the basket constituents. This component is optional, as it is not absolutely required to accurately describe the economics of the trade, considering the price that characterizes the equity swap is associated to the leg of the trade.">
     underlyerNotional Money (0..1) <"Specifies the notional (i.e. price * quantity) that is associated with each of the basket constituents. This component is optional, as it is not absolutely required to accurately describe the economics of the trade, considering the notional that characterizes the equity swap is associated to the leg of the trade.">
@@ -247,12 +247,12 @@ type BasketConstituent: <"A type describing each of the constituents of a basket
     dividendPayout DividendPayout (0..1) <"Specifies the dividend payout ratio associated with an equity underlyer. A basket swap can have different payout ratios across the various underlying constituents. In certain cases the actual ratio is not known on trade inception, and only general conditions are then specified. Users should note that FpML makes a distinction between the derivative contract and the underlyer of the contract. It would be better if the agreed dividend payout on a derivative contract was modelled at the level of the derivative contract, an approach which may be adopted in the next major version of FpML.">
     couponPayment PendingPayment (0..1) <"The next upcoming coupon payment.">
 
-type BasketId:
+type BasketId: <"The unique identifier for a basket of financial instruments. It includes the basketIdScheme attribute, which specifies the identification scheme used to reference the basket. This ensures standardized identification and interoperability in financial transactions involving baskets of assets.">
 
     value NonEmptyScheme (1..1)
     basketIdScheme NonEmptyURI (0..1)
 
-type BasketName:
+type BasketName: <"The designated name of a basket of financial instruments. It includes the basketNameScheme attribute, which specifies the naming convention or scheme used to identify the basket. This ensures clarity and consistency when referring to baskets in financial transactions.">
 
     value NonEmptyScheme (1..1)
     basketNameScheme NonEmptyURI (0..1)
@@ -265,7 +265,7 @@ type Commission: <"A type describing the commission that will be charged for eac
     commissionPerTrade number (0..1) <"The total commission per trade.">
     fxRate FxRate (0..*) <"FX Rates that have been used to convert commissions to a single currency.">
 
-type CommodityBase:
+type CommodityBase: <"Represents the standardized classification of a commodity being traded. It includes the commodityBaseScheme attribute, which specifies the identification scheme used to define the base type of the commodity. This ensures consistency in categorizing commodities, following industry standards such as the 2005 ISDA Commodity Definitions.">
 
     value Scheme (1..1)
     commodityBaseScheme NonEmptyURI (0..1)
@@ -284,7 +284,7 @@ type CommodityClassificationLayer: <"A type used to identify commodities. It can
     value Scheme (1..1)
     commodityClassificationScheme NonEmptyURI (0..1)
 
-type CommodityDetails:
+type CommodityDetails: <"Specifies a more detailed classification of a traded commodity. It includes the commodityDetailsScheme attribute, which defines the identification scheme used to specify the commodity at a granular level. This ensures precise identification, aligning with industry standards such as the 2005 ISDA Commodity Definitions.">
 
     value Scheme (1..1)
     commodityDetailsScheme NonEmptyURI (0..1)
@@ -311,7 +311,7 @@ type CouponType: <"Defines a scheme of values for specifiying if the bond has a 
     value Scheme (1..1)
     couponTypeScheme NonEmptyURI (0..1)
 
-type CreditQuality:
+type CreditQuality: <"A standardized classification of an entity\'s creditworthiness. It includes the creditQualityScheme attribute, which specifies the identification scheme used to define credit quality ratings. This allows for consistent representation of credit risk assessments, aligning with industry standards such as those used in credit rating agencies.">
 
     value Scheme (1..1)
     creditQualityScheme NonEmptyURI (0..1)
@@ -359,7 +359,7 @@ type ExchangeTradedContractUnderlyer: <"A type describing a single underlyer">
     floatingRateIndex FloatingRateIndex (0..1) <"The ISDA Floating Rate Option, i.e. the name of the floating rate.">
     indexTenor Period (0..1) <"The ISDA Designated Maturity, i.e. the tenor of the floating rate.">
     quotedCurrencyPair QuotedCurrencyPair (0..1) <"Defines the two currencies for an FX trade and the quotation relationship between the two currencies.">
-    underlyingAsset Asset (0..*)
+    underlyingAsset Asset (0..*) <"One or more assets that serve as the basis for an exchange-traded contract. As an abstract element of type Asset, it can reference various asset classes, such as commodities, equities, or fixed-income securities, that determine the contract’s value and performance. This structure allows for flexibility in defining different types of underlying instruments in exchange-traded derivatives and structured financial products.">
 
     condition Choice:
         if floatingRateIndex exists
@@ -394,15 +394,15 @@ type FutureId: <"A type defining a short form unique identifier for a future con
     value NonEmptyScheme (1..1)
     futureIdScheme NonEmptyURI (0..1)
 
-type FxConversion:
+type FxConversion: <"The currency conversion rate applicable to a financial amount. It allows for two possible representations: referencing an existing amount in the document that determines the conversion or explicitly defining one or more foreign exchange rates. This structure supports scenarios such as quanto swaps, where the conversion rate is predetermined, or cases where explicit FX rates are provided within the transaction details.">
 
-    amountRelativeTo AmountReference (0..1)
+    amountRelativeTo AmountReference (0..1) <"A reference to an existing amount within the document that determines the basis for currency conversion. Instead of explicitly defining an exchange rate, this element links the conversion to a previously stated amount, commonly used in structured transactions such as quanto swaps where the applicable conversion rate is derived from another contract term.">
     fxRate FxRate (0..*) <"Specifies a currency conversion rate.">
 
     condition Choice:
         one-of
 
-type FxRateAsset extends UnderlyingAsset:
+type FxRateAsset extends UnderlyingAsset: <"Represents a foreign exchange (FX) rate as an underlying asset in financial transactions. It defines the currency pair being quoted and may include a reference to the source of the FX spot rate via the rateSource element.">
 
     quotedCurrencyPair QuotedCurrencyPair (0..1) <"Defines the two currencies for an FX trade and the quotation relationship between the two currencies.">
     rateSource FxSpotRateSource (0..1) <"Defines the source of the FX rate.">
@@ -434,8 +434,8 @@ type Lien: <"A type describing the liens associated with a loan facility.">
 
 type LoanChoice:
 
-    borrower LegalEntity (0..1)
-    borrowerReference LegalEntityReference (0..1)
+    borrower LegalEntity (0..1) <"The legal entity that has received a loan and is obligated to repay it under the agreed terms. It includes the entity\'s name and may reference one or more identifiers for precise identification.">
+    borrowerReference LegalEntityReference (0..1) <"A reference to a previously defined legal entity that has received a loan, ensuring consistency and avoiding duplication in the identification of the borrower.">
 
     condition Choice:
         optional choice borrower, borrowerReference
@@ -481,7 +481,7 @@ type PricingModel: <"A scheme identifying the types of pricing model used to eva
     value Scheme (1..1)
     pricingModelScheme NonEmptyURI (0..1)
 
-type QuantityUnit:
+type QuantityUnit: <"The unit of measure applicable to a quantity in a financial transaction. It includes the quantityUnitScheme attribute, which specifies the identification scheme used to define the unit of measure. This ensures standardized representation of measurement units across financial documents.">
 
     value Scheme (1..1)
     quantityUnitScheme NonEmptyURI (0..1)
@@ -518,7 +518,7 @@ type ReportingCurrencyType: <"A scheme identifying the type of currency that was
 
 type SingleUnderlyer: <"A type describing a single underlyer">
 
-    underlyingAsset Asset (1..1)
+    underlyingAsset Asset (1..1) <"An abstract component that serves as a placeholder for various asset types. It must be substituted by a concrete element representing a specific asset class, such as equity, bond, or commodity. This design allows for flexibility in specifying the particular asset underlying a financial product.">
     openUnits number (0..1) <"The number of units (index or securities) that constitute the underlyer of the swap. In the case of a basket swap, this element is used to reference both the number of basket units, and the number of each asset components of the basket when these are expressed in absolute terms.">
     dividendPayout DividendPayout (0..1) <"Specifies the dividend payout ratio associated with an equity underlyer. A basket swap can have different payout ratios across the various underlying constituents. In certain cases the actual ratio is not known on trade inception, and only general conditions are then specified. Users should note that FpML makes a distinction between the derivative contract and the underlyer of the contract. It would be better if the agreed dividend payout on a derivative contract was modelled at the level of the derivative contract, an approach which may be adopted in the next major version of FpML.">
     couponPayment PendingPayment (0..1) <"The next upcoming coupon payment.">
@@ -540,7 +540,7 @@ type UnderlyingAsset extends IdentifiedAsset: <"Abstract base class for all unde
     clearanceSystem ClearanceSystem (0..1) <"Identification of the clearance system associated with the transaction exchange.">
     definition ProductReference (0..1) <"An optional reference to a full FpML product that defines the simple product in greater detail. In case of inconsistency between the terms of the simple product and those of the detailed definition, the values in the simple product override those in the detailed definition.">
 
-type UnderlyingAssetTranche:
+type UnderlyingAssetTranche: <"A specific portion or tranche of an underlying asset, typically used to denote subdivisions of financial products like loans or securities. It includes an optional attribute loanTrancheScheme which specifies the coding scheme used to identify the tranche. This structure allows for precise identification and categorization of different tranches within an underlying asset.">
 
     value Scheme (1..1)
     loanTrancheScheme NonEmptyURI (0..1)

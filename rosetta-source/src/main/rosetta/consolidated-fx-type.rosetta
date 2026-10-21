@@ -1,7 +1,7 @@
 namespace fpml.consolidated.fx : < "fpml definition" >
 version "${project.version}"
 
-import fpml.consolidated.fpmlenum.*
+import fpml.consolidated.^enum.*
 import fpml.consolidated.option.shared.*
 import fpml.consolidated.shared.*
 
@@ -145,8 +145,8 @@ type PriceSourceDisruption extends FxDisruptionEvent: <"If present indicates tha
 
 type PriceMateriality extends FxDisruptionEvent: <"Defines the require price materiality percentage for the rate source to be considered valid. A structure describing the criteria for price materiality.">
 
-    primaryRateSource SettlementRateOption (0..1)
-    secondaryRateSource SettlementRateOption (0..*)
+    primaryRateSource SettlementRateOption (0..1) <"Specifies the main reference source to determine the settlement exchange rate for an FX transaction.">
+    secondaryRateSource SettlementRateOption (0..*) <"Provides one or more alternative rate sources to be used if the primary rate source is unavailable or disrupted.">
     percentage Percentage (0..1) <"A value expressed in percentage units i.e. 5 means 5%.">
 
 type SettlementPostponement extends Postponement: <"Indicates that the Settlement Date for the tranaction shall be deemed to be the first Business Day following the day on which the applicable Disruption Event ceases to exist, unless the events continues to exists for more than a maximum number of days.">
@@ -234,10 +234,10 @@ type FxBarrierFeature: <"Describes the properties of an FX barrier.">
                 and observationEndTime is absent
             or observationPoint is absent
 
-type FxBusinessCenterDateTime:
+type FxBusinessCenterDateTime: <"Represents a date and optionally a time that are relevant to an FX (foreign exchange) transaction, such as for fixing or settlement. The date is mandatory, while the time, if specified, indicates the local time at a relevant financial center (business center) associated with the transaction.">
 
-    date zonedDateTime (0..1)
-    time BusinessCenterTime (0..1)
+    date zonedDateTime (0..1) <"Specifies the calendar date relevant to the FX transaction, such as the date on which a rate is fixed or a payment is due. It follows the standard ISO format (YYYY-MM-DD).">
+    time BusinessCenterTime (0..1) <"Specifies the local time of day, tied to a particular business center, that refines when the FX-related event (e.g., rate fixing) takes place.">
 
 type FxDigitalAmericanExercise extends Exercise: <"Descrines the characteristics for American exercise in FX digital options.">
 
@@ -257,13 +257,13 @@ type FxDisruptionEvent: <"The base class for all disruption events">
 
 type FxDisruptionEvents: <"A container for the disruption event set">
 
-    fxDisruptionEvent FxDisruptionEvent (0..*)
+    fxDisruptionEvent FxDisruptionEvent (0..*) <"Represents a foreign exchange disruption event that may affect the execution or settlement of an FX transaction. This is an abstract placeholder element that is substituted at runtime by one or more specific events, such as dualExchangeRate (multiple exchange rates exist for the same currency pair due to market segmentation or official controls), exchangeRestrictions (Legal or regulatory limitations that restrict currency conversion or movement across borders), priceSourceDisruption (disruption in the publication or availability of the agreed-upon price source for FX rates), or priceMateriality (deviation or change in the published FX rate compared to expected levels).">
 
 type FxDisruptionFallback: <"The base class for all disruption fallbacks">
 
 type FxDisruptionFallbacks: <"A container for the disruption fallback set">
 
-    fxDisruptionFallback FxDisruptionFallback (0..*)
+    fxDisruptionFallback FxDisruptionFallback (0..*) <"Represents a fallback mechanism to be applied in the event of an FX disruption. This is a generic, abstract element that is substituted by specific fallback provisions defining how the disruption should be resolved. Substitutable elements include calculationAgentDetermination, fallbackReferencePrice, noFaultTermination, nonDeliverableSubstitute, settlementPostponement, or valiationPostponement.">
 
 type FxDisruptionProvisions: <"Describes a set of disruption events and the fallbacks they will invoke">
 
@@ -280,8 +280,8 @@ type FxEuropeanExercise extends Exercise: <"Describes the characteristics for Eu
 
 type FxFallbackReferencePrice extends FxDisruptionFallback: <"Describes an alternative set of price sources">
 
-    primaryRateSource SettlementRateOption (0..1)
-    secondaryRateSource SettlementRateOption (0..*)
+    primaryRateSource SettlementRateOption (0..1) <"Specifies the main reference source to determine the settlement exchange rate for an FX transaction.">
+    secondaryRateSource SettlementRateOption (0..*) <"Provides one or more alternative rate sources to be used if the primary rate source is unavailable or disrupted.">
 
 type FxFixingScheduleSimple: <"Describes the FX fixing schedule, a single continuous observation period which follows the applicable business day schedule for the quoted rate source.">
 
@@ -289,20 +289,20 @@ type FxFixingScheduleSimple: <"Describes the FX fixing schedule, a single contin
     endDate zonedDateTime (0..1) <"The end of the period over which observations are made to determine whether a trigger event has occurred.">
     dayType DayTypeEnum (0..1) <"Specifies whether the schedule follows the business or calendar days.">
     businessCentersReference BusinessCentersReference (0..1) <"A pointer style reference to a set of financial business centers defined elsewhere in the document. This set of business centers is used to determine whether a particular day is a business day or not.">
-    businessCenters BusinessCenters (0..1)
+    businessCenters BusinessCenters (0..1) <"A set of financial business centers specified directly for use in determining whether a particular day is a business day.">
     fixingDate zonedDateTime (0..*) <"An explicit list of dates in the schedule. For documentation purpose only.">
 
     condition Choice:
         optional choice businessCentersReference, businessCenters
 
-type FxFlexibleForwardExecutionPeriod:
+type FxFlexibleForwardExecutionPeriod: <"The period during which the flexible forward may be executed, defined by its start and expiry dates and the business centres used to determine execution period business days.">
 
     id string (1..1)
     startDate zonedDateTime (0..1) <"Start date of the execution period/window.">
     expiryDate zonedDateTime (0..1) <"Expiry (maturity) date of the execution period.">
     businessCenters BusinessCenters (0..1) <"Business centers for determination of execution period business days.">
 
-type FxFlexibleForwardRate extends QuotedCurrencyPair:
+type FxFlexibleForwardRate extends QuotedCurrencyPair: <"Represents the FX rate terms for a flexible forward contract, extending the QuotedCurrencyPair type to identify the currency pair involved. It includes an optional rate for the agreed forward rate and an optional spotRate indicating the spot market rate at the time of trade. This structure supports pricing transparency and rate management for non-standard forward FX agreements.">
 
     rate PositiveDecimal (1..1) <"Constant rate value, applicable for the duration of the execution period.">
     spotRate PositiveDecimal (0..1) <"The spot exchange rate for the specified currency pair as per the specified quote basis, as at the trade date.">
@@ -314,8 +314,8 @@ type FxMultipleExercise: <"Describes the limits on the size of notional when mul
 
 type FxOptionFeatures: <"A type describing the features that may be present in an FX option.">
 
-    asian FxAsianFeature (0..1)
-    barrier FxBarrierFeature (0..*)
+    asian FxAsianFeature (0..1) <"Specifies the Asian-style feature of an FX option, where the option payout depends on the average exchange rate over a schedule of observation dates rather than a single spot rate.">
+    barrier FxBarrierFeature (0..*) <"Represents a barrier condition applied to an FX option, where the option is activated or deactivated based on whether the exchange rate crosses a specified level (the barrier) during the observation period. It defines the barrier type and direction, the currency pair, trigger rate, observation schedule, and relevant rate sources. Multiple barriers can be defined to model complex knock-in or knock-out options.">
 
     condition Choice:
         asian exists or barrier exists
@@ -386,7 +386,7 @@ type FxStrikePrice: <"A type that describes the rate of exchange at which the op
     rate PositiveDecimal (1..1) <"The rate of exchange between the two currencies of the leg of a deal.">
     strikeQuoteBasis StrikeQuoteBasisEnum (0..1) <"The method by which the strike rate is quoted.">
 
-type FxSwapLeg extends Leg:
+type FxSwapLeg extends Leg: <"Defines one leg of an FX swap transaction, representing a single exchange of currencies on a specific date.">
 
     tradeIdentifierReference PartyTradeIdentifierReference (0..*) <"A reference to a party trade ID. This is provided in case the message creator wishes to record that the swap leg is assocatiated with a particular trade identifier; typically this is used for identifying a USI assocatied wih the leg.">
     exchangedCurrency1 Payment (1..1) <"This is the first of the two currency flows that define a single leg of a standard foreign exchange transaction.">
@@ -449,7 +449,7 @@ type FxTriggerBase: <"Describes a european trigger applied to an FX digtal optio
 type FxValuationDateOffset extends Offset: <"Valuation date offset is used in FX Variance Swap and Volatility Swap to always relate the Final Observation Date and can be: [Final Observation Date][The first Business Day following the Final Observation Date]">
 
     businessCentersReference BusinessCentersReference (0..1) <"A pointer style reference to a set of financial business centers defined elsewhere in the document. This set of business centers is used to determine whether a particular day is a business day or not.">
-    businessCenters BusinessCenters (0..1)
+    businessCenters BusinessCenters (0..1) <"A set of financial business centers specified directly for use in determining whether a particular day is a business day.">
 
     condition Choice:
         optional choice businessCentersReference, businessCenters
@@ -463,6 +463,6 @@ type PremiumQuote: <"A type that describes the option premium as quoted.">
     value number (1..1) <"The value of the premium quote. In general this will be either a percentage or an explicit amount.">
     quoteBasis PremiumQuoteBasisEnum (1..1) <"The method by which the option premium was quoted.">
 
-type TermDepositFeatures:
+type TermDepositFeatures: <"Defines additional characteristics that may apply to a term deposit. Currently, it supports the specification of a dual currency feature, which indicates that the deposit may be repaid in an alternative currency under certain conditions, typically based on FX market movements.">
 
-    dualCurrency DualCurrencyFeature (0..1)
+    dualCurrency DualCurrencyFeature (0..1) <"Specifies the terms of a dual currency feature embedded in a term deposit. It includes the alternate currency, the FX fixing date and optional fixing time, the strike FX rate at which conversion may occur, and the spot rate if available. It also states whether the interest is at risk (i.e., whether it can be affected by the FX outcome).">

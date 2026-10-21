@@ -1,4 +1,4 @@
-namespace fpml.consolidated.fpmlenum : < "fpml definition" >
+namespace fpml.consolidated.^enum : < "fpml definition" >
 version "${project.version}"
 
 enum AveragingInOutEnum:
@@ -162,7 +162,7 @@ enum DayTypeEnum:
     ExchangeBusiness
     ScheduledTradingDay
 
-enum DealtCurrencyEnum:
+enum DealtCurrencyEnum: <"Specifies the currency used in a financial transaction. This enumeration is used to clarify which currency is being referenced in a multi-currency financial transaction.">
 
     ExchangedCurrency1
     ExchangedCurrency2
@@ -289,10 +289,20 @@ enum DeliveryNearbyTypeEnum:
     NearbyMonth
     NearbyWeek
 
-enum DeliveryTypeEnum:
+enum DeliveryTypeEnum: <"Specifies the type of delivery commitment in a financial or commodity transaction. It has two possible values: Firm (guaranteed delivery obligation), or Interruptible (flexible or non-guaranteed delivery obligation).">
 
     Firm
     Interruptible
+
+enum DigitalCapStrikeConditionEnum: <"Strike condition for digital cap {AtOrAbove, Above}: payoff is triggered when the observed rate fixes at-or-above the strike, or (strictly) above the strike.">
+
+    AtOrAbove
+    Above
+
+enum DigitalFloorStrikeConditionEnum: <"Strike condition for digital floor {AtOrBelow, Below}: payoff is triggered when the observed rate fixes at-or-below the strike, or (strictly) below the strike.">
+
+    AtOrBelow
+    Below
 
 enum DiscountingTypeEnum: <"The method of calculating discounted payment amounts.">
 
@@ -442,7 +452,7 @@ enum ExerciseSideEnum:
     Payer
     Receiver
 
-enum ExerciseStyleEnum:
+enum ExerciseStyleEnum: <"Specifies the exercise style of an option contract, indicating when the option holder is allowed to exercise their rights. It has three possible values: American (option can be exercised at any time before or on the expiration date), Bermuda (option can be exercised only on specific predetermined dates before expiration), and European (option can only be exercised on the expiration date).">
 
     American
     Bermuda
@@ -732,6 +742,12 @@ enum PeriodExtendedEnum:
     Y
     T
 
+enum PeriodTimeUnitEnum: <"The specification of a time period containing values such as Hour, Minute and Second. This is to support events based on intraday frequency only.">
+
+    Hour <"Period measured in hours.">
+    Minute <"Period measured in minutes.">
+    Second <"Period measured in seconds.">
+
 enum PremiumQuoteBasisEnum:
 
     PercentageOfCallCurrencyAmount
@@ -981,6 +997,8 @@ enum TimeTypeEnum:
     XETRA
     DerivativesClose
     AsSpecifiedInMasterConfirmation
+    ExcludingClose
+    TimeSession
 
 enum TriggerConditionEnum:
 
@@ -1018,7 +1036,7 @@ enum ValuationMethodEnum:
     AverageBlendedMarket
     AverageBlendedHighest
 
-enum WeatherSettlementLevelEnum:
+enum WeatherSettlementLevelEnum: <"Specifies the method used to calculate the settlement level for a weather-related financial contract. It has four possible values: Cumulative, Average, Mximum, and Minimum.">
 
     Cumulative <"The cumulative number of Weather Index Units for each day in the Calculation Period.">
     Average <"The cumulative number of Weather Index Units for each day in the Calculation Period divided by the number of days in the Calculation Period.">
@@ -1035,6 +1053,31 @@ enum WeeklyRollConventionEnum: <"The specification of a weekly roll day.">
     SAT
     SUN
     TBILL
+
+enum NonCommencementOrDiscontinuationEnum:
+
+    CancellationAndPayment
+    ExchangeAdjustment
+
+enum CombinedCalculationEnum:
+
+    Applicable
+    NotApplicable
+
+enum ApplicabilityEnum:
+
+    AdjustmentsAndExtraordinaryEvents
+    StaggeredSettlement
+
+enum BenchmarkProvisionsEnum:
+
+    Applicable
+    NotApplicable
+
+enum LookThroughEnum:
+
+    FullDepositoryReceipt
+    PartialDepositoryReceipt
 
 enum AccountingStandardEnum:
 

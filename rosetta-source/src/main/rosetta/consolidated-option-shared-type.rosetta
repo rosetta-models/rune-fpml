@@ -2,12 +2,12 @@ namespace fpml.consolidated.option.shared : < "fpml definition" >
 version "${project.version}"
 
 import fpml.consolidated.asset.*
-import fpml.consolidated.fpmlenum.*
+import fpml.consolidated.^enum.*
 import fpml.consolidated.shared.*
 
 type Asian: <"As per ISDA 2002 Definitions.">
 
-    averagingInOut AveragingInOutEnum (0..1)
+    averagingInOut AveragingInOutEnum (0..1) <"The classification of averaging used for the Asian option, indicating whether the applicable observations relate to averaging in or averaging out.">
     strikeFactor number (0..1) <"The factor of strike.">
     averagingPeriodIn AveragingPeriod (0..1) <"The averaging in period.">
     averagingPeriodOut AveragingPeriod (0..1) <"The averaging out period.">
@@ -39,7 +39,7 @@ type Barrier: <"As per ISDA 2002 Definitions.">
 
 type CalendarSpread: <"A type for defining a calendar spread feature.">
 
-    expirationDateTwo AdjustableOrRelativeDate (0..1)
+    expirationDateTwo AdjustableOrRelativeDate (0..1) <"The second expiration date applicable to the calendar spread, specified either as an explicit date with associated adjustments or as a date relative to an anchor date.">
 
 type ClassifiablePayment extends NonNegativePayment: <"A classified non negative payment.">
 
@@ -51,13 +51,13 @@ type Composite: <"Specifies the conditions to be applied for converting into a r
     relativeDate RelativeDateOffset (0..1) <"A date specified as some offset to another date (the anchor date).">
     fxSpotRateSource FxSpotRateSource (0..1) <"Specifies the methodology (reference source and, optionally, fixing time) to be used for determining a currency conversion rate.">
 
-type CreditEventNotice:
+type CreditEventNotice: <"Specifies information supporting notification of a credit event, identifying the notifying party and relevant business center and recording publicly available information.">
 
     notifyingParty NotifyingParty (0..1) <"Pointer style references to a party identifier defined elsewhere in the document. The notifying party is the party that notifies the other party when a credit event has occurred by means of a credit event notice. If more than one party is referenced as being the notifying party then either party may notify the other of a credit event occurring. ISDA 2003 Term: Notifying Party.">
     businessCenter BusinessCenter (0..1) <"Inclusion of this business center element implies that Greenwich Mean Time in Section 3.3 of the 2003 ISDA Credit Derivatives Definitions is replaced by the local time of the city indicated by the businessCenter element value.">
     publiclyAvailableInformation PubliclyAvailableInformation (0..1) <"A specified condition to settlement. Publicly available information means information that reasonably confirms any of the facts relevant to determining that a credit event or potential repudiation/moratorium, as applicable, has occurred. The ISDA defined list (2003) is the market standard and is considered comprehensive, and a minimum of two differing public sources must have published the relevant information, to declare a Credit Event. ISDA 2003 Term: Notice of Publicly Available Information Applicable.">
 
-type CreditEvents:
+type CreditEvents: <"Specifies applicable categories and conditions for credit events, including any monetary default requirement and associated notice provisions.">
 
     id string (0..1)
     bankruptcy boolean (0..1) <"A credit event. The reference entity has been dissolved or has become insolvent. It also covers events that may be a precursor to insolvency such as instigation of bankruptcy or insolvency proceedings. Sovereign trades are not subject to Bankruptcy as \"technically\" a Sovereign cannot become bankrupt. ISDA 2003 Term: Bankruptcy.">
@@ -80,7 +80,7 @@ type CreditEventsReference extends Reference: <"Reference to credit events.">
 
     href string (1..1)
 
-type FailureToPay:
+type FailureToPay: <"Terms specifying the applicability of a failure-to-pay condition, together with any associated grace period extension and monetary payment requirement.">
 
     applicable boolean (0..1) <"Indicates whether the failure to pay provision is applicable.">
     gracePeriodExtension GracePeriodExtension (0..1) <"If this element is specified, indicates whether or not a grace period extension is applicable. ISDA 2003 Term: Grace Period Extension Applicable.">
@@ -111,7 +111,7 @@ type FxFeature: <"A type for defining Fx Features.">
     condition Choice:
         optional choice composite, quanto, crossCurrency
 
-type GracePeriodExtension:
+type GracePeriodExtension: <"A structure specifying whether a grace period extension applies and the associated offset defining its extent.">
 
     applicable boolean (0..1) <"Indicates whether the grace period extension provision is applicable.">
     gracePeriod Offset (0..1) <"The number of calendar or business days after any due date that the reference entity has to fulfil its obligations before a failure to pay credit event is deemed to have occurred. ISDA 2003 Term: Grace Period.">
@@ -129,10 +129,10 @@ type MarketDisruption: <"Defines the handling of an averaging date market disrup
     value Scheme (1..1)
     marketDisruptionScheme NonEmptyURI (0..1)
 
-type NotifyingParty:
+type NotifyingParty: <"A structure identifying the transaction buyer and seller parties in the context of notification responsibilities.">
 
-    buyerPartyReference PartyReference (0..1)
-    sellerPartyReference PartyReference (0..1)
+    buyerPartyReference PartyReference (0..1) <"Identifies, by intra-document reference, the buyer party designated to provide notification under the relevant option transaction.">
+    sellerPartyReference PartyReference (0..1) <"A reference to the party in the seller role that is identified as providing the relevant notification.">
 
 type Option extends Product: <"A type for defining the common features of options. Buyer/seller information is not normally used in Transparency view but is optional in case the information is needed for administrative purposes such as Reporting Party determination.">
 
@@ -148,16 +148,16 @@ type OptionBase extends fpml.consolidated.option.shared.Option: <"A type for def
 type OptionBaseExtended extends OptionBase: <"Base type for options starting with the 4-3 release, until we refactor the schema as part of the 5-0 release series.">
 
     premium Premium (0..1) <"The option premium payable by the buyer to the seller.">
-    exercise Exercise (1..1)
+    exercise Exercise (1..1) <"The terms defining the exercise style and timing applicable to the option under the transaction.">
     exerciseProcedure ExerciseProcedure (0..1) <"A set of parameters defining procedures associated with the exercise.">
     feature OptionFeature (0..1) <"An Option feature such as quanto, asian, barrier, knock.">
-    notionalReference NotionalAmountReference (0..1)
-    notionalAmount Money (0..1)
+    notionalReference NotionalAmountReference (0..1) <"An intra-document reference to the notional amount applicable to the option, identifying an amount defined elsewhere within the document.">
+    notionalAmount Money (0..1) <"The monetary amount specified directly as the option’s notional, including its currency, rather than identifying the amount through a reference.">
     optionEntitlement PositiveDecimal (0..1) <"The number of units of underlyer per option comprised in the option transaction.">
     entitlementCurrency Currency (0..1) <"Currency of the relevant bonds to which one option relates. For Bond Options this element should be used to define the currency of the bonds instead of the currency element present in the Bond underlyer.">
     numberOfOptions PositiveDecimal (0..1) <"The number of options comprised in the option transaction.">
-    settlementType SettlementTypeEnum (0..1)
-    settlementDate AdjustableOrRelativeDate (0..1)
+    settlementType SettlementTypeEnum (0..1) <"Specifies the method by which the option transaction is settled upon exercise, in conjunction with the applicable settlement date and settlement amount or currency.">
+    settlementDate AdjustableOrRelativeDate (0..1) <"The date on which the option settlement occurs, specified either as an explicit date with applicable adjustments or as a date relative to an anchor date.">
     settlementAmount Money (0..1) <"Settlement Amount">
     settlementCurrency Currency (0..1) <"Settlement Currency for use where the Settlement Amount cannot be known in advance">
 
@@ -209,7 +209,7 @@ type Premium extends SimplePayment: <"A type for defining a premium.">
     discountFactor number (0..1) <"The value representing the discount factor used to calculate the present value of the cash flow.">
     presentValueAmount Money (0..1) <"The amount representing the present value of the forecast payment.">
 
-type PubliclyAvailableInformation:
+type PubliclyAvailableInformation: <"The public source provisions applicable to the transaction: whether the standard public sources apply, any specifically named public sources, and the number of public sources required to have published the information.">
 
     standardPublicSources boolean (0..1) <"If this element is specified and set to \'true\', indicates that ISDA defined Standard Public Sources are applicable.">
     publicSource NonEmptyToken (0..*) <"A public information source, e.g. a particular newspaper or electronic news service, that may publish relevant information used in the determination of whether or not a credit event has occurred. ISDA 2003 Term: Public Source.">
@@ -220,19 +220,19 @@ type Quanto: <"Determines the currency rate that the seller of the equity amount
     fxRate FxRate (0..*) <"Specifies a currency conversion rate.">
     fxSpotRateSource FxSpotRateSource (0..1) <"Specifies the methodology (reference source and, optionally, fixing time) to be used for determining a currency conversion rate.">
 
-type Restructuring:
+type Restructuring: <"Specifies the applicability and classification of restructuring, together with indicators for multiple-holder obligations and multiple credit event notices.">
 
     applicable boolean (0..1) <"Indicates whether the restructuring provision is applicable.">
     restructuringType RestructuringType (0..1) <"Specifies the type of restructuring that is applicable.">
     multipleHolderObligation boolean (0..1) <"In relation to a restructuring credit event, unless multiple holder obligation is not specified restructurings are limited to multiple holder obligations. A multiple holder obligation means an obligation that is held by more than three holders that are not affiliates of each other and where at least two thirds of the holders must agree to the event that constitutes the restructuring credit event. ISDA 2003 Term: Multiple Holder Obligation.">
     multipleCreditEventNotices boolean (0..1) <"Presence of this element and value set to \'true\' indicates that Section 3.9 of the 2003 Credit Derivatives Definitions shall apply. Absence of this element indicates that Section 3.9 shall not apply. NOTE: Not allowed under ISDA Credit 1999.">
 
-type RestructuringType:
+type RestructuringType: <"The restructuring provisions applicable to the transaction, identified by a code from the specified coding scheme.">
 
     value Scheme (1..1)
     restructuringScheme NonEmptyURI (0..1)
 
-type SettlementTerms:
+type SettlementTerms: <"A type for defining settlement terms by identifying the currency applicable to settlement of the transaction.">
 
     id string (0..1)
     settlementCurrency Currency (0..1) <"ISDA 2003 Term: Settlement Currency">
@@ -254,8 +254,8 @@ type Trigger: <"Trigger point at which feature is effective.">
 
     level number (0..1) <"The trigger level.">
     levelPercentage Percentage (0..1) <"The trigger level percentage. A value expressed in percentage units i.e. 5 means 5%.">
-    creditEvents CreditEvents (0..1)
-    creditEventsReference CreditEventsReference (0..1)
+    creditEvents CreditEvents (0..1) <"Specifies the credit events whose occurrence establishes the trigger point at which the associated option feature becomes effective.">
+    creditEventsReference CreditEventsReference (0..1) <"An intra-document reference to the credit events that define the trigger point at which the feature becomes effective.">
     triggerType TriggerTypeEnum (0..1) <"The Triggering condition.">
     triggerTimeType TriggerTimeTypeEnum (0..1) <"The valuation time type of knock condition.">
 

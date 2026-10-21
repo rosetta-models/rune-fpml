@@ -4,8 +4,8 @@ version "${project.version}"
 import fpml.consolidated.asset.*
 import fpml.consolidated.cd.*
 import fpml.consolidated.com.*
+import fpml.consolidated.^enum.*
 import fpml.consolidated.eq.shared.*
-import fpml.consolidated.fpmlenum.*
 import fpml.consolidated.fx.*
 import fpml.consolidated.shared.*
 
@@ -16,8 +16,8 @@ type GenericProduct extends Product: <"Generic products - for use in Transparenc
     buyerAccountReference AccountReference (0..1) <"A reference to the account that buys this instrument.">
     sellerPartyReference PartyReference (0..1) <"A reference to the party that sells (\"writes\") this instrument, i.e. that grants the rights defined by this instrument and in return receives a payment for it. See 2000 ISDA definitions Article 11.1 (a). In the case of FRAs this is the floating rate payer.">
     sellerAccountReference AccountReference (0..1) <"A reference to the account that sells this instrument.">
-    counterpartyReference PartyReference (0..2)
-    premium SimplePayment (0..1)
+    counterpartyReference PartyReference (0..2) <"A reference to one of the two parties involved in the transaction, typically used to identify a specific participant when the standard buyer/seller roles are not applied.">
+    premium SimplePayment (0..1) <"A one-time payment exchanged between the involved parties, often representing the cost or value of entering into the trade. It includes the amount, date, and who pays whom.">
     effectiveDate AdjustableDate2 (0..1) <"The earliest of all the effective dates of all constituent streams.">
     expirationDate AdjustableDate2 (0..1) <"For options, the last exercise date of the option.">
     terminationDate AdjustableDate2 (0..1) <"The latest of all of the termination (accrual end) dates of the constituent or underlying streams.">
@@ -37,8 +37,8 @@ type GenericProduct extends Product: <"Generic products - for use in Transparenc
     exerciseStyle GenericExerciseStyle (0..1) <"For options, whether the option is a put or call option.">
     strike GenericOptionStrike (0..*) <"The option strike or strikes.">
     feature GenericProductFeature (0..*) <"Special features that the option may have, such as Asian averaging, Barriers, Digital payout, etc.">
-    paymentFrequency GenericFrequency (0..*)
-    resetFrequency GenericResetFrequency (0..*)
+    paymentFrequency GenericFrequency (0..*) <"Describes how often payments are made during the life of the trade, optionally linked to either the paying party or a referenced underlying asset.">
+    resetFrequency GenericResetFrequency (0..*) <"Indicates how often the underlying value of the trade is reviewed or recalculated, usually tied to a specific referenced instrument.">
     settlementCurrency IdentifiedCurrency (0..*) <"The currency or currencies in which the product can settle.">
     settlementType SettlementTypeEnum (0..1) <"How the trade settles (cash or physical). This element is also used for CFTC the \"Delivery Type\" field.">
     additionalPayment Payment (0..*) <"Additional payments between the principal parties.">
@@ -53,7 +53,7 @@ type GenericProduct extends Product: <"Generic products - for use in Transparenc
             and buyerAccountReference is absent
             and sellerAccountReference is absent
 
-type GenericCommodityDeliveryPeriod:
+type GenericCommodityDeliveryPeriod: <"Specifies a recurring timeframe during which transactions or transfers may occur, based on certain days of the week. Optionally, it can include a daily time window indicating the beginning and end of the allowable interval.">
 
     applicableDay DayOfWeekExtEnum (1..7) <"Specifies the Applicable Day with respect to a range of Settlement Periods.">
     startTime OffsetPrevailingTime (0..1) <"Specifies the hour-ending Start Time with respect to a range of Settlement Periods.">
@@ -69,10 +69,10 @@ type GenericExerciseStyle: <"The data type used to hold the exercise style descr
     value Scheme (1..1)
     exerciseStyleScheme NonEmptyURI (0..1) <"The value scheme used with this property.">
 
-type GenericFrequency extends Frequency:
+type GenericFrequency extends Frequency: <"Describes a time-based repetition pattern, optionally linked to a specific participant or a referenced asset. This allows the recurrence to be contextualized based on either a party involved or a financial instrument.">
 
-    payerPartyReference PartyReference (0..1)
-    underlyerReference UnderlyerReference (0..1)
+    payerPartyReference PartyReference (0..1) <"A reference to the party responsible for making payments, pointing to a specific participant in the overall trade.">
+    underlyerReference UnderlyerReference (0..1) <"A pointer to the underlying asset or instrument on which the trade is based, identifying it within the transaction structure.">
 
     condition Choice:
         optional choice payerPartyReference, underlyerReference
@@ -97,13 +97,13 @@ type GenericProductQuotedCurrencyPair: <"A type that describes the composition o
     currency2 Currency (1..1) <"The second currency specified when a pair of currencies is to be evaluated.">
     quoteBasis QuoteBasisEnum (1..1) <"The method by which the exchange rate is quoted.">
 
-type GenericOptionStrike extends EquityStrike:
+type GenericOptionStrike extends EquityStrike: <"Defines the terms under which an option can be exercised, including either a fixed value or a percentage relative to something else. It also specifies the unit in which this value applies (e.g., per share or per unit of measure).">
 
     units NormalizedString (0..1) <"The units in which an amount (not monetary) is denominated.">
 
-type GenericResetFrequency extends Frequency:
+type GenericResetFrequency extends Frequency: <"Describes how often a financial value linked to a trade is recalculated, combining a base time interval with a reference to the specific asset or component driving the reset.">
 
-    underlyerReference UnderlyerReference (0..1)
+    underlyerReference UnderlyerReference (0..1) <"Points to the specific asset or component that determines how and when values are recalculated, ensuring the reset process is correctly tied to the relevant market instrument.">
 
 type OptionType: <"The type of option transaction (e.g. Call, Put); specifies whether the option allows the holder to buy or sell the underlying asset, or pay or receive a payment related to the price of underlying asset, in the event of exercise.">
 
