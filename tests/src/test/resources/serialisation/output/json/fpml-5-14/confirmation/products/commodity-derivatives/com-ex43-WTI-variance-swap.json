@@ -1,0 +1,164 @@
+{
+  "fpmlVersion" : "5-14",
+  "trade" : [ {
+    "tradeHeader" : {
+      "partyTradeIdentifier" : [ {
+        "partyReference" : {
+          "href" : "PartyA"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "T901234-123456",
+            "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
+          }
+        } ]
+      } ],
+      "tradeDate" : {
+        "value" : "2012-05-20T00:00:00Z",
+        "id" : "TradeDate"
+      }
+    },
+    "product" : {
+      "primaryAssetClass" : {
+        "value" : "Commodity"
+      },
+      "productType" : [ {
+        "value" : "Commodity:Energy:Oil:Swap:Cash"
+      } ],
+      "effectiveDate" : {
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2013-03-01T00:00:00Z"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NONE"
+          }
+        }
+      },
+      "terminationDate" : {
+        "relativeDate" : {
+          "periodMultiplier" : 0,
+          "period" : "D",
+          "businessDayConvention" : "NONE",
+          "dateRelativeTo" : {
+            "href" : "CashSettlementPaymentDate"
+          }
+        }
+      },
+      "settlementCurrency" : {
+        "value" : "USD"
+      },
+      "commodityPerformanceSwapLeg" : [ {
+        "payerPartyReference" : {
+          "href" : "PartyA"
+        },
+        "receiverPartyReference" : {
+          "href" : "PartyB"
+        },
+        "calculationPeriodsSchedule" : {
+          "id" : "CalculationPeriodSchedule",
+          "periodMultiplier" : 1,
+          "period" : "T",
+          "balanceOfFirstPeriod" : false
+        },
+        "relativePaymentDates" : {
+          "id" : "CashSettlementPaymentDate",
+          "payRelativeTo" : "ValuationDate",
+          "calculationPeriodsScheduleReference" : {
+            "href" : "CalculationPeriodSchedule"
+          },
+          "paymentDaysOffset" : {
+            "periodMultiplier" : 2,
+            "period" : "D",
+            "dayType" : "Business",
+            "businessDayConvention" : "NONE"
+          }
+        },
+        "commodity" : {
+          "instrumentId" : [ {
+            "value" : "OIL-WTI-NYMEX",
+            "instrumentIdScheme" : "http://www.fpml.org/coding-scheme/commodity-reference-price-3-0"
+          } ],
+          "specifiedPrice" : "Closing",
+          "deliveryDateYearMonth" : "2013-06"
+        },
+        "notionalAmount" : {
+          "currency" : {
+            "value" : "USD"
+          },
+          "amount" : 16666666.67,
+          "reinvestmentFeature" : false
+        },
+        "varianceStrikePrice" : 0.09000,
+        "varianceCalculation" : {
+          "pricingDates" : {
+            "calculationPeriodsScheduleReference" : {
+              "href" : "CalculationPeriodSchedule"
+            },
+            "dayType" : "CommodityBusiness",
+            "dayDistribution" : {
+              "value" : "All"
+            },
+            "businessCalendar" : {
+              "value" : "NYMEX-OIL"
+            }
+          },
+          "valuationDates" : {
+            "calculationPeriodsScheduleReference" : {
+              "href" : "CalculationPeriodSchedule"
+            },
+            "valuationDates" : [ {
+              "id" : "valuationDate",
+              "unadjustedDate" : [ {
+                "value" : "2013-05-16T00:00:00Z"
+              } ],
+              "dateAdjustments" : {
+                "businessDayConvention" : "MODFOLLOWING"
+              }
+            } ]
+          },
+          "annualizationFactor" : 252,
+          "nAdjustment" : false
+        }
+      } ]
+    },
+    "calculationAgent" : {
+      "calculationAgentParty" : "AsSpecifiedInMasterAgreement"
+    },
+    "documentation" : {
+      "masterAgreement" : {
+        "masterAgreementType" : {
+          "value" : "ISDA"
+        },
+        "masterAgreementDate" : "1999-04-16T00:00:00Z"
+      },
+      "contractualDefinitions" : [ {
+        "value" : "ISDA2006"
+      }, {
+        "value" : "ISDA2005Commodity"
+      } ]
+    }
+  } ],
+  "party" : [ {
+    "id" : "PartyA",
+    "partyId" : [ {
+      "value" : "95980020140005196564",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "country" : {
+      "value" : "US"
+    },
+    "organizationType" : [ {
+      "value" : "SD"
+    } ]
+  }, {
+    "id" : "PartyB",
+    "partyId" : [ {
+      "value" : "549300XQFX97CITUR430",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "organizationType" : [ {
+      "value" : "non-SD/MSP"
+    } ]
+  } ]
+}

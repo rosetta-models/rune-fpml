@@ -1,0 +1,169 @@
+{
+  "fpmlVersion" : "5-14",
+  "trade" : [ {
+    "tradeHeader" : {
+      "partyTradeIdentifier" : [ {
+        "partyReference" : {
+          "href" : "partyA"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "TechCo1234",
+            "tradeIdScheme" : "http://www.techco.com/com-trade-id"
+          }
+        } ]
+      }, {
+        "partyReference" : {
+          "href" : "partyB"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "BankA5678",
+            "tradeIdScheme" : "http://www.banka.com/com-trade-id"
+          }
+        } ]
+      } ],
+      "tradeDate" : {
+        "value" : "2012-03-16T00:00:00Z"
+      }
+    },
+    "product" : {
+      "valueDate" : {
+        "id" : "valueDate",
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2012-05-03T00:00:00Z"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NotApplicable"
+          }
+        }
+      },
+      "averagePriceLeg" : {
+        "payerPartyReference" : {
+          "href" : "partyA"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyB"
+        },
+        "calculationPeriodsSchedule" : {
+          "id" : "calculationPeriodSchedule",
+          "periodMultiplier" : 1,
+          "period" : "M",
+          "balanceOfFirstPeriod" : false
+        },
+        "commodity" : {
+          "instrumentId" : [ {
+            "value" : "PLATINUM-A.M. FIX",
+            "instrumentIdScheme" : "http://www.techco.com/coding-scheme/commodity-reference-price-2-0"
+          } ],
+          "specifiedPrice" : "Morning"
+        },
+        "quantityReference" : {
+          "href" : "deliveryQuantity"
+        },
+        "pricingStartDate" : {
+          "unadjustedDate" : {
+            "value" : "2012-04-01T00:00:00Z"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NONE"
+          }
+        },
+        "calculation" : {
+          "pricingDates" : {
+            "calculationPeriodsScheduleReference" : {
+              "href" : "calculationPeriodSchedule"
+            },
+            "lag" : {
+              "lagDuration" : {
+                "periodMultiplier" : 1,
+                "period" : "M"
+              }
+            },
+            "dayType" : "CommodityBusiness",
+            "dayDistribution" : {
+              "value" : "All"
+            }
+          }
+        },
+        "paymentDates" : {
+          "relativeDate" : {
+            "periodMultiplier" : 0,
+            "period" : "D",
+            "businessDayConvention" : "NotApplicable",
+            "dateRelativeTo" : {
+              "href" : "valueDate"
+            }
+          }
+        }
+      },
+      "physicalCommodityForwardLeg" : {
+        "id" : "bullionLeg",
+        "payerPartyReference" : {
+          "href" : "partyB"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyA"
+        },
+        "bullionType" : "Platinum",
+        "deliveryLocation" : {
+          "value" : "Zurich"
+        },
+        "physicalQuantity" : {
+          "id" : "deliveryQuantity",
+          "quantityUnit" : {
+            "value" : "ozt"
+          },
+          "quantityFrequency" : {
+            "value" : "Term"
+          },
+          "quantity" : 1000.0
+        },
+        "settlementDate" : {
+          "relativeDate" : {
+            "periodMultiplier" : 0,
+            "period" : "D",
+            "businessDayConvention" : "NotApplicable",
+            "dateRelativeTo" : {
+              "href" : "valueDate"
+            }
+          }
+        }
+      },
+      "settlementDisruption" : "Negotiation"
+    },
+    "documentation" : {
+      "masterAgreement" : {
+        "masterAgreementType" : {
+          "value" : "LBMA"
+        },
+        "masterAgreementVersion" : {
+          "value" : "1994"
+        }
+      },
+      "contractualDefinitions" : [ {
+        "value" : "ISDA1997Bullion"
+      } ]
+    }
+  } ],
+  "party" : [ {
+    "id" : "partyA",
+    "partyId" : [ {
+      "value" : "5299000NIGT14YW8ZD26",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Bank A"
+    }
+  }, {
+    "id" : "partyB",
+    "partyId" : [ {
+      "value" : "549300UXZ1R1RBZVU469",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Bank B"
+    }
+  } ]
+}

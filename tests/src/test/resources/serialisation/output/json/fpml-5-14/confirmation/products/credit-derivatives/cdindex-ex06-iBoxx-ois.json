@@ -1,0 +1,143 @@
+{
+  "fpmlVersion" : "5-14",
+  "trade" : [ {
+    "tradeHeader" : {
+      "partyTradeIdentifier" : [ {
+        "partyReference" : {
+          "href" : "party1"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "CDX1234",
+            "tradeIdScheme" : "http://www.newbank.com/trade-id"
+          }
+        } ]
+      }, {
+        "partyReference" : {
+          "href" : "party2"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "1234A6",
+            "tradeIdScheme" : "http://www.massivebank.com/trade-id"
+          }
+        } ]
+      } ],
+      "tradeDate" : {
+        "value" : "2021-08-18T00:00:00Z"
+      }
+    },
+    "product" : {
+      "generalTerms" : {
+        "effectiveDate" : {
+          "unadjustedDate" : {
+            "value" : "2021-08-18T00:00:00Z"
+          }
+        },
+        "scheduledTerminationDate" : {
+          "unadjustedDate" : {
+            "value" : "2025-08-18T00:00:00Z"
+          }
+        },
+        "buyerPartyReference" : {
+          "href" : "party2"
+        },
+        "sellerPartyReference" : {
+          "href" : "party1"
+        },
+        "indexReferenceInformation" : {
+          "indexName" : {
+            "value" : "iBoxx EUR Corporates"
+          },
+          "indexId" : [ {
+            "value" : "DE0006301161",
+            "indexIdScheme" : "http://www.fpml.org/spec/2002/instrument-id-ISIN"
+          } ]
+        }
+      },
+      "feeLeg" : {
+        "initialPayment" : {
+          "payerPartyReference" : {
+            "href" : "party1"
+          },
+          "receiverPartyReference" : {
+            "href" : "party2"
+          },
+          "paymentAmount" : {
+            "currency" : {
+              "value" : "USD"
+            },
+            "amount" : 16000
+          }
+        },
+        "periodicPayment" : {
+          "floatingAmountCalculation" : {
+            "calculationAmount" : {
+              "currency" : {
+                "value" : "USD"
+              },
+              "amount" : 1000000
+            },
+            "floatingRate" : {
+              "floatingRateIndex" : {
+                "value" : "USD-SOFR-OIS Compound",
+                "floatingRateIndexScheme" : "http://www.fpml.org/coding-scheme/floating-rate-index"
+              },
+              "spreadSchedule" : [ {
+                "initialValue" : 0.02
+              } ],
+              "initialRate" : 0.025
+            },
+            "initialFixingDate" : "2021-08-18T00:00:00Z",
+            "finalFixingDate" : {
+              "unadjustedDate" : {
+                "value" : "2025-08-18T00:00:00Z"
+              },
+              "dateAdjustments" : {
+                "businessDayConvention" : "NotApplicable"
+              }
+            }
+          }
+        }
+      },
+      "protectionTerms" : [ {
+        "calculationAmount" : {
+          "currency" : {
+            "value" : "USD"
+          },
+          "amount" : 25000000
+        }
+      } ]
+    },
+    "documentation" : {
+      "masterConfirmation" : {
+        "masterConfirmationType" : {
+          "value" : "iBoxx"
+        },
+        "masterConfirmationDate" : "2022-07-21T00:00:00Z"
+      },
+      "contractualDefinitions" : [ {
+        "value" : "ISDA2021"
+      } ]
+    }
+  } ],
+  "party" : [ {
+    "id" : "party1",
+    "partyId" : [ {
+      "value" : "HPFHU0OQ28E4N0NFVK49",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "New Bank, New York"
+    }
+  }, {
+    "id" : "party2",
+    "partyId" : [ {
+      "value" : "254900O1WT2BXINL9612",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Massive Bank, New York"
+    }
+  } ]
+}

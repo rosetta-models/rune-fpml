@@ -1,0 +1,236 @@
+{
+  "fpmlVersion" : "5-14",
+  "header" : {
+    "messageId" : {
+      "value" : "FX456a789b",
+      "messageIdScheme" : "http://www.executionnotificationservice.com/coding-scheme/messageId"
+    },
+    "sentBy" : {
+      "value" : "EXECSRV",
+      "messageAddressScheme" : "http://www.executionnotificationservice.com/partyId"
+    },
+    "sendTo" : [ {
+      "value" : "PARTYA",
+      "messageAddressScheme" : "http://www.executionnotificationservice.com/partyId"
+    } ],
+    "creationTimestamp" : "2014-06-24T08:57:00Z"
+  },
+  "isCorrection" : false,
+  "trade" : {
+    "tradeHeader" : {
+      "partyTradeIdentifier" : [ {
+        "partyReference" : {
+          "href" : "partyA"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "12345",
+            "tradeIdScheme" : "#partyA"
+          }
+        } ]
+      } ],
+      "tradeDate" : {
+        "value" : "2005-10-03T00:00:00Z"
+      }
+    },
+    "product" : {
+      "productType" : [ {
+        "value" : "FxAccrualOption",
+        "productTypeScheme" : "http://www.fpml.org/coding-scheme/product-type-simple"
+      } ],
+      "buyerPartyReference" : {
+        "href" : "partyB"
+      },
+      "sellerPartyReference" : {
+        "href" : "partyA"
+      },
+      "putCurrency" : {
+        "value" : "JPY"
+      },
+      "callCurrency" : {
+        "value" : "GBP"
+      },
+      "notionalAmount" : {
+        "initialValue" : 4000000.00,
+        "currency" : {
+          "value" : "GBP"
+        }
+      },
+      "accrual" : {
+        "observable" : [ {
+          "id" : "ob1",
+          "quotedCurrencyPair" : {
+            "currency1" : {
+              "value" : "USD"
+            },
+            "currency2" : {
+              "value" : "JPY"
+            },
+            "quoteBasis" : "Currency2PerCurrency1"
+          },
+          "informationSource" : {
+            "rateSource" : {
+              "value" : "Reuters"
+            },
+            "rateSourcePage" : {
+              "value" : "BTMFIX"
+            },
+            "fixingTime" : {
+              "hourMinuteTime" : "15:00:00",
+              "businessCenter" : {
+                "value" : "JPTO"
+              }
+            }
+          }
+        } ],
+        "accrualRegion" : [ {
+          "observableReference" : {
+            "href" : "ob1"
+          },
+          "upperBound" : {
+            "condition" : "Below",
+            "averageStrikeReference" : {
+              "href" : "averageStrike"
+            }
+          },
+          "accrualFactor" : {
+            "initialValue" : 2
+          }
+        }, {
+          "observableReference" : {
+            "href" : "ob1"
+          },
+          "upperBound" : {
+            "condition" : "Below",
+            "level" : {
+              "initialValue" : 120.00
+            }
+          },
+          "lowerBound" : {
+            "condition" : "AtOrAbove",
+            "averageStrikeReference" : {
+              "href" : "averageStrike"
+            }
+          }
+        } ],
+        "fixingSchedule" : {
+          "startDate" : "2005-10-03T00:00:00Z",
+          "endDate" : "2005-10-31T00:00:00Z",
+          "dayType" : "Business",
+          "businessCenters" : {
+            "businessCenter" : [ {
+              "value" : "JPTO"
+            } ]
+          },
+          "numberOfFixings" : 20
+        }
+      },
+      "expiryDate" : {
+        "adjustedDate" : "2005-10-31T00:00:00Z",
+        "expiryTime" : {
+          "hourMinuteTime" : "15:00:00",
+          "businessCenter" : {
+            "value" : "JPTO"
+          }
+        }
+      },
+      "settlementDate" : {
+        "dateAdjustments" : {
+          "businessDayConvention" : "FOLLOWING",
+          "businessCenters" : {
+            "businessCenter" : [ {
+              "value" : "JPTO"
+            }, {
+              "value" : "GBLO"
+            } ]
+          }
+        },
+        "adjustedDate" : "2005-11-02T00:00:00Z"
+      },
+      "averageStrike" : {
+        "id" : "averageStrike",
+        "quotedCurrencyPair" : {
+          "currency1" : {
+            "value" : "USD"
+          },
+          "currency2" : {
+            "value" : "JPY"
+          },
+          "quoteBasis" : "Currency2PerCurrency1"
+        },
+        "informationSource" : {
+          "rateSource" : {
+            "value" : "Reuters"
+          },
+          "rateSourcePage" : {
+            "value" : "BTMFIX"
+          },
+          "fixingTime" : {
+            "hourMinuteTime" : "15:00:00",
+            "businessCenter" : {
+              "value" : "JPTO"
+            }
+          }
+        },
+        "fixingSchedule" : {
+          "startDate" : "2005-10-03T00:00:00Z",
+          "endDate" : "2005-10-31T00:00:00Z",
+          "dayType" : "Business",
+          "businessCenters" : {
+            "businessCenter" : [ {
+              "value" : "JPTO"
+            } ]
+          }
+        },
+        "averagingMethod" : "Arithmetic",
+        "precision" : 4,
+        "strikeAdjustment" : -0.44
+      },
+      "premium" : [ {
+        "payerPartyReference" : {
+          "href" : "partyB"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyA"
+        },
+        "paymentDate" : {
+          "adjustableDate" : {
+            "unadjustedDate" : {
+              "value" : "2005-10-05T00:00:00Z"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "NONE"
+            }
+          }
+        },
+        "paymentAmount" : {
+          "currency" : {
+            "value" : "JPY"
+          },
+          "amount" : 40000000
+        }
+      } ]
+    },
+    "calculationAgent" : {
+      "calculationAgentPartyReference" : [ {
+        "href" : "partyA"
+      } ]
+    },
+    "governingLaw" : {
+      "value" : "GBEN"
+    }
+  },
+  "party" : [ {
+    "id" : "partyA",
+    "partyId" : [ {
+      "value" : "549300SRLRVTR996F086",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ]
+  }, {
+    "id" : "partyB",
+    "partyId" : [ {
+      "value" : "549300RE0FSXJE8G1L65",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ]
+  } ]
+}

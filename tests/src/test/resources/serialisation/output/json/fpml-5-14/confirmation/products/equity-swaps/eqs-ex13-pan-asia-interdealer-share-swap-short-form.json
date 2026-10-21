@@ -1,0 +1,477 @@
+{
+  "fpmlVersion" : "5-14",
+  "header" : {
+    "messageId" : {
+      "value" : "MS/2009/09/01/15-99",
+      "messageIdScheme" : "http://www.example.com/messageId"
+    },
+    "sentBy" : {
+      "value" : "PARTYABIC1"
+    },
+    "sendTo" : [ {
+      "value" : "PARTYBBIC2"
+    } ],
+    "creationTimestamp" : "2009-09-01T16:38:00Z"
+  },
+  "isCorrection" : false,
+  "correlationId" : [ {
+    "value" : "CS/2009/09/01/32-09",
+    "correlationIdScheme" : "http://www.example.com/correlationId"
+  } ],
+  "sequenceNumber" : 1,
+  "trade" : {
+    "tradeHeader" : {
+      "partyTradeIdentifier" : [ {
+        "partyReference" : {
+          "href" : "party1"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "299442",
+            "tradeIdScheme" : "http://www.partyA.com/trade-id-1-0"
+          }
+        } ]
+      }, {
+        "partyReference" : {
+          "href" : "party2"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "299442",
+            "tradeIdScheme" : "http://www.partyB.com/trade-id-1-0"
+          }
+        } ]
+      } ],
+      "tradeDate" : {
+        "value" : "2009-09-01T00:00:00Z"
+      }
+    },
+    "product" : {
+      "returnSwapLeg" : [ {
+        "id" : "interestLeg",
+        "payerPartyReference" : {
+          "href" : "party2"
+        },
+        "receiverPartyReference" : {
+          "href" : "party1"
+        },
+        "interestLegCalculationPeriodDates" : {
+          "id" : "interestCalcPeriodDates",
+          "effectiveDate" : {
+            "id" : "interestEffectiveDate",
+            "adjustableDate" : {
+              "unadjustedDate" : {
+                "value" : "2009-09-03T00:00:00Z"
+              },
+              "dateAdjustments" : {
+                "businessDayConvention" : "FOLLOWING",
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "USNY"
+                  } ]
+                }
+              }
+            }
+          },
+          "terminationDate" : {
+            "id" : "interestTerminationDate",
+            "adjustableDate" : {
+              "unadjustedDate" : {
+                "value" : "2010-03-04T00:00:00Z"
+              },
+              "dateAdjustments" : {
+                "businessDayConvention" : "FOLLOWING",
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "USNY"
+                  } ]
+                }
+              }
+            }
+          },
+          "interestLegResetDates" : {
+            "calculationPeriodDatesReference" : {
+              "href" : "interestCalcPeriodDates"
+            },
+            "resetFrequency" : {
+              "periodMultiplier" : 1,
+              "period" : "M"
+            },
+            "fixingDates" : {
+              "relativeDate" : {
+                "periodMultiplier" : -2,
+                "period" : "D",
+                "dayType" : "CurrencyBusiness",
+                "businessDayConvention" : "PRECEDING",
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "GBLO"
+                  } ]
+                },
+                "dateRelativeTo" : {
+                  "href" : "interestLegPaymentDates"
+                }
+              }
+            }
+          },
+          "interestLegPaymentDates" : {
+            "id" : "interestLegPaymentDates",
+            "periodicDates" : {
+              "calculationStartDate" : {
+                "relativeDate" : {
+                  "periodMultiplier" : 0,
+                  "period" : "D",
+                  "businessDayConvention" : "NotApplicable",
+                  "dateRelativeTo" : {
+                    "href" : "interestEffectiveDate"
+                  }
+                }
+              },
+              "calculationEndDate" : {
+                "relativeDate" : {
+                  "periodMultiplier" : 0,
+                  "period" : "D",
+                  "businessDayConvention" : "NotApplicable",
+                  "dateRelativeTo" : {
+                    "href" : "interestTerminationDate"
+                  }
+                }
+              },
+              "calculationPeriodFrequency" : {
+                "periodMultiplier" : 1,
+                "period" : "M",
+                "rollConvention" : "1"
+              },
+              "calculationPeriodDatesAdjustments" : {
+                "businessDayConvention" : "FOLLOWING",
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "USNY"
+                  } ]
+                }
+              }
+            }
+          }
+        },
+        "notional" : {
+          "relativeNotionalAmount" : {
+            "href" : "equityNotionalAmount"
+          }
+        },
+        "interestAmount" : {
+          "currencyReference" : {
+            "href" : "equityPaymentCurrency"
+          },
+          "referenceAmount" : {
+            "value" : "StandardISDA"
+          }
+        },
+        "interestCalculation" : {
+          "floatingRateCalculation" : {
+            "floatingRateIndex" : {
+              "value" : "USD-LIBOR-BBA"
+            },
+            "indexTenor" : {
+              "periodMultiplier" : 1,
+              "period" : "M"
+            },
+            "spreadSchedule" : [ {
+              "initialValue" : 0
+            } ]
+          },
+          "dayCountFraction" : {
+            "value" : "ACT/360"
+          },
+          "interpolationMethod" : {
+            "value" : "LinearZeroYield"
+          }
+        }
+      }, {
+        "id" : "returnLeg",
+        "payerPartyReference" : {
+          "href" : "party1"
+        },
+        "receiverPartyReference" : {
+          "href" : "party2"
+        },
+        "effectiveDate" : {
+          "id" : "equityEffectiveDate",
+          "adjustableDate" : {
+            "unadjustedDate" : {
+              "value" : "2009-09-01T00:00:00Z"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "FOLLOWING",
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "KRSE"
+                } ]
+              }
+            }
+          }
+        },
+        "terminationDate" : {
+          "adjustableDate" : {
+            "unadjustedDate" : {
+              "value" : "2010-03-02T00:00:00Z"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "FOLLOWING",
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "KRSE"
+                } ]
+              }
+            }
+          }
+        },
+        "underlyer" : {
+          "singleUnderlyer" : {
+            "underlyingAsset" : {
+              "instrumentId" : [ {
+                "value" : "005430.KS",
+                "instrumentIdScheme" : "http://www.example.com/instrument-id-Reuters-RIC-1-0"
+              }, {
+                "value" : "KR7005430004",
+                "instrumentIdScheme" : "http://www.example.com/instrument-id-ISIN-1-0"
+              } ],
+              "description" : "KOREA AIR SVC ORDINARY",
+              "currency" : {
+                "value" : "KRW"
+              },
+              "exchangeId" : {
+                "value" : "XKRX",
+                "exchangeIdScheme" : "http://www.example.com/exchangeId"
+              }
+            },
+            "openUnits" : 60000,
+            "dividendPayout" : {
+              "dividendPayoutRatio" : 1
+            }
+          }
+        },
+        "rateOfReturn" : {
+          "initialPrice" : {
+            "netPrice" : {
+              "currency" : {
+                "value" : "USD"
+              },
+              "amount" : 5,
+              "priceExpression" : "AbsoluteTerms"
+            }
+          },
+          "valuationPriceInterim" : {
+            "determinationMethod" : {
+              "value" : "AsSpecifiedInMasterConfirmation"
+            },
+            "valuationRules" : {
+              "valuationDates" : {
+                "id" : "interimValuationDate",
+                "periodicDates" : {
+                  "calculationStartDate" : {
+                    "relativeDate" : {
+                      "periodMultiplier" : 0,
+                      "period" : "D",
+                      "businessDayConvention" : "NotApplicable",
+                      "dateRelativeTo" : {
+                        "href" : "equityEffectiveDate"
+                      }
+                    }
+                  },
+                  "calculationEndDate" : {
+                    "relativeDate" : {
+                      "periodMultiplier" : 0,
+                      "period" : "D",
+                      "businessDayConvention" : "NotApplicable",
+                      "dateRelativeTo" : {
+                        "href" : "finalValuationDate"
+                      }
+                    }
+                  },
+                  "calculationPeriodFrequency" : {
+                    "periodMultiplier" : 1,
+                    "period" : "M",
+                    "rollConvention" : "1"
+                  },
+                  "calculationPeriodDatesAdjustments" : {
+                    "businessDayConvention" : "FOLLOWING",
+                    "businessCenters" : {
+                      "businessCenter" : [ {
+                        "value" : "KRSE"
+                      } ]
+                    }
+                  }
+                }
+              },
+              "valuationTimeType" : "AsSpecifiedInMasterConfirmation"
+            }
+          },
+          "valuationPriceFinal" : {
+            "determinationMethod" : {
+              "value" : "HedgeExecution"
+            },
+            "valuationRules" : {
+              "valuationDate" : {
+                "id" : "finalValuationDate",
+                "adjustableDate" : {
+                  "unadjustedDate" : {
+                    "value" : "2010-03-02T00:00:00Z"
+                  },
+                  "dateAdjustments" : {
+                    "businessDayConvention" : "FOLLOWING",
+                    "businessCenters" : {
+                      "businessCenter" : [ {
+                        "value" : "KRSE"
+                      } ]
+                    }
+                  }
+                }
+              },
+              "valuationTimeType" : "AsSpecifiedInMasterConfirmation"
+            }
+          },
+          "paymentDates" : {
+            "paymentDatesInterim" : {
+              "relativeDates" : {
+                "periodMultiplier" : 2,
+                "period" : "D",
+                "dayType" : "CurrencyBusiness",
+                "businessDayConvention" : "FOLLOWING",
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "USNY"
+                  } ]
+                },
+                "dateRelativeTo" : {
+                  "href" : "interimValuationDate"
+                }
+              }
+            },
+            "paymentDateFinal" : {
+              "relativeDate" : {
+                "periodMultiplier" : 2,
+                "period" : "D",
+                "dayType" : "CurrencyBusiness",
+                "businessDayConvention" : "FOLLOWING",
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "USNY"
+                  } ]
+                },
+                "dateRelativeTo" : {
+                  "href" : "finalValuationDate"
+                }
+              }
+            }
+          }
+        },
+        "notional" : {
+          "id" : "equityNotionalAmount",
+          "notionalAmount" : {
+            "currency" : {
+              "value" : "USD"
+            },
+            "amount" : 300000
+          }
+        },
+        "amount" : {
+          "currency" : {
+            "value" : "USD",
+            "id" : "equityPaymentCurrency"
+          },
+          "referenceAmount" : {
+            "value" : "StandardISDA"
+          },
+          "cashSettlement" : true
+        },
+        "notionalAdjustments" : "Standard",
+        "fxFeature" : {
+          "referenceCurrency" : {
+            "value" : "KRW"
+          },
+          "crossCurrency" : {
+            "fxSpotRateSource" : {
+              "primaryRateSource" : {
+                "rateSource" : {
+                  "value" : "Reuters"
+                },
+                "rateSourcePage" : {
+                  "value" : "KRW=",
+                  "rateSourcePageScheme" : "http://www.example.com/rate-source-page-1-0"
+                }
+              },
+              "fixingTime" : {
+                "hourMinuteTime" : "14:45:00",
+                "businessCenter" : {
+                  "value" : "KRSE"
+                }
+              }
+            }
+          }
+        },
+        "return" : {
+          "returnType" : "Total",
+          "dividendConditions" : {
+            "dividendPaymentDate" : {
+              "dividendDateReference" : "SharePayment",
+              "paymentDateOffset" : {
+                "periodMultiplier" : 2,
+                "period" : "D",
+                "dayType" : "CurrencyBusiness"
+              }
+            },
+            "dividendPeriod" : "SecondPeriod"
+          }
+        }
+      } ],
+      "optionalEarlyTermination" : true,
+      "breakFeeElection" : "FundingFee",
+      "breakFeeRate" : 1.2,
+      "localJurisdiction" : {
+        "value" : "NotApplicable"
+      }
+    },
+    "calculationAgent" : {
+      "calculationAgentPartyReference" : [ {
+        "href" : "party2"
+      } ]
+    },
+    "determiningParty" : [ {
+      "href" : "party2"
+    } ],
+    "hedgingParty" : [ {
+      "href" : "party2"
+    } ],
+    "documentation" : {
+      "masterConfirmation" : {
+        "masterConfirmationType" : {
+          "value" : "ISDA2009EquityPanAsia"
+        },
+        "masterConfirmationDate" : "2009-09-01T00:00:00Z",
+        "masterConfirmationAnnexDate" : "2009-09-01T00:00:00Z",
+        "masterConfirmationAnnexType" : {
+          "value" : "ISDA2009ShareSwapPanAsia"
+        }
+      }
+    }
+  },
+  "party" : [ {
+    "id" : "party1",
+    "partyId" : [ {
+      "value" : "PartyABIC1",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
+    } ],
+    "partyName" : {
+      "value" : "A.N.Example"
+    }
+  }, {
+    "id" : "party2",
+    "partyId" : [ {
+      "value" : "PartyBBIC2",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
+    } ],
+    "partyName" : {
+      "value" : "A.N.Other.Example"
+    }
+  } ]
+}

@@ -1,0 +1,234 @@
+{
+  "fpmlVersion" : "5-14",
+  "trade" : [ {
+    "tradeHeader" : {
+      "partyTradeIdentifier" : [ {
+        "partyReference" : {
+          "href" : "partyA"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "1234",
+            "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
+          }
+        } ]
+      }, {
+        "partyReference" : {
+          "href" : "partyB"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "2345",
+            "tradeIdScheme" : "http://www.PartyB.com/com-trade-id"
+          }
+        } ]
+      } ],
+      "tradeDate" : {
+        "value" : "2009-04-22T00:00:00Z"
+      }
+    },
+    "product" : {
+      "buyerPartyReference" : {
+        "href" : "partyA"
+      },
+      "sellerPartyReference" : {
+        "href" : "partyB"
+      },
+      "optionType" : "Call",
+      "commoditySwap" : {
+        "effectiveDate" : {
+          "id" : "physicalEffectiveDate",
+          "adjustableDate" : {
+            "unadjustedDate" : {
+              "value" : "2010-01-01T00:00:00Z"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "NONE"
+            }
+          }
+        },
+        "terminationDate" : {
+          "id" : "physicalTerminationDate",
+          "adjustableDate" : {
+            "unadjustedDate" : {
+              "value" : "2010-12-31T00:00:00Z"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "NONE"
+            }
+          }
+        },
+        "settlementCurrency" : {
+          "value" : "USD"
+        },
+        "commoditySwapLeg" : [ {
+          "payerPartyReference" : {
+            "href" : "partyA"
+          },
+          "receiverPartyReference" : {
+            "href" : "partyB"
+          },
+          "calculationPeriodsSchedule" : {
+            "id" : "calculationPeriodsSchedule",
+            "periodMultiplier" : 1,
+            "period" : "M",
+            "balanceOfFirstPeriod" : false
+          },
+          "fixedPrice" : {
+            "price" : 45.6,
+            "priceCurrency" : {
+              "value" : "USD"
+            },
+            "priceUnit" : {
+              "value" : "MMBTU"
+            }
+          },
+          "quantityReference" : {
+            "href" : "deliveryQuantity"
+          },
+          "masterAgreementPaymentDates" : true
+        }, {
+          "payerPartyReference" : {
+            "href" : "partyB"
+          },
+          "receiverPartyReference" : {
+            "href" : "partyA"
+          },
+          "deliveryPeriods" : {
+            "calculationPeriodsScheduleReference" : {
+              "href" : "calculationPeriodsSchedule"
+            }
+          },
+          "gas" : {
+            "type" : "NaturalGas"
+          },
+          "deliveryConditions" : {
+            "deliveryPoint" : {
+              "value" : "TETCO M2 Zone",
+              "deliveryPointScheme" : "http://www.PartyA.com/commodity-delivery-point-gas-1-0"
+            },
+            "deliveryType" : "Firm"
+          },
+          "deliveryQuantity" : {
+            "id" : "deliveryQuantity",
+            "physicalQuantity" : {
+              "quantityUnit" : {
+                "value" : "MMBTU"
+              },
+              "quantityFrequency" : {
+                "value" : "PerCalendarDay"
+              },
+              "quantity" : 100.0
+            },
+            "totalPhysicalQuantity" : {
+              "quantityUnit" : {
+                "value" : "MMBTU"
+              },
+              "quantity" : 36500.0
+            }
+          }
+        } ]
+      },
+      "physicalExercise" : {
+        "europeanExercise" : {
+          "expirationDates" : {
+            "periodicDates" : {
+              "calculationStartDate" : {
+                "relativeDate" : {
+                  "periodMultiplier" : -5,
+                  "period" : "D",
+                  "dayType" : "CurrencyBusiness",
+                  "businessDayConvention" : "NONE",
+                  "dateRelativeTo" : {
+                    "href" : "physicalEffectiveDate"
+                  }
+                }
+              },
+              "calculationEndDate" : {
+                "relativeDate" : {
+                  "periodMultiplier" : -5,
+                  "period" : "D",
+                  "dayType" : "CurrencyBusiness",
+                  "businessDayConvention" : "NONE",
+                  "dateRelativeTo" : {
+                    "href" : "physicalTerminationDate"
+                  }
+                }
+              },
+              "calculationPeriodFrequency" : {
+                "periodMultiplier" : 1,
+                "period" : "M",
+                "rollConvention" : "NONE"
+              },
+              "calculationPeriodDatesAdjustments" : {
+                "businessDayConvention" : "MODFOLLOWING",
+                "businessCenters" : {
+                  "id" : "bc1",
+                  "businessCenter" : [ {
+                    "value" : "USNY"
+                  }, {
+                    "value" : "GBLO"
+                  } ]
+                }
+              }
+            }
+          }
+        },
+        "automaticExercise" : false,
+        "writtenConfirmation" : false
+      },
+      "premium" : {
+        "payerPartyReference" : {
+          "href" : "partyA"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyB"
+        },
+        "paymentDate" : {
+          "adjustableDate" : {
+            "unadjustedDate" : {
+              "value" : "2009-04-24T00:00:00Z"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "FOLLOWING",
+              "businessCentersReference" : {
+                "href" : "bc1"
+              }
+            }
+          }
+        },
+        "paymentAmount" : {
+          "currency" : {
+            "value" : "USD"
+          },
+          "amount" : 36500.0
+        },
+        "premiumPerUnit" : {
+          "currency" : {
+            "value" : "USD"
+          },
+          "amount" : 1.0
+        }
+      }
+    }
+  } ],
+  "party" : [ {
+    "id" : "partyA",
+    "partyId" : [ {
+      "value" : "549300KFSLY4U7N3LL12",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Bank"
+    }
+  }, {
+    "id" : "partyB",
+    "partyId" : [ {
+      "value" : "549300AJRHKBLY9GM262",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Energy Co."
+    }
+  } ]
+}
