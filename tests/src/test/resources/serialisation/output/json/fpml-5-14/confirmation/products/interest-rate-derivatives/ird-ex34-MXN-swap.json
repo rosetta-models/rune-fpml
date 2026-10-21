@@ -1,0 +1,252 @@
+{
+  "fpmlVersion" : "5-14",
+  "trade" : [ {
+    "tradeHeader" : {
+      "partyTradeIdentifier" : [ {
+        "partyReference" : {
+          "href" : "party1"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "xyz1234",
+            "tradeIdScheme" : "buyside-trade-id"
+          }
+        } ]
+      }, {
+        "partyReference" : {
+          "href" : "party2"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "abc1234",
+            "tradeIdScheme" : "sellside-trade-id"
+          }
+        } ]
+      } ],
+      "tradeDate" : {
+        "value" : "2010-12-12T00:00:00Z"
+      }
+    },
+    "product" : {
+      "swapStream" : [ {
+        "payerPartyReference" : {
+          "href" : "party2"
+        },
+        "receiverPartyReference" : {
+          "href" : "party1"
+        },
+        "calculationPeriodDates" : {
+          "id" : "floatingCalcPeriodDates",
+          "effectiveDate" : {
+            "unadjustedDate" : {
+              "value" : "2010-12-14T00:00:00Z"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "NONE"
+            }
+          },
+          "terminationDate" : {
+            "unadjustedDate" : {
+              "value" : "2015-12-14T00:00:00Z"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "MODFOLLOWING",
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "MXMC"
+                } ]
+              }
+            }
+          },
+          "calculationPeriodDatesAdjustments" : {
+            "businessDayConvention" : "MODFOLLOWING",
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "MXMC"
+              } ]
+            }
+          },
+          "calculationPeriodFrequency" : {
+            "periodMultiplier" : 28,
+            "period" : "D",
+            "rollConvention" : "NONE"
+          }
+        },
+        "paymentDates" : {
+          "calculationPeriodDatesReference" : {
+            "href" : "floatingCalcPeriodDates"
+          },
+          "paymentFrequency" : {
+            "periodMultiplier" : 28,
+            "period" : "D"
+          },
+          "payRelativeTo" : "CalculationPeriodEndDate",
+          "paymentDatesAdjustments" : {
+            "businessDayConvention" : "MODFOLLOWING",
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "MXMC"
+              } ]
+            }
+          }
+        },
+        "resetDates" : {
+          "id" : "resetDates",
+          "calculationPeriodDatesReference" : {
+            "href" : "floatingCalcPeriodDates"
+          },
+          "resetRelativeTo" : "CalculationPeriodStartDate",
+          "fixingDates" : {
+            "periodMultiplier" : -1,
+            "period" : "D",
+            "dayType" : "Business",
+            "businessDayConvention" : "NONE",
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "MXMC"
+              } ]
+            },
+            "dateRelativeTo" : {
+              "href" : "resetDates"
+            }
+          },
+          "resetFrequency" : {
+            "periodMultiplier" : 28,
+            "period" : "D"
+          },
+          "resetDatesAdjustments" : {
+            "businessDayConvention" : "MODFOLLOWING",
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "MXMC"
+              } ]
+            }
+          }
+        },
+        "calculationPeriodAmount" : {
+          "calculation" : {
+            "notionalSchedule" : {
+              "notionalStepSchedule" : {
+                "initialValue" : 50000000.00,
+                "currency" : {
+                  "value" : "MXN"
+                }
+              }
+            },
+            "rateCalculation" : {
+              "floatingRateIndex" : {
+                "value" : "MXN-TIIE-Banxico"
+              },
+              "indexTenor" : {
+                "periodMultiplier" : 28,
+                "period" : "D"
+              }
+            },
+            "dayCountFraction" : {
+              "value" : "ACT/360"
+            }
+          }
+        }
+      }, {
+        "payerPartyReference" : {
+          "href" : "party1"
+        },
+        "receiverPartyReference" : {
+          "href" : "party2"
+        },
+        "calculationPeriodDates" : {
+          "id" : "fixedCalcPeriodDates",
+          "effectiveDate" : {
+            "unadjustedDate" : {
+              "value" : "2010-12-14T00:00:00Z"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "NONE"
+            }
+          },
+          "terminationDate" : {
+            "unadjustedDate" : {
+              "value" : "2015-12-14T00:00:00Z"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "MODFOLLOWING",
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "MXMC"
+                } ]
+              }
+            }
+          },
+          "calculationPeriodDatesAdjustments" : {
+            "businessDayConvention" : "MODFOLLOWING",
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "MXMC"
+              } ]
+            }
+          },
+          "calculationPeriodFrequency" : {
+            "periodMultiplier" : 28,
+            "period" : "D",
+            "rollConvention" : "NONE"
+          }
+        },
+        "paymentDates" : {
+          "calculationPeriodDatesReference" : {
+            "href" : "fixedCalcPeriodDates"
+          },
+          "paymentFrequency" : {
+            "periodMultiplier" : 28,
+            "period" : "D"
+          },
+          "payRelativeTo" : "CalculationPeriodEndDate",
+          "paymentDatesAdjustments" : {
+            "businessDayConvention" : "MODFOLLOWING",
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "MXMC"
+              } ]
+            }
+          }
+        },
+        "calculationPeriodAmount" : {
+          "calculation" : {
+            "notionalSchedule" : {
+              "notionalStepSchedule" : {
+                "initialValue" : 50000000.00,
+                "currency" : {
+                  "value" : "MXN"
+                }
+              }
+            },
+            "fixedRateSchedule" : {
+              "initialValue" : 0.06
+            },
+            "dayCountFraction" : {
+              "value" : "30E/360"
+            }
+          }
+        }
+      } ]
+    }
+  } ],
+  "party" : [ {
+    "id" : "party1",
+    "partyId" : [ {
+      "value" : "254900BIAQJIUV6DLE92",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Buyside"
+    }
+  }, {
+    "id" : "party2",
+    "partyId" : [ {
+      "value" : "549300VBWWV6BYQOWM67",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Sellside"
+    }
+  } ]
+}

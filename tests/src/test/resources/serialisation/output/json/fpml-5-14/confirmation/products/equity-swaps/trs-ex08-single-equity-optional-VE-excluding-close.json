@@ -1,0 +1,390 @@
+{
+  "fpmlVersion" : "5-14",
+  "trade" : [ {
+    "id" : "trs-eq1-trade",
+    "tradeHeader" : {
+      "partyTradeIdentifier" : [ {
+        "partyReference" : {
+          "href" : "Party_1"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "TRS-01",
+            "tradeIdScheme" : "http://www.abc.com/swaps/trade-id"
+          }
+        } ]
+      }, {
+        "partyReference" : {
+          "href" : "Party_2"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "total-ret-swap-01",
+            "tradeIdScheme" : "http://www.hedgeco.com/swaps/trade-id"
+          }
+        } ]
+      } ],
+      "tradeDate" : {
+        "value" : "2021-08-18T00:00:00Z"
+      }
+    },
+    "product" : {
+      "productType" : [ {
+        "value" : "TotalReturnSwap",
+        "productTypeScheme" : "http://www.fpml.org/coding-scheme/product-type-simple"
+      } ],
+      "buyerPartyReference" : {
+        "href" : "Party_1"
+      },
+      "sellerPartyReference" : {
+        "href" : "Party_2"
+      },
+      "returnSwapLeg" : [ {
+        "id" : "id_ReturnLeg",
+        "legIdentifier" : [ {
+          "legId" : {
+            "value" : "12345",
+            "legIdScheme" : "http://www.partyA.com/leg-id"
+          }
+        } ],
+        "payerPartyReference" : {
+          "href" : "Party_2"
+        },
+        "receiverPartyReference" : {
+          "href" : "Party_1"
+        },
+        "effectiveDate" : {
+          "adjustableDate" : {
+            "unadjustedDate" : {
+              "value" : "2021-08-20T00:00:00Z"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "NONE"
+            }
+          }
+        },
+        "terminationDate" : {
+          "adjustableDate" : {
+            "unadjustedDate" : {
+              "value" : "2022-08-31T00:00:00Z"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "NONE"
+            }
+          }
+        },
+        "underlyer" : {
+          "singleUnderlyer" : {
+            "underlyingAsset" : {
+              "instrumentId" : [ {
+                "value" : "X US",
+                "instrumentIdScheme" : "http://www.fpml.org/spec/2002/instrument-id-Bloomberg-1-0"
+              } ],
+              "description" : "US STEEL CORP",
+              "currency" : {
+                "value" : "USD"
+              }
+            },
+            "openUnits" : 212000.0000,
+            "dividendPayout" : {
+              "dividendPayoutRatio" : 1.00
+            }
+          }
+        },
+        "rateOfReturn" : {
+          "initialPrice" : {
+            "netPrice" : {
+              "amount" : 29.4500,
+              "priceExpression" : "AbsoluteTerms"
+            }
+          },
+          "notionalReset" : true,
+          "valuationPriceInterim" : {
+            "determinationMethod" : {
+              "value" : "ValuationTime"
+            },
+            "valuationRules" : {
+              "valuationDates" : {
+                "id" : "InterimValuationDates",
+                "adjustableDates" : {
+                  "unadjustedDate" : [ {
+                    "value" : "2021-08-31T00:00:00Z"
+                  }, {
+                    "value" : "2021-09-30T00:00:00Z"
+                  }, {
+                    "value" : "2021-10-29T00:00:00Z"
+                  }, {
+                    "value" : "2021-11-30T00:00:00Z"
+                  }, {
+                    "value" : "2021-12-31T00:00:00Z"
+                  }, {
+                    "value" : "2022-01-31T00:00:00Z"
+                  }, {
+                    "value" : "2022-02-28T00:00:00Z"
+                  }, {
+                    "value" : "2022-03-31T00:00:00Z"
+                  }, {
+                    "value" : "2022-04-29T00:00:00Z"
+                  }, {
+                    "value" : "2022-05-31T00:00:00Z"
+                  }, {
+                    "value" : "2022-06-30T00:00:00Z"
+                  }, {
+                    "value" : "2022-07-29T00:00:00Z"
+                  } ],
+                  "dateAdjustments" : {
+                    "businessDayConvention" : "NotApplicable"
+                  }
+                }
+              },
+              "valuationTimeType" : "Close",
+              "futuresPriceValuation" : true,
+              "nonCommencementOrDiscontinuation" : "CancellationAndPayment"
+            }
+          },
+          "valuationPriceFinal" : {
+            "determinationMethod" : {
+              "value" : "TWAPVEExcludingClose"
+            },
+            "valuationRules" : {
+              "valuationDate" : {
+                "id" : "FinalValuationDate",
+                "adjustableDate" : {
+                  "unadjustedDate" : {
+                    "value" : "2022-08-29T00:00:00Z"
+                  },
+                  "dateAdjustments" : {
+                    "businessDayConvention" : "NotApplicable"
+                  }
+                }
+              },
+              "valuationTimeType" : "ExcludingClose",
+              "informationSource" : {
+                "rateSource" : {
+                  "value" : "Bloomberg"
+                },
+                "rateSourcePage" : {
+                  "value" : "BVLI"
+                }
+              },
+              "optionsPriceValuation" : true,
+              "nonCommencementOrDiscontinuation" : "ExchangeAdjustment"
+            }
+          },
+          "paymentDates" : {
+            "id" : "ReturnLegPaymentDates",
+            "paymentDatesInterim" : {
+              "id" : "InterimReturnLegPaymentDates",
+              "relativeDates" : {
+                "periodMultiplier" : 2,
+                "period" : "D",
+                "dayType" : "CurrencyBusiness",
+                "businessDayConvention" : "NONE",
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "USNY"
+                  } ]
+                },
+                "dateRelativeTo" : {
+                  "href" : "InterimValuationDates"
+                }
+              }
+            },
+            "paymentDateFinal" : {
+              "id" : "FinalReturnLegPaymentDate",
+              "relativeDate" : {
+                "periodMultiplier" : 2,
+                "period" : "D",
+                "dayType" : "CurrencyBusiness",
+                "businessDayConvention" : "NONE",
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "USNY"
+                  } ]
+                },
+                "dateRelativeTo" : {
+                  "href" : "FinalValuationDate"
+                }
+              }
+            }
+          }
+        },
+        "notional" : {
+          "id" : "NotionalAmount",
+          "notionalAmount" : {
+            "currency" : {
+              "value" : "USD"
+            },
+            "amount" : 6243400
+          }
+        },
+        "amount" : {
+          "currency" : {
+            "value" : "USD",
+            "id" : "ReturnLegPaymentCurrency"
+          },
+          "referenceAmount" : {
+            "value" : "StandardISDA"
+          },
+          "cashSettlement" : true
+        },
+        "notionalAdjustments" : "Execution",
+        "return" : {
+          "returnType" : "Total",
+          "dividendConditions" : {
+            "dividendReinvestment" : false,
+            "dividendEntitlement" : "ExDate",
+            "dividendAmount" : "RecordAmount",
+            "dividendPaymentDate" : {
+              "dividendDateReference" : "CashSettlementPaymentDate"
+            },
+            "dividendPeriod" : "SecondPeriod"
+          }
+        }
+      }, {
+        "id" : "id_InterestLeg",
+        "legIdentifier" : [ {
+          "legId" : {
+            "value" : "56789",
+            "legIdScheme" : "http://www.partyA.com/leg-id"
+          }
+        } ],
+        "payerPartyReference" : {
+          "href" : "Party_1"
+        },
+        "receiverPartyReference" : {
+          "href" : "Party_2"
+        },
+        "interestLegCalculationPeriodDates" : {
+          "id" : "InterestLegCalculationPeriodDates",
+          "effectiveDate" : {
+            "adjustableDate" : {
+              "unadjustedDate" : {
+                "value" : "2021-08-20T00:00:00Z"
+              },
+              "dateAdjustments" : {
+                "businessDayConvention" : "NONE"
+              }
+            }
+          },
+          "terminationDate" : {
+            "adjustableDate" : {
+              "unadjustedDate" : {
+                "value" : "2022-08-31T00:00:00Z"
+              },
+              "dateAdjustments" : {
+                "businessDayConvention" : "NONE"
+              }
+            }
+          },
+          "interestLegResetDates" : {
+            "calculationPeriodDatesReference" : {
+              "href" : "InterestLegCalculationPeriodDates"
+            },
+            "resetRelativeTo" : "CalculationPeriodEndDate"
+          },
+          "interestLegPaymentDates" : {
+            "relativeDates" : {
+              "periodMultiplier" : 0,
+              "period" : "D",
+              "businessDayConvention" : "NONE",
+              "dateRelativeTo" : {
+                "href" : "ReturnLegPaymentDates"
+              }
+            }
+          }
+        },
+        "notional" : {
+          "notionalAmount" : {
+            "currency" : {
+              "value" : "USD"
+            },
+            "amount" : 6243400
+          }
+        },
+        "interestAmount" : {
+          "currencyReference" : {
+            "href" : "ReturnLegPaymentCurrency"
+          },
+          "referenceAmount" : {
+            "value" : "StandardISDA"
+          }
+        },
+        "interestCalculation" : {
+          "floatingRateCalculation" : {
+            "floatingRateIndex" : {
+              "value" : "USD-SOFR"
+            },
+            "calculationParameters" : {
+              "calculationMethod" : "Compounding",
+              "applicableBusinessDays" : {
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "USGS"
+                  } ]
+                }
+              },
+              "lookback" : {
+                "offsetDays" : 2
+              }
+            },
+            "spreadSchedule" : [ {
+              "initialValue" : 0.0020
+            } ]
+          },
+          "id" : "InterestCalculation",
+          "dayCountFraction" : {
+            "value" : "ACT/360"
+          }
+        }
+      } ]
+    },
+    "collateral" : {
+      "independentAmount" : [ {
+        "payerPartyReference" : {
+          "href" : "Party_2"
+        },
+        "receiverPartyReference" : {
+          "href" : "Party_1"
+        },
+        "paymentDetail" : [ {
+          "paymentDate" : {
+            "adjustableDate" : {
+              "unadjustedDate" : {
+                "value" : "2005-01-01T00:00:00Z"
+              },
+              "dateAdjustments" : {
+                "businessDayConvention" : "NONE"
+              }
+            }
+          },
+          "paymentAmount" : {
+            "currency" : {
+              "value" : "USD"
+            },
+            "amount" : 1000
+          }
+        } ]
+      } ]
+    }
+  } ],
+  "party" : [ {
+    "id" : "Party_1",
+    "partyId" : [ {
+      "value" : "QGPGHQ1ENZOOLJRFTH41",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "ABCD Securities Inc."
+    }
+  }, {
+    "id" : "Party_2",
+    "partyId" : [ {
+      "value" : "J6W9XJWVE853A9CVRQ85",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "HedgeCo Capital L.L.C."
+    }
+  } ]
+}

@@ -1,0 +1,180 @@
+{
+  "fpmlVersion" : "5-14",
+  "trade" : [ {
+    "tradeHeader" : {
+      "partyTradeIdentifier" : [ {
+        "partyReference" : {
+          "href" : "PartyA"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "ACIRST1234567",
+            "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
+          }
+        } ]
+      } ],
+      "tradeDate" : {
+        "value" : "2014-04-08T00:00:00Z",
+        "id" : "TradeDate"
+      }
+    },
+    "product" : {
+      "primaryAssetClass" : {
+        "value" : "Commodity"
+      },
+      "productType" : [ {
+        "value" : "Commodity:Energy:Index:Swap:Cash"
+      } ],
+      "effectiveDate" : {
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2014-04-01T00:00:00Z"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NONE"
+          }
+        }
+      },
+      "terminationDate" : {
+        "id" : "TerminationDate",
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2014-10-31T00:00:00Z"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NONE"
+          }
+        }
+      },
+      "commodityPerformanceSwapLeg" : [ {
+        "payerPartyReference" : {
+          "href" : "PartyA"
+        },
+        "receiverPartyReference" : {
+          "href" : "PartyB"
+        },
+        "calculationPeriodsSchedule" : {
+          "id" : "returnLegCalculationPeriodSchedule",
+          "periodMultiplier" : 1,
+          "period" : "M",
+          "balanceOfFirstPeriod" : false
+        },
+        "relativePaymentDates" : {
+          "payRelativeTo" : "CalculationPeriodEndDate",
+          "calculationPeriodsScheduleReference" : {
+            "href" : "returnLegCalculationPeriodSchedule"
+          },
+          "paymentDaysOffset" : {
+            "periodMultiplier" : 2,
+            "period" : "D",
+            "dayType" : "Business",
+            "businessDayConvention" : "NONE"
+          }
+        },
+        "commodity" : {
+          "instrumentId" : [ {
+            "value" : "DJUBS ComTSM",
+            "instrumentIdScheme" : "http://www.fpml.org/coding-scheme/commodity-reference-price-3-0"
+          } ],
+          "specifiedPrice" : "Settlement"
+        },
+        "notionalAmount" : {
+          "id" : "returnLegNotionalAmount",
+          "currency" : {
+            "value" : "USD"
+          },
+          "amount" : 1000000.00,
+          "reinvestmentFeature" : false
+        },
+        "commodityReturnCalculation" : {
+          "formula" : "SimpleFormula",
+          "valuationDates" : {
+            "calculationPeriodsScheduleReference" : {
+              "href" : "returnLegCalculationPeriodSchedule"
+            },
+            "dayType" : "Calendar",
+            "dayDistribution" : {
+              "value" : "Last"
+            }
+          },
+          "initialPrice" : 274.81
+        }
+      }, {
+        "payerPartyReference" : {
+          "href" : "PartyB"
+        },
+        "receiverPartyReference" : {
+          "href" : "PartyA"
+        },
+        "calculationPeriodsScheduleReference" : {
+          "href" : "returnLegCalculationPeriodSchedule"
+        },
+        "relativePaymentDates" : {
+          "payRelativeTo" : "CalculationPeriodEndDate",
+          "calculationPeriodsScheduleReference" : {
+            "href" : "returnLegCalculationPeriodSchedule"
+          },
+          "paymentDaysOffset" : {
+            "periodMultiplier" : 2,
+            "period" : "D",
+            "dayType" : "Business",
+            "businessDayConvention" : "NONE"
+          }
+        },
+        "notionalAmountReference" : {
+          "href" : "returnLegNotionalAmount"
+        },
+        "commodityFixedInterestCalculation" : {
+          "fixedRate" : {
+            "value" : 0.032100
+          },
+          "dayCountFraction" : {
+            "value" : "ACT/365.FIXED"
+          }
+        }
+      } ],
+      "marketDisruption" : {
+        "marketDisruptionEvent" : [ {
+          "value" : "AsSpecifiedInMasterAgreement"
+        } ],
+        "disruptionFallbacks" : "AsSpecifiedInMasterAgreement"
+      }
+    },
+    "documentation" : {
+      "masterAgreement" : {
+        "masterAgreementType" : {
+          "value" : "ISDA"
+        },
+        "masterAgreementVersion" : {
+          "value" : "2002"
+        },
+        "masterAgreementDate" : "2010-03-23T00:00:00Z"
+      },
+      "contractualDefinitions" : [ {
+        "value" : "ISDA2006"
+      } ]
+    }
+  } ],
+  "party" : [ {
+    "id" : "PartyA",
+    "partyId" : [ {
+      "value" : "95980020140005196564",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "country" : {
+      "value" : "US"
+    },
+    "organizationType" : [ {
+      "value" : "SD"
+    } ]
+  }, {
+    "id" : "PartyB",
+    "partyId" : [ {
+      "value" : "549300XQFX97CITUR430",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "organizationType" : [ {
+      "value" : "non-SD/MSP"
+    } ]
+  } ]
+}

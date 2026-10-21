@@ -1,0 +1,380 @@
+{
+  "fpmlVersion" : "5-14",
+  "header" : {
+    "messageId" : {
+      "value" : "FX456a789b",
+      "messageIdScheme" : "http://www.executionnotificationservice.com/coding-scheme/messageId"
+    },
+    "sentBy" : {
+      "value" : "EXECSRV",
+      "messageAddressScheme" : "http://www.executionnotificationservice.com/partyId"
+    },
+    "sendTo" : [ {
+      "value" : "PARTYA",
+      "messageAddressScheme" : "http://www.executionnotificationservice.com/partyId"
+    } ],
+    "creationTimestamp" : "2014-07-01T08:57:00Z"
+  },
+  "isCorrection" : false,
+  "trade" : {
+    "tradeHeader" : {
+      "partyTradeIdentifier" : [ {
+        "partyReference" : {
+          "href" : "partyA"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "12345",
+            "tradeIdScheme" : "#partyA"
+          }
+        } ]
+      } ],
+      "tradeDate" : {
+        "value" : "2014-07-01T00:00:00Z"
+      }
+    },
+    "product" : {
+      "productType" : [ {
+        "value" : "FxAccrualForward",
+        "productTypeScheme" : "http://www.fpml.org/coding-scheme/product-type-simple"
+      } ],
+      "notionalAmount" : {
+        "initialValue" : 253125.00,
+        "currency" : {
+          "value" : "USD"
+        }
+      },
+      "accrual" : {
+        "observable" : [ {
+          "id" : "ob1",
+          "quotedCurrencyPair" : {
+            "currency1" : {
+              "value" : "GBP"
+            },
+            "currency2" : {
+              "value" : "USD"
+            },
+            "quoteBasis" : "Currency2PerCurrency1"
+          },
+          "informationSource" : {
+            "rateSource" : {
+              "value" : "Reuters"
+            },
+            "rateSourcePage" : {
+              "value" : "ECB37"
+            },
+            "fixingTime" : {
+              "hourMinuteTime" : "14:15:00",
+              "businessCenter" : {
+                "value" : "DEFR"
+              }
+            }
+          }
+        } ],
+        "accrualRegion" : [ {
+          "observableReference" : {
+            "href" : "ob1"
+          },
+          "lowerBound" : {
+            "condition" : "AtOrAbove",
+            "level" : {
+              "initialValue" : 1.6875
+            }
+          }
+        }, {
+          "observableReference" : {
+            "href" : "ob1"
+          },
+          "upperBound" : {
+            "condition" : "Below",
+            "level" : {
+              "initialValue" : 1.6875
+            }
+          },
+          "accrualFactor" : {
+            "initialValue" : 2
+          }
+        } ],
+        "fixingSchedule" : {
+          "dateAdjustments" : {
+            "businessDayConvention" : "NONE"
+          },
+          "startDate" : "2014-07-15T00:00:00Z",
+          "endDate" : "2014-12-30T00:00:00Z",
+          "observationFrequency" : {
+            "periodMultiplier" : 2,
+            "period" : "W",
+            "periodConvention" : "TUE"
+          },
+          "numberOfFixings" : 13
+        }
+      },
+      "expirySchedule" : {
+        "id" : "expSch",
+        "adjustedDate" : [ "2014-07-15T00:00:00Z", "2014-07-29T00:00:00Z", "2014-08-12T00:00:00Z", "2014-08-26T00:00:00Z", "2014-09-09T00:00:00Z", "2014-09-23T00:00:00Z", "2014-10-07T00:00:00Z", "2014-10-21T00:00:00Z", "2014-11-04T00:00:00Z", "2014-11-18T00:00:00Z", "2014-12-02T00:00:00Z", "2014-12-16T00:00:00Z", "2014-12-30T00:00:00Z" ],
+        "finalExpiryDate" : "2014-12-30T00:00:00Z"
+      },
+      "settlementSchedule" : {
+        "dateAdjustments" : {
+          "businessDayConvention" : "FOLLOWING",
+          "businessCenters" : {
+            "businessCenter" : [ {
+              "value" : "USNY"
+            }, {
+              "value" : "GBLO"
+            } ]
+          }
+        },
+        "adjustedDate" : [ "2014-07-17T00:00:00Z", "2014-07-31T00:00:00Z", "2014-08-14T00:00:00Z", "2014-08-28T00:00:00Z", "2014-09-11T00:00:00Z", "2014-09-25T00:00:00Z", "2014-10-09T00:00:00Z", "2014-10-23T00:00:00Z", "2014-11-06T00:00:00Z", "2014-11-20T00:00:00Z", "2014-12-04T00:00:00Z", "2014-12-18T00:00:00Z", "2015-01-02T00:00:00Z" ],
+        "finalSettlementDate" : "2015-01-02T00:00:00Z"
+      },
+      "linearPayoffRegion" : [ {
+        "exchangedCurrency1" : {
+          "payerPartyReference" : {
+            "href" : "partyA"
+          },
+          "receiverPartyReference" : {
+            "href" : "partyB"
+          },
+          "currency" : {
+            "value" : "GBP"
+          }
+        },
+        "exchangedCurrency2" : {
+          "payerPartyReference" : {
+            "href" : "partyB"
+          },
+          "receiverPartyReference" : {
+            "href" : "partyA"
+          },
+          "currency" : {
+            "value" : "USD"
+          }
+        },
+        "strike" : {
+          "id" : "str",
+          "initialValue" : 1.6875,
+          "quoteBasis" : "Currency2PerCurrency1"
+        },
+        "counterCurrencyAmount" : {
+          "initialValue" : 150000.00,
+          "currency" : {
+            "value" : "GBP"
+          }
+        }
+      } ],
+      "barrier" : [ {
+        "barrierType" : "Knockout",
+        "style" : "American",
+        "scope" : "Global",
+        "condition" : "AtOrAbove",
+        "triggerRate" : {
+          "initialValue" : 1.7470
+        },
+        "accrualRetention" : "Keep",
+        "quotedCurrencyPair" : {
+          "currency1" : {
+            "value" : "GBP"
+          },
+          "currency2" : {
+            "value" : "USD"
+          },
+          "quoteBasis" : "Currency2PerCurrency1"
+        }
+      } ],
+      "additionalPayment" : [ {
+        "payerPartyReference" : {
+          "href" : "partyA"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyB"
+        },
+        "paymentAmount" : {
+          "currency" : {
+            "value" : "GBP"
+          },
+          "amount" : 14000.00
+        },
+        "paymentDate" : {
+          "adjustableDate" : {
+            "unadjustedDate" : {
+              "value" : "2014-07-03T00:00:00Z"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "FOLLOWING",
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "GBLO"
+                } ]
+              }
+            }
+          }
+        }
+      } ],
+      "settlementPeriodSchedule" : {
+        "settlementPeriod" : [ {
+          "expiryDate" : "2014-07-15T00:00:00Z",
+          "settlementDate" : "2014-07-17T00:00:00Z",
+          "notionalAmount" : 253125.00,
+          "payoff" : [ {
+            "strike" : 1.6875,
+            "counterCurrencyAmount" : 150000.00
+          } ],
+          "accrualFixingDates" : {
+            "fixingDate" : [ "2014-07-15T00:00:00Z" ]
+          }
+        }, {
+          "expiryDate" : "2014-07-29T00:00:00Z",
+          "settlementDate" : "2014-07-31T00:00:00Z",
+          "notionalAmount" : 253125.00,
+          "payoff" : [ {
+            "strike" : 1.6875,
+            "counterCurrencyAmount" : 150000.00
+          } ],
+          "accrualFixingDates" : {
+            "fixingDate" : [ "2014-07-29T00:00:00Z" ]
+          }
+        }, {
+          "expiryDate" : "2014-08-12T00:00:00Z",
+          "settlementDate" : "2014-08-14T00:00:00Z",
+          "notionalAmount" : 253125.00,
+          "payoff" : [ {
+            "strike" : 1.6875,
+            "counterCurrencyAmount" : 150000.00
+          } ],
+          "accrualFixingDates" : {
+            "fixingDate" : [ "2014-08-12T00:00:00Z" ]
+          }
+        }, {
+          "expiryDate" : "2014-08-26T00:00:00Z",
+          "settlementDate" : "2014-08-28T00:00:00Z",
+          "notionalAmount" : 253125.00,
+          "payoff" : [ {
+            "strike" : 1.6875,
+            "counterCurrencyAmount" : 150000.00
+          } ],
+          "accrualFixingDates" : {
+            "fixingDate" : [ "2014-08-26T00:00:00Z" ]
+          }
+        }, {
+          "expiryDate" : "2014-09-09T00:00:00Z",
+          "settlementDate" : "2014-09-11T00:00:00Z",
+          "notionalAmount" : 253125.00,
+          "payoff" : [ {
+            "strike" : 1.6875,
+            "counterCurrencyAmount" : 150000.00
+          } ],
+          "accrualFixingDates" : {
+            "fixingDate" : [ "2014-09-09T00:00:00Z" ]
+          }
+        }, {
+          "expiryDate" : "2014-09-23T00:00:00Z",
+          "settlementDate" : "2014-09-25T00:00:00Z",
+          "notionalAmount" : 253125.00,
+          "payoff" : [ {
+            "strike" : 1.6875,
+            "counterCurrencyAmount" : 150000.00
+          } ],
+          "accrualFixingDates" : {
+            "fixingDate" : [ "2014-09-23T00:00:00Z" ]
+          }
+        }, {
+          "expiryDate" : "2014-10-07T00:00:00Z",
+          "settlementDate" : "2014-10-09T00:00:00Z",
+          "notionalAmount" : 253125.00,
+          "payoff" : [ {
+            "strike" : 1.6875,
+            "counterCurrencyAmount" : 150000.00
+          } ],
+          "accrualFixingDates" : {
+            "fixingDate" : [ "2014-10-07T00:00:00Z" ]
+          }
+        }, {
+          "expiryDate" : "2014-10-21T00:00:00Z",
+          "settlementDate" : "2014-10-23T00:00:00Z",
+          "notionalAmount" : 253125.00,
+          "payoff" : [ {
+            "strike" : 1.6875,
+            "counterCurrencyAmount" : 150000.00
+          } ],
+          "accrualFixingDates" : {
+            "fixingDate" : [ "2014-10-21T00:00:00Z" ]
+          }
+        }, {
+          "expiryDate" : "2014-11-04T00:00:00Z",
+          "settlementDate" : "2014-11-06T00:00:00Z",
+          "notionalAmount" : 253125.00,
+          "payoff" : [ {
+            "strike" : 1.6875,
+            "counterCurrencyAmount" : 150000.00
+          } ],
+          "accrualFixingDates" : {
+            "fixingDate" : [ "2014-11-04T00:00:00Z" ]
+          }
+        }, {
+          "expiryDate" : "2014-11-18T00:00:00Z",
+          "settlementDate" : "2014-11-20T00:00:00Z",
+          "notionalAmount" : 253125.00,
+          "payoff" : [ {
+            "strike" : 1.6875,
+            "counterCurrencyAmount" : 150000.00
+          } ],
+          "accrualFixingDates" : {
+            "fixingDate" : [ "2014-11-18T00:00:00Z" ]
+          }
+        }, {
+          "expiryDate" : "2014-12-02T00:00:00Z",
+          "settlementDate" : "2014-12-04T00:00:00Z",
+          "notionalAmount" : 253125.00,
+          "payoff" : [ {
+            "strike" : 1.6875,
+            "counterCurrencyAmount" : 150000.00
+          } ],
+          "accrualFixingDates" : {
+            "fixingDate" : [ "2014-12-02T00:00:00Z" ]
+          }
+        }, {
+          "expiryDate" : "2014-12-16T00:00:00Z",
+          "settlementDate" : "2014-12-18T00:00:00Z",
+          "notionalAmount" : 253125.00,
+          "payoff" : [ {
+            "strike" : 1.6875,
+            "counterCurrencyAmount" : 150000.00
+          } ],
+          "accrualFixingDates" : {
+            "fixingDate" : [ "2014-12-16T00:00:00Z" ]
+          }
+        }, {
+          "expiryDate" : "2014-12-30T00:00:00Z",
+          "settlementDate" : "2015-01-02T00:00:00Z",
+          "notionalAmount" : 253125.00,
+          "payoff" : [ {
+            "strike" : 1.6875,
+            "counterCurrencyAmount" : 150000.00
+          } ],
+          "accrualFixingDates" : {
+            "fixingDate" : [ "2014-12-30T00:00:00Z" ]
+          }
+        } ]
+      }
+    },
+    "calculationAgent" : {
+      "calculationAgentPartyReference" : [ {
+        "href" : "partyA"
+      } ]
+    }
+  },
+  "party" : [ {
+    "id" : "partyA",
+    "partyId" : [ {
+      "value" : "549300SRLRVTR996F086",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ]
+  }, {
+    "id" : "partyB",
+    "partyId" : [ {
+      "value" : "549300RE0FSXJE8G1L65",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ]
+  } ]
+}

@@ -1,0 +1,153 @@
+{
+  "fpmlVersion" : "5-14",
+  "trade" : [ {
+    "tradeHeader" : {
+      "partyTradeIdentifier" : [ {
+        "partyReference" : {
+          "href" : "PartyA"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "ACAVS1234567",
+            "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
+          }
+        } ]
+      } ],
+      "tradeDate" : {
+        "value" : "2014-04-08T00:00:00Z",
+        "id" : "TradeDate"
+      }
+    },
+    "product" : {
+      "primaryAssetClass" : {
+        "value" : "Commodity"
+      },
+      "productType" : [ {
+        "value" : "Commodity:Energy:Index:Swap:Cash"
+      } ],
+      "effectiveDate" : {
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2014-04-01T00:00:00Z"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NONE"
+          }
+        }
+      },
+      "terminationDate" : {
+        "id" : "TerminationDate",
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2014-10-31T00:00:00Z"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NONE"
+          }
+        }
+      },
+      "commodityPerformanceSwapLeg" : [ {
+        "payerPartyReference" : {
+          "href" : "PartyA"
+        },
+        "receiverPartyReference" : {
+          "href" : "PartyB"
+        },
+        "calculationPeriodsSchedule" : {
+          "id" : "varianceLegCalculationPeriodSchedule",
+          "periodMultiplier" : 1,
+          "period" : "T",
+          "balanceOfFirstPeriod" : false
+        },
+        "paymentDates" : {
+          "adjustableDates" : {
+            "unadjustedDate" : [ {
+              "value" : "2014-11-05T00:00:00Z"
+            } ],
+            "dateAdjustments" : {
+              "businessDayConvention" : "FOLLOWING",
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "USNY"
+                } ]
+              }
+            }
+          }
+        },
+        "commodity" : {
+          "instrumentId" : [ {
+            "value" : "MOP-CFR BRAZIL-FMB",
+            "instrumentIdScheme" : "http://www.fpml.org/coding-scheme/commodity-reference-price-3-0"
+          } ],
+          "specifiedPrice" : "Spot"
+        },
+        "notionalAmount" : {
+          "id" : "varianceLegNotionalAmount",
+          "currency" : {
+            "value" : "USD"
+          },
+          "amount" : 1000000.00,
+          "reinvestmentFeature" : false
+        },
+        "varianceStrikePrice" : 0.09000,
+        "varianceCalculation" : {
+          "valuationDates" : {
+            "calculationPeriodsScheduleReference" : {
+              "href" : "varianceLegCalculationPeriodSchedule"
+            },
+            "dayType" : "CommodityBusiness",
+            "dayDistribution" : {
+              "value" : "All"
+            }
+          },
+          "annualizationFactor" : 252,
+          "nAdjustment" : false
+        }
+      } ],
+      "marketDisruption" : {
+        "marketDisruptionEvent" : [ {
+          "value" : "AsSpecifiedInMasterAgreement"
+        } ],
+        "disruptionFallbacks" : "AsSpecifiedInMasterAgreement"
+      }
+    },
+    "documentation" : {
+      "masterAgreement" : {
+        "masterAgreementType" : {
+          "value" : "ISDA"
+        },
+        "masterAgreementVersion" : {
+          "value" : "2002"
+        },
+        "masterAgreementDate" : "2010-03-23T00:00:00Z"
+      },
+      "contractualDefinitions" : [ {
+        "value" : "ISDA2006"
+      }, {
+        "value" : "ISDA2005Commodity"
+      } ]
+    }
+  } ],
+  "party" : [ {
+    "id" : "PartyA",
+    "partyId" : [ {
+      "value" : "95980020140005196564",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "country" : {
+      "value" : "US"
+    },
+    "organizationType" : [ {
+      "value" : "SD"
+    } ]
+  }, {
+    "id" : "PartyB",
+    "partyId" : [ {
+      "value" : "549300XQFX97CITUR430",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "organizationType" : [ {
+      "value" : "non-SD/MSP"
+    } ]
+  } ]
+}

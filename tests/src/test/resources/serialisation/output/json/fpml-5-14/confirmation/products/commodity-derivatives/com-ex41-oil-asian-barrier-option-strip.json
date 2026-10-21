@@ -1,0 +1,243 @@
+{
+  "fpmlVersion" : "5-14",
+  "trade" : [ {
+    "tradeHeader" : {
+      "partyTradeIdentifier" : [ {
+        "partyReference" : {
+          "href" : "PartyA"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "UVXY54321",
+            "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
+          }
+        } ]
+      } ],
+      "tradeDate" : {
+        "value" : "2012-11-15T00:00:00Z",
+        "id" : "TradeDate"
+      }
+    },
+    "product" : {
+      "primaryAssetClass" : {
+        "value" : "Commodity"
+      },
+      "productType" : [ {
+        "value" : "Commodity:Energy:Oil:Option:Cash"
+      } ],
+      "buyerPartyReference" : {
+        "href" : "PartyB"
+      },
+      "sellerPartyReference" : {
+        "href" : "PartyA"
+      },
+      "optionType" : "Call",
+      "commodity" : {
+        "instrumentId" : [ {
+          "value" : "OIL-BRENT-IPE",
+          "instrumentIdScheme" : "http://www.fpml.org/coding-scheme/commodity-reference-price-3-0"
+        } ],
+        "specifiedPrice" : "Settlement",
+        "deliveryNearby" : {
+          "deliveryNearbyMultiplier" : 1,
+          "deliveryNearbyType" : "NearbyMonth"
+        }
+      },
+      "effectiveDate" : {
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2013-01-01T00:00:00Z"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NONE"
+          }
+        }
+      },
+      "terminationDate" : {
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2013-03-30T00:00:00Z"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NONE"
+          }
+        }
+      },
+      "calculationPeriodsSchedule" : {
+        "id" : "CalculationPeriodsSchedule",
+        "periodMultiplier" : 1,
+        "period" : "Y",
+        "balanceOfFirstPeriod" : false
+      },
+      "pricingDates" : {
+        "calculationPeriodsScheduleReference" : {
+          "href" : "CalculationPeriodsSchedule"
+        },
+        "dayType" : "CommodityBusiness",
+        "dayDistribution" : {
+          "value" : "Last"
+        },
+        "dayCount" : 5
+      },
+      "barrier" : {
+        "knock" : "Out",
+        "trigger" : {
+          "levelPrice" : {
+            "price" : 115.00,
+            "priceCurrency" : {
+              "value" : "USD"
+            },
+            "priceUnit" : {
+              "value" : "BBL"
+            }
+          },
+          "triggerType" : "Greater"
+        }
+      },
+      "notionalQuantity" : {
+        "quantityUnit" : {
+          "value" : "BBL"
+        },
+        "quantityFrequency" : {
+          "value" : "PerCalculationPeriod"
+        },
+        "quantity" : 10000
+      },
+      "totalNotionalQuantity" : 30000,
+      "exercise" : {
+        "europeanExercise" : {
+          "expirationDate" : [ {
+            "adjustableDate" : {
+              "unadjustedDate" : {
+                "value" : "2013-01-31T00:00:00Z"
+              },
+              "dateAdjustments" : {
+                "businessDayConvention" : "NotApplicable"
+              }
+            }
+          }, {
+            "adjustableDate" : {
+              "unadjustedDate" : {
+                "value" : "2013-02-28T00:00:00Z"
+              },
+              "dateAdjustments" : {
+                "businessDayConvention" : "NotApplicable"
+              }
+            }
+          }, {
+            "adjustableDate" : {
+              "unadjustedDate" : {
+                "value" : "2013-03-31T00:00:00Z"
+              },
+              "dateAdjustments" : {
+                "businessDayConvention" : "NotApplicable"
+              }
+            }
+          } ],
+          "exerciseFrequency" : {
+            "periodMultiplier" : 1,
+            "period" : "M"
+          }
+        },
+        "automaticExercise" : true,
+        "settlementCurrency" : {
+          "value" : "USD"
+        },
+        "relativePaymentDates" : {
+          "payRelativeTo" : "TerminationOrExpirationDate",
+          "calculationPeriodsScheduleReference" : {
+            "href" : "CalculationPeriodsSchedule"
+          },
+          "paymentDaysOffset" : {
+            "periodMultiplier" : 5,
+            "period" : "D",
+            "dayType" : "Business",
+            "businessDayConvention" : "NONE"
+          }
+        }
+      },
+      "floatingStrikePricePerUnit" : {
+        "pricingDates" : {
+          "calculationPeriodsScheduleReference" : {
+            "href" : "CalculationPeriodsSchedule"
+          },
+          "dayType" : "CommodityBusiness",
+          "dayDistribution" : {
+            "value" : "All"
+          }
+        },
+        "averagingMethod" : "Unweighted",
+        "commodity" : {
+          "instrumentId" : [ {
+            "value" : "OIL-BRENT-IPE",
+            "instrumentIdScheme" : "http://www.fpml.org/coding-scheme/commodity-reference-price-3-0"
+          } ],
+          "specifiedPrice" : "Settlement",
+          "deliveryNearby" : {
+            "deliveryNearbyMultiplier" : 1,
+            "deliveryNearbyType" : "NearbyMonth"
+          }
+        }
+      },
+      "premium" : [ {
+        "payerPartyReference" : {
+          "href" : "PartyB"
+        },
+        "receiverPartyReference" : {
+          "href" : "PartyA"
+        },
+        "paymentDate" : {
+          "relativeDate" : {
+            "periodMultiplier" : 2,
+            "period" : "D",
+            "dayType" : "Business",
+            "businessDayConvention" : "NONE",
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "USNY",
+                "id" : "paymentBusinessCenter"
+              } ]
+            },
+            "dateRelativeTo" : {
+              "href" : "TradeDate"
+            }
+          }
+        },
+        "paymentAmount" : {
+          "currency" : {
+            "value" : "USD"
+          },
+          "amount" : 30000.00
+        },
+        "premiumPerUnit" : {
+          "currency" : {
+            "value" : "USD"
+          },
+          "amount" : 1.00000
+        }
+      } ]
+    }
+  } ],
+  "party" : [ {
+    "id" : "PartyA",
+    "partyId" : [ {
+      "value" : "95980020140005196564",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "country" : {
+      "value" : "US"
+    },
+    "organizationType" : [ {
+      "value" : "SD"
+    } ]
+  }, {
+    "id" : "PartyB",
+    "partyId" : [ {
+      "value" : "549300XQFX97CITUR430",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "organizationType" : [ {
+      "value" : "non-SD/MSP"
+    } ]
+  } ]
+}
