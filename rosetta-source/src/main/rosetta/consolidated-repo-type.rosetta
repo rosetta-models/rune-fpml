@@ -54,7 +54,7 @@ type Repo extends Product: <"Global element representing a Repo. A Repo, modeled
 type AdjustableOffset extends Offset: <"An adjustable offset can be used to specify a number of days, business or calendar, for example in a notice period.">
 
     businessCentersReference BusinessCentersReference (0..1) <"A pointer style reference to a set of financial business centers defined elsewhere in the document. This set of business centers is used to determine whether a particular day is a business day or not.">
-    businessCenters BusinessCenters (0..1)
+    businessCenters BusinessCenters (0..1) <"A set of financial business centers specified directly for use in determining whether a particular day is a business day.">
 
     condition Choice:
         optional choice businessCentersReference, businessCenters
@@ -64,12 +64,12 @@ type CollateralArrangement: <"(SFTR required field.) Method used to provide coll
     value Scheme (1..1)
     collateralArrangementScheme NonEmptyURI (0..1)
 
-type CollateralProfile:
+type CollateralProfile: <"The agreed profile of securities eligible for delivery as collateral under the transaction, identified by a code from the specified coding scheme.">
 
     value Scheme (1..1)
     collateralProfileScheme NonEmptyURI (0..1)
 
-type CollateralType:
+type CollateralType: <"The classification of the collateral delivered under the repurchase transaction, identified by a code from the specified coding scheme.">
 
     value Scheme (1..1)
     collateralTypeScheme NonEmptyURI (0..1)
@@ -203,7 +203,7 @@ type RepoNearLeg extends RepoLegBase: <"A transaction leg for a repo is equivale
     deliveryDate AdjustableOrRelativeDate (0..1) <"Delivery Date for the transaction. Delivery Date can be populated when it is not equal to the Settlement Date.">
     collateral CollateralValuation (0..*) <"Collateral element is used to carry the quantity and price details that are required to ensure that a repo contract is executed at fair value, with the value of the collateral matching the cash amount of the repo. Collateral is declared as optional here, with multiple cardinalities, since there can be a repo \"Multi\", with multiple instruments specified, or a \"Cash Borrow/Loan\" and “TriPartyRepo” with no collateral. In general cases, however it should be specified. This element can be omitted in farLeg.">
 
-type SecurityValuation:
+type SecurityValuation: <"A structure containing the valuation terms for securities exchanged as collateral in a repurchase agreement.">
 
     security GenericSecurity (1..1)
     nominalAmount Money (0..1) <"Total nominal amount of the security.">

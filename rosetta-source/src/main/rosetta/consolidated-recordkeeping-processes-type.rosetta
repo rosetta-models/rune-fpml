@@ -14,26 +14,26 @@ type NonpublicExecutionReport extends CorrectableRequestMessage: <"Non public ex
 
     asOfDate IdentifiedDate (0..1) <"The date for which this document reports positions and valuations.">
     asOfTime time (0..1) <"The time for which this report was generated (i.e., the cut-off time of the report).">
-    portfolioReference PortfolioReferenceBase (0..1)
-    originatingEvent OriginatingEvent (0..1)
-    trade Trade (0..1)
+    portfolioReference PortfolioReferenceBase (0..1) <"A reference structure identifying the portfolio to which the response message relates within the applicable messaging process.">
+    originatingEvent OriginatingEvent (0..1) <"Identifies the business event that caused generation of the non-public execution report, using an applicable coding scheme.">
+    trade Trade (0..1) <"The trade associated with the execution or lifecycle event reported for non-public regulatory recordkeeping.">
     tradingEvent TradingEventSummary (0..*) <"This is provided to support snapshot reporting that requires trading history. Some implementations are using the \"trade\" event to report the current snapshot of a contract. In these cases it may also be necessary to report the most recent trading event to support regulatory reporting mandates. For this reason the tradingEvent is provided to allow that event to be attached to the trade report.">
-    amendment TradeAmendmentContent (0..1)
-    increase TradeNotionalChange (0..1)
+    amendment TradeAmendmentContent (0..1) <"Records modifications to an existing trade, specifying the updated trade details, agreement terms, and any related payments or notional changes.">
+    increase TradeNotionalChange (0..1) <"Reflects a change in the trade\'s notional amount or size, capturing adjustments to its economic terms, including price and quantity modifications.">
     terminatingEvent TerminatingEvent (0..1) <"This may be used to describe why a trade was terminated.">
-    termination TradeNotionalChange (0..1)
-    novation TradeNovationContent (0..1)
-    withdrawal Withdrawal (0..1)
-    observation ObservationEvent (0..*)
-    reset ResetEvent (0..*)
-    change TradeChangeContent (0..1)
+    termination TradeNotionalChange (0..1) <"Documents the full or partial closure of a trade, reducing or eliminating its notional exposure, often due to settlement, early closeout, or expiration.">
+    novation TradeNovationContent (0..1) <"Represents the transfer of a trade from one counterparty to another, detailing the original and new trades, fees, payment obligations, and updated contractual terms.">
+    withdrawal Withdrawal (0..1) <"Indicates the removal or cancellation of a trade from reporting or processing systems, including identifiers, reasons, effective date, and requested actions.">
+    observation ObservationEvent (0..*) <"Captures a recorded market event, including date, time, price, rate type, and source, often used in derivatives pricing or index calculations.">
+    reset ResetEvent (0..*) <"Defines the periodic adjustment of a trade\'s rate or value, specifying the reference trade, date, calculated reset value, and any relevant details affecting financial terms.">
+    change TradeChangeContent (0..1) <"Represents the change event associated with a trade.">
     optionExercise OptionExercise (0..1) <"A structure describing an option exercise event. The optionExercise event supports partial exercise (specify the number of options or amount to exercise), full exercise (use fullExercise flag), as well as the option to request options not to be exercised.">
     optionExpiry OptionExpiry (0..*) <"A structure describing an option expiring event (i.e. passing its last exercise time and becoming worthless.)">
     optionEvent OptionEvent (0..1) <"A structure describing knock in, knock out, touch and no touch events.">
-    additionalEvent AdditionalEvent (0..1)
+    additionalEvent AdditionalEvent (0..1) <"Specifies a customized business event constituting the subject of the non-public execution report beyond the defined standard trade lifecycle event forms.">
     quote BasicQuotation (0..*) <"Pricing information for the trade.">
     scheduledDate ScheduledDateBase (0..*) <"Upcoming important dates for the trade. Added to support CFTC Amendments to Part 43/45 (Published November 2020).">
-    collateralization RegulatoryReportingCollateralization (0..2)
+    collateralization RegulatoryReportingCollateralization (0..2) <"Collateral information associated with the reported trade or lifecycle event and supplied for non-public regulatory recordkeeping and reporting.">
     party Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
     account Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
@@ -235,24 +235,24 @@ type NonpublicExecutionReportException extends Exception: <"Exception message fo
 type NonpublicExecutionReportRetracted extends NonCorrectableRequestMessage: <"Retraction message for nonpublicExecutionReport.">
     [rootType]
 
-    originatingEvent OriginatingEvent (0..1)
-    trade Trade (0..1)
+    originatingEvent OriginatingEvent (0..1) <"Provides a scheme-qualified code identifying the event that originated the non-public execution report being retracted.">
+    trade Trade (0..1) <"The trade associated with the execution report being retracted, providing transaction details relevant to its identification and regulatory recordkeeping.">
     tradingEvent TradingEventSummary (0..*) <"This is provided to support snapshot reporting that requires trading history. Some implementations are using the \"trade\" event to report the current snapshot of a contract. In these cases it may also be necessary to report the most recent trading event to support regulatory reporting mandates. For this reason the tradingEvent is provided to allow that event to be attached to the trade report.">
-    amendment TradeAmendmentContent (0..1)
-    increase TradeNotionalChange (0..1)
+    amendment TradeAmendmentContent (0..1) <"Records modifications to an existing trade, specifying the updated trade details, agreement terms, and any related payments or notional changes.">
+    increase TradeNotionalChange (0..1) <"Reflects a change in the trade\'s notional amount or size, capturing adjustments to its economic terms, including price and quantity modifications.">
     terminatingEvent TerminatingEvent (0..1) <"This may be used to describe why a trade was terminated.">
-    termination TradeNotionalChange (0..1)
-    novation TradeNovationContent (0..1)
-    withdrawal Withdrawal (0..1)
-    observation ObservationEvent (0..*)
-    reset ResetEvent (0..*)
-    change TradeChangeContent (0..1)
+    termination TradeNotionalChange (0..1) <"Documents the full or partial closure of a trade, reducing or eliminating its notional exposure, often due to settlement, early closeout, or expiration.">
+    novation TradeNovationContent (0..1) <"Represents the transfer of a trade from one counterparty to another, detailing the original and new trades, fees, payment obligations, and updated contractual terms.">
+    withdrawal Withdrawal (0..1) <"Indicates the removal or cancellation of a trade from reporting or processing systems, including identifiers, reasons, effective date, and requested actions.">
+    observation ObservationEvent (0..*) <"Captures a recorded market event, including date, time, price, rate type, and source, often used in derivatives pricing or index calculations.">
+    reset ResetEvent (0..*) <"Defines the periodic adjustment of a trade\'s rate or value, specifying the reference trade, date, calculated reset value, and any relevant details affecting financial terms.">
+    change TradeChangeContent (0..1) <"Represents the change event associated with a trade.">
     optionExercise OptionExercise (0..1) <"A structure describing an option exercise event. The optionExercise event supports partial exercise (specify the number of options or amount to exercise), full exercise (use fullExercise flag), as well as the option to request options not to be exercised.">
     optionExpiry OptionExpiry (0..*) <"A structure describing an option expiring event (i.e. passing its last exercise time and becoming worthless.)">
     optionEvent OptionEvent (0..1) <"A structure describing knock in, knock out, touch and no touch events.">
-    additionalEvent AdditionalEvent (0..1)
-    primaryAssetClass AssetClass (0..1)
-    tradeIdentifier PartyTradeIdentifier (0..1)
+    additionalEvent AdditionalEvent (0..1) <"Identifies a customized business event to which the retraction of the non-public execution report relates.">
+    primaryAssetClass AssetClass (0..1) <"Identifies, using an asset classification scheme, the principal asset category of the transaction or business event referenced by the retracted non-public execution report.">
+    tradeIdentifier PartyTradeIdentifier (0..1) <"Identifies the trade whose non-public execution report is being retracted, using one or more identifiers allocated by a party, including any link identifier associating it with related trades.">
     eventIdentifier BusinessEventIdentifier (0..2) <"Individual parties should only use a single event identifier to identify a retraction. Platforms providing services on behalf of both parties in a transaction may provide event identifiers for both parties; in this case it is up to the recipient (the trade repository) to validate that the event IDs refer to the same event.">
     relatedParty RelatedParty (0..*) <"This may be used to identify one or more parties that perform a role within the transaction. If this is within a partyTradeInformation block, the related party performs the role with respect to the party identifie by the \"partyReference\" in the partyTradeInformation block.">
     party Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
@@ -444,8 +444,8 @@ type RegulatoryDisclosure extends AddressedMessage: <"DEPRECATED. Not in use (RP
     eventId EventId (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). A unique event identifier.">
     eventType EventTaxonomy (1..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). A structured code indicating the event type.">
     eventTimestamps EventTimestamps (1..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Various timestamps related to the event.">
-    reportingPartyReference PartyReference (1..1) <"A reference to the reporting party.">
-    counterPartyReference PartyReference (1..1) <"A reference to the reporting party.">
+    reportingPartyReference PartyReference (1..1) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). A reference to the reporting party.">
+    counterPartyReference PartyReference (1..1) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). A reference to the reporting party.">
     notionalChange NotionalChangeEnum (0..1) <"Indication as to whether the transaction is an increase or decrease of notional of a derivative contract. Only applies when there is change in notional for a derivative contract">
     changeInNotional MoneyRef (0..*) <"The change in notional amount for a prior report as a result of this event. The current notional will be reported in the trade itself. This corresponds to MiFIR Nominal or Monetary amount values; these can be distinguished by the esmaNotionalType indicator.">
     changeInNumberOfOptions AmountRef (0..*) <"The change in nominal amount from a prior report as a result of this event. The current number of options will be reported in the trade itself. This corresponds to the MiFIR \"units\" value.">
@@ -462,33 +462,33 @@ type RegulatoryDisclosure extends AddressedMessage: <"DEPRECATED. Not in use (RP
     condition Choice:
         optional choice changeInNotional, changeInNumberOfOptions, changeInQuantity
 
-type RegulatoryReportingAcknowledgement extends Message: <"Used to report that a regulatory reporting message (e.g. regulatory disclosure or withdrawal) was processed successfully, and the status of reporting to any regulators. A type defining an acknowledgement to a regulatory reporting submission, e.g. regulatoryDisclosure or regulatoryWithdrawal.">
+type RegulatoryReportingAcknowledgement extends Message: <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). Used to report that a regulatory reporting message (e.g. regulatory disclosure or withdrawal) was processed successfully, and the status of reporting to any regulators. DEPRECATED. Not in use (RPTWG decision 2025-09-25). A type defining an acknowledgement to a regulatory reporting submission, e.g. regulatoryDisclosure or regulatoryWithdrawal.">
     [rootType]
 
-    header ResponseMessageHeader (0..1) <"Standard FpML message header">
-    tradeIdentifier PartyTradeIdentifier (0..1) <"identifies the affected trade">
-    reportingStatus ReportingStatus (0..*) <"Information about how the position is being reported to regulators.">
-    additionalData AdditionalData (0..1)
-    party Party (0..*) <"Reference information about parties, business units, and persons involed in the trade.">
+    header ResponseMessageHeader (0..1) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). Standard FpML message header">
+    tradeIdentifier PartyTradeIdentifier (0..1) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). identifies the affected trade">
+    reportingStatus ReportingStatus (0..*) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). Information about how the position is being reported to regulators.">
+    additionalData AdditionalData (0..1) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25).">
+    party Party (0..*) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). Reference information about parties, business units, and persons involed in the trade.">
 
-type RegulatoryReportingException extends Message: <"Used to report that a regulatory reporting message was not processed successfully, and the reasons for that. A type defining the basic content for a message sent to inform another system that some exception has been detected in a regulatory reporting message.">
+type RegulatoryReportingException extends Message: <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). Used to report that a regulatory reporting message was not processed successfully, and the reasons for that. DEPRECATED. Not in use (RPTWG decision 2025-09-25). A type defining the basic content for a message sent to inform another system that some exception has been detected in a regulatory reporting message.">
     [rootType]
 
-    header ExceptionMessageHeader (0..1)
+    header ExceptionMessageHeader (0..1) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25).">
     reason Reason (0..*) <"An instance of the Reason type used to record the nature of any errors associated with a message.">
     additionalData AdditionalData (0..1) <"Any string of additional data that may help the message processor, for example in a rejection message this might contain a code value or the text of the original request (within a CDATA section).">
 
-type RegulatoryWithdrawal extends AddressedMessage: <"Message used to request withdrawal from one or more jurisdictions. A type defining the message used to request withdrawal from one or more jurisdictions.">
+type RegulatoryWithdrawal extends AddressedMessage: <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). Message used to request withdrawal from one or more jurisdictions. DEPRECATED. Not in use (RPTWG decision 2025-09-25). A type defining the message used to request withdrawal from one or more jurisdictions.">
     [rootType]
 
-    onBehalfOf OnBehalfOf (0..4) <"Indicates which party (or parties) (and accounts) a trade or event is being processed for. Normally there will only be a maximum of 2 parties, but in the case of a novation there could be a transferor, transferee, remaining party, and other remaining party. Also, in the context of a trade package there could be several parties for which limit check is requested, necessitating multiple onBehalfOf elements. Except for these cases, there should be no more than two onBehalfOf references in a message.">
-    tradeIdentifier PartyTradeIdentifier (0..1) <"identifies the affected trade">
-    primaryAssetClass AssetClass (0..1) <"The asset class of the underlying product.">
-    inapplicableRegulation InapplicableRegulation (1..*) <"Indicates which regulation the trade is to withdrawn from. At least one child element must be selected.">
-    withdrawalReason NormalizedString (0..1)
-    fullyWithdrawn boolean (1..1) <"Indicates if the trade is now fully withdrawn from all regulatory reports. This can be used by a trade repository to perform a consistency check. For instance, if \"fullyWithdrawn\" is \"true\" but the TR believes that the trade is still reportable to at least one regulator, it could report an exception with the identity of that regulator. Or if \"fullyWithdrawn\" is false but the TR believes that the trade is no longer reportable to any regulator, the TR should report that fact.">
-    relatedParty RelatedParty (0..*)
-    party Party (0..*) <"The supporting party definitions.">
+    onBehalfOf OnBehalfOf (0..4) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). Indicates which party (or parties) (and accounts) a trade or event is being processed for. Normally there will only be a maximum of 2 parties, but in the case of a novation there could be a transferor, transferee, remaining party, and other remaining party. Also, in the context of a trade package there could be several parties for which limit check is requested, necessitating multiple onBehalfOf elements. Except for these cases, there should be no more than two onBehalfOf references in a message.">
+    tradeIdentifier PartyTradeIdentifier (0..1) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). identifies the affected trade">
+    primaryAssetClass AssetClass (0..1) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). The asset class of the underlying product.">
+    inapplicableRegulation InapplicableRegulation (1..*) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). Indicates which regulation the trade is to withdrawn from. At least one child element must be selected.">
+    withdrawalReason NormalizedString (0..1) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25).">
+    fullyWithdrawn boolean (1..1) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). Indicates if the trade is now fully withdrawn from all regulatory reports. This can be used by a trade repository to perform a consistency check. For instance, if \"fullyWithdrawn\" is \"true\" but the TR believes that the trade is still reportable to at least one regulator, it could report an exception with the identity of that regulator. Or if \"fullyWithdrawn\" is false but the TR believes that the trade is no longer reportable to any regulator, the TR should report that fact.">
+    relatedParty RelatedParty (0..*) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25).">
+    party Party (0..*) <"DEPRECATED. Not in use (RPTWG decision 2025-09-25). The supporting party definitions.">
 
 type ESMAContractType:
 
@@ -497,8 +497,8 @@ type ESMAContractType:
 
 type ESMACreditDetails:
 
-    seniority ESMACreditSeniority (0..1)
-    indexFactor NonNegativeDecimal (0..*)
+    seniority ESMACreditSeniority (0..1) <"A scheme-qualified code identifying the seniority classification assigned to the credit instrument for regulatory recordkeeping and reporting.">
+    indexFactor NonNegativeDecimal (0..*) <"Specifies the non-negative factor applicable to a credit index in the transaction details provided for ESMA regulatory reporting.">
 
 type ESMACreditSeniority:
 
@@ -512,17 +512,17 @@ type ESMADeliveryType:
 
 type ESMAIndexIdentification:
 
-    code ESMABenchmarkIndexCode (0..1)
-    name ESMAIndexName (0..1)
+    code ESMABenchmarkIndexCode (0..1) <"The ESMA benchmark index code used to identify the index in regulatory recordkeeping and trade reporting submissions.">
+    name ESMAIndexName (0..1) <"The textual designation used to identify the relevant index for ESMA reporting in place of its benchmark index code.">
 
     condition Choice:
         one-of
 
 type ESMAProductUnderlyer:
 
-    instrumentId InstrumentId (0..*)
-    index ESMAIndexIdentification (0..1)
-    maturityDate zonedDateTime (0..1)
+    instrumentId InstrumentId (0..*) <"A scheme-qualified short-form unique identifier for the security serving as the underlyer of the product reported to ESMA.">
+    index ESMAIndexIdentification (0..1) <"Identifies the index serving as the underlying reference for the product in an ESMA regulatory record.">
+    maturityDate zonedDateTime (0..1) <"Specifies the maturity date of the underlying instrument or index for identification in ESMA regulatory reporting.">
 
     condition Choice0:
         optional choice instrumentId, index
@@ -538,11 +538,11 @@ type EventTimestamps: <" DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
     executionDateTime zonedDateTime (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). When the event was executed.">
     effectiveDate zonedDateTime (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). When the event is actually effective from">
 
-type InapplicableRegulation:
+type InapplicableRegulation: <"Identifies a supervisory body, optionally qualified by one or more regulations, or an individual regulation, as inapplicable to the reported record, with an optional coded withdrawal reason.">
 
-    supervisoryBody string (0..1)
-    regulation RegulationName (0..*)
-    withdrawalReasonCode ReasonCode (0..1)
+    supervisoryBody string (0..1) <"Identifies the supervisory authority associated with the regulations determined to be inapplicable for the relevant regulatory submission.">
+    regulation RegulationName (0..*) <"Identifies a regulation determined to be inapplicable to the regulatory reporting submission, using the applicable regulation coding scheme.">
+    withdrawalReasonCode ReasonCode (0..1) <"A machine-interpretable code specifying the reason for withdrawing the identified regulation or supervisory body’s regulations as applicable to the reported transaction.">
 
     condition Choice:
         if supervisoryBody is absent then regulation exists
@@ -558,8 +558,8 @@ type RegReportingCDE extends RegulatoryClassification: <"DEPRECATED. Not in use 
 
 type RegReportingPackageInfo:
 
-    packageIdentifier IssuerTradeId (0..1)
-    pacakageWithNonReportableComponent boolean (0..1)
+    packageIdentifier IssuerTradeId (0..1) <"Identifies the regulatory reporting package using a two-part identifier assigned by an issuer, such as a USI.">
+    pacakageWithNonReportableComponent boolean (0..1) <"Indicates whether the regulatory reporting package identified by the associated package identifier contains a component that is not reportable.">
 
 type RegulationDetails: <" DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
 
@@ -615,8 +615,8 @@ type RegulatoryClassificationEMIR_2015 extends RegulatoryClassification: <"DEPRE
     counterPartyisEEA boolean (0..1) <"DEPRECATED. Not in use (RPTWG decision 2024-12-12). Indicates whether the counterparty is in the European Economic Area">
     contractType ESMAContractType (0..1) <"ESMA prodcut classification">
     deliveryType ESMADeliveryType (0..1) <"ESMA delivery type">
-    creditDetails ESMACreditDetails (0..1)
-    underlyer ESMAProductUnderlyer (0..1)
+    creditDetails ESMACreditDetails (0..1) <"Provides the ESMA-specific credit product details used for Level 3 regulatory classification of the reported contract.">
+    underlyer ESMAProductUnderlyer (0..1) <"Specifies the ESMA product underlyer details associated with the reported contract for regulatory recordkeeping and trade reporting.">
 
 type RegulatoryClassificationMAS_2013 extends RegulatoryClassification: <"DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
 
@@ -820,7 +820,7 @@ type RegulatoryClassificationSFTR_2019 extends RegulatoryClassification: <"DEPRE
     reportingLevel ReportingLevel (0..1) <"An indication whether the report is done at trade or position level. DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
     actionType ActionType (0..1) <"SFTR notation to indicate whether the report is New, Modification, Valuation, Collateral update, Error, Correction, Termination / Early Termination or Position component DEPRECATED. Not in use (RPTWG decision 2024-12-12).">
 
-type RegulatoryTradingObligation:
+type RegulatoryTradingObligation: <"A regulatory record indicating whether trading occurred on a venue and, where applicable, whether an exception applies, with the corresponding facility execution exception declaration.">
 
     tradedOnVenue boolean (1..1) <"Whether the particular product must be executed on a SEF or DCM. See to Dodd-Frank section 723(a)(8).">
     exception boolean (0..1) <"Specifies whether the party invoked exception to not execute the trade on facility such as SEF and DCM even though the particular product is mandated to execute on a SEF.">

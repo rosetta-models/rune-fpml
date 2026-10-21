@@ -22,7 +22,7 @@ type FxTargetKnockoutForward extends Product: <"A structured forward product whi
     cashSettlement FxCashSettlementSimple (0..1) <"Cash settlement currency.">
     settlementPeriodSchedule FxTargetSettlementPeriodSchedule (0..1) <"It supports the representation of a matrix/tabular approach of the product by defining a set of settlement periods.">
 
-type FxComplexBarrierBase:
+type FxComplexBarrierBase: <"Specifies the foundational structure for a complex FX barrier condition, including the type, style, scope, and condition under which a trigger rate is observed. It also defines the observation period with optional start and end dates and times.">
 
     id string (0..1) <"Attribute to be able to point to the">
     barrierType FxBarrierTypeSimpleEnum (0..1) <"Specifies the outcome (action) in the event that the barrier is triggered i.e. whether the product becomes active (Knockin) or is extinguished (Knockout).">
@@ -39,7 +39,7 @@ type FxComplexBarrierBaseReference extends Reference: <"Reference to a barrier s
 
     href string (1..1)
 
-type FxCounterCurrencyAmount extends NonNegativeAmountSchedule:
+type FxCounterCurrencyAmount extends NonNegativeAmountSchedule: <"Represents the scheduled amount of the counter currency in an FX transaction. It extends a non-negative amount schedule by specifying the currency and optionally includes a reference to a strike, which may define how the amount is determined based on market conditions or other contract terms.">
 
     strikeReference FxStrikeReference (0..1) <"In case of multiple counter currency notionals, a strike reference to the appropriate strike may be provided.">
 
@@ -55,14 +55,14 @@ type FxExchangedCurrency: <"Indicates the direction who pays and receives a spec
     payerAccountReference AccountReference (0..1) <"A reference to the account responsible for making the payments defined by this structure.">
     receiverPartyReference PartyReference (0..1) <"A reference to the party that receives the payments corresponding to this structure.">
     receiverAccountReference AccountReference (0..1) <"A reference to the account that receives the payments corresponding to this structure.">
-    currency Currency (1..1)
+    currency Currency (1..1) <"The currency paid and received under the exchange, without reference to amount.">
 
 type FxExpirySchedule extends FxSchedule: <"Defines the expiry/observation schedule of the target.">
 
     finalExpiryDate zonedDateTime (0..1) <"The final expiry date facilitates informing the final date without having to process all expiry dates in the schedule.">
     expiryTime BusinessCenterTime (0..1) <"Time of expiration of each expiry date.">
 
-type FxKnockoutCount:
+type FxKnockoutCount: <"The knockout condition of an FX target expressed as a count of fixings: the number of in-the-money fixings after which the structure terminates, and whether settlement is made when the knockout occurs.">
 
     conditionalFixings int (1..1) <"Number of fixings that are in the money. No accumulation process.">
     settlementAtKnockout boolean (1..1) <"Whether there is settlement at knockout.">
@@ -83,7 +83,7 @@ type FxLevelReference extends Reference: <"Reference to a level structure.">
 
     href string (1..1)
 
-type FxOutstandingGain:
+type FxOutstandingGain: <"Represents the remaining gain of an FX structure relative to a defined target. It includes a reference to the target (targetReference) and optionally specifies how settlement should be adjusted (settlementAdjustmentStyle), using a predefined enumeration of adjustment methods.">
 
     targetReference FxTargetReference (1..1) <"Reference to a target structure within the product.">
     settlementAdjustmentStyle FxSettlementAdjustmentMethodEnum (0..1) <"The Settlement Adjustment Style can be VariedStrike or VariedNotional.">
@@ -110,7 +110,7 @@ type FxSchedule: <"The FxSchedule may be expressed as explicit adjusted dates, o
     observationFrequency ObservationFrequency (0..1) <"Defines the frequency at which calculation period end dates occur within the period schedule and their roll date convention.">
     dayType DayTypeEnum (0..1) <"A day type classification, e.g. Business, Calendar, etc.">
     businessCentersReference BusinessCentersReference (0..1) <"A pointer style reference to a set of financial business centers defined elsewhere in the document. This set of business centers is used to determine whether a particular day is a business day or not.">
-    businessCenters BusinessCenters (0..1)
+    businessCenters BusinessCenters (0..1) <"A set of financial business centers specified directly for use in determining whether a particular day is a business day.">
     dateOffset FxDateOffset (0..1) <"The representation of the schedule as an offset relative to another schedule. For example, the settlement schedule may be relative to the expiry schedule by an FxForward offset.">
 
     condition Choice0:
@@ -172,12 +172,12 @@ type FxScheduleReference extends Reference: <"Reference to a FX Schedule structu
 
     href string (1..1)
 
-type FxSettlementPeriodBarrier:
+type FxSettlementPeriodBarrier: <"Defines a barrier condition tied to an FX settlement period. It optionally references a predefined complex barrier (barrierReference) and specifies a decimal triggerRate at which the barrier becomes effective during the settlement period.">
 
     barrierReference FxComplexBarrierBaseReference (0..1) <"Reference to the barrier structure within the parametric representation of the product.">
     triggerRate number (1..1) <"Barrier trigger rate.">
 
-type FxSettlementSchedule extends FxSchedule:
+type FxSettlementSchedule extends FxSchedule: <"Specifies the schedule for FX settlement dates, extending the generic FxSchedule structure. It allows for the definition of multiple settlement dates—either explicitly or using parametric rules—and may include a finalSettlementDate to indicate the last date of settlement in the series.">
 
     finalSettlementDate zonedDateTime (0..1) <"The final settlement date facilitates informing the final date without having to process all settlement dates in the schedule.">
 
@@ -187,17 +187,17 @@ type FxStrikeReference extends Reference: <"Reference to a strike structure.">
 
     href string (1..1)
 
-type FxTarget:
+type FxTarget: <"Defines the target payout mechanism for an FX structure based on either a knockout level or a knockout count. It includes one or two accumulationRegion elements, which define value ranges where gains can accumulate, and then specifies either a monetary or counting condition that triggers a knockout.">
 
     id string (0..1)
-    accumulationRegion FxTargetAccumulationRegion (1..2)
-    knockoutLevel FxKnockoutLevel (0..1)
-    knockoutCount FxKnockoutCount (0..1)
+    accumulationRegion FxTargetAccumulationRegion (1..2) <"Specifies a region in the FX rate space where value accumulation occurs. The region is bounded by either an upper bound alone or both lower and upper bounds, and may include an optional multiplier to weight the accumulated amount.">
+    knockoutLevel FxKnockoutLevel (0..1) <"The knockout condition of an FX target expressed as a target level: the cumulative amount or intrinsic value which, once reached, terminates the structure, together with the target style and any settlement adjustment applied on knockout.">
+    knockoutCount FxKnockoutCount (0..1) <"Defines a knockout trigger based on a predefined number of qualifying FX fixings (conditionalFixings). It also indicates whether settlement should occur immediately when the knockout is triggered.">
 
     condition Choice:
         required choice knockoutLevel, knockoutCount
 
-type FxTargetAccumulationRegion:
+type FxTargetAccumulationRegion: <"Specifies a region in the FX rate space where value accumulation occurs. The region is bounded by either an upper bound alone or both lower and upper bounds, and may include an optional multiplier to weight the accumulated amount.">
 
     upperBound FxTargetRegionUpperBound (0..1) <"Defines the upper bound of a payoff region.">
     lowerBound FxTargetRegionLowerBound (0..1) <"Defines the lower bound of a payoff region.">
@@ -206,11 +206,11 @@ type FxTargetAccumulationRegion:
     condition Choice:
         lowerBound exists or upperBound exists
 
-type FxTargetBarrier extends FxComplexBarrierBase:
+type FxTargetBarrier extends FxComplexBarrierBase: <"Defines a complex FX barrier feature with an optional rebate applicable to target structures. It extends a general barrier structure by adding the possibility of a rebate if the barrier condition is triggered. This type is commonly used in structured FX products involving conditional payoffs.">
 
     rebate FxTargetRebate (0..1) <"A rebate payable in the event of knockout. This element may be produced in conjunction with a Global Knockout barrier (barrierType = \"Knockout\" scope = \"Global\"), and must be omitted otherwise.">
 
-type FxTargetConstantPayoff:
+type FxTargetConstantPayoff: <"Defines a payout structure in an FX target product where a specific amount may be paid if the underlying exchange rate remains within certain bounds. The boundaries are defined by upper and/or lower thresholds, and the payout can be specified in advance. Optionally, the payoff may be delivered through physical rather than cash settlement.">
 
     payerPartyReference PartyReference (0..1) <"A reference to the party responsible for making the payments defined by this structure.">
     payerAccountReference AccountReference (0..1) <"A reference to the account responsible for making the payments defined by this structure.">
@@ -235,7 +235,7 @@ type FxTargetConstantPayoffRegion extends FxTargetPayoffRegion: <"A fixing regio
     upperBound FxTargetRegionUpperBound (0..1) <"Defines the upper bound of a payoff region.">
     lowerBound FxTargetRegionLowerBound (0..1) <"Defines the lower bound of a payoff region.">
     payoff FxTargetConstantPayoff (0..1) <"A binary|digital payoff, expressed either as a cash payment, or a (non-zero) fixing adjustment.">
-    physicalSettlement FxTargetPhysicalSettlement (0..1)
+    physicalSettlement FxTargetPhysicalSettlement (0..1) <"The rules governing physical delivery for the constant-payoff fixing region, including exchanged currencies, settlement value adjustment method, and any strike or exchange-rate reference.">
 
     condition Choice:
         lowerBound exists or upperBound exists
@@ -248,7 +248,7 @@ type FxTargetKnockoutForwardChoice:
     condition Choice:
         optional choice constantPayoffRegion, linearPayoffRegion
 
-type FxTargetLeverage:
+type FxTargetLeverage: <"Specifies a conditional leverage mechanism within an FX target product. When a defined condition on the underlying exchange rate is met, it applies either a leverage ratio or adjusts the notional and counter-currency amounts according to a predefined schedule. This allows modeling of scenarios where exposure increases or payout changes dynamically based on market triggers.">
 
     id string (0..1)
     condition ConditionEnum (1..1) <"Condition in which leverage applies.">
@@ -282,7 +282,7 @@ type FxTargetLinearPayoffRegion extends FxTargetPayoffRegion: <"A fixing region 
     leverage FxTargetLeverage (0..1) <"Notional leverage.">
     payoffCap FxPayoffCap (0..*) <"The amount of gain on the client upside or firm upside is limited. If spot settles above the cap, or below the floor, the payout is adjusted to limit the gain. The adjustment may be made by varying the strike, or by maintaining the strike, but varying the payout notionals.">
 
-type FxTargetPayoffRegion:
+type FxTargetPayoffRegion: <"Serves as an abstract base for defining different types of payoff conditions in FX target structures.">
 
     id string (0..1)
 
@@ -298,7 +298,7 @@ type FxTargetRebate: <"A rebate can be expressed as a payment amount or as amoun
     condition Choice:
         one-of
 
-type FxTargetRegionLowerBound:
+type FxTargetRegionLowerBound: <"Defines the lower boundary for an FX target range condition. It specifies the direction of comparison using a condition and references a value or reference point (such as a strike, pivot, or barrier) that determines where the lower limit is applied.">
 
     condition FxRegionLowerBoundDirectionEnum (1..1) <"AtOrAbove, Above.">
     level FxLevel (0..1) <"Level expressed as a level with optional steps different from strike, pivot, or barrier.">
@@ -310,7 +310,7 @@ type FxTargetRegionLowerBound:
     condition Choice:
         required choice level, strikeReference, pivotReference, barrierReference, levelReference
 
-type FxTargetRegionUpperBound:
+type FxTargetRegionUpperBound: <"Specifies the upper boundary for an FX target range condition. Like the lower bound, it includes a directional condition and defines the threshold via a reference or explicit level to indicate the upper limit of applicability.">
 
     condition FxRegionUpperBoundDirectionEnum (1..1) <"AtOrBelow, Below.">
     level FxLevel (0..1) <"Level expressed as a level with optional steps different from strike, pivot, or barrier.">
@@ -332,17 +332,17 @@ type FxTargetSettlementPeriodPayoff: <"Payoff region">
     leverage SettlementPeriodLeverage (0..1) <"Leverage within the period expressed as either an amount or ratio.">
     payoffCap number (0..1) <"The amount of gain on the client upside or firm upside is limited. If spot settles above the cap, or below the floor, the payout is adjusted to limit the gain. The adjustment may be made by varying the strike, or by maintaining the strike, but varying the payout notionals.">
 
-type FxTargetSettlementPeriodSchedule:
+type FxTargetSettlementPeriodSchedule: <"Represents a schedule of settlement periods in an FX target product. It is composed of one or more settlementPeriod elements, each defining the terms and structure of a specific payoff window.">
 
     settlementPeriod FxTargetSettlementPeriod (1..*) <"Defines each settlement period in the tabular/matrix representation of the product.">
 
-type FxTargetSettlementPeriod extends SettlementPeriod:
+type FxTargetSettlementPeriod extends SettlementPeriod: <"Extends the standard settlement period structure by including additional FX-specific elements. It may define a pivot level for reference, a list of payoff components, and optional barrier elements that influence whether or how the payoff occurs during the period.">
 
     pivot number (0..1) <"Pivot for the settlement period. When pivot is present, at least two payoff elements must be present within the settlement period.">
     payoff FxTargetSettlementPeriodPayoff (1..*) <"Payoff Region within the settlement period to link strike with the relevant payoff components.">
     barrier FxSettlementPeriodBarrier (0..*) <"The trigger rate of the barrier (Per Expiry or Global Knockout) for the settlement period.">
 
-type FxTargetPhysicalSettlement:
+type FxTargetPhysicalSettlement: <"Defines the rules for physical delivery in an FX target contract. It includes the currencies exchanged, the method used for adjusting settlement values, and an optional strike or reference to determine the exchange rate.">
 
     exchangedCurrency1 FxExchangedCurrency (1..1) <"Indicates the first direction of who pays and receives a specific currency without specifying the amount.">
     exchangedCurrency2 FxExchangedCurrency (1..1) <"Indicates the second direction of who pays and receives a specific currency without specifying the amount.">
@@ -357,13 +357,13 @@ type FxTargetReference extends Reference: <"Reference to a target structure.">
 
     href string (1..1)
 
-type SettlementPeriod:
+type SettlementPeriod: <"An abstract type that defines the core temporal and financial attributes of a settlement period. It includes the date the period expires, the settlement date when obligations are fulfilled, and the notional amount used to compute the payout. Designed to be extended by more specific settlement structures.">
 
     expiryDate zonedDateTime (1..1) <"Expiry date for the settlement period.">
     settlementDate zonedDateTime (1..1) <"Settlement date for the settlement period.">
     notionalAmount number (1..1) <"Notional Amount for the settlement period.">
 
-type SettlementPeriodFixingDates:
+type SettlementPeriodFixingDates: <"Specifies the schedule of observations used to determine a financial outcome. This can be done by providing a set of specific calendar days, or by defining a time span with a given count of evenly spaced observations.">
 
     fixingDate zonedDateTime (0..*) <"Observation date in a fixing period.">
     startDate zonedDateTime (0..1) <"Start date of the period.">
@@ -382,7 +382,7 @@ type SettlementPeriodFixingDates:
         then fixingDate is absent and startDate is absent and endDate is absent
         else False
 
-type SettlementPeriodLeverage:
+type SettlementPeriodLeverage: <"Describes how the exposure amount is scaled for a given period. This scaling can be expressed directly as a multiplier, or through a base amount and an optional value in a secondary currency.">
 
     ratio number (0..1) <"Leverage expressed as ratio.">
     notionalAmount number (0..1) <"Leverage notional.">
