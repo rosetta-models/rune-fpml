@@ -11,10 +11,29 @@ schemas:
 target:
   defaultNamespace: "fpml.consolidated"
   namespaceDefinition: "fpml definition"
-  namespaceGrouping:
-    groupByNamespace: true
-    regex: "^.*/fpml-(?<name>.*)-(?<version>[0-9]*-[0-9]*)\\.xsd$"
-    captureGroup: "name"
+  namespaceGroupings:
+    # `enum`, `return` and `reporting` are Rune keywords; the general rule would name these
+    # ^enum / return / ^reporting. Java packages named `enum` and `return` do not compile,
+    # and CDM imports these namespaces by their fpml-prefixed names. The first matching
+    # rule wins, so these come before the general one.
+    - groupByNamespace: true
+      regex: "^.*/fpml-enum-[0-9]*-[0-9]*\\.xsd$"
+      groupNamespace: "fpml.consolidated.fpmlenum"
+    - groupByNamespace: true
+      regex: "^.*/fpml-return-swaps-[0-9]*-[0-9]*\\.xsd$"
+      groupNamespace: "fpml.consolidated.fpmlreturn.swaps"
+    - groupByNamespace: true
+      regex: "^.*/fpml-reg-reporting-product-[0-9]*-[0-9]*\\.xsd$"
+      groupNamespace: "fpml.consolidated.reg.fpmlreporting.product"
+    - groupByNamespace: true
+      regex: "^.*/fpml-reg-reporting-shared-[0-9]*-[0-9]*\\.xsd$"
+      groupNamespace: "fpml.consolidated.reg.fpmlreporting.shared"
+    - groupByNamespace: true
+      regex: "^.*/fpml-valuation-reporting-[0-9]*-[0-9]*\\.xsd$"
+      groupNamespace: "fpml.consolidated.valuation.fpmlreporting"
+    - groupByNamespace: true
+      regex: "^.*/fpml-(?<name>.*)-(?<version>[0-9]*-[0-9]*)\\.xsd$"
+      captureGroup: "name"
   nameOverrides:
     "Agent Bank": "AgentBank_Deprecated"
   preferences:

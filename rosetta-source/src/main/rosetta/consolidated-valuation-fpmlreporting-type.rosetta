@@ -1,4 +1,4 @@
-namespace fpml.consolidated.valuation.^reporting : < "fpml definition" >
+namespace fpml.consolidated.valuation.fpmlreporting : < "fpml definition" >
 version "${project.version}"
 
 import fpml.consolidated.doc.*
@@ -14,12 +14,12 @@ type Portfolio: <"Global portfolio element used as a basis for a substitution gr
     partyPortfolioName PartyPortfolioName (0..1) <"The name of the portfolio together with the party that gave the name.">
     tradeId TradeId (0..*) <"Uniquely identifies a trade within a portfolio. Its structure ensures that trades within a portfolio are consistently and unambiguously identified.">
     partyTradeIdentifier PartyTradeIdentifier (0..*) <"Uniquely identifies a trade from the perspective of a specific party. The structure ensures comprehensive tracking of trade lineage and relationships within financial transactions.">
-    portfolio fpml.consolidated.valuation.^reporting.Portfolio (0..*) <"An arbitary grouping of trade references (and possibly other portfolios).">
+    portfolio fpml.consolidated.valuation.fpmlreporting.Portfolio (0..*) <"An arbitary grouping of trade references (and possibly other portfolios).">
 
     condition Choice:
         optional choice tradeId, partyTradeIdentifier
 
-type QueryPortfolio extends fpml.consolidated.valuation.^reporting.Portfolio: <"Global element used to substitute for \"portfolio\". A type representing a portfolio obtained by querying the set of trades held in a repository. It contains trades matching the intersection of all criteria specified using one or more queryParameters or trades matching the union of two or more child queryPortfolios.">
+type QueryPortfolio extends fpml.consolidated.valuation.fpmlreporting.Portfolio: <"Global element used to substitute for \"portfolio\". A type representing a portfolio obtained by querying the set of trades held in a repository. It contains trades matching the intersection of all criteria specified using one or more queryParameters or trades matching the union of two or more child queryPortfolios.">
     [rootType]
 
     queryParameter QueryParameter (0..*) <"Represents a set of search criteria used to filter or retrieve a specific subset of financial trades or assets from a broader portfolio.">
@@ -68,7 +68,7 @@ type ValuationReportException extends Exception: <"A top-level message informing
 
 type PortfolioValuationItem: <"A type used in valuation enquiry messages which relates a portfolio to its trades and current value.">
 
-    portfolio fpml.consolidated.valuation.^reporting.Portfolio (0..1) <"Portfolio identifier">
+    portfolio fpml.consolidated.valuation.fpmlreporting.Portfolio (0..1) <"Portfolio identifier">
     tradeValuationItem TradeValuationItem (0..*) <"Zero or more trade valuation items.">
     valuationSet ValuationSet (0..1) <"The portfolio valuation.">
 
