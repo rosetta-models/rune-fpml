@@ -1,0 +1,266 @@
+{
+  "fpmlVersion" : "5-14",
+  "trade" : [ {
+    "tradeHeader" : {
+      "partyTradeIdentifier" : [ {
+        "partyReference" : {
+          "href" : "partyA"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "COA1234567",
+            "tradeIdScheme" : "http://www.companyA.com/spec/2001/trade-id-1-0"
+          }
+        } ]
+      }, {
+        "partyReference" : {
+          "href" : "partyB"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "COB7654321",
+            "tradeIdScheme" : "http://www.companyB.com/spec/2001/trade-id-1-0"
+          }
+        } ]
+      } ],
+      "tradeDate" : {
+        "value" : "2012-04-10T00:00:00Z"
+      }
+    },
+    "product" : {
+      "buyerPartyReference" : {
+        "href" : "partyA"
+      },
+      "sellerPartyReference" : {
+        "href" : "partyB"
+      },
+      "optionType" : "Put",
+      "commodity" : {
+        "instrumentId" : [ {
+          "value" : "NATURAL GAS-LOUISIANA (HENRY HUB)-GAS DAILY",
+          "instrumentIdScheme" : "http://www.companyA.com/coding-scheme/commodity-reference-price"
+        } ],
+        "commodityBase" : {
+          "value" : "Natural Gas"
+        },
+        "commodityDetails" : {
+          "value" : "Louisiana (Henry Hub)"
+        },
+        "unit" : {
+          "value" : "MMBTU"
+        },
+        "currency" : {
+          "value" : "USD"
+        },
+        "publication" : {
+          "rateSource" : {
+            "value" : "Gas-Daily"
+          },
+          "rateSourcePage" : {
+            "value" : "Daily price survey ($/MMBtu: Louisiana-Onshore South"
+          },
+          "rateSourcePageHeading" : "Henry Hub"
+        },
+        "specifiedPrice" : "Midpoint"
+      },
+      "effectiveDate" : {
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2012-09-01T00:00:00Z"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NONE"
+          }
+        }
+      },
+      "terminationDate" : {
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2012-09-30T00:00:00Z"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NONE"
+          }
+        }
+      },
+      "calculationPeriodsSchedule" : {
+        "id" : "calculationPeriodsSchedule",
+        "periodMultiplier" : 1,
+        "period" : "T",
+        "balanceOfFirstPeriod" : true
+      },
+      "pricingDates" : {
+        "calculationPeriodsScheduleReference" : {
+          "href" : "calculationPeriodsSchedule"
+        },
+        "dayType" : "CommodityBusiness",
+        "dayDistribution" : {
+          "value" : "All"
+        }
+      },
+      "notionalQuantity" : {
+        "quantityUnit" : {
+          "value" : "MMBTU"
+        },
+        "quantityFrequency" : {
+          "value" : "PerCalendarDay"
+        },
+        "quantity" : 10000
+      },
+      "totalNotionalQuantity" : 300000,
+      "exercise" : {
+        "europeanExercise" : {
+          "id" : "exerciseDate",
+          "expirationDate" : [ {
+            "relativeDate" : {
+              "periodMultiplier" : 0,
+              "period" : "D",
+              "dayType" : "Business",
+              "businessDayConvention" : "NONE",
+              "dateRelativeTo" : {
+                "href" : "calculationPeriodsSchedule"
+              }
+            }
+          } ]
+        },
+        "automaticExercise" : true,
+        "settlementCurrency" : {
+          "value" : "USD"
+        },
+        "paymentDates" : {
+          "relativeDate" : {
+            "periodMultiplier" : 5,
+            "period" : "D",
+            "dayType" : "Business",
+            "businessDayConvention" : "MODFOLLOWING",
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "USNY"
+              } ]
+            },
+            "dateRelativeTo" : {
+              "href" : "exerciseDate"
+            }
+          }
+        }
+      },
+      "floatingStrikePricePerUnit" : {
+        "pricingDates" : {
+          "id" : "pricingDates",
+          "calculationPeriodsScheduleReference" : {
+            "href" : "calculationPeriodsSchedule"
+          },
+          "dayType" : "CommodityBusiness",
+          "dayDistribution" : {
+            "value" : "First"
+          }
+        },
+        "commodity" : {
+          "instrumentId" : [ {
+            "value" : "NATURAL GAS-S. LOUISIANA (HENRY HUB)-INSIDE FERC",
+            "instrumentIdScheme" : "http://www.companyA.com/coding-scheme/commodity-reference-price-1-0"
+          } ],
+          "commodityBase" : {
+            "value" : "Natural Gas"
+          },
+          "commodityDetails" : {
+            "value" : "Market Center Spot Gas"
+          },
+          "unit" : {
+            "value" : "MMBTU"
+          },
+          "currency" : {
+            "value" : "USD"
+          },
+          "publication" : {
+            "rateSource" : {
+              "value" : "Gas-Daily"
+            },
+            "rateSourcePage" : {
+              "value" : "Daily price survey ($/MMBtu): Louisiana-Onshore South"
+            },
+            "rateSourcePageHeading" : "Henry Hub"
+          },
+          "specifiedPrice" : "Midpoint"
+        }
+      },
+      "premium" : [ {
+        "payerPartyReference" : {
+          "href" : "partyA"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyB"
+        },
+        "paymentDate" : {
+          "adjustableDate" : {
+            "unadjustedDate" : {
+              "value" : "2012-04-12T00:00:00Z"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "FOLLOWING",
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "USNY"
+                } ]
+              }
+            }
+          }
+        },
+        "paymentAmount" : {
+          "currency" : {
+            "value" : "USD"
+          },
+          "amount" : 40500.00
+        },
+        "premiumPerUnit" : {
+          "currency" : {
+            "value" : "USD"
+          },
+          "amount" : 0.135
+        }
+      } ],
+      "marketDisruption" : {
+        "marketDisruptionEvents" : "AsSpecifiedInMasterAgreement",
+        "disruptionFallbacks" : "AsSpecifiedInMasterAgreement"
+      },
+      "rounding" : {
+        "roundingDirection" : "Nearest",
+        "precision" : 4
+      }
+    },
+    "calculationAgent" : {
+      "calculationAgentPartyReference" : [ {
+        "href" : "partyB"
+      } ]
+    },
+    "documentation" : {
+      "masterAgreement" : {
+        "masterAgreementType" : {
+          "value" : "ISDA"
+        }
+      },
+      "contractualDefinitions" : [ {
+        "value" : "ISDA2005Commodity"
+      } ]
+    }
+  } ],
+  "party" : [ {
+    "id" : "partyA",
+    "partyId" : [ {
+      "value" : "549300U2FJ850G1P3962",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Company A Inc."
+    }
+  }, {
+    "id" : "partyB",
+    "partyId" : [ {
+      "value" : "549300B23HNTO1OHFU87",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Company B Inc."
+    }
+  } ]
+}

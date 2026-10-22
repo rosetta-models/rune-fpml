@@ -1,0 +1,189 @@
+{
+  "fpmlVersion" : "5-14",
+  "trade" : [ {
+    "tradeHeader" : {
+      "partyTradeIdentifier" : [ {
+        "partyReference" : {
+          "href" : "partyA"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "GHJK0987",
+            "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
+          }
+        } ]
+      } ],
+      "tradeDate" : {
+        "value" : "2012-04-10T00:00:00Z"
+      }
+    },
+    "product" : {
+      "buyerPartyReference" : {
+        "href" : "partyB"
+      },
+      "sellerPartyReference" : {
+        "href" : "partyA"
+      },
+      "optionType" : "Put",
+      "commodity" : {
+        "instrumentId" : [ {
+          "value" : "NATURAL GAS-LOUISIANA (HENRY HUB)-GAS DAILY",
+          "instrumentIdScheme" : "http://www.partyA.com/instrumentId/commodity-reference-price"
+        } ],
+        "specifiedPrice" : "Midpoint"
+      },
+      "effectiveDate" : {
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2012-09-01T00:00:00Z"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NotApplicable"
+          }
+        }
+      },
+      "terminationDate" : {
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2012-09-30T00:00:00Z"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NotApplicable"
+          }
+        }
+      },
+      "calculationPeriodsSchedule" : {
+        "id" : "CalculationPeriods",
+        "periodMultiplier" : 1,
+        "period" : "M",
+        "balanceOfFirstPeriod" : false
+      },
+      "pricingDates" : {
+        "id" : "PricingDate",
+        "calculationPeriodsReference" : {
+          "href" : "CalculationPeriods"
+        },
+        "dayType" : "CommodityBusiness",
+        "dayDistribution" : {
+          "value" : "Last"
+        },
+        "businessCalendar" : {
+          "value" : "GAS-DAILY-PRICE-GUIDE"
+        }
+      },
+      "notionalQuantity" : {
+        "quantityUnit" : {
+          "value" : "MMBTU"
+        },
+        "quantityFrequency" : {
+          "value" : "PerCalendarDay"
+        },
+        "quantity" : 10000
+      },
+      "totalNotionalQuantity" : 300000,
+      "exercise" : {
+        "europeanExercise" : {
+          "expirationDate" : [ {
+            "relativeDate" : {
+              "periodMultiplier" : 0,
+              "period" : "D",
+              "businessDayConvention" : "NotApplicable",
+              "dateRelativeTo" : {
+                "href" : "PricingDate"
+              }
+            }
+          } ]
+        },
+        "automaticExercise" : true,
+        "settlementCurrency" : {
+          "value" : "USD"
+        },
+        "relativePaymentDates" : {
+          "payRelativeTo" : "LastPricingDate",
+          "calculationPeriodsReference" : {
+            "href" : "CalculationPeriods"
+          },
+          "paymentDaysOffset" : {
+            "periodMultiplier" : 5,
+            "period" : "D",
+            "dayType" : "Business",
+            "businessDayConvention" : "MODFOLLOWING"
+          }
+        }
+      },
+      "strikePricePerUnit" : {
+        "currency" : {
+          "value" : "USD"
+        },
+        "amount" : 1.9500
+      },
+      "premium" : [ {
+        "payerPartyReference" : {
+          "href" : "partyB"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyA"
+        },
+        "paymentDate" : {
+          "adjustableDate" : {
+            "unadjustedDate" : {
+              "value" : "2012-04-12T00:00:00Z"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "FOLLOWING"
+            }
+          }
+        },
+        "paymentAmount" : {
+          "currency" : {
+            "value" : "USD"
+          },
+          "amount" : 40500.00
+        },
+        "premiumPerUnit" : {
+          "currency" : {
+            "value" : "USD"
+          },
+          "amount" : 0.135
+        }
+      } ]
+    },
+    "calculationAgent" : {
+      "calculationAgentPartyReference" : [ {
+        "href" : "partyA"
+      } ]
+    },
+    "documentation" : {
+      "masterAgreement" : {
+        "masterAgreementType" : {
+          "value" : "ISDA"
+        },
+        "masterAgreementDate" : "2010-11-10T00:00:00Z"
+      },
+      "contractualDefinitions" : [ {
+        "value" : "ISDA2000"
+      }, {
+        "value" : "ISDA2005Commodity"
+      } ]
+    }
+  } ],
+  "party" : [ {
+    "id" : "partyA",
+    "partyId" : [ {
+      "value" : "5299000NIGT14YW8ZD26",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Bank A"
+    }
+  }, {
+    "id" : "partyB",
+    "partyId" : [ {
+      "value" : "969500QCC36R89FI3U25",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Energy Co."
+    }
+  } ]
+}

@@ -1,0 +1,161 @@
+{
+  "fpmlVersion" : "5-14",
+  "trade" : [ {
+    "tradeHeader" : {
+      "partyTradeIdentifier" : [ {
+        "partyReference" : {
+          "href" : "partyA"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "1234",
+            "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
+          }
+        } ]
+      }, {
+        "partyReference" : {
+          "href" : "partyB"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "2345",
+            "tradeIdScheme" : "http://www.PartyB.com/com-trade-id"
+          }
+        } ]
+      } ],
+      "tradeDate" : {
+        "value" : "2009-01-28T00:00:00Z"
+      }
+    },
+    "product" : {
+      "effectiveDate" : {
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2009-04-01T00:00:00Z"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NotApplicable"
+          }
+        }
+      },
+      "terminationDate" : {
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2009-04-04T00:00:00Z"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NotApplicable"
+          }
+        }
+      },
+      "settlementCurrency" : {
+        "value" : "USD"
+      },
+      "commoditySwapLeg" : [ {
+        "payerPartyReference" : {
+          "href" : "partyA"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyB"
+        },
+        "deliveryPeriods" : {
+          "periodsSchedule" : {
+            "id" : "deliveryPeriods",
+            "periodMultiplier" : 1,
+            "period" : "T",
+            "balanceOfFirstPeriod" : false
+          }
+        },
+        "gas" : {
+          "type" : "NaturalGas"
+        },
+        "deliveryConditions" : {
+          "deliveryPoint" : {
+            "value" : "TW-WTX",
+            "deliveryPointScheme" : "http://www.PartyA.com/commodity-delivery-point-gas-1-0"
+          },
+          "deliveryType" : "Firm"
+        },
+        "deliveryQuantity" : {
+          "id" : "deliveryQuantity",
+          "physicalQuantity" : {
+            "quantityUnit" : {
+              "value" : "MMBTU"
+            },
+            "quantityFrequency" : {
+              "value" : "PerCalendarDay"
+            },
+            "quantity" : 15000.0
+          }
+        }
+      }, {
+        "payerPartyReference" : {
+          "href" : "partyB"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyA"
+        },
+        "calculationPeriodsScheduleReference" : {
+          "href" : "deliveryPeriods"
+        },
+        "commodity" : {
+          "instrumentId" : [ {
+            "value" : "NATURAL GAS-NYMEX",
+            "instrumentIdScheme" : "http://www.fpml.org/spec/2008/commodity-reference-price-1-0"
+          } ],
+          "specifiedPrice" : "Settlement"
+        },
+        "quantityReference" : {
+          "href" : "deliveryQuantity"
+        },
+        "calculation" : {
+          "pricingDates" : {
+            "calculationPeriodsScheduleReference" : {
+              "href" : "deliveryPeriods"
+            },
+            "dayType" : "GasFlow",
+            "dayDistribution" : {
+              "value" : "All"
+            }
+          },
+          "spread" : {
+            "currency" : {
+              "value" : "USD"
+            },
+            "amount" : 15.0
+          }
+        },
+        "masterAgreementPaymentDates" : true
+      } ]
+    },
+    "documentation" : {
+      "masterAgreement" : {
+        "masterAgreementType" : {
+          "value" : "ISDA"
+        }
+      },
+      "contractualDefinitions" : [ {
+        "value" : "ISDA2005Commodity"
+      } ]
+    }
+  } ],
+  "party" : [ {
+    "id" : "partyA",
+    "partyId" : [ {
+      "value" : "549300KFSLY4U7N3LL12",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Bank"
+    }
+  }, {
+    "id" : "partyB",
+    "partyId" : [ {
+      "value" : "549300AJRHKBLY9GM262",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Energy Co."
+    }
+  } ]
+}

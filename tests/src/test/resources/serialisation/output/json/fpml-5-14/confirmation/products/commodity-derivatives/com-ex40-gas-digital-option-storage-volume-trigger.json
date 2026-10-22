@@ -1,0 +1,205 @@
+{
+  "fpmlVersion" : "5-14",
+  "trade" : [ {
+    "tradeHeader" : {
+      "partyTradeIdentifier" : [ {
+        "partyReference" : {
+          "href" : "PartyA"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "ABCD1234",
+            "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
+          }
+        } ]
+      } ],
+      "tradeDate" : {
+        "value" : "2013-05-10T00:00:00Z",
+        "id" : "TradeDate"
+      }
+    },
+    "product" : {
+      "primaryAssetClass" : {
+        "value" : "Commodity"
+      },
+      "productType" : [ {
+        "value" : "Commodity:Energy:NatGas:Option:Cash"
+      } ],
+      "buyerPartyReference" : {
+        "href" : "PartyB"
+      },
+      "sellerPartyReference" : {
+        "href" : "PartyA"
+      },
+      "optionType" : "Call",
+      "commodity" : {
+        "instrumentId" : [ {
+          "value" : "NATURAL GAS-EIA-WEEKLY NATURAL GAS STORAGE REPORT",
+          "instrumentIdScheme" : "http://www.fpml.org/coding-scheme/commodity-reference-price-3-0"
+        } ],
+        "commodityBase" : {
+          "value" : "Natural Gas"
+        },
+        "commodityDetails" : {
+          "value" : "Gas Storage"
+        },
+        "unit" : {
+          "value" : "BCF"
+        },
+        "currency" : {
+          "value" : "USD"
+        },
+        "publication" : {
+          "rateSource" : {
+            "value" : "Energy-Information-Agency"
+          },
+          "rateSourcePage" : {
+            "value" : "Weekly Natural Gas Storage Report"
+          },
+          "rateSourcePageHeading" : "Working Gas in Underground Storage Implied Net Change (Bel) Total Lower 48"
+        },
+        "specifiedPrice" : "Index"
+      },
+      "effectiveDate" : {
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2013-04-10T00:00:00Z"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NONE"
+          }
+        }
+      },
+      "calculationPeriods" : {
+        "id" : "CalculationPeriods",
+        "unadjustedDate" : [ {
+          "value" : "2013-09-29T00:00:00Z"
+        } ],
+        "dateAdjustments" : {
+          "businessDayConvention" : "NONE"
+        }
+      },
+      "pricingDates" : {
+        "calculationPeriodsReference" : {
+          "href" : "CalculationPeriods"
+        },
+        "pricingDates" : [ {
+          "unadjustedDate" : [ {
+            "value" : "2013-09-29T00:00:00Z"
+          } ],
+          "dateAdjustments" : {
+            "businessDayConvention" : "NONE"
+          }
+        } ]
+      },
+      "digital" : {
+        "trigger" : {
+          "levelQuantity" : 62.00,
+          "levelUnit" : {
+            "value" : "BCF"
+          },
+          "triggerType" : "Less"
+        },
+        "featurePaymentAmount" : {
+          "currency" : {
+            "value" : "USD"
+          },
+          "amount" : 20000.00
+        }
+      },
+      "notionalAmount" : {
+        "currency" : {
+          "value" : "USD"
+        },
+        "amount" : 20000.00
+      },
+      "exercise" : {
+        "europeanExercise" : {
+          "id" : "ExpirationDate",
+          "expirationDate" : [ {
+            "adjustableDate" : {
+              "unadjustedDate" : {
+                "value" : "2013-09-29T00:00:00Z"
+              },
+              "dateAdjustments" : {
+                "businessDayConvention" : "NONE"
+              }
+            }
+          } ]
+        },
+        "automaticExercise" : true,
+        "relativePaymentDates" : {
+          "payRelativeTo" : "TerminationOrExpirationDate",
+          "calculationPeriodsScheduleReference" : {
+            "href" : "CalculationPeriods"
+          },
+          "paymentDaysOffset" : {
+            "periodMultiplier" : 5,
+            "period" : "D",
+            "dayType" : "Business",
+            "businessDayConvention" : "NONE"
+          }
+        }
+      },
+      "premium" : [ {
+        "payerPartyReference" : {
+          "href" : "PartyB"
+        },
+        "receiverPartyReference" : {
+          "href" : "PartyA"
+        },
+        "paymentDate" : {
+          "relativeDate" : {
+            "periodMultiplier" : 2,
+            "period" : "D",
+            "dayType" : "Business",
+            "businessDayConvention" : "NONE",
+            "businessCenters" : {
+              "id" : "paymentBusinessCenters",
+              "businessCenter" : [ {
+                "value" : "USNY"
+              } ]
+            },
+            "dateRelativeTo" : {
+              "href" : "TradeDate"
+            }
+          }
+        },
+        "paymentAmount" : {
+          "currency" : {
+            "value" : "USD"
+          },
+          "amount" : 62000.00
+        },
+        "premiumPerUnit" : {
+          "currency" : {
+            "value" : "USD"
+          },
+          "amount" : 0.00001
+        }
+      } ]
+    }
+  } ],
+  "party" : [ {
+    "id" : "PartyA",
+    "partyId" : [ {
+      "value" : "95980020140005196564",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "country" : {
+      "value" : "US"
+    },
+    "organizationType" : [ {
+      "value" : "SD"
+    } ]
+  }, {
+    "id" : "PartyB",
+    "partyId" : [ {
+      "value" : "549300XQFX97CITUR430",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "organizationType" : [ {
+      "value" : "non-SD/MSP"
+    } ]
+  } ]
+}

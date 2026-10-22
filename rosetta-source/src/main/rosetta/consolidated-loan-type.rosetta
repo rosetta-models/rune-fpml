@@ -19,7 +19,7 @@ type Revolver extends AbstractFacility: <"A revolver facility. A facility which 
 
 type TermLoan extends AbstractFacility: <"A term loan facility. A facility which is fully funded (utilized) at deal closing.">
 
-type AccrualOptionChange extends AbstractFacilityEvent: <"An event describing a change to an accrual option associated with a specific facility.">
+type AccrualOptionChange extends AbstractFacilityEvent: <"A facility-level business event recording a change to an accrual option associated with a specific loan facility. An event describing a change to an accrual option associated with a specific facility.">
 
     fixedRateOption FixedRateOption (0..1) <"A structure that represents the accruing fixed rate option associated within a facility.">
     floatingRateOption LoanFloatingRateOption (0..1) <"A structure that represents the accruing floating rate option associated within a facility.">
@@ -63,34 +63,34 @@ type AccrualOptionChange extends AbstractFacilityEvent: <"An event describing a 
                 and loanContractReference is absent
         else False
 
-type AccruingFeeChange extends AbstractFacilityEvent: <"An event describing a future change to an accruing fee associated with a specific facility.">
+type AccruingFeeChange extends AbstractFacilityEvent: <"An event specifying a future change to an accruing fee associated with a specific loan facility. An event describing a future change to an accruing fee associated with a specific facility.">
 
     accruingFeeOption AccruingFeeOption (1..1) <"Defines new rate and the date on which the rate is no longer valid.">
 
-type AccruingFeeExpiry extends AbstractFacilityEvent: <"An event describing a future expiry of one of the accruing fees associated with a specific facility.">
+type AccruingFeeExpiry extends AbstractFacilityEvent: <"A facility-level event describing the future expiry of an accruing fee associated with a specific facility. An event describing a future expiry of one of the accruing fees associated with a specific facility.">
 
     id AccrualTypeId (1..1) <"A unique id associated with the loan accrual type.">
     ^type AccruingFeeType (1..1) <"The accruing fee type which is expiring.">
 
-type AccruingFeePayment extends AbstractFacilityEvent: <"An event describing an accruing fee payment made at the facility level.">
+type AccruingFeePayment extends AbstractFacilityEvent: <"A facility-level event representing payment of an accruing fee associated with the relevant loan facility. An event describing an accruing fee payment made at the facility level.">
 
     id AccrualTypeId (1..1) <"A unique id associated with the loan accrual type.">
     startDate zonedDateTime (1..1) <"Date on which this period begins.">
     endDate zonedDateTime (1..1) <"Date on which this period ends.">
-    amount MoneyWithParticipantShare (1..1)
+    amount MoneyWithParticipantShare (1..1) <"Specifies the monetary value of the accruing fee being paid under a facility agreement. It includes both the total amount and, optionally, the portion of the amount attributable to a participant in the facility.">
     accrualSchedule AccrualPeriod (0..*) <"A schedule that incorporates all sub-periods of an accrual calculation.">
     projection PaymentProjection (0..1) <"Projected interest payment details.">
 
-type AccruingPikPayment extends AbstractFacilityEvent: <"An event representing a payment to facilitate capitalization of interest on all outstanding contracts against a particular facility.">
+type AccruingPikPayment extends AbstractFacilityEvent: <"A payment event facilitating capitalization of interest on all outstanding contracts associated with a particular facility. An event representing a payment to facilitate capitalization of interest on all outstanding contracts against a particular facility.">
 
     startDate zonedDateTime (1..1) <"Date on which this period begins.">
     endDate zonedDateTime (1..1) <"Date on which this period ends.">
-    amount MoneyWithParticipantShare (1..1)
+    amount MoneyWithParticipantShare (1..1) <"Specifies the monetary value of the accruing fee being paid under a facility agreement. It includes both the total amount and, optionally, the portion of the amount attributable to a participant in the facility.">
     accrualSchedule AccrualPeriod (0..*) <"A schedule that incorporates all sub-periods of an accrual calculation.">
 
-type AmendmentFeePayment extends AbstractFacilityPaymentEvent: <"A fee charged to the borrower for an amendment being made to the originally agreed credit agreement. The fee is based on a rate (as stated in the agreement) applied to the current commitment level. Calculated as a percentage of the unutilized portion of the facility.">
+type AmendmentFeePayment extends AbstractFacilityPaymentEvent: <"A borrower fee payment for an amendment to the original credit agreement, calculated by applying the agreed rate to the facility’s current unutilized commitment. A fee charged to the borrower for an amendment being made to the originally agreed credit agreement. The fee is based on a rate (as stated in the agreement) applied to the current commitment level. Calculated as a percentage of the unutilized portion of the facility.">
 
-type CommitmentAdjustment extends AbstractFacilityEvent: <"An event defining a future change in facility commitment.">
+type CommitmentAdjustment extends AbstractFacilityEvent: <"A facility-level event defining an adjustment to the facility commitment that becomes effective in the future. An event defining a future change in facility commitment.">
 
     refusalAllowed boolean (1..1) <"Defines whether the lender has an option to accept or deny the commitment change.">
     scheduled boolean (1..1) <"Defines whether the commitment adjustment is scheduled.">
@@ -99,29 +99,29 @@ type CommitmentAdjustment extends AbstractFacilityEvent: <"An event defining a f
     adjustment Adjustment (1..1) <"Defines the type of adjustment applied - increase or decrease.">
     commitmentSchedule CommitmentSchedule (0..1) <"The amortization schedule associated with the facility commitment.">
 
-type DefaultRateChange extends AbstractFacilityRateChangeEvent: <"An event representing a change in the default rate, applicable to outstanding loans in the event that the borrower is declared to be in default.">
+type DefaultRateChange extends AbstractFacilityRateChangeEvent: <"A facility-level event recording a change to the default rate applicable to outstanding loans when the borrower is declared in default. An event representing a change in the default rate, applicable to outstanding loans in the event that the borrower is declared to be in default.">
 
-type DefaultRateExpiry extends AbstractFacilityContractEvent: <"An event representing expiration of the default rate applicable to borrowers in default.">
+type DefaultRateExpiry extends AbstractFacilityContractEvent: <"An event marking the expiration of the default rate applicable to borrowers that are in default. An event representing expiration of the default rate applicable to borrowers in default.">
 
-type FacilityExtensionFeePayment extends AbstractFacilityPaymentEvent: <"This fee represents any fee paid by the borrower to the syndicate lenders for extending an existing facility.">
+type FacilityExtensionFeePayment extends AbstractFacilityPaymentEvent: <"A fee payment made by the borrower to syndicate lenders for extending an existing loan facility. This fee represents any fee paid by the borrower to the syndicate lenders for extending an existing facility.">
 
-type FacilityPrepayment extends AbstractFacilityEvent: <"A structure that represents the prepayment structure associated within a facility.">
+type FacilityPrepayment extends AbstractFacilityEvent: <"A facility-level business event representing the structure of a prepayment associated with a loan facility. A structure that represents the prepayment structure associated within a facility.">
 
     amount MoneyWithParticipantShare (1..1) <"The amount of the prepayment.">
 
-type FacilityPrepaymentFeePayment extends AbstractFacilityEvent: <"A structure that represents the payment of a facility prepayment fee.">
+type FacilityPrepaymentFeePayment extends AbstractFacilityEvent: <"Payment of a facility prepayment fee associated with prepayment under the applicable loan facility. A structure that represents the payment of a facility prepayment fee.">
 
     amount MoneyWithParticipantShare (1..1) <"A structure representing a facility prepayment fee being made by the borrower.">
 
-type FacilityTermination extends AbstractFacilityEvent: <"An event describing the early termination of a facility.">
+type FacilityTermination extends AbstractFacilityEvent: <"An event recording the early termination of a loan facility before its scheduled termination date. An event describing the early termination of a facility.">
 
-type FundingFeePayment extends AbstractFacilityPaymentEvent: <"A fee associated with the funding requirements for given facility.">
+type FundingFeePayment extends AbstractFacilityPaymentEvent: <"A payment of a fee associated with the funding requirements of a specified loan facility. A fee associated with the funding requirements for given facility.">
 
-type MandatoryCostRateChange extends AbstractFacilityRateChangeEvent: <"An event representing a change in the mandatory cost rate, applicable to certain outstanding loans in the UK market.">
+type MandatoryCostRateChange extends AbstractFacilityRateChangeEvent: <"A change in the mandatory cost rate applicable to certain outstanding loans in the UK market. An event representing a change in the mandatory cost rate, applicable to certain outstanding loans in the UK market.">
 
-type MandatoryCostRateExpiry extends AbstractFacilityContractEvent: <"An event representing expiration of the mandatory cost rate applicable in the UK market.">
+type MandatoryCostRateExpiry extends AbstractFacilityContractEvent: <"An event marking expiration of the mandatory cost rate applicable in the UK market at facility or, optionally, contract level. An event representing expiration of the mandatory cost rate applicable in the UK market.">
 
-type MiscFeePayment extends AbstractFacilityPaymentEvent: <"An event describing a misc (one-off) fee being paid at either the loan contract or facility level.">
+type MiscFeePayment extends AbstractFacilityPaymentEvent: <"An event recording a one-off miscellaneous fee payment at the loan contract or facility level. An event describing a misc (one-off) fee being paid at either the loan contract or facility level.">
 
     ^type MiscFeeType (0..1) <"The misc fee type, based on a scheme.">
     description NonEmptyNormalizedString (0..1) <"A description of the misc fee.">
@@ -129,125 +129,125 @@ type MiscFeePayment extends AbstractFacilityPaymentEvent: <"An event describing 
     condition Choice:
         required choice ^type, description
 
-type PenaltyRateChange extends AbstractFacilityRateChangeEvent: <"An event representing a change in the penalty rate applicable to outstanding loans.">
+type PenaltyRateChange extends AbstractFacilityRateChangeEvent: <"A facility-level rate change event modifying the penalty rate applicable to outstanding loans under the facility. An event representing a change in the penalty rate applicable to outstanding loans.">
 
-type PenaltyRateExpiry extends AbstractFacilityContractEvent: <"An event representing expiration of the penalty rate.">
+type PenaltyRateExpiry extends AbstractFacilityContractEvent: <"An event representing expiration of the penalty rate applicable to a facility or, optionally, a contract. An event representing expiration of the penalty rate.">
 
-type UpfrontFeePayment extends AbstractFacilityPaymentEvent: <"A structure that represents a fee, also known as Participation Fee, Arrangement Fee etc. This fee represents compensation to the members of the lending syndicate (and sometimes to institutional investors as well) in return for their commitment of capital.">
+type UpfrontFeePayment extends AbstractFacilityPaymentEvent: <"An upfront fee payment compensating members of the lending syndicate, and sometimes institutional investors, in return for their commitment of capital. A structure that represents a fee, also known as Participation Fee, Arrangement Fee etc. This fee represents compensation to the members of the lending syndicate (and sometimes to institutional investors as well) in return for their commitment of capital.">
 
-type WaiverFeePayment extends AbstractFacilityPaymentEvent: <"A fee structure that represents a payment made by the borrower to the syndicate lenders for processing and accepting a waiver request. The request is sent by the borrower to obtain approval from the syndicate lenders formally requesting waivers around particular terms of the credit agreement.">
+type WaiverFeePayment extends AbstractFacilityPaymentEvent: <"A payment by the borrower to syndicate lenders for processing and accepting a request to waive specified terms of the credit agreement. A fee structure that represents a payment made by the borrower to the syndicate lenders for processing and accepting a waiver request. The request is sent by the borrower to obtain approval from the syndicate lenders formally requesting waivers around particular terms of the credit agreement.">
 
-type LoanContractAdjustment extends AbstractLoanContractEvent: <"An event representing adjustment in the notional amount of a loan contract that has no cash flow effect. E.g. an amount adjustment due to a defaulted loan.">
+type LoanContractAdjustment extends AbstractLoanContractEvent: <"Adjustment of a loan contract’s notional amount without any cash flow effect, such as an adjustment resulting from loan default. An event representing adjustment in the notional amount of a loan contract that has no cash flow effect. E.g. an amount adjustment due to a defaulted loan.">
 
     adjustment Adjustment (1..1) <"Defines the type of adjustment applied - increase or decrease.">
-    amount MoneyWithParticipantShare (1..1)
+    amount MoneyWithParticipantShare (1..1) <"Specifies the global currency amount of the loan contract notional adjustment and the corresponding lender participant share amount.">
 
-type BaseRateSet extends LoanContractBaseRateSet:
+type BaseRateSet extends LoanContractBaseRateSet: <"An event representing the initial setting of the base rate for a single new loan contract.">
 
-type Borrowing extends AbstractLoanContractEvent: <"An event representing a principal borrowing is being requested by the borrower.">
+type Borrowing extends AbstractLoanContractEvent: <"An event representing a principal borrowing being requested by the borrower under a loan contract. An event representing a principal borrowing is being requested by the borrower.">
 
-    amount MoneyWithParticipantShare (1..1)
+    amount MoneyWithParticipantShare (1..1) <"Specifies the amount borrowed in the loan transaction, optionally including the participant\'s share.">
     conditionsPrecedentMet ConditionsPrecedentMetEnum (0..1) <"An enumeration which describes whether the conditions precedent have been met, not met or been waived. Please note: this field in not required since conditions precedent may not be applicable in certain scenarios.">
 
-type BreakageFeePayment extends AbstractLoanContractPaymentEvent: <"A fee calculated as the cost of breaking financing against a loan contract which is repaid early.">
+type BreakageFeePayment extends AbstractLoanContractPaymentEvent: <"A loan contract fee payment calculated as the cost of breaking financing when the contract is repaid early. A fee calculated as the cost of breaking financing against a loan contract which is repaid early.">
 
     breakageFeeClaimDate zonedDateTime (0..1) <"The date by which any breakage costs (if applicable) must be submitted by Lenders to the Agent.">
     breakageFeeCalculatedBy BreakageCalculatedByEnum (0..1) <"Where breakage cost is applicable, this enumeration defines who is calculating it - agent bank or lender.">
 
-type InterestCapitalization extends AbstractLoanContractEvent: <"An event representing the capitalization of interest amounts for a given accrual period against a single loan contract.">
+type InterestCapitalization extends AbstractLoanContractEvent: <"Capitalization of interest amounts accrued for a specified accrual period against a single loan contract. An event representing the capitalization of interest amounts for a given accrual period against a single loan contract.">
 
     startDate zonedDateTime (1..1) <"Date on which this period begins.">
     endDate zonedDateTime (1..1) <"Date on which this period ends.">
     calculationMethod InterestCalculationMethodEnum (1..1) <"Defines the way in which the agent bank is allocating cash/PIK interest - can be (i) pro-rata at the time of the interest payment/PIK or (ii) based on the loan contract share throughout the interest period (which is the preferred method).">
-    amount MoneyWithParticipantShare (1..1)
+    amount MoneyWithParticipantShare (1..1) <"Represents the total monetary value of interest being capitalized—i.e., added to the outstanding loan principal instead of being paid out separately.">
     accrualSchedule AccrualPeriod (0..*) <"A schedule that incorporates all sub-periods of an accrual calculation.">
     projection PaymentProjection (0..1) <"Projected interest payment details.">
 
-type InterestPayment extends LoanInterestPayment:
+type InterestPayment extends LoanInterestPayment: <"A lender-specific payment of interest amounts for a defined accrual period against a single loan contract.">
 
-type LegacyInterestCapitalization extends AbstractLoanContractEvent: <"An event representing the legacy version (pre-IBOR replacement) of the capitalization of interest amounts for a given accrual period against a single loan contract.">
+type LegacyInterestCapitalization extends AbstractLoanContractEvent: <"An event representing capitalization of interest amounts for a specified accrual period against a single loan contract under the pre-IBOR replacement model. An event representing the legacy version (pre-IBOR replacement) of the capitalization of interest amounts for a given accrual period against a single loan contract.">
 
     startDate zonedDateTime (1..1) <"Date on which this period begins.">
     endDate zonedDateTime (1..1) <"Date on which this period ends.">
     calculationMethod InterestCalculationMethodEnum (1..1) <"Defines the way in which the agent bank is allocating cash/PIK interest - can be (i) pro-rata at the time of the interest payment/PIK or (ii) based on the loan contract share throughout the interest period (which is the preferred method).">
-    amount MoneyWithParticipantShare (1..1)
+    amount MoneyWithParticipantShare (1..1) <"Represents the total monetary value of interest that is being capitalized—that is, rolled into the outstanding loan principal rather than being paid in cash at the time it accrues.">
     accrualSchedule LegacyAccrualPeriod (0..*) <"A schedule that incorporates all sub-periods of an accrual calculation.">
     projection PaymentProjection (0..1) <"Projected interest payment details.">
 
-type LegacyInterestPayment extends LegacyLoanInterestPayment:
+type LegacyInterestPayment extends LegacyLoanInterestPayment: <"A legacy, pre-IBOR-replacement lender-specific payment of interest amounts for a given accrual period against a single loan contract.">
 
-type MaturityChange extends LoanContractMaturityChange:
+type MaturityChange extends LoanContractMaturityChange: <"An event representing a change to the maturity date of one or more outstanding loan contracts.">
 
-type Repayment extends AbstractLoanContractEvent: <"An event representing a principal repayment being made by the borrower.">
+type Repayment extends AbstractLoanContractEvent: <"An event representing a principal repayment made by the borrower in relation to a loan contract. An event representing a principal repayment being made by the borrower.">
 
-    amount MoneyWithParticipantShare (1..1)
+    amount MoneyWithParticipantShare (1..1) <"The principal amount repaid by the borrower, expressed as a currency amount and supporting specification of the corresponding lender participant share.">
     price NonNegativeDecimal (0..1) <"The price at which the repayment occurred. This is usually Par but there could be scenarios where a repayment was made at a discounted level.">
     refusalAllowed boolean (1..1) <"Defines whether the lender has an option to accept or deny the payment.">
     borrowerMandatory boolean (0..1) <"Defines whether the repayment is mandatory from the borrower\'s perspective, based on the (amortization) schedule on the credit agreement.">
     scheduledRepayment boolean (0..1) <"Defines whether the repayment is a scheduled repayment. This is normally the case when the repayment is defined on the amortization schedule associated with the facility (on the credit agreement).">
 
-type Rollover extends AbstractLoanServicingEvent: <"An event representing the prepayment structure associated within a facility.">
+type Rollover extends AbstractLoanServicingEvent: <"A facility rollover event representing the associated prepayment structure within a loan contract servicing process. An event representing the prepayment structure associated within a facility.">
 
     currentContracts LoanContractsReference (1..1) <"A list of references to all contracts whose rates are resetting or that are terminating as part of a rollover event.">
     newContracts LoanContractList (1..1) <"A list of all contracts whose rates are resetting or that are initiating as part of the rollover event.">
 
-type LcAdjustment extends AbstractLcEvent: <"An event representing a change in the notional amount associated with an outstanding letter of credit.">
+type LcAdjustment extends AbstractLcEvent: <"An event recording a change to the notional amount associated with an outstanding letter of credit. An event representing a change in the notional amount associated with an outstanding letter of credit.">
 
     adjustment Adjustment (1..1) <"Defines the type of adjustment applied - increase or decrease.">
     amount MoneyWithParticipantShare (1..1) <"The letter of credit amount after the adjustment has been applied.">
     relatedBorrowing boolean (1..1) <"Set to false for a normal increase or decrease in the letter of credit amount. If set to true, it signifies that a loan borrowing will take place in conjunction with this business event.">
 
-type LcFxRevaluation extends AbstractLcEvent: <"An event representing a change in either the L/C to Facility or L/C to Accrual FX rates (or both) on an outstanding letter of credit.">
+type LcFxRevaluation extends AbstractLcEvent: <"A revaluation changing the letter of credit-to-facility or letter of credit-to-accrual foreign exchange rate, or both, for an outstanding letter of credit. An event representing a change in either the L/C to Facility or L/C to Accrual FX rates (or both) on an outstanding letter of credit.">
 
     lcFxRate FxTerms (0..1) <"Defines exchange rate between the letter of credit accrual and letter of credit currencies.">
     facilityFxRate FxTerms (0..1) <"Defines exchange rate between the letter of credit and facility.">
 
-type LcIssuance extends AbstractLcEvent: <"An event representing the issuance of a new letter of credit under an existing facility.">
+type LcIssuance extends AbstractLcEvent: <"An event recording the issuance of a new letter of credit under an existing facility. An event representing the issuance of a new letter of credit under an existing facility.">
 
     amount MoneyWithParticipantShare (1..1) <"The letter of credit notional amount.">
 
-type LcIssuanceFeePayment extends AbstractLcEvent: <"An event representing a letter of credit issuance fee payment.">
+type LcIssuanceFeePayment extends AbstractLcEvent: <"An event representing payment of a fee associated with the issuance of a letter of credit. An event representing a letter of credit issuance fee payment.">
 
     id AccrualTypeId (1..1) <"A unique id associated with the loan accrual type.">
     startDate zonedDateTime (1..1) <"Date on which this period begins.">
     endDate zonedDateTime (1..1) <"Date on which this period ends.">
-    amount MoneyWithParticipantShare (1..1)
+    amount MoneyWithParticipantShare (1..1) <"Specifies the monetary value of the issuance fee charged when a letter of credit is issued.">
     accrualSchedule AccrualPeriod (0..*) <"A schedule that incorporates all sub-periods of an accrual calculation.">
 
-type LcRateChange extends AbstractLcEvent: <"An event representing a change in the rate on an outstanding letter of credit.">
+type LcRateChange extends AbstractLcEvent: <"An event representing a change to the applicable rate on an outstanding letter of credit. An event representing a change in the rate on an outstanding letter of credit.">
 
-    rate number (1..1)
+    rate number (1..1) <"Specifies the new interest or fee rate applicable to a letter of credit (LC) agreement as a result of a rate adjustment event.">
 
-type LcRenewal extends AbstractLcEvent: <"An event representing a change in the maturity date on an outstanding letter of credit.">
+type LcRenewal extends AbstractLcEvent: <"An event recording a change in the maturity date of an outstanding letter of credit. An event representing a change in the maturity date on an outstanding letter of credit.">
 
     finalExpiryDate zonedDateTime (1..1) <"The final letter of credit expiry date (as defined by the evergreen option).">
     maturityDate zonedDateTime (0..1) <"The original maturity date of the letter of credit.">
 
-type LcTermination extends AbstractLcEvent: <"An event representing either the expiry or cancellation of a letter of credit">
+type LcTermination extends AbstractLcEvent: <"An event representing the termination of a letter of credit through either its expiry or its cancellation. An event representing either the expiry or cancellation of a letter of credit">
 
     expiry boolean (1..1) <"Determines whether this event was created due to a natural expiration of the letter of credit or an unscheduled cancellation.">
 
-type LoanTrade extends LoanTradeEvent:
+type LoanTrade extends LoanTradeEvent: <"A loan trade event recording counterparty-to-counterparty trade information and main trade details for a fund manager or other principal counterparty.">
 
-type LoanTradeConfirmation extends LoanTradeEvent:
+type LoanTradeConfirmation extends LoanTradeEvent: <"A loan trade confirmation documenting counterparty-to-counterparty trade information, including main counterparty or fund manager trade details.">
 
-type LoanTradeFeeDue extends LoanTradeTransferFeeDue:
+type LoanTradeFeeDue extends LoanTradeTransferFeeDue: <"An event recording the administrative agent’s determination of transfer fees due in connection with a loan trade.">
 
-type LoanTradeFeeOwed extends LoanTradeTransferFeeOwed:
+type LoanTradeFeeOwed extends LoanTradeTransferFeeOwed: <"Represents the administrative agent’s determination of transfer fees owed in connection with a loan trade.">
 
-type LoanAllocation extends LoanAllocationEvent:
+type LoanAllocation extends LoanAllocationEvent: <"A concrete event structure defining the information associated with an allocation of a loan trade.">
 
-type LoanAllocationConfirmation extends LoanAllocationEvent:
+type LoanAllocationConfirmation extends LoanAllocationEvent: <"A confirmation event defining information related to a loan trade allocation within the concrete loan allocation event structure.">
 
-type LoanAllocationSettlement extends AbstractLoanAllocationSettlementEvent: <"An event structure defining the counterparty-to-counterparty trade settlement details.">
+type LoanAllocationSettlement extends AbstractLoanAllocationSettlementEvent: <"A loan allocation settlement event specifying counterparty-to-counterparty trade settlement details and associated fundamental settlement information. An event structure defining the counterparty-to-counterparty trade settlement details.">
 
     fundingFactors LoanTradingCounterpartySettlementFundingFactors (0..1) <"Factors impacting the setttlement cash flows.">
 
-type LoanAllocationFeeDue extends LoanAllocationTransferFeeDue:
+type LoanAllocationFeeDue extends LoanAllocationTransferFeeDue: <"Represents details related to the administrative agent’s determination of transfer fees due on a loan allocation.">
 
-type LoanAllocationFeeOwed extends LoanAllocationTransferFeeOwed:
+type LoanAllocationFeeOwed extends LoanAllocationTransferFeeOwed: <"Transfer fee details determined by the administrative agent as owed in connection with an individual loan allocation.">
 
-type LoanAllocationSettlementDateAvailability extends AbstractLoanAllocationEvent: <"An event structure defining information related to trade settlement date coordination.">
+type LoanAllocationSettlementDateAvailability extends AbstractLoanAllocationEvent: <"An allocation event conveying settlement date availability information used to coordinate settlement of a loan trade. An event structure defining information related to trade settlement date coordination.">
 
     specificDates DateList (0..1) <"Specific date or dates on which a trade may be settled.">
     startDate zonedDateTime (0..1) <"Date on which this period begins.">
@@ -269,66 +269,66 @@ type LoanAllocationSettlementDateAvailability extends AbstractLoanAllocationEven
         then specificDates is absent and startDate is absent and endDate is absent
         else False
 
-type LoanAllocationSettlementDateFinalization extends AbstractLoanAllocationEvent: <"An event structure defining the trade settlement date.">
+type LoanAllocationSettlementDateFinalization extends AbstractLoanAllocationEvent: <"An event that finalizes the trade settlement date applicable to a specific loan trade allocation. An event structure defining the trade settlement date.">
 
     settlementDate zonedDateTime (1..1) <"The settlement date associated with a single loan trade allocation.">
 
-type LoanBulkServicingNotification extends AbstractContractNotification: <"A loan servicing notification used to communicate multiple business events, within a single notification.">
+type LoanBulkServicingNotification extends AbstractContractNotification: <"A top-level notification for communicating multiple loan contract-level servicing events, including references to the facility and loan contract to which the embedded events apply. A loan servicing notification used to communicate multiple business events, within a single notification.">
     [rootType]
 
     loanBulkServicingNotificationChoice LoanBulkServicingNotificationChoice (2..*)
     loanBulkServicingNotificationSequence LoanBulkServicingNotificationSequence (1..*)
     party Party (1..*) <"A legal entity or a subdivision of a legal entity.">
 
-type LoanNotificationAcknowledgement extends LoanAcknowledgement: <"A message used to acknowledge a loan notification.">
+type LoanNotificationAcknowledgement extends LoanAcknowledgement: <"A top-level loan-specific message representing acknowledgement of a loan notification using the acknowledgement structure defined for the loan asset class. A message used to acknowledge a loan notification.">
     [rootType]
 
-    eventIdentifier BusinessEventIdentifier (0..1)
-    taskIdentifier TaskIdentifier (0..1)
+    eventIdentifier BusinessEventIdentifier (0..1) <"An identifier assigned by the indicated party to distinguish the business event associated with the loan structure.">
+    taskIdentifier TaskIdentifier (0..1) <"Provides an identifier issued by the indicated party for the task associated with the loan structure.">
 
     condition Choice:
         required choice eventIdentifier, taskIdentifier
 
-type LoanNotificationException extends Exception: <"A message used to indicate an exception issue with a loan notification.">
+type LoanNotificationException extends Exception: <"A top-level message informing another system that an exception has been detected in connection with a loan notification. A message used to indicate an exception issue with a loan notification.">
     [rootType]
 
-    eventIdentifier BusinessEventIdentifier (0..1)
-    taskIdentifier TaskIdentifier (0..1)
-    party Party (0..1)
+    eventIdentifier BusinessEventIdentifier (0..1) <"An identifier assigned by the indicated party to distinguish the business event associated with the loan structure.">
+    taskIdentifier TaskIdentifier (0..1) <"Provides an identifier issued by the indicated party for the task associated with the loan structure.">
+    party Party (0..1) <"Identifies the legal entity or subdivision associated with the exception issue for the loan identified in the notification.">
 
     condition Choice:
         optional choice eventIdentifier, taskIdentifier
 
-type LoanNotificationRetracted extends NonCorrectableRequestMessage: <"A message used to indicate a retraction of a loan notification.">
+type LoanNotificationRetracted extends NonCorrectableRequestMessage: <"A top-level request message indicating retraction of a loan notification, which cannot itself subsequently be corrected or retracted. A message used to indicate a retraction of a loan notification.">
     [rootType]
 
-    eventIdentifier BusinessEventIdentifier (0..1)
-    taskIdentifier TaskIdentifier (0..1)
-    party Party (1..1)
-    originalMessage UnprocessedElementWrapper (0..1)
+    eventIdentifier BusinessEventIdentifier (0..1) <"An identifier assigned by the indicated party to distinguish the business event associated with the loan structure.">
+    taskIdentifier TaskIdentifier (0..1) <"Provides an identifier issued by the indicated party for the task associated with the loan structure.">
+    party Party (1..1) <"Specifies the legal entity or subdivision associated with the retracted notification for the loan identified in the message.">
+    originalMessage UnprocessedElementWrapper (0..1) <"Contains the unvalidated structure of the loan notification identified as the subject of the retraction.">
 
     condition Choice:
         required choice eventIdentifier, taskIdentifier
 
-type LoanPartyProfileStatement extends AbstractLoanPartyProfileStatement: <"A profile generated and communicated by parties containing their relevant contact and payment details. This is communicated by parties to anyone who wishes to initiate payments and/or communicate with them.">
+type LoanPartyProfileStatement extends AbstractLoanPartyProfileStatement: <"A top-level statement through which a party communicates relevant contact and payment details to entities initiating payments or other communications. A profile generated and communicated by parties containing their relevant contact and payment details. This is communicated by parties to anyone who wishes to initiate payments and/or communicate with them.">
     [rootType]
 
-    partyProfile PartyProfile (1..1)
-    party Party (1..*)
+    partyProfile PartyProfile (1..1) <"The profile record containing contact and payment details used to identify how payments and communications are directed to the relevant party.">
+    party Party (1..*) <"Identifies each legal entity or subdivision whose relevant contact and payment details are represented by the statement’s party profile.">
 
-type LoanCovenantObligationNotification extends AbstractServicingNotification: <"A loan notification used to convey servicing details related to a covenant obligation.">
+type LoanCovenantObligationNotification extends AbstractServicingNotification: <"A top-level loan servicing notification that conveys servicing details related to a covenant obligation during the lifecycle of a loan deal. A loan notification used to convey servicing details related to a covenant obligation.">
     [rootType]
 
-    covenantTask LoanCovenantObligationTask (1..*)
+    covenantTask LoanCovenantObligationTask (1..*) <"A task required for servicing a covenant obligation, including identification of the party responsible for its completion.">
     loanCovenantObligationNotificationChoice0 LoanCovenantObligationNotificationChoice0 (0..*)
     loanCovenantObligationNotificationChoice1 LoanCovenantObligationNotificationChoice1 (1..*)
     loanCovenantObligationNotificationChoice2 LoanCovenantObligationNotificationChoice2 (0..*)
     party Party (1..*) <"A legal entity or a subdivision of a legal entity.">
 
-type FacilityNotification extends AbstractFacilityNotification: <"A loan servicing notification which can be used to communicate any facility-level business event.">
+type FacilityNotification extends AbstractFacilityNotification: <"A top-level loan servicing notification that communicates a facility-level business event and references the facility to which embedded loan events apply. A loan servicing notification which can be used to communicate any facility-level business event.">
     [rootType]
 
-    facilityEventGroup AbstractFacilityEvent (1..1)
+    facilityEventGroup AbstractFacilityEvent (1..1) <"Serves as a flexible container for representing a wide range of contractual events associated with a loan facility. It is a substitution group head, meaning it can be replaced in actual FpML instances by any one of several specific facility-related event types.">
     dealIdentifier DealIdentifier (0..1) <"A deal identifier structure.">
     dealSummary DealSummary (0..1) <"A deal summary structure.">
     facilityIdentifier FacilityIdentifier (0..1) <"A facility identifier structure.">
@@ -343,10 +343,10 @@ type FacilityNotification extends AbstractFacilityNotification: <"A loan servici
     condition Choice1:
         required choice facilityIdentifier, facilitySummary
 
-type LcNotification extends AbstractContractNotification: <"A loan servicing notification used to communicate various letter of credit business events.">
+type LcNotification extends AbstractContractNotification: <"A top-level loan servicing notification communicating letter of credit business events associated with referenced facilities and loan contracts. A loan servicing notification used to communicate various letter of credit business events.">
     [rootType]
 
-    lcEventGroup AbstractLcEvent (1..1)
+    lcEventGroup AbstractLcEvent (1..1) <"Represents the specific type of event that has occurred related to a letter of credit (LC). This placeholder can be substituted by a range of LC-related event types, including issuance, fee payments, rate changes, renewals, terminations, FX revaluations, and adjustments.">
     dealIdentifier DealIdentifier (0..1) <"A deal identifier structure.">
     dealSummary DealSummary (0..1) <"A deal summary structure.">
     facilityIdentifier FacilityIdentifier (0..1) <"A facility identifier structure.">
@@ -365,10 +365,10 @@ type LcNotification extends AbstractContractNotification: <"A loan servicing not
     condition Choice2:
         required choice letterOfCreditIdentifier, letterOfCreditSummary, letterOfCredit
 
-type LoanContractNotification extends AbstractContractNotification: <"A loan servicing notification used to communicate various loan contract business events.">
+type LoanContractNotification extends AbstractContractNotification: <"A top-level loan servicing notification communicating contract-level business events and identifying the facility and loan contract to which embedded events apply. A loan servicing notification used to communicate various loan contract business events.">
     [rootType]
 
-    loanContractEventGroup AbstractLoanServicingEvent (1..1)
+    loanContractEventGroup AbstractLoanServicingEvent (1..1) <"The loan contract servicing event reported by the notification, to which the accompanying deal, facility, loan contract, and party details relate.">
     dealIdentifier DealIdentifier (0..1) <"A deal identifier structure.">
     dealSummary DealSummary (0..1) <"A deal summary structure.">
     facilityIdentifier FacilityIdentifier (0..1) <"A facility identifier structure.">
@@ -382,20 +382,20 @@ type LoanContractNotification extends AbstractContractNotification: <"A loan ser
     condition Choice1:
         required choice facilityIdentifier, facilitySummary
 
-type LoanLegalActionNotification extends AbstractServicingNotification: <"A loan servicing notification which can be used to communicate any legal action-related servicing event.">
+type LoanLegalActionNotification extends AbstractServicingNotification: <"A top-level loan servicing notification that communicates a legal action-related event occurring during the life cycle of a deal. A loan servicing notification which can be used to communicate any legal action-related servicing event.">
     [rootType]
 
     loanLegalActionNotificationChoice0 LoanLegalActionNotificationChoice0 (1..*)
-    legalActionIdentifier LegalActionIdentifier (0..1)
-    legalActionSummary LoanLegalActionSummary (0..1)
-    legalAction LoanLegalAction (0..1)
+    legalActionIdentifier LegalActionIdentifier (0..1) <"A structured identifier used to distinguish the legal action addressed by a loan servicing notification.">
+    legalActionSummary LoanLegalActionSummary (0..1) <"Provides summary information, including the identifier, for the legal action addressed by the servicing notification.">
+    legalAction LoanLegalAction (0..1) <"The detailed definition of the legal action communicated by the servicing notification for the associated deal, facility, loan contract, or letter of credit.">
     loanLegalActionNotificationChoice1 LoanLegalActionNotificationChoice1 (0..*)
     party Party (0..*) <"A legal entity or a subdivision of a legal entity.">
 
     condition Choice:
         required choice legalActionIdentifier, legalActionSummary, legalAction
 
-type LoanAllocationNotification extends AbstractLoanAllocationNotification: <"A loan servicing notification used to communicate trade allocation details, from counterparty to counterparty, or counterparty to admin agent.">
+type LoanAllocationNotification extends AbstractLoanAllocationNotification: <"A top-level loan servicing notification communicating trade allocation details between counterparties or from a counterparty to an administrative agent. A loan servicing notification used to communicate trade allocation details, from counterparty to counterparty, or counterparty to admin agent.">
     [rootType]
 
     loanAllocationNotificationChoice0 LoanAllocationNotificationChoice0 (1..*)
@@ -418,11 +418,11 @@ type LoanAllocationNotification extends AbstractLoanAllocationNotification: <"A 
     condition Choice2:
         required choice facilityIdentifier, facilitySummary
 
-type LoanTradeNotification extends AbstractLoanTradeNotification: <"A loan servicing notification used to communicate details to establish a master trade, from counterparty to counterparty.">
+type LoanTradeNotification extends AbstractLoanTradeNotification: <"A top-level loan servicing notification representing counterparty-to-counterparty communication of details used to establish a master trade within the loan trade lifecycle. A loan servicing notification used to communicate details to establish a master trade, from counterparty to counterparty.">
     [rootType]
 
-    loanTradeEventGroup AbstractLoanTradeEvent (0..1)
-    settlementTask LoanTradeSettlementTask (0..1)
+    loanTradeEventGroup AbstractLoanTradeEvent (0..1) <"Represents the loan trade event that is the subject of the notification establishing the master trade between counterparties.">
+    settlementTask LoanTradeSettlementTask (0..1) <"Specifies a task, its status, and responsible party whose completion is required before settlement of the notified loan trade or allocation.">
     tradeIdentifier TradeIdentifier (0..1) <"Unique trade ids used to identify the trade record.">
     tradeSummary LoanTradeSummary (0..1) <"A structure that defines all loan trade information i.e. this structure contains the main (e.g. fund manager/main counterparty) trade details.">
     trade LoanTradeType (0..1) <"A structure that defines party-to-party loan trade information. This structure contains the main (e.g. fund manager/main counterparty) trade details.">
@@ -444,7 +444,7 @@ type LoanTradeNotification extends AbstractLoanTradeNotification: <"A loan servi
     condition Choice3:
         required choice facilityIdentifier, facilitySummary
 
-type DealStatement extends AbstractLoanStatement: <"A full set of deal and facility definitions valid as of a specific date.">
+type DealStatement extends AbstractLoanStatement: <"A top-level loan statement representing the complete set of deal and facility definitions valid as of a specified snapshot date. A full set of deal and facility definitions valid as of a specific date.">
     [rootType]
 
     deal Deal (1..1) <"A complete deal structure.">
@@ -453,10 +453,10 @@ type DealStatement extends AbstractLoanStatement: <"A full set of deal and facil
     dealStatementChoice2 DealStatementChoice2 (0..*)
     party Party (1..*) <"A legal entity or a subdivision of a legal entity.">
 
-type FacilityStatement extends AbstractLoanStatement: <"A single facility definition stated as of a certain date.">
+type FacilityStatement extends AbstractLoanStatement: <"A top-level loan statement notification containing a single facility definition as of a specified date, representing a point-in-time snapshot. A single facility definition stated as of a certain date.">
     [rootType]
 
-    facilityGroup AbstractFacility (1..1)
+    facilityGroup AbstractFacility (1..1) <"A reference that acts as a placeholder for one of several specific types of loan facilities. Rather than being a concrete element itself, it belongs to a substitution group and can be replaced in practice by elements such as delayedDraw, letterOfCreditFacility, revolver, or termLoan.">
     dealIdentifier DealIdentifier (0..1) <"A deal identifier structure.">
     dealSummary DealSummary (0..1) <"A deal summary structure.">
     party Party (0..*) <"A legal entity or a subdivision of a legal entity.">
@@ -464,7 +464,7 @@ type FacilityStatement extends AbstractLoanStatement: <"A single facility defini
     condition Choice:
         optional choice dealIdentifier, dealSummary
 
-type FacilityPositionStatement extends AbstractLoanStatement: <"A statement containing the commitment amounts for a single facility at the global and (optionally) the lender postion levels, on a specific date.">
+type FacilityPositionStatement extends AbstractLoanStatement: <"A top-level statement reporting commitment amounts for a single facility, at the global level and optionally by lender position, on a specified date. A statement containing the commitment amounts for a single facility at the global and (optionally) the lender postion levels, on a specific date.">
     [rootType]
 
     facilityPosition FacilityPosition (1..1) <"Commitment position details for a single facility. Positions can be stated at the global and (optionally) at the lender-specific level.">
@@ -482,7 +482,7 @@ type FacilityPositionStatement extends AbstractLoanStatement: <"A statement cont
     condition Choice1:
         required choice facilityIdentifier, facilitySummary
 
-type LoanLegalActionStatement extends AbstractLoanStatement: <"A loan legal action statement structure.">
+type LoanLegalActionStatement extends AbstractLoanStatement: <"A top-level loan statement notification representing legal action information and wrapping deal, facility, or contract definitions and facility or contract positions at a snapshot. A loan legal action statement structure.">
     [rootType]
 
     legalAction LoanLegalAction (1..1) <"A complete legal action structure.">
@@ -497,7 +497,7 @@ type LoanLegalActionStatement extends AbstractLoanStatement: <"A loan legal acti
     condition Choice:
         optional choice dealIdentifier, dealSummary, deal
 
-type OutstandingContractsStatement extends AbstractLoanStatement: <"A collection of outstanding loan contract and/or letter of credit structures belonging to a single facility.">
+type OutstandingContractsStatement extends AbstractLoanStatement: <"A top-level statement representing a snapshot collection of outstanding loan contracts and letter of credit structures belonging to a single facility. A collection of outstanding loan contract and/or letter of credit structures belonging to a single facility.">
     [rootType]
 
     dealIdentifier DealIdentifier (0..1) <"A deal identifier structure.">
@@ -511,7 +511,7 @@ type OutstandingContractsStatement extends AbstractLoanStatement: <"A collection
 
 type AbstractApplicablePartyProfileObjects: <"An abstract base type that combines objects applicable to the description of a party profile (e.g. applicable assets and cash events to specific contacts or settlement instructions).">
 
-    identifier AssociationToAssetIdentifier (1..1)
+    identifier AssociationToAssetIdentifier (1..1) <"Uniquely links a party to a specific asset association within a party profile. It acts as a reference point that connects a party with the identifier of an asset or group of assets relevant to their profile, such as those involved in credit support, eligibility, or transaction documentation.">
     applicableAssets ApplicableAssets (1..1) <"A structure which describes the applicable assets.">
     applicableTransactions ApplicableTransactions (1..1) <"A structure that defines specific servicing transactions that a particular payment profile may be associated with.">
 
@@ -524,7 +524,7 @@ type AbstractApproval: <"A abstract type to describe an approval.">
 
 type AbstractContractNotification extends AbstractServicingNotification: <"An extension of the AbstractServicingNotification which includes a reference to the facility and the loan contract to which embedded loan events apply. This abtract type should be used to \'wrap\' contract-level business events.">
 
-    facilityPosition FacilityPosition (0..*)
+    facilityPosition FacilityPosition (0..*) <"Represents a detailed snapshot of a party’s current position within a financial facility, such as a loan facility. It is used in notifications to describe relevant commitment amounts and outstanding balances related to the facility at the time of the report.">
 
 type AbstractFacility extends FacilitySummary: <"An abstract type defining a facility baseline structure.">
 
@@ -560,16 +560,16 @@ type AbstractFacilityEvent extends AbstractLoanServicingEvent: <"An abstract bas
 
 type AbstractFacilityPaymentEvent extends AbstractFacilityEvent: <"An event describing a fee being paid at either the loan contract or facility level.">
 
-    amount MoneyWithParticipantShare (1..1)
+    amount MoneyWithParticipantShare (1..1) <"Specifies the monetary value involved in a facility-related payment event, such as interest, fees, or principal payments. It can also optionally indicate the portion of the payment attributable to a participant in a syndicated structure.">
 
 type AbstractFacilityNotification extends AbstractServicingNotification: <"An extension of the AbstractServicingNotification which includes a reference to the facility to which embedded loan events apply. This abtract type should be used to \'wrap\' facility-level business events.">
 
-    facilityPosition FacilityPosition (0..1)
+    facilityPosition FacilityPosition (0..1) <"Represents a detailed snapshot of a party’s current position within a financial facility, such as a loan facility. It is used in notifications to describe relevant commitment amounts and outstanding balances related to the facility at the time of the report.">
 
 type AbstractFixedRateOptionBase extends AbstractAccrualOptionBase: <"An abstract type that specifies an underlying fixed rate cash accrual option.">
 
-    rate number (1..1)
-    pikSpread number (0..1)
+    rate number (1..1) <"Represents the fixed interest rate applied to a financial instrument or accrual calculation. This rate is typically agreed upon in advance and remains constant throughout the relevant period.">
+    pikSpread number (0..1) <"Specifies an additional interest spread applicable in PIK (Payment-In-Kind) scenarios. This spread is added on top of the base rate and is typically capitalized rather than paid in cash, often used in mezzanine or structured financing.">
 
 type AbstractLoanFloatingRateOptionBase extends AbstractAccrualOptionBase: <"An abstract type that specifies an underlying floating rate cash accrual option.">
 
@@ -581,14 +581,14 @@ type AbstractFacilityRateChangeEvent extends AbstractFacilityContractEvent: <"An
 
 type AbstractLcEvent extends AbstractLoanServicingEvent: <"An abstract base type for all LC-level business events.">
 
-    letterOfCreditReference LetterOfCreditReference (1..1)
+    letterOfCreditReference LetterOfCreditReference (1..1) <"Identifies and links to a specific Letter of Credit (LC) that the lifecycle event is associated with. It acts as a pointer to the full definition of the LC elsewhere in the document.">
 
 type AbstractLegacyFloatingRateOptionBase extends AbstractLegacyAccrualOptionBase: <"An abstract type that specifies an underlying floating rate cash accrual option.">
 
-    legacyFloatingRateIndex LegacyFloatingRateIndexLoan (1..1)
+    legacyFloatingRateIndex LegacyFloatingRateIndexLoan (1..1) <"The loan-specific floating rate index, encoded using the legacy pre-IBOR-replacement subset of the ISDA Floating Rate Option scheme.">
     indexTenor Period (0..1) <"The ISDA Designated Maturity, i.e. the tenor of the floating rate.">
-    spread number (1..1)
-    pikSpread number (0..1)
+    spread number (1..1) <"Represents the additional interest rate (spread) applied on top of the floating rate index specified in a legacy floating rate loan structure. It reflects the borrower\'s risk premium or credit margin added to the base index (e.g., EONIA or EURIBOR).">
+    pikSpread number (0..1) <"Refers to an additional spread applied under a Payment-in-Kind interest mechanism, where interest is capitalized rather than paid in cash. This allows the borrower to defer interest payments, and instead accrue them to the principal amount.">
 
 type AbstractLoanAllocationEvent extends AbstractLoanEvent: <"An abstract structure defining fundamental allocation event information.">
 
@@ -613,13 +613,13 @@ type AbstractLoanContractEvent extends AbstractLoanServicingEvent: <"An abstract
 
 type AbstractLoanContractPaymentEvent extends AbstractLoanContractEvent: <"An abstract base type for all loan contract-level fee payment events.">
 
-    amount MoneyWithParticipantShare (1..1)
+    amount MoneyWithParticipantShare (1..1) <"Specifies the monetary value involved in a contract-related payment event, such as interest, fees, or principal payments. It can also optionally indicate the portion of the payment attributable to a participant in a syndicated structure.">
 
 type AbstractLoanCovenantObligation extends LoanCovenantObligationSummary: <"An abstract type defining a loan covenant obligation baseline structure.">
 
 type AbstractLoanEvent: <"An abstract base type defining common features of a syndicated loan business event.">
 
-    eventIdentifier BusinessEventIdentifier (1..*)
+    eventIdentifier BusinessEventIdentifier (1..*) <"Uniquely identifies a business event associated with a loan. Each event identifier captures both the event\'s unique ID and the party/account context in which it occurred.">
     parentEventIdentifier ParentEventIdentifier (0..1) <"A structure used to relate child events to one another, with an overarching parent identifier. The parent identifier does not itself represent an event, but rather provides a mechanism to describe all related. The event described by this message should be included as a child event in this structure.">
     previousEventIdentifier BusinessEventIdentifier (0..1) <"A structure used to relate a previous event (sequentially) to the event conveyed by the message. This identifier is NOT to be used for corrections to events.">
     correctedEventIdentifier BusinessEventIdentifier (0..1) <"A unique id associated with a previous inaccurate event. Population of this identifier reflects the fact that the event being conveyed is a \'corrective measure\' to the event referenced by this identifier.">
@@ -647,14 +647,14 @@ type AbstractLoanStatement extends CorrectableRequestMessage: <"An abstract base
 
 type AbstractLoanTradeEvent extends AbstractLoanEvent: <"An abstract structure defining fundamental master loan trade event information.">
 
-    loanTradeReference LoanTradeReference (1..1)
+    loanTradeReference LoanTradeReference (1..1) <"Provides a pointer (reference) to the specific loan trade that is impacted by or associated with the current loan trade event. It links the event back to the trade it refers to, using an internal XML href reference mechanism.">
 
 type AbstractLoanTradeNotification extends CorrectableRequestMessage: <"An underlying abstract structure for all syndicated loan trade notifications; the wrapper for events which occur through the life-cycle of a loan trade.">
 
     noticeDate zonedDateTime (1..1) <"The business date on which the notice is valid (and was communicated).">
     partyReference PartyReference (1..1) <"The party sending the notification.">
     role LoanTradingPartyRole (1..1) <"The role of the party that is sending the notification.">
-    payment LoanTradePayment (0..*)
+    payment LoanTradePayment (0..*) <"Represents one or more payments related to a specific loan trade, as part of a trade notification. Each payment includes information about the trade it is linked to and the instructions for how the payment should be settled.">
 
 type AbstractPartyProfile extends AbstractPartyProfileId: <"An abstract base type that describes a party profile.">
 
@@ -665,7 +665,7 @@ type AbstractPartyProfile extends AbstractPartyProfileId: <"An abstract base typ
 
 type AbstractPartyProfileId: <"An abstract base type that identifies a party profile.">
 
-    partyProfileIdentifier PartyProfileIdentifier (1..*)
+    partyProfileIdentifier PartyProfileIdentifier (1..*) <"Identifies a specific party profile within a legal agreement or contractual context. It links a party (through partyReference) with a profile ID (partyProfileId) that uniquely identifies their role or configuration in the agreement.">
 
 type AbstractServicingNotification extends CorrectableRequestMessage: <"An abstract base type for all syndicated loan servicing notifications; the wrapper for loan events which occur through the life-cycle of a deal.">
 
@@ -675,7 +675,7 @@ type AbstractServicingNotification extends CorrectableRequestMessage: <"An abstr
 
 type AbstractTask: <"An underlying abstract structure that defines the responsible party for tasks that must be completed.">
 
-    taskIdentifier TaskIdentifier (1..*)
+    taskIdentifier TaskIdentifier (1..*) <"Uniquely identifies a task within the FpML task management framework.">
     parentTaskIdentifier ParentTaskIdentifier (0..1) <"An identifier used to identify a group of related tasks.">
     previousTaskIdentifier TaskIdentifier (0..1) <"A unique identifier associated with a previous ‘inaccurate task.’ Population of this identifier represents that this task is a ‘corrective measure’ to a previous task, rather than being a stand-alone task.">
     correctedTaskIdentifier TaskIdentifier (0..1) <"A unique identifier associated with a previous ‘inaccurate task.’ Population of this identifier represents that this task is a ‘corrective measure’ to a previous task, rather than being a stand-alone task.">
@@ -693,13 +693,13 @@ type AbstractLegacyAccrualOptionBase: <"An abstract type used for defining accru
 
     accrualOptionId AccrualTypeId (1..1) <"A unique id associated with the loan accrual type.">
     dayCountFraction DayCountFraction (1..1) <"The day count basis for the accrual.">
-    paymentFrequency Period (0..1)
+    paymentFrequency Period (0..1) <"Specifies how often payments are scheduled to occur under the terms of a legacy accrual option. It is defined using a combination of a numerical multiplier and a time period unit.">
 
 type AbstractAccrualOptionBase: <"An abstract type used for defining accrual structures within loan instruments.">
 
     accrualOptionId AccrualTypeId (1..1) <"A unique id associated with the loan accrual type.">
     dayCountFraction DayCountFraction (1..1) <"The day count basis for the accrual.">
-    paymentFrequency Period (0..1)
+    paymentFrequency Period (0..1) <"Specifies how often payments are scheduled to occur under the terms of an accrual option. It is defined using a combination of a numerical multiplier and a time period unit.">
 
 type AccrualPeriod: <"A structure that describes the details of the underlying elements that explain the calculation of an accrual against a reference balance.">
 
@@ -746,7 +746,7 @@ type ActionApproval: <"A structure to describe the approval of the action (e.g. 
 type Adjustment: <"A structure used to describe an adjustment.">
 
     adjustmentType AmountAdjustmentEnum (1..1) <"Defines the type of adjustment applied - increase or decrease.">
-    amount MoneyWithParticipantShare (1..1)
+    amount MoneyWithParticipantShare (1..1) <"Specifies the monetary value of the adjustment being made. It includes both the total amount and, optionally, the portion of the amount attributable to a participant in the adjustment.">
 
 type ApplicableAssets: <"A structure that defines the assets (or type of assets) that a particular payment profile may be associated with.">
 
@@ -772,8 +772,8 @@ type ApplicableCommunicationDetails extends AbstractApplicablePartyProfileObject
 
 type ApplicableCommunicationDetailsChoice:
 
-    relatedPerson RelatedPerson (0..1)
-    relatedBusinessUnit RelatedBusinessUnit (0..1)
+    relatedPerson RelatedPerson (0..1) <"Refers to persons involved in the communication.">
+    relatedBusinessUnit RelatedBusinessUnit (0..1) <"Refers to business units involved in the communication.">
 
     condition Choice:
         one-of
@@ -864,7 +864,7 @@ type CovenantObligationIdentifier: <"A type defining a covenant obligation ident
     name NonEmptyToken (0..1) <"Long name of the underlying covenant obligation.">
     partyReference PartyReference (1..1) <"Reference to a party.">
     covenantObligationId CovenantObligationId (0..*) <"A structure that defines a covenant obligation identifier based on a qualifying scheme.">
-    versionedCovenantObligationId VersionedCovenantObligationId (0..*)
+    versionedCovenantObligationId VersionedCovenantObligationId (0..*) <"Represents a versioned identifier for a covenant obligation, including both its base ID and version history information.">
 
     condition Choice:
         required choice covenantObligationId, versionedCovenantObligationId
@@ -883,12 +883,12 @@ type Deal extends DealSummary: <"A syndicated bank loan deal (credit agreement) 
 
     transferFee TransferFeeDefinition (0..1) <"The transfer fee amount and rules. This applies to the commitment transfer of any facility within the deal structure.">
     proRataFacilities ProRataFacilities (0..*) <"Groups of facilities which must be traded on a pro-rata basis. The ratio of facility trade amounts must be equal to the ratio of their corresponding global amounts.">
-    covenant LoanCovenantObligation (0..*)
+    covenant LoanCovenantObligation (0..*) <"Represents a loan covenant obligation (a contractual agreement or condition that a borrower must comply with as part of a loan deal) within the deal, detailing conditions such as category, type, trigger criteria, and accounting information, or referring to another covenant via a deemed reference.">
     dealSequence DealSequence (1..*)
 
 type DealSequence:
 
-    facilityGroup AbstractFacility (1..1)
+    facilityGroup AbstractFacility (1..1) <"Represents a facility within the deal; it is a substitution group placeholder for specific facility types like delayedDraw, letterOfCreditFacility, revolver, or termLoan.">
 
 type DealIdentifier extends IdentifiedAssetWithParty: <"A unique reference to a syndicated bank loan deal (credit agreement).">
 
@@ -907,8 +907,8 @@ type DealStatementChoice0:
 type DealStatementChoice1:
 
     covenantIdentifier CovenantObligationIdentifier (0..1) <"A deal identifier structure.">
-    covenantSummary LoanCovenantObligationSummary (0..1)
-    covenant LoanCovenantObligation (0..1)
+    covenantSummary LoanCovenantObligationSummary (0..1) <"A summary of the loan covenant obligation used to reference the applicable covenant within notifications.">
+    covenant LoanCovenantObligation (0..1) <"A complete definition of the loan covenant obligation referenced within a notification, providing the obligation’s baseline covenant information.">
 
     condition Choice:
         one-of
@@ -956,7 +956,7 @@ type EventPayment extends LoanSimplePayment: <"A structure that represents the p
 
 type EventPaymentSequence:
 
-    eventIdentifier BusinessEventIdentifier (1..1)
+    eventIdentifier BusinessEventIdentifier (1..1) <"Identifies the business event related to the payment, including a reference to the event\'s ID and the involved parties and accounts.">
 
 type EvergreenOption: <"A struture that represents an evergreen option that is available within a letter of credit instrument.">
 
@@ -989,7 +989,7 @@ type FacilityFeature: <"A list of facility features.">
 
 type FacilityIdentifier extends IdentifiedAssetWithParty: <"A unique identifier to a facility.">
 
-    dealReference DealReference (0..1)
+    dealReference DealReference (0..1) <"Establishes a link between a facility and the overarching deal it belongs to. It acts as a reference to another part of the FpML document where the corresponding Deal is defined.">
 
 type FacilityNotificationChoice0:
 
@@ -1073,8 +1073,8 @@ type FixedRateOption extends AbstractFixedRateOptionBase: <"A structure that rep
 
     startDate zonedDateTime (1..1) <"Date on which this period begins.">
     endDate zonedDateTime (1..1) <"Date on which this period ends.">
-    currency Currency (1..1)
-    allInRateLimits RateLimits (0..1)
+    currency Currency (1..1) <"Specifies the currency in which the fixed rate obligation is denominated.">
+    allInRateLimits RateLimits (0..1) <"Defines the permissible range for the all-in interest rate associated with a fixed rate loan option.">
     borrowerPartyReference PartyReference (0..*) <"A party reference to the borrower(s) permitted to exercise the cash accrual option.">
     drawdownNoticeDays int (0..1) <"The number of business days that a lender must be notified prior to a drawdown event occurring.">
     fxRateSetNoticeDays int (0..1) <"The number of business days that a lender must be notified prior to an FX rate set event occurring.">
@@ -1152,11 +1152,11 @@ type LegacyFloatingRateIndexLoan: <"A legacy subset of the ISDA Floating Rate Op
 
 type LegacyFloatingRateOption extends AbstractLegacyFloatingRateOptionBase: <"A structure that represents the legacy version (pre-IBOR replacement) of an accruing floating rate option associated within a facility.">
 
-    currency Currency (1..1)
+    currency Currency (1..1) <"Specifies the currency in which the legacy floating rate option is denominated.">
     startDate zonedDateTime (1..1) <"Date on which this period begins.">
     endDate zonedDateTime (1..1) <"Date on which this period ends.">
-    baseRateLimits RateLimits (0..1)
-    allInRateLimits RateLimits (0..1)
+    baseRateLimits RateLimits (0..1) <"Defines optional constraints on the base floating interest rate applicable to a legacy loan product. This mechanism is used to manage interest rate risk and protect parties from unfavorable market fluctuations in the underlying floating reference rate.">
+    allInRateLimits RateLimits (0..1) <"Defines optional boundaries for the total effective interest rate charged to the borrower. It considers the combined rate including the spread or margin added to the base rate. As such, this element ensures that the entire rate payable stays within a defined range, offering broader protection and predictability for both lenders and borrowers in legacy floating-rate agreements.">
     borrowerPartyReference PartyReference (0..*) <"A party reference to the borrower(s) permitted to exercise the cash accrual option.">
     drawdownNoticeDays int (0..1) <"The number of business days that a lender must be notified prior to a drawdown event occurring.">
     fxRateSetNoticeDays int (0..1) <"The number of business days that a lender must be notified prior to an FX rate set event occurring.">
@@ -1167,7 +1167,7 @@ type LegacyLoanInterestPayment extends AbstractLoanContractEvent: <"An event rep
     startDate zonedDateTime (1..1) <"Date on which this period begins.">
     endDate zonedDateTime (1..1) <"Date on which this period ends.">
     calculationMethod InterestCalculationMethodEnum (1..1) <"Defines whether the agent bank is making an interest payment based on the lender pro-rata share at the end of the period (snapshot) or based on the lender position throughout the period (which is the default).">
-    amount MoneyWithParticipantShare (1..1)
+    amount MoneyWithParticipantShare (1..1) <"Specifies the monetary value of an interest payment due from a borrower to a lender under a legacy loan agreement.">
     accrualSchedule LegacyAccrualPeriod (0..*) <"A schedule that incorporates all sub-periods of an accrual calculation.">
     projection PaymentProjection (0..1) <"Projected interest payment details.">
 
@@ -1219,13 +1219,13 @@ type LetterOfCreditSummary extends LoanContractIdentifier: <"A short form defini
 
 type LoanAcknowledgement extends Message: <"A base type to extend the FpML basic \'message\' type, similar in function to the \'response\' message, but specific to the needs of the loan asset class.">
 
-    header ResponseMessageHeader (1..1)
+    header ResponseMessageHeader (1..1) <"Provides response-specific header information for the loan acknowledgement, refining the generic message context for use in response messaging.">
     validation Validation (0..*) <"A list of validation sets the sender asserts the document is valid with respect to.">
     parentCorrelationId CorrelationId (0..1) <"An optional identifier used to correlate between related processes">
     correlationId CorrelationId (0..1) <"A qualified identifier used to correlate between messages">
     sequenceNumber int (0..1) <"A numeric value that can be used to order messages with the same correlation identifier from the same sender.">
     onBehalfOf OnBehalfOf (0..1) <"Indicates which party (or parties) (and accounts) a trade or event is being processed for. Normally there will only be a maximum of 2 parties, but in the case of a novation there could be a transferor, transferee, remaining party, and other remaining party. Also, in the context of a trade package there could be several parties for which limit check is requested, necessitating multiple onBehalfOf elements. Except for these cases, there should be no more than two onBehalfOf references in a message.">
-    originalMessage UnprocessedElementWrapper (0..1)
+    originalMessage UnprocessedElementWrapper (0..1) <"The unvalidated structure of the original message associated with this loan acknowledgement, preserving its source content for response context.">
     party Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
     account Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
@@ -1255,8 +1255,8 @@ type LoanAllocationNoSettlePeriodType: <"A structure that defines no-settle peri
 
 type LoanAllocationNotificationChoice0:
 
-    loanAllocationEventGroup AbstractLoanAllocationEvent (0..1)
-    settlementTask LoanAllocationSettlementTask (0..1)
+    loanAllocationEventGroup AbstractLoanAllocationEvent (0..1) <"Communicates a loan trade allocation event within the notification, contextualized by the accompanying trade allocation, facility, instrument, and party details.">
+    settlementTask LoanAllocationSettlementTask (0..1) <"Identifies a task, its status, and responsible party whose completion is required before settlement of the notified loan trade allocation.">
 
     condition Choice:
         one-of
@@ -1319,9 +1319,9 @@ type LoanAllocationTransferFeeOwed extends AbstractLoanAllocationEvent: <"A stru
 
 type LoanBulkServicingNotificationChoice:
 
-    facilityEventGroup AbstractFacilityEvent (0..1)
-    lcEventGroup AbstractLcEvent (0..1)
-    loanContractEventGroup AbstractLoanServicingEvent (0..1)
+    facilityEventGroup AbstractFacilityEvent (0..1) <"Represents a facility-level business event included among the multiple loan servicing events communicated by the bulk notification.">
+    lcEventGroup AbstractLcEvent (0..1) <"Represents a letter of credit servicing event communicated with other loan servicing events in the bulk notification.">
+    loanContractEventGroup AbstractLoanServicingEvent (0..1) <"Represents a loan contract servicing event included among the multiple business events communicated by the bulk servicing notification.">
 
     condition Choice:
         one-of
@@ -1372,11 +1372,11 @@ type LoanContractBaseRateSet extends AbstractLoanContractEvent: <"An event repre
 
 type LoanContractIdentifier extends ContractIdentifier: <"A unique identifier for outstanding loan contracts.">
 
-    facilityReference FacilityReference (1..1)
+    facilityReference FacilityReference (1..1) <"Identifies, by intra-document reference, the facility associated with the outstanding loan contract represented by this contract identifier.">
 
 type LoanContractList: <"A list of loan contracts.">
 
-    contract LoanContract (1..*)
+    contract LoanContract (1..*) <"A funded borrowing instrument utilizing a portion of the amount available under a single facility within a credit agreement.">
 
 type LoanContractMaturityChange extends AbstractLoanContractEvent: <"An event representing a change of maturity date on a one or more outstanding loan contracts.">
 
@@ -1398,14 +1398,14 @@ type LoanContractReference extends Reference: <"A reference to a loan contract."
 
 type LoanContractsReference: <"A list of references to loan contracts.">
 
-    loanContractReference LoanContractReference (1..*)
+    loanContractReference LoanContractReference (1..*) <"An intra-document reference identifying one loan contract within the set of contracts represented by the containing reference list.">
 
 type LoanContractSummary extends LoanContractIdentifier: <"A short form of a loan contract.">
 
     effectiveDate zonedDateTime (1..1) <"The effective date of the loan contract. This is the date on which the funds are passed to the borrower. It is an actual (adjusted) date.">
     borrowerPartyReference PartyReference (1..1) <"A reference to the borrower against a loan contract.">
     guarantorPartyReference PartyReference (0..1) <"Party references to any guarantors associated with the facility borrower.">
-    amount MoneyWithParticipantShare (1..1)
+    amount MoneyWithParticipantShare (1..1) <"The global currency amount of the loan contract, together with the lender participant share amount where applicable.">
 
 type LoanCovenantObligation extends AbstractLoanCovenantObligation: <"A syndicated bank loan deal (credit agreement) covenant obligation definition.">
 
@@ -1506,8 +1506,8 @@ type LoanCovenantObligationNotificationChoice0:
 type LoanCovenantObligationNotificationChoice1:
 
     covenantIdentifier CovenantObligationIdentifier (0..1) <"A deal identifier structure.">
-    covenantSummary LoanCovenantObligationSummary (0..1)
-    covenant LoanCovenantObligation (0..1)
+    covenantSummary LoanCovenantObligationSummary (0..1) <"A summary of the loan covenant obligation used to reference the applicable covenant within notifications.">
+    covenant LoanCovenantObligation (0..1) <"A complete definition of the loan covenant obligation referenced within a notification, providing the obligation’s baseline covenant information.">
 
     condition Choice:
         one-of
@@ -1526,8 +1526,8 @@ type LoanCovenantObligationReference extends Reference: <"A reference to a loan 
 
 type LoanCovenantObligationSummary extends CovenantObligationSummary: <"A syndicated bank loan deal (credit agreement) covenant obligation summary.">
 
-    dealReference DealReference (0..1)
-    facilityReference FacilityReference (0..*)
+    dealReference DealReference (0..1) <"Identifies the deal to which the covenant obligation summary applies by providing an intra-document reference to the corresponding deal definition.">
+    facilityReference FacilityReference (0..*) <"An intra-document reference identifying a loan facility covered by the covenant obligation summary for the credit agreement.">
 
     condition Choice:
         required choice dealReference, facilityReference
@@ -1545,7 +1545,7 @@ type LoanCovenantObligationTask extends AbstractTask: <"A structure to describe 
 
     covenantReference LoanCovenantObligationReference (1..1) <"A reference to a loan covenant obligation.">
     ^type LoanCovenantObligationTaskType (1..1) <"The type of the loan covenant obligation task.">
-    description NonEmptyNormalizedString (0..1)
+    description NonEmptyNormalizedString (0..1) <"Additional textual information clarifying the loan covenant obligation task associated with the referenced covenant and specified task type.">
 
 type LoanCovenantObligationTaskType: <"A structure used to uniquely identify a loan covenant obligation task type.">
 
@@ -1561,7 +1561,7 @@ type LoanFloatingRate extends FloatingRate: <"An extension of the FloatingRate o
 
     isCompoundingBalance boolean (0..1) <"Defines whether the accrual calculation is based on compounding balance.">
     spreadAdjustment number (0..1) <"An amount to be added to the calculated value before subsequent use, in order to more closely replicate the original term rate, by adjusting for the economic or credit spread between risk-free rates and risky term rates.">
-    allInRateLimits RateLimits (0..1)
+    allInRateLimits RateLimits (0..1) <"Defines the limits applicable to the resulting all-in floating rate used for interest accrual on the loan instrument.">
 
 type LoanFloatingRateAccrual extends AbstractLoanFloatingRateOptionBase: <"A full definition of the accrual characteristics of a loan contract. This structure defines both the underlying base rate as well as any additional margins and costs associated with the loan contract.">
 
@@ -1578,7 +1578,7 @@ type LoanFloatingRateAccrual extends AbstractLoanFloatingRateOptionBase: <"A ful
 
 type LoanFloatingRateOption extends AbstractLoanFloatingRateOptionBase: <"A structure that represents the accruing floating rate option associated within a facility.">
 
-    currency Currency (1..1)
+    currency Currency (1..1) <"The code identifying the currency or fund applicable to the facility’s accruing floating rate option.">
     startDate zonedDateTime (0..1) <"Date on which this period begins.">
     endDate zonedDateTime (0..1) <"Date on which this period ends.">
     borrowerPartyReference PartyReference (0..*) <"A party reference to the borrower(s) permitted to exercise the cash accrual option.">
@@ -1603,7 +1603,7 @@ type LoanLegalAction extends AbstractLoanLegalAction: <"A syndicated bank loan l
 
 type LoanLegalActionApprovalStatus extends AbstractApproval: <"A structure that provides global level approval status on a legal action.">
 
-    legalActionReference LoanLegalActionReference (1..1)
+    legalActionReference LoanLegalActionReference (1..1) <"Provides an intra-document reference identifying the legal action to which the global approval status applies.">
     ^type LoanLegalActionApprovalStatusType (1..1) <"Approved status as of the effective date, based on a scheme.">
     description NonEmptyNormalizedString (0..1) <"A free form text field to further describe the approval status.">
 
@@ -1619,9 +1619,9 @@ type LoanLegalActionDetails: <"A structure to describe details of the legal acti
 
 type LoanLegalActionNotificationChoice0:
 
-    facilityEventGroup AbstractFacilityEvent (0..1)
-    lcEventGroup AbstractLcEvent (0..1)
-    loanContractEventGroup AbstractLoanServicingEvent (0..1)
+    facilityEventGroup AbstractFacilityEvent (0..1) <"A facility-level servicing event communicated as part of the notification concerning a loan legal action.">
+    lcEventGroup AbstractLcEvent (0..1) <"A letter of credit servicing event associated with the legal action communicated by the notification.">
+    loanContractEventGroup AbstractLoanServicingEvent (0..1) <"A loan contract servicing event associated with the legal action and communicated through the notification.">
     legalActionTask LoanLegalActionTask (0..1) <"A structure that details tasks and their statuses, the completion of which are prerequisites to a legal action.">
     legalActionStatus LoanLegalActionStatus (0..1) <"A structure to describe the overall status of the loan legal action.">
     legalActionApprovalStatus LoanLegalActionApprovalStatus (0..1) <"A structure that provides global level approval status on a legal action.">
@@ -1674,7 +1674,7 @@ type LoanLegalActionStatementChoice0:
 
     facilityIdentifier FacilityIdentifier (0..1) <"A facility identifier structure.">
     facilitySummary FacilitySummary (0..1) <"A facility summary structure.">
-    facilityGroup AbstractFacility (0..1)
+    facilityGroup AbstractFacility (0..1) <"Provides the facility information associated with the legal action reported in the loan legal action statement.">
 
     condition Choice:
         optional choice facilityIdentifier, facilitySummary, facilityGroup
@@ -1701,7 +1701,7 @@ type LoanLegalActionStatus: <"A structure to describe the overall loan legal act
 
     id string (0..1)
     effectiveDate zonedDateTime (0..1) <"The effective date of the loan legal action status details.">
-    legalActionReference LoanLegalActionReference (1..1)
+    legalActionReference LoanLegalActionReference (1..1) <"An intra-document reference identifying the legal action to which the reported overall loan legal action status applies.">
     ^type LoanLegalActionStatusType (1..1) <"Loan legal action status as of the effective date, based on a scheme.">
     description NonEmptyNormalizedString (0..1) <"A free form field to provide additional description of the legal action status.">
 
@@ -1773,7 +1773,7 @@ type LoanSimplePayment extends PaymentBase: <"A complex type to specified paymen
 
     payerPartyReference PartyReference (1..1) <"A reference to the party responsible for the allocation.">
     receiverPartyReference PartyReference (1..1) <"A reference to the party that has been allocated to.">
-    paymentAmount NonNegativeMoney (1..1)
+    paymentAmount NonNegativeMoney (1..1) <"The non-negative monetary amount to be transferred from the payer to the receiver on the specified payment date.">
     paymentDate AdjustableDate (1..1) <"The payment date. This date is subject to adjustment in accordance with any applicable business day convention.">
 
 type LoanTradeType extends LoanTradeSummary: <"A structure that defines party-to-party loan trade information. This structure contains the main (e.g. fund manager/main counterparty) trade details.">
@@ -1834,7 +1834,7 @@ type LoanTradingFacilityFeeAccrual extends AbstractTradingAccrual: <"A structure
 
     accruingFeeTypeId AccrualTypeId (1..1) <"A unique id associated with a facility accrual type.">
     accruingFeeType LoanTradingAccruingFeeTypeEnum (0..1) <"Describes the type of the accruing fee.">
-    facilityReference FacilityReference (1..1)
+    facilityReference FacilityReference (1..1) <"References the loan facility to which the specified trading fee accrual applies, identifying the relevant underlying facility within the document.">
 
 type LoanTradingCostOfCarry: <"A structure that incorporates elements of an accrual calculation, for the purpose of defining cost-of-carry.">
 
@@ -1854,8 +1854,8 @@ type LoanTradingCostOfCarryAccrual: <"A schedule that incorporates all sub-perio
 
 type LoanTradingCounterpartySettlementFundingFactors: <"A structure that defines the factors that impact settlement cashflows.">
 
-    delayedCompensation LoanTradingDelayedCompensation (0..1)
-    costOfCarry LoanTradingCostOfCarry (0..1)
+    delayedCompensation LoanTradingDelayedCompensation (0..1) <"Specifies interest and fee accruals used to determine delayed compensation affecting the counterparty settlement cashflows.">
+    costOfCarry LoanTradingCostOfCarry (0..1) <"Specifies the accrual calculation inputs used to determine cost-of-carry amounts affecting the counterparty\'s settlement cashflows.">
     economicBenefit LoanTradingEconomicBenefit (0..*) <"The total economic benefit, based on facility-level activity between trade and settlement date, payable to the buyer of the asset.">
     transferFeeAmounts BuyerSellerAmounts (1..1) <"Counterparty shares of the transfer fee owed to the agent.">
 
@@ -1874,7 +1874,7 @@ type LoanTradingEconomicBenefit: <"A structure that combines a simple (money) am
     amount NonNegativeMoney (1..1) <"Economic benefit amount.">
     payerPartyReference PartyReference (0..1) <"A reference to the party responsible for the allocation.">
     receiverPartyReference PartyReference (0..1) <"A reference to the party that has been allocated to.">
-    eventIdentifier BusinessEventIdentifier (0..1)
+    eventIdentifier BusinessEventIdentifier (0..1) <"An identifier issued by the indicated party for the business event associated with the economic benefit at settlement.">
     commitmentAdjustment CommitmentAdjustment (0..1) <"Any commitment adjustments which have occurred during settlement of the trade. Represented by the business event structure.">
 
     condition Choice:
@@ -1896,7 +1896,7 @@ type LoanTradingNonAccruingFee: <"A structure that details the underlying elemen
     nonAccruingFeeTypeId NonAccruingFeeTypeId (1..1) <"A unique id associated with the facility nonaccruing fee type.">
     nonAccruingFeetype LoanTradingNonAccruingFeeTypeEnum (0..1) <"Describes the type of the accruing fee.">
     miscFeeType MiscFeeType (0..1) <"Miscellaneous nonrecurring fee type.">
-    facilityReference FacilityReference (0..1)
+    facilityReference FacilityReference (0..1) <"An intra-document reference identifying the loan facility to which the amount and classification of the nonaccruing fee relate.">
     loanContractReference LoanContractReference (0..1) <"A unique id for the loan contract.">
     letterOfCreditReference LetterOfCreditReference (0..1) <"A unique identifier for the letter of credit.">
 
@@ -1962,8 +1962,8 @@ type OutstandingContractsStatementChoice:
 
 type OutstandingsPosition: <"A structure that represents outstanding loan contracts or outstanding letter of credit position. Both the global and lender position (current and prior) levels can be represented.">
 
-    loanContractReference LoanContractReference (0..1)
-    letterOfCreditReference LetterOfCreditReference (0..1)
+    loanContractReference LoanContractReference (0..1) <"Provides an intra-document reference to the loan contract for which current and any prior outstanding amounts and associated facility foreign exchange terms are reported.">
+    letterOfCreditReference LetterOfCreditReference (0..1) <"Provides an intra-document reference to the letter of credit whose current and, where reported, prior global and lender outstanding amounts are represented.">
     amount MoneyWithParticipantShare (1..1) <"The global and share amounts against the associated instrument. This is after any referenced business events have taken place.">
     priorAmount MoneyWithParticipantShare (0..1) <"The global and share amounts against the associated instrument. This is prior to any referenced business events.">
     facilityFxRate FxTerms (0..1) <"Defines a single (current) FX rate used to calculate utilization in the facility currency. Used in the case where the loan contract currency is different to the facility currency.">
@@ -2012,7 +2012,7 @@ type PartyProfileIdentifier: <"A type that identifies a party profile record.">
 
     id string (0..1)
     partyReference PartyReference (1..1) <"Reference to a party.">
-    partyProfileId PartyProfileId (1..1)
+    partyProfileId PartyProfileId (1..1) <"The scheme-qualified identifier value used to distinguish a party profile record from other party profile records.">
 
 type PaymentProjection: <"A structure that represents interest payment projections.">
 
@@ -2023,11 +2023,11 @@ type PeriodRate: <"A structure that represents a rate applicable against a well-
 
     startDate zonedDateTime (1..1) <"Date on which this period begins.">
     endDate zonedDateTime (0..1) <"Date on which this period ends.">
-    rate number (1..1)
+    rate number (1..1) <"The decimal value of the rate applying from the period\'s specified start date until its defined end, or indefinitely when no end is specified.">
 
 type ProRataFacilities: <"A structure that defines a restriction pertaining to which facilities must be traded on a pro-rata basis.">
 
-    facilityReference FacilityReference (2..*)
+    facilityReference FacilityReference (2..*) <"Provides an intra-document reference to a facility included among the facilities required to be traded on a pro-rata basis.">
 
 type RateLimits: <"A structure that defines the limits associated with rates that can be applied to a loan instrument.">
 
@@ -2049,7 +2049,7 @@ type SettlementInstructionId: <"A type defining a cash settlement details identi
 type RateAdjustment: <"A structure that represents adjustments to the base rate.">
 
     margin number (1..1) <"The adjustment to the base rate related to the credit risk of the issuer or borrower. Commonly referred to as the \"rate margin\" or \"margin.\"">
-    pikSpread number (0..1)
+    pikSpread number (0..1) <"The additional adjustment to the base rate applicable when interest is paid in kind rather than in cash.">
 
 type TaskDates: <"A structure that details key dates related to a task.">
 
@@ -2068,7 +2068,7 @@ type TaskIdentifier: <"A type defining a task identifier issued by the indicated
     id string (0..1)
     partyReference PartyReference (1..1) <"Reference to a party.">
     taskId TaskId (0..1) <"Identification of the task.">
-    versionedTaskId VersionedTaskId (0..1)
+    versionedTaskId VersionedTaskId (0..1) <"Identification of the task and its version, as issued by the party referenced in the task identifier.">
 
     condition Choice:
         required choice taskId, versionedTaskId
@@ -2117,19 +2117,19 @@ type UtilizationPeriod: <"A schedule that incorporates all sub-periods of an int
 
 type VersionedCovenantObligationId: <"Covenant Obligation ID with Version Support">
 
-    covenantObligationId CovenantObligationId (1..1)
+    covenantObligationId CovenantObligationId (1..1) <"Identifies the covenant obligation using a populated qualifying scheme, with changes to the identifier tracked through the associated version history.">
     version int (1..1) <"The version number">
     effectiveDate IdentifiedDate (0..1) <"Optionally it is possible to specify a version effective date when a versionId is supplied.">
 
 type VersionedLegalActionId: <"Legal Action ID with Version Support">
 
-    legalActionId LegalActionId (1..1)
+    legalActionId LegalActionId (1..1) <"A scheme-qualified, non-empty short-form identifier that uniquely identifies the loan legal action to which the accompanying version history applies.">
     version int (1..1) <"The version number">
     effectiveDate IdentifiedDate (0..1) <"Optionally it is possible to specify a version effective date when a versionId is supplied.">
 
 type VersionedTaskId: <"Task ID with Version Support">
 
-    taskId TaskId (1..1)
+    taskId TaskId (1..1) <"The task identifier, expressed using a populated qualifying scheme, to which the associated version history applies.">
     version int (1..1) <"The version number">
     effectiveDate IdentifiedDate (0..1) <"Optionally it is possible to specify a version effective date when a versionId is supplied.">
 

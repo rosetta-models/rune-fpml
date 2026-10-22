@@ -1,0 +1,418 @@
+{
+  "fpmlVersion" : "5-14",
+  "trade" : [ {
+    "tradeHeader" : {
+      "partyTradeIdentifier" : [ {
+        "partyReference" : {
+          "href" : "partyA"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "62546871",
+            "tradeIdScheme" : "http://www.swapswire.com/spec/2001/trade-id-1-0"
+          }
+        } ]
+      }, {
+        "partyReference" : {
+          "href" : "partyB"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "62546871",
+            "tradeIdScheme" : "http://www.swapswire.com/spec/2001/trade-id-1-0"
+          }
+        } ]
+      } ],
+      "tradeDate" : {
+        "value" : "2021-08-30T00:00:00Z"
+      }
+    },
+    "product" : {
+      "buyerPartyReference" : {
+        "href" : "partyB"
+      },
+      "sellerPartyReference" : {
+        "href" : "partyA"
+      },
+      "premium" : [ {
+        "payerPartyReference" : {
+          "href" : "partyB"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyA"
+        },
+        "paymentAmount" : {
+          "currency" : {
+            "value" : "GBP"
+          },
+          "amount" : 220000
+        },
+        "paymentDate" : {
+          "unadjustedDate" : {
+            "value" : "2021-08-31T00:00:00Z"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "FOLLOWING",
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "GBLO"
+              } ]
+            }
+          }
+        }
+      } ],
+      "exercise" : {
+        "id" : "exercisePeriod",
+        "expirationDate" : {
+          "adjustableDate" : {
+            "unadjustedDate" : {
+              "value" : "2021-09-30T00:00:00Z"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "FOLLOWING",
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "GBLO"
+                } ]
+              }
+            }
+          }
+        },
+        "earliestExerciseTime" : {
+          "hourMinuteTime" : "09:00:00",
+          "businessCenter" : {
+            "value" : "GBLO"
+          }
+        },
+        "expirationTime" : {
+          "hourMinuteTime" : "11:00:00",
+          "businessCenter" : {
+            "value" : "GBLO"
+          }
+        }
+      },
+      "exerciseProcedure" : {
+        "manualExercise" : {
+          "fallbackExercise" : true
+        },
+        "followUpConfirmation" : false
+      },
+      "calculationAgent" : {
+        "calculationAgentPartyReference" : [ {
+          "href" : "partyA"
+        } ]
+      },
+      "physicalSettlement" : {
+        "clearedPhysicalSettlement" : true,
+        "mutuallyAgreedClearinghouse" : {
+          "identifier" : {
+            "value" : "LCHLGB22REF",
+            "idScheme" : "http://www.fpml.org/coding-scheme/external/iso9362"
+          }
+        },
+        "agreedDiscountRate" : {
+          "value" : "SONIA"
+        },
+        "settlementRateSource" : {
+          "informationSource" : {
+            "rateSource" : {
+              "value" : "ICESWAP"
+            }
+          }
+        },
+        "quotationRateType" : "Mid"
+      },
+      "swaptionStraddle" : false,
+      "swap" : {
+        "swapStream" : [ {
+          "id" : "floatingLeg",
+          "payerPartyReference" : {
+            "href" : "partyA"
+          },
+          "receiverPartyReference" : {
+            "href" : "partyB"
+          },
+          "calculationPeriodDates" : {
+            "id" : "floatingLegCalcPeriodDates",
+            "effectiveDate" : {
+              "unadjustedDate" : {
+                "value" : "2021-09-30T00:00:00Z"
+              },
+              "dateAdjustments" : {
+                "businessDayConvention" : "NONE"
+              }
+            },
+            "terminationDate" : {
+              "unadjustedDate" : {
+                "value" : "2051-09-30T00:00:00Z"
+              },
+              "dateAdjustments" : {
+                "businessDayConvention" : "MODFOLLOWING",
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "GBLO"
+                  } ]
+                }
+              }
+            },
+            "calculationPeriodDatesAdjustments" : {
+              "businessDayConvention" : "MODFOLLOWING",
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "GBLO"
+                } ]
+              }
+            },
+            "calculationPeriodFrequency" : {
+              "periodMultiplier" : 1,
+              "period" : "Y",
+              "rollConvention" : "30"
+            }
+          },
+          "paymentDates" : {
+            "id" : "floatingLegPaymentDates",
+            "calculationPeriodDatesReference" : {
+              "href" : "floatingLegCalcPeriodDates"
+            },
+            "paymentFrequency" : {
+              "periodMultiplier" : 1,
+              "period" : "Y"
+            },
+            "payRelativeTo" : "CalculationPeriodEndDate",
+            "paymentDatesAdjustments" : {
+              "businessDayConvention" : "MODFOLLOWING",
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "GBLO"
+                } ]
+              }
+            }
+          },
+          "resetDates" : {
+            "id" : "floatingLegResetDates",
+            "calculationPeriodDatesReference" : {
+              "href" : "floatingLegCalcPeriodDates"
+            },
+            "resetRelativeTo" : "CalculationPeriodEndDate",
+            "fixingDates" : {
+              "periodMultiplier" : 0,
+              "period" : "D",
+              "businessDayConvention" : "PRECEDING",
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "GBLO"
+                } ]
+              },
+              "dateRelativeTo" : {
+                "href" : "floatingLegResetDates"
+              }
+            },
+            "resetFrequency" : {
+              "periodMultiplier" : 1,
+              "period" : "Y"
+            },
+            "resetDatesAdjustments" : {
+              "businessDayConvention" : "MODFOLLOWING",
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "GBLO"
+                } ]
+              }
+            }
+          },
+          "calculationPeriodAmount" : {
+            "calculation" : {
+              "notionalSchedule" : {
+                "notionalStepSchedule" : {
+                  "initialValue" : 10000000,
+                  "currency" : {
+                    "value" : "GBP"
+                  }
+                }
+              },
+              "rateCalculation" : {
+                "floatingRateIndex" : {
+                  "value" : "GBP-SONIA-OIS Compound"
+                }
+              },
+              "dayCountFraction" : {
+                "value" : "ACT/365.FIXED"
+              }
+            }
+          }
+        }, {
+          "id" : "fixedLeg",
+          "payerPartyReference" : {
+            "href" : "partyB"
+          },
+          "receiverPartyReference" : {
+            "href" : "partyA"
+          },
+          "calculationPeriodDates" : {
+            "id" : "fixedLegCalcPeriodDates",
+            "effectiveDate" : {
+              "unadjustedDate" : {
+                "value" : "2021-09-30T00:00:00Z"
+              },
+              "dateAdjustments" : {
+                "businessDayConvention" : "NONE"
+              }
+            },
+            "terminationDate" : {
+              "unadjustedDate" : {
+                "value" : "2051-09-30T00:00:00Z"
+              },
+              "dateAdjustments" : {
+                "businessDayConvention" : "MODFOLLOWING",
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "GBLO"
+                  } ]
+                }
+              }
+            },
+            "calculationPeriodDatesAdjustments" : {
+              "businessDayConvention" : "MODFOLLOWING",
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "GBLO"
+                } ]
+              }
+            },
+            "calculationPeriodFrequency" : {
+              "periodMultiplier" : 1,
+              "period" : "Y",
+              "rollConvention" : "30"
+            }
+          },
+          "paymentDates" : {
+            "id" : "fixedLegPaymentDates",
+            "calculationPeriodDatesReference" : {
+              "href" : "fixedLegCalcPeriodDates"
+            },
+            "paymentFrequency" : {
+              "periodMultiplier" : 1,
+              "period" : "Y"
+            },
+            "payRelativeTo" : "CalculationPeriodEndDate",
+            "paymentDatesAdjustments" : {
+              "businessDayConvention" : "MODFOLLOWING",
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "GBLO"
+                } ]
+              }
+            }
+          },
+          "calculationPeriodAmount" : {
+            "calculation" : {
+              "notionalSchedule" : {
+                "notionalStepSchedule" : {
+                  "initialValue" : 10000000,
+                  "currency" : {
+                    "value" : "GBP"
+                  }
+                }
+              },
+              "fixedRateSchedule" : {
+                "initialValue" : 0.0075
+              },
+              "dayCountFraction" : {
+                "value" : "ACT/365.FIXED"
+              }
+            }
+          }
+        } ],
+        "earlyTerminationProvision" : {
+          "mandatoryEarlyTermination" : {
+            "mandatoryEarlyTerminationDate" : {
+              "id" : "mandatoryEarlyTerminationDate",
+              "unadjustedDate" : {
+                "value" : "2021-09-29T00:00:00Z"
+              },
+              "dateAdjustments" : {
+                "businessDayConvention" : "MODFOLLOWING",
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "GBLO"
+                  } ]
+                }
+              }
+            },
+            "calculationAgent" : {
+              "calculationAgentParty" : "AsSpecifiedInMasterAgreement"
+            },
+            "cashSettlement" : {
+              "cashSettlementValuationTime" : {
+                "hourMinuteTime" : "09:00:00",
+                "businessCenter" : {
+                  "value" : "GBLO"
+                }
+              },
+              "cashSettlementValuationDate" : {
+                "periodMultiplier" : -2,
+                "period" : "D",
+                "dayType" : "Business",
+                "businessDayConvention" : "NONE",
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "GBLO"
+                  } ]
+                },
+                "dateRelativeTo" : {
+                  "href" : "mandatoryEarlyTerminationDate"
+                }
+              },
+              "midMarketValuation" : {
+                "indicativeQuotations" : {
+                  "cashSettlementCurrency" : [ {
+                    "value" : "GBP"
+                  } ],
+                  "applicableCsa" : "ReferenceVMCSA"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "documentation" : {
+      "masterAgreement" : {
+        "masterAgreementType" : {
+          "value" : "ISDA"
+        }
+      },
+      "contractualDefinitions" : [ {
+        "value" : "ISDA2021"
+      } ]
+    }
+  } ],
+  "party" : [ {
+    "id" : "partyA",
+    "partyId" : [ {
+      "value" : "549300ABANKV6BYQOWM67",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "A BANK(\"ABANK\")"
+    }
+  }, {
+    "id" : "partyB",
+    "partyId" : [ {
+      "value" : "529900CPTY57S5UCBB52",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "SELL SECURITIES CO LTD (\"Counterparty\")"
+    }
+  }, {
+    "id" : "dco",
+    "partyId" : [ {
+      "value" : "123456QQQQ57S5UCBB11",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "ABC CENTRAL PARTY CLEARING SVC LTD"
+    }
+  } ]
+}

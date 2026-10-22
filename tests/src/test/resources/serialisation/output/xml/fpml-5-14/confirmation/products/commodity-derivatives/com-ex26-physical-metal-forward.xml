@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataDocument fpmlVersion="5-14" xmlns="http://www.fpml.org/FpML-5/confirmation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/FpML-5/confirmation schemas/fpml-5-14/confirmation/fpml-main-5-14.xsd">
+  <trade>
+    <tradeHeader>
+      <partyTradeIdentifier>
+        <partyReference href="partyA"/>
+        <tradeId tradeIdScheme="http://www.BankA.com/com-trade-id">1234</tradeId>
+      </partyTradeIdentifier>
+      <partyTradeIdentifier>
+        <partyReference href="partyB"/>
+        <tradeId tradeIdScheme="http://www.BankB.com/com-trade-id">2345</tradeId>
+      </partyTradeIdentifier>
+      <tradeDate id="TradeDate">2013-03-05T00:00:00</tradeDate>
+    </tradeHeader>
+    <commodityForward>
+      <fixedLeg>
+        <payerPartyReference href="partyA"/>
+        <receiverPartyReference href="partyB"/>
+        <fixedPrice>
+          <price>1.2226</price>
+          <priceCurrency>USD</priceCurrency>
+          <priceUnit>LB</priceUnit>
+        </fixedPrice>
+        <quantityReference href="deliveryQuantity"/>
+        <relativePaymentDates>
+          <payRelativeToEvent>BillOfLading</payRelativeToEvent>
+          <calculationPeriodsDatesReference href="deliveryPeriods"/>
+          <paymentDaysOffset>
+            <periodMultiplier>5</periodMultiplier>
+            <period>D</period>
+            <businessDayConvention>NONE</businessDayConvention>
+          </paymentDaysOffset>
+        </relativePaymentDates>
+      </fixedLeg>
+      <metalPhysicalLeg>
+        <payerPartyReference href="partyB"/>
+        <receiverPartyReference href="partyA"/>
+        <metal>
+          <material>Aluminum-Primary</material>
+          <shape>Ingots</shape>
+          <shape>Sows</shape>
+          <shape>T-bars</shape>
+          <brand>
+            <name>Any-LME-registered</name>
+          </brand>
+          <grade>P1020</grade>
+        </metal>
+        <deliveryPeriods id="deliveryPeriods">
+          <periods>
+            <unadjustedDate>2013-05-01T00:00:00</unadjustedDate>
+            <unadjustedDate>2013-06-01T00:00:00</unadjustedDate>
+            <unadjustedDate>2013-07-01T00:00:00</unadjustedDate>
+            <unadjustedDate>2013-08-01T00:00:00</unadjustedDate>
+            <dateAdjustments>
+              <businessDayConvention>NotApplicable</businessDayConvention>
+            </dateAdjustments>
+          </periods>
+        </deliveryPeriods>
+        <deliveryConditions>
+          <deliveryLocation>Illinois, USA</deliveryLocation>
+          <risk>CPT</risk>
+          <totalQuantityTolerance>0.500</totalQuantityTolerance>
+          <periodQuantityTolerance>0.500</periodQuantityTolerance>
+          <title>TransfersWithRiskOfLoss</title>
+        </deliveryConditions>
+        <physicalQuantity id="deliveryQuantity">
+          <quantityUnit>MT</quantityUnit>
+          <quantityFrequency>PerSettlementPeriod</quantityFrequency>
+          <quantity>2.5</quantity>
+        </physicalQuantity>
+        <conversionFactor>2204.62</conversionFactor>
+      </metalPhysicalLeg>
+    </commodityForward>
+    <documentation>
+      <masterAgreement>
+        <masterAgreementType>ISDA</masterAgreementType>
+      </masterAgreement>
+      <contractualDefinitions>ISDA2006</contractualDefinitions>
+      <contractualDefinitions>ISDA2005Commodity</contractualDefinitions>
+    </documentation>
+  </trade>
+  <party id="partyA">
+    <partyId partyIdScheme="http://www.fpml.org/coding-scheme/dummy-party-id">BuyerPartyLEI</partyId>
+    <partyName>Bank A</partyName>
+  </party>
+  <party id="partyB">
+    <partyId partyIdScheme="http://www.fpml.org/coding-scheme/dummy-party-id">SellerPartyLEI</partyId>
+    <partyName>Bank B</partyName>
+  </party>
+</dataDocument>

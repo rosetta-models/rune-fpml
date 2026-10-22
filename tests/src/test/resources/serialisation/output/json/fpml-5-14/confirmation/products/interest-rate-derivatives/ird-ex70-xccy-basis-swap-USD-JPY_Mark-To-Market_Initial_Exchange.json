@@ -1,0 +1,386 @@
+{
+  "fpmlVersion" : "5-14",
+  "trade" : [ {
+    "tradeHeader" : {
+      "partyTradeIdentifier" : [ {
+        "partyReference" : {
+          "href" : "partyA"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "0000",
+            "tradeIdScheme" : "http://www.swapswire.com/spec/2001/trade-id-1-0"
+          }
+        } ]
+      }, {
+        "partyReference" : {
+          "href" : "partyB"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "0000",
+            "tradeIdScheme" : "http://www.swapswire.com/spec/2001/trade-id-1-0"
+          }
+        } ]
+      } ],
+      "tradeDate" : {
+        "value" : "2020-04-18T00:00:00Z"
+      }
+    },
+    "product" : {
+      "swapStream" : [ {
+        "id" : "floatingLeg",
+        "payerPartyReference" : {
+          "href" : "partyB"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyA"
+        },
+        "calculationPeriodDates" : {
+          "id" : "floatingLegCalcPeriodDates",
+          "effectiveDate" : {
+            "unadjustedDate" : {
+              "value" : "2020-04-20T00:00:00Z"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "NONE"
+            }
+          },
+          "terminationDate" : {
+            "unadjustedDate" : {
+              "value" : "2024-04-20T00:00:00Z"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "MODFOLLOWING",
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "USNY"
+                }, {
+                  "value" : "JPTO"
+                } ]
+              }
+            }
+          },
+          "calculationPeriodDatesAdjustments" : {
+            "businessDayConvention" : "MODFOLLOWING",
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "USNY"
+              }, {
+                "value" : "JPTO"
+              } ]
+            }
+          },
+          "calculationPeriodFrequency" : {
+            "periodMultiplier" : 3,
+            "period" : "M",
+            "rollConvention" : "20"
+          }
+        },
+        "paymentDates" : {
+          "id" : "floatingLegPaymentDates",
+          "calculationPeriodDatesReference" : {
+            "href" : "floatingLegCalcPeriodDates"
+          },
+          "paymentFrequency" : {
+            "periodMultiplier" : 3,
+            "period" : "M"
+          },
+          "payRelativeTo" : "CalculationPeriodEndDate",
+          "paymentDaysOffset" : {
+            "periodMultiplier" : 2,
+            "period" : "D",
+            "dayType" : "Business"
+          },
+          "paymentDatesAdjustments" : {
+            "businessDayConvention" : "MODFOLLOWING",
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "USNY"
+              }, {
+                "value" : "JPTO"
+              } ]
+            }
+          }
+        },
+        "resetDates" : {
+          "id" : "floatingLegResetDates",
+          "calculationPeriodDatesReference" : {
+            "href" : "floatingLegCalcPeriodDates"
+          },
+          "resetRelativeTo" : "CalculationPeriodEndDate",
+          "fixingDates" : {
+            "periodMultiplier" : 0,
+            "period" : "D",
+            "businessDayConvention" : "PRECEDING",
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "JPTO"
+              } ]
+            },
+            "dateRelativeTo" : {
+              "href" : "floatingLegResetDates"
+            }
+          },
+          "resetFrequency" : {
+            "periodMultiplier" : 3,
+            "period" : "M"
+          },
+          "resetDatesAdjustments" : {
+            "businessDayConvention" : "MODFOLLOWING",
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "USNY"
+              }, {
+                "value" : "JPTO"
+              } ]
+            }
+          }
+        },
+        "calculationPeriodAmount" : {
+          "calculation" : {
+            "notionalSchedule" : {
+              "id" : "notionalScheduleConstant",
+              "notionalStepSchedule" : {
+                "initialValue" : 1234,
+                "currency" : {
+                  "value" : "JPY"
+                }
+              }
+            },
+            "rateCalculation" : {
+              "floatingRateIndex" : {
+                "value" : "JPY-TONA-OIS Compound"
+              },
+              "spreadSchedule" : [ {
+                "initialValue" : 0.001
+              } ]
+            },
+            "dayCountFraction" : {
+              "value" : "ACT/365.FIXED"
+            }
+          }
+        },
+        "principalExchanges" : {
+          "initialExchange" : true,
+          "finalExchange" : true,
+          "intermediateExchange" : true
+        },
+        "cashflows" : {
+          "cashflowsMatchParameters" : true,
+          "principalExchange" : [ {
+            "unadjustedPrincipalExchangeDate" : "2022-10-20T00:00:00Z",
+            "principalExchangeAmount" : -1234.00
+          } ]
+        }
+      }, {
+        "id" : "floatingLeg2",
+        "payerPartyReference" : {
+          "href" : "partyA"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyB"
+        },
+        "calculationPeriodDates" : {
+          "id" : "floatingLeg2CalcPeriodDates",
+          "effectiveDate" : {
+            "unadjustedDate" : {
+              "value" : "2020-04-20T00:00:00Z"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "NONE"
+            }
+          },
+          "terminationDate" : {
+            "unadjustedDate" : {
+              "value" : "2024-04-20T00:00:00Z"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "MODFOLLOWING",
+              "businessCenters" : {
+                "businessCenter" : [ {
+                  "value" : "USNY"
+                }, {
+                  "value" : "JPTO"
+                } ]
+              }
+            }
+          },
+          "calculationPeriodDatesAdjustments" : {
+            "businessDayConvention" : "MODFOLLOWING",
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "USNY"
+              }, {
+                "value" : "JPTO"
+              } ]
+            }
+          },
+          "calculationPeriodFrequency" : {
+            "periodMultiplier" : 3,
+            "period" : "M",
+            "rollConvention" : "20"
+          }
+        },
+        "paymentDates" : {
+          "id" : "floatingLeg2PaymentDates",
+          "calculationPeriodDatesReference" : {
+            "href" : "floatingLeg2CalcPeriodDates"
+          },
+          "paymentFrequency" : {
+            "periodMultiplier" : 3,
+            "period" : "M"
+          },
+          "payRelativeTo" : "CalculationPeriodEndDate",
+          "paymentDaysOffset" : {
+            "periodMultiplier" : 2,
+            "period" : "D",
+            "dayType" : "Business"
+          },
+          "paymentDatesAdjustments" : {
+            "businessDayConvention" : "MODFOLLOWING",
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "USNY"
+              }, {
+                "value" : "JPTO"
+              } ]
+            }
+          }
+        },
+        "resetDates" : {
+          "id" : "floatingLeg2ResetDates",
+          "calculationPeriodDatesReference" : {
+            "href" : "floatingLeg2CalcPeriodDates"
+          },
+          "resetRelativeTo" : "CalculationPeriodEndDate",
+          "fixingDates" : {
+            "periodMultiplier" : 0,
+            "period" : "D",
+            "businessDayConvention" : "PRECEDING",
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "USGS"
+              } ]
+            },
+            "dateRelativeTo" : {
+              "href" : "floatingLeg2ResetDates"
+            }
+          },
+          "resetFrequency" : {
+            "periodMultiplier" : 3,
+            "period" : "M"
+          },
+          "resetDatesAdjustments" : {
+            "businessDayConvention" : "MODFOLLOWING",
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "USNY"
+              }, {
+                "value" : "JPTO"
+              } ]
+            }
+          }
+        },
+        "calculationPeriodAmount" : {
+          "calculation" : {
+            "fxLinkedNotionalSchedule" : {
+              "constantNotionalScheduleReference" : {
+                "href" : "notionalScheduleConstant"
+              },
+              "initialValue" : 300.00,
+              "varyingNotionalCurrency" : {
+                "value" : "USD"
+              },
+              "varyingNotionalFixingDates" : {
+                "periodMultiplier" : -2,
+                "period" : "D",
+                "dayType" : "Business",
+                "businessDayConvention" : "NONE",
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "GBLO"
+                  }, {
+                    "value" : "USNY"
+                  }, {
+                    "value" : "JPTO"
+                  } ]
+                },
+                "dateRelativeTo" : {
+                  "href" : "floatingLeg2ResetDates"
+                }
+              },
+              "fxSpotRateSource" : {
+                "primaryRateSource" : {
+                  "rateSource" : {
+                    "value" : "Reuters"
+                  },
+                  "rateSourcePage" : {
+                    "value" : "WMRPSPOT01"
+                  }
+                },
+                "fixingTime" : {
+                  "hourMinuteTime" : "11:00:00",
+                  "businessCenter" : {
+                    "value" : "GBLO"
+                  }
+                }
+              },
+              "varyingNotionalInterimExchangePaymentDates" : {
+                "periodMultiplier" : 0,
+                "period" : "D",
+                "businessDayConvention" : "NONE",
+                "dateRelativeTo" : {
+                  "href" : "floatingLeg2PaymentDates"
+                }
+              }
+            },
+            "rateCalculation" : {
+              "floatingRateIndex" : {
+                "value" : "USD-SOFR-OIS Compound"
+              }
+            },
+            "dayCountFraction" : {
+              "value" : "ACT/360"
+            }
+          }
+        },
+        "principalExchanges" : {
+          "initialExchange" : true,
+          "finalExchange" : true,
+          "intermediateExchange" : true
+        },
+        "cashflows" : {
+          "cashflowsMatchParameters" : true,
+          "principalExchange" : [ {
+            "unadjustedPrincipalExchangeDate" : "2020-04-20T00:00:00Z",
+            "principalExchangeAmount" : -300.00
+          } ]
+        }
+      } ]
+    },
+    "documentation" : {
+      "masterAgreement" : {
+        "masterAgreementType" : {
+          "value" : "ISDA"
+        }
+      },
+      "contractualDefinitions" : [ {
+        "value" : "ISDA2021"
+      } ]
+    }
+  } ],
+  "party" : [ {
+    "id" : "partyA",
+    "partyId" : [ {
+      "value" : "Party A",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
+    } ]
+  }, {
+    "id" : "partyB",
+    "partyId" : [ {
+      "value" : "Party B",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
+    } ]
+  } ]
+}
