@@ -1,0 +1,194 @@
+{
+  "fpmlVersion" : "5-14",
+  "trade" : [ {
+    "tradeHeader" : {
+      "partyTradeIdentifier" : [ {
+        "partyReference" : {
+          "href" : "partyA"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "1234",
+            "tradeIdScheme" : "http://www.PartyA.com/com-trade-id"
+          }
+        } ]
+      }, {
+        "partyReference" : {
+          "href" : "partyB"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "2345",
+            "tradeIdScheme" : "http://www.PartyB.com/com-trade-id"
+          }
+        } ]
+      } ],
+      "tradeDate" : {
+        "value" : "2006-06-26T00:00:00Z"
+      }
+    },
+    "product" : {
+      "effectiveDate" : {
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2006-09-01T00:00:00Z"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NotApplicable"
+          }
+        }
+      },
+      "terminationDate" : {
+        "adjustableDate" : {
+          "unadjustedDate" : {
+            "value" : "2006-09-30T00:00:00Z"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NotApplicable"
+          }
+        }
+      },
+      "settlementCurrency" : {
+        "value" : "USD"
+      },
+      "commoditySwapLeg" : [ {
+        "payerPartyReference" : {
+          "href" : "partyA"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyB"
+        },
+        "calculationPeriodsScheduleReference" : {
+          "href" : "floatingLegCalculationPeriods"
+        },
+        "fixedPrice" : {
+          "price" : 5.55,
+          "priceCurrency" : {
+            "value" : "USD"
+          },
+          "priceUnit" : {
+            "value" : "MMBTU"
+          }
+        },
+        "notionalQuantity" : {
+          "quantityUnit" : {
+            "value" : "MMBTU"
+          },
+          "quantityFrequency" : {
+            "value" : "PerCalculationPeriod"
+          },
+          "quantity" : 5000.0
+        },
+        "totalNotionalQuantity" : 5000.0,
+        "relativePaymentDates" : {
+          "payRelativeTo" : "CalculationPeriodStartDate",
+          "calculationPeriodsScheduleReference" : {
+            "href" : "floatingLegCalculationPeriods"
+          },
+          "paymentDaysOffset" : {
+            "periodMultiplier" : 5,
+            "period" : "D",
+            "dayType" : "Business",
+            "businessDayConvention" : "NONE"
+          },
+          "businessCenters" : {
+            "businessCenter" : [ {
+              "value" : "USNY"
+            } ]
+          }
+        }
+      }, {
+        "payerPartyReference" : {
+          "href" : "partyB"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyA"
+        },
+        "calculationPeriodsSchedule" : {
+          "id" : "floatingLegCalculationPeriods",
+          "periodMultiplier" : 1,
+          "period" : "M",
+          "balanceOfFirstPeriod" : false
+        },
+        "commodity" : {
+          "instrumentId" : [ {
+            "value" : "NATURAL GAS-AECO C/NIT (US$/MMBTU)-CANADIAN GAS REPORTER",
+            "instrumentIdScheme" : "http://www.fpml.org/coding-scheme/commodity-reference-price-1-0"
+          } ],
+          "specifiedPrice" : "MeanOfHighAndLow"
+        },
+        "notionalQuantity" : {
+          "quantityUnit" : {
+            "value" : "MMBTU"
+          },
+          "quantityFrequency" : {
+            "value" : "PerCalculationPeriod"
+          },
+          "quantity" : 5000.0
+        },
+        "totalNotionalQuantity" : 5000.0,
+        "calculation" : {
+          "pricingDates" : {
+            "calculationPeriodsScheduleReference" : {
+              "href" : "floatingLegCalculationPeriods"
+            },
+            "dayType" : "CommodityBusiness",
+            "dayDistribution" : {
+              "value" : "First"
+            }
+          }
+        },
+        "relativePaymentDates" : {
+          "payRelativeTo" : "CalculationPeriodStartDate",
+          "calculationPeriodsScheduleReference" : {
+            "href" : "floatingLegCalculationPeriods"
+          },
+          "paymentDaysOffset" : {
+            "periodMultiplier" : 5,
+            "period" : "D",
+            "dayType" : "Business",
+            "businessDayConvention" : "NONE"
+          },
+          "businessCenters" : {
+            "businessCenter" : [ {
+              "value" : "USNY"
+            } ]
+          }
+        }
+      } ],
+      "marketDisruption" : {
+        "marketDisruptionEvents" : "AsSpecifiedInMasterAgreement",
+        "disruptionFallbacks" : "AsSpecifiedInMasterAgreement"
+      }
+    },
+    "documentation" : {
+      "masterAgreement" : {
+        "masterAgreementType" : {
+          "value" : "ISDA"
+        }
+      },
+      "contractualDefinitions" : [ {
+        "value" : "ISDA2005Commodity"
+      } ]
+    }
+  } ],
+  "party" : [ {
+    "id" : "partyA",
+    "partyId" : [ {
+      "value" : "549300KFSLY4U7N3LL12",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Bank"
+    }
+  }, {
+    "id" : "partyB",
+    "partyId" : [ {
+      "value" : "549300AJRHKBLY9GM262",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "Energy Co."
+    }
+  } ]
+}

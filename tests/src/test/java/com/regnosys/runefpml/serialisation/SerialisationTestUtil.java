@@ -93,6 +93,14 @@ public class SerialisationTestUtil<T> {
         }
     }
 
+    /**
+     * Recordkeeping samples sit under a {@code recordkeeping} folder, and validate only against the
+     * recordkeeping view of the schema.
+     */
+    public static boolean isRecordkeepingSample(Path samplePath) {
+        return UrlUtils.toPortableString(samplePath).contains("/recordkeeping/");
+    }
+
     private static String getTestName(Path path) {
         return UrlUtils.toPortableString(path).split(INPUT_ROOT_PATH)[1].substring(1);
     }

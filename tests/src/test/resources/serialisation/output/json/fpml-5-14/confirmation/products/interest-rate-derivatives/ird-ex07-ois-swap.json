@@ -1,0 +1,240 @@
+{
+  "fpmlVersion" : "5-14",
+  "trade" : [ {
+    "tradeHeader" : {
+      "partyTradeIdentifier" : [ {
+        "partyReference" : {
+          "href" : "party1"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "TRN12000",
+            "tradeIdScheme" : "http://www.citibank.com/swaps/trade-id"
+          }
+        } ]
+      }, {
+        "partyReference" : {
+          "href" : "party2"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "TRN13000",
+            "tradeIdScheme" : "http://www.mizuhocap.com/swaps/trade-id"
+          }
+        } ]
+      } ],
+      "tradeDate" : {
+        "value" : "2001-01-25T00:00:00Z"
+      }
+    },
+    "product" : {
+      "swapStream" : [ {
+        "payerPartyReference" : {
+          "href" : "party1"
+        },
+        "receiverPartyReference" : {
+          "href" : "party2"
+        },
+        "calculationPeriodDates" : {
+          "id" : "floatingCalcPeriodDates",
+          "effectiveDate" : {
+            "unadjustedDate" : {
+              "value" : "2001-01-29T00:00:00Z"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "NONE"
+            }
+          },
+          "terminationDate" : {
+            "unadjustedDate" : {
+              "value" : "2001-04-29T00:00:00Z"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "MODFOLLOWING",
+              "businessCenters" : {
+                "id" : "primaryBusinessCenters",
+                "businessCenter" : [ {
+                  "value" : "EUTA"
+                } ]
+              }
+            }
+          },
+          "calculationPeriodDatesAdjustments" : {
+            "businessDayConvention" : "MODFOLLOWING",
+            "businessCentersReference" : {
+              "href" : "primaryBusinessCenters"
+            }
+          },
+          "calculationPeriodFrequency" : {
+            "periodMultiplier" : 1,
+            "period" : "T",
+            "rollConvention" : "NONE"
+          }
+        },
+        "paymentDates" : {
+          "calculationPeriodDatesReference" : {
+            "href" : "floatingCalcPeriodDates"
+          },
+          "paymentFrequency" : {
+            "periodMultiplier" : 1,
+            "period" : "T"
+          },
+          "payRelativeTo" : "CalculationPeriodEndDate",
+          "paymentDaysOffset" : {
+            "periodMultiplier" : 1,
+            "period" : "D",
+            "dayType" : "Business"
+          },
+          "paymentDatesAdjustments" : {
+            "businessDayConvention" : "MODFOLLOWING",
+            "businessCentersReference" : {
+              "href" : "primaryBusinessCenters"
+            }
+          }
+        },
+        "resetDates" : {
+          "id" : "resetDates",
+          "calculationPeriodDatesReference" : {
+            "href" : "floatingCalcPeriodDates"
+          },
+          "resetRelativeTo" : "CalculationPeriodEndDate",
+          "fixingDates" : {
+            "periodMultiplier" : 0,
+            "period" : "D",
+            "businessDayConvention" : "PRECEDING",
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "EUTA"
+              } ]
+            },
+            "dateRelativeTo" : {
+              "href" : "resetDates"
+            }
+          },
+          "resetFrequency" : {
+            "periodMultiplier" : 1,
+            "period" : "T"
+          },
+          "resetDatesAdjustments" : {
+            "businessDayConvention" : "MODFOLLOWING",
+            "businessCentersReference" : {
+              "href" : "primaryBusinessCenters"
+            }
+          }
+        },
+        "calculationPeriodAmount" : {
+          "calculation" : {
+            "notionalSchedule" : {
+              "notionalStepSchedule" : {
+                "initialValue" : 100000000.00,
+                "currency" : {
+                  "value" : "EUR"
+                }
+              }
+            },
+            "rateCalculation" : {
+              "floatingRateIndex" : {
+                "value" : "EUR-EONIA-OIS-COMPOUND"
+              }
+            },
+            "dayCountFraction" : {
+              "value" : "ACT/360"
+            }
+          }
+        }
+      }, {
+        "payerPartyReference" : {
+          "href" : "party2"
+        },
+        "receiverPartyReference" : {
+          "href" : "party1"
+        },
+        "calculationPeriodDates" : {
+          "id" : "fixedCalcPeriodDates",
+          "effectiveDate" : {
+            "unadjustedDate" : {
+              "value" : "2001-01-29T00:00:00Z"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "NONE"
+            }
+          },
+          "terminationDate" : {
+            "unadjustedDate" : {
+              "value" : "2001-04-29T00:00:00Z"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "MODFOLLOWING",
+              "businessCentersReference" : {
+                "href" : "primaryBusinessCenters"
+              }
+            }
+          },
+          "calculationPeriodDatesAdjustments" : {
+            "businessDayConvention" : "MODFOLLOWING",
+            "businessCentersReference" : {
+              "href" : "primaryBusinessCenters"
+            }
+          },
+          "calculationPeriodFrequency" : {
+            "periodMultiplier" : 1,
+            "period" : "T",
+            "rollConvention" : "NONE"
+          }
+        },
+        "paymentDates" : {
+          "calculationPeriodDatesReference" : {
+            "href" : "fixedCalcPeriodDates"
+          },
+          "paymentFrequency" : {
+            "periodMultiplier" : 1,
+            "period" : "T"
+          },
+          "payRelativeTo" : "CalculationPeriodEndDate",
+          "paymentDatesAdjustments" : {
+            "businessDayConvention" : "MODFOLLOWING",
+            "businessCentersReference" : {
+              "href" : "primaryBusinessCenters"
+            }
+          }
+        },
+        "calculationPeriodAmount" : {
+          "calculation" : {
+            "notionalSchedule" : {
+              "notionalStepSchedule" : {
+                "initialValue" : 100000000.00,
+                "currency" : {
+                  "value" : "EUR"
+                }
+              }
+            },
+            "fixedRateSchedule" : {
+              "initialValue" : 0.051
+            },
+            "dayCountFraction" : {
+              "value" : "ACT/360"
+            }
+          }
+        }
+      } ]
+    },
+    "calculationAgent" : {
+      "calculationAgentPartyReference" : [ {
+        "href" : "party1"
+      } ]
+    }
+  } ],
+  "party" : [ {
+    "id" : "party1",
+    "partyId" : [ {
+      "value" : "5493000SCC07UI6DB380",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ]
+  }, {
+    "id" : "party2",
+    "partyId" : [ {
+      "value" : "MCMCUS33",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
+    } ]
+  } ]
+}

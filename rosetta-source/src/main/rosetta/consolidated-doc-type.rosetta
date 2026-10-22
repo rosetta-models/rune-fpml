@@ -22,7 +22,7 @@ type Strategy extends Product: <"A strategy product. A type defining a group of 
 
     strategyComponentIdentifier StrategyComponentIdentification (0..*) <"Provides distinct identification for a component of a strategy.">
     premiumProductReference ProductReference (0..1) <"Indicates which product within a strategy represents the premium payment.">
-    product Product (0..*)
+    product Product (0..*) <"Represents an individual financial product that is part of a multi-product strategy. It serves as a placeholder for various financial instruments, such as derivatives, securities, or structured products, depending on the specific use case.">
 
 type AdditionalData: <"Provides extra information not represented in the model that may be useful in processing the message i.e. diagnosing the reason for failure.">
 
@@ -43,7 +43,7 @@ type AdmissionToTrading: <"Information about whether and when a product was admi
     admissionDate zonedDateTime (0..1) <"Date and time of the admission to trading on the trading venue or the date and time when the instrument was first traded or an order or quote was first received by the trading venue.">
     terminationDate zonedDateTime (0..1) <"Date and time when the financial instrument ceases to be traded or to be admitted to trading on the trading venue.">
 
-type Algorithm:
+type Algorithm: <"Defines an algorithm used within a financial transaction, specifying its name and role.">
 
     name string (1..1) <"The name of the algorithm.">
     role AlgorithmRole (1..1) <"The category of the function of the algorithm. The related individual performs the role specified in this field for the base party. For example, if the role is \"Trader\", the related person acts acts or acted as the base party\'s trader.">
@@ -53,7 +53,7 @@ type AlgorithmRole: <"A type describing a role played by an algorithm in one or 
     value Scheme (1..1)
     algorithmRoleScheme NonEmptyURI (0..1)
 
-type Allocation:
+type Allocation: <"Represents the breakdown of a trade into allocated portions, specifying trade identifiers, involved parties, and allocation details.">
 
     allocationTradeId TradeIdentifier (0..*) <"Unique ID for the allocation. Multiple allocation trade IDs are provided to allow for the use of USI/UTI representations along with party-specific trade identifiers.">
     partyReference PartyReference (1..1) <"Reference to a party.">
@@ -77,7 +77,7 @@ type AllocationReportingStatus: <"Code that describes what type of allocation ap
 type Allocations: <"The allocations for a single side of a trade.">
 
     allocatingPartyReference PartyReference (0..1) <"A pointer style reference to one of the parties to the trade, defined elsewhere in the document. The party referenced has requested its position in the trade to be allocated to several other parties or accounts.">
-    allocation Allocation (0..*)
+    allocation Allocation (0..*) <"Represents the breakdown of a trade into allocated portions, specifying trade identifiers, involved parties, and allocation details.">
 
 type Approval: <"A specific approval state in the workflow.">
 
@@ -94,9 +94,9 @@ type ApprovalId: <"An approval identifier allocated by a party. FpML does not de
     approvalIdScheme NonEmptyURI (0..1)
     id string (0..1)
 
-type Approvals:
+type Approvals: <"Represents a collection of approvals associated with a transaction or process. It consists of multiple approval elements, each of which contains details about an individual approval.">
 
-    approval Approval (0..*)
+    approval Approval (0..*) <"Represents an individual approval within an Approvals collection. It contains details about the approval process, including its category (type), its current status (status), and the entity responsible for granting it, which may be an individual (approver) or a party (approvingPartyReference).">
 
 type ApprovalType: <"A type that qualifies the type of approval.">
 
@@ -118,7 +118,7 @@ type ConfirmationMethod: <"A type used to represent the type of mechanism that c
     value Scheme (1..1)
     confirmationMethodScheme NonEmptyURI (0..1)
 
-type CreditDerivativesNotices:
+type CreditDerivativesNotices: <"Specifies whether key events related to credit derivatives have been triggered. It includes indicators for a credit event occurrence, the availability of relevant public information, and whether physical settlement is applicable.">
 
     creditEvent boolean (0..1) <"This element corresponds to the Credit Event Notice Delivered Under Old Transaction and Deemed Delivered Under New Transaction under the EXHIBIT C to 2004 ISDA Novation Definitions.">
     publiclyAvailableInformation boolean (0..1) <"This element corresponds to the Notice of Publicly Available Information Delivered Under Old Transaction and Deemed Delivered Under New Transaction under the EXHIBIT C to 2004 ISDA Novation Definitions.">
@@ -175,7 +175,7 @@ type FacilityExecutionExceptionDeclaration: <"Provides supporting evidence when 
     transactionCharacteristic TransactionCharacteristic (0..*) <"Allows the relevant transaction level categories or characteristics to be recorded for end-user exception determination. Examples include \"BoardOfDirectorsApproval\", \"HedgesCommercialRisk\".">
     supervisorRegistration SupervisorRegistration (0..*) <"Allows the organization to specify which if any relevant regulators it is registered with, and if so their identification number. For example, it could specify that it is SEC registered and provide its Central Index Key.">
 
-type FirstPeriodStartDate:
+type FirstPeriodStartDate: <"Represents the start date of the first accrual period in a financial contract.">
 
     value zonedDateTime (1..1)
     href string (1..1)
@@ -190,7 +190,7 @@ type InstrumentTradeQuantity: <"A structure describing the amount of an instrume
 
 type InstrumentTradePricing: <"A structure describing the price paid for the instrument.">
 
-    quote BasicQuotation (0..*)
+    quote BasicQuotation (0..*) <"Represents a financial quotation within the pricing details of an instrument trade. It encapsulates key attributes of a quoted value, including the price or rate, measurement type, quote units, market side, and other characteristics such as currency, timing, and valuation details.">
     couponStartDate zonedDateTime (0..1) <"The date interest started accruing for the accrued interest calculation on an interest bearing security.">
     exDividendDate zonedDateTime (0..1) <"The date when a distribution of dividends or interest is deducted from a securities asset, or set aside for payment to the original bondholders. From the ex-date, any dividends that are owing on the security are paid to the original owner. As a consequence of this, on the ex-date, the securities price typically drops by the amount of the distribution (plus or minus any market activity).">
     tradedFlatOfAccrued boolean (0..1) <"Whether the accrued interest in included when the trade settles. (\"true\" means accrued interest is not included when the trade settles.)">
@@ -210,7 +210,7 @@ type LinkId: <"The data type used for link identifiers.">
     id string (0..1)
     linkIdScheme NonEmptyURI (1..1)
 
-type LinkType:
+type LinkType: <"Represents a classification for different types of links between financial entities or transactions, and it follows a standardized coding scheme for classification.">
 
     value Scheme (1..1)
     linkTypeScheme NonEmptyURI (0..1)
@@ -235,7 +235,7 @@ type OrderId: <"A type that an identifier for an order.">
 
 type OrderIdentifier: <"A type that an order\'s identifier(s).">
 
-    orderId OrderId (0..1)
+    orderId OrderId (0..1) <"Uniquely identifies a financial order within a specified identification scheme. It ensures that the identifier is structured according to a predefined scheme.">
 
 type OrganizationCharacteristic: <"A characteristic of an organization used in declaring an end-user exception.">
 
@@ -269,7 +269,7 @@ type PartyPortfolioName: <"A type to represent a portfolio name for a particular
 
     id string (0..1)
     partyReference PartyReference (0..1) <"A pointer style reference to a party identifier defined elsewhere in the document. The party referenced has allocated the trade identifier.">
-    portfolioName PortfolioName (0..*)
+    portfolioName PortfolioName (0..*) <"Represents the name of a financial portfolio within a specified identification scheme, ensuring that the portfolio name adheres to a structured format.">
 
 type PartyRelationshipType: <"A type containing a code representing how two parties are related, e.g. Affiliated, Intragroup, None.">
 
@@ -292,7 +292,7 @@ type PartyTradeIdentifier extends TradeIdentifier: <"A type defining one or more
 
 type PartyTradeIdentifiers: <"A type containing multiple partyTradeIdentifier.">
 
-    partyTradeIdentifier PartyTradeIdentifier (0..*)
+    partyTradeIdentifier PartyTradeIdentifier (0..*) <"Uniquely identifies a trade from the perspective of a specific party. The structure ensures comprehensive tracking of trade lineage and relationships within financial transactions.">
 
 type PartyTradeInformation: <"A type defining party-specific additional information that may be recorded against a trade.">
 
@@ -376,23 +376,23 @@ type ProblemLocation: <"Provides a lexical location (i.e. a line number and char
 type ProductComponentIdentifier: <"Deprecated: A type defining a USI for the a subproduct component of a strategy.">
 
     premiumProductReference ProductReference (0..1) <"Indicates which product within a strategy this ID is associated with.">
-    issuer IssuerId (1..1)
-    tradeId TradeId (1..1)
+    issuer IssuerId (1..1) <"Identifies the entity issuing the financial product.">
+    tradeId TradeId (1..1) <"Uniquely identifies a trade related to the product component.">
 
 type ProductSummary: <"Summary information about the product that was traded. This is intended primarily for trade reporting by TRs.">
 
-    finalSettlementDate zonedDateTime (0..1)
-    settlementType SettlementTypeEnum (0..1)
+    finalSettlementDate zonedDateTime (0..1) <"Represents the date on which the financial product reaches its final settlement, meaning all contractual obligations related to settlement are fulfilled.">
+    settlementType SettlementTypeEnum (0..1) <"Specifies the method by which the product is settled. It can take one of four values: \"Cash\", \"Physical\", \"Election\", or \"CashOrPhysical\", indicating whether settlement occurs in cash, through physical delivery, by election, or as a choice between cash and physical settlement.">
     settlementLocation BusinessCenter (0..1) <"Added to support CFTC Amendments to Part 43/45 (Published November 2020)">
     seniority CreditSeniority (0..1) <"DEPRECATED. Use instead the field within credit products: indexReferenceInformation/seniority (RPTWG decision 2017-09)">
     indexFactor number (0..1) <"DEPRECATED. Use instead the field within credit products: indexReferenceInformation/indexFactor (RPTWG decision 2017-09)">
-    admissionToTrading AdmissionToTrading (0..1)
+    admissionToTrading AdmissionToTrading (0..1) <"Provides details on whether the product is admitted for trading on an exchange.">
 
 type QueryParameter: <"A type representing criteria for defining a query portfolio. The criteria are made up of a QueryParameterId, QueryParameterValue and QueryParameterOperator.">
 
-    queryParameterId QueryParameterId (0..1)
-    queryParameterValue NormalizedString (0..1)
-    queryParameterOperator QueryParameterOperator (0..1)
+    queryParameterId QueryParameterId (0..1) <"Uniquely identifies a query parameter within a specific identification scheme. A query parameter in this context refers to a named input used in financial queries, filtering, or searching for data within a system.">
+    queryParameterValue NormalizedString (0..1) <"Represents the actual value assigned to the query parameter. It is of type NormalizedString, ensuring it is a well-formed text string without leading or trailing whitespace. This element defines the specific value being searched for based on the query parameter’s type.">
+    queryParameterOperator QueryParameterOperator (0..1) <"Specifies the logical or mathematical operation applied to the query parameter when performing a search.">
 
 type QueryParameterId: <"A type representing an identifier for a parameter describing a query portfolio. An identifier can be anything from a product name like swap to a termination date.">
 
@@ -440,8 +440,8 @@ type ReportingRegime: <"Provides information about how the information in this m
     preEnactmentTrade boolean (0..1) <"Reports that this trade was executed prior to the enactment of the relevant reporting regulation.">
     notionalType NotionalReportingType (0..1) <"How the notional amount should be reported for the reporting regime. For example, for ESMA MiFIR it would be Nominal or MonetaryAmount.">
     currencyPairClassification CurrencyPairClassification (0..1) <"Reports a regulator-specific code classifying the currency pair in the trade into risk categories such as Major Currencies or Emerging Markets.">
-    transmissionOfOrder boolean (0..1)
-    postPricedIndicator boolean (0..1)
+    transmissionOfOrder boolean (0..1) <"Indicates whether an order has been transmitted through an intermediary before execution. If true, the trade originated from an order that was relayed or routed through a broker, trading venue, or another entity before reaching its final execution point. If false, the trade was executed directly by the reporting party.">
+    postPricedIndicator boolean (0..1) <"Specifies whether the final price of the transaction was determined after execution. If true, the transaction was executed without a fixed price, and the price was established later. If false, the price was agreed upon at the time of execution.">
     directlyLinkedActivity boolean (0..1) <"Directly linked to commercial activity or treasury financing. Information on whether the contract is objectively measurable as directly linked to the counterparty\'s commercial or treasury financing activity, as referred to in Article 10(3) of Regulation (EU) No 648/2012.">
     endUserException boolean (0..1) <"Specifies whether the trade is not obligated to be cleared via a derivative clearing organization, i.e. whether there is an exemption from clearing. For historical reasons this is called \"end-user exception\", but this may be used to indication any exception from normal clearing mandates caused by the type of the partiees or their relationship, such as inter-affiliate trades. If a relatedParty block with a role of ClearingExceptionParty is present, that related party indicates which party is claiming the end user exception.">
     endUserExceptionReason ClearingExceptionReason (0..*) <"Specifies a reason that the trade is exempted from a clearing requirement. This exemption may be an end-user exception, or another type such as in inter-affiliate trade.">
@@ -516,7 +516,7 @@ type Trade: <"A type defining an FpML trade.">
 
     id string (0..1)
     tradeHeader TradeHeader (0..1) <"The information on the trade which is not product specific, e.g. trade date.">
-    product Product (0..1)
+    product Product (0..1) <"Represents an individual financial product that is part of a multi-product strategy. It serves as a placeholder for various financial instruments, such as derivatives, securities, or structured products, depending on the specific use case.">
     otherPartyPayment Payment (0..*) <"Other fees or additional payments associated with the trade, e.g. broker commissions, where one or more of the parties involved are not principal parties involved in the trade.">
     brokerPartyReference PartyReference (0..*) <"Identifies that party (or parties) that brokered this trade.">
     calculationAgent CalculationAgent (0..1) <"The ISDA calculation agent responsible for performing duties as defined in the applicable product definitions.">
@@ -537,12 +537,12 @@ type TradeCategory: <"A scheme used to categorize positions.">
 
 type TradeHeader: <"A type defining trade related information which is not product specific.">
 
-    uniqueSwapIdentifier IssuerTradeId (0..1)
-    uniqueTransactionIdentifier IssuerTradeId (0..1)
+    uniqueSwapIdentifier IssuerTradeId (0..1) <"A globally unique identifier assigned to a swap transaction. It allows for consistent tracking across counterparties and regulatory systems.">
+    uniqueTransactionIdentifier IssuerTradeId (0..1) <"A globally unique reference for a trade, ensuring precise identification of a financial transaction.">
     partyTradeIdentifier PartyTradeIdentifier (0..*) <"The trade reference identifier(s) allocated to the trade by the parties involved.">
     partyTradeInformation PartyTradeInformation (0..*) <"Additional trade information that may be provided by each involved party.">
-    tradeSummary TradeSummary (0..1)
-    productSummary ProductSummary (0..1)
+    tradeSummary TradeSummary (0..1) <"Provides a high-level overview of the trade’s classification and reporting characteristics. It captures key attributes that define the trade\'s context within regulatory frameworks and trading workflows.">
+    productSummary ProductSummary (0..1) <"Provides a concise description of the financial product underlying the trade, capturing essential settlement and trading characteristics.">
     originatingPackage PackageSummary (0..1) <"Information about the trade package if any that the trade originated from.">
     tradeDate IdentifiedDate (0..1) <"The trade date. This is the date the trade was originally executed. In the case of a novation, the novated part of the trade should be reported (by both the remaining party and the transferee) using a trade date corresponding to the date the novation was agreed. The remaining part of a trade should be reported (by both the transferor and the remaining party) using a trade date corresponding to the original execution date.">
     clearedDate IdentifiedDate (0..1) <"If the trade was cleared (novated) through a central counterparty clearing service, this represents the date the trade was cleared (transferred to the central counterparty).">
@@ -555,8 +555,8 @@ type TradeHeader: <"A type defining trade related information which is not produ
 type TradeIdentifier: <"A type defining a trade identifier issued by the indicated party.">
 
     id string (0..1)
-    issuer IssuerId (0..1)
-    tradeId TradeId (0..1)
+    issuer IssuerId (0..1) <"Provides the scheme-qualified identifier of the issuer associated with the trade identifier, forming the issuer component of the two-part identification.">
+    tradeId TradeId (0..1) <"The scheme-qualified trade reference allocated by the specified issuer, combining with the issuer identifier to form a two-part identifier for the trade.">
     partyReference PartyReference (0..1) <"Reference to a party.">
     accountReference AccountReference (0..1) <"Reference to an account.">
     tradeIdentifierChoice TradeIdentifierChoice (0..*)
@@ -578,7 +578,7 @@ type TradeIdentifier: <"A type defining a trade identifier issued by the indicat
 
 type TradeIdentifierChoice:
 
-    tradeId TradeId (0..1)
+    tradeId TradeId (0..1) <"Serves as a unique identifier for a trade in the context of FpML, allowing the trade to be distinctly referenced across systems, regulatory bodies, and reporting frameworks.">
     versionedTradeId VersionedTradeId (0..1) <"A trade identifier accompanied by a version number. In regulatory reporting views, this should be avoided except for internal mnessaging.">
 
     condition Choice:
@@ -586,7 +586,7 @@ type TradeIdentifierChoice:
 
 type TradeIdentifierExtended extends TradeIdentifier: <"A type defining a trade identifier with a reference to the party that this trade is associated with.">
 
-    associatedPartyReference PartyReference (0..1)
+    associatedPartyReference PartyReference (0..1) <"Reference to a party involved in the trade, allowing for the association of specific parties with a trade identifier.">
 
 type TradeProcessingTimestamps: <"Allows timing information about when a trade was processed and reported to be recorded.">
 
@@ -611,14 +611,14 @@ type TradeProcessingTimestamps: <"Allows timing information about when a trade w
 
 type TradeSummary: <"Summary information about the trade.">
 
-    isPackageTrade boolean (0..1)
-    isPrimeBrokerTrade boolean (0..1)
-    reportingLevel ReportingLevel (0..1)
+    isPackageTrade boolean (0..1) <"A boolean flag that indicates whether the trade is a package trade. A package trade refers to a trade involving multiple instruments that are traded together as a single unit or transaction.">
+    isPrimeBrokerTrade boolean (0..1) <"Indicates whether the trade is conducted through a prime broker. A prime broker is a financial services provider that offers services like trade execution and clearing to hedge funds and other institutional clients.">
+    reportingLevel ReportingLevel (0..1) <"Specifies the level at which a trade is reported, typically based on the trade\'s size, type, or other criteria.">
 
 type TradeTimestamp: <"A generic trade timestamp">
 
-    ^type TimestampTypeScheme (0..1)
-    value zonedDateTime (0..1)
+    ^type TimestampTypeScheme (0..1) <"Specifies the classification of the timestamp using a predefined coding scheme. Examples of timestamp types include execution time, clearing time, or reporting time.">
+    value zonedDateTime (0..1) <"Represents the actual timestamp in xsd:dateTime format, indicating when the event described by the type element occurred.">
 
 type TradingWaiver: <"Indication as to whether the transaction was executed under a pre-trade waiver in accordance with Articles 4 and 9 of Regulation (EU) 600/2014.">
 
@@ -646,7 +646,7 @@ type VerificationMethod: <"A type used to represent the type of mechanism that c
 
 type VersionedTradeId: <"Trade Id with Version Support">
 
-    tradeId TradeId (0..1)
+    tradeId TradeId (0..1) <"Specifies a unique identifier for a trade, allowing tracking and referencing of financial transactions across systems.">
     version int(min: 0) (0..1) <"The version number">
     effectiveDate IdentifiedDate (0..1) <"Optionally it is possible to specify a version effective date when a versionId is supplied.">
 
@@ -682,8 +682,8 @@ type Portfolio: <"A type representing an arbitary grouping of trade references."
 
     id string (0..1)
     partyPortfolioName PartyPortfolioName (0..1) <"The name of the portfolio together with the party that gave the name.">
-    tradeId TradeId (0..*)
-    partyTradeIdentifier PartyTradeIdentifier (0..*)
+    tradeId TradeId (0..*) <"Uniquely identifies a trade within a portfolio. Its structure ensures that trades within a portfolio are consistently and unambiguously identified.">
+    partyTradeIdentifier PartyTradeIdentifier (0..*) <"Uniquely identifies a trade from the perspective of a specific party. The structure ensures comprehensive tracking of trade lineage and relationships within financial transactions.">
     portfolio Portfolio (0..*) <"An arbitary grouping of trade references (and possibly other portfolios).">
 
     condition Choice:
@@ -702,13 +702,13 @@ type TradeDifference: <"A type used to record the details of a difference betwee
     extraElement NonEmptyToken (0..*) <"Element(s) that are extraneous in the other object.">
     message NonEmptyNormalizedString (1..1) <"A human readable description of the problem.">
 
-type Trader:
+type Trader: <"Specifies a trading entity or participant in a trade. This could be a firm, individual, or an electronic trading system that executes trades.">
 
     value Scheme (1..1)
     traderScheme NonEmptyURI (0..1)
 
 type VersionedContractId: <"Contract Id with Version Support">
 
-    contractId ContractId (1..1)
+    contractId ContractId (1..1) <"Specifies a unique identifier for a contract, used to track and reference financial agreements across systems.">
     version int (1..1) <"The version number">
     effectiveDate IdentifiedDate (0..1) <"Optionally it is possible to specify a version effective date when a versionId is supplied.">

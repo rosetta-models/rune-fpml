@@ -1,0 +1,363 @@
+{
+  "fpmlVersion" : "5-14",
+  "trade" : [ {
+    "tradeHeader" : {
+      "partyTradeIdentifier" : [ {
+        "partyReference" : {
+          "href" : "partyA"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "43660124A",
+            "tradeIdScheme" : "http://www.party-a.com/swaps/trade-id"
+          }
+        } ]
+      }, {
+        "partyReference" : {
+          "href" : "partyB"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "43660133A",
+            "tradeIdScheme" : "http://www.party-b.com/swaps/trade-id"
+          }
+        } ]
+      }, {
+        "partyReference" : {
+          "href" : "partyC"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "187355008-2",
+            "tradeIdScheme" : "http://www.swapswire.com/spec/2001/trade-id-1-0"
+          }
+        } ]
+      } ],
+      "tradeDate" : {
+        "value" : "2022-06-13T00:00:00Z"
+      }
+    },
+    "product" : {
+      "productType" : [ {
+        "value" : "InterestRateSwap"
+      } ],
+      "swapStream" : [ {
+        "id" : "floatingLeg",
+        "payerPartyReference" : {
+          "href" : "partyB"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyA"
+        },
+        "calculationPeriodDates" : {
+          "id" : "floatingLegCalcPeriodDates",
+          "effectiveDate" : {
+            "unadjustedDate" : {
+              "value" : "2022-06-13T00:00:00Z"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "NONE"
+            }
+          },
+          "terminationDate" : {
+            "id" : "floatingLegTerminationDate",
+            "unadjustedDate" : {
+              "value" : "2025-07-01T00:00:00Z"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "NONE"
+            }
+          },
+          "calculationPeriodDatesAdjustments" : {
+            "businessDayConvention" : "NONE"
+          },
+          "calculationPeriodFrequency" : {
+            "periodMultiplier" : 1,
+            "period" : "T",
+            "rollConvention" : "NONE"
+          }
+        },
+        "paymentDates" : {
+          "id" : "floatingLegPaymentDates",
+          "calculationPeriodDatesReference" : {
+            "href" : "floatingLegCalcPeriodDates"
+          },
+          "paymentFrequency" : {
+            "periodMultiplier" : 1,
+            "period" : "T"
+          },
+          "payRelativeTo" : "CalculationPeriodEndDate",
+          "paymentDaysOffset" : {
+            "periodMultiplier" : 1,
+            "period" : "D",
+            "dayType" : "Business"
+          },
+          "paymentDatesAdjustments" : {
+            "businessDayConvention" : "FOLLOWING",
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "BRBD"
+              }, {
+                "value" : "USNY"
+              } ]
+            }
+          }
+        },
+        "resetDates" : {
+          "id" : "floatingLegResetDates",
+          "calculationPeriodDatesReference" : {
+            "href" : "floatingLegCalcPeriodDates"
+          },
+          "fixingDates" : {
+            "periodMultiplier" : 0,
+            "period" : "D",
+            "businessDayConvention" : "PRECEDING",
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "BRBD"
+              } ]
+            },
+            "dateRelativeTo" : {
+              "href" : "floatingLegResetDates"
+            }
+          },
+          "resetFrequency" : {
+            "periodMultiplier" : 1,
+            "period" : "T"
+          },
+          "resetDatesAdjustments" : {
+            "businessDayConvention" : "NONE"
+          }
+        },
+        "calculationPeriodAmount" : {
+          "calculation" : {
+            "notionalSchedule" : {
+              "notionalStepSchedule" : {
+                "initialValue" : 474045351.35,
+                "currency" : {
+                  "value" : "BRL"
+                }
+              }
+            },
+            "rateCalculation" : {
+              "floatingRateIndex" : {
+                "value" : "BRL-IPCA",
+                "floatingRateIndexScheme" : "http://www.fpml.org/coding-scheme/inflation-index-description"
+              },
+              "spreadSchedule" : [ {
+                "initialValue" : 0.0129
+              } ],
+              "inflationLag" : {
+                "periodMultiplier" : -1,
+                "period" : "M"
+              },
+              "indexSource" : {
+                "value" : "BZSXPRTA",
+                "rateSourcePageScheme" : "http://www.fpml.org/coding-scheme/inflation-index-source-2-4"
+              },
+              "interpolationMethod" : {
+                "value" : "None"
+              },
+              "fallbackBondApplicable" : false
+            },
+            "dayCountFraction" : {
+              "value" : "BUS/252"
+            }
+          }
+        },
+        "settlementProvision" : {
+          "settlementCurrency" : {
+            "value" : "USD"
+          },
+          "nonDeliverableSettlement" : {
+            "referenceCurrency" : {
+              "value" : "BRL"
+            },
+            "fxFixingSchedule" : {
+              "unadjustedDate" : [ {
+                "value" : "2025-06-30T00:00:00Z"
+              } ],
+              "dateAdjustments" : {
+                "businessDayConvention" : "PRECEDING",
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "BRBD"
+                  }, {
+                    "value" : "USNY"
+                  } ]
+                }
+              }
+            },
+            "settlementRateOption" : {
+              "value" : "BRL.PTAX/BRL09"
+            }
+          }
+        }
+      }, {
+        "id" : "floatingLeg2",
+        "payerPartyReference" : {
+          "href" : "partyA"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyB"
+        },
+        "calculationPeriodDates" : {
+          "id" : "floatingLeg2CalcPeriodDates",
+          "effectiveDate" : {
+            "unadjustedDate" : {
+              "value" : "2022-06-13T00:00:00Z"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "NONE"
+            }
+          },
+          "terminationDate" : {
+            "id" : "floatingLeg2TerminationDate",
+            "unadjustedDate" : {
+              "value" : "2025-07-01T00:00:00Z"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "NONE"
+            }
+          },
+          "calculationPeriodDatesAdjustments" : {
+            "businessDayConvention" : "NONE"
+          },
+          "calculationPeriodFrequency" : {
+            "periodMultiplier" : 1,
+            "period" : "T",
+            "rollConvention" : "NONE"
+          }
+        },
+        "paymentDates" : {
+          "id" : "floatingLeg2PaymentDates",
+          "calculationPeriodDatesReference" : {
+            "href" : "floatingLeg2CalcPeriodDates"
+          },
+          "paymentFrequency" : {
+            "periodMultiplier" : 1,
+            "period" : "T"
+          },
+          "payRelativeTo" : "CalculationPeriodEndDate",
+          "paymentDaysOffset" : {
+            "periodMultiplier" : 1,
+            "period" : "D",
+            "dayType" : "Business"
+          },
+          "paymentDatesAdjustments" : {
+            "businessDayConvention" : "FOLLOWING",
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "BRBD"
+              }, {
+                "value" : "USNY"
+              } ]
+            }
+          }
+        },
+        "resetDates" : {
+          "id" : "floatingLeg2ResetDates",
+          "calculationPeriodDatesReference" : {
+            "href" : "floatingLeg2CalcPeriodDates"
+          },
+          "fixingDates" : {
+            "periodMultiplier" : 0,
+            "period" : "D",
+            "businessDayConvention" : "PRECEDING",
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "BRBD"
+              } ]
+            },
+            "dateRelativeTo" : {
+              "href" : "floatingLeg2ResetDates"
+            }
+          },
+          "resetFrequency" : {
+            "periodMultiplier" : 1,
+            "period" : "T"
+          },
+          "resetDatesAdjustments" : {
+            "businessDayConvention" : "NONE"
+          }
+        },
+        "calculationPeriodAmount" : {
+          "calculation" : {
+            "notionalSchedule" : {
+              "notionalStepSchedule" : {
+                "initialValue" : 474045351.35,
+                "currency" : {
+                  "value" : "BRL"
+                }
+              }
+            },
+            "rateCalculation" : {
+              "floatingRateIndex" : {
+                "value" : "BRL-CDI"
+              }
+            },
+            "dayCountFraction" : {
+              "value" : "BUS/252"
+            }
+          }
+        },
+        "settlementProvision" : {
+          "settlementCurrency" : {
+            "value" : "USD"
+          },
+          "nonDeliverableSettlement" : {
+            "referenceCurrency" : {
+              "value" : "BRL"
+            },
+            "fxFixingSchedule" : {
+              "unadjustedDate" : [ {
+                "value" : "2025-06-30T00:00:00Z"
+              } ],
+              "dateAdjustments" : {
+                "businessDayConvention" : "PRECEDING",
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "BRBD"
+                  }, {
+                    "value" : "USNY"
+                  } ]
+                }
+              }
+            },
+            "settlementRateOption" : {
+              "value" : "BRL.PTAX/BRL09"
+            }
+          }
+        }
+      } ]
+    }
+  } ],
+  "party" : [ {
+    "id" : "partyA",
+    "partyId" : [ {
+      "value" : "549300ABANKV6BYQOWM67",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "AAA International"
+    }
+  }, {
+    "id" : "partyB",
+    "partyId" : [ {
+      "value" : "529900CPTY57S5UCBB52",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "AAA Capital Services Inc."
+    }
+  }, {
+    "id" : "partyC",
+    "partyId" : [ {
+      "value" : "529900AYEI57S5UCED35",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "SWAPSWIRE"
+    }
+  } ]
+}

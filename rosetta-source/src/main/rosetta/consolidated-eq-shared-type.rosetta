@@ -115,8 +115,8 @@ type Correlation extends CalculationFromObservation: <"A type describing the cor
 type DirectionalLegUnderlyer extends DirectionalLeg: <"An abstract base class for all directional leg types with effective date, termination date, and underlyer where a payer makes a stream of payments of greater than zero value to a receiver.">
 
     underlyer Underlyer (1..1) <"Specifies the underlyer of the leg.">
-    settlementType SettlementTypeEnum (0..1)
-    settlementDate AdjustableOrRelativeDate (0..1)
+    settlementType SettlementTypeEnum (0..1) <"Specifies the method by which the option transaction is settled upon exercise, in conjunction with the applicable settlement date and settlement amount or currency.">
+    settlementDate AdjustableOrRelativeDate (0..1) <"The date on which the option settlement occurs, specified either as an explicit date with applicable adjustments or as a date relative to an anchor date.">
     settlementAmount Money (0..1) <"Settlement Amount">
     settlementCurrency Currency (0..1) <"Settlement Currency for use where the Settlement Amount cannot be known in advance">
     fxFeature FxFeature (0..1) <"Quanto, Composite, or Cross Currency FX features.">
@@ -136,7 +136,7 @@ type DividendConditions: <"A type describing the conditions governing the paymen
 
     dividendReinvestment boolean (0..1) <"Boolean element that defines whether the dividend will be reinvested or not.">
     dividendEntitlement DividendEntitlementEnum (0..1) <"Defines the date on which the receiver on the equity return is entitled to the dividend.">
-    dividendAmount DividendAmountTypeEnum (0..1)
+    dividendAmount DividendAmountTypeEnum (0..1) <"Specifies the method used to determine the dividend amount in an equity derivative contract. This element is used in financial contracts to define how dividends are handled in derivative transactions, affecting the valuation and settlement of equity-based derivatives.">
     dividendPaymentDate DividendPaymentDate (0..1) <"Specifies when the dividend will be paid to the receiver of the equity return. Has the meaning as defined in the ISDA 2002 Equity Derivatives Definitions. Is not applicable in the case of a dividend reinvestment election.">
     dividendPeriodEffectiveDate DateReference (0..1) <"Dividend period has the meaning as defined in the ISDA 2002 Equity Derivatives Definitions. This element specifies the date on which the dividend period will commence.">
     dividendPeriodEndDate DateReference (0..1) <"Dividend period has the meaning as defined in the ISDA 2002 Equity Derivatives Definitions. This element specifies the date on which the dividend period will end. It includes a boolean attribute for defining whether this end date is included or excluded from the dividend period.">
@@ -222,16 +222,23 @@ type EquityValuation: <"A type for defining how and when an equity option is to 
     valuationDates AdjustableRelativeOrPeriodicDates (0..1) <"Specifies the interim equity valuation dates of a swap.">
     valuationTimeType TimeTypeEnum (0..1) <"The time of day at which the calculation agent values the underlying, for example the official closing time of the exchange.">
     valuationTime BusinessCenterTime (0..1) <"The specific time of day at which the calculation agent values the underlying. The SpecificTime is the only case when the valuationTime (time + business center location – e.g. 10:00:00 USNY) should be provided. You should be able to provide just the valuationTime without valuationTimeType, which infer that this is a specific time.">
+    valuationSession BusinessCenterTimeSession (0..1) <"Defines the time window during which TWAP VE observations are taken, expressed as a start–end period relative to the specified business center. The session may reflect standard trading hours or a bespoke window agreed by the parties. When a session is defined but no interval is specified, price observations default to one‑minute sampling within this window. Interval should not be defined when the default is as 1 minute.">
+    informationSource InformationSource (0..1) <"Identifies the market data provider from which intraday price observations are obtained for VWAP VE or TWAP VE calculations, ensuring that sampling during the valuation session is based on a clearly specified and authoritative source (e.g., an exchange feed or vendor service).">
     futuresPriceValuation boolean (0..1) <"The official settlement price as announced by the related exchange is applicable, in accordance with the ISDA 2002 definitions.">
     optionsPriceValuation boolean (0..1) <"The official settlement price as announced by the related exchange is applicable, in accordance with the ISDA 2002 definitions.">
+    nonCommencementOrDiscontinuation NonCommencementOrDiscontinuationEnum (0..1)
     numberOfValuationDates int(min: 0) (0..1) <"The number of valuation dates between valuation start date and valuation end date.">
     dividendValuationDates AdjustableRelativeOrPeriodicDates (0..1) <"Specifies the dividend valuation dates of the swap.">
     fPVFinalPriceElectionFallback FPVFinalPriceElectionFallbackEnum (0..1) <"Specifies the fallback provisions for Hedging Party in the determination of the Final Price.">
+    separateValuation SeparateValuation (0..1) <"Applicable only when the Underlier is a basket. This provision permits the Calculation Agent to value basket constituents separately when one or more components cannot be priced on the scheduled Valuation Date (e.g., due to market disruption or a local holiday). Each constituent is then valued on the next available valid pricing day until a reliable price is obtained. Once all components have valid prices, the Calculation Agent performs the combined basket calculation.">
 
     condition Choice0:
         optional choice valuationDate, valuationDates
 
     condition Choice1:
+        optional choice valuationTime, valuationSession
+
+    condition Choice2:
         optional choice futuresPriceValuation, optionsPriceValuation
 
 type ExtraordinaryEvents: <"Where the underlying is shares, defines market events affecting the issuer of those shares that may require the terms of the transaction to be adjusted.">
@@ -283,7 +290,7 @@ type InterestLegCalculationPeriodDatesReference extends Reference: <"Reference t
 
     href string (1..1)
 
-type InterestLegResetDates:
+type InterestLegResetDates: <"Specifies the reset dates for an interest rate leg in a financial contract, typically for floating-rate instruments. It defines key aspects of when and how interest rate resets occur during the contract\'s lifecycle.">
 
     calculationPeriodDatesReference InterestLegCalculationPeriodDatesReference (0..1) <"A pointer style reference to the associated calculation period dates component defined elsewhere in the document.">
     resetRelativeTo ResetRelativeToEnum (0..1) <"Specifies whether the reset dates are determined with respect to each adjusted calculation period start date or adjusted calculation period end date. If the reset frequency is specified as daily this element must not be included.">
@@ -319,6 +326,11 @@ type NettedSwapBase extends Product: <"An abstract base class for all swap types
 
     additionalPayment ClassifiablePayment (0..*) <"Specifies additional payment(s) between the principal parties to the netted swap.">
     extraordinaryEvents ExtraordinaryEvents (0..1) <"Where the underlying is shares, specifies events affecting the issuer of those shares that may require the terms of the transaction to be adjusted.">
+
+type AlternativePreNominatedIndex: <"Specifies the index pre‑agreed by the parties to replace the original reference index if a benchmark event occurs, such as loss of authorization, cessation, prohibition of use, or other regulatory impacts under benchmark regulations. This optional fallback index is only applicable when the underlier is an index (singleUnderlier or basketConstituent).">
+
+    value Scheme (1..1)
+    alternativePreNominatedIndexScheme NonEmptyURI (0..1)
 
 type OptionFeatures: <"A type for defining option features.">
 
@@ -372,7 +384,7 @@ type ReturnLegValuation: <"A type describing the initial and final valuation of 
     paymentDates ReturnSwapPaymentDates (0..1) <"Specifies the payment dates of the swap.">
     exchangeTradedContractNearest ExchangeTradedContract (0..1) <"References a Contract on the Exchange.">
 
-type ReturnLegValuationPrice extends Price:
+type ReturnLegValuationPrice extends Price: <"Represents the price used for valuing the return leg of a financial contract, typically in equity or total return swaps.">
 
     valuationRules EquityValuation (0..1) <"Specifies valuation.">
 
@@ -399,7 +411,7 @@ type ReturnSwapBase extends Product: <"A type describing the components that are
     buyerAccountReference AccountReference (0..1) <"A reference to the account that buys this instrument.">
     sellerPartyReference PartyReference (0..1) <"A reference to the party that sells (\"writes\") this instrument, i.e. that grants the rights defined by this instrument and in return receives a payment for it. See 2000 ISDA definitions Article 11.1 (a). In the case of FRAs this is the floating rate payer.">
     sellerAccountReference AccountReference (0..1) <"A reference to the account that sells this instrument.">
-    returnSwapLeg DirectionalLeg (1..2)
+    returnSwapLeg DirectionalLeg (1..2) <"Represents one of the legs in a return swap contract, specifying either an interest-based leg or a return-based leg.">
     principalExchangeFeatures PrincipalExchangeFeatures (0..1) <"This is used to document a Fully Funded Return Swap.">
     additionalPayment ReturnSwapAdditionalPayment (0..*) <"Specifies additional payment(s) between the principal parties to the trade.">
 
@@ -412,8 +424,8 @@ type ReturnSwapLegUnderlyer extends DirectionalLeg: <"A base class for all retur
 
     strikeDate AdjustableOrRelativeDate (0..1) <"Specifies the strike date of this leg of the swap, used for forward starting swaps. When defined in relation to a date specified somewhere else in the document (through the relativeDate component), this element will typically by relative to the trade date of the swap.">
     underlyer Underlyer (1..1) <"Specifies the underlying component of the leg, which can be either one or many and consists in either equity, index or convertible bond component, or a combination of these.">
-    settlementType SettlementTypeEnum (0..1)
-    settlementDate AdjustableOrRelativeDate (0..1)
+    settlementType SettlementTypeEnum (0..1) <"Specifies the method by which the option transaction is settled upon exercise, in conjunction with the applicable settlement date and settlement amount or currency.">
+    settlementDate AdjustableOrRelativeDate (0..1) <"The date on which the option settlement occurs, specified either as an explicit date with applicable adjustments or as a date relative to an anchor date.">
     settlementAmount Money (0..1) <"Settlement Amount">
     settlementCurrency Currency (0..1) <"Settlement Currency for use where the Settlement Amount cannot be known in advance">
 
@@ -437,6 +449,11 @@ type ReturnSwapPaymentDates: <"A type describing the return payment dates of the
     paymentDatesInterim AdjustableOrRelativeDates (0..1) <"Specifies the interim payment dates of the swap. When defined in relation to a date specified somewhere else in the document (through the relativeDates component), this element will typically refer to the valuation dates and add a lag corresponding to the settlement cycle of the underlyer.">
     paymentDateFinal AdjustableOrRelativeDate (0..1) <"Specifies the final payment date of the swap. When defined in relation to a date specified somewhere else in the document (through the relativeDate component), this element will typically refer to the final valuation date and add a lag corresponding to the settlement cycle of the underlyer.">
 
+type SeparateValuation:
+
+    combinedCalculation CombinedCalculationEnum (0..1)
+    applicability ApplicabilityEnum (0..2)
+
 type StartingDate: <"A type specifying the date from which the early termination clause can be exercised.">
 
     dateRelativeTo DateReference (0..1) <"Reference to a date defined elswhere in the document.">
@@ -447,14 +464,14 @@ type StartingDate: <"A type specifying the date from which the early termination
 
 type StubCalculationPeriod: <"A type describing the Stub Calculation Period.">
 
-    initialStub Stub (0..1)
-    finalStub Stub (0..1)
+    initialStub Stub (0..1) <"Represents an irregular initial period in a financial contract where the first calculation period is shorter or longer than standard intervals. This occurs when the contract’s start date does not align precisely with the recurring schedule.">
+    finalStub Stub (0..1) <"Represents an irregular concluding period in a financial contract where the last calculation period deviates from standard intervals. This happens when the contract\'s maturity date does not match the established cycle.">
 
 type Variance extends CalculationFromObservation: <"A type describing the variance amount of a variance swap.">
 
     varianceAmount NonNegativeMoney (1..1) <"Variance amount, which is a cash multiplier.">
-    volatilityStrikePrice NonNegativeDecimal (0..1)
-    varianceStrikePrice NonNegativeDecimal (0..1)
+    volatilityStrikePrice NonNegativeDecimal (0..1) <"Represents the reference level of implied volatility used to determine the payout of a volatility swap. It serves as a threshold against which actual volatility is compared to calculate gains or losses.">
+    varianceStrikePrice NonNegativeDecimal (0..1) <"Represents the predetermined reference level of variance used in the valuation of a variance swap. It acts as a benchmark for comparing realized variance over the contract period, influencing the final settlement amount.">
     varianceCap boolean (0..1) <"If present and true, then variance cap is applicable.">
     unadjustedVarianceCap PositiveDecimal (0..1) <"For use when varianceCap is applicable. Contains the scaling factor of the Variance Cap that can differ on a trade-by-trade basis in the European market. For example, a Variance Cap of 2.5^2 x Variance Strike Price has an unadjustedVarianceCap of 2.5.">
     boundedVariance BoundedVariance (0..1) <"Conditions which bound variance. The contract specifies one or more boundary levels. These levels are expressed as prices for confirmation purposes Underlyer price must be equal to or higher than Lower Barrier is known as Up Conditional Swap Underlyer price must be equal to or lower than Upper Barrier is known as Down Conditional Swap Underlyer price must be equal to or higher than Lower Barrier and must be equal to or lower than Upper Barrier is known as Barrier Conditional Swap.">
