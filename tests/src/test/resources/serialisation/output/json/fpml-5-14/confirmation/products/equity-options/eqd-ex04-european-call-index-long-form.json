@@ -1,0 +1,190 @@
+{
+  "fpmlVersion" : "5-14",
+  "header" : {
+    "messageId" : {
+      "value" : "EquityIndexOption456a789b",
+      "messageIdScheme" : "http://www.msdw.com/messageId/OTC"
+    },
+    "sentBy" : {
+      "value" : "msdw",
+      "messageAddressScheme" : "http://www.MsgParty.com/partyId"
+    },
+    "creationTimestamp" : "2000-08-01T08:57:00Z"
+  },
+  "isCorrection" : false,
+  "correlationId" : [ {
+    "value" : "CS/2000/08/01/EquityIndexOption369",
+    "correlationIdScheme" : "http://www.example.com/conversationId"
+  } ],
+  "sequenceNumber" : 1,
+  "trade" : {
+    "tradeHeader" : {
+      "partyTradeIdentifier" : [ {
+        "partyReference" : {
+          "href" : "party2"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "1234",
+            "tradeIdScheme" : "http://www.PartyB.com/eqd-trade-id"
+          }
+        } ]
+      } ],
+      "tradeDate" : {
+        "value" : "2001-09-04T00:00:00Z"
+      }
+    },
+    "product" : {
+      "productType" : [ {
+        "value" : "Equity:Option:PriceReturnBasicPerformance:SingleIndex"
+      } ],
+      "buyerPartyReference" : {
+        "href" : "party2"
+      },
+      "sellerPartyReference" : {
+        "href" : "party1"
+      },
+      "optionType" : "Call",
+      "underlyer" : {
+        "singleUnderlyer" : {
+          "underlyingAsset" : {
+            "instrumentId" : [ {
+              "value" : ".SSMI",
+              "instrumentIdScheme" : "http://www.fpml.org/schemes/4.1/instrumentId"
+            } ],
+            "description" : "Swiss Market Index",
+            "exchangeId" : {
+              "value" : "XNYS",
+              "exchangeIdScheme" : "http://www.fpml.org/schemes/4.1/exchangeId"
+            }
+          }
+        }
+      },
+      "equityExercise" : {
+        "equityEuropeanExercise" : {
+          "expirationDate" : {
+            "adjustableDate" : {
+              "unadjustedDate" : {
+                "value" : "2004-12-19T00:00:00Z"
+              },
+              "dateAdjustments" : {
+                "businessDayConvention" : "NONE"
+              }
+            }
+          },
+          "equityExpirationTimeType" : "OSP"
+        },
+        "automaticExercise" : true,
+        "equityValuation" : {
+          "id" : "valuation",
+          "valuationTimeType" : "OSP"
+        },
+        "settlementDate" : {
+          "relativeDate" : {
+            "periodMultiplier" : 2,
+            "period" : "D",
+            "dayType" : "Business",
+            "businessDayConvention" : "NONE",
+            "dateRelativeTo" : {
+              "href" : "valuation"
+            }
+          }
+        },
+        "settlementCurrency" : {
+          "value" : "CHF"
+        },
+        "settlementPriceSource" : {
+          "value" : "OfficialClose"
+        },
+        "settlementType" : "Cash"
+      },
+      "methodOfAdjustment" : "CalculationAgent",
+      "extraordinaryEvents" : {
+        "indexAdjustmentEvents" : {
+          "indexModification" : "CalculationAgentAdjustment",
+          "indexCancellation" : "CancellationAndPayment",
+          "indexDisruption" : "CalculationAgentAdjustment"
+        },
+        "additionalDisruptionEvents" : {
+          "changeInLaw" : true,
+          "failureToDeliver" : true,
+          "insolvencyFiling" : false,
+          "hedgingDisruption" : true,
+          "lossOfStockBorrow" : true,
+          "increasedCostOfStockBorrow" : false,
+          "increasedCostOfHedging" : false,
+          "determiningPartyReference" : {
+            "href" : "party1"
+          }
+        },
+        "representations" : {
+          "nonReliance" : true,
+          "agreementsRegardingHedging" : true,
+          "indexDisclaimer" : true,
+          "additionalAcknowledgements" : true
+        }
+      },
+      "strike" : {
+        "strikePrice" : 8700
+      },
+      "numberOfOptions" : 2500,
+      "optionEntitlement" : 1.00,
+      "equityPremium" : {
+        "payerPartyReference" : {
+          "href" : "party2"
+        },
+        "receiverPartyReference" : {
+          "href" : "party1"
+        },
+        "paymentAmount" : {
+          "currency" : {
+            "value" : "CHF"
+          },
+          "amount" : 300000
+        },
+        "paymentDate" : {
+          "unadjustedDate" : {
+            "value" : "2001-09-06T00:00:00Z"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NONE"
+          }
+        }
+      }
+    },
+    "calculationAgent" : {
+      "calculationAgentPartyReference" : [ {
+        "href" : "party2"
+      } ]
+    },
+    "documentation" : {
+      "masterAgreement" : {
+        "masterAgreementType" : {
+          "value" : "ISDA"
+        },
+        "masterAgreementVersion" : {
+          "value" : "2002"
+        }
+      },
+      "contractualDefinitions" : [ {
+        "value" : "ISDA2000"
+      } ]
+    },
+    "governingLaw" : {
+      "value" : "GBEN"
+    }
+  },
+  "party" : [ {
+    "id" : "party1",
+    "partyId" : [ {
+      "value" : "Party A",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
+    } ]
+  }, {
+    "id" : "party2",
+    "partyId" : [ {
+      "value" : "Party B",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
+    } ]
+  } ]
+}

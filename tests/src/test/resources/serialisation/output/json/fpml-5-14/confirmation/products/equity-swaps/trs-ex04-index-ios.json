@@ -1,0 +1,359 @@
+{
+  "fpmlVersion" : "5-14",
+  "trade" : [ {
+    "id" : "trs-ex4-trade",
+    "tradeHeader" : {
+      "partyTradeIdentifier" : [ {
+        "partyReference" : {
+          "href" : "party1"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "TRS-01",
+            "tradeIdScheme" : "http://www.abc.com/swaps/trade-id"
+          }
+        } ]
+      }, {
+        "partyReference" : {
+          "href" : "party2"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "total-ret-swap-01",
+            "tradeIdScheme" : "http://www.hedgeco.com/swaps/trade-id"
+          }
+        } ]
+      } ],
+      "tradeDate" : {
+        "value" : "2011-03-23T00:00:00Z"
+      }
+    },
+    "product" : {
+      "productType" : [ {
+        "value" : "Equity:Swap:PriceReturnBasicPerformance:SingleIndex"
+      } ],
+      "buyerPartyReference" : {
+        "href" : "party1"
+      },
+      "sellerPartyReference" : {
+        "href" : "party2"
+      },
+      "returnSwapLeg" : [ {
+        "payerPartyReference" : {
+          "href" : "party1"
+        },
+        "receiverPartyReference" : {
+          "href" : "party2"
+        },
+        "effectiveDate" : {
+          "adjustableDate" : {
+            "unadjustedDate" : {
+              "value" : "2010-05-12T00:00:00Z"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "NotApplicable"
+            }
+          }
+        },
+        "terminationDate" : {
+          "adjustableDate" : {
+            "unadjustedDate" : {
+              "value" : "2038-01-12T00:00:00Z"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "NotApplicable"
+            }
+          }
+        },
+        "underlyer" : {
+          "singleUnderlyer" : {
+            "underlyingAsset" : {
+              "instrumentId" : [ {
+                "value" : "IOS.FN30.650.67",
+                "instrumentIdScheme" : "http://www.fpml.org/coding-scheme/external/entity-name-RED"
+              }, {
+                "value" : "4A845HAA3",
+                "instrumentIdScheme" : "http://www.fpml.org/coding-scheme/external/instrument-id-RED-pair"
+              } ]
+            }
+          }
+        },
+        "rateOfReturn" : {
+          "initialPrice" : {
+            "determinationMethod" : {
+              "value" : "ValuationTime"
+            },
+            "valuationRules" : {
+              "valuationDate" : {
+                "id" : "initialValuationDate",
+                "adjustableDate" : {
+                  "unadjustedDate" : {
+                    "value" : "2010-05-12T00:00:00Z"
+                  },
+                  "dateAdjustments" : {
+                    "businessDayConvention" : "NotApplicable"
+                  }
+                }
+              }
+            }
+          },
+          "valuationPriceInterim" : {
+            "determinationMethod" : {
+              "value" : "ValuationTime"
+            },
+            "valuationRules" : {
+              "valuationDates" : {
+                "id" : "interimValuationDates",
+                "periodicDates" : {
+                  "calculationStartDate" : {
+                    "adjustableDate" : {
+                      "unadjustedDate" : {
+                        "value" : "2010-06-12T00:00:00Z"
+                      },
+                      "dateAdjustments" : {
+                        "businessDayConvention" : "NotApplicable"
+                      }
+                    }
+                  },
+                  "calculationEndDate" : {
+                    "adjustableDate" : {
+                      "unadjustedDate" : {
+                        "value" : "2037-12-12T00:00:00Z"
+                      },
+                      "dateAdjustments" : {
+                        "businessDayConvention" : "NotApplicable"
+                      }
+                    }
+                  },
+                  "calculationPeriodFrequency" : {
+                    "periodMultiplier" : 1,
+                    "period" : "M",
+                    "rollConvention" : "12"
+                  },
+                  "calculationPeriodDatesAdjustments" : {
+                    "businessDayConvention" : "NotApplicable"
+                  }
+                }
+              }
+            }
+          },
+          "valuationPriceFinal" : {
+            "determinationMethod" : {
+              "value" : "ValuationTime"
+            },
+            "valuationRules" : {
+              "valuationDate" : {
+                "id" : "finalValuationDate",
+                "adjustableDate" : {
+                  "unadjustedDate" : {
+                    "value" : "2038-01-12T00:00:00Z"
+                  },
+                  "dateAdjustments" : {
+                    "businessDayConvention" : "NotApplicable"
+                  }
+                }
+              }
+            }
+          },
+          "paymentDates" : {
+            "id" : "returnPaymentDates",
+            "paymentDatesInterim" : {
+              "relativeDates" : {
+                "periodMultiplier" : 3,
+                "period" : "D",
+                "dayType" : "Business",
+                "businessDayConvention" : "NONE",
+                "businessCenters" : {
+                  "businessCenter" : [ {
+                    "value" : "USNY",
+                    "id" : "returnBusinessCenter"
+                  } ]
+                },
+                "dateRelativeTo" : {
+                  "href" : "interimValuationDates"
+                }
+              }
+            },
+            "paymentDateFinal" : {
+              "relativeDate" : {
+                "periodMultiplier" : 3,
+                "period" : "D",
+                "dayType" : "Business",
+                "businessDayConvention" : "NONE",
+                "businessCentersReference" : {
+                  "href" : "returnBusinessCenter"
+                },
+                "dateRelativeTo" : {
+                  "href" : "finalValuationDate"
+                }
+              }
+            }
+          }
+        },
+        "notional" : {
+          "id" : "returnNotional",
+          "notionalAmount" : {
+            "currency" : {
+              "value" : "USD"
+            },
+            "amount" : 31000000
+          }
+        },
+        "amount" : {
+          "referenceAmount" : {
+            "value" : "ISDA Standard"
+          },
+          "cashSettlement" : true
+        },
+        "notionalAdjustments" : "Standard",
+        "return" : {
+          "returnType" : "Total"
+        }
+      }, {
+        "payerPartyReference" : {
+          "href" : "party2"
+        },
+        "receiverPartyReference" : {
+          "href" : "party1"
+        },
+        "interestLegCalculationPeriodDates" : {
+          "id" : "interestCalculationDates",
+          "effectiveDate" : {
+            "relativeDate" : {
+              "periodMultiplier" : 0,
+              "period" : "D",
+              "businessDayConvention" : "NotApplicable",
+              "dateRelativeTo" : {
+                "href" : "initialValuationDate"
+              }
+            }
+          },
+          "terminationDate" : {
+            "relativeDate" : {
+              "periodMultiplier" : 0,
+              "period" : "D",
+              "businessDayConvention" : "NotApplicable",
+              "dateRelativeTo" : {
+                "href" : "finalValuationDate"
+              }
+            }
+          },
+          "interestLegResetDates" : {
+            "calculationPeriodDatesReference" : {
+              "href" : "interimValuationDates"
+            },
+            "resetRelativeTo" : "CalculationPeriodStartDate"
+          },
+          "interestLegPaymentDates" : {
+            "relativeDates" : {
+              "periodMultiplier" : 0,
+              "period" : "D",
+              "businessDayConvention" : "NotApplicable",
+              "dateRelativeTo" : {
+                "href" : "returnPaymentDates"
+              }
+            }
+          }
+        },
+        "notional" : {
+          "relativeNotionalAmount" : {
+            "href" : "returnNotional"
+          }
+        },
+        "interestAmount" : {
+          "referenceAmount" : {
+            "value" : "Standard ISDA"
+          },
+          "calculationDates" : {
+            "relativeDateSequence" : {
+              "dateRelativeTo" : {
+                "href" : "interestCalculationDates"
+              },
+              "dateOffset" : [ {
+                "periodMultiplier" : 0,
+                "period" : "D",
+                "businessDayConvention" : "NotApplicable"
+              } ]
+            }
+          }
+        },
+        "interestCalculation" : {
+          "fixedRate" : 0.065,
+          "dayCountFraction" : {
+            "value" : "30/360"
+          }
+        }
+      } ],
+      "additionalPayment" : [ {
+        "payerPartyReference" : {
+          "href" : "party1"
+        },
+        "receiverPartyReference" : {
+          "href" : "party2"
+        },
+        "additionalPaymentAmount" : {
+          "paymentAmount" : {
+            "currency" : {
+              "value" : "USD"
+            },
+            "amount" : 26800.62
+          },
+          "formula" : {
+            "formulaDescription" : "Upfront Price * Commencing Factor * Notional",
+            "formulaComponent" : [ {
+              "name" : "UpfrontPrice",
+              "componentDescription" : "(Coupon * Day Count (30/360)) - (LIBOR * Commencing Index Price * Day Count (ACT/360)) + (Traded Price - Commencing Index Price)",
+              "formula" : {
+                "formulaDescription" : "0.00259535084"
+              }
+            }, {
+              "name" : "CommencingFactor",
+              "componentDescription" : "Index Factor at start of period",
+              "formula" : {
+                "formulaDescription" : "0.333109517"
+              }
+            }, {
+              "name" : "Notional",
+              "componentDescription" : "Notional",
+              "formula" : {
+                "formulaDescription" : "31000000.00"
+              }
+            } ]
+          }
+        },
+        "additionalPaymentDate" : {
+          "adjustableDate" : {
+            "unadjustedDate" : {
+              "value" : "2011-03-28T00:00:00Z"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "NotApplicable"
+            }
+          }
+        },
+        "paymentType" : {
+          "value" : "UPFRONT_FEE"
+        }
+      } ]
+    }
+  } ],
+  "party" : [ {
+    "id" : "party1",
+    "partyId" : [ {
+      "value" : "QGPGHQ1ENZOOLJRFTH41",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "ABCD Fund"
+    }
+  }, {
+    "id" : "party2",
+    "partyId" : [ {
+      "value" : "J6W9XJWVE853A9CVRQ85",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ],
+    "partyName" : {
+      "value" : "HedgeCo Capital L.L.C."
+    }
+  } ]
+}

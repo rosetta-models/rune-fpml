@@ -6,7 +6,7 @@ import fpml.consolidated.fpmlenum.*
 import fpml.consolidated.riskdef.*
 import fpml.consolidated.shared.*
 
-type ValuationSet: <"A set of valuation inputs and results. This structure can be used for requesting valuations, or for reporting them. In general, the request fills in fewer elements.">
+type ValuationSet: <"A top-level set of valuation inputs and results used to request valuations or report their outcomes. A set of valuation inputs and results. This structure can be used for requesting valuations, or for reporting them. In general, the request fills in fewer elements.">
     [rootType]
 
     id string (0..1)
@@ -55,9 +55,9 @@ type Sensitivity: <"The sensitivity of a value to a defined change in input para
 type SensitivitySet: <"A collection of sensitivities. References a definition that explains the meaning/type of the sensitivities.">
 
     id string (0..1)
-    name NonEmptyToken (0..1)
+    name NonEmptyToken (0..1) <"A non-empty textual label assigned to identify the sensitivity collection represented by this set for valuation purposes.">
     definitionReference SensitivitySetDefinitionReference (0..1) <"A reference to a sensitivity set definition.">
-    sensitivity Sensitivity (0..*)
+    sensitivity Sensitivity (0..*) <"A sensitivity value measuring the response to a defined change in input parameters, interpreted according to the referenced set definition.">
 
 type ValuationSetDetail: <"The amount of detail provided in the valuation set, e.g. is market environment data provided, are risk definitions provided, etc.">
 

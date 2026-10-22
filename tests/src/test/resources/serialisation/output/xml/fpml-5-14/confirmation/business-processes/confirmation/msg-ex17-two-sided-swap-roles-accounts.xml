@@ -1,0 +1,225 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<requestConfirmation fpmlVersion="5-14" xmlns="http://www.fpml.org/FpML-5/confirmation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/FpML-5/confirmation schemas/fpml-5-14/confirmation/fpml-main-5-14.xsd">
+  <header>
+    <messageId messageIdScheme="http://www.example.com/messageId">MS/2006/04/02/15-12</messageId>
+    <sentBy>PARTY2US33</sentBy>
+    <sendTo>BARCGB2L</sendTo>
+    <creationTimestamp>2006-04-02T15:38:00+05:00</creationTimestamp>
+  </header>
+  <isCorrection>false</isCorrection>
+  <correlationId correlationIdScheme="http://www.example.com/correlationId">COR-1223121232</correlationId>
+  <sequenceNumber>1</sequenceNumber>
+  <trade>
+    <tradeHeader>
+      <partyTradeIdentifier>
+        <partyReference href="party2"/>
+        <tradeId tradeIdScheme="http://www.party2.com/swaps/trade-id">TW9235</tradeId>
+      </partyTradeIdentifier>
+      <partyTradeIdentifier>
+        <partyReference href="party3"/>
+        <tradeId tradeIdScheme="http://www.barclays.com/swaps/trade-id">SW2000</tradeId>
+      </partyTradeIdentifier>
+      <partyTradeInformation>
+        <partyReference href="party3"/>
+      </partyTradeInformation>
+      <partyTradeInformation>
+        <partyReference href="party1"/>
+        <relatedParty>
+          <partyReference href="party3"/>
+          <role>ExecutingBroker</role>
+        </relatedParty>
+        <relatedParty>
+          <partyReference href="party4"/>
+          <role>TradingManager</role>
+        </relatedParty>
+        <relatedParty>
+          <partyReference href="party2"/>
+          <role>SettlementAgent</role>
+        </relatedParty>
+        <relatedParty>
+          <partyReference href="party2"/>
+          <role>Accountant</role>
+        </relatedParty>
+      </partyTradeInformation>
+      <tradeDate>1994-12-12T00:00:00</tradeDate>
+    </tradeHeader>
+    <swap>
+      <swapStream>
+        <payerPartyReference href="party6"/>
+        <receiverPartyReference href="party2"/>
+        <calculationPeriodDates id="floatingCalcPeriodDates">
+          <effectiveDate>
+            <unadjustedDate>1994-12-14T00:00:00</unadjustedDate>
+            <dateAdjustments>
+              <businessDayConvention>NONE</businessDayConvention>
+            </dateAdjustments>
+          </effectiveDate>
+          <terminationDate>
+            <unadjustedDate>1999-12-14T00:00:00</unadjustedDate>
+            <dateAdjustments>
+              <businessDayConvention>MODFOLLOWING</businessDayConvention>
+              <businessCenters id="primaryBusinessCenters">
+                <businessCenter>DEFR</businessCenter>
+              </businessCenters>
+            </dateAdjustments>
+          </terminationDate>
+          <calculationPeriodDatesAdjustments>
+            <businessDayConvention>MODFOLLOWING</businessDayConvention>
+            <businessCentersReference href="primaryBusinessCenters"/>
+          </calculationPeriodDatesAdjustments>
+          <calculationPeriodFrequency>
+            <periodMultiplier>6</periodMultiplier>
+            <period>M</period>
+            <rollConvention>14</rollConvention>
+          </calculationPeriodFrequency>
+        </calculationPeriodDates>
+        <paymentDates>
+          <calculationPeriodDatesReference href="floatingCalcPeriodDates"/>
+          <paymentFrequency>
+            <periodMultiplier>6</periodMultiplier>
+            <period>M</period>
+          </paymentFrequency>
+          <payRelativeTo>CalculationPeriodEndDate</payRelativeTo>
+          <paymentDatesAdjustments>
+            <businessDayConvention>MODFOLLOWING</businessDayConvention>
+            <businessCentersReference href="primaryBusinessCenters"/>
+          </paymentDatesAdjustments>
+        </paymentDates>
+        <resetDates id="resetDates">
+          <calculationPeriodDatesReference href="floatingCalcPeriodDates"/>
+          <resetRelativeTo>CalculationPeriodStartDate</resetRelativeTo>
+          <fixingDates>
+            <periodMultiplier>-2</periodMultiplier>
+            <period>D</period>
+            <dayType>Business</dayType>
+            <businessDayConvention>NONE</businessDayConvention>
+            <businessCenters>
+              <businessCenter>GBLO</businessCenter>
+            </businessCenters>
+            <dateRelativeTo href="resetDates"/>
+          </fixingDates>
+          <resetFrequency>
+            <periodMultiplier>6</periodMultiplier>
+            <period>M</period>
+          </resetFrequency>
+          <resetDatesAdjustments>
+            <businessDayConvention>MODFOLLOWING</businessDayConvention>
+            <businessCentersReference href="primaryBusinessCenters"/>
+          </resetDatesAdjustments>
+        </resetDates>
+        <calculationPeriodAmount>
+          <calculation>
+            <notionalSchedule>
+              <notionalStepSchedule>
+                <initialValue>50000000.00</initialValue>
+                <currency>EUR</currency>
+              </notionalStepSchedule>
+            </notionalSchedule>
+            <floatingRateCalculation>
+              <floatingRateIndex>EUR-LIBOR-BBA</floatingRateIndex>
+              <indexTenor>
+                <periodMultiplier>6</periodMultiplier>
+                <period>M</period>
+              </indexTenor>
+            </floatingRateCalculation>
+            <dayCountFraction>ACT/360</dayCountFraction>
+          </calculation>
+        </calculationPeriodAmount>
+      </swapStream>
+      <swapStream>
+        <payerPartyReference href="party2"/>
+        <receiverPartyReference href="party6"/>
+        <calculationPeriodDates id="fixedCalcPeriodDates">
+          <effectiveDate>
+            <unadjustedDate>1994-12-14T00:00:00</unadjustedDate>
+            <dateAdjustments>
+              <businessDayConvention>NONE</businessDayConvention>
+            </dateAdjustments>
+          </effectiveDate>
+          <terminationDate>
+            <unadjustedDate>1999-12-14T00:00:00</unadjustedDate>
+            <dateAdjustments>
+              <businessDayConvention>MODFOLLOWING</businessDayConvention>
+              <businessCentersReference href="primaryBusinessCenters"/>
+            </dateAdjustments>
+          </terminationDate>
+          <calculationPeriodDatesAdjustments>
+            <businessDayConvention>MODFOLLOWING</businessDayConvention>
+            <businessCentersReference href="primaryBusinessCenters"/>
+          </calculationPeriodDatesAdjustments>
+          <calculationPeriodFrequency>
+            <periodMultiplier>1</periodMultiplier>
+            <period>Y</period>
+            <rollConvention>14</rollConvention>
+          </calculationPeriodFrequency>
+        </calculationPeriodDates>
+        <paymentDates>
+          <calculationPeriodDatesReference href="fixedCalcPeriodDates"/>
+          <paymentFrequency>
+            <periodMultiplier>1</periodMultiplier>
+            <period>Y</period>
+          </paymentFrequency>
+          <payRelativeTo>CalculationPeriodEndDate</payRelativeTo>
+          <paymentDatesAdjustments>
+            <businessDayConvention>MODFOLLOWING</businessDayConvention>
+            <businessCentersReference href="primaryBusinessCenters"/>
+          </paymentDatesAdjustments>
+        </paymentDates>
+        <calculationPeriodAmount>
+          <calculation>
+            <notionalSchedule>
+              <notionalStepSchedule>
+                <initialValue>50000000.00</initialValue>
+                <currency>EUR</currency>
+              </notionalStepSchedule>
+            </notionalSchedule>
+            <fixedRateSchedule>
+              <initialValue>0.06</initialValue>
+            </fixedRateSchedule>
+            <dayCountFraction>30E/360</dayCountFraction>
+          </calculation>
+        </calculationPeriodAmount>
+      </swapStream>
+    </swap>
+  </trade>
+  <party id="party1">
+    <partyId partyIdScheme="http://www.fpml.org/coding-scheme/dummy-party-id">LDF</partyId>
+    <partyName>London Diversified Fund</partyName>
+  </party>
+  <party id="party2">
+    <partyId partyIdScheme="http://www.fpml.org/coding-scheme/external/iso17442">549300Q4B2OQW6FDBA48</partyId>
+  </party>
+  <party id="party3">
+    <partyId partyIdScheme="http://www.fpml.org/coding-scheme/external/iso17442">549300DYUPMMJDE0YO60</partyId>
+  </party>
+  <party id="party4">
+    <partyId partyIdScheme="http://www.fpml.org/coding-scheme/external/iso17442">549300SC000TFX78OJ56</partyId>
+    <partyName>Barclays Global Investors</partyName>
+  </party>
+  <party id="party5">
+    <partyId partyIdScheme="http://www.fpml.org/coding-scheme/external/iso9362">ANDYUAU1XXX</partyId>
+    <partyName>ANDRIYIVSKY BANK</partyName>
+  </party>
+  <party id="party6">
+    <partyId partyIdScheme="http://www.fpml.org/coding-scheme/external/iso9362">CALPERS</partyId>
+    <partyName>California Public Employees' Retirement System</partyName>
+  </party>
+  <account id="ACC1">
+    <accountId accountIdScheme="http://www.party2.com/bondifre">5462346</accountId>
+    <accountName>LDF Main Fund</accountName>
+    <accountBeneficiary href="party2"/>
+    <servicingParty href="party1"/>
+  </account>
+  <account id="ACC2">
+    <accountId accountIdScheme="http://www.barclaysglobal.com">5462346</accountId>
+    <accountName>CALPERS A/C 1</accountName>
+    <accountBeneficiary href="party4"/>
+    <servicingParty href="party6"/>
+  </account>
+  <account id="ACC3">
+    <accountId>cvgh45h</accountId>
+    <accountName>CALPERS Acount 23</accountName>
+    <accountBeneficiary href="party5"/>
+    <servicingParty href="party6"/>
+  </account>
+</requestConfirmation>

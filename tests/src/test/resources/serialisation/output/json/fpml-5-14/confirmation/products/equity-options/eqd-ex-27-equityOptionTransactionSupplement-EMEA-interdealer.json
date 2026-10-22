@@ -1,0 +1,176 @@
+{
+  "fpmlVersion" : "5-14",
+  "trade" : [ {
+    "tradeHeader" : {
+      "partyTradeIdentifier" : [ {
+        "partyReference" : {
+          "href" : "partyA"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "2783639",
+            "tradeIdScheme" : "http://www.partyA.com/trade-id-1-0"
+          }
+        } ]
+      }, {
+        "partyReference" : {
+          "href" : "partyB"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "2783639",
+            "tradeIdScheme" : "http://www.partyB.com/trade-id-1-0"
+          }
+        } ]
+      } ],
+      "tradeDate" : {
+        "value" : "2011-02-11T00:00:00Z"
+      }
+    },
+    "product" : {
+      "buyerPartyReference" : {
+        "href" : "partyA"
+      },
+      "sellerPartyReference" : {
+        "href" : "partyB"
+      },
+      "optionType" : "Call",
+      "underlyer" : {
+        "singleUnderlyer" : {
+          "underlyingAsset" : {
+            "instrumentId" : [ {
+              "value" : ".WIG20",
+              "instrumentIdScheme" : "http://www.example.com/instrument-id-Reuters-RIC-1-0"
+            } ],
+            "description" : "WIG20 INDEX",
+            "currency" : {
+              "value" : "PLN",
+              "currencyScheme" : "http://www.fpml.org/coding-scheme/external/iso4217"
+            },
+            "exchangeId" : {
+              "value" : "XWAR",
+              "exchangeIdScheme" : "http://www.example.com/exchangeId"
+            },
+            "relatedExchangeId" : [ {
+              "value" : "XWAR",
+              "exchangeIdScheme" : "http://www.example.com/exchangeId"
+            } ]
+          }
+        }
+      },
+      "equityExercise" : {
+        "equityEuropeanExercise" : {
+          "expirationDate" : {
+            "adjustableDate" : {
+              "unadjustedDate" : {
+                "value" : "2012-11-16T00:00:00Z"
+              },
+              "dateAdjustments" : {
+                "businessDayConvention" : "NotApplicable"
+              }
+            }
+          },
+          "equityExpirationTimeType" : "OSP"
+        },
+        "automaticExercise" : true,
+        "equityValuation" : {
+          "id" : "valuationDate",
+          "futuresPriceValuation" : true
+        },
+        "settlementDate" : {
+          "relativeDate" : {
+            "periodMultiplier" : 2,
+            "period" : "D",
+            "dayType" : "CurrencyBusiness",
+            "businessDayConvention" : "NotApplicable",
+            "dateRelativeTo" : {
+              "href" : "valuationDate"
+            }
+          }
+        },
+        "settlementCurrency" : {
+          "value" : "PLN",
+          "currencyScheme" : "http://www.fpml.org/coding-scheme/external/iso4217"
+        },
+        "settlementType" : "Cash"
+      },
+      "strike" : {
+        "strikePrice" : 100
+      },
+      "numberOfOptions" : 1000,
+      "equityPremium" : {
+        "payerPartyReference" : {
+          "href" : "partyA"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyB"
+        },
+        "paymentAmount" : {
+          "currency" : {
+            "value" : "PLN",
+            "currencyScheme" : "http://www.fpml.org/coding-scheme/external/iso4217"
+          },
+          "amount" : 50000
+        },
+        "paymentDate" : {
+          "unadjustedDate" : {
+            "value" : "2011-02-15T00:00:00Z"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NotApplicable"
+          }
+        },
+        "pricePerOption" : {
+          "currency" : {
+            "value" : "PLN",
+            "currencyScheme" : "http://www.fpml.org/coding-scheme/external/iso4217"
+          },
+          "amount" : 50
+        }
+      },
+      "exchangeTradedContractNearest" : true,
+      "multipleExchangeIndexAnnexFallback" : false,
+      "extraordinaryEvents" : {
+        "additionalDisruptionEvents" : {
+          "hedgingDisruption" : false,
+          "lossOfStockBorrow" : true,
+          "maximumStockLoanRate" : 0.11,
+          "increasedCostOfStockBorrow" : true,
+          "initialStockLoanRate" : 0.09,
+          "increasedCostOfHedging" : false,
+          "foreignOwnershipEvent" : false
+        }
+      }
+    },
+    "documentation" : {
+      "masterConfirmation" : {
+        "masterConfirmationType" : {
+          "value" : "ISDA2010EquityEMEAInterdealer"
+        },
+        "masterConfirmationDate" : "2011-01-01T00:00:00Z",
+        "masterConfirmationAnnexType" : {
+          "value" : "ISDA2010IndexShareOptionEMEAInterdealer"
+        }
+      }
+    }
+  } ],
+  "party" : [ {
+    "id" : "partyA",
+    "partyId" : [ {
+      "value" : "XXXX1111",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
+    } ],
+    "partyName" : {
+      "value" : "XXXX Bank"
+    }
+  }, {
+    "id" : "partyB",
+    "partyId" : [ {
+      "value" : "YYYY2222",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
+    } ],
+    "partyName" : {
+      "value" : "YYYY Bank"
+    }
+  } ]
+}

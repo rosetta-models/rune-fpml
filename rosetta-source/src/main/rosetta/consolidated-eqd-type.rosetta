@@ -9,9 +9,9 @@ import fpml.consolidated.shared.*
 
 type BrokerEquityOption extends EquityDerivativeShortFormBase: <"A component describing a Broker View of an Equity Option. A type for defining the broker equity options.">
 
-    deltaCrossed boolean (0..1)
-    brokerageFee Money (0..1)
-    brokerNotes NonEmptyNormalizedString (0..1)
+    deltaCrossed boolean (0..1) <"Indicates whether the option was transacted on a delta-crossed basis, with the corresponding delta hedge crossed between the parties through the broker.">
+    brokerageFee Money (0..1) <"Represents the monetary amount charged by a broker for facilitating the equity option transaction.">
+    brokerNotes NonEmptyNormalizedString (0..1) <"Contains additional textual information or remarks recorded by the broker regarding the equity option trade.">
 
 type EquityForward extends EquityDerivativeLongFormBase: <"A component describing an Equity Forward product. A type for defining equity forwards.">
 
@@ -31,7 +31,7 @@ type EquityOptionTransactionSupplement extends EquityDerivativeShortFormBase: <"
     exchangeTradedContractNearest boolean (0..1) <"For an index option transaction, a flag used in conjuction with Futures Price Valuation (ISDA defined term) to indicate whether the Nearest Index Contract provision is applicable. The Nearest Index Contract provision is a rule for determining the Exchange-traded Contract (ISDA defined term) without having to explicitly state the actual contract, delivery month and exchange on which it is traded.">
     multipleExchangeIndexAnnexFallback boolean (0..1) <"For an index option transaction, a flag to indicate whether a relevant Multiple Exchange Index Annex is applicable to the transaction. This annex defines additional provisions which are applicable where an index is comprised of component securities that are traded on multiple exchanges.">
     componentSecurityIndexAnnexFallback boolean (0..1) <"For an index option transaction, a flag to indicate whether a relevant Component Security Index Annex is applicable to the transaction.">
-    methodOfAdjustment MethodOfAdjustmentEnum (0..1)
+    methodOfAdjustment MethodOfAdjustmentEnum (0..1) <"Specifies how the terms of the equity option transaction should be adjusted in the event of a corporate action (e.g., stock splits, mergers). It indicates whether adjustments will follow the decisions of the Calculation Agent or mirror the changes made by the relevant Options Exchange.">
     localJurisdiction CountryCode (0..1) <"Local Jurisdiction is a term used in the AEJ Master Confirmation, which is used to determine local taxes, which shall mean taxes, duties, and similar charges imposed by the taxing authority of the Local Jurisdiction If this element is not present Local Jurisdiction is Not Applicable.">
     optionEntitlement PositiveDecimal (0..1) <"The number of shares per option comprised in the option transaction supplement.">
     multiplier PositiveDecimal (0..1) <"Specifies the contract multiplier that can be associated with an index option.">
@@ -85,7 +85,7 @@ type EquityDerivativeBase extends Product: <"A type for defining the common feat
 
 type EquityDerivativeLongFormBase extends EquityDerivativeBase: <"type for defining the common features of equity derivatives.">
 
-    dividendConditions DividendConditions (0..1)
+    dividendConditions DividendConditions (0..1) <"Specifies the full set of contractual rules governing how dividends are treated in an equity derivative transaction. This includes how and whether dividends are reinvested, how entitlement and payments are determined, any period-specific conditions, treatments of extraordinary or non-cash dividends, applicable currencies, and whether special dividends apply. It plays a key role in pricing and settlement of equity-linked products by defining the expected cash flows related to dividends.">
     methodOfAdjustment MethodOfAdjustmentEnum (0..1) <"Defines how adjustments will be made to the contract should one or more of the extraordinary events occur.">
     extraordinaryEvents ExtraordinaryEvents (0..1) <"Where the underlying is shares, specifies events affecting the issuer of those shares that may require the terms of the transaction to be adjusted.">
 
@@ -118,11 +118,11 @@ type EquityExerciseValuationSettlement: <"A type for defining exercise procedure
     equityValuation EquityValuation (0..1) <"The parameters for defining when valuation of the underlying takes place.">
     settlementDate AdjustableOrRelativeDate (0..1) <"The date when the option is to be settled relative to the valuation date. If the settlement date is not specified explicitly then settlement will take place on the valuation date.">
     settlementCurrency Currency (0..1) <"The currency in which a cash settlement for non-deliverable forward and non-deliverable options.">
-    settlementPriceSource SettlementPriceSource (0..1)
+    settlementPriceSource SettlementPriceSource (0..1) <"Specifies the official publication or source used to determine the price of the underlying asset for settlement purposes. This ensures both parties refer to the same market source when valuing the equity at exercise or termination.">
     settlementType SettlementTypeEnum (0..1) <"How the option will be settled.">
-    settlementMethodElectionDate AdjustableOrRelativeDate (0..1)
-    settlementMethodElectingPartyReference PartyReference (0..1)
-    settlementPriceDefaultElection SettlementPriceDefaultElection (0..1)
+    settlementMethodElectionDate AdjustableOrRelativeDate (0..1) <"Defines the agreed date on which the party responsible for choosing the settlement method must notify the other party of their choice. This date can be fixed or defined relative to another event in the contract.">
+    settlementMethodElectingPartyReference PartyReference (0..1) <"Identifies the party that has the contractual right to choose the method by which the transaction will settle—typically either physical delivery or cash settlement.">
+    settlementPriceDefaultElection SettlementPriceDefaultElection (0..1) <"Indicates the fallback approach to determine the settlement price if no price source is elected or available at settlement. This ensures continuity and enforceability in case of disputes or market disruptions.">
 
     condition Choice0:
         optional choice equityEuropeanExercise, equityAmericanExercise, equityBermudaExercise
@@ -143,6 +143,6 @@ type PrePayment extends PaymentBase: <"A type for defining PrePayment.">
     payerAccountReference AccountReference (0..1) <"A reference to the account responsible for making the payments defined by this structure.">
     receiverPartyReference PartyReference (0..1) <"A reference to the party that receives the payments corresponding to this structure.">
     receiverAccountReference AccountReference (0..1) <"A reference to the account that receives the payments corresponding to this structure.">
-    prePayment boolean (0..1)
-    prePaymentAmount NonNegativeMoney (0..1)
-    prePaymentDate AdjustableDate (0..1)
+    prePayment boolean (0..1) <"Indicates whether a payment is made in advance of the standard settlement date.">
+    prePaymentAmount NonNegativeMoney (0..1) <"Specifies the monetary amount to be prepaid. The value must be non-negative and represents the upfront payment made by one party before the derivative’s valuation or settlement.">
+    prePaymentDate AdjustableDate (0..1) <"Defines the date on which the prepayment is scheduled to occur, including any business day adjustments. It includes both the original (unadjusted) and the adjusted date if applicable.">

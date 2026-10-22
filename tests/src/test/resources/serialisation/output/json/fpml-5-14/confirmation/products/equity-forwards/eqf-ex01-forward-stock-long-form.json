@@ -1,0 +1,250 @@
+{
+  "fpmlVersion" : "5-14",
+  "header" : {
+    "messageId" : {
+      "value" : "MS/2006/04/02/15-38",
+      "messageIdScheme" : "http://www.example.com/messageId"
+    },
+    "sentBy" : {
+      "value" : "PartyAXXX"
+    },
+    "sendTo" : [ {
+      "value" : "PartyBXXX"
+    } ],
+    "creationTimestamp" : "2006-04-02T15:38:00Z"
+  },
+  "correlationId" : [ {
+    "value" : "CS/2006/04/02/15-38",
+    "correlationIdScheme" : "http://www.example.com/correlationId"
+  } ],
+  "sequenceNumber" : 7,
+  "trade" : {
+    "tradeHeader" : {
+      "partyTradeIdentifier" : [ {
+        "partyReference" : {
+          "href" : "party1"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "1234",
+            "tradeIdScheme" : "http://www.Party1.com/eqd-trade-id"
+          }
+        } ]
+      } ],
+      "tradeDate" : {
+        "value" : "2001-07-13T00:00:00Z",
+        "id" : "TradeDate"
+      }
+    },
+    "product" : {
+      "productType" : [ {
+        "value" : "Equity:Forward:PriceReturnBasicPerformance:SingleName"
+      } ],
+      "buyerPartyReference" : {
+        "href" : "party2"
+      },
+      "sellerPartyReference" : {
+        "href" : "party1"
+      },
+      "optionType" : "Forward",
+      "underlyer" : {
+        "singleUnderlyer" : {
+          "underlyingAsset" : {
+            "instrumentId" : [ {
+              "value" : "STM-FP",
+              "instrumentIdScheme" : "http://www.fpml.org/schemes/4.1/instrumentId"
+            } ],
+            "description" : "STMicroelectronics N.V. ordinary shares",
+            "currency" : {
+              "value" : "EUR"
+            },
+            "exchangeId" : {
+              "value" : "XLDN",
+              "exchangeIdScheme" : "http://www.fpml.org/schemes/4.1/exchangeId"
+            }
+          },
+          "openUnits" : 31000,
+          "dividendPayout" : {
+            "dividendPayoutRatio" : 1
+          }
+        }
+      },
+      "equityExercise" : {
+        "equityEuropeanExercise" : {
+          "expirationDate" : {
+            "adjustableDate" : {
+              "unadjustedDate" : {
+                "value" : "2004-07-13T00:00:00Z"
+              },
+              "dateAdjustments" : {
+                "businessDayConvention" : "NONE"
+              }
+            }
+          },
+          "equityExpirationTimeType" : "OSP"
+        },
+        "prePayment" : {
+          "payerPartyReference" : {
+            "href" : "party2"
+          },
+          "receiverPartyReference" : {
+            "href" : "party1"
+          },
+          "prePayment" : true,
+          "prePaymentAmount" : {
+            "currency" : {
+              "value" : "EUR"
+            },
+            "amount" : 40500
+          },
+          "prePaymentDate" : {
+            "unadjustedDate" : {
+              "value" : "2004-07-13T00:00:00Z"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "NONE"
+            }
+          }
+        },
+        "equityValuation" : {
+          "valuationDate" : {
+            "id" : "FinalValuationDate",
+            "adjustableDate" : {
+              "unadjustedDate" : {
+                "value" : "2004-07-13T00:00:00Z"
+              },
+              "dateAdjustments" : {
+                "businessDayConvention" : "NotApplicable"
+              }
+            }
+          },
+          "valuationTimeType" : "Close"
+        },
+        "settlementDate" : {
+          "relativeDate" : {
+            "periodMultiplier" : 2,
+            "period" : "D",
+            "dayType" : "CurrencyBusiness",
+            "businessDayConvention" : "NotApplicable",
+            "dateRelativeTo" : {
+              "href" : "FinalValuationDate"
+            }
+          }
+        },
+        "settlementCurrency" : {
+          "value" : "EUR"
+        },
+        "settlementPriceSource" : {
+          "value" : "OfficialClose"
+        },
+        "settlementType" : "Physical"
+      },
+      "feature" : {
+        "asian" : {
+          "averagingInOut" : "Out",
+          "averagingPeriodOut" : {
+            "averagingDateTimes" : {
+              "dateTime" : [ "2000-08-01T08:57:00Z", "2000-09-01T08:57:00Z", "2000-10-01T08:57:00Z", "2000-11-01T08:57:00Z", "2000-12-01T08:57:00Z", "2001-01-04T08:57:00Z", "2001-02-01T08:57:00Z", "2001-03-01T08:57:00Z" ]
+            },
+            "marketDisruption" : {
+              "value" : "ModifiedPostponement"
+            }
+          }
+        }
+      },
+      "dividendConditions" : {
+        "dividendReinvestment" : false,
+        "dividendEntitlement" : "ExDate",
+        "dividendPaymentDate" : {
+          "dividendDateReference" : "ExDate"
+        },
+        "dividendPeriodEffectiveDate" : {
+          "href" : "TradeDate"
+        },
+        "dividendPeriodEndDate" : {
+          "href" : "FinalValuationDate"
+        },
+        "extraOrdinaryDividends" : {
+          "href" : "party1"
+        },
+        "excessDividendAmount" : "RecordAmount",
+        "determinationMethod" : {
+          "value" : "DividendCurrency"
+        }
+      },
+      "methodOfAdjustment" : "CalculationAgent",
+      "extraordinaryEvents" : {
+        "mergerEvents" : {
+          "shareForShare" : "ModifiedCalculationAgent",
+          "shareForOther" : "ModifiedCalculationAgent",
+          "shareForCombined" : "ModifiedCalculationAgent"
+        },
+        "tenderOffer" : true,
+        "tenderOfferEvents" : {
+          "shareForShare" : "ModifiedCalculationAgent",
+          "shareForOther" : "ModifiedCalculationAgent",
+          "shareForCombined" : "ModifiedCalculationAgent"
+        },
+        "compositionOfCombinedConsideration" : true,
+        "additionalDisruptionEvents" : {
+          "changeInLaw" : true,
+          "failureToDeliver" : true,
+          "insolvencyFiling" : false,
+          "hedgingDisruption" : true,
+          "lossOfStockBorrow" : true,
+          "increasedCostOfStockBorrow" : false,
+          "increasedCostOfHedging" : false,
+          "determiningPartyReference" : {
+            "href" : "party1"
+          }
+        },
+        "representations" : {
+          "nonReliance" : true,
+          "agreementsRegardingHedging" : true,
+          "additionalAcknowledgements" : true
+        },
+        "nationalisationOrInsolvency" : "CancellationAndPayment"
+      },
+      "forwardPrice" : {
+        "currency" : {
+          "value" : "EUR"
+        },
+        "amount" : 10.20
+      }
+    },
+    "calculationAgent" : {
+      "calculationAgentPartyReference" : [ {
+        "href" : "party1"
+      } ]
+    },
+    "documentation" : {
+      "masterAgreement" : {
+        "masterAgreementType" : {
+          "value" : "ISDA"
+        },
+        "masterAgreementVersion" : {
+          "value" : "2002"
+        }
+      },
+      "contractualDefinitions" : [ {
+        "value" : "ISDA2002Equity"
+      } ]
+    },
+    "governingLaw" : {
+      "value" : "GBEN"
+    }
+  },
+  "party" : [ {
+    "id" : "party1",
+    "partyId" : [ {
+      "value" : "Party A",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
+    } ]
+  }, {
+    "id" : "party2",
+    "partyId" : [ {
+      "value" : "Party B",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
+    } ]
+  } ]
+}

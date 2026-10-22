@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<executionNotification fpmlVersion="5-14" xmlns="http://www.fpml.org/FpML-5/confirmation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fpml.org/FpML-5/confirmation schemas/fpml-5-14/confirmation/fpml-main-5-14.xsd">
+  <header>
+    <messageId messageIdScheme="http://www.executionnotificationservice.com/coding-scheme/messageId">FX456a789b</messageId>
+    <sentBy messageAddressScheme="http://www.executionnotificationservice.com/partyId">EXECSRV</sentBy>
+    <sendTo messageAddressScheme="http://www.executionnotificationservice.com/partyId">PARTYA</sendTo>
+    <creationTimestamp>2014-06-24T08:57:00Z</creationTimestamp>
+  </header>
+  <isCorrection>false</isCorrection>
+  <trade>
+    <tradeHeader>
+      <partyTradeIdentifier>
+        <partyReference href="partyA"/>
+        <tradeId tradeIdScheme="#partyA">12345</tradeId>
+      </partyTradeIdentifier>
+      <tradeDate>2013-03-14T00:00:00</tradeDate>
+    </tradeHeader>
+    <fxRangeAccrual>
+      <productType productTypeScheme="http://www.fpml.org/coding-scheme/product-type-simple">FxRangeAccrual</productType>
+      <payerPartyReference href="partyB"/>
+      <receiverPartyReference href="partyA"/>
+      <notionalAmount>
+        <initialValue>21160252.00</initialValue>
+        <currency>HUF</currency>
+      </notionalAmount>
+      <accrual>
+        <observable id="ob1">
+          <quotedCurrencyPair>
+            <currency1>EUR</currency1>
+            <currency2>HUF</currency2>
+            <quoteBasis>Currency2PerCurrency1</quoteBasis>
+          </quotedCurrencyPair>
+          <informationSource>
+            <rateSource>Reuters</rateSource>
+            <rateSourcePage>ECB37</rateSourcePage>
+            <fixingTime>
+              <hourMinuteTime>14:15:00Z</hourMinuteTime>
+              <businessCenter>DEFR</businessCenter>
+            </fixingTime>
+          </informationSource>
+        </observable>
+        <accrualRegion>
+          <observableReference href="ob1"/>
+          <upperBound>
+            <condition>AtOrBelow</condition>
+            <level>
+              <initialValue>309.0000</initialValue>
+            </level>
+          </upperBound>
+          <lowerBound>
+            <condition>AtOrAbove</condition>
+            <level>
+              <initialValue>285.0000</initialValue>
+            </level>
+          </lowerBound>
+        </accrualRegion>
+        <fixingSchedule>
+          <startDate>2014-03-18T00:00:00</startDate>
+          <endDate>2014-09-17T00:00:00</endDate>
+          <dayType>Business</dayType>
+          <businessCenters>
+            <businessCenter>EUTA</businessCenter>
+            <businessCenter>HUBU</businessCenter>
+          </businessCenters>
+          <numberOfFixings>129</numberOfFixings>
+        </fixingSchedule>
+      </accrual>
+      <expiryDate>
+        <dateAdjustments>
+          <businessDayConvention>FOLLOWING</businessDayConvention>
+          <businessCenters>
+            <businessCenter>EUTA</businessCenter>
+            <businessCenter>HKHK</businessCenter>
+          </businessCenters>
+        </dateAdjustments>
+        <adjustedDate>2014-09-17T00:00:00</adjustedDate>
+      </expiryDate>
+      <settlementDate>
+        <dateAdjustments>
+          <businessDayConvention>FOLLOWING</businessDayConvention>
+          <businessCenters>
+            <businessCenter>EUTA</businessCenter>
+            <businessCenter>HUBU</businessCenter>
+          </businessCenters>
+        </dateAdjustments>
+        <adjustedDate>2014-09-19T00:00:00</adjustedDate>
+      </settlementDate>
+      <premium>
+        <payerPartyReference href="partyB"/>
+        <receiverPartyReference href="partyA"/>
+        <paymentDate>
+          <adjustableDate>
+            <unadjustedDate>2013-03-19T00:00:00</unadjustedDate>
+            <dateAdjustments>
+              <businessDayConvention>NONE</businessDayConvention>
+            </dateAdjustments>
+          </adjustableDate>
+        </paymentDate>
+        <paymentAmount>
+          <currency>HUF</currency>
+          <amount>31242595.00</amount>
+        </paymentAmount>
+      </premium>
+    </fxRangeAccrual>
+    <calculationAgent>
+      <calculationAgentPartyReference href="partyA"/>
+    </calculationAgent>
+  </trade>
+  <party id="partyA">
+    <partyId partyIdScheme="http://www.fpml.org/coding-scheme/external/iso17442">549300SRLRVTR996F086</partyId>
+  </party>
+  <party id="partyB">
+    <partyId partyIdScheme="http://www.fpml.org/coding-scheme/external/iso17442">549300RE0FSXJE8G1L65</partyId>
+  </party>
+</executionNotification>

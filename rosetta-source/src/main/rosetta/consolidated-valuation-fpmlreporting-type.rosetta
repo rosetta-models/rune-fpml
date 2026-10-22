@@ -12,8 +12,8 @@ type Portfolio: <"Global portfolio element used as a basis for a substitution gr
 
     id string (0..1)
     partyPortfolioName PartyPortfolioName (0..1) <"The name of the portfolio together with the party that gave the name.">
-    tradeId TradeId (0..*)
-    partyTradeIdentifier PartyTradeIdentifier (0..*)
+    tradeId TradeId (0..*) <"Uniquely identifies a trade within a portfolio. Its structure ensures that trades within a portfolio are consistently and unambiguously identified.">
+    partyTradeIdentifier PartyTradeIdentifier (0..*) <"Uniquely identifies a trade from the perspective of a specific party. The structure ensures comprehensive tracking of trade lineage and relationships within financial transactions.">
     portfolio fpml.consolidated.valuation.fpmlreporting.Portfolio (0..*) <"An arbitary grouping of trade references (and possibly other portfolios).">
 
     condition Choice:
@@ -22,20 +22,20 @@ type Portfolio: <"Global portfolio element used as a basis for a substitution gr
 type QueryPortfolio extends fpml.consolidated.valuation.fpmlreporting.Portfolio: <"Global element used to substitute for \"portfolio\". A type representing a portfolio obtained by querying the set of trades held in a repository. It contains trades matching the intersection of all criteria specified using one or more queryParameters or trades matching the union of two or more child queryPortfolios.">
     [rootType]
 
-    queryParameter QueryParameter (0..*)
+    queryParameter QueryParameter (0..*) <"Represents a set of search criteria used to filter or retrieve a specific subset of financial trades or assets from a broader portfolio.">
 
-type RequestValuationReport extends CorrectableRequestMessage: <"A type defining the content model for a message allowing one party a report containing valuations of one or many existing trades.">
+type RequestValuationReport extends CorrectableRequestMessage: <"A top-level request message for a report containing valuations of one or more existing trades, supporting subsequent correction or retraction. A type defining the content model for a message allowing one party a report containing valuations of one or many existing trades.">
     [rootType]
 
     reportContents ReportContents (0..1) <"The specific characteristics to be included in the report.">
     asOfDate IdentifiedDate (0..1) <"The date for which this report is requested.">
     party Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
     account Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
-    market Market (0..1)
+    market Market (0..1) <"The collection of pricing inputs applicable to trade and portfolio valuations requested in the report.">
     portfolioValuationItem PortfolioValuationItem (0..*) <"An instance of a unique portfolio valuation.">
     tradeValuationItem TradeValuationItem (0..*) <"An instance of a unique trade valuation.">
 
-type ValuationReport extends NotificationMessage: <"A type defining the content model for a message normally generated in response to a RequestValuationReport request.">
+type ValuationReport extends NotificationMessage: <"A top-level notification message conveying valuation report content, normally generated in response to a RequestValuationReport request. A type defining the content model for a message normally generated in response to a RequestValuationReport request.">
     [rootType]
 
     reportIdentification ReportIdentification (0..1) <"Identifiers for the report instance and section.">
@@ -45,11 +45,11 @@ type ValuationReport extends NotificationMessage: <"A type defining the content 
     generatedDateTime zonedDateTime (0..1) <"The time this report was actually generated (i.e., the processing time of the report). This value, if present, will be no later than the message created time, and no earlier than any timestamp within a trade valuation item.">
     party Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
     account Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
-    market Market (0..1)
+    market Market (0..1) <"The collection of pricing inputs applicable to the portfolio and trade valuations presented in the report.">
     portfolioValuationItem PortfolioValuationItem (0..*) <"An instance of a unique portfolio valuation.">
     tradeValuationItem TradeValuationItem (0..*) <"A collection of data values describing the state of the given trade.">
 
-type ValuationReportRetracted extends NotificationMessage: <"A type defining the content model for a message that retracts a valuation report. This says that the most recently supplied valuation is erroneous and a previous value should be used.">
+type ValuationReportRetracted extends NotificationMessage: <"A notification message retracting the most recently supplied valuation report as erroneous and indicating that a previous valuation should be used. A type defining the content model for a message that retracts a valuation report. This says that the most recently supplied valuation is erroneous and a previous value should be used.">
     [rootType]
 
     reportIdentification ReportIdentification (0..1) <"Identifiers for the report instance and section.">
@@ -60,10 +60,10 @@ type ValuationReportRetracted extends NotificationMessage: <"A type defining the
     party Party (0..*) <"A legal entity or a subdivision of a legal entity. Parties can perform multiple roles in a trade lifecycle. For example, the principal parties obligated to make payments from time to time during the term of the trade, but may include other parties involved in, or incidental to, the trade, such as parties acting in the role of novation transferor/transferee, broker, calculation agent, etc. In FpML roles are defined in multiple places within a document.">
     account Account (0..*) <"Optional account information used to precisely define the origination and destination of financial instruments.">
 
-type ValuationReportAcknowledgement extends Acknowledgement:
+type ValuationReportAcknowledgement extends Acknowledgement: <"A top-level response message representing acknowledgement of a valuation report through the generic FpML messaging content model.">
     [rootType]
 
-type ValuationReportException extends Exception:
+type ValuationReportException extends Exception: <"A top-level message informing another system that an exception has been detected during valuation reporting.">
     [rootType]
 
 type PortfolioValuationItem: <"A type used in valuation enquiry messages which relates a portfolio to its trades and current value.">

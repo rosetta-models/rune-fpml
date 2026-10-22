@@ -1,0 +1,299 @@
+{
+  "fpmlVersion" : "5-14",
+  "header" : {
+    "messageId" : {
+      "value" : "MS/2006/04/02/15-10",
+      "messageIdScheme" : "http://www.example.com/messageId"
+    },
+    "inReplyTo" : {
+      "value" : "PARTYBBICXXX",
+      "messageIdScheme" : "#party2"
+    },
+    "sentBy" : {
+      "value" : "PARTYABICXXX"
+    },
+    "sendTo" : [ {
+      "value" : "PARTYBBICXXX"
+    } ],
+    "creationTimestamp" : "2006-04-02T15:38:00Z"
+  },
+  "correlationId" : [ {
+    "value" : "CS/2006/04/02/32-05",
+    "correlationIdScheme" : "http://www.example.com/conversationId"
+  } ],
+  "sequenceNumber" : 5,
+  "trade" : {
+    "tradeHeader" : {
+      "partyTradeIdentifier" : [ {
+        "partyReference" : {
+          "href" : "party1"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "1234",
+            "tradeIdScheme" : "http://www.PartyA.com/eqd-trade-id"
+          }
+        } ]
+      } ],
+      "tradeDate" : {
+        "value" : "2002-07-01T00:00:00Z"
+      }
+    },
+    "product" : {
+      "buyerPartyReference" : {
+        "href" : "party2"
+      },
+      "sellerPartyReference" : {
+        "href" : "party1"
+      },
+      "optionType" : "Call",
+      "equityEffectiveDate" : "2002-07-26T00:00:00Z",
+      "underlyer" : {
+        "singleUnderlyer" : {
+          "underlyingAsset" : {
+            "instrumentId" : [ {
+              "value" : ".STOX50E",
+              "instrumentIdScheme" : "http://www.fpml.org/schemes/4.1/instrumentId"
+            } ],
+            "description" : "STOXX 50 Euro",
+            "exchangeId" : {
+              "value" : "XEUR",
+              "exchangeIdScheme" : "http://www.fpml.org/schemes/4.1/exchangeId"
+            }
+          }
+        }
+      },
+      "notional" : {
+        "currency" : {
+          "value" : "USD"
+        },
+        "amount" : 8000000
+      },
+      "equityExercise" : {
+        "equityEuropeanExercise" : {
+          "expirationDate" : {
+            "id" : "expirationDate",
+            "adjustableDate" : {
+              "unadjustedDate" : {
+                "value" : "2005-10-11T00:00:00Z"
+              },
+              "dateAdjustments" : {
+                "businessDayConvention" : "NONE"
+              }
+            }
+          },
+          "equityExpirationTimeType" : "Close"
+        },
+        "automaticExercise" : true,
+        "equityValuation" : {
+          "valuationTimeType" : "Close",
+          "futuresPriceValuation" : false
+        },
+        "settlementDate" : {
+          "relativeDate" : {
+            "periodMultiplier" : 3,
+            "period" : "D",
+            "dayType" : "Business",
+            "businessDayConvention" : "NONE",
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "EUTA"
+              } ]
+            },
+            "dateRelativeTo" : {
+              "href" : "expirationDate"
+            }
+          }
+        },
+        "settlementCurrency" : {
+          "value" : "EUR"
+        },
+        "settlementPriceSource" : {
+          "value" : "OfficialClose"
+        },
+        "settlementType" : "Cash"
+      },
+      "feature" : {
+        "barrier" : {
+          "barrierCap" : {
+            "schedule" : [ {
+              "startDate" : "2002-03-29T00:00:00Z",
+              "endDate" : "2002-07-12T00:00:00Z",
+              "averagingPeriodFrequency" : {
+                "periodMultiplier" : 1,
+                "period" : "D",
+                "rollConvention" : "NONE"
+              }
+            } ],
+            "trigger" : {
+              "level" : 1606.346
+            },
+            "featurePayment" : {
+              "payerPartyReference" : {
+                "href" : "party1"
+              },
+              "receiverPartyReference" : {
+                "href" : "party2"
+              },
+              "amount" : 15000000,
+              "time" : "Close",
+              "currency" : {
+                "value" : "EUR"
+              },
+              "featurePaymentDate" : {
+                "relativeDate" : {
+                  "periodMultiplier" : 3,
+                  "period" : "D",
+                  "dayType" : "Business",
+                  "businessDayConvention" : "NONE",
+                  "businessCenters" : {
+                    "businessCenter" : [ {
+                      "value" : "EUTA"
+                    } ]
+                  },
+                  "dateRelativeTo" : {
+                    "href" : "expirationDate"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "knock" : {
+          "knockOut" : {
+            "schedule" : [ {
+              "startDate" : "2002-07-26T00:00:00Z",
+              "endDate" : "2005-10-11T00:00:00Z",
+              "averagingPeriodFrequency" : {
+                "periodMultiplier" : 1,
+                "period" : "D",
+                "rollConvention" : "NONE"
+              }
+            } ],
+            "trigger" : {
+              "levelPercentage" : 1.50
+            },
+            "featurePayment" : {
+              "payerPartyReference" : {
+                "href" : "party1"
+              },
+              "receiverPartyReference" : {
+                "href" : "party2"
+              },
+              "amount" : 880000,
+              "time" : "SpecificTime",
+              "currency" : {
+                "value" : "EUR"
+              },
+              "featurePaymentDate" : {
+                "relativeDate" : {
+                  "periodMultiplier" : 3,
+                  "period" : "D",
+                  "dayType" : "Business",
+                  "businessDayConvention" : "NONE",
+                  "businessCenters" : {
+                    "businessCenter" : [ {
+                      "value" : "EUTA"
+                    } ]
+                  },
+                  "dateRelativeTo" : {
+                    "href" : "expirationDate"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "methodOfAdjustment" : "CalculationAgent",
+      "extraordinaryEvents" : {
+        "indexAdjustmentEvents" : {
+          "indexModification" : "CalculationAgentAdjustment",
+          "indexCancellation" : "CancellationAndPayment",
+          "indexDisruption" : "CalculationAgentAdjustment"
+        },
+        "additionalDisruptionEvents" : {
+          "changeInLaw" : true,
+          "failureToDeliver" : true,
+          "insolvencyFiling" : false,
+          "hedgingDisruption" : true,
+          "lossOfStockBorrow" : true,
+          "increasedCostOfStockBorrow" : false,
+          "increasedCostOfHedging" : false,
+          "determiningPartyReference" : {
+            "href" : "party1"
+          }
+        },
+        "representations" : {
+          "nonReliance" : true,
+          "agreementsRegardingHedging" : true,
+          "indexDisclaimer" : true,
+          "additionalAcknowledgements" : true
+        }
+      },
+      "strike" : {
+        "strikePercentage" : 1.00
+      },
+      "optionEntitlement" : 1.00,
+      "equityPremium" : {
+        "payerPartyReference" : {
+          "href" : "party2"
+        },
+        "receiverPartyReference" : {
+          "href" : "party1"
+        },
+        "paymentAmount" : {
+          "currency" : {
+            "value" : "EUR"
+          },
+          "amount" : 400000
+        },
+        "paymentDate" : {
+          "unadjustedDate" : {
+            "value" : "2002-07-30T00:00:00Z"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NONE"
+          }
+        },
+        "percentageOfNotional" : 0.05
+      }
+    },
+    "calculationAgent" : {
+      "calculationAgentPartyReference" : [ {
+        "href" : "party1"
+      } ]
+    },
+    "documentation" : {
+      "masterAgreement" : {
+        "masterAgreementType" : {
+          "value" : "ISDA"
+        },
+        "masterAgreementVersion" : {
+          "value" : "2002"
+        }
+      },
+      "contractualDefinitions" : [ {
+        "value" : "ISDA2000"
+      }, {
+        "value" : "ISDA2002Equity"
+      } ]
+    },
+    "governingLaw" : {
+      "value" : "GBEN"
+    }
+  },
+  "party" : [ {
+    "id" : "party1",
+    "partyId" : [ {
+      "value" : "Party A",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
+    } ]
+  }, {
+    "id" : "party2",
+    "partyId" : [ {
+      "value" : "Party B",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
+    } ]
+  } ]
+}
