@@ -1,0 +1,224 @@
+{
+  "fpmlVersion" : "5-14",
+  "header" : {
+    "messageId" : {
+      "value" : "FX456a789b",
+      "messageIdScheme" : "http://www.executionnotificationservice.com/coding-scheme/messageId"
+    },
+    "sentBy" : {
+      "value" : "EXECSRV",
+      "messageAddressScheme" : "http://www.executionnotificationservice.com/partyId"
+    },
+    "sendTo" : [ {
+      "value" : "PARTYA",
+      "messageAddressScheme" : "http://www.executionnotificationservice.com/partyId"
+    } ],
+    "creationTimestamp" : "2014-10-01T08:57:00Z"
+  },
+  "isCorrection" : false,
+  "trade" : {
+    "tradeHeader" : {
+      "partyTradeIdentifier" : [ {
+        "partyReference" : {
+          "href" : "partyA"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "123456789",
+            "tradeIdScheme" : "http://www.markets.Reuters.com/rss/spec/2001/trade-id-3-0"
+          }
+        } ]
+      }, {
+        "partyReference" : {
+          "href" : "partyB"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "123456789",
+            "tradeIdScheme" : "http://www.markets.Reuters.com/rss/spec/2001/trade-id-3-0"
+          }
+        } ]
+      } ],
+      "tradeDate" : {
+        "value" : "2014-10-01T00:00:00Z"
+      }
+    },
+    "product" : {
+      "productType" : [ {
+        "value" : "FadingForwardStrategy",
+        "productTypeScheme" : "http://www.sample.com/coding-scheme/product-type-simple"
+      } ],
+      "product" : [ {
+        "productType" : [ {
+          "value" : "Delta-Put-FX-Option",
+          "productTypeScheme" : "http://www.markets.Reuters.com/rss/spec/2001/product-type-1-0"
+        } ],
+        "buyerPartyReference" : {
+          "href" : "partyB"
+        },
+        "sellerPartyReference" : {
+          "href" : "partyA"
+        },
+        "europeanExercise" : {
+          "expiryDate" : "2014-10-31T00:00:00Z",
+          "expiryTime" : {
+            "hourMinuteTime" : "10:00:00",
+            "businessCenter" : {
+              "value" : "USNY"
+            }
+          },
+          "valueDate" : "2014-11-03T00:00:00Z"
+        },
+        "putCurrencyAmount" : {
+          "currency" : {
+            "value" : "CAD"
+          },
+          "amount" : 10825000.00
+        },
+        "callCurrencyAmount" : {
+          "currency" : {
+            "value" : "USD"
+          },
+          "amount" : 10000000.00
+        },
+        "strike" : {
+          "rate" : 1.0825,
+          "strikeQuoteBasis" : "CallCurrencyPerPutCurrency"
+        }
+      }, {
+        "productType" : [ {
+          "value" : "FxAccrualOption",
+          "productTypeScheme" : "http://www.fpml.org/coding-scheme/product-type-simple"
+        } ],
+        "buyerPartyReference" : {
+          "href" : "partyA"
+        },
+        "sellerPartyReference" : {
+          "href" : "partyB"
+        },
+        "putCurrency" : {
+          "value" : "USD"
+        },
+        "callCurrency" : {
+          "value" : "CAD"
+        },
+        "notionalAmount" : {
+          "initialValue" : 10000000.00,
+          "currency" : {
+            "value" : "USD"
+          }
+        },
+        "accrual" : {
+          "observable" : [ {
+            "id" : "ob1",
+            "quotedCurrencyPair" : {
+              "currency1" : {
+                "value" : "CAD"
+              },
+              "currency2" : {
+                "value" : "USD"
+              },
+              "quoteBasis" : "Currency2PerCurrency1"
+            },
+            "informationSource" : {
+              "rateSource" : {
+                "value" : "Reuters"
+              },
+              "rateSourcePage" : {
+                "value" : "BOFC"
+              },
+              "fixingTime" : {
+                "hourMinuteTime" : "12:00:00",
+                "businessCenter" : {
+                  "value" : "CATO"
+                }
+              }
+            }
+          } ],
+          "accrualRegion" : [ {
+            "observableReference" : {
+              "href" : "ob1"
+            },
+            "upperBound" : {
+              "condition" : "Below",
+              "level" : {
+                "initialValue" : 1.0700
+              }
+            }
+          } ],
+          "fixingSchedule" : {
+            "startDate" : "2014-10-01T00:00:00Z",
+            "endDate" : "2014-10-31T00:00:00Z",
+            "dayType" : "Business",
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "CATO"
+              } ]
+            },
+            "numberOfFixings" : 22
+          }
+        },
+        "expiryDate" : {
+          "adjustedDate" : "2014-10-31T00:00:00Z",
+          "expiryTime" : {
+            "hourMinuteTime" : "10:00:00",
+            "businessCenter" : {
+              "value" : "USNY"
+            }
+          }
+        },
+        "settlementDate" : {
+          "dateAdjustments" : {
+            "businessDayConvention" : "FOLLOWING",
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "USNY"
+              }, {
+                "value" : "CATO"
+              } ]
+            }
+          },
+          "adjustedDate" : "2014-11-03T00:00:00Z"
+        },
+        "strike" : {
+          "initialValue" : 1.0825,
+          "strikeQuoteBasis" : "PutCurrencyPerCallCurrency"
+        },
+        "counterCurrencyAmount" : {
+          "initialValue" : 10825000.00,
+          "currency" : {
+            "value" : "CAD"
+          }
+        },
+        "barrier" : [ {
+          "barrierType" : "Knockout",
+          "style" : "European",
+          "scope" : "Global",
+          "condition" : "AtOrAbove",
+          "triggerRate" : {
+            "initialValue" : 1.0825
+          },
+          "accrualRetention" : "Lose"
+        } ]
+      } ]
+    },
+    "calculationAgent" : {
+      "calculationAgentPartyReference" : [ {
+        "href" : "partyA"
+      } ]
+    }
+  },
+  "party" : [ {
+    "id" : "partyA",
+    "partyId" : [ {
+      "value" : "549300SRLRVTR996F086",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ]
+  }, {
+    "id" : "partyB",
+    "partyId" : [ {
+      "value" : "549300RE0FSXJE8G1L65",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ]
+  } ]
+}

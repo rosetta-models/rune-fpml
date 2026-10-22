@@ -1,0 +1,170 @@
+{
+  "fpmlVersion" : "5-14",
+  "header" : {
+    "messageId" : {
+      "value" : "OTCCallorPutSpread456a789b",
+      "messageIdScheme" : "http://www.partyA.com/messageId/OTC"
+    },
+    "sentBy" : {
+      "value" : "PartyA",
+      "messageAddressScheme" : "http://www.MsgParty.com/partyId"
+    },
+    "creationTimestamp" : "2002-07-01T08:57:00Z"
+  },
+  "isCorrection" : false,
+  "correlationId" : [ {
+    "value" : "OTCCallorPutSpread45678",
+    "correlationIdScheme" : "http://www.partyA.com/conversationId/OTC"
+  } ],
+  "sequenceNumber" : 1,
+  "trade" : {
+    "tradeHeader" : {
+      "partyTradeIdentifier" : [ {
+        "partyReference" : {
+          "href" : "party1"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "1234",
+            "tradeIdScheme" : "http://www.partyA.com/tradeId/OTC"
+          }
+        } ]
+      } ],
+      "tradeDate" : {
+        "value" : "2002-07-13T00:00:00Z",
+        "id" : "TradeDate"
+      }
+    },
+    "product" : {
+      "productType" : [ {
+        "value" : "Equity:Option:PriceReturnBasicPerformance:SingleIndex"
+      } ],
+      "buyerPartyReference" : {
+        "href" : "party2"
+      },
+      "sellerPartyReference" : {
+        "href" : "party1"
+      },
+      "optionType" : "Call",
+      "underlyer" : {
+        "singleUnderlyer" : {
+          "underlyingAsset" : {
+            "instrumentId" : [ {
+              "value" : "SSMI",
+              "instrumentIdScheme" : "http://www.fpml.org/coding-scheme/external/instrument-id-Reuters-RIC"
+            } ],
+            "description" : "Swiss Market Index",
+            "exchangeId" : {
+              "value" : "NYSE",
+              "exchangeIdScheme" : "http://www.fpml.org/coding-scheme/external/instrument-id-Reuters-RIC"
+            }
+          }
+        }
+      },
+      "equityExercise" : {
+        "equityEuropeanExercise" : {
+          "expirationDate" : {
+            "adjustableDate" : {
+              "unadjustedDate" : {
+                "value" : "2004-12-19T00:00:00Z"
+              },
+              "dateAdjustments" : {
+                "businessDayConvention" : "NONE"
+              }
+            }
+          },
+          "equityExpirationTimeType" : "OSP"
+        },
+        "automaticExercise" : true,
+        "equityValuation" : {
+          "id" : "valuation",
+          "valuationTimeType" : "OSP"
+        },
+        "settlementDate" : {
+          "relativeDate" : {
+            "periodMultiplier" : 2,
+            "period" : "D",
+            "dayType" : "Business",
+            "businessDayConvention" : "NONE",
+            "businessCenters" : {
+              "businessCenter" : [ {
+                "value" : "CHZU"
+              } ]
+            },
+            "dateRelativeTo" : {
+              "href" : "valuation"
+            }
+          }
+        },
+        "settlementCurrency" : {
+          "value" : "CHF"
+        },
+        "settlementPriceSource" : {
+          "value" : "OfficialClose"
+        },
+        "settlementType" : "Cash"
+      },
+      "strike" : {
+        "strikePrice" : 8700
+      },
+      "numberOfOptions" : 2500,
+      "equityPremium" : {
+        "payerPartyReference" : {
+          "href" : "party2"
+        },
+        "receiverPartyReference" : {
+          "href" : "party1"
+        },
+        "paymentAmount" : {
+          "currency" : {
+            "value" : "CHF"
+          },
+          "amount" : 300000
+        },
+        "paymentDate" : {
+          "unadjustedDate" : {
+            "value" : "2002-09-06T00:00:00Z"
+          },
+          "dateAdjustments" : {
+            "businessDayConvention" : "NONE"
+          }
+        }
+      },
+      "exchangeLookAlike" : true,
+      "exchangeTradedContractNearest" : true,
+      "multipleExchangeIndexAnnexFallback" : true
+    },
+    "calculationAgent" : {
+      "calculationAgentPartyReference" : [ {
+        "href" : "party1"
+      } ]
+    },
+    "documentation" : {
+      "masterAgreement" : {
+        "masterAgreementType" : {
+          "value" : "ISDA"
+        },
+        "masterAgreementDate" : "2002-08-01T00:00:00Z"
+      },
+      "contractualDefinitions" : [ {
+        "value" : "ISDA2002Equity"
+      } ]
+    },
+    "governingLaw" : {
+      "value" : "GBEN"
+    }
+  },
+  "party" : [ {
+    "id" : "party1",
+    "partyId" : [ {
+      "value" : "Party A",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
+    } ]
+  }, {
+    "id" : "party2",
+    "partyId" : [ {
+      "value" : "Party B",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/dummy-party-id"
+    } ]
+  } ]
+}

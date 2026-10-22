@@ -5,40 +5,40 @@ import fpml.consolidated.doc.*
 import fpml.consolidated.msg.*
 import fpml.consolidated.shared.*
 
-type Bankruptcy extends BankruptcyEvent:
+type Bankruptcy extends BankruptcyEvent: <"A specific type of credit event indicating that a counterparty has declared bankruptcy or is undergoing insolvency proceedings. It extends the broader CreditEvent type, inheriting its structure while specifying that the credit event relates to bankruptcy.">
 
 type CreditEventNotice extends CreditEventNoticeDocument: <"A global element used to hold CENs.">
     [rootType]
 
-type FailureToPay extends FailureToPayEvent:
+type FailureToPay extends FailureToPayEvent: <"Represents a specific type of CreditEvent that occurs when a reference entity fails to meet its payment obligations on a financial instrument. This event typically triggers credit protections under derivative contracts and is defined by predetermined thresholds and grace periods. It inherits all attributes from CreditEvent, ensuring consistency in credit event reporting.">
 
-type ObligationAcceleration extends ObligationAccelerationEvent:
+type ObligationAcceleration extends ObligationAccelerationEvent: <"This credit event occurs when an obligation of the reference entity is accelerated and becomes due and payable before its scheduled maturity due to a default or other triggering condition. It signifies a material credit deterioration and can trigger credit protection clauses in derivative contracts.">
 
-type ObligationDefault extends ObligationDefaultEvent:
+type ObligationDefault extends ObligationDefaultEvent: <"This credit event occurs when the reference entity defaults on one or more of its obligations, regardless of whether acceleration occurs. It signals a failure to meet contractual terms, which may lead to credit protection activation in financial contracts.">
 
-type RepudiationMoratorium extends RepudiationMoratoriumEvent:
+type RepudiationMoratorium extends RepudiationMoratoriumEvent: <"This credit event occurs when a reference entity refuses to honor or acknowledge its obligations, or when an official moratorium is imposed on its debt payments. It often applies to sovereign and corporate debt in distressed situations and may trigger contractual remedies.">
 
-type Restructuring extends RestructuringEvent:
+type Restructuring extends RestructuringEvent: <"This credit event occurs when a reference entity restructures its obligations in a way that is adverse to creditors, such as reducing principal, extending maturity, or lowering interest rates. It is one of the key credit events recognized in credit default swaps and other credit risk agreements.">
 
 type CreditEventNotification extends CorrectableRequestMessage: <"A message defining the ISDA defined Credit Event Notice. ISDA defines it as an irrevocable notice from a Notifying Party to the other party that describes a Credit Event that occurred. A Credit Event Notice must contain detail of the facts relevant to the determination that a Credit Event has occurred. A message type defining the ISDA defined Credit Event Notice. ISDA defines it as an irrevocable notice from a Notifying Party to the other party that describes a Credit Event that occurred. A Credit Event Notice must contain detail of the facts relevant to the determination that a Credit Event has occurred.">
     [rootType]
 
-    creditEventNotice CreditEventNoticeDocument (0..1)
-    party Party (0..*)
+    creditEventNotice CreditEventNoticeDocument (0..1) <"Contains detailed information about a credit event affecting a reference entity. It includes affected transactions, the entity involved, the event type, public information sources, notifying and notified parties, and key dates.">
+    party Party (0..*) <"Represents a participant in the credit event notification process. A party can be identified by specific attributes or grouped with others. It includes unique references to distinguish involved entities.">
 
 type CreditEventNotificationRetracted extends NonCorrectableRequestMessage: <"A message retracting a previous credit event notification. A message type retracting a previous credit event notification.">
     [rootType]
 
-    creditEventNotice CreditEventNoticeDocument (0..1)
-    party Party (0..*)
+    creditEventNotice CreditEventNoticeDocument (0..1) <"Represents a previously issued credit event notice that has now been retracted. It provides details about the withdrawn notification, including the affected transactions, reference entity, event type, public sources, involved parties, and relevant dates.">
+    party Party (0..*) <"Identifies the entities involved in the credit event retraction. Each party may be referenced individually or as part of a group, ensuring clarity in the notification withdrawal process.">
 
-type CreditEventAcknowledgement extends Acknowledgement:
+type CreditEventAcknowledgement extends Acknowledgement: <"A formal acknowledgment of the receipt of a credit event notification. It confirms that the message has been received and processed but does not imply agreement or validation of its contents.">
     [rootType]
 
-type CreditEventException extends Exception:
+type CreditEventException extends Exception: <"Represents an exception message related to a credit event notification. It is used when an issue arises in processing or validating a credit event, such as missing information, inconsistencies, or errors in the reported event.">
     [rootType]
 
-type AffectedTransactions:
+type AffectedTransactions: <"A container for identifying one or more trades that have been impacted by a specific event. It allows referencing affected trades either by their full trade details (trade) or by using trade identifiers (tradeReference).">
 
     affectedTransactionsChoice AffectedTransactionsChoice (1..*)
 
@@ -50,29 +50,29 @@ type AffectedTransactionsChoice:
     condition Choice:
         one-of
 
-type BankruptcyEvent extends CreditEvent:
+type BankruptcyEvent extends CreditEvent: <"A specific type of credit event indicating that a counterparty has declared bankruptcy or is undergoing insolvency proceedings. It extends the broader CreditEvent type, inheriting its structure while specifying that the credit event relates to bankruptcy.">
 
-type CreditEvent:
+type CreditEvent: <"A financial event indicating that a counterparty has defaulted or experienced financial distress, impacting the terms of a credit agreement. This includes situations such as bankruptcy, failure to pay, restructuring, or obligation acceleration.">
 
 type CreditEventNoticeDocument: <"An event type that records the occurrence of a credit event notice.">
 
     affectedTransactions AffectedTransactions (0..1) <"Trades affected by this event.">
-    referenceEntity LegalEntity (0..1)
-    creditEvent CreditEvent (0..1)
+    referenceEntity LegalEntity (0..1) <"Identifies the legal entity affected by the credit event. It includes the entity’s name and one or more unique identifiers, such as a Legal Entity Identifier (LEI) or other financial reference codes.">
+    creditEvent CreditEvent (0..1) <"Specifies the credit event that has occurred, such as bankruptcy, failure to pay, or restructuring.">
     publiclyAvailableInformation Resource (0..*) <"A public information source, e.g. a particular newspaper or electronic news service, that may publish relevant information used in the determination of whether or not a credit event has occurred.">
-    notifyingPartyReference PartyReference (0..1)
-    notifiedPartyReference PartyReference (0..1)
-    creditEventNoticeDate zonedDateTime (0..1)
-    creditEventDate zonedDateTime (0..1)
+    notifyingPartyReference PartyReference (0..1) <"Identifies the party responsible for notifying counterparties about the credit event.">
+    notifiedPartyReference PartyReference (0..1) <"Identifies the party receiving the credit event notice.">
+    creditEventNoticeDate zonedDateTime (0..1) <"The date on which the credit event notice was formally issued.">
+    creditEventDate zonedDateTime (0..1) <"The actual date on which the credit event occurred.">
 
-type FailureToPayEvent extends CreditEvent:
+type FailureToPayEvent extends CreditEvent: <"Represents a specific type of CreditEvent that occurs when a reference entity fails to meet its payment obligations on a financial instrument. This event typically triggers credit protections under derivative contracts and is defined by predetermined thresholds and grace periods. It inherits all attributes from CreditEvent, ensuring consistency in credit event reporting.">
 
-type ObligationAccelerationEvent extends CreditEvent:
+type ObligationAccelerationEvent extends CreditEvent: <"This credit event occurs when an obligation of the reference entity is accelerated and becomes due and payable before its scheduled maturity due to a default or other triggering condition. It signifies a material credit deterioration and can trigger credit protection clauses in derivative contracts.">
 
-type ObligationDefaultEvent extends CreditEvent:
+type ObligationDefaultEvent extends CreditEvent: <"This credit event occurs when the reference entity defaults on one or more of its obligations, regardless of whether acceleration occurs. It signals a failure to meet contractual terms, which may lead to credit protection activation in financial contracts.">
 
-type RepudiationMoratoriumEvent extends CreditEvent:
+type RepudiationMoratoriumEvent extends CreditEvent: <"This credit event occurs when a reference entity refuses to honor or acknowledge its obligations, or when an official moratorium is imposed on its debt payments. It often applies to sovereign and corporate debt in distressed situations and may trigger contractual remedies.">
 
-type RestructuringEvent extends CreditEvent:
+type RestructuringEvent extends CreditEvent: <"This credit event occurs when a reference entity restructures its obligations in a way that is adverse to creditors, such as reducing principal, extending maturity, or lowering interest rates. It is one of the key credit events recognized in credit default swaps and other credit risk agreements.">
 
-    partialExerciseAmount Money (0..1)
+    partialExerciseAmount Money (0..1) <"The monetary amount to which a partial exercise applies in connection with the reported restructuring credit event.">

@@ -6,7 +6,7 @@ import fpml.consolidated.eqd.*
 import fpml.consolidated.fpmlenum.*
 import fpml.consolidated.shared.*
 
-type EquityAccumulator extends Product:
+type EquityAccumulator extends Product: <"A share accumulator under which the buyer acquires a specified number of shares on each day of the observation period at a fixed forward price, subject to any gearing applicable below the trigger price, the guaranteed period, and the knock-out and expiration provisions. A type defining a share accumulator, including the underlyer, notional, forward price, daily share quantity, observation periods, gearing, guaranteed period, expiration, settlement terms and knock-out provisions.">
 
     buyerPartyReference PartyReference (1..1) <"A reference to the party that buys this instrument, ie. pays for this instrument and receives the rights defined by it. See 2000 ISDA definitions Article 11.1 (b). In the case of FRAs this the fixed rate payer.">
     buyerAccountReference AccountReference (0..1) <"A reference to the account that buys this instrument.">
@@ -41,8 +41,6 @@ type EquityForwardExpiration extends Exercise: <"A type for defining expiry of a
         else if expirationTimeDetermination exists
         then equityExpirationTimeType is absent and equityExpirationTime is absent
         else False
-
-type SharesPerDay:
 
 type Gearing: <"Leverage or Gearing. Optional condition where if shares fall below trigger price, number of shares puchased increase by the gearing factor.">
 

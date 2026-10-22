@@ -1,0 +1,236 @@
+{
+  "fpmlVersion" : "5-14",
+  "header" : {
+    "messageId" : {
+      "value" : "FX456a789b",
+      "messageIdScheme" : "http://www.executionnotificationservice.com/coding-scheme/messageId"
+    },
+    "sentBy" : {
+      "value" : "EXECSRV",
+      "messageAddressScheme" : "http://www.executionnotificationservice.com/partyId"
+    },
+    "sendTo" : [ {
+      "value" : "PARTYA",
+      "messageAddressScheme" : "http://www.executionnotificationservice.com/partyId"
+    } ],
+    "creationTimestamp" : "2014-06-24T08:57:00Z"
+  },
+  "isCorrection" : false,
+  "trade" : {
+    "tradeHeader" : {
+      "partyTradeIdentifier" : [ {
+        "partyReference" : {
+          "href" : "partyA"
+        },
+        "tradeIdentifierChoice" : [ {
+          "tradeId" : {
+            "value" : "12345",
+            "tradeIdScheme" : "#partyA"
+          }
+        } ]
+      } ],
+      "tradeDate" : {
+        "value" : "2008-01-11T00:00:00Z"
+      }
+    },
+    "product" : {
+      "productType" : [ {
+        "value" : "FxAccrualOption",
+        "productTypeScheme" : "http://www.fpml.org/coding-scheme/product-type-simple"
+      } ],
+      "buyerPartyReference" : {
+        "href" : "partyA"
+      },
+      "sellerPartyReference" : {
+        "href" : "partyB"
+      },
+      "putCurrency" : {
+        "value" : "USD"
+      },
+      "callCurrency" : {
+        "value" : "GBP"
+      },
+      "notionalAmount" : {
+        "initialValue" : 7000000.00,
+        "currency" : {
+          "value" : "GBP"
+        }
+      },
+      "accrual" : {
+        "observable" : [ {
+          "id" : "ob1",
+          "quotedCurrencyPair" : {
+            "currency1" : {
+              "value" : "GBP"
+            },
+            "currency2" : {
+              "value" : "USD"
+            },
+            "quoteBasis" : "Currency2PerCurrency1"
+          },
+          "informationSource" : {
+            "rateSource" : {
+              "value" : "Reuters"
+            },
+            "rateSourcePage" : {
+              "value" : "1FED"
+            },
+            "fixingTime" : {
+              "hourMinuteTime" : "10:00:00",
+              "businessCenter" : {
+                "value" : "USNY"
+              }
+            }
+          }
+        } ],
+        "accrualRegion" : [ {
+          "observableReference" : {
+            "href" : "ob1"
+          },
+          "lowerBound" : {
+            "condition" : "AtOrAbove",
+            "level" : {
+              "initialValue" : 1.995
+            }
+          }
+        }, {
+          "observableReference" : {
+            "href" : "ob1"
+          },
+          "upperBound" : {
+            "condition" : "Below",
+            "level" : {
+              "initialValue" : 1.995
+            }
+          },
+          "accrualFactor" : {
+            "initialValue" : 2
+          }
+        } ],
+        "fixingSchedule" : {
+          "startDate" : "2008-01-11T00:00:00Z",
+          "endDate" : "2008-06-30T00:00:00Z",
+          "dayType" : "Business",
+          "businessCenters" : {
+            "businessCenter" : [ {
+              "value" : "USNY"
+            } ]
+          },
+          "numberOfFixings" : 21
+        }
+      },
+      "expiryDate" : {
+        "adjustedDate" : "2008-06-30T00:00:00Z",
+        "expiryTime" : {
+          "hourMinuteTime" : "14:00:00",
+          "businessCenter" : {
+            "value" : "USNY"
+          }
+        }
+      },
+      "settlementDate" : {
+        "dateAdjustments" : {
+          "businessDayConvention" : "FOLLOWING",
+          "businessCenters" : {
+            "businessCenter" : [ {
+              "value" : "GBLO"
+            }, {
+              "value" : "USNY"
+            } ]
+          }
+        },
+        "adjustedDate" : "2008-07-02T00:00:00Z"
+      },
+      "strike" : {
+        "initialValue" : 1.995,
+        "strikeQuoteBasis" : "PutCurrencyPerCallCurrency"
+      },
+      "counterCurrencyAmount" : {
+        "initialValue" : 3508771.93,
+        "currency" : {
+          "value" : "USD"
+        }
+      },
+      "averageRate" : {
+        "id" : "averageRate",
+        "quotedCurrencyPair" : {
+          "currency1" : {
+            "value" : "GBP"
+          },
+          "currency2" : {
+            "value" : "USD"
+          },
+          "quoteBasis" : "Currency2PerCurrency1"
+        },
+        "informationSource" : {
+          "rateSource" : {
+            "value" : "Reuters"
+          },
+          "rateSourcePage" : {
+            "value" : "1FED"
+          },
+          "fixingTime" : {
+            "hourMinuteTime" : "10:00:00",
+            "businessCenter" : {
+              "value" : "USNY"
+            }
+          }
+        },
+        "fixingSchedule" : {
+          "startDate" : "2008-01-11T00:00:00Z",
+          "endDate" : "2008-06-30T00:00:00Z",
+          "dayType" : "Business",
+          "businessCenters" : {
+            "businessCenter" : [ {
+              "value" : "USNY"
+            } ]
+          }
+        },
+        "averagingMethod" : "Arithmetic",
+        "precision" : 4
+      },
+      "premium" : [ {
+        "payerPartyReference" : {
+          "href" : "partyA"
+        },
+        "receiverPartyReference" : {
+          "href" : "partyB"
+        },
+        "paymentDate" : {
+          "adjustableDate" : {
+            "unadjustedDate" : {
+              "value" : "2008-01-15T00:00:00Z"
+            },
+            "dateAdjustments" : {
+              "businessDayConvention" : "NONE"
+            }
+          }
+        },
+        "paymentAmount" : {
+          "currency" : {
+            "value" : "USD"
+          },
+          "amount" : 155000
+        }
+      } ]
+    },
+    "calculationAgent" : {
+      "calculationAgentPartyReference" : [ {
+        "href" : "partyA"
+      } ]
+    }
+  },
+  "party" : [ {
+    "id" : "partyA",
+    "partyId" : [ {
+      "value" : "549300SRLRVTR996F086",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ]
+  }, {
+    "id" : "partyB",
+    "partyId" : [ {
+      "value" : "549300RE0FSXJE8G1L65",
+      "partyIdScheme" : "http://www.fpml.org/coding-scheme/external/iso17442"
+    } ]
+  } ]
+}
