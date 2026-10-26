@@ -94,13 +94,6 @@ type CollateralValuation: <"This type is used in Repo trades, to specify the val
         optional choice nominalAmount, numberOfUnits
 
     condition Choice1:
-        optional choice nominalAmount, unitPrice
-
-    condition Choice2:
-        if nominalAmount exists
-        then cleanPrice exists or accruals is absent
-
-    condition Choice3:
         numberOfUnits is absent
             or unitPrice exists
                 and quantity is absent
@@ -113,11 +106,18 @@ type CollateralValuation: <"This type is used in Repo trades, to specify the val
                 and allInPrice is absent
                 and accrualsAmount is absent
 
-    condition Choice4:
+    condition Choice2:
         nominalAmount exists
             or numberOfUnits exists
             or quantity exists and cleanPrice exists and unitPrice is absent
             or quantity exists and unitPrice is absent and accruals is absent
+
+    condition Choice3:
+        optional choice nominalAmount, unitPrice
+
+    condition Choice4:
+        if nominalAmount exists
+        then cleanPrice exists or accruals is absent
 
 type DeliveryMethod: <"Specifies delivery methods for securities transactions. This coding-scheme defines the possible delivery methods for securities.">
 

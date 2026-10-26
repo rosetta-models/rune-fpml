@@ -364,29 +364,13 @@ type FxFixingSchedule: <"Describes a schedule of fixing dates as a parametric de
         optional choice dateAdjustments, businessCentersReference, businessCenters
 
     condition Choice1:
-        optional choice observationFrequency, businessCentersReference
-
-    condition Choice2:
-        if businessCentersReference exists
-        then dayType exists
-                and (startDate exists or endDate exists)
-                and optional choice fixingDate, numberOfFixings
-
-    condition Choice3:
-        optional choice observationFrequency, businessCenters
-
-    condition Choice4:
-        if businessCenters exists
-        then dayType exists
-                and (startDate exists or endDate exists)
-                and optional choice fixingDate, numberOfFixings
-
-    condition Choice5:
         optional choice dateAdjustments, dayType
 
-    condition Choice6:
+    condition Choice2:
         if dateAdjustments exists
-        then optional choice fixingDate, numberOfFixings
+        then businessCentersReference is absent
+                and businessCenters is absent
+                and optional choice fixingDate, numberOfFixings
                 and if fixingDate exists
                     then if observationFrequency exists
                         then startDate exists or endDate exists
@@ -399,35 +383,28 @@ type FxFixingSchedule: <"Describes a schedule of fixing dates as a parametric de
                         then startDate exists or endDate exists
                         else startDate is absent and endDate is absent
 
-    condition Choice7:
+    condition Choice3:
         if dayType exists
-        then startDate exists and fixingDate is absent and observationFrequency is absent
-                or endDate exists
-                    and fixingDate is absent
-                    and observationFrequency is absent
-                or startDate exists
-                    and numberOfFixings is absent
-                    and observationFrequency is absent
-                or endDate exists
-                    and numberOfFixings is absent
-                    and observationFrequency is absent
-                or businessCentersReference exists
-                or businessCenters exists
+        then observationFrequency is absent
+                and (startDate exists or endDate exists)
+                and optional choice fixingDate, numberOfFixings
 
-    condition Choice8:
+    condition Choice4:
         if dateAdjustments is absent and dayType is absent
-        then startDate exists and observationFrequency exists and numberOfFixings is absent
-                or observationFrequency exists and endDate exists and fixingDate is absent
-                or observationFrequency exists and startDate exists and fixingDate is absent
-                or endDate exists
-                    and observationFrequency exists
-                    and numberOfFixings is absent
-                or numberOfFixings is absent
-                    and startDate is absent
-                    and endDate is absent
-                    and observationFrequency is absent
-                or businessCentersReference exists
-                or businessCenters exists
+        then businessCentersReference is absent
+                and businessCenters is absent
+                and optional choice fixingDate, numberOfFixings
+                and if fixingDate exists
+                    then if observationFrequency exists
+                        then startDate exists or endDate exists
+                        else startDate is absent and endDate is absent
+                and if numberOfFixings exists
+                    then observationFrequency exists
+                            and (endDate exists or startDate exists)
+                and if fixingDate is absent and numberOfFixings is absent
+                    then if observationFrequency exists
+                        then startDate exists or endDate exists
+                        else startDate is absent and endDate is absent
 
 type FxForwardStrikePrice extends FxAccrualStrike: <"A type that describes the rate of exchange between the two currencies of the leg of a deal.">
 
@@ -467,29 +444,13 @@ type FxWeightedFixingSchedule: <"Describes a schedule of fixing dates as a param
         optional choice dateAdjustments, businessCentersReference, businessCenters
 
     condition Choice1:
-        optional choice observationFrequency, businessCentersReference
-
-    condition Choice2:
-        if businessCentersReference exists
-        then dayType exists
-                and (startDate exists or endDate exists)
-                and optional choice fixing, numberOfFixings
-
-    condition Choice3:
-        optional choice observationFrequency, businessCenters
-
-    condition Choice4:
-        if businessCenters exists
-        then dayType exists
-                and (startDate exists or endDate exists)
-                and optional choice fixing, numberOfFixings
-
-    condition Choice5:
         optional choice dateAdjustments, dayType
 
-    condition Choice6:
+    condition Choice2:
         if dateAdjustments exists
-        then optional choice fixing, numberOfFixings
+        then businessCentersReference is absent
+                and businessCenters is absent
+                and optional choice fixing, numberOfFixings
                 and if fixing exists
                     then if observationFrequency exists
                         then startDate exists or endDate exists
@@ -502,30 +463,25 @@ type FxWeightedFixingSchedule: <"Describes a schedule of fixing dates as a param
                         then startDate exists or endDate exists
                         else startDate is absent and endDate is absent
 
-    condition Choice7:
+    condition Choice3:
         if dayType exists
-        then startDate exists and fixing is absent and observationFrequency is absent
-                or endDate exists and fixing is absent and observationFrequency is absent
-                or startDate exists
-                    and numberOfFixings is absent
-                    and observationFrequency is absent
-                or endDate exists
-                    and numberOfFixings is absent
-                    and observationFrequency is absent
-                or businessCentersReference exists
-                or businessCenters exists
+        then observationFrequency is absent
+                and (startDate exists or endDate exists)
+                and optional choice fixing, numberOfFixings
 
-    condition Choice8:
+    condition Choice4:
         if dateAdjustments is absent and dayType is absent
-        then startDate exists and observationFrequency exists and numberOfFixings is absent
-                or observationFrequency exists and endDate exists and fixing is absent
-                or observationFrequency exists and startDate exists and fixing is absent
-                or endDate exists
-                    and observationFrequency exists
-                    and numberOfFixings is absent
-                or numberOfFixings is absent
-                    and startDate is absent
-                    and endDate is absent
-                    and observationFrequency is absent
-                or businessCentersReference exists
-                or businessCenters exists
+        then businessCentersReference is absent
+                and businessCenters is absent
+                and optional choice fixing, numberOfFixings
+                and if fixing exists
+                    then if observationFrequency exists
+                        then startDate exists or endDate exists
+                        else startDate is absent and endDate is absent
+                and if numberOfFixings exists
+                    then observationFrequency exists
+                            and (endDate exists or startDate exists)
+                and if fixing is absent and numberOfFixings is absent
+                    then if observationFrequency exists
+                        then startDate exists or endDate exists
+                        else startDate is absent and endDate is absent
