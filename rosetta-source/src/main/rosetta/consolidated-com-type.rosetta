@@ -427,36 +427,26 @@ type CommodityOption extends Product: <"Defines a commodity option product. The 
                 and commoditySwap is absent
                 and weatherCalculationPeriods is absent
         then if commodity exists
-            then if calculationPeriods exists
-                then if quantityReference exists
-                    then notionalQuantitySchedule is absent
-                            and notionalQuantity is absent
-                            and settlementPeriodsNotionalQuantity is absent
-                            and totalNotionalQuantity is absent
-                            and physicalExercise is absent
+            then if totalNotionalQuantity exists
+                then physicalExercise is absent
                             and weatherNotionalAmount is absent
                             and weatherIndexStrikeLevel is absent
                             and calculation is absent
                             and weatherIndexData is absent
-                            and calculationPeriodsSchedule is absent
                             and commodityForward is absent
                             and weatherCalculationPeriodsReference is absent
-                    else if totalNotionalQuantity exists
-                    then physicalExercise is absent
-                            and weatherNotionalAmount is absent
-                            and weatherIndexStrikeLevel is absent
-                            and calculation is absent
-                            and weatherIndexData is absent
                             and calculationPeriodsSchedule is absent
                             and quantityReference is absent
+                        or physicalExercise is absent
+                            and weatherNotionalAmount is absent
+                            and weatherIndexStrikeLevel is absent
+                            and calculation is absent
+                            and weatherIndexData is absent
                             and commodityForward is absent
                             and weatherCalculationPeriodsReference is absent
-                    else False
-                else if quantityReference exists
-                then notionalQuantitySchedule is absent
-                        and notionalQuantity is absent
-                        and settlementPeriodsNotionalQuantity is absent
-                        and totalNotionalQuantity is absent
+                            and calculationPeriods is absent
+                            and quantityReference is absent
+                else quantityReference exists
                         and physicalExercise is absent
                         and weatherNotionalAmount is absent
                         and weatherIndexStrikeLevel is absent
@@ -464,16 +454,22 @@ type CommodityOption extends Product: <"Defines a commodity option product. The 
                         and weatherIndexData is absent
                         and commodityForward is absent
                         and weatherCalculationPeriodsReference is absent
-                else if totalNotionalQuantity exists
-                then physicalExercise is absent
+                        and calculationPeriodsSchedule is absent
+                        and notionalQuantitySchedule is absent
+                        and notionalQuantity is absent
+                        and settlementPeriodsNotionalQuantity is absent
+                    or quantityReference exists
+                        and physicalExercise is absent
                         and weatherNotionalAmount is absent
                         and weatherIndexStrikeLevel is absent
                         and calculation is absent
                         and weatherIndexData is absent
-                        and quantityReference is absent
                         and commodityForward is absent
                         and weatherCalculationPeriodsReference is absent
-                else False
+                        and calculationPeriods is absent
+                        and notionalQuantitySchedule is absent
+                        and notionalQuantity is absent
+                        and settlementPeriodsNotionalQuantity is absent
             else if effectiveDate exists
                     or weatherNotionalAmount exists
                     or weatherIndexStrikeLevel exists
@@ -1732,36 +1728,57 @@ type FixedPriceLeg extends FinancialSwapLeg: <"Fixed Price Leg of a Commodity Sw
         optional choice notionalQuantitySchedule, notionalQuantity, settlementPeriodsNotionalQuantity, quantityReference
 
     condition Choice4:
+        if notionalQuantitySchedule exists
+        then fixedPrice exists
+                    and (calculationPeriods exists or calculationDates exists or calculationPeriodsSchedule exists or calculationPeriodsReference exists or calculationPeriodsScheduleReference exists or calculationPeriodsDatesReference exists)
+                or fixedPriceSchedule exists
+                    and (calculationPeriods exists or calculationDates exists or calculationPeriodsSchedule exists or calculationPeriodsReference exists or calculationPeriodsScheduleReference exists or calculationPeriodsDatesReference exists)
+                or worldscaleRate exists
+                    and (calculationPeriods exists or calculationDates exists or calculationPeriodsSchedule exists or calculationPeriodsReference exists or calculationPeriodsScheduleReference exists or calculationPeriodsDatesReference exists)
+                or contractRate exists
+                    and (calculationPeriods exists or calculationDates exists or calculationPeriodsSchedule exists or calculationPeriodsReference exists or calculationPeriodsScheduleReference exists or calculationPeriodsDatesReference exists)
+                or settlementPeriodsPrice exists
+                    and (calculationPeriods exists or calculationDates exists or calculationPeriodsSchedule exists or calculationPeriodsReference exists or calculationPeriodsScheduleReference exists or calculationPeriodsDatesReference exists)
+                or totalNotionalQuantity exists
+
+    condition Choice5:
+        if notionalQuantity exists
+        then fixedPrice exists
+                    and (calculationPeriods exists or calculationDates exists or calculationPeriodsSchedule exists or calculationPeriodsReference exists or calculationPeriodsScheduleReference exists or calculationPeriodsDatesReference exists)
+                or fixedPriceSchedule exists
+                    and (calculationPeriods exists or calculationDates exists or calculationPeriodsSchedule exists or calculationPeriodsReference exists or calculationPeriodsScheduleReference exists or calculationPeriodsDatesReference exists)
+                or worldscaleRate exists
+                    and (calculationPeriods exists or calculationDates exists or calculationPeriodsSchedule exists or calculationPeriodsReference exists or calculationPeriodsScheduleReference exists or calculationPeriodsDatesReference exists)
+                or contractRate exists
+                    and (calculationPeriods exists or calculationDates exists or calculationPeriodsSchedule exists or calculationPeriodsReference exists or calculationPeriodsScheduleReference exists or calculationPeriodsDatesReference exists)
+                or settlementPeriodsPrice exists
+                    and (calculationPeriods exists or calculationDates exists or calculationPeriodsSchedule exists or calculationPeriodsReference exists or calculationPeriodsScheduleReference exists or calculationPeriodsDatesReference exists)
+                or totalNotionalQuantity exists
+
+    condition Choice6:
+        if settlementPeriodsNotionalQuantity exists
+        then fixedPrice exists
+                    and (calculationPeriods exists or calculationDates exists or calculationPeriodsSchedule exists or calculationPeriodsReference exists or calculationPeriodsScheduleReference exists or calculationPeriodsDatesReference exists)
+                or fixedPriceSchedule exists
+                    and (calculationPeriods exists or calculationDates exists or calculationPeriodsSchedule exists or calculationPeriodsReference exists or calculationPeriodsScheduleReference exists or calculationPeriodsDatesReference exists)
+                or worldscaleRate exists
+                    and (calculationPeriods exists or calculationDates exists or calculationPeriodsSchedule exists or calculationPeriodsReference exists or calculationPeriodsScheduleReference exists or calculationPeriodsDatesReference exists)
+                or contractRate exists
+                    and (calculationPeriods exists or calculationDates exists or calculationPeriodsSchedule exists or calculationPeriodsReference exists or calculationPeriodsScheduleReference exists or calculationPeriodsDatesReference exists)
+                or settlementPeriodsPrice exists
+                    and (calculationPeriods exists or calculationDates exists or calculationPeriodsSchedule exists or calculationPeriodsReference exists or calculationPeriodsScheduleReference exists or calculationPeriodsDatesReference exists)
+                or totalNotionalQuantity exists
+
+    condition Choice7:
         if quantityReference exists
         then totalNotionalQuantity is absent
 
-    condition Choice5:
+    condition Choice8:
         if notionalQuantitySchedule is absent
                 and notionalQuantity is absent
                 and settlementPeriodsNotionalQuantity is absent
                 and quantityReference is absent
         then totalNotionalQuantity exists
-
-    condition Choice6:
-        if quantityReference is absent
-                and totalNotionalQuantity is absent
-                and required choice notionalQuantitySchedule, notionalQuantity, settlementPeriodsNotionalQuantity
-        then calculationPeriods exists
-                or calculationDates exists
-                or calculationPeriodsSchedule exists
-                or calculationPeriodsReference exists
-                or calculationPeriodsScheduleReference exists
-                or calculationPeriodsDatesReference exists
-
-    condition Choice7:
-        if quantityReference is absent
-                and totalNotionalQuantity is absent
-                and required choice notionalQuantitySchedule, notionalQuantity, settlementPeriodsNotionalQuantity
-        then fixedPrice exists
-                or fixedPriceSchedule exists
-                or worldscaleRate exists
-                or contractRate exists
-                or settlementPeriodsPrice exists
 
 type FloatingLegCalculation: <"A type to capture details relevant to the calculation of the floating price.">
 
@@ -1808,26 +1825,45 @@ type FloatingPriceLeg extends FinancialSwapLeg: <"Floating Price Leg of a Commod
         optional choice notionalQuantitySchedule, notionalQuantity, settlementPeriodsNotionalQuantity, quantityReference
 
     condition Choice3:
-        if quantityReference exists
-        then totalNotionalQuantity is absent
-
-    condition Choice4:
-        if notionalQuantitySchedule is absent
-                and notionalQuantity is absent
-                and settlementPeriodsNotionalQuantity is absent
-                and quantityReference is absent
-        then totalNotionalQuantity exists
-
-    condition Choice5:
-        if quantityReference is absent
-                and totalNotionalQuantity is absent
-                and required choice notionalQuantitySchedule, notionalQuantity, settlementPeriodsNotionalQuantity
+        if notionalQuantitySchedule exists
         then calculationPeriods exists
                 or calculationDates exists
                 or calculationPeriodsSchedule exists
                 or calculationPeriodsReference exists
                 or calculationPeriodsScheduleReference exists
                 or calculationPeriodsDatesReference exists
+                or totalNotionalQuantity exists
+
+    condition Choice4:
+        if notionalQuantity exists
+        then calculationPeriods exists
+                or calculationDates exists
+                or calculationPeriodsSchedule exists
+                or calculationPeriodsReference exists
+                or calculationPeriodsScheduleReference exists
+                or calculationPeriodsDatesReference exists
+                or totalNotionalQuantity exists
+
+    condition Choice5:
+        if settlementPeriodsNotionalQuantity exists
+        then totalNotionalQuantity exists
+                or calculationPeriods exists
+                or calculationDates exists
+                or calculationPeriodsSchedule exists
+                or calculationPeriodsReference exists
+                or calculationPeriodsScheduleReference exists
+                or calculationPeriodsDatesReference exists
+
+    condition Choice6:
+        if quantityReference exists
+        then totalNotionalQuantity is absent
+
+    condition Choice7:
+        if notionalQuantitySchedule is absent
+                and notionalQuantity is absent
+                and settlementPeriodsNotionalQuantity is absent
+                and quantityReference is absent
+        then totalNotionalQuantity exists
 
 type FloatingStrikePrice extends FloatingLegCalculation: <"Represents a floating strike price mechanism in a commodity derivatives contract.">
 

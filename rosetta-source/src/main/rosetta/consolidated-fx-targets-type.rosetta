@@ -117,56 +117,38 @@ type FxSchedule: <"The FxSchedule may be expressed as explicit adjusted dates, o
         optional choice dateAdjustments, businessCentersReference, businessCenters, dateOffset
 
     condition Choice1:
-        optional choice observationFrequency, businessCentersReference
-
-    condition Choice2:
-        if businessCentersReference exists
-        then dayType exists and (startDate exists or endDate exists)
-
-    condition Choice3:
-        optional choice observationFrequency, businessCenters
-
-    condition Choice4:
-        if businessCenters exists
-        then dayType exists and (startDate exists or endDate exists)
-
-    condition Choice5:
         dateOffset is absent
             or startDate is absent
                 and endDate is absent
                 and observationFrequency is absent
                 and dayType is absent
 
-    condition Choice6:
+    condition Choice2:
         optional choice dateAdjustments, dayType
 
-    condition Choice7:
+    condition Choice3:
         if dateAdjustments exists
-        then if observationFrequency exists
-            then startDate exists or endDate exists
-            else if adjustedDate exists
-            then startDate is absent and endDate is absent
-            else False
+        then businessCentersReference is absent
+                and businessCenters is absent
+                and if observationFrequency exists
+                    then startDate exists or endDate exists
+                    else if adjustedDate exists
+                    then startDate is absent and endDate is absent
+                    else False
 
-    condition Choice8:
+    condition Choice4:
         if dayType exists
         then startDate exists and observationFrequency is absent
                 or endDate exists and observationFrequency is absent
-                or businessCentersReference exists
-                or businessCenters exists
                 or dateOffset exists
+                    and businessCentersReference is absent
+                    and businessCenters is absent
 
-    condition Choice9:
+    condition Choice5:
         if dateAdjustments is absent and dayType is absent
-        then startDate exists and observationFrequency exists
-                or adjustedDate exists
-                    and observationFrequency is absent
-                    and startDate is absent
-                    and endDate is absent
-                or observationFrequency exists and endDate exists
-                or businessCentersReference exists
-                or businessCenters exists
-                or dateOffset exists
+        then businessCentersReference is absent
+                and businessCenters is absent
+                and (observationFrequency exists and startDate exists or observationFrequency exists and endDate exists or adjustedDate exists and observationFrequency is absent and startDate is absent and endDate is absent or dateOffset exists)
 
 type FxScheduleReference extends Reference: <"Reference to a FX Schedule structure.">
 
