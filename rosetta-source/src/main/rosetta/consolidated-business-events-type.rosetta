@@ -707,61 +707,41 @@ type TradeNovationContent extends AbstractEvent: <"A structure describing a nova
         if novatedAmount exists
         then remainingNumberOfOptions is absent
                 and remainingNumberOfUnits is absent
+                and optional choice feeTradeIdentifier, feeTrade
                 and optional choice oldTradeIdentifier, oldTrade
-                and if oldTradeIdentifier exists
-                    then optional choice feeTradeIdentifier, feeTrade
-                and if oldTrade exists
-                    then optional choice feeTradeIdentifier, feeTrade
-                and if oldTradeIdentifier is absent and oldTrade is absent
-                    then optional choice feeTradeIdentifier, feeTrade
 
     condition Choice3:
         if novatedNumberOfOptions exists
         then remainingAmount is absent
                 and remainingNumberOfUnits is absent
+                and optional choice feeTradeIdentifier, feeTrade
                 and optional choice oldTradeIdentifier, oldTrade
-                and if oldTradeIdentifier exists
-                    then optional choice feeTradeIdentifier, feeTrade
-                and if oldTrade exists
-                    then optional choice feeTradeIdentifier, feeTrade
-                and if oldTradeIdentifier is absent and oldTrade is absent
-                    then optional choice feeTradeIdentifier, feeTrade
 
     condition Choice4:
         if novatedNumberOfUnits exists
         then remainingAmount is absent
                 and remainingNumberOfOptions is absent
+                and optional choice feeTradeIdentifier, feeTrade
                 and optional choice oldTradeIdentifier, oldTrade
-                and if oldTradeIdentifier exists
-                    then optional choice feeTradeIdentifier, feeTrade
-                and if oldTrade exists
-                    then optional choice feeTradeIdentifier, feeTrade
-                and if oldTradeIdentifier is absent and oldTrade is absent
-                    then optional choice feeTradeIdentifier, feeTrade
 
     condition Choice5:
         if novationAmount exists
         then remainingAmount is absent
                 and remainingNumberOfOptions is absent
                 and remainingNumberOfUnits is absent
+                and optional choice feeTradeIdentifier, feeTrade
                 and optional choice oldTradeIdentifier, oldTrade
-                and if oldTradeIdentifier exists
-                    then optional choice feeTradeIdentifier, feeTrade
-                and if oldTrade exists
-                    then optional choice feeTradeIdentifier, feeTrade
-                and if oldTradeIdentifier is absent and oldTrade is absent
-                    then optional choice feeTradeIdentifier, feeTrade
 
     condition Choice6:
         if novatedAmount is absent
                 and novatedNumberOfOptions is absent
                 and novatedNumberOfUnits is absent
                 and novationAmount is absent
-        then remainingAmount is absent
-                and remainingNumberOfOptions is absent
+        then remainingNumberOfOptions is absent
                 and remainingNumberOfUnits is absent
-                and optional choice oldTradeIdentifier, oldTrade
+                and remainingAmount is absent
                 and optional choice feeTradeIdentifier, feeTrade
+                and optional choice oldTradeIdentifier, oldTrade
 
 type TradingEventSummary: <"A type that records a short form event history of a trade.">
 
